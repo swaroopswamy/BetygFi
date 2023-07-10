@@ -33,6 +33,7 @@ import {
 } from "react-icons/fi";
 import SidebarContent from "../components/sidebar";
 import Navbar from "../components/header";
+import Footer from "../components/footer";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -60,6 +61,7 @@ export default function LayoutProvider({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
+      <Footer />
     </Box>
   );
 }
