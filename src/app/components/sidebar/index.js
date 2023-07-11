@@ -16,13 +16,19 @@ import {
   FiMenu,
   FiBell,
   FiChevronDown,
+  FiCpu
 } from "react-icons/fi";
 const LinkItems = [
   { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
+  { name: "Community", icon: FiTrendingUp },
+  { name: "Speculation", icon: FiCompass },
+];
+
+const bottomMenu = [
+  { name: "Help", icon: FiHome },
   { name: "Settings", icon: FiSettings },
+  { name: "Suggest Feature", icon: FiCompass },
+  { name: "Report Bug", icon: FiCpu },
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -47,6 +53,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+      <div style={{ position: 'absolute', bottom: '10px', width:'100%' }}>
+      {bottomMenu.map((link) => (
+        <NavItem key={link.name} icon={link.icon}>
+          {link.name}
+        </NavItem>
+      ))}
+        <hr style={{marginBottom:'15px'}} />
+        <Text as={"capital"}>POWRED BY SOLVENDO</Text>
+      </div>
+
     </Box>
   );
 };
