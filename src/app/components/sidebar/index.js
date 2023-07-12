@@ -1,3 +1,4 @@
+import { InfoIcon } from '@chakra-ui/icons'
 import {
   Box,
   CloseButton,
@@ -29,6 +30,7 @@ const bottomMenu = [
   { name: "Settings", icon: FiSettings },
   { name: "Suggest Feature", icon: FiCompass },
   { name: "Report Bug", icon: FiCpu },
+  { name: "about", icon: InfoIcon }
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
