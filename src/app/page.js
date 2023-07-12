@@ -5,16 +5,19 @@ import styles from "./page.module.css";
 import Rankings from "./pages/Home/Rankings";
 import Overview from "./pages/Home/Overview";
 import ScoreDistribution from "./pages/Home/ScoreDistribution";
+import About from "./pages/about";
 
 export default function Home() {
   return (
     <>
       <main className={styles.main}>
-        <SimpleGrid column={2}>
+        {/* <SimpleGrid column={2}>
           <Box w='100%'><Overview/></Box>
           <Box w='100%'><ScoreDistribution/></Box>
         </SimpleGrid>
-        <Rankings />
+        <Rankings /> */}
+
+        <About/>
       </main>
     </>
   );
