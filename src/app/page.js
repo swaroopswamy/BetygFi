@@ -1,5 +1,5 @@
 "use client"
-import { Box, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Box, Grid, GridItem, SimpleGrid, } from "@chakra-ui/react";
 import Navbar from "./components/header";
 import styles from "./page.module.css";
 import Rankings from "./pages/Home/Rankings";
