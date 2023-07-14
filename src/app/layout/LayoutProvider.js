@@ -58,7 +58,7 @@ export default function LayoutProvider({ children }) {
       </Drawer>
 
       <Navbar onOpenMenu={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p="0">
         {children}
       </Box>
       <Footer />
