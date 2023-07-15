@@ -7,6 +7,7 @@ import Overview from "./pages/Home/Overview";
 import ScoreDistribution from "./pages/Home/ScoreDistribution";
 import About from "./pages/about";
 import TermsandConditions from "./pages/terms";
+import PrivacyPolicy from "./pages/privacy";
 
 export default function Home() {
   return (
@@ -18,9 +19,9 @@ export default function Home() {
         </SimpleGrid>
         <Rankings /> */}
 
-        <About/>
-
-        <TermsandConditions/>
+         <About/>
+        <TermsandConditions/> 
+        <PrivacyPolicy/>
       </main>
     </>
   );
