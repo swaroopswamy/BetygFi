@@ -3,6 +3,10 @@ import React from "react";
 import ApexChart from 'react-apexcharts';
 
 const OverviewColumnChart = () => {
+    if ( window === "object") {
+        //This code is executed in the browser
+         console.log(window.innerWidth)
+     }
     const options = {
         chart: {
             height: 205,

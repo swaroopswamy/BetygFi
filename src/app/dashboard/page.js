@@ -1,6 +1,6 @@
 'use client'
 import { Box, Flex, Grid, GridItem, Icon, Input, Text, useColorModeValue } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Rankings from "./DefiRankingsTable";
 import { blockchains } from '../../../util/constant'
 import OverviewColumnChart from "./OverviewColumnChart";
@@ -10,8 +10,16 @@ import Tron from '../../../public/icons/Tron_sm_icon.svg';
 import BSC from '../../../public/icons/BSC_sm_icon.svg';
 import Arbitrum from '../../../public/icons/Arbitrum_sm_icon.svg';
 import Polygon from '../../../public/icons/Polygon_sm_icon.svg';
+import { getDefiRankingsTableData } from "@/services/dashboardService";
+import { useDispatch, useSelector } from "react-redux";
+import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  const BlockchainTypeHandler = (type) =>{
+    dispatch(blockchainTypeChangedReducer(type));    
+  }
   return (
     <>
       <Box
@@ -92,6 +100,9 @@ const Dashboard = () => {
                         alignItems={"center"}
                         flexDirection={"row"}
                         mr={{ base: 2, md: 4 }}
+                        onClick={()=>{
+                          BlockchainTypeHandler(item)
+                        }}
                       >
                         {/* <Icon
                           width={"12px"}

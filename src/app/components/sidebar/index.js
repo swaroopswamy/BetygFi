@@ -79,6 +79,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
+      <hr style={{ marginBottom: '15px', marginTop: '15px' }} />
       {LinkItemsDown.map((link) => (
         <>
           {link?.dropdown ?
@@ -123,7 +124,29 @@ const SidebarContent = ({ onClose, ...rest }) => {
           </NavItem>
         ))}
         <hr style={{ marginBottom: '15px' }} />
-        <Text as={"capital"}>POWRED BY SOLVENDO</Text>
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          w={"100%"}
+        >
+          <Image
+            width={15}
+            height={15}
+            alt="logo"
+            src={'/icons/company_sm_logo.svg'}
+            style={{marginRight:"10px"}}
+          />
+          <Text
+            as={"capital"}
+            fontSize={"12px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+
+            color={useColorModeValue("#16171B", "#FFF")}
+          >POWRED BY SOLVENDO</Text>
+        </Box>
       </div>
 
     </Box>
