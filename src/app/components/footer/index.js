@@ -1,9 +1,8 @@
-
-
+"use client";
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
 
-const manrope = Manrope({ weight: ['400'], subsets: ["latin"] });
+const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 import React from "react";
 
@@ -77,7 +76,7 @@ const Footer = () => {
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
             >
-              &#169;{" "}2023 Solvendo. All Rights Reserved.
+              &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
           </Box>
         </Box>

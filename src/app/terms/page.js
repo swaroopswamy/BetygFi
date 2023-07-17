@@ -1,5 +1,14 @@
-import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
-
+"use client";
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  Heading,
+  Text,
+  extendTheme,
+  Manrope,
+} from "@chakra-ui/react";
 
 export default function Dashboard() {
   return (
@@ -34,6 +43,5 @@ export default function Dashboard() {
       </Container>
  */}
     </>
-
   );
 }

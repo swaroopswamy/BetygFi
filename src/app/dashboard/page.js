@@ -1,12 +1,26 @@
-'use client'
-import { Box, Flex, Grid, GridItem, Icon, Input, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect, useState, useCallback } from "react";
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Icon,
+  Input,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import React from "react";
 import Rankings from "./DefiRankingsTable";
-import { blockchains, categories, } from '../../../util/constant'
+import { blockchains, categories } from "../../../util/constant";
 import OverviewColumnChart from "./OverviewColumnChart";
 import OverviewAreaChart from "./OverviewAreaChart";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer, categoryChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import {
+  blockchainTypeChangedReducer,
+  categoryChangedReducer,
+} from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
 
 const Dashboard = () => {
@@ -14,18 +28,19 @@ const Dashboard = () => {
 
   const BlockchainTypeHandler = (type) => {
     dispatch(blockchainTypeChangedReducer(type));
-  }
-  const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
-  const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType)
+  };
+  const categorySelected = useSelector(
+    (state) => state?.dashboardTableData?.categorySelected
+  );
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
   const categoryChangedHandler = (category) => {
     dispatch(categoryChangedReducer(category));
-  }
+  };
   return (
     <>
-      <Box
-        display={"flex"}
-        flexDirection={"column"}
-      >
+      <Box display={"flex"} flexDirection={"column"}>
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -54,7 +69,10 @@ const Dashboard = () => {
             opacity={"0.5"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
           </Text>
           <Text
             fontSize={"10px"}
@@ -66,10 +84,7 @@ const Dashboard = () => {
           >
             Select the blockchains you'd like to analyze
           </Text>
-          <Box
-            mr={{ base: 2, md: 4 }}
-            display={"flex"}
-          >
+          <Box mr={{ base: 2, md: 4 }} display={"flex"}>
             {blockchains?.map((item, i) => (
               <>
                 <Flex
@@ -79,23 +94,28 @@ const Dashboard = () => {
                   mr={{ base: 2, md: 4 }}
                   padding={"7px 9px"}
                   borderRadius="2px"
-                  bgColor={blockchainSelected === item ? useColorModeValue("#F5F5F7", "#191919") : useColorModeValue("#FFFFFF", "#202020")}
-                  border={useColorModeValue("1px solid #E0E0E0", "1px solid #333")}
+                  bgColor={
+                    blockchainSelected === item
+                      ? useColorModeValue("#F5F5F7", "#191919")
+                      : useColorModeValue("#FFFFFF", "#202020")
+                  }
+                  border={useColorModeValue(
+                    "1px solid #E0E0E0",
+                    "1px solid #333"
+                  )}
                   onClick={() => {
-                    BlockchainTypeHandler(item)
+                    BlockchainTypeHandler(item);
                   }}
                 >
-                  {
-                    i !== 0 &&
+                  {i !== 0 && (
                     <Image
                       width={12}
                       height={12}
                       src={`/icons/${item}_sm_icon.svg`}
                       alt="Follow us on Twitter"
                       style={{ marginRight: "4px" }}
-                    >
-                    </Image>
-                  }
+                    ></Image>
+                  )}
                   <Text
                     fontSize={"10px"}
                     fontWeight={"400"}
@@ -116,8 +136,7 @@ const Dashboard = () => {
           flexDirection={"column"}
           bgColor={useColorModeValue("#F0F0F5", "#191919")}
         >
-          <Box
-          >
+          <Box>
             <Text
               fontSize={"10px"}
               fontWeight={400}
@@ -129,47 +148,46 @@ const Dashboard = () => {
               Choose the markets you'd like to explore
             </Text>
           </Box>
-          <Box
-            display={"flex"}
-            mb="15px"
-          >
-            {
-              categories.map((category, i) => {
-                return (
-                  <>
-                    <Box
-                      key={i}
-                      borderRadius="2px"
-                      padding={"7px 9px"}
-                      mx="4px"
-                      cursor={"pointer"}
-                      border={useColorModeValue("1px solid #E8E8E8", "1px solid #333")}
-                      bgColor={categorySelected === category ? useColorModeValue("#FFF", "#191919") : useColorModeValue("#F5F5F7", "#202020")}
-                      onClick={() => {
-                        categoryChangedHandler(category);
-                      }}
+          <Box display={"flex"} mb="15px">
+            {categories.map((category, i) => {
+              return (
+                <>
+                  <Box
+                    key={i}
+                    borderRadius="2px"
+                    padding={"7px 9px"}
+                    mx="4px"
+                    cursor={"pointer"}
+                    border={useColorModeValue(
+                      "1px solid #E8E8E8",
+                      "1px solid #333"
+                    )}
+                    bgColor={
+                      categorySelected === category
+                        ? useColorModeValue("#FFF", "#191919")
+                        : useColorModeValue("#F5F5F7", "#202020")
+                    }
+                    onClick={() => {
+                      categoryChangedHandler(category);
+                    }}
+                  >
+                    <Text
+                      fontSize={"10px"}
+                      fontWeight={600}
+                      letterSpacing={"1px"}
+                      lineHeight={"15px"}
+                      color={useColorModeValue("#191919", "#FFFFFF")}
                     >
-                      <Text
-                        fontSize={"10px"}
-                        fontWeight={600}
-                        letterSpacing={"1px"}
-                        lineHeight={"15px"}
-                        color={useColorModeValue("#191919", "#FFFFFF")}
-                      >
-                        {category}
-                      </Text>
-                    </Box>
-                  </>
-                )
-              })
-            }
+                      {category}
+                    </Text>
+                  </Box>
+                </>
+              );
+            })}
           </Box>
-          <Box
-            display={"inline-flex"}
-            mb={"30px"}
-          >
+          <Box display={"inline-flex"} mb={"30px"}>
             <Box
-              w='62%'
+              w="62%"
               borderRadius={"4px"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
@@ -189,10 +207,7 @@ const Dashboard = () => {
                 >
                   Overview
                 </Text>
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                >
+                <Box display={"flex"} alignItems={"center"}>
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"12px"}
@@ -214,7 +229,7 @@ const Dashboard = () => {
               <OverviewAreaChart />
             </Box>
             <Box
-              w='35%'
+              w="35%"
               borderRadius={"4px"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
@@ -231,7 +246,7 @@ const Dashboard = () => {
               <OverviewColumnChart />
             </Box>
           </Box>
-          <Box w='100%' >
+          <Box w="100%">
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -241,30 +256,23 @@ const Dashboard = () => {
               borderRadius={"6px"}
               dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
             >
-              <Flex
-                justifyContent={"space-between"}
-                padding={"23px 29px 27px"}
-              >
+              <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
                 <Text
-                  fontSize='2xl'
+                  fontSize="2xl"
                   fontWeight={"400"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
                   Defi Ranking
                 </Text>
-                <Flex
-                  alignItems={"center"}
-                >
-
+                <Flex alignItems={"center"}>
                   <Box>
-                    <Input placeholder='Search DeFi' />
+                    <Input placeholder="Search DeFi" />
                   </Box>
                 </Flex>
               </Flex>
 
               <Rankings />
             </Box>
-
           </Box>
         </Box>
       </Box>

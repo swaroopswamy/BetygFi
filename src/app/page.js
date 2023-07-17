@@ -1,8 +1,7 @@
-"use client"
-import { redirect } from 'next/navigation';
-import styles from "./page.module.css";
-import axios from "axios";
+"use client";
 
+import styles from "./page.module.css";
+import Dashboard from "./dashboard/page";
 
 /* axios.interceptors.request.use(
   (reqConfig) => {
@@ -31,10 +30,10 @@ import axios from "axios";
 );
  */
 export default function Home() {
-  redirect('/dashboard');
   return (
     <>
       <main className={styles.main}>
+        <Dashboard />
       </main>
     </>
   );
