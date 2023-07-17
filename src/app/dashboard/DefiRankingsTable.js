@@ -8,12 +8,12 @@ const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
   console.log(tableData, "tabledata")
   const getDefiRankingsTableDataHandler = () => {
-    dispatch(fetchData());
+    dispatch(fetchData(tableData?.blockchainType));
   }
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-  }, []);
+  }, [tableData?.blockchainType]);
 
   return <>
     <Table variant='simple'>
