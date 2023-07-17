@@ -1,14 +1,17 @@
+"use client"
 import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
+import styles from "../page.module.css";
+import { useControllableState } from "@chakra-ui/react-use-controllable-state";
+import { mergeRefs } from "@chakra-ui/react-use-merge-refs";
+import { callAllHandlers, warn } from "@chakra-ui/shared-utils";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 
 export default function Dashboard() {
   return (
     <>
-      {/*       <Container className={styles.container}>
+      {     <Container className={styles.container}>
         <Box className={styles.box1}>
-           <Heading>
-            Terms and condition
-          </Heading> 
           <Grid>
             <GridItem colSpan={2} colStart={0} colEnd={2} className={styles.terms}>
             Terms and Conditons
@@ -38,7 +41,7 @@ export default function Dashboard() {
           </Text>
         </Box>
       </Container>
- */}
+    }
     </>
 
   );
