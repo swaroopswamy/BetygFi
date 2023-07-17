@@ -1,12 +1,9 @@
-import { Box, GridItem, Grid, Heading, Text, Manrope, background, Container } from "@chakra-ui/react";
 import React from "react";
-import { images } from "../../../next.config";
-import styles from "./pages.module.css";
 
 
 const About = () => {
   return<div>
-    <Container className={styles.about}>
+{/*     <Container className={styles.about}>
     <Box className={styles.mainbox} borderBottom={1306} borderTop={61} ml={211}>
     <Text className={styles.mainboxtext} p={109} paddingLeft={71} paddingRight={923}>We Betygfi</Text>
     </Box>
@@ -45,7 +42,7 @@ const About = () => {
     <Text paddingTop="20px" pb="30px" ml="150px">
       We use variety of methods to use the labels
     </Text>
-    </Container>
+    </Container> */}
   </div>
 
 };
