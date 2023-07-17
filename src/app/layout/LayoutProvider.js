@@ -58,10 +58,10 @@ export default function LayoutProvider({ children }) {
       </Drawer>
 
       <Navbar onOpenMenu={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p={0}>
+      <Box ml={{ base: 0, md: 60 }} p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
         {children}
+        <Footer />
       </Box>
-      <Footer />
     </Box>
   );
 }

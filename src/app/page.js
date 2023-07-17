@@ -1,26 +1,40 @@
 "use client"
-import { Box, Grid, GridItem, SimpleGrid, } from "@chakra-ui/react";
-import Navbar from "./components/header";
+import { redirect } from 'next/navigation';
 import styles from "./page.module.css";
-import Rankings from "./pages/Home/Rankings";
-import Overview from "./pages/Home/Overview";
-import ScoreDistribution from "./pages/Home/ScoreDistribution";
-import About from "./pages/about";
-import TermsandConditions from "./pages/terms";
+import axios from "axios";
 
+
+/* axios.interceptors.request.use(
+  (reqConfig) => {
+    const reqConfiglocal = reqConfig;
+    const token = localStorage.getItem("token");
+    if (token) {
+      reqConfiglocal.headers["X-Authorization"] = `${token}`;
+    }
+
+    return reqConfiglocal;
+  },
+  (error) => {
+    Promise.reject(error);
+  }
+); */
+
+/* axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    console.log(error, "error");
+
+    return Promise.reject(error);
+  }
+);
+ */
 export default function Home() {
+  redirect('/dashboard');
   return (
     <>
       <main className={styles.main}>
-        {/*<SimpleGrid column={2}>
-          <Box w='100%'><Overview/></Box>
-          <Box w='100%'><ScoreDistribution/></Box>
-        </SimpleGrid>
-        <Rankings /> */}
-
-        <About/>
-
-        <TermsandConditions/>
       </main>
     </>
   );
