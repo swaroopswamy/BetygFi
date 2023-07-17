@@ -13,5 +13,5 @@ export const categories = [
     "Insurance",
     "Yield Farming",
     "Exchange and Liquidity",
-    "Borrowing and lending"
+    "Lending and Borrowing"
 ]

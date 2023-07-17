@@ -29,7 +29,6 @@ const dashboardDataSlice = createSlice({
     });
     builder.addCase(fetchData.rejected, (state, action) => {
       state.isLoading = false;
-      console.log("error", action.error);
       state.isError = true;
     });
   },

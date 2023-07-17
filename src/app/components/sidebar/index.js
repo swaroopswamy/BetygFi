@@ -27,23 +27,26 @@ import QuestionIcon from "../../../../public/icons/question_mark_sm_icon.svg";
 import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
-
+import { ChevronDownIcon } from "@chakra-ui/icons";
 const LinkItemsUp = [
-  { name: "Significant", icon: StarIcon },
-  { name: "Home", icon: HomeIcon },
+  { name: "Home", icon: HomeIcon, path: '/' },
+  { name: "Speculation", icon: SpeclationIcon, path: '#' },
+  { name: "Approach Paper", icon: CompanyIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
+  { name: "About", icon: CompanyIcon, path: '/' },
+  // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
-  { name: "Speculation", icon: SpeclationIcon },
-  { name: "Company", icon: CompanyIcon },
-  { name: "legal", icon: LegalIcon, dropdown: true },
+  // { name: "Speculation", icon: SpeclationIcon, path: '#' },
+  // { name: "Company", icon: CompanyIcon, path: '#' },
+  // { name: "legal", icon: LegalIcon, dropdown: true, path: '#' },
 ];
 
-import { ChevronDownIcon } from "@chakra-ui/icons";
+
 const bottomMenu = [
-  { name: "Help", icon: QuestionIcon },
-  { name: "Settings", icon: SettingIcon },
-  { name: "Suggest Feature", icon: BulbIcon },
-  { name: "Report Bug", icon: BugIcon },
+  { name: "Help", icon: QuestionIcon, path: '#' },
+  { name: "Settings", icon: SettingIcon, path: '#' },
+  { name: "Suggest Feature", icon: BulbIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
+  { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -83,6 +86,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <NavItem
           key={link.name}
           icon={link.icon}
+          path={link.path}
+          newTab={link.newTab}
           fontSize="11px"
           fontWeight="400"
           letterSpacing="1px"
@@ -111,6 +116,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavItem
                 key={link.name}
                 icon={link.icon}
+                path={link.path}
                 fontSize="11px"
                 fontWeight="400"
                 letterSpacing="1px"
@@ -127,10 +133,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
           <NavItem
             key={link.name}
             icon={link.icon}
+            path={link.path}
+            newTab={link.newTab}
             fontSize="11px"
             fontWeight="400"
             letterSpacing="1px"
             color={useColorModeValue("#16171B", "#FFF")}
+
           >
             {link.name}
           </NavItem>
@@ -167,10 +176,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
 export default SidebarContent;
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, path, newTab, children, ...rest }) => {
   return (
     <Link
-      href="#"
+      href={path}
+      target={newTab ? '_blank' : null}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >

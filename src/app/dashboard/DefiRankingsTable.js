@@ -24,7 +24,6 @@ import { fetchData } from "../../redux/dashboard_data/dataSlice";
 const Rankings = () => {
   const dispatch = useDispatch();
   const tableData = useSelector((state) => state?.dashboardTableData);
-  console.log(tableData, "tabledata");
   const getDefiRankingsTableDataHandler = () => {
     dispatch(fetchData(tableData?.blockchainType));
   };
