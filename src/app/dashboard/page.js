@@ -4,13 +4,19 @@
 import {
   Box,
   Button,
+  Checkbox,
   Flex,
   Grid,
   GridItem,
   Icon,
   Input,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   Tooltip,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -22,9 +28,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   blockchainTypeChangedReducer,
   categoryChangedReducer,
-  fetchData,
+  fetchDefiRankingTableData,
+  fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(0);
@@ -45,24 +53,40 @@ const Dashboard = () => {
   const pageChangeHandler = (page) => {
     console.log(page);
   }
-  const searchByNameHandler = (name) =>{
+  const searchByNameHandler = (name) => {
     getDefiRankingsTableDataHandler(name);
-    console.log(name);
   }
 
+
+
+  const graphData = useSelector((state) => state);
+  const getScoreGraphDataHandler = () => {
+    const payload = {
+      blockchain: blockchainSelected,
+      category: categorySelected,
+    };
+    dispatch(fetchScoreGraphData(payload));
+  };
   const getDefiRankingsTableDataHandler = (name) => {
     const payload = {
       blockchain: blockchainSelected,
       category: categorySelected,
-      name : name,
+      name: name,
     };
-    dispatch(fetchData(payload));
+    dispatch(fetchDefiRankingTableData(payload));
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
   }, [blockchainSelected, categorySelected]);
-  console.log(blockchainSelected);
+
+  /* useEffect(() => {
+    getScoreGraphDataHandler();
+  }, [blockchainSelected, categorySelected]);
+ */
+
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       <Box display={"flex"} flexDirection={"column"}>
@@ -74,17 +98,154 @@ const Dashboard = () => {
           paddingBottom={"10px"}
           bgColor={useColorModeValue("#FFF", "#131313")}
         >
-          <Text
-            fontSize={"24px"}
-            fontWeight={400}
-            letterSpacing={"2.4px"}
-            lineHeight={"20px"}
-            mb="10px"
-            textTransform={"uppercase"}
-            color={useColorModeValue("#191919", "#FFFFFF")}
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            w="100%"
+            mb="15px"
+            position={"relative"}
           >
-            DeFi Markets
-          </Text>
+            <Box onClick={toggleColorMode}
+              position={"absolute"}
+              right={"0px"}
+              cursor={"pointer"}
+            >
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
+            </Box>
+            <Text
+              fontSize={"24px"}
+              fontWeight={400}
+              letterSpacing={"2.4px"}
+              lineHeight={"20px"}
+
+              textTransform={"uppercase"}
+              color={useColorModeValue("#191919", "#FFFFFF")}
+            >
+              DeFi Markets
+            </Text>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              ml={"22px"}
+            >
+              {blockchains?.map((item, i) => (
+                <>
+                  {i < 4 &&
+                    <Tooltip label={item}>
+                      <Box
+                        display={"flex"}
+                        cursor={"pointer"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+
+                        flexDirection={"row"}
+                        bg={"#D9D9D9"}
+                        borderRadius="50%"
+                        border={blockchainSelected.includes(item) ? "3px solid #55A406" : ""}
+                        boxShadow={!blockchainSelected.includes(item) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                        w="40px"
+                        h="40px"
+                        ml={i !== 0 && '-10px'}
+
+                        _hover={{ borderColor: "blue" }}
+                        /* bgColor={
+                          blockchainSelected.includes(item)
+                            ? useColorModeValue("#F5F5F7", "#191919")
+                            : useColorModeValue("#FFFFFF", "#202020")
+                        }
+                        border={useColorModeValue(
+                          "1px solid #E0E0E0",
+                          "1px solid #333"
+                        )}  */
+                        onClick={() => {
+                          BlockchainTypeHandler(item);
+                        }}
+                      >
+                        <Image
+                          width={18}
+                          height={18}
+                          src={`/icons/${item}_sm_icon.svg`}
+                          alt={`${item}_icon`}
+
+                        ></Image>
+                        {/* <Text
+                     fontSize={"10px"}
+                     fontWeight={"400"}
+                     lineHeight={"20px"}
+                     letterSpacing={"1px"}
+                     color={useColorModeValue("#16171B", "#FFF")}
+                   >
+                     {item}
+                   </Text> */}
+                      </Box>
+                    </Tooltip>
+                  }
+                </>
+              ))}
+              <Menu>
+                <MenuButton
+                  bg={"#D9D9D9"}
+                  borderRadius="50%"
+                  w="40px"
+                  h="40px"
+                  transition='all 0.2s'
+
+                  border="2px solid #191919"
+                  ml='-10px'
+                  _focus={{ boxShadow: 'outline' }}
+                >
+                  +3
+                </MenuButton>
+                <MenuList
+                  boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
+                  bgColor={useColorModeValue("#FFF", "#191919")}
+                >
+                  {blockchains.map((item, i) => {
+                    return (
+                      <>
+                        {i >= 4 &&
+                          <MenuItem key={i}
+                            bgColor={useColorModeValue("#FFF", "#191919")}
+                            _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                          >
+                            <Checkbox colorScheme='green'
+                              value={item}
+                              checked={blockchainSelected.includes(item)} onChange={(e) => {
+                                BlockchainTypeHandler(item);
+                              }}>
+                              <Box
+                                display={"flex"}
+                                cursor={"pointer"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                              >
+                                <Image
+                                  width={18}
+                                  height={18}
+                                  src={`/icons/${item}_sm_icon.svg`}
+                                  alt={`${item}_icon`}
+                                  style={{ marginRight: "20px", marginLeft: "14px" }}
+                                ></Image>
+                                <Text
+                                  fontSize={"12px"}
+                                  fontWeight={"400"}
+                                  lineHeight={"20px"}
+                                  letterSpacing={"1px"}
+                                  color={useColorModeValue("#16171B", "#FFF")}
+                                >
+                                  {item}
+                                </Text>
+                              </Box>
+                            </Checkbox>
+                          </MenuItem>
+                        }
+                      </>)
+                  })}
+                </MenuList>
+              </Menu>
+            </Box>
+          </Box>
           <Text
             fontSize={"10px"}
             fontWeight={400}
@@ -96,7 +257,7 @@ const Dashboard = () => {
           >
             Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
           </Text>
-          <Text
+          {/*  <Text
             fontSize={"10px"}
             fontWeight={400}
             letterSpacing={"1px"}
@@ -105,9 +266,9 @@ const Dashboard = () => {
             color={useColorModeValue("#191919", "#FFF")}
           >
             Select the blockchains you'd like to analyze
-          </Text>
+          </Text> */}
           <Box mr={{ base: 2, md: 4 }} display={"flex"}>
-            <Flex
+            {/* <Flex
               cursor={"pointer"}
               alignItems={"center"}
               flexDirection={"row"}
@@ -176,7 +337,8 @@ const Dashboard = () => {
                   </Text>
                 </Flex>
               </>
-            ))}
+            ))} */}
+
           </Box>
         </Box>
         <Box
@@ -320,7 +482,22 @@ const Dashboard = () => {
                   </Text>
                 </Box>
               </Box>
-              <OverviewAreaChart />
+              <Box
+                bg={"#00000014"}
+                p="30px"
+                mt='30px'
+              >
+                <Text
+                  color={useColorModeValue("#16171B", "#FFF")}
+                  fontSize={"18px"}
+                  fontWeight={"300"}
+                  textAlign={"center"}
+                  opacity={0.6}
+                >
+                  For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
+                </Text>
+              </Box>
+              {/* <OverviewAreaChart /> */}
             </Box>
             <Box
               w="35%"
@@ -360,7 +537,15 @@ const Dashboard = () => {
                 </Text>
                 <Flex alignItems={"center"}>
                   <Box>
-                    <Input placeholder="Search DeFi" onChange={(e)=>{ searchByNameHandler(e.target.value)}} />
+                    <Input
+                      borderColor={useColorModeValue("#E8E8E8", "#333")}
+                      bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                      color={useColorModeValue("#16171B", "#A8ADBD")}
+                      fontSize={"10px"}
+                      fontWeight={400}
+                      w="207px"
+                      placeholder="Search DeFi"
+                      onChange={(e) => { searchByNameHandler(e.target.value) }} />
                   </Box>
                 </Flex>
               </Flex>
@@ -384,7 +569,7 @@ const Dashboard = () => {
                     width={15}
                     height={15}
                     style={{ rotate: '180deg' }}
-                    src={'/icons/direction-arrow.svg'}
+                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                     alt="prev-arrow"
                   ></Image>
                 </Box>
@@ -401,7 +586,7 @@ const Dashboard = () => {
                     width={15}
                     height={15}
                     alt="next-arrow"
-                    src={'/icons/direction-arrow.svg'}
+                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                   ></Image>
                 </Box>
               </Box>

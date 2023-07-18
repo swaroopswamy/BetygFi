@@ -13,10 +13,10 @@ export const getDefiRankingsTableData = async (payload) => {
   }
 };
 
-export const getProtocolScoresData = async () => {
+export const getProtocolScoresData = async (payload) => {
   try {
-    const { data } = await axiosInstance.get(
-      `protocols/scores`
+    const { data } = await axiosInstance.post(
+      `protocols/scores`,payload
     );
     return data;
   } catch (err) {

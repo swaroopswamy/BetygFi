@@ -23,11 +23,15 @@ import CommunityIcon from "../../../../public/icons/community_sm_logo.svg";
 import SpeclationIcon from "../../../../public/icons/wallet_sm_logo.svg";
 import CompanyIcon from "../../../../public/icons/company_sm_logo.svg";
 import LegalIcon from "../../../../public/icons/book_sm_logo.svg";
-
 import QuestionIcon from "../../../../public/icons/question_mark_sm_icon.svg";
 import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
+import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
+import DiscordIcon from "../../../../public/icons/discord-icon.svg";
+import TwitterIcon from "../../../../public/icons/twitter-icon.svg";
+import RedditIcon from "../../../../public/icons/reddit-icon.svg";
+
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
@@ -35,14 +39,14 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: CompanyIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
+  { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
   { name: "About", icon: CompanyIcon, path: '/' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
-  // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  // { name: "Company", icon: CompanyIcon, path: '#' },
-  // { name: "legal", icon: LegalIcon, dropdown: true, path: '#' },
+   { name: "Reddit", icon: RedditIcon, path: '#' },
+   { name: "Discord", icon: DiscordIcon, path: '#' },
+   { name: "Twitter", icon: TwitterIcon, path: '#' },
 ];
 
 
@@ -103,7 +107,20 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
-      <hr style={{ marginBottom: "15px", marginTop: "15px" }} />
+      <hr style={{ margin:"15px 20px" }} />
+      <Text
+        fontSize="11px"
+        fontWeight="400"
+        letterSpacing="1px"
+        color={useColorModeValue("#16171B", "#FFF")}
+        textTransform={"uppercase"}
+        mb="15px"
+        w="100%"
+        mx="4"
+        px="2"
+      >
+        BetygFi Communities 
+      </Text>
       {LinkItemsDown.map((link) => (
         <>
           {link?.dropdown ? (
@@ -128,6 +145,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 fontSize="11px"
                 fontWeight="400"
                 letterSpacing="1px"
+
                 color={useColorModeValue("#16171B", "#FFF")}
               >
                 {link.name}
@@ -182,14 +200,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
               letterSpacing={"1px"}
               color={useColorModeValue("#16171B", "#FFF")}
             >
-              POWRED BY SOLVENDO
+              POWERED BY SOLVENDO
             </Text>
 
           </Box>
 
-          <Box onClick={toggleColorMode}>
-            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"}/>}
-          </Box>
+          {/* <Box onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
+          </Box> */}
         </Box>
 
       </div>
@@ -209,7 +227,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
     >
       <Flex
         align="center"
-        p="4"
+        p="2"
         mx="4"
         borderRadius="lg"
         role="group"
@@ -223,6 +241,8 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
         {icon && (
           <Icon
             mr="4"
+            w="16px"
+            h="18px"
             fontSize="16"
             _groupHover={{
               color: "white",

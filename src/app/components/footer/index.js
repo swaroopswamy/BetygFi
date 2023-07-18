@@ -16,15 +16,18 @@ const Footer = () => {
         display="flex"
         justifyContent="flex-start"
         padding={2}
-        height="20px"
-        my={"14px"}
+        bg={useColorModeValue("#F0F0F5", "#191919")}
+        pt={"14px"}
         px={{ base: "10px", md: "10px" }}
+    
       >
         <Box
           ml={{ base: 0, md: 0 }}
           alignItems="flex-start"
           display={"flex"}
-          bg={useColorModeValue()}
+          
+          w={"100%"}
+          h={"100%"}
         >
           <Box
             ml={{ base: 0, md: 0 }}
@@ -40,6 +43,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               Approach Paper
             </Text>
@@ -49,6 +53,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               APIs
             </Text>
@@ -58,6 +63,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               Contact
             </Text>
@@ -75,6 +81,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               &#169; 2023 Solvendo. All Rights Reserved.
             </Text>

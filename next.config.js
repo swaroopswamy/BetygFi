@@ -13,6 +13,10 @@ const nextConfig = {
   env: {
     NEXT_APP_API_URL: "http://3.109.191.157:4000/",
   },
+  images: {
+    loader: 'imgix',
+    path: '',
+  },
 };
 
 module.exports = nextConfig;

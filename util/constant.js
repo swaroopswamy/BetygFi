@@ -1,9 +1,13 @@
 export const blockchains = [
     "Ethereum",
-    "Tron",
     "BSC",
     "Arbitrum",
-    "Polygon"
+    "Polygon",
+    "Optimism",
+    "Avalanche",
+    "Mixin",
+    "Solana",
+    "Kava"
 ];
 
 export const categories = [

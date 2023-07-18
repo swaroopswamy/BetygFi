@@ -1,5 +1,5 @@
 import { useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
