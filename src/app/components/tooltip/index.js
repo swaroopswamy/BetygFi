@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, useColorModeValue } from '@chakra-ui/react'
+import { Tooltip, useColorModeValue, Text } from '@chakra-ui/react'
 
 const CustomTooltip = ({ children }) => {
     return (
