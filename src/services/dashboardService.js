@@ -2,10 +2,10 @@ import React from "react";
 import { GetServerSideProps } from 'next';
 import axios from "axios";
 import { axiosInstance } from "../../util/axiosInstance";
-export const getDefiRankingsTableData = async (type) => {
+export const getDefiRankingsTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.post(
-      `protocols?blockchain=${type}`
+      `protocols`,payload
     );
     return data;
   } catch (err) {

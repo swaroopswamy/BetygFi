@@ -1,5 +1,4 @@
 export const blockchains = [
-    "All",
     "Ethereum",
     "Tron",
     "BSC",
@@ -8,7 +7,6 @@ export const blockchains = [
 ];
 
 export const categories = [
-    "All",
     "Prediction Markets",
     "Insurance",
     "Yield Farming",

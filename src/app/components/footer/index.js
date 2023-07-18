@@ -1,5 +1,5 @@
 "use client";
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
 
 const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });

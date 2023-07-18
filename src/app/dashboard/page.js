@@ -3,15 +3,17 @@
 "use client";
 import {
   Box,
+  Button,
   Flex,
   Grid,
   GridItem,
   Icon,
   Input,
   Text,
+  Tooltip,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Rankings from "./DefiRankingsTable";
 import { blockchains, categories } from "../../../util/constant";
 import OverviewColumnChart from "./OverviewColumnChart";
@@ -20,10 +22,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   blockchainTypeChangedReducer,
   categoryChangedReducer,
+  fetchData,
 } from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
 
 const Dashboard = () => {
+  const [tablePage, setTablePage] = useState(0);
   const dispatch = useDispatch();
 
   const BlockchainTypeHandler = (type) => {
@@ -38,6 +42,27 @@ const Dashboard = () => {
   const categoryChangedHandler = (category) => {
     dispatch(categoryChangedReducer(category));
   };
+  const pageChangeHandler = (page) => {
+    console.log(page);
+  }
+  const searchByNameHandler = (name) =>{
+    getDefiRankingsTableDataHandler(name);
+    console.log(name);
+  }
+
+  const getDefiRankingsTableDataHandler = (name) => {
+    const payload = {
+      blockchain: blockchainSelected,
+      category: categorySelected,
+      name : name,
+    };
+    dispatch(fetchData(payload));
+  };
+
+  useEffect(() => {
+    getDefiRankingsTableDataHandler();
+  }, [blockchainSelected, categorySelected]);
+  console.log(blockchainSelected);
   return (
     <>
       <Box display={"flex"} flexDirection={"column"}>
@@ -82,6 +107,34 @@ const Dashboard = () => {
             Select the blockchains you'd like to analyze
           </Text>
           <Box mr={{ base: 2, md: 4 }} display={"flex"}>
+            <Flex
+              cursor={"pointer"}
+              alignItems={"center"}
+              flexDirection={"row"}
+              mr={{ base: 2, md: 4 }}
+              padding={"7px 9px"}
+              borderRadius="2px"
+              _hover={{ bg: useColorModeValue("#F5F5F7", "#191919") }}
+              bgColor={
+                blockchainSelected.length === 0 && useColorModeValue("#F5F5F7", "#191919")}
+              border={useColorModeValue(
+                "1px solid #E0E0E0",
+                "1px solid #333"
+              )}
+              onClick={() => {
+                BlockchainTypeHandler("All");
+              }}
+            >
+              <Text
+                fontSize={"10px"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                letterSpacing={"1px"}
+                color={useColorModeValue("#16171B", "#FFF")}
+              >
+                All
+              </Text>
+            </Flex>
             {blockchains?.map((item, i) => (
               <>
                 <Flex
@@ -91,8 +144,9 @@ const Dashboard = () => {
                   mr={{ base: 2, md: 4 }}
                   padding={"7px 9px"}
                   borderRadius="2px"
+                  _hover={{ bg: useColorModeValue("#F5F5F7", "#191919") }}
                   bgColor={
-                    blockchainSelected === item
+                    blockchainSelected.includes(item)
                       ? useColorModeValue("#F5F5F7", "#191919")
                       : useColorModeValue("#FFFFFF", "#202020")
                   }
@@ -104,15 +158,13 @@ const Dashboard = () => {
                     BlockchainTypeHandler(item);
                   }}
                 >
-                  {i !== 0 && (
-                    <Image
-                      width={12}
-                      height={12}
-                      src={`/icons/${item}_sm_icon.svg`}
-                      alt="Follow us on Twitter"
-                      style={{ marginRight: "4px" }}
-                    ></Image>
-                  )}
+                  <Image
+                    width={12}
+                    height={12}
+                    src={`/icons/${item}_sm_icon.svg`}
+                    alt={`${item}_icon`}
+                    style={{ marginRight: "4px" }}
+                  ></Image>
                   <Text
                     fontSize={"10px"}
                     fontWeight={"400"}
@@ -146,6 +198,34 @@ const Dashboard = () => {
             </Text>
           </Box>
           <Box display={"flex"} mb="15px">
+            <Box
+              key={"all"}
+              borderRadius="2px"
+              padding={"7px 9px"}
+              mx="4px"
+              cursor={"pointer"}
+              _hover={{ bg: useColorModeValue("#FFFFFF", "#191919") }}
+              border={useColorModeValue(
+                "1px solid #E8E8E8",
+                "1px solid #333"
+              )}
+              bgColor={
+                categorySelected.length === 0 && useColorModeValue("#FFF", "#191919")
+              }
+              onClick={() => {
+                categoryChangedHandler("All");
+              }}
+            >
+              <Text
+                fontSize={"10px"}
+                fontWeight={600}
+                letterSpacing={"1px"}
+                lineHeight={"15px"}
+                color={useColorModeValue("#191919", "#FFFFFF")}
+              >
+                All
+              </Text>
+            </Box>
             {categories.map((category, i) => {
               return (
                 <>
@@ -155,12 +235,13 @@ const Dashboard = () => {
                     padding={"7px 9px"}
                     mx="4px"
                     cursor={"pointer"}
+                    _hover={{ bg: useColorModeValue("#FFFFFF", "#191919") }}
                     border={useColorModeValue(
                       "1px solid #E8E8E8",
                       "1px solid #333"
                     )}
                     bgColor={
-                      categorySelected === category
+                      categorySelected.includes(category)
                         ? useColorModeValue("#FFF", "#191919")
                         : useColorModeValue("#F5F5F7", "#202020")
                     }
@@ -209,10 +290,26 @@ const Dashboard = () => {
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"12px"}
                     fontWeight={"300"}
-                    mr="14px"
+                    mr="7px"
                   >
                     Total Market Cap
                   </Text>
+                  <Tooltip
+                    bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                    padding="4px 8px"
+                    label="Lending/Borrowing tracked by Solvendo"
+                    fontWeight={400}
+                    fontSize={"10px"}
+                    mr="7px"
+                  >
+                    <Image
+                      src={"/icons/info_sm_icon.svg"}
+                      width={12}
+                      height={12}
+                      alt='info-icon'
+                      style={{ marginRight: "7px" }}
+                    ></Image>
+                  </Tooltip>
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"24px"}
@@ -263,12 +360,51 @@ const Dashboard = () => {
                 </Text>
                 <Flex alignItems={"center"}>
                   <Box>
-                    <Input placeholder="Search DeFi" />
+                    <Input placeholder="Search DeFi" onChange={(e)=>{ searchByNameHandler(e.target.value)}} />
                   </Box>
                 </Flex>
               </Flex>
-
               <Rankings />
+              <Box
+                display={"flex"}
+                alignItems={"flex-start"}
+                justifyContent={"end"}
+                padding="10px 30px 14px"
+              >
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  w="30px"
+                  h="26px"
+                  border={"1px solid #C7CAD2"}
+                  cursor={"pointer"}
+                >
+                  <Image
+                    width={15}
+                    height={15}
+                    style={{ rotate: '180deg' }}
+                    src={'/icons/direction-arrow.svg'}
+                    alt="prev-arrow"
+                  ></Image>
+                </Box>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  w="30px"
+                  h="26px"
+                  border={"1px solid #C7CAD2"}
+                  cursor={"pointer"}
+                >
+                  <Image
+                    width={15}
+                    height={15}
+                    alt="next-arrow"
+                    src={'/icons/direction-arrow.svg'}
+                  ></Image>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>

@@ -2,45 +2,65 @@ import { getDefiRankingsTableData } from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-export const fetchData = createAsyncThunk('getDefiRankingsTableData', async (type) => {
-  const response = await getDefiRankingsTableData(type);
+export const fetchData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
+  const response = await getDefiRankingsTableData(payload);
   return response.data;
 })
 
 const dashboardDataSlice = createSlice({
   name: "dashboardData",
   initialState: {
-    DefiRankingsTableData: null,
-    isLoading: false,
-    isError: false,
-    isSuccess:false,
-    blockchainType:"all",
-    categorySelected:"All",
-    
+    DefiRankingsTableData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+
+    blockchainType: [],
+    categorySelected: [],
+
   },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
-      state.DefiRankingsTableData = action.payload;
-      state.isLoading = false;
-      state.isSuccess = true;
+      state.DefiRankingsTableData.data = action.payload;
+      state.DefiRankingsTableData.isLoading = false;
+      state.DefiRankingsTableData.isSuccess = true;
     });
     builder.addCase(fetchData.pending, (state, action) => {
-      state.isLoading = true;
+      state.DefiRankingsTableData.isLoading = true;
     });
     builder.addCase(fetchData.rejected, (state, action) => {
-      state.isLoading = false;
-      state.isError = true;
+      state.DefiRankingsTableData.isLoading = false;
+      state.DefiRankingsTableData.isError = true;
     });
   },
-   reducers: {
+  reducers: {
     blockchainTypeChangedReducer: (state, action) => {
-      state.blockchainType=action.payload;
+      console.log('in reducer', action.payload, state.blockchainType.includes(action.payload))
+      if (action.payload === "All") {
+        state.blockchainType = [];
+      }
+      else if (state.blockchainType.includes(action.payload)) {
+        state.blockchainType = state.blockchainType.filter(item => item !== action.payload);
+      } else {
+        state.blockchainType = state.blockchainType.filter(item => item !== "All");
+        state.blockchainType.push(action.payload);
+      }
     },
     categoryChangedReducer: (state, action) => {
-      state.categorySelected=action.payload;
+      if (action.payload === "All") {
+        state.categorySelected = [];
+      }
+      else if (state.categorySelected.includes(action.payload)) {
+        state.categorySelected = state.categorySelected.filter(item => item !== action.payload);
+      } else {
+        state.categorySelected = state.categorySelected.filter(item => item !== "All");
+        state.categorySelected.push(action.payload);
+      }
     },
   },
 });
 
-export const { blockchainTypeChangedReducer , categoryChangedReducer } = dashboardDataSlice.actions;
+export const { blockchainTypeChangedReducer, categoryChangedReducer } = dashboardDataSlice.actions;
 export default dashboardDataSlice.reducer;

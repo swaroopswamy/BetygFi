@@ -13,6 +13,7 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -28,6 +29,9 @@ import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
+
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   { name: "Speculation", icon: SpeclationIcon, path: '#' },
@@ -49,6 +53,8 @@ const bottomMenu = [
   { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box
       transition="3s ease"
@@ -88,6 +94,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           icon={link.icon}
           path={link.path}
           newTab={link.newTab}
+          _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
           fontSize="11px"
           fontWeight="400"
           letterSpacing="1px"
@@ -117,6 +124,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 key={link.name}
                 icon={link.icon}
                 path={link.path}
+                _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
                 fontSize="11px"
                 fontWeight="400"
                 letterSpacing="1px"
@@ -134,6 +142,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             key={link.name}
             icon={link.icon}
             path={link.path}
+            _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
             newTab={link.newTab}
             fontSize="11px"
             fontWeight="400"
@@ -149,26 +158,40 @@ const SidebarContent = ({ onClose, ...rest }) => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
+          flexDirection={"column"}
           w={"100%"}
         >
-          <Image
-            width={15}
-            height={15}
-            alt="logo"
-            src={"/icons/company_sm_logo.svg"}
-            style={{ marginRight: "10px" }}
-          />
-          <Text
-            as={"capital"}
-            fontSize={"12px"}
-            fontStyle={"normal"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-            color={useColorModeValue("#16171B", "#FFF")}
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            w={"100%"}
           >
-            POWRED BY SOLVENDO
-          </Text>
+            <Image
+              width={15}
+              height={15}
+              alt="logo"
+              src={"/icons/company_sm_logo.svg"}
+              style={{ marginRight: "10px" }}
+            />
+            <Text
+              as={"capital"}
+              fontSize={"12px"}
+              fontStyle={"normal"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              color={useColorModeValue("#16171B", "#FFF")}
+            >
+              POWRED BY SOLVENDO
+            </Text>
+
+          </Box>
+
+          <Box onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"}/>}
+          </Box>
         </Box>
+
       </div>
     </Box>
   );
