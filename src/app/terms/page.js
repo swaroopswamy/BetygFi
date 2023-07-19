@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client"
 import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
 import styles from "../page.module.css";
@@ -7,19 +6,6 @@ import { mergeRefs } from "@chakra-ui/react-use-merge-refs";
 import { callAllHandlers, warn } from "@chakra-ui/shared-utils";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-=======
-"use client";
-import {
-  Box,
-  Container,
-  Grid,
-  GridItem,
-  Heading,
-  Text,
-  extendTheme,
-  Manrope,
-} from "@chakra-ui/react";
->>>>>>> 45cd6ceb713e32808783530313dd8434b5f09c99
 
 export default function Dashboard() {
   return (

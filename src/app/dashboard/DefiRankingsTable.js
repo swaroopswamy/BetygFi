@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
-//import isEmpty from "is-empty";
+import isEmpty from "is-empty";
 import Image from "next/image";
 
 const Rankings = () => {
