@@ -2,7 +2,7 @@
 import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
 import styles from "../page.module.css";
 
-export default function Privacy() {
+ const Privacy = () => {
     return (
         <>
             <Container className={styles.container}>
@@ -47,3 +47,4 @@ export default function Privacy() {
 
     );
 }
+export default Privacy;

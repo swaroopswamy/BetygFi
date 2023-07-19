@@ -1,24 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
-  Grid,
-  GridItem,
-  Input,
-  Table,
-  TableCaption,
-  Text,
-  Tbody,
-  Td,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-  Flex,
-  Box,
-  useColorModeValue,
-  Icon,
-  Tooltip,
-} from "@chakra-ui/react";
+  Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
+   Tr, Flex, Box, useColorModeValue, Icon, Tooltip,} from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
