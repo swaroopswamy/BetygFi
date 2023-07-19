@@ -44,9 +44,9 @@ const LinkItemsUp = [
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
-   { name: "Reddit", icon: RedditIcon, path: '#' },
-   { name: "Discord", icon: DiscordIcon, path: '#' },
-   { name: "Twitter", icon: TwitterIcon, path: '#' },
+   { name: "Reddit", icon: RedditIcon, path: 'https://www.reddit.com/r/betygFi' },
+   { name: "Discord", icon: DiscordIcon, path: 'https://discord.gg/bGMmeNRJtW' },
+   { name: "Twitter", icon: TwitterIcon, path: 'https://twitter.com/betygFi' },
 ];
 
 

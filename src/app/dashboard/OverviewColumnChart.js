@@ -92,7 +92,7 @@ const OverviewColumnChart = () => {
       labels: {
         show: false,
         formatter: function (val) {
-          return val + "%";
+          return val;
         },
       },
     },
