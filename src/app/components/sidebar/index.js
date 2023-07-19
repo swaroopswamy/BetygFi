@@ -34,6 +34,7 @@ import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/navigation";
 
 
 const LinkItemsUp = [
@@ -58,7 +59,7 @@ const bottomMenu = [
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-
+  const router = useRouter();
   return (
     <Box
       transition="3s ease"
@@ -80,6 +81,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         mx="17px"
         mb="40px"
         justifyContent="space-between"
+        cursor={"poiner"} 
       >
         <Image
           width={180}
@@ -89,6 +91,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
             "/icons/light_betgyfi_sm_icon.svg",
             "/icons/dark_betgyfi_sm_logo.svg"
           )}
+          cursor={"poiner"}
+          onClick={() => router.push('/')}
         />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>

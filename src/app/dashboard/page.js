@@ -34,9 +34,11 @@ import {
 } from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import millify from "millify";
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
+  const [searchByName,setSearchByName] = useState('');
   const dispatch = useDispatch();
 
   const BlockchainTypeHandler = (type) => {
@@ -59,8 +61,10 @@ const Dashboard = () => {
     tablePage >= 1 && setTablePage(page);
   }
   const searchByNameHandler = (name) => {
+    setSearchByName(name);
     getDefiRankingsTableDataHandler(name);
   }
+  const tableData = useSelector((state) => state?.dashboardTableData);
 
   const getScoreGraphDataHandler = () => {
     const payload = {
@@ -73,7 +77,7 @@ const Dashboard = () => {
     const payload = {
       blockchain: blockchainSelected,
       category: categorySelected,
-      name: name,
+      name: searchByName,
       page: tablePage,
     };
     dispatch(fetchDefiRankingTableData(payload));
@@ -97,7 +101,6 @@ const Dashboard = () => {
   }, [blockchainSelected, categorySelected]);
 
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log(overviewData, 'over');
   return (
     <>
       <Box display={"flex"} flexDirection={"column"}>
@@ -194,7 +197,7 @@ const Dashboard = () => {
                   }
                 </>
               ))}
-              <Menu>
+              <Menu closeOnSelect={false}>
                 <MenuButton
                   bg={"#D9D9D9"}
                   borderRadius="50%"
@@ -491,15 +494,22 @@ const Dashboard = () => {
                     letterSpacing={"2.4px"}
                   >
                     {overviewData?.tvl ?
-                      
-                      (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
+
+                      /* (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
                         style: 'currency',
                         currency: 'USD'
-                      })
+                      }) */
+                      <>
+                        ${" "}{millify(overviewData?.tvl, {
+                          precision: 2,
+                          locales: "en-US"
+                        })}
+                      </>
+
                       :
                       (
                         <>
-                        NA
+                          NA
                         </>
                       )
                     }
@@ -601,49 +611,56 @@ const Dashboard = () => {
                     {tablePage}
                   </Text>
                 </Box>
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  w="30px"
-                  h="26px"
-                  border={"1px solid #C7CAD2"}
-                  cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                  _disabled={tablePage === 1}
-                  onClick={() => {
-                    pageChangeHandler(tablePage - 1)
-                  }}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                    _disabled={tablePage === 1}
-                    style={{ rotate: '180deg' }}
-                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                    alt="prev-arrow"
-                  ></Image>
-                </Box>
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  w="30px"
-                  h="26px"
-                  border={"1px solid #C7CAD2"}
-                  cursor={"pointer"}
+                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data?.data.length === 20 && (
+                  <>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                      disabled={tablePage === 1}
+                      onClick={() => {
+                        tablePage !== 1 && pageChangeHandler(tablePage - 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                        _disabled={tablePage === 1}
+                        style={{ rotate: '180deg' }}
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        alt="prev-arrow"
+                      ></Image>
+                    </Button>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      cursor={"pointer"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      onClick={() => {
+                        pageChangeHandler(tablePage + 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        alt="next-arrow"
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                      ></Image>
+                    </Button>
+                  </>)}
 
-                  onClick={() => {
-                    pageChangeHandler(tablePage + 1)
-                  }}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    alt="next-arrow"
-                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                  ></Image>
-                </Box>
               </Box>
             </Box>
           </Box>

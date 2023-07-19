@@ -11,7 +11,10 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_APP_API_URL: "http://3.109.191.157:4000/",
+    NEXT_APP_API_URL: process.env.NEXT_APP_API_URL,
+  },
+  experimental: {
+    appDir:true
   },
   images: {
     loader: 'imgix',

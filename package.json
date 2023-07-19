@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:prod": "cross-env NEXT_APP_API_URL=https://betygfi.com/api/v2/ next start",
+    "build:prod": "cross-env NEXT_APP_API_URL=https://betygfi.com/api/v2/ next build",
+    "start:dev": "cross-env NEXT_APP_API_URL=http://3.109.191.157:4000/ next dev",
+    "build:dev": "cross-env NEXT_APP_API_URL=http://3.109.191.157:4000/ next build"
   },
   "dependencies": {
     "@babel/core": "^7.22.9",
@@ -20,16 +22,22 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/webpack": "^8.0.1",
     "axios": "^1.4.0",
+    "env-cmd": "^10.1.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "framer-motion": "^10.12.18",
     "is-empty": "^1.2.0",
-    "next": "13.4.8",
+    "millify": "^6.1.0",
+    "next": "13.2",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
     "sass": "^1.63.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1"
   }
 }
