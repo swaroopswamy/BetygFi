@@ -2,9 +2,12 @@ import { useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
+  const graphData =  useSelector((state)=>state.dashboardTableData.ScoreGraphData);
+  console.log(graphData,'graphData');
   const options = {
     chart: {
       height: 205,
@@ -93,34 +96,25 @@ const OverviewColumnChart = () => {
         },
       },
     },
-    title: {
-      text: "Monthly Inflation in Argentina, 2002",
-      floating: true,
-      offsetY: 330,
-      align: "center",
-      style: {
-        color: "#444",
-      },
-    },
   };
   const series = [
     {
       data: [
         {
           x: 12.5,
-          y: 54,
+          y: graphData?.data?.safety_score[0].value,
         },
         {
           x: 37.5,
-          y: 66,
+          y: graphData?.data?.safety_score[1].value,
         },
         {
           x: 62.5,
-          y: 66,
+          y: graphData?.data?.safety_score[2].value,
         },
         {
           x: 87.5,
-          y: 66,
+          y: graphData?.data?.safety_score[3].value,
         },
       ],
     },

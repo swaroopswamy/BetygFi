@@ -40,7 +40,7 @@ const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   { name: "Speculation", icon: SpeclationIcon, path: '#' },
   { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
-  { name: "About", icon: CompanyIcon, path: '/' },
+  //{ name: "About", icon: CompanyIcon, path: '/' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
@@ -51,8 +51,8 @@ const LinkItemsDown = [
 
 
 const bottomMenu = [
-  { name: "Help", icon: QuestionIcon, path: '#' },
-  { name: "Settings", icon: SettingIcon, path: '#' },
+  //{ name: "Help", icon: QuestionIcon, path: '#' },
+  //{ name: "Settings", icon: SettingIcon, path: '#' },
   { name: "Suggest Feature", icon: BulbIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
   { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];

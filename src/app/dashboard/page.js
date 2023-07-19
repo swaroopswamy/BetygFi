@@ -29,13 +29,14 @@ import {
   blockchainTypeChangedReducer,
   categoryChangedReducer,
   fetchDefiRankingTableData,
+  fetchOverviewData,
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Dashboard = () => {
-  const [tablePage, setTablePage] = useState(0);
+  const [tablePage, setTablePage] = useState(1);
   const dispatch = useDispatch();
 
   const BlockchainTypeHandler = (type) => {
@@ -47,19 +48,20 @@ const Dashboard = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
+
+  const overviewData = useSelector(
+    (state) => state?.dashboardTableData?.OverviewData?.data
+  );
   const categoryChangedHandler = (category) => {
     dispatch(categoryChangedReducer(category));
   };
   const pageChangeHandler = (page) => {
-    console.log(page);
+    tablePage >= 1 && setTablePage(page);
   }
   const searchByNameHandler = (name) => {
     getDefiRankingsTableDataHandler(name);
   }
 
-
-
-  const graphData = useSelector((state) => state);
   const getScoreGraphDataHandler = () => {
     const payload = {
       blockchain: blockchainSelected,
@@ -72,21 +74,30 @@ const Dashboard = () => {
       blockchain: blockchainSelected,
       category: categorySelected,
       name: name,
+      page: tablePage,
     };
     dispatch(fetchDefiRankingTableData(payload));
+  };
+  const getOverviewDataHandler = () => {
+    const payload = {
+      blockchain: blockchainSelected,
+      category: categorySelected,
+    };
+    dispatch(fetchOverviewData(payload));
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-  }, [blockchainSelected, categorySelected]);
+    getScoreGraphDataHandler();
+    getOverviewDataHandler();
+  }, [blockchainSelected, categorySelected, tablePage]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     getScoreGraphDataHandler();
   }, [blockchainSelected, categorySelected]);
- */
 
   const { colorMode, toggleColorMode } = useColorMode();
-
+  console.log(overviewData, 'over');
   return (
     <>
       <Box display={"flex"} flexDirection={"column"}>
@@ -220,13 +231,14 @@ const Dashboard = () => {
                                 alignItems={"center"}
                                 justifyContent={"center"}
                               >
-                                <Image
+                                <img
                                   width={18}
                                   height={18}
-                                  src={`/icons/${item}_sm_icon.svg`}
+                                  src={`/images/${item}_sm_icon.png`}
                                   alt={`${item}_icon`}
+
                                   style={{ marginRight: "20px", marginLeft: "14px" }}
-                                ></Image>
+                                ></img>
                                 <Text
                                   fontSize={"12px"}
                                   fontWeight={"400"}
@@ -478,7 +490,19 @@ const Dashboard = () => {
                     fontWeight={"400"}
                     letterSpacing={"2.4px"}
                   >
-                    $13.84 B
+                    {overviewData?.tvl ?
+                      
+                      (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD'
+                      })
+                      :
+                      (
+                        <>
+                        NA
+                        </>
+                      )
+                    }
                   </Text>
                 </Box>
               </Box>
@@ -559,15 +583,42 @@ const Dashboard = () => {
                 <Box
                   display={"flex"}
                   alignItems={"center"}
+                  mr="20px"
+                >
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"12px"}
+                    fontWeight={"400"}
+                    mr="10px"
+                  >
+                    Page
+                  </Text>
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"15px"}
+                    fontWeight={"600"}
+                  >
+                    {tablePage}
+                  </Text>
+                </Box>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
                   justifyContent={"center"}
                   w="30px"
                   h="26px"
                   border={"1px solid #C7CAD2"}
-                  cursor={"pointer"}
+                  cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                  _disabled={tablePage === 1}
+                  onClick={() => {
+                    pageChangeHandler(tablePage - 1)
+                  }}
                 >
                   <Image
                     width={15}
                     height={15}
+                    cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                    _disabled={tablePage === 1}
                     style={{ rotate: '180deg' }}
                     src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                     alt="prev-arrow"
@@ -581,6 +632,10 @@ const Dashboard = () => {
                   h="26px"
                   border={"1px solid #C7CAD2"}
                   cursor={"pointer"}
+
+                  onClick={() => {
+                    pageChangeHandler(tablePage + 1)
+                  }}
                 >
                   <Image
                     width={15}
