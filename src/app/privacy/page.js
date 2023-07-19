@@ -1,7 +1,8 @@
+"use client"
 import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
 import styles from "../page.module.css";
 
-export default function Dashboard() {
+export default function Privacy() {
     return (
         <>
             <Container className={styles.container}>

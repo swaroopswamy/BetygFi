@@ -24,10 +24,10 @@ import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Flex
+   <>
+    {/* <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
       height="20"
@@ -68,7 +68,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
        
       </HStack>
-    </Flex>
+    </Flex> */}
+   </>
   );
 };
 

@@ -1,5 +1,6 @@
-'use client'
-import { InfoIcon } from '@chakra-ui/icons'
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
+import { InfoIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -12,40 +13,52 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import StarIcon from '../../../../public/icons/star_sm_logo.svg';
-import HomeIcon from '../../../../public/icons/home_sm_logo.svg';
-import CommunityIcon from '../../../../public/icons/community_sm_logo.svg';
-import SpeclationIcon from '../../../../public/icons/wallet_sm_logo.svg';
-import CompanyIcon from '../../../../public/icons/company_sm_logo.svg';
-import LegalIcon from '../../../../public/icons/book_sm_logo.svg';
+import StarIcon from "../../../../public/icons/star_sm_logo.svg";
+import HomeIcon from "../../../../public/icons/home_sm_logo.svg";
+import CommunityIcon from "../../../../public/icons/community_sm_logo.svg";
+import SpeclationIcon from "../../../../public/icons/wallet_sm_logo.svg";
+import CompanyIcon from "../../../../public/icons/company_sm_logo.svg";
+import LegalIcon from "../../../../public/icons/book_sm_logo.svg";
+import QuestionIcon from "../../../../public/icons/question_mark_sm_icon.svg";
+import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
+import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
+import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
+import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
+import DiscordIcon from "../../../../public/icons/discord-icon.svg";
+import TwitterIcon from "../../../../public/icons/twitter-icon.svg";
+import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
-import QuestionIcon from '../../../../public/icons/question_mark_sm_icon.svg';
-import SettingIcon from '../../../../public/icons/setting_sm_icon.svg';
-import BulbIcon from '../../../../public/icons/bulb_sm_icon.svg';
-import BugIcon from '../../../../public/icons/bug_sm_icon.svg';
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 
 const LinkItemsUp = [
-  { name: "Significant", icon: StarIcon },
-  { name: "Home", icon: HomeIcon },
+  { name: "Home", icon: HomeIcon, path: '/' },
+  { name: "Speculation", icon: SpeclationIcon, path: '#' },
+  { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
+  { name: "About", icon: CompanyIcon, path: '/' },
+  // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
-  { name: "Speculation", icon: SpeclationIcon },
-  { name: "Company", icon: CompanyIcon },
-  { name: "legal", icon: LegalIcon, dropdown: true },
+   { name: "Reddit", icon: RedditIcon, path: '#' },
+   { name: "Discord", icon: DiscordIcon, path: '#' },
+   { name: "Twitter", icon: TwitterIcon, path: '#' },
 ];
 
-import { ChevronDownIcon } from "@chakra-ui/icons";
+
 const bottomMenu = [
-  { name: "Help", icon: QuestionIcon },
-  { name: "Settings", icon: SettingIcon },
-  { name: "Suggest Feature", icon: BulbIcon },
-  { name: "Report Bug", icon: BugIcon },
+  { name: "Help", icon: QuestionIcon, path: '#' },
+  { name: "Settings", icon: SettingIcon, path: '#' },
+  { name: "Suggest Feature", icon: BulbIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
+  { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Box
       transition="3s ease"
@@ -55,15 +68,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
       w={{ base: "full", md: 60 }}
       pos="fixed"
       h="full"
-      boxShadow={useColorModeValue("1px 0px 0px 0px #E1E1E1", "1px 0px 0px 0px #333")}
+      boxShadow={useColorModeValue(
+        "1px 0px 0px 0px #E1E1E1",
+        "1px 0px 0px 0px #333"
+      )}
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="17px" mb="40px" justifyContent="space-between">
+      <Flex
+        h="20"
+        alignItems="center"
+        mx="17px"
+        mb="40px"
+        justifyContent="space-between"
+      >
         <Image
           width={180}
           height={80}
           alt="logo"
-          src={useColorModeValue('/icons/light_betgyfi_sm_icon.svg', '/icons/dark_betgyfi_sm_logo.svg')}
+          src={useColorModeValue(
+            "/icons/light_betgyfi_sm_icon.svg",
+            "/icons/dark_betgyfi_sm_logo.svg"
+          )}
         />
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
@@ -71,18 +96,34 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <NavItem
           key={link.name}
           icon={link.icon}
+          path={link.path}
+          newTab={link.newTab}
+          _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
           fontSize="11px"
           fontWeight="400"
-          letterSpacing='1px'
+          letterSpacing="1px"
           color={useColorModeValue("#16171B", "#FFF")}
         >
           {link.name}
         </NavItem>
       ))}
-      <hr style={{ marginBottom: '15px', marginTop: '15px' }} />
+      <hr style={{ margin:"15px 20px" }} />
+      <Text
+        fontSize="11px"
+        fontWeight="400"
+        letterSpacing="1px"
+        color={useColorModeValue("#16171B", "#FFF")}
+        textTransform={"uppercase"}
+        mb="15px"
+        w="100%"
+        mx="4"
+        px="2"
+      >
+        BetygFi Communities 
+      </Text>
       {LinkItemsDown.map((link) => (
         <>
-          {link?.dropdown ?
+          {link?.dropdown ? (
             <>
               {/*   <Menu key={link.name}>
                 <MenuButton as={Button} width={"100%"} rightIcon={<ChevronDownIcon />}>
@@ -94,77 +135,99 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 </MenuList>
               </Menu> */}
             </>
-            :
+          ) : (
             <>
               <NavItem
                 key={link.name}
                 icon={link.icon}
+                path={link.path}
+                _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
                 fontSize="11px"
                 fontWeight="400"
-                letterSpacing='1px'
+                letterSpacing="1px"
+
                 color={useColorModeValue("#16171B", "#FFF")}
               >
                 {link.name}
               </NavItem>
-
-            </>}
+            </>
+          )}
         </>
       ))}
-      <div style={{ position: 'absolute', bottom: '10px', width: '100%' }}>
+      <div style={{ position: "absolute", bottom: "10px", width: "100%" }}>
         {bottomMenu.map((link) => (
           <NavItem
             key={link.name}
             icon={link.icon}
+            path={link.path}
+            _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+            newTab={link.newTab}
             fontSize="11px"
             fontWeight="400"
-            letterSpacing='1px'
+            letterSpacing="1px"
             color={useColorModeValue("#16171B", "#FFF")}
+
           >
             {link.name}
           </NavItem>
         ))}
-        <hr style={{ marginBottom: '15px' }} />
+        <hr style={{ marginBottom: "15px" }} />
         <Box
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
+          flexDirection={"column"}
           w={"100%"}
         >
-          <Image
-            width={15}
-            height={15}
-            alt="logo"
-            src={'/icons/company_sm_logo.svg'}
-            style={{marginRight:"10px"}}
-          />
-          <Text
-            as={"capital"}
-            fontSize={"12px"}
-            fontStyle={"normal"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
+          <Box
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            w={"100%"}
+          >
+            <Image
+              width={15}
+              height={15}
+              alt="logo"
+              src={"/icons/company_sm_logo.svg"}
+              style={{ marginRight: "10px" }}
+            />
+            <Text
+              as={"capital"}
+              fontSize={"12px"}
+              fontStyle={"normal"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              color={useColorModeValue("#16171B", "#FFF")}
+            >
+              POWERED BY SOLVENDO
+            </Text>
 
-            color={useColorModeValue("#16171B", "#FFF")}
-          >POWRED BY SOLVENDO</Text>
+          </Box>
+
+          {/* <Box onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
+          </Box> */}
         </Box>
-      </div>
 
+      </div>
     </Box>
   );
 };
 
 export default SidebarContent;
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, path, newTab, children, ...rest }) => {
   return (
     <Link
-      href="#"
+      href={path}
+      target={newTab ? '_blank' : null}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >
       <Flex
         align="center"
-        p="4"
+        p="2"
         mx="4"
         borderRadius="lg"
         role="group"
@@ -178,6 +241,8 @@ const NavItem = ({ icon, children, ...rest }) => {
         {icon && (
           <Icon
             mr="4"
+            w="16px"
+            h="18px"
             fontSize="16"
             _groupHover={{
               color: "white",
