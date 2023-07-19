@@ -11,7 +11,8 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_APP_API_URL: "https://betygfi.com/api/v2/",
+    NEXT_DEV_API_URL: "http://3.109.191.157:4000/",
+    NEXT_PROD_API_URL: "https://betygfi.com/api/v2/",
   },
   images: {
     loader: 'imgix',
