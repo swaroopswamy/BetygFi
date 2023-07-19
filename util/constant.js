@@ -1,17 +1,19 @@
 export const blockchains = [
-    "All",
     "Ethereum",
-    "Tron",
     "BSC",
     "Arbitrum",
-    "Polygon"
+    "Polygon",
+    "Optimism",
+    "Avalanche",
+    "Mixin",
+    "Solana",
+    "Kava"
 ];
 
 export const categories = [
-    "All",
     "Prediction Markets",
     "Insurance",
     "Yield Farming",
     "Exchange and Liquidity",
-    "Borrowing and lending"
+    "Lending and Borrowing"
 ]

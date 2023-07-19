@@ -8,7 +8,5 @@ const store = configureStore({
     dashboardTableData: dashboardTableDataSlice
   },
 });
-
-console.log(store.getState(),'store');
 export default store;
 

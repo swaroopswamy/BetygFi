@@ -12,7 +12,7 @@ import styles from "../pages.module.css";
 const About = () => {
   return<div>
     <Container className={styles.about}>
-    <Box className={styles.mainbox} ml={211} mt={0} mr={0}>
+    <Box className={styles.mainbox} ml={0} mt={0} mr={0}>
     <Text className={styles.mainboxtext} p={109} paddingLeft={71} paddingRight={923}>We Betygfi</Text>
     </Box>
 
