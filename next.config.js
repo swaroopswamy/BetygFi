@@ -20,6 +20,7 @@ const nextConfig = {
     loader: 'imgix',
     path: '',
   },
+  distDir: "out",
 };
 
 module.exports = nextConfig;
