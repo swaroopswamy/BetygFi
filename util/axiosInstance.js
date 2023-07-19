@@ -8,9 +8,9 @@ const isServer = () => {
 let accessToken = "";
 let context = {};
 
-console.log(process.env.NEXT_APP_API_URL,'api')
+console.log(process.env.NEXT_APP_API_URL, 'api')
 
-const baseURL =process.env.NEXT_APP_API_URL;
+const baseURL = process.env.NEXT_APP_API_URL;
 export const setAccessToken = () => {
   accessToken = _accessToken;
 };
