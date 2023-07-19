@@ -13,13 +13,11 @@ const nextConfig = {
   env: {
     NEXT_APP_API_URL: "https://betygfi.com/api/v2/",
   },
-  experimental: {
-    appDir:true
-  },
   images: {
     loader: 'imgix',
     path: '',
   },
+  distDir: "out",
 };
 
 module.exports = nextConfig;
