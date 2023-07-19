@@ -38,15 +38,15 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
-  { name: "Speculation", icon: SpeclationIcon, path: '#' },
+  // { name: "Speculation", icon: SpeclationIcon, path: '#' },
   { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
   //{ name: "About", icon: CompanyIcon, path: '/' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
-   { name: "Reddit", icon: RedditIcon, path: 'https://www.reddit.com/r/betygFi' },
-   { name: "Discord", icon: DiscordIcon, path: 'https://discord.gg/bGMmeNRJtW' },
-   { name: "Twitter", icon: TwitterIcon, path: 'https://twitter.com/betygFi' },
+  { name: "Reddit", icon: RedditIcon, path: 'https://www.reddit.com/r/betygFi', newTab: true },
+  { name: "Discord", icon: DiscordIcon, path: 'https://discord.gg/bGMmeNRJtW', newTab: true },
+  { name: "Twitter", icon: TwitterIcon, path: 'https://twitter.com/betygFi', newTab: true },
 ];
 
 
@@ -107,7 +107,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           {link.name}
         </NavItem>
       ))}
-      <hr style={{ margin:"15px 20px" }} />
+      <hr style={{ margin: "15px 20px" }} />
       <Text
         fontSize="11px"
         fontWeight="400"
@@ -119,7 +119,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         mx="4"
         px="2"
       >
-        BetygFi Communities 
+        BetygFi Communities
       </Text>
       {LinkItemsDown.map((link) => (
         <>
