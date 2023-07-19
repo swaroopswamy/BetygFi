@@ -474,7 +474,7 @@ const Dashboard = () => {
                   <Tooltip
                     bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                     padding="4px 8px"
-                    label="Lending/Borrowing tracked by Solvendo"
+                    label="Total Market Cap tracked by Solvendo"
                     fontWeight={400}
                     fontSize={"10px"}
                     mr="7px"

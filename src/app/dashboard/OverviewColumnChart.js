@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
-  const graphData =  useSelector((state)=>state.dashboardTableData.ScoreGraphData);
-  console.log(graphData,'graphData');
+  const graphData = useSelector((state) => state.dashboardTableData.ScoreGraphData);
+  console.log(graphData, 'graphData');
   const options = {
     chart: {
       height: 205,
@@ -17,6 +17,19 @@ const OverviewColumnChart = () => {
       zoom: {
         enabled: false,
       },
+    },
+    tooltip:{
+      style: {
+        fontSize: '12px',
+      },
+      x:{
+        show:false,
+      },
+      y:{
+        title:{
+          formatter:() => `DeFis :`
+        }
+      }
     },
     grid: {
       show: false,
