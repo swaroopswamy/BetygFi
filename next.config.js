@@ -11,7 +11,7 @@ const nextConfig = {
     return config;
   },
   env: {
-    NEXT_APP_API_URL: process.env.NEXT_APP_API_URL,
+    NEXT_APP_API_URL: "https://betygfi.com/api/v2/",
   },
   experimental: {
     appDir:true
@@ -20,7 +20,6 @@ const nextConfig = {
     loader: 'imgix',
     path: '',
   },
-  distDir: "out",
 };
 
 module.exports = nextConfig;

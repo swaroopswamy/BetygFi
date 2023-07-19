@@ -5,10 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
-    "start": "cross-env NEXT_APP_API_URL=https://betygfi.com/api/v2/ next start",
-    "build": "cross-env NEXT_APP_API_URL=https://betygfi.com/api/v2/ next build",
-    "start:dev": "cross-env NEXT_APP_API_URL=http://3.109.191.157:4000/ next dev",
-    "build:dev": "cross-env NEXT_APP_API_URL=http://3.109.191.157:4000/ next build"
+    "start": "next start",
+    "build": "next build"
   },
   "dependencies": {
     "@babel/core": "^7.22.9",
