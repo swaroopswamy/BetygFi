@@ -6,24 +6,39 @@ mix-blend-mode: luminosity;
 .headingbox{
     width: 94px;
     height: 46px;
-    top: 87px;
-    left: 242px;
+    margin: 0px 0px 6px 32px;
 }
+
 .headingtext{
-    font-family: Manrope;
+    color: #202020;
+font-family: Manrope;
 font-size: 24px;
+font-style: normal;
 font-weight: 400;
 line-height: 46px;
-letter-spacing: 0em;
-text-align: left;
 }
 .firstbox{
-    width: 1168px;
 height: 238px;
-top: 139px;
-left: 243px;
+flex-shrink: 0;
 border-radius: 6px;
-background: #FFFFFF;
+background: #FFF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+margin:0px 29px 0px 33px;
+}
+.systemdefaultbox{
+    width: 183.418px;
+height: 133px;
+flex-shrink: 0;
+}
+.lightthemebox{
+    width: 183.418px;
+height: 133px;
+flex-shrink: 0;
+}
+.darkthemebox{
+    width: 183.418px;
+height: 133px;
+flex-shrink: 0;
 }
 .themebox{
     width: 48px;
@@ -39,18 +54,43 @@ line-height: 20px;
 letter-spacing: 0em;
 text-align: left;
 }
-.firstbox1{
-    width: 780.2542724609375px;
-height: 168px;
-top: 175px;
-left: 437px;
-padding: 0px 0.000030517578125px 0px 0px;
-}
 .secondbox{
     width: 1168px;
-    height: 293px;
-    top: 406px;
-    left: 243px;
-    border-radius: 6px;
-    background: #FFFFFF;
+height: 293px;
+flex-shrink: 0;
+border-radius: 6px;
+background: #FFF;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+margin: 29px 29px 0px 33px;
+}
+
+.logouttextbox{
+    width: 121px;
+    height: 20px;
+    margin: 34px 0px 0px 53px;
+}
+.logouttext{
+font-size: 15px;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: 0em;
+text-align: left;
+}
+.lasttextbox{
+    color: #191919;
+font-family: Manrope;
+font-size: 11px;
+font-style: normal;
+font-weight: 400;
+line-height: 10px;
+opacity: 0.5;
+margin: 0px 0px 0px 227px;
+}
+.lasttext{
+    font-family: Manrope;
+font-size: 11px;
+font-weight: 400;
+line-height: 10px;
+letter-spacing: 0em;
+text-align: left;
 }
