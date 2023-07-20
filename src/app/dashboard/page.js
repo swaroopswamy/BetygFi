@@ -25,6 +25,9 @@ import { blockchains, categories } from "../../../util/constant";
 import OverviewColumnChart from "./OverviewColumnChart";
 import OverviewAreaChart from "./OverviewAreaChart";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import millify from "millify";
 import {
   blockchainTypeChangedReducer,
   categoryChangedReducer,
@@ -32,9 +35,6 @@ import {
   fetchOverviewData,
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
-import Image from "next/image";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import millify from "millify";
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
