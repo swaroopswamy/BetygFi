@@ -28,7 +28,7 @@ const Help = () => {
                 </Text>
 
 
- <Accordion defaultIndex={[0]} allowMultiple paddingLeft={"40px"} paddingBottom={"80px"}>
+ <Accordion defaultIndex={[0]} allowMultiple padding={"10px", "50px", "80px","70px" }>
   <AccordionItem paddingTop={"10px"}>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'  >

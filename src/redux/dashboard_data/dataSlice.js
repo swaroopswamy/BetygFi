@@ -1,4 +1,4 @@
-import { getDefiRankingsTableData, getProtocolScoresData } from "@/services/dashboardService";
+import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -7,8 +7,11 @@ export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableD
   return response.data;
 })
 
+export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payload) => {
+  const response = await getOverviewData(payload);
+  return response.data;
+})
 export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload) => {
-  console.log('reach')
   const response = await getProtocolScoresData(payload);
   return response.data;
 })
@@ -23,6 +26,12 @@ const dashboardDataSlice = createSlice({
       isSuccess: false,
     },
     ScoreGraphData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    OverviewData: {
       data: null,
       isLoading: false,
       isError: false,
@@ -57,6 +66,18 @@ const dashboardDataSlice = createSlice({
     builder.addCase(fetchScoreGraphData.rejected, (state, action) => {
       state.ScoreGraphData.isLoading = false;
       state.ScoreGraphData.isError = true;
+    });
+    builder.addCase(fetchOverviewData.fulfilled, (state, action) => {
+      state.OverviewData.data = action.payload;
+      state.OverviewData.isLoading = false;
+      state.OverviewData.isSuccess = true;
+    });
+    builder.addCase(fetchOverviewData.pending, (state, action) => {
+      state.OverviewData.isLoading = true;
+    });
+    builder.addCase(fetchOverviewData.rejected, (state, action) => {
+      state.OverviewData.isLoading = false;
+      state.OverviewData.isError = true;
     });
   },
   reducers: {

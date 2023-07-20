@@ -129,7 +129,7 @@ const Rankings = () => {
       </Thead>
       <Tbody>
         {tableData.DefiRankingsTableData.isSuccess &&
-          tableData.DefiRankingsTableData.data.data.map((item, i) => {
+          tableData.DefiRankingsTableData?.data.data.map((item, i) => {
             return (
               <>
                 <Tr key={i + 1}>
@@ -139,7 +139,7 @@ const Rankings = () => {
                     fontWeight={"400"}
                     letterSpacing={"1px"}
                   >
-                    {i + 1}
+                    {item?.Rank}
                   </Td>
                   <Td
                   >

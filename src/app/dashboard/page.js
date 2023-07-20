@@ -29,13 +29,16 @@ import {
   blockchainTypeChangedReducer,
   categoryChangedReducer,
   fetchDefiRankingTableData,
+  fetchOverviewData,
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import Image from "next/image";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import millify from "millify";
 
 const Dashboard = () => {
-  const [tablePage, setTablePage] = useState(0);
+  const [tablePage, setTablePage] = useState(1);
+  const [searchByName,setSearchByName] = useState('');
   const dispatch = useDispatch();
 
   const BlockchainTypeHandler = (type) => {
@@ -47,19 +50,22 @@ const Dashboard = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
+
+  const overviewData = useSelector(
+    (state) => state?.dashboardTableData?.OverviewData?.data
+  );
   const categoryChangedHandler = (category) => {
     dispatch(categoryChangedReducer(category));
   };
   const pageChangeHandler = (page) => {
-    console.log(page);
+    tablePage >= 1 && setTablePage(page);
   }
   const searchByNameHandler = (name) => {
+    setSearchByName(name);
     getDefiRankingsTableDataHandler(name);
   }
+  const tableData = useSelector((state) => state?.dashboardTableData);
 
-
-
-  const graphData = useSelector((state) => state);
   const getScoreGraphDataHandler = () => {
     const payload = {
       blockchain: blockchainSelected,
@@ -71,22 +77,30 @@ const Dashboard = () => {
     const payload = {
       blockchain: blockchainSelected,
       category: categorySelected,
-      name: name,
+      name: searchByName,
+      page: tablePage,
     };
     dispatch(fetchDefiRankingTableData(payload));
+  };
+  const getOverviewDataHandler = () => {
+    const payload = {
+      blockchain: blockchainSelected,
+      category: categorySelected,
+    };
+    dispatch(fetchOverviewData(payload));
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-  }, [blockchainSelected, categorySelected]);
+    getScoreGraphDataHandler();
+    getOverviewDataHandler();
+  }, [blockchainSelected, categorySelected, tablePage]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     getScoreGraphDataHandler();
   }, [blockchainSelected, categorySelected]);
- */
 
   const { colorMode, toggleColorMode } = useColorMode();
-
   return (
     <>
       <Box display={"flex"} flexDirection={"column"}>
@@ -183,7 +197,7 @@ const Dashboard = () => {
                   }
                 </>
               ))}
-              <Menu>
+              <Menu closeOnSelect={false}>
                 <MenuButton
                   bg={"#D9D9D9"}
                   borderRadius="50%"
@@ -220,13 +234,14 @@ const Dashboard = () => {
                                 alignItems={"center"}
                                 justifyContent={"center"}
                               >
-                                <Image
+                                <img
                                   width={18}
                                   height={18}
-                                  src={`/icons/${item}_sm_icon.svg`}
+                                  src={`/images/${item}_sm_icon.png`}
                                   alt={`${item}_icon`}
+
                                   style={{ marginRight: "20px", marginLeft: "14px" }}
-                                ></Image>
+                                ></img>
                                 <Text
                                   fontSize={"12px"}
                                   fontWeight={"400"}
@@ -459,7 +474,7 @@ const Dashboard = () => {
                   <Tooltip
                     bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                     padding="4px 8px"
-                    label="Lending/Borrowing tracked by Solvendo"
+                    label="Total Market Cap tracked by Solvendo"
                     fontWeight={400}
                     fontSize={"10px"}
                     mr="7px"
@@ -478,7 +493,26 @@ const Dashboard = () => {
                     fontWeight={"400"}
                     letterSpacing={"2.4px"}
                   >
-                    $13.84 B
+                    {overviewData?.tvl ?
+
+                      /* (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD'
+                      }) */
+                      <>
+                        ${" "}{millify(overviewData?.tvl, {
+                          precision: 2,
+                          locales: "en-US"
+                        })}
+                      </>
+
+                      :
+                      (
+                        <>
+                          NA
+                        </>
+                      )
+                    }
                   </Text>
                 </Box>
               </Box>
@@ -559,36 +593,74 @@ const Dashboard = () => {
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                  justifyContent={"center"}
-                  w="30px"
-                  h="26px"
-                  border={"1px solid #C7CAD2"}
-                  cursor={"pointer"}
+                  mr="20px"
                 >
-                  <Image
-                    width={15}
-                    height={15}
-                    style={{ rotate: '180deg' }}
-                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                    alt="prev-arrow"
-                  ></Image>
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"12px"}
+                    fontWeight={"400"}
+                    mr="10px"
+                  >
+                    Page
+                  </Text>
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"15px"}
+                    fontWeight={"600"}
+                  >
+                    {tablePage}
+                  </Text>
                 </Box>
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  w="30px"
-                  h="26px"
-                  border={"1px solid #C7CAD2"}
-                  cursor={"pointer"}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    alt="next-arrow"
-                    src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                  ></Image>
-                </Box>
+                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data?.data.length === 20 && (
+                  <>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                      disabled={tablePage === 1}
+                      onClick={() => {
+                        tablePage !== 1 && pageChangeHandler(tablePage - 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                        _disabled={tablePage === 1}
+                        style={{ rotate: '180deg' }}
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        alt="prev-arrow"
+                      ></Image>
+                    </Button>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      cursor={"pointer"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      onClick={() => {
+                        pageChangeHandler(tablePage + 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        alt="next-arrow"
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                      ></Image>
+                    </Button>
+                  </>)}
+
               </Box>
             </Box>
           </Box>
