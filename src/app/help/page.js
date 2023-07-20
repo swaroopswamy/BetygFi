@@ -1,4 +1,5 @@
 "use client"
+import { Image } from '@chakra-ui/react'
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon,} from '@chakra-ui/react'
 import { Box, Container, Grid, GridItem, Heading, Text, extendTheme, Manrope } from "@chakra-ui/react";
 import styles from "../Help/help.module.css";
@@ -17,19 +18,20 @@ const Help = () => {
                         <GridItem colSpan={2} colStart={0} colEnd={2} className={styles.helpgrid}>
                             Help
                         </GridItem>
-                        <GridItem colSpan={2} colStart={2} colEnd={4}>
-                            <i className={styles.logo}></i>
-                        </GridItem>
+                        {/* <GridItem colSpan={2} colStart={2} colEnd={4}>
+                            <i className={styles.logo} style={{padding: '40px 10px 20px 50px'}}>
+                            <Image src='../../../assests/images/solvendo-logo.svg' fallbackSrc='http://www.w3.org/1999/xlink' />
+                            </i>
+                        </GridItem> */}
                     </Grid>
                 </Box>
 
-                <Text className={styles.faq}>
+                <Text className={styles.faq} padding={"10px 0px 10px 70px"}>
                      FAQs   
                 </Text>
 
-
- <Accordion defaultIndex={[0]} allowMultiple padding={"10px", "50px", "80px","70px" }>
-  <AccordionItem paddingTop={"10px"}>
+  <Accordion defaultIndex={[0]} allowMultiple  style={{padding:'10px 80px 80px 70px'}}>
+  <AccordionItem>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'  >
           What is ethereum?
@@ -47,56 +49,48 @@ const Help = () => {
   </AccordionItem>
 
   <AccordionItem paddingTop={"10px"}>
-    <h2>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
-          What is a blockChain system?
+          What is a blockchain system?
         </Box>
         <AccordionIcon />
       </AccordionButton>
-    </h2>
     <AccordionPanel pb={4}>
       .....
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-    <h2>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
           What is distributed ledger technology?
         </Box>
         <AccordionIcon />
       </AccordionButton>
-    </h2>
     <AccordionPanel pb={4}>
       .....
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-    <h2>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
           What is private blockchain?
         </Box>
         <AccordionIcon />
       </AccordionButton>
-    </h2>
     <AccordionPanel pb={4}>
       .....
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-    <h2>
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
           What is block time?
         </Box>
         <AccordionIcon />
       </AccordionButton>
-    </h2>
     <AccordionPanel pb={4}>
       .....
     </AccordionPanel>
