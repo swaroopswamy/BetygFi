@@ -29,7 +29,7 @@ const Footer = () => {
           w={"100%"}
           h={"100%"}
         >
-          <Box
+          {/* <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}
             display={"flex"}
@@ -67,7 +67,7 @@ const Footer = () => {
             >
               Contact
             </Text>
-          </Box>
+          </Box> */}
           <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}

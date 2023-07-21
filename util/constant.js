@@ -1,6 +1,5 @@
 export const blockchains = [
     "Ethereum",
-    "BSC",
     "Arbitrum",
     "Polygon",
     "Optimism",

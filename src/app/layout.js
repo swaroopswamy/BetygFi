@@ -1,11 +1,9 @@
 import { ReduxProvider } from "@/redux/provider";
 import "./globals.css";
-import { Inter, Manrope } from "next/font/google";
+import {  Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
 
-
-const inter = Inter({ subsets: ["latin"] });
 const manrope = Manrope({
   weight: ['400', '700'],
   style: ['normal'],

@@ -24,8 +24,20 @@ export const getProtocolScoresData = async (payload) => {
   }
 };
 
+export const getOverviewData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `protocols/overview`,payload
+    );
+    return data;
+  } catch (err) {
+    return err;
+  }
+};
+
 
 export default {
   getDefiRankingsTableData,
-  getProtocolScoresData
+  getProtocolScoresData,
+  getOverviewData
 };

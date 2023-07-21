@@ -1,13 +1,16 @@
 import axios from "axios";
 import { Router } from "next/router";
-
+import { GetServerSideProps } from "next";
 const isServer = () => {
   return window === "undefined";
 };
 
 let accessToken = "";
 let context = {};
-const baseURL = process.env.NEXT_APP_API_URL;
+
+console.log(process.env.NEXT_APP_API_URL, 'api')
+
+const baseURL = process.env.NODE_ENV === 'development' ? process.env.NEXT_DEV_API_URL : process.env.NEXT_PROD_API_URL;
 
 export const setAccessToken = () => {
   accessToken = _accessToken;
@@ -20,7 +23,7 @@ export const setContext = () => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_APP_API_URL,
+  baseURL: baseURL,
   headers: {
     post: {
       "Content-Type": "application/json",
