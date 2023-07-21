@@ -40,6 +40,11 @@ flex-shrink: 0;
 height: 133px;
 flex-shrink: 0;
 }
+.checkbox{
+    width: 15px;
+height: 15px;
+flex-shrink: 0;
+}
 .themebox{
     width: 48px;
 height: 20px;

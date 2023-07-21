@@ -14,23 +14,38 @@ const Settings = () => {
 
             <Box className={styles.firstbox}>
                 <Grid>
-                    <GridItem colSpan={2} colStart={2} colEnd={2} style={{padding: "40px 15px 30px 180px"}}>
+                    <GridItem colSpan={2} colStart={2} colEnd={2} style={{padding: "40px 50px 30px 150px"}}>
                         <i className={styles.systemdefaultbox}>
                         <Image src='../../../assets/images/minibox1.svg' fallbackSrc='http://www.w3.org/2000/svg' />
                         </i>
                     </GridItem>
-                    <GridItem colSpan={2} colStart={4} colEnd={4} style={{padding: "40px 15px 30px 200px"}}>
+                    <GridItem colSpan={2} colStart={4} colEnd={4} style={{padding: "40px 50px 30px 50px"}}>
                         <i className={styles.lightthemebox}>
                             <Image src='../../../assets/images/minibox2.svg'  fallbackSrc='http://www.w3.org/2000/svg'/>
                         </i>
                     </GridItem>
-                    <GridItem  colSpan={2} colStart={6} colEnd={6}  style={{padding: "40px 30px 30px 250px"}}>
+                    <GridItem  colSpan={2} colStart={6} colEnd={6}  style={{padding: "40px 150px 30px 50px"}}>
                         <i className={styles.darkthemebox}>
                             <Image src='../../../assets/images/minibox3.svg'  fallbackSrc='http://www.w3.org/2000/svg'/>
                         </i>
                     </GridItem>
+                    <GridItem colSpan={2} colStart={2} colEnd={2} style={{padding: "9px 50px 30px 150px"}}>
+                    <i className={styles.checkbox}>
+                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
+                        </i>  
+                    </GridItem>
+                    <GridItem colSpan={2} colStart={4} colEnd={4} style={{padding: "9px 50px 30px 50px"}}>
+                    <i className={styles.checkbox}>
+                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
+                        </i>  
+                    </GridItem> 
+                    <GridItem colSpan={2} colStart={6} colEnd={6} style={{padding: "9px 150px 30px 50px"}}>
+                    <i className={styles.checkbox}>
+                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
+                        </i>  
+                    </GridItem>
                 </Grid>
-            <Box className={styles.themebox} ml={5} paddingTop={3}>
+            <Box className={styles.themebox}>
                 <Text className={styles.themetext}>
                 Theme
                 </Text>
