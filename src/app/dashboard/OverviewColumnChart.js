@@ -7,7 +7,6 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
   const graphData = useSelector((state) => state.dashboardTableData.ScoreGraphData);
-  console.log(graphData, 'graphData');
   const options = {
     chart: {
       height: 205,
