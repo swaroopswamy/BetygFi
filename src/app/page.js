@@ -17,7 +17,7 @@ export default function Home() {
           src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
           strategy="afterInteractive"
         ></Script>
-        <Script>
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
