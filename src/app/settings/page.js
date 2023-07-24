@@ -1,5 +1,5 @@
 "use client"
-import { Box, Container, Grid, GridItem, Text, Image } from "@chakra-ui/react";
+import { Box, Container, Grid, GridItem, Text, Image, Flex } from "@chakra-ui/react";
 import React from "react";
 import styles from "./settings.module.css"
 
@@ -40,8 +40,6 @@ const Settings = () => {
             <Box className={styles.secondbox}>
             <Text ml={5} pt={5}>Account Settings</Text>
             </Box>
-          
-             
         </Container>
     </div>
 }
