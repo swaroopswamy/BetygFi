@@ -41,17 +41,7 @@ const Settings = () => {
             <Text ml={5} pt={5}>Account Settings</Text>
             </Box>
           
-            <Box className={styles.logouttextbox}>
-            <Text className={styles.logouttext}>
-            Logout of BetygFi
-            </Text>
-            </Box>
-
-            <Box className={styles.lasttextbox}>
-            <Text className={styles.lasttext}>
-            After logging out, the verification information for the current address will be deleted from your browser.
-            </Text>
-            </Box>
+             
         </Container>
     </div>
 }
