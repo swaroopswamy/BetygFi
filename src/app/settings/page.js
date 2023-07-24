@@ -29,21 +29,6 @@ const Settings = () => {
                             <Image src='../../../assets/images/minibox3.svg'  fallbackSrc='http://www.w3.org/2000/svg'/>
                         </i>
                     </GridItem>
-                    <GridItem colSpan={2} colStart={2} colEnd={2} style={{padding: "9px 50px 30px 150px"}}>
-                    <i className={styles.checkbox}>
-                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
-                        </i>  
-                    </GridItem>
-                    <GridItem colSpan={2} colStart={4} colEnd={4} style={{padding: "9px 50px 30px 50px"}}>
-                    <i className={styles.checkbox}>
-                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
-                        </i>  
-                    </GridItem> 
-                    <GridItem colSpan={2} colStart={6} colEnd={6} style={{padding: "9px 150px 30px 50px"}}>
-                    <i className={styles.checkbox}>
-                        <Image src='../../../assets/images/check.svg' fallbackSrc='http://www.w3.org/2000/svg' />
-                        </i>  
-                    </GridItem>
                 </Grid>
             <Box className={styles.themebox}>
                 <Text className={styles.themetext}>

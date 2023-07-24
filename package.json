@@ -33,14 +33,6 @@
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
     "sass": "^1.63.6",
-<<<<<<< HEAD
     "typeface-manrope": "^1.0.0"
-=======
-    "serve": "^14.2.0"
-  },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.3.1"
->>>>>>> 5fc3d296becdbd6626a6f2dbac8ae754bd990860
   }
 }
