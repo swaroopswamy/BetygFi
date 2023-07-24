@@ -1,10 +1,13 @@
-import React from "react";
+"use client"
+import React from 'react';
 
-const version1 = () => {
-    return (
-        <>
-        <div>div</div>
-        </>
-    )
-}
-export default version1;
+const Version2Content = () => {
+  return (
+    <div>
+      <h2>Version 2</h2>
+      <p>This is the content for version 2.</p>
+    </div>
+  );
+};
+
+export default Version2Content;

@@ -1,19 +1,13 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 
-// const version1=()=>{
-//     return(
-//         <Text>Hi guys its version 1</Text>
-//     );
-// };
-// export default version1;
+const Version1Content = () => {
+  return (
+    <div>
+      <h2>Version 1</h2>
+      <p>This is the content for version 1.</p>
+    </div>
+  );
+};
 
-// version1.js
-const version1Data = [
-    { id: 1, title: 'Item 1', description: 'Description of Item 1' },
-    { id: 2, title: 'Item 2', description: 'Description of Item 2' },
-    // Add more items as needed
-  ];
-  
-  export default version1Data;
-  
+export default Version1Content;
