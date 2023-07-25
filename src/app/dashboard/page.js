@@ -119,13 +119,13 @@ const Dashboard = () => {
             mb="15px"
             position={"relative"}
           >
-            <Box onClick={toggleColorMode}
+            {/* <Box onClick={toggleColorMode}
               position={"absolute"}
               right={"0px"}
               cursor={"pointer"}
             >
               {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
-            </Box>
+            </Box> */}
             <Text
               fontSize={"24px"}
               fontWeight={400}

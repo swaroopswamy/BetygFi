@@ -9,6 +9,7 @@
     "build": "next build"
   },
   "dependencies": {
+    "@3rdweb/hooks": "^1.9.2",
     "@babel/core": "^7.22.9",
     "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/next-js": "^2.1.4",
