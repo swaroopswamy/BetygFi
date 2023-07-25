@@ -5,7 +5,7 @@ import Version1Content from './version1';
 import Version2Content from './version2'; 
 
 const Approach = () => {
-  const [selectedVersion, setSelectedVersion] = useState(null);
+  const [selectedVersion, setSelectedVersion] = useState("option1");
 
   const versionInfo = {
     option1: 'version1',
