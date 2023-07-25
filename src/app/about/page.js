@@ -35,7 +35,7 @@ const About = () => {
 
       <Flex>
         <Center w='200px'>
-          <Image src="/images/solvendo-logo.svg" width={"161px"} height={"127px"} alt="" mt={"20px"} ml={"59px"} bg={useColorModeValue("#FFFFFF","#191919")}></Image>
+          <Image src={useColorModeValue("/images/solvendo-logo.svg","/images/solvendo-logo(black).svg")} width={"161px"} height={"127px"} alt="" mt={"20px"} ml={"59px"} bg={useColorModeValue("#FFFFFF","#191919")}></Image>
         </Center>
         <Box flex='1'>
           <Text
@@ -194,6 +194,7 @@ const About = () => {
         >
           We aim for extremely high precision, meaning we'd rather not label an address than label it incorrectly.
         </Text>
+      
         <Text
           color={useColorModeValue("#191919", "#FFFFFF")}
           fontSize={"16px"}
@@ -220,25 +221,25 @@ const About = () => {
 
       <Flex>
         <Box width={"94.488px"} height={"20px"} ml={"59px"} mt={"50px"} mb={"75px"}>
-          <Image src="/images/ACCEL.svg"></Image>
+          <Image src={useColorModeValue("/images/ACCEL.svg","/images/ACCEL(black).svg")}></Image>
         </Box>
         <Box  width={"49.587px"} height={"20px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/A16Z.svg"></Image>
+        <Image src={useColorModeValue("/images/A16Z.svg","/images/A16Z(black).svg")}></Image>
         </Box>
         <Box  width={"144px"} height={"14px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/TigerGlobal.svg"></Image>
+        <Image src={useColorModeValue("/images/TigerGlobal.svg","/images/TigerGlobal(black).svg")}></Image>
         </Box>
         <Box  width={"106.557px"} height={"27px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/Skyfall.svg"></Image>
+        <Image src={useColorModeValue("/images/Skyfall.svg","/images/Skyfall(black).svg")}></Image>
         </Box>
         <Box  width={"79.47px"} height={"30px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/MechanismCapital.svg"></Image>
+        <Image src={useColorModeValue("/images/MechanismCapital.svg","/images/MechanismCapital(black).svg")}></Image>
         </Box>
         <Box  width={"66.712px"} height={"33px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/SCB.svg"></Image>
+        <Image src={useColorModeValue("/images/SCB.svg","/images/SCB(black).svg")}></Image>
         </Box>
         <Box  width={"60.403px"} height={"30px"} ml={"50px"} mt={"45px"}>
-        <Image src="/images/GIC.svg"></Image>
+        <Image src={useColorModeValue("/images/GIC.svg","/images/GIC(black).svg")}></Image>
         </Box>
       </Flex>
     </Container>
