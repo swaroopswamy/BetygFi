@@ -1,22 +1,22 @@
 "use client"
-import { Box, Container, Flex, Spacer,Image, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Spacer,Image, useColorModeValue, Text } from "@chakra-ui/react";
 
 const Terms = () => {
   return (
     <>
       {    
        <Container maxW= {"100%"}  padding= {"0px"}>
-        <Box width= {"100%"}  height= {"264px"}  background= {"#E8E8E8"}>
+        <Box width= {"100%"}  height= {"264px"}  background= {useColorModeValue("#E8E8E8","#222")}>
         <Box display={"flex"}>
             <Box  
                       width={"100%"}
-                      color= {"#000"}
+                      color={useColorModeValue("#191919", "#FFFFFF")}
                       fontSize= {"46px"}
                       fontStyle= {"normal"}
                       fontWeight= {"400"}
                       lineHeight= {"46px"}
                       padding= {"109px 0px 0px 50px"}>
-            Terms and Conditons
+            Terms & Conditons
             </Box>
             <Box width={"60%"}  height={"264px"}>
               <Image src="/images/bg-logo.png" height={"250px"} width={"250px"} alt=""
@@ -28,7 +28,7 @@ const Terms = () => {
         <Box width= {"80%"}
             height= {"603px"}
             flexShrink= {"0"}
-            color= {"#191919"}
+            color={useColorModeValue("#191919", "#FFFFFF")}
             fontSize= {"16px"}
              fontStyle= {"normal"}
              fontWeight= {"400"}
@@ -36,7 +36,6 @@ const Terms = () => {
              margin= {"30px 60px 60px 50px"}
              marginBottom ="10px" 
              opacity= {"0.800000011920929"}
-             color= {"#191919"}
              >
 
           <Text  paddingTop= {"10px"}>

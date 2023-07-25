@@ -7,19 +7,18 @@ const Help = () => {
         <>
             <Container  padding= {"0px"} maxW="100%">
             <Box width= {"100%"}  
-                 height= {"264px"}
-                 background= {"#E8E8E8"}  
-                 style={{ mixBlendMode: "luminosity" }}>
+                 height= {"264px"} 
+                 style={{ mixBlendMode: "luminosity" }}
+                 background= {useColorModeValue("#E8E8E8","#222")}>
           
           <Box display={"flex"}>
             
-            <Box  
-                      color= {"#000"}
-                      fontSize= {"46px"}
+            <Box      fontSize= {"46px"}
                       fontStyle= {"normal"}
                       fontWeight= {"400"}
                       lineHeight= {"46px"}
-                      padding= {"109px 300px 0px 70px"}>
+                      padding= {"109px 300px 0px 70px"}
+                      color={useColorModeValue("#191919", "#FFFFFF")}>
                     Help
             </Box>
              <Box width={"80%"}  height={"264px"} paddingLeft={"80px"}>
@@ -30,7 +29,6 @@ const Help = () => {
         </Box>
 
                 <Text color={useColorModeValue("#191919", "#FFFFFF")}
-                      fontFamily= {"Manrope"}  
                       fontSize= {"24px"}  
                       fontStyle= {"normal"}
                       fontWeight= {400}  
@@ -41,10 +39,9 @@ const Help = () => {
 
   <Accordion defaultIndex={[0]} allowMultiple  padding={'10px 80px 80px 70px'}>
   <AccordionItem>
-      <AccordionButton>
+      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
         <Box as="span" flex='1' textAlign='left' 
                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontFamily= {"Manrope"}
                                 fontSize= {"24px"}
                                 fontStyle= {"normal"}
                                 fontWeight= {"400"}
@@ -55,8 +52,7 @@ const Help = () => {
       </AccordionButton>
     <AccordionPanel pb={4} opacity= {"0.800000011920929"}
                            color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontFamily= {"Manrope"}
-                           fontSize= {"16px"}
+                           fontSize= {"14px"}
                            fontStyle= {"normal"}
                            fontWeight= {"400"}
                            lineHeight= {"26px"}
@@ -76,7 +72,7 @@ const Help = () => {
   </AccordionItem>
 
   <AccordionItem paddingTop={"10px"}>
-      <AccordionButton>
+      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
         <Box as="span" flex='1' textAlign='left'
                                color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontFamily= {"Manrope"}
@@ -90,23 +86,18 @@ const Help = () => {
       </AccordionButton>
     <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
                            color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontFamily= {"Manrope"}
-                           fontSize= {"16px"}
+                           fontSize= {"14px"}
                            fontStyle= {"normal"}
                            fontWeight= {"400"}
                            lineHeight= {"26px"}
-                          text-decoration-line= {"underline"}
-                           display= {"flex"}
-                          height= {"139px"}
-                          flexDirection= {"column"}
-                          justifyContent= {"center"}
-                          flexShrink= {"0"}>
-      .....
+                           height= {"139px"}>
+                          
+    
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-      <AccordionButton>
+      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
         <Box as="span" flex='1' textAlign='left'
                                  color={useColorModeValue("#191919", "#FFFFFF")}
                                  fontFamily= {"Manrope"}
@@ -120,23 +111,16 @@ const Help = () => {
       </AccordionButton>
     <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
                           color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontFamily= {"Manrope"}
-                           fontSize= {"16px"}
+                           fontSize= {"14px"}
                            fontStyle= {"normal"}
                            fontWeight= {"400"}
-                           lineHeight= {"26px"}
-                          text-decoration-line= {"underline"}
-                           display= {"flex"}
-                          height= {"139px"}
-                          flexDirection= {"column"}
-                          justifyContent= {"center"}
-                          flexShrink= {"0"}>
+                           lineHeight= {"26px"}>
       .....
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-      <AccordionButton>
+      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
         <Box as="span" flex='1' textAlign='left'
                                 color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontFamily= {"Manrope"}
@@ -151,22 +135,16 @@ const Help = () => {
     <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
                            color={useColorModeValue("#191919", "#FFFFFF")}
                            fontFamily= {"Manrope"}
-                           fontSize= {"16px"}
+                           fontSize= {"14px"}
                            fontStyle= {"normal"}
                            fontWeight= {"400"}
-                           lineHeight= {"26px"}
-                          text-decoration-line= {"underline"}
-                           display= {"flex"}
-                          height= {"139px"}
-                          flexDirection= {"column"}
-                          justifyContent= {"center"}
-                          flexShrink= {"0"}>
+                           lineHeight= {"26px"}>
       .....
     </AccordionPanel>
   </AccordionItem>
 
 <AccordionItem paddingTop={"10px"}>
-      <AccordionButton>
+      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
         <Box as="span" flex='1' textAlign='left' 
                                  color={useColorModeValue("#191919", "#FFFFFF")}
                                  fontFamily= {"Manrope"}
@@ -180,17 +158,10 @@ const Help = () => {
       </AccordionButton>
     <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
                           color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontFamily= {"Manrope"}
-                           fontSize= {"16px"}
+                           fontSize= {"14px"}
                            fontStyle= {"normal"}
                            fontWeight= {"400"}
-                           lineHeight= {"26px"}
-                          text-decoration-line= {"underline"}
-                           display= {"flex"}
-                          height= {"139px"}
-                          flexDirection= {"column"}
-                          justifyContent= {"center"}
-                          flexShrink= {"0"}>
+                           lineHeight= {"26px"}>
       .....
     </AccordionPanel>
   </AccordionItem>

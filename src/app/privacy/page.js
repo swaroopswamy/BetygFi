@@ -5,16 +5,16 @@ import { Box, Container, Flex, Text,Image, useColorModeValue } from "@chakra-ui/
     return (
         <>
             <Container  maxW= {"100%"}  padding= {"0px"}>
-            <Box width= {"100%"}  height= {"264px"}  background= {"#E8E8E8"}>
+            <Box width= {"100%"}  height= {"264px"}  background= {useColorModeValue("#E8E8E8","#222")}>
             <Box display={"flex"}>
             <Box  
                       width={"100%"}
-                      color= {"#000"}
                       fontSize= {"46px"}
                       fontStyle= {"normal"}
                       fontWeight= {"400"}
                       lineHeight= {"46px"}
-                      padding= {"109px 0px 0px 70px"}>
+                      padding= {"109px 0px 0px 70px"}
+                      color={useColorModeValue("#191919", "#FFFFFF")}>
             Privacy Policy
             </Box>
             <Box width={"80%"}  height={"264px"}>
