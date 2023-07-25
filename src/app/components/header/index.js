@@ -22,12 +22,16 @@ import {
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import LoginPage from "../login";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen:isHeaderOpen, onOpen:onHeaderOpen, onClose:onHeaderClose } = useDisclosure();
+  const { isOpen:isLoginModalOpen, onOpen:onLoginModalOpen, onClose:onLoginModalClose } = useDisclosure();
+  
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
    <>
-    {/* <Flex
+     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
       height="20"
@@ -40,7 +44,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     >
       <IconButton
         display={{ base: "flex", md: "none" }}
-        onClick={onOpen}
+        onClick={onHeaderOpen}
         variant="outline"
         aria-label="open menu"
         icon={<FiMenu />}
@@ -64,11 +68,11 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           variant="ghost"
           aria-label="open menu"
           icon={<FiBell />}
+          onClick={onLoginModalOpen}
         />
-
-       
       </HStack>
-    </Flex> */}
+    </Flex> 
+    <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
    </>
   );
 };

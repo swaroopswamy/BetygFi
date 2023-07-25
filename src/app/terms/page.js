@@ -7,7 +7,7 @@ import { callAllHandlers, warn } from "@chakra-ui/shared-utils";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 
-export default function Dashboard() {
+const Terms = () => {
   return (
     <>
       {     <Container className={styles.container}>
@@ -45,3 +45,4 @@ export default function Dashboard() {
     </>
   );
 }
+export default Terms;
