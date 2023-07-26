@@ -18,7 +18,7 @@ import { Box, Container, Flex, Text,Image, useColorModeValue } from "@chakra-ui/
             Privacy Policy
             </Box>
             <Box width={"80%"}  height={"264px"}>
-              <Image src="/images/bg-logo.png" height={"250px"} width={"250px"} alt=""
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} height={"250px"} width={"250px"} alt=""
                       padding={"50px 0px 0px 30px"}></Image>
             </Box>
           </Box>

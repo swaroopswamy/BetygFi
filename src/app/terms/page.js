@@ -1,5 +1,5 @@
 "use client"
-import { Box, Container, Flex, Spacer,Image, useColorModeValue, Text } from "@chakra-ui/react";
+import { Box, Container, Image, useColorModeValue, Text } from "@chakra-ui/react";
 
 const Terms = () => {
   return (
@@ -10,16 +10,16 @@ const Terms = () => {
         <Box display={"flex"}>
             <Box  
                       width={"100%"}
-                      color={useColorModeValue("#191919", "#FFFFFF")}
-                      fontSize= {"46px"}
-                      fontStyle= {"normal"}
+                      // color={useColorModeValue("#191919", "#FFFFFF")}
+                      // fontSize= {"46px"}
+                      // fontStyle= {"normal"}
                       fontWeight= {"400"}
                       lineHeight= {"46px"}
                       padding= {"109px 0px 0px 50px"}>
-            Terms & Conditons
+            <Image src={useColorModeValue("/images/terms-light-mode.png","/images/terms-dark-mode.png")}></Image>
             </Box>
             <Box width={"60%"}  height={"264px"}>
-              <Image src="/images/bg-logo.png" height={"250px"} width={"250px"} alt=""
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} height={"250px"} width={"250px"} alt=""
                       padding={"40px 0px 0px 20px"}></Image>
             </Box>
           </Box>

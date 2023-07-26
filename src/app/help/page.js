@@ -1,7 +1,7 @@
 "use client"
 import { Box, Container, Text, Flex, Accordion, AccordionItem, AccordionButton,
          AccordionPanel, AccordionIcon, useColorModeValue, Image} from "@chakra-ui/react";
-
+import { MdArrowDropDown } from 'react-icons/md';
 const Help = () => {
     return (
         <>
@@ -22,7 +22,7 @@ const Help = () => {
                     Help
             </Box>
              <Box width={"80%"}  height={"264px"} paddingLeft={"80px"}>
-              <Image src="/images/bg-logo.png" height={"250px"} width={"300px"} alt=""
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} height={"250px"} width={"300px"} alt=""
                       padding={"50px 0px 0px 80px"}></Image>
             </Box>
           </Box>
@@ -48,7 +48,7 @@ const Help = () => {
                                 lineHeight= {"20px"} >
           What is Ethereum?                              
         </Box>
-        <AccordionIcon />
+        <AccordionIcon as={useColorModeValue("/image/ellipse-light-mode.png","/image/ellipse-dark-mode.png")} />
       </AccordionButton>
     <AccordionPanel pb={4} opacity= {"0.800000011920929"}
                            color={useColorModeValue("#191919", "#FFFFFF")}
