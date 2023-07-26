@@ -10,9 +10,6 @@ const Terms = () => {
         <Box display={"flex"}>
             <Box  
                       width={"100%"}
-                      // color={useColorModeValue("#191919", "#FFFFFF")}
-                      // fontSize= {"46px"}
-                      // fontStyle= {"normal"}
                       fontWeight= {"400"}
                       lineHeight= {"46px"}
                       padding= {"109px 0px 0px 50px"}>
