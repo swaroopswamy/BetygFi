@@ -1,7 +1,9 @@
 "use client"
 import { Box, Container, Text, Flex, Accordion, AccordionItem, AccordionButton,
-         AccordionPanel, AccordionIcon, useColorModeValue, Image} from "@chakra-ui/react";
-import { MdArrowDropDown } from 'react-icons/md';
+         AccordionPanel, AccordionIcon, useColorModeValue,Icon, Image} from "@chakra-ui/react";
+import { MdArrowDropDown} from 'react-icons/md';
+import { AddIcon, MinusIcon  } from '@chakra-ui/icons';
+import CustomIcon from '../../../public/images/ellipse-dark-mode.png';
 const Help = () => {
     return (
         <>
@@ -37,133 +39,40 @@ const Help = () => {
                      FAQs   
                 </Text>
 
-  <Accordion defaultIndex={[0]} allowMultiple  padding={'10px 80px 80px 70px'}>
+                <Accordion allowToggle>
   <AccordionItem>
-      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
-        <Box as="span" flex='1' textAlign='left' 
-                                color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontSize= {"24px"}
-                                fontStyle= {"normal"}
-                                fontWeight= {"400"}
-                                lineHeight= {"20px"} >
-          What is Ethereum?                              
-        </Box>
-        <AccordionIcon as={useColorModeValue("/image/ellipse-light-mode.png","/image/ellipse-dark-mode.png")} />
-      </AccordionButton>
-    <AccordionPanel pb={4} opacity= {"0.800000011920929"}
-                           color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontSize= {"14px"}
-                           fontStyle= {"normal"}
-                           fontWeight= {"400"}
-                           lineHeight= {"26px"}
-                          text-decoration-line= {"underline"}
-                           display= {"flex"}
-                          height= {"139px"}
-                          flexDirection= {"column"}
-                          justifyContent= {"center"}
-                          flexShrink= {"0"} >
-    In 2015, the Ethereum blockchain launched as a much more versatile version of the Bitcoin payment system’s
-     underlying blockchain technology. Ethereum is a decentralized, open source, and distributed computing 
-     platform that enables the creation of smart contracts and decentralized applications, also known as dapps.
-    Smart contracts are computer protocols that facilitate, verify, or enforce the negotiation and performance
-    of some sort of agreement. Ethereum brought the first practical solution for smart contracts to the blockchain space.
-
-    </AccordionPanel>
+    {({ isExpanded }) => (
+      <>
+        <h2>
+          <AccordionButton>
+            <Box flex="1" textAlign="left">
+              Section 1 title
+            </Box>
+            {isExpanded ? <Icon as={CustomIcon} w={4} h={4} /> : <AddIcon w={4} h={4} />}
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </>
+    )}
   </AccordionItem>
-
-  <AccordionItem paddingTop={"10px"}>
-      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
-        <Box as="span" flex='1' textAlign='left'
-                               color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontFamily= {"Manrope"}
-                                fontSize= {"24px"}
-                                fontStyle= {"normal"}
-                                fontWeight= {"400"}
-                                lineHeight= {"20px"} >
-          What is a blockchain system?
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
-                           color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontSize= {"14px"}
-                           fontStyle= {"normal"}
-                           fontWeight= {"400"}
-                           lineHeight= {"26px"}
-                           height= {"139px"}>
-                          
-    
-    </AccordionPanel>
-  </AccordionItem>
-
-<AccordionItem paddingTop={"10px"}>
-      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
-        <Box as="span" flex='1' textAlign='left'
-                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                 fontFamily= {"Manrope"}
-                                 fontSize= {"24px"}
-                                 fontStyle= {"normal"}
-                                 fontWeight= {"400"}
-                                 lineHeight= {"20px"} >
-          What is distributed ledger technology?
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
-                          color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontSize= {"14px"}
-                           fontStyle= {"normal"}
-                           fontWeight= {"400"}
-                           lineHeight= {"26px"}>
-      .....
-    </AccordionPanel>
-  </AccordionItem>
-
-<AccordionItem paddingTop={"10px"}>
-      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
-        <Box as="span" flex='1' textAlign='left'
-                                color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontFamily= {"Manrope"}
-                                fontSize= {"24px"}
-                                fontStyle= {"normal"}
-                                fontWeight= {"400"}
-                                lineHeight= {"20px"} >
-          What is private blockchain?
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
-                           color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontFamily= {"Manrope"}
-                           fontSize= {"14px"}
-                           fontStyle= {"normal"}
-                           fontWeight= {"400"}
-                           lineHeight= {"26px"}>
-      .....
-    </AccordionPanel>
-  </AccordionItem>
-
-<AccordionItem paddingTop={"10px"}>
-      <AccordionButton  color={useColorModeValue("#191919", "#FFFFFF")}>
-        <Box as="span" flex='1' textAlign='left' 
-                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                 fontFamily= {"Manrope"}
-                                 fontSize= {"24px"}
-                                 fontStyle= {"normal"}
-                                 fontWeight= {"400"}
-                                 lineHeight= {"20px"} >
-          What is block time?
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    <AccordionPanel pb={4}  opacity= {"0.800000011920929"}
-                          color={useColorModeValue("#191919", "#FFFFFF")}
-                           fontSize= {"14px"}
-                           fontStyle= {"normal"}
-                           fontWeight= {"400"}
-                           lineHeight= {"26px"}>
-      .....
-    </AccordionPanel>
+  <AccordionItem>
+    {({ isExpanded }) => (
+      <>
+        <h2>
+          <AccordionButton>
+            <Box flex="1" textAlign="left">
+              Section 2 title
+            </Box>
+            {isExpanded ? <MinusIcon w={4} h={4} /> : <AddIcon w={4} h={4} />}
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </AccordionPanel>
+      </>
+    )}
   </AccordionItem>
 </Accordion>
 
