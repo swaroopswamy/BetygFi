@@ -3,7 +3,12 @@ import { Box, Container, Text, Flex, Accordion, AccordionItem, AccordionButton,
          AccordionPanel, AccordionIcon, useColorModeValue,Icon, Image} from "@chakra-ui/react";
 import { MdArrowDropDown} from 'react-icons/md';
 import { AddIcon, MinusIcon  } from '@chakra-ui/icons';
-import CustomIcon from '../../../public/images/ellipse-dark-mode.png';
+import CustomIcon1 from '../../../public/images/ellipse-dark-down.png';
+import CustomIcon2 from '../../../public/images/ellipse-dark-up.png';
+import CustomIcon3 from '../../../public/images/ellipse-light-down.png';
+import CustomIcon4 from '../../../public/images/ellipse-light-up.png';
+
+
 const Help = () => {
     return (
         <>
@@ -48,7 +53,7 @@ const Help = () => {
             <Box flex="1" textAlign="left">
               Section 1 title
             </Box>
-            {isExpanded ? <Icon as={CustomIcon} w={4} h={4} /> : <AddIcon w={4} h={4} />}
+            {isExpanded ? <Icon as={CustomIcon1} w={4} h={4} /> : <Icon as={CustomIcon2} w={4} h={4} />}
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
@@ -65,7 +70,7 @@ const Help = () => {
             <Box flex="1" textAlign="left">
               Section 2 title
             </Box>
-            {isExpanded ? <MinusIcon w={4} h={4} /> : <AddIcon w={4} h={4} />}
+            {isExpanded ? <Icon w={4} h={4} /> : <AddIcon w={4} h={4} />}
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
