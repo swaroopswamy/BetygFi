@@ -1,7 +1,6 @@
 "use client"
 import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer } from "@chakra-ui/react";
 import React from "react";
-import styles from "./settings.module.css"
 
 const Settings = () => {
     return (
