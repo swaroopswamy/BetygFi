@@ -1,77 +1,11 @@
 "use client"
-// import { Grid, GridItem, useColorModeValue } from "@chakra-ui/react";
-// import React, { useState } from 'react';
-// import { IoMdArrowDropdown as ChevronDownIcon } from 'react-icons/io';
-// import styles from "../approach-paper/approach.module.css";
-// import version1 from "./version1"
-// import version2 from "./version2"
-// import { Box, Button, Container } from "@chakra-ui/react";
-// import { Menu, MenuButton, MenuList, MenuItem, MenuDivider, selectedVersion } from '@chakra-ui/react'
-
-
-// const Approach = () => {
-//   const [selectedVersion, setSelectedVersion] = useState(null);
-
-//   const handleVersionSelect = (event) => {
-//     setSelectedVersion(event.target.textContent);
-//   };
-
-//   // Depending on the selected version, render the corresponding component
-//   const renderSelectedVersion = () => {
-//     switch (selectedVersion) {
-//       case 'version1':
-//         return <version1 />;
-//       case 'version2':
-//         return <version2 />;
-//       default:
-//         return null; // Render nothing if no version is selected
-//     }
-//   };
-//   return (
-//     <Container className={styles.container}>
-//       <Box className={styles.box1}>
-//         <Grid>
-//           <GridItem colSpan={2} colStart={0} colEnd={2} className={styles.approachgrid}>
-//             Approach Paper
-//           </GridItem>
-//           <GridItem colSpan={4} colStart={4} colEnd={2} width={'80%'} padding={'109px 0px 109px 100px'}>
-//             <Menu>
-//               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-//                 Version
-//               </MenuButton>
-//               <MenuList minH='60px'>
-//                 {/* Use the handleVersionSelect function as onClick event handlers */}
-//                 <MenuItem minH='48px' onClick={handleVersionSelect}>
-//                   <span>version1</span>
-//                 </MenuItem>
-
-//                 <MenuItem minH='48px' onClick={handleVersionSelect}>
-//                   <span>version2</span>
-//                 </MenuItem>
-//               </MenuList>
-//             </Menu>
-//           </GridItem>
-//         </Grid>
-//       </Box>
-//     </Container>
-//   );
-// };
-
-// export default Approach;
-
-
-
-
-
-import { Grid, GridItem, useColorModeValue } from "@chakra-ui/react";
+import { Grid, GridItem,Box, Container, Select } from "@chakra-ui/react";
 import React, { useState } from 'react';
-import styles from "../approach-paper/approach.module.css";
-import { Box, Button, Link, Link as ReachLink, Container, Text, Select, extendTheme, Manrope } from "@chakra-ui/react";
-import Version1Content from './version1'; // Import the content of version1.js
-import Version2Content from './version2'; // Import the content of version2.js
+import Version1Content from './version1'; 
+import Version2Content from './version2'; 
 
 const Approach = () => {
-  const [selectedVersion, setSelectedVersion] = useState(null);
+  const [selectedVersion, setSelectedVersion] = useState("option1");
 
   const versionInfo = {
     option1: 'version1',
@@ -80,13 +14,29 @@ const Approach = () => {
 
   const handleVersionSelect = (event) => {
     setSelectedVersion(event.target.value);
+    console.log(selectedVersion);
+    console.log(event.target);
   };
+  
 
   return (
-    <Container className={styles.container}>
-      <Box className={styles.box1}>
+    <Container maxW= {"100%"} padding={"0px"} >
+      <Box height= {"264px"}  background= {"#E8E8E8"}>
         <Grid>
-          <GridItem colSpan={2} colStart={0} colEnd={2} className={styles.approachgrid}>
+          <GridItem colSpan={2} colStart={0} colEnd={2} 
+            width= {"100%"} 
+            height= {"250px"}  
+            // flex-shrink= {"0"}
+            background= {"#E8E8E8"}
+            mix-blend-mode= {"luminosity"}
+            padding= {"109px 0px 109px 70px"}
+            color= {"#000"}
+            fontFamily= {"Manrope"}
+            fontSize= {"46px"}
+            fontStyle= {"normal"}
+            fontWeight= {"400"}
+            lineHeight= {"46px"}>
+
             Approach Paper
           </GridItem>
           <GridItem colSpan={4} colStart={4} colEnd={2} width={"80%"} padding={"109px 0px 109px 100px"}>
@@ -101,13 +51,13 @@ const Approach = () => {
       {/* Display the information for the selected version */}
       {selectedVersion === 'option1' && (
         <div>
-          {Version1Content}
+          <Version1Content />
         </div>
       )}
 
       {selectedVersion === 'option2' && (
         <div>
-          {Version2Content}
+          <Version2Content />
         </div>
       )}
     </Container>
