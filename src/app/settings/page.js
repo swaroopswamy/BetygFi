@@ -1,13 +1,13 @@
 "use client"
-import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer } from "@chakra-ui/react";
+import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer, toggleColorMode, colorMode } from "@chakra-ui/react";
 import React from "react";
 
 const Settings = () => {
     return (
         <Container
             maxWidth={"100%"}
-            width={"1440px"}
-            height={"1044px"}
+           width={"1440px"}
+           height={"1044px"}
             background={useColorModeValue("#F0F0F5", "#191919")}
         >
             <Text
@@ -57,8 +57,9 @@ const Settings = () => {
                         display={"flex"}
                         flexDirection={"column"}
                     >
-                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
 
+                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
+                        
                         <Box
                             display={"flex"}
                             alignItems={"center"}
@@ -145,13 +146,6 @@ const Settings = () => {
                     </Box>
                 </Box>
 
-
-                {/*  <Flex>
-                   
-                    <Image src="/images/DarkTheme.svg" ml={"75px"} mt={"15px"}></Image>
-                </Flex> */}
-
-                {/*  */}
             </Box>
 
             <Box
