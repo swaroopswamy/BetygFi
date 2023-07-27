@@ -20,6 +20,7 @@
     "@fontsource/raleway": "^5.0.5",
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/webpack": "^8.0.1",
+    "apexcharts": "^3.41.0",
     "axios": "^1.4.0",
     "env-cmd": "^10.1.0",
     "eslint": "8.44.0",
