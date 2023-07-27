@@ -53,7 +53,7 @@ const Help = () => {
             <Box flex="1" textAlign="left">
               Section 1 title
             </Box>
-            {isExpanded ? <Icon as={CustomIcon1} w={4} h={4} /> : <Icon as={CustomIcon2} w={4} h={4} />}
+            {isExpanded ? <Icon name={CustomIcon1 } w={4} h={4} /> : <Icon name={CustomIcon2 } w={4} h={4} />}
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
@@ -70,7 +70,7 @@ const Help = () => {
             <Box flex="1" textAlign="left">
               Section 2 title
             </Box>
-            {isExpanded ? <Icon w={4} h={4} /> : <AddIcon w={4} h={4} />}
+            {/* {isExpanded ? <Icon as={<CustomIcon1 />} w={4} h={4} /> : <Icon as={<CustomIcon2 />} w={4} h={4} />} */}
           </AccordionButton>
         </h2>
         <AccordionPanel pb={4}>
