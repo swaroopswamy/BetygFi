@@ -1,58 +1,317 @@
 "use client"
-import { Box, Container, Grid, GridItem, Text, Image } from "@chakra-ui/react";
+import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer } from "@chakra-ui/react";
 import React from "react";
 import styles from "./settings.module.css"
 
 const Settings = () => {
-    return<div>
-        <Container className={styles.backgroundcolour}>
-            <Box className={styles.headingbox}>
-            <Text className={styles.headingtext}>
-                Settings
+    return (
+        <Container
+            maxWidth={"100%"}
+            width={"1440px"}
+            height={"1044px"}
+            background={useColorModeValue("#F0F0F5","#191919")}
+        >
+            <Text
+            color={useColorModeValue("#191919", "#FFFFFF")}
+            fontSize={"24px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            lineHeight={"46px"}
+            ml={"33px"}
+            >
+             Settings
             </Text>
+
+            <Box
+            height={"238px"}
+            flexShrink={"0"}
+            borderRadius={"6px"}
+            background={useColorModeValue("#FFFFFF","#202020")}
+            boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+            ml={"33px"}
+            mr={"20px"}
+            >
+            <Text 
+            color={useColorModeValue("#191919", "#FFFFFF")}
+            fontSize={"15px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            ml={"20px"}
+            >
+             Theme
+            </Text>
+            <Flex>
+            <Image src="/images/SystemDefault.svg" ml={"130px"} mt={"15px"}></Image>
+            <Image src="/images/LightTheme.svg" ml={"75px"} mt={"15px"}></Image>
+            <Image src="/images/DarkTheme.svg" ml={"75px"} mt={"15px"}></Image>
+            </Flex>
+
+            <Flex> 
+            <Image src="/images/SelectBox.svg" ml={"150px"} mt={"5px"}></Image>
+            <Text
+           color={useColorModeValue("#191919", "#FFFFFF")}
+            fontSize={"11px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            letterSpacing={"1.1px"}
+            textTransform={"uppercase"}
+            ml={"15px"}
+            mt={"8px"}
+            >
+                System Default
+            </Text>
+
+            <Image src="/images/SelectBox.svg" ml={"130px"} mt={"5px"}></Image>
+            <Text
+            color={useColorModeValue("#191919", "#FFFFFF")}
+            fontSize={"11px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            letterSpacing={"1.1px"}
+            textTransform={"uppercase"}
+            ml={"15px"}
+            mt={"8px"}
+            >
+                Light THEME
+            </Text>
+
+            <Image src="/images/SelectBox.svg" ml={"130px"} mt={"5px"}></Image>
+            <Text
+            color={useColorModeValue("#191919", "#FFFFFF")}
+            fontSize={"11px"}
+            fontStyle={"normal"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            letterSpacing={"1.1px"}
+            textTransform={"uppercase"}
+            ml={"15px"}
+            mt={"8px"}
+            >
+                DARK THEME
+            </Text>
+            </Flex>
             </Box>
 
-            <Box className={styles.firstbox}>
-                <Grid>
-                    <GridItem colSpan={2} colStart={2} colEnd={2} style={{padding: "40px 15px 30px 180px"}}>
-                        <i className={styles.systemdefaultbox}>
-                        <Image src='../../../assets/images/minibox1.svg' fallbackSrc='http://www.w3.org/2000/svg' />
-                        </i>
-                    </GridItem>
-                    <GridItem colSpan={2} colStart={4} colEnd={4} style={{padding: "40px 15px 30px 200px"}}>
-                        <i className={styles.lightthemebox}>
-                            <Image src='../../../assets/images/minibox2.svg'  fallbackSrc='http://www.w3.org/2000/svg'/>
-                        </i>
-                    </GridItem>
-                    <GridItem  colSpan={2} colStart={6} colEnd={6}  style={{padding: "40px 30px 30px 250px"}}>
-                        <i className={styles.darkthemebox}>
-                            <Image src='../../../assets/images/minibox3.svg'  fallbackSrc='http://www.w3.org/2000/svg'/>
-                        </i>
-                    </GridItem>
-                </Grid>
-            <Box className={styles.themebox} ml={5} paddingTop={3}>
-                <Text className={styles.themetext}>
-                Theme
+            <Box
+            height={"350px"}
+            flexShrink={"0"}
+            borderRadius={"6px"}
+            background={useColorModeValue("#FFFFFF","#202020")}
+            boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+            ml={"33px"}
+            mt={"40px"}
+            mr={"20px"}
+            >
+            <Text 
+            ml={5} 
+            pt={5}
+            color={useColorModeValue("#191919", "#FFFFFF")}
+            >
+                Account Settings
                 </Text>
-            </Box>
+            <Flex 
+            ml={"150px"} 
+            mt={"30px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue("1px solid #191919","1px solid #FFFFFF")}
+            >
+                <Image src="/images/Web3.svg" mb={"20px"}></Image>
+                <Flex
+                flexDirection={"column"}>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"15px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                ml={"15px"}
+                >
+                    Web 3
+                </Text>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"11px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                opacity={"0.6000000238418579"}
+                ml={"15px"}
+                >
+                 Not Added
+                </Text>
+                </Flex>
+                <Spacer />
+                <Button
+                width={"116px"}
+                height={"28px"}
+                flexShrink={"0"}
+                background={useColorModeValue("#202020","#FFFFFF")}
+                >
+                    <Text
+                    color={useColorModeValue("#FFFFFF","#191919")}
+                    textAlign={"center"}
+                    fontSize={"10px"}
+                    fontStyle={"normal"}
+                    fontWeight={"700"}
+                    lineHeight={"10px"}
+                    >
+                     Verify
+                    </Text>
+                </Button>
+            </Flex>
+
+            <Flex 
+            ml={"150px"} 
+            mt={"20px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue("1px solid #191919","1px solid #FFFFFF")}
+            >
+                <Image src="/images/Google.svg" mb={"20px"} ml={"7px"}></Image>
+                <Flex
+                flexDirection={"column"}
+                mb={"17px"}
+                ml={"5px"}>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"15px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                ml={"15px"}
+                >
+                    Email 
+                </Text>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"11px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                opacity={"0.6000000238418579"}
+                ml={"15px"}
+                >
+                 Not Added
+                </Text>
+                </Flex>
+                <Spacer />
+                <Button
+                width={"116px"}
+                height={"28px"}
+                flexShrink={"0"}
+                background={useColorModeValue("#202020","#FFFFFF")}
+                >
+                    <Text
+                    color={useColorModeValue("#FFFFFF","#191919")}
+                    textAlign={"center"}
+                    fontSize={"10px"}
+                    fontStyle={"normal"}
+                    fontWeight={"700"}
+                    lineHeight={"10px"}
+                    >
+                     Verify
+                    </Text>
+                </Button>
+            </Flex>
+
+            <Flex 
+            ml={"150px"} 
+            mt={"20px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue("1px solid #191919","1px solid #FFFFFF")}
+            >
+                <Image src="/images/Twitter.svg" mb={"20px"} ml={"7px"}></Image>
+                <Flex
+                flexDirection={"column"}
+                mb={"17px"}
+                ml={"5px"}>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"15px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                ml={"15px"}
+                >
+                    Twitter 
+                </Text>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"11px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                opacity={"0.6000000238418579"}
+                ml={"15px"}
+                >
+                 Not Added
+                </Text>
+                </Flex>
+                <Spacer />
+                <Button
+                width={"116px"}
+                height={"28px"}
+                flexShrink={"0"}
+                background={useColorModeValue("#202020","#FFFFFF")}
+                >
+                    <Text
+                    color={useColorModeValue("#FFFFFF","#191919")}
+                    textAlign={"center"}
+                    fontSize={"10px"}
+                    fontStyle={"normal"}
+                    fontWeight={"700"}
+                    lineHeight={"10px"}
+                    >
+                     Verify
+                    </Text>
+                </Button>
+            </Flex>
             </Box>
 
-            <Box className={styles.secondbox}>
-            <Text ml={5} pt={5}>Account Settings</Text>
-            </Box>
-          
-            <Box className={styles.logouttextbox}>
-            <Text className={styles.logouttext}>
-            Logout of BetygFi
-            </Text>
-            </Box>
-
-            <Box className={styles.lasttextbox}>
-            <Text className={styles.lasttext}>
-            After logging out, the verification information for the current address will be deleted from your browser.
-            </Text>
-            </Box>
+            <Flex ml={"50px"} mt={"50px"}>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"15px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                >
+                    Logout of BetygFi
+                </Text>
+                <Text
+                color={useColorModeValue("#191919", "#FFFFFF")}
+                fontSize={"11px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"10px"}
+                ml={"50px"}
+                mt={"3px"}
+                >
+                After logging out, the verification information for the current address will be deleted from your browser.
+                </Text>
+                    <Button 
+                    width={"116px"}
+                    height={"28px"}
+                    ml={"60px"} 
+                    variant={"outline"} 
+                    border={"1px"}
+                    >
+                    <Text
+                    color={useColorModeValue("#191919", "#FFFFFF")}
+                    textAlign={"center"}
+                    fontSize={"10px"}
+                    fontStyle={"normal"}
+                    fontWeight={"700"}
+                    lineHeight={"10px"}
+                    >
+                     Logout
+                    </Text>
+                    </Button>
+            </Flex>
         </Container>
-    </div>
-}
+    )
+};
+
 export default Settings;
