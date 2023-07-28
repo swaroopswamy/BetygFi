@@ -52,7 +52,6 @@ const Settings = () => {
                             justifyContent={"space-evenly"}
                             mt={"10px"}
                 >
-
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
