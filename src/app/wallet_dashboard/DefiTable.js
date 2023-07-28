@@ -1,13 +1,15 @@
-import React from "react";
 "use client";
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
+    Image
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
-import Image from "next/image";
+
+import SortWhiteIcon from '../../../public/icons/sort_white.svg';
+import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
 
 const DefiTable = () => {
@@ -32,11 +34,35 @@ const DefiTable = () => {
                                 >
                                     Token
                                 </Text>
+                                <Icon
+                                    ml="3px"
+                                    w="10px"
+                                    h="10px"
+                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                ></Icon>
+                            </Box>
+                        </Th>
+                        <Th
+                        >
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                            >
+                                <Text
+                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    fontSize={"10px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    alignItems={"center"}
+
+                                >
+                                    Price (USD)
+                                </Text>
                                 <Image
                                     ml="3px"
                                     w="10px"
                                     h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
+                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
                                 ></Image>
                             </Box>
                         </Th>
@@ -54,13 +80,38 @@ const DefiTable = () => {
                                     alignItems={"center"}
 
                                 >
-                                    Token
+                                    Token / Amount
                                 </Text>
                                 <Image
                                     ml="3px"
                                     w="10px"
                                     h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
+                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                ></Image>
+                            </Box>
+                        </Th>
+
+                        <Th
+                        >
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                            >
+                                <Text
+                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    fontSize={"10px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    alignItems={"center"}
+
+                                >
+                                    Value(USD)
+                                </Text>
+                                <Image
+                                    ml="3px"
+                                    w="10px"
+                                    h="10px"
+                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
                                 ></Image>
                             </Box>
                         </Th>
@@ -78,93 +129,20 @@ const DefiTable = () => {
                                     alignItems={"center"}
 
                                 >
-                                    Token
+                                    % Share
                                 </Text>
                                 <Image
                                     ml="3px"
                                     w="10px"
                                     h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
+                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
                                 ></Image>
                             </Box>
                         </Th>
-                        <Th
-                        >
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    alignItems={"center"}
-
-                                >
-                                    Token
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    w="10px"
-                                    h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
-                                ></Image>
-                            </Box>
-                        </Th>
-                        <Th
-                        >
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    alignItems={"center"}
-
-                                >
-                                    Token
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    w="10px"
-                                    h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
-                                ></Image>
-                            </Box>
-                        </Th>
-                        <Th
-                        >
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    alignItems={"center"}
-
-                                >
-                                    Token
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    w="10px"
-                                    h="10px"
-                                    src={useColorModeValue('/icons/sort_white.svg', '/icons/sort_black.svg')}
-                                ></Image>
-                            </Box>
-                        </Th>
-                       
                     </Tr>
                 </Thead>
                 <Tbody>
-                   {/*  {tableData.DefiRankingsTableData.isSuccess &&
+                    {/*  {tableData.DefiRankingsTableData.isSuccess &&
                         tableData.DefiRankingsTableData?.data.data.map((item, i) => {
                             return (
                                 <>

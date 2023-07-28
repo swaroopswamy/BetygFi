@@ -4,19 +4,12 @@ import React, { useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
-import { blockchains } from "../../../util/constant";
-import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import PortfolioPanelComponent from "./portfolio.js"
 
 const WalletDashboardPage = () => {
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
-    const blockchainSelected = useSelector(
-        (state) => state?.dashboardTableData?.blockchainType
-    );
-
-    const BlockchainTypeHandler = (type) => {
-        dispatch(blockchainTypeChangedReducer(type));
-    };
+   
     return (
         <>
             <Box
@@ -150,7 +143,7 @@ const WalletDashboardPage = () => {
                         <TabList
                             paddingLeft="30px"
                         >
-                            <Tab
+                            <Tab    
                                 padding="0"
                             >
                                 <Box
@@ -234,100 +227,7 @@ const WalletDashboardPage = () => {
                             <TabPanel
                                 p="0px"
                             >
-                                <Box
-                                    display={"flex"}
-                                    flexDirection={"column"}
-                                >
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-
-                                    >
-                                        <Box
-                                            w={"100%"}
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
-                                            pb="14px"
-                                        >
-                                            <Box
-                                                position={"relative"}
-                                                cursor={"pointer"}
-                                                fontSize={"10px"}
-                                                fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
-                                                lineHeight={"20px"}
-                                                color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-                                                _after={
-                                                    blockchainSelected.length === 0 && {
-                                                        position: "absolute",
-                                                        content: '""',
-                                                        bottom: "-14px",
-                                                        left: 0,
-                                                        width: "100%",
-                                                        height: "1px",
-                                                        bgColor: useColorModeValue("#191919", "#FFFFFF")
-                                                    }
-                                                }
-                                                onClick={() => {
-                                                    BlockchainTypeHandler("All");
-                                                }}
-                                                mr={"18px"}
-                                            >
-                                                ALL
-                                            </Box>
-                                            {blockchains.map((item, i) => {
-                                                return (
-                                                    <>
-                                                        <Box
-                                                            position={"relative"}
-                                                            cursor={"pointer"}
-                                                            key={i}
-                                                            _after={
-                                                                blockchainSelected.includes(item)  && {
-                                                                    position: "absolute",
-                                                                    content: '""',
-                                                                    bottom: "-14px",
-                                                                    left: 0,
-                                                                    width: "100%",
-                                                                    height: "1px",
-                                                                    bgColor: useColorModeValue("#191919", "#FFFFFF")
-                                                                }
-                                                            }
-                                                            onClick={() => {
-                                                                BlockchainTypeHandler(item);
-                                                            }}
-                                                            mr={"18px"}
-                                                            display={"flex"}
-                                                            alignItems={"center"}
-                                                        >
-                                                            <Image
-                                                                w={"20px"}
-                                                                h={"20px"}
-                                                                mr={"11px"}
-                                                                src={`/icons/${item}_sm_icon.svg`}
-                                                            ></Image>
-                                                            <Text
-                                                                fontSize={"10px"}
-                                                                fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
-                                                                lineHeight={"20px"}
-                                                                color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-
-                                                            >
-                                                                {item}
-                                                            </Text>
-                                                        </Box>
-                                                    </>
-                                                )
-                                            })}
-                                        </Box>
-
-                                    </Box>
-                                    <Box
-                                    
-                                    >
-                                        
-                                    </Box>
-                                </Box>
+                               <PortfolioPanelComponent />
                             </TabPanel>
                             <TabPanel>
                                 <p>two!</p>

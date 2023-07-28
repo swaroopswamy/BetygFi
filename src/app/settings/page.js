@@ -117,7 +117,7 @@ const Settings = () => {
                             justifyContent={"flex-start"}
                         >
 
-                            <Image src="/images/SelectBox.svg" w="24px" h="24px"  ></Image>
+                            <Image src="/images/SelectBox.svg" w="24px" h="24px"></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontSize={"11px"}

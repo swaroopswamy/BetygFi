@@ -16,7 +16,7 @@ export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async
   return response.data;
 })
 
-const dashboardDataSlice = createSlice({
+const DashboardDataSlice = createSlice({
   name: "dashboardData",
   initialState: {
     DefiRankingsTableData: {
@@ -106,5 +106,5 @@ const dashboardDataSlice = createSlice({
   },
 });
 
-export const { blockchainTypeChangedReducer, categoryChangedReducer } = dashboardDataSlice.actions;
-export default dashboardDataSlice.reducer;
+export const { blockchainTypeChangedReducer, categoryChangedReducer } = DashboardDataSlice.actions;
+export default DashboardDataSlice.reducer;
