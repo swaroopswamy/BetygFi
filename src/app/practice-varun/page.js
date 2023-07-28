@@ -22,10 +22,10 @@ const Transaction = () => {
       <Tr>
         <Td>inches</Td>
         <Td>millimetres (mm)</Td>
+        <Td>...</Td>
+        <Td>...</Td>
+        <Td>...</Td>
         <Td isNumeric>25.4</Td>
-        <Td>...</Td>
-        <Td>...</Td>
-        <Td>...</Td>
       </Tr>
       <Tr>
         <Td>feet</Td>
