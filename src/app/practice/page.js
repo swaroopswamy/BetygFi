@@ -101,6 +101,7 @@ const Positions =() => {
         <Th isNumeric
         color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
+        textAlign={"left"}
         fontSize={"10px"}
         fontStyle={"normal"}
         fontWeight={"400"}
@@ -149,7 +150,7 @@ const Positions =() => {
         <Td>
           <Flex>
         <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg"></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -270,7 +271,7 @@ const Positions =() => {
       <Td>
           <Flex>
         <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg"></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -390,7 +391,7 @@ const Positions =() => {
       <Td>
           <Flex>
         <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg"></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -833,20 +834,6 @@ const Positions =() => {
             lineHeight={"20px"}
             >
             280,161.85DAI
-            </Text>
-          </Flex>
-        </Td>
-
-        <Td>
-            <Flex>
-            <Text
-            color={useColorModeValue("#16171B","#FFFFFF")}
-            fontSize={"10px"}
-            fontStyle={"normal"}
-            fontWeight={"400"}
-            lineHeight={"20px"}
-            >
-            $1.00
             </Text>
           </Flex>
         </Td>
