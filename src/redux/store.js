@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./authSlice";
-import dashboardTableDataSlice from "./dashboard_data/dataSlice";
+import DashboardTableDataSlice from "./dashboard_data/dataSlice";
+
+import WalletDashboardTableDataSlice from "./wallet_dashboard_data/dataSlice";
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
-    dashboardTableData: dashboardTableDataSlice
+    dashboardTableData: DashboardTableDataSlice,
+    walletDashboardTableData: WalletDashboardTableDataSlice
   },
 });
 export default store;

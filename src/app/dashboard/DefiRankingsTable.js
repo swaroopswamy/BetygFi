@@ -244,7 +244,7 @@ const Rankings = () => {
                     fontWeight={"400"}
                     letterSpacing={"1px"}
                   >
-                    {!isEmpty(item.mcap) ? (item.mcap / item.tvl).toFixed(2) : "NA"}
+                    {!isEmpty(item.mcap) && item.tvl !== 0 ? (item.mcap / item.tvl).toFixed(2) : "NA"}
                   </Td>
                   <Td
                     color={useColorModeValue("#16171B", "#FFF")}

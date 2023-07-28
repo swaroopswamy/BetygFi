@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <Box
-        position={"relative"}
+        position={"fixed"} 
         bottom="0"
         width="100%"
         display="flex"

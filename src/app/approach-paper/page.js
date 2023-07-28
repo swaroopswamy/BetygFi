@@ -1,68 +1,57 @@
 "use client"
-import { Grid, GridItem,Box, Container, Select } from "@chakra-ui/react";
-import React, { useState } from 'react';
-import Version1Content from './version1'; 
-import Version2Content from './version2'; 
+import { Box, Container, Image, useColorModeValue, Text, Heading, div,  h1, h2,br } from "@chakra-ui/react";
+
 
 const Approach = () => {
-  const [selectedVersion, setSelectedVersion] = useState("option1");
-
-  const versionInfo = {
-    option1: 'version1',
-    option2: 'version2'
-  };
-
-  const handleVersionSelect = (event) => {
-    setSelectedVersion(event.target.value);
-    console.log(selectedVersion);
-    console.log(event.target);
-  };
-  
-
   return (
-    <Container maxW= {"100%"} padding={"0px"} >
-      <Box height= {"264px"}  background= {"#E8E8E8"}>
-        <Grid>
-          <GridItem colSpan={2} colStart={0} colEnd={2} 
-            width= {"100%"} 
-            height= {"250px"}  
-            // flex-shrink= {"0"}
-            background= {"#E8E8E8"}
-            mix-blend-mode= {"luminosity"}
-            padding= {"109px 0px 109px 70px"}
-            color= {"#000"}
-            fontFamily= {"Manrope"}
-            fontSize= {"46px"}
-            fontStyle= {"normal"}
-            fontWeight= {"400"}
-            lineHeight= {"46px"}>
+    <>
+      {    
+       <Container maxW= {"100%"}  padding= {"0px"}>
 
+        <Box background= {useColorModeValue("#E8E8E8","#222")}>
+
+        <Box display={"flex"}
+              flexDirection={"row"} 
+              justifyContent={"space-between"}>
+
+            <Box   fontSize={"46px"}
+                   color={useColorModeValue("#191919", "#FFFFFF")}
+                   padding= {"90px 0px 0px 50px"} >
             Approach Paper
-          </GridItem>
-          <GridItem colSpan={4} colStart={4} colEnd={2} width={"80%"} padding={"109px 0px 109px 100px"}>
-            <Select default="Select version" onChange={handleVersionSelect} value={selectedVersion}>
-            <option value="option1">version1</option>
-              <option value="option2">version2</option>
-            </Select>
-          </GridItem>
-        </Grid>
-      </Box>
+            </Box>
+            
+            <Box paddingRight={"100px"}>
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} ></Image>
+            </Box>
+          </Box>
+        </Box>
 
-      {/* Display the information for the selected version */}
-      {selectedVersion === 'option1' && (
-        <div>
-          <Version1Content />
-        </div>
-      )}
 
-      {selectedVersion === 'option2' && (
-        <div>
-          <Version2Content />
-        </div>
-      )}
-    </Container>
-  );
-};
+        <Box>
+          <Heading fontSize={"24px"}>Overview</Heading>
+          <Text fontSize={"16px"}>Fusce eu quam in tortor pretium pulvinar. Cras euismod, nisi in ultricies ornare,
+           libero sapien bibendum nunc, ut placerat purus sem at nisl. Nullam nec commodo enim.
+            Etiam sollicitudin ante nec dolor luctus dictum. Praesent eget arcu ac massa euismod tempus.
+             Phasellus ornare felis vel fermentum blandit. Sed vel dignissim tortor, a tincidunt quam.</Text>
+        </Box>
 
-export default Approach;
-
+        <Box>
+          <div>
+          <Heading as="h1" size="xl" fontSize={"24px"}  font-weight= {"700"}>Table of Contents</Heading>
+          <Heading as="h2" size="lg" fontSize={"16px"}  font-weight= {"700"}>What’s new?</Heading>
+          <Text fontSize={"16px"}>1. Abstract <br/>
+                                  2. Data Collection and Processing <br/>
+                                  3. Model Training Methodology <br/>
+                                  4. Model Evaluation <br/>
+                                  5. Scoring <br/>
+                                  6. Future <br/>
+          </Text>
+          </div>
+        </Box>
+        </Container>
+      }
+    </>
+  )
+ }  
+ 
+ export default Approach;
