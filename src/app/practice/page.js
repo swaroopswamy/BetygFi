@@ -1,5 +1,7 @@
 "use client"
 import {Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Container, Box, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Text, Image, Flex, Spacer, useColorModeValue, textAlign} from '@chakra-ui/react'
+import { TriangleDownIcon } from '@chakra-ui/icons'
+
  import React from "react";
 
 const Positions =() => {
@@ -11,7 +13,7 @@ const Positions =() => {
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           p={"15px"}
           >
-        <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF","#202020")}>
+        <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFF","#202020")}>
           <AccordionItem>
           <h2>
          <AccordionButton>
@@ -56,9 +58,15 @@ const Positions =() => {
               Claimable: $884,938.19
             </Text>
           </Box>
+          <Box mt={"4px"}>
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          width={"24px"}
+          height={"24px"}
+          flex-shrink={"0"}
+          ></Image>
+          </Box>
           </Flex>
           </Box>
-         <AccordionIcon />
         </AccordionButton>
          </h2>
        <AccordionPanel pb={4}>
@@ -544,7 +552,13 @@ const Positions =() => {
           Savings
           </Text>
         </Box>
-        <AccordionIcon />
+        <Box>
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          width={"24px"}
+          height={"24px"}
+          flex-shrink={"0"}
+          ></Image>
+          </Box>
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
@@ -730,7 +744,13 @@ const Positions =() => {
           Locked
           </Text>
         </Box>
-        <AccordionIcon />
+        <Box>
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          width={"24px"}
+          height={"24px"}
+          flex-shrink={"0"}
+          ></Image>
+          </Box>
       </AccordionButton>
     </h2>
     <AccordionPanel pb={4}>
