@@ -1,34 +1,16 @@
 "use client"
-import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-    Container,
-    Box,
-    Table,
-        Thead,
-        Tbody,
-        Tfoot,
-        Tr,
-        Th,
-        Td,
-        TableCaption,
-        TableContainer, 
-        Text,
-        Image,
-        Flex,
-        Spacer,
-        useColorModeValue
-  } from '@chakra-ui/react'
+import {Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Container, Box, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Text, Image, Flex, Spacer, useColorModeValue, textAlign} from '@chakra-ui/react'
  import React from "react";
-
 
 const Positions =() => {
     return(
         <>
-        <Container maxW={"100%"} paddingBottom={"80px"}>
+        <Container maxW={"100%"} paddingBottom={"80px"} background={useColorModeValue("#F0F0F5","#191919")}>
+          <Box
+          flex-shrink={"0"}
+          filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
+          p={"15px"}
+          >
         <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF","#202020")}>
           <AccordionItem>
           <h2>
@@ -43,10 +25,6 @@ const Positions =() => {
           ></Image>
           <Text
            color={useColorModeValue("#16171B","#FFFFFF")}
-          fontSize={"15px"}
-          fontStyle={"normal"}
-          fontWeight={"400"}
-          lineHeight={"20px"}
           ml={"10px"}
           mt={"5px"}
           >
@@ -55,10 +33,6 @@ const Positions =() => {
           <Spacer />
           <Text
           color={useColorModeValue("#202020","#FFFFFF")}
-          fontSize={"15px"}
-          fontStyle={"normal"}
-          fontWeight={"400"}
-          lineHeight={"20px"}
           mt={"5px"}
           paddingRight={"10px"}
           >
@@ -66,12 +40,9 @@ const Positions =() => {
           </Text>
           <Box
           display={"flex"}
-          width={"108px"}
-          height={"14px"}
           flexDirection={"column"}
           justifyContent={"center"}
           flexShrink={"0"}
-          mt={"8px"}
           mr={"30px"}
           >
             <Text
@@ -80,6 +51,7 @@ const Positions =() => {
             fontStyle={"normal"}
             fontWeight={"400"}
             lineHeight={"20px"}
+            mt={"5px"}
             >
               Claimable: $884,938.19
             </Text>
@@ -98,19 +70,19 @@ const Positions =() => {
       width={"100%"}
       flex-shrink={"0"}
       >
-        <Th isNumeric
+        <Th
         color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
-        textAlign={"left"}
         fontSize={"10px"}
         fontStyle={"normal"}
         fontWeight={"400"}
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Pool</Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -119,9 +91,10 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Liquidity Range</Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -130,9 +103,10 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Fees Earned</Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -141,6 +115,7 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Value(USD)</Th>
       </Tr>
@@ -515,8 +490,13 @@ const Positions =() => {
     </AccordionPanel>
   </AccordionItem>
   </Accordion>
+  </Box>
 
-
+      <Box
+      flex-shrink={"0"}
+      filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
+      p={"15px"}
+      >
         <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF","#202020")}>
   <AccordionItem>
     <h2>
@@ -585,10 +565,11 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           TOken
           </Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -597,10 +578,11 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Balanace
           </Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -609,10 +591,11 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Price
           </Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -621,6 +604,7 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Value(USD)</Th>
       </Tr>
@@ -692,7 +676,13 @@ const Positions =() => {
     </AccordionPanel>
   </AccordionItem>
   </Accordion>
+  </Box>
 
+      <Box
+      flex-shrink={"0"}
+      filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
+      p={"15px"}
+      >
         <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF","#202020")}>
   <AccordionItem>
     <h2>
@@ -761,10 +751,11 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Pool
           </Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -773,10 +764,11 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           UNLOCK TIME
           </Th>
-        <Th isNumeric
+        <Th 
          color={useColorModeValue("#434347","#A8ADBD")}
         fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
         fontSize={"10px"}
@@ -785,6 +777,7 @@ const Positions =() => {
         lineHeight={"20px"}
         letterSpacing={"1px"}
         textTransform={"uppercase"}
+        textAlign={"left"}
         >
           Value(USD)
           </Th>
@@ -855,15 +848,13 @@ const Positions =() => {
     </Tbody>
     </Table>
       </TableContainer>
-    </AccordionPanel>
-  </AccordionItem>
-</Accordion>
+     </AccordionPanel>
+   </AccordionItem>
+ </Accordion>
+</Box>
 
-
-
-
-        </Container>
-        </>
+         </Container>
+    </>
     )
 };
 export default Positions;
