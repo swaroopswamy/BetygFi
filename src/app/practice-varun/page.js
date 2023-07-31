@@ -4,8 +4,6 @@ import { Container, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableC
 const Transaction = () => {
     return(
         <>
-    <Container maxW={"100%"}>
-   <TableContainer>
   <Table variant='simple'>
     <TableCaption>Imperial to metric conversion factors</TableCaption>
     <Thead>
@@ -52,8 +50,7 @@ const Transaction = () => {
       </Tr>
     </Tfoot> */}
   </Table>
-</TableContainer>
-    </Container>
+
     </>
     )
 }

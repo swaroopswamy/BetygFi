@@ -1,5 +1,6 @@
 "use client"
-import { Box, Container, Image, useColorModeValue, Text, Heading, div,  h1, h2,br } from "@chakra-ui/react";
+import { Box, Container, Image, useColorModeValue, Text, Heading, div,  h1, h2,br, Flex } from "@chakra-ui/react";
+import { TriangleUpIcon } from '@chakra-ui/icons'
 
 
 const Approach = () => {
@@ -251,7 +252,7 @@ changer in risk assessment and management.
 
 
          <Box  padding={"29px 0px 0px 70px"}>
-        <Heading as="h2" size="lg"  fontSize={"18px"} paddingTop={"10px"}>6.3 Better Machine Learning Techniques: </Heading>
+        <Heading as="h2" size="lg"  fontSize={"18px"} paddingTop={"10px"}>6.4 Explainable Results: </Heading>
         <Text fontSize={"14px"} padding={"10px 0px 10px 40px"}>
            Notwithstanding all of the benefits of machine learning, we anticipate
 black box models will face significant challenges, as results and use cases from such models
@@ -280,7 +281,17 @@ financial ecosystem.
           </Text>
          </Box>
          </Box>
-</Box>
+
+         {/* <Box padding={"10px 0px 80px 300px"}>
+          <Image src={useColorModeValue("/images/rectangle-light.png","/images/rectangle-dark.png")} >
+          <Box display={"flex"}
+              flexDirection={"row"}>
+               <img src="/triangle-up-icon.png" alt="Triangle Up Icon" width="24" height="24" />
+                <Text>Back to top</Text>
+                </Box>   
+              </Image>
+            </Box> */}
+         </Box>
         </Container>
       }
     </>
