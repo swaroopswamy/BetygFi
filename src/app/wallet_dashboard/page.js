@@ -1,12 +1,13 @@
 "use client"
 
 import React, { useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 
 const WalletDashboardPage = () => {
+    const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
    
@@ -150,12 +151,17 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 0 ? useColorModeValue("#202020", "#FFFFFF") : useColorModeValue("#F0F0F5", "#202020")}
+                                    _light={{bgColor:"#202020","#F0F0F5"}}
+                                    _dark={{bgColor:"#FFFFFF","#202020"}}
                                 >
                                     <Text
                                         fontSize={"10px"}
+                                        _dark={{
+                                            color:tabIndex === 0 ? "#FFFFFF" : "#000000"
+                                        }}
                                         fontWeight={tabIndex === 0 ? "700" : "400"}
-                                        color={tabIndex === 0 ? useColorModeValue("#FFFFFF", "#000000") : useColorModeValue("#000000", "#FFFFFF")}
+                                        _light={{color:"#FFFFFF","#000000"}}
+                                        _dark={{color:"#000000","#FFFFFF"}}
                                         mr="44px"
                                     >
                                         Portfolio

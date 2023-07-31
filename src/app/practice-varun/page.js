@@ -34,7 +34,7 @@ const Transaction = () => {
 
                 <Td>
                   <Flex>
-                    <Image src={"/images/t1.png"}></Image>
+                    <Image src={"/images/t1.png"} alt=''></Image>
                     <Box color={useColorModeValue("#16171B", "#FFFFFF")}
                       font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
                       font-size={"10px"}
@@ -50,7 +50,7 @@ const Transaction = () => {
 
                 <Td>
                   <Flex flexDirection={"row"}>
-                    <Image src={"/images/recieved.png"}></Image>
+                    <Image src={"/images/recieved.png"} alt=''></Image>
                     <Box color={useColorModeValue("#16171B", "#FFFFFF")}
                       font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
                       font-size={"10px"}
@@ -65,7 +65,7 @@ const Transaction = () => {
 
                 <Td>
                   <Flex>
-                    <Image src={"/images/polygon-matic.png"}></Image>
+                    <Image src={"/images/polygon-matic.png"} alt=''></Image>
                     <Box color={useColorModeValue("#16171B", "#FFFFFF")}
                       font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
                       font-size={"10px"}

@@ -59,7 +59,9 @@ const PortfolioPanelComponent = () => {
                                     left: 0,
                                     width: "100%",
                                     height: "1px",
-                                    bgColor: useColorModeValue("#191919", "#FFFFFF")
+                                    _light:{{bgColor:"#191919"}}
+                                    _dark:{{bgColor:"#FFFFFF"}}
+                                    //bgColor: useColorModeValue("#191919", "#FFFFFF")
                                 }
                             }
                             onClick={() => {
