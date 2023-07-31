@@ -5,125 +5,225 @@ import { Container, Image, Table, useColorModeValue, Text, Flex, Box, Thead, Tbo
 const Transaction = () => {
   return (
     <>
-      <Container maxW={"100%"}
-        padding={"0px"}>
-        <Box>
-          <Heading>Wallet Transaction</Heading>
+      <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
+        <Text
+          fontSize="2xl"
+          fontWeight={"400"}
+          color={useColorModeValue("#16171B", "#FFF")}
+        >
+          Wallet Transaction
+        </Text>
+      </Flex>
+      <Table variant="simple" key={1}>
+        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+          <Tr>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              alignItems={"center"}
+            >
+              ADDRESS AND DATE
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+            >
+              METHOD
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+            >
+              ACCOUNT / TOKEN
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+            >
+              FROM
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+            >
+              TO
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+            >
+              USD Value
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
 
-          <Table variant='simple'>
-            <Thead>
-              <Tr color={useColorModeValue("#16171B", "#FFFFFF")}
-                background={useColorModeValue("#F5F5F7", "#191919")}
-                font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                font-size={"10px"}
-                font-style={"normal"}
-                font-weight={"400"}
-                line-height={"20px"}
-                letter-spacing={"1px"}
-                textTransform={"uppercase"}>
-                <Th>Address and Date</Th>
-                <Th>Method </Th>
-                <Th>Amount  / Token </Th>
-                <Th>From</Th>
-                <Th>To</Th>
-                <Th isNumeric>USD value</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              <Tr>
+          <>
+            <Tr>
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <>
+                    <img
+                      width={20}
+                      height={20}
+                      alt='logo'
+                      src="/images/t1.png"
+                    ></img>
+                  </>
 
-                <Td>
-                  <Flex>
-                    <Image src={"/images/t1.png"}></Image>
-                    <Box color={useColorModeValue("#16171B", "#FFFFFF")}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"400"}
-                      line-height={"20px"}
-                      paddingLeft={"18px"}>
-                      <Text>0x8b4d84......43f72</Text>
-                      <Text opacity={"0.6000000238418579"}>11th May 2023</Text>
-                    </Box>
-                  </Flex>
-                </Td>
+                  <Box>
+                    <Text
+                      color={useColorModeValue("#16171B", "#FFF")}
+                      fontSize={"10px"}
+                      fontWeight={"400"}
+                      letterSpacing={"1px"}
+                      ml="6px"
+                    >
+                      0x8b4d84......43f72
+                    </Text>
+                    <Text opacity={"0.6000000238418579"}
+                      color={useColorModeValue("#16171B", "#FFF")}
+                      fontSize={"10px"}
+                      fontWeight={"400"}
+                      letterSpacing={"1px"}
+                      ml="6px"
+                    >11th May 2023</Text>
+                  </Box>
+                </Box>
 
-                <Td>
-                  <Flex flexDirection={"row"}>
-                    <Image src={"/images/recieved.png"}></Image>
-                    <Box color={useColorModeValue("#16171B", "#FFFFFF")}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"400"}
-                      line-height={"20px"}
-                      paddingLeft={"6px"}>
-                      <Text>Received</Text>
-                    </Box>
-                  </Flex>
-                </Td>
-
-                <Td>
-                  <Flex>
-                    <Image src={"/images/polygon-matic.png"}></Image>
-                    <Box color={useColorModeValue("#16171B", "#FFFFFF")}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"400"}
-                      line-height={"20px"}
-                      paddingLeft={"6px"}>
-                      <Text>MATIC</Text>
-                    </Box>
-                    <Box>49.11%</Box>
-                  </Flex>
-                </Td>
-
-                <Td>
-                  <Flex>
-                    <Box color={useColorModeValue("#16171B", "#FFFFFF")}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"400"}
-                      line-height={"20px"}>
-                      CRV+cvxCRV (0x971a…)
-                    </Box>
-                  </Flex>
-                </Td>
-
-                <Td>
-                  <Flex>
-                    <Box color={useColorModeValue("#16171B", "#FFFFFF")}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"400"}
-                      line-height={"20px"}>
-                      CRV+cvxCRV (0x971a…)
-                    </Box>
-                  </Flex>
-                </Td>
-
-                <Td isNumeric>
-                  <Flex>
-                    <Box color={"#245F00"}
-                      font-feature-settings={"'cv11' on, 'cv01' on, 'ss01' on"}
-                      font-size={"10px"}
-                      font-style={"normal"}
-                      font-weight={"600"}
-                      line-height={"20px"}>
-                      +300 USD
-                    </Box>
-                  </Flex>
-                </Td>
-              </Tr>
+              </Td>
 
 
-            </Tbody>
-          </Table>
-        </Box>
-      </Container >
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <>
+                    <img
+                      width={12}
+                      height={12}
+                      alt='logo'
+                      src="/images/recieved.png"
+                    ></img>
+                  </>
+
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >
+                    Received
+                  </Text>
+                </Box>
+              </Td>
+
+
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <>
+                    <img
+                      width={12}
+                      height={12}
+                      alt='logo'
+                      src="/images/polygon-matic.png"
+                    ></img>
+                  </>
+
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >
+                    MATIC
+                  </Text>
+                  <Text opacity={"0.6000000238418579"}
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >49.11%</Text>
+                </Box>
+              </Td>
+
+
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >
+                    CRV+cvxCRV (0x971a…)
+                  </Text>
+                </Box>
+              </Td>
+
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >
+                    CRV+cvxCRV (0x971a…)
+                  </Text>
+                </Box>
+              </Td>
+
+              <Td>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                >
+                  <Text
+                    color={useColorModeValue("#245F00", "#FFF")}
+                    fontSize={"10px"}
+                    fontWeight={"600"}
+                    letterSpacing={"1px"}
+                    ml="6px"
+                  >
+                    +300 USD
+                  </Text>
+                </Box>
+              </Td>
+            </Tr>
+          </>
+        </Tbody>
+      </Table>
     </>
   )
 }
