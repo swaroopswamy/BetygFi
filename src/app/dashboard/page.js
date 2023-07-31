@@ -97,7 +97,7 @@ const Dashboard = () => {
     };
     dispatch(fetchOverviewData(payload));
   };
-
+ 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
    // getScoreGraphDataHandler();

@@ -9,9 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix --ext .js .",
-    "start:prod": "env-cmd -f .env.prod npm start",
+    "start:prod": "env-cmd -f .env.prod next start",
     "build:prod": "env-cmd -f .env.prod next build",
-    "build:test": "env-cmd -f .env.test yarn build"
+    "build:test": "env-cmd -f .env.test next build"
   },
   "dependencies": {
     "@3rdweb/hooks": "^1.9.2",
