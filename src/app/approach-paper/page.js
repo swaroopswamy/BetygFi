@@ -1,5 +1,6 @@
 "use client"
-import { Box, Container, Image, useColorModeValue, Text, Heading, div,  h1, h2,br } from "@chakra-ui/react";
+import { Box, Container, Image, useColorModeValue, Text, Heading, div,  h1, h2,br, Flex, Button} from "@chakra-ui/react";
+import { TriangleUpIcon  } from '@chakra-ui/icons'
 
 
 const Approach = () => {
@@ -269,6 +270,7 @@ explain our efforts and results.
 
          <Box  padding={"29px 0px 0px 70px"}>
         <Heading as="h2" size="lg"  fontSize={"18px"} paddingTop={"10px"}>6.5 Cross-Chain and Layer-2 Protocols: </Heading>
+          <Flex>
         <Text  fontSize={"14px"} padding={"10px 0px 80px 40px"}>
         As the DeFi ecosystem continues to evolve, we expect
 more cross-chain and layer-2 protocols to emerge. Incorporating these new technologies into
@@ -278,13 +280,22 @@ Our approach is an attempt to explain transparently our value proposition and ef
 to continuously strive to enable actionable insights for stakeholders in the decentralized
 financial ecosystem.
           </Text>
+          <Box>
+          <Button size='lg'
+           colorScheme='whiteAlpha'
+           ml={"40px"}
+           mt={"40px"}>
+           <Image src="/images/Backtotop.svg" width={"91px"}></Image>
+          </Button>
+          </Box>
+          </Flex>
+          </Box>
          </Box>
          </Box>
-</Box>
-        </Container>
-      }
+       </Container>
+}
     </>
   )
- }  
+ }; 
  
  export default Approach;

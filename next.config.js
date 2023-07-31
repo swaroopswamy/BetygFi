@@ -1,24 +1,28 @@
 /** @type {import('next').NextConfig} */
+require('dotenv').config()
+const webpack = require('webpack');
 const nextConfig = {
-  output: "export",
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       use: ["@svgr/webpack"],
     });
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    )
+    );
 
-    return config;
+return config;
   },
-  env: {
-    NEXT_DEV_API_URL: "http://13.233.21.52:4000/",
-    NEXT_PROD_API_URL: "https://betygfi.com/api/v2/",
-  },
-  images: {
-    loader: 'imgix',
+
+images: {
+  loader: 'imgix',
     path: '',
   },
-  distDir: "out",
+distDir: "out",
 };
 
 module.exports = nextConfig;

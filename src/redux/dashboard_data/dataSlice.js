@@ -47,13 +47,19 @@ const DashboardDataSlice = createSlice({
       state.DefiRankingsTableData.data = action.payload;
       state.DefiRankingsTableData.isLoading = false;
       state.DefiRankingsTableData.isSuccess = true;
+      state.DefiRankingsTableData.isError = false;
     });
     builder.addCase(fetchDefiRankingTableData.pending, (state, action) => {
       state.DefiRankingsTableData.isLoading = true;
+      state.DefiRankingsTableData.isError = false;
+      state.DefiRankingsTableData.isSuccess = false;
+      state.DefiRankingsTableData.data = action.payload;
     });
     builder.addCase(fetchDefiRankingTableData.rejected, (state, action) => {
       state.DefiRankingsTableData.isLoading = false;
+      state.DefiRankingsTableData.isSuccess = false;
       state.DefiRankingsTableData.isError = true;
+      state.DefiRankingsTableData.data = action.payload;
     });
     builder.addCase(fetchScoreGraphData.fulfilled, (state, action) => {
       state.ScoreGraphData.data = action.payload;
