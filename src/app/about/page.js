@@ -24,6 +24,7 @@ const About = () => {
             </Box>
             <Box>
             <Image src="/images/solvendo-bg-logo.svg" 
+            alt='icon'
              paddingRight={"100px"}></Image>
             </Box>
             </Box>

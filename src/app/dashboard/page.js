@@ -35,10 +35,11 @@ import {
   fetchOverviewData,
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
+import isEmpty from "is-empty";
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
-  const [searchByName,setSearchByName] = useState('');
+  const [searchByName, setSearchByName] = useState('');
   const dispatch = useDispatch();
 
   const BlockchainTypeHandler = (type) => {
@@ -58,11 +59,11 @@ const Dashboard = () => {
     dispatch(categoryChangedReducer(category));
   };
   const pageChangeHandler = (page) => {
-    tablePage >= 1 && setTablePage(page);
+   tablePage >= 1 && setTablePage(page);
   }
   const searchByNameHandler = (name) => {
     setSearchByName(name);
-    getDefiRankingsTableDataHandler(name);
+    //getDefiRankingsTableDataHandler(name);
   }
   const tableData = useSelector((state) => state?.dashboardTableData);
 
@@ -73,14 +74,21 @@ const Dashboard = () => {
     };
     dispatch(fetchScoreGraphData(payload));
   };
-  const getDefiRankingsTableDataHandler = (name) => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-      name: searchByName,
-      page: tablePage,
-    };
-    dispatch(fetchDefiRankingTableData(payload));
+  const getDefiRankingsTableDataHandler = () => {
+    if (!isEmpty(searchByName)) {
+      const payload = {
+        name: searchByName,
+        page: tablePage,
+      };
+      dispatch(fetchDefiRankingTableData(payload));
+    } else {
+      const payload = {
+        blockchain: blockchainSelected,
+        category: categorySelected,
+        page: tablePage,
+      };
+      dispatch(fetchDefiRankingTableData(payload));
+    }
   };
   const getOverviewDataHandler = () => {
     const payload = {
@@ -92,13 +100,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-    getScoreGraphDataHandler();
+   // getScoreGraphDataHandler();
     getOverviewDataHandler();
   }, [blockchainSelected, categorySelected, tablePage]);
 
   useEffect(() => {
     getScoreGraphDataHandler();
   }, [blockchainSelected, categorySelected]);
+  useEffect(() => {
+    getDefiRankingsTableDataHandler(searchByName);
+  }, [searchByName])
 
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -645,11 +656,12 @@ const Dashboard = () => {
                       w="30px"
                       h="26px"
                       border={"1px solid #C7CAD2"}
-                      cursor={"pointer"}
                       bg={useColorModeValue("#FFF", "#191919")}
                       padding="0px"
+                      cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
+                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages }
                       onClick={() => {
-                        pageChangeHandler(tablePage + 1)
+                        tablePage <= tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
                       }}
                     >
                       <Image
