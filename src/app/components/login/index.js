@@ -63,8 +63,14 @@ const LoginPage = ({ isOpen, onClose }) => {
                             fontSize={"24px"}
                             fontWeight={400}
                             lineHeight={"20px"}
-                            color={useColorModeValue("#202020", "#FFF")}
-                            bg={useColorModeValue("#F5F5F7", "#202020")}
+                            _dark={{
+                                color:"#FFF",
+                                bgColor:"#202020"
+                            }}
+                            _light={{
+                                color:"#202020",
+                                bgColor:"#F5F5F7"
+                            }}
                             textTransform={"capitalize"}
                             mt="26px"
                             mb="26px"
@@ -123,7 +129,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                             fontSize={"15px"}
                                                             fontWeight={400}
                                                             lineHeight={"20px"}
-                                                            color={useColorModeValue("#202020", "#FFF")}
+                                                            //color={useColorModeValue("#202020", "#FFF")}
+                                                            _dark={{ color: "#FFF"}}
+                                                            _light={{ color: "#202020"}}
                                                             ml="9px"
 
                                                         >
@@ -134,7 +142,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                     <Box
                                                         width={"24px"}
                                                         height={"24px"}
-                                                        bgImage={useColorModeValue('/images/next_icon_light.png', '/images/next_icon_dark.png')}
+                                                        _dark={{ bgImage: "/images/next_icon_light.png"}}
+                                                        _light={{ bgImage: "/images/next_icon_dark.png"}}
+                                                        //bgImage={useColorModeValue('/images/next_icon_light.png', '/images/next_icon_dark.png')}
                                                     >
                                                     </Box>
                                                 </Box>
@@ -145,7 +155,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         fontSize={"15px"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
-                                        color={useColorModeValue("#202020", "#FFF")}
+                                        //color={useColorModeValue("#202020", "#FFF")}
+                                        _dark={{ color: "#FFF"}}
+                                        _light={{ color: "#202020"}}
                                         width={"100%"}
                                         textAlign={"center"}
                                         mb="15px"

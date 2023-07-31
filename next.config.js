@@ -2,7 +2,6 @@
 require('dotenv').config()
 const webpack = require('webpack');
 const nextConfig = {
-  output: "export",
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -10,17 +9,20 @@ const nextConfig = {
       use: ["@svgr/webpack"],
     });
     config.plugins.push(
-      new webpack.EnvironmentPlugin(process.env)
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    )
     );
 
-    return config;
+return config;
   },
 
-  images: {
-    loader: 'imgix',
+images: {
+  loader: 'imgix',
     path: '',
   },
-  distDir: "out",
+distDir: "out",
 };
 
 module.exports = nextConfig;

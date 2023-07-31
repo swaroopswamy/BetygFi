@@ -14,7 +14,8 @@ import {
         Th,
         Td,
         TableCaption,
-        TableContainer
+        TableContainer,
+        Box
   } from '@chakra-ui/react'
 import React from "react";
 

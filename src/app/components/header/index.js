@@ -62,22 +62,22 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         <HStack spacing={{ base: "0", md: "6" }}>
           <div class="controller-row">
             <label class="switch">
-              <input id="toggler" type="checkbox" checked={colorMode !== "light"} onClick={(e)=>{
+              <input id="toggler" type="checkbox" checked={colorMode !== "light"} onClick={(e) => {
                 toggleColorMode();
-              }}/>
-                <span class="slider round"></span>
+              }} />
+              <span class="slider round"></span>
             </label>
           </div>
-       {/*    <Button >
+          {/*    <Button >
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button> */}
-          {/* <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-          onClick={onLoginModalOpen}
-        /> */}
+          <IconButton
+            size="lg"
+            variant="ghost"
+            aria-label="open menu"
+            icon={<FiBell />}
+            onClick={onLoginModalOpen}
+          />
         </HStack>
       </Flex>
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
