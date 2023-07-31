@@ -1,14 +1,13 @@
 "use client"
-import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer } from "@chakra-ui/react";
+import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer, toggleColorMode, colorMode } from "@chakra-ui/react";
 import React from "react";
-import styles from "./settings.module.css"
 
 const Settings = () => {
     return (
         <Container
             maxWidth={"100%"}
-            width={"1440px"}
-            height={"1044px"}
+           width={"1440px"}
+           height={"1044px"}
             background={useColorModeValue("#F0F0F5", "#191919")}
         >
             <Text
@@ -18,11 +17,13 @@ const Settings = () => {
                 fontWeight={"400"}
                 lineHeight={"46px"}
                 ml={"33px"}
+                pt={"30px"}
+                paddingBottom={"10px"}
             >
                 Settings
             </Text>
             <Box
-                height={"238px"}
+                height={"275px"}
                 flexShrink={"0"}
                 borderRadius={"6px"}
                 background={useColorModeValue("#FFFFFF", "#202020")}
@@ -30,33 +31,39 @@ const Settings = () => {
                 ml={"33px"}
                 mr={"20px"}
             >
+                <Box
+                ml={"25px"}
+                pt={"20px"}
+                >
                 <Text
                     color={useColorModeValue("#191919", "#FFFFFF")}
                     fontSize={"15px"}
                     fontStyle={"normal"}
                     fontWeight={"400"}
                     lineHeight={"20px"}
-                    ml={"20px"}
                 >
                     Theme
                 </Text>
+                </Box>
                 <Box
 
                             display={"flex"}
                             alignItems={"center"}
                             justifyContent={"space-evenly"}
+                            mt={"10px"}
                 >
-
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
                     >
-                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
 
+                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
+                        
                         <Box
                             display={"flex"}
                             alignItems={"center"}
                             justifyContent={"flex-start"}
+                            mt={"10px"}
                         >
 
                             <Image src="/images/SelectBox.svg" ></Image>
@@ -69,9 +76,9 @@ const Settings = () => {
                                 letterSpacing={"1.1px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
-                                mt={"8px"}
+                                mt={"2px"}
                             >
-                                Light THEME
+                                System Default
                             </Text>
                         </Box>
 
@@ -86,6 +93,7 @@ const Settings = () => {
                             display={"flex"}
                             alignItems={"center"}
                             justifyContent={"flex-start"}
+                            mt={"10px"}
                         >
 
                             <Image src="/images/SelectBox.svg"  ></Image>
@@ -98,7 +106,7 @@ const Settings = () => {
                                 letterSpacing={"1.1px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
-                                mt={"8px"}
+                                mt={"2px"}
                             >
                                 Light THEME
                             </Text>
@@ -109,12 +117,13 @@ const Settings = () => {
                         display={"flex"}
                         flexDirection={"column"}
                     >
-                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
+                        <Image src="/images/DarkTheme.svg" w="183px" h="133px"  ></Image>
 
                         <Box
                             display={"flex"}
                             alignItems={"center"}
                             justifyContent={"flex-start"}
+                            mt={"10px"}
                         >
 
                             <Image src="/images/SelectBox.svg" w="24px" h="24px"></Image>
@@ -127,22 +136,15 @@ const Settings = () => {
                                 letterSpacing={"1.1px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
-                                mt={"8px"}
+                                mt={"2px"}
                             >
-                                Light THEME
+                                DARK THEME
                             </Text>
                         </Box>
 
                     </Box>
                 </Box>
 
-
-                {/*  <Flex>
-                   
-                    <Image src="/images/DarkTheme.svg" ml={"75px"} mt={"15px"}></Image>
-                </Flex> */}
-
-                {/*  */}
             </Box>
 
             <Box

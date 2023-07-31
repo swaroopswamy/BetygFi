@@ -10,32 +10,28 @@ const About = () => {
       padding={"0px"}
     > 
       <Box
-        height={"264px"}
-        flexShrink={"0"}
-        marginBottom={"10px"}
-        background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
-          <Box display={"flex"}>
+        background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}
+        >
+          <Box display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"space-between"}>
             <Box
-              width={"100%"}
               color={"#FFFFFF"}
               fontSize={"46px"}
-              fontStyle={"normal"}
-              fontWeight={"400"}
-              lineHeight={"46px"}
-              p={109}
-              paddingLeft={71}
+              padding={"90px 0px 80px 60px"}
             >
               We Betygfi
             </Box>
-            <Box width={"80%"}>
-            <Image src="/images/solvendo-bg-logo.svg" width={"292.111px"} height={"236.939px"} alt="" padding={"50px 0px 0px 30px"}></Image>
+            <Box>
+            <Image src="/images/solvendo-bg-logo.svg" 
+             paddingRight={"100px"}></Image>
             </Box>
             </Box>
       </Box>
 
       <Flex>
         <Center w='200px'>
-          <Image src={useColorModeValue("/images/solvendo-logo.svg","/images/solvendo-logo(black).svg")} width={"161px"} height={"127px"} alt="" mt={"20px"} ml={"59px"} bg={useColorModeValue("#FFFFFF","#191919")}></Image>
+          <Image src={useColorModeValue("/images/Solvendo-logo.svg","/images/solvendo-logo(black).svg")} width={"161px"} height={"127px"} alt="" mt={"20px"} ml={"59px"} bg={useColorModeValue("#F0F0F5","#191919")}></Image>
         </Center>
         <Box flex='1'>
           <Text
@@ -98,15 +94,15 @@ const About = () => {
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Transparency</Text>
         </Box>
-        <Image src="/images/Line.svg" width={"1px"} height={"38px"}  color={useColorModeValue("#000000","#FFFFFF")} mt={"10px"}></Image>
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image> 
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Courage</Text>
         </Box>
-        <Image src="/images/Line.svg" width={"1px"} height={"38px"}  color={useColorModeValue("#000000","#FFFFFF")} mt={"10px"}></Image>
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image>
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Curiosity</Text>
         </Box>
-        <Image src="/images/Line.svg" width={"1px"} height={"38px"}  color={useColorModeValue("#000000","#FFFFFF")} mt={"10px"}></Image>
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image>
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Speed</Text>
         </Box>
