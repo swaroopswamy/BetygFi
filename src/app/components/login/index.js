@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, Text, useColorModeValue, useSteps } from "@chakra-ui/react";
+import { Box, Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, Text, useColorMode, useColorModeValue, useSteps } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useWeb3 } from "@3rdweb/hooks"
 
@@ -29,6 +29,7 @@ const LoginPage = ({ isOpen, onClose }) => {
     const handleProcessSelector = (item) => {
         setBrowserWalletProcessSelected(item.name);
     }
+    const { colorMode } = useColorMode();
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}
@@ -42,7 +43,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                         fontWeight={400}
                         lineHeight={"20px"}
                         textTransform={"uppercase"}
-                        color={useColorModeValue("#202020", "#FFF")}
+                        //color={useColorModeValue("#202020", "#FFF")}
+                        _dark={{ color: "#FFF"}}
+                        _light={{ color: "#202020"}}
                         bg={useColorModeValue("#F5F5F7", "#202020")}
                         position={"relative"}
                         display={"flex"}
@@ -82,7 +85,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                     <ModalBody
                         px={0}
                     >
-                        {browserWalletProcessSelected !== '' ?
+                        {browserWalletProcessSelected === '' ?
                             <OtherBrowserWalletProcess />
                             :
                             <>
@@ -171,7 +174,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         justifyContent={"space-between"}
                                         alignItems={"center"}
                                         padding={"15px 18px 15px 9px"}
-                                        bgColor={useColorModeValue("#E7E7E7", "#202020")}
+                                        //bgColor={useColorModeValue("#E7E7E7", "#202020")}
+                                        _dark={{ bgColor: "#202020"}}
+                                        _light={{ bgColor: "#E7E7E7"}}
                                         opacity={0.5}
                                         borderRadius={"4px"}
                                         mx={"9px"}
@@ -184,13 +189,16 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 width={"24px"}
                                                 height={"24px"}
                                                 alt="Login via social handles"
-                                                src={useColorModeValue('/images/user_light.png', '/images/user_dark.png')}
+                                                src={colorMode === 'light' ?  "/images/user_light.png" : "/images/user_dark.png"}
+                                              
                                             ></Image>
                                             <Text
                                                 fontSize={"15px"}
                                                 fontWeight={400}
                                                 lineHeight={"20px"}
-                                                color={useColorModeValue("#202020", "#FFF")}
+                                                //color={useColorModeValue("#202020", "#FFF")}
+                                                _dark={{ color: "#FFF"}}
+                                                _light={{ color: "#202020"}}
                                                 ml="9px"
                                             >
                                                 Login via social handles
@@ -199,7 +207,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         <Box
                                             width={"24px"}
                                             height={"24px"}
-                                            bgImage={useColorModeValue('/images/next_icon_light.png', '/images/next_icon_dark.png')}
+                                            //bgImage={useColorModeValue('/images/next_icon_light.png', '/images/next_icon_dark.png')}
+                                            _dark={{ bgImage: "/images/next_icon_dark.png"}}
+                                            _light={{ bgImage: "/images/next_icon_light.png"}}
                                         >
 
                                         </Box>
@@ -267,11 +277,14 @@ const OtherBrowserWalletProcess = () => {
                                     </StepDescription>
                                 </Box>
                                 <Button
-                                    bgColor={useColorModeValue("#FAFAFB", "#000000")}
+                                    //bgColor={useColorModeValue("#FAFAFB", "#000000")}
+                                    
                                     fontSize={"12px"}
                                     fontWeight={600}
                                     lineHeight={"20px"}
-                                    color={useColorModeValue("#202020", "#FFF")}
+                                    //color={useColorModeValue("#202020", "#FFF")}
+                                    _dark={{ color: "#FFF", bgColor: "#000000"}}
+                                    _light={{ color: "#202020", bgColor: "#FAFAFB"}}
                                     padding={"9px 1"}
                                 >
                                     {step.buttonText}

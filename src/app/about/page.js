@@ -6,7 +6,8 @@ const About = () => {
   return (
     <Container
       maxWidth={"100%"}
-      background={useColorModeValue("#F0F0F5","#191919")}
+      _dark={{ background: "#191919"}}
+      _light={{ background: "#F0F0F5"}}
       padding={"0px"}
     > 
       <Box
@@ -32,11 +33,18 @@ const About = () => {
 
       <Flex>
         <Center w='200px'>
-          <Image src={useColorModeValue("/images/Solvendo-logo.svg","/images/solvendo-logo(black).svg")} width={"161px"} height={"127px"} alt="" mt={"20px"} ml={"59px"} bg={useColorModeValue("#F0F0F5","#191919")}></Image>
+          <Image  
+          src={useColorModeValue("/images/Solvendo-logo.svg","/images/solvendo-logo(black).svg")}
+          width={"161px"} 
+          height={"127px"} 
+          alt="" 
+          mt={"20px"}
+          ml={"59px"}></Image>
         </Center>
         <Box flex='1'>
           <Text
-            color={useColorModeValue("#191919", "#FFFFFF")}
+            _dark={{ color: "#F0F0F5"}}
+            _light={{ color: "#191919"}}
             fontSize={"16px"}
             fontStyle={"normal"}
             fontWeight={"400"}
@@ -50,7 +58,37 @@ const About = () => {
       </Flex>
 
       <Heading
-        color={useColorModeValue("#191919", "#FFFFFF")}
+     _dark={{ color: "#F0F0F5"}}
+     _light={{ color: "#191919"}}
+      fontSize={"24px"}
+      fontStyle={"normal"}
+      fontWeight={"400"}
+      lineHeight={"20px"}
+      ml={59}
+      mt={19}>
+      About BetyfFi 
+      </Heading>
+
+      <Text
+       _dark={{ color: "#F0F0F5"}}
+       _light={{ color: "#191919"}}
+       fontSize={"16px"}
+       fontStyle={"normal"}
+       fontWeight={"400"}
+       lineHeight={"26px"}
+       opacity={"0.800000011920929"}
+       ml={59}
+        mt={5}
+        mr={40}>
+      We believe that Betygfi represents the beginnings of the future of finance. With Betygfi, Solvendo is building the future of financial data and analytics using large language models.<br /><br />
+      We are grateful for your patronage and invite you walk along with us, as we navigate and build global financial ecosystems using out learning from Betygfi.<br /> <br />
+      Decentralised Finance and entities that offer such solutions promise to be able to solve for some of the existing inefficiencies of traditional finance. However, they present new challenges that are significant. We expect and look forward to a regime where such entities are regulated by sovereign’s, in the interest of stakeholders. Betygfi is designed to be an invaluable tool for such regulators and sovereigns.<br /> <br /> 
+      However, when speaking about the future of finance, we believe the future of finance would require a new approach to regulation that engages the consumer or community regularly. Betyfi, leverages the best in technology and artificial intelligence to build an approach for such engagement. It empowers the consumer with intelligence that is trustworthy and easy to consume.<br /> <br />
+      </Text>
+
+      <Heading
+       _dark={{ color: "#F0F0F5"}}
+       _light={{ color: "#191919"}}
         fontSize={"24px"}
         fontStyle={"normal"}
         fontWeight={"400"}
@@ -61,7 +99,8 @@ const About = () => {
       </Heading>
 
       <Text
-        color={useColorModeValue("#191919", "#FFFFFF")}
+        _dark={{ color: "#F0F0F5"}}
+        _light={{ color: "#191919"}}
         fontSize={"16px"}
         fontStyle={"normal"}
         fontWeight={"400"}
@@ -69,11 +108,12 @@ const About = () => {
         opacity={"0.800000011920929"}
         ml={59}
         mt={5}
-        mr={40}>
+        mr={40}
+        paddingBottom={20}>
         Fsce eu quam in tortor pretium pulvinar. Cras euismod, nisi in ultricies ornare, libero sapien bibendum nunc, ut placerat purus sem at nisl. Nullam nec commodo enim. Etiam sollicitudin ante nec dolor luctus dictum. Praesent eget arcu ac massa euismod tempus. Phasellus ornare felis vel fermentum blandit. Sed vel dignissim tortor, a tincidunt quam.mattis odio ac justo ullamcorper pretium. Donec vitae gravida arcu, eget consequat mi. Maecenas pellentesque quam felis, at gravida odio semper eget. In efficitur lacus at eleifend iaculis. Vivamus ac ipsum nulla. Pellentesque eu tempor magna, ut consequat nunc.
       </Text>
 
-
+{/* 
       <Heading
         color={useColorModeValue("#191919", "#FFFFFF")}
         fontSize={"24px"}
@@ -95,15 +135,15 @@ const About = () => {
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Transparency</Text>
         </Box>
-        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image> 
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"} alt=""></Image> 
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Courage</Text>
         </Box>
-        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image>
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"} alt=""></Image>
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Curiosity</Text>
         </Box>
-        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"}></Image>
+        <Image src={useColorModeValue("/images/Line(Light).svg","/images/Line(Dark).svg")} width={"1px"} height={"38px"} mt={"10px"} alt=""></Image>
         <Box p={4}>
           <Text color={useColorModeValue("#191919", "#FFFFFF")}>Speed</Text>
         </Box>
@@ -218,29 +258,30 @@ const About = () => {
 
       <Flex>
         <Box width={"94.488px"} height={"20px"} ml={"59px"} mt={"50px"} mb={"75px"}>
-          <Image src={useColorModeValue("/images/ACCEL.svg","/images/ACCEL(black).svg")}></Image>
+          <Image src={useColorModeValue("/images/ACCEL.svg","/images/ACCEL(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"49.587px"} height={"20px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/A16Z.svg","/images/A16Z(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/A16Z.svg","/images/A16Z(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"144px"} height={"14px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/TigerGlobal.svg","/images/TigerGlobal(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/TigerGlobal.svg","/images/TigerGlobal(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"106.557px"} height={"27px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/Skyfall.svg","/images/Skyfall(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/Skyfall.svg","/images/Skyfall(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"79.47px"} height={"30px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/MechanismCapital.svg","/images/MechanismCapital(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/MechanismCapital.svg","/images/MechanismCapital(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"66.712px"} height={"33px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/SCB.svg","/images/SCB(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/SCB.svg","/images/SCB(black).svg")} alt=""></Image>
         </Box>
         <Box  width={"60.403px"} height={"30px"} ml={"50px"} mt={"45px"}>
-        <Image src={useColorModeValue("/images/GIC.svg","/images/GIC(black).svg")}></Image>
+        <Image src={useColorModeValue("/images/GIC.svg","/images/GIC(black).svg")} alt=""></Image>
         </Box>
       </Flex>
+  */}
     </Container>
   )
 };
 
-export default About;
+export default About; 

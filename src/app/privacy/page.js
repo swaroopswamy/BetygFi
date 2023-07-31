@@ -18,7 +18,7 @@ import { Box, Container, Text, Image, useColorModeValue } from "@chakra-ui/react
             </Box>
 
             <Box paddingRight={"100px"}>
-              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")}></Image>
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} alt=""></Image>
             </Box>
           </Box>
         </Box>
