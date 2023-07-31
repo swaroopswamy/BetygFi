@@ -5,6 +5,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
+import TransactionPanelComponent from "./transaction";
 
 const WalletDashboardPage = () => {
     const dispatch = useDispatch();
@@ -233,7 +234,7 @@ const WalletDashboardPage = () => {
                                 <p>two!</p>
                             </TabPanel>
                             <TabPanel>
-                                <p>three!</p>
+                               <TransactionPanelComponent />
                             </TabPanel>
                         </TabPanels>
                     </Tabs>
