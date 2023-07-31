@@ -99,13 +99,15 @@ const PortfolioPanelComponent = () => {
                                             h={"20px"}
                                             mr={"11px"}
                                             src={`/icons/${item}_sm_icon.svg`}
+                                            alt=""
                                         ></Image>
                                         <Text
                                             fontSize={"10px"}
                                             fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
                                             lineHeight={"20px"}
-                                            color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-
+                                            //color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+                                            _dark={{ color: "#FFFFFF"}}
+                                            _light={{ color: "#3A3A3A"}}
                                         >
                                             {item}
                                         </Text>
@@ -213,7 +215,7 @@ const PortfolioPanelComponent = () => {
          <AccordionButton>
           <Box as="span" flex='1' textAlign='left'>
           <Flex>
-          <Image src="/images/uniswap.svg"
+          <Image src="/images/uniswap.svg" alt=""
           width={"30px"}
           height={"30px"}
           flexShrink={"0"}
@@ -253,7 +255,7 @@ const PortfolioPanelComponent = () => {
             </Text>
           </Box>
           <Box mt={"4px"}>
-          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")} alt=""
           width={"24px"}
           height={"24px"}
           flex-shrink={"0"}
@@ -326,8 +328,8 @@ const PortfolioPanelComponent = () => {
       <Tr>
         <Td>
           <Flex>
-        <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
+        <Image src="/images/weth.svg" alt=""></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -382,7 +384,7 @@ const PortfolioPanelComponent = () => {
           </Td>
         <Td>
           <Flex>
-          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"}></Image>
+          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -406,7 +408,7 @@ const PortfolioPanelComponent = () => {
             </Text>
           </Box>
 
-          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"}></Image>
+          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -447,8 +449,8 @@ const PortfolioPanelComponent = () => {
       <Tr>
       <Td>
           <Flex>
-        <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
+        <Image src="/images/weth.svg" alt=""></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -503,7 +505,7 @@ const PortfolioPanelComponent = () => {
           </Td>
         <Td>
           <Flex>
-          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"}></Image>
+          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -527,7 +529,7 @@ const PortfolioPanelComponent = () => {
             </Text>
           </Box>
 
-          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"}></Image>
+          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -567,8 +569,8 @@ const PortfolioPanelComponent = () => {
       <Tr>
       <Td>
           <Flex>
-        <Image src="/images/weth.svg"></Image>
-        <Image src="/images/BIT.svg" ml={"-15px"}></Image>
+        <Image src="/images/weth.svg" alt=""></Image>
+        <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
         <Box>
         <Text
         color={useColorModeValue("#16171B","#FFFFFF")}
@@ -623,7 +625,7 @@ const PortfolioPanelComponent = () => {
           </Td>
         <Td>
           <Flex>
-          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"}></Image>
+          <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -647,7 +649,7 @@ const PortfolioPanelComponent = () => {
             </Text>
           </Box>
 
-          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"}></Image>
+          <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
           <Box
           ml={"5px"}>
             <Text
@@ -705,7 +707,7 @@ const PortfolioPanelComponent = () => {
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
           <Flex>
-          <Image src="/images/Fantom.svg"
+          <Image src="/images/Fantom.svg" alt=""
           width={"30px"}
           height={"30px"}
           flexShrink={"0"}
@@ -747,7 +749,7 @@ const PortfolioPanelComponent = () => {
           </Text>
         </Box>
         <Box>
-          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")} alt=""
           width={"24px"}
           height={"24px"}
           flex-shrink={"0"}
@@ -821,7 +823,7 @@ const PortfolioPanelComponent = () => {
       <Tr>
         <Td>
           <Flex>
-            <Image src="/images/BIT.svg"></Image>
+            <Image src="/images/BIT.svg" alt=""></Image>
             <Text
             color={useColorModeValue("#16171B","#FFFFFF")}
             fontSize={"11px"}
@@ -898,7 +900,7 @@ const PortfolioPanelComponent = () => {
       <AccordionButton>
         <Box as="span" flex='1' textAlign='left'>
         <Flex>
-          <Image src="/images/Velodrome.svg"
+          <Image src="/images/Velodrome.svg" alt=""
           width={"30px"}
           height={"30px"}
           flexShrink={"0"}
@@ -940,7 +942,7 @@ const PortfolioPanelComponent = () => {
           </Text>
         </Box>
         <Box>
-          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")}
+          <Image src={useColorModeValue("/images/Icon.svg","/images/Icon(black).svg")} alt=""
           width={"24px"}
           height={"24px"}
           flex-shrink={"0"}
@@ -1003,7 +1005,7 @@ const PortfolioPanelComponent = () => {
       <Tr>
         <Td>
           <Flex>
-            <Image src="/images/BIT.svg"></Image>
+            <Image src="/images/BIT.svg" alt=""></Image>
             <Box>
             <Text
             color={useColorModeValue("#16171B","#FFFFFF")}

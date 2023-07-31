@@ -20,7 +20,7 @@ const Help = () => {
               Help
             </Box>
             <Box paddingRight={"100px"} >
-              <Image src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")} ></Image>
+              <Image src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")} alt=""></Image>
             </Box>
           </Box>
         </Box>
@@ -42,7 +42,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -50,11 +52,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"} >
                       What is Ethereum?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt=""/> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}
@@ -77,7 +81,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -85,11 +91,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"}>
                       What is a blockchain system?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}
@@ -108,7 +116,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -116,11 +126,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"} >
                       What is a blockchain wallet?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}
@@ -139,7 +151,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -147,11 +161,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"}>
                       What is distributed ledger technology?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}
@@ -170,7 +186,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -178,11 +196,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"}>
                       What is private blockchain?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}
@@ -201,7 +221,9 @@ const Help = () => {
                 <h2>
                   <AccordionButton>
                     <Box flex="1" textAlign="left"
-                      color={useColorModeValue("#191919", "#FFFFFF")}
+                      //color={useColorModeValue("#191919", "#FFFFFF")}
+                      _dark={{ color: "#FFFFFF"}}
+                      _light={{ color: "#191919"}}
                       fontSize={"24px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -209,11 +231,13 @@ const Help = () => {
                       padding={"10px 0px 10px 0px"}>
                       What is block time?
                     </Box>
-                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} />}
+                    {isExpanded ? <Image src={useColorModeValue('/images/ellipse-light-up.png', '/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={useColorModeValue('/images/ellipse-light-down.png', '/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4} opacity={"0.800000011920929"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  //color={useColorModeValue("#191919", "#FFFFFF")}
+                  _dark={{ color: "#FFFFFF"}}
+                  _light={{ color: "#191919"}}
                   fontSize={"14px"}
                   fontStyle={"normal"}
                   fontWeight={"400"}

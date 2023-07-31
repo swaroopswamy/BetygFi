@@ -16,11 +16,11 @@ const Terms = () => {
             <Box  fontWeight= {"400"}
                       lineHeight= {"46px"}
                      padding= {"90px 0px 0px 50px"} >
-            <Image src={useColorModeValue("/images/terms-light-mode.png","/images/terms-dark-mode.png")}></Image>
+            <Image src={useColorModeValue("/images/terms-light-mode.png","/images/terms-dark-mode.png")} alt=""></Image>
             </Box>
             
             <Box paddingRight={"100px"}>
-              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} ></Image>
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} alt=""></Image>
             </Box>
           </Box>
         </Box>

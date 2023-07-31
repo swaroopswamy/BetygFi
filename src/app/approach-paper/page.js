@@ -22,7 +22,7 @@ const Approach = () => {
             </Box>
             
             <Box paddingRight={"100px"}>
-              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} ></Image>
+              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} alt=""></Image>
             </Box>
           </Box>
         </Box>
@@ -285,7 +285,7 @@ financial ecosystem.
            colorScheme='whiteAlpha'
            ml={"40px"}
            mt={"40px"}>
-           <Image src="/images/Backtotop.svg" width={"91px"}></Image>
+           <Image src="/images/Backtotop.svg" width={"91px"} alt=""></Image>
           </Button>
           </Box>
           </Flex>

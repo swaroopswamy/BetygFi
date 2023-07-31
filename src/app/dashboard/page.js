@@ -245,14 +245,14 @@ const Dashboard = () => {
                                 alignItems={"center"}
                                 justifyContent={"center"}
                               >
-                                <img
+                                <Image
                                   width={18}
                                   height={18}
                                   src={`/images/${item}_sm_icon.png`}
                                   alt={`${item}_icon`}
 
                                   style={{ marginRight: "20px", marginLeft: "14px" }}
-                                ></img>
+                                ></Image>
                                 <Text
                                   fontSize={"12px"}
                                   fontWeight={"400"}

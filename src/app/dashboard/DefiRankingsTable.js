@@ -151,12 +151,12 @@ const Rankings = () => {
                       {!isEmpty(item.logo)
                         ? (
                           <>
-                            <img
+                            <Image
                               width={20}
                               height={20}
                               alt='logo'
                               src={item.logo}
-                            ></img>
+                            ></Image>
                           </>
                         )
                         :
