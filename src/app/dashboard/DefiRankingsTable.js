@@ -128,6 +128,7 @@ const Rankings = () => {
         </Tr>
       </Thead>
       <Tbody>
+        
         {tableData.DefiRankingsTableData.isSuccess &&
           tableData.DefiRankingsTableData?.data.data.map((item, i) => {
             return (
@@ -273,7 +274,7 @@ const Rankings = () => {
                                 : "#FF7373"
                         }
                       ></Box>{" "}
-                      {item.safety_score.toFixed(0)}
+                      {item?.safety_score?.toFixed(0)}
                     </Box>
                   </Td>
                 </Tr>

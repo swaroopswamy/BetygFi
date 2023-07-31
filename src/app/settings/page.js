@@ -4,10 +4,8 @@ import React from "react";
 
 const Settings = () => {
     return (
-        <Container
-            maxWidth={"100%"}
-           width={"1440px"}
-           height={"1044px"}
+        <Box
+            width={"100%"}
             background={useColorModeValue("#F0F0F5", "#191919")}
         >
             <Text
@@ -32,25 +30,25 @@ const Settings = () => {
                 mr={"20px"}
             >
                 <Box
-                ml={"25px"}
-                pt={"20px"}
+                    ml={"25px"}
+                    pt={"20px"}
                 >
-                <Text
-                    color={useColorModeValue("#191919", "#FFFFFF")}
-                    fontSize={"15px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                >
-                    Theme
-                </Text>
+                    <Text
+                        color={useColorModeValue("#191919", "#FFFFFF")}
+                        fontSize={"15px"}
+                        fontStyle={"normal"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                    >
+                        Theme
+                    </Text>
                 </Box>
                 <Box
 
-                            display={"flex"}
-                            alignItems={"center"}
-                            justifyContent={"space-evenly"}
-                            mt={"10px"}
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"space-evenly"}
+                    mt={"10px"}
                 >
                     <Box
                         display={"flex"}
@@ -58,7 +56,7 @@ const Settings = () => {
                     >
 
                         <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
-                        
+
                         <Box
                             display={"flex"}
                             alignItems={"center"}
@@ -362,7 +360,7 @@ const Settings = () => {
                     </Text>
                 </Button>
             </Flex>
-        </Container>
+        </Box>
     )
 };
 

@@ -137,19 +137,20 @@ const PortfolioPanelComponent = () => {
                             <Box
                                 textAlign={"center"}
                                 p="8px"
-                                bgColor={defiSelected.length === 0 ? useColorModeValue("#979AA5", "#191919") : useColorModeValue("#E0E0E0", "#202020")}
+                                bgColor={defiSelected.length === 0 ? useColorModeValue("#E3E4E8", "#191919") : useColorModeValue("#E0E0E0", "#202020")}
                                 onClick={() => {
                                     DefiArrayHandler('All');
                                 }}
                                 borderRadius={"2px"}
+                                opacity={defiSelected.length !== 0  ? "0.5" : "1"}
                                 mr={"10px"}
                                 border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
                             >
                                 <Text
                                     fontSize={"10px"}
-                                    fontWeight={blockchainSelected.length === 0 ? "600" : "400"}
+                                    fontWeight={defiSelected.length === 0  ? "600" : "400"}
                                     lineHeight={"20px"}
-                                    color={blockchainSelected.length === 0 ? useColorModeValue("#16171B", "#FFFFFF") : useColorModeValue("#000000", "#FFFFFF")}
+                                    color={defiSelected.length === 0  ? useColorModeValue("#16171B", "#FFFFFF") : useColorModeValue("#000000", "#FFFFFF")}
 
                                 >
                                     All
@@ -162,10 +163,11 @@ const PortfolioPanelComponent = () => {
                                             key={i}
                                             textAlign={"center"}
                                             p="8px"
-                                            bgColor={defiSelected.includes(item) ? useColorModeValue("#979AA5", "#191919") : useColorModeValue("#E0E0E0", "#202020")}
+                                            bgColor={defiSelected.includes(item) ? useColorModeValue("#E3E4E8", "#191919") : useColorModeValue("#FFFFFF", "#202020")}
                                             onClick={() => {
                                                 DefiArrayHandler(item);
                                             }}
+                                            opacity={defiSelected.includes(item) ?  "1" :"0.5" }
                                             mr={"10px"}
                                             borderRadius={"2px"}
                                             border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
