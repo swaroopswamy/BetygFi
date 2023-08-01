@@ -63,6 +63,7 @@ const DefiTable = () => {
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                    alt=""
                                 ></Image>
                             </Box>
                         </Th>
@@ -87,6 +88,7 @@ const DefiTable = () => {
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                    alt=""
                                 ></Image>
                             </Box>
                         </Th>
@@ -112,6 +114,7 @@ const DefiTable = () => {
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                    alt=""
                                 ></Image>
                             </Box>
                         </Th>
@@ -136,6 +139,7 @@ const DefiTable = () => {
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                    alt=""
                                 ></Image>
                             </Box>
                         </Th>

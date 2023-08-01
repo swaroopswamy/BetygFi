@@ -1,13 +1,15 @@
 "use client"
 
 import React, { useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
+import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
 
 const WalletDashboardPage = () => {
+    const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
    
@@ -151,21 +153,26 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 0 ? useColorModeValue("#202020", "#FFFFFF") : useColorModeValue("#F0F0F5", "#202020")}
+                                    _light={{ bgColor: "#F0F0F5", color: "#202020" }}
+                                    _dark={{ bgColor: "#202020", color: "#FFFFFF" }}
                                 >
                                     <Text
-                                        fontSize={"10px"}
-                                        fontWeight={tabIndex === 0 ? "700" : "400"}
-                                        color={tabIndex === 0 ? useColorModeValue("#FFFFFF", "#000000") : useColorModeValue("#000000", "#FFFFFF")}
-                                        mr="44px"
-                                    >
-                                        Portfolio
-                                    </Text>
+  fontSize={"10px"}
+  _dark={{
+    color: tabIndex === 0 ? "#FFFFFF" : "#000000",
+    bgColor: tabIndex === 0 ? "#000000" : "#FFFFFF",
+  }}
+  fontWeight={tabIndex === 0 ? "700" : "400"}
+  _light={{ color: "#FFFFFF", bgColor: "#000000" }}
+  mr="44px"
+>
+  Portfolio
+</Text>
                                     <Image
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 0 ? useColorModeValue('/images/portfolio_white.png', '/images/portfolio_black.png') : useColorModeValue('/images/portfolio_black.png', '/images/portfolio_white.png')}
+                                        src={tabIndex === 0 ? colorMode === 'light' ?('/images/portfolio_white.png'):('/images/portfolio_black.png') : colorMode === 'light' ? ('/images/portfolio_black.png'):('/images/portfolio_white.png')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -176,12 +183,12 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 1 ? useColorModeValue("#202020", "#FFFFFF") : useColorModeValue("#F0F0F5", "#202020")}
+                                    bgColor={tabIndex === 1 ? colorMode === 'light' ? ("#202020"):("#FFFFFF") : colorMode === 'light' ?("#F0F0F5"):("#202020")}
                                 >
                                     <Text
                                         fontSize={"10px"}
                                         fontWeight={tabIndex === 1 ? "700" : "400"}
-                                        color={tabIndex === 1 ? useColorModeValue("#FFFFFF", "#000000") : useColorModeValue("#000000", "#FFFFFF")}
+                                        color={tabIndex === 1 ? colorMode === 'light' ?("#FFFFFF"):("#000000") : colorMode === 'light' ?("#000000"):("#FFFFFF")}
                                         mr="44px"
                                     >
                                         Wallet Analytics
@@ -190,7 +197,7 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 1 ? useColorModeValue('/images/wallet_analytics_white.png', '/images/wallet_analytics_black.png') : useColorModeValue('/images/wallet_analytics_black.png', '/images/wallet_analytics_white.png')}
+                                        src={tabIndex === 1 ? colorMode === 'light' ?('/images/wallet_analytics_white.png'):('/images/wallet_analytics_black.png') : colorMode === 'light' ?('/images/wallet_analytics_black.png'):('/images/wallet_analytics_white.png')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -201,12 +208,12 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 2 ? useColorModeValue("#202020", "#FFFFFF") : useColorModeValue("#F0F0F5", "#202020")}
+                                    bgColor={tabIndex === 2 ? colorMode === 'light' ?("#202020"):("#FFFFFF") : colorMode === 'light' ?("#F0F0F5"):("#202020")}
                                 >
                                     <Text
                                         fontSize={"10px"}
                                         fontWeight={tabIndex === 2 ? "700" : "400"}
-                                        color={tabIndex === 2 ? useColorModeValue("#FFFFFF", "#000000") : useColorModeValue("#000000", "#FFFFFF")}
+                                        color={tabIndex === 2 ? colorMode === 'light' ?("#FFFFFF"):("#000000") : colorMode === 'light' ?("#000000"):("#FFFFFF")}
                                         mr="44px"
                                     >
                                         Transactions
@@ -215,7 +222,7 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 2 ? useColorModeValue('/images/transactions_white.png', '/images/transactions_black.png') : useColorModeValue('/images/transactions_black.png', '/images/transactions_white.png')}
+                                        src={tabIndex === 2 ? colorMode === 'light' ?('/images/transactions_white.png'):('/images/transactions_black.png') : colorMode === 'light' ?('/images/transactions_black.png'):('/images/transactions_white.png')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -231,7 +238,7 @@ const WalletDashboardPage = () => {
                                <PortfolioPanelComponent />
                             </TabPanel>
                             <TabPanel>
-                                <p>two!</p>
+                                <WalletAnalyticsPanel />
                             </TabPanel>
                             <TabPanel>
                                <TransactionPanelComponent />

@@ -55,7 +55,7 @@ const Settings = () => {
                         flexDirection={"column"}
                     >
 
-                        <Image src="/images/SystemDefault.svg" w="183px" h="133px"  ></Image>
+                        <Image src="/images/SystemDefault.svg" w="183px" h="133px" alt=""></Image>
 
                         <Box
                             display={"flex"}
@@ -64,7 +64,7 @@ const Settings = () => {
                             mt={"10px"}
                         >
 
-                            <Image src="/images/SelectBox.svg" ></Image>
+                            <Image src="/images/SelectBox.svg" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontSize={"11px"}
@@ -85,7 +85,7 @@ const Settings = () => {
                         display={"flex"}
                         flexDirection={"column"}
                     >
-                        <Image src="/images/LightTheme.svg" w="183px" h="133px"   ></Image>
+                        <Image src="/images/LightTheme.svg" w="183px" h="133px" alt=""></Image>
 
                         <Box
                             display={"flex"}
@@ -94,7 +94,7 @@ const Settings = () => {
                             mt={"10px"}
                         >
 
-                            <Image src="/images/SelectBox.svg"  ></Image>
+                            <Image src="/images/SelectBox.svg" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontSize={"11px"}
@@ -115,7 +115,7 @@ const Settings = () => {
                         display={"flex"}
                         flexDirection={"column"}
                     >
-                        <Image src="/images/DarkTheme.svg" w="183px" h="133px"  ></Image>
+                        <Image src="/images/DarkTheme.svg" w="183px" h="133px" alt=""></Image>
 
                         <Box
                             display={"flex"}
@@ -124,7 +124,7 @@ const Settings = () => {
                             mt={"10px"}
                         >
 
-                            <Image src="/images/SelectBox.svg" w="24px" h="24px"></Image>
+                            <Image src="/images/SelectBox.svg" w="24px" h="24px" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
                                 fontSize={"11px"}
@@ -168,7 +168,7 @@ const Settings = () => {
                     mr={"50px"}
                     borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}
                 >
-                    <Image src="/images/Web3.svg" mb={"20px"}></Image>
+                    <Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
                     <Flex
                         flexDirection={"column"}>
                         <Text
@@ -219,7 +219,7 @@ const Settings = () => {
                     mr={"50px"}
                     borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}
                 >
-                    <Image src="/images/Google.svg" mb={"20px"} ml={"7px"}></Image>
+                    <Image src="/images/Google.svg" mb={"20px"} ml={"7px"} alt=""></Image>
                     <Flex
                         flexDirection={"column"}
                         mb={"17px"}
@@ -272,7 +272,7 @@ const Settings = () => {
                     mr={"50px"}
                     borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}
                 >
-                    <Image src="/images/Twitter.svg" mb={"20px"} ml={"7px"}></Image>
+                    <Image src="/images/Twitter.svg" mb={"20px"} ml={"7px"} alt=""></Image>
                     <Flex
                         flexDirection={"column"}
                         mb={"17px"}
