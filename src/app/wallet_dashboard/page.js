@@ -6,6 +6,7 @@ import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
+import TransactionPanelComponent from "./transaction";
 
 const WalletDashboardPage = () => {
     const { colorMode } = useColorMode();
@@ -240,7 +241,7 @@ const WalletDashboardPage = () => {
                                 <WalletAnalyticsPanel />
                             </TabPanel>
                             <TabPanel>
-                                <p>three!</p>
+                               <TransactionPanelComponent />
                             </TabPanel>
                         </TabPanels>
                     </Tabs>
