@@ -1,12 +1,9 @@
 import { useColorModeValue } from "@chakra-ui/react";
 import React from "react";
-import ApexChart from 'react-apexcharts';
+import dynamic from "next/dynamic";
+const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
-    if ( window === "object") {
-        //This code is executed in the browser
-         console.log(window.innerWidth)
-     }
     const options = {
         chart: {
             height: 205,
@@ -132,7 +129,7 @@ const OverviewColumnChart = () => {
 
     return (
         <>
-            <ApexChart options={options} series={series} type="bar" height={205} />
+            <ApexCharts options={options} series={series} type="bar" height={205} />
         </>
     );
 }
