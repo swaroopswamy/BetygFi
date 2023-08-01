@@ -60,12 +60,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         </Text>
 
         <HStack spacing={{ base: "0", md: "6" }}>
-          <div class="controller-row">
-            <label class="switch">
-              <input id="toggler" type="checkbox" checked={colorMode !== "light"} onClick={(e) => {
+          <div className="controller-row">
+            <label className="switch">
+              <input id="toggler" type="checkbox" checked={colorMode !== "light"} onChange={(e) => {
                 toggleColorMode();
               }} />
-              <span class="slider round"></span>
+              <span className="slider round"></span>
             </label>
           </div>
           {/*    <Button >

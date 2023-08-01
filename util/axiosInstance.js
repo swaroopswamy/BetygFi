@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Router } from "next/router";
-import { GetServerSideProps } from "next";
 const isServer = () => {
   return window === "undefined";
 };
