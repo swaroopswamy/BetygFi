@@ -60,8 +60,7 @@ const PortfolioPanelComponent = () => {
                   width: "100%",
                   height: "1px",
                   _light: { bgColor: "#191919" },
-                  _dark: { bgColor: "#FFFFFF" },
-                  // bgColor: useColorModeValue("#191919", "#FFFFFF")
+                  _dark: { bgColor: "#FFFFFF" }
                 }
                }
               onClick={() => {
@@ -86,8 +85,7 @@ const PortfolioPanelComponent = () => {
                       width: "100%",
                       height: "1px",
                       _light: { bgColor: "#191919" },
-                      _dark: { bgColor: "#FFFFFF" },
-                     // bgColor: useColorModeValue("#191919", "#FFFFFF")
+                      _dark: { bgColor: "#FFFFFF" }
                     }
                   }
                   onClick={() => {
@@ -108,7 +106,6 @@ const PortfolioPanelComponent = () => {
                     fontSize={"10px"}
                     fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
                     lineHeight={"20px"}
-                    //color={useColorModeValue("#3A3A3A", "#FFFFFF")}
                     _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#3A3A3A" }}
                   >
@@ -175,7 +172,6 @@ const PortfolioPanelComponent = () => {
                       opacity={defiSelected.includes(item) ? "1" : "0.5"}
                       mr={"10px"}
                       borderRadius={"2px"}
-                      //border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
                       _light={{border : "1px solid #979AA5"}}
                       _dar={{border : "1px solid #787878"}}
                     >
@@ -281,7 +277,6 @@ const PortfolioPanelComponent = () => {
                       >
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -293,7 +288,6 @@ const PortfolioPanelComponent = () => {
                           Pool</Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -305,7 +299,6 @@ const PortfolioPanelComponent = () => {
                           Liquidity Range</Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -317,7 +310,6 @@ const PortfolioPanelComponent = () => {
                           Fees Earned</Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -773,7 +765,6 @@ const PortfolioPanelComponent = () => {
                       >
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={"'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -786,7 +777,6 @@ const PortfolioPanelComponent = () => {
                         </Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -799,7 +789,6 @@ const PortfolioPanelComponent = () => {
                         </Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -812,7 +801,6 @@ const PortfolioPanelComponent = () => {
                         </Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -966,7 +954,6 @@ const PortfolioPanelComponent = () => {
                       >
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={"'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -979,7 +966,6 @@ const PortfolioPanelComponent = () => {
                         </Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
@@ -992,7 +978,6 @@ const PortfolioPanelComponent = () => {
                         </Th>
                         <Th
                           color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontFeatureSettings={" 'cv11' on, 'cv01' on, 'ss01' on"}
                           fontSize={"10px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}

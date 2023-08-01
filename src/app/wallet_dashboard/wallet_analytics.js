@@ -91,6 +91,42 @@ const WalletAnalyticsPanel = () => {
                     </Box>
                 </Box>
             </Box>
+
+            <Box
+            display={'inline-flex'}
+            w="100%"
+            my="10px"
+            >
+            <Box
+             w='50%'
+            height={"367px"}
+             display={"flex"}
+             flexDirection={"column"}
+             borderRadius={"6px"}
+             _dark={{
+                 bg: "#202020",
+                 border: "1px solid #272727"
+             }}
+             _light={{
+                 bg: "#FFFFFF",
+                 border: "1px solid #ADADAD"
+             }}
+             mr="10px"
+             >
+                <Text
+                color={"#FFF"}
+                fontSize={"15px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                ml={"20px"}
+                paddingTop={"15px"}
+                >
+                 Protocol Allocation
+                </Text>
+
+            </Box>
+            </Box>
             <Box
                 my="10px"
                 w='100%'
