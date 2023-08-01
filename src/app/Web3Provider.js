@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
 import "regenerator-runtime/runtime";
@@ -16,7 +17,6 @@ export function Web3Provider({ children }) {
             connectors={connectors}
         >
             {children}
-
         </ThirdwebWeb3Provider>
     )
 };
