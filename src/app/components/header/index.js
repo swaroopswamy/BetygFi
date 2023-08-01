@@ -71,13 +71,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           {/*    <Button >
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button> */}
-          <IconButton
+          {/*   <IconButton
             size="lg"
             variant="ghost"
             aria-label="open menu"
             icon={<FiBell />}
             onClick={onLoginModalOpen}
-          />
+          /> */}
         </HStack>
       </Flex>
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />

@@ -1,6 +1,4 @@
 import React from "react";
-import { GetServerSideProps } from 'next';
-import axios from "axios";
 import { axiosInstance } from "../../util/axiosInstance";
 export const getDefiRankingsTableData = async (payload) => {
   try {
