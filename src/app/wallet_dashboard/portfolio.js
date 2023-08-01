@@ -1,4 +1,4 @@
-import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, ColorMode } from "@chakra-ui/react";
+import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, ColorMode, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer, defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
