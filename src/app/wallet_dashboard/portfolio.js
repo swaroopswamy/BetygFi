@@ -266,7 +266,7 @@ const PortfolioPanelComponent = () => {
                   </Box>
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>
+              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
                 <TableContainer>
                   <Table variant='simple'>
                     <Thead>
@@ -754,7 +754,7 @@ const PortfolioPanelComponent = () => {
                   </Box>
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>
+              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
                 <TableContainer>
                   <Table variant='simple'>
                     <Thead>
@@ -943,7 +943,7 @@ const PortfolioPanelComponent = () => {
                   </Box>
                 </AccordionButton>
               </h2>
-              <AccordionPanel pb={4}>
+              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
                 <TableContainer>
                   <Table variant='simple'>
                     <Thead>
