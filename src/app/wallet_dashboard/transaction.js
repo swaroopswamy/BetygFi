@@ -44,8 +44,8 @@ const TransactionPanelComponent = () => {
               </Text>
              
               <>
-              <img  width={8}
-                    height={8}
+              <img  width={6}
+                    height={6}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png","/images/updown-triangleicon-dark.png")}>
               </img>
@@ -64,7 +64,7 @@ const TransactionPanelComponent = () => {
               letterSpacing={"1px"}
               mr="6px"
               >
-              ACCOUNT / TOKEN
+              ACCOUNT/TOKEN
                </Text>
               <>
               <img  width={8}
@@ -399,7 +399,6 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <Text
-                    color={"#245F00"}
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
@@ -556,7 +555,6 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <Text
-                    color={"#245F00"}
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
