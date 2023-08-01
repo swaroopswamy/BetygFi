@@ -4,8 +4,8 @@
 require('dotenv').config()
 const webpack = require('webpack');
 const nextConfig = {
+  output: "export",
   webpack(config) {
-    output: "export",
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
