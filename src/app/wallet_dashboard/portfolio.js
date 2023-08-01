@@ -441,7 +441,7 @@ const PortfolioPanelComponent = () => {
                         <Td>
                           <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            font-Size={"10px"}
+                            fontSize={"10px"}
                             fontStyle={"normal"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
@@ -562,7 +562,7 @@ const PortfolioPanelComponent = () => {
                         <Td>
                           <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            font-Size={"10px"}
+                            fontSize={"10px"}
                             fontStyle={"normal"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
@@ -682,7 +682,7 @@ const PortfolioPanelComponent = () => {
                         <Td>
                           <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            font-Size={"10px"}
+                            fontSize={"10px"}
                             fontStyle={"normal"}
                             fontWeight={"400"}
                             lineHeight={"20px"}

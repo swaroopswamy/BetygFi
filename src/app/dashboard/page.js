@@ -59,7 +59,7 @@ const Dashboard = () => {
     dispatch(categoryChangedReducer(category));
   };
   const pageChangeHandler = (page) => {
-   tablePage >= 1 && setTablePage(page);
+    tablePage >= 1 && setTablePage(page);
   }
   const searchByNameHandler = (name) => {
     setSearchByName(name);
@@ -97,10 +97,10 @@ const Dashboard = () => {
     };
     dispatch(fetchOverviewData(payload));
   };
- 
+
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-   // getScoreGraphDataHandler();
+    // getScoreGraphDataHandler();
     getOverviewDataHandler();
   }, [blockchainSelected, categorySelected, tablePage]);
 
@@ -157,7 +157,7 @@ const Dashboard = () => {
               {blockchains?.map((item, i) => (
                 <>
                   {i < 4 &&
-                    <Tooltip label={item}>
+                    <Tooltip key={i} label={item}>
                       <Box
                         display={"flex"}
                         cursor={"pointer"}
@@ -659,7 +659,7 @@ const Dashboard = () => {
                       bg={useColorModeValue("#FFF", "#191919")}
                       padding="0px"
                       cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
-                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages }
+                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
                       onClick={() => {
                         tablePage <= tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
                       }}

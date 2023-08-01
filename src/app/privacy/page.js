@@ -1,34 +1,34 @@
 "use client"
 import { Box, Container, Text, Image, useColorModeValue } from "@chakra-ui/react";
 
- const Privacy = () => {
+const Privacy = () => {
     return (
         <>
-            <Container  maxW= {"100%"} padding={"0px"}>
-            <Box background= {useColorModeValue("#E8E8E8","#222")}>
+            <Container maxW={"100%"} padding={"0px"}>
+                <Box background={useColorModeValue("#E8E8E8", "#222")}>
 
-            <Box display={"flex"}
-                 flexDirection={"row"} 
-                 justifyContent={"space-between"}>
+                    <Box display={"flex"}
+                        flexDirection={"row"}
+                        justifyContent={"space-between"}>
 
-            <Box  fontSize= {"46px"}
-                  padding= {"90px 0px 0px 70px"}
-                  color={useColorModeValue("#191919", "#FFFFFF")}>
-            Privacy Policy
-            </Box>
+                        <Box fontSize={"46px"}
+                            padding={"90px 0px 0px 70px"}
+                            color={useColorModeValue("#191919", "#FFFFFF")}>
+                            Privacy Policy
+                        </Box>
 
-            <Box paddingRight={"100px"}>
-              <Image src={useColorModeValue("/images/bg-logo.png","/images/bg-logo-dark.png")} alt=""></Image>
-            </Box>
-          </Box>
-        </Box>
+                        <Box paddingRight={"100px"}>
+                            <Image src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")} alt=""></Image>
+                        </Box>
+                    </Box>
+                </Box>
 
-                <Box  width= {"80%"}  height= {"603px"} 
-                      opacity= {"0.800000011920929"}
-                      color={useColorModeValue("#191919", "#FFFFFF")}
-                      flexShrink= {"0"}
-                      fontSize= {"16px"}   
-                      padding= {"10px 0px 0px 70px"} >
+                <Box width={"80%"} height={"603px"}
+                    opacity={"0.800000011920929"}
+                    color={useColorModeValue("#191919", "#FFFFFF")}
+                    flexShrink={"0"}
+                    fontSize={"16px"}
+                    padding={"10px 0px 0px 70px"} >
 
                     <Text paddingTop={"20px"}>
                         This is a common question, and the first thing to make clear is that we do not focus on personal individuals in our wallet labels.
@@ -42,7 +42,7 @@ import { Box, Container, Text, Image, useColorModeValue } from "@chakra-ui/react
                     <Text paddingTop={"20px"}>
                         Nansen includes information about ENS ownership of wallets (both past and present), and in some cases this might be revealing of an association between a private individual and a wallet.
                         So while we could remove data points potentially revealing personal identities from our platform,
-                       
+
                     </Text>
 
                     <Text paddingTop={"20px"}>

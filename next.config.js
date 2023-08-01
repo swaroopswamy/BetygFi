@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 require('dotenv').config()
 const webpack = require('webpack');
 const nextConfig = {
@@ -12,17 +14,15 @@ const nextConfig = {
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
-    )
+      )
     );
 
-return config;
+    return config;
   },
-
-images: {
-  loader: 'imgix',
-    path: '',
+  images: {
+    unoptimized: true
   },
-distDir: "out",
+  distDir: "out",
 };
 
 module.exports = nextConfig;
