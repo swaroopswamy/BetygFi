@@ -1,9 +1,12 @@
-import { Box, Button, Text, Table,Thead,Tr,Th, Td,Tfoot, Flex,Image, TableContainer,Tbody, useColorMode } from '@chakra-ui/react';
+import { Box, Button, Text, Table,Thead,Tr,Th, Td,Tfoot,Tooltip, Flex,Image, TableContainer,Tbody, useColorMode } from '@chakra-ui/react';
 import React from 'react'
 import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
 import PerformanceMultiLineChart from './PerformanceMultiLineChart';
 import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart';
+import { InfoOutlineIcon, AddIcon, WarningIcon } from '@chakra-ui/icons';
+
+
 
 const WalletAnalyticsPanel = () => {
     const { colorMode } = useColorMode();
@@ -144,6 +147,13 @@ const WalletAnalyticsPanel = () => {
                 </Text>
                 {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
                 <>
+             
+
+              <Tooltip label='#Frame'    
+                       padding='14px 8px'  
+                       fontWeight={400}
+                       fontSize={"10px"}>
+              {/* <InfoOutlineIcon/> */}
               <Image width={"4"}
                     height={"4"}
                     flexShrink={"0"} 
@@ -152,6 +162,8 @@ const WalletAnalyticsPanel = () => {
                     alt='logo'
                     src={colorMode === 'light' ?("/images/icon-i-light.png"):("/images/icon-i-dark.png")}>
               </Image>
+
+              </Tooltip>
               </>
                 </Flex>
 
@@ -452,7 +464,11 @@ const WalletAnalyticsPanel = () => {
                 </Text>
                 {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
                 <>
-              <Image  width={"4"}
+                <Tooltip label='#Frame'     
+                       fontWeight={400}
+                       fontSize={"10px"}>
+              {/* <InfoOutlineIcon/> */}
+              <Image width={"4"}
                     height={"4"}
                     flexShrink={"0"} 
                     paddingLeft={"2px"}
@@ -460,6 +476,8 @@ const WalletAnalyticsPanel = () => {
                     alt='logo'
                     src={colorMode === 'light' ?("/images/icon-i-light.png"):("/images/icon-i-dark.png")}>
               </Image>
+
+              </Tooltip>
               </>
                 </Flex>
 
