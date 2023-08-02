@@ -590,7 +590,8 @@ const Dashboard = () => {
                       fontWeight={400}
                       w="207px"
                       placeholder="Search DeFi"
-                      onChange={(e) => { searchByNameHandler(e.target.value) }} />
+                      onChange={(e) => { searchByNameHandler(e.target.value) }}
+                      />
                   </Box>
                 </Flex>
               </Flex>

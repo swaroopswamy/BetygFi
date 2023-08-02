@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, extendTheme } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, extendTheme, useColorMode } from '@chakra-ui/react';
 import React from 'react'
 import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
@@ -7,8 +7,7 @@ import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart
 
 const WalletAnalyticsPanel = () => {
     const { colorMode } = useColorMode();
-    const value1 = "300" ;
-    const value2 = "-300" ;
+  
     return (
         <>
             <Box
@@ -35,6 +34,8 @@ const WalletAnalyticsPanel = () => {
                         display="flex"
                         justifyContent={"space-between"}
                         alignItems={"center"}
+                        p="22px 25px"
+                        paddingBottom={"0px"}
                     >
                         <Text
                             fontSize={"15px"}
