@@ -144,14 +144,14 @@ const WalletAnalyticsPanel = () => {
                 </Text>
                 {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
                 <>
-              <img  width={"12px"}
-                    height={"6px"}
+              <Image width={"4"}
+                    height={"4"}
                     flexShrink={"0"} 
-                    paddingLeft={"5px"}
-                    //mt={"20px"}
+                    paddingLeft={"2px"}
+                    mt={"20px"}
                     alt='logo'
                     src={colorMode === 'light' ?("/images/icon-i-light.png"):("/images/icon-i-dark.png")}>
-              </img>
+              </Image>
               </>
                 </Flex>
 
@@ -175,37 +175,37 @@ const WalletAnalyticsPanel = () => {
             <Text paddingRight={"5px"}>Asset Name</Text>
 
         <>
-              <img  width={10}
-                    height={10}
+              <Image  width={5}
+                    height={5}
                     alt='log'
                     src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
+              </Image>
+              </>
+              </Flex>
+        </Th>
+
+        <Th>
+            <Flex >
+        <Text paddingRight={"5px"}>Value</Text>
+        <>
+              <Image  width={5}
+                    height={5}
+                    alt='log'
+                    src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
+              </Image>
               </>
               </Flex>
         </Th>
 
         <Th>
             <Flex>
-        <Text paddingRight={"5px"}>Value</Text>
-        <>
-              <img  width={10}
-                    height={10}
-                    alt='log'
-                    src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
-              </>
-              </Flex>
-        </Th>
-
-        <Th>
-            <Flex  paddingLeft={"20px"}>
         <Text >Share</Text>
         <>
-              <img  width={10}
-                    height={10}
+              <Image  width={5}
+                    height={5}
                     alt='log'
                     src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
+              </Image>
               </>
               </Flex>
         </Th>
@@ -228,12 +228,12 @@ const WalletAnalyticsPanel = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={20}
-                      height={20}
+                    <Image
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t1.png"
-                    ></img>
+                    ></Image>
                   </>
 
        <Text ml="6px"> Venus</Text>    
@@ -256,7 +256,7 @@ const WalletAnalyticsPanel = () => {
                   </Text>
                 </Box>
         </Td>
-        <Td isNumeric>60%</Td>
+        <Td>60%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -268,12 +268,12 @@ const WalletAnalyticsPanel = () => {
                      alignItems={"center"}
                    >
                      <>
-                       <img
-                         width={20}
-                         height={20}
+                       <Image
+                         width={5}
+                         height={5}
                          alt='logo'
                          src="/images/t2.png"
-                       ></img>
+                       ></Image>
                      </>
    
           <Text ml="6px">  Morpho Aave </Text>    
@@ -293,7 +293,7 @@ const WalletAnalyticsPanel = () => {
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>30%</Td>
+        <Td>30%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -305,12 +305,12 @@ const WalletAnalyticsPanel = () => {
                      alignItems={"center"}
                    >
                      <>
-                       <img
-                         width={20}
-                         height={20}
+                       <Image
+                         width={5}
+                         height={5}
                          alt='logo'
                          src="/images/t3.png"
-                       ></img>
+                       ></Image>
                      </>
    
           <Text ml="6px"> Compound V3 </Text>
@@ -329,7 +329,7 @@ const WalletAnalyticsPanel = () => {
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>50%</Td>
+        <Td>50%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -341,12 +341,12 @@ const WalletAnalyticsPanel = () => {
                     alignItems={"center"}
                   >
                     <>
-                      <img
-                        width={20}
-                        height={20}
+                      <Image
+                        width={5}
+                        height={5}
                         alt='logo'
                         src="/images/t4.png"
-                      ></img>
+                      ></Image>
                     </>
   
          <Text ml="6px">  Radiant V2 </Text>
@@ -365,7 +365,7 @@ const WalletAnalyticsPanel = () => {
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>60%</Td>
+        <Td>60%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -376,12 +376,12 @@ const WalletAnalyticsPanel = () => {
                     alignItems={"center"}
                   >
                     <>
-                      <img
-                        width={20}
-                        height={20}
+                      <Image
+                        width={5}
+                        height={5}
                         alt='logo'
                         src="/images/t5.png"
-                      ></img>
+                      ></Image>
                     </>
   
          <Text ml="6px"> FluidTokens </Text>
@@ -400,7 +400,7 @@ const WalletAnalyticsPanel = () => {
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>30%</Td>
+        <Td>30%</Td>
       </Tr>
 
 
@@ -452,14 +452,14 @@ const WalletAnalyticsPanel = () => {
                 </Text>
                 {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
                 <>
-              <img  width={"12px"}
-                    height={"6px"}
+              <Image  width={"4"}
+                    height={"4"}
                     flexShrink={"0"} 
-                    paddingLeft={"5px"}
-                    //mt={"20px"}
+                    paddingLeft={"2px"}
+                    mt={"20px"}
                     alt='logo'
                     src={colorMode === 'light' ?("/images/icon-i-light.png"):("/images/icon-i-dark.png")}>
-              </img>
+              </Image>
               </>
                 </Flex>
 
@@ -483,11 +483,11 @@ const WalletAnalyticsPanel = () => {
             <Text paddingRight={"5px"}>Asset Name</Text>
 
         <>
-              <img  width={10}
-                    height={10}
+              <Image  width={5}
+                    height={5}
                     alt='log'
                     src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
+              </Image>
               </>
               </Flex>
         </Th>
@@ -496,24 +496,24 @@ const WalletAnalyticsPanel = () => {
             <Flex>
         <Text paddingRight={"5px"}>Value</Text>
         <>
-              <img  width={10}
-                    height={10}
+              <Image  width={5}
+                    height={5}
                     alt='log'
                     src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
+              </Image>
               </>
               </Flex>
         </Th>
 
         <Th>
-            <Flex  paddingLeft={"20px"}>
+            <Flex>
         <Text >Share</Text>
         <>
-              <img  width={10}
-                    height={10}
+              <Image  width={5}
+                    height={5}
                     alt='log'
                     src={colorMode === 'light' ?("/images/frame-light.png"):("/images/frame-dark.png")}>
-              </img>
+              </Image>
               </>
               </Flex>
         </Th>
@@ -536,12 +536,12 @@ const WalletAnalyticsPanel = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={20}
-                      height={20}
+                    <Image
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t1.png"
-                    ></img>
+                    ></Image>
                   </>
 
        <Text ml="6px"> Venus</Text>    
@@ -564,7 +564,7 @@ const WalletAnalyticsPanel = () => {
                   </Text>
                 </Box>
         </Td>
-        <Td isNumeric>60%</Td>
+        <Td >60%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -576,12 +576,12 @@ const WalletAnalyticsPanel = () => {
                      alignItems={"center"}
                    >
                      <>
-                       <img
-                         width={20}
-                         height={20}
+                       <Image
+                         width={5}
+                         height={5}
                          alt='logo'
                          src="/images/t2.png"
-                       ></img>
+                       ></Image>
                      </>
    
           <Text ml="6px">  Morpho Aave </Text>    
@@ -601,7 +601,7 @@ const WalletAnalyticsPanel = () => {
                      {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
                   </Text>
                 </Box></Td>
-        <Td  isNumeric>30%</Td>
+        <Td>30%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -613,12 +613,12 @@ const WalletAnalyticsPanel = () => {
                      alignItems={"center"}
                    >
                      <>
-                       <img
-                         width={20}
-                         height={20}
+                       <Image
+                         width={5}
+                         height={5}
                          alt='logo'
                          src="/images/t3.png"
-                       ></img>
+                       ></Image>
                      </>
    
           <Text ml="6px"> Compound V3 </Text>
@@ -637,7 +637,7 @@ const WalletAnalyticsPanel = () => {
                      {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>50%</Td>
+        <Td>50%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -649,12 +649,12 @@ const WalletAnalyticsPanel = () => {
                     alignItems={"center"}
                   >
                     <>
-                      <img
-                        width={20}
-                        height={20}
+                      <Image
+                        width={5}
+                        height={5}
                         alt='logo'
                         src="/images/t4.png"
-                      ></img>
+                      ></Image>
                     </>
   
          <Text ml="6px">  Radiant V2 </Text>
@@ -673,7 +673,7 @@ const WalletAnalyticsPanel = () => {
                      {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>60%</Td>
+        <Td>60%</Td>
       </Tr>
 
       <Tr  height={"40px"}>
@@ -684,12 +684,12 @@ const WalletAnalyticsPanel = () => {
                     alignItems={"center"}
                   >
                     <>
-                      <img
-                        width={20}
-                        height={20}
+                      <Image
+                        width={5}
+                        height={5}
                         alt='logo'
                         src="/images/t5.png"
-                      ></img>
+                      ></Image>
                     </>
   
          <Text ml="6px"> FluidTokens </Text>
@@ -708,7 +708,7 @@ const WalletAnalyticsPanel = () => {
                      {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
                   </Text>
                 </Box></Td>
-        <Td isNumeric>30%</Td>
+        <Td>30%</Td>
       </Tr>
 
 
