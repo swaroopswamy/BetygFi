@@ -1,11 +1,8 @@
-'use client'
 import { ReduxProvider } from "@/redux/provider";
-
 import { Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from './Web3Provider';
-import { useColorModeValue } from "@chakra-ui/react";
 const manrope = Manrope({
   weight: ['400', '700'],
   style: ['normal'],
@@ -13,13 +10,17 @@ const manrope = Manrope({
 });
 
 
-
+export const metadata = {
+  title: "BetygFi : Elevate your game",
+  description: "Elevate your game",
+  viewport: 'width=1400'
+};
 
 export default function RootLayout({ children }) {
   return (
     <>
       <html lang="en">
-        <body style={{ background: useColorModeValue("#F0F0F5", "#191919") }}>
+        <body>
           <ReduxProvider>
             <Web3Provider>
               <Providers>
