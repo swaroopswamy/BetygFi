@@ -44,8 +44,8 @@ const TransactionPanelComponent = () => {
               </Text>
              
               <>
-              <Image  width={6}
-                    height={6}
+              <Image  width={2}
+                    height={2}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png","/images/updown-triangleicon-dark.png")}>
               </Image>
@@ -67,8 +67,8 @@ const TransactionPanelComponent = () => {
               ACCOUNT/TOKEN
                </Text>
               <>
-              <Image  width={8}
-                    height={8}
+              <Image  width={2}
+                    height={2}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png","/images/updown-triangleicon-dark.png")}>
               </Image>
@@ -114,8 +114,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={20}
-                      height={20}
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t1.png"
                     ></Image>
@@ -151,8 +151,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/recieved.png"
                     ></Image>
@@ -178,8 +178,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
                     ></Image>
@@ -248,7 +248,7 @@ const TransactionPanelComponent = () => {
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
-                    ml="6px"
+                    ml="4px"
                     color={value1 < 0 ? "#EF1E1E" : "#245F00"}
                   >
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
@@ -268,8 +268,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={20}
-                      height={20}
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t2.png"
                     ></Image>
@@ -305,8 +305,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/deposit.png"
                     ></Image>
@@ -332,8 +332,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
                     ></Image>
@@ -402,7 +402,7 @@ const TransactionPanelComponent = () => {
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
-                    ml="6px"
+                    ml="4px"
                     color={value2 < 0 ? "#EF1E1E" : "#245F00"}
                   >
                     {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
@@ -424,8 +424,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={20}
-                      height={20}
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t3.png"
                     ></Image>
@@ -461,8 +461,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/sent.png"
                     ></Image>
@@ -488,8 +488,8 @@ const TransactionPanelComponent = () => {
                 >
                   <>
                     <Image
-                      width={12}
-                      height={12}
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
                     ></Image>
