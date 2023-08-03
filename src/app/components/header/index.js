@@ -29,17 +29,21 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
 import { useRouter } from 'next/navigation'
+import { useDispatch } from "react-redux";
+import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
 
   const router = useRouter();
   const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
-
+  const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
+      dispatch(walletAddressChangedReducer(e.target.value));
       router.push(`/wallet_dashboard?address=${e.target.value}`)
+    
     }
   }
   return (

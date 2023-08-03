@@ -25,26 +25,26 @@ const WalletDashboardPage = () => {
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
-    const router = useRouter();
+
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const payload = {
             blockchain: blockchainSelected
         }
         dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
-    }, [blockchainSelected])
+    }, [blockchainSelected,walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         /* const payload = {
             blockchain: blockchainSelected
         } */
         dispatch(fetchWalletTransactionsData(searchParam.get("address")));
-    }, [blockchainSelected])
+    }, [blockchainSelected,walletAddress])
     useEffect(() => {
-        dispatch(walletAddressChangedReducer(searchParam.get("address")))
+        /* dispatch(walletAddressChangedReducer(searchParam.get("address"))) */
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler,fetchWalletTransactionsDataHandler])
-    console.log(walletAddress, 'walletAddress')
+
     return (
         <>
             <Box

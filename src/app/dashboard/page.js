@@ -219,6 +219,7 @@ const Dashboard = () => {
                   border="2px solid #191919"
                   ml='-10px'
                   _focus={{ boxShadow: 'outline' }}
+                  color="#000"
                 >
                   +3
                 </MenuButton>

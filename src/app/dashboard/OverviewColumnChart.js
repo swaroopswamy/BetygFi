@@ -1,10 +1,11 @@
-import { useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
+    const { colorMode } = useColorMode();
     const graphData = useSelector((state) => state.dashboardTableData.ScoreGraphData);
     const options = {
         chart: {
@@ -25,9 +26,10 @@ const OverviewColumnChart = () => {
             },
             y: {
                 title: {
-                    formatter: () => `DeFis :`
+                    formatter: () => `DeFis :`,
                 }
-            }
+            },
+            theme: colorMode,
         },
         grid: {
             show: false,
@@ -93,6 +95,7 @@ const OverviewColumnChart = () => {
             tooltip: {
                 enabled: false,
                 offsetX: 0,
+
             },
             axisBorder: {
                 show: false,
