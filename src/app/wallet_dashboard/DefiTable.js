@@ -1,8 +1,7 @@
 "use client";
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-    Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Image
-} from "@chakra-ui/react";
+    Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Image, map} from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "is-empty";
@@ -160,7 +159,7 @@ const DefiTable = () => {
                 </Thead>
                 <Tbody>
                  {walletBalanceData?.isSuccess &&
-                       walletBalanceData?.data.map((item, i) => {
+                      walletBalanceData?.data.map((item, i) => {
                             return (
                                 <>
                                     <Tr key={i + 1}>
