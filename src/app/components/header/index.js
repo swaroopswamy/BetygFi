@@ -29,7 +29,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
 import { useRouter } from 'next/navigation'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
@@ -46,6 +46,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     
     }
   }
+  const walletAddress = useSelector(
+    (state) => state?.walletDashboardTableData?.walletAddress
+);
+  
   return (
     <>
       <Flex
@@ -93,6 +97,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               outline: "none",
               border: "none"
             }}
+            value={walletAddress}
             bgColor={"transparent"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
             fontSize={"11px"}

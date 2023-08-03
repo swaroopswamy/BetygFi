@@ -40,7 +40,7 @@ const WalletDashboardPage = () => {
         dispatch(fetchWalletTransactionsData(searchParam.get("address")));
     }, [blockchainSelected,walletAddress])
     useEffect(() => {
-        /* dispatch(walletAddressChangedReducer(searchParam.get("address"))) */
+         dispatch(walletAddressChangedReducer(searchParam.get("address"))) 
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler,fetchWalletTransactionsDataHandler])
