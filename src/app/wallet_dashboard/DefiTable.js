@@ -17,9 +17,15 @@ import { fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice"
 const DefiTable = () => {
     const searchParams = useSearchParams();
     const dispatch = useDispatch();
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
     const fetchWalletBalanceDataHandler = useCallback(() => {
-        dispatch(fetchWalletBalanceData(searchParams.get("address")));
-    }, [])
+        const payload = {
+            blockchain: blockchainSelected
+        }
+        dispatch(fetchWalletBalanceData(searchParams.get("address"),payload));
+    }, [blockchainSelected])
     useEffect(() => {
         fetchWalletBalanceDataHandler();
     }, [fetchWalletBalanceDataHandler])
@@ -273,7 +279,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                         >
                                             {
-                                                (Math.trunc(item.value)).toLocaleString('en-US', {
+                                                (Math.trunc(item["USD Value"])).toLocaleString('en-US', {
                                                     style: 'currency',
                                                     currency: 'USD'
                                                 })}

@@ -1,9 +1,9 @@
 import React from "react";
 import { axiosInstance } from "../../util/axiosInstance";
-export const getWalletBalanceData = async (address) => {
+export const getWalletBalanceData = async (address,payload) => {
   try {
-    const { data } = await axiosInstance.get(
-      `wallet/balance/${address}`
+    const { data } = await axiosInstance.post(
+      `wallet/balance/${address}`,payload
     );
     return data;
   } catch (err) {
