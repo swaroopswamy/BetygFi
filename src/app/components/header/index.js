@@ -73,7 +73,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         <InputGroup w="100%">
           <InputLeftElement pointerEvents='none'>
             <Image
-              src="/images/search_icon.png"
+              src="/images/search_icon.svg"
               w="20px"
               h="20px"
               alt="search_icon"
