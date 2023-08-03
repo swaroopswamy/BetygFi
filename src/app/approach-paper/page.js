@@ -1,12 +1,11 @@
 "use client"
-import { Box, Container, Image, useColorModeValue, Text, Heading, div, h1, h2, br, Flex, Button } from "@chakra-ui/react";
-import { TriangleUpIcon } from '@chakra-ui/icons'
-
+import { Box, Container, Image, useColorModeValue, Text, Heading,useColorMode, div, h1, h2, br, Flex, Button } from "@chakra-ui/react";
 
 const Approach = () => {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  const { colorMode } = useColorMode();
   return (
     <>
       {
@@ -35,36 +34,7 @@ const Approach = () => {
           <Box width={"90%"}>
 
 
-            {/* <Box padding={"29px 0px 0px 50px"}   color={useColorModeValue("#191919", "#FFFFFF")}>
-          <Heading fontSize={"24px"}>Overview</Heading>
-          <Text fontSize={"16px"}  padding={"10px 0px 0px 20px"}>
-            Fusce eu quam in tortor pretium pulvinar. Cras euismod, nisi in ultricies ornare,
-           libero sapien bibendum nunc, ut placerat purus sem at nisl. Nullam nec commodo enim.
-            Etiam sollicitudin ante nec dolor luctus dictum. Praesent eget arcu ac massa euismod tempus.
-             Phasellus ornare felis vel fermentum blandit. Sed vel dignissim tortor, a tincidunt quam.</Text>
-        </Box>
-
-        <Box padding={"29px 0px 0px 50px"}   color={useColorModeValue("#191919", "#FFFFFF")}>
-          <div>
-            <Heading as="h1" size="xl" fontSize={"24px"}  
-                                       font-weight= {"700"}
-                                       paddingTop={"10px"}>
-                   Table of Contents</Heading>
-          <Heading as="h2" size="lg" fontSize={"16px"}  
-                                     font-weight= {"700"}
-                                     padding={"10px 0px 0px 20px"}>
-                    What’s new?</Heading>
-          <Text fontSize={"16px"} padding={"10px 0px 0px 40px"}>
-                                                       1. Abstract <br/>
-                                                       2. Data Collection and Processing <br/>
-                                                       3. Model Training Methodology <br/>
-                                                       4. Model Evaluation <br/>
-                                                       5. Scoring <br/>
-                                                       6. Future
-          </Text>
-          </div>
-        </Box> */}
-
+           
             <Box padding={"29px 0px 0px 50px"} color={useColorModeValue("#191919", "#FFFFFF")}>
               <Heading as="h1" size="xl" fontSize={"22px"} paddingTop={"10px"}>1.Abstract:</Heading>
               <Text padding={"10px 0px 0px 20px"} fontSize={"14px"}>
@@ -273,7 +243,7 @@ const Approach = () => {
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Heading as="h2" size="lg" fontSize={"18px"} paddingTop={"10px"}>6.5 Cross-Chain and Layer-2 Protocols: </Heading>
-                <Flex>
+                
                   <Text fontSize={"14px"} padding={"10px 0px 80px 40px"}>
                     As the DeFi ecosystem continues to evolve, we expect
                     more cross-chain and layer-2 protocols to emerge. Incorporating these new technologies into
@@ -283,11 +253,15 @@ const Approach = () => {
                     to continuously strive to enable actionable insights for stakeholders in the decentralized
                     financial ecosystem.
                   </Text>
+                
+              </Box>
                   
 
-                  <Box  width="91px"  height="60px">
+                  {/* <Box  width="91px"  height="60px"> */}
      <Button>
-      <img src="/images/Backtotop.svg" alt="" 
+      <img src={colorMode === 'light' ? ("/images/Backtotop.svg") : ("/images/Backtotop-darkmode.svg")} 
+      
+                   alt="" 
                    component="button"
                    onClick={handleScrollToTop}
                    id="myBtn"
@@ -299,13 +273,11 @@ const Approach = () => {
                    strokeWidth="1px"
                    style={{
                      position: 'fixed',
-                     bottom: '20px',
-                     right: '20px',
+                     bottom: '40px',
+                     right: '2px',
                      zIndex: '9999'}}/></Button> 
-    </Box>
- 
-                </Flex>
-              </Box>
+            
+                
             </Box>
           </Box>
         </Container>
