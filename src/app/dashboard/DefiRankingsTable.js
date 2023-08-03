@@ -130,7 +130,8 @@ const Rankings = () => {
       <Tbody>
         
         {tableData.DefiRankingsTableData.isSuccess &&
-          tableData.DefiRankingsTableData?.data.data.map((item, i) => {
+         tableData.DefiRankingsTableData?.data.data !== undefined
+          && tableData.DefiRankingsTableData?.data.data.map((item, i) => {
             return (
               <>
                 <Tr key={i + 1}>
