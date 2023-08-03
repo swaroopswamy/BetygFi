@@ -141,7 +141,7 @@ const Rankings = () => {
                     fontWeight={"400"}
                     letterSpacing={"1px"}
                   >
-                    {item?.Rank}
+                    {item?.Rank === undefined ? '-' : item?.Rank}
                   </Td>
                   <Td
                   >
@@ -234,11 +234,10 @@ const Rankings = () => {
                     fontWeight={"400"}
                     letterSpacing={"1px"}
                   >
-                    {!isEmpty(item.mcap) ? `${
-                       (Math.trunc(item.tvl)).toLocaleString('en-US', {
-                        style: 'currency',
-                        currency: 'USD'
-                      })}` : "NA"}
+                    {!isEmpty(item.mcap) ? `${(Math.trunc(item.tvl)).toLocaleString('en-US', {
+                      style: 'currency',
+                      currency: 'USD'
+                    })}` : "NA"}
                   </Td>
                   <Td
                     color={useColorModeValue("#16171B", "#FFF")}
@@ -260,22 +259,27 @@ const Rankings = () => {
                       alignItems={"center"}
                       h="100%"
                     >
-                      <Box
-                        w="12px"
-                        h="9px"
-                        borderRadius={"30px"}
-                        mr={"4px"}
-                        bgColor={
-                          item.safety_score >= 75
-                            ? "#9ADA8A"
-                            : item.safety_score < 75 && item.safety_score >= 50
-                              ? "#FFD976"
-                              : item.safety_score < 50 && item.safety_score >= 25
-                                ? "#FFB287"
-                                : "#FF7373"
-                        }
-                      ></Box>{" "}
-                      {item?.safety_score?.toFixed(0)}
+                      {
+                        item?.safety_score === undefined  ? '-' : (
+                          <>
+                            <Box
+                              w="12px"
+                              h="9px"
+                              borderRadius={"30px"}
+                              mr={"4px"}
+                              bgColor={
+                                item.safety_score >= 75
+                                  ? "#9ADA8A"
+                                  : item.safety_score < 75 && item.safety_score >= 50
+                                    ? "#FFD976"
+                                    : item.safety_score < 50 && item.safety_score >= 25
+                                      ? "#FFB287"
+                                      : "#FF7373"
+                              }
+                            ></Box>{" "}
+                            {item?.safety_score?.toFixed(0)}
+                          </>
+                        )}
                     </Box>
                   </Td>
                 </Tr>

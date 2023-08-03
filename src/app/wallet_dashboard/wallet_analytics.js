@@ -4,12 +4,13 @@ import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
 import PerformanceMultiLineChart from './PerformanceMultiLineChart';
 import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart';
+import { useSelector } from 'react-redux';
 
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
   const value1 = "300";
-
   const value2 = "-300";
+ 
 
   return (
     <>

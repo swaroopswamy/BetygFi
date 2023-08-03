@@ -8,7 +8,7 @@ let accessToken = "";
 let context = {};
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL
-console.log(baseURL)
+
 
 export const setAccessToken = () => {
   accessToken = _accessToken;

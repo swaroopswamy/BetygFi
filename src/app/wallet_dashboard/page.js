@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -26,11 +26,25 @@ const WalletDashboardPage = () => {
         dispatch(blockchainTypeChangedReducer(type));
     };
     const router = useRouter();
+
+    const fetchWalletBalanceDataHandler = useCallback(() => {
+        const payload = {
+            blockchain: blockchainSelected
+        }
+        dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
+    }, [blockchainSelected])
+    const fetchWalletTransactionsDataHandler = useCallback(() => {
+        /* const payload = {
+            blockchain: blockchainSelected
+        } */
+        dispatch(fetchWalletTransactionsData(searchParam.get("address")));
+    }, [blockchainSelected])
     useEffect(() => {
-        console.log(searchParam.get("address"), 'pathname')
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
-    }, [])
-    console.log(walletAddress,'walletAddress')
+        fetchWalletBalanceDataHandler();
+        fetchWalletTransactionsDataHandler();
+    }, [fetchWalletBalanceDataHandler,fetchWalletTransactionsDataHandler])
+    console.log(walletAddress, 'walletAddress')
     return (
         <>
             <Box
@@ -84,7 +98,7 @@ const WalletDashboardPage = () => {
                                     borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     paddingRight={"15px"}
                                 >
-                                   {walletAddress}
+                                    {walletAddress}
                                 </Text>
                                 <Text
                                     fontSize={"10px"}

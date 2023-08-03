@@ -11,8 +11,20 @@ export const getWalletBalanceData = async (address,payload) => {
   }
 };
 
+export const getWalletTransactionsData = async (address,payload) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `wallet/transactions/${address}/get`
+    );
+    return data;
+  } catch (err) {
+    return err;
+  }
+};
+
 
 
 export default {
   getWalletBalanceData,
+  getWalletTransactionsData
 };

@@ -15,21 +15,6 @@ import { fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice"
 
 
 const DefiTable = () => {
-    const searchParams = useSearchParams();
-    const dispatch = useDispatch();
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
-    const fetchWalletBalanceDataHandler = useCallback(() => {
-        const payload = {
-            blockchain: blockchainSelected
-        }
-        dispatch(fetchWalletBalanceData(searchParams.get("address"),payload));
-    }, [blockchainSelected])
-    useEffect(() => {
-        fetchWalletBalanceDataHandler();
-    }, [fetchWalletBalanceDataHandler])
-
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
     console.log(walletBalanceData, 'walletBalancedata')
 

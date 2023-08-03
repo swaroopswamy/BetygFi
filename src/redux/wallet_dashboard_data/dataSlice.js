@@ -1,5 +1,5 @@
 import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
-import { getWalletBalanceData } from "@/services/walletDashboardService";
+import { getWalletBalanceData, getWalletTransactionsData } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -9,8 +9,12 @@ export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableD
 })
 
 
-export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload) => {
-  const response = await getWalletBalanceData(payload);
+export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (address,payload) => {
+  const response = await getWalletBalanceData(address,payload);
+  return response.data;
+})
+export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (address,payload) => {
+  const response = await getWalletTransactionsData(address,payload);
   return response.data;
 })
 
@@ -29,6 +33,13 @@ const WalletDashboardDataSlice = createSlice({
       isError: false,
       isSuccess: false,
     },
+    walletTransactionsData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+
     walletAddress: null,
     blockchainType: [],
     defiArraySelected: [],
@@ -71,7 +82,24 @@ const WalletDashboardDataSlice = createSlice({
       state.walletBalanceData.isError = true;
       state.walletBalanceData.data = action.payload;
     });
-
+    builder.addCase(fetchWalletTransactionsData.fulfilled, (state, action) => {
+      state.walletTransactionsData.data = action.payload;
+      state.walletTransactionsData.isLoading = false;
+      state.walletTransactionsData.isSuccess = true;
+      state.walletTransactionsData.isError = false;
+    });
+    builder.addCase(fetchWalletTransactionsData.pending, (state, action) => {
+      state.walletTransactionsData.isLoading = true;
+      state.walletTransactionsData.isError = false;
+      state.walletTransactionsData.isSuccess = false;
+      state.walletTransactionsData.data = action.payload;
+    });
+    builder.addCase(fetchWalletTransactionsData.rejected, (state, action) => {
+      state.walletTransactionsData.isLoading = false;
+      state.walletTransactionsData.isSuccess = false;
+      state.walletTransactionsData.isError = true;
+      state.walletTransactionsData.data = action.payload;
+    });
   },
   reducers: {
     walletAddressChangedReducer: (state, action) => {
@@ -103,5 +131,5 @@ const WalletDashboardDataSlice = createSlice({
   },
 });
 
-export const { blockchainTypeChangedReducer, defiArrayChangedReducer,walletAddressChangedReducer } = WalletDashboardDataSlice.actions;
+export const { blockchainTypeChangedReducer, defiArrayChangedReducer, walletAddressChangedReducer } = WalletDashboardDataSlice.actions;
 export default WalletDashboardDataSlice.reducer;
