@@ -1,18 +1,36 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
+import { blockchainTypeChangedReducer, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchains } from "../../../util/constant";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const WalletDashboardPage = () => {
+    const searchParam = useSearchParams();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
-
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+    const walletAddress = useSelector(
+        (state) => state?.walletDashboardTableData?.walletAddress
+    );
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+    };
+    const router = useRouter();
+    useEffect(() => {
+        console.log(searchParam.get("address"), 'pathname')
+        dispatch(walletAddressChangedReducer(searchParam.get("address")))
+    }, [])
+    console.log(walletAddress,'walletAddress')
     return (
         <>
             <Box
@@ -66,7 +84,7 @@ const WalletDashboardPage = () => {
                                     borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     paddingRight={"15px"}
                                 >
-                                    0x8b4d8443a0229349a98  92d4f7cbe89ef5f843f72F
+                                   {walletAddress}
                                 </Text>
                                 <Text
                                     fontSize={"10px"}
@@ -153,17 +171,18 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    _light={{ bgColor: "#F0F0F5", color: "#202020" }}
-                                    _dark={{ bgColor: "#202020", color: "#FFFFFF" }}
+                                    bgColor={tabIndex === 0 ?
+                                        (colorMode === 'light' ? "#202020" : "#FFFFFF") :
+                                        (colorMode === 'light' ? "#F0F0F5" : "#202020")
+                                    }
                                 >
                                     <Text
                                         fontSize={"10px"}
-                                        _dark={{
-                                            color: tabIndex === 0 ? "#FFFFFF" : "#000000",
-                                            bgColor: tabIndex === 0 ? "#000000" : "#FFFFFF",
-                                        }}
+                                        color={tabIndex === 0 ?
+                                            (colorMode === 'light' ? "#FFFFFF" : "#202020") :
+                                            (colorMode === 'light' ? "#202020" : "#FFFFFF")
+                                        }
                                         fontWeight={tabIndex === 0 ? "700" : "400"}
-                                        _light={{ color: "#FFFFFF", bgColor: "#000000" }}
                                         mr="44px"
                                     >
                                         Portfolio
@@ -227,23 +246,114 @@ const WalletDashboardPage = () => {
                                 </Box>
                             </Tab>
                         </TabList>
-
-                        <TabPanels
+                        <Box
                             bgColor={useColorModeValue("#F0F0F5", "#191919")}
                             padding={"32px"}
                         >
-                            <TabPanel
-                                p="0px"
+                            <Box
+                                display={"flex"}
+                                flexDirection={"column"}
                             >
-                                <PortfolioPanelComponent />
-                            </TabPanel>
-                            <TabPanel>
-                                <WalletAnalyticsPanel />
-                            </TabPanel>
-                            <TabPanel>
-                                <TransactionPanelComponent />
-                            </TabPanel>
-                        </TabPanels>
+                                <Box
+                                    w={"100%"}
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
+                                    pb="14px"
+                                >
+                                    <Box
+                                        position={"relative"}
+                                        cursor={"pointer"}
+                                        fontSize={"10px"}
+                                        fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
+                                        lineHeight={"20px"}
+                                        color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+                                        _after={
+                                            blockchainSelected.length === 0 && {
+                                                position: "absolute",
+                                                content: '""',
+                                                bottom: "-14px",
+                                                left: 0,
+                                                width: "100%",
+                                                height: "1px",
+                                                bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+
+                                            }
+                                        }
+                                        onClick={() => {
+                                            BlockchainTypeHandler("All");
+                                        }}
+                                        mr={"18px"}
+                                    >
+                                        ALL
+                                    </Box>
+                                    {blockchains.map((item, i) => {
+                                        return (
+                                            <Box
+                                                position={"relative"}
+                                                cursor={"pointer"}
+                                                key={i}
+                                                _after={
+                                                    blockchainSelected.includes(item) && {
+                                                        position: "absolute",
+                                                        content: '""',
+                                                        bottom: "-14px",
+                                                        left: 0,
+                                                        width: "100%",
+                                                        height: "1px",
+                                                        bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                                    }
+                                                }
+                                                onClick={() => {
+                                                    BlockchainTypeHandler(item);
+                                                }}
+                                                mr={"18px"}
+                                                display={"flex"}
+                                                alignItems={"center"}
+                                            >
+                                                <Image
+                                                    w={"20px"}
+                                                    h={"20px"}
+                                                    mr={"11px"}
+                                                    src={`/icons/${item}_sm_icon.svg`}
+                                                    alt=""
+                                                ></Image>
+                                                <Text
+                                                    fontSize={"10px"}
+                                                    fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
+                                                    lineHeight={"20px"}
+                                                    color={colorMode === 'light' ?
+                                                        blockchainSelected.includes(item) ? "#191919" : "#191919"
+                                                        :
+                                                        blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
+                                                    }
+
+                                                >
+                                                    {item}
+                                                </Text>
+                                            </Box>
+                                        );
+                                    })}
+                                </Box>
+                            </Box>
+                            <TabPanels
+
+                            >
+                                <TabPanel
+                                    p="0px"
+                                >
+                                    <PortfolioPanelComponent />
+                                </TabPanel>
+                                <TabPanel>
+                                    <WalletAnalyticsPanel />
+                                </TabPanel>
+                                <TabPanel>
+                                    <TransactionPanelComponent />
+                                </TabPanel>
+
+                            </TabPanels>
+                        </Box>
+
                     </Tabs>
                 </Box>
             </Box>

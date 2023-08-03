@@ -1,23 +1,15 @@
 import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, ColorMode, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer, defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { blockchains } from '../../../util/constant';
+import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import DefiTable from "./DefiTable";
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-  const blockchainSelected = useSelector(
-    (state) => state?.walletDashboardTableData?.blockchainType
-  );
+
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
   );
-  console.log(blockchainSelected, 'blockchain')
-
-  const BlockchainTypeHandler = (type) => {
-    dispatch(blockchainTypeChangedReducer(type));
-  };
   const DefiArrayHandler = (type) => {
     dispatch(defiArrayChangedReducer(type));
   };
@@ -37,86 +29,6 @@ const PortfolioPanelComponent = () => {
           display={"flex"}
           alignItems={"center"}
         >
-          <Box
-            w={"100%"}
-            display={"flex"}
-            alignItems={"center"}
-            borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
-            pb="14px"
-          >
-            <Box
-              position={"relative"}
-              cursor={"pointer"}
-              fontSize={"10px"}
-              fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
-              lineHeight={"20px"}
-              color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-              _after={
-                blockchainSelected.length === 0 && {
-                  position: "absolute",
-                  content: '""',
-                  bottom: "-14px",
-                  left: 0,
-                  width: "100%",
-                  height: "1px",
-                  _light: { bgColor: "#191919" },
-                  _dark: { bgColor: "#FFFFFF" }
-                }
-               }
-              onClick={() => {
-                BlockchainTypeHandler("All");
-              }}
-              mr={"18px"}
-            >
-              ALL
-            </Box>
-            {blockchains.map((item, i) => {
-              return (
-                <Box
-                  position={"relative"}
-                  cursor={"pointer"}
-                  key={i}
-                  _after={
-                    blockchainSelected.includes(item) && {
-                      position: "absolute",
-                      content: '""',
-                      bottom: "-14px",
-                      left: 0,
-                      width: "100%",
-                      height: "1px",
-                      _light: { bgColor: "#191919" },
-                      _dark: { bgColor: "#FFFFFF" }
-                    }
-                  }
-                  onClick={() => {
-                    BlockchainTypeHandler(item);
-                  }}
-                  mr={"18px"}
-                  display={"flex"}
-                  alignItems={"center"}
-                >
-                  <Image
-                    w={"20px"}
-                    h={"20px"}
-                    mr={"11px"}
-                    src={`/icons/${item}_sm_icon.svg`}
-                    alt=""
-                  ></Image>
-                  <Text
-                    fontSize={"10px"}
-                    fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
-                    lineHeight={"20px"}
-                    _dark={{ color: "#FFFFFF" }}
-                    _light={{ color: "#3A3A3A" }}
-                  >
-                    {item}
-                  </Text>
-                </Box>
-              );
-            })}
-          </Box>
-
-
         </Box>
         <Box
           mt="25px"
@@ -139,7 +51,7 @@ const PortfolioPanelComponent = () => {
               <Box
                 textAlign={"center"}
                 p="8px"
-                bgColor={defiSelected.length === 0 ? colorMode === 'light' ?("#E3E4E8"):("#191919") : colorMode === 'light' ?("#E0E0E0"):("#202020")}
+                bgColor={defiSelected.length === 0 ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#E0E0E0") : ("#202020")}
                 onClick={() => {
                   DefiArrayHandler('All');
                 }}
@@ -152,7 +64,7 @@ const PortfolioPanelComponent = () => {
                   fontSize={"10px"}
                   fontWeight={defiSelected.length === 0 ? "600" : "400"}
                   lineHeight={"20px"}
-                  color={defiSelected.length === 0 ? colorMode === 'light' ?("#16171B"):("#FFFFFF") : colorMode === 'light' ?("#000000"):("#FFFFFF")}
+                  color={defiSelected.length === 0 ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
 
                 >
                   All
@@ -165,21 +77,21 @@ const PortfolioPanelComponent = () => {
                       key={i}
                       textAlign={"center"}
                       p="8px"
-                      bgColor={defiSelected.includes(item) ? colorMode === 'light' ?("#E3E4E8"):("#191919") : colorMode === 'light' ?("#FFFFFF"):("#202020")}
+                      bgColor={defiSelected.includes(item) ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#FFFFFF") : ("#202020")}
                       onClick={() => {
                         DefiArrayHandler(item);
                       }}
                       opacity={defiSelected.includes(item) ? "1" : "0.5"}
                       mr={"10px"}
                       borderRadius={"2px"}
-                      _light={{border : "1px solid #979AA5"}}
-                      _dar={{border : "1px solid #787878"}}
+                      _light={{ border: "1px solid #979AA5" }}
+                      _dar={{ border: "1px solid #787878" }}
                     >
                       <Text
                         fontSize={"10px"}
-                        fontWeight={blockchainSelected.includes(item) ? "600" : "400"}
+                        fontWeight={defiSelected.includes(item) ? "600" : "400"}
                         lineHeight={"20px"}
-                        color={blockchainSelected.includes(item) ? colorMode === 'light' ?("#16171B"):("#FFFFFF") : colorMode === 'light' ?("#000000"):("#FFFFFF")}
+                        color={defiSelected.includes(item) ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
 
                       >
                         {item}
