@@ -895,20 +895,12 @@ const WalletAnalyticsPanel = () => {
 
                 {/* <InfoOutlineIcon/> */}
 
-                <Image width={"4"}
-
-                  height={"4"}
-
+                <Image width={"12px"}
+                  height={"12px"}
                   flexShrink={"0"}
-
-                  paddingLeft={"2px"}
-
                   mt={"20px"}
-
-                  alt='logo'
-
-                  src={colorMode === 'light' ? ("/images/icon-i-light.png") : ("/images/icon-i-dark.png")}>
-
+                  alt=''
+                  src="/images/Frame.svg">
                 </Image>
 
 
@@ -959,22 +951,26 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text paddingRight={"5px"}>Asset Name</Text>
+                      <Text paddingRight={"5px"}
+                            _light={{ color: "#434347" }}
+                            _dark={{ color: "#A8ADBD" }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}>Asset Name</Text>
 
 
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
@@ -987,20 +983,24 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex >
 
-                      <Text paddingRight={"5px"}>Value</Text>
+                      <Text paddingRight={"5px"}
+                            _light={{ color: "#434347" }}
+                            _dark={{ color: "#A8ADBD" }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}>Value</Text>
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
@@ -1013,20 +1013,23 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text >Share</Text>
+                      <Text _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Share</Text>
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
@@ -1527,20 +1530,12 @@ const WalletAnalyticsPanel = () => {
 
                 {/* <InfoOutlineIcon/> */}
 
-                <Image width={"4"}
-
-                  height={"4"}
-
+                <Image width={"12px"}
+                  height={"12px"}
                   flexShrink={"0"}
-
-                  paddingLeft={"2px"}
-
                   mt={"20px"}
-
-                  alt='logo'
-
-                  src={colorMode === 'light' ? ("/images/icon-i-light.png") : ("/images/icon-i-dark.png")}>
-
+                  alt=''
+                  src="/images/Frame.svg">
                 </Image>
 
 
@@ -1573,7 +1568,7 @@ const WalletAnalyticsPanel = () => {
                   bg: "#F5F5F7"
                 }}
 
-                fontSize={"10px"}
+                // fontSize={"10px"}
 
                 fontWeight={"400"}
 
@@ -1591,22 +1586,26 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text paddingRight={"5px"}>Asset Name</Text>
+                      <Text paddingRight={"5px"} 
+                            _light={{ color: "#434347" }}
+                            _dark={{ color: "#A8ADBD" }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}>Asset Name</Text>
 
 
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
@@ -1619,20 +1618,24 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text paddingRight={"5px"}>Value</Text>
+                      <Text paddingRight={"5px"}
+                            _light={{ color: "#434347" }}
+                            _dark={{ color: "#A8ADBD" }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}>Value</Text>
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
@@ -1645,20 +1648,23 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text >Share</Text>
+                      <Text _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Share</Text>
 
                       <>
 
-                        <Image width={5}
-
-                          height={5}
-
-                          alt='log'
-
-                          src={colorMode === 'light' ? ("/images/frame-light.png") : ("/images/frame-dark.png")}>
-
+                      <Image width={"12px"}
+                          height={"12px"}
+                          flexShrink={"0"}
+                          alt=''
+                          mt={"5px"}
+                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
-
                       </>
 
                     </Flex>
