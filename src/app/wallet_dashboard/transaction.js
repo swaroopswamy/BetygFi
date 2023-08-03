@@ -236,15 +236,20 @@ const TransactionPanelComponent = () => {
                           letterSpacing={"1px"}
                           ml="6px"
                         >
-                          {item?.tokenName}
+                          {item?.tokenSymbol}
                         </Text>
-                        {/*  <Text opacity={"0.6000000238418579"}
+                        <Text opacity={"0.6000000238418579"}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
                           ml="6px"
-                        >49.11%</Text> */}
+                        >
+                          {" "}{millify(item?.value, {
+                            precision: 2,
+                            locales: "en-US"
+                          })}
+                        </Text>
                       </Box>
                     </Td>
 
@@ -282,10 +287,10 @@ const TransactionPanelComponent = () => {
                       >
                         <Text
                           _dark={{
-                            color:'#FFF'
+                            color: '#FFF'
                           }}
                           _light={{
-                            color:"#16171B"
+                            color: "#16171B"
                           }}
                           fontSize={"10px"}
                           fontWeight={"400"}
@@ -313,10 +318,7 @@ const TransactionPanelComponent = () => {
                           ml="4px"
                           color={value1 < 0 ? "#EF1E1E" : "#245F00"}
                         >
-                          ${" "}{millify(item?.value, {
-                            precision: 2,
-                            locales: "en-US"
-                          })}
+                          -
                         </Text>
                       </Box>
                     </Td>
