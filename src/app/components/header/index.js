@@ -19,17 +19,29 @@ import {
   Text,
   HStack,
   VStack,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Image,
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
+import { useRouter } from 'next/navigation'
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
+
+  const router = useRouter();
   const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
 
   const { colorMode, toggleColorMode } = useColorMode();
+  const handleSearchByWalletAddress = (e) => {
+    if (e.key === 'Enter') {
+      router.push(`/wallet_dashboard?address=${e.target.value}`)
+    }
+  }
   return (
     <>
       <Flex
@@ -58,8 +70,38 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         >
           Log
         </Text>
+        <InputGroup w="100%">
+          <InputLeftElement pointerEvents='none'>
+            <Image
+              src="/images/search_icon.png"
+              w="20px"
+              h="20px"
+              alt="search_icon"
+            />
+          </InputLeftElement>
+          <Input
+            border="none"
+            _selected={{
+              outline: "none",
+              border: "none"
+            }}
+            _focusVisible={{
+              outline: "none",
+              border: "none"
+            }}
+            bgColor={"transparent"}
+            color={useColorModeValue("#16171B", "#A8ADBD")}
+            fontSize={"11px"}
+            fontWeight={400}
+            w="100%"
+            placeholder="Search Wallet Address"
+            onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
 
+          ></Input>
+        </InputGroup>
         <HStack spacing={{ base: "0", md: "6" }}>
+
+
           <div className="controller-row">
             <label className="switch">
               <input id="toggler" type="checkbox" checked={colorMode !== "light"} onChange={(e) => {

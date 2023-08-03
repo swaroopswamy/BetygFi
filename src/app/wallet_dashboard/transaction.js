@@ -1,5 +1,5 @@
 "use client"
-import { Container, Table, Thead,Text, Tbody,useColorModeValue,Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex } from '@chakra-ui/react'
+import { Container, Table, Thead,Text, Tbody,useColorModeValue,Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image } from '@chakra-ui/react'
 
 const TransactionPanelComponent = () => {
 
@@ -44,11 +44,11 @@ const TransactionPanelComponent = () => {
               </Text>
              
               <>
-              <img  width={6}
-                    height={6}
+              <Image  width={2}
+                    height={2}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png","/images/updown-triangleicon-dark.png")}>
-              </img>
+              </Image>
               </>
               </Box>
             </Th>
@@ -67,11 +67,11 @@ const TransactionPanelComponent = () => {
               ACCOUNT/TOKEN
                </Text>
               <>
-              <img  width={8}
-                    height={8}
+              <Image  width={2}
+                    height={2}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png","/images/updown-triangleicon-dark.png")}>
-              </img>
+              </Image>
               </>
               </Box>
             </Th>
@@ -113,12 +113,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={20}
-                      height={20}
+                    <Image
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t1.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Box>
@@ -150,12 +150,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/recieved.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text
@@ -177,12 +177,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text
@@ -248,7 +248,7 @@ const TransactionPanelComponent = () => {
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
-                    ml="6px"
+                    ml="4px"
                     color={value1 < 0 ? "#EF1E1E" : "#245F00"}
                   >
                      {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} 
@@ -267,12 +267,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={20}
-                      height={20}
+                    <Image
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t2.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Box>
@@ -304,12 +304,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/deposit.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text
@@ -331,12 +331,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text
@@ -402,7 +402,7 @@ const TransactionPanelComponent = () => {
                     fontSize={"10px"}
                     fontWeight={"600"}
                     letterSpacing={"1px"}
-                    ml="6px"
+                    ml="4px"
                     color={value2 < 0 ? "#EF1E1E" : "#245F00"}
                   >
                     {value2 >= 0 ? `+${value2} USD` : `${value2} USD`} 
@@ -423,12 +423,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={20}
-                      height={20}
+                    <Image
+                      width={5}
+                      height={5}
                       alt='logo'
                       src="/images/t3.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Box>
@@ -460,12 +460,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/sent.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text
@@ -487,12 +487,12 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                 >
                   <>
-                    <img
-                      width={12}
-                      height={12}
+                    <Image
+                      width={4}
+                      height={4}
                       alt='logo'
                       src="/images/polygon-matic.png"
-                    ></img>
+                    ></Image>
                   </>
 
                   <Text

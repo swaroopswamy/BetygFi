@@ -4,15 +4,29 @@ import {
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image
 } from "@chakra-ui/react";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "is-empty";
 
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
+import { useSearchParams } from "next/navigation";
+import { fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
 
 
 const DefiTable = () => {
+    const searchParams = useSearchParams();
+    const dispatch = useDispatch();
+    const fetchWalletBalanceDataHandler = useCallback(() => {
+        dispatch(fetchWalletBalanceData(searchParams.get("address")));
+    }, [])
+    useEffect(() => {
+        fetchWalletBalanceDataHandler();
+    }, [fetchWalletBalanceDataHandler])
+
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    console.log(walletBalanceData, 'walletBalancedata')
+
     return (
         <>
             <Table variant="simple" key={1}>
@@ -146,20 +160,25 @@ const DefiTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {/*  {tableData.DefiRankingsTableData.isSuccess &&
-                        tableData.DefiRankingsTableData?.data.data.map((item, i) => {
+                    {walletBalanceData?.isSuccess &&
+                        walletBalanceData?.data !== undefined && walletBalanceData?.data.map((item, i) => {
                             return (
                                 <>
                                     <Tr key={i + 1}>
                                         <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                         >
-                                            {item?.Rank}
+                                            {item?.Symbol}
                                         </Td>
-                                        <Td
+                                        {/* <Td
                                         >
                                             <Box
                                                 display={"flex"}
@@ -209,62 +228,64 @@ const DefiTable = () => {
                                                     {item.name}
                                                 </Text>
                                             </Box>
-                                        </Td>
+                                        </Td> */}
                                         <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                         >
-                                            {item.category}
+                                            {item.price === undefined ? '-' : item?.price}
                                         </Td>
                                         <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                         >
-                                            {!isEmpty(item.price)
+                                            {!isEmpty(item.Balance)
                                                 ?
-                                                (item.price.toFixed(2)).toLocaleString('en-US', {
+                                                (item.Balance.toFixed(2)).toLocaleString('en-US', {
                                                     style: 'currency',
                                                     currency: 'USD'
                                                 }) + " USD"
                                                 : 0}
                                         </Td>
                                         <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                         >
                                             {
-                                                (Math.trunc(item.tvl)).toLocaleString('en-US', {
+                                                (Math.trunc(item.value)).toLocaleString('en-US', {
                                                     style: 'currency',
                                                     currency: 'USD'
                                                 })}
                                         </Td>
+
                                         <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {!isEmpty(item.mcap) ? `${(Math.trunc(item.tvl)).toLocaleString('en-US', {
-                                                style: 'currency',
-                                                currency: 'USD'
-                                            })}` : "NA"}
-                                        </Td>
-                                        <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {!isEmpty(item.mcap) ? (item.mcap / item.tvl).toFixed(2) : "NA"}
-                                        </Td>
-                                        <Td
-                                            color={useColorModeValue("#16171B", "#FFF")}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
@@ -275,28 +296,14 @@ const DefiTable = () => {
                                                 alignItems={"center"}
                                                 h="100%"
                                             >
-                                                <Box
-                                                    w="12px"
-                                                    h="9px"
-                                                    borderRadius={"30px"}
-                                                    mr={"4px"}
-                                                    bgColor={
-                                                        item.safety_score >= 75
-                                                            ? "#9ADA8A"
-                                                            : item.safety_score < 75 && item.safety_score >= 50
-                                                                ? "#FFD976"
-                                                                : item.safety_score < 50 && item.safety_score >= 25
-                                                                    ? "#FFB287"
-                                                                    : "#FF7373"
-                                                    }
-                                                ></Box>{" "}
-                                                {item.safety_score.toFixed(0)}
+
+                                                {/*  {item.safety_score.toFixed(0)} */} -
                                             </Box>
                                         </Td>
                                     </Tr>
                                 </>
                             );
-                        })} */}
+                        })}
                 </Tbody>
             </Table>
         </>
