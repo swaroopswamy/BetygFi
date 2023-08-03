@@ -4,6 +4,9 @@ import { TriangleUpIcon } from '@chakra-ui/icons'
 
 
 const Approach = () => {
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <>
       {
@@ -280,14 +283,27 @@ const Approach = () => {
                     to continuously strive to enable actionable insights for stakeholders in the decentralized
                     financial ecosystem.
                   </Text>
-                  <Box>
-                    <Button size='lg'
-                      colorScheme='whiteAlpha'
-                      ml={"40px"}
-                      mt={"40px"}>
-                      <Image src="/images/Backtotop.svg" width={"91px"} alt=""></Image>
-                    </Button>
-                  </Box>
+                  
+
+                  <Box  width="91px"  height="60px">
+     <Button>
+      <img src="/images/Backtotop.svg" alt="" 
+                   component="button"
+                   onClick={handleScrollToTop}
+                   id="myBtn"
+                   title="Go to top"
+                   width="91px"
+                   height="60px"
+                   flexShrink="0"
+                   fill="#202020"
+                   strokeWidth="1px"
+                   style={{
+                     position: 'fixed',
+                     bottom: '20px',
+                     right: '20px',
+                     zIndex: '9999'}}/></Button> 
+    </Box>
+ 
                 </Flex>
               </Box>
             </Box>
