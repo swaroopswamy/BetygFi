@@ -28,28 +28,28 @@ import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { useState } from "react";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
-
+  const searchParams = useSearchParams();
   const router = useRouter();
   const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
+  const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
       dispatch(walletAddressChangedReducer(e.target.value));
       router.push(`/wallet_dashboard?address=${e.target.value}`)
-    
+      setSearchWalletAddressValue(e.target.value)
     }
+    setSearchWalletAddressValue(e.target.value)
   }
-  const walletAddress = useSelector(
-    (state) => state?.walletDashboardTableData?.walletAddress
-);
-  
+
   return (
     <>
       <Flex
@@ -88,6 +88,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             />
           </InputLeftElement>
           <Input
+            type="text"
             border="none"
             _selected={{
               outline: "none",
@@ -97,7 +98,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               outline: "none",
               border: "none"
             }}
-            value={walletAddress}
+            value={searchWalletAddressValue}
             bgColor={"transparent"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
             fontSize={"11px"}
@@ -105,6 +106,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             w="100%"
             placeholder="Search Wallet Address"
             onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
+            onChange={(e) => { handleSearchByWalletAddress(e) }}
 
           ></Input>
         </InputGroup>
