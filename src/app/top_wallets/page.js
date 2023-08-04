@@ -1,28 +1,32 @@
 "use client"
 
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import { Box, Input, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
+import WalletTable from "./WalletTable.js"
 
 const WalletDashboardPage = () => {
-    const searchParam = useSearchParams();
     const { colorMode } = useColorMode();
-    const dispatch = useDispatch();
-    const [tabIndex, setTabIndex] = useState(0)
     const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
+        (state) => state?.walletDashboardTableData?.defiArraySelected
     );
-    const walletAddress = useSelector(
-        (state) => state?.walletDashboardTableData?.walletAddress
-    );
-    const BlockchainTypeHandler = (type) => {
-        dispatch(blockchainTypeChangedReducer(type));
+
+    const blockchainArrayHandler = (type) => {
+        dispatch(defiArrayChangedReducer(type));
     };
+
+    const blockchainArray = [
+        "Ethereum",
+        "Tron",
+        "BSC",
+        "Arbitrum",
+        "Polygon"
+    ];
 
     return (
         <>
-            {/* <Box
+            <Box
                 bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 display={"flex"}
                 flexDirection={"column"}
@@ -30,7 +34,7 @@ const WalletDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={"38px 30px 50px 30px"}
+                    padding={"38px 30px 5px 30px"}
 
                 >
                     <Box
@@ -38,263 +42,141 @@ const WalletDashboardPage = () => {
                         alignItems={"center"}
                     >
                         <Box
-                            marginRight={"22px"}
-                        >
-                            <Image
-                                w="47px"
-                                h="47px"
-                                borderRadius={"50%"}
-                                src="/images/basic_profile.png"
-                                alt="proifile_img"
-                            />
-                        </Box>
-                        <Box
                             display={"flex"}
                             flexDirection={"column"}
                         >
                             <Text
                                 fontSize={"24px"}
-                                fontWeight={"400"}
+                                fontWeight={"600"}
                                 lineHeight={"20px"}
                                 color={useColorModeValue("#191919", "#FFF")}
                                 letterSpacing={"2.4px"}
                             >
-                                Illuvium
+                                TOP WALLETS
                             </Text>
+
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                                 mt={"13px"}
                             >
                                 <Text
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
-                                    color={useColorModeValue("#000000", "#A8ADBD")}
-                                    borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
-                                    paddingRight={"15px"}
-                                >
-                                    {walletAddress}
-                                </Text>
-                                <Text
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    lineHeight={"20px"}
-                                    color={useColorModeValue("#3A3A3A", "#A8ADBD")}
-                                    paddingLeft={"15px"}
-                                    marginRight={"13px"}
-                                >
-                                    AGE
-                                </Text>
-                                <Text
-                                    fontSize={"10px"}
-                                    fontWeight={"500"}
                                     lineHeight={"20px"}
                                     color={useColorModeValue("#191919", "#FFF")}
 
                                 >
-                                    850 Days
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere felis nulla, in luctus eros condimentum nec. In eget justo id odio finibus rhoncus. Nullam porttitor sapien diam, sit amet egestas mauris egestas non. Sed sapien augue, dignissim at suscipit ac, egestas quis nisl. Aenean a malesuada nisi, nec aliquet orci. In vestibulum orci eget ultrices iaculis.
                                 </Text>
                             </Box>
-                        </Box>
-                    </Box>
-                    <Box
-                        position={"relative"}
-                    >
-                        <Box
-                            position={"absolute"}
-                            bottom={0}
-                            right={0}
-                            display={"flex"}
-                            flexDirection={"column"}
-                        >
-                            <Text
-                                fontSize={"12px"}
-                                fontWeight={"300"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
 
-                            >
-                                Net Worth
-                            </Text>
-                            <Text
-                                fontSize={"24px"}
-                                fontWeight={"400"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                letterSpacing={"2.4px"}
-                            //  mt="15px"
-                            >
-                                $4,284,899
-                            </Text>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
-                                mt="6px"
+                                mt={"26px"}
                             >
-                                <Text
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
-                                >
-                                    Last Update
-                                </Text>
-                                <Text
-                                    fontSize={"10px"}
-                                    fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
-                                >
-                                    3 mins ago
-                                </Text>
+                                <Box>
+                                    <Text
+                                        fontSize={"10px"}
+                                        fontWeight={"400"}
+                                        lineHeight={"15px"}
+                                        color={useColorModeValue("#191919", "#FFF")}
+                                        letterSpacing={"2.4px"}
+                                    >
+                                        Select the blockchains you'd like to analyze
+                                    </Text>
+                                </Box>
                             </Box>
-                        </Box>
-                    </Box>
-                </Box>
-                <Box>
-                    <Tabs onChange={(index) => setTabIndex(index)} >
-                        <TabList
-                            paddingLeft="30px"
-                        >
-                            <Tab
-                                padding="0"
-                            >
-                                <Box
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 0 ?
-                                        (colorMode === 'light' ? "#202020" : "#FFFFFF") :
-                                        (colorMode === 'light' ? "#F0F0F5" : "#202020")
-                                    }
-                                >
-                                    <Text
-                                        fontSize={"10px"}
-                                        color={tabIndex === 0 ?
-                                            (colorMode === 'light' ? "#FFFFFF" : "#202020") :
-                                            (colorMode === 'light' ? "#202020" : "#FFFFFF")
-                                        }
-                                        fontWeight={tabIndex === 0 ? "700" : "400"}
-                                        mr="44px"
-                                    >
-                                        Portfolio
-                                    </Text>
-                                    <Image
-                                        w="14px"
-                                        h="14px"
-                                        alt="icon"
-                                        src={tabIndex === 0 ? colorMode === 'light' ? ('/images/portfolio_white.png') : ('/images/portfolio_black.png') : colorMode === 'light' ? ('/images/portfolio_black.png') : ('/images/portfolio_white.png')}
-                                    ></Image>
-                                </Box>
-                            </Tab>
-                            <Tab
-                                padding="0"
-                            >
-                                <Box
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 1 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
-                                >
-                                    <Text
-                                        fontSize={"10px"}
-                                        fontWeight={tabIndex === 1 ? "700" : "400"}
-                                        color={tabIndex === 1 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                                        mr="44px"
-                                    >
-                                        Wallet Analytics
-                                    </Text>
-                                    <Image
-                                        w="14px"
-                                        h="14px"
-                                        alt="icon"
-                                        src={tabIndex === 1 ? colorMode === 'light' ? ('/images/wallet_analytics_white.png') : ('/images/wallet_analytics_black.png') : colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
-                                    ></Image>
-                                </Box>
-                            </Tab>
-                            <Tab
-                                padding="0"
-                            >
-                                <Box
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 2 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
-                                >
-                                    <Text
-                                        fontSize={"10px"}
-                                        fontWeight={tabIndex === 2 ? "700" : "400"}
-                                        color={tabIndex === 2 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                                        mr="44px"
-                                    >
-                                        Transactions
-                                    </Text>
-                                    <Image
-                                        w="14px"
-                                        h="14px"
-                                        alt="icon"
-                                        src={tabIndex === 2 ? colorMode === 'light' ? ('/images/transactions_white.png') : ('/images/transactions_black.png') : colorMode === 'light' ? ('/images/transactions_black.png') : ('/images/transactions_white.png')}
-                                    ></Image>
-                                </Box>
-                            </Tab>
-                        </TabList>
-                        <Box
-                            bgColor={useColorModeValue("#F0F0F5", "#191919")}
-                            padding={"32px"}
-                        >
+
                             <Box
                                 display={"flex"}
-                                flexDirection={"column"}
+                                justifyContent={"space-between"}
+                                alignItems={"center"}
+                                py={"18px"}
+                                px="26px"
                             >
                                 <Box
-                                    w={"100%"}
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
-                                    pb="14px"
-                                >
-                                    <Box
-                                        position={"relative"}
-                                        cursor={"pointer"}
-                                        fontSize={"10px"}
-                                        fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
-                                        lineHeight={"20px"}
-                                        color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-                                        _after={
-                                            blockchainSelected.length === 0 && {
-                                                position: "absolute",
-                                                content: '""',
-                                                bottom: "-14px",
-                                                left: 0,
-                                                width: "100%",
-                                                height: "1px",
-                                                bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                display={"flex"}
+                                justifyContent={"flex-start"}
+                                alignItems={"center"}
 
-                                            }
-                                        }
-                                        onClick={() => {
-                                            BlockchainTypeHandler("All");
-                                        }}
-                                        mr={"18px"}
+                                >
+                                <Box
+                                    textAlign={"center"}
+                                    p="8px"
+                                    bgColor={blockchainSelected.length === 0 ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#E0E0E0") : ("#202020")}
+                                    onClick={() => {
+                                    blockchainArrayHandler('All');
+                                    }}
+                                    borderRadius={"2px"}
+                                    opacity={blockchainSelected.length !== 0 ? "0.5" : "1"}
+                                    mr={"10px"}
+                                    border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
+                                >
+                                    <Text
+                                    fontSize={"10px"}
+                                    fontWeight={blockchainSelected.length === 0 ? "600" : "400"}
+                                    lineHeight={"20px"}
+                                    color={blockchainSelected.length === 0 ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+
                                     >
-                                        ALL
-                                    </Box>
+                                    All
+                                    </Text>
                                 </Box>
+                                {blockchainArray.map((item, i) => {
+                                    return (
+                                    <>
+                                        <Box
+                                        key={i}
+                                        textAlign={"center"}
+                                        p="8px"
+                                        bgColor={blockchainSelected.includes(item) ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#FFFFFF") : ("#202020")}
+                                        onClick={() => {
+                                            blockchainArrayHandler(item);
+                                        }}
+                                        opacity={blockchainSelected.includes(item) ? "1" : "0.5"}
+                                        mr={"10px"}
+                                        borderRadius={"2px"}
+                                        _light={{ border: "1px solid #979AA5" }}
+                                        _dar={{ border: "1px solid #787878" }}
+                                        >
+                                        <Text
+                                            fontSize={"10px"}
+                                            fontWeight={blockchainSelected.includes(item) ? "600" : "400"}
+                                            lineHeight={"20px"}
+                                            color={blockchainSelected.includes(item) ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+
+                                        >
+                                            {item}
+                                        </Text>
+                                        </Box>
+
+                                    </>
+                                    )
+                                })}
+                                </Box>
+
                             </Box>
-                            <TabPanels
 
-                            >
-                                <TabPanel
-                                    p="0px"
-                                >
-                                </TabPanel>
-                                <TabPanel>
-                                </TabPanel>
-                                <TabPanel>
-                                </TabPanel>
-
-                            </TabPanels>
                         </Box>
 
-                    </Tabs>
+                        
+                    </Box>
+
                 </Box>
-            </Box> */}
+
+                <Box
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    padding={"5px 30px 50px 30px"}
+                >
+
+                    <WalletTable />
+
+                </Box>
+
+            </Box>
         </>
     );
 };
