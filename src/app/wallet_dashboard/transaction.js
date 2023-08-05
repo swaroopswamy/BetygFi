@@ -1,5 +1,8 @@
 "use client"
-import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image } from '@chakra-ui/react'
+import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image, moment } from '@chakra-ui/react'
+import isEmpty from 'is-empty';
+import millify from 'millify';
+import moment from 'moment/moment';
 import { useSelector } from 'react-redux';
 
 const TransactionPanelComponent = () => {
@@ -8,6 +11,10 @@ const TransactionPanelComponent = () => {
   const value2 = "200";
   const value3 = "-300";
   const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
+  const walletAddress = useSelector(
+    (state) => state?.walletDashboardTableData?.walletAddress
+  );
+  console.log('walletadd', walletTransactionsData)
 
   return (
     <>
@@ -113,7 +120,7 @@ const TransactionPanelComponent = () => {
             walletTransactionsData?.data?.map((item, i) => {
               return (
                 <>
-                  <Tr 
+                  <Tr
                     key={i}
                   >
                     <Td>
@@ -122,23 +129,29 @@ const TransactionPanelComponent = () => {
                         alignItems={"center"}
                       >
                         <>
-                          <Image
+                          {/* <Image
                             width={5}
                             height={5}
                             alt='logo'
                             src="/images/t1.png"
-                          ></Image>
+                          ></Image> */}
                         </>
 
-                        <Box>
+                        <Box
+
+                        >
                           <Text
                             color={useColorModeValue("#16171B", "#FFF")}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
                             ml="6px"
+                            w="95px"
+                            overflow=" hidden"
+                            textOverflow="ellipsis"
+                            whiteSpace="nowrap"
                           >
-                            0x8b4d84......43f72
+                            {walletAddress}
                           </Text>
                           <Text opacity={"0.6000000238418579"}
                             color={useColorModeValue("#16171B", "#FFF")}
@@ -146,25 +159,26 @@ const TransactionPanelComponent = () => {
                             fontWeight={"400"}
                             letterSpacing={"1px"}
                             ml="6px"
-                          >11th May 2023</Text>
+                          >
+                            {
+                              moment.unix(item.timeStamp).format('Do MMM YYYY')
+                            }
+                          </Text>
                         </Box>
                       </Box>
-
                     </Td>
-
-
                     <Td>
                       <Box
                         display={"flex"}
                         alignItems={"center"}
                       >
                         <>
-                          <Image
+                          {/*  <Image
                             width={4}
                             height={4}
                             alt='logo'
                             src="/images/recieved.png"
-                          ></Image>
+                          ></Image> */}
                         </>
 
                         <Text
@@ -174,7 +188,7 @@ const TransactionPanelComponent = () => {
                           letterSpacing={"1px"}
                           ml="6px"
                         >
-                          Received
+                          -
                         </Text>
                       </Box>
                     </Td>
@@ -186,12 +200,12 @@ const TransactionPanelComponent = () => {
                         alignItems={"center"}
                       >
                         <>
-                          <Image
+                          {/*  <Image
                             width={4}
                             height={4}
                             alt='logo'
                             src="/images/polygon-matic.png"
-                          ></Image>
+                          ></Image> */}
                         </>
 
                         <Text
@@ -201,7 +215,7 @@ const TransactionPanelComponent = () => {
                           letterSpacing={"1px"}
                           ml="6px"
                         >
-                          MATIC
+                          {item?.tokenSymbol}
                         </Text>
                         <Text opacity={"0.6000000238418579"}
                           color={useColorModeValue("#16171B", "#FFF")}
@@ -209,7 +223,12 @@ const TransactionPanelComponent = () => {
                           fontWeight={"400"}
                           letterSpacing={"1px"}
                           ml="6px"
-                        >49.11%</Text>
+                        >
+                          {" "}{millify(item?.value, {
+                            precision: 2,
+                            locales: "en-US"
+                          })}
+                        </Text>
                       </Box>
                     </Td>
 
@@ -225,8 +244,12 @@ const TransactionPanelComponent = () => {
                           fontWeight={"400"}
                           letterSpacing={"1px"}
                           ml="6px"
+                          w="95px"
+                          overflow=" hidden"
+                          textOverflow="ellipsis"
+                          whiteSpace="nowrap"
                         >
-                          CRV+cvxCRV (0x971a…)
+                          {item?.from}
                         </Text>
                       </Box>
                     </Td>
@@ -242,8 +265,12 @@ const TransactionPanelComponent = () => {
                           fontWeight={"400"}
                           letterSpacing={"1px"}
                           ml="6px"
+                          w="95px"
+                          overflow=" hidden"
+                          textOverflow="ellipsis"
+                          whiteSpace="nowrap"
                         >
-                          CRV+cvxCRV (0x971a…)
+                          {item?.to}
                         </Text>
                       </Box>
                     </Td>
@@ -260,7 +287,7 @@ const TransactionPanelComponent = () => {
                           ml="4px"
                           color={value1 < 0 ? "#EF1E1E" : "#245F00"}
                         >
-                          {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
+                          -
                         </Text>
                       </Box>
                     </Td>
@@ -268,7 +295,7 @@ const TransactionPanelComponent = () => {
 
 
 
-                  <>
+                  {/*  <>
                     <Tr>
                       <Td>
                         <Box
@@ -286,7 +313,8 @@ const TransactionPanelComponent = () => {
 
                           <Box>
                             <Text
-                              color={useColorModeValue("#16171B", "#FFF")}
+                               _light={{color:"#16171B"}}
+                               _dark={{color:"#FFF"}}
                               fontSize={"10px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
@@ -295,7 +323,8 @@ const TransactionPanelComponent = () => {
                               0x8b4d84......43f72
                             </Text>
                             <Text opacity={"0.6000000238418579"}
-                              color={useColorModeValue("#16171B", "#FFF")}
+                               _light={{color:"#16171B"}}
+                               _dark={{color:"#FFF"}}
                               fontSize={"10px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
@@ -322,7 +351,8 @@ const TransactionPanelComponent = () => {
                           </>
 
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -349,7 +379,8 @@ const TransactionPanelComponent = () => {
                           </>
 
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -358,7 +389,8 @@ const TransactionPanelComponent = () => {
                             MATIC
                           </Text>
                           <Text opacity={"0.6000000238418579"}
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -374,7 +406,8 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -391,7 +424,8 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -442,7 +476,8 @@ const TransactionPanelComponent = () => {
 
                           <Box>
                             <Text
-                              color={useColorModeValue("#16171B", "#FFF")}
+                              _light={{color:"#16171B"}}
+                              _dark={{color:"#FFF"}}
                               fontSize={"10px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
@@ -451,7 +486,8 @@ const TransactionPanelComponent = () => {
                               0x8b4d84......43f72
                             </Text>
                             <Text opacity={"0.6000000238418579"}
-                              color={useColorModeValue("#16171B", "#FFF")}
+                               _light={{color:"#16171B"}}
+                               _dark={{color:"#FFF"}}
                               fontSize={"10px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
@@ -478,7 +514,8 @@ const TransactionPanelComponent = () => {
                           </>
 
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -505,7 +542,8 @@ const TransactionPanelComponent = () => {
                           </>
 
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -514,7 +552,8 @@ const TransactionPanelComponent = () => {
                             MATIC
                           </Text>
                           <Text opacity={"0.6000000238418579"}
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -530,7 +569,8 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -547,7 +587,8 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                             _light={{color:"#16171B"}}
+                             _dark={{color:"#FFF"}}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -576,7 +617,7 @@ const TransactionPanelComponent = () => {
                       </Td>
                     </Tr>
                   </>
-
+ */}
 
                 </>
               )

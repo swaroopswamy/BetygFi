@@ -2,11 +2,42 @@
 "use client";
 import {
   Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-   Tr, Flex, Box, useColorModeValue, Icon, Tooltip,} from "@chakra-ui/react";
+  Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Skeleton, Stack,
+} from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
 import Image from "next/image";
+
+
+const SkeletonRow = () => (
+  <Box as="tr">
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>   <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+  </Box>
+)
+
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
@@ -127,10 +158,18 @@ const Rankings = () => {
           </Th>
         </Tr>
       </Thead>
+
       <Tbody>
-        
+        {!tableData.DefiRankingsTableData.isSuccess && (
+          <>
+            <SkeletonRow />
+            <SkeletonRow />
+            <SkeletonRow />
+          </>
+        )}
+
         {tableData.DefiRankingsTableData.isSuccess &&
-         tableData.DefiRankingsTableData?.data.data !== undefined
+          tableData.DefiRankingsTableData?.data.data !== undefined
           && tableData.DefiRankingsTableData?.data.data.map((item, i) => {
             return (
               <>
@@ -260,7 +299,7 @@ const Rankings = () => {
                       h="100%"
                     >
                       {
-                        item?.safety_score === undefined  ? '-' : (
+                        item?.safety_score === undefined ? '-' : (
                           <>
                             <Box
                               w="12px"

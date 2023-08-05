@@ -259,7 +259,7 @@ const Approach = () => {
 
                   {/* <Box  width="91px"  height="60px"> */}
      <Button>
-      <img src={colorMode === 'light' ? ("/images/Backtotop.svg") : ("/images/Backtotop-darkmode.svg")} 
+      <Image src={colorMode === 'light' ? ("/images/Backtotop.svg") : ("/images/Backtotop-darkmode.svg")} 
       
                    alt="" 
                    component="button"

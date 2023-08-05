@@ -10,6 +10,7 @@ import TransactionPanelComponent from "./transaction";
 import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
+import millify from "millify";
 
 const WalletDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -26,24 +27,25 @@ const WalletDashboardPage = () => {
         dispatch(blockchainTypeChangedReducer(type));
     };
 
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const payload = {
             blockchain: blockchainSelected
         }
         dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
-    }, [blockchainSelected,walletAddress])
+    }, [blockchainSelected, walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         /* const payload = {
             blockchain: blockchainSelected
         } */
         dispatch(fetchWalletTransactionsData(searchParam.get("address")));
-    }, [blockchainSelected,walletAddress])
+    }, [blockchainSelected, walletAddress])
     useEffect(() => {
-        /* dispatch(walletAddressChangedReducer(searchParam.get("address"))) */
+        dispatch(walletAddressChangedReducer(searchParam.get("address")))
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
-    }, [fetchWalletBalanceDataHandler,fetchWalletTransactionsDataHandler])
+    }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     return (
         <>
@@ -148,7 +150,10 @@ const WalletDashboardPage = () => {
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
-                                $4,284,899
+                                {walletBalanceData?.totalAssetValue !== undefined  && millify(walletBalanceData?.totalAssetValue, {
+                                    precision: 2,
+                                    locales: "en-US"
+                                })}
                             </Text>
                             <Box
                                 display={"flex"}

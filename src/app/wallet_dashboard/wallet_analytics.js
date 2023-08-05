@@ -415,7 +415,7 @@ const WalletAnalyticsPanel = () => {
                           alt='logo'
                           src="/images/Fluidtokens.svg"
                         ></Image>
-                        <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"}></Image>
+                        <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                       </>
 
                       <Text ml="10px"> FluidTokens </Text>
@@ -756,7 +756,7 @@ const WalletAnalyticsPanel = () => {
                           alt='logo'
                           src="/images/Fluidtokens.svg"
                         ></Image>
-                        <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"}></Image>
+                        <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                       </>
 
                       <Text ml="10px"> FluidTokens </Text>
