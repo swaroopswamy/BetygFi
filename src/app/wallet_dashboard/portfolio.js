@@ -120,7 +120,7 @@ const PortfolioPanelComponent = () => {
 
           <DefiTable />
         </Box>
-        <Box
+     {/*    <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           paddingTop={"20px"}
@@ -973,7 +973,7 @@ const PortfolioPanelComponent = () => {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </Box>
+        </Box> */}
       </Box>
     </>
   )
