@@ -27,7 +27,7 @@ const WalletDashboardPage = () => {
         dispatch(blockchainTypeChangedReducer(type));
     };
 
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const payload = {
@@ -150,7 +150,7 @@ const WalletDashboardPage = () => {
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
-                                {walletBalanceData?.totalAssetValue !== undefined  && millify(walletBalanceData?.totalAssetValue, {
+                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined  && millify(walletBalanceData?.totalAssetValue, {
                                     precision: 2,
                                     locales: "en-US"
                                 })}
