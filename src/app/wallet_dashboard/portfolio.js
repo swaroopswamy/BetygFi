@@ -15,10 +15,13 @@ const PortfolioPanelComponent = () => {
   };
   const defiArray = [
     "Wallet",
-    "X2Y2",
+   /*  "X2Y2",
     "Blur",
-    "Uniswap"
+    "Uniswap" */
   ];
+ /*  const searchAssetByNameHandler (name) => {
+
+  } */
   return (
     <>
       <Box
@@ -110,8 +113,8 @@ const PortfolioPanelComponent = () => {
               fontSize={"10px"}
               fontWeight={400}
               w="207px"
-              placeholder="Search DeFi"
-            //onChange={(e) => { searchByNameHandler(e.target.value) }} 
+              placeholder="Search Assets"
+              //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
             />
           </Box>
 

@@ -285,7 +285,7 @@ const DefiTable = () => {
                                                 h="100%"
                                             >
 
-                                                {/*  {item.safety_score.toFixed(0)} */} -
+                                                  {item.percentageValue?.toFixed(2)} {" "}{"%"}
                                             </Box>
                                         </Td>
                                     </Tr>

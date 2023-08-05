@@ -127,9 +127,9 @@ const WalletDashboardPage = () => {
                     <Box
                         position={"relative"}
                     >
-                        <SplineAreaChart />
+                       {/*  <SplineAreaChart /> */}
                         <Box
-                            position={"absolute"}
+                            position={"relative"}
                             bottom={0}
                             right={0}
                             display={"flex"}
@@ -172,7 +172,7 @@ const WalletDashboardPage = () => {
                                     fontWeight={"400"}
                                     color={useColorModeValue("#16171B", "#FFFFFF")}
                                 >
-                                    3 mins ago
+                                   {" "} 3 mins ago
                                 </Text>
                             </Box>
                         </Box>

@@ -284,9 +284,9 @@ const TransactionPanelComponent = () => {
                           fontWeight={"600"}
                           letterSpacing={"1px"}
                           ml="4px"
-                          color={value1 < 0 ? "#EF1E1E" : "#245F00"}
+                          color={useColorModeValue("#16171B", "#FFF")}
                         >
-                          -
+                          0
                         </Text>
                       </Box>
                     </Td>
