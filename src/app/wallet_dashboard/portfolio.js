@@ -15,10 +15,13 @@ const PortfolioPanelComponent = () => {
   };
   const defiArray = [
     "Wallet",
-    "X2Y2",
+   /*  "X2Y2",
     "Blur",
-    "Uniswap"
+    "Uniswap" */
   ];
+ /*  const searchAssetByNameHandler (name) => {
+
+  } */
   return (
     <>
       <Box
@@ -110,14 +113,14 @@ const PortfolioPanelComponent = () => {
               fontSize={"10px"}
               fontWeight={400}
               w="207px"
-              placeholder="Search DeFi"
-            //onChange={(e) => { searchByNameHandler(e.target.value) }} 
+              placeholder="Search Assets"
+              //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
             />
           </Box>
 
           <DefiTable />
         </Box>
-        <Box
+     {/*    <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           paddingTop={"20px"}
@@ -970,7 +973,7 @@ const PortfolioPanelComponent = () => {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </Box>
+        </Box> */}
       </Box>
     </>
   )

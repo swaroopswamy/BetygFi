@@ -14,7 +14,6 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
-  console.log('walletadd', walletTransactionsData)
 
   return (
     <>
@@ -141,7 +140,12 @@ const TransactionPanelComponent = () => {
 
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -154,7 +158,12 @@ const TransactionPanelComponent = () => {
                             {walletAddress}
                           </Text>
                           <Text opacity={"0.6000000238418579"}
-                            color={useColorModeValue("#16171B", "#FFF")}
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
@@ -182,7 +191,12 @@ const TransactionPanelComponent = () => {
                         </>
 
                         <Text
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
@@ -209,7 +223,12 @@ const TransactionPanelComponent = () => {
                         </>
 
                         <Text
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
@@ -218,7 +237,12 @@ const TransactionPanelComponent = () => {
                           {item?.tokenSymbol}
                         </Text>
                         <Text opacity={"0.6000000238418579"}
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
@@ -239,7 +263,12 @@ const TransactionPanelComponent = () => {
                         alignItems={"center"}
                       >
                         <Text
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
@@ -260,7 +289,12 @@ const TransactionPanelComponent = () => {
                         alignItems={"center"}
                       >
                         <Text
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                           fontSize={"10px"}
                           fontWeight={"400"}
                           letterSpacing={"1px"}
@@ -285,9 +319,14 @@ const TransactionPanelComponent = () => {
                           fontWeight={"600"}
                           letterSpacing={"1px"}
                           ml="4px"
-                          color={value1 < 0 ? "#EF1E1E" : "#245F00"}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                         >
-                          -
+                          0
                         </Text>
                       </Box>
                     </Td>
