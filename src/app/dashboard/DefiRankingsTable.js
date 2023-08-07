@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
 import Image from "next/image";
 
-
+ 
 const SkeletonRow = () => (
   <Box as="tr">
     <Td>

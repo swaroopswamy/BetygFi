@@ -1,5 +1,5 @@
 "use client"
-import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image, moment } from '@chakra-ui/react'
+import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image } from '@chakra-ui/react'
 import isEmpty from 'is-empty';
 import millify from 'millify';
 import moment from 'moment/moment';
