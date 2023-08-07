@@ -1,4 +1,4 @@
-import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode } from "@chakra-ui/react";
+import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -17,7 +17,7 @@ const SkeletonRow = () => (
     </Td>
     <Td>
       <Skeleton height="20px" my={4} />
-    </Td>
+    </Td> 
   </Box>
 )
 
@@ -135,6 +135,7 @@ const PortfolioPanelComponent = () => {
 
           <DefiTable />
         </Box>
+
         <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
@@ -252,6 +253,7 @@ const PortfolioPanelComponent = () => {
                       </Tr>
                     </Thead>
                     <Tbody>
+                    <SkeletonRow isLoaded={isLoaded} />
                       <Tr>
                         <Td>
                           <Flex>
