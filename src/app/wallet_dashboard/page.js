@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Skeleton } from "@chakra-ui/react";
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -11,7 +11,6 @@ import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransa
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import millify from "millify";
-
 
 const WalletDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -128,8 +127,8 @@ const WalletDashboardPage = () => {
                     <Box
                         position={"relative"}
                     >
-                       {/*  <SplineAreaChart /> */}
-                        <Box
+                        {/*  <SplineAreaChart /> */}
+                        {walletBalanceData?.totalAssetValue !== undefined && (<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -151,7 +150,7 @@ const WalletDashboardPage = () => {
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
-                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined  && millify(walletBalanceData?.totalAssetValue, {
+                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined && millify(walletBalanceData?.totalAssetValue, {
                                     precision: 2,
                                     locales: "en-US"
                                 })}
@@ -173,10 +172,10 @@ const WalletDashboardPage = () => {
                                     fontWeight={"400"}
                                     color={useColorModeValue("#16171B", "#FFFFFF")}
                                 >
-                                   {" "} 3 mins ago
+                                    {" "} 3 mins ago
                                 </Text>
                             </Box>
-                        </Box>
+                        </Box>)}
                     </Box>
                 </Box>
                 <Box>

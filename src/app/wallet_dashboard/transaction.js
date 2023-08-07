@@ -34,10 +34,10 @@ const TransactionPanelComponent = () => {
   const value2 = "200";
   const value3 = "-300";
   const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
+  console.log(walletTransactionsData, 'data')
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
-  const tableData = useSelector((state) => state?.walletDashboardTableData);
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -136,55 +136,178 @@ const TransactionPanelComponent = () => {
           </Tr>
         </Thead>
         <Tbody bgColor={useColorModeValue("#FFF", "#202020")}>
-        {tableData.walletTransactionsData.isError && (
-          <>
-            <Tr>
-              <Td
-                color={useColorModeValue("#FFF", "#16171B")}
-                fontSize={"20px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-                colSpan={8}
-                textAlign={"center"}
-                p="20px"
-              >
-                No data available
-              </Td>
-            </Tr>
-          </>
-        )}
-        {tableData.walletTransactionsData.isLoading && (
-          <>
-            <SkeletonRow />
-            <SkeletonRow />
-            <SkeletonRow />
-          </>
-        )}
+          {walletTransactionsData.isError && (
+            <>
+              <Tr>
+                <Td
+                  color={useColorModeValue("#000000", "#FFFFFF")}
+                  fontSize={"20px"}
+                  fontWeight={"400"}
+                  letterSpacing={"1px"}
+                  colSpan={8}
+                  textAlign={"center"}
+                  p="20px"
+                >
+                  No data available
+                </Td>
+              </Tr>
+            </>
+          )}
+          {walletTransactionsData.isLoading && (
+            <>
+              <SkeletonRow />
+              <SkeletonRow />
+              <SkeletonRow />
+            </>
+          )}
           {
             walletTransactionsData?.isSuccess &&
-            walletTransactionsData?.data !== undefined &&
-            walletTransactionsData?.data?.map((item, i) => {
-              return (
-                <>
-                  <Tr
-                    key={i}
-                  >
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <>
-                          {/* <Image
+            (walletTransactionsData?.data.length > 0 ?
+              (walletTransactionsData?.data?.map((item, i) => {
+                return (
+                  <>
+                    <Tr
+                      key={i}
+                    >
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <>
+                            {/* <Image
                             width={5}
                             height={5}
                             alt='logo'
                             src="/images/t1.png"
                           ></Image> */}
-                        </>
+                          </>
 
+                          <Box
+
+                          >
+                            <Text
+                              _dark={{
+                                color: "#FFF"
+                              }}
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontWeight={"400"}
+                              letterSpacing={"1px"}
+                              ml="6px"
+                              w="95px"
+                              overflow=" hidden"
+                              textOverflow="ellipsis"
+                              whiteSpace="nowrap"
+                            >
+                              {walletAddress}
+                            </Text>
+                            <Text opacity={"0.6000000238418579"}
+                              _dark={{
+                                color: "#FFF"
+                              }}
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontWeight={"400"}
+                              letterSpacing={"1px"}
+                              ml="6px"
+                            >
+                              {
+                                moment.unix(item.timeStamp).format('Do MMM YYYY')
+                              }
+                            </Text>
+                          </Box>
+                        </Box>
+                      </Td>
+                      <Td>
                         <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <>
+                            {/*  <Image
+                            width={4}
+                            height={4}
+                            alt='logo'
+                            src="/images/recieved.png"
+                          ></Image> */}
+                          </>
 
+                          <Text
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            letterSpacing={"1px"}
+                            ml="6px"
+                          >
+                            -
+                          </Text>
+                        </Box>
+                      </Td>
+
+
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <>
+                            {/*  <Image
+                            width={4}
+                            height={4}
+                            alt='logo'
+                            src="/images/polygon-matic.png"
+                          ></Image> */}
+                          </>
+
+                          <Text
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            letterSpacing={"1px"}
+                            ml="6px"
+                          >
+                            {item?.tokenSymbol}
+                          </Text>
+                          <Text opacity={"0.6000000238418579"}
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            letterSpacing={"1px"}
+                            ml="6px"
+                          >
+                            {" "}{millify(item?.value, {
+                              precision: 2,
+                              locales: "en-US"
+                            })}
+                          </Text>
+                        </Box>
+                      </Td>
+
+
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
                         >
                           <Text
                             _dark={{
@@ -202,9 +325,17 @@ const TransactionPanelComponent = () => {
                             textOverflow="ellipsis"
                             whiteSpace="nowrap"
                           >
-                            {walletAddress}
+                            {item?.from}
                           </Text>
-                          <Text opacity={"0.6000000238418579"}
+                        </Box>
+                      </Td>
+
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <Text
                             _dark={{
                               color: "#FFF"
                             }}
@@ -215,173 +346,42 @@ const TransactionPanelComponent = () => {
                             fontWeight={"400"}
                             letterSpacing={"1px"}
                             ml="6px"
+                            w="95px"
+                            overflow=" hidden"
+                            textOverflow="ellipsis"
+                            whiteSpace="nowrap"
                           >
-                            {
-                              moment.unix(item.timeStamp).format('Do MMM YYYY')
-                            }
+                            {item?.to}
                           </Text>
                         </Box>
-                      </Box>
-                    </Td>
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <>
-                          {/*  <Image
-                            width={4}
-                            height={4}
-                            alt='logo'
-                            src="/images/recieved.png"
-                          ></Image> */}
-                        </>
+                      </Td>
 
-                        <Text
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          ml="6px"
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
                         >
-                          -
-                        </Text>
-                      </Box>
-                    </Td>
-
-
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <>
-                          {/*  <Image
-                            width={4}
-                            height={4}
-                            alt='logo'
-                            src="/images/polygon-matic.png"
-                          ></Image> */}
-                        </>
-
-                        <Text
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          ml="6px"
-                        >
-                          {item?.tokenSymbol}
-                        </Text>
-                        <Text opacity={"0.6000000238418579"}
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          ml="6px"
-                        >
-                          {" "}{millify(item?.value, {
-                            precision: 2,
-                            locales: "en-US"
-                          })}
-                        </Text>
-                      </Box>
-                    </Td>
-
-
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <Text
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          ml="6px"
-                          w="95px"
-                          overflow=" hidden"
-                          textOverflow="ellipsis"
-                          whiteSpace="nowrap"
-                        >
-                          {item?.from}
-                        </Text>
-                      </Box>
-                    </Td>
-
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <Text
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          ml="6px"
-                          w="95px"
-                          overflow=" hidden"
-                          textOverflow="ellipsis"
-                          whiteSpace="nowrap"
-                        >
-                          {item?.to}
-                        </Text>
-                      </Box>
-                    </Td>
-
-                    <Td>
-                      <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                      >
-                        <Text
-                          fontSize={"10px"}
-                          fontWeight={"600"}
-                          letterSpacing={"1px"}
-                          ml="4px"
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
-                        >
-                          0
-                        </Text>
-                      </Box>
-                    </Td>
-                  </Tr>
+                          <Text
+                            fontSize={"10px"}
+                            fontWeight={"600"}
+                            letterSpacing={"1px"}
+                            ml="4px"
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                          >
+                            0
+                          </Text>
+                        </Box>
+                      </Td>
+                    </Tr>
 
 
 
-                  {/*  <>
+                    {/*  <>
                     <Tr>
                       <Td>
                         <Box
@@ -705,9 +705,25 @@ const TransactionPanelComponent = () => {
                   </>
  */}
 
+                  </>
+                )
+              })) : (
+                <>
+                  <Tr>
+                    <Td
+                      color={useColorModeValue("#000000", "#FFFFFF")}
+                      fontSize={"20px"}
+                      fontWeight={"400"}
+                      letterSpacing={"1px"}
+                      colSpan={8}
+                      textAlign={"center"}
+                      p="20px"
+                    >
+                      No data available
+                    </Td>
+                  </Tr>
                 </>
-              )
-            })
+              ))
           }
 
         </Tbody>

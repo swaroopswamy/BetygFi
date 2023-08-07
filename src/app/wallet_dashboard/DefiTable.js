@@ -14,26 +14,25 @@ import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
 const SkeletonRow = () => (
     <Box as="tr">
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
     </Box>
-  )
+)
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-    console.log(walletBalanceData,'wab')
     const tableData = useSelector((state) => state?.walletDashboardTableData);
 
 
@@ -170,53 +169,54 @@ const DefiTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    { walletBalanceData?.isError && (
-                            <>
-                              <Tr >
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            colSpan={8}
-                                            textAlign={"center"}
-                                        >
-                                            No Data Available
-                                        </Td>
-                                        </Tr>
-                            </>
-                            )}
-                             {tableData.DefiRankingsTableData.isLoading && (
-                               <>
-                                 <SkeletonRow />
-                                 <SkeletonRow />
-                                 <SkeletonRow />
-                               </>
-                            )}
+                    {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                >
+                                    No Data Available
+                                </Td>
+                            </Tr>
+                        </>
+                    )}
+                    {tableData.DefiRankingsTableData.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
                     {walletBalanceData?.isSuccess &&
-                        walletBalanceData?.data?.data?.length() > 0 && walletBalanceData?.data?.data.map((item, i) => {
-                            return (
-                                <>
-                                    <Tr key={i + 1}>
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {item?.Symbol}
-                                        </Td>
-                                        {/* <Td
+                        (walletBalanceData?.data?.data?.length > 0 ?
+                            (walletBalanceData?.data?.data.map((item, i) => {
+                                return (
+                                    <>
+                                        <Tr key={i + 1}>
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"10px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
+                                            >
+                                                {item?.Symbol}
+                                            </Td>
+                                            {/* <Td
                                         >
                                             <Box
                                                 display={"flex"}
@@ -267,81 +267,104 @@ const DefiTable = () => {
                                                 </Text>
                                             </Box>
                                         </Td> */}
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {item.price === undefined ? '-' : item?.price}
-                                        </Td>
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {!isEmpty(item.Balance)
-                                                ?
-                                                (item.Balance.toFixed(2)).toLocaleString('en-US', {
-                                                    style: 'currency',
-                                                    currency: 'USD'
-                                                }) + " USD"
-                                                : 0}
-                                        </Td>
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                        >
-                                            {
-                                                (Math.trunc(item["USD Value"])).toLocaleString('en-US', {
-                                                    style: 'currency',
-                                                    currency: 'USD'
-                                                })}
-                                        </Td>
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"10px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
+                                            >
+                                                {item.price === undefined ? '-' : item?.price}
+                                            </Td>
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"10px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
+                                            >
+                                                {!isEmpty(item.Balance)
+                                                    ?
+                                                    (item.Balance.toFixed(2)).toLocaleString('en-US', {
+                                                        style: 'currency',
+                                                        currency: 'USD'
+                                                    }) + " USD"
+                                                    : 0}
+                                            </Td>
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"10px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
+                                            >
+                                                {
+                                                    (Math.trunc(item["USD Value"])).toLocaleString('en-US', {
+                                                        style: 'currency',
+                                                        currency: 'USD'
+                                                    })}
+                                            </Td>
 
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            h="100%"
-                                        >
-                                            <Box
-                                                display={"flex"}
-                                                alignItems={"center"}
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"10px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
                                                 h="100%"
                                             >
+                                                <Box
+                                                    display={"flex"}
+                                                    alignItems={"center"}
+                                                    h="100%"
+                                                >
 
-                                                {item.percentageValue?.toFixed(2)} {" "}{"%"}
-                                            </Box>
+                                                    {item.percentageValue?.toFixed(2)} {" "}{"%"}
+                                                </Box>
+                                            </Td>
+                                        </Tr>
+                                    </>
+                                );
+                            })) :
+                            (
+                                <>
+                                    <Tr >
+                                        <Td
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            colSpan={8}
+                                            textAlign={"center"}
+                                        >
+                                            No Data Available
                                         </Td>
                                     </Tr>
+
                                 </>
-                            );
-                        })}
+                            ))
+                    }
                 </Tbody>
             </Table>
         </>
