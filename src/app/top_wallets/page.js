@@ -4,17 +4,20 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box, Input, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
+import { blockchains } from "../../../util/constant";
 import WalletTable from "./WalletTable.js"
 
 const WalletDashboardPage = () => {
     const { colorMode } = useColorMode();
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.defiArraySelected
-    );
+    const [tabIndex, setTabIndex] = useState(0)
 
-    const blockchainArrayHandler = (type) => {
-        dispatch(defiArrayChangedReducer(type));
-    };
+    // const blockchainSelected = useSelector(
+    //     (state) => state?.walletDashboardTableData?.defiArraySelected
+    // );
+
+    // const blockchainArrayHandler = (type) => {
+    //     dispatch(defiArrayChangedReducer(type));
+    // };
 
     const blockchainArray = [
         "ETHEREUM",
@@ -36,7 +39,7 @@ const WalletDashboardPage = () => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     padding={"38px 30px 5px 30px"}
-
+                    bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 >
                     <Box
                         display={"flex"}
@@ -80,7 +83,7 @@ const WalletDashboardPage = () => {
                                 fontWeight={"400"}
                                 lineHeight={"15px"}
                                 color={useColorModeValue("#191919", "#FFF")}
-                                letterSpacing={"2.4px"}
+                                letterSpacing={"1.2px"}
                             >
                                 Select the blockchains you'd like to analyze
                             </Text>
@@ -90,14 +93,19 @@ const WalletDashboardPage = () => {
                             display={"flex"}
                             justifyContent={"space-between"}
                             alignItems={"center"}
-                            py={"18px"}
-                            px="26px"
+                            mt={"18px"}
                         >
-                            <SelectionBox 
+                            {/* <SelectionBox 
                                 blockchainSelected={blockchainSelected}
                                 colorMode={colorMode}
                                 blockchainArrayHandler={blockchainArrayHandler}
-                                blockchainArray={blockchainArray} />
+                                blockchainArray={blockchainArray} /> */}
+
+                            <SelectionTab
+                                colorMode={colorMode}
+                                tabIndex={tabIndex}
+                                setTabIndex={setTabIndex}
+                            />
                         </Box>
 
                         
@@ -108,12 +116,12 @@ const WalletDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={"5px 30px 50px 30px"}
+                    padding={"0px 30px 50px 30px"}
                     flexDirection={"column"}
+                    bgColor={useColorModeValue("#F0F0F5", "#191919")}
                 >
                     <Box
                         bgColor={useColorModeValue("#FFFFFF", "#191919")}
-                        borderRadius={"6px"}
                     >
                         <WalletTable />
                     </Box>
@@ -132,7 +140,6 @@ function SelectionBox( {blockchainSelected, colorMode, blockchainArrayHandler, b
             display={"flex"}
             justifyContent={"flex-start"}
             alignItems={"center"}
-
         >
             <Box
                 textAlign={"center"}
@@ -189,4 +196,70 @@ function SelectionBox( {blockchainSelected, colorMode, blockchainArrayHandler, b
             })}
         </Box>
         </>;
+}
+
+function SelectionTab( {colorMode, tabIndex, setTabIndex} ) {
+    
+    return <>
+        <Box
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+        >
+            <Tabs onChange={(index) => setTabIndex(index)}>
+                <TabList>
+                <Tab
+                    padding="0"
+                >
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                        padding={"5px 10px 10px 10px"}
+                        bgColor={useColorModeValue("#F5F5F7", "#131313")}
+                    >
+                        <Text
+                            fontSize={"14px"}
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontWeight={tabIndex === 0 ? "700" : "400"}
+                            letterSpacing={"1.4px"}
+                            textTransform={"uppercase"}
+                        >
+                            All
+                        </Text>
+                    </Box>
+                </Tab>
+                {blockchains.map((item, i) => {
+                    return (
+                        <Tab
+                            padding="0"
+                        >
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                                gap={"8px"}
+                                padding={"5px 10px 10px 10px"}
+                                bgColor={useColorModeValue("#F5F5F7", "#131313")}
+                            >
+                                <Image
+                                    h="20px"
+                                    alt="icon"
+                                    src={`/icons/${item}_sm_icon.svg`}
+                                ></Image>
+                                <Text
+                                    fontSize={"14px"}
+                                    color={useColorModeValue("#16171B", "#FFF")}
+                                    fontWeight={tabIndex === i+1 ? "700" : "400"}
+                                    letterSpacing={"1.4px"}
+                                    textTransform={"uppercase"}
+                                >
+                                    {item}
+                                </Text>
+                            </Box>
+                        </Tab>
+                    );
+                })}
+                </TabList>
+            </Tabs>
+        </Box>
+    </>
 }
