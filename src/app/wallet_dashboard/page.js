@@ -79,15 +79,24 @@ const WalletDashboardPage = () => {
                             display={"flex"}
                             flexDirection={"column"}
                         >
-                            <Text
-                                fontSize={"24px"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                color={useColorModeValue("#191919", "#FFF")}
-                                letterSpacing={"2.4px"}
-                            >
-                                Illuvium
-                            </Text>
+                            {
+                                walletBalanceData?.name === undefined && (
+                                    <Text
+                                        fontSize={"24px"}
+                                        fontWeight={"400"}
+                                        lineHeight={"20px"}
+                                        opacity={"0.5"}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        letterSpacing={"2.4px"}
+                                    >
+                                       No Name
+                                    </Text>
+                                )}
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
@@ -350,8 +359,8 @@ const WalletDashboardPage = () => {
                                                 alignItems={"center"}
                                             >
                                                 <Image
-                                                    w={"20px"}
-                                                    h={"20px"}
+                                                    w={"18px"}
+                                                    h={"18px"}
                                                     mr={"11px"}
                                                     src={`/icons/${item}_sm_icon.svg`}
                                                     alt=""

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 const PerformanceMultiLineChart = () => {
+  const { colorMode } = useColorMode();
   const options = {
     chart: {
       toolbar: {
@@ -28,6 +29,9 @@ const PerformanceMultiLineChart = () => {
       curve: "straight",
       dashArray: [0, 5, 5],
       width: 2,
+    },
+    tooltip: {
+      theme: colorMode
     },
     xaxis: {
       categories: ["May", "2021", "May", "2021", "May", "2021"],

@@ -1,10 +1,12 @@
 import React from "react";
 
 import dynamic from "next/dynamic";
+import { useColorMode } from "@chakra-ui/react";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 
 const SplineAreaChart = () => {
+    const { colorMode } = useColorMode();
     const options = {
         chart: {
             toolbar: {
@@ -26,6 +28,7 @@ const SplineAreaChart = () => {
         },
         tooltip: {
             enabled: false,
+            theme:colorMode
         },
         fill: {
             type: "gradient",

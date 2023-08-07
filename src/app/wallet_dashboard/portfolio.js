@@ -61,6 +61,7 @@ const PortfolioPanelComponent = () => {
                 borderRadius={"2px"}
                 opacity={defiSelected.length !== 0 ? "0.5" : "1"}
                 mr={"10px"}
+                cursor={"pointer"}
                 border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
               >
                 <Text
@@ -84,6 +85,7 @@ const PortfolioPanelComponent = () => {
                       onClick={() => {
                         DefiArrayHandler(item);
                       }}
+                      cursor={"pointer"}
                       opacity={defiSelected.includes(item) ? "1" : "0.5"}
                       mr={"10px"}
                       borderRadius={"2px"}
