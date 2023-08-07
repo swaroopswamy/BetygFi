@@ -38,7 +38,6 @@ const SkeletonRow = () => (
   </Box>
 )
 
-
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
   return (

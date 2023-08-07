@@ -1,9 +1,32 @@
 "use client"
-import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Flex, Image } from '@chakra-ui/react'
+import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image } from '@chakra-ui/react'
+import { useSelector } from "react-redux";
 import isEmpty from 'is-empty';
 import millify from 'millify';
 import moment from 'moment/moment';
-import { useSelector } from 'react-redux';
+
+const SkeletonRow = () => (
+  <Box as="tr">
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+  </Box>
+)
 
 const TransactionPanelComponent = () => {
 
@@ -14,7 +37,7 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
-
+  const tableData = useSelector((state) => state?.walletDashboardTableData);
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -113,6 +136,30 @@ const TransactionPanelComponent = () => {
           </Tr>
         </Thead>
         <Tbody bgColor={useColorModeValue("#FFF", "#202020")}>
+        {tableData.walletTransactionsData.isError && (
+          <>
+            <Tr>
+              <Td
+                color={useColorModeValue("#16171B", "#FFF")}
+                fontSize={"20px"}
+                fontWeight={"400"}
+                letterSpacing={"1px"}
+                colSpan={8}
+                textAlign={"center"}
+                p="20px"
+              >
+                No data available
+              </Td>
+            </Tr>
+          </>
+        )}
+        {tableData.walletTransactionsData.isLoading && (
+          <>
+            <SkeletonRow />
+            <SkeletonRow />
+            <SkeletonRow />
+          </>
+        )}
           {
             walletTransactionsData?.isSuccess &&
             walletTransactionsData?.data !== undefined &&

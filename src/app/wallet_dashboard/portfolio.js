@@ -18,13 +18,16 @@ const SkeletonRow = () => (
     <Td>
       <Skeleton height="20px" my={4} />
     </Td> 
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td> 
   </Box>
 )
 
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-
+  const tableData = useSelector((state) => state?.walletDashboardTableData);
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
   );
