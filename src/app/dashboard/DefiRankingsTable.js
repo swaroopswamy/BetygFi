@@ -40,6 +40,7 @@ const SkeletonRow = () => (
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
+
   return (
     <Table variant="simple" key={1}>
       <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
@@ -185,7 +186,7 @@ const Rankings = () => {
         )}
         {tableData.DefiRankingsTableData.isSuccess &&
           (
-            tableData.DefiRankingsTableData?.data?.data?.length() > 0 ?
+            tableData.DefiRankingsTableData?.data?.data?.length > 0 ?
               (tableData.DefiRankingsTableData?.data?.data.map((item, i) => {
                 return (
                   <>
