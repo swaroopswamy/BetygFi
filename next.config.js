@@ -5,9 +5,6 @@ require('dotenv').config()
 const webpack = require('webpack');
 const nextConfig = {
   output: "export",
-  output : {
-    publicPath:"auto"
-  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
