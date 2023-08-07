@@ -4,30 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import DefiTable from "./DefiTable";
 
-const SkeletonRow = () => (
-  <Box as="tr">
-    <Td>
-      <Skeleton height="20px" my={4} />
-    </Td>
-    <Td>
-      <Skeleton height="20px" my={4} />
-    </Td>
-    <Td>
-      <Skeleton height="20px" my={4} />
-    </Td>
-    <Td>
-      <Skeleton height="20px" my={4} />
-    </Td> 
-    <Td>
-      <Skeleton height="20px" my={4} />
-    </Td> 
-  </Box>
-)
-
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-  const tableData = useSelector((state) => state?.walletDashboardTableData);
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
   );

@@ -12,25 +12,30 @@ import isEmpty from "is-empty";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
     console.log(walletBalanceData,'wab')
-    const SkeletonRow = () => (
-        <Box as="tr">
-            <Td>
-                <Skeleton height="20px" my={4} />
-            </Td>
-            <Td>
-                <Skeleton height="20px" my={4} />
-            </Td>
-            <Td>
-                <Skeleton height="20px" my={4} />
-            </Td>
-            <Td>
-                <Skeleton height="20px" my={4} />
-            </Td>
-        </Box>
-    )
+    const tableData = useSelector((state) => state?.walletDashboardTableData);
+
 
     return (
         <>
@@ -165,17 +170,7 @@ const DefiTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {
-                        walletBalanceData?.isLoading && (
-                            <>
-                                <SkeletonRow />
-                                <SkeletonRow />
-                                <SkeletonRow />
-                            </>
-                        )
-                    }
-                    {
-                        walletBalanceData?.isError && (
+                    { walletBalanceData?.isError && (
                             <>
                               <Tr >
                                         <Td
@@ -185,17 +180,24 @@ const DefiTable = () => {
                                             _light={{
                                                 color: "#16171B"
                                             }}
-                                            fontSize={"10px"}
+                                            fontSize={"20px"}
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
+                                            colSpan={8}
+                                            textAlign={"center"}
                                         >
                                             No Data Available
                                         </Td>
                                         </Tr>
                             </>
-                            )
-
-                    }
+                            )}
+                             {tableData.DefiRankingsTableData.isLoading && (
+                               <>
+                                 <SkeletonRow />
+                                 <SkeletonRow />
+                                 <SkeletonRow />
+                               </>
+                            )}
                     {walletBalanceData?.isSuccess &&
                         walletBalanceData?.data?.data?.length() > 0 && walletBalanceData?.data?.data.map((item, i) => {
                             return (

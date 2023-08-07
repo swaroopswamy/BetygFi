@@ -140,7 +140,7 @@ const TransactionPanelComponent = () => {
           <>
             <Tr>
               <Td
-                color={useColorModeValue("#16171B", "#FFF")}
+                color={useColorModeValue("#FFF", "#16171B")}
                 fontSize={"20px"}
                 fontWeight={"400"}
                 letterSpacing={"1px"}
