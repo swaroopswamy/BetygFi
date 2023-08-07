@@ -10,13 +10,10 @@ import isEmpty from "is-empty";
 
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import { useSearchParams } from "next/navigation";
-import { fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
-
 
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-    console.log(walletBalanceData, 'walletBalancedata')
+
 
     return (
         <>
@@ -152,7 +149,7 @@ const DefiTable = () => {
                 </Thead>
                 <Tbody>
                     {walletBalanceData?.isSuccess &&
-                        walletBalanceData?.data !== undefined && walletBalanceData?.data.map((item, i) => {
+                        walletBalanceData?.data !== undefined && walletBalanceData?.data?.data.map((item, i) => {
                             return (
                                 <>
                                     <Tr key={i + 1}>
@@ -288,7 +285,7 @@ const DefiTable = () => {
                                                 h="100%"
                                             >
 
-                                                {/*  {item.safety_score.toFixed(0)} */} -
+                                                  {item.percentageValue?.toFixed(2)} {" "}{"%"}
                                             </Box>
                                         </Td>
                                     </Tr>
