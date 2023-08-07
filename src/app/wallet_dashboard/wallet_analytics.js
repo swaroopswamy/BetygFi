@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, extendTheme, useColorMode, colorMode, Tooltip, Skeleton } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, walletBalanceData, TableContainer, extendTheme, useColorMode, colorMode, Tooltip, Skeleton } from '@chakra-ui/react';
 import React from 'react'
 import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
@@ -10,6 +10,20 @@ const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
   const value1 = "300";
   const value2 = "-300";
+  const SkeletonRow = () => (
+    <Box as="tr">
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+    </Box>
+)
+
 
   return (
     <>
@@ -246,6 +260,15 @@ const WalletAnalyticsPanel = () => {
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
+                   {
+                        walletBalanceData?.isLoading && (
+                            <>
+                                <SkeletonRow />
+                                <SkeletonRow />
+                                <SkeletonRow />
+                            </>
+                        )
+                    }
                 <Tr height={"40px"}>
                   <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }}
@@ -588,6 +611,15 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
                 <Tr height={"40px"}>
+                {
+                        walletBalanceData?.isLoading && (
+                            <>
+                                <SkeletonRow />
+                                <SkeletonRow />
+                                <SkeletonRow />
+                            </>
+                        )
+                    }
                   <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }}
                   >

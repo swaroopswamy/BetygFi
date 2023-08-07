@@ -11,7 +11,7 @@ export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableD
 
 export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (address,payload) => {
   const response = await getWalletBalanceData(address,payload);
-  return response.data;
+  return response;
 })
 export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (address,payload) => {
   const response = await getWalletTransactionsData(address,payload);
@@ -77,6 +77,7 @@ const WalletDashboardDataSlice = createSlice({
       state.walletBalanceData.data = action.payload;
     });
     builder.addCase(fetchWalletBalanceData.rejected, (state, action) => {
+      console.log('here')
       state.walletBalanceData.isLoading = false;
       state.walletBalanceData.isSuccess = false;
       state.walletBalanceData.isError = true;
@@ -103,7 +104,7 @@ const WalletDashboardDataSlice = createSlice({
   },
   reducers: {
     walletAddressChangedReducer: (state, action) => {
-      console.log(action.payload)
+
       state.walletAddress = action.payload;
     },
     blockchainTypeChangedReducer: (state, action) => {

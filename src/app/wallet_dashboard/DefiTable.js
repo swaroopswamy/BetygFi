@@ -2,7 +2,8 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image
+    Image,
+    Skeleton
 } from "@chakra-ui/react";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +11,26 @@ import isEmpty from "is-empty";
 
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import { useSearchParams } from "next/navigation";
-import { fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
-
 
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-    console.log(walletBalanceData, 'walletBalancedata')
+    console.log(walletBalanceData,'wab')
+    const SkeletonRow = () => (
+        <Box as="tr">
+            <Td>
+                <Skeleton height="20px" my={4} />
+            </Td>
+            <Td>
+                <Skeleton height="20px" my={4} />
+            </Td>
+            <Td>
+                <Skeleton height="20px" my={4} />
+            </Td>
+            <Td>
+                <Skeleton height="20px" my={4} />
+            </Td>
+        </Box>
+    )
 
     return (
         <>
@@ -151,8 +165,39 @@ const DefiTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
+                    {
+                        walletBalanceData?.isLoading && (
+                            <>
+                                <SkeletonRow />
+                                <SkeletonRow />
+                                <SkeletonRow />
+                            </>
+                        )
+                    }
+                    {
+                        walletBalanceData?.isError && (
+                            <>
+                              <Tr >
+                                        <Td
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"10px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                        >
+                                            No Data Available
+                                        </Td>
+                                        </Tr>
+                            </>
+                            )
+
+                    }
                     {walletBalanceData?.isSuccess &&
-                        walletBalanceData?.data !== undefined && walletBalanceData?.data.map((item, i) => {
+                        walletBalanceData?.data?.data?.length() > 0 && walletBalanceData?.data?.data.map((item, i) => {
                             return (
                                 <>
                                     <Tr key={i + 1}>
@@ -288,7 +333,7 @@ const DefiTable = () => {
                                                 h="100%"
                                             >
 
-                                                {/*  {item.safety_score.toFixed(0)} */} -
+                                                {item.percentageValue?.toFixed(2)} {" "}{"%"}
                                             </Box>
                                         </Td>
                                     </Tr>
