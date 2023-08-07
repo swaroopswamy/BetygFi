@@ -138,15 +138,24 @@ const WalletDashboardPage = () => {
                             <Text
                                 fontSize={"12px"}
                                 fontWeight={"300"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
                             >
                                 Net Worth
                             </Text>
                             <Text
                                 fontSize={"24px"}
                                 fontWeight={"400"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
@@ -163,14 +172,24 @@ const WalletDashboardPage = () => {
                                 <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                    _dark={{
+                                        color: "#FFFFFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
                                 >
                                     Last Update
                                 </Text>
                                 <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                    _dark={{
+                                        color: "#FFFFFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
                                 >
                                     {" "} 3 mins ago
                                 </Text>

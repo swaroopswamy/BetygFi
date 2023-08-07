@@ -190,7 +190,7 @@ const DefiTable = () => {
                             </Tr>
                         </>
                     )}
-                    {tableData.DefiRankingsTableData.isLoading && (
+                    {walletBalanceData?.isLoading && (
                         <>
                             <SkeletonRow />
                             <SkeletonRow />

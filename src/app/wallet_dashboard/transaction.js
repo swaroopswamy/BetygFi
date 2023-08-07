@@ -140,7 +140,12 @@ const TransactionPanelComponent = () => {
             <>
               <Tr>
                 <Td
-                  color={useColorModeValue("#000000", "#FFFFFF")}
+                  _dark={{
+                    color: "#FFFFFF"
+                  }}
+                  _light={{
+                    color: "#16171B"
+                  }}
                   fontSize={"20px"}
                   fontWeight={"400"}
                   letterSpacing={"1px"}
@@ -711,7 +716,12 @@ const TransactionPanelComponent = () => {
                 <>
                   <Tr>
                     <Td
-                      color={useColorModeValue("#000000", "#FFFFFF")}
+                      _dark={{
+                        color: "#FFFFFF"
+                      }}
+                      _light={{
+                        color: "#16171B"
+                      }}
                       fontSize={"20px"}
                       fontWeight={"400"}
                       letterSpacing={"1px"}
