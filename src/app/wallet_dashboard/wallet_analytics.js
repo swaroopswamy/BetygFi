@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, extendTheme, useColorMode, colorMode, Tooltip } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, extendTheme, useColorMode, colorMode, Tooltip, Skeleton } from '@chakra-ui/react';
 import React from 'react'
 import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
@@ -10,7 +10,20 @@ const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
   const value1 = "300";
   const value2 = "-300";
- 
+  const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
+
 
   return (
     <>
@@ -50,7 +63,7 @@ const WalletAnalyticsPanel = () => {
             >
               Blockchain Allocation
             </Text>
-            <Button
+            {/*   <Button
               fontSize={"10px"}
               fontWeight={400}
               lineHeight={"20px"}
@@ -59,7 +72,7 @@ const WalletAnalyticsPanel = () => {
               padding={"7px 11px"}
             >
               View More
-            </Button>
+            </Button> */}
           </Box>
           <Box>
             <BlockchainAllocationTreemapChart />
@@ -589,6 +602,7 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
                 <Tr height={"40px"}>
+
                   <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }}
                   >
@@ -952,19 +966,19 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
 
                       <Text paddingRight={"5px"}
-                            _light={{ color: "#434347" }}
-                            _dark={{ color: "#A8ADBD" }}
-                            fontSize={"10px"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}>Asset Name</Text>
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Asset Name</Text>
 
 
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''
@@ -984,17 +998,17 @@ const WalletAnalyticsPanel = () => {
                     <Flex >
 
                       <Text paddingRight={"5px"}
-                            _light={{ color: "#434347" }}
-                            _dark={{ color: "#A8ADBD" }}
-                            fontSize={"10px"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}>Value</Text>
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Value</Text>
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''
@@ -1023,7 +1037,7 @@ const WalletAnalyticsPanel = () => {
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''
@@ -1586,20 +1600,20 @@ const WalletAnalyticsPanel = () => {
 
                     <Flex>
 
-                      <Text paddingRight={"5px"} 
-                            _light={{ color: "#434347" }}
-                            _dark={{ color: "#A8ADBD" }}
-                            fontSize={"10px"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}>Asset Name</Text>
+                      <Text paddingRight={"5px"}
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Asset Name</Text>
 
 
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''
@@ -1619,17 +1633,17 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
 
                       <Text paddingRight={"5px"}
-                            _light={{ color: "#434347" }}
-                            _dark={{ color: "#A8ADBD" }}
-                            fontSize={"10px"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}>Value</Text>
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}>Value</Text>
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''
@@ -1658,7 +1672,7 @@ const WalletAnalyticsPanel = () => {
 
                       <>
 
-                      <Image width={"12px"}
+                        <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
                           alt=''

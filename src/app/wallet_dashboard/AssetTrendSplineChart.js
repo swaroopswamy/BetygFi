@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 const AssetTrendSplineChart = () => {
+    const { colorMode } = useColorMode();
     const options = {
         chart: {
             toolbar: {
@@ -23,7 +24,9 @@ const AssetTrendSplineChart = () => {
         dataLabels: {
             enabled: false,
         },
-        
+        tooltip:{
+            theme:colorMode
+        },
         stroke: {
             show: true,
             curve: "smooth",

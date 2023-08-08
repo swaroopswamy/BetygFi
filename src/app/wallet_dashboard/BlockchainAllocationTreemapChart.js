@@ -35,7 +35,7 @@ const BlockchainAllocationTreemapChart = () => {
                 color: "#000000"
             },
             formatter: function (text, op) {
-                return [text, op.value]
+                return [text, op.value + "%",]
             },
             offsetY: -4
         },
@@ -50,7 +50,7 @@ const BlockchainAllocationTreemapChart = () => {
                     '<div class="inner_box">' +
                     xAxisName[dataPointIndex]["x"] +
                     '<div class="graph_inner_text_sm">' +
-                    xAxisName[dataPointIndex]["y"] +
+                    xAxisName[dataPointIndex]["y"] + '%' +
                     '</div>' +
                     '</div>' +
                     '</div>' +
@@ -62,44 +62,36 @@ const BlockchainAllocationTreemapChart = () => {
         {
             data: [
                 {
-                    x: 'New Delhi',
-                    y: 218
+                    x: 'Ethereum',
+                    y: 25
                 },
                 {
-                    x: 'Kolkata',
-                    y: 149
+                    x: 'Arbitrum',
+                    y: 15
                 },
                 {
-                    x: 'Mumbai',
-                    y: 184
+                    x: 'Polygon',
+                    y: 10
                 },
                 {
-                    x: 'Ahmedabad',
-                    y: 55
+                    x: 'Optimism',
+                    y: 5
                 },
                 {
-                    x: 'Bangaluru',
-                    y: 84
+                    x: 'Avalanche',
+                    y: 15
                 },
                 {
-                    x: 'Pune',
-                    y: 31
+                    x: 'Mixin',
+                    y: 5
                 },
                 {
-                    x: 'Chennai',
-                    y: 70
+                    x: 'Solana',
+                    y: 5
                 },
                 {
-                    x: 'Jaipur',
-                    y: 30
-                },
-                {
-                    x: 'Surat',
-                    y: 44
-                },
-                {
-                    x: 'Hyderabad',
-                    y: 68
+                    x: 'Kava',
+                    y: 20
                 },
             ]
         }
