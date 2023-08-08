@@ -125,37 +125,91 @@ const WalletTable = () => {
 
                         <Tbody>
 
-                        <TableRow 
-                            user={"0x8b4d84......43f72"}
-                            netWorth={"$65B"}
-                            totalTokens={[{name: "Ethereum", value: "100%"}]}
-                            totalProtocols={""}
-                            totalNFT={""}
-                        />
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$65B"}
+                                totalTokens={[{name: "Ethereum", value: "100%"}]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
 
-                        <TableRow 
-                            user={"0x8b4d84......43f72"}
-                            netWorth={"$55.9B"}
-                            totalTokens={[
-                                {name: "Ethereum", value: "60%"},
-                                {name: "Tron", value:"40%"},
-                            ]}
-                            totalProtocols={""}
-                            totalNFT={""}
-                        />
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$55.9B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "60%"},
+                                    {name: "Tron", value:"40%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
 
-                        <TableRow 
-                            user={"0x8b4d84......43f72"}
-                            netWorth={"$65B"}
-                            totalTokens={[
-                                {name: "Ethereum", value: "30%"},
-                                {name: "Arbitrum", value: "30%"},
-                                {name: "Polygon", value: "40%"},
-                            ]}
-                            totalProtocols={""}
-                            totalNFT={""}
-                        />
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$65B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "30%"},
+                                    {name: "Arbitrum", value: "30%"},
+                                    {name: "Polygon", value: "40%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
 
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$23B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "30%"},
+                                    {name: "Arbitrum", value: "30%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
+
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$14B"}
+                                totalTokens={[
+                                    {name: "Arbitrum", value: "30%"},
+                                    {name: "Polygon", value: "40%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
+
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$29B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "30%"},
+                                    {name: "Polygon", value: "40%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
+
+<                           TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$5B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "30%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />
+
+                            <TableRow 
+                                user={"0x8b4d84......43f72"}
+                                netWorth={"$12B"}
+                                totalTokens={[
+                                    {name: "Ethereum", value: "30%"},
+                                    {name: "Polygon", value: "40%"},
+                                ]}
+                                totalProtocols={""}
+                                totalNFT={""}
+                            />  
+                            
 
                         </Tbody>
                         <Tfoot>
