@@ -1,8 +1,13 @@
 "use client"
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import Governance from "./governance";
+import React from "react";
 
-const Defi_Dashboard = () =>{
-    return
-
-    
+const DefiDashboard = () =>{
+    return(
+    <Box>
+        <Governance />
+    </Box>
+    )
 };
-export default Defi_Dashboard;
+export default DefiDashboard;
