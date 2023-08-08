@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from './Web3Provider';
+
 const manrope = Manrope({
   weight: ['400', '700'],
   style: ['normal'],

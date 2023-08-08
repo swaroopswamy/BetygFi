@@ -1,12 +1,12 @@
-import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, ColorMode, useColorMode } from "@chakra-ui/react";
+import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import DefiTable from "./DefiTable";
+
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
   );
@@ -61,6 +61,7 @@ const PortfolioPanelComponent = () => {
                 borderRadius={"2px"}
                 opacity={defiSelected.length !== 0 ? "0.5" : "1"}
                 mr={"10px"}
+                cursor={"pointer"}
                 border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
               >
                 <Text
@@ -84,6 +85,7 @@ const PortfolioPanelComponent = () => {
                       onClick={() => {
                         DefiArrayHandler(item);
                       }}
+                      cursor={"pointer"}
                       opacity={defiSelected.includes(item) ? "1" : "0.5"}
                       mr={"10px"}
                       borderRadius={"2px"}
@@ -120,6 +122,7 @@ const PortfolioPanelComponent = () => {
 
           <DefiTable />
         </Box>
+
      {/*    <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
@@ -237,6 +240,7 @@ const PortfolioPanelComponent = () => {
                       </Tr>
                     </Thead>
                     <Tbody>
+                    <SkeletonRow isLoaded={isLoaded} />
                       <Tr>
                         <Td>
                           <Flex>
