@@ -12,6 +12,8 @@ const WalletTable = () => {
     return (
         <>
             <Box
+                border={"2px"}
+                borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
             >
                 <Box 
@@ -223,7 +225,7 @@ function PageButtons () {
                     h={"26px"}
                     bg={useColorModeValue("#FFF", "#202020")}
                     border={"1px"}
-                    borderColor={"#454853"}
+                    borderColor={useColorModeValue("#C7CAD2", "#454853")}
                     borderRadius={"0px"}
                     padding="0px"
                 >
@@ -245,7 +247,7 @@ function PageButtons () {
                     bg={useColorModeValue("#FFF", "#202020")}
                     border={"1px"}
                     borderRadius={"0px"}
-                    borderColor={"#454853"}
+                    borderColor={useColorModeValue("#C7CAD2", "#454853")}
                     padding="0px"
                 >
                     <Image
