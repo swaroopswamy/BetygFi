@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer
+    Image, Spacer, Button
 } from "@chakra-ui/react";
 import { blockchains } from "../../../util/constant";
 import { useState } from "react";
@@ -11,164 +11,264 @@ const WalletTable = () => {
 
     return (
         <>
-            <Box 
-                display={"flex"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                padding={"8px 30px 8px 30px"}
-                background={useColorModeValue('#FFFFFF', '#202020')}
-            >
-                <Box>
-                    <Text
-                        color={useColorModeValue("#16171B", "#FFFFFF")}
-                        ml={"10px"}
-                        mb={"20px"}
-                        mt={"20px"}
-                        size={"22px"}
-                        fontWeight={"600"}
-                        lineHeight={"20px"}
-                    >
-                        Top Value Holders
-                    </Text>
-                </Box>
-
-                <Spacer />
-
-            </Box>
-
-            <Table variant='unstyled'
-                size={'sm'}
-                border={"1px"}
-                borderColor={useColorModeValue("#FFFFFF", "#272727")}
+            <Box
                 borderRadius={"6px"}
             >
-                    <Thead>
-                        <Tr
-                            bg={useColorModeValue("#F5F5F7", "#131313")}
-                            width={"20%"}
-                            flex-shrink={"0"}
-                            borderRadius={'6px'}
+                <Box 
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                    padding={"8px 30px 8px 30px"}
+                    background={useColorModeValue('#FFFFFF', '#202020')}
+                >
+                    <Box>
+                        <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            ml={"10px"}
+                            mb={"20px"}
+                            mt={"20px"}
+                            size={"22px"}
+                            fontWeight={"600"}
+                            lineHeight={"20px"}
                         >
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            </Th>
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            User</Th>
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            Net Worth</Th>
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            Total Tokens</Th>
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            Total Protocols</Th>
-                            <Th
-                            color={useColorModeValue("#434347", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"uppercase"}
-                            textAlign={"left"}
-                            >
-                            Total NFT Collections</Th>
-                        </Tr>
-                    </Thead>
+                            Top Value Holders
+                        </Text>
+                    </Box>
 
-                    <Tbody>
+                    <Spacer />
 
-                    <TableRow 
-                        user={"0x8b4d84......43f72"}
-                        netWorth={"$65B"}
-                        totalTokens={[{name: "Ethereum", value: "100%"}]}
-                        totalProtocols={""}
-                        totalNFT={""}
-                    />
+                </Box>
 
-                    <TableRow 
-                        user={"0x8b4d84......43f72"}
-                        netWorth={"$55.9B"}
-                        totalTokens={[
-                            {name: "Ethereum", value: "60%"},
-                            {name: "Tron", value:"40%"},
-                        ]}
-                        totalProtocols={""}
-                        totalNFT={""}
-                    />
+                <Table variant='unstyled'
+                    size={'sm'}
+                    border={"1px"}
+                    borderColor={useColorModeValue("#FFFFFF", "#272727")}
+                    borderRadius={"6px"}
+                >
+                        <Thead>
+                            <Tr
+                                bg={useColorModeValue("#F5F5F7", "#131313")}
+                                width={"20%"}
+                                flex-shrink={"0"}
+                                borderRadius={'6px'}
+                            >
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                </Th>
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                User</Th>
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                Net Worth</Th>
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                Total Tokens</Th>
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                Total Protocols</Th>
+                                <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                >
+                                Total NFT Collections</Th>
+                            </Tr>
+                        </Thead>
 
-                    <TableRow 
-                        user={"0x8b4d84......43f72"}
-                        netWorth={"$65B"}
-                        totalTokens={[
-                            {name: "Ethereum", value: "30%"},
-                            {name: "Arbitrum", value: "30%"},
-                            {name: "Polygon", value: "40%"},
-                        ]}
-                        totalProtocols={""}
-                        totalNFT={""}
-                    />
+                        <Tbody>
 
-                    </Tbody>
-                    <Tfoot>
-                    </Tfoot>
-            </Table>
+                        <TableRow 
+                            user={"0x8b4d84......43f72"}
+                            netWorth={"$65B"}
+                            totalTokens={[{name: "Ethereum", value: "100%"}]}
+                            totalProtocols={""}
+                            totalNFT={""}
+                        />
+
+                        <TableRow 
+                            user={"0x8b4d84......43f72"}
+                            netWorth={"$55.9B"}
+                            totalTokens={[
+                                {name: "Ethereum", value: "60%"},
+                                {name: "Tron", value:"40%"},
+                            ]}
+                            totalProtocols={""}
+                            totalNFT={""}
+                        />
+
+                        <TableRow 
+                            user={"0x8b4d84......43f72"}
+                            netWorth={"$65B"}
+                            totalTokens={[
+                                {name: "Ethereum", value: "30%"},
+                                {name: "Arbitrum", value: "30%"},
+                                {name: "Polygon", value: "40%"},
+                            ]}
+                            totalProtocols={""}
+                            totalNFT={""}
+                        />
+
+
+                        </Tbody>
+                        <Tfoot>
+                        </Tfoot>
+
+                </Table>
+
+                <PageButtons />
+            </Box>
         </>
     )
 };
 
 export default WalletTable;
 
+function PageButtons () {
+    return (
+    <>
+        <Box
+            display={"flex"}
+            alignItems={"flex-start"}
+            justifyContent={"end"}
+            padding="10px 30px 14px"
+            background={useColorModeValue('#FFFFFF', '#202020')}
+        >
+
+            <Box
+                display={"flex"}
+            >
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                >
+                    <Text
+                        color={useColorModeValue("#16171B", "#FFF")}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                    >
+                        1-20
+                    </Text>
+                </Box>
+
+                <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w={"12px"}
+                    h={"12px"}
+                    bg={useColorModeValue("#FFF", "#202020")}
+                    padding="0px"
+                >
+                    <Image
+                        mt={"10px"}
+                        width={"12px"}
+                        height={"12px"}
+                        style={{ rotate: '90deg' }}
+                        alt="next-arrow"
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                    ></Image>
+                </Button>
+
+                <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w={"10px"}
+                    h={"26px"}
+                    bg={useColorModeValue("#FFF", "#202020")}
+                    border={"1px"}
+                    borderColor={"#454853"}
+                    borderRadius={"0px"}
+                    padding="0px"
+                >
+                    <Image
+                        width={"12px"}
+                        height={"12px"}
+                        style={{ rotate: '180deg' }}
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        alt="prev-arrow"
+                    ></Image>
+                </Button>
+
+                <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w={"10px"}
+                    h={"26px"}
+                    bg={useColorModeValue("#FFF", "#202020")}
+                    border={"1px"}
+                    borderRadius={"0px"}
+                    borderColor={"#454853"}
+                    padding="0px"
+                >
+                    <Image
+                        width={15}
+                        height={15}
+                        alt="next-arrow"
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                    ></Image>
+                </Button>
+            </Box>
+
+        </Box>
+    </>)
+}
+
 function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
     const [clicked, setClick] = useState(false);
 
     return <Tr bgColor={clicked ? useColorModeValue('#F5F5F7', '#191919') : useColorModeValue('#FFFFFF', '#202020')}
-        onClick={() => {setClick(!clicked)}}
-        borderBottom={'2px'}
-        borderColor={useColorModeValue('#DFDFDF', '#313131')}
-        borderRadius={'2px'}
+            onClick={() => {setClick(!clicked)}}
+            borderBottom={'1px'}
+            borderColor={useColorModeValue('#DFDFDF', '#313131')}
+            borderRadius={'2px'}
         >
         <Td>
             <Flex>
