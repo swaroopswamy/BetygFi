@@ -184,6 +184,7 @@ const DefiTable = () => {
                                     letterSpacing={"1px"}
                                     colSpan={8}
                                     textAlign={"center"}
+                                    p="20px"
                                 >
                                     No Data Available
                                 </Td>
