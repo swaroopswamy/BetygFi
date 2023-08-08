@@ -1,17 +1,29 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
+require('dotenv').config()
+const webpack = require('webpack');
 const nextConfig = {
+  output: "export",
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     });
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+      )
+    );
 
     return config;
   },
-  env: {
-    NEXT_APP_API_URL: 'http://3.109.191.157:4000/',
+  images: {
+    unoptimized: true
   },
+  distDir: "out",
 };
 
 module.exports = nextConfig;

@@ -1,40 +1,32 @@
-"use client"
-import { redirect } from 'next/navigation';
-import styles from "./page.module.css";
-import axios from "axios";
+import Dashboard from "./dashboard/page";
+import Script from 'next/script';
 
 
-/* axios.interceptors.request.use(
-  (reqConfig) => {
-    const reqConfiglocal = reqConfig;
-    const token = localStorage.getItem("token");
-    if (token) {
-      reqConfiglocal.headers["X-Authorization"] = `${token}`;
-    }
 
-    return reqConfiglocal;
-  },
-  (error) => {
-    Promise.reject(error);
-  }
-); */
-
-/* axios.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    console.log(error, "error");
-
-    return Promise.reject(error);
-  }
-);
- */
 export default function Home() {
-  redirect('/dashboard');
   return (
     <>
-      <main className={styles.main}>
+      <main style={{ marginBottom: "42px" }}>
+
+        {/* <!-- Google tag (gtag.js) -->  */}
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
+          strategy="afterInteractive"
+        ></Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-Q0B2YDZPET');
+        `}
+        </Script>
+
+
+
+        <Dashboard />
       </main>
     </>
   );

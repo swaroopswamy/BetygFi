@@ -31,37 +31,39 @@ import {
   FiBell,
   FiChevronDown,
 } from "react-icons/fi";
-import SidebarContent from "../components/sidebar";
 import Navbar from "../components/header";
 import Footer from "../components/footer";
+import SidebarContent from "../components/sidebar";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
-      />
-      <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
+    <>
+      <Box minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}>
+        <SidebarContent
+          onClose={() => onClose}
+          display={{ base: "none", md: "block" }}
+        />
+        <Drawer
+          autoFocus={false}
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="full"
+        >
+          <DrawerContent>
+            <SidebarContent onClose={onClose} />
+          </DrawerContent>
+        </Drawer>
 
-      <Navbar onOpenMenu={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
-        {children}
-        <Footer />
+        <Navbar onOpenMenu={onOpen} />
+        <Box ml={{ base: 0, md: 60 }} p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
+          {children}
+          <Footer />
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 }

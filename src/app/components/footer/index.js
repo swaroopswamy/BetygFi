@@ -1,9 +1,8 @@
-
-
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+"use client";
+import { Box, Flex, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
 
-const manrope = Manrope({ weight: ['400'], subsets: ["latin"] });
+const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 import React from "react";
 
@@ -11,23 +10,26 @@ const Footer = () => {
   return (
     <>
       <Box
-        position={"relative"}
+        position={"fixed"} 
         bottom="0"
         width="100%"
         display="flex"
         justifyContent="flex-start"
         padding={2}
-        height="20px"
-        my={"14px"}
+        bg={useColorModeValue("#F0F0F5", "#191919")}
+        pt={"14px"}
         px={{ base: "10px", md: "10px" }}
+    
       >
         <Box
           ml={{ base: 0, md: 0 }}
           alignItems="flex-start"
           display={"flex"}
-          bg={useColorModeValue()}
+          
+          w={"100%"}
+          h={"100%"}
         >
-          <Box
+          {/* <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}
             display={"flex"}
@@ -41,6 +43,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               Approach Paper
             </Text>
@@ -50,6 +53,7 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               APIs
             </Text>
@@ -59,10 +63,11 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
               Contact
             </Text>
-          </Box>
+          </Box> */}
           <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}
@@ -76,8 +81,9 @@ const Footer = () => {
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
+              color={useColorModeValue("#16171B","#FFFFFF")}
             >
-              &#169;{" "}2023 Solvendo. All Rights Reserved.
+              &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
           </Box>
         </Box>
