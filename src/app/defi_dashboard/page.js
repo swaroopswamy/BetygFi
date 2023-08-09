@@ -12,6 +12,7 @@ import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransa
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import millify from "millify";
+import TVLBox from "./TVLBox";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -50,7 +51,7 @@ const DefiDashboardPage = () => {
     return (
         <>
             <Box
-                bgColor={useColorModeValue("#FFFFFF", "#131313")}
+                bgColor={useColorModeValue("#F0F0F5", "#191919")}
                 display={"flex"}
                 flexDirection={"column"}
             >
@@ -60,11 +61,13 @@ const DefiDashboardPage = () => {
                     margin={"38px 30px 50px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #2F2F2F", "1px solid #BFBFBF")}
+                    bgColor={useColorModeValue("#F0F0F5","#191919")}
 
                 >
                     <Box
                         display={"flex"}
                         alignItems={"center"}
+                        bgColor={useColorModeValue("#F0F0F5","#191919")}
                     >
                         <Box
                             marginRight={"22px"}
@@ -339,7 +342,9 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
-
+            </Box>
+            <Box>
+                <TVLBox />
             </Box>
             <Box>
                 <Governance />
