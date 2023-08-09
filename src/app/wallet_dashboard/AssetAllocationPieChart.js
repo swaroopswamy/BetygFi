@@ -39,14 +39,15 @@ const AssetAllocationPieChart = () => {
         },
         tooltip: {
             enabled: true,
+           
         },
-        labels: walletBalanceData?.data?.data.map((item, i) => {
+        labels: walletBalanceData?.data?.data?.map((item, i) => {
             return `${item?.Symbol}`
         }),
 
 
     };
-    const series = walletBalanceData?.data?.data.map((item) => {
+    const series = walletBalanceData?.data?.data?.map((item) => {
 
         return item?.percentageValue
     });

@@ -82,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           mx="17px"
           mb="40px"
           justifyContent="space-between"
-          cursor={"poiner"}
+          cursor={"pointer"}
         >
           <Image
             width={180}
@@ -92,7 +92,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               "/icons/light_betgyfi_sm_icon.svg",
               "/icons/dark_betgyfi_sm_logo.svg"
             )}
-            cursor={"poiner"}
+            cursor={"pointer"}
             onClick={() => router.push('/')}
           />
           <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />

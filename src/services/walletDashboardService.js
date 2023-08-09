@@ -1,24 +1,24 @@
 import React from "react";
 import { axiosInstance } from "../../util/axiosInstance";
-export const getWalletBalanceData = async (address,payload) => {
+export const getWalletBalanceData = async (payloadData) => {
   try {
     const { data } = await axiosInstance.post(
-      `wallet/balance/${address}`,payload
+      `wallet/balance/${payloadData.address}`, payloadData.payload
     );
     return data;
   } catch (err) {
-    return err;
+    return rejectWithValue(err);
   }
 };
 
-export const getWalletTransactionsData = async (address,payload) => {
+export const getWalletTransactionsData = async (payloadData) => {
   try {
     const { data } = await axiosInstance.post(
-      `wallet/transactions/${address}/get`
+      `wallet/transactions/${payloadData.address}/get`,payloadData.payload
     );
     return data;
   } catch (err) {
-    return err;
+    return rejectWithValue(err);
   }
 };
 

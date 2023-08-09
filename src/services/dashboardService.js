@@ -3,33 +3,33 @@ import { axiosInstance } from "../../util/axiosInstance";
 export const getDefiRankingsTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.post(
-      `protocols`,payload
+      `protocols`, payload
     );
     return data;
   } catch (err) {
-    return err;
+    return rejectWithValue(err);
   }
 };
 
 export const getProtocolScoresData = async (payload) => {
   try {
     const { data } = await axiosInstance.post(
-      `protocols/scores`,payload
+      `protocols/scores`, payload
     );
     return data;
   } catch (err) {
-    return err;
+    return rejectWithValue(err);
   }
 };
 
 export const getOverviewData = async (payload) => {
   try {
     const { data } = await axiosInstance.post(
-      `protocols/overview`,payload
+      `protocols/overview`, payload
     );
     return data;
   } catch (err) {
-    return err;
+    return rejectWithValue(err);
   }
 };
 

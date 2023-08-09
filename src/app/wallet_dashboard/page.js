@@ -20,6 +20,7 @@ const WalletDashboardPage = () => {
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
+    console.log(blockchainSelected, 'blockchain')
     const walletAddress = useSelector(
         (state) => state?.walletDashboardTableData?.walletAddress
     );
@@ -29,23 +30,32 @@ const WalletDashboardPage = () => {
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
 
+
+
     const fetchWalletBalanceDataHandler = useCallback(() => {
-        const payload = {
-            blockchain: blockchainSelected
+        const data = {
+            address:walletAddress,
+            payload:{
+                blockchain:blockchainSelected
+            }
         }
-        dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
+        dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
-        /* const payload = {
-            blockchain: blockchainSelected
-        } */
-        dispatch(fetchWalletTransactionsData(searchParam.get("address")));
+        const data = {
+            address:walletAddress,
+            payload:{
+                blockchain:blockchainSelected
+            }
+        }
+        dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, walletAddress])
     useEffect(() => {
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
+
 
     return (
         <>
@@ -79,15 +89,24 @@ const WalletDashboardPage = () => {
                             display={"flex"}
                             flexDirection={"column"}
                         >
-                            <Text
-                                fontSize={"24px"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                color={useColorModeValue("#191919", "#FFF")}
-                                letterSpacing={"2.4px"}
-                            >
-                                Illuvium
-                            </Text>
+                            {
+                                walletBalanceData?.name === undefined && (
+                                    <Text
+                                        fontSize={"24px"}
+                                        fontWeight={"400"}
+                                        lineHeight={"20px"}
+                                        opacity={"0.5"}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        letterSpacing={"2.4px"}
+                                    >
+                                        No Name
+                                    </Text>
+                                )}
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
@@ -127,8 +146,8 @@ const WalletDashboardPage = () => {
                     <Box
                         position={"relative"}
                     >
-                       {/*  <SplineAreaChart /> */}
-                        <Box
+                        {/*  <SplineAreaChart /> */}
+                        {walletBalanceData?.totalAssetValue !== undefined && (<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -138,19 +157,28 @@ const WalletDashboardPage = () => {
                             <Text
                                 fontSize={"12px"}
                                 fontWeight={"300"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
                             >
                                 Net Worth
                             </Text>
                             <Text
                                 fontSize={"24px"}
                                 fontWeight={"400"}
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
-                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined  && millify(walletBalanceData?.totalAssetValue, {
+                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined && millify(walletBalanceData?.totalAssetValue, {
                                     precision: 2,
                                     locales: "en-US"
                                 })}
@@ -163,19 +191,29 @@ const WalletDashboardPage = () => {
                                 <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                    _dark={{
+                                        color: "#FFFFFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
                                 >
                                     Last Update
                                 </Text>
                                 <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
-                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                    _dark={{
+                                        color: "#FFFFFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
                                 >
-                                   {" "} 3 mins ago
+                                    {" "} 3 mins ago
                                 </Text>
                             </Box>
-                        </Box>
+                        </Box>)}
                     </Box>
                 </Box>
                 <Box>
@@ -331,8 +369,8 @@ const WalletDashboardPage = () => {
                                                 alignItems={"center"}
                                             >
                                                 <Image
-                                                    w={"20px"}
-                                                    h={"20px"}
+                                                    w={"18px"}
+                                                    h={"18px"}
                                                     mr={"11px"}
                                                     src={`/icons/${item}_sm_icon.svg`}
                                                     alt=""
