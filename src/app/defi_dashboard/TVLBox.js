@@ -190,11 +190,9 @@ const TVLBox = () => {
             <Button 
             variant={"outline"} 
             size={"xs"}
-            _light={{ colorScheme: "#F5F5F7" }}
-            _dark={{ colorScheme: "#191919" }}
+            _light={{ colorScheme: "#F5F5F7", stroke: "#000"}}
+            _dark={{ colorScheme: "#191919", stroke: "#333" }}
              strokeWidth={"1px"}
-             _light={{ stroke: "#000" }}
-             _dark={{ stroke: "#333" }}
             mt={"15px"}
             mr={"20px"}
             >
