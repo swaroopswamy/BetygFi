@@ -1,4 +1,6 @@
 "use client"
+import Governance from "./governance";
+
 
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox } from "@chakra-ui/react";
@@ -56,7 +58,7 @@ const DefiDashboardPage = () => {
                     margin={"38px 30px 50px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #2F2F2F", "1px solid #BFBFBF")}
-                                   
+
                 >
                     <Box
                         display={"flex"}
@@ -305,7 +307,7 @@ const DefiDashboardPage = () => {
                             left: "10px",
                             width: "85%",
                             height: "1px",
-                            bgColor:"#00B913",
+                            bgColor: "#00B913",
 
                         }}
                     >
@@ -327,8 +329,11 @@ const DefiDashboardPage = () => {
                 </Box>
 
             </Box>
+            <Box>
+                <Governance />
+            </Box>
         </>
     );
 };
 
-export default DefiDashboardPage; 
+export default DefiDashboardPage;
