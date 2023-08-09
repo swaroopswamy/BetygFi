@@ -34,7 +34,7 @@ const TransactionPanelComponent = () => {
   const value2 = "200";
   const value3 = "-300";
   const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
-  console.log(walletTransactionsData, 'data')
+  //console.log(walletTransactionsData, 'data')
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
