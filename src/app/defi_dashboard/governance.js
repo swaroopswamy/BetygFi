@@ -13,8 +13,9 @@ const Governance = () => {
     const value5 = "+ 56,456,560";
 
     return (
-        <Box mr={"10px"}
-             ml={"10px"}>
+        <Box 
+             _dark={{ bg: "#191919" }}
+             _light={{ bg: " #F0F0F5" }}>
         
             <Box  w="100%"
                  my="20px"
@@ -22,6 +23,8 @@ const Governance = () => {
              >
 
                 <Box
+                     mr={"10px"}
+                     ml={"20px"}
 
                     w='50%'
 
@@ -49,7 +52,7 @@ const Governance = () => {
 
                     }}
 
-                    mr="10px"
+                   
 
                 >
 
@@ -1242,10 +1245,12 @@ const Governance = () => {
 
 
 
-
+            <Box  mr={"20px"}
+             ml={"20px"}
+             paddingBottom={"60px"}>
+        
 
         {/* Governance Table */}
-
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
         bgColor={useColorModeValue("#FFF", "#202020")} >
         <Text
@@ -1258,7 +1263,7 @@ const Governance = () => {
           Governance | proposals
         </Text>
       </Flex>
-      <Table variant="simple" key={1} bgColor={"#FFF"}>
+      <Table variant="simple" key={1} bgColor={"#FFF"} >
         <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
           <Tr>
             <Th
@@ -1418,8 +1423,53 @@ _light={{ bgColor: "#FFF" }} >
     <Td>   </Td>
 
 </Tr>
+
+<Tr height={"40px"}   _dark={{ color: "#FFFFFF" }}
+
+                      _light={{ color: "#16171B" }}>
+
+<Td>Gauge Weight for Week of 11th May 2023</Td>
+   
+   <Td>11 May, 2023, 00:00 </Td>
+
+    <Td>15 May, 2023, 23:50    </Td>
+
+    <Td>Active</Td>
+   
+   <Td>3,388,851</Td>
+
+    <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+   
+   <Td>481759.04</Td>
+
+    <Td>   </Td>
+
+</Tr>
+
+<Tr height={"40px"}   _dark={{ color: "#FFFFFF" }}
+
+                      _light={{ color: "#16171B" }}>
+
+<Td>Gauge Weight for Week of 11th May 2023</Td>
+   
+   <Td>11 May, 2023, 00:00 </Td>
+
+    <Td>15 May, 2023, 23:50    </Td>
+
+    <Td>Active</Td>
+   
+   <Td>3,388,851</Td>
+
+    <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+   
+   <Td>481759.04</Td>
+
+    <Td>   </Td>
+
+</Tr>
 </Tbody>
         </Table>
+        </Box>
 
 
         </Box>
