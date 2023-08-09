@@ -9,12 +9,13 @@ export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableD
 })
 
 
-export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (address,payload) => {
-  const response = await getWalletBalanceData(address,payload);
+export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload) => {
+  const response = await getWalletBalanceData(payload);
   return response;
 })
-export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (address,payload) => {
-  const response = await getWalletTransactionsData(address,payload);
+export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload) => {
+  console.log(payload,'da')
+  const response = await getWalletTransactionsData(payload);
   return response.data;
 })
 

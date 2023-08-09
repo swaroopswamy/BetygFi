@@ -20,6 +20,7 @@ const WalletDashboardPage = () => {
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
+    console.log(blockchainSelected, 'blockchain')
     const walletAddress = useSelector(
         (state) => state?.walletDashboardTableData?.walletAddress
     );
@@ -29,23 +30,32 @@ const WalletDashboardPage = () => {
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
 
+
+
     const fetchWalletBalanceDataHandler = useCallback(() => {
-        const payload = {
-            blockchain: blockchainSelected
+        const data = {
+            address:walletAddress,
+            payload:{
+                blockchain:blockchainSelected
+            }
         }
-        dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
+        dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
-        /* const payload = {
-            blockchain: blockchainSelected
-        } */
-        dispatch(fetchWalletTransactionsData(searchParam.get("address")));
+        const data = {
+            address:walletAddress,
+            payload:{
+                blockchain:blockchainSelected
+            }
+        }
+        dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, walletAddress])
     useEffect(() => {
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
+
 
     return (
         <>
@@ -94,7 +104,7 @@ const WalletDashboardPage = () => {
                                         }}
                                         letterSpacing={"2.4px"}
                                     >
-                                       No Name
+                                        No Name
                                     </Text>
                                 )}
                             <Box
