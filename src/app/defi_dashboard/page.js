@@ -1,3 +1,5 @@
+// eslint-disable-next-line react-hooks/exhaustive-deps
+
 "use client"
 import Governance from "./governance";
 
@@ -221,8 +223,13 @@ const DefiDashboardPage = () => {
                                                         <>
                                                             {i >= 4 &&
                                                                 <MenuItem key={i}
-                                                                    bgColor={useColorModeValue("#FFF", "#191919")}
-                                                                    _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                                                                    _light={{
+                                                                        bgColor: "#FFF",
+                                                                    }}
+                                                                    _dark={{
+                                                                        bgColor: "#191919",
+                                                                    }}
+                                                                    _hover={{ bg: colorMode === 'light' ? "#F5F5F7" : "#202020" }}
                                                                 >
                                                                     <Checkbox colorScheme='green'
                                                                         value={item}
@@ -248,7 +255,12 @@ const DefiDashboardPage = () => {
                                                                                 fontWeight={"400"}
                                                                                 lineHeight={"20px"}
                                                                                 letterSpacing={"1px"}
-                                                                                color={useColorModeValue("#16171B", "#FFF")}
+                                                                                _light={{
+                                                                                    color: "#16171B",
+                                                                                }}
+                                                                                _dark={{
+                                                                                    color: "#FFF",
+                                                                                }}
                                                                             >
                                                                                 {item}
                                                                             </Text>
