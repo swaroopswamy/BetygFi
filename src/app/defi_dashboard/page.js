@@ -14,6 +14,7 @@ import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import millify from "millify";
 import TVLBox from "./TVLBox";
+import DonutChart from "./DonutChart";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -344,30 +345,30 @@ const DefiDashboardPage = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box>
-                <TVLBox />
-            </Box>
 
+            {/* <Box>
+                <TVLBox />
+            </Box> */}
 
             <Box
                 display={"flex"}
                 flexDirection={"column"}
-                bgColor={useColorModeValue('#FFFFFF', "#191919")}
+                bgColor={useColorModeValue('#F0F0F5', "#191919")}
                 padding={"10px 0 0 10px"}
             >
                 <Box
-                    ml={"700px"}
-                    mr={"30px"}
-                    mb={"30px"}
+                    display={"flex"}
+                    justifyContent={"space-evenly"}
                 >
+                    <DonutChart />
                     <BarChart />
                 </Box>
-
-                <Box
-                    bgColor={useColorModeValue('#FFFFFF', "#202020")}
-                >
-                <Governance />
             </Box>
+
+            <Box
+                bgColor={useColorModeValue('#FFFFFF', "#202020")}
+            >
+                <Governance />
             </Box>
         </>
     );

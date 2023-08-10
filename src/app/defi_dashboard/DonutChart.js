@@ -1,48 +1,29 @@
 "use client"
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import { color } from "framer-motion";
 import React from "react";
 import { useState } from "react";
+import './styles.css';
 import Chart from "react-apexcharts";
 
-function BarChart() {
+function DonutChart() {
+
   const { colorMode } = useColorMode();
 
+
   const options = {
+      labels: ["Fee", "Revenue"],
+      series: [31, 69],
       chart: {
         toolbar: {
           show: false,
         },
-        type: 'bar'
+        type: 'donut'
       },
       plotOptions: {
         bar: {
-          horizontal: true,
           distributed: true,
-          barHeight: '30%',
           labels: false,
-        }
-      },
-      legend: {
-        show: false,
-      },
-      dataLabels: {
-        enabled: false
-      },
-      grid: {
-        strokeDashArray: 2,
-        borderColor: useColorModeValue("#191919", "#36363A"),
-        xaxis: {
-          lines: {
-            show: true,
-          },
-          stroke: {
-            width: 1
-          }
-        },
-        yaxis: {
-          lines: {
-            show: false,
-          }
         }
       },
       tooltip: {
@@ -51,57 +32,41 @@ function BarChart() {
           return (
             '<div class="donut_tooltip">' +
               '<div class="donut_tooltip_text">' +
-                w.globals.labels[dataPointIndex] +
+                w.globals.labels[seriesIndex] +
               "</div>" +
               '<div class="donut_tooltip_text">' +
-                series[0][dataPointIndex] + "%" +
+                series[seriesIndex] + "%" +
               '</div>' +
             "</div>"
           );
         }      
       },
-      colors: ["#FF7272", "#9ADA8A", "#FF9F6A"],
-      xaxis: {
+      stroke: {
+        width: 0,
+      },
+      legend: {
+        show: true,
+        position: 'left',
+        horizontalAlign: 'center',
+        fontSize: '10px',
+        fontWeight: '400',
         labels: {
-          show: true,
-          style: {
-              colors: useColorModeValue("#16171B", "#FFF"),
-              fontSize: "11px",
-              fontWeight: 400,    
-          },
+          colors: useColorModeValue('#16171B', '#FFFFFF') 
         },
-        axisTicks: {
-          show: true,
-          borderType: 'solid',
-          width: 6,
-          offsetX: 0,
-          offsetY: 0
+        markers: {
+          offsetY: 2
+        },
+        formatter: function (text, opts) {
+          return [text, opts.w.globals.series[opts.seriesIndex] + "%",]
         },
       },
-      yaxis: {
-        labels: {
-          show: true,
-          style: {
-              colors: useColorModeValue("#16171B", "#FFF"),
-              fontSize: "11px",
-              fontWeight: 400,
-          },
-        }
+      dataLabels: {
+        enabled: false
       },
+      colors: ["#FF5C01", "#24A48A"],
     };
 
-  const series = [{
-        data: [{
-          x: 'Borrow',
-          y: 100
-        }, {
-          x: 'Supply',
-          y: 80
-        }, {
-          x: 'TVL',
-          y: 59
-        }]
-      }]
+  const series = [31, 69];
 
   return (
       <>
@@ -130,7 +95,7 @@ function BarChart() {
                   lineHeight={"20px"}
                   color={useColorModeValue("#16171B", "#FFFFFF")}
                 >
-                  Defi Borrow/Supply/TVL
+                  Defi Fee and Revenue
                 </Text>
               </Box>
               <Box
@@ -149,5 +114,5 @@ function BarChart() {
   );
 }
 
-export default BarChart;
+export default DonutChart;
 
