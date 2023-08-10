@@ -1259,8 +1259,9 @@ const Governance = ({} ) => {
         
 
         {/* Governance Table */}
+        
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
-        bgColor={useColorModeValue("#FFF", "#202020")} >
+        bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
         <Text
           fontSize="xl"
           fontWeight={"400"}
