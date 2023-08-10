@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button
+    Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../util/constant";
 import { useState } from "react";
@@ -319,8 +319,13 @@ function PageButtons () {
 
 function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
     const [clicked, setClick] = useState(false);
+    const { colorMode } = useColorMode();
 
-    return <Tr bgColor={clicked ? useColorModeValue('#F5F5F7', '#191919') : useColorModeValue('#FFFFFF', '#202020')}
+    return <Tr
+            bgColor={clicked ? 
+                (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                (colorMode === "light" ?  '#FFFFFF' : '#202020')
+            }
             onClick={() => {setClick(!clicked)}}
             borderBottom={'1px'}
             borderColor={useColorModeValue('#DFDFDF', '#313131')}
@@ -378,9 +383,15 @@ function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
                         <Box
                             padding={"7px 9px"}
                             border={"1px"}
-                            borderColor={useColorModeValue("#E8E8E8", "#333333")}
+                            _light={{
+                                borderColor:"#E8E8E8",
+                                background:"#F5F5F7"
+                            }}
+                            _dark={{
+                                borderColor:"#333333",
+                                background:"202020"
+                            }}
                             borderRadius={"2px"}
-                            background={useColorModeValue('#F5F5F7', '#202020')}
                             mr={"5px"}
                             display={"flex"}
                             justifyContent={"center"}
@@ -394,7 +405,8 @@ function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
                                 alt=""
                             ></Image>
                             <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
+                                _light={{color:"#16171B"}}
+                                _dark={{color:"#FFFFFF"}}
                                 fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
