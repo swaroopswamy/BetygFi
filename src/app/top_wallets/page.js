@@ -1,28 +1,24 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from "react";
-import { Box, Input, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Input, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, border } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
+import { blockchains } from "../../../util/constant";
+import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import WalletTable from "./WalletTable.js"
 
 const WalletDashboardPage = () => {
     const { colorMode } = useColorMode();
+    const dispatch = useDispatch();
+
+
     const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.defiArraySelected
+        (state) => state?.walletDashboardTableData?.blockchainType
     );
-
-    const blockchainArrayHandler = (type) => {
-        dispatch(defiArrayChangedReducer(type));
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+        console.log(blockchainSelected);
     };
-
-    const blockchainArray = [
-        "ETHEREUM",
-        "TRON",
-        "BSC",
-        "ARBITRUM",
-        "POLYGON"
-    ];
 
     return (
         <>
@@ -35,8 +31,8 @@ const WalletDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={"38px 30px 5px 30px"}
-
+                    padding={"38px 30px 0px 30px"}
+                    bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 >
                     <Box
                         display={"flex"}
@@ -80,7 +76,7 @@ const WalletDashboardPage = () => {
                                 fontWeight={"400"}
                                 lineHeight={"15px"}
                                 color={useColorModeValue("#191919", "#FFF")}
-                                letterSpacing={"2.4px"}
+                                letterSpacing={"1.2px"}
                             >
                                 Select the blockchains you'd like to analyze
                             </Text>
@@ -90,14 +86,14 @@ const WalletDashboardPage = () => {
                             display={"flex"}
                             justifyContent={"space-between"}
                             alignItems={"center"}
-                            py={"18px"}
-                            px="26px"
+                            mt={"18px"}
                         >
-                            <SelectionBox 
+                            <SelectionBox
                                 blockchainSelected={blockchainSelected}
                                 colorMode={colorMode}
-                                blockchainArrayHandler={blockchainArrayHandler}
-                                blockchainArray={blockchainArray} />
+                                BlockchainTypeHandler={BlockchainTypeHandler}
+                            />
+
                         </Box>
 
                         
@@ -108,12 +104,12 @@ const WalletDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={"5px 30px 50px 30px"}
+                    padding={"10px 30px 50px 30px"}
                     flexDirection={"column"}
+                    bgColor={useColorModeValue("#F0F0F5", "#191919")}
                 >
                     <Box
                         bgColor={useColorModeValue("#FFFFFF", "#191919")}
-                        borderRadius={"6px"}
                     >
                         <WalletTable />
                     </Box>
@@ -126,67 +122,162 @@ const WalletDashboardPage = () => {
 
 export default WalletDashboardPage; 
 
-function SelectionBox( {blockchainSelected, colorMode, blockchainArrayHandler, blockchainArray} ) {
+function SelectionBox ( {blockchainSelected, colorMode, BlockchainTypeHandler} ) {
+    return <>
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+        >
+            <Box
+                w={"100%"}
+                display={"flex"}
+                alignItems={"center"}
+                borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
+                pb="14px"
+            >
+                <Box
+                    position={"relative"}
+                    cursor={"pointer"}
+                    fontSize={"14px"}
+                    fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
+                    lineHeight={"20px"}
+                    color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+                    _after={
+                        blockchainSelected.length === 0 && {
+                            position: "absolute",
+                            content: '""',
+                            bottom: "-14px",
+                            left: 0,
+                            width: "100%",
+                            height: "1px",
+                            bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+
+                        }
+                    }
+                    onClick={() => {
+                        BlockchainTypeHandler("All");
+                    }}
+                    mr={"18px"}
+                    letterSpacing={"1.4px"}
+                    textTransform={"uppercase"}
+                >
+                    ALL
+                </Box>
+                {blockchains.map((item, i) => {
+                    return (
+                        <Box
+                            position={"relative"}
+                            cursor={"pointer"}
+                            key={i}
+                            _after={
+                                blockchainSelected.includes(item) && {
+                                    position: "absolute",
+                                    content: '""',
+                                    bottom: "-14px",
+                                    left: 0,
+                                    width: "100%",
+                                    height: "1px",
+                                    bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                }
+                            }
+                            onClick={() => {
+                                BlockchainTypeHandler(item);
+                            }}
+                            mr={"18px"}
+                            display={"flex"}
+                            alignItems={"center"}
+                        >
+                            <Image
+                                w={"20px"}
+                                h={"20px"}
+                                mr={"11px"}
+                                src={`/icons/${item}_sm_icon.svg`}
+                                alt=""
+                            ></Image>
+                            <Text
+                                fontSize={"14px"}
+                                fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
+                                lineHeight={"20px"}
+                                color={colorMode === 'light' ?
+                                    blockchainSelected.includes(item) ? "#191919" : "#191919"
+                                    :
+                                    blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
+                                }
+                                letterSpacing={"1.4px"}
+                                textTransform={"uppercase"}
+                            >
+                                {item}
+                            </Text>
+                        </Box>
+                    );
+                })}
+            </Box>
+        </Box>
+    </>
+}
+
+function SelectionTab( {colorMode, tabIndex, setTabIndex} ) {
+    
     return <>
         <Box
             display={"flex"}
             justifyContent={"flex-start"}
             alignItems={"center"}
-
         >
-            <Box
-                textAlign={"center"}
-                p="8px"
-                bgColor={blockchainSelected.length === 0 ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#E0E0E0") : ("#202020")}
-                onClick={() => {
-                    blockchainArrayHandler('All');
-                } }
-                borderRadius={"2px"}
-                opacity={blockchainSelected.length !== 0 ? "0.5" : "1"}
-                mr={"10px"}
-                border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
-            >
-                <Text
-                    fontSize={"10px"}
-                    fontWeight={blockchainSelected.length === 0 ? "600" : "400"}
-                    lineHeight={"20px"}
-                    color={blockchainSelected.length === 0 ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-
+            <Tabs onChange={(index) => setTabIndex(index)}>
+                <TabList>
+                <Tab
+                    padding="0"
                 >
-                    All
-                </Text>
-            </Box>
-            {blockchainArray.map((item, i) => {
-                return (
-                    <>
-                        <Box
-                            key={i}
-                            textAlign={"center"}
-                            p="8px"
-                            bgColor={blockchainSelected.includes(item) ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#FFFFFF") : ("#202020")}
-                            onClick={() => {
-                                blockchainArrayHandler(item);
-                            } }
-                            opacity={blockchainSelected.includes(item) ? "1" : "0.5"}
-                            mr={"10px"}
-                            borderRadius={"2px"}
-                            _light={{ border: "1px solid #979AA5" }}
-                            _dar={{ border: "1px solid #787878" }}
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                        padding={"5px 10px 10px 10px"}
+                        bgColor={useColorModeValue("#F5F5F7", "#131313")}
+                    >
+                        <Text
+                            fontSize={"14px"}
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontWeight={tabIndex === 0 ? "700" : "400"}
+                            letterSpacing={"1.4px"}
+                            textTransform={"uppercase"}
                         >
-                            <Text
-                                fontSize={"10px"}
-                                fontWeight={blockchainSelected.includes(item) ? "600" : "400"}
-                                lineHeight={"20px"}
-                                color={blockchainSelected.includes(item) ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-
+                            All
+                        </Text>
+                    </Box>
+                </Tab>
+                {blockchains.map((item, i) => {
+                    return (
+                        <Tab
+                            padding="0"
+                        >
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                                gap={"8px"}
+                                padding={"5px 10px 10px 10px"}
+                                bgColor={useColorModeValue("#F5F5F7", "#131313")}
                             >
-                                {item}
-                            </Text>
-                        </Box>
-
-                    </>
-                );
-            })}
+                                <Image
+                                    h="20px"
+                                    alt="icon"
+                                    src={`/icons/${item}_sm_icon.svg`}
+                                ></Image>
+                                <Text
+                                    fontSize={"14px"}
+                                    color={useColorModeValue("#16171B", "#FFF")}
+                                    fontWeight={tabIndex === i+1 ? "700" : "400"}
+                                    letterSpacing={"1.4px"}
+                                    textTransform={"uppercase"}
+                                >
+                                    {item}
+                                </Text>
+                            </Box>
+                        </Tab>
+                    );
+                })}
+                </TabList>
+            </Tabs>
         </Box>
-        </>;
+    </>
 }
