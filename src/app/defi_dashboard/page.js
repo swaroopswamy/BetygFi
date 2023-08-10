@@ -2,7 +2,8 @@
 
 "use client"
 import Governance from "./governance";
-
+import BarChart from "./BarChart";
+import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
 
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox } from "@chakra-ui/react";
@@ -341,8 +342,27 @@ const DefiDashboardPage = () => {
                 </Box>
 
             </Box>
-            <Box>
+
+
+            <Box
+                display={"flex"}
+                flexDirection={"column"}
+                bgColor={useColorModeValue('#FFFFFF', "#191919")}
+                padding={"10px 0 0 10px"}
+            >
+                <Box
+                    ml={"700px"}
+                    mr={"30px"}
+                    mb={"30px"}
+                >
+                    <BarChart />
+                </Box>
+
+                <Box
+                    bgColor={useColorModeValue('#FFFFFF', "#202020")}
+                >
                 <Governance />
+            </Box>
             </Box>
         </>
     );
