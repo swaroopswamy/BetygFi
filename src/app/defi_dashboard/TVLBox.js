@@ -3,6 +3,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import { DownloadIcon } from '@chakra-ui/icons'
 
 import React, { use } from "react";
+import ViewmoreDefiusers from "./ViewmoreDefiusers";
 
 const TVLBox = () => {
     return (
