@@ -1,20 +1,35 @@
 "use client"
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
-import React from "react";
+import { Box, Image,  Text, useColorModeValue, useColorMode, Flex,Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import {List,ListItem,ListIcon} from '@chakra-ui/react';
+import { MdCheckCircle } from 'react-icons/md';
+import React, { useEffect, useState } from "react";
 
 
-const Governance = () => {
+const Governance = ({} ) => {
 
     const { colorMode } = useColorMode();
+
+    //For DeFi Inflow/Outflow Table
     const value1 = "+356,456,560";
     const value2 = "+ 256,456,560";
     const value3 = "+ 46,456,560";
     const value4 = "+ 66,456,560";
     const value5 = "+ 56,456,560";
 
+    //  For Governance Table
+    const Status1 = "Active";
+    const Status2 = "Active";
+    const Status3 = "InActive";
+    const [searchByName, setSearchByName] = useState('');
+    const searchByNameHandler = (name) => {
+        setSearchByName(name);
+      }
+
+
     return (
-        <Box mr={"10px"}
-             ml={"10px"}>
+        <Box 
+             _dark={{ bg: "#191919" }}
+             _light={{ bg: " #F0F0F5" }}>
         
             <Box  w="100%"
                  my="20px"
@@ -22,6 +37,8 @@ const Governance = () => {
              >
 
                 <Box
+                     mr={"10px"}
+                     ml={"20px"}
 
                     w='50%'
 
@@ -49,7 +66,7 @@ const Governance = () => {
 
                     }}
 
-                    mr="10px"
+                   
 
                 >
 
@@ -95,15 +112,9 @@ const Governance = () => {
 
                         </Text>
 
-                        {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
+                       <>
 
-                        <>
-
-
-
-
-
-                            <Tooltip label='#Frame'
+                       <Tooltip label='#Frame'
 
                                 padding='14px 8px'
 
@@ -111,7 +122,7 @@ const Governance = () => {
 
                                 fontSize={"10px"}>
 
-                                {/* <InfoOutlineIcon/> */}
+                               
 
                                 <Image width={"12px"}
                                     height={"12px"}
@@ -134,9 +145,6 @@ const Governance = () => {
                     <TableContainer>
 
                         <Table variant='simple'>
-
-                            {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-
                             <Thead
 
                                 _dark={{
@@ -1242,14 +1250,19 @@ const Governance = () => {
 
 
 
+            <Box  mr={"20px"}
+             ml={"20px"}
+             paddingBottom={"60px"}>
 
+
+
+        
 
         {/* Governance Table */}
-
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
         bgColor={useColorModeValue("#FFF", "#202020")} >
         <Text
-          fontSize="2xl"
+          fontSize="xl"
           fontWeight={"400"}
           color={useColorModeValue("#16171B", "#FFF")}
 
@@ -1257,8 +1270,37 @@ const Governance = () => {
         >
           Governance | proposals
         </Text>
+
+        <Flex alignItems={"center"}>
+       
+                  <Box>
+                     <Image width={"12px"}
+                                    height={"12px"}
+                                    flexShrink={"0"}
+                                    paddingRight={"5px"}
+                                    alt=''
+                                    src="/icons/square_icon.svg">
+                                </Image></Box>
+                                <Box>
+                    <Text paddingRight={"10px"}
+                          fontSize={"10px"}>Filter Controversial Proposals</Text>
+                    </Box>
+                    <Box>
+                    <Input
+                      borderColor={useColorModeValue("#E8E8E8", "#333")}
+                      bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                      color={useColorModeValue("#16171B", "#A8ADBD")}
+                      fontSize={"10px"}
+                      fontWeight={400}
+                      w="207px"
+                      placeholder="Search DeFi"
+                      onChange={(e) => { searchByNameHandler(e.target.value) }}
+                      />
+                  </Box>
+                </Flex>
+
       </Flex>
-      <Table variant="simple" key={1} bgColor={"#FFF"}>
+      <Table variant="simple" key={1} bgColor={"#FFF"} >
         <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
           <Tr>
             <Th
@@ -1371,8 +1413,30 @@ const Governance = () => {
               fontWeight={"400"}
               letterSpacing={"1px"}
             >
-              CONTROVERSY
+                <Flex>
+            <Text>CONTROVERSY</Text>  
+
+              <>
+
+<Tooltip label='#Frame'
+         fontWeight={400}
+         fontSize={"10px"}>
+
+      <Image width={"12px"}
+             height={"12px"}
+             flexShrink={"0"}
+             mt={"3px"}
+             paddingRight={"2px"}
+             alt=''
+             src="/images/Frame.svg">
+         </Image>
+ </Tooltip>
+ </>
+ </Flex>
+
             </Th>
+
+
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
               fontSize={"10px"}
@@ -1407,7 +1471,74 @@ _light={{ bgColor: "#FFF" }} >
 
     <Td>15 May, 2023, 23:50    </Td>
 
-    <Td>Active</Td>
+    <Td>
+  <List spacing={1} display="flex" alignItems="center">
+    <ListIcon as={MdCheckCircle} color={Status1 === 'Active' ? '#62D845' : '#FF4848'} />
+    <ListItem>
+      <Text>{Status1 === 'Active' ? 'Active' : 'Inactive'}</Text>
+    </ListItem>
+  </List>
+</Td>
+
+  
+   
+   <Td>3,388,851</Td>
+
+    <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+   
+   <Td>481759.04</Td>
+
+    <Td>   </Td>
+
+</Tr>
+
+<Tr height={"40px"}   _dark={{ color: "#FFFFFF" }}
+
+                      _light={{ color: "#16171B" }}>
+
+<Td>Gauge Weight for Week of 11th May 2023</Td>
+   
+   <Td>11 May, 2023, 00:00 </Td>
+
+    <Td>15 May, 2023, 23:50    </Td>
+
+    <Td>
+  <List spacing={1} display="flex" alignItems="center">
+    <ListIcon as={MdCheckCircle} color={Status2 === 'Active' ? '#62D845' : '#FF4848'} />
+    <ListItem>
+      <Text>{Status2 === 'Active' ? 'Active' : 'Inactive'}</Text>
+    </ListItem>
+  </List>
+</Td>
+   
+   <Td>3,388,851</Td>
+
+    <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+   
+   <Td>481759.04</Td>
+
+    <Td>   </Td>
+
+</Tr>
+
+<Tr height={"40px"}   _dark={{ color: "#FFFFFF" }}
+
+                      _light={{ color: "#16171B" }}>
+
+<Td>Gauge Weight for Week of 11th May 2023</Td>
+   
+   <Td>11 May, 2023, 00:00 </Td>
+
+    <Td>15 May, 2023, 23:50    </Td>
+
+    <Td>
+  <List spacing={1} display="flex" alignItems="center">
+    <ListIcon as={MdCheckCircle} color={Status3 === 'Active' ? '#62D845' : '#FF4848'} />
+    <ListItem>
+      <Text>{Status3 === 'Active' ? 'Active' : 'Inactive'}</Text>
+    </ListItem>
+  </List>
+</Td>
    
    <Td>3,388,851</Td>
 
@@ -1420,6 +1551,7 @@ _light={{ bgColor: "#FFF" }} >
 </Tr>
 </Tbody>
         </Table>
+        </Box>
 
 
         </Box>

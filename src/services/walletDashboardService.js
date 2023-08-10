@@ -22,9 +22,21 @@ export const getWalletTransactionsData = async (payloadData) => {
   }
 };
 
+export const getWalletTransactionsForAddressSummary = async (payloadData) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `wallet/address/${payloadData.address}/address`,payloadData.payload
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 
 export default {
   getWalletBalanceData,
-  getWalletTransactionsData
+  getWalletTransactionsData,
+  getWalletTransactionsForAddressSummary
 };

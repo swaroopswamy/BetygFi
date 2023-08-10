@@ -900,12 +900,8 @@ const WalletAnalyticsPanel = () => {
                     <>
                       <Tr >
                            <Td
-                                        _dark={{
-                                            color: "#FFF"
-                                        }}
-                                        _light={{
-                                            color: "#16171B"
-                                        }}
+                                        _dark={{color: "#FFF"}}
+                                        _light={{color: "#16171B"}}
                                         fontSize={"20px"}
                                         fontWeight={"400"}
                                         letterSpacing={"1px"}
