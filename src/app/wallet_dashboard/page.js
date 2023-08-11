@@ -34,16 +34,17 @@ const WalletDashboardPage = () => {
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
-            address:walletAddress,
+            address:searchParam.get("address"),
             payload:{
                 blockchain:blockchainSelected
             }
         }
+        console.log(data,'data')
         dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         const data = {
-            address:walletAddress,
+            address:searchParam.get("address"),
             payload:{
                 blockchain:blockchainSelected
             }

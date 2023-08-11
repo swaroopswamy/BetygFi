@@ -45,7 +45,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
       dispatch(walletAddressChangedReducer(e.target.value));
-      router.push(`/?address=${e.target.value}`)
+      router.push(`/wallet_dashboard?address=${e.target.value}`)
       setSearchWalletAddressValue(e.target.value)
     }
     setSearchWalletAddressValue(e.target.value)
