@@ -65,7 +65,7 @@ const WalletDashboardPage = () => {
                             </Text>
                         </Box>
 
-                        <Box
+                        {/*   <Box
                             display={"flex"}
                             alignItems={"center"}
                             mt={"26px"}
@@ -94,13 +94,14 @@ const WalletDashboardPage = () => {
                             />
 
                         </Box>
+ */}
 
-                        
                     </Box>
 
                 </Box>
 
                 <Box
+                    mt="20px"
                     display={"flex"}
                     justifyContent={"space-between"}
                     padding={"10px 30px 50px 30px"}
@@ -108,6 +109,7 @@ const WalletDashboardPage = () => {
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
                 >
                     <Box
+                        pt="20px"
                         bgColor={useColorModeValue("#FFFFFF", "#191919")}
                     >
                         <WalletTable />
@@ -119,9 +121,9 @@ const WalletDashboardPage = () => {
     );
 };
 
-export default WalletDashboardPage; 
+export default WalletDashboardPage;
 
-function SelectionBox ( {blockchainSelected, colorMode, BlockchainTypeHandler} ) {
+function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
     return <>
         <Box
             display={"flex"}

@@ -28,15 +28,16 @@ import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams , usePathname} from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
   const dispatch = useDispatch();
@@ -50,6 +51,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     }
     setSearchWalletAddressValue(e.target.value)
   }
+ /*  console.log(pathname,'search');
+  useEffect(()=>{
+    if(pathname==='/wallet_dashboard'){
+      setSearchWalletAddressValue(searchParams.get('address'))
+    }
+  },[])  */
   return (
     <>
       <Flex
