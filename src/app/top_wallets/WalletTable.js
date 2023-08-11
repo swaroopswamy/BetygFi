@@ -381,6 +381,7 @@ function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
                 {totalTokens.map((item, i) => {
                     return (
                         <Box
+                            key={""}
                             padding={"7px 9px"}
                             border={"1px"}
                             _light={{
