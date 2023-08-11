@@ -20,7 +20,6 @@ const WalletDashboardPage = () => {
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
-    console.log(blockchainSelected, 'blockchain')
     const walletAddress = useSelector(
         (state) => state?.walletDashboardTableData?.walletAddress
     );
@@ -39,7 +38,6 @@ const WalletDashboardPage = () => {
                 blockchain:blockchainSelected
             }
         }
-        console.log(data,'data')
         dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, walletAddress])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
@@ -403,10 +401,14 @@ const WalletDashboardPage = () => {
                                 >
                                     <PortfolioPanelComponent />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                   p="0px"
+                                >
                                     <WalletAnalyticsPanel />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                   p="0px"
+                                >
                                     <TransactionPanelComponent />
                                 </TabPanel>
 

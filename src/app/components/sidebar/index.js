@@ -63,8 +63,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const screenSize = useScreenSize();
-
-  console.log(screenSize > 1200, 'w', screenSize)
   return (
     <>
       <Box

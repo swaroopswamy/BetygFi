@@ -87,7 +87,6 @@ const WalletDashboardDataSlice = createSlice({
       state.walletBalanceData.data = action.payload;
     });
     builder.addCase(fetchWalletBalanceData.rejected, (state, action) => {
-      console.log('here')
       state.walletBalanceData.isLoading = false;
       state.walletBalanceData.isSuccess = false;
       state.walletBalanceData.isError = true;

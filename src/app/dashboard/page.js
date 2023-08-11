@@ -393,13 +393,13 @@ const Dashboard = () => {
               padding={"7px 9px"}
               mx="4px"
               cursor={"pointer"}
-              _hover={{ bg: useColorModeValue("#FFFFFF","#191919") }}
+              _hover={{ bg: useColorModeValue("#FFFFFF", "#191919") }}
               border={useColorModeValue(
                 "1px solid #E8E8E8",
                 "1px solid #333"
               )}
               bgColor={
-                categorySelected.length === 0 && useColorModeValue("#FFFFFF","#191919")
+                categorySelected.length === 0 ? useColorModeValue("#FFFFFF", "#191919") : useColorModeValue("#F5F5F7", "#202020")
               }
               onClick={() => {
                 categoryChangedHandler("All");
@@ -410,7 +410,7 @@ const Dashboard = () => {
                 fontWeight={"600"}
                 letterSpacing={"1px"}
                 lineHeight={"15px"}
-                color={useColorModeValue("#191919","#FFFFFF")}
+                color={useColorModeValue("#191919", "#FFFFFF")}
               >
                 All
               </Text>
@@ -430,9 +430,9 @@ const Dashboard = () => {
                       "1px solid #333"
                     )}
                     bgColor={
-                      categorySelected.includes(category) 
-                        ? useColorModeValue("#FFFFFF","#191919")
-                        : useColorModeValue("#F5F5F7","#202020")
+                      categorySelected.includes(category)
+                        ? useColorModeValue("#FFFFFF", "#191919")
+                        : useColorModeValue("#F5F5F7", "#202020")
                     }
                     onClick={() => {
                       categoryChangedHandler(category);
@@ -443,7 +443,7 @@ const Dashboard = () => {
                       fontWeight={"600"}
                       letterSpacing={"1px"}
                       lineHeight={"15px"}
-                      color={useColorModeValue("#191919","#FFFFFF")}
+                      color={useColorModeValue("#191919", "#FFFFFF")}
                     >
                       {category}
                     </Text>
@@ -592,7 +592,7 @@ const Dashboard = () => {
                       w="207px"
                       placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
-                      />
+                    />
                   </Box>
                 </Flex>
               </Flex>

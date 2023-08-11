@@ -17,7 +17,6 @@ const WalletDashboardPage = () => {
     );
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
-        console.log(blockchainSelected);
     };
 
     return (
