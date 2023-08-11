@@ -991,70 +991,32 @@ const WalletAnalyticsPanel = () => {
               color: "#16171B"
 
             }} >
-
             <Text
-
-              fontSize={"15px"}
-
-              fontStyle={"normal"}
-
-              fontWeight={"400"}
-
-              lineHeight={"20px"}
-
-              ml={"20px"}
-
-              mr={"6px"}
-
-              paddingTop={"15px"}
-
+             fontSize={"15px"}
+             fontWeight={"400"}
+             lineHeight={"20px"}
+             ml={"20px"}
+             mr={"6px"}
+             paddingTop={"15px"}
             >
-
-              Inflow Tokens (30 Days)
-
+            Inflow Tokens (30 Days)
             </Text>
-
-            {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
-
             <>
-
-
-
-
-
-              <Tooltip label='#Frame'
-
-                padding='14px 8px'
-
-                fontWeight={400}
-
-                fontSize={"10px"}>
-
-                {/* <InfoOutlineIcon/> */}
-
-                <Image width={"12px"}
+              <Tooltip label="#Frame">
+               <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
                   mt={"20px"}
                   alt=''
                   src="/images/Frame.svg">
-                </Image>
-
-
-
+               </Image>
               </Tooltip>
-
-            </>
-
-          </Flex>
-
-
+              </>
+           </Flex>
 
           <TableContainer>
 
             <Table variant='simple'>
-
-              {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
 
               <Thead
 
@@ -1700,34 +1662,18 @@ const WalletAnalyticsPanel = () => {
               Outflow Tokens (30 Days)
 
             </Text>
-
-            {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
-
-            <>
-
-              <Tooltip label='#Frame'
-
-                fontWeight={400}
-
-                fontSize={"10px"}>
-
-                {/* <InfoOutlineIcon/> */}
-
-                <Image width={"12px"}
+              <>
+              <Tooltip label="#Frame">
+               <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
                   mt={"20px"}
                   alt=''
                   src="/images/Frame.svg">
-                </Image>
-
-
-
+               </Image>
               </Tooltip>
-
-            </>
-
-          </Flex>
+              </>
+            </Flex>
 
 
 
