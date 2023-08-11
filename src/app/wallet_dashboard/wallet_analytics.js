@@ -57,11 +57,10 @@ const WalletAnalyticsPanel = () => {
             justifyContent={"space-between"}
             alignItems={"center"}
             p="22px 25px"
-            paddingBottom={"0px"}
           >
             <Text
               fontSize={"15px"}
-              fontWeight={400}
+              fontWeight={"400"}
               lineHeight={"20px"}
               _dark={{ color: "#FFF" }}
               _light={{ color: "#212121" }}
@@ -79,7 +78,7 @@ const WalletAnalyticsPanel = () => {
               View More
             </Button> */}
           </Box>
-          <Box paddingTop={"15px"} >
+          <Box paddingLeft={"15px"}>
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
