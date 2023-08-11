@@ -50,6 +50,7 @@ const WalletAnalyticsPanel = () => {
             border: "1px solid #ADADAD"
           }}
           mr="10px"
+          maxHeight={"380px"}
         >
           <Box
             display="flex"
@@ -78,7 +79,7 @@ const WalletAnalyticsPanel = () => {
               View More
             </Button> */}
           </Box>
-          <Box paddingTop={"15px"}>
+          <Box paddingTop={"15px"} >
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
@@ -96,6 +97,7 @@ const WalletAnalyticsPanel = () => {
             border: "1px solid #ADADAD"
           }}
           ml="10px"
+          maxHeight={"380px"}
         >
           <Box
             display="flex"
@@ -111,7 +113,7 @@ const WalletAnalyticsPanel = () => {
               Assets Allocation
             </Text>
           </Box>
-          <Box>
+          <Box >
             <AssetAllocationPieChart />
           </Box>
         </Box>
@@ -539,7 +541,7 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          mr="10px"
+          ml="10px"
         >
           <Flex
             height={"50px"}
@@ -1619,7 +1621,7 @@ const WalletAnalyticsPanel = () => {
 
           }}
 
-          mr="10px"
+          ml="10px"
 
         >
 
