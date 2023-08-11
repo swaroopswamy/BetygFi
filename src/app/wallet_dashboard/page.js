@@ -63,6 +63,7 @@ const WalletDashboardPage = () => {
                 bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 display={"flex"}
                 flexDirection={"column"}
+                w="100%"
             >
                 <Box
                     display={"flex"}
