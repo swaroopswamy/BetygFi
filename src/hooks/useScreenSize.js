@@ -5,10 +5,13 @@ import { useState } from "react";
 
 
 const useScreenSize = () => {
-    const [screenSize, setScreenSize] = useState(getCurrentDimension());
+    const [screenSize, setScreenSize] = useState({
+        width: window?.innerWidth,
+        height: window?.innerHeight
+    });
 
     useEffect(() => {
-        
+
         const updateDimension = () => {
             setScreenSize({
                 width: window?.innerWidth,
