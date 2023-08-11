@@ -36,6 +36,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 
+import useScreenSize from '../../../hooks/useScreenSize'
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
@@ -60,6 +61,9 @@ const bottomMenu = [
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
+  const screenSize = useScreenSize();
+
+  console.log(screenSize > 1200, 'w', screenSize)
   return (
     <>
       <Box
@@ -67,70 +71,82 @@ const SidebarContent = ({ onClose, ...rest }) => {
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        w={{ base: "full", md: 60 }}
-        pos="fixed"
-        h="full"
+        minWidth={"250px"}
+        pos={screenSize.width < 1200 ? "relative" : "fixed"}
+        minH="100vh"
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
           "1px 0px 0px 0px #333"
         )}
         {...rest}
       >
-        <Flex
-          h="20"
-          alignItems="center"
-          mx="17px"
-          mb="40px"
-          justifyContent="space-between"
-          cursor={"pointer"}
-        >
-          <Image
-            width={180}
-            height={80}
-            alt="logo"
-            src={useColorModeValue(
-              "/icons/light_betgyfi_sm_icon.svg",
-              "/icons/dark_betgyfi_sm_logo.svg"
-            )}
-            cursor={"pointer"}
-            onClick={() => router.push('/')}
-          />
-          <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-        </Flex>
-        {LinkItemsUp.map((link, i) => (
-          <NavItem
-            key={link.name}
-            icon={link.icon}
-            path={link.path}
-            newTab={link.newTab}
-            _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
-            fontSize="11px"
-            fontWeight="400"
-            letterSpacing="1px"
-            color={useColorModeValue("#16171B", "#FFF")}
-          >
-            {link.name}
-          </NavItem>
-        ))}
-        <hr style={{ margin: "15px 20px" }} />
-        <Text
-          fontSize="11px"
-          fontWeight="400"
-          letterSpacing="1px"
-          color={useColorModeValue("#16171B", "#FFF")}
-          textTransform={"uppercase"}
-          mb="15px"
+        <Box
           w="100%"
-          mx="4"
-          px="2"
+          h="100%"
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"space-between"}
         >
-          BetygFi Communities
-        </Text>
-        {LinkItemsDown.map((link) => (
-          <>
-            {link?.dropdown ? (
+          <Box
+
+          >
+            <Flex
+              h="20"
+              alignItems="center"
+              mx="17px"
+              mb="40px"
+              justifyContent="space-between"
+              cursor={"pointer"}
+            >
+              <Image
+                width={180}
+                height={80}
+                alt="logo"
+                src={useColorModeValue(
+                  "/icons/light_betgyfi_sm_icon.svg",
+                  "/icons/dark_betgyfi_sm_logo.svg"
+                )}
+                cursor={"pointer"}
+                onClick={() => router.push('/')}
+              />
+              {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+          */} </Flex>
+            {LinkItemsUp.map((link, i) => (
+              <NavItem
+                key={link.name}
+                icon={link.icon}
+                path={link.path}
+                newTab={link.newTab}
+                _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                fontSize="11px"
+                fontWeight="400"
+                letterSpacing="1px"
+                color={useColorModeValue("#16171B", "#FFF")}
+              >
+                {link.name}
+              </NavItem>
+            ))}
+            <hr style={{ margin: "15px 20px" }} />
+          </Box>
+          <Box>
+            <Text
+              fontSize="11px"
+              fontWeight="400"
+              letterSpacing="1px"
+              color={useColorModeValue("#16171B", "#FFF")}
+              textTransform={"uppercase"}
+              mb="15px"
+              w="100%"
+              mx="4"
+              px="2"
+            >
+              BetygFi Communities
+            </Text>
+            {LinkItemsDown.map((link) => (
               <>
-                {/*   <Menu key={link.name}>
+                {link?.dropdown ? (
+                  <>
+                    {/*   <Menu key={link.name}>
                 <MenuButton as={Button} width={"100%"} rightIcon={<ChevronDownIcon />}>
                   {link.name}
                 </MenuButton>
@@ -139,83 +155,88 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   <MenuItem>Create a Copy</MenuItem>
                 </MenuList>
               </Menu> */}
+                  </>
+                ) : (
+                  <>
+                    <NavItem
+                      key={link.name}
+                      icon={link.icon}
+                      path={link.path}
+                      _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                      fontSize="11px"
+                      fontWeight="400"
+                      letterSpacing="1px"
+
+                      color={useColorModeValue("#16171B", "#FFF")}
+                    >
+                      {link.name}
+                    </NavItem>
+                  </>
+                )}
               </>
-            ) : (
-              <>
+            ))}
+            <div style={{ position: screenSize.width < 1200 ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+              {bottomMenu.map((link) => (
                 <NavItem
                   key={link.name}
                   icon={link.icon}
                   path={link.path}
                   _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                  newTab={link.newTab}
                   fontSize="11px"
                   fontWeight="400"
                   letterSpacing="1px"
-
                   color={useColorModeValue("#16171B", "#FFF")}
+
                 >
                   {link.name}
                 </NavItem>
-              </>
-            )}
-          </>
-        ))}
-        <div style={{ position: "absolute", bottom: "10px", width: "100%" }}>
-          {bottomMenu.map((link) => (
-            <NavItem
-              key={link.name}
-              icon={link.icon}
-              path={link.path}
-              _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
-              newTab={link.newTab}
-              fontSize="11px"
-              fontWeight="400"
-              letterSpacing="1px"
-              color={useColorModeValue("#16171B", "#FFF")}
-
-            >
-              {link.name}
-            </NavItem>
-          ))}
-          <hr style={{ marginBottom: "15px" }} />
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            flexDirection={"column"}
-            w={"100%"}
-          >
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              w={"100%"}
-            >
-              <Image
-                width={15}
-                height={15}
-                alt="logo"
-                src={"/icons/company_sm_logo.svg"}
-                style={{ marginRight: "10px" }}
-              />
-              <Text
-                as={"capital"}
-                fontSize={"12px"}
-                fontStyle={"normal"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-                color={useColorModeValue("#16171B", "#FFF")}
+              ))}
+              <hr style={{ marginBottom: "15px" }} />
+              <Box
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                flexDirection={"column"}
+                w={"100%"}
               >
-                POWERED BY SOLVENDO
-              </Text>
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  w={"100%"}
+                >
+                  <Image
+                    width={15}
+                    height={15}
+                    alt="logo"
+                    src={"/icons/company_sm_logo.svg"}
+                    style={{ marginRight: "10px" }}
+                  />
+                  <Text
+                    as={"capital"}
+                    fontSize={"12px"}
+                    fontStyle={"normal"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    color={useColorModeValue("#16171B", "#FFF")}
+                  >
+                    POWERED BY SOLVENDO
+                  </Text>
 
-            </Box>
+                </Box>
 
-            {/* <Box onClick={toggleColorMode}>
+                {/* <Box onClick={toggleColorMode}>
             {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
           </Box> */}
+              </Box>
+
+            </div>
+
           </Box>
 
-        </div>
+        </Box>
+
       </Box>
     </>
   );
