@@ -44,6 +44,7 @@ const LinkItemsUp = [
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
   { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
   { name: "About", icon: CompanyIcon, path: '/about'},
+  { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
@@ -267,7 +268,9 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
         {icon && (
           <Icon
             mr="4"
-            w="16px"
+            mt="3px"
+            p="0"
+            w="18px"
             h="18px"
             fontSize="16"
             _groupHover={{
