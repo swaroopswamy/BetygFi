@@ -3,9 +3,11 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 function getCurrentDimension() {
-    return {
-        width: window.innerWidth,
-        height: window.innerHeight
+    if (typeof window !== 'undefined') {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        };
     }
 }
 

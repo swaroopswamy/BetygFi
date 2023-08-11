@@ -96,7 +96,7 @@ const TransactionPanelComponent = () => {
                   letterSpacing={"1px"}
                   mr="6px"
                 >
-                  ACCOUNT/TOKEN
+                  Amount  / Token 
                 </Text>
                 <>
                   <Image width={2}

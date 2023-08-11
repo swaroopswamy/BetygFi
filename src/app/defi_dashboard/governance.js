@@ -73,7 +73,7 @@ const Governance = ({} ) => {
                     <Flex
 
                         height={"50px"}
-
+                        borderRadius={"6px"}
                         _dark={{
 
                             bg: "#202020",
@@ -679,7 +679,7 @@ const Governance = ({} ) => {
                     <Flex
 
                         height={"50px"}
-
+                        borderRadius={"6px"}
                         _dark={{
 
                             bg: "#202020",
@@ -1259,8 +1259,9 @@ const Governance = ({} ) => {
         
 
         {/* Governance Table */}
+        
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
-        bgColor={useColorModeValue("#FFF", "#202020")} >
+        bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
         <Text
           fontSize="xl"
           fontWeight={"400"}
