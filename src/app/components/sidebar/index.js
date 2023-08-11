@@ -37,12 +37,13 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 
 import useScreenSize from '../../../hooks/useScreenSize'
+import { left } from "@popperjs/core";
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
   { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
-  { name: "About", icon: CompanyIcon, path: '/about' },
+  { name: "About", icon: CompanyIcon, path: '/about'},
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [

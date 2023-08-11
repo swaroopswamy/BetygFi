@@ -168,6 +168,7 @@ const TVLBox = () => {
         >
          <Flex
             height={"50px"}
+            borderRadius={"6px"}
             _dark={{
               bg: "#202020",
               color: "#FFFFFF"
@@ -907,6 +908,7 @@ const TVLBox = () => {
         >
            <Flex
             height={"50px"}
+            borderRadius={"6px"}
             _dark={{
               bg: "#202020",
               color: "#FFFFFF"

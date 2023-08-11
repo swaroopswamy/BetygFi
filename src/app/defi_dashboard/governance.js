@@ -73,7 +73,7 @@ const Governance = ({} ) => {
                     <Flex
 
                         height={"50px"}
-
+                        borderRadius={"6px"}
                         _dark={{
 
                             bg: "#202020",
@@ -679,7 +679,7 @@ const Governance = ({} ) => {
                     <Flex
 
                         height={"50px"}
-
+                        borderRadius={"6px"}
                         _dark={{
 
                             bg: "#202020",
