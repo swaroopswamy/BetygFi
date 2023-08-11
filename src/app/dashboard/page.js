@@ -221,7 +221,7 @@ const Dashboard = () => {
                   _focus={{ boxShadow: 'outline' }}
                   color="#000"
                 >
-                  +3
+                  +4
                 </MenuButton>
                 <MenuList
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
@@ -399,7 +399,7 @@ const Dashboard = () => {
                 "1px solid #333"
               )}
               bgColor={
-                categorySelected.length === 0 && useColorModeValue("#FFF", "#191919")
+                categorySelected.length === 0 ? useColorModeValue("#FFFFFF", "#191919") : useColorModeValue("#F5F5F7", "#202020")
               }
               onClick={() => {
                 categoryChangedHandler("All");
@@ -407,7 +407,7 @@ const Dashboard = () => {
             >
               <Text
                 fontSize={"10px"}
-                fontWeight={600}
+                fontWeight={"600"}
                 letterSpacing={"1px"}
                 lineHeight={"15px"}
                 color={useColorModeValue("#191919", "#FFFFFF")}
@@ -424,14 +424,14 @@ const Dashboard = () => {
                     padding={"7px 9px"}
                     mx="4px"
                     cursor={"pointer"}
-                    _hover={{ bg: useColorModeValue("#FFFFFF", "#191919") }}
+                    _hover={{ bgColor: useColorModeValue("#FFFFFF", "#191919") }}
                     border={useColorModeValue(
                       "1px solid #E8E8E8",
                       "1px solid #333"
                     )}
                     bgColor={
                       categorySelected.includes(category)
-                        ? useColorModeValue("#FFF", "#191919")
+                        ? useColorModeValue("#FFFFFF", "#191919")
                         : useColorModeValue("#F5F5F7", "#202020")
                     }
                     onClick={() => {
@@ -440,7 +440,7 @@ const Dashboard = () => {
                   >
                     <Text
                       fontSize={"10px"}
-                      fontWeight={600}
+                      fontWeight={"600"}
                       letterSpacing={"1px"}
                       lineHeight={"15px"}
                       color={useColorModeValue("#191919", "#FFFFFF")}
@@ -592,7 +592,7 @@ const Dashboard = () => {
                       w="207px"
                       placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
-                      />
+                    />
                   </Box>
                 </Flex>
               </Flex>

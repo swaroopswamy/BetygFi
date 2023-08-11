@@ -34,7 +34,6 @@ const TransactionPanelComponent = () => {
   const value2 = "200";
   const value3 = "-300";
   const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
-  console.log(walletTransactionsData, 'data')
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
@@ -46,8 +45,6 @@ const TransactionPanelComponent = () => {
           fontSize="2xl"
           fontWeight={"400"}
           color={useColorModeValue("#16171B", "#FFF")}
-
-
         >
           Wallet Transaction
         </Text>
@@ -96,7 +93,7 @@ const TransactionPanelComponent = () => {
                   letterSpacing={"1px"}
                   mr="6px"
                 >
-                  ACCOUNT/TOKEN
+                  Amount  / Token 
                 </Text>
                 <>
                   <Image width={2}

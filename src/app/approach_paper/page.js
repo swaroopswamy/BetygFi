@@ -3,7 +3,7 @@ import { Box, Container, Image, useColorModeValue, Text, Heading,useColorMode, d
 
 const Approach = () => {
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window && window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const { colorMode } = useColorMode();
   return (
@@ -254,11 +254,12 @@ const Approach = () => {
                     financial ecosystem.
                   </Text>
                 
-              </Box>
-                  
 
-                  {/* <Box  width="91px"  height="60px"> */}
-     <Button>
+
+                  
+              </Box>
+
+              <Button>
       <Image src={colorMode === 'light' ? ("/images/Backtotop.svg") : ("/images/Backtotop-darkmode.svg")} 
       
                    alt="" 
@@ -276,8 +277,6 @@ const Approach = () => {
                      bottom: '40px',
                      right: '2px',
                      zIndex: '9999'}}/></Button> 
-            
-                
             </Box>
           </Box>
         </Container>

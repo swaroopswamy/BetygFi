@@ -29,23 +29,32 @@ const WalletDashboardPage = () => {
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
 
+
+
     const fetchWalletBalanceDataHandler = useCallback(() => {
-        const payload = {
-            blockchain: blockchainSelected
+        const data = {
+            address:searchParam.get("address"),
+            payload:{
+                blockchain:blockchainSelected
+            }
         }
-        dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
-    }, [blockchainSelected, walletAddress])
+        dispatch(fetchWalletBalanceData(data));
+    }, [blockchainSelected, searchParam.get("address")])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
-        /* const payload = {
-            blockchain: blockchainSelected
-        } */
-        dispatch(fetchWalletTransactionsData(searchParam.get("address")));
-    }, [blockchainSelected, walletAddress])
+        const data = {
+            address:searchParam.get("address"),
+            payload:{
+                blockchain:blockchainSelected
+            }
+        }
+        dispatch(fetchWalletTransactionsData(data));
+    }, [blockchainSelected, searchParam.get("address")])
     useEffect(() => {
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
+
 
     return (
         <>
@@ -53,6 +62,7 @@ const WalletDashboardPage = () => {
                 bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 display={"flex"}
                 flexDirection={"column"}
+                w="100%"
             >
                 <Box
                     display={"flex"}
@@ -94,7 +104,7 @@ const WalletDashboardPage = () => {
                                         }}
                                         letterSpacing={"2.4px"}
                                     >
-                                       No Name
+                                        No Name
                                     </Text>
                                 )}
                             <Box
@@ -391,10 +401,14 @@ const WalletDashboardPage = () => {
                                 >
                                     <PortfolioPanelComponent />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                   p="0px"
+                                >
                                     <WalletAnalyticsPanel />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                   p="0px"
+                                >
                                     <TransactionPanelComponent />
                                 </TabPanel>
 

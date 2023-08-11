@@ -1,12 +1,15 @@
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { useColorMode, useColorModeValue, Skeleton, Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-
+import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+
 const PerformanceMultiLineChart = () => {
-  const { colorMode } = useColorMode();
-  const options = {
-    chart: {
+    const { colorMode } = useColorMode();
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const options = {
+     chart: {
       toolbar: {
         show: false,
       },
@@ -74,7 +77,21 @@ const PerformanceMultiLineChart = () => {
   ];
   return (
     <>
-      <ApexCharts options={options} series={series} type="line" height={250} />
+    {!walletBalanceData?.isSuccess && (
+            <Skeleton>
+                <Box
+                    width={"1074px"}
+                    height={"217px"}
+                    pt={"9px"}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                > 
+                    
+                </Box>
+                </Skeleton>)
+            }
+             {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />}
     </>
   );
 };

@@ -1,4 +1,5 @@
-import { Box, Button, Flex, Image, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, extendTheme, useColorMode, colorMode, Tooltip, Skeleton } from '@chakra-ui/react';
+"use client";
+import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, colorMode, Tooltip, Skeleton } from '@chakra-ui/react';
 import React from 'react'
 import AssetAllocationPieChart from './AssetAllocationPieChart';
 import AssetTrendSplineChart from './AssetTrendSplineChart';
@@ -6,23 +7,26 @@ import PerformanceMultiLineChart from './PerformanceMultiLineChart';
 import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart';
 import { useSelector } from 'react-redux';
 
+const SkeletonRow = () => (
+  <Box as="tr">
+      <Td>
+          <Skeleton height="10px" my={4} />
+      </Td>
+      <Td>
+          <Skeleton height="10px" my={4} />
+      </Td>
+      <Td>
+          <Skeleton height="10px" my={4} />
+      </Td>
+  </Box>
+)
+ 
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
+  const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
   const value1 = "300";
   const value2 = "-300";
-  const SkeletonRow = () => (
-    <Box as="tr">
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-    </Box>
-  )
+    
 
 
   return (
@@ -46,17 +50,17 @@ const WalletAnalyticsPanel = () => {
             border: "1px solid #ADADAD"
           }}
           mr="10px"
+          maxHeight={"380px"}
         >
           <Box
             display="flex"
             justifyContent={"space-between"}
             alignItems={"center"}
             p="22px 25px"
-            paddingBottom={"0px"}
           >
             <Text
               fontSize={"15px"}
-              fontWeight={400}
+              fontWeight={"400"}
               lineHeight={"20px"}
               _dark={{ color: "#FFF" }}
               _light={{ color: "#212121" }}
@@ -74,7 +78,7 @@ const WalletAnalyticsPanel = () => {
               View More
             </Button> */}
           </Box>
-          <Box>
+          <Box paddingLeft={"15px"}>
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
@@ -92,6 +96,7 @@ const WalletAnalyticsPanel = () => {
             border: "1px solid #ADADAD"
           }}
           ml="10px"
+          maxHeight={"380px"}
         >
           <Box
             display="flex"
@@ -107,7 +112,7 @@ const WalletAnalyticsPanel = () => {
               Assets Allocation
             </Text>
           </Box>
-          <Box>
+          <Box >
             <AssetAllocationPieChart />
           </Box>
         </Box>
@@ -136,6 +141,7 @@ const WalletAnalyticsPanel = () => {
         >
           <Flex
             height={"50px"}
+            borderRadius={"6px"}
             _dark={{
               bg: "#202020",
               color: "#FFFFFF"
@@ -260,6 +266,42 @@ const WalletAnalyticsPanel = () => {
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
+                   {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    No Data Available
+                                </Td>
+                            </Tr>
+                        </>
+                    )}
+                    {walletBalanceData?.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
+                    {walletBalanceData?.isSuccess &&
+                         (walletBalanceData?.data?.data?.length > 0 ?
+                            (walletBalanceData?.data?.data.map((item, i) => {
+                                return (
+                           <>
                 <Tr height={"40px"}>
                   <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }}
@@ -413,7 +455,7 @@ const WalletAnalyticsPanel = () => {
                   </Box></Td>
                   <Td>USD 66,456,560</Td>
                 </Tr>
-
+                    
                 <Tr height={"40px"}>
                   <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }} >
@@ -450,10 +492,35 @@ const WalletAnalyticsPanel = () => {
                   </Box></Td>
                   <Td>USD 56,456,560</Td>
                 </Tr>
+                </>
+                   );
+                })) :
+                   (
+                      <>
+                        <Tr >
+                             <Td
+                                          _dark={{
+                                              color: "#FFF"
+                                          }}
+                                          _light={{
+                                              color: "#16171B"
+                                          }}
+                                          fontSize={"20px"}
+                                          fontWeight={"400"}
+                                          letterSpacing={"1px"}
+                                          colSpan={8}
+                                          textAlign={"center"}
+                                      >
+                                          No Data Available
+                            </Td>
+                        </Tr>
 
+                      </>
+                    ))
+                  }
 
               </Tbody>
-
+            
             </Table>
           </TableContainer>
         </Box>
@@ -473,10 +540,11 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          mr="10px"
+          ml="10px"
         >
           <Flex
             height={"50px"}
+            borderRadius={"6px"}
             _dark={{
               bg: "#202020",
               color: "#FFFFFF"
@@ -601,6 +669,42 @@ const WalletAnalyticsPanel = () => {
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
+                   {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    No Data Available
+                                </Td>
+                            </Tr>
+                        </>
+                    )}
+                    {walletBalanceData?.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
+                    {walletBalanceData?.isSuccess &&
+                         (walletBalanceData?.data?.data?.length > 0 ?
+                            (walletBalanceData?.data?.data.map((item, i) => {
+                                return (
+                           <>
                 <Tr height={"40px"}>
 
                   <Td _dark={{ color: "#FFFFFF" }}
@@ -792,6 +896,28 @@ const WalletAnalyticsPanel = () => {
                   </Box></Td>
                   <Td>USD 56,456,560</Td>
                 </Tr>
+                 </>
+                 );
+              })) :
+                 (
+                    <>
+                      <Tr >
+                           <Td
+                                        _dark={{color: "#FFF"}}
+                                        _light={{color: "#16171B"}}
+                                        fontSize={"20px"}
+                                        fontWeight={"400"}
+                                        letterSpacing={"1px"}
+                                        colSpan={8}
+                                        textAlign={"center"}
+                                    >
+                                        No Data Available
+                          </Td>
+                      </Tr>
+
+                    </>
+                  ))
+                }
 
 
               </Tbody>
@@ -852,7 +978,7 @@ const WalletAnalyticsPanel = () => {
           <Flex
 
             height={"50px"}
-
+            borderRadius={"6px"}
             _dark={{
 
               bg: "#202020",
@@ -868,70 +994,32 @@ const WalletAnalyticsPanel = () => {
               color: "#16171B"
 
             }} >
-
             <Text
-
-              fontSize={"15px"}
-
-              fontStyle={"normal"}
-
-              fontWeight={"400"}
-
-              lineHeight={"20px"}
-
-              ml={"20px"}
-
-              mr={"6px"}
-
-              paddingTop={"15px"}
-
+             fontSize={"15px"}
+             fontWeight={"400"}
+             lineHeight={"20px"}
+             ml={"20px"}
+             mr={"6px"}
+             paddingTop={"15px"}
             >
-
-              Inflow Tokens (30 Days)
-
+            Inflow Tokens (30 Days)
             </Text>
-
-            {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
-
             <>
-
-
-
-
-
-              <Tooltip label='#Frame'
-
-                padding='14px 8px'
-
-                fontWeight={400}
-
-                fontSize={"10px"}>
-
-                {/* <InfoOutlineIcon/> */}
-
-                <Image width={"12px"}
+              <Tooltip label="#Frame">
+               <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
                   mt={"20px"}
                   alt=''
                   src="/images/Frame.svg">
-                </Image>
-
-
-
+               </Image>
               </Tooltip>
-
-            </>
-
-          </Flex>
-
-
+              </>
+           </Flex>
 
           <TableContainer>
 
             <Table variant='simple'>
-
-              {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
 
               <Thead
 
@@ -1067,6 +1155,42 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
 
                 _light={{ bgColor: "#FFF" }} >
+                  {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    No Data Available
+                                </Td>
+                            </Tr>
+                        </>
+                    )}
+                    {walletBalanceData?.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
+                    {walletBalanceData?.isSuccess &&
+                         (walletBalanceData?.data?.data?.length > 0 ?
+                            (walletBalanceData?.data?.data.map((item, i) => {
+                                return (
+                           <>
 
                 <Tr height={"40px"}>
 
@@ -1147,9 +1271,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>60%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -1221,9 +1342,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>30%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -1293,9 +1411,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>50%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -1365,9 +1480,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>60%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td _dark={{ color: "#FFFFFF" }}
@@ -1435,12 +1547,34 @@ const WalletAnalyticsPanel = () => {
                   <Td>30%</Td>
 
                 </Tr>
+                </>
+                 );
+              })) :
+                 (
+                    <>
+                      <Tr >
+                           <Td
+                                        _dark={{
+                                            color: "#FFF"
+                                        }}
+                                        _light={{
+                                            color: "#16171B"
+                                        }}
+                                        fontSize={"20px"}
+                                        fontWeight={"400"}
+                                        letterSpacing={"1px"}
+                                        colSpan={8}
+                                        textAlign={"center"}
+                                    >
+                                        No Data Available
+                          </Td>
+                      </Tr>
 
-
-
-
-
-              </Tbody>
+                    </>
+                  ))
+                }
+                
+                </Tbody>
 
 
 
@@ -1486,14 +1620,14 @@ const WalletAnalyticsPanel = () => {
 
           }}
 
-          mr="10px"
+          ml="10px"
 
         >
 
           <Flex
 
             height={"50px"}
-
+            borderRadius={"6px"}
             _dark={{
 
               bg: "#202020",
@@ -1531,34 +1665,18 @@ const WalletAnalyticsPanel = () => {
               Outflow Tokens (30 Days)
 
             </Text>
-
-            {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
-
-            <>
-
-              <Tooltip label='#Frame'
-
-                fontWeight={400}
-
-                fontSize={"10px"}>
-
-                {/* <InfoOutlineIcon/> */}
-
-                <Image width={"12px"}
+              <>
+              <Tooltip label="#Frame">
+               <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
                   mt={"20px"}
                   alt=''
                   src="/images/Frame.svg">
-                </Image>
-
-
-
+               </Image>
               </Tooltip>
-
-            </>
-
-          </Flex>
+              </>
+            </Flex>
 
 
 
@@ -1702,6 +1820,42 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
 
                 _light={{ bgColor: "#FFF" }} >
+                  {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    No Data Available
+                                </Td>
+                            </Tr>
+                        </>
+                    )}
+                    {walletBalanceData?.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
+                    {walletBalanceData?.isSuccess &&
+                         (walletBalanceData?.data?.data?.length > 0 ?
+                            (walletBalanceData?.data?.data.map((item, i) => {
+                                return (
+                           <>
 
                 <Tr height={"40px"}>
 
@@ -1782,9 +1936,6 @@ const WalletAnalyticsPanel = () => {
                   <Td >60%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -1856,9 +2007,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>30%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -1928,9 +2076,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>50%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td
@@ -2000,9 +2145,6 @@ const WalletAnalyticsPanel = () => {
                   <Td>60%</Td>
 
                 </Tr>
-
-
-
                 <Tr height={"40px"}>
 
                   <Td _dark={{ color: "#FFFFFF" }}
@@ -2070,35 +2212,39 @@ const WalletAnalyticsPanel = () => {
                   <Td>30%</Td>
 
                 </Tr>
+                </>
+                 );
+              })) :
+                 (
+                    <>
+                      <Tr >
+                           <Td
+                                        _dark={{
+                                            color: "#FFF"
+                                        }}
+                                        _light={{
+                                            color: "#16171B"
+                                        }}
+                                        fontSize={"20px"}
+                                        fontWeight={"400"}
+                                        letterSpacing={"1px"}
+                                        colSpan={8}
+                                        textAlign={"center"}
+                                    >
+                                        No Data Available
+                          </Td>
+                      </Tr>
 
-
-
-
-
-              </Tbody>
-
-
-
-            </Table>
-
-          </TableContainer>
-
-        </Box>
-
-
-
+                    </>
+                  ))
+                }
+         </Tbody>
+         </Table>
+        </TableContainer>
       </Box>
+     </Box>
 
-
-
-
-
-
-
-      {/* End of varun's code */}
-
-
-
+  {/* End of varun's code */}
 
       <Box
         my="10px"
@@ -2130,7 +2276,7 @@ const WalletAnalyticsPanel = () => {
             Asset Trend
           </Text>
         </Box>
-        <Box>
+        <Box paddingTop={"10px"}>
           <AssetTrendSplineChart />
         </Box>
       </Box>
@@ -2164,7 +2310,7 @@ const WalletAnalyticsPanel = () => {
             Performance
           </Text>
         </Box>
-        <Box>
+        <Box paddingTop={"10px"}>
           <PerformanceMultiLineChart />
         </Box>
       </Box>
