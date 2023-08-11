@@ -2,7 +2,8 @@
 
 "use client"
 import Governance from "./governance";
-
+import BarChart from "./BarChart";
+import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
 
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox, Container } from "@chakra-ui/react";
@@ -13,6 +14,7 @@ import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import millify from "millify";
 import TVLBox from "./TVLBox";
+import DonutChart from "./DonutChart";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -343,10 +345,29 @@ const DefiDashboardPage = () => {
                     </Box>
                 </Box>
             </Box>
-            <Box>
+
+            {/* <Box>
                 <TVLBox />
+            </Box> */}
+
+            <Box
+                display={"flex"}
+                flexDirection={"column"}
+                bgColor={useColorModeValue('#F0F0F5', "#191919")}
+                padding={"10px 0 0 10px"}
+            >
+                <Box
+                    display={"flex"}
+                    justifyContent={"space-evenly"}
+                >
+                    <DonutChart />
+                    <BarChart />
+                </Box>
             </Box>
-            <Box>
+
+            <Box
+                bgColor={useColorModeValue('#FFFFFF', "#202020")}
+            >
                 <Governance />
             </Box>
         </>
