@@ -1,3 +1,4 @@
+
 import { ReduxProvider } from "@/redux/provider";
 import { Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
@@ -10,17 +11,16 @@ const manrope = Manrope({
   subsets: ["latin"]
 });
 
-
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
-  viewport: 'width=1400'
+  viewport: `width=1200`
 };
 
 export default function RootLayout({ children }) {
   return (
     <>
-      <html lang="en">
+      <html lang="en" style={{minWidth:"1200px"}}>
         <body>
           <ReduxProvider>
             <Web3Provider>

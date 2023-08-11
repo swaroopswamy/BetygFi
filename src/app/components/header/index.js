@@ -32,6 +32,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useState } from "react";
+import useScreenSize from "@/hooks/useScreenSize";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
@@ -49,11 +50,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     }
     setSearchWalletAddressValue(e.target.value)
   }
-
   return (
     <>
       <Flex
-        ml={{ base: 0, md: 60 }}
+   
         px={{ base: 4, md: 4 }}
         height="20"
         alignItems="center"
@@ -62,7 +62,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
-        <IconButton
+        {/* <IconButton
           display={{ base: "flex", md: "none" }}
           onClick={onHeaderOpen}
           variant="outline"
@@ -77,7 +77,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           fontWeight="bold"
         >
           Log
-        </Text>
+        </Text> */}
         <InputGroup w="100%">
           <InputLeftElement pointerEvents='none'>
             <Image

@@ -34,17 +34,22 @@ import {
 import Navbar from "../components/header";
 import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
+import useScreenSize from "@/hooks/useScreenSize";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const screenSize = useScreenSize();
   return (
     <>
-      <Box minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}>
+      <Box minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
+        display={"flex"}
+
+      >
         <SidebarContent
           onClose={() => onClose}
-          display={{ base: "none", md: "block" }}
+         /*  display={{ base: "none", md: "block" }} */
         />
-        <Drawer
+        {/* <Drawer
           autoFocus={false}
           isOpen={isOpen}
           placement="left"
@@ -56,13 +61,20 @@ export default function LayoutProvider({ children }) {
           <DrawerContent>
             <SidebarContent onClose={onClose} />
           </DrawerContent>
-        </Drawer>
-
-        <Navbar onOpenMenu={onOpen} />
-        <Box ml={{ base: 0, md: 60 }} p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
-          {children}
-          <Footer />
+        </Drawer> */}
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          ml={screenSize.width < 1200 ? 0 : 60}
+        >
+          <Navbar onOpenMenu={onOpen} />
+          <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
+            {children}
+            <Footer />
+          </Box>
         </Box>
+
+
       </Box>
     </>
   );
