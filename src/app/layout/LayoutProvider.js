@@ -41,13 +41,15 @@ export default function LayoutProvider({ children }) {
   const screenSize = useScreenSize();
   return (
     <>
-      <Box minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
+      <Box
+        width="100%"
+        minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
         display={"flex"}
 
       >
         <SidebarContent
           onClose={() => onClose}
-         /*  display={{ base: "none", md: "block" }} */
+        /*  display={{ base: "none", md: "block" }} */
         />
         {/* <Drawer
           autoFocus={false}

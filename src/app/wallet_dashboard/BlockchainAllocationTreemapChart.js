@@ -113,7 +113,7 @@ const BlockchainAllocationTreemapChart = () => {
                 </Box>
                 </Skeleton>)
             }
-              {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="treemap" height={300} />}
+              {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="treemap" width="100%" height={300} />}
         </>
     );
 };
