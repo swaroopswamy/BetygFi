@@ -3,7 +3,7 @@ import { Box, Container, Image, useColorModeValue, Text, Heading,useColorMode, d
 
 const Approach = () => {
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window && window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const { colorMode } = useColorMode();
   return (

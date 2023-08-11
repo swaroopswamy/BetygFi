@@ -1,4 +1,3 @@
-// eslint-disable-next-line react-hooks/exhaustive-deps
 
 "use client"
 import Governance from "./governance";
@@ -44,12 +43,12 @@ const DefiDashboardPage = () => {
         } */
         dispatch(fetchWalletTransactionsData(searchParam.get("address")));
     }, [blockchainSelected, walletAddress])
-    useEffect(() => {
+ /*    useEffect(() => {
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
-
+ */
     return (
         <>
             <Box

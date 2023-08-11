@@ -32,7 +32,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useState } from "react";
-import useScreenSize from "@/hooks/useScreenSize";
+
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
@@ -45,7 +45,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
       dispatch(walletAddressChangedReducer(e.target.value));
-      router.push(`/wallet_dashboard?address=${e.target.value}`)
+      router.push(`/?address=${e.target.value}`)
       setSearchWalletAddressValue(e.target.value)
     }
     setSearchWalletAddressValue(e.target.value)
