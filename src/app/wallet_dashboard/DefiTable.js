@@ -292,7 +292,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {item.value}
+                                                {item.value.toFixed(3)}
                                             </Td>
                                             <Td
                                                 _dark={{
