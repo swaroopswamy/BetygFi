@@ -98,20 +98,46 @@ const WalletAnalyticsPanel = () => {
           ml="10px"
           maxHeight={"380px"}
         >
-          <Box
+          {/* <Box
             display="flex"
             p="22px 25px"
-          >
+          > */}
+            <Flex
+            height={"30px"}
+            borderRadius={"6px"}
+            _dark={{
+              bg: "#202020",
+              color: "#FFFFFF"
+            }}
+            _light={{
+              bg: "#FFFFFF",
+              color: "#16171B"
+            }} >
             <Text
               fontSize={"15px"}
-              fontWeight={400}
+              fontWeight={"400"}
               lineHeight={"20px"}
               _dark={{ color: "#FFF" }}
               _light={{ color: "#212121" }}
+              mt={"20px"}
+              ml={"25px"}
             >
               Assets Allocation
             </Text>
-          </Box>
+            <>
+              <Tooltip label="Assets allocation talks about the value distribution among different assets.">
+                <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"25px"}
+                  ml={"5px"}
+                  alt=''
+                  src="/images/Frame.svg">
+                </Image>
+              </Tooltip>
+            </>
+            </Flex>
+          {/* </Box> */}
           <Box >
             <AssetAllocationPieChart />
           </Box>
@@ -161,7 +187,7 @@ const WalletAnalyticsPanel = () => {
               Protocol Allocation
             </Text>
             <>
-              <Tooltip label="#Frame">
+              <Tooltip label="Protocol allocations talks about the value distribution among different Defies.">
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
@@ -565,7 +591,7 @@ const WalletAnalyticsPanel = () => {
               Interaction with Known Entities
             </Text>
             <>
-              <Tooltip label="#Frame">
+              <Tooltip label="Interaction with Known Entities shows the transactions that the wallet is doing with the centralized bodies i.e., exchanges.">
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
@@ -604,9 +630,8 @@ const WalletAnalyticsPanel = () => {
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>
-                        DeFi Name</Text>
-
-                      <>
+                        Entities Name</Text>
+                   <>
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1008,7 +1033,7 @@ const WalletAnalyticsPanel = () => {
               Inflow Tokens (30 Days)
             </Text>
             <>
-              <Tooltip label="#Frame">
+              <Tooltip label="Inflow/outflow shows the number of tokens that are coming in wallet.">
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
@@ -1671,7 +1696,7 @@ const WalletAnalyticsPanel = () => {
 
             </Text>
             <>
-              <Tooltip label="#Frame">
+              <Tooltip label="Outflow shows the number of tokens that are going out of wallet.">
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
@@ -2274,7 +2299,7 @@ const WalletAnalyticsPanel = () => {
           display={"flex"}
           justifyContent={"space-between"}
         >
-          <Text
+          {/* <Text
             fontSize={"15px"}
             fontWeight={400}
             lineHeight={"20px"}
@@ -2282,14 +2307,14 @@ const WalletAnalyticsPanel = () => {
             _light={{ color: "#212121" }}
           >
             Asset Trend
-          </Text>
+          </Text> */}
         </Box>
         <Box paddingTop={"10px"}>
           <AssetTrendSplineChart />
         </Box>
       </Box>
       <Box
-        my="10px"
+        my="20px"
         w='100%'
         display={"flex"}
         flexDirection={"column"}
@@ -2304,20 +2329,46 @@ const WalletAnalyticsPanel = () => {
         }}
         p="25px"
       >
-        <Box
+        {/* <Box
           display={"flex"}
           justifyContent={"space-between"}
-        >
+        > */}
+          <Flex
+           height={"10px"}
+           borderRadius={"6px"}
+           _dark={{
+             bg: "#202020",
+             color: "#FFFFFF"
+           }}
+           _light={{
+             bg: "#FFFFFF",
+             color: "#16171B"
+           }}
+           >
           <Text
             fontSize={"15px"}
             fontWeight={400}
             lineHeight={"20px"}
             _dark={{ color: "#FFF" }}
             _light={{ color: "#212121" }}
+            paddingLeft={"15px"}
           >
             Performance
           </Text>
-        </Box>
+          <>
+              <Tooltip label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance.">
+                <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"5px"}
+                  ml={"5px"}
+                  alt=''
+                  src="/images/Frame.svg">
+                </Image>
+              </Tooltip>
+            </>
+            </Flex>
+        {/* </Box> */}
         <Box paddingTop={"10px"}>
           <PerformanceMultiLineChart />
         </Box>
