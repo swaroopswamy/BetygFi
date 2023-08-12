@@ -102,7 +102,7 @@ const WalletAnalyticsPanel = () => {
             display="flex"
             p="22px 25px"
           > */}
-            <Flex
+          <Flex
             height={"30px"}
             borderRadius={"6px"}
             _dark={{
@@ -136,7 +136,7 @@ const WalletAnalyticsPanel = () => {
                 </Image>
               </Tooltip>
             </>
-            </Flex>
+          </Flex>
           {/* </Box> */}
           <Box >
             <AssetAllocationPieChart />
@@ -175,7 +175,9 @@ const WalletAnalyticsPanel = () => {
             _light={{
               bg: "#FFFFFF",
               color: "#16171B"
-            }} >
+            }}
+            pb="14px"
+          >
             <Text
               fontSize={"15px"}
               fontWeight={"400"}
@@ -579,7 +581,9 @@ const WalletAnalyticsPanel = () => {
             _light={{
               bg: "#FFFFFF",
               color: "#16171B"
-            }} >
+            }}
+            pb="14px"
+          >
             <Text
               fontSize={"15px"}
               fontWeight={"400"}
@@ -631,7 +635,7 @@ const WalletAnalyticsPanel = () => {
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>
                         Entities Name</Text>
-                   <>
+                      <>
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1021,7 +1025,9 @@ const WalletAnalyticsPanel = () => {
 
               color: "#16171B"
 
-            }} >
+            }}
+            pb="14px"
+          >
             <Text
               fontSize={"15px"}
               fontWeight={"400"}
@@ -1667,12 +1673,11 @@ const WalletAnalyticsPanel = () => {
             }}
 
             _light={{
-
               bg: "#FFFFFF",
-
               color: "#16171B"
-
-            }} >
+            }}
+            pb="14px"
+          >
 
             <Text
 
@@ -2279,7 +2284,7 @@ const WalletAnalyticsPanel = () => {
 
       {/* End of varun's code */}
 
-      <Box
+      {/* <Box
         my="10px"
         w='100%'
         display={"flex"}
@@ -2299,7 +2304,7 @@ const WalletAnalyticsPanel = () => {
           display={"flex"}
           justifyContent={"space-between"}
         >
-          {/* <Text
+          <Text
             fontSize={"15px"}
             fontWeight={400}
             lineHeight={"20px"}
@@ -2307,12 +2312,12 @@ const WalletAnalyticsPanel = () => {
             _light={{ color: "#212121" }}
           >
             Asset Trend
-          </Text> */}
+          </Text> 
         </Box>
         <Box paddingTop={"10px"}>
           <AssetTrendSplineChart />
         </Box>
-      </Box>
+      </Box> */}
       <Box
         my="20px"
         w='100%'
@@ -2333,18 +2338,19 @@ const WalletAnalyticsPanel = () => {
           display={"flex"}
           justifyContent={"space-between"}
         > */}
-          <Flex
-           height={"10px"}
-           borderRadius={"6px"}
-           _dark={{
-             bg: "#202020",
-             color: "#FFFFFF"
-           }}
-           _light={{
-             bg: "#FFFFFF",
-             color: "#16171B"
-           }}
-           >
+        <Flex
+          height={"10px"}
+          borderRadius={"6px"}
+          _dark={{
+            bg: "#202020",
+            color: "#FFFFFF"
+          }}
+          _light={{
+            bg: "#FFFFFF",
+            color: "#16171B"
+          }}
+          pb="14px"
+        >
           <Text
             fontSize={"15px"}
             fontWeight={400}
@@ -2356,18 +2362,18 @@ const WalletAnalyticsPanel = () => {
             Performance
           </Text>
           <>
-              <Tooltip label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance.">
-                <Image width={"12px"}
-                  height={"12px"}
-                  flexShrink={"0"}
-                  mt={"5px"}
-                  ml={"5px"}
-                  alt=''
-                  src="/images/Frame.svg">
-                </Image>
-              </Tooltip>
-            </>
-            </Flex>
+            <Tooltip label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance.">
+              <Image width={"12px"}
+                height={"12px"}
+                flexShrink={"0"}
+                mt={"5px"}
+                ml={"5px"}
+                alt=''
+                src="/images/Frame.svg">
+              </Image>
+            </Tooltip>
+          </>
+        </Flex>
         {/* </Box> */}
         <Box paddingTop={"10px"}>
           <PerformanceMultiLineChart />

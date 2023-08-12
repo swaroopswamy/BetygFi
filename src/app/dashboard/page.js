@@ -279,6 +279,7 @@ const Dashboard = () => {
             letterSpacing={"1px"}
             lineHeight={"15px"}
             mb="20px"
+            pl="3px"
             opacity={"0.5"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
           >
@@ -391,7 +392,7 @@ const Dashboard = () => {
               key={"all"}
               borderRadius="2px"
               padding={"7px 9px"}
-              mx="4px"
+              mr="4px"
               cursor={"pointer"}
               _hover={{ bg: useColorModeValue("#FFFFFF", "#191919") }}
               border={useColorModeValue(

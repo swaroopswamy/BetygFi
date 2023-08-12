@@ -42,7 +42,7 @@ const AssetAllocationPieChart = () => {
            
         },
         labels: walletBalanceData?.data?.data?.map((item, i) => {
-            return `${item?.Symbol}`
+            return `${item?.symbol}`
         }),
 
 

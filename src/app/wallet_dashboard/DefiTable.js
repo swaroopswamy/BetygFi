@@ -215,7 +215,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {item?.Symbol}
+                                                {item?.symbol}
                                             </Td>
                                             {/* <Td
                                         >
@@ -292,9 +292,9 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {!isEmpty(item.Balance)
+                                                {!isEmpty(item.value)
                                                     ?
-                                                    (item.Balance.toFixed(2)).toLocaleString('en-US', {
+                                                    (item.value.toFixed(2)).toLocaleString('en-US', {
                                                         style: 'currency',
                                                         currency: 'USD'
                                                     }) + " USD"
@@ -312,7 +312,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                             >
                                                 {
-                                                    (Math.trunc(item["USD Value"])).toLocaleString('en-US', {
+                                                    (Math.trunc(item.value * item.price)).toLocaleString('en-US', {
                                                         style: 'currency',
                                                         currency: 'USD'
                                                     })}
