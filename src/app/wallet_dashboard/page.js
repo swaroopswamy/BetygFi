@@ -116,12 +116,12 @@ const WalletDashboardPage = () => {
                                     fontSize={"10px"}
                                     fontWeight={"400"}
                                     color={useColorModeValue("#000000", "#A8ADBD")}
-                                    borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
+                                    //borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     paddingRight={"15px"}
                                 >
                                     {walletAddress}
                                 </Text>
-                                <Text
+                                {/* <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
                                     lineHeight={"20px"}
@@ -139,7 +139,7 @@ const WalletDashboardPage = () => {
 
                                 >
                                     850 Days
-                                </Text>
+                                </Text> */}
                             </Box>
                         </Box>
                     </Box>
@@ -197,8 +197,9 @@ const WalletDashboardPage = () => {
                                     _light={{
                                         color: "#16171B"
                                     }}
+                                    mr={'2px'}
                                 >
-                                    Last Update
+                                    Last Updated
                                 </Text>
                                 <Text
                                     fontSize={"10px"}
