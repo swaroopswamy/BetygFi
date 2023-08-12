@@ -27,7 +27,6 @@ const SkeletonRow = () => (
     </Td>
   </Box>
 )
-
 const TransactionPanelComponent = () => {
 
   const value1 = "300";
@@ -37,6 +36,7 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
+
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -204,7 +204,7 @@ const TransactionPanelComponent = () => {
                               textOverflow="ellipsis"
                               whiteSpace="nowrap"
                             >
-                              {walletAddress}
+                             {walletAddress}
                             </Text>
                             <Text opacity={"0.6000000238418579"}
                               _dark={{

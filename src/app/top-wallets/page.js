@@ -59,9 +59,10 @@ const WalletDashboardPage = () => {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 color={useColorModeValue("#191919", "#FFF")}
+                                paddingBottom={"30px"}
 
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere felis nulla, in luctus eros condimentum nec. In eget justo id odio finibus rhoncus. Nullam porttitor sapien diam, sit amet egestas mauris egestas non. Sed sapien augue, dignissim at suscipit ac, egestas quis nisl. Aenean a malesuada nisi, nec aliquet orci. In vestibulum orci eget ultrices iaculis.
+                                BetygFi have filtered and identified a comprehensive collection of significant wallet addresses, enabling you to effortlessly monitor and analyze critical on-chain events and transactions.
                             </Text>
                         </Box>
 
