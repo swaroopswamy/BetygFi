@@ -148,7 +148,7 @@ const WalletTable = () => {
 
                 </Table>
 
-                <PageButtons />
+              {/*   <PageButtons /> */}
             </Box>
         </>
     )
@@ -254,6 +254,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
     const router = useRouter();
     return <Tr
         key={key}
+        cursor={"pointer"}
         bgColor={clicked ?
             (colorMode === "light" ? '#F5F5F7' : '#191919') :
             (colorMode === "light" ? '#FFFFFF' : '#202020')

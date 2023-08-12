@@ -28,7 +28,7 @@ import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
 import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
-import DiscordIcon from "../../../../public/icons/discord-icon.svg";
+import DiscordIcon from "../../../../public/icons/discord_final.svg";
 import TwitterIcon from "../../../../public/icons/twitter-icon.svg";
 import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
