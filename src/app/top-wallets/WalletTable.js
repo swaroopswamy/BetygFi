@@ -87,6 +87,7 @@ const WalletTable = () => {
                                 letterSpacing={"1px"}
                                 textTransform={"uppercase"}
                                 textAlign={"left"}
+                                width={"11%"}
                             >
                                 Net Worth</Th>
                             <Th
@@ -98,6 +99,7 @@ const WalletTable = () => {
                                 letterSpacing={"1px"}
                                 textTransform={"uppercase"}
                                 textAlign={"left"}
+                                width={"50%"}
                             >
                                 Total Tokens</Th>
                             <Th
