@@ -19,6 +19,8 @@ const Footer = () => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
+         marginLeft={"11px"}
+            
     
       >
         <Box
@@ -82,6 +84,8 @@ const Footer = () => {
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}
               color={useColorModeValue("#16171B","#FFFFFF")}
+              paddingLeft={"10px"}
+            
             >
               &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
