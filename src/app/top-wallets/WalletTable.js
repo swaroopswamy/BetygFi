@@ -322,7 +322,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                     if (i < 3) {
                         return (
                             <Box
-                                key={""}
+                                key={i}
                                 padding={"7px 9px"}
                                 border={"1px"}
                                 minw="150px"

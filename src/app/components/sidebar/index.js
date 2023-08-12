@@ -66,7 +66,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <>
       <Box
-        transition="3s ease"
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
@@ -116,11 +115,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 icon={link.icon}
                 path={link.path}
                 newTab={link.newTab}
-                _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
                 fontSize="11px"
                 fontWeight="400"
                 letterSpacing="1px"
-                color={useColorModeValue("#16171B", "#FFF")}
+                _dark={{
+                  color:"#FFF"
+                }}
+                _light={{
+                  color:"#16171B"
+                }}
               >
                 {link.name}
               </NavItem>
@@ -132,7 +136,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
               fontSize="11px"
               fontWeight="400"
               letterSpacing="1px"
-              color={useColorModeValue("#16171B", "#FFF")}
+              _dark={{
+                color:"#FFF"
+              }}
+              _light={{
+                color:"#16171B"
+              }}
               textTransform={"uppercase"}
               mb="15px"
               w="100%"
@@ -161,12 +170,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       key={link.name}
                       icon={link.icon}
                       path={link.path}
-                      _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                      _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                       fontSize="11px"
                       fontWeight="400"
                       letterSpacing="1px"
-
-                      color={useColorModeValue("#16171B", "#FFF")}
+                      _dark={{
+                        color:"#FFF"
+                      }}
+                      _light={{
+                        color:"#16171B"
+                      }}
                     >
                       {link.name}
                     </NavItem>
@@ -180,12 +193,17 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   key={link.name}
                   icon={link.icon}
                   path={link.path}
-                  _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                   newTab={link.newTab}
                   fontSize="11px"
                   fontWeight="400"
                   letterSpacing="1px"
-                  color={useColorModeValue("#16171B", "#FFF")}
+                  _dark={{
+                    color:"#FFF"
+                  }}
+                  _light={{
+                    color:"#16171B"
+                  }}
 
                 >
                   {link.name}
@@ -202,9 +220,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                  justifyContent={"center"}
                   w={"100%"}
-                  
+                  pl={6}
                 >
                   <Image
                     width={15}
@@ -219,7 +236,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     fontStyle={"normal"}
                     fontWeight={"400"}
                     letterSpacing={"1px"}
-                    color={useColorModeValue("#16171B", "#FFF")}
+                    _dark={{
+                      color:"#FFF"
+                    }}
+                    _light={{
+                      color:"#16171B"
+                    }}
                   >
                     POWERED BY SOLVENDO
                   </Text>

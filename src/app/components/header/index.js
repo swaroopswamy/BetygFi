@@ -32,6 +32,7 @@ import { useRouter, useSearchParams , usePathname} from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useEffect, useState } from "react";
+import isEmpty from "is-empty";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
@@ -45,18 +46,19 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
-      dispatch(walletAddressChangedReducer(e.target.value));
-      router.push(`/wallet_dashboard?address=${e.target.value}`)
-      setSearchWalletAddressValue(e.target.value)
+      if(!isEmpty(e.target.value)){
+        dispatch(walletAddressChangedReducer(e.target.value));
+        router.push(`/wallet_dashboard?address=${e.target.value}`)
+        setSearchWalletAddressValue(e.target.value)
+      }
     }
     setSearchWalletAddressValue(e.target.value)
   }
- /*  console.log(pathname,'search');
   useEffect(()=>{
     if(pathname==='/wallet_dashboard'){
       setSearchWalletAddressValue(searchParams.get('address'))
     }
-  },[])  */
+  },[searchParams.get('address')])  
   return (
     <>
       <Flex

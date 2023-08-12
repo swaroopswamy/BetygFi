@@ -327,7 +327,7 @@ const TransactionPanelComponent = () => {
                             textOverflow="ellipsis"
                             whiteSpace="nowrap"
                           >
-                            {item?.from}
+                            {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
@@ -353,7 +353,7 @@ const TransactionPanelComponent = () => {
                             textOverflow="ellipsis"
                             whiteSpace="nowrap"
                           >
-                            {item?.to}
+                            {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
