@@ -298,7 +298,7 @@ const TransactionPanelComponent = () => {
                             ml="6px"
                           >
                             {" "}{millify(item?.value, {
-                              precision: 2,
+                              precision: 2 ,
                               locales: "en-US"
                             })}
                           </Text>
