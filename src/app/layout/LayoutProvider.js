@@ -68,7 +68,7 @@ export default function LayoutProvider({ children }) {
           display={"flex"}
           flexDirection={"column"}
           w="100%"
-          ml={screenSize?.width < 1200 ? 0 : 60}
+          ml={screenSize?.width < 1450 ? 0 : 60}
         >
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")}>

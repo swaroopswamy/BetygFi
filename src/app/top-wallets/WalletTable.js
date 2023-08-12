@@ -87,6 +87,7 @@ const WalletTable = () => {
                                 letterSpacing={"1px"}
                                 textTransform={"uppercase"}
                                 textAlign={"left"}
+                                width={"11%"}
                             >
                                 Net Worth</Th>
                             <Th
@@ -98,6 +99,7 @@ const WalletTable = () => {
                                 letterSpacing={"1px"}
                                 textTransform={"uppercase"}
                                 textAlign={"left"}
+                                width={"50%"}
                             >
                                 Total Tokens</Th>
                             <Th
@@ -320,7 +322,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                     if (i < 3) {
                         return (
                             <Box
-                                key={""}
+                                key={i}
                                 padding={"7px 9px"}
                                 border={"1px"}
                                 minw="150px"

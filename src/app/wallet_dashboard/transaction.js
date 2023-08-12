@@ -27,7 +27,6 @@ const SkeletonRow = () => (
     </Td>
   </Box>
 )
-
 const TransactionPanelComponent = () => {
 
   const value1 = "300";
@@ -37,6 +36,7 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
+
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -204,7 +204,7 @@ const TransactionPanelComponent = () => {
                               textOverflow="ellipsis"
                               whiteSpace="nowrap"
                             >
-                              {walletAddress}
+                              { walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
                             </Text>
                             <Text opacity={"0.6000000238418579"}
                               _dark={{
@@ -298,7 +298,7 @@ const TransactionPanelComponent = () => {
                             ml="6px"
                           >
                             {" "}{millify(item?.value, {
-                              precision: 2,
+                              precision: 2 ,
                               locales: "en-US"
                             })}
                           </Text>
@@ -327,7 +327,7 @@ const TransactionPanelComponent = () => {
                             textOverflow="ellipsis"
                             whiteSpace="nowrap"
                           >
-                            {item?.from}
+                            {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
@@ -353,7 +353,7 @@ const TransactionPanelComponent = () => {
                             textOverflow="ellipsis"
                             whiteSpace="nowrap"
                           >
-                            {item?.to}
+                            {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
