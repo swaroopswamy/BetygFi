@@ -321,7 +321,7 @@ const TransactionPanelComponent = () => {
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
-                            ml="6px"
+                           
                             w="95px"
                             overflow=" hidden"
                             textOverflow="ellipsis"
@@ -347,7 +347,7 @@ const TransactionPanelComponent = () => {
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
-                            ml="6px"
+                         
                             w="95px"
                             overflow=" hidden"
                             textOverflow="ellipsis"
