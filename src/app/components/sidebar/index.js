@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { InfoIcon } from "@chakra-ui/icons";
 import {
@@ -28,12 +27,12 @@ import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
 import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
-import DiscordIcon from "../../../../public/icons/discord_final.svg";
+import DiscordIcon from "../../../../public/icons/discord-icon-light.svg";
 import TwitterIcon from "../../../../public/icons/twitter-icon.svg";
 import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"; 
 import { useRouter } from "next/navigation";
 
 import useScreenSize from '../../../hooks/useScreenSize'
@@ -42,7 +41,7 @@ import { left } from "@popperjs/core";
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
+  { name: "Approach Paper", icon: ApproachPaperIcon,newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf'  },
   { name: "About", icon: CompanyIcon, path: '/about'},
   { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },
@@ -205,6 +204,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   alignItems={"center"}
                   justifyContent={"center"}
                   w={"100%"}
+                  
                 >
                   <Image
                     width={15}

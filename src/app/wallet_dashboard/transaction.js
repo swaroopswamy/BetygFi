@@ -204,7 +204,7 @@ const TransactionPanelComponent = () => {
                               textOverflow="ellipsis"
                               whiteSpace="nowrap"
                             >
-                              {walletAddress}
+                              { walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
                             </Text>
                             <Text opacity={"0.6000000238418579"}
                               _dark={{
@@ -298,7 +298,7 @@ const TransactionPanelComponent = () => {
                             ml="6px"
                           >
                             {" "}{millify(item?.value, {
-                              precision: 2,
+                              precision: 2 ,
                               locales: "en-US"
                             })}
                           </Text>
