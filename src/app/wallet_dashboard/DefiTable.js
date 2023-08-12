@@ -292,13 +292,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {!isEmpty(item.value)
-                                                    ?
-                                                    (item.value.toFixed(2)).toLocaleString('en-US', {
-                                                        style: 'currency',
-                                                        currency: 'USD'
-                                                    }) + " USD"
-                                                    : 0}
+                                                {item.value}
                                             </Td>
                                             <Td
                                                 _dark={{
