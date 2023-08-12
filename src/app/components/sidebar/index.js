@@ -72,7 +72,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={"250px"}
-        pos={screenSize?.width < 1200 ? "relative" : "fixed"}
+        pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
@@ -175,7 +175,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 )}
               </>
             ))}
-            <div style={{ position: screenSize?.width < 1200 ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+            <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
               {bottomMenu.map((link) => (
                 <NavItem
                   key={link.name}
