@@ -843,7 +843,7 @@ function BarChart() {
 
           <Box
             display={"flex"}
-            width={"50%"}
+            width={"46%"}
             flexDir={"column"}
             borderRadius={"6px"}
             alignContent={"center"}
