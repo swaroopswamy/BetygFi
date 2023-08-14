@@ -38,7 +38,7 @@ function TrendGraph() {
                 width={"822px"}
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
-                borderColor={useColorModeValue('#FFFFFF', '#202020')}
+                borderColor={useColorModeValue('#FFFFFF', '#272727')}
                 borderRadius={"6px"}
             >
                 <Box
@@ -173,7 +173,7 @@ function Graph() {
                 style: {
                     colors: useColorModeValue("#16171B", "#FFF"),
                     fontSize: "11px",
-                    fontWeight: 400,    
+                    fontWeight: 300,    
                 },
               },
               axisTicks: {
@@ -186,10 +186,10 @@ function Graph() {
                 style: {
                     colors: useColorModeValue("#16171B", "#FFF"),
                     fontSize: "11px",
-                    fontWeight: 400,    
+                    fontWeight: 300,    
                 },
                 formatter: function(val, index) {
-
+                    return "$" + val + "B";
                 }
               },
               axisTicks: {
