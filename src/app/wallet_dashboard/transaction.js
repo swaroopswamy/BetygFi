@@ -40,11 +40,13 @@ const TransactionPanelComponent = () => {
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
+        mt="25px"
         bgColor={useColorModeValue("#FFF", "#202020")} >
         <Text
           fontSize="2xl"
           fontWeight={"400"}
           color={useColorModeValue("#16171B", "#FFF")}
+
         >
           Wallet Transaction
         </Text>
@@ -93,7 +95,7 @@ const TransactionPanelComponent = () => {
                   letterSpacing={"1px"}
                   mr="6px"
                 >
-                  Amount  / Token 
+                  Amount  / Token
                 </Text>
                 <>
                   <Image width={2}
@@ -204,7 +206,7 @@ const TransactionPanelComponent = () => {
                               textOverflow="ellipsis"
                               whiteSpace="nowrap"
                             >
-                              { walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
+                              {walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
                             </Text>
                             <Text opacity={"0.6000000238418579"}
                               _dark={{
@@ -298,7 +300,7 @@ const TransactionPanelComponent = () => {
                             ml="6px"
                           >
                             {" "}{millify(item?.value, {
-                              precision: 2 ,
+                              precision: 2,
                               locales: "en-US"
                             })}
                           </Text>
@@ -321,7 +323,7 @@ const TransactionPanelComponent = () => {
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
-                           
+
                             w="95px"
                           >
                             {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
@@ -344,7 +346,7 @@ const TransactionPanelComponent = () => {
                             fontSize={"10px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
-                         
+
                             w="95px"
                           >
                             {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}

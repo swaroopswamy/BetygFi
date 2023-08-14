@@ -28,8 +28,6 @@ const WalletDashboardPage = () => {
     };
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
-    console.log(walletBalanceData)
-
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
@@ -50,20 +48,20 @@ const WalletDashboardPage = () => {
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, searchParam.get("address")])
     useEffect(() => {
-      
+
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
 
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
-    useEffect(()=>{
+    useEffect(() => {
         if (walletBalanceData?.isQueryInPendingState) {
             setTimeout(() => {
                 fetchWalletBalanceDataHandler();
             }, 5000)
         }
-    },[walletBalanceData])
+    }, [walletBalanceData])
     return (
         <>
             <Box
@@ -237,18 +235,43 @@ const WalletDashboardPage = () => {
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 0 ?
+                                    bgColor={tabIndex === 0 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
+                                >
+                                    <Text
+                                        fontSize={"10px"}
+                                        fontWeight={tabIndex === 0 ? "700" : "400"}
+                                        color={tabIndex === 0 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                                        mr="44px"
+                                    >
+                                        Transactions
+                                    </Text>
+                                    <Image
+                                        w="14px"
+                                        h="14px"
+                                        alt="icon"
+                                        src={tabIndex === 0 ? colorMode === 'light' ? ('/images/transactions_white.png') : ('/images/transactions_black.png') : colorMode === 'light' ? ('/images/transactions_black.png') : ('/images/transactions_white.png')}
+                                    ></Image>
+                                </Box>
+                            </Tab>
+                            <Tab
+                                padding="0"
+                            >
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    padding={"13px 19px 13px 17px"}
+                                    bgColor={tabIndex === 1 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
                                         (colorMode === 'light' ? "#F0F0F5" : "#202020")
                                     }
                                 >
                                     <Text
                                         fontSize={"10px"}
-                                        color={tabIndex === 0 ?
+                                        color={tabIndex === 1 ?
                                             (colorMode === 'light' ? "#FFFFFF" : "#202020") :
                                             (colorMode === 'light' ? "#202020" : "#FFFFFF")
                                         }
-                                        fontWeight={tabIndex === 0 ? "700" : "400"}
+                                        fontWeight={tabIndex === 1 ? "700" : "400"}
                                         mr="44px"
                                     >
                                         Portfolio
@@ -257,11 +280,11 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 0 ? colorMode === 'light' ? ('/images/portfolio_white.png') : ('/images/portfolio_black.png') : colorMode === 'light' ? ('/images/portfolio_black.png') : ('/images/portfolio_white.png')}
+                                        src={tabIndex === 1 ? colorMode === 'light' ? ('/images/portfolio_white.png') : ('/images/portfolio_black.png') : colorMode === 'light' ? ('/images/portfolio_black.png') : ('/images/portfolio_white.png')}
                                     ></Image>
                                 </Box>
                             </Tab>
-                            <Tab
+                            {/*  <Tab
                                 padding="0"
                             >
                                 <Box
@@ -285,32 +308,8 @@ const WalletDashboardPage = () => {
                                         src={tabIndex === 1 ? colorMode === 'light' ? ('/images/wallet_analytics_white.png') : ('/images/wallet_analytics_black.png') : colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
                                     ></Image>
                                 </Box>
-                            </Tab>
-                            <Tab
-                                padding="0"
-                            >
-                                <Box
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 2 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
-                                >
-                                    <Text
-                                        fontSize={"10px"}
-                                        fontWeight={tabIndex === 2 ? "700" : "400"}
-                                        color={tabIndex === 2 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                                        mr="44px"
-                                    >
-                                        Transactions
-                                    </Text>
-                                    <Image
-                                        w="14px"
-                                        h="14px"
-                                        alt="icon"
-                                        src={tabIndex === 2 ? colorMode === 'light' ? ('/images/transactions_white.png') : ('/images/transactions_black.png') : colorMode === 'light' ? ('/images/transactions_black.png') : ('/images/transactions_white.png')}
-                                    ></Image>
-                                </Box>
-                            </Tab>
+                            </Tab> */}
+
                         </TabList>
                         <Box
                             bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -408,18 +407,19 @@ const WalletDashboardPage = () => {
                                 <TabPanel
                                     p="0px"
                                 >
-                                    <PortfolioPanelComponent />
+                                    <TransactionPanelComponent />
                                 </TabPanel>
                                 <TabPanel
+                                    p="0px"
+                                >
+                                    <PortfolioPanelComponent />
+                                </TabPanel>
+                                {/* <TabPanel
                                     p="0px"
                                 >
                                     <WalletAnalyticsPanel />
-                                </TabPanel>
-                                <TabPanel
-                                    p="0px"
-                                >
-                                    <TransactionPanelComponent />
-                                </TabPanel>
+                                </TabPanel> */}
+
 
                             </TabPanels>
                         </Box>
