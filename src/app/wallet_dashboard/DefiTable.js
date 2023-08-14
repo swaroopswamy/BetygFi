@@ -3,7 +3,8 @@ import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image,
-    Skeleton
+    Skeleton,
+    Spinner
 } from "@chakra-ui/react";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -191,15 +192,80 @@ const DefiTable = () => {
                             </Tr>
                         </>
                     )}
-                    {walletBalanceData?.isLoading && (
+                    {walletBalanceData.data?.isQueryInPendingState && (
                         <>
-                            <SkeletonRow />
-                            <SkeletonRow />
-                            <SkeletonRow />
+                            <Tr >
+                                <Td
+
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    <Box
+                                        display={"flex"}
+                                        flexDirection={"column"}
+                                        alignItems={"center"}
+                                        justifyContent={"center"}
+
+                                    >
+                                        <Text
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            mt="44px"
+                                            mb="20px"
+                                        >
+                                            We are retrieving data from the Blockchain.
+                                        </Text>
+                                        <Spinner
+                                            thickness='4px'
+                                            speed='0.65s'
+                                            emptyColor='gray.200'
+                                            color='blue.500'
+                                            size='xl'
+                                        />
+                                        <Text
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            mt="20px"
+                                            mb="8px"
+                                        >
+                                            This process might take approximately 2-3 minutes.
+                                        </Text>
+                                        <Text
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            mb="50px"
+                                        >
+                                            You have the option to wait or return later.
+                                        </Text>
+                                    </Box>
+                                </Td>
+                            </Tr>
                         </>
                     )}
                     {walletBalanceData?.isSuccess &&
-                        (walletBalanceData?.data?.data?.length > 0 ?
+                        (walletBalanceData?.data?.data?.length > 0 &&
                             (walletBalanceData?.data?.data.map((item, i) => {
                                 return (
                                     <>
@@ -215,7 +281,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {item?.Symbol}
+                                                {item?.symbol}
                                             </Td>
                                             {/* <Td
                                         >
@@ -292,13 +358,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {!isEmpty(item.Balance)
-                                                    ?
-                                                    (item.Balance.toFixed(2)).toLocaleString('en-US', {
-                                                        style: 'currency',
-                                                        currency: 'USD'
-                                                    }) + " USD"
-                                                    : 0}
+                                                {item.value.toFixed(3)}
                                             </Td>
                                             <Td
                                                 _dark={{
@@ -312,7 +372,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                             >
                                                 {
-                                                    (Math.trunc(item["USD Value"])).toLocaleString('en-US', {
+                                                    (Math.trunc(item.value * item.price)).toLocaleString('en-US', {
                                                         style: 'currency',
                                                         currency: 'USD'
                                                     })}
@@ -342,29 +402,8 @@ const DefiTable = () => {
                                         </Tr>
                                     </>
                                 );
-                            })) :
-                            (
-                                <>
-                                    <Tr >
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            colSpan={8}
-                                            textAlign={"center"}
-                                        >
-                                            No Data Available
-                                        </Td>
-                                    </Tr>
-
-                                </>
-                            ))
+                            }))
+                        )
                     }
                 </Tbody>
             </Table>

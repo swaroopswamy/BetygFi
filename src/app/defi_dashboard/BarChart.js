@@ -1,8 +1,9 @@
 "use client"
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import React from "react";
 import { useState } from "react";
-import Chart from "react-apexcharts";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function BarChart() {
   const { colorMode } = useColorMode();

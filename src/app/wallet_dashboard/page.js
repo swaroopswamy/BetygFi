@@ -20,7 +20,6 @@ const WalletDashboardPage = () => {
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
-    console.log(blockchainSelected, 'blockchain')
     const walletAddress = useSelector(
         (state) => state?.walletDashboardTableData?.walletAddress
     );
@@ -29,40 +28,49 @@ const WalletDashboardPage = () => {
     };
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
-
-
+    console.log(walletBalanceData)
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
-            address:walletAddress,
-            payload:{
-                blockchain:blockchainSelected
+            address: searchParam.get("address"),
+            payload: {
+                blockchain: blockchainSelected
             }
         }
+
         dispatch(fetchWalletBalanceData(data));
-    }, [blockchainSelected, walletAddress])
+    }, [blockchainSelected, searchParam.get("address")])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         const data = {
-            address:walletAddress,
-            payload:{
-                blockchain:blockchainSelected
+            address: searchParam.get("address"),
+            payload: {
+                blockchain: blockchainSelected
             }
         }
         dispatch(fetchWalletTransactionsData(data));
-    }, [blockchainSelected, walletAddress])
+    }, [blockchainSelected, searchParam.get("address")])
     useEffect(() => {
+      
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
+
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
-
+    useEffect(()=>{
+        if (walletBalanceData?.isQueryInPendingState) {
+            setTimeout(() => {
+                fetchWalletBalanceDataHandler();
+            }, 5000)
+        }
+    },[walletBalanceData])
     return (
         <>
             <Box
                 bgColor={useColorModeValue("#FFFFFF", "#131313")}
                 display={"flex"}
                 flexDirection={"column"}
+                w="100%"
             >
                 <Box
                     display={"flex"}
@@ -116,12 +124,12 @@ const WalletDashboardPage = () => {
                                     fontSize={"10px"}
                                     fontWeight={"400"}
                                     color={useColorModeValue("#000000", "#A8ADBD")}
-                                    borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
+                                    //borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     paddingRight={"15px"}
                                 >
                                     {walletAddress}
                                 </Text>
-                                <Text
+                                {/* <Text
                                     fontSize={"10px"}
                                     fontWeight={"400"}
                                     lineHeight={"20px"}
@@ -139,7 +147,7 @@ const WalletDashboardPage = () => {
 
                                 >
                                     850 Days
-                                </Text>
+                                </Text> */}
                             </Box>
                         </Box>
                     </Box>
@@ -197,8 +205,9 @@ const WalletDashboardPage = () => {
                                     _light={{
                                         color: "#16171B"
                                     }}
+                                    mr={'2px'}
                                 >
-                                    Last Update
+                                    Last Updated
                                 </Text>
                                 <Text
                                     fontSize={"10px"}
@@ -401,10 +410,14 @@ const WalletDashboardPage = () => {
                                 >
                                     <PortfolioPanelComponent />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                    p="0px"
+                                >
                                     <WalletAnalyticsPanel />
                                 </TabPanel>
-                                <TabPanel>
+                                <TabPanel
+                                    p="0px"
+                                >
                                     <TransactionPanelComponent />
                                 </TabPanel>
 

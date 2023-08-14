@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { InfoIcon } from "@chakra-ui/icons";
 import {
@@ -28,21 +27,23 @@ import SettingIcon from "../../../../public/icons/setting_sm_icon.svg";
 import BulbIcon from "../../../../public/icons/bulb_sm_icon.svg";
 import BugIcon from "../../../../public/icons/bug_sm_icon.svg";
 import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
-import DiscordIcon from "../../../../public/icons/discord-icon.svg";
+import DiscordIcon from "../../../../public/icons/discord-icon-light.svg";
 import TwitterIcon from "../../../../public/icons/twitter-icon.svg";
 import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"; 
 import { useRouter } from "next/navigation";
 
 import useScreenSize from '../../../hooks/useScreenSize'
+import { left } from "@popperjs/core";
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: ApproachPaperIcon, newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf' },
-  { name: "About", icon: CompanyIcon, path: '/about' },
+  { name: "Approach Paper", icon: ApproachPaperIcon,newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf'  },
+  { name: "About", icon: CompanyIcon, path: '/about'},
+  { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 const LinkItemsDown = [
@@ -62,17 +63,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const screenSize = useScreenSize();
-
-  console.log(screenSize > 1200, 'w', screenSize)
   return (
     <>
       <Box
-        transition="3s ease"
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={"250px"}
-        pos={screenSize.width < 1200 ? "relative" : "fixed"}
+        pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
@@ -117,11 +115,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 icon={link.icon}
                 path={link.path}
                 newTab={link.newTab}
-                _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
                 fontSize="11px"
                 fontWeight="400"
                 letterSpacing="1px"
-                color={useColorModeValue("#16171B", "#FFF")}
+                _dark={{
+                  color:"#FFF"
+                }}
+                _light={{
+                  color:"#16171B"
+                }}
               >
                 {link.name}
               </NavItem>
@@ -133,7 +136,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
               fontSize="11px"
               fontWeight="400"
               letterSpacing="1px"
-              color={useColorModeValue("#16171B", "#FFF")}
+              _dark={{
+                color:"#FFF"
+              }}
+              _light={{
+                color:"#16171B"
+              }}
               textTransform={"uppercase"}
               mb="15px"
               w="100%"
@@ -162,12 +170,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       key={link.name}
                       icon={link.icon}
                       path={link.path}
-                      _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                      _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                       fontSize="11px"
                       fontWeight="400"
                       letterSpacing="1px"
-
-                      color={useColorModeValue("#16171B", "#FFF")}
+                      _dark={{
+                        color:"#FFF"
+                      }}
+                      _light={{
+                        color:"#16171B"
+                      }}
                     >
                       {link.name}
                     </NavItem>
@@ -175,18 +187,23 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 )}
               </>
             ))}
-            <div style={{ position: screenSize.width < 1200 ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+            <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
               {bottomMenu.map((link) => (
                 <NavItem
                   key={link.name}
                   icon={link.icon}
                   path={link.path}
-                  _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                   newTab={link.newTab}
                   fontSize="11px"
                   fontWeight="400"
                   letterSpacing="1px"
-                  color={useColorModeValue("#16171B", "#FFF")}
+                  _dark={{
+                    color:"#FFF"
+                  }}
+                  _light={{
+                    color:"#16171B"
+                  }}
 
                 >
                   {link.name}
@@ -203,8 +220,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                  justifyContent={"center"}
                   w={"100%"}
+                  pl={6}
                 >
                   <Image
                     width={15}
@@ -219,7 +236,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     fontStyle={"normal"}
                     fontWeight={"400"}
                     letterSpacing={"1px"}
-                    color={useColorModeValue("#16171B", "#FFF")}
+                    _dark={{
+                      color:"#FFF"
+                    }}
+                    _light={{
+                      color:"#16171B"
+                    }}
                   >
                     POWERED BY SOLVENDO
                   </Text>
@@ -268,7 +290,9 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
         {icon && (
           <Icon
             mr="4"
-            w="16px"
+            mt="3px"
+            p="0"
+            w="18px"
             h="18px"
             fontSize="16"
             _groupHover={{

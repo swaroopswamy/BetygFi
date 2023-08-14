@@ -15,6 +15,7 @@ const BlockchainAllocationTreemapChart = () => {
             zoom: {
                 enabled: false,
             },
+            width: '100%'
         },
         colors: ["#988FF8", "#F48AE9", "#E57F7F", "#0FBFBF", "#99B1E9", "#EDBF45", "#95DA7D", "#F8D8E6", "#6575F6"],
         grid: {
@@ -95,6 +96,7 @@ const BlockchainAllocationTreemapChart = () => {
                     x: 'Kava',
                     y: 20
                 },
+                
             ]
         }
     ];
@@ -105,9 +107,9 @@ const BlockchainAllocationTreemapChart = () => {
                 <Box
                     height={"282px"}
                     pt={"9px"}
-                    display={"flex"}
+                 /*    display={"flex"}
                     justifyContent={"center"}
-                    alignItems={"center"}
+                    alignItems={"center"} */
                 > 
                     
                 </Box>

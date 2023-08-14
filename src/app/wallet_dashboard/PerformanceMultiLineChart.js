@@ -63,15 +63,15 @@ const PerformanceMultiLineChart = () => {
   };
   const series = [
     {
-      name: "Series 1",
+      name: "Wallet Portfolio",
       data: [1, 4, 5, 3, 2],
     },
     {
-      name: "Series 2",
+      name: "BTC",
       data: [5, 3, 1, 4, 1],
     },
     {
-      name: "Series 3",
+      name: "ETH Trend",
       data: [5, 2, 3, 1, 4],
     },
   ];

@@ -41,13 +41,15 @@ export default function LayoutProvider({ children }) {
   const screenSize = useScreenSize();
   return (
     <>
-      <Box minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
+      <Box
+        width="100%"
+        minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
         display={"flex"}
 
       >
         <SidebarContent
           onClose={() => onClose}
-         /*  display={{ base: "none", md: "block" }} */
+        /*  display={{ base: "none", md: "block" }} */
         />
         {/* <Drawer
           autoFocus={false}
@@ -65,7 +67,8 @@ export default function LayoutProvider({ children }) {
         <Box
           display={"flex"}
           flexDirection={"column"}
-          ml={screenSize.width < 1200 ? 0 : 60}
+          w="100%"
+          ml={screenSize?.width < 1450 ? 0 : 60}
         >
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")}>

@@ -42,7 +42,7 @@ const AssetAllocationPieChart = () => {
            
         },
         labels: walletBalanceData?.data?.data?.map((item, i) => {
-            return `${item?.Symbol}`
+            return `${item?.symbol}`
         }),
 
 
@@ -66,7 +66,7 @@ const AssetAllocationPieChart = () => {
                 </Box>)
             }
 
-            {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="pie" height={500} />}
+            {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="pie" height={300} />}
 
         </>
     );

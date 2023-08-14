@@ -17,7 +17,6 @@ const WalletDashboardPage = () => {
     );
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
-        console.log(blockchainSelected);
     };
 
     return (
@@ -60,13 +59,14 @@ const WalletDashboardPage = () => {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 color={useColorModeValue("#191919", "#FFF")}
+                                paddingBottom={"30px"}
 
                             >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum posuere felis nulla, in luctus eros condimentum nec. In eget justo id odio finibus rhoncus. Nullam porttitor sapien diam, sit amet egestas mauris egestas non. Sed sapien augue, dignissim at suscipit ac, egestas quis nisl. Aenean a malesuada nisi, nec aliquet orci. In vestibulum orci eget ultrices iaculis.
+                                BetygFi have filtered and identified a comprehensive collection of significant wallet addresses, enabling you to effortlessly monitor and analyze critical on-chain events and transactions.
                             </Text>
                         </Box>
 
-                        <Box
+                        {/*   <Box
                             display={"flex"}
                             alignItems={"center"}
                             mt={"26px"}
@@ -95,13 +95,14 @@ const WalletDashboardPage = () => {
                             />
 
                         </Box>
+ */}
 
-                        
                     </Box>
 
                 </Box>
 
                 <Box
+                    mt="20px"
                     display={"flex"}
                     justifyContent={"space-between"}
                     padding={"10px 30px 50px 30px"}
@@ -109,6 +110,7 @@ const WalletDashboardPage = () => {
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
                 >
                     <Box
+                        pt="20px"
                         bgColor={useColorModeValue("#FFFFFF", "#191919")}
                     >
                         <WalletTable />
@@ -120,9 +122,9 @@ const WalletDashboardPage = () => {
     );
 };
 
-export default WalletDashboardPage; 
+export default WalletDashboardPage;
 
-function SelectionBox ( {blockchainSelected, colorMode, BlockchainTypeHandler} ) {
+function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
     return <>
         <Box
             display={"flex"}

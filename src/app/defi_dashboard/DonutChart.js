@@ -4,7 +4,8 @@ import { color } from "framer-motion";
 import React from "react";
 import { useState } from "react";
 import './styles.css';
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function DonutChart() {
 
