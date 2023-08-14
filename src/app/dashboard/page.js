@@ -513,7 +513,7 @@ const Dashboard = () => {
                         currency: 'USD'
                       }) */
                       <>
-                        ${" "}{millify(overviewData?.tvl, {
+                        ${""}{millify(overviewData?.tvl, {
                           precision: 2,
                           locales: "en-US"
                         })}

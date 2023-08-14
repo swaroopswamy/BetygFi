@@ -35,13 +35,14 @@ const Governance = ({} ) => {
             <Box  w="100%"
                  my="20px"
             display={'inline-flex'}
+            ml={"10px"}
              >
 
                 <Box
                      mr={"10px"}
                      ml={"20px"}
 
-                    w='50%'
+                    w='49.5%'
 
                     height={"390px"}
 
@@ -69,7 +70,7 @@ const Governance = ({} ) => {
 
                     <Flex
 
-                        height={"50px"}
+                        height={"70px"}
                         borderRadius={"6px"}
                         _dark={{
 
@@ -144,7 +145,7 @@ const Governance = ({} ) => {
             _dark={{ colorScheme: "#191919", stroke: "#333" }}
              strokeWidth={"1px"}
             mt={"15px"}
-            mr={"10px"}
+            mr={"20px"}
             >
             
             <Text
@@ -677,7 +678,7 @@ const Governance = ({} ) => {
 
                 <Box
 
-                    w='50%'
+                    w='45%'
 
                     height={"390px"}
 
@@ -707,7 +708,7 @@ const Governance = ({} ) => {
 
 
                     <Flex
-            height={"50px"}
+            height={"70px"}
             borderRadius={"6px"}
             _dark={{
               bg: "#202020",
@@ -747,7 +748,7 @@ const Governance = ({} ) => {
             _dark={{ colorScheme: "#191919", stroke: "#333" }}
              strokeWidth={"1px"}
             mt={"15px"}
-            mr={"10px"}
+            mr={"20px"}
             >
             
             <Text
@@ -834,7 +835,7 @@ const Governance = ({} ) => {
 
                                         <Flex>
 
-                                            <Text paddingRight={"5px"}
+                                            <Text 
                                                 _light={{ color: "#434347" }}
                                                 _dark={{ color: "#A8ADBD" }}
                                                 fontSize={"10px"}
@@ -1236,7 +1237,7 @@ const Governance = ({} ) => {
                                     <Td></Td>
                                     
                                     <Td >
-                                        <Text   paddingLeft={"160px"}  paddingBottom={"100px"}>
+                                        <Text   paddingLeft={"100px"}  paddingBottom={"100px"}>
                                             Last Update 3 mins ago</Text></Td>
                                 </Tr>
 
