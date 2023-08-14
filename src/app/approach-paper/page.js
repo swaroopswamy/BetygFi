@@ -1,5 +1,6 @@
 "use client"
 import { Box, Container, Image, useColorModeValue, Text, Heading,useColorMode, div, h1, h2, br, Flex, Button } from "@chakra-ui/react";
+import { TriangleUpIcon } from '@chakra-ui/icons'
 
 const Approach = () => {
   const handleScrollToTop = () => {
@@ -261,25 +262,34 @@ const Approach = () => {
               <Box  _dark={{ bgcolor: "#FFFFFF" }}
 
 _light={{ bgcolor: "#16171B" }}>
-              <Button
-               >
-      <Image src={colorMode === 'light' ? ("/images/Backtotop.svg") : ("/images/Backtotop-darkmode.svg")} 
-      
-                   alt="" 
+              <Button   alt="" 
                    component="button"
                    onClick={handleScrollToTop}
                    id="myBtn"
                    title="Go to top"
                    width="91px"
-                   height="60px"
+                   height="30px"
                    flexShrink="0"
                    fill="#202020"
                    strokeWidth="1px"
                    style={{
                      position: 'fixed',
-                     bottom: '40px',
+                     bottom: '42px',
                      right: '2px',
-                     zIndex: '9999'}}/></Button> 
+                     zIndex: '9999'}} 
+                     _dark={{
+                      color: "#191919",
+                      bg: "#FFFF"
+                    }}
+                      _light={{
+                      color: "#FFFF",
+                      bg: "#191919"
+                    }}
+                    >
+                      <TriangleUpIcon    mr={"5px"}/>
+                      <Text fontSize={"10px"}>Back to Top</Text>
+     
+                     </Button>
                      </Box>
             </Box>
           </Box>
