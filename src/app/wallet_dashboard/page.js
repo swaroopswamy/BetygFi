@@ -153,7 +153,7 @@ const WalletDashboardPage = () => {
                         position={"relative"}
                     >
                         {/*  <SplineAreaChart /> */}
-                        {(<Box
+                       {/*  {(<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -220,7 +220,7 @@ const WalletDashboardPage = () => {
                                     {" "} 3 mins ago
                                 </Text>
                             </Box>
-                        </Box>)}
+                        </Box>)} */}
                     </Box>
                 </Box>
                 <Box>

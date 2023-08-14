@@ -108,7 +108,7 @@ const PortfolioPanelComponent = () => {
               })}
             </Box>
 
-            <Input
+           {/*  <Input
               borderColor={useColorModeValue("#E8E8E8", "#333")}
               bgColor={useColorModeValue("#F5F5F7", "#191919")}
               color={useColorModeValue("#16171B", "#A8ADBD")}
@@ -117,7 +117,7 @@ const PortfolioPanelComponent = () => {
               w="207px"
               placeholder="Search Assets"
               //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
-            />
+            /> */}
           </Box>
 
           <DefiTable />
