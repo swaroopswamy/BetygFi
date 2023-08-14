@@ -323,9 +323,6 @@ const TransactionPanelComponent = () => {
                             letterSpacing={"1px"}
                            
                             w="95px"
-                            overflow=" hidden"
-                            textOverflow="ellipsis"
-                            whiteSpace="nowrap"
                           >
                             {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
                           </Text>
@@ -349,9 +346,6 @@ const TransactionPanelComponent = () => {
                             letterSpacing={"1px"}
                          
                             w="95px"
-                            overflow=" hidden"
-                            textOverflow="ellipsis"
-                            whiteSpace="nowrap"
                           >
                             {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}
                           </Text>

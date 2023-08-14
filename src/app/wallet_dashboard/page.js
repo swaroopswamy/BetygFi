@@ -28,34 +28,42 @@ const WalletDashboardPage = () => {
     };
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
-
-
+    console.log(walletBalanceData)
 
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
-            address:searchParam.get("address"),
-            payload:{
-                blockchain:blockchainSelected
+            address: searchParam.get("address"),
+            payload: {
+                blockchain: blockchainSelected
             }
         }
+
         dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, searchParam.get("address")])
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         const data = {
-            address:searchParam.get("address"),
-            payload:{
-                blockchain:blockchainSelected
+            address: searchParam.get("address"),
+            payload: {
+                blockchain: blockchainSelected
             }
         }
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, searchParam.get("address")])
     useEffect(() => {
+      
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
+
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
-
+    useEffect(()=>{
+        if (walletBalanceData?.isQueryInPendingState) {
+            setTimeout(() => {
+                fetchWalletBalanceDataHandler();
+            }, 5000)
+        }
+    },[walletBalanceData])
     return (
         <>
             <Box
@@ -403,12 +411,12 @@ const WalletDashboardPage = () => {
                                     <PortfolioPanelComponent />
                                 </TabPanel>
                                 <TabPanel
-                                   p="0px"
+                                    p="0px"
                                 >
                                     <WalletAnalyticsPanel />
                                 </TabPanel>
                                 <TabPanel
-                                   p="0px"
+                                    p="0px"
                                 >
                                     <TransactionPanelComponent />
                                 </TabPanel>
