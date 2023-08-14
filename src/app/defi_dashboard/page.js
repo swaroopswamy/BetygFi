@@ -14,6 +14,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import millify from "millify";
 import TVLBox from "./TVLBox";
 import DonutChart from "./DonutChart";
+import TrendGraph from "./TrendGraph";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -353,14 +354,16 @@ const DefiDashboardPage = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 bgColor={useColorModeValue('#F0F0F5', "#191919")}
-                padding={"10px 0 0 10px"}
+                // padding={"10px 0 0 10px"}
+                ml={"10px"}
             >
                 <Box
                     display={"flex"}
                     justifyContent={"space-evenly"}
                 >
-                    <DonutChart />
-                    <BarChart />
+                    <TrendGraph />
+                    {/* <DonutChart />
+                    <BarChart /> */}
                 </Box>
             </Box>
 
