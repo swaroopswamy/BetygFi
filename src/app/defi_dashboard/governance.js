@@ -53,17 +53,13 @@ const Governance = ({} ) => {
 
                     _dark={{
 
-                        bg: "#202020",
-
-                        border: "1px solid #272727"
+                        bg: "#202020"
 
                     }}
 
                     _light={{
 
-                        bg: "#FFFFFF",
-
-                        border: "1px solid #ADADAD"
+                        bg: "#FFFFFF"
 
                     }}
 
@@ -693,17 +689,13 @@ const Governance = ({} ) => {
 
                     _dark={{
 
-                        bg: "#202020",
-
-                        border: "1px solid #272727"
+                        bg: "#202020"
 
                     }}
 
                     _light={{
 
-                        bg: "#FFFFFF",
-
-                        border: "1px solid #ADADAD"
+                        bg: "#FFFFFF"
 
                     }}
 
