@@ -457,7 +457,6 @@ function DonutChart() {
               flexDirection={"column"}
               bgColor={useColorModeValue('#FFFFFF', "#202020")}
               alignContent={"center"}
-              justifyContent={"space-between"}
               borderRadius={"6px"}
             >
               <Box
@@ -474,7 +473,7 @@ function DonutChart() {
               </Box>
               <Box
                 padding={"5px 20px 5px 10px"}
-                marginBottom={"60px"}
+                mt={"50px"}
               >
                 <Chart 
                     options={options}

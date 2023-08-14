@@ -16,7 +16,6 @@ const TVLBox = () => {
             <Box
             display={'inline-flex'}
             w="100%"
-           // my="10px"
            _light={{bgColor:"#F0F0F5"}}
            _dark={{bgColor:"#191919"}}
             >
@@ -27,14 +26,8 @@ const TVLBox = () => {
             flexDirection={"column"}
             borderRadius={"6px"}
             ml={"30px"}
-            _dark={{
-                bg: "#202020",
-                border: "1px solid #272727"
-            }}
-            _light={{
-                bg: "#FFFFFF",
-                border: "1px solid #ADADAD"
-            }}
+            _dark={{bg: "#202020"}}
+            _light={{bg: "#FFFFFF"}}
             mr="10px">
             <Box p={"20px"} >
                 <Text
