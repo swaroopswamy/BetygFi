@@ -118,15 +118,12 @@ function BarChart() {
           width={"50%"}
           display={"flex"}
           flexDirection={"column"}
+          borderRadius={"6px"}
           ml={"20px"}
           _dark={{
-            bg: "#202020",
-            border: "1px solid #272727"
-          }}
+            bg: "#202020"}}
           _light={{
-            bg: "#FFFFFF",
-            border: "1px solid #ADADAD"
-          }}
+            bg: "#FFFFFF"}}
           mr={"10px"}
         >
          <Flex
@@ -295,7 +292,7 @@ function BarChart() {
                       <Text 
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -308,7 +305,7 @@ function BarChart() {
                       alignItems={"center"}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"9px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         ml="6px"
@@ -332,7 +329,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -341,7 +338,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -358,7 +355,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -367,7 +364,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -400,7 +397,7 @@ function BarChart() {
                       <Text 
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -413,7 +410,7 @@ function BarChart() {
                       alignItems={"center"}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"9px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         ml="6px"
@@ -437,7 +434,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -446,7 +443,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -463,7 +460,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -472,7 +469,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -505,7 +502,7 @@ function BarChart() {
                       <Text 
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -518,7 +515,7 @@ function BarChart() {
                       alignItems={"center"}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"9px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         ml="6px"
@@ -542,7 +539,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -551,7 +548,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -568,7 +565,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -577,7 +574,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -610,7 +607,7 @@ function BarChart() {
                       <Text 
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -623,7 +620,7 @@ function BarChart() {
                       alignItems={"center"}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"9px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         ml="6px"
@@ -647,7 +644,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -656,7 +653,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -673,7 +670,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -682,7 +679,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -715,7 +712,7 @@ function BarChart() {
                       <Text 
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -728,7 +725,7 @@ function BarChart() {
                       alignItems={"center"}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"9px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         ml="6px"
@@ -752,7 +749,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -761,7 +758,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -778,7 +775,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -787,7 +784,7 @@ function BarChart() {
                       <Text
                       _light={{ color: "#16171B" }}
                       _dark={{ color: "#FFFFFF" }}
-                      fontSize={"10px"}
+                      fontSize={"9px"}
                       fontWeight={"400"}
                       lineHeight={"20px"}
                       letterSpacing={"1px"}
@@ -799,7 +796,7 @@ function BarChart() {
                   </Td>
                 </Tr>
 
-                <Tr height={"15px"}>
+                <Tr>
                 <Td _dark={{ color: "#FFFFFF" }}
                     _light={{ color: "#16171B" }}
                   >
@@ -848,10 +845,10 @@ function BarChart() {
             display={"flex"}
             width={"50%"}
             flexDir={"column"}
+            borderRadius={"6px"}
             alignContent={"center"}
             bgColor={useColorModeValue('#FFFFFF', "#202020")}
-            borderColor={useColorModeValue('#FFFFFF', '#202020')}
-            mr={"10px"}
+            //borderColor={useColorModeValue('#FFFFFF', '#202020')}
           >
             <Box
               display={"flex"}
