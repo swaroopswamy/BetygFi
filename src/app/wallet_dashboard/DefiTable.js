@@ -34,9 +34,8 @@ const SkeletonRow = () => (
 )
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-    const tableData = useSelector((state) => state?.walletDashboardTableData);
 
-
+    
     return (
         <>
             <Table variant="simple" key={1}>
@@ -169,34 +168,13 @@ const DefiTable = () => {
                         </Th>
                     </Tr>
                 </Thead>
-                <Tbody>
-                    {walletBalanceData?.isError && (
-                        <>
-                            <Tr >
+                <Tbody >
+                    <Tr
+                    >
+                        {(walletBalanceData.data?.isQueryInPendingState || walletBalanceData.isLoading) && (
+                            <>
                                 <Td
-                                    _dark={{
-                                        color: "#FFF"
-                                    }}
-                                    _light={{
-                                        color: "#16171B"
-                                    }}
-                                    fontSize={"20px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    colSpan={8}
-                                    textAlign={"center"}
-                                    p="20px"
-                                >
-                                    No Data Available
-                                </Td>
-                            </Tr>
-                        </>
-                    )}
-                    {walletBalanceData.data?.isQueryInPendingState && (
-                        <>
-                            <Tr >
-                                <Td
-
+                                    minH={"212px"}
                                     colSpan={8}
                                     textAlign={"center"}
                                     p="20px"
@@ -261,11 +239,34 @@ const DefiTable = () => {
                                         </Text>
                                     </Box>
                                 </Td>
+                            </>
+                        )}
+                    </Tr>
+                    {walletBalanceData?.isError && (
+                        <>
+                            <Tr >
+                                <Td
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    colSpan={8}
+                                    textAlign={"center"}
+                                    p="20px"
+                                >
+                                    No Data Available
+                                </Td>
                             </Tr>
                         </>
                     )}
+
                     {walletBalanceData?.isSuccess &&
-                        (walletBalanceData?.data?.data?.length > 0 &&
+                        ((walletBalanceData?.data?.data?.length > 0) ?
                             (walletBalanceData?.data?.data.map((item, i) => {
                                 return (
                                     <>
@@ -403,6 +404,28 @@ const DefiTable = () => {
                                     </>
                                 );
                             }))
+                            : ( !walletBalanceData.data?.isQueryInPendingState &&
+                               ( <>
+                                    <Tr >
+                                        <Td
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            colSpan={8}
+                                            textAlign={"center"}
+                                            p="20px"
+                                        >
+                                            No Data Available
+                                        </Td>
+                                    </Tr>
+                                </>)
+                            )
                         )
                     }
                 </Tbody>

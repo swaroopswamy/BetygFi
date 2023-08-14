@@ -153,7 +153,7 @@ const WalletDashboardPage = () => {
                         position={"relative"}
                     >
                         {/*  <SplineAreaChart /> */}
-                        {walletBalanceData?.totalAssetValue !== undefined && (<Box
+                        {(<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -184,10 +184,10 @@ const WalletDashboardPage = () => {
                                 letterSpacing={"2.4px"}
                             //  mt="15px"
                             >
-                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined && millify(walletBalanceData?.totalAssetValue, {
+                                {"$ "}{walletBalanceData?.totalAssetValue !== undefined ? millify(walletBalanceData?.totalAssetValue, {
                                     precision: 2,
                                     locales: "en-US"
-                                })}
+                                }) : '-'}
                             </Text>
                             <Box
                                 display={"flex"}
