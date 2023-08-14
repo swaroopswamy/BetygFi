@@ -398,7 +398,6 @@ function TableRow( {user, netWorth, totalTokens, totalProtocols, totalNFT}) {
                             justifyContent={"center"}
                             gap={"3px"}
                             alignItems={"center"}
-                            key={i}
                         >
                             <Image
                                 w={"10px"}

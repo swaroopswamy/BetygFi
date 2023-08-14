@@ -63,6 +63,7 @@ const Dashboard = () => {
   }
   const searchByNameHandler = (name) => {
     setSearchByName(name);
+    setTablePage(1); // fix 2
     //getDefiRankingsTableDataHandler(name);
   }
   const tableData = useSelector((state) => state?.dashboardTableData);
@@ -623,8 +624,9 @@ const Dashboard = () => {
                   >
                     {tablePage}
                   </Text>
-                </Box>
-                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data?.data.length === 20 && (
+                </Box> 
+                {/* Fix */}
+                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
                   <>
                     <Button
                       display={"flex"}
@@ -663,7 +665,8 @@ const Dashboard = () => {
                       cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
                       disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
                       onClick={() => {
-                        tablePage <= tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
+                        // fix 3
+                        tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
                       }}
                     >
                       <Image
