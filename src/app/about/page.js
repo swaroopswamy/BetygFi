@@ -34,7 +34,7 @@ const About = () => {
       <Flex>
         <Center w='200px'>
           <Image  
-          src={useColorModeValue("/images/Solvendo-logo.svg","/images/solvendo-logo(black).svg")}
+          src={useColorModeValue("/images/solvendo-logo.svg","/images/solvendo-logo(black).svg")}
           width={"161px"} 
           height={"127px"} 
           alt="" 
