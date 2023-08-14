@@ -6,45 +6,45 @@ const About = () => {
   return (
     <Container
       maxWidth={"100%"}
-      _dark={{ background: "#191919"}}
-      _light={{ background: "#F0F0F5"}}
+      _dark={{ background: "#191919" }}
+      _light={{ background: "#F0F0F5" }}
       padding={"0px"}
-    > 
+    >
       <Box
         background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}
-        >
-          <Box display={"flex"}
-                flexDirection={"row"}
-                justifyContent={"space-between"}>
-            <Box
-              color={"#FFFFFF"}
-              fontSize={"46px"}
-              padding={"90px 0px 80px 60px"}
-            >
-              We Betygfi
-            </Box>
-            <Box>
-            <Image src="/images/solvendo-bg-logo.svg" 
-            alt='icon'
-             paddingRight={"100px"}></Image>
-            </Box>
-            </Box>
+      >
+        <Box display={"flex"}
+          flexDirection={"row"}
+          justifyContent={"space-between"}>
+          <Box
+            color={"#FFFFFF"}
+            fontSize={"46px"}
+            padding={"90px 0px 80px 60px"}
+          >
+            We BetygFi
+          </Box>
+          <Box>
+            <Image src="/images/solvendo-bg-logo.svg"
+              alt='icon'
+              paddingRight={"100px"}></Image>
+          </Box>
+        </Box>
       </Box>
 
       <Flex>
         <Center w='200px'>
-          <Image  
-          src={useColorModeValue("/images/solvendo-logo.svg","/images/solvendo-logo(black).svg")}
-          width={"161px"} 
-          height={"127px"} 
-          alt="" 
-          mt={"20px"}
-          ml={"59px"}></Image>
+          <Image
+            src={useColorModeValue("/images/solvendo-logo.svg", "/images/solvendo-logo(black).svg")}
+            width={"161px"}
+            height={"127px"}
+            alt=""
+            mt={"20px"}
+            ml={"59px"}></Image>
         </Center>
         <Box flex='1'>
           <Text
-            _dark={{ color: "#F0F0F5"}}
-            _light={{ color: "#191919"}}
+            _dark={{ color: "#F0F0F5" }}
+            _light={{ color: "#191919" }}
             fontSize={"16px"}
             fontStyle={"normal"}
             fontWeight={"400"}
@@ -58,47 +58,47 @@ const About = () => {
       </Flex>
 
       <Heading
-     _dark={{ color: "#F0F0F5"}}
-     _light={{ color: "#191919"}}
-      fontSize={"24px"}
-      fontStyle={"normal"}
-      fontWeight={"400"}
-      lineHeight={"20px"}
-      ml={59}
-      mt={19}>
-      About BetyfFi 
-      </Heading>
-
-      <Text
-       _dark={{ color: "#F0F0F5"}}
-       _light={{ color: "#191919"}}
-       fontSize={"16px"}
-       fontStyle={"normal"}
-       fontWeight={"400"}
-       lineHeight={"26px"}
-       opacity={"0.800000011920929"}
-       ml={59}
-        mt={5}
-        mr={40}>
-      We believe that Betygfi represents the beginnings of the future of finance. With Betygfi, Solvendo is building the future of financial data and analytics using large language models.<br /><br />
-      We are grateful for your patronage and invite you walk along with us, as we navigate and build global financial ecosystems using out learning from Betygfi.<br /> <br />
-      Decentralised Finance and entities that offer such solutions promise to be able to solve for some of the existing inefficiencies of traditional finance. However, they present new challenges that are significant. We expect and look forward to a regime where such entities are regulated by sovereign’s, in the interest of stakeholders. Betygfi is designed to be an invaluable tool for such regulators and sovereigns.<br /> <br /> 
-      However, when speaking about the future of finance, we believe the future of finance would require a new approach to regulation that engages the consumer or community regularly. Betyfi, leverages the best in technology and artificial intelligence to build an approach for such engagement. It empowers the consumer with intelligence that is trustworthy and easy to consume.<br /> <br />
-      </Text>
-
-      <Heading
-       _dark={{ color: "#F0F0F5"}}
-       _light={{ color: "#191919"}}
+        _dark={{ color: "#F0F0F5" }}
+        _light={{ color: "#191919" }}
         fontSize={"24px"}
         fontStyle={"normal"}
         fontWeight={"400"}
         lineHeight={"20px"}
         ml={59}
         mt={19}>
-        Why is the platform called BetygFi?
+        About BetygFi
       </Heading>
 
       <Text
+        _dark={{ color: "#F0F0F5" }}
+        _light={{ color: "#191919" }}
+        fontSize={"16px"}
+        fontStyle={"normal"}
+        fontWeight={"400"}
+        lineHeight={"26px"}
+        opacity={"0.800000011920929"}
+        ml={59}
+        mt={5}
+        mr={40}>
+        We believe that BetygFi represents the beginnings of the future of finance. With BetygFi, Solvendo is building the future of financial data and analytics using large language models.<br /><br />
+        We are grateful for your patronage and invite you walk along with us, as we navigate and build global financial ecosystems using out learning from BetygFi.<br /> <br />
+        Decentralised Finance and entities that offer such solutions promise to be able to solve for some of the existing inefficiencies of traditional finance. However, they present new challenges that are significant. We expect and look forward to a regime where such entities are regulated by sovereign’s, in the interest of stakeholders. BetygFi is designed to be an invaluable tool for such regulators and sovereigns.<br /> <br />
+        However, when speaking about the future of finance, we believe the future of finance would require a new approach to regulation that engages the consumer or community regularly. BetygFi, leverages the best in technology and artificial intelligence to build an approach for such engagement. It empowers the consumer with intelligence that is trustworthy and easy to consume.<br /> <br />
+      </Text>
+
+      <Heading
+        _dark={{ color: "#F0F0F5" }}
+        _light={{ color: "#191919" }}
+        fontSize={"24px"}
+        fontStyle={"normal"}
+        fontWeight={"400"}
+        lineHeight={"20px"}
+        ml={59}
+        mt={19}>
+        Why is the platform called BetygFi ?
+      </Heading>
+
+      {/* <Text
         _dark={{ color: "#F0F0F5"}}
         _light={{ color: "#191919"}}
         fontSize={"16px"}
@@ -112,8 +112,8 @@ const About = () => {
         paddingBottom={20}>
         Fsce eu quam in tortor pretium pulvinar. Cras euismod, nisi in ultricies ornare, libero sapien bibendum nunc, ut placerat purus sem at nisl. Nullam nec commodo enim. Etiam sollicitudin ante nec dolor luctus dictum. Praesent eget arcu ac massa euismod tempus. Phasellus ornare felis vel fermentum blandit. Sed vel dignissim tortor, a tincidunt quam.mattis odio ac justo ullamcorper pretium. Donec vitae gravida arcu, eget consequat mi. Maecenas pellentesque quam felis, at gravida odio semper eget. In efficitur lacus at eleifend iaculis. Vivamus ac ipsum nulla. Pellentesque eu tempor magna, ut consequat nunc.
       </Text>
-
-{/* 
+ */}
+      {/* 
       <Heading
         color={useColorModeValue("#191919", "#FFFFFF")}
         fontSize={"24px"}
