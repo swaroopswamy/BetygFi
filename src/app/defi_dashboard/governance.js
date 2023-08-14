@@ -1,8 +1,9 @@
 "use client"
-import { Box, Image,  Text, useColorModeValue, useColorMode, Flex,Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import { Box, Image, Link,  Text, useColorModeValue, useColorMode,Spacer,Button, Flex,Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
 import {List,ListItem,ListIcon} from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
+import NextLink from 'next/link';
 
 
 const Governance = ({} ) => {
@@ -34,15 +35,16 @@ const Governance = ({} ) => {
             <Box  w="100%"
                  my="20px"
             display={'inline-flex'}
+            ml={"10px"}
              >
 
                 <Box
                      mr={"10px"}
                      ml={"20px"}
 
-                    w='50%'
+                    w='49.5%'
 
-                    height={"367px"}
+                    height={"390px"}
 
                     display={"flex"}
 
@@ -52,17 +54,13 @@ const Governance = ({} ) => {
 
                     _dark={{
 
-                        bg: "#202020",
-
-                        border: "1px solid #272727"
+                        bg: "#202020"
 
                     }}
 
                     _light={{
 
-                        bg: "#FFFFFF",
-
-                        border: "1px solid #ADADAD"
+                        bg: "#FFFFFF"
 
                     }}
 
@@ -72,7 +70,7 @@ const Governance = ({} ) => {
 
                     <Flex
 
-                        height={"50px"}
+                        height={"70px"}
                         borderRadius={"6px"}
                         _dark={{
 
@@ -137,6 +135,32 @@ const Governance = ({} ) => {
                             </Tooltip>
 
                         </>
+
+                        <Spacer />
+                        <Link href="/DefiHotContract.js">
+            <Button 
+            variant={"outline"} 
+            size={"xs"}
+            _light={{ colorScheme: "#F5F5F7", stroke: "#000"}}
+            _dark={{ colorScheme: "#191919", stroke: "#333" }}
+             strokeWidth={"1px"}
+            mt={"15px"}
+            mr={"20px"}
+            >
+            
+            <Text
+            _light={{ color: "#16171B" }}
+            _dark={{ color: "#FFFFFF" }}
+            fontSize={"10px"}
+            fontWeight={"400"}
+            lineHeight={"10px"}
+            >
+            View More
+            </Text>         
+             
+            </Button>
+            </Link>
+ 
 
                     </Flex>
 
@@ -622,6 +646,14 @@ const Governance = ({} ) => {
 
                                 </Tr>
 
+                                <Tr>
+                                    <Td></Td>
+                                    <Td></Td>
+                                    <Td >
+                                        <Text   paddingLeft={"40px"}  paddingBottom={"100px"}>
+                                            Last Update 3 mins ago</Text></Td>
+                                </Tr>
+
 
 
 
@@ -646,9 +678,9 @@ const Governance = ({} ) => {
 
                 <Box
 
-                    w='50%'
+                    w='45%'
 
-                    height={"367px"}
+                    height={"390px"}
 
                     display={"flex"}
 
@@ -658,17 +690,13 @@ const Governance = ({} ) => {
 
                     _dark={{
 
-                        bg: "#202020",
-
-                        border: "1px solid #272727"
+                        bg: "#202020"
 
                     }}
 
                     _light={{
 
-                        bg: "#FFFFFF",
-
-                        border: "1px solid #ADADAD"
+                        bg: "#FFFFFF"
 
                     }}
 
@@ -676,76 +704,65 @@ const Governance = ({} ) => {
 
                 >
 
+                    
+
+
                     <Flex
-
-                        height={"50px"}
-                        borderRadius={"6px"}
-                        _dark={{
-
-                            bg: "#202020",
-
-                            color: "#FFFFFF"
-
-                        }}
-
-                        _light={{
-
-                            bg: "#FFFFFF",
-
-                            color: "#16171B"
-
-                        }} >
-
-                        <Text
-
-                            fontSize={"15px"}
-
-                            fontStyle={"normal"}
-
-                            fontWeight={"400"}
-
-                            lineHeight={"20px"}
-
-                            ml={"20px"}
-
-                            mr={"6px"}
-
-                            paddingTop={"15px"}
-
-                        >
-
-                          DeFi Inflow/Outflow
-
-                        </Text>
-
-                        {/* <Image src='/images/t1.png' width={"12px"} height={"12px"} flexShrink={"0"} ml={"5px"} mt={"20px"}></Image> */}
-
-                        <>
-
-                            <Tooltip label='#Frame'
-
-                                fontWeight={400}
-
-                                fontSize={"10px"}>
-
-                                {/* <InfoOutlineIcon/> */}
-
-                                <Image width={"12px"}
-                                    height={"12px"}
-                                    flexShrink={"0"}
-                                    mt={"20px"}
-                                    alt=''
-                                    src="/images/Frame.svg">
-                                </Image>
-
-
-
-                            </Tooltip>
-
-                        </>
-
-                    </Flex>
-
+            height={"70px"}
+            borderRadius={"6px"}
+            _dark={{
+              bg: "#202020",
+              color: "#FFFFFF"
+            }}
+            _light={{
+              bg: "#FFFFFF",
+              color: "#16171B"
+            }} >
+            <Text
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#FFFFFF" }}
+              fontSize={"15px"}
+              fontWeight={"400"}
+              lineHeight={"20px"}
+              ml={"20px"}
+              mr={"6px"}
+              paddingTop={"15px"}
+            >
+              DeFi Inflow/Outflow
+            </Text> 
+            <Tooltip label="#Frame">
+                          <Image width={"12px"}
+                                height={"12px"}
+                                flexShrink={"0"}
+                                mt={"20px"}
+                                alt=''
+                                src="/images/Frame.svg">
+                          </Image>
+                        </Tooltip>
+            <Spacer />
+            <Link href="/DefiHotContract.js">
+            <Button 
+            variant={"outline"} 
+            size={"xs"}
+            _light={{ colorScheme: "#F5F5F7", stroke: "#000"}}
+            _dark={{ colorScheme: "#191919", stroke: "#333" }}
+             strokeWidth={"1px"}
+            mt={"15px"}
+            mr={"20px"}
+            >
+            
+            <Text
+            _light={{ color: "#16171B" }}
+            _dark={{ color: "#FFFFFF" }}
+            fontSize={"10px"}
+            fontWeight={"400"}
+            lineHeight={"10px"}
+            >
+            View More
+            </Text>         
+             
+            </Button>
+            </Link> </Flex>
 
 
                     <TableContainer>
@@ -818,7 +835,7 @@ const Governance = ({} ) => {
 
                                         <Flex>
 
-                                            <Text paddingRight={"5px"}
+                                            <Text 
                                                 _light={{ color: "#434347" }}
                                                 _dark={{ color: "#A8ADBD" }}
                                                 fontSize={"10px"}
@@ -1215,7 +1232,14 @@ const Governance = ({} ) => {
 
                                 </Tr>
 
-
+ 
+                                <Tr>
+                                    <Td></Td>
+                                    
+                                    <Td >
+                                        <Text   paddingLeft={"100px"}  paddingBottom={"100px"}>
+                                            Last Update 3 mins ago</Text></Td>
+                                </Tr>
 
 
 

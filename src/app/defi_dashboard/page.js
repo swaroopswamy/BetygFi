@@ -346,9 +346,23 @@ const DefiDashboardPage = () => {
                 </Box>
             </Box>
 
-            {/* <Box>
+            <Box>
                 <TVLBox />
-            </Box> */}
+            </Box>
+
+            <Box
+                display={"flex"}
+                flexDirection={"column"}
+                bgColor={useColorModeValue('#F0F0F5', "#191919")}
+                padding={"10px 0 0 10px"}
+            >
+                <Box
+                    display={"flex"}
+                    justifyContent={"space-evenly"}
+                >
+                    <BarChart />
+                </Box>
+            </Box>
 
             <Box
                 display={"flex"}
@@ -366,6 +380,7 @@ const DefiDashboardPage = () => {
                     <BarChart /> */}
                 </Box>
             </Box>
+
 
             <Box
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
