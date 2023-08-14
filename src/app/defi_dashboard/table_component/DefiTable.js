@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
-const DefiTable = ( {thread} ) => {
+const DefiTable = ({ thread }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -67,7 +67,7 @@ const DefiTable = ( {thread} ) => {
                         fontWeight={400}
                         w="207px"
                         placeholder="SEARCH"
-                        //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
+                    //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
                     />
 
                 </Box>
@@ -88,11 +88,12 @@ const DefiTable = ( {thread} ) => {
                             {thread.map((item, i) => {
                                 return (
                                     <ThreadItem
-                                        name={item} 
+                                        key={i}
+                                        name={item}
                                     />
                                 );
                             })}
-                        
+
                         </Tr>
                     </Thead>
 
@@ -101,13 +102,13 @@ const DefiTable = ( {thread} ) => {
                             return (
                                 <>
                                     <TableRow
-                                        key={i}                                        
+                                        key={i}
                                         rowValues={[item.id, item.usd_value, item.stats.top_coins.price, "-"]}
                                     />
                                 </>
                             )
                         })}
-                        
+
 
                     </Tbody>
                     <Tfoot>
@@ -123,10 +124,11 @@ const DefiTable = ( {thread} ) => {
 
 export default DefiTable;
 
-function ThreadItem( {name} ) {
+function ThreadItem({ key, name }) {
     return (
         <>
             <Th
+                key={key}
                 color={useColorModeValue("#434347", "#A8ADBD")}
                 fontSize={"10px"}
                 fontStyle={"normal"}
@@ -349,11 +351,16 @@ function TableRow({ key, rowValues }) {
                 {rowValues.map((item, i) => {
                     return (
                         <>
-                            <Td>
+                            <Td key={i}>
                                 <Flex>
                                     <Box>
                                         <Text
-                                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
                                             fontSize={"14px"}
                                             fontStyle={"normal"}
                                             fontWeight={"600"}

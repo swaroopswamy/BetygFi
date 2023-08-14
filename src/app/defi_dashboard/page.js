@@ -333,12 +333,7 @@ const DefiDashboardPage = () => {
                             ml="10px"
                             fontWeight={"600"}
                             fontSize={"16px"}
-                            _dark={{
-                                color: "#FFFFFF"
-                            }}
-                            _light={{
-                                color: "#191919"
-                            }}
+                            
                         >
                             91%
                         </Text>

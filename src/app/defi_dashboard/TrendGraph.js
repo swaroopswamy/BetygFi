@@ -69,6 +69,7 @@ function TrendGraph() {
                         {graphTypes.map((item, i) => {
                             return (
                                 <TrendGraphTypeButton
+                                    key={i}
                                     name={item}
                                     graphTypeSelected={graphTypeSelected}
                                     GraphTypeHandler={GraphTypeHandler}
@@ -343,11 +344,12 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
     )
 }
 
-function TrendGraphTypeButton( {name, graphTypeSelected, GraphTypeHandler, colorMode}) {
+function TrendGraphTypeButton( {key,name, graphTypeSelected, GraphTypeHandler, colorMode}) {
 
     return (
         <>
             <Box
+                key={key}
                 position={"relative"}
                 padding={"7px 8px"}
                 border={"1px"}
