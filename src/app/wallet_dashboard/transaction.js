@@ -37,6 +37,7 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
+  console.log(Math.pow(10,18))
 
   return (
     <>
@@ -306,10 +307,7 @@ const TransactionPanelComponent = () => {
                             letterSpacing={"1px"}
                             ml="6px"
                           >
-                            {" "}{millify(item?.value, {
-                              precision: 2,
-                              locales: "en-US"
-                            })}
+                            {" "}{(item?.value / Math.pow(10,18)).toLocaleString('fullwide', {useGrouping:false}) }{" ETH"}
                           </Text>
                         </Box>
                       </Td>
