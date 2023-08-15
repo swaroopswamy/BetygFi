@@ -59,6 +59,7 @@ const DefiTable = () => {
                                 </Text>
                                 <Icon
                                     ml="3px"
+                                    mt="3px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -83,6 +84,7 @@ const DefiTable = () => {
                                 </Text>
                                 <Image
                                     ml="3px"
+                                    mt="4px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -108,6 +110,7 @@ const DefiTable = () => {
                                 </Text>
                                 <Image
                                     ml="3px"
+                                    mt="3px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -134,6 +137,7 @@ const DefiTable = () => {
                                 </Text>
                                 <Image
                                     ml="3px"
+                                    mt="4px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -159,6 +163,7 @@ const DefiTable = () => {
                                 </Text>
                                 <Image
                                     ml="3px"
+                                    mt="3px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}

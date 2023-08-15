@@ -90,7 +90,7 @@ const PortfolioPanelComponent = () => {
                       mr={"10px"}
                       borderRadius={"2px"}
                       _light={{ border: "1px solid #979AA5" }}
-                      _dar={{ border: "1px solid #787878" }}
+                      _dark={{ border: "1px solid #787878" }}
                     >
                       <Text
                         fontSize={"10px"}
