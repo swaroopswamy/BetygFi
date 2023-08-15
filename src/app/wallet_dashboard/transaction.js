@@ -1,9 +1,10 @@
 "use client"
-import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image } from '@chakra-ui/react'
+import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image, Link } from '@chakra-ui/react'
 import { useSelector } from "react-redux";
 import isEmpty from 'is-empty';
 import millify from 'millify';
 import moment from 'moment/moment';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const SkeletonRow = () => (
   <Box as="tr">
@@ -123,6 +124,15 @@ const TransactionPanelComponent = () => {
               letterSpacing={"1px"}
             >
               TO
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              alignItems={"center"}
+            >
+              TXN ID
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
@@ -353,7 +363,31 @@ const TransactionPanelComponent = () => {
                           </Text>
                         </Box>
                       </Td>
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <Link
+                            fontSize={"10px"}
+                            fontWeight={"600"}
+                            letterSpacing={"1px"}
+                            ml="4px"
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            isExternal
+                            href={`https://etherscan.io/tx/${item?.hash}`}
+                          >
+                            {item?.hash.split("").join("").substring(0, 8) + "..." + item?.hash.slice(-5)}
 
+                          </Link>
+                          <ExternalLinkIcon mx='4px' />
+                        </Box>
+                      </Td>
                       <Td>
                         <Box
                           display={"flex"}
