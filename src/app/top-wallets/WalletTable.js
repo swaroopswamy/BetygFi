@@ -78,7 +78,7 @@ const WalletTable = () => {
                                 textAlign={"left"}
                             >
                                 Wallet Address</Th>
-                            <Th
+                            {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"10px"}
                                 fontStyle={"normal"}
@@ -89,7 +89,7 @@ const WalletTable = () => {
                                 textAlign={"left"}
                                 width={"11%"}
                             >
-                                Net Worth</Th>
+                                Net Worth</Th> */}
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"10px"}
@@ -297,7 +297,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
             </Flex>
         </Td>
 
-        <Td>
+        {/* <Td>
             <Flex>
                 <Box>
                     <Text
@@ -315,7 +315,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                 </Box>
             </Flex>
         </Td>
-
+ */}
         <Td>
             <Flex>
                 {totalTokens.map((item, i) => {

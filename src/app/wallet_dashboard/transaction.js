@@ -1,9 +1,10 @@
 "use client"
-import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image } from '@chakra-ui/react'
+import { Container, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image, Link } from '@chakra-ui/react'
 import { useSelector } from "react-redux";
 import isEmpty from 'is-empty';
 import millify from 'millify';
 import moment from 'moment/moment';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const SkeletonRow = () => (
   <Box as="tr">
@@ -63,7 +64,7 @@ const TransactionPanelComponent = () => {
             >
               ADDRESS AND DATE
             </Th>
-            <Th>
+            {/* <Th>
               <Box display={"flex"}
                 alignItems={"center"}>
                 <Text color={useColorModeValue("#434347", "#A8ADBD")}
@@ -83,7 +84,7 @@ const TransactionPanelComponent = () => {
                 </>
               </Box>
             </Th>
-
+ */}
 
             <Th>
               <Box display={"flex"}
@@ -123,6 +124,15 @@ const TransactionPanelComponent = () => {
               letterSpacing={"1px"}
             >
               TO
+            </Th>
+            <Th
+              color={useColorModeValue("#434347", "#A8ADBD")}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              alignItems={"center"}
+            >
+              TXN ID
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
@@ -202,9 +212,6 @@ const TransactionPanelComponent = () => {
                               letterSpacing={"1px"}
                               ml="6px"
                               w="95px"
-                              overflow=" hidden"
-                              textOverflow="ellipsis"
-                              whiteSpace="nowrap"
                             >
                               {walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
                             </Text>
@@ -227,18 +234,18 @@ const TransactionPanelComponent = () => {
                           </Box>
                         </Box>
                       </Td>
-                      <Td>
+                      {/* <Td>
                         <Box
                           display={"flex"}
                           alignItems={"center"}
                         >
                           <>
-                            {/*  <Image
+                              <Image
                             width={4}
                             height={4}
                             alt='logo'
                             src="/images/recieved.png"
-                          ></Image> */}
+                          ></Image> 
                           </>
 
                           <Text
@@ -257,7 +264,7 @@ const TransactionPanelComponent = () => {
                           </Text>
                         </Box>
                       </Td>
-
+ */}
 
                       <Td>
                         <Box
@@ -326,7 +333,7 @@ const TransactionPanelComponent = () => {
 
                             w="95px"
                           >
-                            {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
+                            {item?.from.split("").join("").substring(0, 6) + "..." + item?.from.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
@@ -349,11 +356,38 @@ const TransactionPanelComponent = () => {
 
                             w="95px"
                           >
-                            {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}
+                            {item?.to.split("").join("").substring(0, 6) + "..." + item?.to.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
+                      <Td>
+                        <Box
+                          display={"flex"}
+                          alignItems={"center"}
+                        >
+                          <Link
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                            fontStyle={"normal"}
+                            letterSpacing={"1px"}
+                            ml="4px"
+                            display={"flex"}
+                            alignItems={"center"}
+                            _dark={{
+                              color: "#FFF"
+                            }}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            isExternal
+                            href={`https://etherscan.io/tx/${item?.hash}`}
+                          >
+                            {item?.hash.split("").join("").substring(0, 6) + "..." + item?.hash.slice(-5)}
+                            <ExternalLinkIcon mx='4px' />
+                          </Link>
 
+                        </Box>
+                      </Td>
                       <Td>
                         <Box
                           display={"flex"}
