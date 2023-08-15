@@ -333,7 +333,7 @@ const TransactionPanelComponent = () => {
 
                             w="95px"
                           >
-                            {item?.from.split("").join("").substring(0, 8) + "..." + item?.from.slice(-5)}
+                            {item?.from.split("").join("").substring(0, 6) + "..." + item?.from.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
@@ -356,7 +356,7 @@ const TransactionPanelComponent = () => {
 
                             w="95px"
                           >
-                            {item?.to.split("").join("").substring(0, 8) + "..." + item?.to.slice(-5)}
+                            {item?.to.split("").join("").substring(0, 6) + "..." + item?.to.slice(-5)}
                           </Text>
                         </Box>
                       </Td>
@@ -382,7 +382,7 @@ const TransactionPanelComponent = () => {
                             isExternal
                             href={`https://etherscan.io/tx/${item?.hash}`}
                           >
-                            {item?.hash.split("").join("").substring(0, 8) + "..." + item?.hash.slice(-5)}
+                            {item?.hash.split("").join("").substring(0, 6) + "..." + item?.hash.slice(-5)}
                             <ExternalLinkIcon mx='4px' />
                           </Link>
 
