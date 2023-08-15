@@ -64,7 +64,7 @@ const TransactionPanelComponent = () => {
             >
               ADDRESS AND DATE
             </Th>
-            <Th>
+            {/* <Th>
               <Box display={"flex"}
                 alignItems={"center"}>
                 <Text color={useColorModeValue("#434347", "#A8ADBD")}
@@ -84,7 +84,7 @@ const TransactionPanelComponent = () => {
                 </>
               </Box>
             </Th>
-
+ */}
 
             <Th>
               <Box display={"flex"}
@@ -212,9 +212,6 @@ const TransactionPanelComponent = () => {
                               letterSpacing={"1px"}
                               ml="6px"
                               w="95px"
-                              overflow=" hidden"
-                              textOverflow="ellipsis"
-                              whiteSpace="nowrap"
                             >
                               {walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
                             </Text>
@@ -237,18 +234,18 @@ const TransactionPanelComponent = () => {
                           </Box>
                         </Box>
                       </Td>
-                      <Td>
+                      {/* <Td>
                         <Box
                           display={"flex"}
                           alignItems={"center"}
                         >
                           <>
-                            {/*  <Image
+                              <Image
                             width={4}
                             height={4}
                             alt='logo'
                             src="/images/recieved.png"
-                          ></Image> */}
+                          ></Image> 
                           </>
 
                           <Text
@@ -267,7 +264,7 @@ const TransactionPanelComponent = () => {
                           </Text>
                         </Box>
                       </Td>
-
+ */}
 
                       <Td>
                         <Box
@@ -370,9 +367,12 @@ const TransactionPanelComponent = () => {
                         >
                           <Link
                             fontSize={"10px"}
-                            fontWeight={"600"}
+                            fontWeight={"400"}
+                            fontStyle={"normal"}
                             letterSpacing={"1px"}
                             ml="4px"
+                            display={"flex"}
+                            alignItems={"center"}
                             _dark={{
                               color: "#FFF"
                             }}
@@ -383,9 +383,9 @@ const TransactionPanelComponent = () => {
                             href={`https://etherscan.io/tx/${item?.hash}`}
                           >
                             {item?.hash.split("").join("").substring(0, 8) + "..." + item?.hash.slice(-5)}
-
+                            <ExternalLinkIcon mx='4px' />
                           </Link>
-                          <ExternalLinkIcon mx='4px' />
+
                         </Box>
                       </Td>
                       <Td>
