@@ -37,7 +37,6 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
-
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -306,10 +305,8 @@ const TransactionPanelComponent = () => {
                             letterSpacing={"1px"}
                             ml="6px"
                           >
-                            {" "}{millify(item?.value, {
-                              precision: 2,
-                              locales: "en-US"
-                            })}
+                            
+                            {item?.value !==undefined && (item?.value / Math.pow(10,18)).toLocaleString('fullwide', {useGrouping:false}) }{" ETH"}
                           </Text>
                         </Box>
                       </Td>
