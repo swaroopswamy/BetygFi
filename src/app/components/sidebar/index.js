@@ -72,7 +72,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        minWidth={isCollapsed ? "50px" : "250px"}
+        minWidth={isCollapsed ? "40px" : "250px"}
         pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
@@ -113,7 +113,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   onClick={() => router.push('/')}
                 />
                 {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-            */} </Flex>
+            */} 
+              </Flex>
+
               {LinkItemsUp.map((link, i) => (
                 <NavItem
                   key={link.name}
@@ -134,11 +136,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   {link.name}
                 </NavItem>
               ))}
-              <hr style={{ margin: "15px 20px" }} />
-            </Box>
 
-            {/* Bottom Half */}
-            <Box>
+              <hr style={{ margin: "15px 20px" }} />
+
               <Text
                 fontSize="11px"
                 fontWeight="400"
@@ -194,6 +194,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   )}
                 </>
               ))}
+            </Box>
+
+            {/* Bottom Half */}
+            <Box>
               <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
                 {bottomMenu.map((link) => (
                   <NavItem
@@ -269,10 +273,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
         { isCollapsed && (
           <Box
+            w="100%"
             h="100%"
             display={"flex"}
             flexDirection={"column"}
-            justifyContent={"center"}
+            justifyContent={"space-between"}
+            mr={"-10px"}
           >
             {/* Top Half */}
             <Box
@@ -297,7 +303,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   onClick={() => router.push('/')}
                 />
                 {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-            */} </Flex>
+            */} 
+              </Flex>
+
               {LinkItemsUp.map((link, i) => (
                 <CollapsedNavItem
                   key={link.name}
@@ -314,96 +322,95 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   _light={{
                     color:"#16171B"
                   }}
-                >
-                </CollapsedNavItem>
-              ))}
-              <hr style={{ margin: "15px -12px" }} />
-            </Box>
-
-
-
-            {/* Bottom Half */}
-            <Box>
-
-              {LinkItemsDown.map((link) => (
-                <>
-                  {link?.dropdown ? (
-                    <>
-                      {/*   <Menu key={link.name}>
-                  <MenuButton as={Button} width={"100%"} rightIcon={<ChevronDownIcon />}>
-                    {link.name}
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                  </MenuList>
-                </Menu> */}
-                    </>
-                  ) : (
-                    <>
-                      <CollapsedNavItem
-                        key={link.name}
-                        icon={link.icon}
-                        path={link.path}
-                        _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
-                        fontSize="11px"
-                        fontWeight="400"
-                        letterSpacing="1px"
-                        _dark={{
-                          color:"#FFF"
-                        }}
-                        _light={{
-                          color:"#16171B"
-                        }}
-                      >
-                      </CollapsedNavItem>
-                    </>
-                  )}
-                </>
-              ))}
-
-              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
-                {bottomMenu.map((link) => (
-                  <CollapsedNavItem
-                    key={link.name}
-                    icon={link.icon}
-                    path={link.path}
-                    _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
-                    newTab={link.newTab}
-                    fontSize="11px"
-                    fontWeight="400"
-                    letterSpacing="1px"
-                    _dark={{
-                      color:"#FFF"
-                    }}
-                    _light={{
-                      color:"#16171B"
-                    }}
                   >
                   </CollapsedNavItem>
                 ))}
 
-                <hr style={{ marginBottom: "15px" }} />
-                
-                <Box
-                  display={"flex"}
-                  justifyContent={"center"}
-                  w={"100%"}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    alt="logo"
-                    src={"/icons/company_sm_logo.svg"}
-                  />
+              <hr style={{ margin: "15px 0px" }} />
 
-                  {/* <Box onClick={toggleColorMode}>
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
-            </Box> */}
-                </Box>
+              <Box>
+
+                {LinkItemsDown.map((link) => (
+                  <>
+                    {link?.dropdown ? (
+                      <>
+                        {/*   <Menu key={link.name}>
+                    <MenuButton as={Button} width={"100%"} rightIcon={<ChevronDownIcon />}>
+                      {link.name}
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem>Download</MenuItem>
+                      <MenuItem>Create a Copy</MenuItem>
+                    </MenuList>
+                  </Menu> */}
+                      </>
+                    ) : (
+                      <>
+                        <CollapsedNavItem
+                          key={link.name}
+                          icon={link.icon}
+                          path={link.path}
+                          _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                          fontSize="11px"
+                          fontWeight="400"
+                          letterSpacing="1px"
+                          _dark={{
+                            color:"#FFF"
+                          }}
+                          _light={{
+                            color:"#16171B"
+                          }}
+                        >
+                        </CollapsedNavItem>
+                      </>
+                    )}
+                  </>
+                ))}
+              </Box>
+            </Box>
+
+            <Box>
+              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+                  {bottomMenu.map((link) => (
+                    <CollapsedNavItem
+                      key={link.name}
+                      icon={link.icon}
+                      path={link.path}
+                      _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                      newTab={link.newTab}
+                      fontSize="11px"
+                      fontWeight="400"
+                      letterSpacing="1px"
+                      _dark={{
+                        color:"#FFF"
+                      }}
+                      _light={{
+                        color:"#16171B"
+                      }}
+                    >
+                    </CollapsedNavItem>
+                  ))}
+
+                  <hr style={{ marginBottom: "15px" }} />
+                  
+                  <Box
+                    display={"flex"}
+                    justifyContent={"center"}
+                    w={"100%"}
+                  >
+                    <Image
+                      width={15}
+                      height={15}
+                      alt="logo"
+                      src={"/icons/company_sm_logo.svg"}
+                    />
+
+                    {/* <Box onClick={toggleColorMode}>
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
+              </Box> */}
+                  </Box>
 
               </div>
-
             </Box>
 
           </Box>
@@ -413,12 +420,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
           display={"flex"}
         >
             <Flex
-              cursor={"pointer"}
               mr={"-12px"}
+              padding={"0px"}
+              cursor={"pointer"}
               onClick={() => {
                 setCollapse(!isCollapsed);
               }}
-              padding={"0px"}
             >
               <Image
                 width={24}
@@ -428,7 +435,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   "/icons/collapse-sidebar-light.svg",
                   "/icons/collapse-sidebar-dark.svg"
                 )}
-                cursor={"pointer"}
               />
             </Flex>
         </Box>
