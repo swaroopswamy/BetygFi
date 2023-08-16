@@ -42,14 +42,14 @@ const DefiTable = ({ thread, tableData }) => {
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            ml={"20px"}
+                            //ml={"10px"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Users
+                            DeFi Asset Composition
                         </Text>
                     </Box>
 
