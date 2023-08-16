@@ -49,7 +49,7 @@ const DefiTable = ({ thread }) => {
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            Top Value Holders
+                            DeFi Users
                         </Text>
                     </Box>
 

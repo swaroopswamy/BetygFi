@@ -14,8 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 
-
-const DefiAssetCompositionPage = () =>{
+const defiusers = () => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -74,7 +73,7 @@ const DefiAssetCompositionPage = () =>{
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Asset Composition
+                            DeFi Users
                         </Text>
                     </Box>
 
@@ -130,7 +129,7 @@ const DefiAssetCompositionPage = () =>{
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}
                         >
-                         Asset Name
+                         Users
                         </Text>
                         <Image src={useColorModeValue("/images/Definame(light).svg","/images/Definame(black).svg")} alt=""></Image>
                     </Flex>
@@ -145,7 +144,7 @@ const DefiAssetCompositionPage = () =>{
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>
-                        Price
+                        Deposited
                         </Text>
                         <Image src={useColorModeValue("/images/Definame(light).svg","/images/Definame(black).svg")} alt=""></Image>
                     </Flex>
@@ -161,7 +160,7 @@ const DefiAssetCompositionPage = () =>{
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}
                         >
-                        AMOUNT
+                        Borrowed
                         </Text>
                         <Image src={useColorModeValue("/images/Definame(light).svg","/images/Definame(black).svg")} alt=""></Image>
                          </Flex>
@@ -177,7 +176,7 @@ const DefiAssetCompositionPage = () =>{
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}
                         >
-                        Value
+                        Assets
                         </Text>
                         <Image src={useColorModeValue("/images/Definame(light).svg","/images/Definame(black).svg")} alt=""></Image>
                          </Flex>
@@ -268,14 +267,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                    <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 65.930000
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -359,14 +358,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 65.930000
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -450,14 +449,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 35.700000
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -541,14 +540,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 0.023387
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -632,14 +631,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 5.100000
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -723,14 +722,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 0.001782
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -814,14 +813,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 35.700000
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -905,14 +904,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 0.313472
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -996,14 +995,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  NA
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -1087,14 +1086,14 @@ const DefiAssetCompositionPage = () =>{
                   </Td>
 
                   <Td>
-                  <Text
-                    color={"#16171B"}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    >
-                  USD 0.379546
-                  </Text>
+                    <Flex>
+                  <Image src="/images/Ethlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Tron&Binancelogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Arbitrumlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Ellipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/Polygonlogo(withbackground).svg" mr={"-10px"}></Image>
+                  <Image src="/images/SquareEllipselogo(withbackground).svg" mr={"-10px"}></Image>
+                  </Flex>
                   </Td>
 
                   <Td>
@@ -1152,7 +1151,8 @@ const DefiAssetCompositionPage = () =>{
         </>
     )
 };
-export default DefiAssetCompositionPage;
+
+export default defiusers;
 
 function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
     return <>
