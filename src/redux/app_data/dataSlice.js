@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 /* export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
@@ -19,12 +19,18 @@ const AppDataSlice = createSlice({
   name: "AppData",
   initialState: {
     isSidebarCollapsed: false
-
   },
   reducers: {
-    
+    sidebarCollapsedReducer: (state, action) => {
+      if (action.payload === true) {
+        state.isSidebarCollapsed = true;
+      }
+      else {
+        state.isSidebarCollapsed = false;
+      }
+    }
   },
 });
 
-export const {  } =AppDataSlice.actions;
+export const { sidebarCollapsedReducer } = AppDataSlice.actions;
 export default AppDataSlice.reducer;

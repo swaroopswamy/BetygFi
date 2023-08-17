@@ -31,6 +31,7 @@ import {
   FiBell,
   FiChevronDown,
 } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import Navbar from "../components/header";
 import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
@@ -39,6 +40,9 @@ import useScreenSize from "@/hooks/useScreenSize";
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const screenSize = useScreenSize();
+  const isSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isSidebarCollapsed
+  );
   return (
     <>
       <Box
@@ -68,7 +72,10 @@ export default function LayoutProvider({ children }) {
           display={"flex"}
           flexDirection={"column"}
           w="100%"
-          ml={screenSize?.width < 1450 ? 0 : 60}
+          ml={screenSize?.width < 1450 ? 
+            0 : 
+            (isSidebarCollapsed ? 20 : 60) 
+          }
         >
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
