@@ -31,6 +31,7 @@ const DefiName = ({ thread, tableData }) => {
         <Flex
         ml={"5px"}
         mb={"20px"}>
+        <Button>
         <ChevronLeftIcon mt={"2px"} />
         <Text
         fontSize={"10px"}
@@ -41,11 +42,13 @@ const DefiName = ({ thread, tableData }) => {
         textTransform={"uppercase"}
         ml={"5px"}
         >BACK</Text>
+        </Button>
         </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                mb={"30px"}
             >
                 <Box
                     display={"flex"}

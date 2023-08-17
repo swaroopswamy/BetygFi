@@ -12,9 +12,9 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { ChevronLeftIcon } from '@chakra-ui/icons'
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
-const TVLRanking = ({ thread, tableData }) => {
+const TVLRanking = ({ thread, tableData }) => { 
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -30,7 +30,8 @@ const TVLRanking = ({ thread, tableData }) => {
         <>
         <Flex
         ml={"5px"}
-        mb={"20px"}>
+        mb={"20px"}> 
+        <Button> 
         <ChevronLeftIcon mt={"2px"} />
         <Text
         fontSize={"10px"}
@@ -41,11 +42,14 @@ const TVLRanking = ({ thread, tableData }) => {
         textTransform={"uppercase"}
         ml={"5px"}
         >BACK</Text>
+        </Button>
         </Flex>
+        
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                mb={"30px"}
             >
                 <Box
                     display={"flex"}
@@ -67,7 +71,7 @@ const TVLRanking = ({ thread, tableData }) => {
                         >
                             DeFi Category by TVL Rankings
                         </Text>
-                    </Box>
+                    </Box> 
 
                     <SelectionBox
                         blockchainSelected={blockchainSelected}
@@ -125,7 +129,7 @@ const TVLRanking = ({ thread, tableData }) => {
                                         AvailableBlockchains={item[1]}
                                         AvailableDeFi ={item[2]}
                                         TVL={item[3]}
-                                        Days = {item[5]}
+                                        Days = {{src:item[5]}}
                                     />
                                 </>
                             )
@@ -165,11 +169,7 @@ function ThreadItem({ key, name }) {
                <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "DeFi Category" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="1" />}
-                {name === "Available Blockchains" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="1" />}
-                {name === "Available DeFi " && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="1"  />}
-                {name === "TVL " && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="TVL" ml="1" />}
-                {name === "7 Days" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="1" />}
+                <Image src={useColorModeValue("/icons/arrowdown_light.svg","/icons/arrowdown_dark.svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
@@ -481,20 +481,13 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                 <Td>
                     <Flex>
                         <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
+                            <Image
+                                 height={"4px"}
+                                 width={"10px"}
+                                  src={ Days.src}
                             >
-                                {Days}
-                            </Text>
+                             
+                            </Image>
                         </Box>
                     </Flex>
                 </Td>
