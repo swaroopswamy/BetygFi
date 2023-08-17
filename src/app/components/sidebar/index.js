@@ -42,7 +42,7 @@ import { useState } from "react";
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: ApproachPaperIcon,newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf'  },
+  { name: "Approach Paper", icon: ApproachPaperIcon,newTab: true, path: 'https://betygfi.com/Document/Approachpaper.pdf'  },
   { name: "About", icon: CompanyIcon, path: '/about'},
   { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },

@@ -137,7 +137,7 @@ const Governance = ({} ) => {
                         </>
 
                         <Spacer />
-                        <Link href="/DefiHotContract.js">
+                        
             <Button 
             variant={"outline"} 
             size={"xs"}
@@ -159,8 +159,7 @@ const Governance = ({} ) => {
             </Text>         
              
             </Button>
-            </Link>
- 
+           
 
                     </Flex>
 
@@ -740,7 +739,7 @@ const Governance = ({} ) => {
                           </Image>
                         </Tooltip>
             <Spacer />
-            <Link href="/DefiHotContract.js">
+            
             <Button 
             variant={"outline"} 
             size={"xs"}
@@ -762,7 +761,7 @@ const Governance = ({} ) => {
             </Text>         
              
             </Button>
-            </Link> </Flex>
+           </Flex>
 
 
                     <TableContainer>
