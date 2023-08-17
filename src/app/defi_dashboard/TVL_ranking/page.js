@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 // import LineChart from "components/charts/LineChart"
 
-const defi_name = ({ thread }) => {
+const Defi_name = ({ thread }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -34,7 +34,9 @@ const defi_name = ({ thread }) => {
           >
             <Box
                 border={"2px"}
-                borderColor={useColorModeValue('#F0F0F5','#191919')}
+                //borderColor={useColorModeValue('#F0F0F5','#191919')}
+                _light={{borderColor:"#F0F0F5"}}
+                _dark={{borderColor:"#191919"}}
                 ml={"30px"}
                 mr={"25px"}
                 paddingTop={"50px"}
@@ -44,11 +46,15 @@ const defi_name = ({ thread }) => {
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     padding={"8px 30px 8px 10px"}
-                    background={useColorModeValue('#FFFFFF', '#202020')}
+                    //background={useColorModeValue('#FFFFFF', '#202020')}
+                    _light={{bgColor:"#FFFFFF"}}
+                    _dark={{bgColor:"#202020"}}
                 >
                     <Box>
                         <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            //color={useColorModeValue("#16171B", "#FFFFFF")}
+                            _light={{color:"#16171B"}}
+                            _dark={{color:"#FFFFFF"}}
                             ml={"10px"}
                             mb={"20px"}
                             mt={"20px"}
@@ -67,9 +73,11 @@ const defi_name = ({ thread }) => {
                     />
 
                     <Input
-                        borderColor={useColorModeValue("#E8E8E8", "#333")}
-                        bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                        //borderColor={useColorModeValue("#E8E8E8", "#333")}
+                        _light={{borderColor:"#E8E8E8",bgColor:"#F5F5F7",color:"#16171B"}}
+                        _dark={{borderColor:"#333",bgColor:"#191919",color:"#A8ADBD"}}
+                        //bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                        //color={useColorModeValue("#16171B", "#A8ADBD")}
                         fontSize={"10px"}
                         fontWeight={400}
                         w="207px"
@@ -82,7 +90,9 @@ const defi_name = ({ thread }) => {
                 <Table variant='unstyled'
                     size={'sm'}
                     border={"1px"}
-                    borderColor={useColorModeValue("#FFFFFF", "#272727")}
+                    //borderColor={useColorModeValue("#FFFFFF", "#272727")}
+                    _light={{borderColor:"#FFFFFF"}}
+                    _dark={{borderColor:"#272727"}}
                     borderRadius={"6px"}
                 >
                     <Thead
@@ -1017,7 +1027,7 @@ const defi_name = ({ thread }) => {
     )
 };
 
-export default defi_name;
+export default Defi_name;
 
 
 

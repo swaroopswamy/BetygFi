@@ -32,22 +32,28 @@ const defi_hot_contract = ({ thread }) => {
           >
             <Box
                 border={"2px"}
-                borderColor={useColorModeValue('#F0F0F5','#191919')}
+                //borderColor={useColorModeValue('#F0F0F5','#191919')}
+                _light={{borderColor:"#F0F0F5"}}
+                _dark={{borderColor:"#191919"}}
                 ml={"30px"}
                 mr={"25px"}
                 paddingTop={"50px"}
                 paddingBottom={"40px"}
-            >
+            >
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     padding={"8px 30px 8px 10px"}
-                    background={useColorModeValue('#FFFFFF', '#202020')}
+                    //background={useColorModeValue('#FFFFFF', '#202020')}
+                    _light={{bgColor:"#FFFFFF"}}
+                    _dark={{bgColor:"#202020"}}
                 >
                     <Box>
                         <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            //color={useColorModeValue("#16171B", "#FFFFFF")}
+                            _light={{color:"#16171B"}}
+                            _dark={{color:"#FFFFFF"}}
                             ml={"10px"}
                             mb={"20px"}
                             mt={"20px"}

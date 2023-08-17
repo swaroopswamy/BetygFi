@@ -12,6 +12,8 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+
 
 const DefiTable = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
@@ -27,10 +29,25 @@ const DefiTable = ({ thread, tableData }) => {
 
     return (
         <>
+         <Flex
+        ml={"5px"}
+        mb={"20px"}>
+        <ChevronLeftIcon mt={"2px"} />
+        <Text
+        fontSize={"10px"}
+        fontStyle={"normal"}
+        fontWeight={"400"}
+        lineHeight={"20px"}
+        letterSpacing={"1px"}
+        textTransform={"uppercase"}
+        ml={"5px"}
+        >BACK</Text>
+        </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                mb={"30px"}
             >
                 <Box
                     display={"flex"}
@@ -42,7 +59,7 @@ const DefiTable = ({ thread, tableData }) => {
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            ml={"20px"}
+                            //ml={"20px"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
@@ -103,7 +120,11 @@ const DefiTable = ({ thread, tableData }) => {
                                 <>
                                     <TableRow
                                         key={i}
-                                        rowValues={[item[0],item[1],item[2],item[3],[item[4]]]}
+                                        users={{name:item[1],src:item[0]}}
+                                        deposited={item[2]}
+                                        borrowed={item[3]}
+                                        assets={{src:item[4],src:item[5],src:item[6],src:item[7],src:item[8],src:item[9]}}
+                                        share={item[10]}
                                     />
                                 </>
                             )
@@ -138,7 +159,15 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                {name}
+                <Flex>
+            {name}
+                {/* Add an image next to the text */}
+                {name === "Users" && <Image src="/images/Definame(light).svg" alt="Users" ml="2" />}
+                {name === "Deposited" && <Image src="/images/Definame(light).svg" alt="Deposited" ml="2" />}
+                {name === "Borrowed" && <Image src="/images/Definame(light).svg" alt="Borrowed" ml="2"  />}
+                {name === "Assets" && <Image src="/images/Definame(light).svg" alt="Assets" ml="2" />}
+                {name === "Share" && <Image src="/images/Definame(light).svg" alt="Share" ml="2" />}
+                </Flex>
             </Th>
         </>
     )
@@ -243,11 +272,31 @@ function PageButtons() {
             <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                justifyContent={"end"}
+                justifyContent={"space-between"}
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-
+              <Flex>
+              <Text
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+               >
+                        Last Update
+                    </Text>
+                    <Text
+                        _light={{ color: "#16171B" }}
+                        _dark={{ color: "#FFFFFF" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        pl={"3px"}
+                    >
+                        3 mins ago
+                    </Text>
+                </Flex>
                 <Box
                     display={"flex"}
                 >
@@ -329,10 +378,11 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, rowValues }) {
+function TableRow({ key, users, deposited, borrowed, assets, share }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
+
     return (
         <>
             <Tr
@@ -347,33 +397,145 @@ function TableRow({ key, rowValues }) {
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
+                <Td>
+                    <Flex>
+                        <Box
+                            alignItems={"center"}
+                            display={"flex"}
+                            gap={"10px"}
+                        >
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={users.src}
+                            >
+                            </Image>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {users.name}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
 
-                {rowValues.map((item, i) => {
-                    return (
-                        <>
-                            <Td key={i}>
-                                <Flex>
-                                    <Box>
-                                        <Text
-                                            _dark={{
-                                                color: "#FFFFFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontStyle={"normal"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            {item}
-                                        </Text>
-                                    </Box>
-                                </Flex>
-                            </Td>
-                        </>
-                    )
-                })}
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {deposited}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {borrowed}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Flex>
+                        <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                src={assets.src}
+                            >
+                            </Image>
+                            </Flex>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {share}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
             </Tr>
         </>
     );
