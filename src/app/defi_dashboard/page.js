@@ -377,11 +377,10 @@ const DefiDashboardPage = () => {
                     justifyContent={"space-evenly"}
                 >
 
-                    {/* <DonutChart />
-                    <BarChart /> */}
+                    <DonutChart />
+                    {/* <BarChart /> */}
                 </Box>
             </Box>
-
 
             <Box
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}

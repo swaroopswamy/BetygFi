@@ -18,6 +18,7 @@ import { ChevronLeftIcon } from '@chakra-ui/icons'
 const DefiTable = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -30,8 +31,13 @@ const DefiTable = ({ thread, tableData }) => {
     return (
         <>
         <Flex
+        cursor={"pointer"}
         ml={"5px"}
-        mb={"20px"}>
+        mb={"20px"}
+        onClick={() => {
+            router.push(`/defi_dashboard/`)
+        }}
+        >
         <ChevronLeftIcon mt={"2px"} />
         <Text
         fontSize={"10px"}
