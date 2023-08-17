@@ -36,20 +36,20 @@ const DefiTable = ({ thread, tableData }) => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={"8px 30px 8px 15px"}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //ml={"10px"}
+                            // ml={"20px"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Asset Composition
+                            DeFi Hot Contract
                         </Text>
                     </Box>
 
@@ -103,13 +103,7 @@ const DefiTable = ({ thread, tableData }) => {
                                 <>
                                     <TableRow
                                         key={i}
-                                        asset={{name: item[0],
-                                            url: item[4]
-                                        }}
-                                        price={item[1]}
-                                        amount={item[2]}
-                                        value={item[3]}
-                                        share={item[3]}
+                                        rowValues={[item[0],item[1],item[2],item[3],[item[4]]]}
                                     />
                                 </>
                             )
@@ -131,6 +125,7 @@ const DefiTable = ({ thread, tableData }) => {
 export default DefiTable;
 
 function ThreadItem({ key, name }) {
+    const { colorMode } = useColorMode();
     return (
         <>
             <Th
@@ -144,7 +139,15 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                {name}
+                <Flex>
+            {name}
+                {/* Add an image next to the text */}
+                {name === "BlockChain | Function name" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="1" />}
+                {name === "No. Of users" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="1" />}
+                {name === "No. of Calls" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="1"  />}
+                {name === "Fees consumed" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="1" />}
+                
+                </Flex>
             </Th>
         </>
     )
@@ -335,11 +338,10 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, asset, price, amount, value, share }) {
+function TableRow({ key, rowValues }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
-
     return (
         <>
             <Tr
@@ -354,123 +356,33 @@ function TableRow({ key, asset, price, amount, value, share }) {
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
-                <Td>
-                    <Flex>
-                        <Box
-                            alignItems={"center"}
-                            display={"flex"}
-                            gap={"10px"}
-                        >
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                url={asset.logo_url}
-                                // url={"/icons/Ethereum_sm_icon.svg"}
 
-                            >
-                            </Image>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {asset.name}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {price}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {amount}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {value}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {share}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
+                {rowValues.map((item, i) => {
+                    return (
+                        <>
+                            <Td key={i}>
+                                <Flex>
+                                    <Box>
+                                        <Text
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"10px"}
+                                            fontStyle={"normal"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                        >
+                                            {item}
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </Td>
+                        </>
+                    )
+                })}
             </Tr>
         </>
     );

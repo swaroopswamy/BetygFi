@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
-const DefiTable = ({ thread, tableData }) => {
+const TVLRanking = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -36,20 +36,21 @@ const DefiTable = ({ thread, tableData }) => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={"8px 30px 8px 10px"}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //ml={"10px"}
+                            // ml={"20px"}
+                            // justifyContent={"space-around"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Asset Composition
+                            DeFi Category by TVL Rankings
                         </Text>
                     </Box>
 
@@ -98,18 +99,18 @@ const DefiTable = ({ thread, tableData }) => {
                     </Thead>
 
                     <Tbody>
-                        {tableData.map((item, i) => {
+                    {tableData.map((item, i) => {
                             return (
                                 <>
                                     <TableRow
                                         key={i}
-                                        asset={{name: item[0],
-                                            url: item[4]
+                                        DeFi={{Category: item[0],
+                                            url: item[5]
                                         }}
-                                        price={item[1]}
-                                        amount={item[2]}
-                                        value={item[3]}
-                                        share={item[3]}
+                                        AvailableBlockchains={item[1]}
+                                        AvailableDeFi ={item[2]}
+                                        TVL={item[3]}
+                                        Days = {item[4]}
                                     />
                                 </>
                             )
@@ -128,9 +129,11 @@ const DefiTable = ({ thread, tableData }) => {
     )
 };
 
-export default DefiTable;
+export default TVLRanking;
 
 function ThreadItem({ key, name }) {
+    const { colorMode } = useColorMode();
+
     return (
         <>
             <Th
@@ -144,7 +147,15 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                {name}
+               <Flex>
+            {name}
+                {/* Add an image next to the text */}
+                {name === "DeFi Category" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="1" />}
+                {name === "Available Blockchains" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="1" />}
+                {name === "Available DeFi " && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="1"  />}
+                {name === "TVL " && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="TVL" ml="1" />}
+                {name === "7 Days" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="1" />}
+                </Flex>
             </Th>
         </>
     )
@@ -335,11 +346,10 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, asset, price, amount, value, share }) {
+function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
-
     return (
         <>
             <Tr
@@ -354,7 +364,8 @@ function TableRow({ key, asset, price, amount, value, share }) {
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
-                <Td>
+
+<Td>
                     <Flex>
                         <Box
                             alignItems={"center"}
@@ -364,8 +375,9 @@ function TableRow({ key, asset, price, amount, value, share }) {
                             <Image
                                 height={"10px"}
                                 width={"10px"}
-                                url={asset.logo_url}
+                                // url={ DeFiCategory.logo_url}
                                 // url={"/icons/Ethereum_sm_icon.svg"}
+                                src="/icons/aave_logo.svg"
 
                             >
                             </Image>
@@ -381,7 +393,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {asset.name}
+                                { DeFi.Category}
                             </Text>
                         </Box>
                     </Flex>
@@ -402,7 +414,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {price}
+                                {AvailableBlockchains}
                             </Text>
                         </Box>
                     </Flex>
@@ -423,7 +435,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {amount}
+                                {AvailableDeFi}
                             </Text>
                         </Box>
                     </Flex>
@@ -444,7 +456,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {value}
+                                {TVL}
                             </Text>
                         </Box>
                     </Flex>
@@ -465,13 +477,20 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {share}
+                                {Days}
                             </Text>
                         </Box>
                     </Flex>
                 </Td>
-
             </Tr>
         </>
     );
 }
+
+
+
+
+
+
+
+
