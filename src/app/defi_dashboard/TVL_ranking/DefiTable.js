@@ -12,6 +12,7 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 
 const TVLRanking = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
@@ -27,6 +28,20 @@ const TVLRanking = ({ thread, tableData }) => {
 
     return (
         <>
+        <Flex
+        ml={"5px"}
+        mb={"20px"}>
+        <ChevronLeftIcon mt={"2px"} />
+        <Text
+        fontSize={"10px"}
+        fontStyle={"normal"}
+        fontWeight={"400"}
+        lineHeight={"20px"}
+        letterSpacing={"1px"}
+        textTransform={"uppercase"}
+        ml={"5px"}
+        >BACK</Text>
+        </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
