@@ -38,6 +38,8 @@ import { useRouter } from "next/navigation";
 import useScreenSize from '../../../hooks/useScreenSize'
 import { left } from "@popperjs/core";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice"
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
@@ -63,8 +65,17 @@ const bottomMenu = [
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [ isCollapsed, setCollapse ] = useState(false);
+  const dispatch = useDispatch();
   const router = useRouter();
   const screenSize = useScreenSize();
+
+  const SidebarHandler = (value) => {
+    dispatch(sidebarCollapsedReducer(value));
+  };
+
+  const isSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isSidebarCollapsed
+  );
 
   return (
     <>
@@ -72,7 +83,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        minWidth={isCollapsed ? "40px" : "250px"}
+        minWidth={isSidebarCollapsed ? "50px" : "250px"}
         pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
@@ -82,7 +93,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         display={"flex"}
         {...rest}
       >
-        { !isCollapsed && (
+        { !isSidebarCollapsed && (
           <Box
             w="100%"
             h="100%"
@@ -271,7 +282,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           </Box>
         )}
 
-        { isCollapsed && (
+        { isSidebarCollapsed && (
           <Box
             w="100%"
             h="100%"
@@ -284,6 +295,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <Box
             >
               <Flex
+                width={"50px"}
                 h="20"
                 alignItems="center"
                 mx="17px"
@@ -424,7 +436,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               padding={"0px"}
               cursor={"pointer"}
               onClick={() => {
-                setCollapse(!isCollapsed);
+                SidebarHandler(!isSidebarCollapsed);
               }}
             >
               <Image
@@ -453,6 +465,7 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
       _focus={{ boxShadow: "none" }}
     >
       <Flex
+        width={"50px"}
         justifyContent="center"
         p="2"
         mx="4"
