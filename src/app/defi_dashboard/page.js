@@ -44,12 +44,12 @@ const DefiDashboardPage = () => {
         } */
         dispatch(fetchWalletTransactionsData(searchParam.get("address")));
     }, [blockchainSelected, walletAddress])
- /*    useEffect(() => {
-        dispatch(walletAddressChangedReducer(searchParam.get("address")))
-        fetchWalletBalanceDataHandler();
-        fetchWalletTransactionsDataHandler();
-    }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
- */
+    /*    useEffect(() => {
+           dispatch(walletAddressChangedReducer(searchParam.get("address")))
+           fetchWalletBalanceDataHandler();
+           fetchWalletTransactionsDataHandler();
+       }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
+    */
     return (
         <>
             <Box
@@ -63,13 +63,13 @@ const DefiDashboardPage = () => {
                     margin={"38px 30px 50px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #2F2F2F", "1px solid #BFBFBF")}
-                    bgColor={useColorModeValue("#F0F0F5","#191919")}
+                    bgColor={useColorModeValue("#F0F0F5", "#191919")}
 
                 >
                     <Box
                         display={"flex"}
                         alignItems={"center"}
-                        bgColor={useColorModeValue("#F0F0F5","#191919")}
+                        bgColor={useColorModeValue("#F0F0F5", "#191919")}
                     >
                         <Box
                             marginRight={"22px"}
@@ -333,7 +333,7 @@ const DefiDashboardPage = () => {
                             ml="10px"
                             fontWeight={"600"}
                             fontSize={"16px"}
-                            
+
                         >
                             91%
                         </Text>
@@ -341,8 +341,14 @@ const DefiDashboardPage = () => {
                 </Box>
             </Box>
 
-            <Box>
+            <Box
+                marginTop={"30px"}
+                display={"flex"}
+                alignItems={"center"}
+                ml={"12px"}
+            >
                 <TVLBox />
+                <TrendGraph />
             </Box>
 
             <Box
@@ -370,7 +376,7 @@ const DefiDashboardPage = () => {
                     display={"flex"}
                     justifyContent={"space-evenly"}
                 >
-                    <TrendGraph />
+
                     {/* <DonutChart />
                     <BarChart /> */}
                 </Box>

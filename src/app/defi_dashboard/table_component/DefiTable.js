@@ -13,7 +13,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
-const DefiTable = ({ thread, tableData }) => {
+
+const DefiTable = ({ tableHeading,thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
