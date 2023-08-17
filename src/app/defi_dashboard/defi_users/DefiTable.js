@@ -123,7 +123,7 @@ const DefiTable = ({ thread, tableData }) => {
                                         users={{name:item[1],src:item[0]}}
                                         deposited={item[2]}
                                         borrowed={item[3]}
-                                        assets={{src:item[4],src:item[5],src:item[6],src:item[7],src:item[8],src:item[9]}}
+                                        assets={[item[4],item[5],item[6],item[7],item[8],item[9]]}
                                         share={item[10]}
                                     />
                                 </>
@@ -162,11 +162,7 @@ function ThreadItem({ key, name }) {
                 <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "Users" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="2" />}
-                {name === "Deposited" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="2" />}
-                {name === "Borrowed" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="2"  />}
-                {name === "Assets" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="2" />}
-                {name === "Share" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Share" ml="2" />}
+                <Image src={useColorModeValue("/images/Arrowdown(light).svg","/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>

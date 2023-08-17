@@ -162,11 +162,7 @@ function ThreadItem({ key, name }) {
               <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "Asset Name" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Asset Name" ml="2" />}
-                {name === "Price" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Price" ml="2" />}
-                {name === "Amount" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Amount" ml="2"  />}
-                {name === "Value" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Value" ml="2" />}
-                {name === "Share" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Share" ml="2" />}
+                <Image src={useColorModeValue("/images/Arrowdown(light).svg","/images/Arrowdown(dark).svg")} alt="" ml="2" />
                 </Flex>
             </Th>
         </>
