@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode
+    Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
@@ -162,11 +162,11 @@ function ThreadItem({ key, name }) {
                 <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "Users" && <Image src="/images/Definame(light).svg" alt="Users" ml="2" />}
-                {name === "Deposited" && <Image src="/images/Definame(light).svg" alt="Deposited" ml="2" />}
-                {name === "Borrowed" && <Image src="/images/Definame(light).svg" alt="Borrowed" ml="2"  />}
-                {name === "Assets" && <Image src="/images/Definame(light).svg" alt="Assets" ml="2" />}
-                {name === "Share" && <Image src="/images/Definame(light).svg" alt="Share" ml="2" />}
+                {name === "Users" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="2" />}
+                {name === "Deposited" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="2" />}
+                {name === "Borrowed" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="2"  />}
+                {name === "Assets" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="2" />}
+                {name === "Share" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Share" ml="2" />}
                 </Flex>
             </Th>
         </>

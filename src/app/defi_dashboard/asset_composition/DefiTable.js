@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode
+    Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
@@ -162,11 +162,11 @@ function ThreadItem({ key, name }) {
               <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "Asset Name" && <Image src="/images/Definame(light).svg" alt="Asset Name" ml="2" />}
-                {name === "Price" && <Image src="/images/Definame(light).svg" alt="Price" ml="2" />}
-                {name === "Amount" && <Image src="/images/Definame(light).svg" alt="Amount" ml="2"  />}
-                {name === "Value" && <Image src="/images/Definame(light).svg" alt="Value" ml="2" />}
-                {name === "Share" && <Image src="/images/Definame(light).svg" alt="Share" ml="2" />}
+                {name === "Asset Name" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Asset Name" ml="2" />}
+                {name === "Price" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Price" ml="2" />}
+                {name === "Amount" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Amount" ml="2"  />}
+                {name === "Value" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Value" ml="2" />}
+                {name === "Share" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Share" ml="2" />}
                 </Flex>
             </Th>
         </>
