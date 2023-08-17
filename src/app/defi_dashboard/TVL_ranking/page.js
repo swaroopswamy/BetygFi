@@ -7,16 +7,16 @@ function Defi_Hot_Contracts () {
 
   const thread = ["DeFi Category","Available Blockchains","Available DeFi ","TVL","7 Days"];
   const tableData = [
-    ["AAVE V2 ","2","100","USD 65.930000"],
-    ["AAVE V3 ","10","57","USD 65.930000"],
-    ["Compound","4","67","USD 35.700000"],
-    ["JustLend","7","80","USD 0.023387"],
-    ["Venus","4","60","USD 5.100000"],
-    ["Morpho Aave","8","90","USD 0.001782"],
-    ["Compound V3","6","70","USD 35.700000"],
-    ["Radiant V2","2","87","USD 0.313472"],
-    ["FluidTokens","9","63","NA"],
-    ["Trader Joe Lend","3","82","USD 0.313472"],
+    ["AAVE V2 ","2","100","USD 65.930000","/icons/aave_logo.svg",""],
+    ["AAVE V3 ","10","57","USD 65.930000","/icons/aave_logo.svg",""],
+    ["Compound","4","67","USD 35.700000","/icons/compound_logo.svg",""],
+    ["JustLend","7","80","USD 0.023387","/icons/justlend_logo.svg",""],
+    ["Venus","4","60","USD 5.100000","/icons/venus_logo.svg",""],
+    ["Morpho Aave","8","90","USD 0.001782","/icons/morphoaave_logo.svg",""],
+    ["Compound V3","6","70","USD 35.700000","/icons/compoundv3.svg",""],
+    ["Radiant V2","2","87","USD 0.313472","/icons/radiantv2_logo.svg"],
+    ["FluidTokens","9","63","NA","",""],
+    ["Trader Joe Lend","3","82","USD 0.313472","/icons/traderjoelend_logo.svg"],
 ];
  
   return (

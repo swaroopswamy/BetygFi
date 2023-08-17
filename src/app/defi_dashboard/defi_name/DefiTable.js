@@ -101,9 +101,15 @@ const DefiName = ({ thread, tableData }) => {
                         {tableData.map((item, i) => {
                             return (
                                 <>
-                                    <TableRow
+                                   <TableRow
                                         key={i}
-                                        rowValues={[item[0],item[1],item[2],item[3],[item[4]]]}
+                                        Asset={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        Inflow={item[1]}
+                                        Outflow={item[2]}
+                                        NetValueflow ={item[3]}
+                                      
                                     />
                                 </>
                             )
@@ -338,7 +344,7 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, rowValues }) {
+function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
@@ -357,32 +363,105 @@ function TableRow({ key, rowValues }) {
                 borderRadius={'2px'}
             >
 
-                {rowValues.map((item, i) => {
-                    return (
-                        <>
-                            <Td key={i}>
-                                <Flex>
-                                    <Box>
-                                        <Text
-                                            _dark={{
-                                                color: "#FFFFFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontStyle={"normal"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            {item}
-                                        </Text>
-                                    </Box>
-                                </Flex>
-                            </Td>
-                        </>
-                    )
-                })}
+<Td>
+                    <Flex>
+                        <Box
+                            alignItems={"center"}
+                            display={"flex"}
+                            gap={"10px"}
+                        >
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                 src={ Asset.src}
+                                // url={"/icons/Ethereum_sm_icon.svg"}
+                                //  src="/icons/aave_logo.svg"
+
+
+                            >
+                            </Image>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                { Asset.name}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {Inflow}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {Outflow}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {NetValueflow}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                
             </Tr>
         </>
     );

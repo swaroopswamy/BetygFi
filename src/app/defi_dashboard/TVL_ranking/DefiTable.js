@@ -105,12 +105,12 @@ const TVLRanking = ({ thread, tableData }) => {
                                     <TableRow
                                         key={i}
                                         DeFi={{Category: item[0],
-                                            url: item[5]
+                                            src: item[4]
                                         }}
                                         AvailableBlockchains={item[1]}
                                         AvailableDeFi ={item[2]}
                                         TVL={item[3]}
-                                        Days = {item[4]}
+                                        Days = {item[5]}
                                     />
                                 </>
                             )
@@ -375,9 +375,10 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                             <Image
                                 height={"10px"}
                                 width={"10px"}
-                                // url={ DeFiCategory.logo_url}
+                                 src={ DeFi.src}
                                 // url={"/icons/Ethereum_sm_icon.svg"}
-                                src="/icons/aave_logo.svg"
+                                //  src="/icons/aave_logo.svg"
+
 
                             >
                             </Image>

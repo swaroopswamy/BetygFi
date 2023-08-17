@@ -101,9 +101,15 @@ const DefiTable = ({ thread, tableData }) => {
                         {tableData.map((item, i) => {
                             return (
                                 <>
-                                    <TableRow
+                                     <TableRow
                                         key={i}
-                                        rowValues={[item[0],item[1],item[2],item[3],[item[4]]]}
+                                        blockchain={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        users={item[1]}
+                                        calls ={item[2]}
+                                        feeconsumed={item[3]}
+                                       
                                     />
                                 </>
                             )
@@ -338,7 +344,7 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, rowValues }) {
+function TableRow({ key, blockchain,users,calls,feeconsumed }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
@@ -357,33 +363,114 @@ function TableRow({ key, rowValues }) {
                 borderRadius={'2px'}
             >
 
-                {rowValues.map((item, i) => {
-                    return (
-                        <>
-                            <Td key={i}>
-                                <Flex>
-                                    <Box>
-                                        <Text
-                                            _dark={{
-                                                color: "#FFFFFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"10px"}
-                                            fontStyle={"normal"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            {item}
-                                        </Text>
-                                    </Box>
-                                </Flex>
-                            </Td>
-                        </>
-                    )
-                })}
+<Td>
+                    <Flex>
+                        <Box
+                            alignItems={"center"}
+                            display={"flex"}
+                            gap={"10px"}
+                        >
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                 src={ blockchain.src}
+                                // url={"/icons/Ethereum_sm_icon.svg"}
+                                //  src="/icons/aave_logo.svg"
+
+
+                            >
+                            </Image>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                { blockchain.name}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {users}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {calls}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {feeconsumed}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                
             </Tr>
         </>
     );
 }
+
+
+
+
+
+
+
+
