@@ -12,6 +12,8 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+
 
 const DefiTable = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
@@ -27,10 +29,25 @@ const DefiTable = ({ thread, tableData }) => {
 
     return (
         <>
+        <Flex
+        ml={"5px"}
+        mb={"20px"}>
+        <ChevronLeftIcon mt={"2px"} />
+        <Text
+        fontSize={"10px"}
+        fontStyle={"normal"}
+        fontWeight={"400"}
+        lineHeight={"20px"}
+        letterSpacing={"1px"}
+        textTransform={"uppercase"}
+        ml={"5px"}
+        >BACK</Text>
+        </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                mb={"30px"}
             >
                 <Box
                     display={"flex"}
@@ -103,13 +120,11 @@ const DefiTable = ({ thread, tableData }) => {
                                 <>
                                     <TableRow
                                         key={i}
-                                        asset={{name: item[0],
-                                            url: item[4]
-                                        }}
-                                        price={item[1]}
-                                        amount={item[2]}
-                                        value={item[3]}
-                                        share={item[3]}
+                                        asset={{name:item[1],src:item[0]}}
+                                        price={item[2]}
+                                        amount={item[3]}
+                                        value={item[4]}
+                                        share={item[5]}
                                     />
                                 </>
                             )
@@ -144,7 +159,15 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                {name}
+              <Flex>
+            {name}
+                {/* Add an image next to the text */}
+                {name === "Asset Name" && <Image src="/images/Definame(light).svg" alt="Asset Name" ml="2" />}
+                {name === "Price" && <Image src="/images/Definame(light).svg" alt="Price" ml="2" />}
+                {name === "Amount" && <Image src="/images/Definame(light).svg" alt="Amount" ml="2"  />}
+                {name === "Value" && <Image src="/images/Definame(light).svg" alt="Value" ml="2" />}
+                {name === "Share" && <Image src="/images/Definame(light).svg" alt="Share" ml="2" />}
+                </Flex>
             </Th>
         </>
     )
@@ -249,11 +272,31 @@ function PageButtons() {
             <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                justifyContent={"end"}
+                justifyContent={"space-between"}
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-
+              <Flex>
+              <Text
+                        _light={{ color: "#434347" }}
+                        _dark={{ color: "#A8ADBD" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+               >
+                        Last Update
+                    </Text>
+                    <Text
+                        _light={{ color: "#16171B" }}
+                        _dark={{ color: "#FFFFFF" }}
+                        fontSize={"10px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        pl={"3px"}
+                    >
+                        3 mins ago
+                    </Text>
+                </Flex>
                 <Box
                     display={"flex"}
                 >
@@ -364,9 +407,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                             <Image
                                 height={"10px"}
                                 width={"10px"}
-                                url={asset.logo_url}
-                                // url={"/icons/Ethereum_sm_icon.svg"}
-
+                                src={asset.src}
                             >
                             </Image>
                             <Text
