@@ -56,7 +56,7 @@ const WalletTable = () => {
                             flex-shrink={"0"}
                             borderRadius={'6px'}
                         >
-                          {/*   <Th
+                            {/*   <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"10px"}
                                 fontStyle={"normal"}
@@ -142,7 +142,7 @@ const WalletTable = () => {
                                 </>
                             )
                         })}
-                        
+
 
                     </Tbody>
                     <Tfoot>
@@ -150,7 +150,7 @@ const WalletTable = () => {
 
                 </Table>
 
-              {/*   <PageButtons /> */}
+                {/*   <PageButtons /> */}
             </Box>
         </>
     )
@@ -261,14 +261,15 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
             (colorMode === "light" ? '#F5F5F7' : '#191919') :
             (colorMode === "light" ? '#FFFFFF' : '#202020')
         }
-        onClick={() => { setClick(!clicked) 
-        router.push(`/wallet_dashboard?address=${user}`)
+        onClick={() => {
+            setClick(!clicked)
+            router.push(`/wallet_dashboard?address=${user}`)
         }}
         borderBottom={'1px'}
         borderColor={useColorModeValue('#DFDFDF', '#313131')}
         borderRadius={'2px'}
     >
-      {/*   <Td>
+        {/*   <Td>
             <Flex>
                 <Box>
                     <Image
