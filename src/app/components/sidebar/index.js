@@ -116,12 +116,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   width={180}
                   height={80}
                   alt="logo"
-                  _light={{
-                    src:"/icons/light_betgyfi_sm_icon.svg"
-                  }}
-                  _dark={{
-                    src:"/icons/dark_betgyfi_sm_logo.svg"
-                  }}
+                  src={useColorModeValue("/icons/light_betgyfi_sm_icon.svg", "/icons/dark_betgyfi_sm_logo.svg")}
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
                 />
@@ -309,12 +304,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   width={24}
                   height={24}
                   alt="logo"
-                  _light={{
-                    src:"/icons/company_sidebar_sm_logo_dark.png"
-                  }}
-                  _dark={{
-                    src:"/icons/company_sidebar_sm_logo_light.png"
-                  }}
+                  src={useColorModeValue("/icons/company_sidebar_sm_logo_dark.png", "/icons/company_sidebar_sm_logo_light.png")}
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
                 />
