@@ -63,7 +63,7 @@ const bottomMenu = [
   { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const [ isCollapsed, setCollapse ] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -112,14 +112,25 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 justifyContent="space-between"
                 cursor={"pointer"}
               >
+                {colorMode === 'light' && (
                 <Image
                   width={180}
                   height={80}
                   alt="logo"
-                  src={useColorModeValue("/icons/light_betgyfi_sm_icon.svg", "/icons/dark_betgyfi_sm_logo.svg")}
+                  src="/icons/light_betgyfi_sm_icon.svg"
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
-                />
+                />)}
+                {colorMode === 'dark' && (
+                <Image
+                  width={180}
+                  height={80}
+                  alt="logo"
+                  src="/icons/dark_betgyfi_sm_logo.svg"
+                  cursor={"pointer"}
+                  onClick={() => router.push('/')}
+                />)}
+                
                 {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             */} 
               </Flex>
@@ -300,14 +311,24 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 justifyContent="center"
                 cursor={"pointer"}
               >
+                {colorMode === 'light' && (
                 <Image
-                  width={24}
-                  height={24}
+                  width={180}
+                  height={80}
                   alt="logo"
-                  src={useColorModeValue("/icons/company_sidebar_sm_logo_dark.png", "/icons/company_sidebar_sm_logo_light.png")}
+                  src="/icons/company_sidebar_sm_logo_dark.png"
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
-                />
+                />)}
+                {colorMode === 'dark' && (
+                <Image
+                  width={180}
+                  height={80}
+                  alt="logo"
+                  src="/icons/company_sidebar_sm_logo_light.png"
+                  cursor={"pointer"}
+                  onClick={() => router.push('/')}
+                />)}
                 {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
             */} 
               </Flex>
