@@ -10,6 +10,8 @@ function TrendGraph() {
     const [ graphTypeSelected, setGraphType ] = useState([]);
     const [ currencySelected, setCurrencyType ] = useState("USD");
 
+    const graphTypes = ["TVL", "MCap", "Sushi Price", "Users", "FDV", "Borrowed", "Median APY"];
+
     const CurrencyTypeHandler = (type) => {
         setCurrencyType(type);
     }
@@ -23,10 +25,11 @@ function TrendGraph() {
         else {
             arr.push(type);
         }
+        if (arr.length == 0) {
+            arr.push(graphTypes[0]);
+        }
         setGraphType(arr);
     };
-
-    const graphTypes = ["TVL", "MCap", "Sushi Price", "Users", "FDV", "Borrowed", "Median APY"];
 
     return (
         <>
