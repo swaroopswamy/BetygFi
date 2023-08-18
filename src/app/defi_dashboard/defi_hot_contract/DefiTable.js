@@ -8,7 +8,6 @@ import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import TableData from '../../../../util/whales.json';
 import millify from "millify";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -17,7 +16,6 @@ import { ChevronLeftIcon } from '@chakra-ui/icons'
 const DefiTable = ({ tableName, thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
-    const router = useRouter();
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType

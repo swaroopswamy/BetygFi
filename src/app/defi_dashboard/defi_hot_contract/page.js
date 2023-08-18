@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import DefiTable from "../defi_hot_contract/DefiTable";
 import { Box, Text, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
@@ -8,6 +9,7 @@ import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 function Defi_Hot_Contracts () {
   const [tabIndex, setTabIndex] = useState(0);
   const { colorMode } = useColorMode();
+  const router = useRouter();
 
   const thread = ["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"];
   const tableData = [
