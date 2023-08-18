@@ -52,6 +52,7 @@ const DefiTable = ({ thread, tableData }) => {
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                mb={"30px"}
             >
                 <Box
                     display={"flex"}
@@ -169,11 +170,7 @@ function ThreadItem({ key, name }) {
                 <Flex>
             {name}
                 {/* Add an image next to the text */}
-                {name === "BlockChain | Function name" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="1" />}
-                {name === "No. Of users" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="1" />}
-                {name === "No. of Calls" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="1"  />}
-                {name === "Fees consumed" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="1" />}
-                
+                <Image src={useColorModeValue("/icons/arrowdown_light.svg","/icons/arrowdown_dark.svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
