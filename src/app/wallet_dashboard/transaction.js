@@ -188,12 +188,12 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <>
-                            {/* <Image
+                            <Image
                             width={5}
                             height={5}
                             alt='logo'
-                            src="/images/t1.png"
-                          ></Image> */}
+                            src={`/icons/${item?.blockchain.toLowerCase()}_sm_icon.svg`}
+                          ></Image> 
                           </>
 
                           <Box
