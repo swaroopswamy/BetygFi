@@ -366,7 +366,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                 borderRadius={'2px'}
             >
 
-            <Td>
+                <Td>
                     <Flex>
                         <Box
                             alignItems={"center"}
@@ -378,10 +378,6 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 width={"10px"}
                                  src={ blockchain.src}
                                 alt="logo"
-                                // url={"/icons/Ethereum_sm_icon.svg"}
-                                //  src="/icons/aave_logo.svg"
-
-
                             >
                             </Image>
                             <Text

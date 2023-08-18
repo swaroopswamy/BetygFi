@@ -20,7 +20,7 @@ function Defi_Hot_Contracts () {
     ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg", "60%"],
     ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg", "10%"],
     ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg", "50%"],
-    ["FluidTokens","123","864","USD 45.90988","", "50%"],
+    ["FluidTokens","123","864","USD 45.90988","/icons/radiantv2_logo.svg", "50%"],
     ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg", "20%"],
 ];
 
@@ -33,7 +33,7 @@ function Defi_Hot_Contracts () {
     ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg"],
     ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg"],
     ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg"],
-    ["FluidTokens","123","864","USD 45.90988",""],
+    ["FluidTokens","123","864","USD 45.90988","/icons/radiantv2_logo.svg"],
     ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg"],
 ];
  
