@@ -342,10 +342,10 @@ const DefiDashboardPage = () => {
             </Box>
 
             <Box
-                marginTop={"30px"}
                 display={"flex"}
                 alignItems={"center"}
                 ml={"12px"}
+                bgColor={useColorModeValue('#F0F0F5', "#191919")}
             >
                 <TVLBox />
                 <TrendGraph />
