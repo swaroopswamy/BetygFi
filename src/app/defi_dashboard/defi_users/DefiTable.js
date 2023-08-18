@@ -475,43 +475,17 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                 <Td>
                     <Flex>
                         <Box>
-                            <Flex>
-                        <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
+                            <Flex
+                                gap={"-10px"}
                             >
-                            </Image>
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
-                            >
-                            </Image>
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
-                            >
-                            </Image>
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
-                            >
-                            </Image>
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
-                            >
-                            </Image>
-                            <Image
-                                height={"10px"}
-                                width={"10px"}
-                                src={assets.src}
-                            >
-                            </Image>
+                                {assets.map((item, i) => {
+                                    return (
+                                        <Image
+                                            src={assets[i]}
+                                        >
+                                    </Image>
+                                    );
+                                })}
                             </Flex>
                         </Box>
                     </Flex>
