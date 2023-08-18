@@ -14,38 +14,22 @@ const DefiInflowOutflowSmallTable = () => {
     const value3 = "+ 46,456,560";
     const value4 = "+ 66,456,560";
     const value5 = "+ 56,456,560";
-    
+
     return (
         <>
             <Box
-
                 w='50%'
-
                 height={"390px"}
-
                 display={"flex"}
-
                 flexDirection={"column"}
-
                 borderRadius={"6px"}
-
                 _dark={{
-
                     bg: "#202020"
-
                 }}
-
                 _light={{
-
                     bg: "#FFFFFF"
-
                 }}
-
             >
-
-
-
-
                 <Flex
                     height={"70px"}
                     borderRadius={"6px"}
@@ -354,7 +338,7 @@ const DefiInflowOutflowSmallTable = () => {
 
                                         ml="6px"
 
-                                        color={value2 < 0 ? "#EF1E1E" : "#245F00"}
+                                        color={value2 < 0 ? "#EF1E1E" : "#60C000"}
 
                                     >
 
