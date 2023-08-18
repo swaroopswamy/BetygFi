@@ -392,6 +392,7 @@ function TableRow({ key, blockchain,users,calls,feeconsumed }) {
                                 height={"10px"}
                                 width={"10px"}
                                  src={ blockchain.src}
+                                alt="logo"
                                 // url={"/icons/Ethereum_sm_icon.svg"}
                                 //  src="/icons/aave_logo.svg"
 

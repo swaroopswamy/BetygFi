@@ -410,6 +410,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 height={"10px"}
                                 width={"10px"}
                                 src={asset.src}
+                                alt="logo"
                             >
                             </Image>
                             <Text

@@ -395,6 +395,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                                 height={"10px"}
                                 width={"10px"}
                                  src={DeFi.src}
+                                alt="defi_logo"
                                 // url={"/icons/Ethereum_sm_icon.svg"}
                                 //  src="/icons/aave_logo.svg"
                             >
@@ -487,6 +488,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                             height={"23px"}
                         >
                             <Image
+                                alt="line_graph"
                                  src={"/icons/line_graph.svg"}
                             >                             
                             </Image>

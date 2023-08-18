@@ -410,6 +410,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 height={"10px"}
                                 width={"10px"}
                                 src={users.src}
+                                alt="logo"
                             >
                             </Image>
                             <Text
@@ -480,10 +481,15 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                             >
                                 {assets.map((item, i) => {
                                     return (
-                                        <Image
-                                            src={assets[i]}
+                                        <Box
+                                            key={i}
                                         >
-                                    </Image>
+                                            <Image
+                                                alt={""}
+                                                key={i}
+                                                src={assets[i]}
+                                            ></Image>
+                                        </Box>
                                     );
                                 })}
                             </Flex>
