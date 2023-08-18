@@ -15,7 +15,7 @@ const DefiHotContractsSmallTable = () => {
 
                 w='50%'
 
-                height={"390px"}
+                height={"410px"}
 
                 display={"flex"}
 
@@ -619,13 +619,7 @@ const DefiHotContractsSmallTable = () => {
 
                             </Tr>
 
-                            <Tr>
-                                <Td></Td>
-                                <Td></Td>
-                                <Td >
-                                    <Text paddingLeft={"40px"} paddingBottom={"100px"}>
-                                        Last Update 3 mins ago</Text></Td>
-                            </Tr>
+                           
 
 
 
@@ -636,6 +630,35 @@ const DefiHotContractsSmallTable = () => {
 
 
                     </Table>
+
+                    <Box 
+                            height={"25px"}
+                            display={"flex"}
+                            alignItems={"end"}
+                            paddingLeft={"350px"}
+                            >
+                                <Flex>
+                                 <Text
+                                            _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"10px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                        >
+                                            Last Update
+                                        </Text>
+                                        <Text
+                                            _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"10px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"3px"}
+                                        >
+                                            3 mins ago
+                                        </Text>
+                                        </Flex>
+                            </Box>
 
                 </TableContainer>
 

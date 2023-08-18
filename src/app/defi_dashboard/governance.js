@@ -327,7 +327,9 @@ const GovernanceTable = ({ }) => {
 
                         </Tr>
                     </Tbody>
+                    <Box height={"30px"}></Box>
                 </Table>
+                
             </Box>
 
     )
