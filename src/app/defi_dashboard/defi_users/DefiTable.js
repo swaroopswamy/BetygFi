@@ -6,14 +6,11 @@ import {
 } from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
-import TableData from '../../../../util/whales.json';
-import millify from "millify";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { ChevronLeftIcon } from '@chakra-ui/icons'
-
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
 const DefiTable = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
@@ -30,25 +27,32 @@ const DefiTable = ({ thread, tableData }) => {
 
     return (
         <>
-        <Flex
-        cursor={"pointer"}
-        ml={"5px"}
-        mb={"20px"}
-        onClick={() => {
-            router.push(`/defi_dashboard/`)
-        }}
-        >
-        <ChevronLeftIcon mt={"2px"} />
-        <Text
-        fontSize={"10px"}
-        fontStyle={"normal"}
-        fontWeight={"400"}
-        lineHeight={"20px"}
-        letterSpacing={"1px"}
-        textTransform={"uppercase"}
-        ml={"5px"}
-        >BACK</Text>
-        </Flex>
+            <Flex
+                cursor={"pointer"}
+                ml={"5px"}
+                mb={"20px"}
+                align={"center"}
+                onClick={() => {
+                    router.push(`/defi_dashboard/`)
+                }}
+            >
+                <Icon
+                  w="24px"
+                  h="24px"
+                    as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+                    mr="6px"
+
+                />
+                <Text
+                    fontSize={"10px"}
+                    fontStyle={"normal"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
+                    letterSpacing={"1px"}
+                    textTransform={"uppercase"}
+                    ml={"5px"}
+                >BACK</Text>
+            </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
@@ -75,23 +79,28 @@ const DefiTable = ({ thread, tableData }) => {
                             DeFi Users
                         </Text>
                     </Box>
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                    >
+                        <SelectionBox
+                            blockchainSelected={blockchainSelected}
+                            BlockchainTypeHandler={BlockchainTypeHandler}
+                            colorMode={colorMode}
+                        />
 
-                    <SelectionBox
-                        blockchainSelected={blockchainSelected}
-                        BlockchainTypeHandler={BlockchainTypeHandler}
-                        colorMode={colorMode}
-                    />
+                        <Input
+                            borderColor={useColorModeValue("#E8E8E8", "#333")}
+                            bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                            color={useColorModeValue("#16171B", "#A8ADBD")}
+                            fontSize={"10px"}
+                            fontWeight={400}
+                            w="207px"
+                            placeholder="SEARCH"
+                        //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
+                        />
+                    </Box>
 
-                    <Input
-                        borderColor={useColorModeValue("#E8E8E8", "#333")}
-                        bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                        color={useColorModeValue("#16171B", "#A8ADBD")}
-                        fontSize={"10px"}
-                        fontWeight={400}
-                        w="207px"
-                        placeholder="SEARCH"
-                    //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
-                    />
 
                 </Box>
 
@@ -126,10 +135,10 @@ const DefiTable = ({ thread, tableData }) => {
                                 <>
                                     <TableRow
                                         key={i}
-                                        users={{name:item[1],src:item[0]}}
+                                        users={{ name: item[1], src: item[0] }}
                                         deposited={item[2]}
                                         borrowed={item[3]}
-                                        assets={[item[4],item[5],item[6],item[7],item[8],item[9]]}
+                                        assets={[item[4], item[5], item[6], item[7], item[8], item[9]]}
                                         share={item[10]}
                                     />
                                 </>
@@ -166,9 +175,9 @@ function ThreadItem({ key, name }) {
                 textAlign={"left"}
             >
                 <Flex>
-            {name}
-                {/* Add an image next to the text */}
-                <Image src={useColorModeValue("/images/Arrowdown(light).svg","/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+                    {name}
+                    {/* Add an image next to the text */}
+                    <Image src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
@@ -180,6 +189,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
         <Box
             display={"flex"}
             flexDirection={"column"}
+            mr="40px"
         >
             <Box
                 w={"100%"}
@@ -278,14 +288,14 @@ function PageButtons() {
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-              <Flex>
-              <Text
+                <Flex>
+                    <Text
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
                         fontSize={"10px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
-               >
+                    >
                         Last Update
                     </Text>
                     <Text

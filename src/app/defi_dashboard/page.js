@@ -15,6 +15,11 @@ import millify from "millify";
 import TVLBox from "./TVLBox";
 import DonutChart from "./DonutChart";
 import TrendGraph from "./TrendGraph";
+import DefiUsersSmallTableComponent from "./DefiUsersSmallTable";
+import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
+import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
+import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
+import GovernanceTable from "./governance";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -340,53 +345,69 @@ const DefiDashboardPage = () => {
                     </Box>
                 </Box>
             </Box>
-
             <Box
-                display={"flex"}
-                alignItems={"center"}
-                ml={"12px"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
-            >
-                <TVLBox />
-                <TrendGraph />
-            </Box>
-
-            <Box
-                display={"flex"}
-                flexDirection={"column"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
-                padding={"10px 0 0 10px"}
+                _light={{
+                    bgColor: "#F0F0F5"
+                }}
+                _dark={{
+                    bgColor: "#191919"
+                }}
             >
                 <Box
+                    mb="10px"
                     display={"flex"}
-                    justifyContent={"space-evenly"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
                 >
+                    <TVLBox />
+                    <TrendGraph />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                >
+                    <DefiUsersSmallTableComponent />
                     <BarChart />
-                </Box>
-            </Box>
 
-            <Box
-                display={"flex"}
-                flexDirection={"column"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
-                // padding={"10px 0 0 10px"}
-                ml={"10px"}
-            >
+                </Box>
+
                 <Box
+                    my="10px"
                     display={"flex"}
-                    justifyContent={"space-evenly"}
-                >
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
 
+                >
+                    <DefiAssetCompositionSmallTable />
                     <DonutChart />
-                    {/* <BarChart /> */}
+
+                </Box>
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+
+                >
+                    <DefiHotContractsSmallTableComponent />
+                    <DefiInflowOutflowSmallTableComponent />
+
+                </Box>
+
+                <Box
+                    mt="20px"
+                >
+                    <GovernanceTable />
                 </Box>
             </Box>
 
-            <Box
-                bgColor={useColorModeValue('#FFFFFF', "#202020")}
-            >
-                <Governance />
-            </Box>
         </>
     );
 };

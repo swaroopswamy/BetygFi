@@ -15,10 +15,10 @@ const TVLBox = () => {
             display={"flex"}
             flexDirection={"column"}
             borderRadius={"6px"}
-            ml={"30px"}
+         
             _dark={{ bg: "#202020" }}
             _light={{ bg: "#FFFFFF" }}
-            mr="10px">
+            mr="20px">
             <Box p={"20px"} >
                 <Text
                     _light={{ color: "#16171B" }}

@@ -18,3 +18,5 @@ export const categories = [
     "Lending",
     "Launchpad"
 ]
+
+
