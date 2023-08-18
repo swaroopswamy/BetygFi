@@ -82,7 +82,7 @@ function DonutChart() {
       >
         <Box
           display={"flex"}
-          aliginItems={"center"}
+          alignItems={"center"}
           justifyContent={"space-between"}
         >
           <Box

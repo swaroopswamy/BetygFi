@@ -20,8 +20,6 @@ const DefiInflowOutflowSmallTable = () => {
             <Box
                 w='50%'
 
-                height={"410px"}
-
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}
@@ -561,42 +559,42 @@ const DefiInflowOutflowSmallTable = () => {
                             </Tr>
 
 
-                           
+
                         </Tbody>
 
 
 
                     </Table>
-                    <Box   height={"25px"}
-                            display={"flex"}
-                            alignItems={"end"}
-                            paddingLeft={"350px"}
+                    <Box
+                        display={"flex"}
+                        justifyContent={"end"}
+                        my={"10px"}
+                        mr="25px"
+                    >
+                        <Flex>
+                            <Text
+                                _light={{ color: "#434347" }}
+                                _dark={{ color: "#A8ADBD" }}
+                                fontSize={"10px"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
                             >
-                                <Flex>
-                                 <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            Last Update
-                                        </Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"3px"}
-                                        >
-                                            3 mins ago
-                                        </Text>
-                                        </Flex>
-                            </Box>
-
+                                Last Update
+                            </Text>
+                            <Text
+                                _light={{ color: "#16171B" }}
+                                _dark={{ color: "#FFFFFF" }}
+                                fontSize={"10px"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                ml={"3px"}
+                            >
+                                3 mins ago
+                            </Text>
+                        </Flex>
+                    </Box>
                 </TableContainer>
-                
+
             </Box>
 
         </>

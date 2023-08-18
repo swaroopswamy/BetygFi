@@ -15,7 +15,7 @@ const DefiAssetCompositionSmallTable = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}
-             
+
                 _dark={{ bg: "#202020" }}
                 _light={{ bg: "#FFFFFF" }}
                 mr="25px"
@@ -343,33 +343,33 @@ const DefiAssetCompositionSmallTable = () => {
                         </Tbody>
                     </Table>
                     <Box
-                            height={"30px"}
-                            display={"flex"}
-                            alignItems={"end"}
-                            paddingLeft={"350px"}
+                        display={"flex"}
+                        justifyContent={"end"}
+                        my={"10px"}
+                        mr="25px"
+                    >
+                        <Flex>
+                            <Text
+                                _light={{ color: "#434347" }}
+                                _dark={{ color: "#A8ADBD" }}
+                                fontSize={"10px"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
                             >
-                                <Flex mb={"5px"}>
-                                 <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            Last Update
-                                        </Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"3px"}
-                                        >
-                                            3 mins ago
-                                        </Text>
-                                        </Flex>
-                            </Box>
+                                Last Update
+                            </Text>
+                            <Text
+                                _light={{ color: "#16171B" }}
+                                _dark={{ color: "#FFFFFF" }}
+                                fontSize={"10px"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                ml={"3px"}
+                            >
+                                3 mins ago
+                            </Text>
+                        </Flex>
+                    </Box>
                 </TableContainer>
             </Box>
 
