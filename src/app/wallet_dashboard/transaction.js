@@ -187,14 +187,14 @@ const TransactionPanelComponent = () => {
                           display={"flex"}
                           alignItems={"center"}
                         >
-                          <>
-                            {/* <Image
-                            width={5}
-                            height={5}
-                            alt='logo'
-                            src="/images/t1.png"
-                          ></Image> */}
-                          </>
+                         {/*  <>
+                            <Image
+                              width={5}
+                              height={5}
+                              alt='logo'
+                              src={`/icons/${item?.blockchain.toLowerCase()}_sm_icon.svg`}
+                            ></Image>
+                          </> */}
 
                           <Box
 
@@ -305,8 +305,8 @@ const TransactionPanelComponent = () => {
                             letterSpacing={"1px"}
                             ml="6px"
                           >
-                            
-                            {item?.value !==undefined && (item?.value / Math.pow(10,18)).toLocaleString('fullwide', {useGrouping:false}) }{" ETH"}
+
+                            {item?.value !== undefined && (item?.value / Math.pow(10, 18)).toLocaleString('fullwide', { useGrouping: false })}{" ETH"}
                           </Text>
                         </Box>
                       </Td>
