@@ -99,7 +99,7 @@ function DonutChart() {
 
           </Box>
 
-          <Button
+          {/* <Button
             variant={"outline"}
             size={"xs"}
             _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
@@ -122,7 +122,7 @@ function DonutChart() {
               View More
             </Text>
 
-          </Button>
+          </Button> */}
         </Box>
 
 
