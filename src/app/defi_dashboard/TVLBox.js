@@ -41,7 +41,7 @@ const TVLBox = () => {
                 >
                     Total Value Locked
                 </Text>
-                <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")} pt={"20px"}></Image>
+                <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")} pt={"20px"} alt=""></Image>
                 <Flex>
                     <Text
                         _light={{ color: "#16171B" }}

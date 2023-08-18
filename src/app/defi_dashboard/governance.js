@@ -3,12 +3,16 @@ import { Box, Image, Link,  Text, useColorModeValue, useColorMode,Spacer,Button,
 import {List,ListItem,ListIcon} from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import NextLink from 'next/link';
 
 
 const Governance = ({} ) => {
 
     const { colorMode } = useColorMode();
+
+    const router = useRouter();
+
 
     //For DeFi Inflow/Outflow Table
     const value1 = "+356,456,560";
@@ -146,6 +150,9 @@ const Governance = ({} ) => {
              strokeWidth={"1px"}
             mt={"15px"}
             mr={"20px"}
+            onClick={() => {
+                router.push(`/defi_dashboard/defi_hot_contract`)
+            }}
             >
             
             <Text
@@ -748,6 +755,9 @@ const Governance = ({} ) => {
              strokeWidth={"1px"}
             mt={"15px"}
             mr={"20px"}
+            onClick={() => {
+                router.push(`/defi_dashboard/`)
+            }}
             >
             
             <Text

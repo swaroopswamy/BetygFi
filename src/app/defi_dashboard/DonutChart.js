@@ -3,6 +3,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import { color } from "framer-motion";
 import React from "react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import './styles.css';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -10,7 +11,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function DonutChart() {
 
   const { colorMode } = useColorMode();
-
+  const router = useRouter();
 
   const options = {
       labels: ["Fee", "Revenue"],
@@ -128,6 +129,9 @@ function DonutChart() {
              strokeWidth={"1px"}
             mt={"15px"}
             mr={"20px"}
+            onClick={() => {
+              router.push(`/defi_dashboard/asset_composition`)
+            }}
             >
             <Text
             _light={{ color: "#16171B" }}
@@ -460,17 +464,51 @@ function DonutChart() {
               borderRadius={"6px"}
             >
               <Box
-                padding={"20px 0 20px 20px"}
+                display={"flex"}
+                aliginItems={"center"}
+                justifyContent={"space-between"}
               >
-                <Text
-                  fontSize={"15px"}
-                  fontWeight={"400"}
-                  lineHeight={"20px"}
-                  color={useColorModeValue("#16171B", "#FFFFFF")}
+                <Box
+                  padding={"20px 0 20px 20px"}
                 >
-                  Defi Fee and Revenue
-                </Text>
-              </Box>
+                  <Text
+                    fontSize={"15px"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
+                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                  >
+                    Defi Fee and Revenue
+                  </Text>
+
+                </Box>
+
+                <Button 
+                    variant={"outline"} 
+                    size={"xs"}
+                    _light={{ colorScheme: "#F5F5F7", stroke: "#000"}}
+                    _dark={{ colorScheme: "#191919", stroke: "#333" }}
+                    strokeWidth={"1px"}
+                    mt={"15px"}
+                    mr={"20px"}
+                    onClick={() => {
+                      router.push(`/defi_dashboard/`)
+                    }}
+                    >
+                    
+                    <Text
+                    _light={{ color: "#16171B" }}
+                    _dark={{ color: "#FFFFFF" }}
+                    fontSize={"10px"}
+                    fontWeight={"400"}
+                    lineHeight={"10px"}
+                    >
+                    View More
+                    </Text>         
+                    
+                </Button>
+            </Box>  
+
+
               <Box
                 padding={"5px 20px 5px 10px"}
                 mt={"50px"}

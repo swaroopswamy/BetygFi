@@ -342,10 +342,10 @@ const DefiDashboardPage = () => {
             </Box>
 
             <Box
-                marginTop={"30px"}
                 display={"flex"}
                 alignItems={"center"}
                 ml={"12px"}
+                bgColor={useColorModeValue('#F0F0F5', "#191919")}
             >
                 <TVLBox />
                 <TrendGraph />
@@ -377,11 +377,10 @@ const DefiDashboardPage = () => {
                     justifyContent={"space-evenly"}
                 >
 
-                    {/* <DonutChart />
-                    <BarChart /> */}
+                    <DonutChart />
+                    {/* <BarChart /> */}
                 </Box>
             </Box>
-
 
             <Box
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
