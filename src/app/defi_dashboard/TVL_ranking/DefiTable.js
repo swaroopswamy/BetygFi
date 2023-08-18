@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode, colorMode
+    Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
@@ -12,10 +12,9 @@ import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { ChevronLeftIcon } from '@chakra-ui/icons'
+import { ChevronLeftIcon } from '@chakra-ui/icons';
 
-
-const DefiTable = ({ thread, tableData }) => {
+const TVLRanking = ({ thread, tableData }) => { 
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -49,6 +48,7 @@ const DefiTable = ({ thread, tableData }) => {
         ml={"5px"}
         >BACK</Text>
         </Flex>
+        
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
@@ -59,22 +59,23 @@ const DefiTable = ({ thread, tableData }) => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={"8px 30px 8px 10px"}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //ml={"20px"}
+                            // ml={"20px"}
+                            // justifyContent={"space-around"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Users
+                            DeFi Category by TVL Rankings
                         </Text>
-                    </Box>
+                    </Box> 
 
                     <SelectionBox
                         blockchainSelected={blockchainSelected}
@@ -121,16 +122,18 @@ const DefiTable = ({ thread, tableData }) => {
                     </Thead>
 
                     <Tbody>
-                        {tableData.map((item, i) => {
+                    {tableData.map((item, i) => {
                             return (
                                 <>
                                     <TableRow
                                         key={i}
-                                        users={{name:item[1],src:item[0]}}
-                                        deposited={item[2]}
-                                        borrowed={item[3]}
-                                        assets={[item[4],item[5],item[6],item[7],item[8],item[9]]}
-                                        share={item[10]}
+                                        DeFi={{Category: item[0],
+                                            src: item[4]
+                                        }}
+                                        AvailableBlockchains={item[1]}
+                                        AvailableDeFi ={item[2]}
+                                        TVL={item[3]}
+                                        Days = {{src:item[5]}}
                                     />
                                 </>
                             )
@@ -149,9 +152,11 @@ const DefiTable = ({ thread, tableData }) => {
     )
 };
 
-export default DefiTable;
+export default TVLRanking;
 
 function ThreadItem({ key, name }) {
+    const { colorMode } = useColorMode();
+
     return (
         <>
             <Th
@@ -165,10 +170,10 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                <Flex>
+               <Flex>
             {name}
                 {/* Add an image next to the text */}
-                <Image src={useColorModeValue("/images/Arrowdown(light).svg","/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+                <Image src={useColorModeValue("/icons/arrowdown_light.svg","/icons/arrowdown_dark.svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
@@ -274,31 +279,11 @@ function PageButtons() {
             <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                justifyContent={"space-between"}
+                justifyContent={"end"}
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-              <Flex>
-              <Text
-                        _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-               >
-                        Last Update
-                    </Text>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        pl={"3px"}
-                    >
-                        3 mins ago
-                    </Text>
-                </Flex>
+
                 <Box
                     display={"flex"}
                 >
@@ -380,11 +365,10 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, users, deposited, borrowed, assets, share }) {
+function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
-
     return (
         <>
             <Tr
@@ -399,7 +383,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
-                <Td>
+
+<Td>
                     <Flex>
                         <Box
                             alignItems={"center"}
@@ -409,8 +394,10 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                             <Image
                                 height={"10px"}
                                 width={"10px"}
-                                src={users.src}
-                                alt="logo"
+                                 src={DeFi.src}
+                                alt="defi_logo"
+                                // url={"/icons/Ethereum_sm_icon.svg"}
+                                //  src="/icons/aave_logo.svg"
                             >
                             </Image>
                             <Text
@@ -425,7 +412,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {users.name}
+                                { DeFi.Category}
                             </Text>
                         </Box>
                     </Flex>
@@ -446,7 +433,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {deposited}
+                                {AvailableBlockchains}
                             </Text>
                         </Box>
                     </Flex>
@@ -467,32 +454,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {borrowed}
+                                {AvailableDeFi}
                             </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Flex
-                                gap={"-10px"}
-                            >
-                                {assets.map((item, i) => {
-                                    return (
-                                        <Box
-                                            key={i}
-                                        >
-                                            <Image
-                                                alt={""}
-                                                key={i}
-                                                src={assets[i]}
-                                            ></Image>
-                                        </Box>
-                                    );
-                                })}
-                            </Flex>
                         </Box>
                     </Flex>
                 </Td>
@@ -512,13 +475,35 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {share}
+                                {TVL}
                             </Text>
                         </Box>
                     </Flex>
                 </Td>
 
+                <Td>
+                    <Flex>
+                        <Box
+                            width={"87px"}
+                            height={"23px"}
+                        >
+                            <Image
+                                alt="line_graph"
+                                 src={"/icons/line_graph.svg"}
+                            >                             
+                            </Image>
+                        </Box>
+                    </Flex>
+                </Td>
             </Tr>
         </>
     );
 }
+
+
+
+
+
+
+
+

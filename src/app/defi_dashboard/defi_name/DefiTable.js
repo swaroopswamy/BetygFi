@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode, colorMode
+    Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
@@ -14,8 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 
-
-const DefiTable = ({ thread, tableData }) => {
+const DefiName = ({ thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -59,20 +58,20 @@ const DefiTable = ({ thread, tableData }) => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={"8px 30px 8px 15px"}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //ml={"20px"}
+                            // ml={"20px"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"15px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Users
+                            DeFi Name
                         </Text>
                     </Box>
 
@@ -124,13 +123,15 @@ const DefiTable = ({ thread, tableData }) => {
                         {tableData.map((item, i) => {
                             return (
                                 <>
-                                    <TableRow
+                                   <TableRow
                                         key={i}
-                                        users={{name:item[1],src:item[0]}}
-                                        deposited={item[2]}
-                                        borrowed={item[3]}
-                                        assets={[item[4],item[5],item[6],item[7],item[8],item[9]]}
-                                        share={item[10]}
+                                        Asset={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        Inflow={item[1]}
+                                        Outflow={item[2]}
+                                        NetValueflow ={item[3]}
+                                      
                                     />
                                 </>
                             )
@@ -149,9 +150,10 @@ const DefiTable = ({ thread, tableData }) => {
     )
 };
 
-export default DefiTable;
+export default DefiName;
 
 function ThreadItem({ key, name }) {
+    const { colorMode } = useColorMode();
     return (
         <>
             <Th
@@ -165,10 +167,14 @@ function ThreadItem({ key, name }) {
                 textTransform={"uppercase"}
                 textAlign={"left"}
             >
-                <Flex>
+                 <Flex>
             {name}
                 {/* Add an image next to the text */}
-                <Image src={useColorModeValue("/images/Arrowdown(light).svg","/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+                {name === "Blockchain | Asset Name" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Users" ml="1" />}
+                {name === "Inflow (7 Days)" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Deposited" ml="1" />}
+                {name === "Outflow (7 Days)" && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Borrowed" ml="1"  />}
+                {name === "Net Value flow " && <Image src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")} alt="Assets" ml="1" />}
+                
                 </Flex>
             </Th>
         </>
@@ -274,31 +280,11 @@ function PageButtons() {
             <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                justifyContent={"space-between"}
+                justifyContent={"end"}
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-              <Flex>
-              <Text
-                        _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-               >
-                        Last Update
-                    </Text>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        pl={"3px"}
-                    >
-                        3 mins ago
-                    </Text>
-                </Flex>
+
                 <Box
                     display={"flex"}
                 >
@@ -380,11 +366,10 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, users, deposited, borrowed, assets, share }) {
+function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
-
     return (
         <>
             <Tr
@@ -399,7 +384,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
-                <Td>
+
+<Td>
                     <Flex>
                         <Box
                             alignItems={"center"}
@@ -409,8 +395,12 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                             <Image
                                 height={"10px"}
                                 width={"10px"}
-                                src={users.src}
+                                src={ Asset.src}
                                 alt="logo"
+                                // url={"/icons/Ethereum_sm_icon.svg"}
+                                //  src="/icons/aave_logo.svg"
+
+
                             >
                             </Image>
                             <Text
@@ -425,7 +415,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {users.name}
+                                { Asset.name}
                             </Text>
                         </Box>
                     </Flex>
@@ -446,7 +436,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {deposited}
+                                {Inflow}
                             </Text>
                         </Box>
                     </Flex>
@@ -467,32 +457,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {borrowed}
+                                {Outflow}
                             </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Flex
-                                gap={"-10px"}
-                            >
-                                {assets.map((item, i) => {
-                                    return (
-                                        <Box
-                                            key={i}
-                                        >
-                                            <Image
-                                                alt={""}
-                                                key={i}
-                                                src={assets[i]}
-                                            ></Image>
-                                        </Box>
-                                    );
-                                })}
-                            </Flex>
                         </Box>
                     </Flex>
                 </Td>
@@ -512,12 +478,13 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {share}
+                                {NetValueflow}
                             </Text>
                         </Box>
                     </Flex>
                 </Td>
 
+                
             </Tr>
         </>
     );
