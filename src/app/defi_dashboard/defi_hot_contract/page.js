@@ -11,8 +11,20 @@ function Defi_Hot_Contracts () {
   const { colorMode } = useColorMode();
   const router = useRouter();
 
-  const thread = ["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"];
-  const tableData = [
+  const hotContractData = [
+    ["AAVE V2 ","406","3457","USD 65.930000","/icons/aave_logo.svg", "50%"],
+    ["AAVE V3 ","567","8765","USD 65.930000","/icons/aave_logo.svg", "20%"],
+    ["Compound","234","76346","USD 35.700000","/icons/compound_logo.svg", "30%"],
+    ["JustLend","5634","567","USD 0.023387","/icons/justlend_logo.svg", "40%"],
+    ["Venus","12","2376","USD 5.100000","/icons/venus_logo.svg", "50%"],
+    ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg", "60%"],
+    ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg", "10%"],
+    ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg", "50%"],
+    ["FluidTokens","123","864","USD 45.90988","", "50%"],
+    ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg", "20%"],
+];
+
+  const defiFunctionsData = [
     ["AAVE V2 ","406","3457","USD 65.930000","/icons/aave_logo.svg"],
     ["AAVE V3 ","567","8765","USD 65.930000","/icons/aave_logo.svg"],
     ["Compound","234","76346","USD 35.700000","/icons/compound_logo.svg"],
@@ -119,8 +131,8 @@ function Defi_Hot_Contracts () {
                   >
                     <DefiTable
                         tableName={"Defi Hot Contract"}
-                        thread={thread}
-                        tableData={tableData}
+                        thread={["Blockchain | Contract Name","No of Users","No of Transactions","Total Deposit", "Share"]}
+                        tableData={hotContractData}
                     />
                   </TabPanel>
 
@@ -129,8 +141,8 @@ function Defi_Hot_Contracts () {
                   >
                     <DefiTable
                         tableName={"Defi Functions/Methods"}
-                        thread={thread}
-                        tableData={tableData}
+                        thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
+                        tableData={defiFunctionsData}
                     />
                   </TabPanel>
 

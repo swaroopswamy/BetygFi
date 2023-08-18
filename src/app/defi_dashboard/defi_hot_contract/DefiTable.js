@@ -108,7 +108,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                         {tableData.map((item, i) => {
                             return (
                                 <>
-                                        <TableRow
+                                    <TableRow
                                         key={i}
                                         blockchain={{name: item[0],
                                             src: item[4]
@@ -116,7 +116,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                                         users={item[1]}
                                         calls ={item[2]}
                                         feeconsumed={item[3]}
-                                        
+                                        share={item[5]}
                                     />
                                 </>
                             )
@@ -347,7 +347,7 @@ function PageButtons() {
         </>)
 }
 
-function TableRow({ key, blockchain,users,calls,feeconsumed }) {
+function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
@@ -366,7 +366,7 @@ function TableRow({ key, blockchain,users,calls,feeconsumed }) {
                 borderRadius={'2px'}
             >
 
-<Td>
+            <Td>
                     <Flex>
                         <Box
                             alignItems={"center"}
@@ -465,7 +465,26 @@ function TableRow({ key, blockchain,users,calls,feeconsumed }) {
                     </Flex>
                 </Td>
 
-                
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {share}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
             </Tr>
         </>
     );
