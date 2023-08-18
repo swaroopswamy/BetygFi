@@ -4,6 +4,8 @@ import {
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import TableData from '../../../../util/whales.json';
@@ -30,23 +32,30 @@ const DefiTable = ({ thread, tableData }) => {
     return (
         <>
         <Flex
-        cursor={"pointer"}
-        ml={"5px"}
-        mb={"20px"}
-        onClick={() => {
-            router.push(`/defi_dashboard/`)
-        }}
+            cursor={"pointer"}
+            ml={"5px"}
+            mb={"20px"}
+            align={"center"}
+            onClick={() => {
+                router.push(`/defi_dashboard/`)
+            }}
         >
-        <ChevronLeftIcon mt={"2px"} />
-        <Text
-        fontSize={"10px"}
-        fontStyle={"normal"}
-        fontWeight={"400"}
-        lineHeight={"20px"}
-        letterSpacing={"1px"}
-        textTransform={"uppercase"}
-        ml={"5px"}
-        >BACK</Text>
+            <Icon
+                w="24px"
+                h="24px"
+                as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+                mr="6px"
+
+            />
+            <Text
+                fontSize={"10px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                letterSpacing={"1px"}
+                textTransform={"uppercase"}
+                ml={"5px"}
+            >BACK</Text>
         </Flex>
             <Box
                 border={"2px"}
@@ -75,22 +84,28 @@ const DefiTable = ({ thread, tableData }) => {
                         </Text>
                     </Box>
 
-                    <SelectionBox
-                        blockchainSelected={blockchainSelected}
-                        BlockchainTypeHandler={BlockchainTypeHandler}
-                        colorMode={colorMode}
-                    />
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                        gap={"10px"}
+                    >
+                        <SelectionBox
+                            blockchainSelected={blockchainSelected}
+                            BlockchainTypeHandler={BlockchainTypeHandler}
+                            colorMode={colorMode}
+                        />
 
-                    <Input
-                        borderColor={useColorModeValue("#E8E8E8", "#333")}
-                        bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                        color={useColorModeValue("#16171B", "#A8ADBD")}
-                        fontSize={"10px"}
-                        fontWeight={400}
-                        w="207px"
-                        placeholder="SEARCH"
-                    //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
-                    />
+                        <Input
+                            borderColor={useColorModeValue("#E8E8E8", "#333")}
+                            bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                            color={useColorModeValue("#16171B", "#A8ADBD")}
+                            fontSize={"10px"}
+                            fontWeight={400}
+                            w="207px"
+                            placeholder="SEARCH"
+                        //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
+                        />
+                    </Box>
 
                 </Box>
 

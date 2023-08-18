@@ -79,9 +79,11 @@ const DefiTable = ({ thread, tableData }) => {
                             DeFi Users
                         </Text>
                     </Box>
+
                     <Box
                         display={"flex"}
                         alignItems={"center"}
+                        gap={"10px"}
                     >
                         <SelectionBox
                             blockchainSelected={blockchainSelected}
@@ -189,7 +191,6 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
         <Box
             display={"flex"}
             flexDirection={"column"}
-            mr="40px"
         >
             <Box
                 w={"100%"}
