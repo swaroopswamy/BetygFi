@@ -695,25 +695,16 @@ const DefiUsersSmallTableComponent = () => {
                                     </Box>
                                 </Td>
                             </Tr>
-
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                </Td>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                </Td>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                        paddingLeft={"100px"}
-                                    >
-                                        <Text
+                            </Tbody>
+                    </Table>
+                    <Box
+                            height={"30px"}
+                            display={"flex"}
+                            alignItems={"end"}
+                            paddingLeft={"350px"}
+                            >
+                                <Flex mb={"5px"}>
+                                 <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"10px"}
@@ -732,12 +723,8 @@ const DefiUsersSmallTableComponent = () => {
                                         >
                                             3 mins ago
                                         </Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-
-                        </Tbody>
-                    </Table>
+                                        </Flex>
+                            </Box>
                 </TableContainer>
             </Box>
 
