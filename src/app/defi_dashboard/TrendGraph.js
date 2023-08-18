@@ -347,7 +347,7 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
     )
 }
 
-function TrendGraphTypeButton( {key,name, graphTypeSelected, GraphTypeHandler, colorMode}) {
+function TrendGraphTypeButton( {key, name, graphTypeSelected, GraphTypeHandler, colorMode}) {
 
     return (
         <>
@@ -360,6 +360,7 @@ function TrendGraphTypeButton( {key,name, graphTypeSelected, GraphTypeHandler, c
                 borderColor={useColorModeValue("#E0E0E0", "#333")}
                 display={"flex"}
                 alignItems={"center"}
+                justifyContent={"center"}
                 cursor={"pointer"}
                 onClick={() => {
                     GraphTypeHandler(name);
