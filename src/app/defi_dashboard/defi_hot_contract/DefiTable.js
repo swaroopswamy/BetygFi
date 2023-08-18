@@ -4,8 +4,6 @@ import {
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
-import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
-import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import TableData from '../../../../util/whales.json';
@@ -16,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from '@chakra-ui/icons'
 
-const DefiTable = ({ thread, tableData }) => {
+const DefiTable = ({ tableName, thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -31,32 +29,6 @@ const DefiTable = ({ thread, tableData }) => {
 
     return (
         <>
-        <Flex
-            cursor={"pointer"}
-            ml={"5px"}
-            mb={"20px"}
-            align={"center"}
-            onClick={() => {
-                router.push(`/defi_dashboard/`)
-            }}
-        >
-            <Icon
-                w="24px"
-                h="24px"
-                as={colorMode === "light" ? BackIconWhite : BackIconBlack}
-                mr="6px"
-
-            />
-            <Text
-                fontSize={"10px"}
-                fontStyle={"normal"}
-                fontWeight={"400"}
-                lineHeight={"20px"}
-                letterSpacing={"1px"}
-                textTransform={"uppercase"}
-                ml={"5px"}
-            >BACK</Text>
-        </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
@@ -80,7 +52,7 @@ const DefiTable = ({ thread, tableData }) => {
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Hot Contract
+                            {tableName}
                         </Text>
                     </Box>
 
@@ -138,7 +110,7 @@ const DefiTable = ({ thread, tableData }) => {
                         {tableData.map((item, i) => {
                             return (
                                 <>
-                                     <TableRow
+                                        <TableRow
                                         key={i}
                                         blockchain={{name: item[0],
                                             src: item[4]
@@ -146,7 +118,7 @@ const DefiTable = ({ thread, tableData }) => {
                                         users={item[1]}
                                         calls ={item[2]}
                                         feeconsumed={item[3]}
-                                       
+                                        
                                     />
                                 </>
                             )

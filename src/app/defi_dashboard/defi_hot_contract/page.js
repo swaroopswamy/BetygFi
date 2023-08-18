@@ -1,9 +1,13 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import DefiTable from "../defi_hot_contract/DefiTable";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
 function Defi_Hot_Contracts () {
+  const [tabIndex, setTabIndex] = useState(0);
+  const { colorMode } = useColorMode();
 
   const thread = ["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"];
   const tableData = [
@@ -25,10 +29,113 @@ function Defi_Hot_Contracts () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <DefiTable
-          thread={thread}
-          tableData={tableData}
-        />
+      <Flex
+          cursor={"pointer"}
+          ml={"5px"}
+          mb={"20px"}
+          align={"center"}
+          onClick={() => {
+              router.push(`/defi_dashboard/`)
+          }}
+      >
+          <Icon
+              w="24px"
+              h="24px"
+              as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+              mr="6px"
+
+          />
+          <Text
+              fontSize={"10px"}
+              fontStyle={"normal"}
+              fontWeight={"400"}
+              lineHeight={"20px"}
+              letterSpacing={"1px"}
+              textTransform={"uppercase"}
+              ml={"5px"}
+          >BACK</Text>
+      </Flex>
+
+      <Tabs onChange={(index) => setTabIndex(index)} >
+          <TabList
+              marginLeft={"30px"}
+              marginRight={"30px"}
+              gap={"44px"}
+              _light={{borderColor: "#CECECE"}}
+              _dark={{borderColor: "#2F2F2F"}}
+          >
+              <Tab
+                  padding="0"
+                  _selected={colorMode === 'light' ? {borderColor: "#000000"} : {borderColor: "#FFFFFF"}}
+              >
+                  <Box
+                      display={"flex"}
+                      alignItems={"center"}
+                      padding={"13px 5px"}
+                  >
+                      <Text
+                          fontSize={"10px"}
+                          fontWeight={tabIndex === 0 ? "700" : "400"}
+                          color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                          textTransform={"uppercase"}
+                          letterSpacing={"1px"}
+                      >
+                          Defi Hot Contract
+                      </Text>
+                  </Box>
+              </Tab>
+              <Tab
+                  padding="0"
+                  _selected={colorMode === 'light' ? {borderColor: "#000000"} : {borderColor: "#FFFFFF"}}
+              >
+                  <Box
+                      display={"flex"}
+                      alignItems={"center"}
+                      padding={"13px 5px"}
+                  >
+                      <Text
+                          fontSize={"10px"}
+                          color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                          fontWeight={tabIndex === 1 ? "700" : "400"}
+                          textTransform={"uppercase"}
+                          letterSpacing={"1px"}
+                      >
+                          Defi Functions/Methods
+                      </Text>
+                  </Box>
+              </Tab>
+          </TabList>
+
+          <Box
+              bgColor={useColorModeValue("#F0F0F5", "#191919")}
+              padding={"32px"}
+          >
+              <TabPanels>
+
+                  <TabPanel
+                      p="0px"
+                  >
+                    <DefiTable
+                        tableName={"Defi Hot Contract"}
+                        thread={thread}
+                        tableData={tableData}
+                    />
+                  </TabPanel>
+
+                  <TabPanel
+                      p="0px"
+                  >
+                    <DefiTable
+                        tableName={"Defi Functions/Methods"}
+                        thread={thread}
+                        tableData={tableData}
+                    />
+                  </TabPanel>
+
+              </TabPanels>
+          </Box>
+      </Tabs>
+
     </Box>
   )
 };
