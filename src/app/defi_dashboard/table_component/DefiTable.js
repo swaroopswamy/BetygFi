@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
 
-const DefiTable = ({ tableHeading,thread, tableData }) => {
+const DefiTable = ({ tableHeading,thread, tableData,isTvlRankingsTable }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 

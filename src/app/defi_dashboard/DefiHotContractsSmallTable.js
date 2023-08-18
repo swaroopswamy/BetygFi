@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 
 
-const DefiAssetCompositionSmallTable = () => {
+const DefiHotContractsSmallTable = () => {
 
     const { colorMode } = useColorMode();
     const router = useRouter();
@@ -11,48 +11,104 @@ const DefiAssetCompositionSmallTable = () => {
     return (
         <>
             <Box
+                mr={"25px"}
+
                 w='50%'
+
+                height={"390px"}
+
                 display={"flex"}
+
                 flexDirection={"column"}
+
                 borderRadius={"6px"}
-             
-                _dark={{ bg: "#202020" }}
-                _light={{ bg: "#FFFFFF" }}
-                mr="25px"
+
+                _dark={{
+
+                    bg: "#202020"
+
+                }}
+
+                _light={{
+
+                    bg: "#FFFFFF"
+
+                }}
+
+
+
             >
+
                 <Flex
-                    height={"50px"}
+
+                    height={"70px"}
                     borderRadius={"6px"}
                     _dark={{
+
                         bg: "#202020",
+
                         color: "#FFFFFF"
+
                     }}
+
                     _light={{
+
                         bg: "#FFFFFF",
+
                         color: "#16171B"
+
                     }} >
+
                     <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
+
                         fontSize={"15px"}
+
+                        fontStyle={"normal"}
+
                         fontWeight={"400"}
+
                         lineHeight={"20px"}
+
                         ml={"20px"}
+
+                        mr={"6px"}
+
                         paddingTop={"15px"}
+
                     >
-                        DeFi Asset Composition
+
+                        DeFi Hot/Active Contracts
+
                     </Text>
-                    <Tooltip label="#Frame">
-                        <Image width={"12px"}
-                            height={"12px"}
-                            flexShrink={"0"}
-                            mt={"20px"}
-                            ml={"5px"}
-                            alt=''
-                            src="/images/Frame.svg">
-                        </Image>
-                    </Tooltip>
+
+                    <>
+
+                        <Tooltip label='#Frame'
+
+                            padding='14px 8px'
+
+                            fontWeight={400}
+
+                            fontSize={"10px"}>
+
+
+
+                            <Image width={"12px"}
+                                height={"12px"}
+                                flexShrink={"0"}
+                                mt={"20px"}
+                                alt=''
+                                src="/images/Frame.svg">
+                            </Image>
+
+
+
+                        </Tooltip>
+
+                    </>
+
                     <Spacer />
+
                     <Button
                         variant={"outline"}
                         size={"xs"}
@@ -62,9 +118,10 @@ const DefiAssetCompositionSmallTable = () => {
                         mt={"15px"}
                         mr={"20px"}
                         onClick={() => {
-                            router.push(`/defi_dashboard/asset_composition`)
+                            router.push(`/defi_dashboard/defi_hot_contract`)
                         }}
                     >
+
                         <Text
                             _light={{ color: "#16171B" }}
                             _dark={{ color: "#FFFFFF" }}
@@ -74,320 +131,518 @@ const DefiAssetCompositionSmallTable = () => {
                         >
                             View More
                         </Text>
+
                     </Button>
+
+
                 </Flex>
+
+
+
                 <TableContainer>
+
                     <Table variant='simple'>
                         <Thead
+
                             _dark={{
                                 color: "#FFFFFF",
+
                                 bg: "#191919"
                             }}
+
                             _light={{
                                 color: "#16171B",
+
                                 bg: "#F5F5F7"
                             }}
+
                             fontSize={"10px"}
+
                             fontWeight={"400"}
+
                             lineHeight={"20px"}
+
                             letterSpacing={"1px"}
+
                             textTransform={"uppercase"}>
+
                             <Tr>
 
+
+
                                 <Th>
+
                                     <Flex>
-                                        <Text
+
+                                        <Text paddingRight={"5px"}
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                        >
-                                            Asset Name
-                                        </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                            textTransform={"uppercase"}>Contract Name</Text>
+
+
+
+                                        <>
+
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+
                                     </Flex>
+
                                 </Th>
 
+
+
                                 <Th>
+
                                     <Flex >
-                                        <Text _light={{ color: "#434347" }}
+
+                                        <Text paddingRight={"5px"}
+                                            _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>
-                                            Share
-                                        </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                            textTransform={"uppercase"}>No. of users</Text>
+
+                                        <>
+
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+
                                     </Flex>
+
                                 </Th>
 
+
+
                                 <Th>
+
                                     <Flex>
+
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"10px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                        >
-                                            Value
-                                        </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                            textTransform={"uppercase"}>No. of Transactions</Text>
+
+                                        <>
+
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+
                                     </Flex>
+
                                 </Th>
+
                             </Tr>
+
                         </Thead>
 
+
+
                         <Tbody
+
                             fontSize={"10px"}
+
                             fontWeight={"400"}
+
                             lineHeight={"20px"}
+
                             _dark={{ bgColor: "#202020" }}
+
                             _light={{ bgColor: "#FFF" }} >
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
+
+                            <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+
+                                _light={{ color: "#16171B" }}>
+
+                                <Td  >
+
+
 
                                     <Box
+
                                         display={"flex"}
+
                                         alignItems={"center"}
+
                                     >
+
                                         <>
+
                                             <Image
+
                                                 width={5}
+
                                                 height={5}
+
                                                 alt='logo'
-                                                src="/images/Venus.svg"
+
+                                                src="/icons/Ethereum_sm_icon.svg"
+
                                             ></Image>
+
                                         </>
+
+
 
                                         <Text ml="6px"> Venus</Text>
+
                                     </Box>
+
                                 </Td>
+
+
 
                                 <Td>
+
                                     <Box
+
                                         display={"flex"}
-                                        alignItems={"center"}
-                                    >
+
+                                        alignItems={"center"}>
+
                                         <Text
+
                                             fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            60%
+
+                                            fontWeight={"600"}
+
+                                            letterSpacing={"1px"}
+
+                                            ml="6px">
+
+                                            500
+
                                         </Text>
+
                                     </Box>
+
                                 </Td>
-                                <Td>USD 356,456,560</Td>
+
+                                <Td>4607</Td>
+
                             </Tr>
 
-                            <Tr>
-                                <Td
-                                    _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }} >
+
+
+                            <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+
+                                _light={{ color: "#16171B" }}>
+
+                                <Td>
+
                                     <Box
+
                                         display={"flex"}
+
                                         alignItems={"center"}
+
                                     >
+
                                         <>
+
                                             <Image
+
                                                 width={5}
+
                                                 height={5}
+
                                                 alt='logo'
-                                                src="/images/Morphoaave.svg"
+
+                                                src="/icons/Tron_sm_icon.svg"
+
                                             ></Image>
+
                                         </>
+
+
 
                                         <Text ml="6px">  Morpho Aave </Text>
+
                                     </Box>
+
                                 </Td>
+
                                 <Td><Box
+
                                     display={"flex"}
+
                                     alignItems={"center"}
+
                                 >
+
                                     <Text
+
                                         fontSize={"10px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        ml="6px"
-                                        _light={{ color: "#16171B" }}
-                                        _dark={{ color: "#FFFFFF" }}
-                                    >
-                                        40%
+
+                                        fontWeight={"600"}
+
+                                        letterSpacing={"1px"}
+
+                                        ml="6px">
+
+                                        250
+
                                     </Text>
+
                                 </Box></Td>
-                                <Td>USD 256,456,560</Td>
+
+                                <Td>3523</Td>
+
                             </Tr>
 
-                            <Tr>
-                                <Td
-                                    _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }} >
+
+
+                            <Tr height={"40px"}
+
+                                _dark={{ color: "#FFFFFF" }}
+
+                                _light={{ color: "#16171B" }}>
+
+                                <Td >
+
                                     <Box
+
                                         display={"flex"}
+
                                         alignItems={"center"}
+
                                     >
+
                                         <>
+
                                             <Image
+
                                                 width={5}
+
                                                 height={5}
+
                                                 alt='logo'
-                                                src="/images/Compoundv3.svg"
+
+                                                src="/icons/BSC_sm_icon.svg"
+
                                             ></Image>
+
                                         </>
+
+
 
                                         <Text ml="6px"> Compound V3 </Text>
+
                                     </Box></Td>
+
                                 <Td><Box
+
                                     display={"flex"}
+
                                     alignItems={"center"}
+
                                 >
+
                                     <Text
+
                                         fontSize={"10px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        ml="6px"
-                                        _light={{ color: "#16171B" }}
-                                        _dark={{ color: "#FFFFFF" }}
-                                    >
-                                        13.09%
+
+                                        fontWeight={"600"}
+
+                                        letterSpacing={"1px"}
+
+                                        ml="6px">
+
+                                        190
+
                                     </Text>
+
                                 </Box></Td>
-                                <Td>USD 46,456,560</Td>
+
+                                <Td>507</Td>
+
                             </Tr>
 
-                            <Tr>
-                                <Td
-                                    _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }} >
+
+
+                            <Tr height={"40px"}
+
+                                _dark={{ color: "#FFFFFF" }}
+
+                                _light={{ color: "#16171B" }}>
+
+                                <Td >
+
                                     <Box
+
                                         display={"flex"}
+
                                         alignItems={"center"}
+
                                     >
+
                                         <>
+
                                             <Image
+
                                                 width={5}
+
                                                 height={5}
+
                                                 alt='logo'
-                                                src="/images/Radiantv2.svg"
+
+                                                src="/icons/Arbitrum_sm_icon.svg"
+
                                             ></Image>
+
                                         </>
+
+
 
                                         <Text ml="6px">  Radiant V2 </Text>
+
                                     </Box></Td>
+
                                 <Td><Box
+
                                     display={"flex"}
+
                                     alignItems={"center"}
+
                                 >
+
                                     <Text
+
                                         fontSize={"10px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        ml="6px"
-                                        _light={{ color: "#16171B" }}
-                                        _dark={{ color: "#FFFFFF" }}
-                                    >
-                                        15%
+
+                                        fontWeight={"600"}
+
+                                        letterSpacing={"1px"}
+
+                                        ml="6px">
+
+                                        140
+
                                     </Text>
+
                                 </Box></Td>
-                                <Td>USD 66,456,560</Td>
+
+                                <Td>1205</Td>
+
                             </Tr>
 
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }} >
+
+
+                            <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+
+                                _light={{ color: "#16171B" }} >
+
+                                <Td >
+
                                     <Box
+
                                         display={"flex"}
+
                                         alignItems={"center"}
+
                                     >
+
                                         <>
+
                                             <Image
+
                                                 width={5}
+
                                                 height={5}
+
                                                 alt='logo'
-                                                src="/images/Fluidtokens.svg"
+
+                                                src="/icons/Polygon_sm_icon.svg"
+
                                             ></Image>
-                                            <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
+
                                         </>
 
-                                        <Text ml="10px"> FluidTokens </Text>
+
+
+                                        <Text ml="6px"> FluidTokens </Text>
+
                                     </Box></Td>
+
                                 <Td><Box
+
                                     display={"flex"}
+
                                     alignItems={"center"}
+
                                 >
+
                                     <Text
+
                                         fontSize={"10px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        ml="6px"
-                                        _light={{ color: "#16171B" }}
-                                        _dark={{ color: "#FFFFFF" }}
-                                    >
-                                        13.09%
+
+                                        fontWeight={"600"}
+
+                                        letterSpacing={"1px"}
+
+                                        ml="6px">
+
+                                        120
+
                                     </Text>
+
                                 </Box></Td>
-                                <Td>USD 56,456,560</Td>
+
+                                <Td>5207</Td>
+
                             </Tr>
 
                             <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                </Td>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                </Td>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                        paddingLeft={"100px"}
-                                    >
-                                        <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                        >
-                                            Last Update
-                                        </Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"10px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"3px"}
-                                        >
-                                            3 mins ago
-                                        </Text>
-                                    </Box>
-                                </Td>
+                                <Td></Td>
+                                <Td></Td>
+                                <Td >
+                                    <Text paddingLeft={"40px"} paddingBottom={"100px"}>
+                                        Last Update 3 mins ago</Text></Td>
                             </Tr>
 
+
+
+
+
                         </Tbody>
+
+
+
                     </Table>
+
                 </TableContainer>
+
             </Box>
 
         </>
     )
 }
 
-export default DefiAssetCompositionSmallTable;
+export default DefiHotContractsSmallTable;

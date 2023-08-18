@@ -14,140 +14,131 @@ function DonutChart() {
   const router = useRouter();
 
   const options = {
-      labels: ["Fee", "Revenue"],
-      series: [31, 69],
-      chart: {
-        toolbar: {
-          show: false,
-        },
-        type: 'donut'
+    labels: ["Fee", "Revenue"],
+    series: [31, 69],
+    chart: {
+      toolbar: {
+        show: false,
       },
-      plotOptions: {
-        bar: {
-          distributed: true,
-          labels: false,
-        }
+      type: 'donut'
+    },
+    plotOptions: {
+      bar: {
+        distributed: true,
+        labels: false,
+      }
+    },
+    tooltip: {
+      theme: colorMode,
+      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+        return (
+          '<div class="donut_tooltip">' +
+          '<div class="donut_tooltip_text">' +
+          w.globals.labels[seriesIndex] +
+          "</div>" +
+          '<div class="donut_tooltip_text">' +
+          series[seriesIndex] + "%" +
+          '</div>' +
+          "</div>"
+        );
+      }
+    },
+    stroke: {
+      width: 0,
+    },
+    legend: {
+      show: true,
+      position: 'left',
+      horizontalAlign: 'center',
+      fontSize: '10px',
+      fontWeight: '400',
+      labels: {
+        colors: useColorModeValue('#16171B', '#FFFFFF')
       },
-      tooltip: {
-        theme: colorMode,
-        custom: function({series, seriesIndex, dataPointIndex, w}) {
-          return (
-            '<div class="donut_tooltip">' +
-              '<div class="donut_tooltip_text">' +
-                w.globals.labels[seriesIndex] +
-              "</div>" +
-              '<div class="donut_tooltip_text">' +
-                series[seriesIndex] + "%" +
-              '</div>' +
-            "</div>"
-          );
-        }      
+      markers: {
+        offsetY: 2
       },
-      stroke: {
-        width: 0,
+      formatter: function (text, opts) {
+        return [text, opts.w.globals.series[opts.seriesIndex] + "%",]
       },
-      legend: {
-        show: true,
-        position: 'left',
-        horizontalAlign: 'center',
-        fontSize: '10px',
-        fontWeight: '400',
-        labels: {
-          colors: useColorModeValue('#16171B', '#FFFFFF') 
-        },
-        markers: {
-          offsetY: 2
-        },
-        formatter: function (text, opts) {
-          return [text, opts.w.globals.series[opts.seriesIndex] + "%",]
-        },
-      },
-      dataLabels: {
-        enabled: false
-      },
-      colors: ["#FF5C01", "#24A48A"],
-    };
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: ["#FF5C01", "#24A48A"],
+  };
 
   const series = [31, 69];
 
   return (
-      <>
+    <>
+      <Box
+        width={"50%"}
+        display={"flex"}
+        flexDirection={"column"}
+        bgColor={useColorModeValue('#FFFFFF', "#202020")}
+        alignContent={"center"}
+        borderRadius={"6px"}
+      >
+        <Box
+          display={"flex"}
+          aliginItems={"center"}
+          justifyContent={"space-between"}
+        >
           <Box
-            width={"100%"}
-            display={"inline-flex"}
-            _light={{bgColor:"#F0F0F5"}}
-            _dark={{bgColor:"#191919"}}
+            padding={"20px 0 20px 20px"}
           >
-       
-
-            <Box
-              width={"46%"}
-              display={"flex"}
-              flexDirection={"column"}
-              bgColor={useColorModeValue('#FFFFFF', "#202020")}
-              alignContent={"center"}
-              borderRadius={"6px"}
+            <Text
+              fontSize={"15px"}
+              fontWeight={"400"}
+              lineHeight={"20px"}
+              color={useColorModeValue("#16171B", "#FFFFFF")}
             >
-              <Box
-                display={"flex"}
-                aliginItems={"center"}
-                justifyContent={"space-between"}
-              >
-                <Box
-                  padding={"20px 0 20px 20px"}
-                >
-                  <Text
-                    fontSize={"15px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    color={useColorModeValue("#16171B", "#FFFFFF")}
-                  >
-                    Defi Fee and Revenue
-                  </Text>
+              Defi Fee and Revenue
+            </Text>
 
-                </Box>
-
-                <Button 
-                    variant={"outline"} 
-                    size={"xs"}
-                    _light={{ colorScheme: "#F5F5F7", stroke: "#000"}}
-                    _dark={{ colorScheme: "#191919", stroke: "#333" }}
-                    strokeWidth={"1px"}
-                    mt={"15px"}
-                    mr={"20px"}
-                    onClick={() => {
-                      router.push(`/defi_dashboard/`)
-                    }}
-                    >
-                    
-                    <Text
-                    _light={{ color: "#16171B" }}
-                    _dark={{ color: "#FFFFFF" }}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
-                    lineHeight={"10px"}
-                    >
-                    View More
-                    </Text>         
-                    
-                </Button>
-            </Box>  
-
-
-              <Box
-                padding={"5px 20px 5px 10px"}
-                mt={"50px"}
-              >
-                <Chart 
-                    options={options}
-                    series={series}
-                    type={options.chart.type}
-                    height={"200px"}
-                />
-              </Box> 
-            </Box>
           </Box>
-      </>
+
+          <Button
+            variant={"outline"}
+            size={"xs"}
+            _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
+            _dark={{ colorScheme: "#191919", stroke: "#333" }}
+            strokeWidth={"1px"}
+            mt={"15px"}
+            mr={"20px"}
+            onClick={() => {
+              router.push(`/defi_dashboard/`)
+            }}
+          >
+
+            <Text
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#FFFFFF" }}
+              fontSize={"10px"}
+              fontWeight={"400"}
+              lineHeight={"10px"}
+            >
+              View More
+            </Text>
+
+          </Button>
+        </Box>
+
+
+        <Box
+          padding={"5px 20px 5px 10px"}
+          mt={"50px"}
+        >
+          <Chart
+            options={options}
+            series={series}
+            type={options.chart.type}
+            height={"200px"}
+          />
+        </Box>
+      </Box>
+    </>
   );
 }
 
