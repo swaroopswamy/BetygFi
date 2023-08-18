@@ -15,6 +15,7 @@ import millify from "millify";
 import TVLBox from "./TVLBox";
 import DonutChart from "./DonutChart";
 import TrendGraph from "./TrendGraph";
+import DefiUsersSmallTableComponent from "./DefiUsersSmallTable";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -342,44 +343,38 @@ const DefiDashboardPage = () => {
             </Box>
 
             <Box
+                mb="10px"
                 display={"flex"}
                 alignItems={"center"}
-                ml={"12px"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
             >
                 <TVLBox />
                 <TrendGraph />
             </Box>
 
             <Box
+                my="10px"
                 display={"flex"}
-                flexDirection={"column"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
+                justifyContent={"space-between"}
+                mx={"20px"}
                 padding={"10px 0 0 10px"}
             >
-                <Box
-                    display={"flex"}
-                    justifyContent={"space-evenly"}
-                >
-                    <BarChart />
-                </Box>
+                <DefiUsersSmallTableComponent />
+                <BarChart />
+
             </Box>
 
             <Box
-                display={"flex"}
-                flexDirection={"column"}
-                bgColor={useColorModeValue('#F0F0F5', "#191919")}
-                // padding={"10px 0 0 10px"}
-                ml={"10px"}
-            >
-                <Box
-                    display={"flex"}
-                    justifyContent={"space-evenly"}
-                >
+               my="10px"
+               display={"flex"}
+               justifyContent={"space-between"}
+               mx={"20px"}
+               padding={"10px 0 0 10px"}
 
+            >
+                
                     <DonutChart />
                     {/* <BarChart /> */}
-                </Box>
+                
             </Box>
 
             <Box
