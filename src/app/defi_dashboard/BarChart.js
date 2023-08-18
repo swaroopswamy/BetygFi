@@ -22,6 +22,7 @@ function BarChart() {
         horizontal: true,
         distributed: true,
         barHeight: '30%',
+        borderRadius: 2,
         labels: false,
       }
     },
