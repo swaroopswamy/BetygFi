@@ -1,10 +1,14 @@
 "use client";
 import React from "react";
 import DefiTable from "../TVL_ranking/DefiTable";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode } from "@chakra-ui/react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import GenericBigTableComponent from "../GenericBigTable";
 
 function TVL_Ranking () {
 
+  const tableName = "DeFi Category by TVL Rankings";
   const thread = ["DeFi Category","Available Blockchains","Available DeFi ","TVL","7 Days"];
   const tableData = [
     ["AAVE V2 ","406","3457","USD 65.930000","/icons/aave_logo.svg","/icons/line_graph.svg"],
@@ -25,11 +29,172 @@ function TVL_Ranking () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <DefiTable
-          thread={thread}
-          tableData={tableData}
+        <GenericBigTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
         />
     </Box>
   )
 };
 export default  TVL_Ranking;
+
+function RowComponent({ tableData }) {
+  return (
+      <>
+          {tableData.map((item, i) => {
+                            return (
+                                <>
+                                    <TableRow
+                                        key={i}
+                                        DeFi={{Category: item[0],
+                                            src: item[4]
+                                        }}
+                                        AvailableBlockchains={item[1]}
+                                        AvailableDeFi ={item[2]}
+                                        TVL={item[3]}
+                                        Days = {{src:item[5]}}
+                                    />
+                                </>
+                            )
+                        })}
+
+      </>
+  );
+}
+
+function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days }) {
+  const [clicked, setClick] = useState(false);
+  const { colorMode } = useColorMode();
+  const router = useRouter();
+  return (
+      <>
+          <Tr
+              key={key}
+              cursor={"pointer"}
+              bgColor={clicked ?
+                  (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                  (colorMode === "light" ? '#FFFFFF' : '#202020')
+              }
+              onClick={() => { setClick(!clicked) }}
+              borderBottom={'1px'}
+              borderColor={useColorModeValue('#DFDFDF', '#313131')}
+              borderRadius={'2px'}
+          >
+
+<Td>
+                  <Flex>
+                      <Box
+                          alignItems={"center"}
+                          display={"flex"}
+                          gap={"10px"}
+                      >
+                          <Image
+                              height={"10px"}
+                              width={"10px"}
+                               src={DeFi.src}
+                              alt="defi_logo"
+                              // url={"/icons/Ethereum_sm_icon.svg"}
+                              //  src="/icons/aave_logo.svg"
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              { DeFi.Category}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {AvailableBlockchains}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {AvailableDeFi}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {TVL}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box
+                          width={"87px"}
+                          height={"23px"}
+                      >
+                          <Image
+                              alt="line_graph"
+                               src={"/icons/line_graph.svg"}
+                          >                             
+                          </Image>
+                      </Box>
+                  </Flex>
+              </Td>
+          </Tr>
+      </>
+  );
+}

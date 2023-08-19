@@ -1,10 +1,14 @@
 "use client";
 import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import DefiTable from "../asset_composition/DefiTable";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import {  Text, Td, Tr, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode} from "@chakra-ui/react";
+import GenericBigTableComponent from "../GenericBigTable";
 
 function Assetcomposition () {
 
+  const tableName = "DeFi Asset Composition";
   const thread = ["Asset Name","Price","AMOUNT","Value","Share"];
   const tableData = [
     ["/images/Ethereumlogo.svg","AAVE V2 ","USD 65.930000","USD 356,456,560","USD 65.930000","60%"],
@@ -25,11 +29,175 @@ function Assetcomposition () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <DefiTable
-          thread={thread}
-          tableData={tableData}
+       <GenericBigTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
         />
     </Box>
   )
 };
 export default Assetcomposition;
+
+function RowComponent({ tableData }) {
+  return (
+      <>
+           {tableData.map((item, i) => {
+                            return (
+                                <>
+                                    <TableRow
+                                        key={i}
+                                        asset={{name:item[1],src:item[0]}}
+                                        price={item[2]}
+                                        amount={item[3]}
+                                        value={item[4]}
+                                        share={item[5]}
+                                    />
+                                </>
+                            )
+                        })}
+
+      </>
+  );
+}
+
+function TableRow({ key, asset, price, amount, value, share }) {
+  const [clicked, setClick] = useState(false);
+  const { colorMode } = useColorMode();
+  const router = useRouter();
+
+  return (
+      <>
+          <Tr
+              key={key}
+              cursor={"pointer"}
+              bgColor={clicked ?
+                  (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                  (colorMode === "light" ? '#FFFFFF' : '#202020')
+              }
+              onClick={() => { setClick(!clicked) }}
+              borderBottom={'1px'}
+              borderColor={useColorModeValue('#DFDFDF', '#313131')}
+              borderRadius={'2px'}
+          >
+              <Td>
+                  <Flex>
+                      <Box
+                          alignItems={"center"}
+                          display={"flex"}
+                          gap={"10px"}
+                      >
+                          <Image
+                              height={"10px"}
+                              width={"10px"}
+                              src={asset.src}
+                              alt="logo"
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {asset.name}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {price}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {amount}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {value}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {share}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+          </Tr>
+      </>
+  );
+}

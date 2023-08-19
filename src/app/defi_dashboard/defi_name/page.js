@@ -1,11 +1,15 @@
 "use client";
 import React from "react";
 import DefiTable from "../defi_name/DefiTable";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue,Text, Td, Tr, Flex, Image, useColorMode } from "@chakra-ui/react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import GenericBigTableComponent from "../GenericBigTable";
 
 function Defi_Hot_Contracts () {
 
-  const thread = ["Blockchain | Asset Name","Inflow (7 Days)","Outflow (7 Days)","Outflow (7 Days)"];
+  const tableName = "Defi Name";
+  const thread = ["Blockchain | Asset Name","Inflow (7 Days)","Outflow (7 Days)","Net Value flow "];
   const tableData = [
     ["AAVE V2 ","+USD 65.930000","-USD 356,456,560","-USD 65.930000","/icons/aave_logo.svg"],
     ["AAVE V3 ","+USD 65.930000","-USD 1,434,771,959","+USD 65.930000","/icons/aave_logo.svg"],
@@ -25,11 +29,160 @@ function Defi_Hot_Contracts () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <DefiTable
-          thread={thread}
-          tableData={tableData}
+        <GenericBigTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
         />
     </Box>
   )
 };
 export default  Defi_Hot_Contracts;
+
+function RowComponent({ tableData }) {
+  return (
+      <>
+         {tableData.map((item, i) => {
+                            return (
+                                <>
+                                   <TableRow
+                                        key={i}
+                                        Asset={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        Inflow={item[1]}
+                                        Outflow={item[2]}
+                                        NetValueflow ={item[3]}
+                                      
+                                    />
+                                </>
+                            )
+                        })}
+      </>
+  );
+}
+
+function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
+  const [clicked, setClick] = useState(false);
+  const { colorMode } = useColorMode();
+  const router = useRouter();
+  return (
+      <>
+          <Tr
+              key={key}
+              cursor={"pointer"}
+              bgColor={clicked ?
+                  (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                  (colorMode === "light" ? '#FFFFFF' : '#202020')
+              }
+              onClick={() => { setClick(!clicked) }}
+              borderBottom={'1px'}
+              borderColor={useColorModeValue('#DFDFDF', '#313131')}
+              borderRadius={'2px'}
+          >
+
+<Td>
+                  <Flex>
+                      <Box
+                          alignItems={"center"}
+                          display={"flex"}
+                          gap={"10px"}
+                      >
+                          <Image
+                              height={"10px"}
+                              width={"10px"}
+                              src={ Asset.src}
+                              alt="logo"
+                              // url={"/icons/Ethereum_sm_icon.svg"}
+                              //  src="/icons/aave_logo.svg"
+
+
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              { Asset.name}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {Inflow}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {Outflow}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                          >
+                              {NetValueflow}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              
+          </Tr>
+      </>
+  );
+}
