@@ -12,7 +12,7 @@ import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/data
 import BackIconWhite from '../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 
-const GenericBigTableComponent = ({ thread, tableData, RowComponent }) => {
+const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -76,7 +76,7 @@ const GenericBigTableComponent = ({ thread, tableData, RowComponent }) => {
                             fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            DeFi Users
+                            {tableName}
                         </Text>
                     </Box>
 
