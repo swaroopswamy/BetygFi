@@ -2,7 +2,6 @@
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import DefiTable from "../asset_composition/DefiTable";
 import {  Text, Td, Tr, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode} from "@chakra-ui/react";
 import GenericBigTableComponent from "../GenericBigTable";
 

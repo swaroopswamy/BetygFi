@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import DefiTable from "../defi_name/DefiTable";
 import { Box, useColorModeValue,Text, Td, Tr, Flex, Image, useColorMode } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
