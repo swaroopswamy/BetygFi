@@ -95,14 +95,13 @@ const WalletDashboardPage = () => {
                             />
 
                         </Box>
- */}
+                */}
 
                     </Box>
 
                 </Box>
 
                 <Box
-                    mt="20px"
                     display={"flex"}
                     justifyContent={"space-between"}
                     padding={"10px 30px 50px 30px"}
@@ -111,7 +110,7 @@ const WalletDashboardPage = () => {
                 >
                     <Box
                         pt="20px"
-                        bgColor={useColorModeValue("#FFFFFF", "#191919")}
+                        bgColor={useColorModeValue("#F0F0F5", "#191919")}
                     >
                         <WalletTable />
                     </Box>
