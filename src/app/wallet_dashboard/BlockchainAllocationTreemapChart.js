@@ -33,7 +33,7 @@ const BlockchainAllocationTreemapChart = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
+                fontSize: '16px',
                 fontWeight: '600',
                 color: "#000000"
             },

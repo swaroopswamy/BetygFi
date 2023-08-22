@@ -49,7 +49,7 @@ const DefiTable = () => {
                             >
                                 <Text
                                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
@@ -74,7 +74,7 @@ const DefiTable = () => {
                             >
                                 <Text
                                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
@@ -100,7 +100,7 @@ const DefiTable = () => {
                             >
                                 <Text
                                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
@@ -127,7 +127,7 @@ const DefiTable = () => {
                             >
                                 <Text
                                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
@@ -153,7 +153,7 @@ const DefiTable = () => {
                             >
                                 <Text
                                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
@@ -283,7 +283,7 @@ const DefiTable = () => {
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"10px"}
+                                                fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
@@ -347,7 +347,7 @@ const DefiTable = () => {
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"10px"}
+                                                fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
@@ -360,7 +360,7 @@ const DefiTable = () => {
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"10px"}
+                                                fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
@@ -373,7 +373,7 @@ const DefiTable = () => {
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"10px"}
+                                                fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
@@ -391,7 +391,7 @@ const DefiTable = () => {
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"10px"}
+                                                fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                                 h="100%"
