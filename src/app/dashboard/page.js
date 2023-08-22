@@ -140,7 +140,7 @@ const Dashboard = () => {
             </Box> */}
             <Text
               fontSize={"24px"}
-              fontWeight={400}
+              fontWeight={"400"}
               letterSpacing={"2.4px"}
               lineHeight={"20px"}
 
@@ -275,13 +275,13 @@ const Dashboard = () => {
             </Box>
           </Box>
           <Text
-            fontSize={"10px"}
-            fontWeight={400}
-            letterSpacing={"1px"}
-            lineHeight={"15px"}
+            fontSize={"14px"}
+            fontWeight={"400"}
+            letterSpacing={"1.4px"}
+            lineHeight={"20px"}
             mb="20px"
             pl="3px"
-            opacity={"0.5"}
+            opacity={"0.6"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
           >
             Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
@@ -408,10 +408,10 @@ const Dashboard = () => {
               }}
             >
               <Text
-                fontSize={"10px"}
-                fontWeight={"600"}
+                fontSize={"14px"}
+                fontWeight={"700"}
                 letterSpacing={"1px"}
-                lineHeight={"15px"}
+                lineHeight={"10px"}
                 color={useColorModeValue("#191919", "#FFFFFF")}
               >
                 All
@@ -441,10 +441,10 @@ const Dashboard = () => {
                     }}
                   >
                     <Text
-                      fontSize={"10px"}
-                      fontWeight={"600"}
+                      fontSize={"14px"}
+                      fontWeight={"400"}
                       letterSpacing={"1px"}
-                      lineHeight={"15px"}
+                      lineHeight={"10px"}
                       color={useColorModeValue("#191919", "#FFFFFF")}
                     >
                       {category}
@@ -471,16 +471,18 @@ const Dashboard = () => {
               >
                 <Text
                   color={useColorModeValue("#16171B", "#FFF")}
-                  fontSize={"15px"}
-                  fontWeight={"400"}
+                  fontSize={"18px"}
+                  fontWeight={"600"}
+                  lineHeight={"20px"}
                 >
                   Overview
                 </Text>
                 <Box display={"flex"} alignItems={"center"}>
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"12px"}
-                    fontWeight={"300"}
+                    fontSize={"14px"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
                     mr="7px"
                   >
                     Total Market Cap
@@ -504,7 +506,8 @@ const Dashboard = () => {
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"24px"}
-                    fontWeight={"400"}
+                    fontWeight={"600"}
+                    lineHeight={"20px"}
                     letterSpacing={"2.4px"}
                   >
                     {overviewData?.tvl ?
@@ -557,8 +560,9 @@ const Dashboard = () => {
             >
               <Text
                 color={useColorModeValue("#16171B", "#FFF")}
-                fontSize={"15px"}
-                fontWeight={"400"}
+                fontSize={"18px"}
+                fontWeight={"600"}
+                lineHeight={"20px"}
               >
                 Score Distribution
               </Text>
@@ -577,8 +581,9 @@ const Dashboard = () => {
             >
               <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
                 <Text
-                  fontSize="2xl"
-                  fontWeight={"400"}
+                  fontSize="18px"
+                  fontWeight={"600"}
+                  lineHeight={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
                   Defi Ranking
@@ -590,7 +595,9 @@ const Dashboard = () => {
                       bgColor={useColorModeValue("#F5F5F7", "#191919")}
                       color={useColorModeValue("#16171B", "#A8ADBD")}
                       fontSize={"10px"}
-                      fontWeight={400}
+                      fontWeight={"400"}
+                      lineHeight={"20px"}
+                      letterSpacing={"1px"}
                       w="207px"
                       placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
@@ -612,8 +619,9 @@ const Dashboard = () => {
                 >
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"12px"}
+                    fontSize={"10px"}
                     fontWeight={"400"}
+                    lineHeight={"20px"}
                     mr="10px"
                   >
                     Page
