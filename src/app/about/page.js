@@ -18,7 +18,10 @@ const About = () => {
           justifyContent={"space-between"}>
           <Box
             color={"#FFFFFF"}
-            fontSize={"46px"}
+            //fontFamily={"Manrope"}
+            fontSize={"36px"}
+            fontWeight={400}
+            lineHeight={"46px"}
             padding={"90px 0px 80px 60px"}
           >
             We BetygFi
@@ -45,11 +48,11 @@ const About = () => {
           <Text
             _dark={{ color: "#F0F0F5" }}
             _light={{ color: "#191919" }}
-            fontSize={"16px"}
+            fontSize={"14px"}
             fontStyle={"normal"}
-            fontWeight={"400"}
+            fontWeight={400}
             lineHeight={"26px"}
-            opacity={"0.800000011920929"}
+            opacity={"0.8"}
             padding={"20px  70px  0px  30px"}
             mt={17}>
             BetygFi is a blockchain analytics platform that enriches on-chain data with millions of wallet labels. Powered By Solvendo. Crypto investors use Nansen to discover opportunities, perform due diligence and defend their portfolios with our real-time dashboards and alerts.
@@ -62,7 +65,7 @@ const About = () => {
         _light={{ color: "#191919" }}
         fontSize={"24px"}
         fontStyle={"normal"}
-        fontWeight={"400"}
+        fontWeight={400}
         lineHeight={"20px"}
         ml={59}
         mt={19}>
@@ -72,21 +75,23 @@ const About = () => {
       <Text
         _dark={{ color: "#F0F0F5" }}
         _light={{ color: "#191919" }}
-        fontSize={"16px"}
+        fontSize={"14px"}
         fontStyle={"normal"}
-        fontWeight={"400"}
+        fontWeight={400}
         lineHeight={"26px"}
-        opacity={"0.800000011920929"}
+        opacity={"0.8"}
         ml={59}
         mt={5}
-        mr={40}>
+        mr={40}
+        paddingBottom={19}
+       >
         We believe that BetygFi represents the beginnings of the future of finance. With BetygFi, Solvendo is building the future of financial data and analytics using large language models.<br /><br />
         We are grateful for your patronage and invite you walk along with us, as we navigate and build global financial ecosystems using out learning from BetygFi.<br /> <br />
         Decentralised Finance and entities that offer such solutions promise to be able to solve for some of the existing inefficiencies of traditional finance. However, they present new challenges that are significant. We expect and look forward to a regime where such entities are regulated by sovereign’s, in the interest of stakeholders. BetygFi is designed to be an invaluable tool for such regulators and sovereigns.<br /> <br />
         However, when speaking about the future of finance, we believe the future of finance would require a new approach to regulation that engages the consumer or community regularly. BetygFi, leverages the best in technology and artificial intelligence to build an approach for such engagement. It empowers the consumer with intelligence that is trustworthy and easy to consume.<br /> <br />
       </Text>
 
-      <Heading
+      {/* <Heading
         _dark={{ color: "#F0F0F5" }}
         _light={{ color: "#191919" }}
         fontSize={"24px"}
@@ -96,7 +101,7 @@ const About = () => {
         ml={59}
         mt={19}>
         Why is the platform called BetygFi ?
-      </Heading>
+      </Heading> */}
 
       {/* <Text
         _dark={{ color: "#F0F0F5"}}

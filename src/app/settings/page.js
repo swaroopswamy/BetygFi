@@ -12,7 +12,7 @@ const Settings = () => {
                 color={useColorModeValue("#191919", "#FFFFFF")}
                 fontSize={"24px"}
                 fontStyle={"normal"}
-                fontWeight={"400"}
+                fontWeight={400}
                 lineHeight={"46px"}
                 ml={"33px"}
                 pt={"30px"}
@@ -35,9 +35,9 @@ const Settings = () => {
                 >
                     <Text
                         color={useColorModeValue("#191919", "#FFFFFF")}
-                        fontSize={"15px"}
+                        fontSize={"16px"}
                         fontStyle={"normal"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         lineHeight={"20px"}
                     >
                         Theme
@@ -67,11 +67,11 @@ const Settings = () => {
                             <Image src="/images/SelectBox.svg" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontSize={"11px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
-                                fontWeight={"400"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1.1px"}
+                                letterSpacing={"1.4px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
                                 mt={"2px"}
@@ -97,11 +97,11 @@ const Settings = () => {
                             <Image src="/images/SelectBox.svg" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontSize={"11px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
-                                fontWeight={"400"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1.1px"}
+                                letterSpacing={"1.4px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
                                 mt={"2px"}
@@ -127,11 +127,11 @@ const Settings = () => {
                             <Image src="/images/SelectBox.svg" w="24px" h="24px" alt=""></Image>
                             <Text
                                 color={useColorModeValue("#191919", "#FFFFFF")}
-                                fontSize={"11px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
-                                fontWeight={"400"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1.1px"}
+                                letterSpacing={"1.4px"}
                                 textTransform={"uppercase"}
                                 ml={"15px"}
                                 mt={"2px"}
@@ -156,6 +156,9 @@ const Settings = () => {
                 mr={"20px"}
             >
                 <Text
+                    fontSize={"16px"}
+                    fontWeight={400}
+                    lineHeight={"20px"}
                     ml={5}
                     pt={5}
                     color={useColorModeValue("#191919", "#FFFFFF")}
@@ -175,7 +178,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"15px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             ml={"15px"}
                         >
@@ -185,7 +188,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"11px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             opacity={"0.6000000238418579"}
                             ml={"15px"}
@@ -203,10 +206,10 @@ const Settings = () => {
                         <Text
                             color={useColorModeValue("#FFFFFF", "#191919")}
                             textAlign={"center"}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontStyle={"normal"}
-                            fontWeight={"700"}
-                            lineHeight={"10px"}
+                            fontWeight={700}
+                            lineHeight={"12px"}
                         >
                             Verify
                         </Text>
@@ -228,7 +231,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"15px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             ml={"15px"}
                         >
@@ -238,7 +241,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"11px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             opacity={"0.6000000238418579"}
                             ml={"15px"}
@@ -256,12 +259,12 @@ const Settings = () => {
                         <Text
                             color={useColorModeValue("#FFFFFF", "#191919")}
                             textAlign={"center"}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontStyle={"normal"}
-                            fontWeight={"700"}
-                            lineHeight={"10px"}
+                            fontWeight={700}
+                            lineHeight={"12px"}
                         >
-                            Verify
+                            Add Email
                         </Text>
                     </Button>
                 </Flex>
@@ -281,7 +284,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"15px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             ml={"15px"}
                         >
@@ -291,7 +294,7 @@ const Settings = () => {
                             color={useColorModeValue("#191919", "#FFFFFF")}
                             fontSize={"11px"}
                             fontStyle={"normal"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             opacity={"0.6000000238418579"}
                             ml={"15px"}
@@ -309,32 +312,32 @@ const Settings = () => {
                         <Text
                             color={useColorModeValue("#FFFFFF", "#191919")}
                             textAlign={"center"}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontStyle={"normal"}
-                            fontWeight={"700"}
-                            lineHeight={"10px"}
+                            fontWeight={700}
+                            lineHeight={"12px"}
                         >
-                            Verify
+                            Add Twitter
                         </Text>
                     </Button>
                 </Flex>
             </Box>
 
-            <Flex ml={"50px"} mt={"50px"}>
+            <Flex ml={"50px"} mt={"50px"} paddingBottom={20}>
                 <Text
                     color={useColorModeValue("#191919", "#FFFFFF")}
-                    fontSize={"15px"}
+                    fontSize={"16px"}
                     fontStyle={"normal"}
-                    fontWeight={"400"}
+                    fontWeight={400}
                     lineHeight={"20px"}
                 >
                     Logout of BetygFi
                 </Text>
                 <Text
                     color={useColorModeValue("#191919", "#FFFFFF")}
-                    fontSize={"11px"}
+                    fontSize={"12px"}
                     fontStyle={"normal"}
-                    fontWeight={"400"}
+                    fontWeight={400}
                     lineHeight={"10px"}
                     ml={"50px"}
                     mt={"3px"}
@@ -351,10 +354,10 @@ const Settings = () => {
                     <Text
                         color={useColorModeValue("#191919", "#FFFFFF")}
                         textAlign={"center"}
-                        fontSize={"10px"}
+                        fontSize={"12px"}
                         fontStyle={"normal"}
-                        fontWeight={"700"}
-                        lineHeight={"10px"}
+                        fontWeight={700}
+                        lineHeight={"12px"}
                     >
                         Logout
                     </Text>

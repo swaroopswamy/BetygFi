@@ -18,7 +18,10 @@ const Approach = () => {
               flexDirection={"row"}
               justifyContent={"space-between"}>
 
-              <Box fontSize={"46px"}
+              <Box 
+              fontSize={"36px"}
+              fontWeight={400}
+              lineHeight={"46px"}
                 color={useColorModeValue("#191919", "#FFFFFF")}
                 padding={"90px 0px 0px 50px"} >
                 Approach Paper
