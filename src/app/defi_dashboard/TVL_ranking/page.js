@@ -18,7 +18,7 @@ function TVL_Ranking () {
     ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg","/icons/line_graph.svg"],
     ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg","/icons/line_graph.svg"],
     ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg","/icons/line_graph.svg"],
-    ["FluidTokens","123","864","USD 45.90988","","/icons/line_graph.svg"],
+    ["FluidTokens","123","864","USD 45.90988","/icons/fluidtoken_logo.svg","/icons/line_graph.svg"],
     ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg","/icons/line_graph.svg"],
 ];
  
@@ -90,8 +90,8 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                           gap={"10px"}
                       >
                           <Image
-                              height={"10px"}
-                              width={"10px"}
+                              height={"24px"}
+                              width={"24px"}
                                src={DeFi.src}
                               alt="defi_logo"
                               // url={"/icons/Ethereum_sm_icon.svg"}
@@ -105,7 +105,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -126,7 +126,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -147,7 +147,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -168,7 +168,7 @@ function TableRow({ key, DeFi , AvailableBlockchains , AvailableDeFi ,TVL, Days 
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}

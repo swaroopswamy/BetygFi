@@ -18,7 +18,7 @@ function Defi_Hot_Contracts () {
     ["Morpho Aave","+USD 0.001782","-USD 315,485,747","+USD 0.001782","/icons/morphoaave_logo.svg"],
     ["Compound V3","+USD 35.700000","-USD 563,991,620","+USD 35.700000","/icons/compoundv3.svg"],
     ["Radiant V2","USD 0.313472","-USD 259,911,221","-USD 0.313472","/icons/radiantv2_logo.svg"],
-    ["FluidTokens","NA","-USD 234,308","-USD 45.90988",""],
+    ["FluidTokens","NA","-USD 234,308","-USD 45.90988","/icons/fluidtoken_logo.svg"],
     ["Trader Joe Lend","+USD 45.90988","-USD 7,562,768","-USD 45.90988","/icons/traderjoelend_logo.svg"],
 ];
  
@@ -89,8 +89,8 @@ function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
                           gap={"10px"}
                       >
                           <Image
-                              height={"10px"}
-                              width={"10px"}
+                              height={"24px"}
+                              width={"24px"}
                               src={ Asset.src}
                               alt="logo"
                               // url={"/icons/Ethereum_sm_icon.svg"}
@@ -106,7 +106,7 @@ function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -127,7 +127,7 @@ function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -148,7 +148,7 @@ function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -169,7 +169,7 @@ function TableRow({ key,Asset , Inflow, Outflow,NetValueflow }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}

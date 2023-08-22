@@ -88,8 +88,8 @@ function TableRow({ key, asset, price, amount, value, share }) {
                           gap={"10px"}
                       >
                           <Image
-                              height={"10px"}
-                              width={"10px"}
+                              height={"24px"}
+                              width={"24px"}
                               src={asset.src}
                               alt="logo"
                           >
@@ -101,7 +101,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -122,7 +122,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -143,7 +143,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -164,7 +164,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -185,7 +185,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                               _light={{
                                   color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}

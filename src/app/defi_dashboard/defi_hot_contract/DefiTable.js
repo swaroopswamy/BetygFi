@@ -46,8 +46,8 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                             // ml={"20px"}
                             mb={"20px"}
                             mt={"20px"}
-                            fontSize={"15px"}
-                            fontWeight={"400"}
+                            fontSize={"18px"}
+                            fontWeight={"600"}
                             lineHeight={"20px"}
                         >
                             {tableName}
@@ -69,7 +69,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                             borderColor={useColorModeValue("#E8E8E8", "#333")}
                             bgColor={useColorModeValue("#F5F5F7", "#191919")}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontWeight={400}
                             w="207px"
                             placeholder="SEARCH"
@@ -89,6 +89,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                         <Tr
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
+                            fontSize={"14px"}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
                         >
@@ -144,7 +145,7 @@ function ThreadItem({ key, name }) {
             <Th
                 key={key}
                 color={useColorModeValue("#434347", "#A8ADBD")}
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontStyle={"normal"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
@@ -176,7 +177,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                 <Box
                     position={"relative"}
                     cursor={"pointer"}
-                    fontSize={"10px"}
+                    fontSize={"14px"}
                     fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                     letterSpacing={"1px"}
                     lineHeight={"20px"}
@@ -234,7 +235,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                 alt=""
                             ></Image>
                             <Text
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
                                 lineHeight={"20px"}
                                 letterSpacing={"1px"}
@@ -275,7 +276,7 @@ function PageButtons() {
                     >
                         <Text
                             color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontWeight={"400"}
                         >
                             1-20
@@ -387,7 +388,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -408,7 +409,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -429,7 +430,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -450,7 +451,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -471,7 +472,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}

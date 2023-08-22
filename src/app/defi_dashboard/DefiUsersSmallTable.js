@@ -36,8 +36,8 @@ const DefiUsersSmallTableComponent = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"15px"}
-                        fontWeight={"400"}
+                        fontSize={"18px"}
+                        fontWeight={"600"}
                         lineHeight={"20px"}
                         ml={"20px"}
                         mt={"20px"}
@@ -60,7 +60,7 @@ const DefiUsersSmallTableComponent = () => {
                         <Text
                             _light={{ color: "#16171B" }}
                             _dark={{ color: "#FFFFFF" }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"10px"}
                         >
@@ -79,7 +79,7 @@ const DefiUsersSmallTableComponent = () => {
                                 color: "#16171B",
                                 bg: "#F5F5F7"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                             letterSpacing={"1px"}
@@ -90,7 +90,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -116,7 +116,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -141,7 +141,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -166,7 +166,7 @@ const DefiUsersSmallTableComponent = () => {
                         </Thead>
 
                         <Tbody
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                             _dark={{ bgColor: "#202020" }}
@@ -182,8 +182,8 @@ const DefiUsersSmallTableComponent = () => {
                                     >
                                         <>
                                             <Image
-                                                width={"10px"}
-                                                height={"16px"}
+                                                width={"24px"}
+                                                height={"24px"}
                                                 alt=''
                                                 src="/images/Ethereumlogo.svg"
                                             ></Image>
@@ -192,7 +192,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -205,7 +205,7 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -222,14 +222,14 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"7px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -238,7 +238,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -255,7 +255,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -264,7 +264,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -287,8 +287,8 @@ const DefiUsersSmallTableComponent = () => {
                                     >
                                         <>
                                             <Image
-                                                width={"14px"}
-                                                height={"14px"}
+                                                width={"24px"}
+                                                height={"24px"}
                                                 alt=''
                                                 src="/images/Tronlogo.svg"
                                             ></Image>
@@ -297,7 +297,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -310,7 +310,7 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -327,14 +327,14 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"7px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -343,7 +343,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -352,15 +352,15 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"13px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -369,7 +369,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -392,8 +392,8 @@ const DefiUsersSmallTableComponent = () => {
                                     >
                                         <>
                                             <Image
-                                                width={"12px"}
-                                                height={"12px"}
+                                                width={"24px"}
+                                                height={"24px"}
                                                 alt=''
                                                 src="/images/Binancelogo.svg"
                                             ></Image>
@@ -402,7 +402,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -415,7 +415,7 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -432,14 +432,14 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"7px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -448,7 +448,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -457,15 +457,15 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"13px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -474,7 +474,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -497,8 +497,8 @@ const DefiUsersSmallTableComponent = () => {
                                     >
                                         <>
                                             <Image
-                                                width={"12px"}
-                                                height={"12px"}
+                                                width={"24px"}
+                                                height={"24px"}
                                                 alt=''
                                                 src="/images/Arbitrumlogo.svg"
                                             ></Image>
@@ -507,7 +507,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -520,7 +520,7 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -537,14 +537,14 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"7px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -553,7 +553,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -562,15 +562,15 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"13px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -579,7 +579,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -602,8 +602,8 @@ const DefiUsersSmallTableComponent = () => {
                                     >
                                         <>
                                             <Image
-                                                width={"13px"}
-                                                height={"12px"}
+                                                width={"24px"}
+                                                height={"24px"}
                                                 alt=''
                                                 src="/images/Polygonmaticlogo.svg"
                                             ></Image>
@@ -612,7 +612,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
@@ -625,7 +625,7 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -642,14 +642,14 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"7px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -658,7 +658,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -667,15 +667,15 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"13px"}
-                                            height={"12px"}
+                                            width={"24px"}
+                                            height={"24px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -684,7 +684,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"9px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -707,7 +707,7 @@ const DefiUsersSmallTableComponent = () => {
                             <Text
                                 _light={{ color: "#434347" }}
                                 _dark={{ color: "#A8ADBD" }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
@@ -716,7 +716,7 @@ const DefiUsersSmallTableComponent = () => {
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 ml={"3px"}

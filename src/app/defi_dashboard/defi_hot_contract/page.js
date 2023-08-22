@@ -21,7 +21,7 @@ function Defi_Hot_Contracts () {
     ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg", "60%"],
     ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg", "10%"],
     ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg", "50%"],
-    ["FluidTokens","123","864","USD 45.90988","/icons/radiantv2_logo.svg", "50%"],
+    ["FluidTokens","123","864","USD 45.90988","/icons/fluidtoken_logo.svg", "50%"],
     ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg", "20%"],
 ];
 
@@ -34,7 +34,7 @@ function Defi_Hot_Contracts () {
     ["Morpho Aave","345","8456","USD 0.001782","/icons/morphoaave_logo.svg"],
     ["Compound V3","876","8734","USD 35.700000","/icons/compoundv3.svg"],
     ["Radiant V2","3456","436","USD 0.313472","/icons/radiantv2_logo.svg"],
-    ["FluidTokens","123","864","USD 45.90988","/icons/radiantv2_logo.svg"],
+    ["FluidTokens","123","864","USD 45.90988","/icons/fluidtoken_logo.svg"],
     ["Trader Joe Lend","876","963","USD 45.90988","/icons/traderjoelend_logo.svg"],
 ];
  
@@ -61,7 +61,7 @@ function Defi_Hot_Contracts () {
 
           />
           <Text
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontStyle={"normal"}
               fontWeight={"400"}
               lineHeight={"20px"}
@@ -89,7 +89,7 @@ function Defi_Hot_Contracts () {
                       padding={"13px 5px"}
                   >
                       <Text
-                          fontSize={"10px"}
+                          fontSize={"16px"}
                           fontWeight={tabIndex === 0 ? "700" : "400"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
                           textTransform={"uppercase"}
@@ -109,7 +109,7 @@ function Defi_Hot_Contracts () {
                       padding={"13px 5px"}
                   >
                       <Text
-                          fontSize={"10px"}
+                          fontSize={"16px"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
                           fontWeight={tabIndex === 1 ? "700" : "400"}
                           textTransform={"uppercase"}
@@ -209,8 +209,8 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                             gap={"10px"}
                         >
                             <Image
-                                height={"10px"}
-                                width={"10px"}
+                                height={"24px"}
+                                width={"24px"}
                                  src={ blockchain.src}
                                 alt="logo"
                             >
@@ -222,7 +222,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -243,7 +243,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -264,7 +264,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -285,7 +285,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
@@ -306,7 +306,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                                 _light={{
                                     color: "#16171B"
                                 }}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontStyle={"normal"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
