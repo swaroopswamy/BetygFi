@@ -49,19 +49,20 @@ const LinkItemsUp = [
   { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
+
 const LinkItemsDown = [
   { name: "Reddit", icon: RedditIcon, path: 'https://www.reddit.com/r/betygFi', newTab: true },
   { name: "Discord", icon: DiscordIcon, path: 'https://discord.gg/bGMmeNRJtW', newTab: true },
   { name: "Twitter", icon: TwitterIcon, path: 'https://twitter.com/betygFi', newTab: true },
 ];
 
-
 const bottomMenu = [
-  //{ name: "Help", icon: QuestionIcon, path: '#' },
-  //{ name: "Settings", icon: SettingIcon, path: '#' },
+  // { name: "Help", icon: QuestionIcon, path: '#' },
+  // { name: "Settings", icon: SettingIcon, path: '#' },
   { name: "Suggest Feature", icon: BulbIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
   { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
+
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode } = useColorMode();
   const [ isCollapsed, setCollapse ] = useState(false);
@@ -83,7 +84,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         bg={useColorModeValue("white", "#191919")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        minWidth={isSidebarCollapsed ? "50px" : "250px"}
+        minWidth={isSidebarCollapsed ? "50px" : "210px"}
         pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
@@ -102,8 +103,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             justifyContent={"space-between"}
           >
             {/* Top Half */}
-            <Box
-            >
+            <Box>
               <Flex
                 h="20"
                 alignItems="center"
@@ -141,23 +141,21 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   icon={link.icon}
                   path={link.path}
                   newTab={link.newTab}
-                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
+                  _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                            mr: "-13px"}}
                   fontSize="14px"
                   fontWeight="400"
                   lineHeight="20px"
                   letterSpacing="1.4px"
-                  _dark={{
-                    color:"#FFF"
-                  }}
-                  _light={{
-                    color:"#16171B"
-                  }}
+                  alignContent="center"
                 >
                   {link.name}
                 </NavItem>
               ))}
 
-              <hr style={{ margin: "15px 20px" }} />
+              <hr style={{ margin: "25px 20px" }} />
 
               <Text
                 fontSize="12px"
@@ -171,7 +169,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 _light={{
                   color:"#16171B"
                 }}
-                textTransform={"uppercase"}
                 mb="15px"
                 w="100%"
                 mx="4"
@@ -179,6 +176,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               >
                 BetygFi Communities
               </Text>
+
               {LinkItemsDown.map((link) => (
                 <>
                   {link?.dropdown ? (
@@ -199,17 +197,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         key={link.name}
                         icon={link.icon}
                         path={link.path}
-                        _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                        _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                            mr: "-13px"}}
                         fontSize="12px"
                         fontWeight="400"
                         lineHeight="20px" 
                         letterSpacing="1.2px"
-                        _dark={{
-                          color:"#FFF"
-                        }}
-                        _light={{
-                          color:"#16171B"
-                        }}
                       >
                         {link.name}
                       </NavItem>
@@ -227,24 +222,22 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     key={link.name}
                     icon={link.icon}
                     path={link.path}
-                    _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                    _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                          }}
                     newTab={link.newTab}
                     fontSize="12px"
                     fontWeight="400"
                     lineHeight="20px"
                     letterSpacing="1.2px"
-                    _dark={{
-                      color:"#FFF"
-                    }}
-                    _light={{
-                      color:"#16171B"
-                    }}
-
                   >
                     {link.name}
                   </NavItem>
                 ))}
+
                 <hr style={{ marginBottom: "15px" }} />
+
                 <Box
                   display={"flex"}
                   alignItems={"center"}
@@ -344,7 +337,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   icon={link.icon}
                   path={link.path}
                   newTab={link.newTab}
-                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
+                  _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                            mr: "-1px"}}
                   fontSize="14px"
                   fontWeight="400"
                   lineHeight="20px"
@@ -359,7 +355,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </CollapsedNavItem>
                 ))}
 
-              <hr style={{ margin: "15px 0px" }} />
+              <hr style={{ margin: "25px 0px" }} />
 
               <Box>
 
@@ -383,7 +379,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                           key={link.name}
                           icon={link.icon}
                           path={link.path}
-                          _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                          _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                            mr: "-1px"}}
                           fontSize="12px"
                           fontWeight="400"
                           lineHeight="20px"
@@ -410,7 +409,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       key={link.name}
                       icon={link.icon}
                       path={link.path}
-                      _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+                      _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                            mr: "-1px"}}
                       newTab={link.newTab}
                       fontSize="12px"
                       fontWeight="400"
@@ -488,11 +490,8 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
       _focus={{ boxShadow: "none" }}
     >
       <Flex
-        width={"50px"}
         justifyContent="center"
         p="2"
-        mx="4"
-        borderRadius="lg"
         role="group"
         cursor="pointer"
         _hover={{
@@ -503,11 +502,10 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
       >
         {icon && (
           <Icon
-            mt="3px"
+            // mt="3px"
+            ml="10px"
             p="0"
-            w="18px"
-            h="18px"
-            fontSize="16"
+            boxSize={25}
             _groupHover={{
               color: "white",
             }}
@@ -528,25 +526,20 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
       _focus={{ boxShadow: "none" }}
     >
       <Flex
-        align="center"
-        p="2"
-        mx="4"
-        borderRadius="lg"
+        alignItems="stretch"
+        alignContent={"center"}
+        padding={"2"}
         role="group"
         cursor="pointer"
-        _hover={{
-          bg: "cyan.400",
-          color: "white",
-        }}
         {...rest}
       >
         {icon && (
           <Icon
-            mr="4"
-            mt="3px"
+            mt="1px"
+            ml="3"
             p="0"
-            w="18px"
-            h="18px"
+            w="25px"
+            h="25px"
             fontSize="16"
             _groupHover={{
               color: "white",
