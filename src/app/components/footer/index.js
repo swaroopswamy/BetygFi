@@ -79,7 +79,7 @@ const Footer = () => {
           >
             <Text
               mr={{ base: 2, md: 4 }}
-              fontSize={"10px"}
+              fontSize={"14px"}
               lineHeight={"20px"}
               letterSpacing={"10%"}
               fontWeight={manrope.style.fontWeight}

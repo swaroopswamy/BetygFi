@@ -110,8 +110,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             value={searchWalletAddressValue}
             bgColor={"transparent"}
             color={useColorModeValue("#16171B", "#A8ADBD")}
-            fontSize={"11px"}
-            fontWeight={400}
+            fontSize="12px"
+            fontWeight="400"
+            lineHeight="20px"
+            letterSpacing="1.2px"
             w="100%"
             placeholder="Search Wallet Address"
             onKeyDown={(e) => { handleSearchByWalletAddress(e) }}

@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import DefiTable from "../defi_hot_contract/DefiTable";
+<<<<<<< HEAD
 import { Box, Text, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
+=======
+import { Box, Text, Tr, Td, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
@@ -129,20 +133,36 @@ function Defi_Hot_Contracts () {
                   <TabPanel
                       p="0px"
                   >
+<<<<<<< HEAD
                     <DefiTable
                         tableName={"Defi Hot Contract"}
                         thread={["Blockchain | Contract Name","No of Users","No of Transactions","Total Deposit", "Share"]}
                         tableData={hotContractData}
+=======
+                    <GenericBigTableComponent
+                        tableName={"Defi Hot Contract"}
+                        thread={["Blockchain|Contract Name", "No. of Users", "No. of Transactions", "Total Deposit", "Share"]}
+                        tableData={hotContractData}
+                        RowComponent={RowComponent}
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
                     />
                   </TabPanel>
 
                   <TabPanel
                       p="0px"
                   >
+<<<<<<< HEAD
                     <DefiTable
                         tableName={"Defi Functions/Methods"}
                         thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
                         tableData={defiFunctionsData}
+=======
+                    <GenericBigTableComponent
+                        tableName={"Defi Functions/Methods"}
+                        thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
+                        tableData={defiFunctionsData}
+                        RowComponent={RowComponent}
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
                     />
                   </TabPanel>
 
@@ -153,4 +173,171 @@ function Defi_Hot_Contracts () {
     </Box>
   )
 };
+<<<<<<< HEAD
 export default  Defi_Hot_Contracts;
+=======
+
+export default  Defi_Hot_Contracts;
+
+function RowComponent( { tableData }) {
+    return (
+        <>
+            {tableData.map((item, i) => {
+                            return (
+                                <>
+                                    <TableRow
+                                        key={i}
+                                        blockchain={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        users={item[1]}
+                                        calls ={item[2]}
+                                        feeconsumed={item[3]}
+                                        share={item[5]}
+                                    />
+                                </>
+                            )
+            })}
+        </>
+    )
+}
+
+function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
+    const [clicked, setClick] = useState(false);
+    const { colorMode } = useColorMode();
+    const router = useRouter();
+    return (
+        <>
+            <Tr
+                key={key}
+                cursor={"pointer"}
+                bgColor={clicked ?
+                    (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                    (colorMode === "light" ? '#FFFFFF' : '#202020')
+                }
+                onClick={() => { setClick(!clicked) }}
+                borderBottom={'1px'}
+                borderColor={useColorModeValue('#DFDFDF', '#313131')}
+                borderRadius={'2px'}
+            >
+
+                <Td>
+                    <Flex>
+                        <Box
+                            alignItems={"center"}
+                            display={"flex"}
+                            gap={"10px"}
+                        >
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                 src={ blockchain.src}
+                                alt="logo"
+                            >
+                            </Image>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                { blockchain.name}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {users}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {calls}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {feeconsumed}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {share}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+            </Tr>
+        </>
+    );
+}
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8

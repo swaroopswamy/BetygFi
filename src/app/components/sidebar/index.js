@@ -142,9 +142,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   path={link.path}
                   newTab={link.newTab}
                   _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
-                  fontSize="11px"
+                  fontSize="14px"
                   fontWeight="400"
-                  letterSpacing="1px"
+                  lineHeight="20px"
+                  letterSpacing="1.4px"
                   _dark={{
                     color:"#FFF"
                   }}
@@ -159,9 +160,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <hr style={{ margin: "15px 20px" }} />
 
               <Text
-                fontSize="11px"
+                fontSize="12px"
                 fontWeight="400"
-                letterSpacing="1px"
+                lineHeight="20px"
+                letterSpacing="1.2px"
+                opacity="0.6"
                 _dark={{
                   color:"#FFF"
                 }}
@@ -197,9 +200,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         icon={link.icon}
                         path={link.path}
                         _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
-                        fontSize="11px"
+                        fontSize="12px"
                         fontWeight="400"
-                        letterSpacing="1px"
+                        lineHeight="20px" 
+                        letterSpacing="1.2px"
                         _dark={{
                           color:"#FFF"
                         }}
@@ -225,9 +229,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     path={link.path}
                     _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                     newTab={link.newTab}
-                    fontSize="11px"
+                    fontSize="12px"
                     fontWeight="400"
-                    letterSpacing="1px"
+                    lineHeight="20px"
+                    letterSpacing="1.2px"
                     _dark={{
                       color:"#FFF"
                     }}
@@ -262,10 +267,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     />
                     <Text
                       as={"capital"}
-                      fontSize={"12px"}
+                      fontSize={"11px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
-                      letterSpacing={"1px"}
+                      letterSpacing={"1.1px"}
                       _dark={{
                         color:"#FFF"
                       }}
@@ -340,9 +345,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   path={link.path}
                   newTab={link.newTab}
                   _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
-                  fontSize="11px"
+                  fontSize="14px"
                   fontWeight="400"
-                  letterSpacing="1px"
+                  lineHeight="20px"
+                  letterSpacing="1.4px"
                   _dark={{
                     color:"#FFF"
                   }}
@@ -378,9 +384,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                           icon={link.icon}
                           path={link.path}
                           _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
-                          fontSize="11px"
+                          fontSize="12px"
                           fontWeight="400"
-                          letterSpacing="1px"
+                          lineHeight="20px"
+                          letterSpacing="1.2px"
                           _dark={{
                             color:"#FFF"
                           }}
@@ -405,9 +412,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       path={link.path}
                       _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
                       newTab={link.newTab}
-                      fontSize="11px"
+                      fontSize="12px"
                       fontWeight="400"
-                      letterSpacing="1px"
+                      lineHeight="20px"
+                      letterSpacing="1.2px"
                       _dark={{
                         color:"#FFF"
                       }}

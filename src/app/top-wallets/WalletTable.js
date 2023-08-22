@@ -15,8 +15,9 @@ const WalletTable = () => {
         <>
             <Box
                 border={"2px"}
-                borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
+                _light={{borderColor: "#FFFFFF"}}
+                _dark={{borderColor: "#202020"}}
             >
                 <Box
                     display={"flex"}

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import DefiTable from "../TVL_ranking/DefiTable";
 import { Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
