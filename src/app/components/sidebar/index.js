@@ -494,21 +494,13 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
         p="2"
         role="group"
         cursor="pointer"
-        _hover={{
-          bg: "cyan.400",
-          color: "white",
-        }}
         {...rest}
       >
         {icon && (
           <Icon
-            // mt="3px"
             ml="10px"
-            p="0"
+            paddingTop={"3px"}
             boxSize={25}
-            _groupHover={{
-              color: "white",
-            }}
             as={icon}
           />
         )}
