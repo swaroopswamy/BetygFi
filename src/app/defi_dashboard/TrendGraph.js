@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import graphData from './exampleTrendGraphData.json';
 
 function TrendGraph() {
     const {colorMode} = useColorMode();
@@ -138,7 +139,9 @@ function TrendGraph() {
                 <Box
                     padding={"20px 20px"}
                 >
-                    <Graph />
+                    <Graph 
+                        graphTypeSelected={graphTypeSelected}
+                    />
                 </Box>
 
 
@@ -147,7 +150,17 @@ function TrendGraph() {
     );
 }
 
-function Graph() {
+function Graph( {graphTypeSelected}) {
+    const series = [];
+
+    for (let i = 0; i < graphTypeSelected.length; i++) {
+        if (graphTypeSelected[i] in graphData) {
+            console.log(graphData[graphTypeSelected[i]]);
+            let currData = graphData[graphTypeSelected[i]].series[0];
+            series.push(currData);
+        }
+    }
+
     const options = {
         chart: {
             toolbar: {
@@ -227,16 +240,16 @@ function Graph() {
         },
     }
 
-    const series = [
-        {
-          name: "Series A",
-          data: [14, 20, 25, 15, 25, 28, 38, 46]
-        },
-        {
-          name: "Series B",
-          data: [20, 29, 37, 36, 44, 45, 50, 58]
-        }
-      ];
+    // const series = [
+    //     {
+    //       name: "Series A",
+    //       data: [14, 20, 25, 15, 25, 28, 38, 46]
+    //     },
+    //     {
+    //       name: "Series B",
+    //       data: [20, 29, 37, 36, 44, 45, 50, 58]
+    //     }
+    //   ];
 
     return (
         <>
