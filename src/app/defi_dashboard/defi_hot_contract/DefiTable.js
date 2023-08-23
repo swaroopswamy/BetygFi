@@ -485,9 +485,6 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
             </Tr>
         </>
     );
-<<<<<<< HEAD
-}
-=======
 }
 
 
@@ -497,4 +494,3 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
 
 
 
->>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
