@@ -155,7 +155,6 @@ function Graph( {graphTypeSelected}) {
 
     for (let i = 0; i < graphTypeSelected.length; i++) {
         if (graphTypeSelected[i] in graphData) {
-            console.log(graphData[graphTypeSelected[i]]);
             let currData = graphData[graphTypeSelected[i]].series[0];
             series.push(currData);
         }
