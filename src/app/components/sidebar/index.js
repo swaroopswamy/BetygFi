@@ -468,6 +468,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 width={24}
                 height={24}
                 alt="button"
+                style={isSidebarCollapsed ? { rotate: '180deg' } : { rotate: '0deg'}}
                 src={useColorModeValue(
                   "/icons/collapse-sidebar-light.svg",
                   "/icons/collapse-sidebar-dark.svg"
