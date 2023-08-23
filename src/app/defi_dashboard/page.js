@@ -55,6 +55,18 @@ const DefiDashboardPage = () => {
            fetchWalletTransactionsDataHandler();
        }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
     */
+
+    const renderIcon = (item) => {
+        return (
+            <Image
+                src={`/icons/${item}_sm_icon.svg`}
+                alt={`${item}_icon`}
+                width={18}
+                height={18}
+            />
+        );
+    };
+
     return (
         <>
             <Box
@@ -90,6 +102,7 @@ const DefiDashboardPage = () => {
                         <Box
                             display={"flex"}
                             flexDirection={"column"}
+                            paddingTop={"15px"}
                         >
                             {
                                 walletBalanceData?.name === undefined && (
@@ -97,7 +110,7 @@ const DefiDashboardPage = () => {
                                         fontSize={"24px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
-                                        opacity={"0.5"}
+                                        //opacity={"0.5"}
                                         _dark={{
                                             color: "#FFFFFF"
                                         }}
@@ -115,35 +128,36 @@ const DefiDashboardPage = () => {
                                 mt={"13px"}
                             >
                                 <Box
-                                    borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     h="100%"
                                     py={"11px"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
-                                        fontWeight={"400"}
-
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
                                         color={useColorModeValue("#000000", "#A8ADBD")}
-                                        paddingRight={"15px"}
+                                        paddingRight={"20px"}
                                     >
                                         www.sushi.com/swap
                                     </Text>
                                 </Box>
 
+                                <Image src={useColorModeValue("/images/Line(Light).svg", "/images/Line(Dark).svg")}></Image>
                                 <Box
                                     display={"flex"}
                                     alignItems={"center"}
                                     h="100%"
                                     paddingRight={"20px"}
-                                    borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
 
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
                                         color={useColorModeValue("#3A3A3A", "#A8ADBD")}
-                                        paddingLeft={"15px"}
+                                        paddingLeft={"20px"}
                                         marginRight={"13px"}
                                     >
                                         {blockchains?.length} chains
@@ -158,7 +172,31 @@ const DefiDashboardPage = () => {
                                         {blockchains?.map((item, i) => (
                                             <>
                                                 {i < 4 &&
-                                                    <Tooltip key={i} label={item}>
+                                                    <Tooltip
+                                                        label={
+                                                            <>
+                                                                <div style={{ display: 'flex', alignItems: 'center'}}>
+                                                                    {renderIcon(item)}
+                                                                    <span style={{paddingLeft:"8px"}}>{item}</span>
+                                                                </div>
+                                                                <Text
+                                                                _light={{color:"#191919"}}
+                                                                _dark={{color:"#FFF"}}
+                                                                fontSize={"16px"}
+                                                                fontWeight={400}
+                                                                lineHeight={"20px"}
+                                                                mt={"10px"}
+                                                                ml={"5px"}
+                                                                >
+                                                                    37% of TVL</Text>
+                                                            </>
+                                                        }
+                                                        width={"168px"}
+                                                        height={"78px"}
+                                                        _light={{ bgColor: "#FFF", color: "#191919" }}
+                                                        _dark={{ bgColor: "#202020", color: "#FFF" }}
+                                                    >
+
                                                         <Box
                                                             display={"flex"}
                                                             cursor={"pointer"}
@@ -205,6 +243,7 @@ const DefiDashboardPage = () => {
                      {item}
                    </Text> */}
                                                         </Box>
+
                                                     </Tooltip>
                                                 }
                                             </>
@@ -284,17 +323,19 @@ const DefiDashboardPage = () => {
                                         </Menu>
                                     </Box>
                                 </Box>
+                                <Image src={useColorModeValue("/images/Line(Light).svg", "/images/Line(Dark).svg")}></Image>
                                 <Box
                                     h="100%"
                                     py={"11px"}
-                                    pl="15px"
+                                    pl="20px"
                                     display={"flex"}
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
-                                        fontWeight={"400"}
-
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"15px"}
                                     >
@@ -302,8 +343,9 @@ const DefiDashboardPage = () => {
                                     </Text>
                                     <Text
                                         fontSize={"10px"}
-                                        fontWeight={"400"}
-
+                                        fontWeight={600}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1px"}
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"15px"}
                                     >
