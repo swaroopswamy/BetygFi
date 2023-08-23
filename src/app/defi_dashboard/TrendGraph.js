@@ -48,7 +48,6 @@ function TrendGraph() {
                 mapdata.push(item);
             }
         })
-        console.log(mapdata, 'map')
         setSeries(mapdata)
     }
 
@@ -177,7 +176,6 @@ function TrendGraph() {
 
 function Graph({ series }) {
 
-    console.log(series, 'selected series')
 
     const options = {
         chart: {
