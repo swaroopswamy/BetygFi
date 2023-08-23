@@ -11,7 +11,7 @@ const Privacy = () => {
                         flexDirection={"row"}
                         justifyContent={"space-between"}>
 
-                        <Box fontSize={"46px"}
+                        <Box fontSize={"36px"}
                             padding={"90px 0px 0px 70px"}
                             color={useColorModeValue("#191919", "#FFFFFF")}>
                             Privacy Policy
@@ -24,10 +24,12 @@ const Privacy = () => {
                 </Box>
 
                 <Box width={"80%"} height={"603px"}
-                    opacity={"0.800000011920929"}
+                    opacity={"0.8"}
                     color={useColorModeValue("#191919", "#FFFFFF")}
                     flexShrink={"0"}
-                    fontSize={"16px"}
+                    fontSize={"14px"}
+                    fontWeight={400}
+                    lineHeight={"26px"}
                     padding={"10px 0px 0px 70px"} >
 
                     <Text paddingTop={"20px"}>

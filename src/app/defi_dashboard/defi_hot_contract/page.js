@@ -2,10 +2,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import DefiTable from "../defi_hot_contract/DefiTable";
+<<<<<<< HEAD
+import { Box, Text, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
+=======
 import { Box, Text, Tr, Td, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
-import GenericBigTableComponent from "../GenericBigTable";
 
 function Defi_Hot_Contracts () {
   const [tabIndex, setTabIndex] = useState(0);
@@ -130,22 +133,36 @@ function Defi_Hot_Contracts () {
                   <TabPanel
                       p="0px"
                   >
+<<<<<<< HEAD
+                    <DefiTable
+                        tableName={"Defi Hot Contract"}
+                        thread={["Blockchain | Contract Name","No of Users","No of Transactions","Total Deposit", "Share"]}
+                        tableData={hotContractData}
+=======
                     <GenericBigTableComponent
                         tableName={"Defi Hot Contract"}
                         thread={["Blockchain|Contract Name", "No. of Users", "No. of Transactions", "Total Deposit", "Share"]}
                         tableData={hotContractData}
                         RowComponent={RowComponent}
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
                     />
                   </TabPanel>
 
                   <TabPanel
                       p="0px"
                   >
+<<<<<<< HEAD
+                    <DefiTable
+                        tableName={"Defi Functions/Methods"}
+                        thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
+                        tableData={defiFunctionsData}
+=======
                     <GenericBigTableComponent
                         tableName={"Defi Functions/Methods"}
                         thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
                         tableData={defiFunctionsData}
                         RowComponent={RowComponent}
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8
                     />
                   </TabPanel>
 
@@ -156,6 +173,9 @@ function Defi_Hot_Contracts () {
     </Box>
   )
 };
+<<<<<<< HEAD
+export default  Defi_Hot_Contracts;
+=======
 
 export default  Defi_Hot_Contracts;
 
@@ -320,3 +340,4 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
         </>
     );
 }
+>>>>>>> 59968fd94536bec544197a94d41538161a91d2f8

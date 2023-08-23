@@ -57,7 +57,7 @@ const WalletDashboardPage = () => {
                             <Text
                                 fontSize={"14px"}
                                 fontWeight={"400"}
-                                lineHeight={"20px"}
+                                lineHeight={"21px"}
                                 color={useColorModeValue("#191919", "#FFF")}
                                 paddingBottom={"30px"}
 

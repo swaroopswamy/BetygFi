@@ -141,15 +141,28 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   icon={link.icon}
                   path={link.path}
                   newTab={link.newTab}
+<<<<<<< HEAD
                   _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-13px"}}
+=======
+                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                   fontSize="14px"
                   fontWeight="400"
                   lineHeight="20px"
                   letterSpacing="1.4px"
+<<<<<<< HEAD
                   alignContent="center"
+=======
+                  _dark={{
+                    color:"#FFF"
+                  }}
+                  _light={{
+                    color:"#16171B"
+                  }}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                 >
                   {link.name}
                 </NavItem>
@@ -197,14 +210,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         key={link.name}
                         icon={link.icon}
                         path={link.path}
+<<<<<<< HEAD
                         _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-13px"}}
+=======
+                        _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                         fontSize="12px"
                         fontWeight="400"
                         lineHeight="20px" 
                         letterSpacing="1.2px"
+<<<<<<< HEAD
+=======
+                        _dark={{
+                          color:"#FFF"
+                        }}
+                        _light={{
+                          color:"#16171B"
+                        }}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                       >
                         {link.name}
                       </NavItem>
@@ -231,6 +257,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     fontWeight="400"
                     lineHeight="20px"
                     letterSpacing="1.2px"
+<<<<<<< HEAD
+=======
+                    _dark={{
+                      color:"#FFF"
+                    }}
+                    _light={{
+                      color:"#16171B"
+                    }}
+
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                   >
                     {link.name}
                   </NavItem>
@@ -337,10 +373,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   icon={link.icon}
                   path={link.path}
                   newTab={link.newTab}
+<<<<<<< HEAD
                   _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-1px"}}
+=======
+                  _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020"}}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                   fontSize="14px"
                   fontWeight="400"
                   lineHeight="20px"
@@ -379,10 +419,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
                           key={link.name}
                           icon={link.icon}
                           path={link.path}
+<<<<<<< HEAD
                           _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-1px"}}
+=======
+                          _hover={{ bg: colorMode === "light"? "#F5F5F7" : "#202020" }}
+>>>>>>> 974bb8589cd56bf553d85bfbd2f9127e7c86373a
                           fontSize="12px"
                           fontWeight="400"
                           lineHeight="20px"

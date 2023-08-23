@@ -7,14 +7,15 @@ const Help = () => {
     <>
       <Container padding={"0px"} maxW="100%">
         <Box style={{ mixBlendMode: "luminosity" }}
-          background={useColorModeValue("#E8E8E8", "#222")}>
+          background={useColorModeValue("#E8E8E8", "#222")}
+          ml={"8px"}>
 
           <Box display={"flex"} flexDirection={"row"}
             justifyContent={"space-between"}>
 
-            <Box fontSize={"46px"}
+            <Box fontSize={"36px"}
               fontStyle={"normal"}
-              fontWeight={"400"}
+              fontWeight={400}
               lineHeight={"46px"}
               padding={"90px 0px 80px 60px"}
               color={useColorModeValue("#191919", "#FFFFFF")}>
@@ -47,7 +48,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"} >
                       What is Ethereum?
@@ -55,12 +56,12 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ? ('/images/ellipse-light-up.png') : ('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   In 2015, the Ethereum blockchain launched as a much more versatile version of the Bitcoin payment
@@ -85,7 +86,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"}>
                       What is a blockchain system?
@@ -93,13 +94,13 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ? ('/images/ellipse-light-up.png') : ('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   //color={useColorModeValue("#191919", "#FFFFFF")}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ut labore et dolore magna aliqua.
@@ -120,7 +121,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"} >
                       What is a blockchain wallet?
@@ -128,13 +129,13 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ?('/images/ellipse-light-up.png'):('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   //color={useColorModeValue("#191919", "#FFFFFF")}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ut labore et dolore magna aliqua.
@@ -155,7 +156,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"}>
                       What is distributed ledger technology?
@@ -163,12 +164,12 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ? ('/images/ellipse-light-up.png'):('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ut labore et dolore magna aliqua.
@@ -188,7 +189,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"}>
                       What is private blockchain?
@@ -196,12 +197,12 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ? ('/images/ellipse-light-up.png'):('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ut labore et dolore magna aliqua.
@@ -221,7 +222,7 @@ const Help = () => {
                       _light={{ color: "#191919" }}
                       fontSize={"24px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       lineHeight={"20px"}
                       padding={"10px 0px 10px 0px"}>
                       What is block time?
@@ -229,12 +230,12 @@ const Help = () => {
                     {isExpanded ? <Image src={colorMode === 'light' ? ('/images/ellipse-light-up.png'):('/images/ellipse-dark-up.png')} w={"24px"} h={"24px"} alt="" /> : <Image src={colorMode === 'light' ? ('/images/ellipse-light-down.png'):('/images/ellipse-dark-down.png')} w={"24px"} h={"24px"} alt="" />}
                   </AccordionButton>
                 </h2>
-                <AccordionPanel pb={4} opacity={"0.800000011920929"}
+                <AccordionPanel pb={4} opacity={"0.8"}
                   _dark={{ color: "#FFFFFF" }}
                   _light={{ color: "#191919" }}
                   fontSize={"14px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   lineHeight={"26px"}
                   padding={"10px 50px 20px 20px"}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ut labore et dolore magna aliqua.

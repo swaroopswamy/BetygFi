@@ -13,7 +13,7 @@ const Terms = () => {
               flexDirection={"row"} 
               justifyContent={"space-between"}>
 
-            <Box  fontWeight= {"400"}
+            <Box  fontWeight= {400}
                       lineHeight= {"46px"}
                      padding= {"90px 0px 0px 50px"} >
             <Image src={useColorModeValue("/images/terms-light-mode.png","/images/terms-dark-mode.png")} alt=""></Image>
@@ -27,11 +27,12 @@ const Terms = () => {
 
         <Box width= {"80%"}
             color={useColorModeValue("#191919", "#FFFFFF")}
-            fontSize= {"16px"}
-             fontWeight= {"400"}
+            fontSize= {"14px"}
+             fontWeight= {400}
+             lineHeight={"26px"}
              padding= {"30px 60px 60px 50px"}
              marginBottom ="10px" 
-             opacity= {"0.800000011920929"}
+             opacity= {"0.8"}
              >
 
           <Text  paddingTop= {"20px"}>
