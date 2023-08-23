@@ -139,9 +139,7 @@ function TrendGraph() {
                 <Box
                     padding={"20px 20px"}
                 >
-                    <Graph 
-                        graphTypeSelected={graphTypeSelected}
-                    />
+                    <Graph />
                 </Box>
 
 
@@ -150,15 +148,13 @@ function TrendGraph() {
     );
 }
 
-function Graph( {graphTypeSelected}) {
+function Graph() {
     const series = [];
 
-    for (let i = 0; i < graphTypeSelected.length; i++) {
-        if (graphTypeSelected[i] in graphData) {
-            console.log(graphData[graphTypeSelected[i]]);
-            let currData = graphData[graphTypeSelected[i]].series[0];
-            series.push(currData);
-        }
+    for (let i = 0; i < graphData.data.series.length; i++) {
+        console.log(graphData.data.series[i]);
+        let currData = graphData.data.series[i];
+        series.push(currData);
     }
 
     const options = {
@@ -184,7 +180,7 @@ function Graph( {graphTypeSelected}) {
         },
         colors: ["#FF5C00", "#C0E253", "#DE50CF", "#29A88E"],
         xaxis: {
-            categories: ["May", "2021", "May", "2021", "May", "2021", "May", "2021"],
+            // type: 'datetime',
             labels: {
                 show: true,
                 style: {
@@ -239,17 +235,6 @@ function Graph( {graphTypeSelected}) {
             }
         },
     }
-
-    // const series = [
-    //     {
-    //       name: "Series A",
-    //       data: [14, 20, 25, 15, 25, 28, 38, 46]
-    //     },
-    //     {
-    //       name: "Series B",
-    //       data: [20, 29, 37, 36, 44, 45, 50, 58]
-    //     }
-    //   ];
 
     return (
         <>
