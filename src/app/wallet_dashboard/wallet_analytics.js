@@ -59,8 +59,8 @@ const WalletAnalyticsPanel = () => {
             p="22px 25px"
           >
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               _dark={{ color: "#FFF" }}
               _light={{ color: "#212121" }}
@@ -114,8 +114,8 @@ const WalletAnalyticsPanel = () => {
               color: "#16171B"
             }} >
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               _dark={{ color: "#FFF" }}
               _light={{ color: "#212121" }}
@@ -179,8 +179,8 @@ const WalletAnalyticsPanel = () => {
             pb="14px"
           >
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               ml={"20px"}
               mr={"6px"}
@@ -212,7 +212,7 @@ const WalletAnalyticsPanel = () => {
                   color: "#16171B",
                   bg: "#F5F5F7"
                 }}
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
@@ -223,7 +223,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -246,7 +246,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex >
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -268,7 +268,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -289,7 +289,7 @@ const WalletAnalyticsPanel = () => {
               </Thead>
 
               <Tbody
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
@@ -348,7 +348,8 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"> Venus</Text>
+                                <Text ml="6px"
+                                      fontSize={"14px"}> Venus</Text>
                               </Box>
                             </Td>
 
@@ -358,8 +359,8 @@ const WalletAnalyticsPanel = () => {
                                 alignItems={"center"}
                               >
                                 <Text
-                                  fontSize={"10px"}
-                                  fontWeight={"600"}
+                                  fontSize={"14px"}
+                                  fontWeight={"400"}
                                   letterSpacing={"1px"}
                                   ml="6px"
                                   _light={{ color: "#16171B" }}
@@ -369,7 +370,7 @@ const WalletAnalyticsPanel = () => {
                                 </Text>
                               </Box>
                             </Td>
-                            <Td>USD 356,456,560</Td>
+                            <Td fontSize={"14px"}>USD 356,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -389,7 +390,7 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px">  Morpho Aave </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
                               </Box>
                             </Td>
                             <Td><Box
@@ -397,8 +398,8 @@ const WalletAnalyticsPanel = () => {
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -407,7 +408,7 @@ const WalletAnalyticsPanel = () => {
                                 40%
                               </Text>
                             </Box></Td>
-                            <Td>USD 256,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 256,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -427,15 +428,15 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"> Compound V3 </Text>
+                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -444,7 +445,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td>USD 46,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 46,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -464,15 +465,15 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px">  Radiant V2 </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -481,7 +482,7 @@ const WalletAnalyticsPanel = () => {
                                 15%
                               </Text>
                             </Box></Td>
-                            <Td>USD 66,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 66,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -501,15 +502,15 @@ const WalletAnalyticsPanel = () => {
                                   <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                                 </>
 
-                                <Text ml="10px"> FluidTokens </Text>
+                                <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -518,7 +519,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td>USD 56,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 56,456,560</Td>
                           </Tr>
                         </>
                       );
@@ -585,8 +586,8 @@ const WalletAnalyticsPanel = () => {
             pb="14px"
           >
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               ml={"20px"}
               mr={"6px"}
@@ -618,7 +619,7 @@ const WalletAnalyticsPanel = () => {
                   color: "#16171B",
                   bg: "#F5F5F7"
                 }}
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
@@ -629,7 +630,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -651,7 +652,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex >
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -673,7 +674,7 @@ const WalletAnalyticsPanel = () => {
                     <Flex>
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -694,7 +695,7 @@ const WalletAnalyticsPanel = () => {
               </Thead>
 
               <Tbody
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
@@ -765,8 +766,8 @@ const WalletAnalyticsPanel = () => {
                                 alignItems={"center"}
                               >
                                 <Text
-                                  fontSize={"10px"}
-                                  fontWeight={"600"}
+                                  fontSize={"14px"}
+                                  fontWeight={"400"}
                                   letterSpacing={"1px"}
                                   ml="6px"
                                   _light={{ color: "#16171B" }}
@@ -776,7 +777,7 @@ const WalletAnalyticsPanel = () => {
                                 </Text>
                               </Box>
                             </Td>
-                            <Td>USD 356,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 356,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -796,7 +797,7 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px">  Morpho Aave </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
                               </Box>
                             </Td>
                             <Td><Box
@@ -804,8 +805,8 @@ const WalletAnalyticsPanel = () => {
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -814,7 +815,7 @@ const WalletAnalyticsPanel = () => {
                                 40%
                               </Text>
                             </Box></Td>
-                            <Td>USD 256,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 256,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -834,15 +835,15 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"> Compound V3 </Text>
+                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -851,7 +852,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td>USD 46,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 46,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -871,15 +872,15 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px">  Radiant V2 </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -888,7 +889,7 @@ const WalletAnalyticsPanel = () => {
                                 15%
                               </Text>
                             </Box></Td>
-                            <Td>USD 66,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 66,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -908,15 +909,15 @@ const WalletAnalyticsPanel = () => {
                                   <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                                 </>
 
-                                <Text ml="10px"> FluidTokens </Text>
+                                <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
                               alignItems={"center"}
                             >
                               <Text
-                                fontSize={"10px"}
-                                fontWeight={"600"}
+                                fontSize={"14px"}
+                                fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 ml="6px"
                                 _light={{ color: "#16171B" }}
@@ -925,7 +926,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td>USD 56,456,560</Td>
+                            <Td  fontSize={"14px"}>USD 56,456,560</Td>
                           </Tr>
                         </>
                       );
@@ -1029,8 +1030,8 @@ const WalletAnalyticsPanel = () => {
             pb="14px"
           >
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               ml={"20px"}
               mr={"6px"}
@@ -1069,7 +1070,7 @@ const WalletAnalyticsPanel = () => {
                   bg: "#F5F5F7"
                 }}
 
-                fontSize={"10px"}
+                fontSize={"14px"}
 
                 fontWeight={"400"}
 
@@ -1090,7 +1091,7 @@ const WalletAnalyticsPanel = () => {
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1122,7 +1123,7 @@ const WalletAnalyticsPanel = () => {
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1151,7 +1152,7 @@ const WalletAnalyticsPanel = () => {
 
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1180,7 +1181,7 @@ const WalletAnalyticsPanel = () => {
 
               <Tbody
 
-                fontSize={"10px"}
+                fontSize={"14px"}
 
                 fontWeight={"400"}
 
@@ -1263,7 +1264,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> Venus</Text>
+                                <Text ml="6px"  fontSize={"14px"}> Venus</Text>
 
                               </Box>
 
@@ -1283,9 +1284,9 @@ const WalletAnalyticsPanel = () => {
 
                                 <Text
 
-                                  fontSize={"10px"}
+                                  fontSize={"14px"}
 
-                                  fontWeight={"600"}
+                                  fontWeight={"400"}
 
                                   letterSpacing={"1px"}
 
@@ -1303,7 +1304,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Td>
 
-                            <Td>60%</Td>
+                            <Td  fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1340,7 +1341,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px">  Morpho Aave </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
 
                               </Box>
 
@@ -1356,9 +1357,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -1374,7 +1375,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>30%</Td>
+                            <Td  fontSize={"14px"}>30%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1411,7 +1412,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> Compound V3 </Text>
+                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
 
                               </Box></Td>
 
@@ -1425,9 +1426,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -1443,7 +1444,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>50%</Td>
+                            <Td  fontSize={"14px"}>50%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1480,7 +1481,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px">  Radiant V2 </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
 
                               </Box></Td>
 
@@ -1494,9 +1495,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -1512,7 +1513,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>60%</Td>
+                            <Td  fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1547,7 +1548,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> FluidTokens </Text>
+                                <Text ml="6px"  fontSize={"14px"}> FluidTokens </Text>
 
                               </Box></Td>
 
@@ -1561,9 +1562,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -1579,7 +1580,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>30%</Td>
+                            <Td  fontSize={"14px"}>30%</Td>
 
                           </Tr>
                         </>
@@ -1681,11 +1682,11 @@ const WalletAnalyticsPanel = () => {
 
             <Text
 
-              fontSize={"15px"}
+              fontSize={"18px"}
 
               fontStyle={"normal"}
 
-              fontWeight={"400"}
+              fontWeight={"600"}
 
               lineHeight={"20px"}
 
@@ -1735,7 +1736,7 @@ const WalletAnalyticsPanel = () => {
                   bg: "#F5F5F7"
                 }}
 
-                // fontSize={"10px"}
+                fontSize={"14px"}
 
                 fontWeight={"400"}
 
@@ -1756,7 +1757,7 @@ const WalletAnalyticsPanel = () => {
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1788,7 +1789,7 @@ const WalletAnalyticsPanel = () => {
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1817,7 +1818,7 @@ const WalletAnalyticsPanel = () => {
 
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -1846,7 +1847,7 @@ const WalletAnalyticsPanel = () => {
 
               <Tbody
 
-                fontSize={"10px"}
+                fontSize={"14px"}
 
                 fontWeight={"400"}
 
@@ -1929,7 +1930,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> Venus</Text>
+                                <Text ml="6px"  fontSize={"14px"}> Venus</Text>
 
                               </Box>
 
@@ -1949,9 +1950,9 @@ const WalletAnalyticsPanel = () => {
 
                                 <Text
 
-                                  fontSize={"10px"}
+                                  fontSize={"14px"}
 
-                                  fontWeight={"600"}
+                                  fontWeight={"400"}
 
                                   letterSpacing={"1px"}
 
@@ -1969,7 +1970,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Td>
 
-                            <Td >60%</Td>
+                            <Td fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2006,7 +2007,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px">  Morpho Aave </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
 
                               </Box>
 
@@ -2022,9 +2023,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -2040,7 +2041,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>30%</Td>
+                            <Td  fontSize={"14px"}>30%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2077,7 +2078,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> Compound V3 </Text>
+                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
 
                               </Box></Td>
 
@@ -2091,9 +2092,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -2109,7 +2110,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>50%</Td>
+                            <Td  fontSize={"14px"}>50%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2146,7 +2147,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px">  Radiant V2 </Text>
+                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
 
                               </Box></Td>
 
@@ -2160,9 +2161,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -2178,7 +2179,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>60%</Td>
+                            <Td  fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2213,7 +2214,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"> FluidTokens </Text>
+                                <Text ml="6px"  fontSize={"14px"}> FluidTokens </Text>
 
                               </Box></Td>
 
@@ -2227,9 +2228,9 @@ const WalletAnalyticsPanel = () => {
 
                               <Text
 
-                                fontSize={"10px"}
+                                fontSize={"14px"}
 
-                                fontWeight={"600"}
+                                fontWeight={"400"}
 
                                 letterSpacing={"1px"}
 
@@ -2245,7 +2246,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td>30%</Td>
+                            <Td  fontSize={"14px"}>30%</Td>
 
                           </Tr>
                         </>
@@ -2305,8 +2306,8 @@ const WalletAnalyticsPanel = () => {
           justifyContent={"space-between"}
         >
           <Text
-            fontSize={"15px"}
-            fontWeight={400}
+            fontSize={"18px"}
+            fontWeight={600}
             lineHeight={"20px"}
             _dark={{ color: "#FFF" }}
             _light={{ color: "#212121" }}
@@ -2352,8 +2353,8 @@ const WalletAnalyticsPanel = () => {
           pb="14px"
         >
           <Text
-            fontSize={"15px"}
-            fontWeight={400}
+            fontSize={"18px"}
+            fontWeight={600}
             lineHeight={"20px"}
             _dark={{ color: "#FFF" }}
             _light={{ color: "#212121" }}

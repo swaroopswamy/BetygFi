@@ -44,8 +44,8 @@ const DefiInflowOutflowSmallTable = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"15px"}
-                        fontWeight={"400"}
+                        fontSize={"18px"}
+                        fontWeight={"600"}
                         lineHeight={"20px"}
                         ml={"20px"}
                         mr={"6px"}
@@ -80,7 +80,7 @@ const DefiInflowOutflowSmallTable = () => {
                         <Text
                             _light={{ color: "#16171B" }}
                             _dark={{ color: "#FFFFFF" }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"10px"}
                         >
@@ -111,7 +111,7 @@ const DefiInflowOutflowSmallTable = () => {
                                 bg: "#F5F5F7"
                             }}
 
-                            // fontSize={"10px"}
+                            fontSize={"14px"}
 
                             fontWeight={"400"}
 
@@ -132,7 +132,7 @@ const DefiInflowOutflowSmallTable = () => {
                                         <Text paddingRight={"5px"}
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -164,7 +164,7 @@ const DefiInflowOutflowSmallTable = () => {
                                         <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -192,7 +192,7 @@ const DefiInflowOutflowSmallTable = () => {
 
                         <Tbody
 
-                            fontSize={"10px"}
+                            fontSize={"14px"}
 
                             fontWeight={"400"}
 
@@ -224,9 +224,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
@@ -237,7 +237,7 @@ const DefiInflowOutflowSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> Etherium</Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Etherium</Text>
 
                                     </Box>
 
@@ -257,9 +257,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                         <Text
 
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
 
-                                            fontWeight={"600"}
+                                            fontWeight={"400"}
 
                                             letterSpacing={"1px"}
 
@@ -300,9 +300,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
@@ -314,7 +314,7 @@ const DefiInflowOutflowSmallTable = () => {
 
 
 
-                                        <Text ml="6px">  Tron </Text>
+                                        <Text ml="6px"  fontSize={"14px"}>  Tron </Text>
 
                                     </Box>
 
@@ -330,9 +330,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -372,9 +372,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
@@ -386,7 +386,7 @@ const DefiInflowOutflowSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> BSC </Text>
+                                        <Text ml="6px"  fontSize={"14px"}> BSC </Text>
 
                                     </Box></Td>
 
@@ -400,9 +400,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -442,9 +442,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
@@ -456,7 +456,7 @@ const DefiInflowOutflowSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> Arbitrum </Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Arbitrum </Text>
 
                                     </Box></Td>
 
@@ -470,9 +470,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -510,9 +510,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
@@ -524,7 +524,7 @@ const DefiInflowOutflowSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> Polygon</Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Polygon</Text>
 
                                     </Box></Td>
 
@@ -538,9 +538,9 @@ const DefiInflowOutflowSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -575,7 +575,7 @@ const DefiInflowOutflowSmallTable = () => {
                             <Text
                                 _light={{ color: "#434347" }}
                                 _dark={{ color: "#A8ADBD" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
@@ -584,7 +584,7 @@ const DefiInflowOutflowSmallTable = () => {
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 ml={"3px"}

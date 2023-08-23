@@ -119,7 +119,7 @@ const WalletDashboardPage = () => {
                                 mt={"13px"}
                             >
                                 <Text
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     color={useColorModeValue("#000000", "#A8ADBD")}
                                     //borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
@@ -128,7 +128,7 @@ const WalletDashboardPage = () => {
                                     {walletAddress}
                                 </Text>
                                 {/* <Text
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"400"}
                                     lineHeight={"20px"}
                                     color={useColorModeValue("#3A3A3A", "#A8ADBD")}
@@ -138,7 +138,7 @@ const WalletDashboardPage = () => {
                                     AGE
                                 </Text>
                                 <Text
-                                    fontSize={"10px"}
+                                    fontSize={"14px"}
                                     fontWeight={"500"}
                                     lineHeight={"20px"}
                                     color={useColorModeValue("#191919", "#FFF")}

@@ -34,8 +34,8 @@ const DefiAssetCompositionSmallTable = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"15px"}
-                        fontWeight={"400"}
+                        fontSize={"18px"}
+                        fontWeight={"600"}
                         lineHeight={"20px"}
                         ml={"20px"}
                         paddingTop={"15px"}
@@ -68,7 +68,7 @@ const DefiAssetCompositionSmallTable = () => {
                         <Text
                             _light={{ color: "#16171B" }}
                             _dark={{ color: "#FFFFFF" }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"10px"}
                         >
@@ -87,7 +87,7 @@ const DefiAssetCompositionSmallTable = () => {
                                 color: "#16171B",
                                 bg: "#F5F5F7"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                             letterSpacing={"1px"}
@@ -99,7 +99,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -115,7 +115,7 @@ const DefiAssetCompositionSmallTable = () => {
                                     <Flex >
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -130,7 +130,7 @@ const DefiAssetCompositionSmallTable = () => {
                                     <Flex>
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -145,7 +145,7 @@ const DefiAssetCompositionSmallTable = () => {
                         </Thead>
 
                         <Tbody
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"20px"}
                             _dark={{ bgColor: "#202020" }}
@@ -168,7 +168,7 @@ const DefiAssetCompositionSmallTable = () => {
                                             ></Image>
                                         </>
 
-                                        <Text ml="6px"> Venus</Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Venus</Text>
                                     </Box>
                                 </Td>
 
@@ -178,7 +178,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         alignItems={"center"}
                                     >
                                         <Text
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             ml="6px"
@@ -189,7 +189,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         </Text>
                                     </Box>
                                 </Td>
-                                <Td>USD 356,456,560</Td>
+                                <Td  fontSize={"14px"}>USD 356,456,560</Td>
                             </Tr>
 
                             <Tr>
@@ -209,7 +209,7 @@ const DefiAssetCompositionSmallTable = () => {
                                             ></Image>
                                         </>
 
-                                        <Text ml="6px">  Morpho Aave </Text>
+                                        <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
                                     </Box>
                                 </Td>
                                 <Td><Box
@@ -217,7 +217,7 @@ const DefiAssetCompositionSmallTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         ml="6px"
@@ -227,7 +227,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         40%
                                     </Text>
                                 </Box></Td>
-                                <Td>USD 256,456,560</Td>
+                                <Td  fontSize={"14px"}>USD 256,456,560</Td>
                             </Tr>
 
                             <Tr>
@@ -247,14 +247,14 @@ const DefiAssetCompositionSmallTable = () => {
                                             ></Image>
                                         </>
 
-                                        <Text ml="6px"> Compound V3 </Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
                                     </Box></Td>
                                 <Td><Box
                                     display={"flex"}
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         ml="6px"
@@ -264,7 +264,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         13.09%
                                     </Text>
                                 </Box></Td>
-                                <Td>USD 46,456,560</Td>
+                                <Td  fontSize={"14px"}>USD 46,456,560</Td>
                             </Tr>
 
                             <Tr>
@@ -284,14 +284,14 @@ const DefiAssetCompositionSmallTable = () => {
                                             ></Image>
                                         </>
 
-                                        <Text ml="6px">  Radiant V2 </Text>
+                                        <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
                                     </Box></Td>
                                 <Td><Box
                                     display={"flex"}
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         ml="6px"
@@ -301,7 +301,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         15%
                                     </Text>
                                 </Box></Td>
-                                <Td>USD 66,456,560</Td>
+                                <Td  fontSize={"14px"}>USD 66,456,560</Td>
                             </Tr>
 
                             <Tr>
@@ -321,14 +321,14 @@ const DefiAssetCompositionSmallTable = () => {
                                             <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                                         </>
 
-                                        <Text ml="10px"> FluidTokens </Text>
+                                        <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
                                     </Box></Td>
                                 <Td><Box
                                     display={"flex"}
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         ml="6px"
@@ -338,7 +338,7 @@ const DefiAssetCompositionSmallTable = () => {
                                         13.09%
                                     </Text>
                                 </Box></Td>
-                                <Td>USD 56,456,560</Td>
+                                <Td  fontSize={"14px"}>USD 56,456,560</Td>
                             </Tr>
                         </Tbody>
                     </Table>
@@ -352,7 +352,7 @@ const DefiAssetCompositionSmallTable = () => {
                             <Text
                                 _light={{ color: "#434347" }}
                                 _dark={{ color: "#A8ADBD" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
@@ -361,7 +361,7 @@ const DefiAssetCompositionSmallTable = () => {
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 ml={"3px"}

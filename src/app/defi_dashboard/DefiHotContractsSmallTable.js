@@ -60,11 +60,11 @@ const DefiHotContractsSmallTable = () => {
 
                     <Text
 
-                        fontSize={"15px"}
+                        fontSize={"18px"}
 
                         fontStyle={"normal"}
 
-                        fontWeight={"400"}
+                        fontWeight={"600"}
 
                         lineHeight={"20px"}
 
@@ -124,7 +124,7 @@ const DefiHotContractsSmallTable = () => {
                         <Text
                             _light={{ color: "#16171B" }}
                             _dark={{ color: "#FFFFFF" }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             lineHeight={"10px"}
                         >
@@ -155,7 +155,7 @@ const DefiHotContractsSmallTable = () => {
                                 bg: "#F5F5F7"
                             }}
 
-                            fontSize={"10px"}
+                            fontSize={"14px"}
 
                             fontWeight={"400"}
 
@@ -176,7 +176,7 @@ const DefiHotContractsSmallTable = () => {
                                         <Text paddingRight={"5px"}
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -208,7 +208,7 @@ const DefiHotContractsSmallTable = () => {
                                         <Text paddingRight={"5px"}
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -237,7 +237,7 @@ const DefiHotContractsSmallTable = () => {
 
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -266,7 +266,7 @@ const DefiHotContractsSmallTable = () => {
 
                         <Tbody
 
-                            fontSize={"10px"}
+                            fontSize={"14px"}
 
                             fontWeight={"400"}
 
@@ -296,13 +296,13 @@ const DefiHotContractsSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
-                                                src="/icons/Ethereum_sm_icon.svg"
+                                                src="/icons/venus_logo.svg"
 
                                             ></Image>
 
@@ -310,7 +310,7 @@ const DefiHotContractsSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> Venus</Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Venus</Text>
 
                                     </Box>
 
@@ -328,9 +328,9 @@ const DefiHotContractsSmallTable = () => {
 
                                         <Text
 
-                                            fontSize={"10px"}
+                                            fontSize={"14px"}
 
-                                            fontWeight={"600"}
+                                            fontWeight={"400"}
 
                                             letterSpacing={"1px"}
 
@@ -344,7 +344,7 @@ const DefiHotContractsSmallTable = () => {
 
                                 </Td>
 
-                                <Td>4607</Td>
+                                <Td  fontSize={"14px"}>4607</Td>
 
                             </Tr>
 
@@ -368,13 +368,13 @@ const DefiHotContractsSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
-                                                src="/icons/Tron_sm_icon.svg"
+                                                src="/icons/morphoaave_logo.svg"
 
                                             ></Image>
 
@@ -382,7 +382,7 @@ const DefiHotContractsSmallTable = () => {
 
 
 
-                                        <Text ml="6px">  Morpho Aave </Text>
+                                        <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
 
                                     </Box>
 
@@ -398,9 +398,9 @@ const DefiHotContractsSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -412,7 +412,7 @@ const DefiHotContractsSmallTable = () => {
 
                                 </Box></Td>
 
-                                <Td>3523</Td>
+                                <Td  fontSize={"14px"}>3523</Td>
 
                             </Tr>
 
@@ -438,13 +438,13 @@ const DefiHotContractsSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
-                                                src="/icons/BSC_sm_icon.svg"
+                                                src="/icons/compoundv3.svg"
 
                                             ></Image>
 
@@ -452,7 +452,7 @@ const DefiHotContractsSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> Compound V3 </Text>
+                                        <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
 
                                     </Box></Td>
 
@@ -466,9 +466,9 @@ const DefiHotContractsSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -480,7 +480,7 @@ const DefiHotContractsSmallTable = () => {
 
                                 </Box></Td>
 
-                                <Td>507</Td>
+                                <Td  fontSize={"14px"}>507</Td>
 
                             </Tr>
 
@@ -506,13 +506,13 @@ const DefiHotContractsSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
-                                                src="/icons/Arbitrum_sm_icon.svg"
+                                                src="/icons/radiantv2_logo.svg"
 
                                             ></Image>
 
@@ -520,7 +520,7 @@ const DefiHotContractsSmallTable = () => {
 
 
 
-                                        <Text ml="6px">  Radiant V2 </Text>
+                                        <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
 
                                     </Box></Td>
 
@@ -534,9 +534,9 @@ const DefiHotContractsSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -548,7 +548,7 @@ const DefiHotContractsSmallTable = () => {
 
                                 </Box></Td>
 
-                                <Td>1205</Td>
+                                <Td  fontSize={"14px"}>1205</Td>
 
                             </Tr>
 
@@ -572,13 +572,13 @@ const DefiHotContractsSmallTable = () => {
 
                                             <Image
 
-                                                width={5}
+                                                width={"24px"}
 
-                                                height={5}
+                                                height={"24px"}
 
                                                 alt='logo'
 
-                                                src="/icons/Polygon_sm_icon.svg"
+                                                src="/icons/fluidtoken_logo.svg"
 
                                             ></Image>
 
@@ -586,7 +586,7 @@ const DefiHotContractsSmallTable = () => {
 
 
 
-                                        <Text ml="6px"> FluidTokens </Text>
+                                        <Text ml="6px"  fontSize={"14px"}> FluidTokens </Text>
 
                                     </Box></Td>
 
@@ -600,9 +600,9 @@ const DefiHotContractsSmallTable = () => {
 
                                     <Text
 
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
 
-                                        fontWeight={"600"}
+                                        fontWeight={"400"}
 
                                         letterSpacing={"1px"}
 
@@ -614,7 +614,7 @@ const DefiHotContractsSmallTable = () => {
 
                                 </Box></Td>
 
-                                <Td>5207</Td>
+                                <Td  fontSize={"14px"}>5207</Td>
 
                             </Tr>
 
@@ -640,7 +640,7 @@ const DefiHotContractsSmallTable = () => {
                             <Text
                                 _light={{ color: "#434347" }}
                                 _dark={{ color: "#A8ADBD" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
@@ -649,7 +649,7 @@ const DefiHotContractsSmallTable = () => {
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 ml={"3px"}
