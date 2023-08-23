@@ -24,7 +24,7 @@ const TVLBox = () => {
                     _light={{ color: "#16171B" }}
                     _dark={{ color: "#FFFFFF" }}
                     fontSize={"24px"}
-                    fontWeight={"400"}
+                    fontWeight={"600"}
                     lineHeight={"20px"}
                     letterSpacing={"2.4px"}
                     textTransform={"uppercase"}>
@@ -34,7 +34,7 @@ const TVLBox = () => {
                     _light={{ color: "#16171B" }}
                     _dark={{ color: "#FFFFFF" }}
                     textAlign={"left"}
-                    fontSize={"10px"}
+                    fontSize={"12px"}
                     fontWeight={"400"}
                     lineHeight={"10px"}
                     pt={"10px"}
@@ -46,9 +46,9 @@ const TVLBox = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
-                        lineHeight={"30px"}
+                        lineHeight={"27px"}
                         pt={"20px"}>
                         Market Cap<br></br>
                         Token Price<br></br>
@@ -61,9 +61,9 @@ const TVLBox = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={"400"}
-                        lineHeight={"30px"}
+                        lineHeight={"27px"}
                         textAlign={"right"}
                         pt={"20px"}>
                         $207.83m<br></br>
@@ -83,14 +83,16 @@ const TVLBox = () => {
                         solid={"#333"}
                         _light={{ bgColor: "#F5F5F7" }}
                         _dark={{ bgColor: "#191919" }}
-                        mt={"15px"}>
+                        mt={"22px"}>
                         <Flex>
-                            <DownloadIcon pt={"5px"}></DownloadIcon>
+                            <DownloadIcon pt={"5px"} 
+                                          width={"12px"}
+                                          height={"12px"}></DownloadIcon>
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
                                 textAlign={"right"}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"10px"}
                                 pt={"3px"}
@@ -104,7 +106,7 @@ const TVLBox = () => {
                     <Text
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"12px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         pt={"25px"}>
@@ -113,7 +115,7 @@ const TVLBox = () => {
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
+                        fontSize={"12px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         pt={"25px"}

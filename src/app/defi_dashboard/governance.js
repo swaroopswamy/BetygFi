@@ -39,20 +39,23 @@ const GovernanceTable = ({ }) => {
                 <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
                     bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
                     <Text
-                        fontSize="xl"
-                        fontWeight={"400"}
-                        color={useColorModeValue("#16171B", "#FFF")}
-
-
-                    >
-                        Governance | proposals
+                        fontSize="18"
+                        fontWeight={"600"}
+                        color={useColorModeValue("#16171B", "#FFF")}>
+                        Governance 
                     </Text>
+
+                    <Text  marginRight={"410px"}
+                           paddingTop={"4px"}
+                           fontSize={"16px"}
+                           fontWeight={"400"}
+                           lineHeight={"20px"}>| proposals</Text>
 
                     <Flex alignItems={"center"}>
 
                         <Box>
-                            <Image width={"12px"}
-                                height={"12px"}
+                            <Image width={"14px"}
+                                height={"14px"}
                                 flexShrink={"0"}
                                 paddingRight={"5px"}
                                 alt=''
@@ -60,14 +63,16 @@ const GovernanceTable = ({ }) => {
                             </Image></Box>
                         <Box>
                             <Text paddingRight={"10px"}
-                                fontSize={"10px"}>Filter Controversial Proposals</Text>
+                                fontSize={"14px"}
+                                fontWeight={400}
+                                lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box>
                         <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
                                 bgColor={useColorModeValue("#F5F5F7", "#191919")}
                                 color={useColorModeValue("#16171B", "#A8ADBD")}
-                                fontSize={"10px"}
+                                fontSize={"12px"}
                                 fontWeight={400}
                                 w="207px"
                                 placeholder="Search DeFi"
@@ -82,7 +87,7 @@ const GovernanceTable = ({ }) => {
                         <Tr>
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 alignItems={"center"}
@@ -93,7 +98,7 @@ const GovernanceTable = ({ }) => {
                                 <Box display={"flex"}
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         letterSpacing={"1px"}
                                         mr="6px">
@@ -101,8 +106,8 @@ const GovernanceTable = ({ }) => {
                                     </Text>
 
                                     <>
-                                        <Image width={2}
-                                            height={2}
+                                        <Image width={"6px"}
+                                            height={"8px"}
                                             alt='logo'
                                             src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                                         </Image>
@@ -116,7 +121,7 @@ const GovernanceTable = ({ }) => {
                                     alignItems={"center"}>
 
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         letterSpacing={"1px"}
                                         mr="6px"
@@ -124,8 +129,8 @@ const GovernanceTable = ({ }) => {
                                         END
                                     </Text>
                                     <>
-                                        <Image width={2}
-                                            height={2}
+                                        <Image width={"6px"}
+                                            height={"8px"}
                                             alt='logo'
                                             src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                                         </Image>
@@ -138,7 +143,7 @@ const GovernanceTable = ({ }) => {
                                 <Box display={"flex"}
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         letterSpacing={"1px"}
                                         mr="6px">
@@ -146,8 +151,8 @@ const GovernanceTable = ({ }) => {
                                     </Text>
 
                                     <>
-                                        <Image width={2}
-                                            height={2}
+                                        <Image width={"1.5"}
+                                            height={"2"}
                                             alt='logo'
                                             src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                                         </Image>
@@ -159,7 +164,7 @@ const GovernanceTable = ({ }) => {
                                 <Box display={"flex"}
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={"400"}
                                         letterSpacing={"1px"}
                                         mr="6px">
@@ -167,8 +172,8 @@ const GovernanceTable = ({ }) => {
                                     </Text>
 
                                     <>
-                                        <Image width={2}
-                                            height={2}
+                                        <Image width={"6px"}
+                                            height={"8px"}
                                             alt='logo'
                                             src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                                         </Image>
@@ -177,7 +182,7 @@ const GovernanceTable = ({ }) => {
                             </Th>
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}
                             >
@@ -186,18 +191,18 @@ const GovernanceTable = ({ }) => {
 
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}
                             >
                                 <Flex>
-                                    <Text>CONTROVERSY</Text>
+                                    <Text  fontSize={"14px"}>CONTROVERSY</Text>
 
-                                    <>
+                                    {/* <>
 
                                         <Tooltip label='#Frame'
                                             fontWeight={400}
-                                            fontSize={"10px"}>
+                                            fontSize={"14px"}>
 
                                             <Image width={"12px"}
                                                 height={"12px"}
@@ -208,27 +213,27 @@ const GovernanceTable = ({ }) => {
                                                 src="/images/Frame.svg">
                                             </Image>
                                         </Tooltip>
-                                    </>
+                                    </> */}
                                 </Flex>
 
                             </Th>
 
 
-                            <Th
+                            {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}
                             >
                                 DISCUSSION
-                            </Th>
+                            </Th> */}
                         </Tr>
                     </Thead>
 
 
                     <Tbody
 
-                        fontSize={"10px"}
+                        fontSize={"14px"}
 
                         fontWeight={"400"}
 
@@ -242,30 +247,30 @@ const GovernanceTable = ({ }) => {
 
                             _light={{ color: "#16171B" }}>
 
-                            <Td>Gauge Weight for Week of 11th May 2023</Td>
+                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
 
-                            <Td>11 May, 2023, 00:00 </Td>
+                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
 
-                            <Td>15 May, 2023, 23:50    </Td>
+                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
 
-                            <Td>
+                            <Td  fontSize={"14px"}>
                                 <List spacing={1} display="flex" alignItems="center">
                                     <ListIcon as={MdCheckCircle} color={Status1 === 'Active' ? '#62D845' : '#FF4848'} />
                                     <ListItem>
-                                        <Text>{Status1 === 'Active' ? 'Active' : 'Inactive'}</Text>
+                                        <Text  paddingBottom={"10px"}>{Status1 === 'Active' ? 'Active' : 'Inactive'}</Text>
                                     </ListItem>
                                 </List>
                             </Td>
 
 
 
-                            <Td>3,388,851</Td>
+                            <Td  fontSize={"14px"}>3,388,851</Td>
 
-                            <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
 
-                            <Td>481759.04</Td>
+                            <Td  fontSize={"14px"}>481759.04</Td>
 
-                            <Td>   </Td>
+                           
 
                         </Tr>
 
@@ -273,28 +278,28 @@ const GovernanceTable = ({ }) => {
 
                             _light={{ color: "#16171B" }}>
 
-                            <Td>Gauge Weight for Week of 11th May 2023</Td>
+                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
 
-                            <Td>11 May, 2023, 00:00 </Td>
+                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
 
-                            <Td>15 May, 2023, 23:50    </Td>
+                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
 
-                            <Td>
+                            <Td  fontSize={"14px"}>
                                 <List spacing={1} display="flex" alignItems="center">
                                     <ListIcon as={MdCheckCircle} color={Status2 === 'Active' ? '#62D845' : '#FF4848'} />
                                     <ListItem>
-                                        <Text>{Status2 === 'Active' ? 'Active' : 'Inactive'}</Text>
+                                        <Text  paddingBottom={"10px"}>{Status2 === 'Active' ? 'Active' : 'Inactive'}</Text>
                                     </ListItem>
                                 </List>
                             </Td>
 
-                            <Td>3,388,851</Td>
+                            <Td  fontSize={"14px"}>3,388,851</Td>
 
-                            <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
 
-                            <Td>481759.04</Td>
+                            <Td  fontSize={"14px"}>481759.04</Td>
 
-                            <Td>   </Td>
+                           
 
                         </Tr>
 
@@ -302,29 +307,28 @@ const GovernanceTable = ({ }) => {
 
                             _light={{ color: "#16171B" }}>
 
-                            <Td>Gauge Weight for Week of 11th May 2023</Td>
+                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
 
-                            <Td>11 May, 2023, 00:00 </Td>
+                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
 
-                            <Td>15 May, 2023, 23:50    </Td>
+                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
 
-                            <Td>
+                            <Td  fontSize={"14px"}>
                                 <List spacing={1} display="flex" alignItems="center">
                                     <ListIcon as={MdCheckCircle} color={Status3 === 'Active' ? '#62D845' : '#FF4848'} />
                                     <ListItem>
-                                        <Text>{Status3 === 'Active' ? 'Active' : 'Inactive'}</Text>
+                                        <Text  paddingBottom={"10px"}>{Status3 === 'Active' ? 'Active' : 'Inactive'}</Text>
                                     </ListItem>
                                 </List>
                             </Td>
 
-                            <Td>3,388,851</Td>
+                            <Td  fontSize={"14px"}>3,388,851</Td>
 
-                            <Td>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
+                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
 
-                            <Td>481759.04</Td>
+                            <Td  fontSize={"14px"}>481759.04</Td>
 
-                            <Td>   </Td>
-
+                            
                         </Tr>
                     </Tbody>
                   
