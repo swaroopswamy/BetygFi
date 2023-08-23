@@ -27,7 +27,7 @@ function TrendGraph() {
 
     const GraphTypeHandler = (type) => {
         const arr = graphTypeSelected.slice();
-   
+
         const index = arr.indexOf(type);
         if (index > -1) {
             arr.splice(index, 1);
@@ -176,7 +176,7 @@ function TrendGraph() {
 
 function Graph({ series }) {
 
-
+    const { colorMode } = useColorMode;
     const options = {
         chart: {
             toolbar: {
@@ -214,14 +214,14 @@ function Graph({ series }) {
             },
         },
         yaxis:
-            series?.map((item,i) => {
+            series?.map((item, i) => {
                 return {
                     opposite: i !== 0 && true,
                     seriesName: item.name,
                     labels: {
                         show: true,
                         style: {
-                            colors: useColorModeValue("#16171B", "#FFF"),
+                            colors: colorMode === 'light' ? "#16171B" : "#FFF",
                             fontSize: "11px",
                             fontWeight: 300,
                         },
