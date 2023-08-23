@@ -1,0 +1,22 @@
+{
+    "TVL": {
+        "catagories": ["May", "2021", "May", "2021", "May", "2021", "May", "2021"],
+        "format": "currency",
+        "series": [
+            {
+                "name": "TVL",
+                "data": [14, 20, 25, 15, 25, 28, 38, 46]
+            }
+        ]
+    },
+    "MCap": {
+        "catagories": ["May", "2021", "May", "2021", "May", "2021", "May", "2021"],
+        "format": "percent",
+        "series": [
+            {
+                "name": "MCap",
+                "data": [20, 29, 37, 36, 44, 45, 50, 58]
+            }
+        ]
+    }
+}
