@@ -41,12 +41,13 @@ const GovernanceTable = ({ }) => {
                     <Text
                         fontSize="18"
                         fontWeight={"600"}
+                        //paddingRight={"15px"}
                         color={useColorModeValue("#16171B", "#FFF")}>
                         Governance 
                     </Text>
 
                     <Text  marginRight={"410px"}
-                           paddingTop={"4px"}
+                           paddingTop={"2px"}
                            fontSize={"16px"}
                            fontWeight={"400"}
                            lineHeight={"20px"}>| proposals</Text>

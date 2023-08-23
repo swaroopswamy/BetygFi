@@ -41,7 +41,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     h="24px"
                     as={colorMode === "light" ? BackIconWhite : BackIconBlack}
                     mr="6px"
-
                 />
                 <Text
                     fontSize={"10px"}
@@ -69,11 +68,11 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //ml={"20px"}
+                            //pr={"10px"}
                             mb={"20px"}
                             mt={"20px"}
-                            fontSize={"15px"}
-                            fontWeight={"400"}
+                            fontSize={"18px"}
+                            fontWeight={"600"}
                             lineHeight={"20px"}
                         >
                             {tableName}
@@ -116,6 +115,8 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                         <Tr
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
+                            fontSize={"14px"}
+                            fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
                         >
@@ -155,7 +156,7 @@ function ThreadItem({ key, name }) {
             <Th
                 key={key}
                 color={useColorModeValue("#434347", "#A8ADBD")}
-                fontSize={"10px"}
+                fontSize={"14px"}
                 fontStyle={"normal"}
                 fontWeight={"400"}
                 lineHeight={"20px"}
@@ -199,7 +200,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                 <Box
                     position={"relative"}
                     cursor={"pointer"}
-                    fontSize={"10px"}
+                    fontSize={"14px"}
                     fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                     letterSpacing={"1px"}
                     lineHeight={"20px"}
@@ -257,7 +258,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                 alt=""
                             ></Image>
                             <Text
-                                fontSize={"10px"}
+                                fontSize={"14px"}
                                 fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
                                 lineHeight={"20px"}
                                 letterSpacing={"1px"}
@@ -290,9 +291,9 @@ function PageButtons() {
             >
                 <Flex>
                     <Text
-                        _light={{ color: "#434347" }}
+                        _light={{ color: "#A8ADBD" }}
                         _dark={{ color: "#A8ADBD" }}
-                        fontSize={"10px"}
+                        fontSize={"12px"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                     >
@@ -318,7 +319,7 @@ function PageButtons() {
                     >
                         <Text
                             color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontWeight={"400"}
                         >
                             1-20

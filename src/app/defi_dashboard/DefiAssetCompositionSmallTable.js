@@ -11,14 +11,14 @@ const DefiAssetCompositionSmallTable = () => {
     return (
         <>
             <Box
-                w='50%'
+                w='53%'
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}
 
                 _dark={{ bg: "#202020" }}
                 _light={{ bg: "#FFFFFF" }}
-                mr="25px"
+                
             >
                 <Flex
                     height={"50px"}
@@ -37,7 +37,7 @@ const DefiAssetCompositionSmallTable = () => {
                         fontSize={"18px"}
                         fontWeight={"600"}
                         lineHeight={"20px"}
-                        ml={"20px"}
+                        ml={"22px"}
                         paddingTop={"15px"}
                     >
                         DeFi Asset Composition
@@ -316,9 +316,9 @@ const DefiAssetCompositionSmallTable = () => {
                                                 width={5}
                                                 height={5}
                                                 alt='logo'
-                                                src="/images/Fluidtokens.svg"
+                                                src="/icons/fluidtoken_logo.svg"
                                             ></Image>
-                                            <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
+                                            {/* {/* <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image> */}
                                         </>
 
                                         <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
@@ -350,7 +350,7 @@ const DefiAssetCompositionSmallTable = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#434347" }}
+                                _light={{ color: "#A8ADBD" }}
                                 _dark={{ color: "#A8ADBD" }}
                                 fontSize={"12px"}
                                 fontWeight={"400"}

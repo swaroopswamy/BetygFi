@@ -638,7 +638,7 @@ const DefiHotContractsSmallTable = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#434347" }}
+                                _light={{ color: "#A8ADBD" }}
                                 _dark={{ color: "#A8ADBD" }}
                                 fontSize={"12px"}
                                 fontWeight={"400"}

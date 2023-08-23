@@ -39,7 +39,7 @@ const DefiUsersSmallTableComponent = () => {
                         fontSize={"18px"}
                         fontWeight={"600"}
                         lineHeight={"20px"}
-                        ml={"20px"}
+                        ml={"22px"}
                         mt={"20px"}
                     >
                         DeFi Users
@@ -47,7 +47,9 @@ const DefiUsersSmallTableComponent = () => {
                     <Spacer />
                     <Button
                         variant={"outline"}
-                        size={"xs"}
+                        // size={"xs"}
+                        width={"88px"}
+                        height={"26px"}
                         _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
                         _dark={{ colorScheme: "#191919", stroke: "#333" }}
                         strokeWidth={"1px"}
@@ -102,7 +104,7 @@ const DefiUsersSmallTableComponent = () => {
                                             <Image width={"12px"}
                                                 height={"12px"}
                                                 flexShrink={"0"}
-                                                mt={"4px"}
+                                                mt={"5px"}
                                                 ml={"2px"}
                                                 alt=''
                                                 src="/images/Frame.svg">
@@ -127,7 +129,7 @@ const DefiUsersSmallTableComponent = () => {
                                             <Image width={"12px"}
                                                 height={"12px"}
                                                 flexShrink={"0"}
-                                                mt={"4px"}
+                                                mt={"5px"}
                                                 ml={"2px"}
                                                 alt=''
                                                 src="/images/Frame.svg">
@@ -153,13 +155,14 @@ const DefiUsersSmallTableComponent = () => {
                                             <Image width={"12px"}
                                                 height={"12px"}
                                                 flexShrink={"0"}
-                                                mt={"4px"}
-                                                ml={"1px"}
+                                                mt={"5px"}
+                                                ml={"2px"}
                                                 alt=''
                                                 src="/images/Frame.svg">
                                             </Image>
                                         </Tooltip>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt=""></Image>
+                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} 
+                                               alt=""  width={"12px"}  height={"12px"}  mt={"5px"} ml={"2px"}></Image>
                                     </Flex>
                                 </Th>
                             </Tr>
@@ -195,7 +198,15 @@ const DefiUsersSmallTableComponent = () => {
                                             fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
+                                            ml={"10px"}>0xe984…1cc2</Text> 
+
+                                            <Text  _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"12px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"10px"}>
+                                                $39,689,191</Text> 
                                     </Box>
                                 </Td>
 
@@ -222,8 +233,8 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"8.59px"}
+                                            height={"14px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
@@ -238,7 +249,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -247,8 +258,8 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"13px"}
-                                            height={"12px"}
+                                            width={"16px"}
+                                            height={"14px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
@@ -264,7 +275,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -300,7 +311,15 @@ const DefiUsersSmallTableComponent = () => {
                                             fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
+                                            ml={"10px"}>0xe984…1cc2</Text>
+
+                                           <Text  _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"12px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"10px"}>
+                                                $39,689,191</Text>
                                     </Box>
                                 </Td>
 
@@ -327,8 +346,8 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"8.59px"}
+                                            height={"14px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
@@ -343,7 +362,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -352,8 +371,8 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"16px"}
+                                            height={"14px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
@@ -369,7 +388,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -405,7 +424,15 @@ const DefiUsersSmallTableComponent = () => {
                                             fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
+                                            ml={"10px"}>0xe984…1cc2</Text>
+
+                                            <Text  _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"12px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"10px"}>
+                                                $39,689,191</Text>
                                     </Box>
                                 </Td>
 
@@ -432,8 +459,8 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"8.59px"}
+                                            height={"14px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
@@ -448,7 +475,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -457,8 +484,8 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"16px"}
+                                            height={"14px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
@@ -474,7 +501,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -510,7 +537,15 @@ const DefiUsersSmallTableComponent = () => {
                                             fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
+                                            ml={"10px"}>0xe984…1cc2</Text>
+
+                                           <Text  _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"12px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"10px"}>
+                                                $39,689,191</Text>
                                     </Box>
                                 </Td>
 
@@ -537,8 +572,8 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"8.59px"}
+                                            height={"14px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
@@ -553,7 +588,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -562,8 +597,8 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"16px"}
+                                            height={"14px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
@@ -579,7 +614,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -615,7 +650,15 @@ const DefiUsersSmallTableComponent = () => {
                                             fontSize={"14px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2   $39,689,191</Text>
+                                            ml={"10px"}>0xe984…1cc2</Text>
+
+                                            <Text  _light={{ color: "#16171B" }}
+                                            _dark={{ color: "#FFFFFF" }}
+                                            fontSize={"12px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            ml={"10px"}>
+                                                $39,689,191</Text>
                                     </Box>
                                 </Td>
 
@@ -642,8 +685,8 @@ const DefiUsersSmallTableComponent = () => {
                                         alignItems={"center"}
                                     >
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"8.59px"}
+                                            height={"14px"}
                                             alt=''
                                             src="/images/Ethereumlogo.svg"></Image>
                                         <Text
@@ -658,7 +701,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -667,8 +710,8 @@ const DefiUsersSmallTableComponent = () => {
                                             ml={"5px"}
                                         >50.11%</Text>
                                         <Image
-                                            width={"24px"}
-                                            height={"24px"}
+                                            width={"16px"}
+                                            height={"14px"}
                                             alt=''
                                             ml={"10px"}
                                             src="/images/Polygonmaticlogo.svg"></Image>
@@ -684,7 +727,7 @@ const DefiUsersSmallTableComponent = () => {
                                         <Text
                                             _light={{ color: "#16171B" }}
                                             _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
+                                            fontSize={"12px"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -705,9 +748,9 @@ const DefiUsersSmallTableComponent = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#434347" }}
+                                _light={{ color: "#A8ADBD" }}
                                 _dark={{ color: "#A8ADBD" }}
-                                fontSize={"14px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
@@ -716,7 +759,7 @@ const DefiUsersSmallTableComponent = () => {
                             <Text
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#FFFFFF" }}
-                                fontSize={"14px"}
+                                fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                                 ml={"3px"}
