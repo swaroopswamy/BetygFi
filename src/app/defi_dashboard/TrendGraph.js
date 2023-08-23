@@ -1,27 +1,37 @@
 "use client"
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Button, Select } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData from './exampleTrendGraphData.json';
 
 function TrendGraph() {
-    const {colorMode} = useColorMode();
-    const [ graphTypeSelected, setGraphType ] = useState([]);
-    const [ currencySelected, setCurrencyType ] = useState("USD");
-
-    const graphTypes = ["TVL", "MCap", "Sushi Price", "Users", "FDV", "Borrowed", "Median APY"];
+    const { colorMode } = useColorMode();
+    const [graphTypeSelected, setGraphTypeSelected] = useState([]);
+    const [currencySelected, setCurrencyType] = useState("USD");
+    const [series, setSeries] = useState([]);
+    const graphTypes = [
+        { name: "TVL", value: "tvl" },
+        { name: "MCap", value: "mcap" },
+        { name: "Sushi Price", value: "sushi_price" },
+        { name: "Users", value: "users" },
+        { name: "FDV", value: "fdv" },
+        { name: "Borrowed", value: "borrowed" },
+        { name: "Median APY", value: "median_apy" }
+    ];
 
     const CurrencyTypeHandler = (type) => {
         setCurrencyType(type);
     }
 
     const GraphTypeHandler = (type) => {
+        console.log(type, 'type')
         const arr = graphTypeSelected.slice();
+        const mapdata = null;
         const index = arr.indexOf(type);
         if (index > -1) {
-            arr.splice(index, 1);  
+            arr.splice(index, 1);
         }
         else {
             arr.push(type);
@@ -29,9 +39,20 @@ function TrendGraph() {
         if (arr.length == 0) {
             arr.push(graphTypes[0]);
         }
-        setGraphType(arr);
+        arr.map((item)=>{
+            console.log(item,'item')
+            mapdata.push(graphData.data[item.value]);
+        })
+        console.log(mapdata,'mapdata');
+        setSeries(mapdata)
+        setGraphTypeSelected(arr);
     };
+    
 
+  /*   useEffect(() => {
+        SeriesHandler();
+    }, [graphTypeSelected])
+ */
     return (
         <>
             <Box
@@ -62,7 +83,7 @@ function TrendGraph() {
                     display={"flex"}
                     mt={"11px"}
                     height={"24px"}
-                > 
+                >
 
                     {/* Graph type selection */}
                     <Box
@@ -74,7 +95,8 @@ function TrendGraph() {
                             return (
                                 <TrendGraphTypeButton
                                     key={i}
-                                    name={item}
+                                    name={item.name}
+                                    value={item.value}
                                     graphTypeSelected={graphTypeSelected}
                                     GraphTypeHandler={GraphTypeHandler}
                                     colorMode={colorMode}
@@ -139,7 +161,9 @@ function TrendGraph() {
                 <Box
                     padding={"20px 20px"}
                 >
-                    <Graph />
+                    <Graph
+                        series={series}
+                    />
                 </Box>
 
 
@@ -148,19 +172,14 @@ function TrendGraph() {
     );
 }
 
-function Graph() {
-    const series = [];
+function Graph({ series }) {
 
-    for (let i = 0; i < graphData.data.series.length; i++) {
-        console.log(graphData.data.series[i]);
-        let currData = graphData.data.series[i];
-        series.push(currData);
-    }
+    console.log(series, 'selected series')
 
     const options = {
         chart: {
             toolbar: {
-              show: false,
+                show: false,
             },
             type: 'area',
             stacked: false
@@ -173,25 +192,25 @@ function Graph() {
             type: "gradient",
             gradient: {
                 shadeIntensity: 0.7,
-                opacityFrom: 0.5, 
+                opacityFrom: 0.5,
                 opacityTo: 0.1,
                 stops: [0, 90, 100]
             }
         },
         colors: ["#FF5C00", "#C0E253", "#DE50CF", "#29A88E"],
         xaxis: {
-            // type: 'datetime',
+            type: 'datetime',
             labels: {
                 show: true,
                 style: {
                     colors: useColorModeValue("#16171B", "#FFF"),
                     fontSize: "11px",
-                    fontWeight: 300,    
+                    fontWeight: 300,
                 },
-              },
-              axisTicks: {
+            },
+            axisTicks: {
                 show: false
-              },
+            },
         },
         yaxis: {
             labels: {
@@ -199,15 +218,15 @@ function Graph() {
                 style: {
                     colors: useColorModeValue("#16171B", "#FFF"),
                     fontSize: "11px",
-                    fontWeight: 300,    
+                    fontWeight: 300,
                 },
-                formatter: function(val, index) {
+                formatter: function (val, index) {
                     return "$" + val + "B";
                 }
-              },
-              axisTicks: {
+            },
+            axisTicks: {
                 show: false
-              },
+            },
         },
         dataLabels: {
             enabled: false
@@ -238,17 +257,17 @@ function Graph() {
 
     return (
         <>
-            <Chart 
-                    options={options}
-                    series={series}
-                    type={options.chart.type}
-                    height={"200px"}
+            <Chart
+                options={options}
+                series={series}
+                type={options.chart.type}
+                height={"200px"}
             />
         </>
     )
 }
 
-function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
+function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
     return (
         <>
             <Box
@@ -271,7 +290,7 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
                 bgColor={currencySelected === "USD" ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
                     (colorMode === "light" ? '#FFFFFF' : '#202020')
-                }   
+                }
             >
                 <Text
                     fontSize={"10px"}
@@ -301,7 +320,7 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
                 bgColor={currencySelected === "BTC" ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
                     (colorMode === "light" ? '#FFFFFF' : '#202020')
-                }   
+                }
             >
                 <Text
                     fontSize={"10px"}
@@ -331,7 +350,7 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
                 bgColor={currencySelected === "ETH" ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
                     (colorMode === "light" ? '#FFFFFF' : '#202020')
-                }   
+                }
             >
                 <Text
                     fontSize={"10px"}
@@ -345,7 +364,7 @@ function CurrencyButtons( {currencySelected, CurrencyTypeHandler, colorMode}) {
     )
 }
 
-function TrendGraphTypeButton( {key, name, graphTypeSelected, GraphTypeHandler, colorMode}) {
+function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHandler, colorMode }) {
 
     return (
         <>
@@ -361,22 +380,22 @@ function TrendGraphTypeButton( {key, name, graphTypeSelected, GraphTypeHandler, 
                 justifyContent={"center"}
                 cursor={"pointer"}
                 onClick={() => {
-                    GraphTypeHandler(name);
+                    GraphTypeHandler(value);
                 }}
                 _after={
-                    graphTypeSelected.includes(name) && {
+                    graphTypeSelected.includes(value) && {
                         bgColor: colorMode === 'light' ? "#F5F5F7" : "#191919",
                     }
                 }
-                bgColor={graphTypeSelected.includes(name) ?
+                bgColor={graphTypeSelected.includes(value) ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
                     (colorMode === "light" ? '#FFFFFF' : '#202020')
-                }   
+                }
             >
                 <Text
                     fontSize={"10px"}
                     lineHeight={"10px"}
-                    fontWeight={graphTypeSelected.includes(name) ? 600 : 400}
+                    fontWeight={graphTypeSelected.includes(value) ? 600 : 400}
                 >
                     {name}
                 </Text>
