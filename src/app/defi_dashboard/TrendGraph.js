@@ -8,9 +8,9 @@ import graphData from './exampleTrendGraphData.json';
 
 function TrendGraph() {
     const { colorMode } = useColorMode();
-    const [graphTypeSelected, setGraphTypeSelected] = useState([]);
+    const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
     const [currencySelected, setCurrencyType] = useState("USD");
-    const [series, setSeries] = useState([]);
+    const [series, setSeries] = useState();
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
@@ -26,9 +26,8 @@ function TrendGraph() {
     }
 
     const GraphTypeHandler = (type) => {
-        console.log(type, 'type')
         const arr = graphTypeSelected.slice();
-        const mapdata = null;
+   
         const index = arr.indexOf(type);
         if (index > -1) {
             arr.splice(index, 1);
@@ -39,20 +38,24 @@ function TrendGraph() {
         if (arr.length == 0) {
             arr.push(graphTypes[0]);
         }
-        arr.map((item)=>{
-            console.log(item,'item')
-            mapdata.push(graphData.data[item.value]);
-        })
-        console.log(mapdata,'mapdata');
-        setSeries(mapdata)
+
         setGraphTypeSelected(arr);
     };
-    
+    const SeriesHandler = () => {
+        let mapdata = [];
+        graphData.data.map((item) => {
+            if (graphTypeSelected.includes(item.name)) {
+                mapdata.push(item);
+            }
+        })
+        console.log(mapdata, 'map')
+        setSeries(mapdata)
+    }
 
-  /*   useEffect(() => {
+    useEffect(() => {
         SeriesHandler();
     }, [graphTypeSelected])
- */
+
     return (
         <>
             <Box
@@ -212,30 +215,33 @@ function Graph({ series }) {
                 show: false
             },
         },
-        yaxis: {
-            labels: {
-                show: true,
-                style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
-                    fontWeight: 300,
-                },
-                formatter: function (val, index) {
-                    return "$" + val + "B";
+        yaxis:
+            series?.map((item,i) => {
+                return {
+                    opposite: i !== 0 && true,
+                    seriesName: item.name,
+                    labels: {
+                        show: true,
+                        style: {
+                            colors: useColorModeValue("#16171B", "#FFF"),
+                            fontSize: "11px",
+                            fontWeight: 300,
+                        },
+                        formatter: function (val, index) {
+                            return "$" + val + "B";
+                        }
+                    },
+                    axisTicks: {
+                        show: false
+                    }
                 }
-            },
-            axisTicks: {
-                show: false
-            },
-        },
+            }),
+
         dataLabels: {
             enabled: false
         },
         legend: {
             show: false,
-        },
-        dataLabels: {
-            enabled: false
         },
         tooltip: {
             enabled: false
