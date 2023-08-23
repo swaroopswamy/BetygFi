@@ -130,17 +130,30 @@ function BarChart() {
           <Box
             padding={"20px 0 20px 20px"}
           >
+            <Flex>
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               color={useColorModeValue("#16171B", "#FFFFFF")}
             >
               Defi Borrow/Supply/TVL
             </Text>
+            <Tooltip label="#Frame">
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                mt={"5px"}
+                                                ml={"4px"}
+                                                alt=''
+                                                src="/images/Frame.svg">
+                                            </Image>
+                                        </Tooltip>
+                                        </Flex>
           </Box>
           <Box
             padding={"5px 20px 5px 10px"}
+            fontSize={"12px"}
           >
             <Chart
               options={options}

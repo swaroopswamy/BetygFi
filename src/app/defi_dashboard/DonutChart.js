@@ -79,7 +79,7 @@ function DonutChart() {
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
         alignContent={"center"}
         borderRadius={"6px"}
-        padding={"10px"}
+        marginLeft={"26px"}
       >
         <Box
           display={"flex"}
@@ -89,14 +89,26 @@ function DonutChart() {
           <Box
             padding={"20px 0 20px 20px"}
           >
+            <Flex>
             <Text
-              fontSize={"15px"}
-              fontWeight={"400"}
+              fontSize={"18px"}
+              fontWeight={"600"}
               lineHeight={"20px"}
               color={useColorModeValue("#16171B", "#FFFFFF")}
             >
               Defi Fee and Revenue
             </Text>
+            <Tooltip label="#Frame">
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                mt={"7px"}
+                                                ml={"3px"}
+                                                alt=''
+                                                src="/images/Frame.svg">
+                                            </Image>
+                                        </Tooltip>
+                                        </Flex>
 
           </Box>
 
@@ -130,6 +142,7 @@ function DonutChart() {
         <Box
           padding={"5px 20px 5px 10px"}
           mt={"50px"}
+          fontSize={"14px"}
         >
           <Chart
             options={options}
