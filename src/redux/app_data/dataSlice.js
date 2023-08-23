@@ -1,24 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getBlockchainListData } from "@/services/appService";
 
-
-/* export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
-  const response = await getDefiRankingsTableData(payload);
+export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async () => {
+  const response = await getBlockchainListData();
   return response.data;
 })
-
-export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payload) => {
-  const response = await getOverviewData(payload);
-  return response.data;
-})
-export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload) => {
-  const response = await getProtocolScoresData(payload);
-  return response.data;
-}) */
 
 const AppDataSlice = createSlice({
   name: "AppData",
   initialState: {
-    isSidebarCollapsed: false
+    isSidebarCollapsed: false,
+    BlockchainListData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBlockchainListData.fulfilled, (state, action) => {
+      state.BlockchainListData.data = action.payload;
+      state.BlockchainListData.isLoading = false;
+      state.BlockchainListData.isError = false;
+      state.BlockchainListData.isSuccess = true;
+    });
+    builder.addCase(fetchBlockchainListData.pending, (state, action) => {
+      state.BlockchainListData.data = action.payload;
+      state.BlockchainListData.isLoading = true;
+      state.BlockchainListData.isError = false;
+      state.BlockchainListData.isSuccess = false;
+    });
+    builder.addCase(fetchBlockchainListData.rejected, (state, action) => {
+      state.BlockchainListData.data = action.payload;
+      state.BlockchainListData.isLoading = false;
+      state.BlockchainListData.isError = true;
+      state.BlockchainListData.isSuccess = false;
+    });
   },
   reducers: {
     sidebarCollapsedReducer: (state, action) => {
