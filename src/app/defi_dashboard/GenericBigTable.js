@@ -4,13 +4,14 @@ import {
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
-import { blockchains } from "../../../util/constant";
-import { useState } from "react";
+// import { blockchains } from "../../../util/constant";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import BackIconWhite from '../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../public/icons/backIconBlack.svg';
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
@@ -23,7 +24,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
-
 
     return (
         <>
@@ -174,6 +174,18 @@ function ThreadItem({ key, name }) {
 }
 
 function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
+    const dispatch = useDispatch();
+    const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
+    var blockchains = [];
+
+    if (blockchainListData.isSuccess) {
+        blockchains = blockchainListData.data;
+    }
+    
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+    }, []);
+
     return <>
         <Box
             display={"flex"}
@@ -220,7 +232,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                             cursor={"pointer"}
                             key={i}
                             _after={
-                                blockchainSelected.includes(item) && {
+                                blockchainSelected.includes(item.name) && {
                                     position: "absolute",
                                     content: '""',
                                     bottom: "-14px",
@@ -231,7 +243,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                 }
                             }
                             onClick={() => {
-                                BlockchainTypeHandler(item);
+                                BlockchainTypeHandler(item.name);
                             }}
                             mr={"10px"}
                             display={"flex"}
@@ -241,22 +253,22 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                 w={"20px"}
                                 h={"20px"}
                                 mr={"11px"}
-                                src={`/icons/${item}_sm_icon.svg`}
+                                src={`/icons/${item.name}_sm_icon.svg`}
                                 alt=""
                             ></Image>
                             <Text
                                 fontSize={"10px"}
-                                fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
+                                fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
                                 lineHeight={"20px"}
                                 letterSpacing={"1px"}
                                 color={colorMode === 'light' ?
-                                    blockchainSelected.includes(item) ? "#191919" : "#191919"
+                                    blockchainSelected.includes(item.name) ? "#191919" : "#191919"
                                     :
-                                    blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
+                                    blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
                                 }
                                 textTransform={"uppercase"}
                             >
-                                {item}
+                                {item.name}
                             </Text>
                         </Box>
                     );

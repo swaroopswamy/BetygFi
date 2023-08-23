@@ -468,6 +468,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 width={24}
                 height={24}
                 alt="button"
+                style={isSidebarCollapsed ? { rotate: '180deg' } : { rotate: '0deg'}}
                 src={useColorModeValue(
                   "/icons/collapse-sidebar-light.svg",
                   "/icons/collapse-sidebar-dark.svg"
@@ -491,7 +492,8 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
     >
       <Flex
         justifyContent="center"
-        p="2"
+        height={"38px"}
+        padding={"9px"}
         role="group"
         cursor="pointer"
         {...rest}
@@ -520,26 +522,28 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
       <Flex
         alignItems="stretch"
         alignContent={"center"}
-        padding={"2"}
+        height={"38px"}
+        padding={"9px"}
         role="group"
         cursor="pointer"
         {...rest}
       >
-        {icon && (
-          <Icon
-            mt="1px"
-            ml="3"
-            p="0"
-            w="25px"
-            h="25px"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
+          {icon && (
+            <Icon
+              mt="1px"
+              ml="3"
+              p="0"
+              w="25px"
+              h="25px"
+              fontSize="16"
+              _groupHover={{
+                color: "white",
+              }}
+              as={icon}
+            />
+          )}
+          {children}
+
       </Flex>
     </Link>
   );
