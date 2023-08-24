@@ -221,9 +221,9 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                         BlockchainTypeHandler("All");
                     }}
                     mr={"18px"}
-                    textTransform={"uppercase"}
+                    //textTransform={"lowercase"}
                 >
-                    ALL
+                    All
                 </Box>
                 {blockchains.map((item, i) => {
                     if (i >= 4) return;
@@ -260,14 +260,14 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                             <Text
                                 fontSize={"14px"}
                                 fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
-                                lineHeight={"20px"}
-                                letterSpacing={"1px"}
+                                lineHeight={"21.826px"}
+                                letterSpacing={"1.4px"}
                                 color={colorMode === 'light' ?
                                     blockchainSelected.includes(item.name) ? "#191919" : "#191919"
                                     :
                                     blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
                                 }
-                                textTransform={"uppercase"}
+                                //textTransform="uppercase"
                             >
                                 {item.name}
                             </Text>
