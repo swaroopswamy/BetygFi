@@ -2,7 +2,7 @@ import { axiosInstance } from "../../util/axiosInstance";
 
 export const getBlockchainListData = async () => {
     try {
-        const { data, status, message } = await axiosInstance.get(
+        const { data } = await axiosInstance.get(
             `protocols/blockchains`
         );
         return data;

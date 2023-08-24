@@ -48,7 +48,7 @@ function TrendGraph() {
                 mapdata.push(item);
             }
         })
-        setSeries(mapdata)
+        setSeries(mapdata);
     }
 
     useEffect(() => {

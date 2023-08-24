@@ -33,7 +33,7 @@ import RedditIcon from "../../../../public/icons/reddit-icon.svg";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"; 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import useScreenSize from '../../../hooks/useScreenSize'
 import { left } from "@popperjs/core";
@@ -68,6 +68,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const [ isCollapsed, setCollapse ] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
+  const pathname = usePathname();
   const screenSize = useScreenSize();
 
   const SidebarHandler = (value) => {
@@ -145,8 +146,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-13px"}}
+                  // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) && 
+                  bg={pathname === link.path ? (colorMode === "light"? "#202020" : "#FFFFFF") : null}
+                  color={pathname === link.path ? (colorMode === "light" ? "#FFFFFF" : "#191919") : null}
+                  mr={pathname === link.path ? "-13px" : null}
                   fontSize="14px"
-                  fontWeight="400"
+                  fontWeight={pathname == link.path ? "600" : "400"}
                   lineHeight="20px"
                   letterSpacing="1.4px"
                   alignContent="center"
