@@ -11,14 +11,12 @@ const DefiAssetCompositionSmallTable = () => {
     return (
         <>
             <Box
-                w='53%'
+                width={'50%'}
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}
-
                 _dark={{ bg: "#202020" }}
-                _light={{ bg: "#FFFFFF" }}
-                
+                _light={{ bg: "#FFFFFF" }}                
             >
                 <Flex
                     height={"50px"}

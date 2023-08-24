@@ -20,7 +20,6 @@ const DefiUsersSmallTableComponent = () => {
                 _light={{
                     bg: "#FFFFFF"
                 }}
-                mr={"25px"}
             >
                 <Flex
                     height={"50px"}

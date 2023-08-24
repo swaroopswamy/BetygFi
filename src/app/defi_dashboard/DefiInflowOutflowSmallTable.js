@@ -18,8 +18,7 @@ const DefiInflowOutflowSmallTable = () => {
     return (
         <>
             <Box
-                w='50%'
-
+                width={"50%"}
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}

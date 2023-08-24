@@ -411,6 +411,7 @@ const DefiDashboardPage = () => {
                     justifyContent={"space-between"}
                     mx={"20px"}
                     padding={"10px 0 0 10px"}
+                    gap={"25px"}
                 >
                     <DefiUsersSmallTableComponent />
                     <BarChart />
@@ -423,7 +424,7 @@ const DefiDashboardPage = () => {
                     justifyContent={"space-between"}
                     mx={"20px"}
                     padding={"10px 0 0 10px"}
-
+                    gap={"25px"}
                 >
                     <DefiAssetCompositionSmallTable />
                     <DonutChart />
@@ -435,7 +436,7 @@ const DefiDashboardPage = () => {
                     justifyContent={"space-between"}
                     mx={"20px"}
                     padding={"10px 0 0 10px"}
-
+                    gap={"25px"}
                 >
                     <DefiHotContractsSmallTableComponent />
                     <DefiInflowOutflowSmallTableComponent />
