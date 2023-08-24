@@ -2,6 +2,7 @@
     "data": [
         {
             "name": "tvl",
+            "type": "column",
             "data": [
                 [
                     1327359600000,
@@ -67,6 +68,7 @@
         },
         {
             "name": "mcap",
+            "type": "area",
             "data": [
                 [
                     1327359600000,
@@ -132,6 +134,7 @@
         },
         {
             "name": "sushi_price",
+            "type": "area",
             "data": [
                 [
                     1327359600000,
@@ -197,6 +200,7 @@
         },
         {
             "name": "users",
+            "type": "area",
             "data": [
                 [
                     1327359600000,
@@ -262,6 +266,7 @@
         },
         {
             "name": "fdv",
+            "type": "area",
             "data": [
                 [
                     1327359600000,
@@ -327,6 +332,7 @@
         },
         {
             "name": "borrowed",
+            "type": "area",
             "data": [
                 [
                     1327359600000,
@@ -392,6 +398,7 @@
         },
         {
             "name": "median_apy",
+            "type": "area",
             "data": [
                 [
                     1327359600000,

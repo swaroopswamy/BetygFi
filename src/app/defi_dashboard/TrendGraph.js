@@ -182,7 +182,7 @@ function Graph({ series }) {
             toolbar: {
                 show: false,
             },
-            type: 'area',
+
             stacked: false
         },
         stroke: {
