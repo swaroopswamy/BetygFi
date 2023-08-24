@@ -40,7 +40,7 @@ const DefiHotContractsSmallTable = () => {
 
                 <Flex
 
-                    height={"70px"}
+                    height={"50px"}
                     borderRadius={"6px"}
                     _dark={{
 
@@ -62,17 +62,15 @@ const DefiHotContractsSmallTable = () => {
 
                         fontSize={"18px"}
 
-                        fontStyle={"normal"}
-
-                        fontWeight={"600"}
+                        fontWeight={600}
 
                         lineHeight={"20px"}
 
-                        ml={"20px"}
+                        ml={"22px"}
 
                         mr={"6px"}
 
-                        paddingTop={"15px"}
+                        mt={"15px"}
 
                     >
 
@@ -111,8 +109,8 @@ const DefiHotContractsSmallTable = () => {
                     <Button
                         variant={"outline"}
                         size={"xs"}
-                        _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
-                        _dark={{ colorScheme: "#191919", stroke: "#333" }}
+                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
+                        _dark={{ colorScheme: "#333", stroke: "#333" }}
                         strokeWidth={"1px"}
                         mt={"15px"}
                         mr={"20px"}
@@ -177,10 +175,10 @@ const DefiHotContractsSmallTable = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>Contract Name</Text>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>Contract Name</Text>
 
 
 
@@ -209,10 +207,10 @@ const DefiHotContractsSmallTable = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>No. of users</Text>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>No. of users</Text>
 
                                         <>
 
@@ -238,10 +236,10 @@ const DefiHotContractsSmallTable = () => {
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>No. of Transactions</Text>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>No. of Transactions</Text>
 
                                         <>
 
@@ -638,8 +636,7 @@ const DefiHotContractsSmallTable = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#A8ADBD" }}
-                                _dark={{ color: "#A8ADBD" }}
+                                color={"#A8ADBD"}
                                 fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}

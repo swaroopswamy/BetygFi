@@ -8,7 +8,7 @@ import GenericBigTableComponent from "../GenericBigTable";
 function Assetcomposition () {
 
   const tableName = "DeFi Asset Composition";
-  const thread = ["Asset Name","Price","AMOUNT","Value","Share"];
+  const thread = ["Asset Name","Price","Amount","Value","Share"];
   const tableData = [
     ["/images/Ethereumlogo.svg","AAVE V2 ","USD 65.930000","USD 356,456,560","USD 65.930000","60%"],
     ["/images/Tronlogo.svg","AAVE V3 ","USD 65.930000","USD 1,434,771,959","USD 65.930000","56%"],

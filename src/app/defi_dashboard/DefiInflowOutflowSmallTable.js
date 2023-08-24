@@ -31,7 +31,7 @@ const DefiInflowOutflowSmallTable = () => {
                 }}
             >
                 <Flex
-                    height={"70px"}
+                    height={"50px"}
                     borderRadius={"6px"}
                     _dark={{
                         bg: "#202020",
@@ -45,11 +45,11 @@ const DefiInflowOutflowSmallTable = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                         fontSize={"18px"}
-                        fontWeight={"600"}
+                        fontWeight={600}
                         lineHeight={"20px"}
-                        ml={"20px"}
+                        ml={"22px"}
                         mr={"6px"}
-                        paddingTop={"15px"}
+                        mt={"15px"}
                     >
                         DeFi Inflow/Outflow
                     </Text>
@@ -67,8 +67,8 @@ const DefiInflowOutflowSmallTable = () => {
                     <Button
                         variant={"outline"}
                         size={"xs"}
-                        _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
-                        _dark={{ colorScheme: "#191919", stroke: "#333" }}
+                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
+                        _dark={{ colorScheme: "#333", stroke: "#333" }}
                         strokeWidth={"1px"}
                         mt={"15px"}
                         mr={"20px"}
@@ -133,10 +133,10 @@ const DefiInflowOutflowSmallTable = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>Users Address</Text>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>Users Address</Text>
 
 
 
@@ -165,10 +165,10 @@ const DefiInflowOutflowSmallTable = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>Net Value Flow (7 Days)</Text>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>Net Value Flow (7 Days)</Text>
 
                                         <>
 
@@ -573,8 +573,7 @@ const DefiInflowOutflowSmallTable = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#A8ADBD" }}
-                                _dark={{ color: "#A8ADBD" }}
+                                color={"#A8ADBD"}
                                 fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}

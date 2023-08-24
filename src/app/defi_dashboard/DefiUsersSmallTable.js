@@ -40,7 +40,7 @@ const DefiUsersSmallTableComponent = () => {
                         fontWeight={"600"}
                         lineHeight={"20px"}
                         ml={"22px"}
-                        mt={"20px"}
+                        mt={"15px"}
                     >
                         DeFi Users
                     </Text>
@@ -50,8 +50,8 @@ const DefiUsersSmallTableComponent = () => {
                         // size={"xs"}
                         width={"88px"}
                         height={"26px"}
-                        _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
-                        _dark={{ colorScheme: "#191919", stroke: "#333" }}
+                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
+                        _dark={{ colorScheme: "#333", stroke: "#333" }}
                         strokeWidth={"1px"}
                         mt={"15px"}
                         mr={"20px"}
@@ -82,10 +82,10 @@ const DefiUsersSmallTableComponent = () => {
                                 bg: "#F5F5F7"
                             }}
                             fontSize={"14px"}
-                            fontWeight={"400"}
+                            fontWeight={400}
                             lineHeight={"20px"}
                             letterSpacing={"1px"}
-                            textTransform={"uppercase"}>
+                            textTransform={"capitalize"}>
                             <Tr>
                                 <Th>
                                     <Flex>
@@ -93,10 +93,10 @@ const DefiUsersSmallTableComponent = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
                                         >
                                             Users Address
                                         </Text>
@@ -119,10 +119,10 @@ const DefiUsersSmallTableComponent = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>
                                             Share
                                         </Text>
                                         <Tooltip label="#Frame">
@@ -144,10 +144,10 @@ const DefiUsersSmallTableComponent = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
                                         >
                                             Top Tokens
                                         </Text>
@@ -748,8 +748,7 @@ const DefiUsersSmallTableComponent = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#A8ADBD" }}
-                                _dark={{ color: "#A8ADBD" }}
+                                color={"#A8ADBD"}
                                 fontSize={"12px"}
                                 fontWeight={"400"}
                                 lineHeight={"20px"}

@@ -161,7 +161,7 @@ function ThreadItem({ key, name }) {
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
-                textTransform={"uppercase"}
+                textTransform={"capitalize"}
                 textAlign={"left"}
             >
                 <Flex>

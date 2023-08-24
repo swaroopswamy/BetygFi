@@ -128,7 +128,7 @@ function BarChart() {
           justifyContent={"space-between"}
         >
           <Box
-            padding={"20px 0 20px 20px"}
+            padding={"15px 0 20px 20px"}
           >
             <Flex>
             <Text

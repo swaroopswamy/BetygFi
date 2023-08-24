@@ -24,7 +24,7 @@ const TVLBox = () => {
                     _light={{ color: "#16171B" }}
                     _dark={{ color: "#FFFFFF" }}
                     fontSize={"24px"}
-                    fontWeight={"600"}
+                    fontWeight={600}
                     lineHeight={"20px"}
                     letterSpacing={"2.4px"}
                     textTransform={"uppercase"}>
@@ -35,7 +35,7 @@ const TVLBox = () => {
                     _dark={{ color: "#FFFFFF" }}
                     textAlign={"left"}
                     fontSize={"12px"}
-                    fontWeight={"400"}
+                    fontWeight={400}
                     lineHeight={"10px"}
                     pt={"10px"}
                 >
@@ -47,7 +47,7 @@ const TVLBox = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                         fontSize={"14px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         lineHeight={"27px"}
                         pt={"20px"}>
                         Market Cap<br></br>
@@ -62,7 +62,7 @@ const TVLBox = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                         fontSize={"14px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         lineHeight={"27px"}
                         textAlign={"right"}
                         pt={"20px"}>
@@ -79,8 +79,8 @@ const TVLBox = () => {
                         variant={"outline"}
                         size={"xs"}
                         borderRadius={"2px"}
-                        border={"1px"}
-                        solid={"#333"}
+                        border={"1px solid #333"}
+                        //solid={"#333"}
                         _light={{ bgColor: "#F5F5F7" }}
                         _dark={{ bgColor: "#191919" }}
                         mt={"22px"}>
@@ -93,7 +93,7 @@ const TVLBox = () => {
                                 _dark={{ color: "#FFFFFF" }}
                                 textAlign={"right"}
                                 fontSize={"12px"}
-                                fontWeight={"400"}
+                                fontWeight={400}
                                 lineHeight={"10px"}
                                 pt={"3px"}
                                 paddingLeft={"2px"}
@@ -104,10 +104,9 @@ const TVLBox = () => {
                     </Button>
                     <Spacer />
                     <Text
-                        _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
+                        color={"#A8ADBD"}
                         fontSize={"12px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         lineHeight={"20px"}
                         pt={"25px"}>
                         Last Update
@@ -116,7 +115,7 @@ const TVLBox = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                         fontSize={"12px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         lineHeight={"20px"}
                         pt={"25px"}
                         pl={"3px"}

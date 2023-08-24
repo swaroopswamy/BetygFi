@@ -72,8 +72,8 @@ function TrendGraph() {
                     padding={"20px 0 0 20px"}
                 >
                     <Text
-                        fontSize={"15px"}
-                        fontWeight={"400"}
+                        fontSize={"18px"}
+                        fontWeight={600}
                         lineHeight={"20px"}
                     >
                         Trend Graph
@@ -83,7 +83,7 @@ function TrendGraph() {
                 {/* Buttons and selection go here */}
                 <Box
                     display={"flex"}
-                    mt={"11px"}
+                    mt={"10px"}
                     height={"24px"}
                 >
 

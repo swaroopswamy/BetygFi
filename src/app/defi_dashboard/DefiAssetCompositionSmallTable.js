@@ -35,7 +35,7 @@ const DefiAssetCompositionSmallTable = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                         fontSize={"18px"}
-                        fontWeight={"600"}
+                        fontWeight={600}
                         lineHeight={"20px"}
                         ml={"22px"}
                         paddingTop={"15px"}
@@ -56,8 +56,8 @@ const DefiAssetCompositionSmallTable = () => {
                     <Button
                         variant={"outline"}
                         size={"xs"}
-                        _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
-                        _dark={{ colorScheme: "#191919", stroke: "#333" }}
+                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
+                        _dark={{ colorScheme: "#333", stroke: "#333" }}
                         strokeWidth={"1px"}
                         mt={"15px"}
                         mr={"20px"}
@@ -100,14 +100,14 @@ const DefiAssetCompositionSmallTable = () => {
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
                                         >
                                             Asset Name
                                         </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"} mt={"3px"}></Image>
                                     </Flex>
                                 </Th>
 
@@ -116,13 +116,13 @@ const DefiAssetCompositionSmallTable = () => {
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}>
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}>
                                             Share
                                         </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"} mt={"3px"}></Image>
                                     </Flex>
                                 </Th>
 
@@ -131,14 +131,14 @@ const DefiAssetCompositionSmallTable = () => {
                                         <Text _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
                                         >
                                             Value
                                         </Text>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"}></Image>
+                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} alt="" ml={"2px"} mt={"3px"}></Image>
                                     </Flex>
                                 </Th>
                             </Tr>
@@ -350,10 +350,9 @@ const DefiAssetCompositionSmallTable = () => {
                     >
                         <Flex>
                             <Text
-                                _light={{ color: "#A8ADBD" }}
-                                _dark={{ color: "#A8ADBD" }}
+                                color={"#A8ADBD"}
                                 fontSize={"12px"}
-                                fontWeight={"400"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
                             >
                                 Last Update
