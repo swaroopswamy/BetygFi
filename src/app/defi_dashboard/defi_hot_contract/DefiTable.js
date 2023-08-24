@@ -49,6 +49,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                             fontSize={"18px"}
                             fontWeight={"600"}
                             lineHeight={"20px"}
+                            textTransform={"capitalize"}
                         >
                             {tableName}
                         </Text>
@@ -92,6 +93,7 @@ const DefiTable = ({ tableName, thread, tableData }) => {
                             fontSize={"14px"}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
+                            textTransform={"capitalize"}
                         >
                             {thread.map((item, i) => {
                                 return (
@@ -150,7 +152,7 @@ function ThreadItem({ key, name }) {
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
-                textTransform={"uppercase"}
+                //textTransform={"uppercase"}
                 textAlign={"left"}
             >
                 <Flex>
@@ -198,9 +200,9 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                         BlockchainTypeHandler("All");
                     }}
                     mr={"18px"}
-                    textTransform={"uppercase"}
+                    //textTransform={"uppercase"}
                 >
-                    ALL
+                    All
                 </Box>
                 {blockchains.map((item, i) => {
                     if (i >= 4) return;
@@ -244,7 +246,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                     :
                                     blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
                                 }
-                                textTransform={"uppercase"}
+                               // textTransform={"uppercase"}
                             >
                                 {item}
                             </Text>

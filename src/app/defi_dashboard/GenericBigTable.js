@@ -119,6 +119,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
+                            textTransform={"capitalize"}
                         >
                             {thread.map((item, i) => {
                                 return (
@@ -161,7 +162,7 @@ function ThreadItem({ key, name }) {
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
-                textTransform={"uppercase"}
+                //textTransform={"uppercase"}
                 textAlign={"left"}
             >
                 <Flex>
