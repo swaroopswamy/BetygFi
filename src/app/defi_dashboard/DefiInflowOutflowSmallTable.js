@@ -337,7 +337,7 @@ const DefiInflowOutflowSmallTable = () => {
 
                                         ml="6px"
 
-                                        color={value2 < 0 ? "#EF1E1E" : "#60C000"}
+                                        color={value2 < 0 ? "#EF1E1E" : "#245F00"}
 
                                     >
 
