@@ -238,7 +238,7 @@ const WalletDashboardPage = () => {
                                     bgColor={tabIndex === 0 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={tabIndex === 0 ? "700" : "400"}
                                         color={tabIndex === 0 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
                                         mr="44px"
@@ -266,7 +266,7 @@ const WalletDashboardPage = () => {
                                     }
                                 >
                                     <Text
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         color={tabIndex === 1 ?
                                             (colorMode === 'light' ? "#FFFFFF" : "#202020") :
                                             (colorMode === 'light' ? "#202020" : "#FFFFFF")
@@ -329,7 +329,7 @@ const WalletDashboardPage = () => {
                                     <Box
                                         position={"relative"}
                                         cursor={"pointer"}
-                                        fontSize={"10px"}
+                                        fontSize={"14px"}
                                         fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                                         lineHeight={"20px"}
                                         color={useColorModeValue("#3A3A3A", "#FFFFFF")}
@@ -384,7 +384,7 @@ const WalletDashboardPage = () => {
                                                     alt=""
                                                 ></Image>
                                                 <Text
-                                                    fontSize={"10px"}
+                                                    fontSize={"14px"}
                                                     fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
                                                     lineHeight={"20px"}
                                                     color={colorMode === 'light' ?
