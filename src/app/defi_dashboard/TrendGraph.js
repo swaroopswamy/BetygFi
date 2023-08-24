@@ -221,7 +221,7 @@ function Graph({ series }) {
                     labels: {
                         show: true,
                         style: {
-                            colors: colorMode === 'light' ? "#FFF" : "#16171B" ,
+                            colors: colorMode === 'light' ? "#FFF" : "#000" ,
                             fontSize: "11px",
                             fontWeight: 300,
                         },
