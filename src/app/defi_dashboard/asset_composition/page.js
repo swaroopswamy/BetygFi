@@ -11,7 +11,7 @@ function Assetcomposition () {
     const router = useRouter();
 
   const tableName = "DeFi Asset Composition";
-  const thread = ["Asset Name","Price","AMOUNT","Value","Share"];
+  const thread = ["Asset Name","Price","Amount","Value","Share"];
   const tableData = [
     ["/images/Ethereumlogo.svg","AAVE V2 ","USD 65.930000","USD 356,456,560","USD 65.930000","60%"],
     ["/images/Tronlogo.svg","AAVE V3 ","USD 65.930000","USD 1,434,771,959","USD 65.930000","56%"],
@@ -26,45 +26,19 @@ function Assetcomposition () {
 ];
  
   return (
-    <>
-        <Box
-        padding={"20px 30px"}  
-        bgColor={useColorModeValue("#F0F0F5","#191919")}
-        borderColor={useColorModeValue("#F0F0F5","#191919")}
-        >
-            <Flex
-                cursor={"pointer"}
-                ml={"5px"}
-                mb={"20px"}
-                align={"center"}
-                onClick={() => {
-                    router.push(`/defi_dashboard/`)
-                }}
-            >
-                <Icon
-                    w="24px"
-                    h="24px"
-                    as={colorMode === "light" ? BackIconWhite : BackIconBlack}
-                    mr="6px"
-                />
-                <Text
-                    fontSize={"10px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    letterSpacing={"1px"}
-                    textTransform={"uppercase"}
-                    ml={"5px"}
-                >BACK</Text>
-            </Flex>
-            <GenericBigTableComponent
-                        tableName={tableName}
-                        thread={thread}
-                        tableData={tableData}
-                        RowComponent={RowComponent}
-            />
-        </Box>
-    </>
+    <Box
+       padding={"20px 30px"}  
+       bgColor={useColorModeValue("#F0F0F5","#191919")}
+       borderColor={useColorModeValue("#F0F0F5","#191919")}
+       textTransform={"capitalize"}
+    >
+       <GenericBigTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
+        />
+    </Box>
   )
 };
 export default Assetcomposition;

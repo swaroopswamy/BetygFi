@@ -59,9 +59,10 @@ const TransactionPanelComponent = () => {
               fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
-              alignItems={"center"}
+              alignItems={"center"} 
+              textTransform={"capitalize"}
             >
-              ADDRESS AND DATE
+              Address And Date
             </Th>
             {/* <Th>
               <Box display={"flex"}
@@ -94,6 +95,7 @@ const TransactionPanelComponent = () => {
                   fontWeight={"400"}
                   letterSpacing={"1px"}
                   mr="6px"
+                  textTransform={"capitalize"}
                 >
                   Amount  / Token
                 </Text>
@@ -101,6 +103,7 @@ const TransactionPanelComponent = () => {
                   <Image width={"6px"}
                     height={"8px"}
                     alt='logo'
+                    mt={"5px"}
                     src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                   </Image>
                 </>
@@ -113,16 +116,18 @@ const TransactionPanelComponent = () => {
               fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
+              textTransform={"capitalize"}
             >
-              FROM
+              From
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
               fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
+              textTransform={"capitalize"}
             >
-              TO
+              To
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
@@ -130,14 +135,16 @@ const TransactionPanelComponent = () => {
               fontWeight={"400"}
               letterSpacing={"1px"}
               alignItems={"center"}
+              textTransform={"capitalize"}
             >
-              TXN ID
+              Txn Id
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
               fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
+              textTransform={"capitalize"}
             >
               USD Value
             </Th>

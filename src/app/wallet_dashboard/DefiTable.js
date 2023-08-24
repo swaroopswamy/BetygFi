@@ -53,13 +53,13 @@ const DefiTable = () => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
-
+                                    textTransform={"capitalize"}
                                 >
                                     Token
                                 </Text>
                                 <Icon
                                     ml="3px"
-                                    mt="3px"
+                                    mt="5px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -78,13 +78,13 @@ const DefiTable = () => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
-
+                                    textTransform={"capitalize"}
                                 >
-                                    Price (USD)
+                                    Price(USD)
                                 </Text>
                                 <Image
                                     ml="3px"
-                                    mt="4px"
+                                    mt="5px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -104,13 +104,13 @@ const DefiTable = () => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
-
+                                    textTransform={"capitalize"}
                                 >
-                                    Token / Amount
+                                    Token/Amount
                                 </Text>
                                 <Image
                                     ml="3px"
-                                    mt="3px"
+                                    mt="5px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -131,13 +131,13 @@ const DefiTable = () => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
-
+                                    textTransform={"capitalize"}
                                 >
                                     Value(USD)
                                 </Text>
                                 <Image
                                     ml="3px"
-                                    mt="4px"
+                                    mt="5px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
@@ -157,13 +157,13 @@ const DefiTable = () => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
-
+                                    textTransform={"capitalize"}
                                 >
                                     % Share
                                 </Text>
                                 <Image
                                     ml="3px"
-                                    mt="3px"
+                                    mt="5px"
                                     w="10px"
                                     h="10px"
                                     as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}

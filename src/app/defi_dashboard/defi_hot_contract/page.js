@@ -65,7 +65,7 @@ function Defi_Hot_Contracts () {
               fontWeight={"400"}
               lineHeight={"20px"}
               letterSpacing={"1px"}
-              textTransform={"uppercase"}
+              //textTransform={"uppercase"}
               ml={"5px"}
           >BACK</Text>
       </Flex>
@@ -91,7 +91,7 @@ function Defi_Hot_Contracts () {
                           fontSize={"16px"}
                           fontWeight={tabIndex === 0 ? "700" : "400"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                          textTransform={"uppercase"}
+                          //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
                           Defi Hot Contract
@@ -111,7 +111,7 @@ function Defi_Hot_Contracts () {
                           fontSize={"16px"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
                           fontWeight={tabIndex === 1 ? "700" : "400"}
-                          textTransform={"uppercase"}
+                          //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
                           Defi Functions/Methods

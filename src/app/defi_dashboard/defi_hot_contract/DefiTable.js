@@ -2,19 +2,20 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode, colorMode
+    Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
-import { blockchains } from "../../../util/constant";
-import { useEffect, useState } from "react";
+import { blockchains } from "../../../../util/constant";
+import { useState } from "react";
+import TableData from '../../../../util/whales.json';
+import millify from "millify";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 
-const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
+const DefiTable = ({ tableName, thread, tableData }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
-    const router = useRouter();
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -22,6 +23,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
+
 
     return (
         <>
@@ -35,18 +37,19 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={"8px 30px 8px 15px"}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //pr={"10px"}
+                            // ml={"20px"}
                             mb={"20px"}
                             mt={"20px"}
                             fontSize={"18px"}
                             fontWeight={"600"}
                             lineHeight={"20px"}
+                            textTransform={"capitalize"}
                         >
                             {tableName}
                         </Text>
@@ -67,14 +70,13 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             borderColor={useColorModeValue("#E8E8E8", "#333")}
                             bgColor={useColorModeValue("#F5F5F7", "#191919")}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
-                            fontSize={"10px"}
+                            fontSize={"12px"}
                             fontWeight={400}
                             w="207px"
                             placeholder="SEARCH"
                         //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
                         />
                     </Box>
-
 
                 </Box>
 
@@ -89,7 +91,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
                             fontSize={"14px"}
-                            fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
                             textTransform={"capitalize"}
@@ -107,9 +108,24 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     </Thead>
 
                     <Tbody>
-                        <RowComponent
-                            tableData={tableData}
-                        />
+                        {tableData.map((item, i) => {
+                            return (
+                                <>
+                                    <TableRow
+                                        key={i}
+                                        blockchain={{name: item[0],
+                                            src: item[4]
+                                        }}
+                                        users={item[1]}
+                                        calls ={item[2]}
+                                        feeconsumed={item[3]}
+                                        share={item[5]}
+                                    />
+                                </>
+                            )
+                        })}
+
+
                     </Tbody>
                     <Tfoot>
                     </Tfoot>
@@ -122,9 +138,10 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     )
 };
 
-export default GenericBigTableComponent;
+export default DefiTable;
 
 function ThreadItem({ key, name }) {
+    const { colorMode } = useColorMode();
     return (
         <>
             <Th
@@ -135,13 +152,13 @@ function ThreadItem({ key, name }) {
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
-                textTransform={"capitalize"}
+                //textTransform={"uppercase"}
                 textAlign={"left"}
             >
                 <Flex>
-                    {name}
-                    {/* Add an image next to the text */}
-                    <Image src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+            {name}
+                {/* Add an image next to the text */}
+                <Image src={useColorModeValue("/icons/arrowdown_light.svg","/icons/arrowdown_dark.svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
@@ -149,18 +166,6 @@ function ThreadItem({ key, name }) {
 }
 
 function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
-    // const dispatch = useDispatch();
-    // const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
-    // var blockchains = [];
-
-    // if (blockchainListData.isSuccess) {
-    //     blockchains = blockchainListData.data;
-    // }
-    
-    // useEffect(() => {
-    //     dispatch(fetchBlockchainListData());
-    // }, []);
-
     return <>
         <Box
             display={"flex"}
@@ -195,7 +200,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                         BlockchainTypeHandler("All");
                     }}
                     mr={"18px"}
-                    //textTransform={"lowercase"}
+                    //textTransform={"uppercase"}
                 >
                     All
                 </Box>
@@ -234,14 +239,14 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                             <Text
                                 fontSize={"14px"}
                                 fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
-                                lineHeight={"21.826px"}
-                                letterSpacing={"1.4px"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
                                 color={colorMode === 'light' ?
                                     blockchainSelected.includes(item) ? "#191919" : "#191919"
                                     :
                                     blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
                                 }
-                                //textTransform="uppercase"
+                               // textTransform={"uppercase"}
                             >
                                 {item}
                             </Text>
@@ -259,31 +264,11 @@ function PageButtons() {
             <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                justifyContent={"space-between"}
+                justifyContent={"end"}
                 padding="10px 30px 14px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
-                <Flex>
-                    <Text
-                        _light={{ color: "#A8ADBD" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"12px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                    >
-                        Last Update
-                    </Text>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        pl={"3px"}
-                    >
-                        3 mins ago
-                    </Text>
-                </Flex>
+
                 <Box
                     display={"flex"}
                 >
@@ -304,13 +289,13 @@ function PageButtons() {
                         display={"flex"}
                         alignItems={"center"}
                         justifyContent={"center"}
-                        w={"10px"}
-                        h={"26px"}
+                        w={"12px"}
+                        h={"12px"}
                         bg={useColorModeValue("#FFF", "#202020")}
                         padding="0px"
                     >
                         <Image
-                            //mt={"10px"}
+                            mt={"10px"}
                             width={"12px"}
                             height={"12px"}
                             style={{ rotate: '90deg' }}
@@ -353,8 +338,8 @@ function PageButtons() {
                         padding="0px"
                     >
                         <Image
-                            width={"12px"}
-                            height={"12px"}
+                            width={15}
+                            height={15}
                             alt="next-arrow"
                             src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                         ></Image>
@@ -364,4 +349,150 @@ function PageButtons() {
             </Box>
         </>)
 }
+
+function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
+    const [clicked, setClick] = useState(false);
+    const { colorMode } = useColorMode();
+    const router = useRouter();
+    return (
+        <>
+            <Tr
+                key={key}
+                cursor={"pointer"}
+                bgColor={clicked ?
+                    (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                    (colorMode === "light" ? '#FFFFFF' : '#202020')
+                }
+                onClick={() => { setClick(!clicked) }}
+                borderBottom={'1px'}
+                borderColor={useColorModeValue('#DFDFDF', '#313131')}
+                borderRadius={'2px'}
+            >
+
+                <Td>
+                    <Flex>
+                        <Box
+                            alignItems={"center"}
+                            display={"flex"}
+                            gap={"10px"}
+                        >
+                            <Image
+                                height={"10px"}
+                                width={"10px"}
+                                 src={ blockchain.src}
+                                alt="logo"
+                            >
+                            </Image>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"14px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                { blockchain.name}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"14px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {users}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"14px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {calls}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"14px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {feeconsumed}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+
+                <Td>
+                    <Flex>
+                        <Box>
+                            <Text
+                                _dark={{
+                                    color: "#FFFFFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"14px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                            >
+                                {share}
+                            </Text>
+                        </Box>
+                    </Flex>
+                </Td>
+            </Tr>
+        </>
+    );
+}
+
+
+
+
+
+
+
 
