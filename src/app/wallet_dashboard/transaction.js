@@ -202,7 +202,7 @@ const TransactionPanelComponent = () => {
                             <Text
                               _dark={{
                                 color: "#FFF"
-                              }}
+                              }}  
                               _light={{
                                 color: "#16171B"
                               }}
