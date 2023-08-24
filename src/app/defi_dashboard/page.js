@@ -78,8 +78,6 @@ const DefiDashboardPage = () => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     margin={"38px 30px 50px 30px"}
-                    paddingBottom={"33px"}
-                    borderBottom={useColorModeValue("1px solid #2F2F2F", "1px solid #BFBFBF")}
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
 
                 >
@@ -386,6 +384,7 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
+                <Image src={useColorModeValue("/images/Horizontalline(light).svg","/images/Horizontalline(Dark).svg")}></Image>
             </Box>
             <Box
                 _light={{
@@ -400,7 +399,7 @@ const DefiDashboardPage = () => {
                     display={"flex"}
                     justifyContent={"space-between"}
                     mx={"20px"}
-                    padding={"10px 0 0 10px"}
+                    padding={"30px 0 0 10px"}
                 >
                     <TVLBox />
                     <TrendGraph />
