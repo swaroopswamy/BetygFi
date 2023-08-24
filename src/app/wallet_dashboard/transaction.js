@@ -43,8 +43,8 @@ const TransactionPanelComponent = () => {
         mt="25px"
         bgColor={useColorModeValue("#FFF", "#202020")} >
         <Text
-          fontSize="2xl"
-          fontWeight={"400"}
+          fontSize="18"
+          fontWeight={"600"}
           color={useColorModeValue("#16171B", "#FFF")}
 
         >
@@ -56,7 +56,7 @@ const TransactionPanelComponent = () => {
           <Tr>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
               alignItems={"center"}
@@ -90,7 +90,7 @@ const TransactionPanelComponent = () => {
                 alignItems={"center"}>
 
                 <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                  fontSize={"10px"}
+                  fontSize={"14px"}
                   fontWeight={"400"}
                   letterSpacing={"1px"}
                   mr="6px"
@@ -98,8 +98,8 @@ const TransactionPanelComponent = () => {
                   Amount  / Token
                 </Text>
                 <>
-                  <Image width={2}
-                    height={2}
+                  <Image width={"6px"}
+                    height={"8px"}
                     alt='logo'
                     src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
                   </Image>
@@ -110,7 +110,7 @@ const TransactionPanelComponent = () => {
 
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
             >
@@ -118,7 +118,7 @@ const TransactionPanelComponent = () => {
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
             >
@@ -126,7 +126,7 @@ const TransactionPanelComponent = () => {
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
               alignItems={"center"}
@@ -135,7 +135,7 @@ const TransactionPanelComponent = () => {
             </Th>
             <Th
               color={useColorModeValue("#434347", "#A8ADBD")}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               letterSpacing={"1px"}
             >
@@ -206,7 +206,7 @@ const TransactionPanelComponent = () => {
                               _light={{
                                 color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
                               ml="6px"
@@ -221,7 +221,7 @@ const TransactionPanelComponent = () => {
                               _light={{
                                 color: "#16171B"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"12px"}
                               fontWeight={"400"}
                               letterSpacing={"1px"}
                               ml="6px"
@@ -286,7 +286,7 @@ const TransactionPanelComponent = () => {
                             _light={{
                               color: "#16171B"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
                             ml="6px"
@@ -300,7 +300,7 @@ const TransactionPanelComponent = () => {
                             _light={{
                               color: "#16171B"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
                             ml="6px"
@@ -324,7 +324,7 @@ const TransactionPanelComponent = () => {
                             _light={{
                               color: "#16171B"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
 
@@ -347,7 +347,7 @@ const TransactionPanelComponent = () => {
                             _light={{
                               color: "#16171B"
                             }}
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
 
@@ -363,7 +363,7 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Link
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"400"}
                             fontStyle={"normal"}
                             letterSpacing={"1px"}
@@ -391,7 +391,7 @@ const TransactionPanelComponent = () => {
                           alignItems={"center"}
                         >
                           <Text
-                            fontSize={"10px"}
+                            fontSize={"14px"}
                             fontWeight={"600"}
                             letterSpacing={"1px"}
                             ml="4px"
