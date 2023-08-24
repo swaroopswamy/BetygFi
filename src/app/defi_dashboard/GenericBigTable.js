@@ -221,7 +221,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                         BlockchainTypeHandler("All");
                     }}
                     mr={"18px"}
-                    textTransform={"uppercase"}
+                    //textTransform={"uppercase"}
                 >
                     ALL
                 </Box>
@@ -267,7 +267,7 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
                                     :
                                     blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
                                 }
-                                textTransform={"uppercase"}
+                               // textTransform={"uppercase"}
                             >
                                 {item.name}
                             </Text>
@@ -330,13 +330,13 @@ function PageButtons() {
                         display={"flex"}
                         alignItems={"center"}
                         justifyContent={"center"}
-                        w={"12px"}
-                        h={"12px"}
+                        w={"10px"}
+                        h={"26px"}
                         bg={useColorModeValue("#FFF", "#202020")}
                         padding="0px"
                     >
                         <Image
-                            mt={"10px"}
+                            //mt={"10px"}
                             width={"12px"}
                             height={"12px"}
                             style={{ rotate: '90deg' }}
@@ -379,8 +379,8 @@ function PageButtons() {
                         padding="0px"
                     >
                         <Image
-                            width={15}
-                            height={15}
+                            width={"12px"}
+                            height={"12px"}
                             alt="next-arrow"
                             src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                         ></Image>

@@ -19,7 +19,7 @@ const DefiInflowOutflowSmallTable = () => {
         <>
             <Box
                 w='50%'
-
+                //mr={"30px"}
                 display={"flex"}
                 flexDirection={"column"}
                 borderRadius={"6px"}
@@ -338,7 +338,7 @@ const DefiInflowOutflowSmallTable = () => {
 
                                         ml="6px"
 
-                                        color={value2 < 0 ? "#EF1E1E" : "#60C000"}
+                                        color={value2 < 0 ? "#EF1E1E" : "#245F00"}
 
                                     >
 

@@ -13,7 +13,7 @@ const DefiHotContractsSmallTable = () => {
             <Box
                 mr={"25px"}
 
-                w='50%'
+                w='53%'
 
 
                 display={"flex"}
