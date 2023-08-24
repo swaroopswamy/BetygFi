@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import BackIconWhite from '../../../public/icons/backIconWhite.svg';
-import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
@@ -27,31 +25,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
 
     return (
         <>
-            <Flex
-                cursor={"pointer"}
-                ml={"5px"}
-                mb={"20px"}
-                align={"center"}
-                onClick={() => {
-                    router.push(`/defi_dashboard/`)
-                }}
-            >
-                <Icon
-                    w="24px"
-                    h="24px"
-                    as={colorMode === "light" ? BackIconWhite : BackIconBlack}
-                    mr="6px"
-                />
-                <Text
-                    fontSize={"10px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    letterSpacing={"1px"}
-                    textTransform={"uppercase"}
-                    ml={"5px"}
-                >BACK</Text>
-            </Flex>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
@@ -161,7 +134,7 @@ function ThreadItem({ key, name }) {
                 fontWeight={"400"}
                 lineHeight={"20px"}
                 letterSpacing={"1px"}
-                textTransform={"uppercase"}
+                textTransform={"capitalize"}
                 textAlign={"left"}
             >
                 <Flex>

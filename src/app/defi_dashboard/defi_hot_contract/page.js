@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import DefiTable from "../defi_hot_contract/DefiTable";
 import { Box, Text, Tr, Td, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
@@ -61,7 +60,7 @@ function Defi_Hot_Contracts () {
 
           />
           <Text
-              fontSize={"14px"}
+              fontSize={"10px"}
               fontStyle={"normal"}
               fontWeight={"400"}
               lineHeight={"20px"}
