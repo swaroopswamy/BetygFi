@@ -3,6 +3,7 @@
         {
             "name": "tvl",
             "type": "column",
+            "color": "#FF5C00",
             "data": [
                 [
                     1327359600000,
@@ -69,6 +70,7 @@
         {
             "name": "mcap",
             "type": "area",
+            "color": "#C0E253",
             "data": [
                 [
                     1327359600000,
@@ -135,6 +137,7 @@
         {
             "name": "sushi_price",
             "type": "area",
+            "color": "#DE50CF",
             "data": [
                 [
                     1327359600000,
@@ -201,6 +204,7 @@
         {
             "name": "users",
             "type": "area",
+            "color": "#29A88E",
             "data": [
                 [
                     1327359600000,
@@ -267,6 +271,7 @@
         {
             "name": "fdv",
             "type": "area",
+            "color": "#FF5C00",
             "data": [
                 [
                     1327359600000,
@@ -333,6 +338,7 @@
         {
             "name": "borrowed",
             "type": "area",
+            "color": "#C0E253",
             "data": [
                 [
                     1327359600000,
@@ -399,6 +405,7 @@
         {
             "name": "median_apy",
             "type": "area",
+            "color": "#DE50CF",
             "data": [
                 [
                     1327359600000,
