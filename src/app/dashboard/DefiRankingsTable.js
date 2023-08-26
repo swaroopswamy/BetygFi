@@ -45,54 +45,176 @@ const Rankings = () => {
     <Table variant="simple" key={1}>
       <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
         <Tr>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-            alignItems={"center"}
-          >
-            RANK
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              Rank
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+           </Box>
           </Th>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-          >
-            NAME
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              Name
+              </Text>
+           </Box>
           </Th>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-          >
-            CATEGORY
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              Category
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+           </Box>
           </Th>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-          >
-            PRICE
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              Price
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+           </Box>
           </Th>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-          >
-            TVL
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              TVL
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+           </Box>
           </Th>
-          <Th
-            color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-            fontSize={"10px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-          >
-            MCAP
+          <Th>
+          <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+              fontSize={"14px"}
+              fontWeight={400}
+              lineHeight={"20px"}
+              letterSpacing={"1.4px"}
+              textTransform={"capitalize"}>
+              MCap
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+           </Box> 
           </Th>
           <Th>
             <Box
@@ -100,12 +222,14 @@ const Rankings = () => {
               alignItems={"center"}
             >
               <Text
-                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                fontSize={"10px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
+                 color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                 fontSize={"14px"}
+                 fontWeight={400}
+                 lineHeight={"20px"}
+                 letterSpacing={"1.4px"}
+                 textTransform={"capitalize"}
               >
-                MCAP/TVL
+                MCap/TVL
               </Text>
               <Tooltip
                 bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
@@ -133,11 +257,12 @@ const Rankings = () => {
             >
               <Text
                 color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                fontSize={"10px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-              >
-                SCORE
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                Score
               </Text>
               <Tooltip
                 bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
@@ -193,9 +318,10 @@ const Rankings = () => {
                     <Tr key={i + 1}>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {item?.Rank === undefined ? '-' : item?.Rank}
                       </Td>
@@ -209,8 +335,8 @@ const Rankings = () => {
                             ? (
                               <>
                                 <Image
-                                  width={20}
-                                  height={20}
+                                  width={24}
+                                  height={24}
                                   alt='logo'
                                   src={item.logo}
                                 ></Image>
@@ -220,8 +346,8 @@ const Rankings = () => {
                             (
                               <>
                                 <Box
-                                  width={"20px"}
-                                  height={"20px"}
+                                  width={"24px"}
+                                  height={"24px"}
                                   alignItems={"center"}
                                   justifyContent={"center"}
                                   display={"flex"}
@@ -230,8 +356,8 @@ const Rankings = () => {
                                 >
                                   <Text
                                     color={"#FFF"}
-                                    fontSize={"12px"}
-                                    fontWeight={"600"}
+                                    fontSize={"14px"}
+                                    fontWeight={600}
                                   >
                                     {item.name.charAt(0)}
                                   </Text>
@@ -241,10 +367,11 @@ const Rankings = () => {
                           }
                           <Text
                             color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"10px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            ml="6px"
+                            fontSize={"14px"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
+                            //letterSpacing={"1px"}
+                            ml="5px"
                           >
                             {item.name}
                           </Text>
@@ -252,17 +379,19 @@ const Rankings = () => {
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {item.category}
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.price)
                           ?
@@ -274,9 +403,10 @@ const Rankings = () => {
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {
                           (Math.trunc(item.tvl)).toLocaleString('en-US', {
@@ -286,9 +416,10 @@ const Rankings = () => {
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.mcap) ? `${(Math.trunc(item.tvl)).toLocaleString('en-US', {
                           style: 'currency',
@@ -297,17 +428,19 @@ const Rankings = () => {
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.mcap) && item.tvl !== 0 ? (item.mcap / item.tvl).toFixed(2) : "NA"}
                       </Td>
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
+                        fontSize={"14px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        //letterSpacing={"1px"}
                         h="100%"
                       >
                         <Box
