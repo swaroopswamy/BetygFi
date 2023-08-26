@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
-import { Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode } from "@chakra-ui/react";
+import { Text, Icon, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode, colorMode } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import GenericBigTableComponent from "../GenericBigTable";
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
 function TVL_Ranking () {
+    const router = useRouter();
 
   const tableName = "DeFi Category by TVL Rankings";
   const thread = ["DeFi Category","Available Blockchains","Available DeFi ","TVL","7 Days"];
@@ -28,6 +31,31 @@ function TVL_Ranking () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
+        <Flex
+            cursor={"pointer"}
+            ml={"5px"}
+            mb={"20px"}
+            align={"center"}
+            onClick={() => {
+                router.push(`/defi_dashboard/`)
+            }}
+        >
+            <Icon
+                w="24px"
+                h="24px"
+                as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+                mr="6px"
+            />
+            <Text
+                fontSize={"10px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                letterSpacing={"1px"}
+                textTransform={"uppercase"}
+                ml={"5px"}
+            >BACK</Text>
+        </Flex>
         <GenericBigTableComponent
                 tableName={tableName}
                 thread={thread}

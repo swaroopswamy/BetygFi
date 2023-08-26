@@ -2,10 +2,13 @@
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {  Text, Td, Tr, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode} from "@chakra-ui/react";
+import {  Text, Icon, Td, Tr, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode} from "@chakra-ui/react";
 import GenericBigTableComponent from "../GenericBigTable";
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
 function Assetcomposition () {
+    const router = useRouter();
 
   const tableName = "DeFi Asset Composition";
   const thread = ["Asset Name","Price","Amount","Value","Share"];
@@ -27,6 +30,7 @@ function Assetcomposition () {
        padding={"20px 30px"}  
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
+       textTransform={"capitalize"}
     >
        <GenericBigTableComponent
                 tableName={tableName}

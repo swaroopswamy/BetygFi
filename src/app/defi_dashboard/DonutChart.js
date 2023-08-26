@@ -79,7 +79,6 @@ function DonutChart() {
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
         alignContent={"center"}
         borderRadius={"6px"}
-        marginLeft={"26px"}
       >
         <Box
           display={"flex"}

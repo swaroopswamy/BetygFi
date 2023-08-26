@@ -11,31 +11,16 @@ const DefiHotContractsSmallTable = () => {
     return (
         <>
             <Box
-                mr={"25px"}
-
-                w='50%'
-
-
+                width={"50%"}
                 display={"flex"}
-
                 flexDirection={"column"}
-
                 borderRadius={"6px"}
-
                 _dark={{
-
                     bg: "#202020"
-
                 }}
-
                 _light={{
-
                     bg: "#FFFFFF"
-
                 }}
-
-
-
             >
 
                 <Flex

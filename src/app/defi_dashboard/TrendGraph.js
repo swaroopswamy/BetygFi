@@ -48,7 +48,7 @@ function TrendGraph() {
                 mapdata.push(item);
             }
         })
-        setSeries(mapdata)
+        setSeries(mapdata);
     }
 
     useEffect(() => {
@@ -221,7 +221,7 @@ function Graph({ series }) {
                     labels: {
                         show: true,
                         style: {
-                            colors: colorMode === 'light' ? "#FFF" : "#000" ,
+                            colors: colorMode === 'light' ? "#000" : "#FFF" ,
                             fontSize: "11px",
                             fontWeight: 300,
                         },

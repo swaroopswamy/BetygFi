@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
-import { Box, useColorModeValue,Text, Td, Tr, Flex, Image, useColorMode } from "@chakra-ui/react";
+import { Box, Icon, useColorModeValue,Text, Td, Tr, Flex, Image, useColorMode, colorMode } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import GenericBigTableComponent from "../GenericBigTable";
+import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
+import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
 function Defi_Hot_Contracts () {
+    const router = useRouter();
 
   const tableName = "Defi Name";
   const thread = ["Blockchain | Asset Name","Inflow (7 Days)","Outflow (7 Days)","Net Value flow "];
@@ -28,6 +31,31 @@ function Defi_Hot_Contracts () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
+        <Flex
+            cursor={"pointer"}
+            ml={"5px"}
+            mb={"20px"}
+            align={"center"}
+            onClick={() => {
+                router.push(`/defi_dashboard/`)
+            }}
+        >
+            <Icon
+                w="24px"
+                h="24px"
+                as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+                mr="6px"
+            />
+            <Text
+                fontSize={"10px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                letterSpacing={"1px"}
+                textTransform={"uppercase"}
+                ml={"5px"}
+            >BACK</Text>
+        </Flex>
         <GenericBigTableComponent
                 tableName={tableName}
                 thread={thread}

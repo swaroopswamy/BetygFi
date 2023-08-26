@@ -65,7 +65,7 @@ const PortfolioPanelComponent = () => {
                 border={useColorModeValue("1px solid #979AA5", "1px solid #787878")}
               >
                 <Text
-                  fontSize={"10px"}
+                  fontSize={"14px"}
                   fontWeight={defiSelected.length === 0 ? "600" : "400"}
                   lineHeight={"20px"}
                   color={defiSelected.length === 0 ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
@@ -93,7 +93,7 @@ const PortfolioPanelComponent = () => {
                       _dark={{ border: "1px solid #787878" }}
                     >
                       <Text
-                        fontSize={"10px"}
+                        fontSize={"14px"}
                         fontWeight={defiSelected.includes(item) ? "600" : "400"}
                         lineHeight={"20px"}
                         color={defiSelected.includes(item) ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}

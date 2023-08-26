@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import DefiTable from "../defi_hot_contract/DefiTable";
 import { Box, Text, Tr, Td, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
@@ -61,12 +60,12 @@ function Defi_Hot_Contracts () {
 
           />
           <Text
-              fontSize={"14px"}
+              fontSize={"10px"}
               fontStyle={"normal"}
               fontWeight={"400"}
               lineHeight={"20px"}
               letterSpacing={"1px"}
-              textTransform={"uppercase"}
+              //textTransform={"uppercase"}
               ml={"5px"}
           >BACK</Text>
       </Flex>
@@ -92,7 +91,7 @@ function Defi_Hot_Contracts () {
                           fontSize={"16px"}
                           fontWeight={tabIndex === 0 ? "700" : "400"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                          textTransform={"uppercase"}
+                          //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
                           Defi Hot Contract
@@ -112,7 +111,7 @@ function Defi_Hot_Contracts () {
                           fontSize={"16px"}
                           color={tabIndex === 0 ? colorMode === 'light' ? ("#000000") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
                           fontWeight={tabIndex === 1 ? "700" : "400"}
-                          textTransform={"uppercase"}
+                          //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
                           Defi Functions/Methods
