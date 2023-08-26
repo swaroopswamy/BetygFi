@@ -34,7 +34,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                 //mb={"30px"}
             >
                 <Flex
-                    height={"50px"}
                     borderRadius={"6px"}
                     _dark={{
                         bg: "#202020",
@@ -52,7 +51,8 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             fontWeight={600}
                             lineHeight={"20px"}
                             ml={"22px"}
-                            paddingTop={"15px"}
+                            mt={"15px"}
+                            mb={"15px"}
                         >
                             {tableName}
                         </Text>

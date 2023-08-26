@@ -385,11 +385,8 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
-<<<<<<< HEAD
-=======
                 <hr style={colorMode === 'light' ? ({background:"#BFBFBF", margin:"10px 30px"}) : ({background:"#2F2F2F", margin:"10px 30px"})} />
                 {/* <Image src={useColorModeValue("/images/Horizontalline(light).svg","/images/Horizontalline(Dark).svg")}></Image> */}
->>>>>>> 7a38f978b1ed8e2a0bed13766df741e9455403f4
             </Box>
             <Box
                 _light={{

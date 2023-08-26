@@ -1,776 +1,235 @@
-import { Box, Button, Flex, Image, Spacer, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tooltip, Tr, useColorMode, useColorModeValue } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
-import React from 'react'
+"use client";
+import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
+import GenericBigTableComponent from "./GenericSmallTable";
 
-const DefiUsersSmallTableComponent = () => {
+function Assetcomposition () {
 
-    const { colorMode } = useColorMode();
-    const router = useRouter();
-    return (
-        <>
-            <Box
-                width={"50%"}
-                display={"flex"}
-                flexDirection={"column"}
-                borderRadius={"6px"}
+  const tableName = "DeFi Users";
+  const thread = ["Users Address","Share","Top Tokens"];
+  const tableData = [
+    ["/images/Ethdefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Trondefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Binancedefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Arbitrumdefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Polygondefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+];
+ 
+  return (
+    <Box
+       width={"50%"}  
+       bgColor={useColorModeValue("#F0F0F5","#191919")}
+       borderColor={useColorModeValue("#F0F0F5","#191919")}
+    >
+       <GenericBigTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
+        />
+    </Box>
+  )
+};
+export default Assetcomposition;
 
-                _dark={{
-                    bg: "#202020"
-                }}
-                _light={{
-                    bg: "#FFFFFF"
-                }}
-            >
-                <Flex
-                    height={"50px"}
-                    borderRadius={"6px"}
-                    _dark={{
-                        bg: "#202020",
-                        color: "#FFFFFF"
-                    }}
-                    _light={{
-                        bg: "#FFFFFF",
-                        color: "#16171B"
-                    }} >
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"18px"}
-                        fontWeight={"600"}
-                        lineHeight={"20px"}
-                        ml={"22px"}
-                        mt={"15px"}
-                    >
-                        DeFi Users
-                    </Text>
-                    <Spacer />
-                    <Button
-                        variant={"outline"}
-                        // size={"xs"}
-                        width={"88px"}
-                        height={"26px"}
-                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
-                        _dark={{ colorScheme: "#333", stroke: "#333" }}
-                        strokeWidth={"1px"}
-                        mt={"15px"}
-                        mr={"20px"}
-                        onClick={() => {
-                            router.push(`/defi_dashboard/defi_users`)
-                        }}
-                    >
-                        <Text
-                            _light={{ color: "#16171B" }}
-                            _dark={{ color: "#FFFFFF" }}
-                            fontSize={"14px"}
-                            fontWeight={"400"}
-                            lineHeight={"10px"}
-                        >
-                            View More
-                        </Text>
-                    </Button>
-                </Flex>
-                <TableContainer>
-                    <Table variant='simple'>
-                        <Thead
-                            _dark={{
-                                color: "#FFFFFF",
-                                bg: "#191919"
-                            }}
-                            _light={{
-                                color: "#16171B",
-                                bg: "#F5F5F7"
-                            }}
-                            fontSize={"14px"}
-                            fontWeight={400}
-                            lineHeight={"20px"}
-                            letterSpacing={"1px"}
-                            textTransform={"capitalize"}>
-                            <Tr>
-                                <Th>
-                                    <Flex>
-                                        <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"14px"}
-                                            fontWeight={400}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                            textTransform={"capitalize"}
-                                        >
-                                            Users Address
-                                        </Text>
-                                        <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"5px"}
-                                                ml={"2px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                    </Flex>
-                                </Th>
-
-                                <Th>
-                                    <Flex >
-                                        <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"14px"}
-                                            fontWeight={400}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                            textTransform={"capitalize"}>
-                                            Share
-                                        </Text>
-                                        <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"5px"}
-                                                ml={"2px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                    </Flex>
-                                </Th>
-
-                                <Th>
-                                    <Flex>
-                                        <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                            fontSize={"14px"}
-                                            fontWeight={400}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                            textTransform={"capitalize"}
-                                        >
-                                            Top Tokens
-                                        </Text>
-                                        <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"5px"}
-                                                ml={"2px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                        <Image src={useColorModeValue("/images/Definame(light).svg", "/images/Definame(black).svg")} 
-                                               alt=""  width={"12px"}  height={"12px"}  mt={"5px"} ml={"2px"}></Image>
-                                    </Flex>
-                                </Th>
-                            </Tr>
-                        </Thead>
-
-                        <Tbody
-                            fontSize={"14px"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                            _dark={{ bgColor: "#202020" }}
-                            _light={{ bgColor: "#FFF" }} >
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <>
-                                            <Image
-                                                width={"24px"}
-                                                height={"24px"}
-                                                alt=''
-                                                src="/images/Ethereumlogo.svg"
-                                            ></Image>
-                                        </>
-
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2</Text> 
-
-                                            <Text  _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>
-                                                $39,689,191</Text> 
-                                    </Box>
-                                </Td>
-
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            13.09%
-                                        </Text>
-                                    </Box>
-                                </Td>
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Image
-                                            width={"8.59px"}
-                                            height={"14px"}
-                                            alt=''
-                                            src="/images/Ethereumlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >ETH</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >50.11%</Text>
-                                        <Image
-                                            width={"16px"}
-                                            height={"14px"}
-                                            alt=''
-                                            ml={"10px"}
-                                            src="/images/Polygonmaticlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >MATIC</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >49.11%</Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <>
-                                            <Image
-                                                width={"24px"}
-                                                height={"24px"}
-                                                alt=''
-                                                src="/images/Tronlogo.svg"
-                                            ></Image>
-                                        </>
-
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2</Text>
-
-                                           <Text  _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>
-                                                $39,689,191</Text>
-                                    </Box>
-                                </Td>
-
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            13.09%
-                                        </Text>
-                                    </Box>
-                                </Td>
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Image
-                                            width={"8.59px"}
-                                            height={"14px"}
-                                            alt=''
-                                            src="/images/Ethereumlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >ETH</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >50.11%</Text>
-                                        <Image
-                                            width={"16px"}
-                                            height={"14px"}
-                                            alt=''
-                                            ml={"10px"}
-                                            src="/images/Polygonmaticlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >MATIC</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >49.11%</Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <>
-                                            <Image
-                                                width={"24px"}
-                                                height={"24px"}
-                                                alt=''
-                                                src="/images/Binancelogo.svg"
-                                            ></Image>
-                                        </>
-
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2</Text>
-
-                                            <Text  _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>
-                                                $39,689,191</Text>
-                                    </Box>
-                                </Td>
-
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            13.09%
-                                        </Text>
-                                    </Box>
-                                </Td>
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Image
-                                            width={"8.59px"}
-                                            height={"14px"}
-                                            alt=''
-                                            src="/images/Ethereumlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >ETH</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >50.11%</Text>
-                                        <Image
-                                            width={"16px"}
-                                            height={"14px"}
-                                            alt=''
-                                            ml={"10px"}
-                                            src="/images/Polygonmaticlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >MATIC</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >49.11%</Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <>
-                                            <Image
-                                                width={"24px"}
-                                                height={"24px"}
-                                                alt=''
-                                                src="/images/Arbitrumlogo.svg"
-                                            ></Image>
-                                        </>
-
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2</Text>
-
-                                           <Text  _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>
-                                                $39,689,191</Text>
-                                    </Box>
-                                </Td>
-
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            13.09%
-                                        </Text>
-                                    </Box>
-                                </Td>
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Image
-                                            width={"8.59px"}
-                                            height={"14px"}
-                                            alt=''
-                                            src="/images/Ethereumlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >ETH</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >50.11%</Text>
-                                        <Image
-                                            width={"16px"}
-                                            height={"14px"}
-                                            alt=''
-                                            ml={"10px"}
-                                            src="/images/Polygonmaticlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >MATIC</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >49.11%</Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-
-                            <Tr>
-                                <Td _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <>
-                                            <Image
-                                                width={"24px"}
-                                                height={"24px"}
-                                                alt=''
-                                                src="/images/Polygonmaticlogo.svg"
-                                            ></Image>
-                                        </>
-
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>0xe984…1cc2</Text>
-
-                                            <Text  _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml={"10px"}>
-                                                $39,689,191</Text>
-                                    </Box>
-                                </Td>
-
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            ml="6px"
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                        >
-                                            13.09%
-                                        </Text>
-                                    </Box>
-                                </Td>
-                                <Td>
-                                    <Box
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                    >
-                                        <Image
-                                            width={"8.59px"}
-                                            height={"14px"}
-                                            alt=''
-                                            src="/images/Ethereumlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >ETH</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >50.11%</Text>
-                                        <Image
-                                            width={"16px"}
-                                            height={"14px"}
-                                            alt=''
-                                            ml={"10px"}
-                                            src="/images/Polygonmaticlogo.svg"></Image>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            ml={"5px"}
-                                        >MATIC</Text>
-                                        <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#FFFFFF" }}
-                                            fontSize={"12px"}
-                                            fontWeight={"400"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1px"}
-                                            textTransform={"uppercase"}
-                                            opacity={"0.5"}
-                                            ml={"5px"}
-                                        >49.11%</Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-                        </Tbody>
-                    </Table>
-                    <Box
-                        display={"flex"}
-                        justifyContent={"end"}
-                        my={"10px"}
-                        mr="25px"
-                    >
-                        <Flex>
-                            <Text
-                                color={"#A8ADBD"}
-                                fontSize={"12px"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                Last Update
-                            </Text>
-                            <Text
-                                _light={{ color: "#16171B" }}
-                                _dark={{ color: "#FFFFFF" }}
-                                fontSize={"12px"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                ml={"3px"}
-                            >
-                                3 mins ago
-                            </Text>
-                        </Flex>
-                    </Box>
-                </TableContainer>
-            </Box>
-
-        </>
-    );
+function RowComponent({ tableData }) {
+  return (
+      <>
+           {tableData.map((item, i) => {
+                            return (
+                                <>
+                                    <TableRow
+                                        key={i}
+                                        address={{src:item[0],name:item[1],amount:item[2]}}
+                                        share={item[3]}
+                                        tokens={{src1:item[4],name1:item[5],percentage1:item[6],src2:item[7],name2:item[8],percentage2:item[9]}}
+                                    />
+                                </>
+                            )
+                        })}
+     </>
+  )
 }
 
-export default DefiUsersSmallTableComponent;
+function TableRow({ key, address, share, tokens }) {
+  const [clicked, setClick] = useState(false);
+  const { colorMode } = useColorMode();
+  const router = useRouter();
+
+  return (
+      <>
+          <Tr
+              key={key}
+              cursor={"pointer"}
+              bgColor={clicked ?
+                  (colorMode === "light" ? '#F5F5F7' : '#191919') :
+                  (colorMode === "light" ? '#FFFFFF' : '#202020')
+              }
+              onClick={() => { setClick(!clicked) }}
+              borderBottom={'1px'}
+              borderColor={useColorModeValue('#DFDFDF', '#313131')}
+              borderRadius={'2px'}
+          >
+              <Td>
+                  <Flex>
+                      <Box
+                          alignItems={"center"}
+                          display={"flex"}
+                          gap={"10px"}
+                      >
+                          <Image
+                              height={"24px"}
+                              width={"24px"}
+                              src={address.src}
+                              alt="logo"
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"14px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                          >
+                              {address.name}
+                          </Text>
+                          <Text
+                              _dark={{
+                                  color: "#A8ADBD"
+                              }}
+                              _light={{
+                                  color: "#A8ADBD"
+                              }}
+                              fontSize={"12px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              textTransform={"uppercase"}
+                          >
+                              {address.amount}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"14px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                          >
+                              {share}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+              <Td>
+                  <Flex>
+                      <Box
+                       alignItems={"center"}
+                       display={"flex"}
+                       >
+                         <Image
+                              height={"14px"}
+                              width={"8.595px"}
+                              src={tokens.src1}
+                              alt="logo"
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"14px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              ml={"5px"}
+                          >
+                              {tokens.name1}
+                          </Text>
+                          <Text
+                              _dark={{
+                                  color: "#A8ADBD"
+                              }}
+                              _light={{
+                                  color: "#A8ADBD"
+                              }}
+                              fontSize={"12px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              textTransform={"uppercase"}
+                              mt={"2px"}
+                              ml={"3px"}
+                          >
+                              {tokens.percentage1}
+                          </Text>
+                          <Image
+                              height={"14px"}
+                              width={"16.048px"}
+                              src={tokens.src2}
+                              alt="logo"
+                              ml={"10px"}
+                          >
+                          </Image>
+                          <Text
+                              _dark={{
+                                  color: "#FFFFFF"
+                              }}
+                              _light={{
+                                  color: "#16171B"
+                              }}
+                              fontSize={"14px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              ml={"5px"}
+                          >
+                              {tokens.name2}
+                          </Text>
+                          <Text
+                              _dark={{
+                                  color: "#A8ADBD"
+                              }}
+                              _light={{
+                                  color: "#A8ADBD"
+                              }}
+                              fontSize={"12px"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              textTransform={"uppercase"}
+                              mt={"2px"}
+                              ml={"3px"}
+                          >
+                              {tokens.percentage2}
+                          </Text>
+                      </Box>
+                  </Flex>
+              </Td>
+
+          </Tr>
+      </>
+  );
+}
