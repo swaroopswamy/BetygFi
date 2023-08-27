@@ -221,13 +221,17 @@ function Graph({ series }) {
                     labels: {
                         show: true,
                         style: {
-                            colors: colorMode === 'light' ? "#000" : "#FFF" ,
+                            colors: item.color,
                             fontSize: "11px",
                             fontWeight: 300,
                         },
                         formatter: function (val, index) {
                             return "$" + val + "B";
                         }
+                    },
+                    axisBorder: {
+                        show: i !== 0 && true,
+                        color: item.color,
                     },
                     axisTicks: {
                         show: false
