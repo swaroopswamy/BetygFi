@@ -1,33 +1,39 @@
 'use client'
 import { Box, Button, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, Text, useColorMode, useColorModeValue, useSteps } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useWeb3 } from "@3rdweb/hooks"
+import isEmpty from 'is-empty';
+import { useDispatch, useSelector } from "react-redux";
+import { LoginMetamask, VerifyPublicAddressData, loadToken, saveToken } from "@/redux/auth_data/authSlice";
+import { ethers } from "ethers";
+
 
 const LoginPage = ({ isOpen, onClose }) => {
-    const { connectWallet, address, error } = useWeb3();
+
+
     const walletArray = [
-        {
+       /*  {
             name: "Binance",
             icon: "binance_logo.png"
         },
         {
             name: "Coinbase wallet",
             icon: "coinbase_logo.png"
-        },
+        }, */
         {
             name: "Metamask",
             icon: "metamask_logo.png"
         },
-        {
+        /* {
             name: "Other Browser wallet",
             icon: "coinbase_logo.png"
-        },
+        }, */
     ];
 
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
 
     const handleProcessSelector = (item) => {
-        setBrowserWalletProcessSelected(item.name);
+        setBrowserWalletProcessSelected(true);
     }
     const { colorMode } = useColorMode();
     return (
@@ -43,8 +49,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                         fontWeight={400}
                         lineHeight={"20px"}
                         textTransform={"uppercase"}
-                        _dark={{ color: "#FFF"}}
-                        _light={{ color: "#202020"}}
+                        _dark={{ color: "#FFF" }}
+                        _light={{ color: "#202020" }}
                         bg={useColorModeValue("#F5F5F7", "#202020")}
                         position={"relative"}
                         display={"flex"}
@@ -66,12 +72,12 @@ const LoginPage = ({ isOpen, onClose }) => {
                             fontWeight={400}
                             lineHeight={"20px"}
                             _dark={{
-                                color:"#FFF",
-                                bgColor:"#202020"
+                                color: "#FFF",
+                                bgColor: "#202020"
                             }}
                             _light={{
-                                color:"#202020",
-                                bgColor:"#F5F5F7"
+                                color: "#202020",
+                                bgColor: "#F5F5F7"
                             }}
                             textTransform={"capitalize"}
                             mt="26px"
@@ -83,9 +89,16 @@ const LoginPage = ({ isOpen, onClose }) => {
                     <ModalCloseButton />
                     <ModalBody
                         px={0}
+                        padding={"14px"}
+                        _light={{
+                            bgColor: 'white'
+                        }}
+                        _dark={{
+                            bgColor: '#313131'
+                        }}
                     >
-                        {browserWalletProcessSelected === '' ?
-                            <OtherBrowserWalletProcess />
+                        {browserWalletProcessSelected === true ?
+                            <OtherBrowserWalletProcess onClose={onClose} />
                             :
                             <>
                                 <Box
@@ -131,8 +144,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                             fontSize={"15px"}
                                                             fontWeight={400}
                                                             lineHeight={"20px"}
-                                                            _dark={{ color: "#FFF"}}
-                                                            _light={{ color: "#202020"}}
+                                                            _dark={{ color: "#FFF" }}
+                                                            _light={{ color: "#202020" }}
                                                             ml="9px"
 
                                                         >
@@ -143,8 +156,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                     <Box
                                                         width={"24px"}
                                                         height={"24px"}
-                                                        _dark={{ bgImage: "/images/next_icon_light.png"}}
-                                                        _light={{ bgImage: "/images/next_icon_dark.png"}}
+                                                        _dark={{ bgImage: "/images/next_icon_light.png" }}
+                                                        _light={{ bgImage: "/images/next_icon_dark.png" }}
                                                     >
                                                     </Box>
                                                 </Box>
@@ -155,8 +168,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         fontSize={"15px"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
-                                        _dark={{ color: "#FFF"}}
-                                        _light={{ color: "#202020"}}
+                                        _dark={{ color: "#FFF" }}
+                                        _light={{ color: "#202020" }}
                                         width={"100%"}
                                         textAlign={"center"}
                                         mb="15px"
@@ -170,8 +183,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         justifyContent={"space-between"}
                                         alignItems={"center"}
                                         padding={"15px 18px 15px 9px"}
-                                        _dark={{ bgColor: "#202020"}}
-                                        _light={{ bgColor: "#E7E7E7"}}
+                                        _dark={{ bgColor: "#202020" }}
+                                        _light={{ bgColor: "#E7E7E7" }}
                                         opacity={0.5}
                                         borderRadius={"4px"}
                                         mx={"9px"}
@@ -184,15 +197,15 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 width={"24px"}
                                                 height={"24px"}
                                                 alt="Login via social handles"
-                                                src={colorMode === 'light' ?  "/images/user_light.png" : "/images/user_dark.png"}
-                                              
+                                                src={colorMode === 'light' ? "/images/user_light.png" : "/images/user_dark.png"}
+
                                             ></Image>
                                             <Text
                                                 fontSize={"15px"}
                                                 fontWeight={400}
                                                 lineHeight={"20px"}
-                                                _dark={{ color: "#FFF"}}
-                                                _light={{ color: "#202020"}}
+                                                _dark={{ color: "#FFF" }}
+                                                _light={{ color: "#202020" }}
                                                 ml="9px"
                                             >
                                                 Login via social handles
@@ -201,8 +214,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         <Box
                                             width={"24px"}
                                             height={"24px"}
-                                            _dark={{ bgImage: "/images/next_icon_dark.png"}}
-                                            _light={{ bgImage: "/images/next_icon_light.png"}}
+                                            _dark={{ bgImage: "/images/next_icon_dark.png" }}
+                                            _light={{ bgImage: "/images/next_icon_light.png" }}
                                         >
 
                                         </Box>
@@ -218,41 +231,139 @@ const LoginPage = ({ isOpen, onClose }) => {
     )
 }
 
-const OtherBrowserWalletProcess = () => {
+const OtherBrowserWalletProcess = ({ onClose }) => {
+
+    const dispatch = useDispatch();
+    const { connectWallet, address, error } = useWeb3();
+    const UserData = useSelector((state) => state.authData.UserData);
+    const LoggedInData = useSelector((state) => state.authData.LoggedInData);
+    const { colorMode } = useColorMode();
+    const signMessage = async ({ message }) => {
+        try {
+             if (!window.ethereum)
+                throw new Error("No crypto wallet found. Please install it.");
+
+            await window.ethereum.send("eth_requestAccounts");
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const signature = await signer.signMessage(message);
+            const address = await signer.getAddress();
+
+            return {
+                message,
+                signature,
+                address
+            };
+        } catch (err) {
+            // setError(err.message);
+            console.log(err, "Error")
+        }
+    };
+
+    const handleConnectWallet = () => {
+        connectWallet("injected");
+    }
+    const handleVerifyWallet = () => {
+        dispatch(VerifyPublicAddressData(address));
+
+    }
+
+    const handleSign = async () => {
+        if (UserData.data?.nonce) {
+            const sig = await signMessage({
+                message: `I am signing my one-time nonce: ${UserData.data.nonce}`
+            });
+            if (sig) {
+                const payload = {
+                    public_address: sig.address,
+                    signature: sig.signature
+                }
+                dispatch(LoginMetamask(payload));
+            }
+        }
+    };
+    useEffect(() => {
+        if (!isEmpty(address)) {
+            handleNext();
+        }
+    }, [address])
+    useEffect(() => {
+        if (!isEmpty(UserData.data?.nonce)) {
+            handleSign();
+        }
+
+    }, [UserData]);
+    useEffect(() => {
+        if (!isEmpty(LoggedInData.data?.token)) {
+            onClose();
+        }
+    }, [LoggedInData]);
+    /*    useEffect(()=>{
+           if(!isEmpty(LoggedInData)){
+               saveToken(LoggedInData?.data?.token);
+           }
+       },[LoggedInData]) */
+
+    const { activeStep, isCompleteStep, setActiveStep } = useSteps({
+        index: 0,
+        count: 2,
+    })
+
     const steps = [
         {
-            title: 'Connect Wallet',
-            description: 'Tell which address you want to use',
-            buttonText: 'Connect'
+            title: isCompleteStep(0) ? 'Wallet Connected' : 'Connect Wallet',
+            description: isCompleteStep(0) ? `Address: ${address}` : 'Tell which address you want to use',
+            buttonText: 'Connect',
+            buttonFunction: handleConnectWallet,
+            isError: error,
         },
         {
             title: 'Verify Address',
             description: 'Tell which address you want to use',
-            buttonText: 'Verify'
+            buttonText: 'Verify',
+            buttonFunction: handleVerifyWallet,
+            isError: error,
         },
     ]
-    const { activeStep } = useSteps({
-        index: 1,
-        count: steps.length,
-    })
 
+
+    const handleNext = () => {
+        setActiveStep((prevStep) => prevStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevStep) => prevStep - 1);
+    };
+
+
+   
     return (
         <>
             <Box
-
+              
             >
-                <Stepper index={activeStep} orientation='vertical' height='400px' gap='0'>
+                <Stepper index={activeStep} orientation='vertical' gap='0'
+
+
+                >
                     {steps.map((step, index) => (
-                        <Step key={index}>
-                            <StepIndicator>
+                        <Step key={index}
+                            width={"100%"}
+                            activeStep={activeStep}
+                            bgColor={colorMode === "light" ? (activeStep === index ? "#E7E7E7" : "transparent") : (activeStep === index ? "#202020" : "transparent")}
+                            padding={"16px 22px 16px 13px"}
+                            opacity={activeStep !== index ? "0.4" : "1"}
+                            borderRadius={"4px"}
+                        >
+                            <StepIndicator borderColor={activeStep === index && "#71D268!important"}  >
                                 <StepStatus
-                                    complete={<StepIcon />}
-                                    incomplete={<StepNumber />}
-                                    active={<StepNumber />}
+                                    complete={<StepIcon bgColor={"#71D268!important"} />}
+                                    incomplete={<StepNumber borderColor={"#71D268!important"} />}
+                                    active={<StepNumber borderColor={"#71D268!important"} />}
                                 />
                             </StepIndicator>
 
-                            <Box flexShrink='0'
+                            <Box
                                 w="100%"
                                 display={"flex"}
                                 justifyContent={"space-between"}
@@ -269,20 +380,31 @@ const OtherBrowserWalletProcess = () => {
                                         {step.description}
                                     </StepDescription>
                                 </Box>
-                                <Button
-                                    fontSize={"12px"}
-                                    fontWeight={600}
-                                    lineHeight={"20px"}
-                                    _dark={{ color: "#FFF", bgColor: "#000000"}}
-                                    _light={{ color: "#202020", bgColor: "#FAFAFB"}}
-                                    padding={"9px 1"}
-                                >
-                                    {step.buttonText}
-                                </Button>
-
+                                {
+                                    activeStep === index &&
+                                    (<Button
+                                        onClick={step.buttonFunction}
+                                        fontSize={"14px"}
+                                        fontWeight={600}
+                                        lineHeight={"20px"}
+                                        _dark={{ color: "#000", bgColor: "#FFFFFF" }}
+                                        _light={{ color: "#FFF", bgColor: "#202020" }}
+                                        padding={"11px"}
+                                        width={"101px"}
+                                        borderRadius={"4px"}
+                                        disabled={!isEmpty(step.isError)}
+                                    >
+                                        {!isEmpty(step.isError) ? "Pending" : step.buttonText}
+                                    </Button>)
+                                }
                             </Box>
 
-                            <StepSeparator />
+                            <StepSeparator
+                                bgColor={"#71D268"}
+                                maxHeight={"calc(100% - var(--stepper-indicator-size) - 0px)!important"}
+                                top={"calc(var(--stepper-indicator-size) + 16px)!important"}
+                                left={"calc(var(--stepper-indicator-size) / 2 - -13px)!important"}
+                            />
                         </Step>
                     ))}
                 </Stepper>
