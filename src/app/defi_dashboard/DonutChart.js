@@ -86,12 +86,12 @@ function DonutChart() {
           justifyContent={"space-between"}
         >
           <Box
-            padding={"20px 0 20px 20px"}
+            padding={"15px 0 20px 20px"}
           >
             <Flex>
             <Text
               fontSize={"18px"}
-              fontWeight={"600"}
+              fontWeight={600}
               lineHeight={"20px"}
               color={useColorModeValue("#16171B", "#FFFFFF")}
             >
@@ -142,6 +142,8 @@ function DonutChart() {
           padding={"5px 20px 5px 10px"}
           mt={"50px"}
           fontSize={"14px"}
+          fontWeight={400}
+          lineHeight={"10px"}
         >
           <Chart
             options={options}

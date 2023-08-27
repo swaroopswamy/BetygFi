@@ -561,7 +561,7 @@ const Dashboard = () => {
               <Text
                 color={useColorModeValue("#16171B", "#FFF")}
                 fontSize={"18px"}
-                fontWeight={"600"}
+                fontWeight={600}
                 lineHeight={"20px"}
               >
                 Score Distribution
@@ -581,8 +581,8 @@ const Dashboard = () => {
             >
               <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
                 <Text
-                  fontSize="18px"
-                  fontWeight={"600"}
+                  fontSize={"18px"}
+                  fontWeight={600}
                   lineHeight={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
@@ -619,8 +619,8 @@ const Dashboard = () => {
                 >
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"10px"}
-                    fontWeight={"400"}
+                    fontSize={"14px"}
+                    fontWeight={400}
                     lineHeight={"20px"}
                     mr="10px"
                   >

@@ -75,8 +75,9 @@ const OverviewColumnChart = () => {
             labels: {
                 style: {
                     colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
+                    fontSize: "12px",
                     fontWeight: "300",
+                    lineHeight: "20px", 
                 },
             },
             axisBorder: {

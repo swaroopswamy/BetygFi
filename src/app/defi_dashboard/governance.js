@@ -36,21 +36,20 @@ const GovernanceTable = ({ }) => {
         >
                 {/* Governance Table */}
 
-                <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
+                <Flex justifyContent={"space-between"} padding={"25px 29px 27px"}
                     bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
                     <Text
-                        fontSize="18"
-                        fontWeight={"600"}
-                        //paddingRight={"15px"}
+                        fontSize={"18px"}
+                        fontWeight={600}
                         color={useColorModeValue("#16171B", "#FFF")}>
                         Governance 
                     </Text>
 
-                    <Text  marginRight={"410px"}
-                           paddingTop={"2px"}
+                    <Text  marginRight={"475px"}
+                           paddingTop={"5px"}
                            fontSize={"16px"}
-                           fontWeight={"400"}
-                           lineHeight={"20px"}>| proposals</Text>
+                           fontWeight={400}
+                           lineHeight={"20px"}>| Proposals</Text>
 
                     <Flex alignItems={"center"}>
 
@@ -89,21 +88,23 @@ const GovernanceTable = ({ }) => {
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                alignItems={"center"}
+                                fontWeight={400}
+                                lineHeight={"20px"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                             >
-                                TITLE
+                                Title
                             </Th>
                             <Th>
                                 <Box display={"flex"}
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
                                         fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
+                                        fontWeight={400}
+                                        letterSpacing={"1.4px"}
+                                        textTransform={"capitalize"}
                                         mr="6px">
-                                        START
+                                        Start
                                     </Text>
 
                                     <>
@@ -123,11 +124,12 @@ const GovernanceTable = ({ }) => {
 
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
                                         fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
+                                        fontWeight={400}
+                                        letterSpacing={"1.4px"}
                                         mr="6px"
+                                        textTransform={"capitalize"}
                                     >
-                                        END
+                                        End
                                     </Text>
                                     <>
                                         <Image width={"6px"}
@@ -145,10 +147,11 @@ const GovernanceTable = ({ }) => {
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
                                         fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
+                                        fontWeight={400}
+                                        letterSpacing={"1.4px"}
+                                        textTransform={"capitalize"}
                                         mr="6px">
-                                        STATE
+                                        State
                                     </Text>
 
                                     <>
@@ -166,10 +169,11 @@ const GovernanceTable = ({ }) => {
                                     alignItems={"center"}>
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
                                         fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
+                                        fontWeight={400}
+                                        letterSpacing={"1.4px"}
+                                        textTransform={"capitalize"}
                                         mr="6px">
-                                        VOTES
+                                        Votes
                                     </Text>
 
                                     <>
@@ -184,10 +188,11 @@ const GovernanceTable = ({ }) => {
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
+                                fontWeight={400}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                             >
-                                WINNING CHOICE
+                                Winning Choice
                             </Th>
 
                             <Th
@@ -197,7 +202,14 @@ const GovernanceTable = ({ }) => {
                                 letterSpacing={"1px"}
                             >
                                 <Flex>
-                                    <Text  fontSize={"14px"}>CONTROVERSY</Text>
+                                    <Text
+                                     color={useColorModeValue("#434347", "#A8ADBD")}
+                                     fontSize={"14px"}
+                                     fontWeight={400}
+                                     letterSpacing={"1.4px"}
+                                     textTransform={"capitalize"}
+                                     >
+                                        Controversy</Text>
 
                                     {/* <>
 
