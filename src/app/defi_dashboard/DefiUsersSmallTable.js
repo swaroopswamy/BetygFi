@@ -10,11 +10,11 @@ function Assetcomposition () {
   const tableName = "DeFi Users";
   const thread = ["Users Address","Share","Top Tokens"];
   const tableData = [
-    ["/images/Ethdefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Ethdefiusers.svg","0xe984…1cc2"," $39,689,191","14.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
     ["/images/Trondefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
-    ["/images/Binancedefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
-    ["/images/Arbitrumdefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
-    ["/images/Polygondefiusers.svg","0xe984…1cc2"," $39,689,191","13.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Binancedefiusers.svg","0xe984…1cc2"," $39,689,191","15.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Arbitrumdefiusers.svg","0xe984…1cc2"," $39,689,191","17.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
+    ["/images/Polygondefiusers.svg","0xe984…1cc2"," $39,689,191","16.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
 ];
  
   return (
