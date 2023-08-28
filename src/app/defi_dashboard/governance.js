@@ -10,8 +10,8 @@ import NextLink from 'next/link';
 const GovernanceTable = ({ }) => {
 
     const { colorMode } = useColorMode();
-
     const router = useRouter();
+    const [searchByName, setSearchByName] = useState('');
 
 
     
@@ -20,7 +20,6 @@ const GovernanceTable = ({ }) => {
     const Status1 = "Active";
     const Status2 = "Active";
     const Status3 = "InActive";
-    const [searchByName, setSearchByName] = useState('');
     const searchByNameHandler = (name) => {
         setSearchByName(name);
     }
@@ -74,8 +73,11 @@ const GovernanceTable = ({ }) => {
                                 color={useColorModeValue("#16171B", "#A8ADBD")}
                                 fontSize={"12px"}
                                 fontWeight={400}
+                                lineHeight={"20px"}
+                                letterSpacing={"1.2px"}
+                                textTransform={"uppercase"}
                                 w="207px"
-                                placeholder="Search DeFi"
+                                placeholder="Search Difi"
                                 onChange={(e) => { searchByNameHandler(e.target.value) }}
                             />
                         </Box>
