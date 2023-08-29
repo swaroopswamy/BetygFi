@@ -5,7 +5,7 @@ import {
     Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../util/constant";
-import { useEffect, useState } from "react";
+import React,{ useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -15,6 +15,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
+    const [searchByName, setSearchByName] = useState('');
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -22,6 +23,10 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
+
+    const searchAssetByNameHandler = (name) => {
+        setSearchByName(name);
+    }
 
     return (
         <>
@@ -69,9 +74,12 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             color={useColorModeValue("#16171B", "#A8ADBD")}
                             fontSize={"10px"}
                             fontWeight={400}
+                            lineHeight={"20px"}
+                            letterSpacing={"1.2px"}
+                            textTransform={"capitalize"}
                             w="207px"
-                            placeholder="SEARCH"
-                        //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
+                            placeholder="Search"
+                            onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
                         />
                     </Box>
 
