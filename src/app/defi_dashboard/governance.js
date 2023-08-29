@@ -1,6 +1,6 @@
 "use client"
 import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
-import { List, ListItem, ListIcon } from '@chakra-ui/react';
+import { List, ListItem, ListIcon,Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -44,25 +44,29 @@ const GovernanceTable = ({ }) => {
                         Governance 
                     </Text>
 
-                    <Text  marginRight={"475px"}
+                    <Text  paddingRight={"300px"}
                            paddingTop={"5px"}
                            fontSize={"16px"}
                            fontWeight={400}
                            lineHeight={"20px"}>| Proposals</Text>
 
-                    <Flex alignItems={"center"}>
+                    <Flex>
 
                         <Box>
-                            <Image width={"14px"}
+                        <Checkbox 
+                        //defaultChecked
+                            width={"14px"}
                                 height={"14px"}
                                 flexShrink={"0"}
-                                paddingRight={"5px"}
+                                mt={"12px"}
+                                paddingRight={"20px"}
                                 alt=''
                                 src="/icons/square_icon.svg">
-                            </Image></Box>
+                            </Checkbox></Box>
                         <Box>
                             <Text paddingRight={"10px"}
                                 fontSize={"14px"}
+                                mt={"8px"}
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box>

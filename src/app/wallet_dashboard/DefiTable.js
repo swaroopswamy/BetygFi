@@ -6,14 +6,18 @@ import {
     Skeleton,
     Spinner
 } from "@chakra-ui/react";
-import React, { useCallback, useEffect } from "react";
+import React, { useState } from "react";
+//import { SortBlackIcon, SortWhiteIcon } from "path-to-your-sort-icons";
+
+//import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "is-empty";
 
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
-const SkeletonRow = () => (
+const SkeletonRow = () => {
+
     <Box as="tr">
         <Td>
             <Skeleton height="20px" my={4} />
@@ -31,10 +35,15 @@ const SkeletonRow = () => (
             <Skeleton height="20px" my={4} />
         </Td>
     </Box>
-)
+}
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
 
+//     const [sortingOrder, setSortingOrder] = useState("asc"); // "asc" for ascending, "desc" for descending
+
+//   const toggleSortingOrder = () => {
+//     setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
+//   };
     
     return (
         <>

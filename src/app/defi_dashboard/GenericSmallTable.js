@@ -12,6 +12,8 @@ import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/data
 import BackIconWhite from '../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import SortWhiteIcon from '../../../public/icons/sort_white.svg';
+import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
@@ -136,6 +138,30 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
 export default GenericBigTableComponent;
 
 function ThreadItem({ key, name }) {
+
+   
+
+//     const [sortKey, setSortKey] = useState(null);
+//   const [sortOrder, setSortOrder] = useState("asc");
+
+//   const handleSort = (key) => {
+//     if (sortKey === key) {
+//       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+//     } else {
+//       setSortKey(key);
+//       setSortOrder("asc");
+//     }
+//   };
+
+//   const sortedData = data.slice().sort((a, b) => {
+//     const aValue = a[sortKey];
+//     const bValue = b[sortKey];
+//     if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
+//     if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+//     return 0;
+//   });
+
+
     return (
         <>
             <Th
@@ -153,6 +179,20 @@ function ThreadItem({ key, name }) {
                     {name}
                     {/* Add an image next to the text */}
                     <Image src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="5px" mt={"3px"} />
+                
+{/* <Image
+src={useColorModeValue(
+                sortOrder === "asc"
+                  ? "/images/Arrowdown(light).svg"
+                  : "/images/Arrowup(light).svg",
+                sortOrder === "asc"
+                  ? "/images/Arrowdown(dark).svg"
+                  : "/images/Arrowup(dark).svg"
+              )}
+              alt="Sort"
+              ml="5px"
+              mt="5px"
+              /> */}
                 </Flex>
             </Th>
         </>
@@ -268,7 +308,7 @@ function PageButtons() {
     return (
         <>
                 <Flex
-                padding="9px 0px 9px 350px"
+                padding="9px 0px 9px 320px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Text
@@ -286,7 +326,7 @@ function PageButtons() {
                         fontSize={"12px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        pl={"3px"}
+                        pl={"2px"}
                     >
                         3 mins ago
                     </Text>
