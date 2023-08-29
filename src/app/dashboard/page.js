@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Rankings from "./DefiRankingsTable";
-import { blockchains, categories } from "../../../util/constant";
+import { categories } from "../../../util/constant";
 import OverviewColumnChart from "./OverviewColumnChart";
 import OverviewAreaChart from "./OverviewAreaChart";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +36,7 @@ import {
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import isEmpty from "is-empty";
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
@@ -51,6 +52,10 @@ const Dashboard = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
+  const blockchains = useSelector(
+    (state) => state?.appData?.BlockchainListData?.data
+  );
+  console.log(blockchains)
 
   const overviewData = useSelector(
     (state) => state?.dashboardTableData?.OverviewData?.data
@@ -100,6 +105,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchBlockchainListData());
+  }, []);
+
+  useEffect(() => {
     getDefiRankingsTableDataHandler();
     // getScoreGraphDataHandler();
     getOverviewDataHandler();
@@ -108,9 +117,11 @@ const Dashboard = () => {
   useEffect(() => {
     getScoreGraphDataHandler();
   }, [blockchainSelected, categorySelected]);
+
   useEffect(() => {
     getDefiRankingsTableDataHandler(searchByName);
   }, [searchByName])
+ 
 
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -158,7 +169,7 @@ const Dashboard = () => {
               {blockchains?.map((item, i) => (
                 <>
                   {i < 4 &&
-                    <Tooltip key={i} label={item}>
+                    <Tooltip key={i} label={item.name}>
                       <Box
                         display={"flex"}
                         cursor={"pointer"}
@@ -168,8 +179,8 @@ const Dashboard = () => {
                         flexDirection={"row"}
                         bg={"#D9D9D9"}
                         borderRadius="50%"
-                        border={blockchainSelected.includes(item) ? "3px solid #55A406" : ""}
-                        boxShadow={!blockchainSelected.includes(item) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                        border={blockchainSelected.includes(item.name) ? "3px solid #55A406" : ""}
+                        boxShadow={!blockchainSelected.includes(item.name) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                         w="40px"
                         h="40px"
                         ml={i !== 0 && '-10px'}
@@ -185,14 +196,14 @@ const Dashboard = () => {
                           "1px solid #333"
                         )}  */
                         onClick={() => {
-                          BlockchainTypeHandler(item);
+                          BlockchainTypeHandler(item.name);
                         }}
                       >
                         <Image
                           width={18}
                           height={18}
-                          src={`/icons/${item}_sm_icon.svg`}
-                          alt={`${item}_icon`}
+                          src={item.logoUrl}
+                          alt={`${item.id}_icon`}
 
                         ></Image>
                         {/* <Text
@@ -228,7 +239,7 @@ const Dashboard = () => {
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
                   bgColor={useColorModeValue("#FFF", "#191919")}
                 >
-                  {blockchains.map((item, i) => {
+                  {blockchains?.map((item, i) => {
                     return (
                       <>
                         {i >= 4 &&
@@ -237,9 +248,9 @@ const Dashboard = () => {
                             _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
                           >
                             <Checkbox colorScheme='green'
-                              value={item}
-                              checked={blockchainSelected.includes(item)} onChange={(e) => {
-                                BlockchainTypeHandler(item);
+                              value={item.name}
+                              checked={blockchainSelected.includes(item.name)} onChange={(e) => {
+                                BlockchainTypeHandler(item.name);
                               }}>
                               <Box
                                 display={"flex"}
@@ -250,8 +261,8 @@ const Dashboard = () => {
                                 <Image
                                   width={18}
                                   height={18}
-                                  src={`/images/${item}_sm_icon.png`}
-                                  alt={`${item}_icon`}
+                                  src={item.logoUrl}
+                                  alt={`${item.id}_icon`}
 
                                   style={{ marginRight: "20px", marginLeft: "14px" }}
                                 ></Image>
@@ -262,7 +273,7 @@ const Dashboard = () => {
                                   letterSpacing={"1px"}
                                   color={useColorModeValue("#16171B", "#FFF")}
                                 >
-                                  {item}
+                                  {item.name}
                                 </Text>
                               </Box>
                             </Checkbox>
@@ -633,7 +644,7 @@ const Dashboard = () => {
                   >
                     {tablePage}
                   </Text>
-                </Box> 
+                </Box>
                 {/* Fix */}
                 {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
                   <>
