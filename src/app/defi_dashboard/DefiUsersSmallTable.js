@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
+import { Text, Skeleton, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
 function DefiUsersSmallTableComponent() {
@@ -36,6 +36,33 @@ export default DefiUsersSmallTableComponent;
 function RowComponent({ tableData }) {
     return (
         <>
+            {tableData?.isError && (
+                <>
+                    <Tr
+                    >
+                        <Td
+                        >
+                            <Text
+                                color={useColorModeValue("#16171B", "#FFF")}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                textAlign={"center"}
+                                p="20px"
+                            >
+                                No Data available
+                            </Text>
+                        </Td>
+                    </Tr>
+                </>
+            )}
+            {tableData?.isLoading && (
+                <>
+                    <SkeletonRow />
+                    <SkeletonRow />
+                    <SkeletonRow />
+                </>
+            )}
             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
                 return (
                     <>
@@ -244,3 +271,17 @@ function TableRow({ key, address, share, tokens }) {
         </>
     );
 }
+
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
