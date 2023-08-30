@@ -1,4 +1,4 @@
-import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
+import { Box, SkeletonRow, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -7,6 +7,9 @@ import DefiTable from "./DefiTable";
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
+
+  const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data);
+
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
   );
@@ -33,6 +36,7 @@ const PortfolioPanelComponent = () => {
           alignItems={"center"}
         >
         </Box>
+
         <Box
           mt="25px"
           borderRadius={"6px"}
@@ -45,6 +49,7 @@ const PortfolioPanelComponent = () => {
             py={"18px"}
             px="26px"
           >
+
             <Box
               display={"flex"}
               justifyContent={"flex-start"}
@@ -108,7 +113,7 @@ const PortfolioPanelComponent = () => {
               })}
             </Box>
 
-           {/*  <Input
+          {/*  <Input
               borderColor={useColorModeValue("#E8E8E8", "#333")}
               bgColor={useColorModeValue("#F5F5F7", "#191919")}
               color={useColorModeValue("#16171B", "#A8ADBD")}
@@ -123,7 +128,19 @@ const PortfolioPanelComponent = () => {
           <DefiTable />
         </Box>
 
-     {/*    <Box
+        <Box
+          mt={"20px"}
+        >
+          <Text
+            fontSize={"16px"}
+            fontWeight={"600"}
+            lineHeight={"20px"}
+          >
+            Defi Positions
+          </Text>
+        </Box>
+
+        {/* <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           paddingTop={"20px"}
@@ -610,377 +627,209 @@ const PortfolioPanelComponent = () => {
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
-        </Box>
+        </Box> */}
 
         <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
-          paddingTop={"20px"}
+          paddingTop={"10px"}
         >
-          <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='left'>
-                    <Flex>
-                      <Image src="/images/Fantom.svg" alt=""
-                        width={"30px"}
-                        height={"30px"}
-                        flexShrink={"0"}
-                        borderRadius={"150px"}
-                      ></Image>
-                      <Text
-                        color={useColorModeValue("#202020", "#FFFFFF")}
-                        fontSize={"15px"}
-                        fontStyle={"normal"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        ml={"10px"}
-                        mt={"5px"}
-                      >
-                        Fantom
-                      </Text>
-                      <Spacer />
-                      <Text
-                        color={useColorModeValue("#202020", "#FFFFFF")}
-                        fontSize={"15px"}
-                        fontStyle={"normal"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        mt={"25px"}
-                        paddingRight={"20px"}
-                      >
-                        $15,664,793.04
-                      </Text>
-                    </Flex>
-                    <Text
-                      color={useColorModeValue("#202020", "#FFFFFF")}
-                      fontSize={"13px"}
-                      fontStyle={"normal"}
-                      fontWeight={"600"}
-                      lineHeight={"20px"}
-                      mt={"5px"}
-                    >
-                      Savings
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
-                      width={"24px"}
-                      height={"24px"}
-                      flex-shrink={"0"}
-                    ></Image>
-                  </Box>
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
-                <TableContainer>
-                  <Table variant='simple'>
-                    <Thead>
-                      <Tr
-                        bg={useColorModeValue("#F5F5F7", "#191919")}
-                        width={"100%"}
-                        flex-shrink={"0"}
-                      >
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          TOken
-                        </Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Balanace
-                        </Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Price
-                        </Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Value(USD)</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/BIT.svg" alt=""></Image>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"11px"}
-                              fontStyle={"normal"}
-                              fontWeight={"600"}
-                              lineHeight={"11px"}
-                              mt={"10px"}
-                              ml={"10px"}
-                            >
-                              DAI
-                            </Text>
-                          </Flex>
-                        </Td>
-
-                        <Td>
-                          <Flex>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"10px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              280,161.85DAI
-                            </Text>
-                          </Flex>
-                        </Td>
-
-                        <Td>
-                          <Flex>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"10px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              $1.00
-                            </Text>
-                          </Flex>
-                        </Td>
-
-                        <Td>
-                          <Flex>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"10px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              $24,344,108.54
-                            </Text>
-                          </Flex>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </TableContainer>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
+          <PorfolioAccordion 
+            name={"Fantom"}
+            value={"$15,664,793.04"}
+            thread={["Token", "Balance", "Price", "Value (USD)"]}
+            tableData={walletBalanceData?.defiBalance}
+          />
         </Box>
 
-        <Box
+        {/* <Box
           flex-shrink={"0"}
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           paddingTop={"20px"}
           paddingBottom={"25px"}
         >
-          <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='left'>
-                    <Flex>
-                      <Image src="/images/Velodrome.svg" alt=""
-                        width={"30px"}
-                        height={"30px"}
-                        flexShrink={"0"}
-                        borderRadius={"150px"}
-                      ></Image>
-                      <Text
-                        color={useColorModeValue("#202020", "#FFFFFF")}
-                        fontSize={"15px"}
-                        fontStyle={"normal"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        ml={"10px"}
-                        mt={"5px"}
-                      >
-                        Velodrome
-                      </Text>
-                      <Spacer />
-                      <Text
-                        color={useColorModeValue("#202020", "#FFFFFF")}
-                        fontSize={"15px"}
-                        fontStyle={"normal"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        mt={"25px"}
-                        paddingRight={"20px"}
-                      >
-                        $0.664,793
-                      </Text>
-                    </Flex>
-                    <Text
-                      color={useColorModeValue("#202020", "#FFFFFF")}
-                      fontSize={"13px"}
-                      fontStyle={"normal"}
-                      fontWeight={"600"}
-                      lineHeight={"20px"}
-                      mt={"5px"}
-                    >
-                      Locked
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
-                      width={"24px"}
-                      height={"24px"}
-                      flex-shrink={"0"}
-                    ></Image>
-                  </Box>
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
-                <TableContainer>
-                  <Table variant='simple'>
-                    <Thead>
-                      <Tr
-                        bg={useColorModeValue("#F5F5F7", "#191919")}
-                        width={"100%"}
-                        flex-shrink={"0"}
-                      >
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Pool
-                        </Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          UNLOCK TIME
-                        </Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Value(USD)
-                        </Th>
-
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/BIT.svg" alt=""></Image>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"11px"}
-                                fontStyle={"normal"}
-                                fontWeight={"600"}
-                                lineHeight={"11px"}
-                                mt={"3px"}
-                                ml={"10px"}
-                              >
-                                1.00 VELO
-                              </Text>
-                              <Text
-                                color={"#000"}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                                ml={"10px"}
-                                mt={"5px"}
-                              >
-                                $0.09579
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-
-                        <Td>
-                          <Flex>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"10px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              280,161.85DAI
-                            </Text>
-                          </Flex>
-                        </Td>
-
-                        <Td>
-                          <Flex>
-                            <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
-                              fontSize={"10px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              $24,344,108.54
-                            </Text>
-                          </Flex>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </TableContainer>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
+          <PorfolioAccordion 
+            name={"Fantom"}
+            value={"$15,664,793.04"}
+            thread={["Pool", "Unlock Time", "Value (USD)"]}
+          />
         </Box> */}
       </Box>
     </>
   )
 }
 
-export default PortfolioPanelComponent
+export default PortfolioPanelComponent;
+
+const PorfolioAccordion = ({name, value, thread, tableData}) => {
+  return (
+  <>
+    <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
+
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+
+            <Box as="span" flex='1' textAlign='left'>
+              <Flex>
+                <Image src="/images/Fantom.svg" alt=""
+                  width={"30px"}
+                  height={"30px"}
+                  flexShrink={"0"}
+                  borderRadius={"150px"}
+                ></Image>
+                <Text
+                  color={useColorModeValue("#202020", "#FFFFFF")}
+                  fontSize={"15px"}
+                  fontStyle={"normal"}
+                  fontWeight={"400"}
+                  lineHeight={"20px"}
+                  ml={"10px"}
+                  mt={"5px"}
+                >
+                  {name}
+                </Text>
+                <Spacer />
+                <Text
+                  color={useColorModeValue("#202020", "#FFFFFF")}
+                  fontSize={"15px"}
+                  fontStyle={"normal"}
+                  fontWeight={"400"}
+                  lineHeight={"20px"}
+                  mt={"25px"}
+                  paddingRight={"20px"}
+                >
+                  {value}
+                </Text>
+              </Flex>
+
+              <Text
+                color={useColorModeValue("#202020", "#FFFFFF")}
+                fontSize={"13px"}
+                fontStyle={"normal"}
+                fontWeight={"600"}
+                lineHeight={"20px"}
+                mt={"5px"}
+              >
+                Savings
+              </Text>
+            </Box>
+
+            <Box>
+              <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
+                width={"24px"}
+                height={"24px"}
+                flex-shrink={"0"}
+              ></Image>
+            </Box>
+
+          </AccordionButton>
+        </h2>
+
+        <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
+          <TableContainer>
+            <Table variant='simple'>
+
+              <Thead>
+                <Tr
+                  bg={useColorModeValue("#F5F5F7", "#191919")}
+                  width={"100%"}
+                  flex-shrink={"0"}
+                >
+                  {thread.map((item, i) => {
+                    return (
+                      <Th
+                      color={useColorModeValue("#434347", "#A8ADBD")}
+                      fontSize={"10px"}
+                      fontStyle={"normal"}
+                      fontWeight={"400"}
+                      lineHeight={"20px"}
+                      letterSpacing={"1px"}
+                      textTransform={"uppercase"}
+                      textAlign={"left"}
+                    >
+                      {item}
+                    </Th>
+                    );
+                  })}
+                </Tr>
+              </Thead>
+
+              <Tbody>
+
+                {tableData?.map((item, i) => {
+                  return (
+                    <Tr>
+                      <Td>
+                        <Flex>
+                          <Image src="/images/BIT.svg" alt=""></Image>
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            fontSize={"11px"}
+                            fontStyle={"normal"}
+                            fontWeight={"600"}
+                            lineHeight={"11px"}
+                            mt={"10px"}
+                            ml={"10px"}
+                          >
+                            {item.token}
+                          </Text>
+                        </Flex>
+                      </Td>
+
+                      <Td>
+                        <Flex>
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            fontSize={"10px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            {item.balance}
+                          </Text>
+                        </Flex>
+                      </Td>
+
+                      <Td>
+                        <Flex>
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            fontSize={"10px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            $1.00
+                          </Text>
+                        </Flex>
+                      </Td>
+
+                      <Td>
+                        <Flex>
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            fontSize={"10px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            $24,344,108.54
+                          </Text>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  );
+                })}
+                
+              </Tbody>
+
+            </Table>
+          </TableContainer>
+        </AccordionPanel>
+
+      </AccordionItem>
+    </Accordion>
+  </>
+  );
+}
