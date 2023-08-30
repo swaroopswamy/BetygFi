@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
-function Defiusers () {
+function DefiUsersSmallTableComponent () {
 
   const tableName = "DeFi Users";
   const thread = ["Users Address","Share","Top Tokens"];
@@ -15,7 +16,11 @@ function Defiusers () {
     ["/images/Binancedefiusers.svg","0xe984…1cc2"," $39,689,191","15.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
     ["/images/Arbitrumdefiusers.svg","0xe984…1cc2"," $39,689,191","17.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
     ["/images/Polygondefiusers.svg","0xe984…1cc2"," $39,689,191","16.09%","/images/Ethereumlogo.svg","ETH","50.11%","/images/Polygonmaticlogo.svg","MATIC","49.11%"],
-];
+    ];
+    const defiUsersTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiUsersTableData
+    )
+    console.log(defiUsersTableData);
  
   return (
     <Box
@@ -24,32 +29,36 @@ function Defiusers () {
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
        <GenericSmallTableComponent
-                tableName={tableName}
-                thread={thread}
-                tableData={tableData}
-                RowComponent={RowComponent}
+            tableName={tableName}
+            thread={thread}
+            tableData={defiUsersTableData}
+            RowComponent={RowComponent}
         />
     </Box>
   )
 };
-export default Defiusers;
+export default DefiUsersSmallTableComponent;
 
 function RowComponent({ tableData }) {
   return (
       <>
-           {tableData.map((item, i) => {
-                            return (
-                                <>
-                                    <TableRow
-                                        key={i}
-                                        address={{src:item[0],name:item[1],amount:item[2]}}
-                                        share={item[3]}
-                                        tokens={{src1:item[4],name1:item[5],percentage1:item[6],src2:item[7],name2:item[8],percentage2:item[9]}}
-                                        //user={item.id}
-                                    />
-                                </>
-                            )
-                        })}
+           {tableData?.isSuccess && tableData.data.data.map((item, i) => {
+                return (
+                    <>
+                        <TableRow
+                            key={i}
+                            address={{
+                                src:item[0],
+                                name:item.user,
+                                amount:item[2]
+                            }}
+                            share={item[3]}
+                            tokens={{src1:item[4],name1:item[5],percentage1:item[6],src2:item[7],name2:item[8],percentage2:item[9]}}
+                            //user={item.id}
+                        />
+                    </>
+                )
+            })}
      </>
   )
 }
@@ -90,7 +99,7 @@ function TableRow({ key, address, share, tokens }) {
                               height={"24px"}
                               width={"24px"}
                               src={address.src}
-                              alt="logo"
+                            //   alt="logo"
                           >
                           </Image>
                           <Text

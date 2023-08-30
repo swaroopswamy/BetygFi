@@ -34,12 +34,10 @@ const DefiDashboardPage = () => {
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
     )
-    const defiUsersTableData = useSelector(
-        (state) => state?.defiDashboardData?.DefiUsersTableData?.data
-    )
+    // const defiUsersTableData = useSelector(
+    //     (state) => state?.defiDashboardData?.DefiUsersTableData?.data
+    // )
     const [tabIndex, setTabIndex] = useState(0)
-
-
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -51,7 +49,7 @@ const DefiDashboardPage = () => {
     const blockchains = useSelector(
         (state) => state?.appData?.BlockchainListData?.data
     );
-    
+
     const getDefiDataHandler = () => {
         const payload = {
             id: id,
@@ -71,8 +69,6 @@ const DefiDashboardPage = () => {
         getDefiDataHandler();
         getDefiUsersTableDataHandler();
     }, []);
-
-    console.log(defiUsersTableData);
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
@@ -436,7 +432,7 @@ const DefiDashboardPage = () => {
                     padding={"10px 0 0 10px"}
                     gap={"25px"}
                 >
-                    <DefiUsersSmallTableComponent 
+                    <DefiUsersSmallTableComponent
                     />
                     <BarChart />
 
