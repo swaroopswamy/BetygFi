@@ -41,6 +41,7 @@ function RowComponent({ tableData }) {
                     <Tr
                     >
                         <Td
+                         colSpan={3}
                         >
                             <Text
                                 color={useColorModeValue("#16171B", "#FFF")}
@@ -49,6 +50,7 @@ function RowComponent({ tableData }) {
                                 letterSpacing={"1px"}
                                 textAlign={"center"}
                                 p="20px"
+                               
                             >
                                 No Data available
                             </Text>
