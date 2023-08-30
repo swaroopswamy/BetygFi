@@ -421,7 +421,7 @@ const DefiDashboardPage = () => {
                     padding={"10px 0 0 10px"}
                 >
                     <TVLBox />
-                   {/*  <TrendGraph /> */}
+                    <TrendGraph />
                 </Box>
 
                 <Box

@@ -127,8 +127,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                             tableData={tableData}
                         />
                     </Tbody>
-                    <Tfoot>
-                    </Tfoot>
+
 
                 </Table>
                 <SmallPageButtons />

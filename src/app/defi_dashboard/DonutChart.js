@@ -36,7 +36,7 @@ function DonutChart() {
           w.globals.labels[seriesIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[seriesIndex] + "%" +
+          series[seriesIndex] + "USD" +
           '</div>' +
           "</div>"
         );

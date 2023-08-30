@@ -10,7 +10,7 @@ function TrendGraph() {
     const { colorMode } = useColorMode();
     const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
     const [currencySelected, setCurrencyType] = useState("USD");
-    const [series, setSeries] = useState();
+    const [series, setSeries] = useState([]);
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
@@ -35,7 +35,7 @@ function TrendGraph() {
         else {
             arr.push(type);
         }
-        if (arr.length == 0) {
+        if (arr?.length == 0) {
             arr.push(graphTypes[0]);
         }
 
@@ -43,7 +43,7 @@ function TrendGraph() {
     };
     const SeriesHandler = () => {
         let mapdata = [];
-        graphData.data.map((item) => {
+        graphData?.data?.map((item) => {
             if (graphTypeSelected.includes(item.name)) {
                 mapdata.push(item);
             }
@@ -217,11 +217,11 @@ function Graph({ series }) {
             series?.map((item, i) => {
                 return {
                     opposite: i !== 0 && true,
-                    seriesName: item.name,
+                    seriesName: item?.name,
                     labels: {
                         show: true,
                         style: {
-                            colors: item.color,
+                            colors: item?.color,
                             fontSize: "11px",
                             fontWeight: 300,
                         },
@@ -231,7 +231,7 @@ function Graph({ series }) {
                     },
                     axisBorder: {
                         show: i !== 0 && true,
-                        color: item.color,
+                        color: item?.color,
                     },
                     axisTicks: {
                         show: false
