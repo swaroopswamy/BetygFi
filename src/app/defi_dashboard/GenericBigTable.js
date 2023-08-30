@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import BigTablePageButtons from '/src/app/components/BigTable_pagebutton';
+//import SelectionBox from '/src/app/components/selection_box';
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
@@ -124,7 +126,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
 
                 </Table>
 
-                <PageButtons />
+                <BigTablePageButtons />
             </Box>
         </>
     )
@@ -149,14 +151,14 @@ function ThreadItem({ key, name }) {
                 <Flex>
                     {name}
                     {/* Add an image next to the text */}
-                    <Image src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+                    <Image mt={"2px"} src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
                 </Flex>
             </Th>
         </>
     )
 }
 
-function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
+function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
     // const dispatch = useDispatch();
     // const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
     // var blockchains = [];
@@ -259,117 +261,5 @@ function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) 
             </Box>
         </Box>
     </>
-}
-
-function PageButtons() {
-    return (
-        <>
-            <Box
-                display={"flex"}
-                alignItems={"flex-start"}
-                justifyContent={"space-between"}
-                padding="10px 30px 14px"
-                background={useColorModeValue('#FFFFFF', '#202020')}
-            >
-                <Flex>
-                    <Text
-                        _light={{ color: "#A8ADBD" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"12px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                    >
-                        Last Update
-                    </Text>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"10px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        pl={"3px"}
-                    >
-                        3 mins ago
-                    </Text>
-                </Flex>
-                <Box
-                    display={"flex"}
-                >
-                    <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                    >
-                        <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"12px"}
-                            fontWeight={"400"}
-                        >
-                            1-20
-                        </Text>
-                    </Box>
-
-                    <Button
-                        display={"flex"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
-                        w={"10px"}
-                        h={"26px"}
-                        bg={useColorModeValue("#FFF", "#202020")}
-                        padding="0px"
-                    >
-                        <Image
-                            //mt={"10px"}
-                            width={"12px"}
-                            height={"12px"}
-                            style={{ rotate: '90deg' }}
-                            alt="next-arrow"
-                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                        ></Image>
-                    </Button>
-
-                    <Button
-                        display={"flex"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
-                        w={"10px"}
-                        h={"26px"}
-                        bg={useColorModeValue("#FFF", "#202020")}
-                        border={"1px"}
-                        borderColor={useColorModeValue("#C7CAD2", "#454853")}
-                        borderRadius={"0px"}
-                        padding="0px"
-                    >
-                        <Image
-                            width={"12px"}
-                            height={"12px"}
-                            style={{ rotate: '180deg' }}
-                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                            alt="prev-arrow"
-                        ></Image>
-                    </Button>
-
-                    <Button
-                        display={"flex"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
-                        w={"10px"}
-                        h={"26px"}
-                        bg={useColorModeValue("#FFF", "#202020")}
-                        border={"1px"}
-                        borderRadius={"0px"}
-                        borderColor={useColorModeValue("#C7CAD2", "#454853")}
-                        padding="0px"
-                    >
-                        <Image
-                            width={"12px"}
-                            height={"12px"}
-                            alt="next-arrow"
-                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                        ></Image>
-                    </Button>
-                </Box>
-
-            </Box>
-        </>)
 }
 

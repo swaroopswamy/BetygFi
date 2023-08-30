@@ -12,7 +12,7 @@ import GenericBigTableComponent from "../GenericBigTable";
 
 function DefiUsers() {
     const router = useRouter();
-
+    const { colorMode, toggleColorMode } = useColorMode();
     const tableName = "Defi Users";
     const thread = ["Users", "Deposited", "Borrowed", "Assets", "Share"];
     const tableData = [
