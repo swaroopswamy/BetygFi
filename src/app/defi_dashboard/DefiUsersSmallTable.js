@@ -44,7 +44,12 @@ function RowComponent({ tableData }) {
                          colSpan={3}
                         >
                             <Text
-                                color={useColorModeValue("#16171B", "#FFF")}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                _dark={{
+                                    color: "#FFF"
+                                }}
                                 fontSize={"20px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}

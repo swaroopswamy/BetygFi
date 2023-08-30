@@ -94,7 +94,7 @@ const LoginPage = ({ isOpen, onClose }) => {
 
                                         <Box
                                             position={"absolute"}
-                                            bgImage={useColorModeValue("/public/images/login_modal_bg_dark.png", "../../../../public/images/login_modal_bg_dark.png")}
+                                            bgImage={ colorMode === 'light' ?  "../../../../public/images/login_modal_bg_dark.png" : "/public/images/login_modal_bg_dark.png"}
                                             width={"100%"}
                                             height={"100%"}
                                             top={0}

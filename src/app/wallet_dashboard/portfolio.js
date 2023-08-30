@@ -18,13 +18,13 @@ const PortfolioPanelComponent = () => {
   };
   const defiArray = [
     "Wallet",
-   /*  "X2Y2",
-    "Blur",
-    "Uniswap" */
+    /*  "X2Y2",
+     "Blur",
+     "Uniswap" */
   ];
- /*  const searchAssetByNameHandler (name) => {
-
-  } */
+  /*  const searchAssetByNameHandler (name) => {
+ 
+   } */
   return (
     <>
       <Box
@@ -113,7 +113,7 @@ const PortfolioPanelComponent = () => {
               })}
             </Box>
 
-          {/*  <Input
+            {/*  <Input
               borderColor={useColorModeValue("#E8E8E8", "#333")}
               bgColor={useColorModeValue("#F5F5F7", "#191919")}
               color={useColorModeValue("#16171B", "#A8ADBD")}
@@ -634,7 +634,7 @@ const PortfolioPanelComponent = () => {
           filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
           paddingTop={"10px"}
         >
-          <PorfolioAccordion 
+          <PorfolioAccordion
             name={"Fantom"}
             value={"$15,664,793.04"}
             thread={["Token", "Balance", "Price", "Value (USD)"]}
@@ -661,175 +661,196 @@ const PortfolioPanelComponent = () => {
 
 export default PortfolioPanelComponent;
 
-const PorfolioAccordion = ({name, value, thread, tableData}) => {
+const PorfolioAccordion = ({ name, value, thread, tableData }) => {
   return (
-  <>
-    <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
+    <>
+      <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
 
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
+        <AccordionItem>
+          <h2>
+            <AccordionButton>
 
-            <Box as="span" flex='1' textAlign='left'>
-              <Flex>
-                <Image src="/images/Fantom.svg" alt=""
-                  width={"30px"}
-                  height={"30px"}
-                  flexShrink={"0"}
-                  borderRadius={"150px"}
-                ></Image>
+              <Box as="span" flex='1' textAlign='left'>
+                <Flex>
+                  <Image src="/images/Fantom.svg" alt=""
+                    width={"30px"}
+                    height={"30px"}
+                    flexShrink={"0"}
+                    borderRadius={"150px"}
+                  ></Image>
+                  <Text
+                    color={useColorModeValue("#202020", "#FFFFFF")}
+                    fontSize={"15px"}
+                    fontStyle={"normal"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
+                    ml={"10px"}
+                    mt={"5px"}
+                  >
+                    {name}
+                  </Text>
+                  <Spacer />
+                  <Text
+                    color={useColorModeValue("#202020", "#FFFFFF")}
+                    fontSize={"15px"}
+                    fontStyle={"normal"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
+                    mt={"25px"}
+                    paddingRight={"20px"}
+                  >
+                    {value}
+                  </Text>
+                </Flex>
+
                 <Text
                   color={useColorModeValue("#202020", "#FFFFFF")}
-                  fontSize={"15px"}
+                  fontSize={"13px"}
                   fontStyle={"normal"}
-                  fontWeight={"400"}
+                  fontWeight={"600"}
                   lineHeight={"20px"}
-                  ml={"10px"}
                   mt={"5px"}
                 >
-                  {name}
+                  Savings
                 </Text>
-                <Spacer />
-                <Text
-                  color={useColorModeValue("#202020", "#FFFFFF")}
-                  fontSize={"15px"}
-                  fontStyle={"normal"}
-                  fontWeight={"400"}
-                  lineHeight={"20px"}
-                  mt={"25px"}
-                  paddingRight={"20px"}
-                >
-                  {value}
-                </Text>
-              </Flex>
+              </Box>
 
-              <Text
-                color={useColorModeValue("#202020", "#FFFFFF")}
-                fontSize={"13px"}
-                fontStyle={"normal"}
-                fontWeight={"600"}
-                lineHeight={"20px"}
-                mt={"5px"}
-              >
-                Savings
-              </Text>
-            </Box>
-
-            <Box>
-              <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
-                width={"24px"}
-                height={"24px"}
-                flex-shrink={"0"}
-              ></Image>
-            </Box>
-
-          </AccordionButton>
-        </h2>
-
-        <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
-          <TableContainer>
-            <Table variant='simple'>
-
-              <Thead>
-                <Tr
-                  bg={useColorModeValue("#F5F5F7", "#191919")}
-                  width={"100%"}
+              <Box>
+                <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
+                  width={"24px"}
+                  height={"24px"}
                   flex-shrink={"0"}
-                >
-                  {thread.map((item, i) => {
+                ></Image>
+              </Box>
+
+            </AccordionButton>
+          </h2>
+
+          <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
+            <TableContainer>
+              <Table variant='simple'>
+
+                <Thead>
+                  <Tr
+                    bg={useColorModeValue("#F5F5F7", "#191919")}
+                    width={"100%"}
+                    flex-shrink={"0"}
+                  >
+                    {thread.map((item, i) => {
+                      return (
+                        <Th
+                          key={i}
+                          _light={{
+                            color: "#434347"
+                          }}
+                          _dark={{
+                            color: "#A8ADBD"
+                          }}
+                          fontSize={"10px"}
+                          fontStyle={"normal"}
+                          fontWeight={"400"}
+                          lineHeight={"20px"}
+                          letterSpacing={"1px"}
+                          textTransform={"uppercase"}
+                          textAlign={"left"}
+                        >
+                          {item}
+                        </Th>
+                      );
+                    })}
+                  </Tr>
+                </Thead>
+
+                <Tbody>
+
+                  {tableData?.map((item, i) => {
                     return (
-                      <Th
-                      color={useColorModeValue("#434347", "#A8ADBD")}
-                      fontSize={"10px"}
-                      fontStyle={"normal"}
-                      fontWeight={"400"}
-                      lineHeight={"20px"}
-                      letterSpacing={"1px"}
-                      textTransform={"uppercase"}
-                      textAlign={"left"}
-                    >
-                      {item}
-                    </Th>
+                      <Tr key={i}>
+                        <Td >
+                          <Flex>
+                            <Image src="/images/BIT.svg" alt=""></Image>
+                            <Text
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              _dark={{
+                                color: "#FFFFFF"
+                              }}
+                              fontSize={"11px"}
+                              fontStyle={"normal"}
+                              fontWeight={"600"}
+                              lineHeight={"11px"}
+                              mt={"10px"}
+                              ml={"10px"}
+                            >
+                              {item?.token}
+                            </Text>
+                          </Flex>
+                        </Td>
+
+                        <Td>
+                          <Flex>
+                            <Text
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              _dark={{
+                                color: "#FFFFFF"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                            >
+                              {item?.balance}
+                            </Text>
+                          </Flex>
+                        </Td>
+
+                        <Td>
+                          <Flex>
+                            <Text
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              _dark={{
+                                color: "#FFFFFF"
+                              }}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                            >
+                              $1.00
+                            </Text>
+                          </Flex>
+                        </Td>
+
+                        <Td>
+                          <Flex>
+                            <Text
+                              color={useColorModeValue("#16171B", "#FFFFFF")}
+                              fontSize={"10px"}
+                              fontStyle={"normal"}
+                              fontWeight={"400"}
+                              lineHeight={"20px"}
+                            >
+                              $24,344,108.54
+                            </Text>
+                          </Flex>
+                        </Td>
+                      </Tr>
                     );
                   })}
-                </Tr>
-              </Thead>
 
-              <Tbody>
+                </Tbody>
 
-                {tableData?.map((item, i) => {
-                  return (
-                    <Tr>
-                      <Td>
-                        <Flex>
-                          <Image src="/images/BIT.svg" alt=""></Image>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"11px"}
-                            fontStyle={"normal"}
-                            fontWeight={"600"}
-                            lineHeight={"11px"}
-                            mt={"10px"}
-                            ml={"10px"}
-                          >
-                            {item.token}
-                          </Text>
-                        </Flex>
-                      </Td>
+              </Table>
+            </TableContainer>
+          </AccordionPanel>
 
-                      <Td>
-                        <Flex>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            {item.balance}
-                          </Text>
-                        </Flex>
-                      </Td>
-
-                      <Td>
-                        <Flex>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            $1.00
-                          </Text>
-                        </Flex>
-                      </Td>
-
-                      <Td>
-                        <Flex>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            $24,344,108.54
-                          </Text>
-                        </Flex>
-                      </Td>
-                    </Tr>
-                  );
-                })}
-                
-              </Tbody>
-
-            </Table>
-          </TableContainer>
-        </AccordionPanel>
-
-      </AccordionItem>
-    </Accordion>
-  </>
+        </AccordionItem>
+      </Accordion>
+    </>
   );
 }
