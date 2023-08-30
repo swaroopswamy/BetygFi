@@ -7,7 +7,7 @@ import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
 import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-//import { blockchains } from "../../../util/constant";
+import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
@@ -58,6 +58,11 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
+
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+    }, []);
+    
 
     useEffect(() => {
         if (walletBalanceData?.isQueryInPendingState) {
@@ -356,14 +361,14 @@ const WalletDashboardPage = () => {
                                     >
                                         ALL
                                     </Box>
-                                    {blockchains.map((item, i) => {
+                                    {blockchains?.map((item, i) => {
                                         return (
                                             <Box
                                                 position={"relative"}
                                                 cursor={"pointer"}
                                                 key={i}
                                                 _after={
-                                                    blockchainSelected.includes(item) && {
+                                                    blockchainSelected.includes(item.name) && {
                                                         position: "absolute",
                                                         content: '""',
                                                         bottom: "-14px",
@@ -374,7 +379,7 @@ const WalletDashboardPage = () => {
                                                     }
                                                 }
                                                 onClick={() => {
-                                                    BlockchainTypeHandler(item);
+                                                    BlockchainTypeHandler(item.name);
                                                 }}
                                                 mr={"18px"}
                                                 display={"flex"}
@@ -383,22 +388,22 @@ const WalletDashboardPage = () => {
                                                 <Image
                                                     w={"18px"}
                                                     h={"18px"}
-                                                    mr={"11px"}
-                                                    src={`/icons/${item}_sm_icon.svg`}
-                                                    alt=""
+                                                    mr={"5px"}
+                                                    src={item.logoUrl}
+                                                    alt={`${item.id}_icon`}
                                                 ></Image>
                                                 <Text
                                                     fontSize={"14px"}
-                                                    fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
+                                                    fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
                                                     lineHeight={"20px"}
                                                     color={colorMode === 'light' ?
-                                                        blockchainSelected.includes(item) ? "#191919" : "#191919"
+                                                        blockchainSelected.includes(item.name) ? "#191919" : "#191919"
                                                         :
-                                                        blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
+                                                        blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
                                                     }
 
                                                 >
-                                                    {item}
+                                                    {item.name}
                                                 </Text>
                                             </Box>
                                         );
