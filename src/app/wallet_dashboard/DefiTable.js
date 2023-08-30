@@ -360,7 +360,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {item.price === undefined ? '-' : item?.price}
+                                                {item?.price === undefined ? '-' : item?.price}
                                             </Td>
                                             <Td
                                                 _dark={{
@@ -373,7 +373,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                             >
-                                                {item.value.toFixed(3)}
+                                                {item?.value?.toFixed(3)}
                                             </Td>
                                             <Td
                                                 _dark={{
@@ -387,7 +387,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                             >
                                                 {
-                                                    (Math.trunc(item.value * item.price)).toLocaleString('en-US', {
+                                                    (Math.trunc(item?.value * item?.price)).toLocaleString('en-US', {
                                                         style: 'currency',
                                                         currency: 'USD'
                                                     })}
