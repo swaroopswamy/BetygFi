@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
-import DefiUsers from "./defi_users/page";
 
 function Defiusers () {
 
