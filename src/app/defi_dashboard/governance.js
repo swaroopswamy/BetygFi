@@ -35,26 +35,26 @@ const GovernanceTable = ({ }) => {
         >
                 {/* Governance Table */}
 
-                <Flex justifyContent={"space-between"} padding={"25px 29px 27px"}
+                <Flex
+                    padding={"25px 29px 27px"}
                     bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
                     <Text
                         fontSize={"18px"}
                         fontWeight={600}
+                        mr={"5px"}
                         color={useColorModeValue("#16171B", "#FFF")}>
                         Governance 
                     </Text>
 
-                    <Text  paddingRight={"300px"}
+                    <Text  
                            paddingTop={"5px"}
                            fontSize={"16px"}
                            fontWeight={400}
-                           lineHeight={"20px"}>| Proposals</Text>
+                           lineHeight={"20px"}>|  Proposals</Text>
 
-                    <Flex>
-
-                        <Box>
+                         <Spacer />
+                        {/* <Box>
                         <Checkbox 
-                        //defaultChecked
                             width={"14px"}
                                 height={"14px"}
                                 flexShrink={"0"}
@@ -62,14 +62,15 @@ const GovernanceTable = ({ }) => {
                                 paddingRight={"20px"}
                                 alt=''
                                 src="/icons/square_icon.svg">
-                            </Checkbox></Box>
+                        </Checkbox>
+                        </Box>
                         <Box>
                             <Text paddingRight={"10px"}
                                 fontSize={"14px"}
                                 mt={"8px"}
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
-                        </Box>
+                        </Box> */}
                         <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
@@ -85,7 +86,6 @@ const GovernanceTable = ({ }) => {
                                 onChange={(e) => { searchByNameHandler(e.target.value) }}
                             />
                         </Box>
-                    </Flex>
 
                 </Flex>
                 <Table variant="simple" key={1} bgColor={"#FFF"} >

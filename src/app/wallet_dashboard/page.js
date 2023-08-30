@@ -16,6 +16,7 @@ const WalletDashboardPage = () => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
+
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
@@ -27,8 +28,8 @@ const WalletDashboardPage = () => {
     };
     const blockchains = useSelector(
         (state) => state?.appData?.BlockchainListData?.data
-      );
-      console.log(blockchains)
+    );
+    console.log(blockchains)
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
     const fetchWalletBalanceDataHandler = useCallback(() => {

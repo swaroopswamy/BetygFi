@@ -21,6 +21,7 @@ import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";
 import { fetchDefiUsersTableData, fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -36,6 +37,10 @@ const DefiDashboardPage = () => {
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData?.data
     )
+    const [tabIndex, setTabIndex] = useState(0)
+
+
+
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
@@ -43,7 +48,10 @@ const DefiDashboardPage = () => {
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
-
+    const blockchains = useSelector(
+        (state) => state?.appData?.BlockchainListData?.data
+    );
+    
     const getDefiDataHandler = () => {
         const payload = {
             id: id,
@@ -65,6 +73,10 @@ const DefiDashboardPage = () => {
     }, []);
 
     console.log(defiUsersTableData);
+
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+    }, []);
 
     const renderIcon = (item) => {
         return (
@@ -183,28 +195,28 @@ const DefiDashboardPage = () => {
                                             <>
                                                 {i < 4 &&
                                                     <Tooltip
-                                                        label={
-                                                            <>
-                                                                <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
-                                                                    {renderIcon(item)}
-                                                                    <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
-                                                                </div>
-                                                                <Text
-                                                                _light={{color:"#191919"}}
-                                                                _dark={{color:"#FFF"}}
-                                                                fontSize={"16px"}
-                                                                fontWeight={400}
-                                                                lineHeight={"20px"}
-                                                                mt={"10px"}
-                                                                ml={"5px"}
-                                                                >
-                                                                    37% of TVL</Text>
-                                                            </>
-                                                        }
-                                                        width={"168px"}
-                                                        height={"78px"}
-                                                        _light={{ bgColor: "#FFF", color: "#191919" }}
-                                                        _dark={{ bgColor: "#202020", color: "#FFF" }}
+                                                    key={i} label={item.name}
+                                                            // <>
+                                                            //     <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
+                                                            //         {renderIcon(item)}
+                                                            //         <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
+                                                            //     </div>
+                                                            //     <Text
+                                                            //     _light={{color:"#191919"}}
+                                                            //     _dark={{color:"#FFF"}}
+                                                            //     fontSize={"16px"}
+                                                            //     fontWeight={400}
+                                                            //     lineHeight={"20px"}
+                                                            //     mt={"10px"}
+                                                            //     ml={"5px"}
+                                                            //     >
+                                                            //         37% of TVL</Text>
+                                                            // </>
+                                                        
+                                                        // width={"168px"}
+                                                        // height={"78px"}
+                                                        // _light={{ bgColor: "#FFF", color: "#191919" }}
+                                                        // _dark={{ bgColor: "#202020", color: "#FFF" }}
                                                     >
 
                                                         <Box
@@ -216,8 +228,8 @@ const DefiDashboardPage = () => {
                                                             flexDirection={"row"}
                                                             bg={"#D9D9D9"}
                                                             borderRadius="50%"
-                                                            border={blockchainSelected.includes(item) ? "3px solid #55A406" : ""}
-                                                            boxShadow={!blockchainSelected.includes(item) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                                                            border={blockchainSelected.includes(item.name) ? "3px solid #55A406" : ""}
+                                                            boxShadow={!blockchainSelected.includes(item.name) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                                                             w="40px"
                                                             h="40px"
                                                             ml={i !== 0 && '-10px'}
@@ -233,14 +245,14 @@ const DefiDashboardPage = () => {
                                                               "1px solid #333"
                                                             )}  */
                                                             onClick={() => {
-                                                                BlockchainTypeHandler(item);
+                                                                BlockchainTypeHandler(item.name);
                                                             }}
                                                         >
                                                             <Image
                                                                 width={18}
                                                                 height={18}
-                                                                src={`/icons/${item}_sm_icon.svg`}
-                                                                alt={`${item}_icon`}
+                                                                src={item.logoUrl}
+                                                                alt={`${item.id}_icon`}
 
                                                             ></Image>
                                                             {/* <Text
@@ -277,7 +289,7 @@ const DefiDashboardPage = () => {
                                                 boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
                                                 bgColor={useColorModeValue("#FFF", "#191919")}
                                             >
-                                                {blockchains.map((item, i) => {
+                                                {blockchains?.map((item, i) => {
                                                     return (
                                                         <>
                                                             {i >= 4 &&
@@ -291,9 +303,9 @@ const DefiDashboardPage = () => {
                                                                     _hover={{ bg: colorMode === 'light' ? "#F5F5F7" : "#202020" }}
                                                                 >
                                                                     <Checkbox colorScheme='green'
-                                                                        value={item}
-                                                                        checked={blockchainSelected.includes(item)} onChange={(e) => {
-                                                                            BlockchainTypeHandler(item);
+                                                                        value={item.name}
+                                                                        checked={blockchainSelected.includes(item.name)} onChange={(e) => {
+                                                                            BlockchainTypeHandler(item.name);
                                                                         }}>
                                                                         <Box
                                                                             display={"flex"}
@@ -304,8 +316,8 @@ const DefiDashboardPage = () => {
                                                                             <Image
                                                                                 width={18}
                                                                                 height={18}
-                                                                                src={`/images/${item}_sm_icon.png`}
-                                                                                alt={`${item}_icon`}
+                                                                                src={item.logoUrl}
+                                                                                alt={`${item.id}_icon`}
 
                                                                                 style={{ marginRight: "20px", marginLeft: "14px" }}
                                                                             ></Image>
@@ -321,7 +333,7 @@ const DefiDashboardPage = () => {
                                                                                     color: "#FFF",
                                                                                 }}
                                                                             >
-                                                                                {item}
+                                                                                {item.name}
                                                                             </Text>
                                                                         </Box>
                                                                     </Checkbox>
@@ -395,8 +407,7 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
-                <hr style={colorMode === 'light' ? ({background:"#BFBFBF", margin:"10px 30px"}) : ({background:"#2F2F2F", margin:"10px 30px"})} />
-                {/* <Image src={useColorModeValue("/images/Horizontalline(light).svg","/images/Horizontalline(Dark).svg")}></Image> */}
+                {/* <hr style={colorMode === 'light' ? ({background:"#BFBFBF", margin:"10px 30px"}) : ({background:"#2F2F2F", margin:"10px 30px"})} /> */}
             </Box>
             <Box
                 _light={{

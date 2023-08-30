@@ -15,7 +15,7 @@ import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
-const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
+const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -135,7 +135,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     )
 };
 
-export default GenericBigTableComponent;
+export default GenericSmallTableComponent;
 
 function ThreadItem({ key, name }) {
 

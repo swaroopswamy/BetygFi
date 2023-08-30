@@ -3,9 +3,10 @@ import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
-import GenericBigTableComponent from "./GenericSmallTable";
+import GenericSmallTableComponent from "./GenericSmallTable";
+import DefiUsers from "./defi_users/page";
 
-function Assetcomposition ( {} ) {
+function Defiusers () {
 
   const tableName = "DeFi Users";
   const thread = ["Users Address","Share","Top Tokens"];
@@ -23,16 +24,16 @@ function Assetcomposition ( {} ) {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <GenericBigTableComponent
-            tableName={tableName}
-            thread={thread}
-            tableData={tableData}
-            RowComponent={RowComponent}
+       <GenericSmallTableComponent
+                tableName={tableName}
+                thread={thread}
+                tableData={tableData}
+                RowComponent={RowComponent}
         />
     </Box>
   )
 };
-export default Assetcomposition;
+export default Defiusers;
 
 function RowComponent({ tableData }) {
   return (
