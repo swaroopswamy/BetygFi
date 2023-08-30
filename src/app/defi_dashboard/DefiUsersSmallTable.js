@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
 import GenericBigTableComponent from "./GenericSmallTable";
 
-function Assetcomposition () {
+function Assetcomposition ( {} ) {
 
   const tableName = "DeFi Users";
   const thread = ["Users Address","Share","Top Tokens"];
@@ -24,10 +24,10 @@ function Assetcomposition () {
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
        <GenericBigTableComponent
-                tableName={tableName}
-                thread={thread}
-                tableData={tableData}
-                RowComponent={RowComponent}
+            tableName={tableName}
+            thread={thread}
+            tableData={tableData}
+            RowComponent={RowComponent}
         />
     </Box>
   )

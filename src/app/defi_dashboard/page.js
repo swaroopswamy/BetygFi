@@ -20,41 +20,51 @@ import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";
+import { fetchDefiUsersTableData, fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
+
+    const defi = searchParam.get("defi");
+    const id = searchParam.get("id");
+
+    const defiData = useSelector(
+        (state) => state?.defiDashboardData?.DefiData?.data
+    )
+    const defiUsersTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiUsersTableData?.data
+    )
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
-    const walletAddress = useSelector(
-        (state) => state?.walletDashboardTableData?.walletAddress
-    );
+
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
 
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
-
-    const fetchWalletBalanceDataHandler = useCallback(() => {
+    const getDefiDataHandler = () => {
         const payload = {
-            blockchain: blockchainSelected
-        }
-        dispatch(fetchWalletBalanceData(searchParam.get("address"), payload));
-    }, [blockchainSelected, walletAddress])
-    const fetchWalletTransactionsDataHandler = useCallback(() => {
-        /* const payload = {
-            blockchain: blockchainSelected
-        } */
-        dispatch(fetchWalletTransactionsData(searchParam.get("address")));
-    }, [blockchainSelected, walletAddress])
-    /*    useEffect(() => {
-           dispatch(walletAddressChangedReducer(searchParam.get("address")))
-           fetchWalletBalanceDataHandler();
-           fetchWalletTransactionsDataHandler();
-       }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
-    */
+            id: id,
+        };
+        dispatch(fetchDefiData(payload));
+    }
+
+    const getDefiUsersTableDataHandler = () => {
+        const payload = {
+            defi: defi,
+            blockchain: "",
+        };
+        dispatch(fetchDefiUsersTableData(payload));
+    };
+
+    useEffect(() => {
+        getDefiDataHandler();
+        getDefiUsersTableDataHandler();
+    }, []);
+
+    console.log(defiUsersTableData);
 
     const renderIcon = (item) => {
         return (
@@ -105,7 +115,7 @@ const DefiDashboardPage = () => {
                             paddingTop={"15px"}
                         >
                             {
-                                walletBalanceData?.name === undefined && (
+                                defiData?.name === undefined && (
                                     <Text
                                         fontSize={"24px"}
                                         fontWeight={"400"}
@@ -415,7 +425,8 @@ const DefiDashboardPage = () => {
                     padding={"10px 0 0 10px"}
                     gap={"25px"}
                 >
-                    <DefiUsersSmallTableComponent />
+                    <DefiUsersSmallTableComponent 
+                    />
                     <BarChart />
 
                 </Box>
