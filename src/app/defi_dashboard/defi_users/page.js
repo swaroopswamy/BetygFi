@@ -1,7 +1,6 @@
 "use client";
 import {
-    Grid, Icon, GridItem, Input, Table, TableCaption, Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode,
-} from "@chakra-ui/react";
+    Grid, Icon, GridItem, Input, Table, TableCaption, Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode} from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,7 @@ import GenericBigTableComponent from "../GenericBigTable";
 
 function DefiUsers() {
     const router = useRouter();
-
+    const { colorMode, toggleColorMode } = useColorMode();
     const tableName = "Defi Users";
     const thread = ["Users", "Deposited", "Borrowed", "Assets", "Share"];
     const tableData = [

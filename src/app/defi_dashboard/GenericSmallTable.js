@@ -14,6 +14,8 @@ import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
+import SmallPageButtons from '/src/app/components/smallTable_pagebutton';
+
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
     const { colorMode } = useColorMode();
@@ -129,7 +131,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     </Tfoot>
 
                 </Table>
-                <PageButtons />
+                <SmallPageButtons />
             </Box>
         </>
     )
@@ -304,33 +306,4 @@ src={useColorModeValue(
 //     </>
 // }
 
-function PageButtons() {
-    return (
-        <>
-                <Flex
-                padding="9px 0px 9px 320px"
-                background={useColorModeValue('#FFFFFF', '#202020')}
-                >
-                    <Text
-                        _light={{ color: "#A8ADBD" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"12px"}
-                        fontWeight={400}
-                        lineHeight={"20px"}
-                    >
-                        Last Update
-                    </Text>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"12px"}
-                        fontWeight={400}
-                        lineHeight={"20px"}
-                        pl={"2px"}
-                    >
-                        3 mins ago
-                    </Text>
-                </Flex>
-        </>)
-}
 

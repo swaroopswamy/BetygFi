@@ -160,7 +160,7 @@ const DefiDashboardPage = () => {
                                         paddingLeft={"20px"}
                                         marginRight={"13px"}
                                     >
-                                        {blockchains?.length} chains
+                                        {blockchains?.length ??0} chains
                                     </Text>
                                     <Box
                                         display={"flex"}
