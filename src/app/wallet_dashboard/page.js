@@ -356,7 +356,7 @@ const WalletDashboardPage = () => {
                                     >
                                         ALL
                                     </Box>
-                                    {blockchains.map((item, i) => {
+                                    {blockchains?.map((item, i) => {
                                         return (
                                             <Box
                                                 position={"relative"}
