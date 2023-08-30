@@ -45,6 +45,7 @@ function RowComponent({ tableData }) {
                                         address={{src:item[0],name:item[1],amount:item[2]}}
                                         share={item[3]}
                                         tokens={{src1:item[4],name1:item[5],percentage1:item[6],src2:item[7],name2:item[8],percentage2:item[9]}}
+                                        //user={item.id}
                                     />
                                 </>
                             )
@@ -67,7 +68,13 @@ function TableRow({ key, address, share, tokens }) {
                   (colorMode === "light" ? '#F5F5F7' : '#191919') :
                   (colorMode === "light" ? '#FFFFFF' : '#202020')
               }
-              onClick={() => { setClick(!clicked) }}
+
+              onClick={() => {
+                setClick(!clicked)
+                router.push(`/wallet_dashboard?address=${address.name}`)
+            }}
+
+            //   onClick={() => { setClick(!clicked) }}
               borderBottom={'1px'}
               borderColor={useColorModeValue('#DFDFDF', '#313131')}
               borderRadius={'2px'}
@@ -222,6 +229,7 @@ function TableRow({ key, address, share, tokens }) {
                               textTransform={"uppercase"}
                               mt={"2px"}
                               ml={"3px"}
+                              mr={"25px"}
                           >
                               {tokens.percentage2}
                           </Text>

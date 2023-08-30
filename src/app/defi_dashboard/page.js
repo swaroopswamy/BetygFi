@@ -99,7 +99,7 @@ const DefiDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    margin={"38px 30px 50px 30px"}
+                    margin={"10px 30px 50px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -182,7 +182,7 @@ const DefiDashboardPage = () => {
                                         paddingLeft={"20px"}
                                         marginRight={"13px"}
                                     >
-                                        {blockchains?.length} chains
+                                        {blockchains?.length ??0} chains
                                     </Text>
                                     <Box
                                         display={"flex"}

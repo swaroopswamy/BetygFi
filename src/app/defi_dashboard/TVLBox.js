@@ -75,7 +75,7 @@ const TVLBox = () => {
                     </Text>
                 </Flex>
                 <Flex>
-                    <Button
+                     {/* <Button
                         variant={"outline"}
                         size={"xs"}
                         borderRadius={"2px"}
@@ -83,8 +83,8 @@ const TVLBox = () => {
                         //solid={"#333"}
                         _light={{ bgColor: "#F5F5F7" }}
                         _dark={{ bgColor: "#191919" }}
-                        mt={"22px"}>
-                        <Flex>
+                        mt={"22px"}> */}
+                        {/* <Flex>
                             <DownloadIcon pt={"5px"} 
                                           width={"12px"}
                                           height={"12px"}></DownloadIcon>
@@ -100,8 +100,8 @@ const TVLBox = () => {
                             >
                                 .CSV
                             </Text>
-                        </Flex>
-                    </Button>
+                        </Flex>  */}
+                     {/* </Button> */}
                     <Spacer />
                     <Text
                         color={"#A8ADBD"}

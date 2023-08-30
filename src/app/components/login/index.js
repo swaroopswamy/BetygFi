@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useWeb3 } from "@3rdweb/hooks"
 import isEmpty from 'is-empty';
 import { useDispatch, useSelector } from "react-redux";
+import { TriangleDownIcon } from '@chakra-ui/icons';
 import { LoginMetamask, VerifyPublicAddressData, loadToken, saveToken } from "@/redux/auth_data/authSlice";
 import { ethers } from "ethers";
 
@@ -70,6 +71,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 setBrowserWalletProcessSelected(false);
                                             }}
                                         >
+                                            <TriangleDownIcon
+                                            mb={"4px"}
+                                            transform={`rotate(${90}deg)`}/>
                                             Back
                                         </Text>
                                     </>
