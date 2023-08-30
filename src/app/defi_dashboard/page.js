@@ -175,9 +175,9 @@ const DefiDashboardPage = () => {
                                                     <Tooltip
                                                         label={
                                                             <>
-                                                                <div style={{ display: 'flex', alignItems: 'center'}}>
+                                                                <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
                                                                     {renderIcon(item)}
-                                                                    <span style={{paddingLeft:"8px"}}>{item}</span>
+                                                                    <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
                                                                 </div>
                                                                 <Text
                                                                 _light={{color:"#191919"}}

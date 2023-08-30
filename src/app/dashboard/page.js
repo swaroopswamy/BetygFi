@@ -175,7 +175,7 @@ const Dashboard = () => {
                         cursor={"pointer"}
                         alignItems={"center"}
                         justifyContent={"center"}
-
+                         
                         flexDirection={"row"}
                         bg={"#D9D9D9"}
                         borderRadius="50%"
@@ -233,7 +233,7 @@ const Dashboard = () => {
                   _focus={{ boxShadow: 'outline' }}
                   color="#000"
                 >
-                  +4
+                  +6
                 </MenuButton>
                 <MenuList
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
