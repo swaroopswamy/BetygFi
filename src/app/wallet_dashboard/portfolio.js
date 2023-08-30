@@ -829,7 +829,12 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                         <Td>
                           <Flex>
                             <Text
-                              color={useColorModeValue("#16171B", "#FFFFFF")}
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              _dark={{
+                                color: "#FFFFFF"
+                              }}
                               fontSize={"10px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
