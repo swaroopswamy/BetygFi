@@ -77,7 +77,7 @@ const DefiDashboardPage = () => {
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    margin={"38px 30px 50px 30px"}
+                    margin={"10px 30px 50px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -175,9 +175,9 @@ const DefiDashboardPage = () => {
                                                     <Tooltip
                                                         label={
                                                             <>
-                                                                <div style={{ display: 'flex', alignItems: 'center'}}>
+                                                                <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
                                                                     {renderIcon(item)}
-                                                                    <span style={{paddingLeft:"8px"}}>{item}</span>
+                                                                    <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
                                                                 </div>
                                                                 <Text
                                                                 _light={{color:"#191919"}}

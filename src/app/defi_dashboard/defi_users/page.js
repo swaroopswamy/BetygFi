@@ -1,6 +1,6 @@
 "use client";
 import {
-    Grid, Icon, GridItem, Input, Table, TableCaption, Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode} from "@chakra-ui/react";
+    Grid, Icon, GridItem, Input, Table, TableCaption, Text, Td, Tr, Flex, Box, useColorModeValue, Image, useColorMode, colorMode} from "@chakra-ui/react";
 import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

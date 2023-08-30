@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
@@ -8,9 +7,9 @@ import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
 import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { blockchains } from "../../../util/constant";
+//import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
-import millify from "millify";
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const WalletDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -26,6 +25,10 @@ const WalletDashboardPage = () => {
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
+    const blockchains = useSelector(
+        (state) => state?.appData?.BlockchainListData?.data
+      );
+      console.log(blockchains)
 
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
     const fetchWalletBalanceDataHandler = useCallback(() => {
@@ -35,9 +38,9 @@ const WalletDashboardPage = () => {
                 blockchain: blockchainSelected
             }
         }
-
         dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, searchParam.get("address")])
+
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
@@ -47,6 +50,7 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, searchParam.get("address")])
+    
     useEffect(() => {
 
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
@@ -352,7 +356,7 @@ const WalletDashboardPage = () => {
                                     >
                                         ALL
                                     </Box>
-                                    {blockchains.map((item, i) => {
+                                    {blockchains?.map((item, i) => {
                                         return (
                                             <Box
                                                 position={"relative"}

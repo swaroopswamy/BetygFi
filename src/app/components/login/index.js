@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useWeb3 } from "@3rdweb/hooks"
 import isEmpty from 'is-empty';
 import { useDispatch, useSelector } from "react-redux";
+import { TriangleDownIcon } from '@chakra-ui/icons';
 import { LoginMetamask, VerifyPublicAddressData, loadToken, saveToken } from "@/redux/auth_data/authSlice";
 import { ethers } from "ethers";
 
@@ -12,14 +13,14 @@ const LoginPage = ({ isOpen, onClose }) => {
 
 
     const walletArray = [
-       /*  {
-            name: "Binance",
-            icon: "binance_logo.png"
-        },
-        {
-            name: "Coinbase wallet",
-            icon: "coinbase_logo.png"
-        }, */
+        /*  {
+             name: "Binance",
+             icon: "binance_logo.png"
+         },
+         {
+             name: "Coinbase wallet",
+             icon: "coinbase_logo.png"
+         }, */
         {
             name: "Metamask",
             icon: "metamask_logo.png"
@@ -45,46 +46,83 @@ const LoginPage = ({ isOpen, onClose }) => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader
-                        fontSize={"12px"}
-                        fontWeight={400}
-                        lineHeight={"20px"}
-                        textTransform={"uppercase"}
-                        _dark={{ color: "#FFF" }}
-                        _light={{ color: "#202020" }}
+
                         bg={useColorModeValue("#F5F5F7", "#202020")}
                         position={"relative"}
                         display={"flex"}
                         flexDirection={"column"}
                         paddingBottom={"0px"}
                     >
-                        Login
-                        <Box
-                            position={"absolute"}
-                            bgImage={useColorModeValue("/public/images/login_modal_bg_dark.png", "../../../../public/images/login_modal_bg_dark.png")}
-                            width={"100%"}
-                            height={"100%"}
-                            top={0}
-                            left={0}
-                        >
-                        </Box>
-                        <Text
-                            fontSize={"24px"}
-                            fontWeight={400}
-                            lineHeight={"20px"}
-                            _dark={{
-                                color: "#FFF",
-                                bgColor: "#202020"
-                            }}
-                            _light={{
-                                color: "#202020",
-                                bgColor: "#F5F5F7"
-                            }}
-                            textTransform={"capitalize"}
-                            mt="26px"
-                            mb="26px"
-                        >
-                            Wallet Login
-                        </Text>
+                        {
+                            browserWalletProcessSelected === true ?
+                                (
+                                    <>
+                                        <Text
+                                            mb="52px"
+                                            fontSize={"12px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            textTransform={"uppercase"}
+                                            _dark={{ color: "#FFF" }}
+                                            _light={{ color: "#202020" }}
+                                            letterSpacing={"2px"}
+                                            cursor={"pointer"}
+                                            onClick={()=>{
+                                                setBrowserWalletProcessSelected(false);
+                                            }}
+                                        >
+                                            <TriangleDownIcon
+                                            mb={"4px"}
+                                            transform={`rotate(${90}deg)`}/>
+                                            Back
+                                        </Text>
+                                    </>
+                                )
+                                :
+                                (
+                                    <>
+                                        <Text
+                                            fontSize={"12px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            textTransform={"uppercase"}
+                                            _dark={{ color: "#FFF" }}
+                                            _light={{ color: "#202020" }}
+                                        >
+                                            Login
+                                        </Text>
+
+                                        <Box
+                                            position={"absolute"}
+                                            bgImage={useColorModeValue("/public/images/login_modal_bg_dark.png", "../../../../public/images/login_modal_bg_dark.png")}
+                                            width={"100%"}
+                                            height={"100%"}
+                                            top={0}
+                                            left={0}
+                                        >
+                                        </Box>
+                                        <Text
+                                            fontSize={"24px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            _dark={{
+                                                color: "#FFF",
+                                                bgColor: "#202020"
+                                            }}
+                                            _light={{
+                                                color: "#202020",
+                                                bgColor: "#F5F5F7"
+                                            }}
+                                            textTransform={"capitalize"}
+                                            mt="26px"
+                                            mb="26px"
+                                        >
+                                            Wallet Login
+                                        </Text>
+                                    </>
+                                )
+
+                        }
                     </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody
@@ -225,8 +263,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                         }
 
                     </ModalBody>
-                </ModalContent>
-            </Modal>
+                </ModalContent >
+            </Modal >
         </>
     )
 }
@@ -240,7 +278,7 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     const { colorMode } = useColorMode();
     const signMessage = async ({ message }) => {
         try {
-             if (!window.ethereum)
+            if (!window.ethereum)
                 throw new Error("No crypto wallet found. Please install it.");
 
             await window.ethereum.send("eth_requestAccounts");
@@ -336,11 +374,11 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     };
 
 
-   
+
     return (
         <>
             <Box
-              
+
             >
                 <Stepper index={activeStep} orientation='vertical' gap='0'
 
