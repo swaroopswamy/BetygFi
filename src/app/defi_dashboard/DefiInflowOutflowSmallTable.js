@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
 import GenericBigTableComponent from "./GenericSmallTable";
+import GenericSmallTableComponent from "./GenericSmallTable";
 
-function Assetcomposition () {
+function Defiflow () {
 
   const tableName = "DeFi Inflow/Outflow";
   const thread = ["Users Address","Net Value Flow (7 Days)"];
@@ -23,7 +24,7 @@ function Assetcomposition () {
        bgColor={useColorModeValue("#F0F0F5","#191919")}
        borderColor={useColorModeValue("#F0F0F5","#191919")}
     >
-       <GenericBigTableComponent
+       <GenericSmallTableComponent
                 tableName={tableName}
                 thread={thread}
                 tableData={tableData}
@@ -32,7 +33,7 @@ function Assetcomposition () {
     </Box>
   )
 };
-export default Assetcomposition;
+export default Defiflow;
 
 function RowComponent({ tableData }) {
   return (

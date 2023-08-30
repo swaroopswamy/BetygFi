@@ -19,7 +19,7 @@ const Footer = () => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
-         marginLeft={"11px"}
+        marginLeft={"11px"}
             
     
       >
