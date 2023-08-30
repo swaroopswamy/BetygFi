@@ -101,7 +101,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
                     borderRadius={"6px"}
-                    height={"100%"}
+                    height={"80%"}
                 >
                     <Thead>
                         <Tr
