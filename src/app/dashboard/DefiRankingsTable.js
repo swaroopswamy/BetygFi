@@ -295,8 +295,6 @@ const Rankings = () => {
                 fontSize={"20px"}
                 fontWeight={"400"}
                 letterSpacing={"1px"}
-                colSpan={8}
-                textAlign={"center"}
                 p="20px"
               >
                 No data available
