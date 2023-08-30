@@ -73,7 +73,7 @@ const DefiDashboardPage = () => {
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-
+    console.log(defiData, 'defi')
     const renderIcon = (item) => {
         return (
             <Image
@@ -113,7 +113,7 @@ const DefiDashboardPage = () => {
                                 w="47px"
                                 h="47px"
                                 borderRadius={"50%"}
-                                src="/images/basic_profile.png"
+                                src={defiData?.logo ?? "/images/basic_profile.png"}
                                 alt="proifile_img"
                             />
                         </Box>
@@ -123,7 +123,7 @@ const DefiDashboardPage = () => {
                             paddingTop={"15px"}
                         >
                             {
-                                defiData?.name === undefined && (
+                                defiData?.name !== undefined && (
                                     <Text
                                         fontSize={"24px"}
                                         fontWeight={"400"}
@@ -137,7 +137,7 @@ const DefiDashboardPage = () => {
                                         }}
                                         letterSpacing={"2.4px"}
                                     >
-                                        No Name
+                                        {defiData?.name}
                                     </Text>
                                 )}
                             <Box
@@ -158,7 +158,7 @@ const DefiDashboardPage = () => {
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"20px"}
                                     >
-                                        www.sushi.com/swap
+                                        {defiData?.url}
                                     </Text>
                                 </Box>
                                 <Box
@@ -178,7 +178,7 @@ const DefiDashboardPage = () => {
                                         paddingLeft={"20px"}
                                         marginRight={"13px"}
                                     >
-                                        {blockchains?.length ??0} chains
+                                        {defiData?.chains?.length ?? 0} chains
                                     </Text>
                                     <Box
                                         display={"flex"}
@@ -189,30 +189,30 @@ const DefiDashboardPage = () => {
                                     >
                                         {blockchains?.map((item, i) => (
                                             <>
-                                                {i < 4 &&
+                                                {defiData?.chains?.includes(item.name) &&
                                                     <Tooltip
-                                                    key={i} label={item.name}
-                                                            // <>
-                                                            //     <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
-                                                            //         {renderIcon(item)}
-                                                            //         <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
-                                                            //     </div>
-                                                            //     <Text
-                                                            //     _light={{color:"#191919"}}
-                                                            //     _dark={{color:"#FFF"}}
-                                                            //     fontSize={"16px"}
-                                                            //     fontWeight={400}
-                                                            //     lineHeight={"20px"}
-                                                            //     mt={"10px"}
-                                                            //     ml={"5px"}
-                                                            //     >
-                                                            //         37% of TVL</Text>
-                                                            // </>
-                                                        
-                                                        // width={"168px"}
-                                                        // height={"78px"}
-                                                        // _light={{ bgColor: "#FFF", color: "#191919" }}
-                                                        // _dark={{ bgColor: "#202020", color: "#FFF" }}
+                                                        key={i} label={item.name}
+                                                    // <>
+                                                    //     <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
+                                                    //         {renderIcon(item)}
+                                                    //         <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
+                                                    //     </div>
+                                                    //     <Text
+                                                    //     _light={{color:"#191919"}}
+                                                    //     _dark={{color:"#FFF"}}
+                                                    //     fontSize={"16px"}
+                                                    //     fontWeight={400}
+                                                    //     lineHeight={"20px"}
+                                                    //     mt={"10px"}
+                                                    //     ml={"5px"}
+                                                    //     >
+                                                    //         37% of TVL</Text>
+                                                    // </>
+
+                                                    // width={"168px"}
+                                                    // height={"78px"}
+                                                    // _light={{ bgColor: "#FFF", color: "#191919" }}
+                                                    // _dark={{ bgColor: "#202020", color: "#FFF" }}
                                                     >
 
                                                         <Box
@@ -266,7 +266,7 @@ const DefiDashboardPage = () => {
                                                 }
                                             </>
                                         ))}
-                                        <Menu closeOnSelect={false}>
+                                      {/*   <Menu closeOnSelect={false}>
                                             <MenuButton
                                                 bg={"#D9D9D9"}
                                                 borderRadius="50%"
@@ -338,7 +338,7 @@ const DefiDashboardPage = () => {
                                                         </>)
                                                 })}
                                             </MenuList>
-                                        </Menu>
+                                        </Menu> */}
                                     </Box>
                                 </Box>
                                 <Box
@@ -366,7 +366,7 @@ const DefiDashboardPage = () => {
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"15px"}
                                     >
-                                        No name
+                                        {defiData?.symbol}
                                     </Text>
                                 </Box>
 
@@ -377,7 +377,7 @@ const DefiDashboardPage = () => {
                         display={"flex"}
                         alignItems={"center"}
                         position={"relative"}
-                        bgColor={useColorModeValue("#FFF","#202020")}
+                        bgColor={useColorModeValue("#FFF", "#202020")}
                         padding={"10px 10px"}
                         h="fit-content"
                         borderRadius={"6px"}
@@ -399,7 +399,7 @@ const DefiDashboardPage = () => {
                             fontSize={"16px"}
 
                         >
-                            91%
+                           {defiData?.safety_score} %
                         </Text>
                     </Box>
                 </Box>
@@ -421,7 +421,7 @@ const DefiDashboardPage = () => {
                     padding={"10px 0 0 10px"}
                 >
                     <TVLBox />
-                    <TrendGraph />
+                   {/*  <TrendGraph /> */}
                 </Box>
 
                 <Box

@@ -15,7 +15,6 @@ function DonutChart() {
 
   const options = {
     labels: ["Fee", "Revenue"],
-    series: [194090, 33900],
     chart: {
       toolbar: {
         show: false,
@@ -37,7 +36,7 @@ function DonutChart() {
           w.globals.labels[seriesIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[seriesIndex] + " USD" +
+          series[seriesIndex] + "%" +
           '</div>' +
           "</div>"
         );
@@ -59,7 +58,7 @@ function DonutChart() {
         offsetY: 2
       },
       formatter: function (text, opts) {
-        return [text, opts.w.globals.series[opts.seriesIndex] + " USD",]
+        return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
       },
     },
     dataLabels: {
