@@ -765,7 +765,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                           _dark={{
                             color: "#A8ADBD"
                           }}
-                          fontSize={"10px"}
+                          fontSize={"14px"}
                           fontStyle={"normal"}
                           fontWeight={"400"}
                           lineHeight={"20px"}
@@ -823,7 +823,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               _dark={{
                                 color: "#FFFFFF"
                               }}
-                              fontSize={"11px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"600"}
                               lineHeight={"11px"}
@@ -844,7 +844,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               _dark={{
                                 color: "#FFFFFF"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -863,7 +863,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               _dark={{
                                 color: "#FFFFFF"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}
@@ -882,7 +882,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               _dark={{
                                 color: "#FFFFFF"
                               }}
-                              fontSize={"10px"}
+                              fontSize={"14px"}
                               fontStyle={"normal"}
                               fontWeight={"400"}
                               lineHeight={"20px"}

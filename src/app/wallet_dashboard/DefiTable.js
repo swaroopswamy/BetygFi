@@ -350,7 +350,7 @@ const DefiTable = () => {
                                                         _dark={{
                                                             color: "#FFF"
                                                         }}
-                                                        fontSize={"10px"}
+                                                        fontSize={"14px"}
                                                         fontWeight={"400"}
                                                         letterSpacing={"1px"}
                                                         ml="6px"
