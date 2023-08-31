@@ -5,7 +5,7 @@ import {
     Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
 import { blockchains } from "../../../util/constant";
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -18,13 +18,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const dispatch = useDispatch();
     const router = useRouter();
     const [searchByName, setSearchByName] = useState('');
-
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
-    const BlockchainTypeHandler = (type) => {
-        dispatch(blockchainTypeChangedReducer(type));
-    };
 
     const searchAssetByNameHandler = (name) => {
         setSearchByName(name);
@@ -65,8 +58,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                         gap={"10px"}
                     >
                         <SelectionBox
-                            blockchainSelected={blockchainSelected}
-                            BlockchainTypeHandler={BlockchainTypeHandler}
                             colorMode={colorMode}
                         />
 
@@ -158,18 +149,20 @@ function ThreadItem({ key, name }) {
     )
 }
 
-function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
-    // const dispatch = useDispatch();
-    // const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
-    // var blockchains = [];
+function SelectionBox ({ colorMode }) {
+    const dispatch = useDispatch();
+    const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
 
-    // if (blockchainListData.isSuccess) {
-    //     blockchains = blockchainListData.data;
-    // }
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+    };
     
-    // useEffect(() => {
-    //     dispatch(fetchBlockchainListData());
-    // }, []);
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+    }, []);
 
     return <>
         <Box
@@ -209,7 +202,7 @@ function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler })
                 >
                     All
                 </Box>
-                {blockchains.map((item, i) => {
+                {blockchainListData.isSuccess && blockchainListData.data.map((item, i) => {
                     if (i >= 4) return;
                     return (
                         <Box
@@ -217,7 +210,7 @@ function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler })
                             cursor={"pointer"}
                             key={i}
                             _after={
-                                blockchainSelected.includes(item) && {
+                                blockchainSelected.includes(item.name) && {
                                     position: "absolute",
                                     content: '""',
                                     bottom: "-14px",
@@ -228,7 +221,7 @@ function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler })
                                 }
                             }
                             onClick={() => {
-                                BlockchainTypeHandler(item);
+                                BlockchainTypeHandler(item.name);
                             }}
                             mr={"10px"}
                             display={"flex"}
@@ -238,22 +231,22 @@ function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler })
                                 w={"20px"}
                                 h={"20px"}
                                 mr={"11px"}
-                                src={`/icons/${item}_sm_icon.svg`}
+                                src={item.logoUrl}
                                 alt=""
                             ></Image>
                             <Text
                                 fontSize={"14px"}
-                                fontWeight={blockchainSelected.includes(item) ? "700" : "400"}
+                                fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
                                 lineHeight={"21.826px"}
                                 letterSpacing={"1.4px"}
                                 color={colorMode === 'light' ?
-                                    blockchainSelected.includes(item) ? "#191919" : "#191919"
+                                    blockchainSelected.includes(item.name) ? "#191919" : "#191919"
                                     :
-                                    blockchainSelected.includes(item) ? "#FFFFFF" : "#FFFFFF"
+                                    blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
                                 }
                                 //textTransform="uppercase"
                             >
-                                {item}
+                                {item.name}
                             </Text>
                         </Box>
                     );

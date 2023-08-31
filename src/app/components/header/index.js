@@ -129,6 +129,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
           ></Input>
         </InputGroup>
+
         <Box
           display={"flex"}
           alignItems={"center"}
@@ -141,6 +142,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               <span className="slider round"></span>
             </label>
           </div>
+
           {
             (preLoadedData?.data === null || preLoadedData?.data === undefined)
               ?
@@ -150,8 +152,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     ml="20px"
                     pl="20px"
                     borderLeft={"1px solid #333333"}
+                    alignContent={"center"}
                   >
-                    <Image
+                    {/* <Image
                       src={colorMode === 'light' ? "/icons/login_black.svg" : "/icons/login_white.svg"}
                       w="30px"
                       h="30px"
@@ -160,7 +163,27 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                       alt="search_icon"
 
                       onClick={onLoginModalOpen}
-                    />
+                    /> */}
+
+                    <Box
+                      cursor={"pointer"}
+                      onClick={onLoginModalOpen}
+                      minW={"140px"}
+                      height={"32px"}
+                      bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
+                      pt={"12px"}
+                      pl={"20px"}
+                      borderRadius={"2px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"600"}
+                        lineHeight={"10px"}
+                        color={colorMode === 'light' ? "#FAFAFB" : "#000"}
+                      >
+                        Connect Wallet
+                      </Text>
+                    </Box>
                   </Box>
 
                   {/*   <IconButton
@@ -240,6 +263,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           }
 
         </Box>
+
       </Flex>
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
     </>

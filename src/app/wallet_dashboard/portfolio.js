@@ -1,14 +1,18 @@
-import { Box, SkeletonRow, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
-import React from "react";
+import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { defiArrayChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { defiArrayChangedReducer, fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
 import DefiTable from "./DefiTable";
 
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
 
-  const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data);
+  const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
+
+  const fetchWalletBalanceDataHandler = () => {
+    dispatch(fetchWalletBalanceData());
+  }
 
   const defiSelected = useSelector(
     (state) => state?.walletDashboardTableData?.defiArraySelected
@@ -22,9 +26,14 @@ const PortfolioPanelComponent = () => {
      "Blur",
      "Uniswap" */
   ];
-  /*  const searchAssetByNameHandler (name) => {
- 
-   } */
+ /*  const searchAssetByNameHandler (name) => {
+
+  } */
+
+  useEffect(() => {
+    fetchWalletBalanceDataHandler();
+  }, [])
+
   return (
     <>
       <Box
@@ -638,7 +647,7 @@ const PortfolioPanelComponent = () => {
             name={"Fantom"}
             value={"$15,664,793.04"}
             thread={["Token", "Balance", "Price", "Value (USD)"]}
-            tableData={walletBalanceData?.defiBalance}
+            tableData={walletBalanceData}
           />
         </Box>
 
@@ -661,7 +670,12 @@ const PortfolioPanelComponent = () => {
 
 export default PortfolioPanelComponent;
 
+<<<<<<< HEAD
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
+=======
+const PorfolioAccordion = ({name, value, thread, tableData}) => {
+  console.log("HERE: ", tableData);
+>>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
   return (
     <>
       <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
@@ -703,9 +717,23 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                   </Text>
                 </Flex>
 
+<<<<<<< HEAD
                 <Text
                   color={useColorModeValue("#202020", "#FFFFFF")}
                   fontSize={"13px"}
+=======
+            <Box as="span" flex='1' textAlign='left'>
+              <Flex>
+                {/* <Image src="/images/Fantom.svg" alt=""
+                  width={"30px"}
+                  height={"30px"}
+                  flexShrink={"0"}
+                  borderRadius={"150px"}
+                ></Image> */}
+                <Text
+                  color={useColorModeValue("#202020", "#FFFFFF")}
+                  fontSize={"16px"}
+>>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
                   fontStyle={"normal"}
                   fontWeight={"600"}
                   lineHeight={"20px"}
@@ -850,12 +878,76 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
 
                 </Tbody>
 
+<<<<<<< HEAD
               </Table>
             </TableContainer>
           </AccordionPanel>
+=======
+                {tableData?.isError && (
+                  <>
+                      <Tr>
+                          <Td
+                          >
+                              <Text
+                                  color={useColorModeValue("#16171B", "#FFF")}
+                                  fontSize={"20px"}
+                                  fontWeight={"400"}
+                                  letterSpacing={"1px"}
+                                  textAlign={"center"}
+                                  p="20px"
+                              >
+                                  No Data available
+                              </Text>
+                          </Td>
+                      </Tr>
+                  </>
+                  )}
+
+                {tableData?.isLoading && (
+                    <>
+                        <SkeletonRow />
+                        <SkeletonRow />
+                        <SkeletonRow />
+                    </>
+                )}
+                  
+                {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
+                  return (
+                    <Tr>
+                      <Td>
+                        <Flex>
+                          <Image src="/images/BIT.svg" alt=""></Image>
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFFFFF")}
+                            fontSize={"11px"}
+                            fontStyle={"normal"}
+                            fontWeight={"600"}
+                            lineHeight={"11px"}
+                            mt={"10px"}
+                            ml={"10px"}
+                          >
+                            {item.token}
+                          </Text>
+                        </Flex>
+                      </Td>
+>>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
 
         </AccordionItem>
       </Accordion>
     </>
   );
 }
+
+const SkeletonRow = () => (
+  <Box as="tr">
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+  </Box>
+)
