@@ -325,7 +325,12 @@ const DefiTable = () => {
                                                                     justifyContent={"center"}
                                                                     display={"flex"}
                                                                     borderRadius={"50%"}
-                                                                    bgColor={useColorModeValue("#676DFF")}
+                                                                    _light={{
+                                                                        bgColor: "#676DFF"
+                                                                    }}
+                                                                    _dark={{
+                                                                        bgColor: "#ADADAD"
+                                                                    }}
                                                                 >
                                                                     <Text
                                                                         color={"#FFF"}
@@ -339,7 +344,12 @@ const DefiTable = () => {
                                                         )
                                                     }
                                                     <Text
-                                                        color={useColorModeValue("#16171B", "#FFF")}
+                                                        _light={{
+                                                            color: "#16171B"
+                                                        }}
+                                                        _dark={{
+                                                            color: "#FFF"
+                                                        }}
                                                         fontSize={"10px"}
                                                         fontWeight={"400"}
                                                         letterSpacing={"1px"}
@@ -348,7 +358,7 @@ const DefiTable = () => {
                                                         {item?.symbol}
                                                     </Text>
                                                 </Box>
-                                            </Td> 
+                                            </Td>
                                             <Td
                                                 _dark={{
                                                     color: "#FFF"
