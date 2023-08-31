@@ -3,10 +3,15 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import { DownloadIcon } from '@chakra-ui/icons'
 
 import React from "react";
+import { useSelector } from "react-redux";
+import millify from "millify";
 // import ViewmoreDefiusers from "./ViewmoreDefiusers";
 
 const TVLBox = () => {
     const { colorMode } = useColorMode();
+    const defiData = useSelector(
+        (state) => state?.defiDashboardData?.DefiData?.data
+    )
     return (
 
         <Box
@@ -15,7 +20,7 @@ const TVLBox = () => {
             display={"flex"}
             flexDirection={"column"}
             borderRadius={"6px"}
-         
+
             _dark={{ bg: "#202020" }}
             _light={{ bg: "#FFFFFF" }}
             mr="20px">
@@ -28,7 +33,10 @@ const TVLBox = () => {
                     lineHeight={"20px"}
                     letterSpacing={"2.4px"}
                     textTransform={"uppercase"}>
-                    $3.7b
+                    ${" "}{millify(defiData?.tvl, {
+                        precision: 2,
+                        locales: "en-US"
+                    })}
                 </Text>
                 <Text
                     _light={{ color: "#16171B" }}
@@ -66,8 +74,14 @@ const TVLBox = () => {
                         lineHeight={"27px"}
                         textAlign={"right"}
                         pt={"20px"}>
-                        $207.83m<br></br>
-                        $0.02337<br></br>
+                        ${" "}{millify(defiData?.mcap, {
+                            precision: 2,
+                            locales: "en-US"
+                        })}<br></br>
+                        ${" "}{millify(defiData?.price, {
+                            precision: 2,
+                            locales: "en-US"
+                        })} <br></br>
                         $231.35m<br></br>
                         $84.15m<br></br>
                         38,682<br></br>
@@ -75,7 +89,7 @@ const TVLBox = () => {
                     </Text>
                 </Flex>
                 <Flex>
-                     {/* <Button
+                    {/* <Button
                         variant={"outline"}
                         size={"xs"}
                         borderRadius={"2px"}
@@ -84,7 +98,7 @@ const TVLBox = () => {
                         _light={{ bgColor: "#F5F5F7" }}
                         _dark={{ bgColor: "#191919" }}
                         mt={"22px"}> */}
-                        {/* <Flex>
+                    {/* <Flex>
                             <DownloadIcon pt={"5px"} 
                                           width={"12px"}
                                           height={"12px"}></DownloadIcon>
@@ -101,7 +115,7 @@ const TVLBox = () => {
                                 .CSV
                             </Text>
                         </Flex>  */}
-                     {/* </Button> */}
+                    {/* </Button> */}
                     <Spacer />
                     <Text
                         color={"#A8ADBD"}
@@ -124,7 +138,7 @@ const TVLBox = () => {
                     </Text>
                 </Flex>
             </Box>
-        </Box>
+        </Box >
 
     )
 
