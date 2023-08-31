@@ -74,7 +74,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         px={{ base: 4, md: 4 }}
         height="20"
         alignItems="center"
-        borderBottomWidth="1px"
+        //borderBottomWidth="1px"
         bg={useColorModeValue("#F0F0F5", "#191919")}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}

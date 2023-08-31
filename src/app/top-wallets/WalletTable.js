@@ -14,7 +14,7 @@ const WalletTable = () => {
     return (
         <>
             <Box
-                border={"2px"}
+                //border={"2px"}
                 borderRadius={"6px"}
                 _light={{borderColor: "#FFFFFF"}}
                 _dark={{borderColor: "#202020"}}
@@ -326,7 +326,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                             <Box
                                 key={i}
                                 padding={"7px 9px"}
-                                border={"1px"}
+                                //border={"1px"}
                                 minw="150px"
                                 _light={{
                                     borderColor: "#E8E8E8",
