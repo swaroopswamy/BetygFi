@@ -14,7 +14,7 @@ import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import SmallPageButtons from '/src/app/components/smallTable_pagebutton';
+import SmallTable_LastUpdate from '/src/app/components/smallTable_LastUpdate';
 
 
 const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
@@ -131,7 +131,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                     </Tfoot>
 
                 </Table>
-                <SmallPageButtons />
+                <SmallTable_LastUpdate />
             </Box>
         </>
     )

@@ -143,7 +143,7 @@ function DonutChart() {
           mt={"20px"}
           mr={"30px"}
           fontSize={"14px"}
-          fontWeight={400}
+          fontWeight={400}  
           lineHeight={"10px"}
         >
           <Chart
