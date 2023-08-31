@@ -6,6 +6,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import Image from "next/image";
 
@@ -40,6 +41,7 @@ const SkeletonRow = () => (
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
+  const router = useRouter();
 
   return (
     <Table variant="simple" key={1}>
@@ -293,8 +295,6 @@ const Rankings = () => {
                 fontSize={"20px"}
                 fontWeight={"400"}
                 letterSpacing={"1px"}
-                colSpan={8}
-                textAlign={"center"}
                 p="20px"
               >
                 No data available
@@ -315,7 +315,12 @@ const Rankings = () => {
               (tableData.DefiRankingsTableData?.data?.data.map((item, i) => {
                 return (
                   <>
-                    <Tr key={i + 1}>
+                    <Tr key={i + 1}
+                      cursor={"pointer"}
+                      onClick={() => {
+                          router.push(`/defi_dashboard?defi=${item.gecko_id}&id=${item._id}`);
+                      }}
+                    >
                       <Td
                         color={useColorModeValue("#16171B", "#FFF")}
                         fontSize={"14px"}

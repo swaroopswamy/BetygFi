@@ -74,7 +74,7 @@ export default function LayoutProvider({ children }) {
           w="100%"
           ml={screenSize?.width < 1450 ? 
             0 : 
-            (isSidebarCollapsed ? 20 : 60) 
+            (isSidebarCollapsed ? 20 : 225) 
           }
         >
           <Navbar onOpenMenu={onOpen} />
