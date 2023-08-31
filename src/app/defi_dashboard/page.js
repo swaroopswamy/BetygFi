@@ -20,8 +20,9 @@ import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";
-import { fetchDefiUsersTableData, fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -64,10 +65,19 @@ const DefiDashboardPage = () => {
         };
         dispatch(fetchDefiUsersTableData(payload));
     };
+    const getDefiHotContractsDataHandler = () => {
+        const payload = {
+            defi: defi,
+            blockchain: "",
+        };
+        dispatch(fetchDefiHotContractsTableData(payload));
+    };
+
 
     useEffect(() => {
         getDefiDataHandler();
         getDefiUsersTableDataHandler();
+        getDefiHotContractsDataHandler();
     }, []);
 
     useEffect(() => {
@@ -266,7 +276,7 @@ const DefiDashboardPage = () => {
                                                 }
                                             </>
                                         ))}
-                                      {/*   <Menu closeOnSelect={false}>
+                                        {/*   <Menu closeOnSelect={false}>
                                             <MenuButton
                                                 bg={"#D9D9D9"}
                                                 borderRadius="50%"
@@ -399,7 +409,7 @@ const DefiDashboardPage = () => {
                             fontSize={"16px"}
 
                         >
-                           {defiData?.safety_score} 
+                            {defiData?.safety_score}
                         </Text>
                     </Box>
                 </Box>

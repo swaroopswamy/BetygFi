@@ -21,3 +21,14 @@ export const getDefiUsersTableData = async (payload) => {
       return rejectWithValue(err);
     }
 };
+
+export const getDefiHotContractsTableData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `protocols/${payload.defi}/hotFunctions?blockchain=${payload.blockchain}`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
