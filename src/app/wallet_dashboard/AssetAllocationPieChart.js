@@ -8,7 +8,10 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const AssetAllocationPieChart = () => {
     const { colorMode } = useColorMode();
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
+    const assetAllocationData = useSelector((state) => state?.walletDashboardTableData?.assetAllocationForAddress);
+    // console.log("HERE: ", walletBalanceData);
+    // console.log("HERE2: ", assetAllocationData.data);
 
     const options = {
         chart: {
@@ -19,19 +22,25 @@ const AssetAllocationPieChart = () => {
                 enabled: false,
             },
         },
-
+        plotOptions: {
+            pie: {
+              expandOnClick: true,
+            }
+        },
         grid: {
             show: false,
         },
-
+        stroke: {
+            width: 0,
+        },
         legend: {
             show: true,
-            fontSize: "10px",
+            fontSize: "14px",
             labels: {
                 colors: colorMode === "light" ? "#000000" : "FFFFFF"
             },
             formatter: function (seriesName, opts) {
-                return [seriesName, " - ", opts.w.globals.series[opts.seriesIndex].toFixed(2), " %"];
+                return [seriesName, " ", opts.w.globals.series[opts.seriesIndex].toFixed(2), " %"];
             },
         },
         dataLabels: {
@@ -41,18 +50,18 @@ const AssetAllocationPieChart = () => {
             enabled: true,
            
         },
-        labels: walletBalanceData?.data?.data?.map((item, i) => {
-            return `${item?.symbol}`
+        labels: assetAllocationData.isSuccess && Object.keys(assetAllocationData?.data).map((item, i) => {
+            return `${item}`
         }),
 
 
     };
-    const series = walletBalanceData?.data?.data?.map((item) => {
-        return item?.percentageValue
-    });
+
+    let series = assetAllocationData.isSuccess ? Object.values(assetAllocationData?.data).map(Number) : [];
+
     return (
         <>
-            {!walletBalanceData?.isSuccess && (
+            {assetAllocationData?.isLoading && (
                 <Box
                     p={"30px"}
                     display={"flex"}
@@ -65,7 +74,7 @@ const AssetAllocationPieChart = () => {
                 </Box>)
             }
 
-            {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="pie" height={300} />}
+            {assetAllocationData?.isSuccess && <ApexCharts options={options} series={series} type="pie" height={300} />}
 
         </>
     );

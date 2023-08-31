@@ -82,6 +82,7 @@ const WalletAnalyticsPanel = () => {
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
+
         <Box
           w='50%'
           display={"flex"}
@@ -138,10 +139,13 @@ const WalletAnalyticsPanel = () => {
             </>
           </Flex>
           {/* </Box> */}
-          <Box >
+          <Box
+            mt={"20px"}
+          >
             <AssetAllocationPieChart />
           </Box>
         </Box>
+
       </Box>
 
       <Box
