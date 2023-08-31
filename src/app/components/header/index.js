@@ -168,13 +168,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     <Box
                       cursor={"pointer"}
                       onClick={onLoginModalOpen}
-                      minW={"140px"}
-                      height={"32px"}
                       bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
                       display={"flex"}
                       alignItems={"center"}
                       justifyContent={"center"}
                       borderRadius={"2px"}
+                      p="15px 20px"
+                      minW="150px"
                     >
                       <Text
                         fontSize={"14px"}
