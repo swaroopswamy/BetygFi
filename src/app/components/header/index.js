@@ -171,8 +171,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                       minW={"140px"}
                       height={"32px"}
                       bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
-                      pt={"12px"}
-                      pl={"20px"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
                       borderRadius={"2px"}
                     >
                       <Text
