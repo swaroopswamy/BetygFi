@@ -785,10 +785,15 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                     <>
                       <Tr>
                         <Td
-                        colSpan={"8"}
+                          colSpan={"8"}
                         >
                           <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            _dark={{
+                              color: "#FF"
+                            }}
                             fontSize={"20px"}
                             fontWeight={"400"}
                             letterSpacing={"1px"}
