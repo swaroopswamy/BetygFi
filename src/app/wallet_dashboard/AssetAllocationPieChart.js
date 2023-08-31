@@ -48,7 +48,6 @@ const AssetAllocationPieChart = () => {
 
     };
     const series = walletBalanceData?.data?.data?.map((item) => {
-
         return item?.percentageValue
     });
     return (
