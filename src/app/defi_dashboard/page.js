@@ -238,13 +238,13 @@ const DefiDashboardPage = () => {
                                                             flexDirection={"row"}
                                                             bg={"#D9D9D9"}
                                                             borderRadius="50%"
-                                                            border={blockchainSelected.includes(item.name) ? "3px solid #55A406" : ""}
-                                                            boxShadow={!blockchainSelected.includes(item.name) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                                                            border={blockchainSelected.includes(item.id) ? "3px solid #55A406" : ""}
+                                                            boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                                                             w="40px"
                                                             h="40px"
                                                             ml={i !== 0 && '-10px'}
                                                             onClick={() => {
-                                                                BlockchainTypeHandler(item.name);
+                                                                BlockchainTypeHandler(item.id);
                                                             }}
                                                             _hover={{ borderColor: "blue" }}
                                                             /* bgColor={
