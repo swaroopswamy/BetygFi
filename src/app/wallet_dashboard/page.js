@@ -29,8 +29,6 @@ const WalletDashboardPage = () => {
     const blockchains = useSelector(
         (state) => state?.appData?.BlockchainListData?.data
     );
-    console.log(blockchains)
-
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
