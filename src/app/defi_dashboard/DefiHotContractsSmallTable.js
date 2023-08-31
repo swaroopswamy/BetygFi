@@ -13,8 +13,6 @@ function Defihotcontracts() {
     const defiHotContractsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiHotContractsTableData
     )
-    console.log(defiHotContractsTableData, 'hot');
-
     return (
         <Box
             width={"50%"}

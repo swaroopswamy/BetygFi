@@ -39,12 +39,12 @@ const SkeletonRow = () => {
 const DefiTable = () => {
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
 
-//     const [sortingOrder, setSortingOrder] = useState("asc"); // "asc" for ascending, "desc" for descending
+    //     const [sortingOrder, setSortingOrder] = useState("asc"); // "asc" for ascending, "desc" for descending
 
-//   const toggleSortingOrder = () => {
-//     setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
-//   };
-    
+    //   const toggleSortingOrder = () => {
+    //     setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
+    //   };
+
     return (
         <>
             <Table variant="simple" key={1}>
@@ -285,7 +285,7 @@ const DefiTable = () => {
                                 return (
                                     <>
                                         <Tr key={i + 1}>
-                                            <Td
+                                            {/*   <Td
                                                 _dark={{
                                                     color: "#FFF"
                                                 }}
@@ -297,58 +297,58 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                             >
                                                 {item?.symbol}
-                                            </Td>
-                                            {/* <Td
-                                        >
-                                            <Box
-                                                display={"flex"}
-                                                alignItems={"center"}
+                                            </Td> */}
+                                            <Td
                                             >
-                                                {!isEmpty(item.logo)
-                                                    ? (
-                                                        <>
-                                                            <img
-                                                                width={20}
-                                                                height={20}
-                                                                alt='logo'
-                                                                src={item.logo}
-                                                            ></img>
-                                                        </>
-                                                    )
-                                                    :
-                                                    (
-                                                        <>
-                                                            <Box
-                                                                width={"20px"}
-                                                                height={"20px"}
-                                                                alignItems={"center"}
-                                                                justifyContent={"center"}
-                                                                display={"flex"}
-                                                                borderRadius={"50%"}
-                                                                bgColor={useColorModeValue("#676DFF")}
-                                                            >
-                                                                <Text
-                                                                    color={"#FFF"}
-                                                                    fontSize={"12px"}
-                                                                    fontWeight={"600"}
-                                                                >
-                                                                    {item.name.charAt(0)}
-                                                                </Text>
-                                                            </Box>
-                                                        </>
-                                                    )
-                                                }
-                                                <Text
-                                                    color={useColorModeValue("#16171B", "#FFF")}
-                                                    fontSize={"10px"}
-                                                    fontWeight={"400"}
-                                                    letterSpacing={"1px"}
-                                                    ml="6px"
+                                                <Box
+                                                    display={"flex"}
+                                                    alignItems={"center"}
                                                 >
-                                                    {item.name}
-                                                </Text>
-                                            </Box>
-                                        </Td> */}
+                                                    {!isEmpty(item?.logoUrl)
+                                                        ? (
+                                                            <>
+                                                                <img
+                                                                    width={20}
+                                                                    height={20}
+                                                                    alt='logo'
+                                                                    src={item?.logoUrl}
+                                                                ></img>
+                                                            </>
+                                                        )
+                                                        :
+                                                        (
+                                                            <>
+                                                                <Box
+                                                                    width={"20px"}
+                                                                    height={"20px"}
+                                                                    alignItems={"center"}
+                                                                    justifyContent={"center"}
+                                                                    display={"flex"}
+                                                                    borderRadius={"50%"}
+                                                                    bgColor={useColorModeValue("#676DFF")}
+                                                                >
+                                                                    <Text
+                                                                        color={"#FFF"}
+                                                                        fontSize={"12px"}
+                                                                        fontWeight={"600"}
+                                                                    >
+                                                                        {item.symbol.charAt(0)}
+                                                                    </Text>
+                                                                </Box>
+                                                            </>
+                                                        )
+                                                    }
+                                                    <Text
+                                                        color={useColorModeValue("#16171B", "#FFF")}
+                                                        fontSize={"10px"}
+                                                        fontWeight={"400"}
+                                                        letterSpacing={"1px"}
+                                                        ml="6px"
+                                                    >
+                                                        {item?.symbol}
+                                                    </Text>
+                                                </Box>
+                                            </Td> 
                                             <Td
                                                 _dark={{
                                                     color: "#FFF"
@@ -418,8 +418,8 @@ const DefiTable = () => {
                                     </>
                                 );
                             }))
-                            : ( !walletBalanceData.data?.isQueryInPendingState &&
-                               ( <>
+                            : (!walletBalanceData.data?.isQueryInPendingState &&
+                                (<>
                                     <Tr >
                                         <Td
                                             _dark={{

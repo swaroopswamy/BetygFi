@@ -14,7 +14,6 @@ function DefiUsersSmallTableComponent() {
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
     )
-    console.log(defiUsersTableData, "tabledata");
 
     return (
         <Box

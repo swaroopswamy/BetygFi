@@ -55,7 +55,6 @@ const Dashboard = () => {
   const blockchains = useSelector(
     (state) => state?.appData?.BlockchainListData?.data
   );
-  console.log(blockchains)
  
   const overviewData = useSelector(
     (state) => state?.dashboardTableData?.OverviewData?.data

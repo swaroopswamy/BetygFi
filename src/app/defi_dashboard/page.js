@@ -84,7 +84,6 @@ const DefiDashboardPage = () => {
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-    console.log(defiData, 'defi')
     const renderIcon = (item) => {
         return (
             <Image

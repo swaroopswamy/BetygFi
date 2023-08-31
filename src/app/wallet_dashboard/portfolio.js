@@ -26,9 +26,9 @@ const PortfolioPanelComponent = () => {
      "Blur",
      "Uniswap" */
   ];
- /*  const searchAssetByNameHandler (name) => {
-
-  } */
+  /*  const searchAssetByNameHandler (name) => {
+ 
+   } */
 
   useEffect(() => {
     fetchWalletBalanceDataHandler();
@@ -670,12 +670,8 @@ const PortfolioPanelComponent = () => {
 
 export default PortfolioPanelComponent;
 
-<<<<<<< HEAD
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
-=======
-const PorfolioAccordion = ({name, value, thread, tableData}) => {
-  console.log("HERE: ", tableData);
->>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
+
   return (
     <>
       <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
@@ -717,30 +713,26 @@ const PorfolioAccordion = ({name, value, thread, tableData}) => {
                   </Text>
                 </Flex>
 
-<<<<<<< HEAD
-                <Text
-                  color={useColorModeValue("#202020", "#FFFFFF")}
-                  fontSize={"13px"}
-=======
-            <Box as="span" flex='1' textAlign='left'>
-              <Flex>
-                {/* <Image src="/images/Fantom.svg" alt=""
+                <Box as="span" flex='1' textAlign='left'>
+                  <Flex>
+                    {/* <Image src="/images/Fantom.svg" alt=""
                   width={"30px"}
                   height={"30px"}
                   flexShrink={"0"}
                   borderRadius={"150px"}
                 ></Image> */}
-                <Text
-                  color={useColorModeValue("#202020", "#FFFFFF")}
-                  fontSize={"16px"}
->>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
-                  fontStyle={"normal"}
-                  fontWeight={"600"}
-                  lineHeight={"20px"}
-                  mt={"5px"}
-                >
-                  Savings
-                </Text>
+                    <Text
+                      color={useColorModeValue("#202020", "#FFFFFF")}
+                      fontSize={"16px"}
+                      fontStyle={"normal"}
+                      fontWeight={"600"}
+                      lineHeight={"20px"}
+                      mt={"5px"}
+                    >
+                      Savings
+                    </Text>
+                  </Flex>
+                </Box>
               </Box>
 
               <Box>
@@ -750,7 +742,6 @@ const PorfolioAccordion = ({name, value, thread, tableData}) => {
                   flex-shrink={"0"}
                 ></Image>
               </Box>
-
             </AccordionButton>
           </h2>
 
@@ -790,8 +781,36 @@ const PorfolioAccordion = ({name, value, thread, tableData}) => {
                 </Thead>
 
                 <Tbody>
+                  {tableData?.isError && (
+                    <>
+                      <Tr>
+                        <Td
+                        colSpan={"8"}
+                        >
+                          <Text
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontSize={"20px"}
+                            fontWeight={"400"}
+                            letterSpacing={"1px"}
+                            textAlign={"center"}
+                            p="20px"
+                          >
+                            No Data available
+                          </Text>
+                        </Td>
+                      </Tr>
+                    </>
+                  )}
 
-                  {tableData?.map((item, i) => {
+                  {tableData?.isLoading && (
+                    <>
+                      <SkeletonRow />
+                      <SkeletonRow />
+                      <SkeletonRow />
+                    </>
+                  )}
+
+                  {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
                     return (
                       <Tr key={i}>
                         <Td >
@@ -873,67 +892,17 @@ const PorfolioAccordion = ({name, value, thread, tableData}) => {
                           </Flex>
                         </Td>
                       </Tr>
-                    );
+                    )
                   })}
 
                 </Tbody>
 
-<<<<<<< HEAD
-              </Table>
-            </TableContainer>
-          </AccordionPanel>
-=======
-                {tableData?.isError && (
-                  <>
-                      <Tr>
-                          <Td
-                          >
-                              <Text
-                                  color={useColorModeValue("#16171B", "#FFF")}
-                                  fontSize={"20px"}
-                                  fontWeight={"400"}
-                                  letterSpacing={"1px"}
-                                  textAlign={"center"}
-                                  p="20px"
-                              >
-                                  No Data available
-                              </Text>
-                          </Td>
-                      </Tr>
-                  </>
-                  )}
+              </Table >
+            </TableContainer >
+          </AccordionPanel >
 
-                {tableData?.isLoading && (
-                    <>
-                        <SkeletonRow />
-                        <SkeletonRow />
-                        <SkeletonRow />
-                    </>
-                )}
-                  
-                {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                  return (
-                    <Tr>
-                      <Td>
-                        <Flex>
-                          <Image src="/images/BIT.svg" alt=""></Image>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"11px"}
-                            fontStyle={"normal"}
-                            fontWeight={"600"}
-                            lineHeight={"11px"}
-                            mt={"10px"}
-                            ml={"10px"}
-                          >
-                            {item.token}
-                          </Text>
-                        </Flex>
-                      </Td>
->>>>>>> bffc7ae882a8715139d67e360b34e2689da1bd51
-
-        </AccordionItem>
-      </Accordion>
+        </AccordionItem >
+      </Accordion >
     </>
   );
 }
