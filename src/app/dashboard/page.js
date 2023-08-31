@@ -178,8 +178,8 @@ const Dashboard = () => {
                         flexDirection={"row"}
                         bg={"#D9D9D9"}
                         borderRadius="50%"
-                        border={blockchainSelected.includes(item.name) ? "3px solid #55A406" : ""}
-                        boxShadow={!blockchainSelected.includes(item.name) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                        border={blockchainSelected.includes(item.id) ? "3px solid #55A406" : ""}
+                        boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                         w="40px"
                         h="40px"
                         ml={i !== 0 && '-10px'}
@@ -195,7 +195,7 @@ const Dashboard = () => {
                           "1px solid #333"
                         )}  */
                         onClick={() => {
-                          BlockchainTypeHandler(item.name);
+                          BlockchainTypeHandler(item.id);
                         }}
                       >
                         <Image
@@ -232,7 +232,7 @@ const Dashboard = () => {
                   _focus={{ boxShadow: 'outline' }}
                   color="#000"
                 >
-                  +6
+                  +{blockchains?.length - 4}
                 </MenuButton>
                 <MenuList
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
@@ -248,8 +248,8 @@ const Dashboard = () => {
                           >
                             <Checkbox colorScheme='green'
                               value={item.name}
-                              checked={blockchainSelected.includes(item.name)} onChange={(e) => {
-                                BlockchainTypeHandler(item.name);
+                              checked={blockchainSelected.includes(item.id)} onChange={(e) => {
+                                BlockchainTypeHandler(item.id);
                               }}>
                               <Box
                                 display={"flex"}
