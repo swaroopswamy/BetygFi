@@ -19,13 +19,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
     const router = useRouter();
     const [searchByName, setSearchByName] = useState('');
 
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
-    const BlockchainTypeHandler = (type) => {
-        dispatch(blockchainTypeChangedReducer(type));
-    };
-
     const searchAssetByNameHandler = (name) => {
         setSearchByName(name);
     }
@@ -65,8 +58,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                         gap={"10px"}
                     >
                         <SelectionBox
-                            blockchainSelected={blockchainSelected}
-                            BlockchainTypeHandler={BlockchainTypeHandler}
                             colorMode={colorMode}
                         />
 
@@ -158,14 +149,16 @@ function ThreadItem({ key, name }) {
     )
 }
 
-function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
+function SelectionBox ({ colorMode }) {
     const dispatch = useDispatch();
     const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
-    var blockchains = [];
 
-    if (blockchainListData.isSuccess) {
-        blockchains = blockchainListData.data;
-    }
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+    };
     
     useEffect(() => {
         dispatch(fetchBlockchainListData());
@@ -209,7 +202,7 @@ function SelectionBox ({ blockchainSelected, colorMode, BlockchainTypeHandler })
                 >
                     All
                 </Box>
-                {blockchains.map((item, i) => {
+                {blockchainListData.isSuccess && blockchainListData.data.map((item, i) => {
                     if (i >= 4) return;
                     return (
                         <Box
