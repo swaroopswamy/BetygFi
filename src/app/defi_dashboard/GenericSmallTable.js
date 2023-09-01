@@ -18,7 +18,7 @@ import SortBlackIcon from '../../../public/icons/sort_black.svg';
 import SmallTable_LastUpdate from '/src/app/components/smallTable_LastUpdate';
 
 
-const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,BigTable}) => {
+const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -66,7 +66,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         >
                             {tableName}
                         </Text>
-                        <Tooltip label= "Tooltip Text">
+                        <Tooltip label= {Definitions}>
                         <Image width={"12px"}
                             height={"12px"}
                             flexShrink={"0"}
@@ -88,7 +88,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         mt={"15px"}
                         mr={"20px"}
                         onClick={() => {
-                            router.push(BigTable);
+                            router.push(Tablepath);
                         }}
                         // onClick={BigTable}
                     >

@@ -28,6 +28,8 @@ function Defiflow () {
                 thread={thread}
                 tableData={tableData}
                 RowComponent={RowComponent}
+                // Tablepath={Tablepath}
+                // Definitions={Definitions}
         />
     </Box>
   )

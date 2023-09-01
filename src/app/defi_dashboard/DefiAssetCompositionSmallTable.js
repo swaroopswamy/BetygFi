@@ -9,6 +9,8 @@ function Assetcomposition () {
 
   const tableName = "DeFi Asset Composition";
   const thread = ["Asset Name","Share","Value"];
+  const  Definitions= "DeFi Asset Composition: Asset composition matrix shows the distribution of value in different assets. "
+  const Tablepath = "/defi_dashboard/asset_composition"
   const tableData = [
     ["/images/Venus.svg","Venus","60%","USD 356,456,560"],
     ["/images/Morphoaave.svg","Morpho Aave","40%","USD 256,456,560"],
@@ -28,6 +30,8 @@ function Assetcomposition () {
                 thread={thread}
                 tableData={tableData}
                 RowComponent={RowComponent}
+                Definitions={Definitions}
+                Tablepath={Tablepath}
         />
     </Box>
   )
