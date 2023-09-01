@@ -37,7 +37,7 @@ function RowComponent({ tableData }) {
             {tableData?.isError && (
                 <>
                     <Tr
-                    height={"203px"}
+                    height={"250px"}
                     >
                         <Td
                             colSpan={3}

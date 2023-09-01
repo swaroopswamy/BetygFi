@@ -10,7 +10,6 @@ const SmallPageButtons = () => {
 
     return (
         <>
-
             <Box
                 display={"flex"}
                 width={"100%"}
