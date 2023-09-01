@@ -318,7 +318,8 @@ const Rankings = () => {
                     <Tr key={i + 1}
                       cursor={"pointer"}
                       onClick={() => {
-                          router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
+                          if (item.name === "AAVE V2")
+                            router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
                       }}
                     >
                       <Td
