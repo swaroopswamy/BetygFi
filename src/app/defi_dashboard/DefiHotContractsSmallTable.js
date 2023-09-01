@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton } from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 import { useSelector } from "react-redux";
+import { SP } from "next/dist/shared/lib/utils";
 
 function Defihotcontracts() {
 
@@ -36,6 +37,7 @@ function RowComponent({ tableData }) {
             {tableData?.isError && (
                 <>
                     <Tr
+                    height={"203px"}
                     >
                         <Td
                             colSpan={3}

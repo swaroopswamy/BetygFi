@@ -358,7 +358,7 @@ const WalletDashboardPage = () => {
                                         }}
                                         mr={"18px"}
                                     >
-                                        ALL
+                                        All
                                     </Box>
                                     {blockchains?.map((item, i) => {
                                         return (
@@ -400,7 +400,7 @@ const WalletDashboardPage = () => {
                                                         :
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-
+                                                 textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>

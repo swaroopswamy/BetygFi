@@ -49,7 +49,7 @@ function DonutChart() {
       show: true,
       position: 'left',
       horizontalAlign: 'center',
-      fontSize: '10px',
+      fontSize: '14px',
       fontWeight: '400',
       labels: {
         colors: useColorModeValue('#16171B', '#FFFFFF')

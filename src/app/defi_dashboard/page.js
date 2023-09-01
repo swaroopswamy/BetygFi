@@ -412,7 +412,7 @@ const DefiDashboardPage = () => {
                             fontSize={"16px"}
 
                         >
-                            {defiData?.safety_score}
+                            {defiData?.safety_score}/100
                         </Text>
                     </Box>
                 </Box>
