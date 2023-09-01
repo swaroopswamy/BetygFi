@@ -255,31 +255,28 @@ const GovernanceTable = ({ }) => {
 
                         _light={{ bgColor: "#FFF" }} >
 
-                        <Td></Td>
-                        <Td></Td>
-                        <Td></Td>
-                        <Td></Td>
-                        <Td>
-                        <Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
+                        <Tr>
+                            <Td
+                            colSpan={7}
                             >
-                                No Data Available
-                            </Box>
-                        </Td>
-                        <Td></Td>
+                                <Text
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    textAlign={"center"}
+                                    p="20px"
+                                
+                                >
+                                    No Data available
+                                </Text>
+                            </Td>
+                        </Tr>
 
                         {/* <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
 

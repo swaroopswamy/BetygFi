@@ -781,7 +781,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 </Thead>
 
                 <Tbody>
-                  {tableData?.isError && (
+                  {(tableData?.isError || !tableData?.data?.defiBalance) && (
                     <>
                       <Tr>
                         <Td
@@ -815,7 +815,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                     </>
                   )}
 
-                  {tableData?.isSuccess && tableData?.data?.defiBalance?.map((item, i) => {
+                  {tableData?.isSuccess && tableData?.data?.defiBalance && tableData?.data?.defiBalance?.map((item, i) => {
                     return (
                       <Tr key={i}>
                         <Td >
