@@ -22,9 +22,8 @@ function DonutChart() {
       type: 'donut'
     },
     plotOptions: {
-      bar: {
-        distributed: true,
-        labels: false,
+      pie: {
+        customScale: 1
       }
     },
     tooltip: {
@@ -97,20 +96,20 @@ function DonutChart() {
               Defi Fee and Revenue
             </Text>
             <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"7px"}
-                                                ml={"3px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                        </Flex>
+              <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"7px"}
+                  ml={"3px"}
+                  alt=''
+                  src="/images/Frame.svg">
+              </Image>
+          </Tooltip>
+          </Flex>
 
           </Box>
 
-          {/* <Button
+          <Button
             variant={"outline"}
             size={"xs"}
             _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
@@ -126,14 +125,14 @@ function DonutChart() {
             <Text
               _light={{ color: "#16171B" }}
               _dark={{ color: "#FFFFFF" }}
-              fontSize={"10px"}
+              fontSize={"14px"}
               fontWeight={"400"}
               lineHeight={"10px"}
             >
               View More
             </Text>
 
-          </Button> */}
+          </Button>
         </Box>
 
 
@@ -151,6 +150,31 @@ function DonutChart() {
             type={options.chart.type}
             height={"200px"}
           />
+        </Box>
+
+        <Box
+          height={"30px"}
+          display={"flex"}
+          gap={"5px"}
+          justifyContent={"right"}
+          mr={"20px"}
+        >
+          <Text
+            fontSize={"12px"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            color={"#8ADBD"}
+          >
+            Last Update
+          </Text>
+          <Text
+            fontSize={"12px"}
+            fontWeight={"400"}
+            lineHeight={"20px"}
+            color={colorMode === 'light' ? "#16171B" : "#FFF"}
+          >
+            3 mins ago
+          </Text>
         </Box>
       </Box>
     </>

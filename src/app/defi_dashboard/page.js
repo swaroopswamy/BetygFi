@@ -95,7 +95,11 @@ const DefiDashboardPage = () => {
                 height={18}
             />
         );
-    };
+    }; 
+    const toCapitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      };
+      
 
     return (
         <>
@@ -205,7 +209,7 @@ const DefiDashboardPage = () => {
                                     >
                                         {blockchains?.map((item, i) => (
                                             <>
-                                                {defiData?.chains?.includes(item.name) &&
+                                                {defiData?.chains?.includes(toCapitalize(item.id)) &&
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>

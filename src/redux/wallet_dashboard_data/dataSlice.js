@@ -1,5 +1,5 @@
 import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
-import { getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
+import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -23,6 +23,21 @@ export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWal
   return response.data;
 })
 
+export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress', async (payload) => {
+  const response = await getAssetAllocationForAddress(payload);
+  return response.data;
+})
+export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress', async (payload) => {
+  const response = await getProtocolAllocationForAddress(payload);
+  return response.data;
+})
+
+export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress', async (payload) => {
+  const response = await getBlockchainAllocationForAddress(payload);
+  return response.data;
+})
+
+
 const WalletDashboardDataSlice = createSlice({
   name: "walletDashboardData",
   initialState: {
@@ -45,6 +60,24 @@ const WalletDashboardDataSlice = createSlice({
       isSuccess: false,
     },
     walletTransactionsForAddressSummary: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    assetAllocationForAddress: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    protocolAllocationForAddress: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    blockchainAllocationForAddress: {
       data: null,
       isLoading: false,
       isError: false,
@@ -127,6 +160,60 @@ const WalletDashboardDataSlice = createSlice({
       state.walletTransactionsForAddressSummary.isSuccess = false;
       state.walletTransactionsForAddressSummary.isError = true;
       state.walletTransactionsForAddressSummary.data = action.payload;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.fulfilled, (state, action) => {
+      state.assetAllocationForAddress.data = action.payload;
+      state.assetAllocationForAddress.isLoading = false;
+      state.assetAllocationForAddress.isSuccess = true;
+      state.assetAllocationForAddress.isError = false;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.pending, (state, action) => {
+      state.assetAllocationForAddress.isLoading = true;
+      state.assetAllocationForAddress.isError = false;
+      state.assetAllocationForAddress.isSuccess = false;
+      state.assetAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.rejected, (state, action) => {
+      state.assetAllocationForAddress.isLoading = false;
+      state.assetAllocationForAddress.isSuccess = false;
+      state.assetAllocationForAddress.isError = true;
+      state.assetAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchProtocolAllocationForAddress.fulfilled, (state, action) => {
+      state.protocolAllocationForAddress.data = action.payload;
+      state.protocolAllocationForAddress.isLoading = false;
+      state.protocolAllocationForAddress.isSuccess = true;
+      state.protocolAllocationForAddress.isError = false;
+    });
+    builder.addCase(fetchProtocolAllocationForAddress.pending, (state, action) => {
+      state.protocolAllocationForAddress.isLoading = true;
+      state.protocolAllocationForAddress.isError = false;
+      state.protocolAllocationForAddress.isSuccess = false;
+      state.protocolAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchProtocolAllocationForAddress.rejected, (state, action) => {
+      state.protocolAllocationForAddress.isLoading = false;
+      state.protocolAllocationForAddress.isSuccess = false;
+      state.protocolAllocationForAddress.isError = true;
+      state.protocolAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchBlockchainAllocationForAddress.fulfilled, (state, action) => {
+      state.blockchainAllocationForAddress.data = action.payload;
+      state.blockchainAllocationForAddress.isLoading = false;
+      state.blockchainAllocationForAddress.isSuccess = true;
+      state.blockchainAllocationForAddress.isError = false;
+    });
+    builder.addCase(fetchBlockchainAllocationForAddress.pending, (state, action) => {
+      state.blockchainAllocationForAddress.isLoading = true;
+      state.blockchainAllocationForAddress.isError = false;
+      state.blockchainAllocationForAddress.isSuccess = false;
+      state.blockchainAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchBlockchainAllocationForAddress.rejected, (state, action) => {
+      state.blockchainAllocationForAddress.isLoading = false;
+      state.blockchainAllocationForAddress.isSuccess = false;
+      state.blockchainAllocationForAddress.isError = true;
+      state.blockchainAllocationForAddress.data = action.payload;
     });
   },
   reducers: {

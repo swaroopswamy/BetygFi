@@ -27,7 +27,7 @@ const WalletAnalyticsPanel = () => {
   const value1 = "300";
   const value2 = "-300";
 
-
+  const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
 
   return (
     <>
@@ -82,6 +82,7 @@ const WalletAnalyticsPanel = () => {
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
+
         <Box
           w='50%'
           display={"flex"}
@@ -138,10 +139,13 @@ const WalletAnalyticsPanel = () => {
             </>
           </Flex>
           {/* </Box> */}
-          <Box >
+          <Box
+            mt={"20px"}
+          >
             <AssetAllocationPieChart />
           </Box>
         </Box>
+
       </Box>
 
       <Box
@@ -294,7 +298,7 @@ const WalletAnalyticsPanel = () => {
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
-                {walletBalanceData?.isError && (
+                {protocolAllocationData?.isError && (
                   <>
                     <Tr >
                       <Td
@@ -316,7 +320,7 @@ const WalletAnalyticsPanel = () => {
                     </Tr>
                   </>
                 )}
-                {walletBalanceData?.isLoading && (
+                {protocolAllocationData?.isLoading && (
                   <>
                     <SkeletonRow />
                     <SkeletonRow />
@@ -325,12 +329,13 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {walletBalanceData?.isSuccess &&
-                  (walletBalanceData?.data?.data?.length > 0 ?
-                    (walletBalanceData?.data?.data.map((item, i) => {
+                {protocolAllocationData?.isSuccess &&
+                  (Object.keys(protocolAllocationData?.data)?.length > 0 ?
+                    (Object.keys(protocolAllocationData?.data)?.map((item, i) => {
+                      console.log(protocolAllocationData?.data[item], 'item')
                       return (
                         <>
-                          <Tr height={"40px"}>
+                          <Tr height={"40px"} key={i}>
                             <Td _dark={{ color: "#FFFFFF" }}
                               _light={{ color: "#16171B" }}
                             >
@@ -344,12 +349,12 @@ const WalletAnalyticsPanel = () => {
                                     width={5}
                                     height={5}
                                     alt='logo'
-                                    src="/images/Venus.svg"
+                                    src={protocolAllocationData?.data[item]?.logo}
                                   ></Image>
                                 </>
 
                                 <Text ml="6px"
-                                      fontSize={"14px"}> Venus</Text>
+                                  fontSize={"14px"}>{protocolAllocationData?.data[item]?.name}</Text>
                               </Box>
                             </Td>
 
@@ -366,187 +371,48 @@ const WalletAnalyticsPanel = () => {
                                   _light={{ color: "#16171B" }}
                                   _dark={{ color: "#FFFFFF" }}
                                 >
-                                  60%
+                                  {protocolAllocationData?.data[item]?.percentage} %
                                 </Text>
                               </Box>
                             </Td>
-                            <Td fontSize={"14px"}>USD 356,456,560</Td>
+                            <Td fontSize={"14px"}>USD {protocolAllocationData?.data[item]?.value}</Td>
                           </Tr>
 
-                          <Tr height={"40px"}>
-                            <Td
-                              _dark={{ color: "#FFFFFF" }}
-                              _light={{ color: "#16171B" }} >
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <>
-                                  <Image
-                                    width={5}
-                                    height={5}
-                                    alt='logo'
-                                    src="/images/Morphoaave.svg"
-                                  ></Image>
-                                </>
 
-                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
-                              </Box>
-                            </Td>
-                            <Td><Box
-                              display={"flex"}
-                              alignItems={"center"}
-                            >
-                              <Text
-                                fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                ml="6px"
-                                _light={{ color: "#16171B" }}
-                                _dark={{ color: "#FFFFFF" }}
-                              >
-                                40%
-                              </Text>
-                            </Box></Td>
-                            <Td  fontSize={"14px"}>USD 256,456,560</Td>
-                          </Tr>
-
-                          <Tr height={"40px"}>
-                            <Td
-                              _dark={{ color: "#FFFFFF" }}
-                              _light={{ color: "#16171B" }} >
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <>
-                                  <Image
-                                    width={5}
-                                    height={5}
-                                    alt='logo'
-                                    src="/images/Compoundv3.svg"
-                                  ></Image>
-                                </>
-
-                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
-                              </Box></Td>
-                            <Td><Box
-                              display={"flex"}
-                              alignItems={"center"}
-                            >
-                              <Text
-                                fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                ml="6px"
-                                _light={{ color: "#16171B" }}
-                                _dark={{ color: "#FFFFFF" }}
-                              >
-                                13.09%
-                              </Text>
-                            </Box></Td>
-                            <Td  fontSize={"14px"}>USD 46,456,560</Td>
-                          </Tr>
-
-                          <Tr height={"40px"}>
-                            <Td
-                              _dark={{ color: "#FFFFFF" }}
-                              _light={{ color: "#16171B" }} >
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <>
-                                  <Image
-                                    width={5}
-                                    height={5}
-                                    alt='logo'
-                                    src="/images/Radiantv2.svg"
-                                  ></Image>
-                                </>
-
-                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
-                              </Box></Td>
-                            <Td><Box
-                              display={"flex"}
-                              alignItems={"center"}
-                            >
-                              <Text
-                                fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                ml="6px"
-                                _light={{ color: "#16171B" }}
-                                _dark={{ color: "#FFFFFF" }}
-                              >
-                                15%
-                              </Text>
-                            </Box></Td>
-                            <Td  fontSize={"14px"}>USD 66,456,560</Td>
-                          </Tr>
-
-                          <Tr height={"40px"}>
-                            <Td _dark={{ color: "#FFFFFF" }}
-                              _light={{ color: "#16171B" }} >
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <>
-                                  <Image
-                                    width={5}
-                                    height={5}
-                                    alt='logo'
-                                    src="/images/Fluidtokens.svg"
-                                  ></Image>
-                                  <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
-                                </>
-
-                                <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
-                              </Box></Td>
-                            <Td><Box
-                              display={"flex"}
-                              alignItems={"center"}
-                            >
-                              <Text
-                                fontSize={"14px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                ml="6px"
-                                _light={{ color: "#16171B" }}
-                                _dark={{ color: "#FFFFFF" }}
-                              >
-                                13.09%
-                              </Text>
-                            </Box></Td>
-                            <Td  fontSize={"14px"}>USD 56,456,560</Td>
-                          </Tr>
                         </>
-                      );
-                    })) :
+                      )
+
+
+
+
+
+                    }))
+                    :
                     (
                       <>
-                        <Tr >
-                          <Td
-                            height={"245px"}
-                            _dark={{
-                              color: "#FFF"
-                            }}
-                            _light={{
-                              color: "#16171B"
-                            }}
-                            fontSize={"20px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            colSpan={8}
-                            textAlign={"center"}
-                          >
-                            No Data Available
-                          </Td>
-                        </Tr>
-
+                        <>
+                          <Tr >
+                            <Td
+                              _dark={{
+                                color: "#FFF"
+                              }}
+                              _light={{
+                                color: "#16171B"
+                              }}
+                              fontSize={"20px"}
+                              fontWeight={"400"}
+                              letterSpacing={"1px"}
+                              colSpan={8}
+                              textAlign={"center"}
+                              height={"245px"}
+                            >
+                              No Data Available
+                            </Td>
+                          </Tr>
+                        </>
                       </>
-                    ))
+                    )
+                  )
                 }
 
               </Tbody>
@@ -777,7 +643,7 @@ const WalletAnalyticsPanel = () => {
                                 </Text>
                               </Box>
                             </Td>
-                            <Td  fontSize={"14px"}>USD 356,456,560</Td>
+                            <Td fontSize={"14px"}>USD 356,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -797,7 +663,7 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Morpho Aave </Text>
                               </Box>
                             </Td>
                             <Td><Box
@@ -815,7 +681,7 @@ const WalletAnalyticsPanel = () => {
                                 40%
                               </Text>
                             </Box></Td>
-                            <Td  fontSize={"14px"}>USD 256,456,560</Td>
+                            <Td fontSize={"14px"}>USD 256,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -835,7 +701,7 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
+                                <Text ml="6px" fontSize={"14px"}> Compound V3 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
@@ -852,7 +718,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td  fontSize={"14px"}>USD 46,456,560</Td>
+                            <Td fontSize={"14px"}>USD 46,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -872,7 +738,7 @@ const WalletAnalyticsPanel = () => {
                                   ></Image>
                                 </>
 
-                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Radiant V2 </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
@@ -889,7 +755,7 @@ const WalletAnalyticsPanel = () => {
                                 15%
                               </Text>
                             </Box></Td>
-                            <Td  fontSize={"14px"}>USD 66,456,560</Td>
+                            <Td fontSize={"14px"}>USD 66,456,560</Td>
                           </Tr>
 
                           <Tr height={"40px"}>
@@ -909,7 +775,7 @@ const WalletAnalyticsPanel = () => {
                                   <Image src={colorMode === 'light' ? ("/images/F(light).svg") : ("/images/F(dark).svg")} ml={"-13px"} alt=''></Image>
                                 </>
 
-                                <Text ml="10px"  fontSize={"14px"}> FluidTokens </Text>
+                                <Text ml="10px" fontSize={"14px"}> FluidTokens </Text>
                               </Box></Td>
                             <Td><Box
                               display={"flex"}
@@ -926,7 +792,7 @@ const WalletAnalyticsPanel = () => {
                                 13.09%
                               </Text>
                             </Box></Td>
-                            <Td  fontSize={"14px"}>USD 56,456,560</Td>
+                            <Td fontSize={"14px"}>USD 56,456,560</Td>
                           </Tr>
                         </>
                       );
@@ -1264,7 +1130,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> Venus</Text>
+                                <Text ml="6px" fontSize={"14px"}> Venus</Text>
 
                               </Box>
 
@@ -1304,7 +1170,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Td>
 
-                            <Td  fontSize={"14px"}>60%</Td>
+                            <Td fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1341,7 +1207,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Morpho Aave </Text>
 
                               </Box>
 
@@ -1375,7 +1241,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>30%</Td>
+                            <Td fontSize={"14px"}>30%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1412,7 +1278,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
+                                <Text ml="6px" fontSize={"14px"}> Compound V3 </Text>
 
                               </Box></Td>
 
@@ -1444,7 +1310,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>50%</Td>
+                            <Td fontSize={"14px"}>50%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1481,7 +1347,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Radiant V2 </Text>
 
                               </Box></Td>
 
@@ -1513,7 +1379,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>60%</Td>
+                            <Td fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -1548,7 +1414,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> FluidTokens </Text>
+                                <Text ml="6px" fontSize={"14px"}> FluidTokens </Text>
 
                               </Box></Td>
 
@@ -1580,7 +1446,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>30%</Td>
+                            <Td fontSize={"14px"}>30%</Td>
 
                           </Tr>
                         </>
@@ -1930,7 +1796,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> Venus</Text>
+                                <Text ml="6px" fontSize={"14px"}> Venus</Text>
 
                               </Box>
 
@@ -2007,7 +1873,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}>  Morpho Aave </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Morpho Aave </Text>
 
                               </Box>
 
@@ -2041,7 +1907,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>30%</Td>
+                            <Td fontSize={"14px"}>30%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2078,7 +1944,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> Compound V3 </Text>
+                                <Text ml="6px" fontSize={"14px"}> Compound V3 </Text>
 
                               </Box></Td>
 
@@ -2110,7 +1976,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>50%</Td>
+                            <Td fontSize={"14px"}>50%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2147,7 +2013,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}>  Radiant V2 </Text>
+                                <Text ml="6px" fontSize={"14px"}>  Radiant V2 </Text>
 
                               </Box></Td>
 
@@ -2179,7 +2045,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>60%</Td>
+                            <Td fontSize={"14px"}>60%</Td>
 
                           </Tr>
                           <Tr height={"40px"}>
@@ -2214,7 +2080,7 @@ const WalletAnalyticsPanel = () => {
 
 
 
-                                <Text ml="6px"  fontSize={"14px"}> FluidTokens </Text>
+                                <Text ml="6px" fontSize={"14px"}> FluidTokens </Text>
 
                               </Box></Td>
 
@@ -2246,7 +2112,7 @@ const WalletAnalyticsPanel = () => {
 
                             </Box></Td>
 
-                            <Td  fontSize={"14px"}>30%</Td>
+                            <Td fontSize={"14px"}>30%</Td>
 
                           </Tr>
                         </>

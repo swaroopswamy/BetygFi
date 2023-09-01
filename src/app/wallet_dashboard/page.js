@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -49,19 +49,42 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, searchParam.get("address")])
-    
+
+    const fetchAssetAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchAssetAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+    const fetchProtocolAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchProtocolAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+    const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchBlockchainAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+
+
     useEffect(() => {
 
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
 
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
+        fetchAssetAllocationForAddressHandler();
+        fetchProtocolAllocationForAddressHandler();
+        fetchBlockchainAllocationForAddressHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-    
+
 
     useEffect(() => {
         if (walletBalanceData?.isQueryInPendingState) {
@@ -161,7 +184,7 @@ const WalletDashboardPage = () => {
                         position={"relative"}
                     >
                         {/*  <SplineAreaChart /> */}
-                       {/*  {(<Box
+                        {/*  {(<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -292,19 +315,25 @@ const WalletDashboardPage = () => {
                                     ></Image>
                                 </Box>
                             </Tab>
-                            {/*  <Tab
+                            <Tab
                                 padding="0"
                             >
                                 <Box
                                     display={"flex"}
                                     alignItems={"center"}
                                     padding={"13px 19px 13px 17px"}
-                                    bgColor={tabIndex === 1 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
+                                    bgColor={tabIndex === 2 ?
+                                        (colorMode === 'light' ? "#202020" : "#FFFFFF") :
+                                        (colorMode === 'light' ? "#F0F0F5" : "#202020")
+                                    }
                                 >
                                     <Text
-                                        fontSize={"10px"}
-                                        fontWeight={tabIndex === 1 ? "700" : "400"}
-                                        color={tabIndex === 1 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                                        fontSize={"14px"}
+                                        color={tabIndex === 2 ?
+                                            (colorMode === 'light' ? "#FFFFFF" : "#202020") :
+                                            (colorMode === 'light' ? "#202020" : "#FFFFFF")
+                                        }
+                                        fontWeight={tabIndex === 2 ? "700" : "400"}
                                         mr="44px"
                                     >
                                         Wallet Analytics
@@ -313,10 +342,10 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 1 ? colorMode === 'light' ? ('/images/wallet_analytics_white.png') : ('/images/wallet_analytics_black.png') : colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
+                                        src={tabIndex === 2 ? colorMode === 'light' ? ('/images/wallet_analytics_white.png') : ('/images/wallet_analytics_black.png') : colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
                                     ></Image>
                                 </Box>
-                            </Tab> */}
+                            </Tab>
 
                         </TabList>
                         <Box
@@ -361,7 +390,7 @@ const WalletDashboardPage = () => {
                                         All
                                     </Box>
                                     {blockchains?.map((item, i) => {
-                                        return (
+                                        return i < 5 && (
                                             <Box
                                                 position={"relative"}
                                                 cursor={"pointer"}
@@ -400,7 +429,7 @@ const WalletDashboardPage = () => {
                                                         :
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-                                                 textTransform={"capitalize"}
+                                                    textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>
@@ -422,11 +451,11 @@ const WalletDashboardPage = () => {
                                 >
                                     <PortfolioPanelComponent />
                                 </TabPanel>
-                                {/* <TabPanel
+                                <TabPanel
                                     p="0px"
                                 >
                                     <WalletAnalyticsPanel />
-                                </TabPanel> */}
+                                </TabPanel>
 
 
                             </TabPanels>
