@@ -4,14 +4,27 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import graphData from './exampleTrendGraphData.json';
-import { useSelector } from "react-redux";
+import graphData2 from './exampleTrendGraphData.json';
+const axios = require('axios');
 
 function TrendGraph() {
     const { colorMode } = useColorMode();
     const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
     const [currencySelected, setCurrencyType] = useState("USD");
     const [series, setSeries] = useState([]);
+
+    const [graphData, setGraphData] = useState(null);
+
+    useEffect(() => {
+        let response = axios.get('https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123')
+                        .then(function (response) {
+                            setGraphData(response.data);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+    }, [graphData]);
+
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
@@ -37,15 +50,39 @@ function TrendGraph() {
             arr.push(type);
         }
         if (arr?.length == 0) {
-            arr.push(graphTypes[0]);
+            arr.push(graphTypes[0].value);
         }
 
         setGraphTypeSelected(arr);
     };
+
+    // const SeriesHandler = () => {
+    //     let mapdata = [];
+    //     graphData2?.data?.map((item) => {
+    //         if (graphTypeSelected.includes(item.name)) {
+    //             mapdata.push(item);
+    //             console.log("mapdata", mapdata);
+    //         }
+    //     })
+    //     setSeries(mapdata);
+    // }
+
     const SeriesHandler = () => {
         let mapdata = [];
-        graphData?.data?.map((item) => {
+        if (!graphData) {
+            return;
+        }
+        graphData2?.data?.map((item) => {
             if (graphTypeSelected.includes(item.name)) {
+                if (item.name === "tvl") {
+                    item.data = graphData["total_volumes"];
+                }
+                if (item.name === "mcap") {
+                    item.data = graphData["market_caps"];
+                }
+                if (item.name === "sushi_price") {
+                    item.data = graphData["prices"];
+                }
                 mapdata.push(item);
             }
         })
@@ -417,5 +454,6 @@ function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHa
         </>
     )
 }
+
 
 export default TrendGraph;

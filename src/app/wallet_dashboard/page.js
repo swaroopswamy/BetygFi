@@ -390,7 +390,7 @@ const WalletDashboardPage = () => {
                                         All
                                     </Box>
                                     {blockchains?.map((item, i) => {
-                                        return (
+                                        return i < 5 && (
                                             <Box
                                                 position={"relative"}
                                                 cursor={"pointer"}
@@ -424,6 +424,7 @@ const WalletDashboardPage = () => {
                                                     fontSize={"14px"}
                                                     fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
                                                     lineHeight={"20px"}
+                                                    textTransform={"uppercase"}
                                                     color={colorMode === 'light' ?
                                                         blockchainSelected.includes(item.id) ? "#191919" : "#191919"
                                                         :
