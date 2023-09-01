@@ -23,12 +23,14 @@ import GovernanceTable from "./governance";
 import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
+import { Router } from "next/router";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
     const pathname = usePathname();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const defi = searchParam.get("defi");
     const id = searchParam.get("id");
@@ -165,7 +167,7 @@ const DefiDashboardPage = () => {
                                     cursor={"pointer"}
                                     borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                                     onClick={() => {
-                                        defiData(item.link);
+                                        router.push(defiData.url);
                                     }}
                                 >
                                     <Text
@@ -242,13 +244,13 @@ const DefiDashboardPage = () => {
                                                             flexDirection={"row"}
                                                             bg={"#D9D9D9"}
                                                             borderRadius="50%"
-                                                            border={blockchainSelected.includes(item.name) ? "3px solid #55A406" : ""}
-                                                            boxShadow={!blockchainSelected.includes(item.name) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                                                            border={blockchainSelected.includes(item.id) ? "3px solid #55A406" : ""}
+                                                            boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                                                             w="40px"
                                                             h="40px"
                                                             ml={i !== 0 && '-10px'}
                                                             onClick={() => {
-                                                                BlockchainTypeHandler(item.name);
+                                                                BlockchainTypeHandler(item.id);
                                                             }}
                                                             _hover={{ borderColor: "blue" }}
                                                             /* bgColor={
@@ -416,7 +418,7 @@ const DefiDashboardPage = () => {
                             fontSize={"16px"}
 
                         >
-                            {defiData?.safety_score}
+                            {defiData?.safety_score}/100
                         </Text>
                     </Box>
                 </Box>

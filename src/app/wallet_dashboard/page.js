@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -370,6 +370,7 @@ const WalletDashboardPage = () => {
                                         fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                                         lineHeight={"20px"}
                                         color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+
                                         _after={
                                             blockchainSelected.length === 0 && {
                                                 position: "absolute",
@@ -379,7 +380,6 @@ const WalletDashboardPage = () => {
                                                 width: "100%",
                                                 height: "1px",
                                                 bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
-
                                             }
                                         }
                                         onClick={() => {
@@ -387,7 +387,7 @@ const WalletDashboardPage = () => {
                                         }}
                                         mr={"18px"}
                                     >
-                                        ALL
+                                        All
                                     </Box>
                                     {blockchains?.map((item, i) => {
                                         return (
@@ -396,7 +396,7 @@ const WalletDashboardPage = () => {
                                                 cursor={"pointer"}
                                                 key={i}
                                                 _after={
-                                                    blockchainSelected.includes(item.name) && {
+                                                    blockchainSelected.includes(item.id) && {
                                                         position: "absolute",
                                                         content: '""',
                                                         bottom: "-14px",
@@ -407,7 +407,7 @@ const WalletDashboardPage = () => {
                                                     }
                                                 }
                                                 onClick={() => {
-                                                    BlockchainTypeHandler(item.name);
+                                                    BlockchainTypeHandler(item.id);
                                                 }}
                                                 mr={"18px"}
                                                 display={"flex"}
@@ -422,14 +422,14 @@ const WalletDashboardPage = () => {
                                                 ></Image>
                                                 <Text
                                                     fontSize={"14px"}
-                                                    fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
+                                                    fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
                                                     lineHeight={"20px"}
                                                     color={colorMode === 'light' ?
-                                                        blockchainSelected.includes(item.name) ? "#191919" : "#191919"
+                                                        blockchainSelected.includes(item.id) ? "#191919" : "#191919"
                                                         :
-                                                        blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
+                                                        blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-
+                                                 textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>
