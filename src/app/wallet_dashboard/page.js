@@ -1,12 +1,12 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -56,7 +56,20 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchAssetAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
-    
+    const fetchProtocolAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchProtocolAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+    const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchBlockchainAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+
+
     useEffect(() => {
 
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
@@ -64,12 +77,14 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
         fetchAssetAllocationForAddressHandler();
+        fetchProtocolAllocationForAddressHandler();
+        fetchBlockchainAllocationForAddressHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-    
+
 
     useEffect(() => {
         if (walletBalanceData?.isQueryInPendingState) {
@@ -169,7 +184,7 @@ const WalletDashboardPage = () => {
                         position={"relative"}
                     >
                         {/*  <SplineAreaChart /> */}
-                       {/*  {(<Box
+                        {/*  {(<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -300,7 +315,7 @@ const WalletDashboardPage = () => {
                                     ></Image>
                                 </Box>
                             </Tab>
-                             <Tab
+                            <Tab
                                 padding="0"
                             >
                                 <Box
@@ -355,6 +370,7 @@ const WalletDashboardPage = () => {
                                         fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                                         lineHeight={"20px"}
                                         color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+
                                         _after={
                                             blockchainSelected.length === 0 && {
                                                 position: "absolute",
@@ -364,7 +380,6 @@ const WalletDashboardPage = () => {
                                                 width: "100%",
                                                 height: "1px",
                                                 bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
-
                                             }
                                         }
                                         onClick={() => {
@@ -372,16 +387,16 @@ const WalletDashboardPage = () => {
                                         }}
                                         mr={"18px"}
                                     >
-                                        ALL
+                                        All
                                     </Box>
                                     {blockchains?.map((item, i) => {
-                                        return (
+                                        return i < 5 && (
                                             <Box
                                                 position={"relative"}
                                                 cursor={"pointer"}
                                                 key={i}
                                                 _after={
-                                                    blockchainSelected.includes(item.name) && {
+                                                    blockchainSelected.includes(item.id) && {
                                                         position: "absolute",
                                                         content: '""',
                                                         bottom: "-14px",
@@ -392,7 +407,7 @@ const WalletDashboardPage = () => {
                                                     }
                                                 }
                                                 onClick={() => {
-                                                    BlockchainTypeHandler(item.name);
+                                                    BlockchainTypeHandler(item.id);
                                                 }}
                                                 mr={"18px"}
                                                 display={"flex"}
@@ -407,14 +422,14 @@ const WalletDashboardPage = () => {
                                                 ></Image>
                                                 <Text
                                                     fontSize={"14px"}
-                                                    fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
+                                                    fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
                                                     lineHeight={"20px"}
                                                     color={colorMode === 'light' ?
-                                                        blockchainSelected.includes(item.name) ? "#191919" : "#191919"
+                                                        blockchainSelected.includes(item.id) ? "#191919" : "#191919"
                                                         :
-                                                        blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
+                                                        blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-
+                                                    textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>

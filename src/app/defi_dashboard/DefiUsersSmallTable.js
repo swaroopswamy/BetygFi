@@ -9,7 +9,7 @@ import GenericSmallTableComponent from "./GenericSmallTable";
 function DefiUsersSmallTableComponent() {
 
     const tableName = "DeFi Users";
-    const thread = ["Users Address", "Share", "Top Tokens"];
+    const thread = ["Users Address"];
 
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
@@ -80,8 +80,8 @@ function RowComponent({ tableData }) {
                                 name: item?.user,
                                 amount: ''
                             }}
-                            share={''}
-                            tokens={{ src1: '', name1: '', percentage1: '', src2: '', name2: '', percentage2: '' }}
+                            // share={''}
+                            // tokens={{ src1: '', name1: '', percentage1: '', src2: '', name2: '', percentage2: '' }}
                         //user={item.id}
                         />
                     </>
@@ -163,7 +163,7 @@ function TableRow({ key, address, share, tokens }) {
                     </Flex>
                 </Td>
 
-                <Td>
+                {/* <Td>
                     <Flex>
                         <Box>
                             <Text
@@ -190,13 +190,13 @@ function TableRow({ key, address, share, tokens }) {
                             alignItems={"center"}
                             display={"flex"}
                         >
-                            {/*  <Image
+                             <Image
                               height={"14px"}
                               width={"8.595px"}
                               src={tokens.src1}
                               alt="logo"
                           >
-                          </Image> */}
+                          </Image>
                             <Text
                                 _dark={{
                                     color: "#FFFFFF"
@@ -229,14 +229,14 @@ function TableRow({ key, address, share, tokens }) {
                             >
                                 {tokens.percentage1}
                             </Text>
-                            {/*  <Image
+                             <Image
                               height={"14px"}
                               width={"16.048px"}
                               src={tokens.src2}
                               alt="logo"
                               ml={"10px"}
                           >
-                          </Image> */}
+                          </Image>
                             <Text
                                 _dark={{
                                     color: "#FFFFFF"
@@ -272,7 +272,7 @@ function TableRow({ key, address, share, tokens }) {
                             </Text>
                         </Box>
                     </Flex>
-                </Td>
+                </Td> */}
 
             </Tr>
         </>
@@ -284,11 +284,11 @@ const SkeletonRow = () => (
       <Td>
         <Skeleton height="20px" my={4} />
       </Td>
-      <Td>
+      {/* <Td>
         <Skeleton height="20px" my={4} />
       </Td>
       <Td>
         <Skeleton height="20px" my={4} />
-      </Td>
+      </Td> */}
     </Box>
   )
