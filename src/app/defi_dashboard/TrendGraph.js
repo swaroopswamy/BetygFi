@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
+import { useSelector } from "react-redux";
 const axios = require('axios');
 
 function TrendGraph() {

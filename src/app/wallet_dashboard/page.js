@@ -68,8 +68,8 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchBlockchainAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
-    
-    
+
+
     useEffect(() => {
 
         dispatch(walletAddressChangedReducer(searchParam.get("address")))
@@ -84,7 +84,7 @@ const WalletDashboardPage = () => {
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-    
+
 
     useEffect(() => {
         if (walletBalanceData?.isQueryInPendingState) {
@@ -184,7 +184,7 @@ const WalletDashboardPage = () => {
                         position={"relative"}
                     >
                         {/*  <SplineAreaChart /> */}
-                       {/*  {(<Box
+                        {/*  {(<Box
                             position={"relative"}
                             bottom={0}
                             right={0}
@@ -315,7 +315,7 @@ const WalletDashboardPage = () => {
                                     ></Image>
                                 </Box>
                             </Tab>
-                             <Tab
+                            <Tab
                                 padding="0"
                             >
                                 <Box
@@ -424,13 +424,12 @@ const WalletDashboardPage = () => {
                                                     fontSize={"14px"}
                                                     fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
                                                     lineHeight={"20px"}
-                                                    textTransform={"uppercase"}
                                                     color={colorMode === 'light' ?
                                                         blockchainSelected.includes(item.id) ? "#191919" : "#191919"
                                                         :
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-                                                 textTransform={"capitalize"}
+                                                    textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>

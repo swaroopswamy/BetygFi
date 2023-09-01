@@ -33,6 +33,7 @@ const BlockchainAllocationTreemapChart = () => {
             }
         },
         dataLabels: {
+
             enabled: true,
             style: {
                 fontSize: '16px',
@@ -40,7 +41,10 @@ const BlockchainAllocationTreemapChart = () => {
                 color: "#000000"
             },
             formatter: function (text, op) {
-                return [text, op.value + "%",]
+                if (op.value > 0) {
+
+                    return [text, op.value + "%",]
+                }
             },
             offsetY: -4
         },
@@ -49,24 +53,27 @@ const BlockchainAllocationTreemapChart = () => {
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
 
                 let xAxisName = w?.config?.series[0].data;
-                return (
-                    '<div class="graph_box">' +
-                    '<div class="graph_inner_text_big" >' +
-                    '<div class="inner_box">' +
-                    xAxisName[dataPointIndex]["x"] +
-                    '<div class="graph_inner_text_sm">' +
-                    xAxisName[dataPointIndex]["y"] + '%' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>')
+                if (xAxisName[dataPointIndex]["y"] > 0) {
+                    return (
+                        '<div class="graph_box">' +
+                        '<div class="graph_inner_text_big" >' +
+                        '<div class="inner_box">' +
+                        xAxisName[dataPointIndex]["x"] +
+                        '<div class="graph_inner_text_sm">' +
+                        xAxisName[dataPointIndex]["y"] + '%' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>')
+                }
+
             }
         }
     };
 
     const series = [
         {
-            data: Object.keys(blockchainAllocationData?.data)?.map((item, i) => {
+            data: Object.keys(blockchainAllocationData?.data || {})?.map((item, i) => {
                 return {
                     x: item,
                     y: blockchainAllocationData?.data[item]
@@ -75,7 +82,7 @@ const BlockchainAllocationTreemapChart = () => {
         }]
     return (
         <>
-            {!blockchainAllocationData?.isSuccess && (
+            {blockchainAllocationData?.isLoading && (
                 <Skeleton>
                     <Box
                         height={"282px"}
@@ -88,7 +95,60 @@ const BlockchainAllocationTreemapChart = () => {
                     </Box>
                 </Skeleton>)
             }
-            {blockchainAllocationData?.isSuccess && <ApexCharts options={options} series={series} type="treemap" height={300} />}
+            {
+                blockchainAllocationData?.isError && (
+                    <Box
+                        _dark={{
+                            color: "#FFF"
+                        }}
+                        _light={{
+                            color: "#16171B"
+                        }}
+                        fontSize={"20px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        textAlign={"center"}
+                        height={"245px"}
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                    >
+                        No Data Available
+                    </Box>
+                )
+            }
+            {blockchainAllocationData?.isSuccess && (
+                blockchainAllocationData?.data === null ?
+                    (
+                        <>
+                            <Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                            >
+                                No Data Available
+                            </Box>
+                        </>
+                    )
+                    :
+                    (
+                        <>
+                            <ApexCharts options={options} series={series} type="treemap" height={300} />
+                        </>
+                    )
+
+            )}
         </>
     );
 };
