@@ -3,7 +3,9 @@ import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button
 import { List, ListItem, ListIcon,Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import isEmpty from "is-empty";
 import NextLink from 'next/link';
 
 
@@ -112,8 +114,7 @@ const GovernanceTable = ({ }) => {
                                         mr="6px">
                                         Start
                                     </Text>
-
-                                    <>
+                                <>
                                         <Image width={"6px"}
                                             height={"8px"}
                                             alt='logo'
@@ -122,12 +123,10 @@ const GovernanceTable = ({ }) => {
                                     </>
                                 </Box>
                             </Th>
-
-
                             <Th>
                                 <Box display={"flex"}
-                                    alignItems={"center"}>
-
+                                    alignItems={"center"}
+                                    >
                                     <Text color={useColorModeValue("#434347", "#A8ADBD")}
                                         fontSize={"14px"}
                                         fontWeight={400}
@@ -146,8 +145,6 @@ const GovernanceTable = ({ }) => {
                                     </>
                                 </Box>
                             </Th>
-
-
                             <Th>
                                 <Box display={"flex"}
                                     alignItems={"center"}>
@@ -159,7 +156,6 @@ const GovernanceTable = ({ }) => {
                                         mr="6px">
                                         State
                                     </Text>
-
                                     <>
                                         <Image width={"1.5"}
                                             height={"2"}
@@ -169,7 +165,6 @@ const GovernanceTable = ({ }) => {
                                     </>
                                 </Box>
                             </Th>
-
                             <Th>
                                 <Box display={"flex"}
                                     alignItems={"center"}>
@@ -181,7 +176,6 @@ const GovernanceTable = ({ }) => {
                                         mr="6px">
                                         Votes
                                     </Text>
-
                                     <>
                                         <Image width={"6px"}
                                             height={"8px"}
@@ -200,7 +194,6 @@ const GovernanceTable = ({ }) => {
                             >
                                 Winning Choice
                             </Th>
-
                             <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}

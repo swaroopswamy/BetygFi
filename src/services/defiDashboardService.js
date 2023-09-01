@@ -32,3 +32,4 @@ export const getDefiHotContractsTableData = async (payload) => {
     return rejectWithValue(err);
   }
 };
+

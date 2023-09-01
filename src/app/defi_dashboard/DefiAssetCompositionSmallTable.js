@@ -1,21 +1,25 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
+import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton} from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
 function Assetcomposition () {
 
   const tableName = "DeFi Asset Composition";
   const thread = ["Asset Name","Share","Value"];
-  const tableData = [
-    ["/images/Venus.svg","Venus","60%","USD 356,456,560"],
-    ["/images/Morphoaave.svg","Morpho Aave","40%","USD 256,456,560"],
-    ["/images/Compoundv3.svg","Compound V3","13.09%","USD 46,456,560"],
-    ["/images/Radiantv2.svg","Radiant V2","15%","USD 66,456,560"],
-    ["/icons/fluidtoken_logo.svg","FluidTokens","13.09%","USD 56,456,560"],
-];
+  const AssetcompositionTableData = useSelector(
+    (state) => state?.defiDashboardData?.DefiUsersTableData
+)
+//   const tableData = [
+//     ["/images/Venus.svg","Venus","60%","USD 356,456,560"],
+//     ["/images/Morphoaave.svg","Morpho Aave","40%","USD 256,456,560"],
+//     ["/images/Compoundv3.svg","Compound V3","13.09%","USD 46,456,560"],
+//     ["/images/Radiantv2.svg","Radiant V2","15%","USD 66,456,560"],
+//     ["/icons/fluidtoken_logo.svg","FluidTokens","13.09%","USD 56,456,560"],
+// ];
  
   return (
     <Box
@@ -26,7 +30,7 @@ function Assetcomposition () {
        <GenericSmallTableComponent
                 tableName={tableName}
                 thread={thread}
-                tableData={tableData}
+                tableData={AssetcompositionTableData}
                 RowComponent={RowComponent}
         />
     </Box>
@@ -37,7 +41,42 @@ export default Assetcomposition;
 function RowComponent({ tableData }) {
   return (
       <>
-           {tableData.map((item, i) => {
+          {tableData?.isError && (
+                <>
+                    <Tr
+                    height={"250px"}
+                    >
+                        <Td
+                         colSpan={3}
+                        >
+                            <Text
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                textAlign={"center"}
+                                p="20px"
+                               
+                            >
+                                No Data available
+                            </Text>
+                        </Td>
+                    </Tr>
+                </>
+            )}
+            {tableData?.isLoading && (
+                <>
+                    <SkeletonRow />
+                    <SkeletonRow />
+                    <SkeletonRow />
+                </>
+            )}
+          {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
                             return (
                                 <>
                                     <TableRow
@@ -150,3 +189,17 @@ function TableRow({ key, asset, share, value }) {
       </>
   );
 }
+
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
