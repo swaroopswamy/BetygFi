@@ -233,7 +233,7 @@ const Dashboard = () => {
                   _focus={{ boxShadow: 'outline' }}
                   color="#000"
                 >
-                  +6
+                  +7
                 </MenuButton>
                 <MenuList
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
