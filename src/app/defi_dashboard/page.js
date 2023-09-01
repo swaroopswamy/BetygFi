@@ -10,7 +10,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import millify from "millify";
 import TVLBox from "./TVLBox";
 import DonutChart from "./DonutChart";
@@ -20,11 +20,13 @@ import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";
-import { fetchDefiUsersTableData, fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
+    const pathname = usePathname();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
 
@@ -64,16 +66,24 @@ const DefiDashboardPage = () => {
         };
         dispatch(fetchDefiUsersTableData(payload));
     };
+    const getDefiHotContractsDataHandler = () => {
+        const payload = {
+            defi: defi,
+            blockchain: "",
+        };
+        dispatch(fetchDefiHotContractsTableData(payload));
+    };
+
 
     useEffect(() => {
         getDefiDataHandler();
         getDefiUsersTableDataHandler();
+        getDefiHotContractsDataHandler();
     }, []);
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
-    console.log(defiData, 'defi')
     const renderIcon = (item) => {
         return (
             <Image
@@ -83,7 +93,11 @@ const DefiDashboardPage = () => {
                 height={18}
             />
         );
-    };
+    }; 
+    const toCapitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      };
+      
 
     return (
         <>
@@ -148,7 +162,11 @@ const DefiDashboardPage = () => {
                                 <Box
                                     h="100%"
                                     py={"11px"}
+                                    cursor={"pointer"}
                                     borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
+                                    onClick={() => {
+                                        defiData(item.link);
+                                    }}
                                 >
                                     <Text
                                         fontSize={"14px"}
@@ -189,7 +207,7 @@ const DefiDashboardPage = () => {
                                     >
                                         {blockchains?.map((item, i) => (
                                             <>
-                                                {defiData?.chains?.includes(item.name) &&
+                                                {defiData?.chains?.includes(toCapitalize(item.name)) &&
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>
@@ -229,7 +247,9 @@ const DefiDashboardPage = () => {
                                                             w="40px"
                                                             h="40px"
                                                             ml={i !== 0 && '-10px'}
-
+                                                            onClick={() => {
+                                                                BlockchainTypeHandler(item.name);
+                                                            }}
                                                             _hover={{ borderColor: "blue" }}
                                                             /* bgColor={
                                                               blockchainSelected.includes(item)
@@ -240,9 +260,6 @@ const DefiDashboardPage = () => {
                                                               "1px solid #E0E0E0",
                                                               "1px solid #333"
                                                             )}  */
-                                                            onClick={() => {
-                                                                BlockchainTypeHandler(item.name);
-                                                            }}
                                                         >
                                                             <Image
                                                                 width={18}
@@ -266,7 +283,7 @@ const DefiDashboardPage = () => {
                                                 }
                                             </>
                                         ))}
-                                      {/*   <Menu closeOnSelect={false}>
+                                        {/*   <Menu closeOnSelect={false}>
                                             <MenuButton
                                                 bg={"#D9D9D9"}
                                                 borderRadius="50%"
@@ -399,7 +416,7 @@ const DefiDashboardPage = () => {
                             fontSize={"16px"}
 
                         >
-                           {defiData?.safety_score} %
+                            {defiData?.safety_score}
                         </Text>
                     </Box>
                 </Box>
@@ -421,7 +438,7 @@ const DefiDashboardPage = () => {
                     padding={"10px 0 0 10px"}
                 >
                     <TVLBox />
-                   {/*  <TrendGraph /> */}
+                    <TrendGraph />
                 </Box>
 
                 <Box

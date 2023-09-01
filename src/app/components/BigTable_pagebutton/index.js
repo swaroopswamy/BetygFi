@@ -5,15 +5,20 @@ import {
     Image, Spacer, Button, useColorMode
 } from "@chakra-ui/react";
 
-const BigTablePageButtons=()=> {
+const BigTablePageButtons = () => {
     return (
         <>
-            <Flex
+            <Box
+                display={"flex"}
                 //alignItems={"flex-start"}
-                //justifyContent={"space-between"}
-                //padding="10px 0px  10px 10px"
+                justifyContent={"space-between"}
+                padding="10px"
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                >
                     <Text
                         _light={{ color: "#A8ADBD" }}
                         _dark={{ color: "#A8ADBD" }}
@@ -36,15 +41,19 @@ const BigTablePageButtons=()=> {
                     >
                         3 mins ago
                     </Text>
-                    <Spacer />
-                        <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"12px"}
-                            fontWeight={"400"}
-                            mt={"3px"}
-                        >
-                            1-20
-                        </Text>
+                </Box>
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                >
+                    <Text
+                        color={useColorModeValue("#16171B", "#FFF")}
+                        fontSize={"12px"}
+                        fontWeight={"400"}
+                        mt={"3px"}
+                    >
+                        1-20
+                    </Text>
 
                     <Button
                         display={"flex"}
@@ -107,9 +116,11 @@ const BigTablePageButtons=()=> {
                             src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                         ></Image>
                     </Button>
-                
 
-            </Flex>
+                </Box>
+
+
+            </Box>
         </>)
 }
 export default BigTablePageButtons;

@@ -14,7 +14,6 @@ function DefiUsersSmallTableComponent() {
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
     )
-    console.log(defiUsersTableData, "tabledata");
 
     return (
         <Box
@@ -39,16 +38,24 @@ function RowComponent({ tableData }) {
             {tableData?.isError && (
                 <>
                     <Tr
+                    height={"250px"}
                     >
                         <Td
+                         colSpan={3}
                         >
                             <Text
-                                color={useColorModeValue("#16171B", "#FFF")}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                _dark={{
+                                    color: "#FFF"
+                                }}
                                 fontSize={"20px"}
                                 fontWeight={"400"}
                                 letterSpacing={"1px"}
                                 textAlign={"center"}
                                 p="20px"
+                               
                             >
                                 No Data available
                             </Text>

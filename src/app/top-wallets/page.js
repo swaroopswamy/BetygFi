@@ -22,7 +22,7 @@ const WalletDashboardPage = () => {
     return (
         <>
             <Box
-                bgColor={useColorModeValue("#F5F5F7", "#131313")}
+                bgColor={useColorModeValue("#F5F5F7","#131313")}
                 display={"flex"}
                 justifyContent={"space-between"}
                 flexDirection={"column"}

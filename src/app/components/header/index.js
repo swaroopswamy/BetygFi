@@ -74,7 +74,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         px={{ base: 4, md: 4 }}
         height="20"
         alignItems="center"
-        borderBottomWidth="1px"
+        //borderBottomWidth="1px"
         bg={useColorModeValue("#F0F0F5", "#191919")}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
@@ -168,12 +168,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     <Box
                       cursor={"pointer"}
                       onClick={onLoginModalOpen}
-                      minW={"140px"}
-                      height={"32px"}
                       bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
-                      pt={"12px"}
-                      pl={"20px"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
                       borderRadius={"2px"}
+                      p="15px 20px"
+                      minW="150px"
                     >
                       <Text
                         fontSize={"14px"}

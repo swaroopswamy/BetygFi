@@ -318,7 +318,7 @@ const Rankings = () => {
                     <Tr key={i + 1}
                       cursor={"pointer"}
                       onClick={() => {
-                          router.push(`/defi_dashboard?defi=${item.gecko_id}&id=${item._id}`);
+                          router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
                       }}
                     >
                       <Td

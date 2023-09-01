@@ -33,6 +33,17 @@ export const getWalletTransactionsForAddressSummary = async (payloadData) => {
   }
 };
 
+export const getAssetAllocationForAddress = async (payloadData) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `wallet/address/${payloadData.address}/assets-allocation`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 
 export default {

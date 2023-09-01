@@ -384,7 +384,7 @@ const TransactionPanelComponent = () => {
                               color: "#16171B"
                             }}
                             isExternal
-                            href={`https://etherscan.io/tx/${item?.hash}`}
+                            href={item?.blockExplorerUrl}
                           >
                             {item?.hash.split("").join("").substring(0, 6) + "..." + item?.hash.slice(-5)}
                             <ExternalLinkIcon mx='4px' />

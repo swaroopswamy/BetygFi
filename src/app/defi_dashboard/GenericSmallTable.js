@@ -32,7 +32,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
     return (
         <>
             <Box
-                height={"100%"}
+          
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
@@ -101,7 +101,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
                     borderRadius={"6px"}
-                    height={"80%"}
+                 
                 >
                     <Thead>
                         <Tr
@@ -130,8 +130,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                             tableData={tableData}
                         />
                     </Tbody>
-                    <Tfoot>
-                    </Tfoot>
+
 
                 </Table>
                 <SmallTable_LastUpdate />

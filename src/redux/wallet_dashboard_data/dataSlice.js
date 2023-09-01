@@ -1,5 +1,5 @@
 import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
-import { getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
+import { getAssetAllocationForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -20,6 +20,11 @@ export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactio
 
 export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary', async (payload) => {
   const response = await getWalletTransactionsForAddressSummary(payload);
+  return response.data;
+})
+
+export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress', async (payload) => {
+  const response = await getAssetAllocationForAddress(payload);
   return response.data;
 })
 
@@ -45,6 +50,12 @@ const WalletDashboardDataSlice = createSlice({
       isSuccess: false,
     },
     walletTransactionsForAddressSummary: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    assetAllocationForAddress: {
       data: null,
       isLoading: false,
       isError: false,
@@ -127,6 +138,24 @@ const WalletDashboardDataSlice = createSlice({
       state.walletTransactionsForAddressSummary.isSuccess = false;
       state.walletTransactionsForAddressSummary.isError = true;
       state.walletTransactionsForAddressSummary.data = action.payload;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.fulfilled, (state, action) => {
+      state.assetAllocationForAddress.data = action.payload;
+      state.assetAllocationForAddress.isLoading = false;
+      state.assetAllocationForAddress.isSuccess = true;
+      state.assetAllocationForAddress.isError = false;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.pending, (state, action) => {
+      state.assetAllocationForAddress.isLoading = true;
+      state.assetAllocationForAddress.isError = false;
+      state.assetAllocationForAddress.isSuccess = false;
+      state.assetAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchAssetAllocationForAddress.rejected, (state, action) => {
+      state.assetAllocationForAddress.isLoading = false;
+      state.assetAllocationForAddress.isSuccess = false;
+      state.assetAllocationForAddress.isError = true;
+      state.assetAllocationForAddress.data = action.payload;
     });
   },
   reducers: {
