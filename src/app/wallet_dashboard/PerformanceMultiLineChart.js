@@ -42,7 +42,7 @@ const PerformanceMultiLineChart = () => {
         show: true,
         style: {
           colors: useColorModeValue("#16171B", "#FFF"),
-          fontSize: "11px",
+          fontSize: "12px",
           fontWeight: 400,
         },
       },
@@ -52,7 +52,7 @@ const PerformanceMultiLineChart = () => {
         show: true,
         style: {
           colors: useColorModeValue("#16171B", "#FFF"),
-          fontSize: "11px",
+          fontSize: "12px",
           fontWeight: 400,
         },
         formatter: (value) => {
@@ -64,15 +64,15 @@ const PerformanceMultiLineChart = () => {
   const series = [
     {
       name: "Wallet Portfolio",
-      data: [1, 4, 5, 3, 2],
+      //data: [1, 4, 5, 3, 2],
     },
     {
       name: "BTC",
-      data: [5, 3, 1, 4, 1],
+      //data: [5, 3, 1, 4, 1],
     },
     {
       name: "ETH Trend",
-      data: [5, 2, 3, 1, 4],
+      //data: [5, 2, 3, 1, 4],
     },
   ];
   return (

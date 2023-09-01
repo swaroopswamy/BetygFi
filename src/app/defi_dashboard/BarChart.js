@@ -97,13 +97,13 @@ function BarChart() {
   const series = [{
     data: [{
       x: 'Borrow',
-      y: 100
+      // y: 100
     }, {
       x: 'Supply',
-      y: 80
+      // y: 80
     }, {
       x: 'TVL',
-      y: 59
+      // y: 59
     }]
   }]
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosInstance } from "../../util/axiosInstance";
+
 export const getDefiRankingsTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.post(
