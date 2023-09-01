@@ -75,7 +75,7 @@ function RowComponent({ tableData }) {
                 </>
             )}
             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                return i < 5 && ( 
+                return i < 8 && ( 
                     <>
                         <TableRow
                             key={i}
