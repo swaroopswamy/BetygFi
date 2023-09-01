@@ -24,16 +24,17 @@ function TrendGraph() {
                         .catch(function (error) {
                             console.log(error);
                         });
-    }, [graphData]);
+        setGraphTypeSelected(["tvl"])
+    }, []);
 
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
         { name: "Price", value: "price" },
-        { name: "Users", value: "users" },
-        { name: "FDV", value: "fdv" },
-        { name: "Borrowed", value: "borrowed" },
-        { name: "Median APY", value: "median_apy" }
+        // { name: "Users", value: "users" },
+        // { name: "FDV", value: "fdv" },
+        // { name: "Borrowed", value: "borrowed" },
+        // { name: "Median APY", value: "median_apy" }
     ];
 
     const CurrencyTypeHandler = (type) => {
@@ -147,7 +148,7 @@ function TrendGraph() {
                             );
                         })}
 
-                        <Box
+                        {/* <Box
                             position={"relative"}
                             padding={"7px 4px"}
                             borderRight={"1px"}
@@ -163,11 +164,11 @@ function TrendGraph() {
                                 alt="next-arrow"
                                 src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                             ></Image>
-                        </Box>
+                        </Box> */}
                     </Box>
 
                     {/* Currency selection */}
-                    <Box
+                    {/* <Box
                         display={"flex"}
                         ml={"auto"}
                     >
@@ -176,10 +177,10 @@ function TrendGraph() {
                             CurrencyTypeHandler={CurrencyTypeHandler}
                             colorMode={colorMode}
                         />
-                    </Box>
+                    </Box> */}
 
                     {/* Period selector */}
-                    <Box
+                    {/* <Box
                         display={"flex"}
                         mr={"26px"}
                         ml={"10px"}
@@ -198,7 +199,7 @@ function TrendGraph() {
                             <option value='Monthly'>Monthly</option>
                             <option value='Yearly'>Yearly</option>
                         </Select>
-                    </Box>
+                    </Box> */}
                 </Box>
 
                 <Box
@@ -311,6 +312,7 @@ function Graph({ series }) {
                 series={series}
                 type={options.chart.type}
                 height={"200px"}
+                width={"600px"}
             />
         </>
     )
