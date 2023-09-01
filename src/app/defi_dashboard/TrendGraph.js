@@ -26,15 +26,15 @@ function TrendGraph() {
                         });
     }, [graphData]);
 
-    const graphTypes = [
-        { name: "TVL", value: "tvl" },
-        { name: "MCap", value: "mcap" },
-        { name: "Price", value: "price" },
-        { name: "Users", value: "users" },
-        { name: "FDV", value: "fdv" },
-        { name: "Borrowed", value: "borrowed" },
-        { name: "Median APY", value: "median_apy" }
-    ];
+    // const graphTypes = [
+    //     { name: "TVL", value: "tvl" },
+    //     { name: "MCap", value: "mcap" },
+    //     { name: "Price", value: "price" },
+    //     { name: "Users", value: "users" },
+    //     { name: "FDV", value: "fdv" },
+    //     { name: "Borrowed", value: "borrowed" },
+    //     { name: "Median APY", value: "median_apy" }
+    // ];
 
     const CurrencyTypeHandler = (type) => {
         setCurrencyType(type);
@@ -129,12 +129,12 @@ function TrendGraph() {
                 >
 
                     {/* Graph type selection */}
-                    <Box
+                    {/* <Box
                         display={"flex"}
                         gap={"10px"}
                         ml={"24px"}
-                    >
-                        {graphTypes.map((item, i) => {
+                    > */}
+                        {/* {graphTypes.map((item, i) => {
                             return (
                                 <TrendGraphTypeButton
                                     key={i}
@@ -145,9 +145,9 @@ function TrendGraph() {
                                     colorMode={colorMode}
                                 />
                             );
-                        })}
+                        })} */}
 
-                        <Box
+                        {/* <Box
                             position={"relative"}
                             padding={"7px 4px"}
                             borderRight={"1px"}
@@ -164,18 +164,18 @@ function TrendGraph() {
                                 src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                             ></Image>
                         </Box>
-                    </Box>
+                    </Box> */}
 
                     {/* Currency selection */}
                     <Box
                         display={"flex"}
                         ml={"auto"}
                     >
-                        <CurrencyButtons
+                        {/* <CurrencyButtons
                             currencySelected={currencySelected}
                             CurrencyTypeHandler={CurrencyTypeHandler}
                             colorMode={colorMode}
-                        />
+                        /> */}
                     </Box>
 
                     {/* Period selector */}
@@ -184,7 +184,7 @@ function TrendGraph() {
                         mr={"26px"}
                         ml={"10px"}
                     >
-                        <Select
+                        {/* <Select
                             fontSize={"10px"}
                             fontWeight={"600"}
                             height={"24px"}
@@ -197,7 +197,7 @@ function TrendGraph() {
                             <option value='Daily'>Daily</option>
                             <option value='Monthly'>Monthly</option>
                             <option value='Yearly'>Yearly</option>
-                        </Select>
+                        </Select> */}
                     </Box>
                 </Box>
 
@@ -306,12 +306,32 @@ function Graph({ series }) {
 
     return (
         <>
-            <Chart
+            {/* <Chart
                 options={options}
                 series={series}
                 type={options.chart.type}
                 height={"200px"}
-            />
+            /> */}
+
+<Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                                mb={"20px"}
+                            >
+                                No Data Available
+                            </Box>
         </>
     )
 }

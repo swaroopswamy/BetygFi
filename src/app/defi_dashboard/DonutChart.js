@@ -26,21 +26,21 @@ function DonutChart() {
         customScale: 1
       }
     },
-    // tooltip: {
-    //   theme: colorMode,
-    //   custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-    //     return (
-    //       '<div class="donut_tooltip">' +
-    //       '<div class="donut_tooltip_text">' +
-    //       w.globals.labels[seriesIndex] +
-    //       "</div>" +
-    //       '<div class="donut_tooltip_text">' +
-    //       series[seriesIndex] + "USD" +
-    //       '</div>' +
-    //       "</div>"
-    //     );
-    //   }
-    // },
+    tooltip: {
+      theme: colorMode,
+      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+        return (
+          '<div class="donut_tooltip">' +
+          '<div class="donut_tooltip_text">' +
+          w.globals.labels[seriesIndex] +
+          "</div>" +
+          '<div class="donut_tooltip_text">' +
+          series[seriesIndex] + "USD" +
+          '</div>' +
+          "</div>"
+        );
+      }
+    },
     stroke: {
       width: 0,
     },
@@ -66,9 +66,7 @@ function DonutChart() {
     colors: ["#FF5C01", "#24A48A"],
   };
 
-  const series = [  
-        //194090,33900
-    ];
+  const series = [ 194090,33900 ];
 
   return (
     <>
@@ -138,7 +136,7 @@ function DonutChart() {
         </Box>
 
 
-        <Box
+        {/* <Box
           padding={"5px 50px 20px 10px"}
           mt={"20px"}
           mr={"30px"}
@@ -152,7 +150,26 @@ function DonutChart() {
             type={options.chart.type}
             height={"200px"}
           />
-        </Box>
+        </Box> */}
+
+                            <Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                            >
+                                No Data Available
+                            </Box>
 
         <Box
           display={"flex"}

@@ -194,7 +194,7 @@ const GovernanceTable = ({ }) => {
                             >
                                 Winning Choice
                             </Th>
-                            <Th
+                              <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -255,7 +255,33 @@ const GovernanceTable = ({ }) => {
 
                         _light={{ bgColor: "#FFF" }} >
 
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+                        <Td></Td>
+                        <Td></Td>
+                        <Td></Td>
+                        <Td></Td>
+                        <Td>
+                        <Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                            >
+                                No Data Available
+                            </Box>
+                        </Td>
+                        <Td></Td>
+
+                        {/* <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
 
                             _light={{ color: "#16171B" }}>
 
@@ -341,7 +367,7 @@ const GovernanceTable = ({ }) => {
                             <Td  fontSize={"14px"}>481759.04</Td>
 
                             
-                        </Tr>
+                        </Tr> */}
                     </Tbody>
                   
                 </Table>

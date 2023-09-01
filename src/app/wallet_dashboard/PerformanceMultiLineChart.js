@@ -64,15 +64,15 @@ const PerformanceMultiLineChart = () => {
   const series = [
     {
       name: "Wallet Portfolio",
-      //data: [1, 4, 5, 3, 2],
+      data: [1, 4, 5, 3, 2],
     },
     {
       name: "BTC",
-      //data: [5, 3, 1, 4, 1],
+      data: [5, 3, 1, 4, 1],
     },
     {
       name: "ETH Trend",
-      //data: [5, 2, 3, 1, 4],
+      data: [5, 2, 3, 1, 4],
     },
   ];
   return (
@@ -91,7 +91,26 @@ const PerformanceMultiLineChart = () => {
                 </Box>
                 </Skeleton>)
             }
-             {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />}
+             {/* {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />} */}
+
+             <Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                            >
+                                No Data Available
+                            </Box>
     </>
   );
 };
