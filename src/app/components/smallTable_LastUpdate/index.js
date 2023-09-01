@@ -10,7 +10,6 @@ const SmallTable_LastUpdate=()=>{
 
     return (
         <>
-
             <Box
                 display={"flex"}
                 width={"100%"}

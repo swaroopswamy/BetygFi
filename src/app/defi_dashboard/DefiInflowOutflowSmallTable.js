@@ -1,21 +1,26 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer} from "@chakra-ui/react";
+import {  Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton} from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
 function Defiflow () {
 
   const tableName = "DeFi Inflow/Outflow";
   const thread = ["Users Address","Net Value Flow (7 Days)"];
-  const tableData = [
-    ["/images/Ethdefiusers.svg","Ethereum","+ 356,456,560 USD "],
-    ["/images/Trondefiusers.svg","Tron","+ 256,456,560 USD"],
-    ["/images/Binancedefiusers.svg","BSC","+ 46,456,560 USD"],
-    ["/images/Arbitrumdefiusers.svg","Arbitrum","+ 66,456,560 USD"],
-    ["/images/Polygondefiusers.svg","Polygon","+ 56,456,560 USD"],
-];
+  const defiflowTableData = useSelector(
+    (state) => state?.defiDashboardData?.DefiUsersTableData
+)
+
+//   const tableData = [
+//     ["/images/Ethdefiusers.svg","Ethereum","+ 356,456,560 USD "],
+//     ["/images/Trondefiusers.svg","Tron","+ 256,456,560 USD"],
+//     ["/images/Binancedefiusers.svg","BSC","+ 46,456,560 USD"],
+//     ["/images/Arbitrumdefiusers.svg","Arbitrum","+ 66,456,560 USD"],
+//     ["/images/Polygondefiusers.svg","Polygon","+ 56,456,560 USD"],
+// ];
  
   return (
     <Box
@@ -26,7 +31,7 @@ function Defiflow () {
        <GenericSmallTableComponent
                 tableName={tableName}
                 thread={thread}
-                tableData={tableData}
+                tableData={defiflowTableData}
                 RowComponent={RowComponent}
         />
     </Box>
@@ -37,7 +42,42 @@ export default Defiflow;
 function RowComponent({ tableData }) {
   return (
       <>
-           {tableData.map((item, i) => {
+         {tableData?.isError && (
+                <>
+                    <Tr
+                    height={"250px"}
+                    >
+                        <Td
+                         colSpan={3}
+                        >
+                            <Text
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                textAlign={"center"}
+                                p="20px"
+                               
+                            >
+                                No Data available
+                            </Text>
+                        </Td>
+                    </Tr>
+                </>
+            )}
+            {tableData?.isLoading && (
+                <>
+                    <SkeletonRow />
+                    <SkeletonRow />
+                    <SkeletonRow />
+                </>
+            )}
+           {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
                             return (
                                 <>
                                     <TableRow
@@ -129,3 +169,17 @@ function TableRow({ key, address, value }) {
       </>
   );
 }
+
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
