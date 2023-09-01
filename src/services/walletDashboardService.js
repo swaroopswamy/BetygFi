@@ -44,6 +44,28 @@ export const getAssetAllocationForAddress = async (payloadData) => {
   }
 };
 
+export const getProtocolAllocationForAddress = async (payloadData) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `wallet/address/${payloadData.address}/protocol-allocation`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
+export const getBlockchainAllocationForAddress = async (payloadData) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `wallet/address/${payloadData.address}/blockchain-allocation`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 
 export default {

@@ -135,7 +135,7 @@
             ]
         },
         {
-            "name": "sushi_price",
+            "name": "price",
             "type": "area",
             "color": "#DE50CF",
             "data": [

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -56,6 +56,19 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchAssetAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+    const fetchProtocolAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchProtocolAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+    const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchBlockchainAllocationForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+    
     
     useEffect(() => {
 
@@ -64,6 +77,8 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
         fetchWalletTransactionsDataHandler();
         fetchAssetAllocationForAddressHandler();
+        fetchProtocolAllocationForAddressHandler();
+        fetchBlockchainAllocationForAddressHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     useEffect(() => {

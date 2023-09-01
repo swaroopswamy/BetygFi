@@ -207,7 +207,7 @@ const DefiDashboardPage = () => {
                                     >
                                         {blockchains?.map((item, i) => (
                                             <>
-                                                {defiData?.chains?.includes(toCapitalize(item.name)) &&
+                                                {defiData?.chains?.includes(toCapitalize(item.id)) &&
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>

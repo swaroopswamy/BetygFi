@@ -1,5 +1,5 @@
 import { useColorMode, useColorModeValue, Skeleton, Box } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import './styles.css'
 import dynamic from "next/dynamic";
@@ -7,6 +7,8 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 const BlockchainAllocationTreemapChart = () => {
     const { colorMode } = useColorMode();
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const blockchainAllocationData = useSelector((state) => state?.walletDashboardTableData?.blockchainAllocationForAddress);
+
     const options = {
         chart: {
             toolbar: {
@@ -61,61 +63,32 @@ const BlockchainAllocationTreemapChart = () => {
             }
         }
     };
+
     const series = [
         {
-            data: [
-                {
-                    x: 'Ethereum',
-                    y: 25
-                },
-                {
-                    x: 'Arbitrum',
-                    y: 15
-                },
-                {
-                    x: 'Polygon',
-                    y: 10
-                },
-                {
-                    x: 'Optimism',
-                    y: 5
-                },
-                {
-                    x: 'Avalanche',
-                    y: 15
-                },
-                {
-                    x: 'Mixin',
-                    y: 5
-                },
-                {
-                    x: 'Solana',
-                    y: 5
-                },
-                {
-                    x: 'Kava',
-                    y: 20
-                },
-                
-            ]
-        }
-    ];
+            data: Object.keys(blockchainAllocationData?.data)?.map((item, i) => {
+                return {
+                    x: item,
+                    y: blockchainAllocationData?.data[item]
+                }
+            })
+        }]
     return (
         <>
-        {!walletBalanceData?.isSuccess && (
-            <Skeleton>
-                <Box
-                    height={"282px"}
-                    pt={"9px"}
-                 /*    display={"flex"}
-                    justifyContent={"center"}
-                    alignItems={"center"} */
-                > 
-                    
-                </Box>
+            {!blockchainAllocationData?.isSuccess && (
+                <Skeleton>
+                    <Box
+                        height={"282px"}
+                        pt={"9px"}
+                    /*    display={"flex"}
+                       justifyContent={"center"}
+                       alignItems={"center"} */
+                    >
+
+                    </Box>
                 </Skeleton>)
             }
-              {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="treemap" height={300} />}
+            {blockchainAllocationData?.isSuccess && <ApexCharts options={options} series={series} type="treemap" height={300} />}
         </>
     );
 };

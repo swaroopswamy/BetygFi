@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData from './exampleTrendGraphData.json';
+import { useSelector } from "react-redux";
 
 function TrendGraph() {
     const { colorMode } = useColorMode();
@@ -14,7 +15,7 @@ function TrendGraph() {
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
-        { name: "Sushi Price", value: "sushi_price" },
+        { name: "Price", value: "price" },
         { name: "Users", value: "users" },
         { name: "FDV", value: "fdv" },
         { name: "Borrowed", value: "borrowed" },
@@ -54,6 +55,8 @@ function TrendGraph() {
     useEffect(() => {
         SeriesHandler();
     }, [graphTypeSelected])
+
+
 
     return (
         <>
@@ -373,7 +376,9 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 }
 
 function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHandler, colorMode }) {
-
+    const defiData = useSelector(
+        (state) => state?.defiDashboardData?.DefiData?.data
+    )
     return (
         <>
             <Box
@@ -404,8 +409,9 @@ function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHa
                     fontSize={"10px"}
                     lineHeight={"10px"}
                     fontWeight={graphTypeSelected.includes(value) ? 600 : 400}
+                    textTransform={"capitalize"}
                 >
-                    {name}
+                    {value === "price" ? `${defiData?.symbol} price` : name}
                 </Text>
             </Box>
         </>
