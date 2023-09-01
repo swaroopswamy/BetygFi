@@ -26,21 +26,21 @@ function DonutChart() {
         customScale: 1
       }
     },
-    tooltip: {
-      theme: colorMode,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-        return (
-          '<div class="donut_tooltip">' +
-          '<div class="donut_tooltip_text">' +
-          w.globals.labels[seriesIndex] +
-          "</div>" +
-          '<div class="donut_tooltip_text">' +
-          series[seriesIndex] + "USD" +
-          '</div>' +
-          "</div>"
-        );
-      }
-    },
+    // tooltip: {
+    //   theme: colorMode,
+    //   custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+    //     return (
+    //       '<div class="donut_tooltip">' +
+    //       '<div class="donut_tooltip_text">' +
+    //       w.globals.labels[seriesIndex] +
+    //       "</div>" +
+    //       '<div class="donut_tooltip_text">' +
+    //       series[seriesIndex] + "USD" +
+    //       '</div>' +
+    //       "</div>"
+    //     );
+    //   }
+    // },
     stroke: {
       width: 0,
     },
@@ -56,9 +56,9 @@ function DonutChart() {
       markers: {
         offsetY: 2
       },
-      formatter: function (text, opts) {
-        return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
-      },
+      // formatter: function (text, opts) {
+      //   return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
+      // },
     },
     dataLabels: {
       enabled: false
@@ -66,7 +66,9 @@ function DonutChart() {
     colors: ["#FF5C01", "#24A48A"],
   };
 
-  const series = [194090, 33900];
+  const series = [  
+        //194090,33900
+    ];
 
   return (
     <>
@@ -109,7 +111,7 @@ function DonutChart() {
 
           </Box>
 
-          <Button
+           {/* <Button
             variant={"outline"}
             size={"xs"}
             _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
@@ -132,7 +134,7 @@ function DonutChart() {
               View More
             </Text>
 
-          </Button>
+          </Button> */}
         </Box>
 
 
@@ -141,7 +143,7 @@ function DonutChart() {
           mt={"20px"}
           mr={"30px"}
           fontSize={"14px"}
-          fontWeight={400}
+          fontWeight={400}  
           lineHeight={"10px"}
         >
           <Chart
@@ -153,23 +155,23 @@ function DonutChart() {
         </Box>
 
         <Box
-          height={"30px"}
           display={"flex"}
-          gap={"5px"}
+          gap={"10px"}
           justifyContent={"right"}
           mr={"20px"}
+          mt={"40px"}
         >
           <Text
+            color={"#A8ADBD"}
             fontSize={"12px"}
-            fontWeight={"400"}
+            fontWeight={400}
             lineHeight={"20px"}
-            color={"#8ADBD"}
           >
             Last Update
           </Text>
           <Text
             fontSize={"12px"}
-            fontWeight={"400"}
+            fontWeight={400}
             lineHeight={"20px"}
             color={colorMode === 'light' ? "#16171B" : "#FFF"}
           >

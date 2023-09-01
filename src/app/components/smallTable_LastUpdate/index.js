@@ -6,11 +6,10 @@ import {
 } from "@chakra-ui/react";
 
 
-const SmallPageButtons = () => {
+const SmallTable_LastUpdate=()=>{
 
     return (
         <>
-
             <Box
                 display={"flex"}
                 width={"100%"}
@@ -44,4 +43,4 @@ const SmallPageButtons = () => {
             </Box>
         </>)
 }
-export default SmallPageButtons;
+export default SmallTable_LastUpdate;
