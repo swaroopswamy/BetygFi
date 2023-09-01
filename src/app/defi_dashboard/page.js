@@ -163,7 +163,7 @@ const DefiDashboardPage = () => {
                                     cursor={"pointer"}
                                     borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                                     onClick={() => {
-                                        router.push();
+                                        router.push(defiData.url);
                                     }}
                                 >
                                     <Text
