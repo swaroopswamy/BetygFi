@@ -316,7 +316,7 @@ const Rankings = () => {
                 return (
                   <>
                     <Tr key={i + 1}
-                      cursor={"pointer"}
+                      cursor={item.name === "AAVE V2" ? "pointer" : "cursor"}
                       onClick={() => {
                           if (item.name === "AAVE V2")
                             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
