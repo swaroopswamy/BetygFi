@@ -15,7 +15,7 @@ export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', a
 })
 export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload) => {
   const response = await getWalletTransactionsData(payload);
-  return response.data;
+  return response;
 })
 
 export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary', async (payload) => {
