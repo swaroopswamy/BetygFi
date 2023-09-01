@@ -6,6 +6,7 @@ import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
+import millify from "millify";
 const axios = require('axios');
 
 function TrendGraph() {
@@ -268,8 +269,11 @@ function Graph({ series }) {
                             fontWeight: 300,
                         },
                         formatter: function (val, index) {
-                            return "$" + val + "B";
-                        }
+                            return "$" + millify(val, {
+                                precision: 2,
+                                locales: "en-US"
+                            });
+                        },
                     },
                     axisBorder: {
                         show: i !== 0 && true,
