@@ -23,12 +23,14 @@ import GovernanceTable from "./governance";
 import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
+import { Router } from "next/router";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
     const pathname = usePathname();
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const defi = searchParam.get("defi");
     const id = searchParam.get("id");
@@ -161,7 +163,7 @@ const DefiDashboardPage = () => {
                                     cursor={"pointer"}
                                     borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                                     onClick={() => {
-                                        defiData(item.link);
+                                        router.push();
                                     }}
                                 >
                                     <Text
