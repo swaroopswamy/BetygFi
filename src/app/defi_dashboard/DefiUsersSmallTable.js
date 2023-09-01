@@ -10,6 +10,8 @@ function DefiUsersSmallTableComponent() {
 
     const tableName = "DeFi Users";
     const thread = ["Users Address"];
+    const Tooltip= ["Defi Users"];
+    const BigTable= ["/defi_dashboard/defi_users"];
 
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
@@ -26,6 +28,8 @@ function DefiUsersSmallTableComponent() {
                 thread={thread}
                 tableData={defiUsersTableData}
                 RowComponent={RowComponent}
+                Tooltip={Tooltip}
+                BigTable={BigTable}
             />
         </Box>
     )

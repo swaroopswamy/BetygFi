@@ -170,6 +170,11 @@ const DefiDashboardPage = () => {
                                         router.push(defiData.url);
                                     }}
                                 >
+                                    <a
+  href={defiData?.url}
+  target="_blank"
+  rel="noopener noreferrer"
+>
                                     <Text
                                         fontSize={"14px"}
                                         fontWeight={400}
@@ -177,9 +182,11 @@ const DefiDashboardPage = () => {
                                         letterSpacing={"1.4px"}
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"20px"}
+                                       
                                     >
-                                        {defiData?.url}
+                                        {defiData?.url} 
                                     </Text>
+                                    </a>
                                 </Box>
                                 <Box
                                     display={"flex"}
@@ -385,7 +392,7 @@ const DefiDashboardPage = () => {
                                         color={useColorModeValue("#000000", "#A8ADBD")}
                                         paddingRight={"15px"}
                                     >
-                                        {defiData?.symbol}
+                                        <a target="_blank" href={`https://www.coingecko.com/en/coins/${defiData?.symbol.toLowerCase()}`}>{defiData?.symbol}</a>
                                     </Text>
                                 </Box>
 

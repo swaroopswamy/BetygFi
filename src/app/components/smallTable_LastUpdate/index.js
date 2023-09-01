@@ -6,11 +6,7 @@ import {
 } from "@chakra-ui/react";
 
 
-<<<<<<< HEAD:src/app/components/smallTable_LastUpdate/index.js
 const SmallTable_LastUpdate=()=>{
-=======
-const SmallPageButtons = () => {
->>>>>>> a2b3ba7854eec7d248619a870530961c7433c69f:src/app/components/smallTable_pagebutton/index.js
 
     return (
         <>
