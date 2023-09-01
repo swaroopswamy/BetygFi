@@ -24,7 +24,7 @@ function TrendGraph() {
                         .catch(function (error) {
                             console.log(error);
                         });
-    }, [graphData]);
+    }, []);
 
     const graphTypes = [
         { name: "TVL", value: "tvl" },
