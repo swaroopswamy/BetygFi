@@ -11,7 +11,7 @@ function Defiflow () {
   const tableName = "DeFi Inflow/Outflow";
   const thread = ["Users Address","Net Value Flow (7 Days)"];
   const defiflowTableData = useSelector(
-    (state) => state?.defiDashboardData?.DefiUsersTableData
+    (state) => state?.defiDashboardData?.DefiHotContractsTableData
 )
 
 //   const tableData = [
@@ -33,6 +33,8 @@ function Defiflow () {
                 thread={thread}
                 tableData={defiflowTableData}
                 RowComponent={RowComponent}
+                // Tablepath={Tablepath}
+                // Definitions={Definitions}
         />
     </Box>
   )
