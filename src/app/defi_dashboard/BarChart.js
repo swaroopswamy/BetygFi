@@ -97,13 +97,13 @@ function BarChart() {
   const series = [{
     data: [{
       x: 'Borrow',
-      // y: 100
+      y: 100
     }, {
       x: 'Supply',
-      // y: 80
+      y: 80
     }, {
       x: 'TVL',
-      // y: 59
+      y: 59
     }]
   }]
 
@@ -151,7 +151,7 @@ function BarChart() {
                                         </Tooltip>
                                         </Flex>
           </Box>
-          <Box
+          {/* <Box
             padding={"5px 20px 5px 10px"}
             fontSize={"12px"}
           >
@@ -161,7 +161,26 @@ function BarChart() {
               type={options.chart.type}
               height={"300px"}
             />
-          </Box>
+          </Box> */}
+
+<Box
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                textAlign={"center"}
+                                height={"245px"}
+                            >
+                                No Data Available
+                            </Box>
         </Box>
       </Box>
 

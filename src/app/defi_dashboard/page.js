@@ -95,11 +95,12 @@ const DefiDashboardPage = () => {
                 height={18}
             />
         );
-    }; 
+    };
     const toCapitalize = (str) => {
+        str = str.toLowerCase();
         return str.charAt(0).toUpperCase() + str.slice(1);
-      };
-      
+    };
+
 
     return (
         <>
@@ -171,21 +172,21 @@ const DefiDashboardPage = () => {
                                     }}
                                 >
                                     <a
-  href={defiData?.url}
-  target="_blank"
-  rel="noopener noreferrer"
->
-                                    <Text
-                                        fontSize={"14px"}
-                                        fontWeight={400}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1.4px"}
-                                        color={useColorModeValue("#000000", "#A8ADBD")}
-                                        paddingRight={"20px"}
-                                       
+                                        href={defiData?.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                     >
-                                        {defiData?.url} 
-                                    </Text>
+                                        <Text
+                                            fontSize={"14px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                            color={useColorModeValue("#000000", "#A8ADBD")}
+                                            paddingRight={"20px"}
+
+                                        >
+                                            {defiData?.url}
+                                        </Text>
                                     </a>
                                 </Box>
                                 <Box
@@ -216,7 +217,7 @@ const DefiDashboardPage = () => {
                                     >
                                         {blockchains?.map((item, i) => (
                                             <>
-                                                {defiData?.chains?.includes(toCapitalize(item.id)) &&
+                                                {defiData?.chains?.includes(toCapitalize(item.name)) &&
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>
@@ -260,15 +261,15 @@ const DefiDashboardPage = () => {
                                                                 BlockchainTypeHandler(item.id);
                                                             }}
                                                             _hover={{ borderColor: "blue" }}
-                                                            /* bgColor={
-                                                              blockchainSelected.includes(item)
-                                                                ? useColorModeValue("#F5F5F7", "#191919")
-                                                                : useColorModeValue("#FFFFFF", "#202020")
-                                                            }
-                                                            border={useColorModeValue(
-                                                              "1px solid #E0E0E0",
-                                                              "1px solid #333"
-                                                            )}  */
+                                                        /* bgColor={
+                                                          blockchainSelected.includes(item)
+                                                            ? useColorModeValue("#F5F5F7", "#191919")
+                                                            : useColorModeValue("#FFFFFF", "#202020")
+                                                        }
+                                                        border={useColorModeValue(
+                                                          "1px solid #E0E0E0",
+                                                          "1px solid #333"
+                                                        )}  */
                                                         >
                                                             <Image
                                                                 width={18}

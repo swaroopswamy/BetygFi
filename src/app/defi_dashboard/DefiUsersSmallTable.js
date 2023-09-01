@@ -10,8 +10,8 @@ function DefiUsersSmallTableComponent() {
 
     const tableName = "DeFi Users";
     const thread = ["Users Address"];
-    const Tooltip= ["Defi Users"];
-    const BigTable= ["/defi_dashboard/defi_users"];
+    const Definitions= "DeFi Users: Users list shows the wallet address that are/have used the protocols smart contract address. ";
+    const Tablepath= "/defi_dashboard/defi_users";
 
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
@@ -28,8 +28,8 @@ function DefiUsersSmallTableComponent() {
                 thread={thread}
                 tableData={defiUsersTableData}
                 RowComponent={RowComponent}
-                Tooltip={Tooltip}
-                BigTable={BigTable}
+                Definitions={Definitions}
+                Tablepath={Tablepath}
             />
         </Box>
     )
@@ -75,7 +75,7 @@ function RowComponent({ tableData }) {
                 </>
             )}
             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                return (
+                return i < 5 && ( 
                     <>
                         <TableRow
                             key={i}

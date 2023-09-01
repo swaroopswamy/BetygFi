@@ -194,7 +194,7 @@ const GovernanceTable = ({ }) => {
                             >
                                 Winning Choice
                             </Th>
-                            <Th
+                              <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -255,7 +255,30 @@ const GovernanceTable = ({ }) => {
 
                         _light={{ bgColor: "#FFF" }} >
 
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+                        <Tr>
+                            <Td
+                            colSpan={7}
+                            >
+                                <Text
+                                    _light={{
+                                        color: "#16171B"
+                                    }}
+                                    _dark={{
+                                        color: "#FFF"
+                                    }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    textAlign={"center"}
+                                    p="20px"
+                                
+                                >
+                                    No Data available
+                                </Text>
+                            </Td>
+                        </Tr>
+
+                        {/* <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
 
                             _light={{ color: "#16171B" }}>
 
@@ -341,7 +364,7 @@ const GovernanceTable = ({ }) => {
                             <Td  fontSize={"14px"}>481759.04</Td>
 
                             
-                        </Tr>
+                        </Tr> */}
                     </Tbody>
                   
                 </Table>

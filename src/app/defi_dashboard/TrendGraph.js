@@ -6,6 +6,7 @@ import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
+import millify from "millify";
 const axios = require('axios');
 
 function TrendGraph() {
@@ -24,16 +25,17 @@ function TrendGraph() {
                         .catch(function (error) {
                             console.log(error);
                         });
-    }, [graphData]);
+        setGraphTypeSelected(["tvl"])
+    }, []);
 
     const graphTypes = [
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
         { name: "Price", value: "price" },
-        { name: "Users", value: "users" },
-        { name: "FDV", value: "fdv" },
-        { name: "Borrowed", value: "borrowed" },
-        { name: "Median APY", value: "median_apy" }
+        // { name: "Users", value: "users" },
+        // { name: "FDV", value: "fdv" },
+        // { name: "Borrowed", value: "borrowed" },
+        // { name: "Median APY", value: "median_apy" }
     ];
 
     const CurrencyTypeHandler = (type) => {
@@ -147,7 +149,7 @@ function TrendGraph() {
                             );
                         })}
 
-                        <Box
+                        {/* <Box
                             position={"relative"}
                             padding={"7px 4px"}
                             borderRight={"1px"}
@@ -163,11 +165,11 @@ function TrendGraph() {
                                 alt="next-arrow"
                                 src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                             ></Image>
-                        </Box>
+                        </Box> */}
                     </Box>
 
                     {/* Currency selection */}
-                    <Box
+                    {/* <Box
                         display={"flex"}
                         ml={"auto"}
                     >
@@ -176,10 +178,10 @@ function TrendGraph() {
                             CurrencyTypeHandler={CurrencyTypeHandler}
                             colorMode={colorMode}
                         />
-                    </Box>
+                    </Box> */}
 
                     {/* Period selector */}
-                    <Box
+                    {/* <Box
                         display={"flex"}
                         mr={"26px"}
                         ml={"10px"}
@@ -198,7 +200,7 @@ function TrendGraph() {
                             <option value='Monthly'>Monthly</option>
                             <option value='Yearly'>Yearly</option>
                         </Select>
-                    </Box>
+                    </Box> */}
                 </Box>
 
                 <Box
@@ -267,8 +269,11 @@ function Graph({ series }) {
                             fontWeight: 300,
                         },
                         formatter: function (val, index) {
-                            return "$" + val + "B";
-                        }
+                            return "$" + millify(val, {
+                                precision: 2,
+                                locales: "en-US"
+                            });
+                        },
                     },
                     axisBorder: {
                         show: i !== 0 && true,
@@ -311,6 +316,7 @@ function Graph({ series }) {
                 series={series}
                 type={options.chart.type}
                 height={"200px"}
+                width={"600px"}
             />
         </>
     )
