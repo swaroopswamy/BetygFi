@@ -136,7 +136,7 @@ function DonutChart() {
         </Box>
 
 
-        {/* <Box
+        <Box
           padding={"5px 50px 20px 10px"}
           mt={"20px"}
           mr={"30px"}
@@ -150,26 +150,26 @@ function DonutChart() {
             type={options.chart.type}
             height={"200px"}
           />
-        </Box> */}
+        </Box>
 
-                            <Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
-                            >
-                                No Data Available
-                            </Box>
+        {/* <Box
+            _dark={{
+                color: "#FFF"
+            }}
+            _light={{
+                color: "#16171B"
+            }}
+            fontSize={"20px"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            textAlign={"center"}
+            height={"245px"}
+        >
+            No Data Available
+        </Box> */}
 
         <Box
           display={"flex"}

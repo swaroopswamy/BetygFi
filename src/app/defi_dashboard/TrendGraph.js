@@ -316,7 +316,7 @@ function Graph({ series }) {
                 series={series}
                 type={options.chart.type}
                 height={"200px"}
-                width={"600px"}
+                /* width={"600px"} */
             />
         </>
     )
