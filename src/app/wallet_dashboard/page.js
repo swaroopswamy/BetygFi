@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex } from "@chakra-ui/react";
+import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -16,6 +16,7 @@ const WalletDashboardPage = () => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
+    const [tablePage, setTablePage] = useState(1);
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -40,15 +41,21 @@ const WalletDashboardPage = () => {
         dispatch(fetchWalletBalanceData(data));
     }, [blockchainSelected, searchParam.get("address")])
 
+    const pageChangeHandler = (page) => {
+        tablePage >= 1 && setTablePage(page);
+    }
+
     const fetchWalletTransactionsDataHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
             payload: {
-                blockchain: blockchainSelected
+                blockchain: blockchainSelected,
+                limit: 20,
+                page: tablePage
             }
         }
         dispatch(fetchWalletTransactionsData(data));
-    }, [blockchainSelected, searchParam.get("address")])
+    }, [blockchainSelected, tablePage, searchParam.get("address")])
 
     const fetchAssetAllocationForAddressHandler = useCallback(() => {
         const data = {
@@ -93,6 +100,7 @@ const WalletDashboardPage = () => {
             }, 5000)
         }
     }, [walletBalanceData])
+
     return (
         <>
             <Box
@@ -445,6 +453,10 @@ const WalletDashboardPage = () => {
                                     p="0px"
                                 >
                                     <TransactionPanelComponent />
+                                    <PageButtons 
+                                        tablePage={tablePage}
+                                        pageChangeHandler={pageChangeHandler}
+                                    />
                                 </TabPanel>
                                 <TabPanel
                                     p="0px"
@@ -469,3 +481,116 @@ const WalletDashboardPage = () => {
 };
 
 export default WalletDashboardPage; 
+
+function PageButtons( {tablePage, pageChangeHandler} ) {
+    return (
+        <>
+            <Box
+                display={"flex"}
+                alignItems={"flex-start"}
+                justifyContent={"end"}
+                padding="20px 30px"
+                background={useColorModeValue('#FFFFFF', '#202020')}
+            >
+  
+                <Box
+                    display={"flex"}
+                >
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                        mr={"15px"}
+                        gap={"10px"}
+                    >
+                        <Text
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontSize={"10px"}
+                            fontWeight={"400"}
+                        >
+                            Page
+                        </Text>
+                        <Text
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontSize={"14px"}
+                            fontWeight={"600"}
+                        >
+                            {tablePage}
+                        </Text>
+                    </Box>
+  
+                    {/* <Button
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                        mt={"5px"}
+                        w={"12px"}
+                        h={"12px"}
+                        bg={useColorModeValue("#FFF", "#202020")}
+                        padding="0px"
+                    >
+                        <Image
+                            width={"12px"}
+                            height={"12px"}
+                            style={{ rotate: '90deg' }}
+                            alt="next-arrow"
+                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        ></Image>
+                    </Button> */}
+  
+                    <Button
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                        w={"10px"}
+                        h={"26px"}
+                        bg={useColorModeValue("#FFF", "#202020")}
+                        border={"1px"}
+                        borderColor={useColorModeValue("#C7CAD2", "#454853")}
+                        borderRadius={"0px"}
+                        padding="0px"
+                        onClick={() => {
+                            if (tablePage > 1)
+                                pageChangeHandler(tablePage-1);
+                        }}
+                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                        disabled={tablePage === 1}
+                    >
+                        <Image
+                            width={"12px"}
+                            height={"12px"}
+                            style={{ rotate: '180deg' }}
+                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                            alt="prev-arrow"
+                        ></Image>
+                    </Button>
+  
+                    <Button
+                        display={"flex"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                        w={"10px"}
+                        h={"26px"}
+                        bg={useColorModeValue("#FFF", "#202020")}
+                        border={"1px"}
+                        borderRadius={"0px"}
+                        borderColor={useColorModeValue("#C7CAD2", "#454853")}
+                        padding="0px"
+                        onClick={() => {
+                            if (tablePage < 5) // totalPages goes here
+                                pageChangeHandler(tablePage+1);
+                        }}
+                        cursor={tablePage === 5 ? "not-allowed" : "pointer"}
+                        disabled={tablePage === 5}
+                    >
+                        <Image
+                            width={15}
+                            height={15}
+                            alt="next-arrow"
+                            src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        ></Image>
+                    </Button>
+                </Box>
+  
+            </Box>
+        </>)
+  }

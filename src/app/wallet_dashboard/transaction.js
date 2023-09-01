@@ -37,6 +37,7 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
+
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
@@ -182,8 +183,8 @@ const TransactionPanelComponent = () => {
           )}
           {
             walletTransactionsData?.isSuccess &&
-            (walletTransactionsData?.data.length > 0 ?
-              (walletTransactionsData?.data?.map((item, i) => {
+            (walletTransactionsData?.data?.data.length > 0 ?
+              (walletTransactionsData?.data?.data.map((item, i) => {
                 return (
                   <>
                     <Tr
@@ -770,102 +771,8 @@ const TransactionPanelComponent = () => {
         </Tbody>
 
       </Table>
-
-      <PageButtons />
     </>
   )
 }
 
 export default TransactionPanelComponent;
-
-function PageButtons() {
-  return (
-      <>
-          <Box
-              display={"flex"}
-              alignItems={"flex-start"}
-              justifyContent={"end"}
-              padding="20px 30px"
-              background={useColorModeValue('#FFFFFF', '#202020')}
-          >
-
-              <Box
-                  display={"flex"}
-              >
-                  <Box
-                      display={"flex"}
-                      alignItems={"center"}
-                  >
-                      <Text
-                          color={useColorModeValue("#16171B", "#FFF")}
-                          fontSize={"10px"}
-                          fontWeight={"400"}
-                      >
-                          1-20
-                      </Text>
-                  </Box>
-
-                  <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      mt={"5px"}
-                      w={"12px"}
-                      h={"12px"}
-                      bg={useColorModeValue("#FFF", "#202020")}
-                      padding="0px"
-                  >
-                      <Image
-                          width={"12px"}
-                          height={"12px"}
-                          style={{ rotate: '90deg' }}
-                          alt="next-arrow"
-                          src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                      ></Image>
-                  </Button>
-
-                  <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w={"10px"}
-                      h={"26px"}
-                      bg={useColorModeValue("#FFF", "#202020")}
-                      border={"1px"}
-                      borderColor={useColorModeValue("#C7CAD2", "#454853")}
-                      borderRadius={"0px"}
-                      padding="0px"
-                  >
-                      <Image
-                          width={"12px"}
-                          height={"12px"}
-                          style={{ rotate: '180deg' }}
-                          src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                          alt="prev-arrow"
-                      ></Image>
-                  </Button>
-
-                  <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w={"10px"}
-                      h={"26px"}
-                      bg={useColorModeValue("#FFF", "#202020")}
-                      border={"1px"}
-                      borderRadius={"0px"}
-                      borderColor={useColorModeValue("#C7CAD2", "#454853")}
-                      padding="0px"
-                  >
-                      <Image
-                          width={15}
-                          height={15}
-                          alt="next-arrow"
-                          src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                      ></Image>
-                  </Button>
-              </Box>
-
-          </Box>
-      </>)
-}
