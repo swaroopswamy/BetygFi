@@ -56,9 +56,9 @@ function DonutChart() {
       markers: {
         offsetY: 2
       },
-      // formatter: function (text, opts) {
-      //   return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
-      // },
+      formatter: function (text, opts) {
+        return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
+      },
     },
     dataLabels: {
       enabled: false

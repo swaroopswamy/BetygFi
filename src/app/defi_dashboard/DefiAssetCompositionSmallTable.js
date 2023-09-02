@@ -50,7 +50,7 @@ function RowComponent({ tableData }) {
           {tableData?.isError && (
                 <>
                     <Tr
-                    height={"250px"}
+                    height={"200px"}
                     >
                         <Td
                          colSpan={3}
@@ -67,7 +67,6 @@ function RowComponent({ tableData }) {
                                 letterSpacing={"1px"}
                                 textAlign={"center"}
                                 p="20px"
-                               
                             >
                                 No Data available
                             </Text>
