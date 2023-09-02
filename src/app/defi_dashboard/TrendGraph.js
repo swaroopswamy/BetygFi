@@ -87,7 +87,6 @@ function TrendGraph() {
     }, [graphTypeSelected,graphData])
 
     useEffect(() => {
-        
         let response = axios.get('https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123')
             .then(function (response) {
                 setGraphData(response.data);
@@ -96,8 +95,6 @@ function TrendGraph() {
             .catch(function (error) {
                 console.log(error);
             });
-
-
     }, []);
 
 

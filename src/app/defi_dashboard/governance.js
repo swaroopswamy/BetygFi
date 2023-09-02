@@ -7,13 +7,39 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import NextLink from 'next/link';
+const axios = require('axios');
 
 
 const GovernanceTable = ({ }) => {
-    const tableData = useSelector((state) => state?.defiDashboardData?.GovernanceTableData)
   const router = useRouter();
   const { colorMode } = useColorMode();
   const [searchByName, setSearchByName] = useState('');
+  const [governanceTableData, setGovernanceTableData] = useState({
+    data: null,
+    isSuccess: false,
+    isError: false,
+  });
+
+  useEffect(() => {
+    let response = axios.get('https://governance.aave.com/categories.json')
+        .then(function (response) {
+            setGovernanceTableData({
+                data: response.data,
+                isSuccess: true,
+                isError: false
+            });
+        })
+        .catch(function (error) {
+            setGovernanceTableData({
+                data: null,
+                isSuccess: false,
+                isError: true
+            });
+            console.log(error);
+        });
+    }, []);
+
+    console.log("gtd: ", governanceTableData.data, governanceTableData.isError);
 
     //  For Governance Table
     const Status1 = "Active";
@@ -246,7 +272,7 @@ const GovernanceTable = ({ }) => {
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
                     _light={{ bgColor: "#FFF" }} >
-        {tableData.GovernanceTableData.isError && (
+        {governanceTableData.isError && (
           <>
             <Tr>
               <Td
@@ -261,7 +287,7 @@ const GovernanceTable = ({ }) => {
             </Tr>
           </>
         )}
-        {tableData.GovernanceTableData.isLoading && (
+        {governanceTableData.isLoading && (
           <>
             <SkeletonRow />
             <SkeletonRow />
