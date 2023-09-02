@@ -2,7 +2,7 @@
 "use client";
 import {
   Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-  Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Skeleton, Stack,
+  Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Skeleton, Stack, useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import Image from "next/image";
 
- 
+
 const SkeletonRow = () => (
   <Box as="tr">
     <Td>
@@ -42,24 +42,24 @@ const SkeletonRow = () => (
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
   const router = useRouter();
-
+  const { colorMode } = useColorMode();
   return (
     <Table variant="simple" key={1}>
       <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
         <Tr>
           <Th>
-          <Box
+            <Box
               display={"flex"}
               alignItems={"center"}
             >
               <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              Rank
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                Rank
               </Text>
               <Tooltip
                 bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
@@ -76,147 +76,7 @@ const Rankings = () => {
                   style={{ marginLeft: "4px" }}
                 ></Image>
               </Tooltip>
-           </Box>
-          </Th>
-          <Th>
-          <Box
-              display={"flex"}
-              alignItems={"center"}
-            >
-              <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              Name
-              </Text>
-           </Box>
-          </Th>
-          <Th>
-          <Box
-              display={"flex"}
-              alignItems={"center"}
-            >
-              <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              Category
-              </Text>
-              <Tooltip
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                label="#Frame"
-                fontWeight={400}
-                fontSize={"10px"}
-              >
-                <Image
-                  src={"/icons/info_sm_icon.svg"}
-                  width={12}
-                  height={12}
-                  alt='info-icon'
-                  style={{ marginLeft: "4px" }}
-                ></Image>
-              </Tooltip>
-           </Box>
-          </Th>
-          <Th>
-          <Box
-              display={"flex"}
-              alignItems={"center"}
-            >
-              <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              Price
-              </Text>
-              <Tooltip
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                label="#Frame"
-                fontWeight={400}
-                fontSize={"10px"}
-              >
-                <Image
-                  src={"/icons/info_sm_icon.svg"}
-                  width={12}
-                  height={12}
-                  alt='info-icon'
-                  style={{ marginLeft: "4px" }}
-                ></Image>
-              </Tooltip>
-           </Box>
-          </Th>
-          <Th>
-          <Box
-              display={"flex"}
-              alignItems={"center"}
-            >
-              <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              TVL
-              </Text>
-              <Tooltip
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                label="#Frame"
-                fontWeight={400}
-                fontSize={"10px"}
-              >
-                <Image
-                  src={"/icons/info_sm_icon.svg"}
-                  width={12}
-                  height={12}
-                  alt='info-icon'
-                  style={{ marginLeft: "4px" }}
-                ></Image>
-              </Tooltip>
-           </Box>
-          </Th>
-          <Th>
-          <Box
-              display={"flex"}
-              alignItems={"center"}
-            >
-              <Text
-              color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-              fontSize={"14px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              letterSpacing={"1.4px"}
-              textTransform={"capitalize"}>
-              MCap
-              </Text>
-              <Tooltip
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                label="#Frame"
-                fontWeight={400}
-                fontSize={"10px"}
-              >
-                <Image
-                  src={"/icons/info_sm_icon.svg"}
-                  width={12}
-                  height={12}
-                  alt='info-icon'
-                  style={{ marginLeft: "4px" }}
-                ></Image>
-              </Tooltip>
-           </Box> 
+            </Box>
           </Th>
           <Th>
             <Box
@@ -224,12 +84,152 @@ const Rankings = () => {
               alignItems={"center"}
             >
               <Text
-                 color={useColorModeValue("#A8ADBD", "#A8ADBD")}
-                 fontSize={"14px"}
-                 fontWeight={400}
-                 lineHeight={"20px"}
-                 letterSpacing={"1.4px"}
-                 textTransform={"capitalize"}
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                Name
+              </Text>
+            </Box>
+          </Th>
+          <Th>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                Category
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+            </Box>
+          </Th>
+          <Th>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                Price
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+            </Box>
+          </Th>
+          <Th>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                TVL
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+            </Box>
+          </Th>
+          <Th>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}>
+                MCap
+              </Text>
+              <Tooltip
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                label="#Frame"
+                fontWeight={400}
+                fontSize={"10px"}
+              >
+                <Image
+                  src={"/icons/info_sm_icon.svg"}
+                  width={12}
+                  height={12}
+                  alt='info-icon'
+                  style={{ marginLeft: "4px" }}
+                ></Image>
+              </Tooltip>
+            </Box>
+          </Th>
+          <Th>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+            >
+              <Text
+                color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                fontSize={"14px"}
+                fontWeight={400}
+                lineHeight={"20px"}
+                letterSpacing={"1.4px"}
+                textTransform={"capitalize"}
               >
                 MCap/TVL
               </Text>
@@ -318,8 +318,8 @@ const Rankings = () => {
                     <Tr key={i + 1}
                       cursor={item.name === "AAVE V2" ? "pointer" : "cursor"}
                       onClick={() => {
-                          if (item.name === "AAVE V2")
-                            router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
+                        if (item.name === "AAVE V2")
+                          router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
                       }}
                     >
                       <Td
@@ -327,7 +327,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {item?.Rank === undefined ? '-' : item?.Rank}
                       </Td>
@@ -367,20 +367,38 @@ const Rankings = () => {
                                   >
                                     {item.name.charAt(0)}
                                   </Text>
+
+
                                 </Box>
                               </>
                             )
                           }
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"14px"}
-                            fontWeight={400}
-                            lineHeight={"20px"}
-                            //letterSpacing={"1px"}
-                            ml="5px"
+                          <Box
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            display={"flex"}
                           >
-                            {item.name}
-                          </Text>
+                            <Text
+                              color={useColorModeValue("#16171B", "#FFF")}
+                              fontSize={"14px"}
+                              fontWeight={400}
+                              lineHeight={"20px"}
+                              //letterSpacing={"1px"}
+                              ml="5px"
+                            >
+                              {item.name}
+                            </Text>
+                            {item.name === "AAVE V2" && <Image
+                              width={18}
+                              height={18}
+                              alt='logo'
+                              style={{marginLeft:"10px"}}
+                              src={colorMode === 'light' ?  ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
+                            >
+                            </Image>
+                            }
+                          </Box>
+
                         </Box>
                       </Td>
                       <Td
@@ -388,7 +406,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {item.category}
                       </Td>
@@ -397,7 +415,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.price)
                           ?
@@ -412,7 +430,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {
                           (Math.trunc(item.tvl)).toLocaleString('en-US', {
@@ -425,7 +443,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.mcap) ? `${(Math.trunc(item.tvl)).toLocaleString('en-US', {
                           style: 'currency',
@@ -437,7 +455,7 @@ const Rankings = () => {
                         fontSize={"14px"}
                         fontWeight={400}
                         lineHeight={"20px"}
-                        //letterSpacing={"1px"}
+                      //letterSpacing={"1px"}
                       >
                         {!isEmpty(item.mcap) && item.tvl !== 0 ? (item.mcap / item.tvl).toFixed(2) : "NA"}
                       </Td>

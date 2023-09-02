@@ -4,11 +4,16 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function BarChart() {
   const { colorMode } = useColorMode();
   const router = useRouter();
+  const defiData = useSelector(
+    (state) => state?.defiDashboardData?.DefiData?.data
+  )
   const Definitions = "DeFi borrow is the total amount of assets DeFi has lent to its users. DeFi Supply is the total amount of assets users have lent to DeFi. Total value locked (TVL) is the amount assets DeFi holds.";
   const options = {
     chart: {
@@ -58,7 +63,7 @@ function BarChart() {
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[0][dataPointIndex] + "%" +
+          series[0][dataPointIndex] + "" +
           '</div>' +
           "</div>"
         );
@@ -97,13 +102,14 @@ function BarChart() {
   const series = [{
     data: [{
       x: 'Borrow',
-      y: 100
-    }, {
+      y: 1511121239
+    },/*  {
       x: 'Supply',
-      y: 80
-    }, {
+      y: 158930,000,000
+    }, */ {
       x: 'TVL',
-      y: 59
+      y: defiData?.tvl !== undefined ? defiData?.tvl : 0
+
     }]
   }]
 
@@ -155,14 +161,21 @@ function BarChart() {
             padding={"5px 20px 5px 10px"}
             fontSize={"12px"}
           >
-            <Chart
-              options={options}
-              series={series}
-              type={options.chart.type}
-              height={"300px"}
-            />
+            {
+              defiData?.tvl > 0 && (
+                <>
+                  <Chart
+                    options={options}
+                    series={series}
+                    type={options.chart.type}
+                    height={"300px"}
+                  />
+                </>
+              )
+            }
+
           </Box>
-{/* 
+          {/* 
           <Box
             _dark={{
               color: "#FFF"

@@ -10,15 +10,9 @@ function Assetcomposition () {
 
   const tableName = "DeFi Asset Composition";
   const thread = ["Asset Name","Share","Value"];
-  const  Definitions= "DeFi Asset Composition: Asset composition matrix shows the distribution of value in different assets. "
+  const Definitions= "DeFi Asset Composition: Asset composition matrix shows the distribution of value in different assets. "
   const Tablepath = "/defi_dashboard/asset_composition"
-  const tableData = [
-    ["/images/Venus.svg","Venus","60%","USD 356,456,560"],
-    ["/images/Morphoaave.svg","Morpho Aave","40%","USD 256,456,560"],
-    ["/images/Compoundv3.svg","Compound V3","13.09%","USD 46,456,560"],
-    ["/images/Radiantv2.svg","Radiant V2","15%","USD 66,456,560"],
-    ["/icons/fluidtoken_logo.svg","FluidTokens","13.09%","USD 56,456,560"],
-    ];
+  
 
     const AssetcompositionTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiHotContractsTableData
