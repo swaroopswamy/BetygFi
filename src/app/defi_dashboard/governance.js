@@ -10,13 +10,10 @@ import NextLink from 'next/link';
 
 
 const GovernanceTable = ({ }) => {
-
-    const { colorMode } = useColorMode();
-    const router = useRouter();
-    const [searchByName, setSearchByName] = useState('');
-
-
-    
+    const tableData = useSelector((state) => state?.defiDashboardData?.GovernanceTableData)
+  const router = useRouter();
+  const { colorMode } = useColorMode();
+  const [searchByName, setSearchByName] = useState('');
 
     //  For Governance Table
     const Status1 = "Active";
@@ -194,7 +191,7 @@ const GovernanceTable = ({ }) => {
                             >
                                 Winning Choice
                             </Th>
-                              <Th
+                            <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -244,43 +241,37 @@ const GovernanceTable = ({ }) => {
 
 
                     <Tbody
+                    fontSize={"14px"}
+                    fontWeight={"400"}
+                    lineHeight={"20px"}
+                    _dark={{ bgColor: "#202020" }}
+                    _light={{ bgColor: "#FFF" }} >
+        {tableData.GovernanceTableData.isError && (
+          <>
+            <Tr>
+              <Td
+                color={useColorModeValue("#16171B", "#FFF")}
+                fontSize={"20px"}
+                fontWeight={"400"}
+                letterSpacing={"1px"}
+                p="20px"
+              >
+                No data available
+              </Td>
+            </Tr>
+          </>
+        )}
+        {tableData.GovernanceTableData.isLoading && (
+          <>
+            <SkeletonRow />
+            <SkeletonRow />
+            <SkeletonRow />
+          </>
+        )}
 
-                        fontSize={"14px"}
-
-                        fontWeight={"400"}
-
-                        lineHeight={"20px"}
-
-                        _dark={{ bgColor: "#202020" }}
-
-                        _light={{ bgColor: "#FFF" }} >
-
-                        <Tr>
-                            <Td
-                            colSpan={7}
-                            >
-                                <Text
-                                    _light={{
-                                        color: "#16171B"
-                                    }}
-                                    _dark={{
-                                        color: "#FFF"
-                                    }}
-                                    fontSize={"20px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    textAlign={"center"}
-                                    p="20px"
-                                
-                                >
-                                    No Data available
-                                </Text>
-                            </Td>
-                        </Tr>
-
-                        {/* <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
-
-                            _light={{ color: "#16171B" }}>
+                        <Tr 
+                        height={"40px"} _dark={{ color: "#FFFFFF" }}
+                        _light={{ color: "#16171B" }}>
 
                             <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
 
@@ -364,7 +355,7 @@ const GovernanceTable = ({ }) => {
                             <Td  fontSize={"14px"}>481759.04</Td>
 
                             
-                        </Tr> */}
+                        </Tr> 
                     </Tbody>
                   
                 </Table>

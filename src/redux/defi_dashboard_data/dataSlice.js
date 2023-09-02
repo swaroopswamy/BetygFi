@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData } from "../../services/defiDashboardService";
+import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getGovernanceTableData } from "../../services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
   const response = await getDefiData(payload);
@@ -15,6 +15,12 @@ export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContra
   const response = await getDefiHotContractsTableData(payload);
   return response.data;
 })
+
+export const fetchGovernanceTableData = createAsyncThunk('getGovernanceTableData', async (payload) => {
+  const response = await getGovernanceTableData(payload);
+  return response.data;
+})
+
 
 const DefiDashboardDataSlice = createSlice({
   name: "DefiDashboardData",
@@ -37,6 +43,12 @@ const DefiDashboardDataSlice = createSlice({
       isError: false,
       isSuccess: false,
     },
+    GovernanceTableData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false, 
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDefiData.fulfilled, (state, action) => {
@@ -92,6 +104,24 @@ const DefiDashboardDataSlice = createSlice({
       state.DefiHotContractsTableData.isSuccess = false;
       state.DefiHotContractsTableData.isError = true;
       state.DefiHotContractsTableData.data = action.payload;
+    });
+    builder.addCase(fetchGovernanceTableData.fulfilled, (state, action) => {
+      state.GovernanceTableData.data = action.payload;
+      state.GovernanceTableData.isLoading = false;
+      state.GovernanceTableData.isSuccess = true;
+      state.GovernanceTableData.isError = false;
+    });
+    builder.addCase(fetchGovernanceTableData.pending, (state, action) => {
+      state.GovernanceTableData.isLoading = true;
+      state.GovernanceTableData.isError = false;
+      state.GovernanceTableData.isSuccess = false;
+      state.GovernanceTableData.data = action.payload;
+    });
+    builder.addCase(fetchGovernanceTableData.rejected, (state, action) => {
+      state.GovernanceTableData.isLoading = false;
+      state.GovernanceTableData.isSuccess = false;
+      state.GovernanceTableData.isError = true;
+      state.GovernanceTableData.data = action.payload;
     });
   }
 });
