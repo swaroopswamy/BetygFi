@@ -32,6 +32,31 @@ function Assetcomposition () {
        borderColor={useColorModeValue("#F0F0F5","#191919")}
        textTransform={"capitalize"}
     >
+        <Flex
+            cursor={"pointer"}
+            ml={"5px"}
+            mb={"20px"}
+            align={"center"}
+            onClick={() => {
+                router.push(`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`)
+            }}
+        >
+            <Icon
+                w="24px"
+                h="24px"
+                as={colorMode === "light" ? BackIconWhite : BackIconBlack}
+                mr="6px"
+            />
+            <Text
+                fontSize={"10px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+                letterSpacing={"1px"}
+                textTransform={"uppercase"}
+                ml={"5px"}
+            >BACK</Text>
+        </Flex>
        <GenericBigTableComponent
                 tableName={tableName}
                 thread={thread}

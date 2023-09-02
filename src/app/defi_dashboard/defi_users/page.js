@@ -40,7 +40,7 @@ function DefiUsers() {
                 mb={"20px"}
                 align={"center"}
                 onClick={() => {
-                    router.push(`/defi_dashboard/`)
+                    router.push(`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`)
                 }}
             >
                 <Icon

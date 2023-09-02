@@ -60,10 +60,10 @@ const TVLBox = () => {
                         pt={"20px"}>
                         Market Cap<br></br>
                         Token Price<br></br>
-                        Fully Diluted Valuation<br></br>
+                        {/* Fully Diluted Valuation<br></br>
                         Borrowed<br></br>
                         Users<br></br>
-                        User Deposits<br></br>
+                        User Deposits<br></br> */}
                     </Text>
                     <Spacer />
                     <Text
@@ -82,10 +82,10 @@ const TVLBox = () => {
                             precision: 2,
                             locales: "en-US"
                         })} <br></br>
-                        $231.35m<br></br>
+                        {/* $231.35m<br></br>
                         $84.15m<br></br>
                         38,682<br></br>
-                        $304,481,901<br></br>
+                        $304,481,901<br></br> */}
                     </Text>
                 </Flex>
                 <Flex>

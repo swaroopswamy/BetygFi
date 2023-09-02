@@ -566,7 +566,7 @@ const WalletAnalyticsPanel = () => {
                 lineHeight={"20px"}
                 _dark={{ bgColor: "#202020" }}
                 _light={{ bgColor: "#FFF" }} >
-                {walletBalanceData?.isError && (
+                {!walletBalanceData?.isError && (
                   <>
                     <Tr >
                       <Td
@@ -598,7 +598,7 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {walletBalanceData?.isSuccess &&
+                {/* {walletBalanceData?.isSuccess &&
                   (walletBalanceData?.data?.data?.length > 0 ?
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
@@ -816,7 +816,7 @@ const WalletAnalyticsPanel = () => {
 
                       </>
                     ))
-                }
+                } */}
 
 
               </Tbody>
@@ -1056,7 +1056,7 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
 
                 _light={{ bgColor: "#FFF" }} >
-                {walletBalanceData?.isError && (
+                {!walletBalanceData?.isError && (
                   <>
                     <Tr >
                       <Td
@@ -1088,7 +1088,7 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {walletBalanceData?.isSuccess &&
+                {/* {walletBalanceData?.isSuccess &&
                   (walletBalanceData?.data?.data?.length > 0 ?
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
@@ -1475,7 +1475,7 @@ const WalletAnalyticsPanel = () => {
 
                       </>
                     ))
-                }
+                } */}
 
               </Tbody>
 
@@ -1722,7 +1722,7 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
 
                 _light={{ bgColor: "#FFF" }} >
-                {walletBalanceData?.isError && (
+                {!walletBalanceData?.isError && (
                   <>
                     <Tr >
                       <Td
@@ -1754,7 +1754,7 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {walletBalanceData?.isSuccess &&
+                {/* {walletBalanceData?.isSuccess &&
                   (walletBalanceData?.data?.data?.length > 0 ?
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
@@ -2142,7 +2142,7 @@ const WalletAnalyticsPanel = () => {
 
                       </>
                     ))
-                }
+                } */}
               </Tbody>
             </Table>
           </TableContainer>

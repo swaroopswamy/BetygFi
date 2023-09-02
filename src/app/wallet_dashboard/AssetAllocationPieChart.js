@@ -10,8 +10,6 @@ const AssetAllocationPieChart = () => {
     const { colorMode } = useColorMode();
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
     const assetAllocationData = useSelector((state) => state?.walletDashboardTableData?.assetAllocationForAddress);
-    // console.log("HERE: ", walletBalanceData);
-    // console.log("HERE2: ", assetAllocationData.data);
 
     const options = {
         chart: {

@@ -109,7 +109,7 @@ function DonutChart() {
 
           </Box>
 
-          <Button
+           {/* <Button
             variant={"outline"}
             size={"xs"}
             _light={{ colorScheme: "#F5F5F7", stroke: "#000" }}
@@ -132,7 +132,7 @@ function DonutChart() {
               View More
             </Text>
 
-          </Button>
+          </Button> */}
         </Box>
 
 
@@ -141,7 +141,7 @@ function DonutChart() {
           mt={"20px"}
           mr={"30px"}
           fontSize={"14px"}
-          fontWeight={400}
+          fontWeight={400}  
           lineHeight={"10px"}
         >
           <Chart
@@ -170,6 +170,25 @@ function DonutChart() {
                             >
                                 No Data Available
                             </Box>
+
+        {/* <Box
+            _dark={{
+                color: "#FFF"
+            }}
+            _light={{
+                color: "#16171B"
+            }}
+            fontSize={"20px"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            textAlign={"center"}
+            height={"245px"}
+        >
+            No Data Available
+        </Box> */}
 
         <Box
           display={"flex"}

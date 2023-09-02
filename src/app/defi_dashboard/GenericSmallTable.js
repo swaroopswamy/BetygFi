@@ -7,6 +7,7 @@ import {
 // import { blockchains } from "../../../util/constant";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+//import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import BackIconWhite from '../../../public/icons/backIconWhite.svg';
@@ -14,13 +15,14 @@ import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import SmallPageButtons from '/src/app/components/smallTable_pagebutton';
+import SmallTable_LastUpdate from '/src/app/components/smallTable_LastUpdate';
 
 
-const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
+const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
+    //const history = useHistory();
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
@@ -28,6 +30,9 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
+    // const handleNavigate = () => {
+    //     history.push('/BigTable');
+    //   };
 
     return (
         <>
@@ -61,15 +66,17 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         >
                             {tableName}
                         </Text>
-                        <Tooltip label="#Frame">
+                        <Tooltip label= {Definitions}>
                         <Image width={"12px"}
                             height={"12px"}
                             flexShrink={"0"}
                             mt={"22px"}
                             ml={"5px"}
                             alt=''
-                            src="/images/Frame.svg">
-                        </Image>
+                           // src={Tooltip}
+                    src="/images/Frame.svg"
+                    >
+                   </Image>
                     </Tooltip>
                     <Spacer />
                     <Button
@@ -81,8 +88,9 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         mt={"15px"}
                         mr={"20px"}
                         onClick={() => {
-                            router.push(`/defi_dashboard/asset_composition`)
+                            router.push(Tablepath);
                         }}
+                        // onClick={BigTable}
                     >
                         <Text
                             _light={{ color: "#16171B" }}
@@ -133,7 +141,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 
 
                 </Table>
-                <SmallPageButtons />
+                <SmallTable_LastUpdate />
             </Box>
         </>
     )

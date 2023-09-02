@@ -671,7 +671,7 @@ const PortfolioPanelComponent = () => {
 export default PortfolioPanelComponent;
 
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
-
+  console.log("data ", tableData);
   return (
     <>
       <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
@@ -681,7 +681,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
             <AccordionButton>
 
               <Box as="span" flex='1' textAlign='left'>
-                <Flex>
+                {/* <Flex>
                   <Image src="/images/Fantom.svg" alt=""
                     width={"30px"}
                     height={"30px"}
@@ -711,7 +711,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                   >
                     {value}
                   </Text>
-                </Flex>
+                </Flex> */}
 
                 <Box as="span" flex='1' textAlign='left'>
                   <Flex>
@@ -723,7 +723,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 ></Image> */}
                     <Text
                       color={useColorModeValue("#202020", "#FFFFFF")}
-                      fontSize={"16px"}
+                      fontSize={"14px"}
                       fontStyle={"normal"}
                       fontWeight={"600"}
                       lineHeight={"20px"}
@@ -781,7 +781,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 </Thead>
 
                 <Tbody>
-                  {tableData?.isError && (
+                  {(tableData?.isError || !tableData?.data?.defiBalance) && (
                     <>
                       <Tr>
                         <Td
@@ -815,12 +815,17 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                     </>
                   )}
 
-                  {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
+                  {tableData?.isSuccess && tableData?.data?.defiBalance && tableData?.data?.defiBalance?.map((item, i) => {
                     return (
                       <Tr key={i}>
                         <Td >
                           <Flex>
-                            <Image src="/images/BIT.svg" alt=""></Image>
+                            <Image
+                              width={"24px"}
+                              height={"24px"} 
+                              src={item.tokenLogoUrl} 
+                              alt="">
+                            </Image>
                             <Text
                               _light={{
                                 color: "#16171B"
@@ -835,7 +840,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               mt={"10px"}
                               ml={"10px"}
                             >
-                              {item?.token}
+                              {item.token}
                             </Text>
                           </Flex>
                         </Td>
@@ -854,7 +859,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               fontWeight={"400"}
                               lineHeight={"20px"}
                             >
-                              {item?.balance}
+                              {item.balance}
                             </Text>
                           </Flex>
                         </Td>
@@ -873,7 +878,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               fontWeight={"400"}
                               lineHeight={"20px"}
                             >
-                              $1.00
+                              {item.price}
                             </Text>
                           </Flex>
                         </Td>
@@ -892,7 +897,12 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               fontWeight={"400"}
                               lineHeight={"20px"}
                             >
-                              $24,344,108.54
+                              {
+                                ((item?.value)).toLocaleString('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD'
+                                })
+                              }
                             </Text>
                           </Flex>
                         </Td>

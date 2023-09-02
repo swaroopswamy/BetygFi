@@ -33,3 +33,13 @@ export const getDefiHotContractsTableData = async (payload) => {
   }
 };
 
+export const getGovernanceTableData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `protocols`, payload
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};

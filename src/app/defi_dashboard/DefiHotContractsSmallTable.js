@@ -11,6 +11,8 @@ function Defihotcontracts() {
 
     const tableName = "DeFi Hot/Active Contracts";
     const thread = ["Contract Name", "No. of users", "No. of Transactions"];
+    const Tablepath = "/defi_dashboard/defi_hot_contract";
+    const Definitions = "DeFi Hot/Active Contracts : DeFi Hot/Active contract talks about the most interacted contract address by wallet address. "
     const defiHotContractsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiHotContractsTableData
     )
@@ -25,6 +27,8 @@ function Defihotcontracts() {
                 thread={thread}
                 tableData={defiHotContractsTableData}
                 RowComponent={RowComponent}
+                Definitions={Definitions}
+                Tablepath={Tablepath}
             />
         </Box>
     )
@@ -37,7 +41,7 @@ function RowComponent({ tableData }) {
             {tableData?.isError && (
                 <>
                     <Tr
-                    height={"250px"}
+                        height={"250px"}
                     >
                         <Td
                             colSpan={3}
@@ -70,16 +74,18 @@ function RowComponent({ tableData }) {
                 </>
             )}
             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                return (
-                    <>
-                        <TableRow
-                            key={i}
-                            contract={{ name: item[1], src: item[0] }}
-                            users={item[2]}
-                            transactions={item[3]}
-                        />
-                    </>
-                )
+                if (i < 5) {
+                    return (
+                        <>
+                            <TableRow
+                                key={i}
+                                contract={{ name: item[1], src: item[0] }}
+                                users={item[2]}
+                                transactions={item[3]}
+                            />
+                        </>
+                    )
+                }
             })}
         </>
     )

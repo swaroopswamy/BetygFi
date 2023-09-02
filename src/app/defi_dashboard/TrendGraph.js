@@ -6,6 +6,7 @@ import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
+import millify from "millify";
 const axios = require('axios');
 
 function TrendGraph() {
@@ -16,25 +17,16 @@ function TrendGraph() {
 
     const [graphData, setGraphData] = useState(null);
 
-    useEffect(() => {
-        let response = axios.get('https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123')
-                        .then(function (response) {
-                            setGraphData(response.data);
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-    }, [graphData]);
 
-    // const graphTypes = [
-    //     { name: "TVL", value: "tvl" },
-    //     { name: "MCap", value: "mcap" },
-    //     { name: "Price", value: "price" },
-    //     { name: "Users", value: "users" },
-    //     { name: "FDV", value: "fdv" },
-    //     { name: "Borrowed", value: "borrowed" },
-    //     { name: "Median APY", value: "median_apy" }
-    // ];
+    const graphTypes = [
+        { name: "TVL", value: "tvl" },
+        { name: "MCap", value: "mcap" },
+        { name: "Price", value: "price" },
+        { name: "Users", value: "users" },
+        { name: "FDV", value: "fdv" },
+        { name: "Borrowed", value: "borrowed" },
+        { name: "Median APY", value: "median_apy" }
+    ];
 
     const CurrencyTypeHandler = (type) => {
         setCurrencyType(type);
@@ -92,8 +84,21 @@ function TrendGraph() {
 
     useEffect(() => {
         SeriesHandler();
-    }, [graphTypeSelected])
+    }, [graphTypeSelected,graphData])
 
+    useEffect(() => {
+        
+        let response = axios.get('https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123')
+            .then(function (response) {
+                setGraphData(response.data);
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+    }, []);
 
 
     return (
@@ -129,12 +134,12 @@ function TrendGraph() {
                 >
 
                     {/* Graph type selection */}
-                    {/* <Box
+                    <Box
                         display={"flex"}
                         gap={"10px"}
                         ml={"24px"}
-                    > */}
-                        {/* {graphTypes.map((item, i) => {
+                    >
+                        {graphTypes.map((item, i) => {
                             return (
                                 <TrendGraphTypeButton
                                     key={i}
@@ -145,9 +150,9 @@ function TrendGraph() {
                                     colorMode={colorMode}
                                 />
                             );
-                        })} */}
+                        })}
 
-                        {/* <Box
+                        <Box
                             position={"relative"}
                             padding={"7px 4px"}
                             borderRight={"1px"}
@@ -164,27 +169,27 @@ function TrendGraph() {
                                 src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                             ></Image>
                         </Box>
-                    </Box> */}
+                    </Box>
 
                     {/* Currency selection */}
                     <Box
                         display={"flex"}
                         ml={"auto"}
                     >
-                        {/* <CurrencyButtons
+                        <CurrencyButtons
                             currencySelected={currencySelected}
                             CurrencyTypeHandler={CurrencyTypeHandler}
                             colorMode={colorMode}
-                        /> */}
+                        />
                     </Box>
 
                     {/* Period selector */}
-                    <Box
+                     <Box
                         display={"flex"}
                         mr={"26px"}
                         ml={"10px"}
                     >
-                        {/* <Select
+                        <Select
                             fontSize={"10px"}
                             fontWeight={"600"}
                             height={"24px"}
@@ -197,7 +202,7 @@ function TrendGraph() {
                             <option value='Daily'>Daily</option>
                             <option value='Monthly'>Monthly</option>
                             <option value='Yearly'>Yearly</option>
-                        </Select> */}
+                        </Select>
                     </Box>
                 </Box>
 
@@ -267,8 +272,11 @@ function Graph({ series }) {
                             fontWeight: 300,
                         },
                         formatter: function (val, index) {
-                            return "$" + val + "B";
-                        }
+                            return "$" + millify(val, {
+                                precision: 2,
+                                locales: "en-US"
+                            });
+                        },
                     },
                     axisBorder: {
                         show: i !== 0 && true,
@@ -306,12 +314,12 @@ function Graph({ series }) {
 
     return (
         <>
-            {/* <Chart
+            <Chart
                 options={options}
                 series={series}
                 type={options.chart.type}
                 height={"200px"}
-            /> */}
+            />
 
 <Box
                                 _dark={{
