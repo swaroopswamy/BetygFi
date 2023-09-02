@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import './styles.css'
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+import isEmpty from "is-empty";
 const BlockchainAllocationTreemapChart = () => {
     const { colorMode } = useColorMode();
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
@@ -118,7 +119,7 @@ const BlockchainAllocationTreemapChart = () => {
                 )
             }
             {blockchainAllocationData?.isSuccess && (
-                blockchainAllocationData?.data === null ?
+                isEmpty(blockchainAllocationData?.data) ?
                     (
                         <>
                             <Box
