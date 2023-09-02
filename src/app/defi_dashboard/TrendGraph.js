@@ -22,10 +22,10 @@ function TrendGraph() {
         { name: "TVL", value: "tvl" },
         { name: "MCap", value: "mcap" },
         { name: "Price", value: "price" },
-        { name: "Users", value: "users" },
-        { name: "FDV", value: "fdv" },
-        { name: "Borrowed", value: "borrowed" },
-        { name: "Median APY", value: "median_apy" }
+        /*      { name: "Users", value: "users" },
+             { name: "FDV", value: "fdv" },
+             { name: "Borrowed", value: "borrowed" },
+             { name: "Median APY", value: "median_apy" } */
     ];
 
     const CurrencyTypeHandler = (type) => {
@@ -84,10 +84,10 @@ function TrendGraph() {
 
     useEffect(() => {
         SeriesHandler();
-    }, [graphTypeSelected,graphData])
+    }, [graphTypeSelected, graphData])
 
     useEffect(() => {
-        
+
         let response = axios.get('https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123')
             .then(function (response) {
                 setGraphData(response.data);
@@ -172,7 +172,7 @@ function TrendGraph() {
                     </Box>
 
                     {/* Currency selection */}
-                    <Box
+                  {/*   <Box
                         display={"flex"}
                         ml={"auto"}
                     >
@@ -181,10 +181,10 @@ function TrendGraph() {
                             CurrencyTypeHandler={CurrencyTypeHandler}
                             colorMode={colorMode}
                         />
-                    </Box>
+                    </Box> */}
 
                     {/* Period selector */}
-                     <Box
+                   {/*  <Box
                         display={"flex"}
                         mr={"26px"}
                         ml={"10px"}
@@ -203,7 +203,7 @@ function TrendGraph() {
                             <option value='Monthly'>Monthly</option>
                             <option value='Yearly'>Yearly</option>
                         </Select>
-                    </Box>
+                    </Box> */}
                 </Box>
 
                 <Box
@@ -321,25 +321,25 @@ function Graph({ series }) {
                 height={"200px"}
             />
 
-<Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
-                                mb={"20px"}
-                            >
-                                No Data Available
-                            </Box>
+          {/*   <Box
+                _dark={{
+                    color: "#FFF"
+                }}
+                _light={{
+                    color: "#16171B"
+                }}
+                fontSize={"20px"}
+                fontWeight={"400"}
+                letterSpacing={"1px"}
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                textAlign={"center"}
+                height={"245px"}
+                mb={"20px"}
+            >
+                No Data Available
+            </Box> */}
         </>
     )
 }
