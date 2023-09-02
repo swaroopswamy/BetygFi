@@ -24,7 +24,7 @@ const GovernanceTable = ({ }) => {
     let response = axios.get('https://governance.aave.com/categories.json')
         .then(function (response) {
             setGovernanceTableData({
-                data: response.data,
+                data: response.data['category_list']['categories'],
                 isSuccess: true,
                 isError: false
             });
@@ -116,7 +116,7 @@ const GovernanceTable = ({ }) => {
                 <Table variant="simple" key={1} bgColor={"#FFF"} >
                     <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                         <Tr>
-                            <Th
+                            {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={400}
@@ -231,27 +231,29 @@ const GovernanceTable = ({ }) => {
                                      letterSpacing={"1.4px"}
                                      textTransform={"capitalize"}
                                      >
-                                        Controversy</Text>
-
-                                    {/* <>
-
-                                        <Tooltip label='#Frame'
-                                            fontWeight={400}
-                                            fontSize={"14px"}>
-
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"3px"}
-                                                paddingRight={"2px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                    </> */}
+                                        Controversy
+                                    </Text>
                                 </Flex>
 
-                            </Th>
+                            </Th> */}
+
+                            {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                                return (
+                                    <>
+                                        <Th
+                                            key={i}
+                                            color={useColorModeValue("#434347", "#A8ADBD")}
+                                            fontSize={"14px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            {item}
+                                        </Th>
+                                    </>
+                                );
+                            })}
 
 
                             {/* <Th
@@ -271,117 +273,59 @@ const GovernanceTable = ({ }) => {
                     fontWeight={"400"}
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
-                    _light={{ bgColor: "#FFF" }} >
-        {governanceTableData.isError && (
-          <>
-            <Tr>
-              <Td
-                color={useColorModeValue("#16171B", "#FFF")}
-                fontSize={"20px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-                p="20px"
-              >
-                No data available
-              </Td>
-            </Tr>
-          </>
-        )}
-        {governanceTableData.isLoading && (
-          <>
-            <SkeletonRow />
-            <SkeletonRow />
-            <SkeletonRow />
-          </>
-        )}
+                    _light={{ bgColor: "#FFF" }}
+                    >
 
-                        <Tr 
-                        height={"40px"} _dark={{ color: "#FFFFFF" }}
-                        _light={{ color: "#16171B" }}>
-
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
-
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
-
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
-
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status1 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status1 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
-
-
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                           
-
+                    {governanceTableData.isError && (
+                    <>
+                        <Tr>
+                        <Td
+                            color={useColorModeValue("#16171B", "#FFF")}
+                            fontSize={"20px"}
+                            fontWeight={"400"}
+                            letterSpacing={"1px"}
+                            p="20px"
+                        >
+                            No data available
+                        </Td>
                         </Tr>
+                    </>
+                    )}
 
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
+                    {governanceTableData.isLoading && (
+                    <>
+                        <SkeletonRow />
+                        <SkeletonRow />
+                        <SkeletonRow />
+                    </>
+                    )}
 
-                            _light={{ color: "#16171B" }}>
+                    {governanceTableData.isSuccess && governanceTableData?.data?.map((item, i) => {
+                        return (
+                        <>
+                            <Tr 
+                                height={"40px"}
+                                _dark={{ color: "#FFFFFF" }}
+                                _light={{ color: "#16171B" }}
+                            >
+                                <Td  fontSize={"14px"}>{item.name}</Td>
+                                <Td  fontSize={"14px"}>{item.description_text}</Td>
+                                <Td  fontSize={"14px"}>{item.topics.length}</Td>
+                                <Td  fontSize={"14px"}>
+                                    <Button
+                                        size={"sm"}
+                                        onClick={() => {
+                                            router.push(`https://governance.aave.com${item.topic_url}`)
+                                        }}
+                                    >
+                                        View More
+                                    </Button>
+                                </Td>
+                            </Tr>
+                        </>
+                    );
+                    })}
 
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
-
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
-
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
-
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status2 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status2 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                           
-
-                        </Tr>
-
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
-
-                            _light={{ color: "#16171B" }}>
-
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
-
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
-
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
-
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status3 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status3 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                            
-                        </Tr> 
                     </Tbody>
                   
                 </Table>
