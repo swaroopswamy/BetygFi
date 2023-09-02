@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import NextLink from 'next/link';
 const axios = require('axios');
+import categoriesFile from "./categories.json";
 
 
 const GovernanceTable = ({ }) => {
@@ -15,7 +16,7 @@ const GovernanceTable = ({ }) => {
     const { colorMode } = useColorMode();
     const [searchByName, setSearchByName] = useState('');
     const [governanceTableData, setGovernanceTableData] = useState({
-        data: null,
+        data: categoriesFile['category_list']['categories'],
         isSuccess: false,
         isError: false,
     });
@@ -38,8 +39,6 @@ const GovernanceTable = ({ }) => {
                 console.log(error);
             });
     }, []);
-
-    console.log("gtd: ", governanceTableData.data, governanceTableData.isError);
 
     //  For Governance Table
     const Status1 = "Active";
@@ -302,7 +301,7 @@ const GovernanceTable = ({ }) => {
                         </>
                     )}
 
-                    {governanceTableData.isSuccess && governanceTableData?.data?.map((item, i) => {
+                    {governanceTableData?.data?.map((item, i) => {
                         return (
                             <>
                                 <Tr
