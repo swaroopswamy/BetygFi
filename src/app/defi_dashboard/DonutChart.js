@@ -153,25 +153,6 @@ function DonutChart() {
           />
         </Box>
 
-        <Box
-          _dark={{
-            color: "#FFF"
-          }}
-          _light={{
-            color: "#16171B"
-          }}
-          fontSize={"20px"}
-          fontWeight={"400"}
-          letterSpacing={"1px"}
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          textAlign={"center"}
-          height={"245px"}
-        >
-          No Data Available
-        </Box>
-
         {/* <Box
             _dark={{
                 color: "#FFF"

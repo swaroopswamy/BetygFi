@@ -162,7 +162,7 @@ function BarChart() {
               height={"300px"}
             />
           </Box>
-
+{/* 
           <Box
             _dark={{
               color: "#FFF"
@@ -180,7 +180,7 @@ function BarChart() {
             height={"245px"}
           >
             No Data Available
-          </Box>
+          </Box> */}
         </Box>
       </Box>
 
