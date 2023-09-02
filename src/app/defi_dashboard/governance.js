@@ -1,5 +1,5 @@
 "use client"
-import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
+import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Skeleton } from "@chakra-ui/react";
 import { List, ListItem, ListIcon, Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
