@@ -276,7 +276,7 @@ const GovernanceTable = ({ }) => {
                     _light={{ bgColor: "#FFF" }}
                 >
 
-                    {governanceTableData.isError && (
+                    {/* {governanceTableData.isError && (
                         <>
                             <Tr>
                                 <Td
@@ -286,12 +286,14 @@ const GovernanceTable = ({ }) => {
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
                                     p="20px"
+                                    colSpan={4}
+                                    textAlign={"center"}
                                 >
                                     No data available
                                 </Td>
                             </Tr>
                         </>
-                    )}
+                    )} */}
 
                     {governanceTableData.isLoading && (
                         <>
