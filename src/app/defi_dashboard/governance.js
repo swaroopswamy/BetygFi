@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import NextLink from 'next/link';
+import categoriesFile from './categories.json';
 const axios = require('axios');
 
 const GovernanceTable = ({ }) => {
@@ -14,7 +15,7 @@ const GovernanceTable = ({ }) => {
     const { colorMode } = useColorMode();
     const [searchByName, setSearchByName] = useState('');
     const [governanceTableData, setGovernanceTableData] = useState({
-        data: null,
+        data: categoriesFile['category_list']['categories'],
         isSuccess: false,
         isError: false,
     });
@@ -302,7 +303,7 @@ const GovernanceTable = ({ }) => {
                         </>
                     )}
 
-                    {governanceTableData.isSuccess && governanceTableData?.data?.map((item, i) => {
+                    { governanceTableData?.data?.map((item, i) => {
                         return (
                             <>
                                 <Tr
