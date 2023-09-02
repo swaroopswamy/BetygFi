@@ -9,7 +9,6 @@ import isEmpty from "is-empty";
 import NextLink from 'next/link';
 const axios = require('axios');
 
-
 const GovernanceTable = ({ }) => {
     const router = useRouter();
     const { colorMode } = useColorMode();
@@ -31,7 +30,7 @@ const GovernanceTable = ({ }) => {
             })
             .catch(function (error) {
                 setGovernanceTableData({
-                    data: null,
+                    data: categoriesFile['category_list']['categories'],
                     isSuccess: false,
                     isError: true
                 });
