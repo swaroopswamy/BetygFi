@@ -197,7 +197,7 @@ function TableRow({ key, asset, share, value }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                USD {USDollar.format(value)}
+                               {value/10**6}
                             </Text>
                         </Box>
                     </Flex>
