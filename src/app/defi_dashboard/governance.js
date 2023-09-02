@@ -96,7 +96,7 @@ const GovernanceTable = ({ }) => {
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box> */}
-                        <Box>
+                        {/* <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
                                 bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -110,7 +110,7 @@ const GovernanceTable = ({ }) => {
                                 placeholder="Search Difi"
                                 onChange={(e) => { searchByNameHandler(e.target.value) }}
                             />
-                        </Box>
+                        </Box> */}
 
                 </Flex>
                 <Table variant="simple" key={1} bgColor={"#FFF"} >
