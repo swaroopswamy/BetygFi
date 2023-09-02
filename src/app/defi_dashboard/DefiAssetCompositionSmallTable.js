@@ -6,23 +6,28 @@ import { useRouter } from "next/navigation";
 import { Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton } from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
-function Assetcomposition() {
 
+let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
+function Assetcomposition() {
     const tableName = "DeFi Asset Composition";
-    const thread = ["Asset Name", "Share", "Value"];
+    const thread = ["Asset Name",   /* "Share",  */"Value"];
     const Definitions = "DeFi Asset Composition: Asset composition matrix shows the distribution of value in different assets. "
     const Tablepath = "/defi_dashboard/asset_composition"
-    const tableData = [
-        ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],
-        ["/images/Trondefiusers.svg", "Tron", "+ 256,456,560 USD"],
-        ["/images/Binancedefiusers.svg", "BSC", "+ 46,456,560 USD"],
-        ["/images/Arbitrumdefiusers.svg", "Arbitrum", "+ 66,456,560 USD"],
-        ["/images/Polygondefiusers.svg", "Polygon", "+ 56,456,560 USD"],
-    ];
+    /*  const tableData = [
+         ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],
+         ["/images/Trondefiusers.svg", "Tron", "+ 256,456,560 USD"],
+         ["/images/Binancedefiusers.svg", "BSC", "+ 46,456,560 USD"],
+         ["/images/Arbitrumdefiusers.svg", "Arbitrum", "+ 66,456,560 USD"],
+         ["/images/Polygondefiusers.svg", "Polygon", "+ 56,456,560 USD"],
+     ]; */
 
-    /* const AssetcompositionTableData = useSelector(
-        (state) => state?.defiDashboardData?.DefiHotContractsTableData
-    ) */
+    const AssetcompositionTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
+    )
 
     return (
         <Box
@@ -33,7 +38,7 @@ function Assetcomposition() {
             <GenericSmallTableComponent
                 tableName={tableName}
                 thread={thread}
-                tableData={tableData}
+                tableData={AssetcompositionTableData}
                 RowComponent={RowComponent}
                 Definitions={Definitions}
                 Tablepath={Tablepath}
@@ -46,80 +51,62 @@ export default Assetcomposition;
 function RowComponent({ tableData }) {
 
     return (
-        /*  <>
-             {tableData?.isError && (
-                 <>
-                     <Tr
-                         height={"200px"}
-                     >
-                         <Td
-                             colSpan={3}
-                         >
-                             <Text
-                                 _light={{
-                                     color: "#16171B"
-                                 }}
-                                 _dark={{
-                                     color: "#FFF"
-                                 }}
-                                 fontSize={"20px"}
-                                 fontWeight={"400"}
-                                 letterSpacing={"1px"}
-                                 textAlign={"center"}
-                                 p="20px"
-                             >
-                                 No Data available
-                             </Text>
-                         </Td>
-                     </Tr>
-                 </>
-             )}
-             {tableData?.isLoading && (
-                 <>
-                     <SkeletonRow />
-                     <SkeletonRow />
-                     <SkeletonRow />
-                 </>
-             )}
-             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                 return (
-                     <>
-                         <TableRow
-                             key={i}
-                             asset={{ name: item[1], src: item[0] }}
-                             share={item[2]}
-                             value={item[3]}
-                         />
-                     </>
-                 )
-             })}
-         </> */
         <>
-            <Tr
-                height={"250px"}
-            >
-                <Td
-                    colSpan={3}
-                >
-                    <Text
-                        _light={{
-                            color: "#16171B"
-                        }}
-                        _dark={{
-                            color: "#FFF"
-                        }}
-                        fontSize={"20px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
-                        textAlign={"center"}
-                        p="20px"
-
+            {tableData?.isError && (
+                <>
+                    <Tr
+                        height={"200px"}
                     >
-                        No Data available
-                    </Text>
-                </Td>
-            </Tr>
+                        <Td
+                            colSpan={3}
+                        >
+                            <Text
+                                _light={{
+                                    color: "#16171B"
+                                }}
+                                _dark={{
+                                    color: "#FFF"
+                                }}
+                                fontSize={"20px"}
+                                fontWeight={"400"}
+                                letterSpacing={"1px"}
+                                textAlign={"center"}
+                                p="20px"
+                            >
+                                No Data available
+                            </Text>
+                        </Td>
+                    </Tr>
+                </>
+            )}
+            {tableData?.isLoading && (
+                <>
+                    <SkeletonRow />
+                    <SkeletonRow />
+                    <SkeletonRow />
+                </>
+            )}
+            {tableData?.isSuccess && tableData?.data?.data?.filter((item) => {
+                if (item?.symbol !== null) {
+                    return item
+                }
+            }).map((item, i) => {
+                if (i < 7) {
+                    return (
+                        <>
+                            <TableRow
+                                key={i}
+                                asset={{ name: item?.symbol, src: '' }}
+                                // share={item[2]}
+                                value={item?.adjusted_liquidityIndex}
+                            />
+                        </>
+                    )
+                }
+
+            })}
         </>
+
     )
 }
 
@@ -149,13 +136,13 @@ function TableRow({ key, asset, share, value }) {
                             display={"flex"}
                             gap={"10px"}
                         >
-                            <Image
+                            {/*   <Image
                                 height={"24px"}
                                 width={"24px"}
                                 src={asset.src}
                                 alt="logo"
                             >
-                            </Image>
+                            </Image> */}
                             <Text
                                 _dark={{
                                     color: "#FFFFFF"
@@ -174,7 +161,7 @@ function TableRow({ key, asset, share, value }) {
                     </Flex>
                 </Td>
 
-                <Td>
+                {/*                 <Td>
                     <Flex>
                         <Box>
                             <Text
@@ -193,7 +180,7 @@ function TableRow({ key, asset, share, value }) {
                             </Text>
                         </Box>
                     </Flex>
-                </Td>
+                </Td> */}
 
                 <Td>
                     <Flex>
@@ -210,7 +197,7 @@ function TableRow({ key, asset, share, value }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {value}
+                                USD {USDollar.format(value)}
                             </Text>
                         </Box>
                     </Flex>
@@ -226,11 +213,11 @@ const SkeletonRow = () => (
         <Td>
             <Skeleton height="20px" my={4} />
         </Td>
-        <Td>
+        {/*  <Td>
             <Skeleton height="20px" my={4} />
         </Td>
         <Td>
             <Skeleton height="20px" my={4} />
-        </Td>
+        </Td> */}
     </Box>
 )

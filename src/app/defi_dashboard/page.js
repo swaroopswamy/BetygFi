@@ -20,7 +20,7 @@ import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";
-import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 import { Router } from "next/router";
@@ -75,12 +75,19 @@ const DefiDashboardPage = () => {
         };
         dispatch(fetchDefiHotContractsTableData(payload));
     };
+    const getDefiAssetCompositionDataHandler = () => {
+        const payload = {
+            defi: defi,
+        };
+        dispatch(fetchDefiAssetCompositionTableData(payload));
+    };
 
 
     useEffect(() => {
         getDefiDataHandler();
         getDefiUsersTableDataHandler();
         getDefiHotContractsDataHandler();
+        getDefiAssetCompositionDataHandler(); 
     }, []);
 
     useEffect(() => {

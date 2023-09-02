@@ -45,7 +45,6 @@ const DefiTable = () => {
     //     setSortingOrder(sortingOrder === "asc" ? "desc" : "asc");
     //   };
 
-    console.log(walletBalanceData, 'walletBalance')
     return (
         <>
             <Table variant="simple" key={1}>
