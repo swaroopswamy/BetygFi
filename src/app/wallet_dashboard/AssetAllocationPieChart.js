@@ -9,8 +9,7 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const AssetAllocationPieChart = () => {
     const { colorMode } = useColorMode();
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
-    const assetAllocationData = useSelector((state) => state?.walletDashboardTableData?.assetAllocationForAddress);
+   const assetAllocationData = useSelector((state) => state?.walletDashboardTableData?.assetAllocationForAddress);
 
     const options = {
         chart: {
