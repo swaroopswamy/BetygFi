@@ -9,7 +9,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function BarChart() {
   const { colorMode } = useColorMode();
   const router = useRouter();
-
+  const Definitions = "DeFi borrow is the total amount of assets DeFi has lent to its users. DeFi Supply is the total amount of assets users have lent to DeFi. Total value locked (TVL) is the amount assets DeFi holds.";
   const options = {
     chart: {
       toolbar: {
@@ -131,27 +131,27 @@ function BarChart() {
             padding={"15px 0 20px 20px"}
           >
             <Flex>
-            <Text
-              fontSize={"18px"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-              color={useColorModeValue("#16171B", "#FFFFFF")}
-            >
-              Defi Borrow/Supply/TVL
-            </Text>
-            <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"5px"}
-                                                ml={"4px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                        </Flex>
+              <Text
+                fontSize={"18px"}
+                fontWeight={"600"}
+                lineHeight={"20px"}
+                color={useColorModeValue("#16171B", "#FFFFFF")}
+              >
+                Defi Borrow/Supply/TVL
+              </Text>
+              <Tooltip label={Definitions}>
+                <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"5px"}
+                  ml={"4px"}
+                  alt=''
+                  src="/images/Frame.svg">
+                </Image>
+              </Tooltip>
+            </Flex>
           </Box>
-          {/* <Box
+          <Box
             padding={"5px 20px 5px 10px"}
             fontSize={"12px"}
           >
@@ -161,26 +161,26 @@ function BarChart() {
               type={options.chart.type}
               height={"300px"}
             />
-          </Box> */}
+          </Box>
 
-<Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
-                            >
-                                No Data Available
-                            </Box>
+          <Box
+            _dark={{
+              color: "#FFF"
+            }}
+            _light={{
+              color: "#16171B"
+            }}
+            fontSize={"20px"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            textAlign={"center"}
+            height={"245px"}
+          >
+            No Data Available
+          </Box>
         </Box>
       </Box>
 
