@@ -276,7 +276,7 @@ const GovernanceTable = ({ }) => {
                     _light={{ bgColor: "#FFF" }}
                 >
 
-                    {governanceTableData.isError && (
+                    {/* {governanceTableData.isError && (
                         <>
                             <Tr>
                                 <Td
@@ -293,7 +293,7 @@ const GovernanceTable = ({ }) => {
                                 </Td>
                             </Tr>
                         </>
-                    )}
+                    )} */}
 
                     {governanceTableData.isLoading && (
                         <>
