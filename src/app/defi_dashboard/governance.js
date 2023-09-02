@@ -1,6 +1,6 @@
 "use client"
 import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
-import { List, ListItem, ListIcon,Checkbox } from '@chakra-ui/react';
+import { List, ListItem, ListIcon, Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -11,32 +11,32 @@ const axios = require('axios');
 
 
 const GovernanceTable = ({ }) => {
-  const router = useRouter();
-  const { colorMode } = useColorMode();
-  const [searchByName, setSearchByName] = useState('');
-  const [governanceTableData, setGovernanceTableData] = useState({
-    data: null,
-    isSuccess: false,
-    isError: false,
-  });
+    const router = useRouter();
+    const { colorMode } = useColorMode();
+    const [searchByName, setSearchByName] = useState('');
+    const [governanceTableData, setGovernanceTableData] = useState({
+        data: null,
+        isSuccess: false,
+        isError: false,
+    });
 
-  useEffect(() => {
-    let response = axios.get('https://governance.aave.com/categories.json')
-        .then(function (response) {
-            setGovernanceTableData({
-                data: response.data['category_list']['categories'],
-                isSuccess: true,
-                isError: false
+    useEffect(() => {
+        let response = axios.get('https://governance.aave.com/categories.json')
+            .then(function (response) {
+                setGovernanceTableData({
+                    data: response.data['category_list']['categories'],
+                    isSuccess: true,
+                    isError: false
+                });
+            })
+            .catch(function (error) {
+                setGovernanceTableData({
+                    data: null,
+                    isSuccess: false,
+                    isError: true
+                });
+                console.log(error);
             });
-        })
-        .catch(function (error) {
-            setGovernanceTableData({
-                data: null,
-                isSuccess: false,
-                isError: true
-            });
-            console.log(error);
-        });
     }, []);
 
     console.log("gtd: ", governanceTableData.data, governanceTableData.isError);
@@ -58,27 +58,27 @@ const GovernanceTable = ({ }) => {
             ml={"30px"}
             paddingBottom={"60px"}
         >
-                {/* Governance Table */}
+            {/* Governance Table */}
 
-                <Flex
-                    padding={"25px 29px 27px"}
-                    bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
-                    <Text
-                        fontSize={"18px"}
-                        fontWeight={600}
-                        mr={"5px"}
-                        color={useColorModeValue("#16171B", "#FFF")}>
-                        Governance 
-                    </Text>
+            <Flex
+                padding={"25px 29px 27px"}
+                bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
+                <Text
+                    fontSize={"18px"}
+                    fontWeight={600}
+                    mr={"5px"}
+                    color={useColorModeValue("#16171B", "#FFF")}>
+                    Governance
+                </Text>
 
-                    <Text  
-                           paddingTop={"5px"}
-                           fontSize={"16px"}
-                           fontWeight={400}
-                           lineHeight={"20px"}>|  Proposals</Text>
+                <Text
+                    paddingTop={"5px"}
+                    fontSize={"16px"}
+                    fontWeight={400}
+                    lineHeight={"20px"}>|  Proposals</Text>
 
-                         <Spacer />
-                        {/* <Box>
+                <Spacer />
+                {/* <Box>
                         <Checkbox 
                             width={"14px"}
                                 height={"14px"}
@@ -96,7 +96,7 @@ const GovernanceTable = ({ }) => {
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box> */}
-                        {/* <Box>
+                {/* <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
                                 bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -112,11 +112,11 @@ const GovernanceTable = ({ }) => {
                             />
                         </Box> */}
 
-                </Flex>
-                <Table variant="simple" key={1} bgColor={"#FFF"} >
-                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
-                        <Tr>
-                            {/* <Th
+            </Flex>
+            <Table variant="simple" key={1} bgColor={"#FFF"} >
+                <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                    <Tr>
+                        {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={400}
@@ -237,26 +237,27 @@ const GovernanceTable = ({ }) => {
 
                             </Th> */}
 
-                            {['Title', 'Description', 'Topics', ' '].map((item, i) => {
-                                return (
-                                    <>
-                                        <Th
-                                            key={i}
-                                            color={useColorModeValue("#434347", "#A8ADBD")}
-                                            fontSize={"14px"}
-                                            fontWeight={400}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                            textTransform={"capitalize"}
-                                        >
-                                            {item}
-                                        </Th>
-                                    </>
-                                );
-                            })}
+                        {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                            return (
+                                <>
+                                    <Th
+                                        key={i}
+                                        _light={{ color: "#434347" }}
+                                        _dark={{ color: "#A8ADBD" }}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        {item}
+                                    </Th>
+                                </>
+                            );
+                        })}
 
 
-                            {/* <Th
+                        {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -264,75 +265,92 @@ const GovernanceTable = ({ }) => {
                             >
                                 DISCUSSION
                             </Th> */}
-                        </Tr>
-                    </Thead>
+                    </Tr>
+                </Thead>
 
 
-                    <Tbody
+                <Tbody
                     fontSize={"14px"}
                     fontWeight={"400"}
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
                     _light={{ bgColor: "#FFF" }}
-                    >
+                >
 
                     {governanceTableData.isError && (
-                    <>
-                        <Tr>
-                        <Td
-                            color={useColorModeValue("#16171B", "#FFF")}
-                            fontSize={"20px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            p="20px"
-                        >
-                            No data available
-                        </Td>
-                        </Tr>
-                    </>
+                        <>
+                            <Tr>
+                                <Td
+                                    _dark={{ color: "#FFF" }}
+                                    _light={{ color: "#16171B" }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    p="20px"
+                                >
+                                    No data available
+                                </Td>
+                            </Tr>
+                        </>
                     )}
 
                     {governanceTableData.isLoading && (
-                    <>
-                        <SkeletonRow />
-                        <SkeletonRow />
-                        <SkeletonRow />
-                    </>
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
                     )}
 
                     {governanceTableData.isSuccess && governanceTableData?.data?.map((item, i) => {
                         return (
-                        <>
-                            <Tr 
-                                height={"40px"}
-                                _dark={{ color: "#FFFFFF" }}
-                                _light={{ color: "#16171B" }}
-                            >
-                                <Td  fontSize={"14px"}>{item.name}</Td>
-                                <Td  fontSize={"14px"}>{item.description_text}</Td>
-                                <Td  fontSize={"14px"}>{item.topics.length}</Td>
-                                <Td  fontSize={"14px"}>
-                                    <Button
-                                        size={"sm"}
-                                        onClick={() => {
-                                            router.push(`https://governance.aave.com${item.topic_url}`)
-                                        }}
-                                    >
-                                        View More
-                                    </Button>
-                                </Td>
-                            </Tr>
-                        </>
-                    );
+                            <>
+                                <Tr
+                                    height={"40px"}
+                                    _dark={{ color: "#FFFFFF" }}
+                                    _light={{ color: "#16171B" }}
+                                >
+                                    <Td fontSize={"14px"}>{item.name}</Td>
+                                    <Td fontSize={"14px"}>{item.description_text}</Td>
+                                    <Td fontSize={"14px"}>{item.topics.length}</Td>
+                                    <Td fontSize={"14px"}>
+                                        <Button
+                                            size={"sm"}
+                                            onClick={() => {
+                                                router.push(`https://governance.aave.com${item.topic_url}`)
+                                            }}
+                                        >
+                                            View More
+                                        </Button>
+                                    </Td>
+                                </Tr>
+                            </>
+                        );
                     })}
 
-                    </Tbody>
-                  
-                </Table>
-                
-            </Box>
+                </Tbody>
+
+            </Table>
+
+        </Box>
 
     )
 
 }
+
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
+
+  
 export default GovernanceTable;
