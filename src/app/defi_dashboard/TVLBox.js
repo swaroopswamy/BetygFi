@@ -10,7 +10,7 @@ import millify from "millify";
 const TVLBox = () => {
     const { colorMode } = useColorMode();
     const defiData = useSelector(
-        (state) => state?.defiDashboardData?.DefiData?.data
+        (state) => state?.defiDashboardData?.DefiData
     )
     return (
 
@@ -33,10 +33,10 @@ const TVLBox = () => {
                     lineHeight={"20px"}
                     letterSpacing={"2.4px"}
                     textTransform={"uppercase"}>
-                    ${" "}{millify(defiData?.tvl, {
+                    ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
                         precision: 2,
-                        locales: "en-US"
-                    })}
+                        locales: "en-US"})) : 
+                        "-"}
                 </Text>
                 <Text
                     _light={{ color: "#16171B" }}
@@ -74,14 +74,16 @@ const TVLBox = () => {
                         lineHeight={"27px"}
                         textAlign={"right"}
                         pt={"20px"}>
-                        ${" "}{millify(defiData?.mcap, {
+                        ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.mcap, {
                             precision: 2,
                             locales: "en-US"
-                        })}<br></br>
-                        ${" "}{millify(defiData?.price, {
+                        })) : "-"}
+                        <br></br>
+                        ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.price, {
                             precision: 2,
                             locales: "en-US"
-                        })} <br></br>
+                        })) : "-"}
+                        <br></br>
                         {/* $231.35m<br></br>
                         $84.15m<br></br>
                         38,682<br></br>
