@@ -246,7 +246,7 @@ const GovernanceTable = ({ }) => {
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
                     _light={{ bgColor: "#FFF" }} >
-        {tableData.GovernanceTableData.isError && (
+        {/* {tableData.GovernanceTableData.isError && (
           <>
             <Tr>
               <Td
@@ -267,7 +267,7 @@ const GovernanceTable = ({ }) => {
             <SkeletonRow />
             <SkeletonRow />
           </>
-        )}
+        )} */}
 
                         <Tr 
                         height={"40px"} _dark={{ color: "#FFFFFF" }}
