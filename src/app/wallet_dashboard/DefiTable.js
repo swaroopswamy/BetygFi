@@ -183,10 +183,10 @@ const DefiTable = () => {
                     </Tr>
                 </Thead>
                 <Tbody >
-                    <Tr
-                    >
-                        {(walletBalanceData.data?.isQueryInPendingState || walletBalanceData.isLoading) && (
-                            <>
+
+                    {(walletBalanceData?.isLoading || walletBalanceData.data?.isQueryInPendingState) && (
+                        <>
+                            <Tr>
                                 <Td
                                     minH={"212px"}
                                     colSpan={8}
@@ -253,10 +253,10 @@ const DefiTable = () => {
                                         </Text>
                                     </Box>
                                 </Td>
-                            </>
-                        )}
-                    </Tr>
-                    {walletBalanceData?.isError && (
+                            </Tr>
+                        </>
+                    )}
+                    {(walletBalanceData?.isError || !(walletBalanceData?.data?.data?.length > 0)) && (
                         <>
                             <Tr >
                                 <Td
@@ -280,24 +280,24 @@ const DefiTable = () => {
                     )}
 
                     {walletBalanceData?.isSuccess &&
-                        ((walletBalanceData?.data?.data?.length > 0) ?
+                        (
                             (walletBalanceData?.data?.data.map((item, i) => {
                                 return (
                                     <>
                                         <Tr key={i + 1}>
                                             {/*   <Td
-                                                _dark={{
-                                                    color: "#FFF"
-                                                }}
-                                                _light={{
-                                                    color: "#16171B"
-                                                }}
-                                                fontSize={"14px"}
-                                                fontWeight={"400"}
-                                                letterSpacing={"1px"}
-                                            >
-                                                {item?.symbol}
-                                            </Td> */}
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                        >
+                                            {item?.symbol}
+                                        </Td> */}
                                             <Td
                                             >
                                                 <Box
@@ -428,29 +428,9 @@ const DefiTable = () => {
                                     </>
                                 );
                             }))
-                            : (!walletBalanceData.data?.isQueryInPendingState &&
-                                (<>
-                                    <Tr >
-                                        <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            colSpan={8}
-                                            textAlign={"center"}
-                                            p="20px"
-                                        >
-                                            No Data Available
-                                        </Td>
-                                    </Tr>
-                                </>)
-                            )
                         )
+
+
                     }
                 </Tbody>
             </Table>

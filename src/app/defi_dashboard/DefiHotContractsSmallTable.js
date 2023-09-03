@@ -37,56 +37,82 @@ export default Defihotcontracts;
 
 function RowComponent({ tableData }) {
     return (
+        /*    <>
+               {tableData?.isError && (
+                   <>
+                       <Tr
+                           height={"250px"}
+                       >
+                           <Td
+                               colSpan={3}
+                           >
+                               <Text
+                                   _light={{
+                                       color: "#16171B"
+                                   }}
+                                   _dark={{
+                                       color: "#FFF"
+                                   }}
+                                   fontSize={"20px"}
+                                   fontWeight={"400"}
+                                   letterSpacing={"1px"}
+                                   textAlign={"center"}
+                                   p="20px"
+   
+                               >
+                                   No Data available
+                               </Text>
+                           </Td>
+                       </Tr>
+                   </>
+               )}
+               {tableData?.isLoading && (
+                   <>
+                       <SkeletonRow />
+                       <SkeletonRow />
+                       <SkeletonRow />
+                   </>
+               )}
+               {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
+                   if (i < 5) {
+                       return (
+                           <>
+                               <TableRow
+                                   key={i}
+                                   contract={{ name: item[1], src: item[0] }}
+                                   users={item[2]}
+                                   transactions={item[3]}
+                               />
+                           </>
+                       )
+                   }
+               })}
+           </> */
         <>
-            {tableData?.isError && (
-                <>
-                    <Tr
-                        height={"250px"}
-                    >
-                        <Td
-                            colSpan={3}
-                        >
-                            <Text
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                textAlign={"center"}
-                                p="20px"
+            <Tr
+                height={"250px"}
+            >
+                <Td
+                    colSpan={3}
+                >
+                    <Text
+                        _light={{
+                            color: "#16171B"
+                        }}
+                        _dark={{
+                            color: "#FFF"
+                        }}
+                        fontSize={"20px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        textAlign={"center"}
+                        p="20px"
 
-                            >
-                                No Data available
-                            </Text>
-                        </Td>
-                    </Tr>
-                </>
-            )}
-            {tableData?.isLoading && (
-                <>
-                    <SkeletonRow />
-                    <SkeletonRow />
-                    <SkeletonRow />
-                </>
-            )}
-            {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                if (i < 5) {
-                    return (
-                        <>
-                            <TableRow
-                                key={i}
-                                contract={{ name: item[1], src: item[0] }}
-                                users={item[2]}
-                                transactions={item[3]}
-                            />
-                        </>
-                    )
-                }
-            })}
+                    >
+                        No Data available
+                    </Text>
+                </Td>
+            </Tr>
         </>
     )
 }

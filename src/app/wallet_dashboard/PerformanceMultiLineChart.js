@@ -6,10 +6,10 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 
 const PerformanceMultiLineChart = () => {
-    const { colorMode } = useColorMode();
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-    const options = {
-     chart: {
+  const { colorMode } = useColorMode();
+  const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+  const options = {
+    chart: {
       toolbar: {
         show: false,
       },
@@ -77,40 +77,46 @@ const PerformanceMultiLineChart = () => {
   ];
   return (
     <>
-    {!walletBalanceData?.isSuccess && (
-            <Skeleton>
-                <Box
-                    width={"1074px"}
-                    height={"217px"}
-                    pt={"9px"}
-                    display={"flex"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                > 
-                    
-                </Box>
-                </Skeleton>)
-            }
-             {/* {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />} */}
+      {!walletBalanceData?.isSuccess ? (
+        <Skeleton>
+          <Box
+            width={"1074px"}
+            height={"217px"}
+            pt={"9px"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+          >
 
-             <Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
-                            >
-                                No Data Available
-                            </Box>
+          </Box>
+        </Skeleton>)
+        :
+        (
+          <>
+            <Box
+              _dark={{
+                color: "#FFF"
+              }}
+              _light={{
+                color: "#16171B"
+              }}
+              fontSize={"20px"}
+              fontWeight={"400"}
+              letterSpacing={"1px"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              textAlign={"center"}
+              height={"245px"}
+            >
+              No Data Available
+            </Box>
+          </>
+        )
+      }
+      {/* {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />} */}
+
+
     </>
   );
 };

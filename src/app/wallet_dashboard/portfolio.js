@@ -671,7 +671,7 @@ const PortfolioPanelComponent = () => {
 export default PortfolioPanelComponent;
 
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
-  console.log("data ", tableData);
+
   return (
     <>
       <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>

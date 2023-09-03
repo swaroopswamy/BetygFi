@@ -332,7 +332,7 @@ const WalletAnalyticsPanel = () => {
                 {protocolAllocationData?.isSuccess &&
                   (Object.keys(protocolAllocationData?.data)?.length > 0 ?
                     (Object.keys(protocolAllocationData?.data)?.map((item, i) => {
-                      console.log(protocolAllocationData?.data[item], 'item')
+                      
                       return (
                         <>
                           <Tr height={"40px"} key={i}>

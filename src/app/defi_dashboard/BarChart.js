@@ -4,12 +4,22 @@ import dynamic from "next/dynamic";
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+let USDollar = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 function BarChart() {
   const { colorMode } = useColorMode();
   const router = useRouter();
-
+  const defiData = useSelector(
+    (state) => state?.defiDashboardData?.DefiData?.data
+  )
+  const Definitions = "DeFi borrow is the total amount of assets DeFi has lent to its users. DeFi Supply is the total amount of assets users have lent to DeFi. Total value locked (TVL) is the amount assets DeFi holds.";
   const options = {
     chart: {
       toolbar: {
@@ -58,7 +68,7 @@ function BarChart() {
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[0][dataPointIndex] + "%" +
+          USDollar.format(series[0][dataPointIndex]) + "" +
           '</div>' +
           "</div>"
         );
@@ -97,13 +107,14 @@ function BarChart() {
   const series = [{
     data: [{
       x: 'Borrow',
-      y: 100
-    }, {
+      y: 1511121239
+    },/*  {
       x: 'Supply',
-      y: 80
-    }, {
+      y: 158930,000,000
+    }, */ {
       x: 'TVL',
-      y: 59
+      y: defiData?.tvl !== undefined ? defiData?.tvl : 0
+
     }]
   }]
 
@@ -131,56 +142,63 @@ function BarChart() {
             padding={"15px 0 20px 20px"}
           >
             <Flex>
-            <Text
-              fontSize={"18px"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-              color={useColorModeValue("#16171B", "#FFFFFF")}
-            >
-              Defi Borrow/Supply/TVL
-            </Text>
-            <Tooltip label="#Frame">
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"5px"}
-                                                ml={"4px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                        </Flex>
+              <Text
+                fontSize={"18px"}
+                fontWeight={"600"}
+                lineHeight={"20px"}
+                color={useColorModeValue("#16171B", "#FFFFFF")}
+              >
+                Defi Borrow/Supply/TVL
+              </Text>
+              <Tooltip label={Definitions}>
+                <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"5px"}
+                  ml={"4px"}
+                  alt=''
+                  src="/images/Frame.svg">
+                </Image>
+              </Tooltip>
+            </Flex>
           </Box>
-          {/* <Box
+          <Box
             padding={"5px 20px 5px 10px"}
             fontSize={"12px"}
           >
-            <Chart
-              options={options}
-              series={series}
-              type={options.chart.type}
-              height={"300px"}
-            />
-          </Box> */}
+            {
+              defiData?.tvl > 0 && (
+                <>
+                  <Chart
+                    options={options}
+                    series={series}
+                    type={options.chart.type}
+                    height={"300px"}
+                  />
+                </>
+              )
+            }
 
-<Box
-                                _dark={{
-                                    color: "#FFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"20px"}
-                                fontWeight={"400"}
-                                letterSpacing={"1px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                textAlign={"center"}
-                                height={"245px"}
-                            >
-                                No Data Available
-                            </Box>
+          </Box>
+          {/* 
+          <Box
+            _dark={{
+              color: "#FFF"
+            }}
+            _light={{
+              color: "#16171B"
+            }}
+            fontSize={"20px"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+            textAlign={"center"}
+            height={"245px"}
+          >
+            No Data Available
+          </Box> */}
         </Box>
       </Box>
 

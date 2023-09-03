@@ -52,8 +52,8 @@ const Dashboard = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
-  const blockchains = useSelector(
-    (state) => state?.appData?.BlockchainListData?.data
+  const blockchainListData = useSelector(
+    (state) => state?.appData?.BlockchainListData
   );
  
   const overviewData = useSelector(
@@ -165,7 +165,7 @@ const Dashboard = () => {
               justifyContent={"center"}
               ml={"22px"}
             >
-              {blockchains?.map((item, i) => (
+              {blockchainListData.data?.map((item, i) => (
                 <>
                   {i < 4 &&
                     <Tooltip key={i} label={item.name}>
@@ -232,13 +232,13 @@ const Dashboard = () => {
                   _focus={{ boxShadow: 'outline' }}
                   color="#000"
                 >
-                  +{blockchains?.length - 4}
+                  +{blockchainListData.isSuccess && blockchainListData.data?.length - 4}
                 </MenuButton>
                 <MenuList
                   boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
                   bgColor={useColorModeValue("#FFF", "#191919")}
                 >
-                  {blockchains?.map((item, i) => {
+                  {blockchainListData.isSuccess && blockchainListData.data?.map((item, i) => {
                     return (
                       <>
                         {i >= 4 &&

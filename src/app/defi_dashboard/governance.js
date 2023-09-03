@@ -1,19 +1,44 @@
 "use client"
-import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td } from "@chakra-ui/react";
-import { List, ListItem, ListIcon,Checkbox } from '@chakra-ui/react';
+import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Skeleton } from "@chakra-ui/react";
+import { List, ListItem, ListIcon, Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import NextLink from 'next/link';
-
+import categoriesFile from './categories.json';
+const axios = require('axios');
 
 const GovernanceTable = ({ }) => {
-    const tableData = useSelector((state) => state?.defiDashboardData?.GovernanceTableData)
-  const router = useRouter();
-  const { colorMode } = useColorMode();
-  const [searchByName, setSearchByName] = useState('');
+    const router = useRouter();
+    const { colorMode } = useColorMode();
+    const [searchByName, setSearchByName] = useState('');
+    const [governanceTableData, setGovernanceTableData] = useState({
+        data: categoriesFile['category_list']['categories'],
+        isSuccess: false,
+        isError: false,
+    });
+
+    useEffect(() => {
+        let response = axios.get('https://governance.aave.com/categories.json')
+            .then(function (response) {
+                setGovernanceTableData({
+                    data: response.data['category_list']['categories'],
+                    isSuccess: true,
+                    isError: false
+                });
+            })
+            .catch(function (error) {
+                setGovernanceTableData({
+                    data: categoriesFile['category_list']['categories'],
+                    isSuccess: false,
+                    isError: true
+                });
+                console.log(error);
+            });
+    }, []);
+
 
     //  For Governance Table
     const Status1 = "Active";
@@ -32,27 +57,27 @@ const GovernanceTable = ({ }) => {
             ml={"30px"}
             paddingBottom={"60px"}
         >
-                {/* Governance Table */}
+            {/* Governance Table */}
 
-                <Flex
-                    padding={"25px 29px 27px"}
-                    bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
-                    <Text
-                        fontSize={"18px"}
-                        fontWeight={600}
-                        mr={"5px"}
-                        color={useColorModeValue("#16171B", "#FFF")}>
-                        Governance 
-                    </Text>
+            <Flex
+                padding={"25px 29px 27px"}
+                bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
+                <Text
+                    fontSize={"18px"}
+                    fontWeight={600}
+                    mr={"5px"}
+                    color={useColorModeValue("#16171B", "#FFF")}>
+                    Governance
+                </Text>
 
-                    <Text  
-                           paddingTop={"5px"}
-                           fontSize={"16px"}
-                           fontWeight={400}
-                           lineHeight={"20px"}>|  Proposals</Text>
+                <Text
+                    paddingTop={"5px"}
+                    fontSize={"16px"}
+                    fontWeight={400}
+                    lineHeight={"20px"}>|  Proposals</Text>
 
-                         <Spacer />
-                        {/* <Box>
+                <Spacer />
+                {/* <Box>
                         <Checkbox 
                             width={"14px"}
                                 height={"14px"}
@@ -70,7 +95,7 @@ const GovernanceTable = ({ }) => {
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box> */}
-                        <Box>
+                {/* <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
                                 bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -84,13 +109,13 @@ const GovernanceTable = ({ }) => {
                                 placeholder="Search Difi"
                                 onChange={(e) => { searchByNameHandler(e.target.value) }}
                             />
-                        </Box>
+                        </Box> */}
 
-                </Flex>
-                <Table variant="simple" key={1} bgColor={"#FFF"} >
-                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
-                        <Tr>
-                            <Th
+            </Flex>
+            <Table variant="simple" key={1} bgColor={"#FFF"} >
+                <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                    <Tr>
+                        {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={400}
@@ -205,30 +230,33 @@ const GovernanceTable = ({ }) => {
                                      letterSpacing={"1.4px"}
                                      textTransform={"capitalize"}
                                      >
-                                        Controversy</Text>
-
-                                    {/* <>
-
-                                        <Tooltip label='#Frame'
-                                            fontWeight={400}
-                                            fontSize={"14px"}>
-
-                                            <Image width={"12px"}
-                                                height={"12px"}
-                                                flexShrink={"0"}
-                                                mt={"3px"}
-                                                paddingRight={"2px"}
-                                                alt=''
-                                                src="/images/Frame.svg">
-                                            </Image>
-                                        </Tooltip>
-                                    </> */}
+                                        Controversy
+                                    </Text>
                                 </Flex>
 
-                            </Th>
+                            </Th> */}
+
+                        {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                            return (
+                                <>
+                                    <Th
+                                        key={i}
+                                        _light={{ color: "#434347" }}
+                                        _dark={{ color: "#A8ADBD" }}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        {item}
+                                    </Th>
+                                </>
+                            );
+                        })}
 
 
-                            {/* <Th
+                        {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -236,15 +264,16 @@ const GovernanceTable = ({ }) => {
                             >
                                 DISCUSSION
                             </Th> */}
-                        </Tr>
-                    </Thead>
+                    </Tr>
+                </Thead>
 
 
-                    <Tbody
+                <Tbody
                     fontSize={"14px"}
                     fontWeight={"400"}
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
+<<<<<<< HEAD
                     _light={{ bgColor: "#FFF" }} >
         {/* {tableData.GovernanceTableData.isError && (
           <>
@@ -268,101 +297,87 @@ const GovernanceTable = ({ }) => {
             <SkeletonRow />
           </>
         )} */}
+=======
+                    _light={{ bgColor: "#FFF" }}
+                >
+>>>>>>> bceded68f95473aaa02bee54bd91eb41bdbca718
 
-                        <Tr 
-                        height={"40px"} _dark={{ color: "#FFFFFF" }}
-                        _light={{ color: "#16171B" }}>
+                    {/* {governanceTableData.isError && (
+                        <>
+                            <Tr>
+                                <Td
+                                    _dark={{ color: "#FFF" }}
+                                    _light={{ color: "#16171B" }}
+                                    fontSize={"20px"}
+                                    fontWeight={"400"}
+                                    letterSpacing={"1px"}
+                                    p="20px"
+                                    colSpan={4}
+                                    textAlign={"center"}
+                                >
+                                    No data available
+                                </Td>
+                            </Tr>
+                        </>
+                    )} */}
 
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
+                    {governanceTableData.isLoading && (
+                        <>
+                            <SkeletonRow />
+                            <SkeletonRow />
+                            <SkeletonRow />
+                        </>
+                    )}
 
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
+                    { governanceTableData?.data?.map((item, i) => {
+                        return (
+                            <>
+                                <Tr
+                                    height={"40px"}
+                                    _dark={{ color: "#FFFFFF" }}
+                                    _light={{ color: "#16171B" }}
+                                >
+                                    <Td fontSize={"14px"}>{item.name}</Td>
+                                    <Td fontSize={"14px"}>{item.description_text}</Td>
+                                    <Td fontSize={"14px"}>{item.topics.length}</Td>
+                                    <Td fontSize={"14px"}>
+                                        <Button
+                                            size={"sm"}
+                                            onClick={() => {
+                                                router.push(`https://governance.aave.com${item.topic_url}`)
+                                            }}
+                                        >
+                                            View More
+                                        </Button>
+                                    </Td>
+                                </Tr>
+                            </>
+                        );
+                    })}
 
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
+                </Tbody>
 
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status1 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status1 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
+            </Table>
 
-
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                           
-
-                        </Tr>
-
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
-
-                            _light={{ color: "#16171B" }}>
-
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
-
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
-
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
-
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status2 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status2 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                           
-
-                        </Tr>
-
-                        <Tr height={"40px"} _dark={{ color: "#FFFFFF" }}
-
-                            _light={{ color: "#16171B" }}>
-
-                            <Td  fontSize={"14px"}>Gauge Weight for Week of 11th May 2023</Td>
-
-                            <Td  fontSize={"14px"}>11 May, 2023, 00:00 </Td>
-
-                            <Td  fontSize={"14px"}>15 May, 2023, 23:50    </Td>
-
-                            <Td  fontSize={"14px"}>
-                                <List spacing={1} display="flex" alignItems="center">
-                                    <ListIcon as={MdCheckCircle} color={Status3 === 'Active' ? '#62D845' : '#FF4848'} />
-                                    <ListItem>
-                                        <Text  paddingBottom={"10px"}>{Status3 === 'Active' ? 'Active' : 'Inactive'}</Text>
-                                    </ListItem>
-                                </List>
-                            </Td>
-
-                            <Td  fontSize={"14px"}>3,388,851</Td>
-
-                            <Td  fontSize={"14px"}>CRV+cvxCRV (0x971a…) (28.43% of votes)</Td>
-
-                            <Td  fontSize={"14px"}>481759.04</Td>
-
-                            
-                        </Tr> 
-                    </Tbody>
-                  
-                </Table>
-                
-            </Box>
+        </Box>
 
     )
 
 }
+
+const SkeletonRow = () => (
+    <Box as="tr">
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+      <Td>
+        <Skeleton height="20px" my={4} />
+      </Td>
+    </Box>
+  )
+
+  
 export default GovernanceTable;

@@ -32,6 +32,17 @@ export const getDefiHotContractsTableData = async (payload) => {
     return rejectWithValue(err);
   }
 };
+export const getDefiAssetCompositionTableData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `protocols/aavev3/compositionData`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 export const getGovernanceTableData = async (payload) => {
   try {

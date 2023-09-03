@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getGovernanceTableData } from "../../services/defiDashboardService";
+import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getGovernanceTableData, getDefiAssetCompositionTableData } from "../../services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
   const response = await getDefiData(payload);
@@ -13,6 +13,11 @@ export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData',
 
 export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContractsTableData', async (payload) => {
   const response = await getDefiHotContractsTableData(payload);
+  return response.data;
+})
+
+export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData', async (payload) => {
+  const response = await getDefiAssetCompositionTableData(payload);
   return response.data;
 })
 
@@ -38,6 +43,12 @@ const DefiDashboardDataSlice = createSlice({
       isSuccess: false,
     },
     DefiHotContractsTableData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    DefiAssetCompositionTableData: {
       data: null,
       isLoading: false,
       isError: false,
@@ -105,6 +116,25 @@ const DefiDashboardDataSlice = createSlice({
       state.DefiHotContractsTableData.isError = true;
       state.DefiHotContractsTableData.data = action.payload;
     });
+    builder.addCase(fetchDefiAssetCompositionTableData.fulfilled, (state, action) => {
+      state.DefiAssetCompositionTableData.data = action.payload;
+      state.DefiAssetCompositionTableData.isLoading = false;
+      state.DefiAssetCompositionTableData.isSuccess = true;
+      state.DefiAssetCompositionTableData.isError = false;
+    });
+    builder.addCase(fetchDefiAssetCompositionTableData.pending, (state, action) => {
+      state.DefiAssetCompositionTableData.isLoading = true;
+      state.DefiAssetCompositionTableData.isError = false;
+      state.DefiAssetCompositionTableData.isSuccess = false;
+      state.DefiAssetCompositionTableData.data = action.payload;
+    });
+    builder.addCase(fetchDefiAssetCompositionTableData.rejected, (state, action) => {
+      state.DefiAssetCompositionTableData.isSuccess = false;
+      state.DefiAssetCompositionTableData.isError = true;
+      state.DefiAssetCompositionTableData.isLoading = false;
+      state.DefiAssetCompositionTableData.data = action.payload;
+    });
+
     builder.addCase(fetchGovernanceTableData.fulfilled, (state, action) => {
       state.GovernanceTableData.data = action.payload;
       state.GovernanceTableData.isLoading = false;

@@ -79,7 +79,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                    </Image>
                     </Tooltip>
                     <Spacer />
-                    <Button
+                    {/* <Button
                         variant={"outline"}
                         size={"xs"}
                         _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
@@ -101,7 +101,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         >
                             View More
                         </Text>
-                    </Button>
+                    </Button> */}
                 </Flex>
 
                 <Table variant='unstyled'
