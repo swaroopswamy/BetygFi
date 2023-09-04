@@ -437,7 +437,7 @@ const WalletDashboardPage = () => {
                                                         :
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-                                                    textTransform={"capitalize"}
+                                                    textTransform={"uppercase"}
                                                 >
                                                     {item.name}
                                                 </Text>

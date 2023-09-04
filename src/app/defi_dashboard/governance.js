@@ -273,34 +273,8 @@ const GovernanceTable = ({ }) => {
                     fontWeight={"400"}
                     lineHeight={"20px"}
                     _dark={{ bgColor: "#202020" }}
-<<<<<<< HEAD
-                    _light={{ bgColor: "#FFF" }} >
-        {/* {tableData.GovernanceTableData.isError && (
-          <>
-            <Tr>
-              <Td
-                color={useColorModeValue("#16171B", "#FFF")}
-                fontSize={"20px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-                p="20px"
-              >
-                No data available
-              </Td>
-            </Tr>
-          </>
-        )}
-        {tableData.GovernanceTableData.isLoading && (
-          <>
-            <SkeletonRow />
-            <SkeletonRow />
-            <SkeletonRow />
-          </>
-        )} */}
-=======
                     _light={{ bgColor: "#FFF" }}
                 >
->>>>>>> bceded68f95473aaa02bee54bd91eb41bdbca718
 
                     {/* {governanceTableData.isError && (
                         <>
