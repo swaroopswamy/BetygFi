@@ -53,7 +53,7 @@ export default function LayoutProvider({ children }) {
       >
         <SidebarContent
           onClose={() => onClose}
-        /*  display={{ base: "none", md: "block" }} */
+          display={{ base: "none", md: "block" }}
         />
         {/* <Drawer
           autoFocus={false}
