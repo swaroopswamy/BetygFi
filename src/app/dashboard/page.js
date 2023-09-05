@@ -18,6 +18,11 @@ import {
   Tooltip,
   useColorMode,
   useColorModeValue,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Rankings from "./DefiRankingsTable";
@@ -55,7 +60,7 @@ const Dashboard = () => {
   const blockchainListData = useSelector(
     (state) => state?.appData?.BlockchainListData
   );
- 
+
   const overviewData = useSelector(
     (state) => state?.dashboardTableData?.OverviewData?.data
   );
@@ -120,7 +125,7 @@ const Dashboard = () => {
   useEffect(() => {
     getDefiRankingsTableDataHandler(searchByName);
   }, [searchByName])
- 
+
 
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -174,7 +179,7 @@ const Dashboard = () => {
                         cursor={"pointer"}
                         alignItems={"center"}
                         justifyContent={"center"}
-                         
+
                         flexDirection={"row"}
                         bg={"#D9D9D9"}
                         borderRadius="50%"
@@ -560,8 +565,10 @@ const Dashboard = () => {
               </Box>
               {/* <OverviewAreaChart /> */}
             </Box>
+
             <Box
               w="35%"
+              display={{ base: "none", md: "block" }}
               borderRadius={"4px"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
@@ -578,6 +585,34 @@ const Dashboard = () => {
               </Text>
               <OverviewColumnChart />
             </Box>
+
+            <Accordion>
+              <AccordionItem
+                w="35%"
+                display={{ base: "block", md: "none" }}
+                borderRadius={"4px"}
+                bgColor={useColorModeValue("#FFFFFF", "#202020")}
+                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
+                px={{ base: "10px", md: "20px" }}
+                py={{ base: "10px", md: "25px" }}
+              >
+                <AccordionIcon />
+                <AccordionButton>
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"18px"}
+                    fontWeight={600}
+                    lineHeight={"20px"}
+                  >
+                    Score Distribution
+                  </Text>
+                </AccordionButton>
+
+                <AccordionPanel>
+                  <OverviewColumnChart />
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
           </Box>
           <Box w="100%">
             <Box
