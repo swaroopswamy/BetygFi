@@ -445,7 +445,7 @@ const Rankings = () => {
                         lineHeight={"20px"}
                       //letterSpacing={"1px"}
                       >
-                        {!isEmpty(item.mcap) ? `${(Math.trunc(item.tvl)).toLocaleString('en-US', {
+                        {!isEmpty(item.mcap) ? `${(Math.trunc(item.mcap)).toLocaleString('en-US', {
                           style: 'currency',
                           currency: 'USD'
                         })}` : "NA"}
