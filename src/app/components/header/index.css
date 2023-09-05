@@ -1,0 +1,89 @@
+/*** Light Mode Theme ***/
+:root,
+[data-theme="default"] {
+    --body-bg-color: #fff;
+    --card-bg-color: #fff;
+    --box-shadow-color: rgba(0, 0, 0, 0.2);
+    --text-color: #333;
+    --switch-on-color: #444352;
+    --switch-off-color: #ccc;
+    --toggler-color: #fff;
+}
+
+/* Dark Mode Theme */
+[data-theme="dark"] {
+    --body-bg-color: #D9D9D9;
+    --card-bg-color: #545363;
+    --box-shadow-color: rgb(18, 18, 19, 0.2);
+    --text-color: #efefef;
+    --toggler-color: #444352;
+    --switch-on-color: #fff;
+    --switch-off-color: #ccc;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 31px;
+    height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--switch-off-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color:#191919;
+    -webkit-transition: .4s;
+    transition: .4s;
+/*    background-image: url('../../../../public/icons/half_moon_icon.svg');
+ */}
+
+
+input:checked+.slider {
+    background-color: var(--switch-on-color);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--switch-on-color);
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+.controller-row{
+    margin-top: 8px;
+}

@@ -1,0 +1,12 @@
+{
+    "blockchains" : [
+        {
+            "id":"1",
+            "logo":"https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880",
+            "blockchainname":"ethereum",
+            "explorerurl": "https://etherscan.io/tx/",
+            "tokencode":"ETH",
+            "tokenname":"ethereum"
+        }
+    ]
+}
