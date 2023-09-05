@@ -55,6 +55,7 @@ const Dashboard = () => {
   const blockchainListData = useSelector(
     (state) => state?.appData?.BlockchainListData
   );
+  console.log("data: ", blockchainListData);
  
   const overviewData = useSelector(
     (state) => state?.dashboardTableData?.OverviewData?.data
@@ -195,7 +196,7 @@ const Dashboard = () => {
                           "1px solid #333"
                         )}  */
                         onClick={() => {
-                          BlockchainTypeHandler(item.id);
+                          BlockchainTypeHandler(item.name);
                         }}
                       >
                         <Image
@@ -249,7 +250,7 @@ const Dashboard = () => {
                             <Checkbox colorScheme='green'
                               value={item.name}
                               checked={blockchainSelected.includes(item.id)} onChange={(e) => {
-                                BlockchainTypeHandler(item.id);
+                                BlockchainTypeHandler(item.name);
                               }}>
                               <Box
                                 display={"flex"}
