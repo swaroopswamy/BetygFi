@@ -47,6 +47,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
 
+  const [showSearch, setShowSearch] = useState(false);
+
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
@@ -255,7 +257,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               src={"/icons/sidebar_icon_light.svg"}
               w={"18px"}
               h={"18px"}
-            // padding={"24px 19px"}
             >
             </Image>
           </Box>
@@ -268,7 +269,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           </Box>
         </Box>
 
-        <Box>
+        <Box
+          cursor={"pointer"}
+          onClick={() => {
+            setShowSearch(!showSearch);
+          }}
+        >
           <Image
             src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
             h={"20px"}
@@ -280,7 +286,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
       <Box
         px={{ base: 4, md: 4 }}
-        display={{ base: "flex", md: "none" }}
+        display={showSearch ? { base: "flex", md: "none" } : "none"}
         bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
         borderTop={"1px"}
         borderColor={colorMode === "light" ? "#16171B" : "#333"}
