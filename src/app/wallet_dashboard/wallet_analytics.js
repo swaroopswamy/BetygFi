@@ -589,7 +589,7 @@ const WalletAnalyticsPanel = () => {
                     </Tr>
                   </>
                 )}
-                {walletBalanceData?.isLoading && (
+                {/* {walletBalanceData?.isLoading && (
                   <>
                     <SkeletonRow />
                     <SkeletonRow />
@@ -598,7 +598,7 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {/* {walletBalanceData?.isSuccess &&
+                {walletBalanceData?.isSuccess &&
                   (walletBalanceData?.data?.data?.length > 0 ?
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
@@ -797,8 +797,8 @@ const WalletAnalyticsPanel = () => {
                         </>
                       );
                     })) :
-                    (
-                      <>
+                    ( */}
+                      
                         <Tr >
                           <Td
                             _dark={{ color: "#FFF" }}
@@ -814,9 +814,9 @@ const WalletAnalyticsPanel = () => {
                           </Td>
                         </Tr>
 
-                      </>
-                    ))
-                } */}
+                      
+                    {/* )) */}
+                
 
 
               </Tbody>
@@ -839,7 +839,6 @@ const WalletAnalyticsPanel = () => {
         w="100%"
 
         my="10px"
-
       >
 
         <Box
@@ -1452,7 +1451,7 @@ const WalletAnalyticsPanel = () => {
                         </>
                       );
                     })) :
-                    (
+                    ( */}
                       <>
                         <Tr >
                           <Td
@@ -1474,7 +1473,7 @@ const WalletAnalyticsPanel = () => {
                         </Tr>
 
                       </>
-                    ))
+                    {/* ))
                 } */}
 
               </Tbody>
@@ -1745,7 +1744,7 @@ const WalletAnalyticsPanel = () => {
                     </Tr>
                   </>
                 )}
-                {walletBalanceData?.isLoading && (
+                {/* {walletBalanceData?.isLoading && (
                   <>
                     <SkeletonRow />
                     <SkeletonRow />
@@ -1754,7 +1753,7 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {/* {walletBalanceData?.isSuccess &&
+                {walletBalanceData?.isSuccess &&
                   (walletBalanceData?.data?.data?.length > 0 ?
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
@@ -2118,7 +2117,7 @@ const WalletAnalyticsPanel = () => {
                         </>
                       );
                     })) :
-                    (
+                    ( */}
                       <>
                         <Tr >
                           <Td
@@ -2141,7 +2140,7 @@ const WalletAnalyticsPanel = () => {
                         </Tr>
 
                       </>
-                    ))
+                    {/* ))
                 } */}
               </Tbody>
             </Table>
@@ -2242,9 +2241,25 @@ const WalletAnalyticsPanel = () => {
           </>
         </Flex>
         {/* </Box> */}
-        <Box paddingTop={"10px"}>
+        {/* <Box paddingTop={"10px"}>
           <PerformanceMultiLineChart />
-        </Box>
+        </Box> */}
+        <Box _dark={{
+                          color: "#FFF"
+                        }}
+                        _light={{
+                          color: "#16171B"
+                        }}
+                        fontSize={"20px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mt={"100px"}
+                        colSpan={8}
+                        textAlign={"center"}
+                        p="20px"
+                        height={"245px"}
+                      >
+                        No Data Available</Box>
       </Box>
     </>
   );
