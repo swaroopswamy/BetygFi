@@ -16,6 +16,7 @@ function TrendGraph() {
     const [series, setSeries] = useState([]);
 
     const [graphData, setGraphData] = useState(null);
+    const [tvlData, setTVLData] = useState(null);
 
 
     const graphTypes = [
@@ -69,6 +70,11 @@ function TrendGraph() {
             if (graphTypeSelected.includes(item.name)) {
                 if (item.name === "tvl") {
                     item.data = graphData["total_volumes"];
+                    if (!tvlData) {
+                        let tvl = [];
+                        tvl.push(item);
+                        setTVLData(tvl);
+                    }
                 }
                 if (item.name === "mcap") {
                     item.data = graphData["market_caps"];
@@ -104,7 +110,7 @@ function TrendGraph() {
                 display={"flex"}
                 flexDirection={"column"}
                 alignContent={"center"}
-                height={"450px"}
+                // height={"400px"}
                 w="-webkit-fill-available"
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
@@ -204,23 +210,34 @@ function TrendGraph() {
                 </Box>
 
                 <Box
-                    padding={"20px 20px"}
+                    padding={"20px 20px 0px 20px"}
                 >
                     <Graph
                         series={series}
                     />
-                    <SelectorGraph
-                        series={series}
-                    />
+
                 </Box>
 
+                <SelectorGraph
+                    tvlData={tvlData}
+                />
 
             </Box>
         </>
     );
 }
 
-function SelectorGraph({ series }) {
+function SelectorGraph({ tvlData }) {
+
+    const tvl = [{
+        "name": "tvl",
+        "type": "area",
+        "color": "#3A3D46",
+        "data": tvlData ? tvlData[0].data : null
+    }]
+
+    console.log("Select series: ", tvl);
+
 
     const { colorMode } = useColorMode;
     const options = {
@@ -245,18 +262,13 @@ function SelectorGraph({ series }) {
                 }
             }
         },
-        stroke: {
-            width: [2, 2]
-        },
         fill: {
             colors: ["#3A3D46"],
-            type: "gradient",
-            gradient: {
-                shadeIntensity: 0.7,
-                opacityFrom: 0.5,
-                opacityTo: 0.1,
-                stops: [0, 90, 100]
-            }
+            type: "solid",
+            opacity: colorMode === 'light' ? "0.5" : "0.6",
+        },
+        stroke: {
+            show: false
         },
         colors: ["#3A3D46"],
         xaxis: {
@@ -264,6 +276,9 @@ function SelectorGraph({ series }) {
                 show: false
             },
             axisTicks: {
+                show: false
+            },
+            axisBorder: {
                 show: false
             }
         },
@@ -298,32 +313,21 @@ function SelectorGraph({ series }) {
 
     return (
         <>
-            <Chart
-                options={options}
-                series={series}
-                type={options.chart.type}
-                height={"100px"}
-            />
-
-          {/*   <Box
-                _dark={{
-                    color: "#FFF"
-                }}
-                _light={{
-                    color: "#16171B"
-                }}
-                fontSize={"20px"}
-                fontWeight={"400"}
-                letterSpacing={"1px"}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"center"}
-                textAlign={"center"}
-                height={"245px"}
-                mb={"20px"}
+            <Box
+                borderTop={"1px"}
+                borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
+                // paddingTop={"-40px"}
+                marginBottom={"-48px"}
             >
-                No Data Available
-            </Box> */}
+                <Chart
+                    options={options}
+                    series={tvl}
+                    type={options.chart.type}
+                    height={"100px"}
+                    width={"100%"}
+                />
+            </Box>
+
         </>
     )
 }
