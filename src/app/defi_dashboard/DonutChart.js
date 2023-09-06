@@ -139,17 +139,17 @@ function DonutChart() {
 
         <Box
           padding={"5px 50px 20px 10px"}
-          mt={"20px"}
-          mr={"30px"}
           fontSize={"14px"}
           fontWeight={400}
           lineHeight={"10px"}
+          height={"280px"}
+          justifyContent={"center"}
         >
           <Chart
             options={options}
             series={series}
             type={options.chart.type}
-            height={"200px"}
+            height={"250px"}
           />
         </Box>
 
@@ -177,7 +177,7 @@ function DonutChart() {
           gap={"10px"}
           justifyContent={"right"}
           mr={"20px"}
-          mt={"40px"}
+          mb={"10px"}
         >
           <Text
             color={"#A8ADBD"}

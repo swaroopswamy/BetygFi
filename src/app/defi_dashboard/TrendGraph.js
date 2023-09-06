@@ -104,7 +104,7 @@ function TrendGraph() {
                 display={"flex"}
                 flexDirection={"column"}
                 alignContent={"center"}
-                height={"349px"}
+                height={"450px"}
                 w="-webkit-fill-available"
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
@@ -209,12 +209,123 @@ function TrendGraph() {
                     <Graph
                         series={series}
                     />
+                    <SelectorGraph
+                        series={series}
+                    />
                 </Box>
 
 
             </Box>
         </>
     );
+}
+
+function SelectorGraph({ series }) {
+
+    const { colorMode } = useColorMode;
+    const options = {
+        chart: {
+            toolbar: {
+                show: false,
+            },
+            stacked: false,
+            type: "line",
+            brush: {
+                enabled: true,
+                target: 'trendgraph'
+            },
+            selection: {
+                enabled: true,
+                fill: {
+                    color: '#ccc',
+                    opacity: 0.4
+                },
+                stroke: {
+                    color: '#0D47A1',
+                }
+            }
+        },
+        stroke: {
+            width: [2, 2]
+        },
+        fill: {
+            colors: ["#3A3D46"],
+            type: "gradient",
+            gradient: {
+                shadeIntensity: 0.7,
+                opacityFrom: 0.5,
+                opacityTo: 0.1,
+                stops: [0, 90, 100]
+            }
+        },
+        colors: ["#3A3D46"],
+        xaxis: {
+            labels: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            }
+        },
+        yaxis: {
+            labels: {
+                show: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false,
+        },
+        tooltip: {
+            enabled: false
+        },
+        grid: {
+            borderColor: useColorModeValue("#191919", "#36363A"),
+            xaxis: {
+                lines: {
+                    show: false,
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: false,
+                }
+            }
+        },
+    }
+
+    return (
+        <>
+            <Chart
+                options={options}
+                series={series}
+                type={options.chart.type}
+                height={"100px"}
+            />
+
+          {/*   <Box
+                _dark={{
+                    color: "#FFF"
+                }}
+                _light={{
+                    color: "#16171B"
+                }}
+                fontSize={"20px"}
+                fontWeight={"400"}
+                letterSpacing={"1px"}
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                textAlign={"center"}
+                height={"245px"}
+                mb={"20px"}
+            >
+                No Data Available
+            </Box> */}
+        </>
+    )
 }
 
 function Graph({ series }) {
@@ -225,7 +336,7 @@ function Graph({ series }) {
             toolbar: {
                 show: false,
             },
-
+            id: 'trendgraph',
             stacked: false
         },
         stroke: {

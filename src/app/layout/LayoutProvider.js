@@ -49,11 +49,10 @@ export default function LayoutProvider({ children }) {
         width="100%"
         minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
         display={"flex"}
-
       >
         <SidebarContent
           onClose={() => onClose}
-        /*  display={{ base: "none", md: "block" }} */
+          display={{ base: "none", md: "flex" }}
         />
         {/* <Drawer
           autoFocus={false}

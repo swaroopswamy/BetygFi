@@ -34,6 +34,7 @@ import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataS
 import { useEffect, useState } from "react";
 import isEmpty from "is-empty";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
+import { color } from "framer-motion";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
@@ -45,6 +46,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
   const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
+
+  const [showSearch, setShowSearch] = useState(false);
 
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
@@ -70,31 +73,15 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   return (
     <>
       <Flex
-
         px={{ base: 4, md: 4 }}
+        display={{ base: "none", md: "flex" }}
         height="20"
         alignItems="center"
-        //borderBottomWidth="1px"
         bg={useColorModeValue("#F0F0F5", "#191919")}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
-        {/* <IconButton
-          display={{ base: "flex", md: "none" }}
-          onClick={onHeaderOpen}
-          variant="outline"
-          aria-label="open menu"
-          icon={<FiMenu />}
-        />
 
-        <Text
-          display={{ base: "flex", md: "none" }}
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold"
-        >
-          Log
-        </Text> */}
         <InputGroup w="100%">
           <InputLeftElement pointerEvents='none'>
             <Image
@@ -154,16 +141,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     borderLeft={"1px solid #333333"}
                     alignContent={"center"}
                   >
-                    {/* <Image
-                      src={colorMode === 'light' ? "/icons/login_black.svg" : "/icons/login_white.svg"}
-                      w="30px"
-                      h="30px"
-                      cursor={"pointer"}
-                      borderRadius={"50%"}
-                      alt="search_icon"
-
-                      onClick={onLoginModalOpen}
-                    /> */}
 
                     <Box
                       cursor={"pointer"}
@@ -186,14 +163,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                       </Text>
                     </Box>
                   </Box>
-
-                  {/*   <IconButton
-                    size="lg"
-                    variant="ghost"
-                    aria-label="open menu"
-                    icon={<FiBell />}
-                    onClick={onLoginModalOpen}
-                  /> */}
                 </>
               )
               :
@@ -266,6 +235,116 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         </Box>
 
       </Flex>
+
+      <Flex
+        px={{ base: 4, md: 4 }}
+        display={{ base: "flex", md: "none" }}
+        width={"full"}
+        height="60px"
+        alignItems="center"
+        bg={useColorModeValue("#FFFFFF", "#272727")}
+        justifyContent={{ base: "space-between", md: "flex-end" }}
+        {...rest}
+      >
+
+        <Box
+          display={"flex"}
+          gap={"20px"}
+          alignItems={"center"}
+        >
+          <Box>
+            <Image
+              src={"/icons/sidebar_icon_light.svg"}
+              w={"18px"}
+              h={"18px"}
+            >
+            </Image>
+          </Box>
+
+          <Box>
+            <Image
+              src={colorMode === "light" ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
+              h={"25px"}
+            ></Image>
+          </Box>
+        </Box>
+
+        <Box
+          cursor={"pointer"}
+          onClick={() => {
+            setShowSearch(!showSearch);
+          }}
+        >
+          <Image
+            src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+            h={"20px"}
+            w={"20px"}
+          ></Image>
+        </Box>
+
+      </Flex>
+
+      <Box
+        px={{ base: 4, md: 4 }}
+        display={showSearch ? { base: "flex", md: "none" } : "none"}
+        bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+        borderTop={"1px"}
+        borderColor={colorMode === "light" ? "#16171B" : "#333"}
+        padding={"8px 19px"}
+      >
+        <InputGroup w="100%">
+          <InputLeftElement pointerEvents='none'>
+            <Image
+              src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+              w="14px"
+              h="14px"
+              alt="search_icon"
+            />
+          </InputLeftElement>
+          <Input
+            type="text"
+            border="1px"
+            borderRadius="0px"
+            borderColor={colorMode === "light" ? "#16171B" : "#333"}
+            // _selected={{
+            //   outline: "none",
+            //   border: "none"
+            // }}
+            _focusVisible={{
+            }}
+            // bgColor={"transparent"}
+            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+            fontSize="12px"
+            fontWeight="400"
+            lineHeight="20px"
+            letterSpacing="1.2px"
+            w="100%"
+            placeholder="Search by DeFi Name / Code"
+            value={searchWalletAddressValue}
+            onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
+            onChange={(e) => { handleSearchByWalletAddress(e) }}
+          ></Input>
+          <Box
+            alignContent={"center"}
+            justifyContent={"center"}
+            cursor={"pointer"}
+            w={"70px"}
+            p={"12px 10px"}
+            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+            border="1px"
+            borderColor={colorMode === "light" ? "#16171B" : "#333"}
+          >
+            <Text
+              fontSize={"14px"}
+              fontWeight={"500"}
+              lineHeight={"10px"}
+            >
+              Search
+            </Text>
+          </Box>
+        </InputGroup>
+      </Box>
+
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
     </>
   );
