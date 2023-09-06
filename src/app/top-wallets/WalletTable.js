@@ -2,7 +2,7 @@
 import {
     Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode
+    Image, Spacer, Button, useColorMode, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel
 } from "@chakra-ui/react";
 import { blockchains } from "../../../util/constant";
 import { useState } from "react";
@@ -16,35 +16,295 @@ const WalletTable = () => {
             <Box
                 //border={"2px"}
                 borderRadius={"6px"}
-                _light={{borderColor: "#FFFFFF"}}
-                _dark={{borderColor: "#202020"}}
+                _light={{ borderColor: "#FFFFFF" }}
+                _dark={{ borderColor: "#202020" }}
             >
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
+                    padding={{ base: "0px", md: "8px 30px 8px 30px" }}
                     background={useColorModeValue('#FFFFFF', '#202020')}
                 >
                     <Box>
                         <Text
                             color={useColorModeValue("#16171B", "#FFFFFF")}
-                            ml={"10px"}
+                            ml={{ base: "14px", md: "10px" }}
                             mb={"20px"}
                             mt={"20px"}
-                            fontSize={"18px"}
+                            fontSize={{ base: "14px", md: "18px" }}
                             fontWeight={600}
                             lineHeight={"20px"}
                         >
                             Top Value Holders
                         </Text>
                     </Box>
-
-                    <Spacer />
-
                 </Box>
+                <Table variant='unstyled'
+                    display={{ base: "unset", md: "none" }}
+                    size={'sm'}
+                    border={"1px"}
+                    borderColor={useColorModeValue("#FFFFFF", "#272727")}
+                    borderRadius={"6px"}
+                >
+                    <Thead>
+                        <Tr
+                            bg={useColorModeValue("#F5F5F7", "#131313")}
+                            width={"20%"}
+                            flex-shrink={"0"}
+                            borderRadius={'6px'}
+                        >
+                            {/*   <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"10px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                            >
+                            </Th> */}
+                            <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"12px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                            >
+                                Wallet Address</Th>
+                            <Th
+                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                fontSize={"12px"}
+                                fontStyle={"normal"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                textTransform={"uppercase"}
+                                textAlign={"left"}
+                                width={"11%"}
+                            >
+                                Net Worth</Th>
+
+                        </Tr>
+                    </Thead>
+
+                    <Tbody>
+                        {TableData.whales.map((item, i) => {
+                            return (
+                                <>
+                                    {/*   <TableRow
+                                        key={i}
+                                        user={item.id}
+                                        netWorth={item.usd_value}
+                                        totalTokens={item.stats.top_coins}
+                                        totalProtocols={"-"}
+                                        totalNFT={""}
+                                    /> */}
+                                    <Tr>
+                                        <Td
+                                            p="0"
+                                            colSpan={2}
+                                            borderBottom="none"
+                                        >
+                                            <Accordion
+                                                _light={{
+                                                    borderColor: "#DFDFDF"
+                                                }}
+                                                _dark={{
+                                                    borderColor: "#DFDFDF"
+                                                }}
+                                                borderBottom="none"
+                                                allowMultiple
+                                            >
+                                                <AccordionItem >
+                                                    <h2>
+                                                        <AccordionButton
+                                                            _expanded={{
+                                                                mt: "10px"
+                                                            }}
+                                                        >
+                                                            <Box
+                                                                w="100%"
+                                                                display={"flex"}
+                                                                alignItems={"center"}
+
+                                                            >
+                                                                <Image
+                                                                    w={"20px"}
+                                                                    h={"20px"}
+                                                                    src={`/icons/dummy1.png`}
+                                                                    alt=""
+                                                                ></Image>
+                                                                <Text
+                                                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                                                    fontSize={"14px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"600"}
+                                                                    lineHeight={"20px"}
+                                                                    ml="12px"
+                                                                >
+                                                                    {item?.id.split("").join("").substring(0, 6) + "..." + item?.id.slice(-5)}
+                                                                </Text>
+                                                            </Box>
+                                                            <AccordionIcon />
+                                                        </AccordionButton>
+                                                    </h2>
+                                                    <AccordionPanel pb={4}>
+                                                        <Box
+                                                            display={"flex"}
+                                                            flexDirection={"column"}
+                                                        >
+                                                            <Box
+                                                                display={"flex"}
+                                                                flexDirection={"column"}
+
+                                                            >
+                                                                <Text
+                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    fontSize={"12px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    textAlign={"left"}
+                                                                >
+                                                                    Total Tokens
+                                                                </Text>
+                                                                <Flex mt="10px">
+                                                                    {item.stats.top_coins.map((item, i) => {
+                                                                        if (i < 3) {
+                                                                            return (
+                                                                                <Box
+                                                                                    key={i}
+                                                                                    padding={"7px 9px"}
+                                                                                    pr={"2px"}
+                                                                                    //border={"1px"}
+                                                                                    minw="170px"
+                                                                                    _light={{
+                                                                                        borderColor: "#E8E8E8",
+                                                                                        background: "#F5F5F7"
+                                                                                    }}
+                                                                                    _dark={{
+                                                                                        borderColor: "#E8E8E8",
+                                                                                        background: "#F5F5F7"
+                                                                                    }}
+                                                                                    borderRadius={"2px"}
+                                                                                    mr={"5px"}
+                                                                                    display={"flex"}
+                                                                                    justifyContent={"center"}
+                                                                                    gap={"3px"}
+                                                                                    alignItems={"center"}
+                                                                                >
+                                                                                    <Image
+                                                                                        w={"14px"}
+                                                                                        h={"14px"}
+                                                                                        src={item.logo_url}
+                                                                                        alt=""
+                                                                                    ></Image>
+                                                                                    <Text
+                                                                                        _light={{ color: "#16171B" }}
+                                                                                        _dark={{ color: "#16171B" }}
+                                                                                        fontSize={"14px"}
+                                                                                        fontStyle={"normal"}
+                                                                                        fontWeight={"400"}
+                                                                                        lineHeight={"10px"}
+                                                                                        ml={"2px"}
+                                                                                        mt={"1px"}
+                                                                                        display={"flex"}
+                                                                                        alignItems={"center"}
+                                                                                        w="70px"
+                                                                                    >
+                                                                                        ${" "}{millify(item.usd_value, {
+                                                                                            precision: 2,
+                                                                                            locales: "en-US"
+                                                                                        })}
+                                                                                    </Text>
+                                                                                </Box>
+                                                                            );
+                                                                        }
+
+                                                                    })}
+                                                                </Flex>
+                                                            </Box>
+                                                            <Box
+                                                                mt="10px"
+                                                                display={"flex"}
+                                                                flexDirection={"column"}
+
+                                                            >
+                                                                <Text
+                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    fontSize={"12px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    textAlign={"left"}
+                                                                >
+                                                                    Total Tokens
+                                                                </Text>
+                                                                <Text
+                                                                    mt="10px"
+                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    fontSize={"14px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    textAlign={"left"}
+                                                                >
+                                                                    -NA-
+                                                                </Text>
+                                                            </Box>
+                                                            <Box
+                                                                mt="10px"
+                                                                display={"flex"}
+                                                                flexDirection={"column"}
+
+                                                            >
+                                                                <Text
+                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    fontSize={"12px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    textAlign={"left"}
+                                                                >
+                                                                    Total NFT collections
+                                                                </Text>
+                                                                <Text
+                                                                    mt="10px"
+                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    fontSize={"14px"}
+                                                                    fontStyle={"normal"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    textAlign={"left"}
+                                                                >
+                                                                    -NA-
+                                                                </Text>
+                                                            </Box>
+                                                        </Box>
+                                                    </AccordionPanel>
+                                                </AccordionItem>
+                                            </Accordion>
+                                        </Td>
+                                    </Tr>
+
+                                </>
+                            )
+                        })}
+
+
+                    </Tbody >
+                    <Tfoot>
+                    </Tfoot>
+
+                </Table>
 
                 <Table variant='unstyled'
+                    display={{ base: "none", md: "unset" }}
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
