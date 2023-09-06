@@ -32,8 +32,8 @@ const WalletTable = () => {
                             ml={"10px"}
                             mb={"20px"}
                             mt={"20px"}
-                            size={"22px"}
-                            fontWeight={"600"}
+                            fontSize={"18px"}
+                            fontWeight={600}
                             lineHeight={"20px"}
                         >
                             Top Value Holders
