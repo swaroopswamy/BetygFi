@@ -211,11 +211,12 @@ function TrendGraph() {
 
                 <Box
                     padding={"20px 20px 0px 20px"}
+                    borderBottom={"1px"}
+                    borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
                 >
                     <Graph
                         series={series}
                     />
-
                 </Box>
 
                 <SelectorGraph
@@ -235,9 +236,6 @@ function SelectorGraph({ tvlData }) {
         "color": "#3A3D46",
         "data": tvlData ? tvlData[0].data : null
     }]
-
-    console.log("Select series: ", tvl);
-
 
     const { colorMode } = useColorMode;
     const options = {
@@ -314,16 +312,14 @@ function SelectorGraph({ tvlData }) {
     return (
         <>
             <Box
-                borderTop={"1px"}
-                borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
-                // paddingTop={"-40px"}
+                marginTop={"-40px"}
                 marginBottom={"-48px"}
             >
                 <Chart
                     options={options}
                     series={tvl}
                     type={options.chart.type}
-                    height={"100px"}
+                    height={"150px"}
                     width={"100%"}
                 />
             </Box>
