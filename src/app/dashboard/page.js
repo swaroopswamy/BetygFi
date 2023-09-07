@@ -32,7 +32,7 @@ import OverviewColumnChart from "./OverviewColumnChart";
 import OverviewAreaChart from "./OverviewAreaChart";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
 import millify from "millify";
 import {
   blockchainTypeChangedReducer,
@@ -700,6 +700,7 @@ const Dashboard = () => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
+
             <Accordion w={{ base: "100%", md: "35%" }}>
               <AccordionItem
                 w={{ base: "100%", md: "35%" }}
@@ -728,9 +729,14 @@ const Dashboard = () => {
               </AccordionItem>
             </Accordion>
           </Box>
-          <Box w="100%">
+
+          
+          <Box w={{ base: "100%", md: "100%" }}>
+
             <Box
-              display={"flex"}
+             w={{ base: "100%", md: "100%" }}
+             display={{ base: "none", md: "block" }}
+              //display={"flex"}
               flexDirection={"column"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               border={"1px solid"}
@@ -764,6 +770,138 @@ const Dashboard = () => {
                   </Box>
                 </Flex>
               </Flex>
+
+              <Rankings />
+              <Box
+                display={"flex"}
+                alignItems={"flex-start"}
+                justifyContent={"end"}
+                padding="10px 30px 14px"
+              >
+                <Box
+                  display={"flex"}
+                  alignItems={"center"}
+                  mr="20px"
+                >
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"14px"}
+                    fontWeight={400}
+                    lineHeight={"20px"}
+                    mr="10px"
+                  >
+                    Page
+                  </Text>
+                  <Text
+                    color={useColorModeValue("#16171B", "#FFF")}
+                    fontSize={"15px"}
+                    fontWeight={"600"}
+                  >
+                    {tablePage}
+                  </Text>
+                </Box>
+                {/* Fix */}
+                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
+                  <>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                      disabled={tablePage === 1}
+                      onClick={() => {
+                        tablePage !== 1 && pageChangeHandler(tablePage - 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                        _disabled={tablePage === 1}
+                        style={{ rotate: '180deg' }}
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                        alt="prev-arrow"
+                      ></Image>
+                    </Button>
+                    <Button
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                      w="30px"
+                      h="26px"
+                      border={"1px solid #C7CAD2"}
+                      bg={useColorModeValue("#FFF", "#191919")}
+                      padding="0px"
+                      cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
+                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
+                      onClick={() => {
+                        // fix 3
+                        tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
+                      }}
+                    >
+                      <Image
+                        width={15}
+                        height={15}
+                        alt="next-arrow"
+                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                      ></Image>
+                    </Button>
+                  </>)}
+
+              </Box>
+            </Box>
+
+
+
+            <Box
+             w={{ base: "100%", md: "100%" }}
+             display={{ base: "block", md: "none" }}
+              //display={"flex"}
+              flexDirection={"column"}
+              bgColor={useColorModeValue("#FFFFFF", "#202020")}
+              border={"1px solid"}
+              borderColor={useColorModeValue("#FFFFFF", "#272727")}
+              borderRadius={"6px"}
+              dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
+              px={{ base: "10px", md: "20px" }}
+              py={{ base: "10px", md: "25px" }}
+            >
+              <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
+                <Text
+                  fontSize={"18px"}
+                  fontWeight={600}
+                  lineHeight={"20px"}
+                  color={useColorModeValue("#16171B", "#FFF")}
+                >
+                  Defi Ranking
+                </Text>
+                <Flex alignItems={"center"}>
+                  <Box>
+                    {/* <Input
+                      borderColor={useColorModeValue("#E8E8E8", "#333")}
+                      bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                      color={useColorModeValue("#16171B", "#A8ADBD")}
+                      fontSize={"10px"}
+                      fontWeight={"400"}
+                      lineHeight={"20px"}
+                      letterSpacing={"1px"}
+                      w="207px"
+                     // placeholder="Search DeFi"
+                      onChange={(e) => { searchByNameHandler(e.target.value) }}
+                    /> */}
+                    <SearchIcon   bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                      color={useColorModeValue("#16171B", "#A8ADBD")}
+                      onChange={(e) => { searchByNameHandler(e.target.value) }}
+                      />
+                  </Box>
+                </Flex>
+              </Flex>
+
               <Rankings />
               <Box
                 display={"flex"}
