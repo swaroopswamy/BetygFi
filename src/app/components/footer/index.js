@@ -152,23 +152,25 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
         padding={"10px 10px"}
         justifyContent={"center"}
         justifyItems={"stretch"}
+        position="relative"
+        className="test"
         gap={"10px"}
         onClick={() => {
           setFooterTab(name);
         }}
-        borderBottom={footerTab === name ? "3px" : "none"}
+        //borderBottom={footerTab === name ? "3px" : "none"}
         borderColor={"#FFF"}
-        // _after={
-        //   footerTab === name && console.log("HI") && {
-        //     position: "absolute",
-        //     content: '""',
-        //     bottom: "-10px",
-        //     left: 0,
-        //     width: "100%",
-        //     height: "5px",
-        //     bgColor: colorMode === 'light' ? "#202020" : "#FFFFFF",
-        //   }
-        // }
+        _after={
+          footerTab === name && {
+            position: "absolute",
+            content: '""',
+            top: "72px",
+            left: 0,
+            width: "100%",
+            height: "5px",
+            bgColor: colorMode === 'light' ? "#202020" : "#FFFFFF",
+          }
+        }
       >
         <Box
           display={"flex"}
