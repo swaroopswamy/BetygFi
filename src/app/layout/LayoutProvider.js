@@ -40,9 +40,10 @@ import useScreenSize from "@/hooks/useScreenSize";
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const screenSize = useScreenSize();
-  const isSidebarCollapsed = useSelector(
-    (state) => state?.appData?.isSidebarCollapsed
+  const isMobileSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isMobileSidebarCollapsed
   );
+  console.log(isMobileSidebarCollapsed);
   return (
     <>
       <Box
@@ -52,29 +53,12 @@ export default function LayoutProvider({ children }) {
       >
         <SidebarContent
           onClose={() => onClose}
-          display={{ base: "none", md: "flex" }}
+          w={isMobileSidebarCollapsed ? "null" : "80%"}
         />
-        {/* <Drawer
-          autoFocus={false}
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          returnFocusOnClose={false}
-          onOverlayClick={onClose}
-          size="full"
-        >
-          <DrawerContent>
-            <SidebarContent onClose={onClose} />
-          </DrawerContent>
-        </Drawer> */}
         <Box
-          display={"flex"}
+          display={isMobileSidebarCollapsed ? "flex" : "none"}
           flexDirection={"column"}
           w="100%"
-          ml={screenSize?.width < 1450 ? 
-            0 : 
-            (isSidebarCollapsed ? 20 : 225) 
-          }
         >
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">

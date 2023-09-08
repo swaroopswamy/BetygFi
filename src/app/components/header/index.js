@@ -35,6 +35,7 @@ import { useEffect, useState } from "react";
 import isEmpty from "is-empty";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { color } from "framer-motion";
+import { mobileSidebarCollapsedReducer, sidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
@@ -51,6 +52,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
+
+  const isMobileSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isMobileSidebarCollapsed
+  );
+  const MobileSidebarHandler = (value) => {
+    dispatch(mobileSidebarCollapsedReducer(value));
+  };
 
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
@@ -254,7 +262,11 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           gap={"20px"}
           alignItems={"center"}
         >
-          <Box>
+          <Box
+            onClick={() => {
+              MobileSidebarHandler(!isMobileSidebarCollapsed);
+            }}
+          >
             <Image
               src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg" }
               w={"18px"}
