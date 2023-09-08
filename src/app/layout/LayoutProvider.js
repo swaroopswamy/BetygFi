@@ -54,6 +54,7 @@ export default function LayoutProvider({ children }) {
         <SidebarContent
           onClose={() => onClose}
           w={isMobileSidebarCollapsed ? "null" : "80%"}
+          h={"100%"}
         />
         <Box
           display={isMobileSidebarCollapsed ? "flex" : "none"}

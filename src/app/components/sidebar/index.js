@@ -584,11 +584,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                           color: colorMode === "light" ? "#FFFFFF" : "#191919",
                           fontWeight: "600",
-                          mr: "-13px"}}
+                        }}
                 // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) && 
                 bg={pathname === link.path ? (colorMode === "light"? "#202020" : "#FFFFFF") : null}
                 color={pathname === link.path ? (colorMode === "light" ? "#FFFFFF" : "#191919") : null}
-                mr={pathname === link.path ? "-13px" : null}
                 fontSize="14px"
                 fontWeight={pathname == link.path ? "600" : "400"}
                 lineHeight="20px"
@@ -600,7 +599,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             ))}
 
             {/* communities */}
-            {LinkItemsDown.map((link) => (
+            {/* {LinkItemsDown.map((link) => (
               <>
                 {link?.dropdown ? (
                   <>
@@ -614,7 +613,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                           color: colorMode === "light" ? "#FFFFFF" : "#191919",
                           fontWeight: "600",
-                          mr: "-13px"}}
+                          }}
                       fontSize="12px"
                       fontWeight="400"
                       lineHeight="20px" 
@@ -625,7 +624,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </>
                 )}
               </>
-            ))}
+            ))} */}
+
 
             {bottomMenu.map((link) => (
               <NavItem
@@ -638,7 +638,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   fontWeight: "600",
                 }}
                 newTab={link.newTab}
-                fontSize="12px"
+                fontSize="14px"
                 fontWeight="400"
                 lineHeight="20px"
                 letterSpacing="1.2px"
@@ -646,6 +646,34 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 {link.name}
               </NavItem>
             ))}
+          </Box>
+
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            padding={"10px"}
+          >
+            <Box
+              cursor={"pointer"}
+              // onClick={onLoginModalOpen}
+              bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              borderRadius={"2px"}
+              p={"15px 20px"}
+              width={"80%"}
+            >
+              <Text
+                fontSize={"14px"}
+                fontWeight={"600"}
+                lineHeight={"10px"}
+                color={colorMode === 'light' ? "#FAFAFB" : "#000"}
+              >
+                Connect Wallet
+              </Text>
+            </Box>
+
           </Box>
 
         </Box>
