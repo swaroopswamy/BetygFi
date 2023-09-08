@@ -404,7 +404,16 @@ const Dashboard = () => {
               Choose the markets you'd like to explore
             </Text>
           </Box>
-          <Box display={"flex"} mb="15px">
+
+          <Box display={"flex"} mb="15px"
+          overflowX={"scroll"}
+          w={"100%"}
+          style={{ overflowX: "scroll", scrollbarWidth: "none", msOverflowStyle: "none" ,
+          WebkitScrollbar: {
+            display: "none"
+          }, }}
+          >
+
             <Box
               key={"all"}
               borderRadius="2px"
@@ -422,6 +431,7 @@ const Dashboard = () => {
               onClick={() => {
                 categoryChangedHandler("All");
               }}
+             
             >
               <Text
                 fontSize={"14px"}
@@ -446,6 +456,7 @@ const Dashboard = () => {
                     border={useColorModeValue(
                       "1px solid #E8E8E8",
                       "1px solid #333"
+
                     )}
                     bgColor={
                       categorySelected.includes(category)
@@ -456,6 +467,7 @@ const Dashboard = () => {
                       categoryChangedHandler(category);
                     }}
                   >
+
                     <Text
                       fontSize={"14px"}
                       fontWeight={"400"}
@@ -470,6 +482,8 @@ const Dashboard = () => {
               );
             })}
           </Box>
+
+
           <Box
             display={"inline-flex"}
             mb={"30px"}
@@ -598,7 +612,8 @@ const Dashboard = () => {
             mb={"20px"}
             flexDirection={"column"}
           >
-            <Accordion w={{ base: "100%", md: "62%" }}>
+            <Accordion w={{ base: "100%", md: "62%" }}
+              allowToggle>
               <AccordionItem
                 w={{ base: "100%", md: "62%" }}
                 display={{ base: "block", md: "none" }}
@@ -701,7 +716,8 @@ const Dashboard = () => {
               </AccordionItem>
             </Accordion>
 
-            <Accordion w={{ base: "100%", md: "35%" }}>
+            <Accordion w={{ base: "100%", md: "35%" }}
+              allowToggle>
               <AccordionItem
                 w={{ base: "100%", md: "35%" }}
                 display={{ base: "block", md: "none" }}
@@ -730,12 +746,12 @@ const Dashboard = () => {
             </Accordion>
           </Box>
 
-          
+
           <Box w={{ base: "100%", md: "100%" }}>
 
             <Box
-             w={{ base: "100%", md: "100%" }}
-             display={{ base: "none", md: "block" }}
+              w={{ base: "100%", md: "100%" }}
+              display={{ base: "none", md: "block" }}
               //display={"flex"}
               flexDirection={"column"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
@@ -859,8 +875,8 @@ const Dashboard = () => {
 
 
             <Box
-             w={{ base: "100%", md: "100%" }}
-             display={{ base: "block", md: "none" }}
+              w={{ base: "100%", md: "100%" }}
+              display={{ base: "block", md: "none" }}
               //display={"flex"}
               flexDirection={"column"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
@@ -894,10 +910,12 @@ const Dashboard = () => {
                      // placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
                     /> */}
-                    <SearchIcon   bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                    <SearchIcon bgColor={useColorModeValue("#F5F5F7", "#191919")}
                       color={useColorModeValue("#16171B", "#A8ADBD")}
+                      bg={useColorModeValue("#F5F5F7", "#191919")}
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
-                      />
+                    />
+
                   </Box>
                 </Flex>
               </Flex>
