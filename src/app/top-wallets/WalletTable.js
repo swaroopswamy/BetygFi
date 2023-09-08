@@ -298,6 +298,7 @@ const WalletTable = () => {
 
 
                     </Tbody >
+                    
                     <Tfoot>
                     </Tfoot>
 
