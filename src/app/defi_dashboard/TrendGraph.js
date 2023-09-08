@@ -230,6 +230,9 @@ function TrendGraph() {
 
 function SelectorGraph({ tvlData }) {
 
+    if (!tvlData)
+        return;
+
     const tvl = [{
         "name": "tvl",
         "type": "area",
@@ -253,10 +256,12 @@ function SelectorGraph({ tvlData }) {
                 enabled: true,
                 fill: {
                     color: '#ccc',
-                    opacity: 0.4
+                    opacity: 0
                 },
                 stroke: {
-                    color: '#0D47A1',
+                    width: 1,
+                    dashArray: 0,
+                    color: colorMode === 'light' ? '#000' : '#FFF',
                 }
             }
         },
@@ -312,14 +317,14 @@ function SelectorGraph({ tvlData }) {
     return (
         <>
             <Box
-                marginTop={"-40px"}
+                marginTop={"-30px"}
                 marginBottom={"-48px"}
             >
                 <Chart
                     options={options}
                     series={tvl}
                     type={options.chart.type}
-                    height={"150px"}
+                    height={"100px"}
                     width={"100%"}
                 />
             </Box>
