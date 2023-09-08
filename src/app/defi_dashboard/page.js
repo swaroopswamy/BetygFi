@@ -46,6 +46,7 @@ const DefiDashboardPage = () => {
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
+    //console.log(blockchainSelected);
 
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
@@ -64,7 +65,7 @@ const DefiDashboardPage = () => {
     const getDefiUsersTableDataHandler = () => {
         const payload = {
             defi: defi,
-            blockchain: "",
+            blockchain: ["ethereum,polygon,avalanche"].join(","),
         };
         dispatch(fetchDefiUsersTableData(payload));
     };
@@ -85,7 +86,7 @@ const DefiDashboardPage = () => {
 
     useEffect(() => {
         getDefiDataHandler();
-        getDefiUsersTableDataHandler();
+        //getDefiUsersTableDataHandler();
         getDefiHotContractsDataHandler();
         getDefiAssetCompositionDataHandler(); 
     }, []);
@@ -93,6 +94,11 @@ const DefiDashboardPage = () => {
     useEffect(() => {
         dispatch(fetchBlockchainListData());
     }, []);
+
+    useEffect(() => {
+        getDefiUsersTableDataHandler();
+    }, [blockchainSelected]);
+
     const renderIcon = (item) => {
         return (
             <Image
