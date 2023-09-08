@@ -242,7 +242,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         width={"full"}
         height="60px"
         alignItems="center"
-        bg={useColorModeValue("#FFFFFF", "#272727")}
+        bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+        // borderBottom={"1px"}
+        // borderColor={colorMode === 'light' ? "#515151" : "#272727"}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
@@ -254,7 +256,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         >
           <Box>
             <Image
-              src={"/icons/sidebar_icon_light.svg"}
+              src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg" }
               w={"18px"}
               h={"18px"}
             >
@@ -265,6 +267,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             <Image
               src={colorMode === "light" ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
               h={"25px"}
+              cursor={"pointer"}
+              onClick={() => {
+                router.push('/');
+              }}
             ></Image>
           </Box>
         </Box>
@@ -288,8 +294,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         px={{ base: 4, md: 4 }}
         display={showSearch ? { base: "flex", md: "none" } : "none"}
         bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
-        borderTop={"1px"}
-        borderColor={colorMode === "light" ? "#16171B" : "#333"}
+        border={"1px"}
+        borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
         padding={"8px 19px"}
       >
         <InputGroup w="100%">
@@ -305,21 +311,14 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             type="text"
             border="1px"
             borderRadius="0px"
-            borderColor={colorMode === "light" ? "#16171B" : "#333"}
-            // _selected={{
-            //   outline: "none",
-            //   border: "none"
-            // }}
-            _focusVisible={{
-            }}
-            // bgColor={"transparent"}
+            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
             bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
             fontSize="12px"
             fontWeight="400"
             lineHeight="20px"
             letterSpacing="1.2px"
             w="100%"
-            placeholder="Search by DeFi Name / Code"
+            placeholder="Search Wallet Address"
             value={searchWalletAddressValue}
             onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
             onChange={(e) => { handleSearchByWalletAddress(e) }}
@@ -329,10 +328,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             justifyContent={"center"}
             cursor={"pointer"}
             w={"70px"}
-            p={"12px 10px"}
+            p={"14px 10px"}
             bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
             border="1px"
-            borderColor={colorMode === "light" ? "#16171B" : "#333"}
+            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
           >
             <Text
               fontSize={"14px"}
