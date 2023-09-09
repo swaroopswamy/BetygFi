@@ -47,7 +47,6 @@ export default function LayoutProvider({ children }) {
   const isMobileSidebarCollapsed = useSelector(
     (state) => state?.appData?.isMobileSidebarCollapsed
   );
-  console.log("sidebar", isSidebarCollapsed);
   return (
     <>
       <Box
