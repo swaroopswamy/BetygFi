@@ -263,6 +263,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           alignItems={"center"}
         >
           <Box
+            cursor={"pointer"}
             onClick={() => {
               MobileSidebarHandler(!isMobileSidebarCollapsed);
             }}
