@@ -28,6 +28,7 @@ const WalletAnalyticsPanel = () => {
   const value2 = "-300";
 
   const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
+  const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
 
   return (
     <>
@@ -332,7 +333,7 @@ const WalletAnalyticsPanel = () => {
                 {protocolAllocationData?.isSuccess &&
                   (Object.keys(protocolAllocationData?.data)?.length > 0 ?
                     (Object.keys(protocolAllocationData?.data)?.map((item, i) => {
-                      
+
                       return (
                         <>
                           <Tr height={"40px"} key={i}>
@@ -377,15 +378,8 @@ const WalletAnalyticsPanel = () => {
                             </Td>
                             <Td fontSize={"14px"}>USD {protocolAllocationData?.data[item]?.value}</Td>
                           </Tr>
-
-
                         </>
                       )
-
-
-
-
-
                     }))
                     :
                     (
@@ -798,25 +792,25 @@ const WalletAnalyticsPanel = () => {
                       );
                     })) :
                     ( */}
-                      
-                        <Tr >
-                          <Td
-                            _dark={{ color: "#FFF" }}
-                            _light={{ color: "#16171B" }}
-                            fontSize={"20px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            colSpan={8}
-                            textAlign={"center"}
-                            height={"245px"}
-                          >
-                            No Data Available
-                          </Td>
-                        </Tr>
 
-                      
-                    {/* )) */}
-                
+                <Tr >
+                  <Td
+                    _dark={{ color: "#FFF" }}
+                    _light={{ color: "#16171B" }}
+                    fontSize={"20px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1px"}
+                    colSpan={8}
+                    textAlign={"center"}
+                    height={"245px"}
+                  >
+                    No Data Available
+                  </Td>
+                </Tr>
+
+
+                {/* )) */}
+
 
 
               </Tbody>
@@ -1055,7 +1049,7 @@ const WalletAnalyticsPanel = () => {
                 _dark={{ bgColor: "#202020" }}
 
                 _light={{ bgColor: "#FFF" }} >
-                {!walletBalanceData?.isError && (
+                {inflowOutflowTokensData?.isError && (
                   <>
                     <Tr >
                       <Td
@@ -1078,7 +1072,7 @@ const WalletAnalyticsPanel = () => {
                     </Tr>
                   </>
                 )}
-                {walletBalanceData?.isLoading && (
+                {inflowOutflowTokensData?.isLoading && (
                   <>
                     <SkeletonRow />
                     <SkeletonRow />
@@ -1087,371 +1081,71 @@ const WalletAnalyticsPanel = () => {
                     <SkeletonRow />
                   </>
                 )}
-                {/* {walletBalanceData?.isSuccess &&
-                  (walletBalanceData?.data?.data?.length > 0 ?
-                    (walletBalanceData?.data?.data.map((item, i) => {
+                {inflowOutflowTokensData?.isSuccess &&
+                  (inflowOutflowTokensData?.data?.data?.length > 0 ?
+                    (inflowOutflowTokensData?.data?.data.map((item, i) => {
                       return (
                         <>
-
                           <Tr height={"40px"}>
-
                             <Td _dark={{ color: "#FFFFFF" }}
-
                               _light={{ color: "#16171B" }}
-
                             >
-
-
-
                               <Box
-
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
                                 <>
-
                                   <Image
-
                                     width={5}
-
                                     height={5}
-
                                     alt='logo'
-
-                                    src="/images/t1.png"
-
+                                    src={inflowOutflowTokensData?.data[item]?.logo}
                                   ></Image>
-
                                 </>
-
-
-
-                                <Text ml="6px" fontSize={"14px"}> Venus</Text>
-
+                                <Text ml="6px" fontSize={"14px"}>{inflowOutflowTokensData?.data[item]?.name}</Text>
                               </Box>
-
                             </Td>
-
-
 
                             <Td>
-
                               <Box
-
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
                                 <Text
-
                                   fontSize={"14px"}
-
                                   fontWeight={"400"}
-
                                   letterSpacing={"1px"}
-
                                   ml="6px"
-
                                   color={value1 < 0 ? "#EF1E1E" : "#245F00"}
-
                                 >
-
-                                  {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
-
+                                  {inflowOutflowTokensData?.data[item]?.value1}USD
+                                  {/* {value1 >= 0 ? `+${value1} USD` : `${value1} USD`} */}
                                 </Text>
-
                               </Box>
-
                             </Td>
 
-                            <Td fontSize={"14px"}>60%</Td>
-
-                          </Tr>
-                          <Tr height={"40px"}>
-
-                            <Td
-
-                              _dark={{ color: "#FFFFFF" }}
-
-                              _light={{ color: "#16171B" }} >
-
+                            <Td>
                               <Box
-
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
-                                <>
-
-                                  <Image
-
-                                    width={5}
-
-                                    height={5}
-
-                                    alt='logo'
-
-                                    src="/images/t2.png"
-
-                                  ></Image>
-
-                                </>
-
-
-
-                                <Text ml="6px" fontSize={"14px"}>  Morpho Aave </Text>
-
+                                <Text
+                                  fontSize={"14px"}
+                                  fontWeight={"400"}
+                                  letterSpacing={"1px"}
+                                  //ml="6px"
+                                  _light={{ color: "#16171B" }}
+                                  _dark={{ color: "#FFFFFF" }}
+                                >
+                                  {inflowOutflowTokensData?.data[item]?.percentage}%
+                                </Text>
                               </Box>
-
                             </Td>
-
-                            <Td><Box
-
-                              display={"flex"}
-
-                              alignItems={"center"}
-
-                            >
-
-                              <Text
-
-                                fontSize={"14px"}
-
-                                fontWeight={"400"}
-
-                                letterSpacing={"1px"}
-
-                                ml="6px"
-
-                                color={value1 < 0 ? "#EF1E1E" : "#245F00"}
-
-                              >
-
-                                {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
-
-                              </Text>
-
-                            </Box></Td>
-
-                            <Td fontSize={"14px"}>30%</Td>
-
-                          </Tr>
-                          <Tr height={"40px"}>
-
-                            <Td
-
-                              _dark={{ color: "#FFFFFF" }}
-
-                              _light={{ color: "#16171B" }} >
-
-                              <Box
-
-                                display={"flex"}
-
-                                alignItems={"center"}
-
-                              >
-
-                                <>
-
-                                  <Image
-
-                                    width={5}
-
-                                    height={5}
-
-                                    alt='logo'
-
-                                    src="/images/t3.png"
-
-                                  ></Image>
-
-                                </>
-
-
-
-                                <Text ml="6px" fontSize={"14px"}> Compound V3 </Text>
-
-                              </Box></Td>
-
-                            <Td><Box
-
-                              display={"flex"}
-
-                              alignItems={"center"}
-
-                            >
-
-                              <Text
-
-                                fontSize={"14px"}
-
-                                fontWeight={"400"}
-
-                                letterSpacing={"1px"}
-
-                                ml="6px"
-
-                                color={value1 < 0 ? "#EF1E1E" : "#245F00"}
-
-                              >
-
-                                {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
-
-                              </Text>
-
-                            </Box></Td>
-
-                            <Td fontSize={"14px"}>50%</Td>
-
-                          </Tr>
-                          <Tr height={"40px"}>
-
-                            <Td
-
-                              _dark={{ color: "#FFFFFF" }}
-
-                              _light={{ color: "#16171B" }} >
-
-                              <Box
-
-                                display={"flex"}
-
-                                alignItems={"center"}
-
-                              >
-
-                                <>
-
-                                  <Image
-
-                                    width={5}
-
-                                    height={5}
-
-                                    alt='logo'
-
-                                    src="/images/t4.png"
-
-                                  ></Image>
-
-                                </>
-
-
-
-                                <Text ml="6px" fontSize={"14px"}>  Radiant V2 </Text>
-
-                              </Box></Td>
-
-                            <Td><Box
-
-                              display={"flex"}
-
-                              alignItems={"center"}
-
-                            >
-
-                              <Text
-
-                                fontSize={"14px"}
-
-                                fontWeight={"400"}
-
-                                letterSpacing={"1px"}
-
-                                ml="6px"
-
-                                color={value1 < 0 ? "#EF1E1E" : "#245F00"}
-
-                              >
-
-                                {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
-
-                              </Text>
-
-                            </Box></Td>
-
-                            <Td fontSize={"14px"}>60%</Td>
-
-                          </Tr>
-                          <Tr height={"40px"}>
-
-                            <Td _dark={{ color: "#FFFFFF" }}
-
-                              _light={{ color: "#16171B" }} >
-
-                              <Box
-
-                                display={"flex"}
-
-                                alignItems={"center"}
-
-                              >
-
-                                <>
-
-                                  <Image
-
-                                    width={5}
-
-                                    height={5}
-
-                                    alt='logo'
-
-                                    src="/images/t5.png"
-
-                                  ></Image>
-
-                                </>
-
-
-
-                                <Text ml="6px" fontSize={"14px"}> FluidTokens </Text>
-
-                              </Box></Td>
-
-                            <Td><Box
-
-                              display={"flex"}
-
-                              alignItems={"center"}
-
-                            >
-
-                              <Text
-
-                                fontSize={"14px"}
-
-                                fontWeight={"400"}
-
-                                letterSpacing={"1px"}
-
-                                ml="6px"
-
-                                color={value1 < 0 ? "#EF1E1E" : "#245F00"}
-
-                              >
-
-                                {value1 >= 0 ? `+${value1} USD` : `${value1} USD`}
-
-                              </Text>
-
-                            </Box></Td>
-
-                            <Td fontSize={"14px"}>30%</Td>
-
                           </Tr>
                         </>
                       );
                     })) :
-                    ( */}
+                    (
                       <>
                         <Tr >
                           <Td
@@ -1473,26 +1167,14 @@ const WalletAnalyticsPanel = () => {
                         </Tr>
 
                       </>
-                    {/* ))
-                } */}
-
+                    ))
+                }
               </Tbody>
-
-
-
             </Table>
-
           </TableContainer>
-
         </Box>
 
-
-
         {/* Table divider */}
-
-
-
-
 
         <Box
 
@@ -2118,29 +1800,29 @@ const WalletAnalyticsPanel = () => {
                       );
                     })) :
                     ( */}
-                      <>
-                        <Tr >
-                          <Td
-                            _dark={{
-                              color: "#FFF"
-                            }}
-                            _light={{
-                              color: "#16171B"
-                            }}
-                            fontSize={"20px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            colSpan={8}
-                            textAlign={"center"}
-                            height={"245px"}
+                <>
+                  <Tr >
+                    <Td
+                      _dark={{
+                        color: "#FFF"
+                      }}
+                      _light={{
+                        color: "#16171B"
+                      }}
+                      fontSize={"20px"}
+                      fontWeight={"400"}
+                      letterSpacing={"1px"}
+                      colSpan={8}
+                      textAlign={"center"}
+                      height={"245px"}
 
-                          >
-                            No Data Available
-                          </Td>
-                        </Tr>
+                    >
+                      No Data Available
+                    </Td>
+                  </Tr>
 
-                      </>
-                    {/* ))
+                </>
+                {/* ))
                 } */}
               </Tbody>
             </Table>
@@ -2184,6 +1866,9 @@ const WalletAnalyticsPanel = () => {
           <AssetTrendSplineChart />
         </Box>
       </Box> */}
+
+
+
       <Box
         my="20px"
         w='100%'
@@ -2245,21 +1930,21 @@ const WalletAnalyticsPanel = () => {
           <PerformanceMultiLineChart />
         </Box> */}
         <Box _dark={{
-                          color: "#FFF"
-                        }}
-                        _light={{
-                          color: "#16171B"
-                        }}
-                        fontSize={"20px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
-                        mt={"100px"}
-                        colSpan={8}
-                        textAlign={"center"}
-                        p="20px"
-                        height={"245px"}
-                      >
-                        No Data Available</Box>
+          color: "#FFF"
+        }}
+          _light={{
+            color: "#16171B"
+          }}
+          fontSize={"20px"}
+          fontWeight={"400"}
+          letterSpacing={"1px"}
+          mt={"100px"}
+          colSpan={8}
+          textAlign={"center"}
+          p="20px"
+          height={"245px"}
+        >
+          No Data Available</Box>
       </Box>
     </>
   );

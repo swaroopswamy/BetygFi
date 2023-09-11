@@ -7,7 +7,7 @@ export default function Home() {
   
   return (
     <>
-      <main style={{ marginBottom: "42px"}}>
+      <main>
 
         {/* <!-- Google tag (gtag.js) -->  */}
 
