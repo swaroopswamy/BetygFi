@@ -696,7 +696,7 @@ const Dashboard = () => {
                     </Box>
                   </Box>
                 </AccordionButton>
-                <AccordionPanel>
+                <AccordionPanel  pb={4}>
                   <Box
                     bg={"#00000014"}
                     p="30px"
@@ -734,12 +734,13 @@ const Dashboard = () => {
                     fontSize={"18px"}
                     fontWeight={600}
                     lineHeight={"20px"}
+                    //as="span" flex='1' textAlign='left'
                   >
                     Score Distribution
                   </Text>
                 </AccordionButton>
 
-                <AccordionPanel >
+                <AccordionPanel  pb={4}>
                   <OverviewColumnChart />
                 </AccordionPanel>
               </AccordionItem>

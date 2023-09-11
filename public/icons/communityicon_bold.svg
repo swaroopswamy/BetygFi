@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="32" height="32" fill="#1E1E1E"/>
+<g id="Light Theme_Mobile" clip-path="url(#clip0_1_1054)">
+<rect width="360" height="1054" transform="translate(-298 -871)" fill="#F0F0F5"/>
+<g id="Mobile Bottom Navigation">
+<g id="Property 4=Light_Community">
+<path id="Rectangle 34624140" d="M-298 -7H62V68H-298V-7Z" fill="white"/>
+<g id="Icon 6">
+<g id="Group 427319237">
+<path id="Ellipse 67" d="M21.3892 11.9815C21.3892 14.7329 19.1591 16.9631 16.4084 16.9631C13.6576 16.9631 11.4275 14.7329 11.4275 11.9815C11.4275 9.23018 13.6576 6.99998 16.4084 6.99998C19.1591 6.99998 21.3892 9.23018 21.3892 11.9815Z" stroke="#202020" stroke-width="2"/>
+<path id="Ellipse 69" d="M23.5159 16.1776C25.4065 16.1776 26.9392 14.6447 26.9392 12.7538C26.9392 10.8629 25.4065 9.33008 23.5159 9.33008" stroke="#202020" stroke-width="2" stroke-linecap="round"/>
+<path id="Ellipse 71" d="M9.4043 16.1776C7.51363 16.1776 5.98094 14.6447 5.98094 12.7538C5.98094 10.8629 7.51363 9.33008 9.4043 9.33008" stroke="#202020" stroke-width="2" stroke-linecap="round"/>
+<path id="Ellipse 68" d="M24.9527 26C24.9527 21.2807 21.1274 17.4546 16.4086 17.4546C13.2803 17.4546 10.5448 19.136 9.05603 21.6444C8.2991 22.9198 7.8645 24.409 7.8645 25.9997" stroke="#202020" stroke-width="2" stroke-linecap="round"/>
+<path id="Ellipse 70" d="M28.4064 21.1071C28.4064 18.4058 26.2168 16.2158 23.5159 16.2158" stroke="#202020" stroke-width="2" stroke-linecap="round"/>
+<path id="Ellipse 72" d="M4.2908 21.1071C4.2908 18.4059 6.48035 16.2159 9.18131 16.2159" stroke="#202020" stroke-width="2" stroke-linecap="round"/>
+</g>
+</g>
+</g>
+<rect x="-317.5" y="-311.5" width="399" height="399" rx="4.5" stroke="#9747FF" stroke-dasharray="10 5"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1_1054">
+<rect width="360" height="1054" fill="white" transform="translate(-298 -871)"/>
+</clipPath>
+</defs>
+</svg>
