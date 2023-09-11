@@ -579,7 +579,8 @@ const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
         isOpen={isOpen}
         placement={'left'}
         onClose={onClose}
-        size={"md"}
+        //size={"md"}
+        w="80%"
       >
         <DrawerOverlay />
 
