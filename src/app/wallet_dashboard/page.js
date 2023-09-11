@@ -32,6 +32,9 @@ const WalletDashboardPage = () => {
         (state) => state?.appData?.BlockchainListData?.data
     );
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
+
+    const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
+
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
@@ -473,6 +476,7 @@ const WalletDashboardPage = () => {
                                     <PageButtons
                                         tablePage={tablePage}
                                         pageChangeHandler={pageChangeHandler}
+                                        totalPages={walletTransactionsData?.data?.totalPages}
                                     />
                                 </TabPanel>
                                 <TabPanel
@@ -499,7 +503,7 @@ const WalletDashboardPage = () => {
 
 export default WalletDashboardPage;
 
-function PageButtons({ tablePage, pageChangeHandler }) {
+function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
     return (
         <>
             <Box
@@ -593,11 +597,11 @@ function PageButtons({ tablePage, pageChangeHandler }) {
                         borderColor={useColorModeValue("#C7CAD2", "#454853")}
                         padding="0px"
                         onClick={() => {
-                            if (tablePage < 5) // totalPages goes here
+                            if (tablePage < totalPages) // totalPages goes here
                                 pageChangeHandler(tablePage + 1);
                         }}
-                        cursor={tablePage === 5 ? "not-allowed" : "pointer"}
-                        disabled={tablePage === 5}
+                        cursor={tablePage === totalPages ? "not-allowed" : "pointer"}
+                        disabled={tablePage === totalPages}
                     >
                         <Image
                             width={15}
