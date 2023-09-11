@@ -914,7 +914,7 @@ const Dashboard = () => {
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
                     /> */}
 
-                    <InputGroup w="80%">
+                    <InputGroup w="80%" ml={"40px"}>
                       <Input
                         type="text"
                         border="none"
@@ -1021,7 +1021,6 @@ const Dashboard = () => {
                       ></Image>
                     </Button>
                   </>)}
-
               </Box>
             </Box>
           </Box>
