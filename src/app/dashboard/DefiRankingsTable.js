@@ -531,13 +531,14 @@ const Rankings = () => {
         bgColor={useColorModeValue("#FFFFFF", "#202020")}
         borderRadius={"6px"}
         display={{ base: "table", md: "none" }}
-        w={{ base: "100%", md: "100%" }}
+      /*   w={{ base: "100%", md: "100%" }}  */
       //dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
       //px={{ base: "10px", md: "20px" }}
       //py={{ base: "10px", md: "25px" }}
       >
         <Thead
           bg={useColorModeValue("#F5F5F7", "#191919")}
+
         >
           <Tr
           >
@@ -547,12 +548,12 @@ const Rankings = () => {
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"space-between"}
-                w={"100%"}
+              /*  w={"100%"} */
               >
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                  w={"100%"}
+                /*  w={"100%"} */
                 >
                   <Text
                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
@@ -649,32 +650,37 @@ const Rankings = () => {
                           if (item.name === "AAVE V2")
                             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
                         }}
-                        w={{ base: "100%", md: "100%" }}
                       >
-                        <Td p={0}>
+                        <Td p={0} colSpan={1} >
                           <Accordion
                             allowMultiple>
                             <AccordionItem>
                               <h2
-                                w={{ base: "100%", md: "100%" }}
                               >
                                 <AccordionButton
                                   _expanded={{ mt: "10px" }}
                                 >
-                                  <Box w="100%"
+                                  <Box
                                     display={"flex"}
                                     alignItems={"center"}
+                                    w="100%"
+                                    justifyContent={"space-between"}
                                   >
-                                    <Td
-                                      color={useColorModeValue("#16171B", "#FFF")}
-                                      fontSize={"14px"}
-                                      fontWeight={400}
-                                      lineHeight={"20px"}
-                                    //letterSpacing={"1px"}
+                                    <Box
+                                      display={"flex"}
+                                      alignItems={"center"}
                                     >
-                                      {item?.Rank === undefined ? '-' : item?.Rank}
-                                    </Td>
-                                    <Td>
+                                      <Text
+                                        color={useColorModeValue("#16171B", "#FFF")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        p={{ base: 1, sm: 1, md: 2 }}
+                                      //letterSpacing={"1px"}
+                                      >
+                                        {item?.Rank === undefined ? '-' : item?.Rank}
+                                      </Text>
+
                                       <Box
                                         display={"flex"}
                                         alignItems={"center"}
@@ -743,9 +749,10 @@ const Rankings = () => {
                                         </Box>
 
                                       </Box>
-                                    </Td>
-                                    <Spacer />
-                                    <Td
+                                    </Box>
+
+                                    <Box
+                                      p={{ base: 1, sm: 1, md: 2 }}
                                       color={useColorModeValue("#16171B", "#FFF")}
                                       fontSize={"14px"}
                                       fontWeight={400}
@@ -780,7 +787,7 @@ const Rankings = () => {
                                             </>
                                           )}
                                       </Box>
-                                    </Td>
+                                    </Box>
                                   </Box>
                                   <AccordionIcon />
                                 </AccordionButton>

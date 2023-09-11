@@ -60,13 +60,30 @@ export default function LayoutProvider({ children }) {
           h={"100%"}
         />
         <Box
-          display={isMobileSidebarCollapsed ? "flex" : "none"}
+          display={{ base: "none", md: isMobileSidebarCollapsed ? "flex" : "none" }}
           flexDirection={"column"}
           // ml={"225px"}
-          ml={screenSize?.width < 1450 ? 
-            0 : 
-            (isSidebarCollapsed ? 20 : 225) 
+          ml={screenSize?.width < 1450 ?
+            0 :
+            (isSidebarCollapsed ? 20 : 225)
           }
+          w="100%"
+        >
+          <Navbar onOpenMenu={onOpen} />
+          <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
+            {children}
+            <Prefooter />
+            <Footer />
+          </Box>
+        </Box>
+        <Box
+          display={{base:"flex",md:"none"}}
+          flexDirection={"column"}
+          // ml={"225px"}
+          /* ml={screenSize?.width < 1450 ?
+            0 :
+            (isSidebarCollapsed ? 20 : 225)
+          } */
           w="100%"
         >
           <Navbar onOpenMenu={onOpen} />

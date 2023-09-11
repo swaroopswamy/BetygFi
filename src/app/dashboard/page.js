@@ -747,7 +747,7 @@ const Dashboard = () => {
           </Box>
 
 
-          <Box w={{ base: "100%", md: "100%" }}>
+          <Box>
 
             <Box
               w={{ base: "100%", md: "100%" }}
@@ -884,8 +884,8 @@ const Dashboard = () => {
               borderColor={useColorModeValue("#FFFFFF", "#272727")}
               borderRadius={"6px"}
               dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
-              px={{ base: "10px", md: "20px" }}
-              py={{ base: "10px", md: "25px" }}
+              px={{ base: "0px", md: "20px" }}
+              py={{ base: "0px", md: "25px" }}
             >
               <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
                 <Text
