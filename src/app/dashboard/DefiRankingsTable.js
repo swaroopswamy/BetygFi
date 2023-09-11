@@ -39,6 +39,20 @@ const SkeletonRow = () => (
   </Box>
 )
 
+const MobileSkeletonRow = () => (
+  <Box as="tr">
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+  </Box>
+)
+
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
   const router = useRouter();
@@ -540,7 +554,9 @@ const Rankings = () => {
           bg={useColorModeValue("#F5F5F7", "#191919")}
           >
           <Tr>
-            <Th>
+            <Th
+              colSpan={3}
+            >
               <Box
                 display={"flex"}
                 alignItems={"center"}
@@ -561,6 +577,7 @@ const Rankings = () => {
                     ml={"-20px"}>
                     Rank
                   </Text>
+
                   <Tooltip
                     bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                     padding="4px 8px"
@@ -576,6 +593,7 @@ const Rankings = () => {
                       style={{ marginLeft: "2px", marginTop: "3px" }}
                     ></Image>
                   </Tooltip>
+
                   <Text
                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
                     fontSize={"14px"}
@@ -629,9 +647,9 @@ const Rankings = () => {
           )}
           {tableData.DefiRankingsTableData.isLoading && (
             <>
-              <SkeletonRow />
-              <SkeletonRow />
-              <SkeletonRow />
+              <MobileSkeletonRow />
+              <MobileSkeletonRow />
+              <MobileSkeletonRow />
             </>
           )}
           {tableData.DefiRankingsTableData.isSuccess &&

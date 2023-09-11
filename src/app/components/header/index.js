@@ -358,9 +358,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
           >
             <Text
-              fontSize={"14px"}
+              fontSize={{base: "12px", sm: "14px"}}
               fontWeight={"500"}
               lineHeight={"10px"}
+              textAlign={"center"}
             >
               Search
             </Text>
