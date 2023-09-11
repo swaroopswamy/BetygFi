@@ -10,7 +10,6 @@ import {
   Grid,
   GridItem,
   Icon,
-  Input,
   Menu,
   MenuButton,
   MenuItem,
@@ -23,6 +22,9 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  Input,
+  InputGroup,
+  InputRightElement,
   AccordionIcon
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -685,7 +687,7 @@ const Dashboard = () => {
                         </Text>
                       </Box>
                     </Box>
-                    <AccordionIcon  ml={"10px"}/>
+                    <AccordionIcon ml={"10px"} />
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
@@ -879,11 +881,15 @@ const Dashboard = () => {
               px={{ base: "0px", md: "20px" }}
               py={{ base: "0px", md: "25px" }}
             >
-              <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
+              <Flex justifyContent={"space-between"} 
+              padding={"23px 0px 23px" }
+              >
                 <Text
                   fontSize={"18px"}
                   fontWeight={600}
                   lineHeight={"20px"}
+                  pt={"10px"}
+                  ml={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
                   Defi Ranking
@@ -902,12 +908,34 @@ const Dashboard = () => {
                      // placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
                     /> */}
-                    <SearchIcon bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                    {/* <SearchIcon bgColor={useColorModeValue("#F5F5F7", "#191919")}
                       color={useColorModeValue("#16171B", "#A8ADBD")}
                       bg={useColorModeValue("#F5F5F7", "#191919")}
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    />
+                    /> */}
 
+                    <InputGroup w="80%">
+                      <Input
+                        type="text"
+                        border="none"
+                        bgColor={"transparent"}
+                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                        fontSize="12px"
+                        fontWeight="400"
+                        lineHeight="20px"
+                        letterSpacing="1.2px"
+                        w="100%"
+                     // placeholder="Search"                     
+                      ></Input>
+                      <InputRightElement pointerEvents='none'>
+                        <Image
+                          src="/images/search_icon.svg"
+                          width={20}
+                          height={20}
+                          alt="search_icon"
+                        />
+                      </InputRightElement>
+                    </InputGroup>
                   </Box>
                 </Flex>
               </Flex>
