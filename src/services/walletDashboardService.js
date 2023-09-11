@@ -81,7 +81,6 @@ export const getInflowOutflowTokensForAddress = async (payloadData) => {
 };
 
 
-
 export default {
   getWalletBalanceData,
   getWalletTransactionsData,
