@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchInflowOutflowTokensForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -58,24 +58,37 @@ const WalletDashboardPage = () => {
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, tablePage, searchParam.get("address")])
 
+
     const fetchAssetAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchAssetAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+
     const fetchProtocolAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchProtocolAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+
     const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchBlockchainAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+    const fetchInflowOutflowTokensForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchInflowOutflowTokensForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+
 
 
     useEffect(() => {
@@ -87,6 +100,7 @@ const WalletDashboardPage = () => {
         fetchAssetAllocationForAddressHandler();
         fetchProtocolAllocationForAddressHandler();
         fetchBlockchainAllocationForAddressHandler();
+        fetchInflowOutflowTokensForAddressHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     useEffect(() => {
@@ -441,7 +455,7 @@ const WalletDashboardPage = () => {
                                                 <Image
                                                     w={"18px"}
                                                     h={"18px"}
-                                                    mr={"5px"}
+                                                    mr={"3px"}
                                                     src={item.logoUrl}
                                                     alt={`${item.id}_icon`}
                                                 ></Image>
@@ -454,7 +468,7 @@ const WalletDashboardPage = () => {
                                                         :
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
-                                                    textTransform={"uppercase"}
+                                                    textTransform={"capitalize"}
                                                 >
                                                     {item.name}
                                                 </Text>
