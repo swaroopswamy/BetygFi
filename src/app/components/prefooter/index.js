@@ -17,14 +17,18 @@ const Prefooter = () => {
                 mx={"3px"}
                 bgColor={colorMode === 'light' ? "#FFF" : "#191919"}
             >
-                <Text
-                    fontSize={"14px"}
-                    lineHeight={"20px"}
-                    letterSpacing={"1.4"}
-                    color={"#FFF"}
+                <Box
+                    display={{base: "flex", md: "none"}}
                 >
-                    -- End of Page --
-                </Text>
+                    <Text
+                        fontSize={"14px"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1.4"}
+                        color={"#FFF"}
+                    >
+                        -- End of Page --
+                    </Text>
+                </Box>
             </Box>
         </>
     )
