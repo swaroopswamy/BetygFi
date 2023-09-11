@@ -503,6 +503,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         )}
         display={isMobileSidebarCollapsed ? {base: "none", md: "none"} : {base: "flex", md: "none"}}
         pos={"fixed"}
+        zIndex={"100"}
         w={"100%"}
         {...rest}
       >
