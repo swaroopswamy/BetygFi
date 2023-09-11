@@ -140,7 +140,12 @@ const WalletTable = () => {
                                                                     alt=""
                                                                 ></Image>
                                                                 <Text
-                                                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                                                    _light={{
+                                                                        color: "#16171B"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"600"}
@@ -164,7 +169,12 @@ const WalletTable = () => {
 
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -235,7 +245,12 @@ const WalletTable = () => {
                                                                 flexDirection={"column"}
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -246,7 +261,12 @@ const WalletTable = () => {
                                                                 </Text>
                                                                 <Text
                                                                     mt="10px"
-                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    _light={{
+                                                                        color: "#090909"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -263,7 +283,12 @@ const WalletTable = () => {
 
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -274,7 +299,12 @@ const WalletTable = () => {
                                                                 </Text>
                                                                 <Text
                                                                     mt="10px"
-                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    _light={{
+                                                                        color: "#090909"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -297,7 +327,7 @@ const WalletTable = () => {
 
 
                     </Tbody >
-                    
+
 
                 </Table>
 
