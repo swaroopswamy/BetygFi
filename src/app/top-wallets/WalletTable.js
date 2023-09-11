@@ -41,7 +41,7 @@ const WalletTable = () => {
                     </Box>
                 </Box>
                 <Table variant='unstyled'
-                    display={{ base: "unset", md: "none" }}
+                    display={{ base: "table", md: "none" }}
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
@@ -299,13 +299,11 @@ const WalletTable = () => {
 
                     </Tbody >
                     
-                    <Tfoot>
-                    </Tfoot>
 
                 </Table>
 
                 <Table variant='unstyled'
-                    display={{ base: "none", md: "unset" }}
+                    display={{ base: "none", md: "table" }}
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
@@ -407,9 +405,6 @@ const WalletTable = () => {
 
 
                     </Tbody>
-                    <Tfoot>
-                    </Tfoot>
-
                 </Table>
 
                 {/*   <PageButtons /> */}
