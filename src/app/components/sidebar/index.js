@@ -569,7 +569,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
 export default SidebarContent;
 
 const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
-  const { colorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const pathname = usePathname();
 

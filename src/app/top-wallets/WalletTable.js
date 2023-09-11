@@ -233,7 +233,6 @@ const WalletTable = () => {
                                                                 mt="10px"
                                                                 display={"flex"}
                                                                 flexDirection={"column"}
-
                                                             >
                                                                 <Text
                                                                     color={useColorModeValue("#8F8F8F", "#A8ADBD")}
@@ -243,7 +242,7 @@ const WalletTable = () => {
                                                                     lineHeight={"20px"}
                                                                     textAlign={"left"}
                                                                 >
-                                                                    Total Tokens
+                                                                    Total Protocols
                                                                 </Text>
                                                                 <Text
                                                                     mt="10px"
