@@ -177,13 +177,19 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Icon
+          <Image
             _groupHover={{
               color: "white",
             }}
             width={"15px"} 
             height={"20px"}
             as={FooterIcon}
+            style={{
+              opacity: footerTab === name ? 1 : 0.4,  
+              borderStyle: "solid"
+            }}
+            
+            
           />
         </Box>
         <Text
