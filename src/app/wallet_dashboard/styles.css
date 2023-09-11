@@ -20,3 +20,25 @@
     font-weight: 400;
     line-height: 20px;
 }
+
+.parent {
+    width: 400px;
+    height: 200px;
+    border: 1px solid #aaa;
+    overflow: hidden;
+}
+
+.child {
+    height: 100%;
+    margin-bottom: -50px;
+    /* maximum width of scrollbar */
+    padding-bottom: 50px;
+    /* maximum width of scrollbar */
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+p {
+    white-space: nowrap;
+}

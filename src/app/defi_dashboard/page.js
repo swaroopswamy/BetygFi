@@ -140,8 +140,8 @@ const DefiDashboardPage = () => {
                             marginRight={"22px"}
                         >
                             <Image
-                                w="47px"
-                                h="47px"
+                                w={{base:"30px",md:"30px"}}
+                                h={{base:"30px",md:"30px"}}
                                 borderRadius={"50%"}
                                 src={defiData?.logo ?? "/images/basic_profile.png"}
                                 alt="proifile_img"
@@ -155,7 +155,7 @@ const DefiDashboardPage = () => {
                             {
                                 defiData?.name !== undefined && (
                                     <Text
-                                        fontSize={"24px"}
+                                        fontSize={{base:"18px",md:"24px"}}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         //opacity={"0.5"}
