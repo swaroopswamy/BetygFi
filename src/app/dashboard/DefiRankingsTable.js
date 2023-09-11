@@ -1016,7 +1016,7 @@ const Rankings = () => {
 
                                   <Button
                                     width={"100%"}
-                                    variant='outline'
+                                    variant='solid'
                                     background={useColorModeValue("#FFF", "#333")}
                                   >
                                     <Text
