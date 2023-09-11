@@ -6,6 +6,8 @@ import AssetTrendSplineChart from './AssetTrendSplineChart';
 import PerformanceMultiLineChart from './PerformanceMultiLineChart';
 import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart';
 import { useSelector } from 'react-redux';
+import isEmpty from "is-empty";
+import dynamic from "next/dynamic";
 
 const SkeletonRow = () => (
   <Box as="tr">
@@ -26,7 +28,6 @@ const WalletAnalyticsPanel = () => {
   const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
   const value1 = "300";
   const value2 = "-300";
-
   const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
   const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
 
@@ -146,7 +147,6 @@ const WalletAnalyticsPanel = () => {
             <AssetAllocationPieChart />
           </Box>
         </Box>
-
       </Box>
 
       <Box
@@ -818,73 +818,39 @@ const WalletAnalyticsPanel = () => {
             </Table>
           </TableContainer>
         </Box>
-
-
       </Box>
 
-      {/* this is varun part of code */}
-
-
-
       <Box
-
         display={'inline-flex'}
-
         w="100%"
-
         my="10px"
       >
-
         <Box
-
           w='50%'
-
           height={"367px"}
-
           display={"flex"}
-
           flexDirection={"column"}
-
           borderRadius={"6px"}
-
           _dark={{
-
             bg: "#202020",
-
             border: "1px solid #272727"
-
           }}
-
           _light={{
-
             bg: "#FFFFFF",
-
             border: "1px solid #ADADAD"
-
           }}
-
           mr="10px"
-
         >
-
           <Flex
-
             height={"50px"}
             borderRadius={"6px"}
             _dark={{
-
               bg: "#202020",
-
               color: "#FFFFFF"
-
             }}
-
             _light={{
-
               bg: "#FFFFFF",
-
               color: "#16171B"
-
             }}
             pb="14px"
           >
@@ -912,41 +878,24 @@ const WalletAnalyticsPanel = () => {
           </Flex>
 
           <TableContainer>
-
             <Table variant='simple'>
-
               <Thead
-
                 _dark={{
                   color: "#FFFFFF",
-
                   bg: "#191919"
                 }}
-
                 _light={{
                   color: "#16171B",
-
                   bg: "#F5F5F7"
                 }}
-
                 fontSize={"14px"}
-
                 fontWeight={"400"}
-
                 lineHeight={"20px"}
-
                 letterSpacing={"1px"}
-
                 textTransform={"uppercase"}>
-
                 <Tr>
-
-
-
                   <Th>
-
                     <Flex>
-
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
@@ -954,12 +903,10 @@ const WalletAnalyticsPanel = () => {
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
-                        textTransform={"uppercase"}>Asset Name</Text>
-
-
-
+                        textTransform={"uppercase"}>
+                        Asset Name
+                      </Text>
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -968,17 +915,11 @@ const WalletAnalyticsPanel = () => {
                           src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
                       </>
-
                     </Flex>
-
                   </Th>
 
-
-
                   <Th>
-
                     <Flex >
-
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
@@ -987,9 +928,7 @@ const WalletAnalyticsPanel = () => {
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>Value</Text>
-
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -998,17 +937,10 @@ const WalletAnalyticsPanel = () => {
                           src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
                       </>
-
                     </Flex>
-
                   </Th>
-
-
-
                   <Th>
-
                     <Flex>
-
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
                         fontSize={"14px"}
@@ -1016,9 +948,7 @@ const WalletAnalyticsPanel = () => {
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>Share</Text>
-
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1027,27 +957,16 @@ const WalletAnalyticsPanel = () => {
                           src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
                       </>
-
                     </Flex>
-
                   </Th>
-
                 </Tr>
-
               </Thead>
 
-
-
               <Tbody
-
                 fontSize={"14px"}
-
                 fontWeight={"400"}
-
                 lineHeight={"20px"}
-
                 _dark={{ bgColor: "#202020" }}
-
                 _light={{ bgColor: "#FFF" }} >
                 {inflowOutflowTokensData?.isError && (
                   <>
@@ -1099,10 +1018,10 @@ const WalletAnalyticsPanel = () => {
                                     width={5}
                                     height={5}
                                     alt='logo'
-                                    src={inflowOutflowTokensData?.data[item]?.logo}
+                                    src={item?.logo}
                                   ></Image>
                                 </>
-                                <Text ml="6px" fontSize={"14px"}>{inflowOutflowTokensData?.data[item]?.name}</Text>
+                                <Text ml="6px" fontSize={"14px"}>{item?.name}</Text>
                               </Box>
                             </Td>
 
@@ -1137,7 +1056,7 @@ const WalletAnalyticsPanel = () => {
                                   _light={{ color: "#16171B" }}
                                   _dark={{ color: "#FFFFFF" }}
                                 >
-                                  {inflowOutflowTokensData?.data[item]?.percentage}%
+                                  {item?.percentage}%
                                 </Text>
                               </Box>
                             </Td>
@@ -1177,49 +1096,29 @@ const WalletAnalyticsPanel = () => {
         {/* Table divider */}
 
         <Box
-
           w='50%'
-
           height={"367px"}
-
           display={"flex"}
-
           flexDirection={"column"}
-
           borderRadius={"6px"}
-
           _dark={{
-
             bg: "#202020",
-
             border: "1px solid #272727"
-
           }}
-
           _light={{
-
             bg: "#FFFFFF",
-
             border: "1px solid #ADADAD"
-
           }}
-
           ml="10px"
-
         >
 
           <Flex
-
             height={"50px"}
             borderRadius={"6px"}
             _dark={{
-
               bg: "#202020",
-
               color: "#FFFFFF"
-
             }}
-
             _light={{
               bg: "#FFFFFF",
               color: "#16171B"
@@ -1228,25 +1127,15 @@ const WalletAnalyticsPanel = () => {
           >
 
             <Text
-
               fontSize={"18px"}
-
               fontStyle={"normal"}
-
               fontWeight={"600"}
-
               lineHeight={"20px"}
-
               ml={"20px"}
-
               mr={"6px"}
-
               paddingTop={"15px"}
-
             >
-
               Outflow Tokens (30 Days)
-
             </Text>
             <>
               <Tooltip label="Outflow shows the number of tokens that are going out of wallet.">
@@ -1264,43 +1153,26 @@ const WalletAnalyticsPanel = () => {
 
 
           <TableContainer>
-
             <Table variant='simple'>
-
               {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
-
               <Thead
-
                 _dark={{
                   color: "#FFFFFF",
-
                   bg: "#191919"
                 }}
-
                 _light={{
                   color: "#16171B",
-
                   bg: "#F5F5F7"
                 }}
-
                 fontSize={"14px"}
-
                 fontWeight={"400"}
-
                 lineHeight={"20px"}
-
                 letterSpacing={"1px"}
-
                 textTransform={"uppercase"}>
-
                 <Tr>
 
-
-
                   <Th>
-
                     <Flex>
-
                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
@@ -1309,11 +1181,8 @@ const WalletAnalyticsPanel = () => {
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
                         textTransform={"uppercase"}>Asset Name</Text>
-
-
-
+                     
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1322,18 +1191,12 @@ const WalletAnalyticsPanel = () => {
                           src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
                       </>
-
                     </Flex>
-
                   </Th>
 
-
-
                   <Th>
-
                     <Flex>
-
-                      <Text paddingRight={"5px"}
+                       <Text paddingRight={"5px"}
                         _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
                         fontSize={"14px"}
@@ -1343,7 +1206,6 @@ const WalletAnalyticsPanel = () => {
                         textTransform={"uppercase"}>Value</Text>
 
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1352,17 +1214,11 @@ const WalletAnalyticsPanel = () => {
                           src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
                         </Image>
                       </>
-
                     </Flex>
-
                   </Th>
 
-
-
                   <Th>
-
                     <Flex>
-
                       <Text _light={{ color: "#434347" }}
                         _dark={{ color: "#A8ADBD" }}
                         fontSize={"14px"}
@@ -1372,7 +1228,6 @@ const WalletAnalyticsPanel = () => {
                         textTransform={"uppercase"}>Share</Text>
 
                       <>
-
                         <Image width={"12px"}
                           height={"12px"}
                           flexShrink={"0"}
@@ -1383,25 +1238,15 @@ const WalletAnalyticsPanel = () => {
                       </>
 
                     </Flex>
-
                   </Th>
-
                 </Tr>
-
               </Thead>
 
-
-
               <Tbody
-
                 fontSize={"14px"}
-
                 fontWeight={"400"}
-
                 lineHeight={"20px"}
-
                 _dark={{ bgColor: "#202020" }}
-
                 _light={{ bgColor: "#FFF" }} >
                 {!walletBalanceData?.isError && (
                   <>
@@ -1440,140 +1285,71 @@ const WalletAnalyticsPanel = () => {
                     (walletBalanceData?.data?.data.map((item, i) => {
                       return (
                         <>
-
                           <Tr height={"40px"}>
-
                             <Td _dark={{ color: "#FFFFFF" }}
-
                               _light={{ color: "#16171B" }}
-
                             >
 
-
-
-                              <Box
-
+                              <BoX
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
                                 <>
-
                                   <Image
-
                                     width={5}
-
                                     height={5}
-
                                     alt='logo'
-
                                     src="/images/t1.png"
-
                                   ></Image>
-
                                 </>
-
-
-
                                 <Text ml="6px" fontSize={"14px"}> Venus</Text>
-
                               </Box>
-
                             </Td>
-
-
 
                             <Td>
-
                               <Box
-
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
                                 <Text
-
                                   fontSize={"14px"}
-
                                   fontWeight={"400"}
-
                                   letterSpacing={"1px"}
-
                                   ml="6px"
-
                                   color={value2 < 0 ? "#EF1E1E" : "#245F00"}
-
                                 >
-
                                   {value2 >= 0 ? `+${value2} USD` : `${value2} USD`}
-
                                 </Text>
-
                               </Box>
-
                             </Td>
-
                             <Td fontSize={"14px"}>60%</Td>
-
                           </Tr>
                           <Tr height={"40px"}>
-
                             <Td
-
                               _dark={{ color: "#FFFFFF" }}
-
                               _light={{ color: "#16171B" }} >
-
                               <Box
-
                                 display={"flex"}
-
                                 alignItems={"center"}
-
                               >
-
                                 <>
-
                                   <Image
-
                                     width={5}
-
                                     height={5}
-
                                     alt='logo'
-
                                     src="/images/t2.png"
-
                                   ></Image>
-
                                 </>
-
-
-
                                 <Text ml="6px" fontSize={"14px"}>  Morpho Aave </Text>
-
                               </Box>
-
                             </Td>
-
                             <Td><Box
-
                               display={"flex"}
-
                               alignItems={"center"}
-
                             >
-
                               <Text
-
                                 fontSize={"14px"}
-
                                 fontWeight={"400"}
-
                                 letterSpacing={"1px"}
 
                                 ml="6px"
@@ -1815,12 +1591,10 @@ const WalletAnalyticsPanel = () => {
                       colSpan={8}
                       textAlign={"center"}
                       height={"245px"}
-
                     >
                       No Data Available
                     </Td>
                   </Tr>
-
                 </>
                 {/* ))
                 } */}

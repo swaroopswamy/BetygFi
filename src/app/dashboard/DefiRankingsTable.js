@@ -531,29 +531,24 @@ const Rankings = () => {
         bgColor={useColorModeValue("#FFFFFF", "#202020")}
         borderRadius={"6px"}
         display={{ base: "table", md: "none" }}
-      /*   w={{ base: "100%", md: "100%" }}  */
+      //w={{ base: "100%", md: "100%" }}
       //dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
       //px={{ base: "10px", md: "20px" }}
       //py={{ base: "10px", md: "25px" }}
       >
         <Thead
           bg={useColorModeValue("#F5F5F7", "#191919")}
-
-        >
-          <Tr
           >
-            <Th
-            >
+          <Tr>
+            <Th>
               <Box
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"space-between"}
-              /*  w={"100%"} */
               >
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                /*  w={"100%"} */
                 >
                   <Text
                     color={useColorModeValue("#A8ADBD", "#A8ADBD")}
@@ -562,7 +557,8 @@ const Rankings = () => {
                     lineHeight={"20px"}
                     letterSpacing={"1.4px"}
                     textAlign={"left"}
-                    textTransform={"capitalize"}>
+                    textTransform={"capitalize"}
+                    ml={"-20px"}>
                     Rank
                   </Text>
                   <Tooltip
@@ -577,7 +573,7 @@ const Rankings = () => {
                       width={12}
                       height={12}
                       alt='info-icon'
-                      style={{ marginLeft: "4px", marginTop: "3px" }}
+                      style={{ marginLeft: "2px", marginTop: "3px" }}
                     ></Image>
                   </Tooltip>
                   <Text
@@ -588,7 +584,7 @@ const Rankings = () => {
                     letterSpacing={"1.4px"}
                     textAlign={"left"}
                     textTransform={"capitalize"}
-                    ml="15px"
+                    ml="20px"
                   >
                     Name
                   </Text>
@@ -684,7 +680,7 @@ const Rankings = () => {
                                       <Box
                                         display={"flex"}
                                         alignItems={"center"}
-                                        ml={"20px"}
+                                        ml={"30px"}
                                       >
                                         {!isEmpty(item.logo)
                                           ? (
