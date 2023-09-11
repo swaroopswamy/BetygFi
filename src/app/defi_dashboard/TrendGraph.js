@@ -7,6 +7,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
 import millify from "millify";
+import { color } from "framer-motion";
 const axios = require('axios');
 
 function TrendGraph() {
@@ -300,7 +301,7 @@ function SelectorGraph({ tvlData }) {
             enabled: false
         },
         grid: {
-            borderColor: useColorModeValue("#191919", "#36363A"),
+            borderColor: colorMode === 'light' ? "#191919" : "#36363A",
             xaxis: {
                 lines: {
                     show: false,
