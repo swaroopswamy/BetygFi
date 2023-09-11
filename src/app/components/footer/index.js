@@ -111,7 +111,7 @@ const Footer = ( {...rest}) => {
         >
           <FooterMobileLink
             name={"Home"}
-            FooterIcon={HomeIcon}
+            FooterIcon={HomeIcon1}
             footerTab={footerTab}
             setFooterTab={setFooterTab}
           />
@@ -178,19 +178,17 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
           justifyContent={"center"}
         >
           <Image
-            _groupHover={{
-              color: "white",
-            }}
             width={"15px"} 
             height={"20px"}
             as={FooterIcon}
-            style={{
-              opacity: footerTab === name ? 1 : 0.4,  
-              borderStyle: "solid"
-            }}
-            
-            
           />
+          {name === 'home' && (
+              <Icon
+                as={HomeIcon1}
+                boxSize={20}
+              ></Icon>
+          )}
+
         </Box>
         <Text
           fontSize={"14px"}
@@ -205,9 +203,9 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
   )
 }
 
-// const HomeIcon = (props) => {
-//   <Icon viewBox="0 0 15 15" {...props}>
-//     <path d="M1 5.2L6.4 1L11.8 5.2V11.8C11.8 12.1183 11.6736 12.4235 11.4485 12.6485C11.2235 12.8736 10.9183 13 10.6 13H2.2C1.88174 13 1.57652 12.8736 1.35147 12.6485C1.12643 12.4235 1 12.1183 1 11.8V5.2Z" 
-//     stroke='#FFF' stroke-linecap="round" stroke-linejoin="round"/>
-//   </Icon>
-// }
+const HomeIcon1 = (props) => {
+  <Icon viewBox="0 0 15 15" {...props}>
+    <path d="M1 5.2L6.4 1L11.8 5.2V11.8C11.8 12.1183 11.6736 12.4235 11.4485 12.6485C11.2235 12.8736 10.9183 13 10.6 13H2.2C1.88174 13 1.57652 12.8736 1.35147 12.6485C1.12643 12.4235 1 12.1183 1 11.8V5.2Z" 
+    stroke='#FFF' stroke-linecap="round" stroke-linejoin="round"/>
+  </Icon>
+}
