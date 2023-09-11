@@ -9,7 +9,7 @@ import React, { useState } from "react";
 const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 
-const Footer = () => {
+const Footer = ( {...rest}) => {
   const [ footerTab, setFooterTab ] = useState("Home");
 
   return (
