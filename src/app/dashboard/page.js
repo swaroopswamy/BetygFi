@@ -511,7 +511,9 @@ const Dashboard = () => {
                 >
                   Overview
                 </Text>
-                <Box display={"flex"} alignItems={"center"}>
+                <Box display={"flex"} alignItems={"center"}
+
+                >
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"14px"}
@@ -612,8 +614,7 @@ const Dashboard = () => {
             mb={"20px"}
             flexDirection={"column"}
           >
-            <Accordion w={{ base: "100%", md: "62%" }}
-              allowToggle>
+            <Accordion allowToggle>
               <AccordionItem
                 w={{ base: "100%", md: "62%" }}
                 display={{ base: "block", md: "none" }}
@@ -624,79 +625,70 @@ const Dashboard = () => {
                 py={{ base: "10px", md: "25px" }}
                 mr={{ base: "10px", md: "25px" }}
               >
-                <AccordionIcon />
-                <AccordionButton>
-                  <Box
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                  >
-                    <Text
-                      color={useColorModeValue("#16171B", "#FFF")}
-                      fontSize={"18px"}
-                      fontWeight={"600"}
-                      lineHeight={"20px"}
+                <h2>
+                  <AccordionButton>
+                    <Box
+                      display={"flex"}
+                      alignItems={"center"}
+                      w={"100%"}
+                      justifyContent={"space-between"}
                     >
-                      Overview
-                    </Text>
-                    <Box display={"flex"} alignItems={"center"}>
-                      <Text
-                        color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        mr="7px"
-                      >
-                        Total Market Cap
-                      </Text>
-                      <Tooltip
-                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                        padding="4px 8px"
-                        label="Total Market Cap tracked by Solvendo"
-                        fontWeight={400}
-                        fontSize={"10px"}
-                        mr="7px"
-                      >
-                        <Image
-                          src={"/icons/info_sm_icon.svg"}
-                          width={12}
-                          height={12}
-                          alt='info-icon'
-                          style={{ marginRight: "7px" }}
-                        ></Image>
-                      </Tooltip>
-                      <Text
-                        color={useColorModeValue("#16171B", "#FFF")}
-                        fontSize={"24px"}
-                        fontWeight={"600"}
-                        lineHeight={"20px"}
-                        letterSpacing={"2.4px"}
-                      >
-                        {overviewData?.tvl ?
+                      <Box>
+                        <Text
+                          color={useColorModeValue("#16171B", "#FFF")}
+                          fontSize={"18px"}
+                          fontWeight={600}
+                          lineHeight={"9.332px"}
+                        >
+                          Overview
+                        </Text>
+                      </Box>
 
-                          /* (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
-                            style: 'currency',
-                            currency: 'USD'
-                          }) */
-                          <>
-                            ${""}{millify(overviewData?.tvl, {
-                              precision: 2,
-                              locales: "en-US"
-                            })}
-                          </>
+                      <Box>
+                        <Text
+                          color={useColorModeValue("#16171B", "#FFF")}
+                          fontSize={"14px"}
+                          fontWeight={"600"}
+                          lineHeight={"9.332px"}
+                          letterSpacing={"1.4px"}
+                          textTransform={"uppercase"}
+                        >
+                          {overviewData?.tvl ?
 
-                          :
-                          (
+                            /* (Math.trunc(overviewData?.tvl)).toLocaleString('en-US', {
+                              style: 'currency',
+                              currency: 'USD'
+                            }) */
                             <>
-                              NA
+                              ${""}{millify(overviewData?.tvl, {
+                                precision: 2,
+                                locales: "en-US"
+                              })}
                             </>
-                          )
-                        }
-                      </Text>
+
+                            :
+                            (
+                              <>
+                                NA
+                              </>
+                            )
+                          }
+                        </Text>
+                        <Text
+                          color={useColorModeValue("#16171B", "#FFF")}
+                          fontSize={"12px"}
+                          fontWeight={400}
+                          lineHeight={"9.332px"}
+                          mt={"9px"}
+                        >
+                          Total Market Cap
+                        </Text>
+                      </Box>
                     </Box>
-                  </Box>
-                </AccordionButton>
-                <AccordionPanel>
+                    <AccordionIcon  ml={"10px"}/>
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
                   <Box
                     bg={"#00000014"}
                     p="30px"
@@ -727,8 +719,7 @@ const Dashboard = () => {
                 px={{ base: "10px", md: "20px" }}
                 py={{ base: "10px", md: "25px" }}
               >
-                <AccordionIcon />
-                <AccordionButton>
+                <AccordionButton justifyContent={"space-between"}>
                   <Text
                     color={useColorModeValue("#16171B", "#FFF")}
                     fontSize={"18px"}
@@ -737,9 +728,10 @@ const Dashboard = () => {
                   >
                     Score Distribution
                   </Text>
+                  <AccordionIcon />
                 </AccordionButton>
 
-                <AccordionPanel >
+                <AccordionPanel pb={4}>
                   <OverviewColumnChart />
                 </AccordionPanel>
               </AccordionItem>
