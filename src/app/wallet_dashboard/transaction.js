@@ -205,7 +205,7 @@ const TransactionPanelComponent = () => {
                               width={5}
                               height={5}
                               alt='logo'
-                              src={item.logoUrl}
+                              src={item?.logoUrl}
                               borderRadius={"50%"}
                             ></Image>
                           </>
@@ -224,7 +224,7 @@ const TransactionPanelComponent = () => {
                               ml="6px"
                               w="95px"
                             >
-                              {walletAddress.split("").join("").substring(0, 8) + "..." + walletAddress.slice(-5)}
+                              {walletAddress?.split("").join("").substring(0, 8) + "..." + walletAddress?.slice(-5)}
                             </Text>
                             <Text opacity={"0.6000000238418579"}
                               _dark={{
@@ -239,7 +239,7 @@ const TransactionPanelComponent = () => {
                               ml="6px"
                             >
                               {
-                                moment.unix(item.timeStamp).format('Do MMM YYYY')
+                                moment.unix(item?.timeStamp).format('Do MMM YYYY')
                               }
                             </Text>
                           </Box>
@@ -284,7 +284,7 @@ const TransactionPanelComponent = () => {
                               }}
                               textTransform={"capitalize"}
                             >
-                              {item?.functionName.split("(")[0]}
+                              {item?.functionName?.split("(")[0]}
                             </Text>
                           </Link>
                         </Box>
