@@ -148,6 +148,7 @@ const FooterMobileLink = ( {name, id, link} ) => {
         position="relative"
         className="test"
         gap={"10px"}
+        cursor={"pointer"}
         onClick={() => {
           router.push(link);
         }}
