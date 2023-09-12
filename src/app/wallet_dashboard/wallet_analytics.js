@@ -26,8 +26,8 @@ const SkeletonRow = () => (
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
   const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
-  const value1 = "300";
-  const value2 = "-300";
+  //const value1 = "300";
+  //const value2 = "-300";
   const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
   const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
 
@@ -981,7 +981,7 @@ const WalletAnalyticsPanel = () => {
                           color: "#16171B"
                         }}
                         fontSize={"20px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         letterSpacing={"1px"}
                         colSpan={8}
                         textAlign={"center"}
@@ -1077,7 +1077,7 @@ const WalletAnalyticsPanel = () => {
                             color: "#16171B"
                           }}
                           fontSize={"20px"}
-                          fontWeight={"400"}
+                          fontWeight={400}
                           letterSpacing={"1px"}
                           colSpan={8}
                           textAlign={"center"}

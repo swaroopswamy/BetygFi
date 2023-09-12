@@ -50,8 +50,7 @@ const Rankings = () => {
         w={{ base: "100%", md: "100%" }}
         display={{ base: "none", md: "table" }}
       >
-        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}
-        >
+        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
           <Tr>
             <Th>
               <Box
@@ -531,10 +530,6 @@ const Rankings = () => {
         bgColor={useColorModeValue("#FFFFFF", "#202020")}
         borderRadius={"6px"}
         display={{ base: "table", md: "none" }}
-      //w={{ base: "100%", md: "100%" }}
-      //dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
-      //px={{ base: "10px", md: "20px" }}
-      //py={{ base: "10px", md: "25px" }}
       >
         <Thead
           bg={useColorModeValue("#F5F5F7", "#191919")}
@@ -616,10 +611,17 @@ const Rankings = () => {
             <>
               <Tr>
                 <Td
-                  color={useColorModeValue("#16171B", "#FFF")}
+                    _dark={{
+                      color: "#FFF"
+                    }}
+                    _light={{
+                      color: "#16171B"
+                    }}
                   fontSize={"20px"}
-                  fontWeight={"400"}
+                  fontWeight={400}
                   letterSpacing={"1px"}
+                  textAlign={"center"}
+                  colSpan={8}
                   p="20px"
                 >
                   No data available
@@ -651,8 +653,7 @@ const Rankings = () => {
                           <Accordion
                             allowMultiple>
                             <AccordionItem>
-                              <h2
-                              >
+                              <h2>
                                 <AccordionButton
                                   _expanded={{ mt: "10px" }}
                                 >
@@ -1040,9 +1041,14 @@ const Rankings = () => {
                   <>
                     <Tr>
                       <Td
-                        color={useColorModeValue("#16171B", "#FFF")}
+                          _dark={{
+                            color: "#FFF"
+                          }}
+                          _light={{
+                            color: "#16171B"
+                          }}
                         fontSize={"20px"}
-                        fontWeight={"400"}
+                        fontWeight={400}
                         letterSpacing={"1px"}
                         colSpan={8}
                         textAlign={"center"}
