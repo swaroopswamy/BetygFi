@@ -8,6 +8,7 @@ import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart
 import { useSelector } from 'react-redux';
 import isEmpty from "is-empty";
 import dynamic from "next/dynamic";
+import ProtocolAllocationTable from './ProtocolAllocationTable';
 
 const SkeletonRow = () => (
   <Box as="tr">
@@ -23,23 +24,29 @@ const SkeletonRow = () => (
   </Box>
 )
 
+export {SkeletonRow};
+
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
   const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
   const value1 = "300";
   const value2 = "-300";
-  const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
   const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
 
   return (
     <>
       <Box
-        display={'inline-flex'}
+        display={"flex"}
+        flexDir={{base: "column", md: "row"}}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"20px"}
         w="100%"
-        my="10px"
+        my="20px"
       >
+
         <Box
-          w='50%'
+          w={{base: "90%", md:"50%"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -51,8 +58,7 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          mr="10px"
-          maxHeight={"380px"}
+          height={"380px"}
         >
           <Box
             display="flex"
@@ -69,6 +75,7 @@ const WalletAnalyticsPanel = () => {
             >
               Blockchain Allocation
             </Text>
+
             {/*   <Button
               fontSize={"10px"}
               fontWeight={400}
@@ -79,14 +86,18 @@ const WalletAnalyticsPanel = () => {
             >
               View More
             </Button> */}
+
           </Box>
-          <Box paddingLeft={"15px"}>
+
+          <Box
+            paddingLeft={"15px"}
+          >
             <BlockchainAllocationTreemapChart />
           </Box>
         </Box>
 
         <Box
-          w='50%'
+          w={{base: "90%", md: "50%"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -98,8 +109,7 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          ml="10px"
-          maxHeight={"380px"}
+          height={"380px"}
         >
           {/* <Box
             display="flex"
@@ -147,16 +157,22 @@ const WalletAnalyticsPanel = () => {
             <AssetAllocationPieChart />
           </Box>
         </Box>
+
       </Box>
 
       <Box
-        display={'inline-flex'}
+        display={"flex"}
+        flexDir={{base: "column", md: "row"}}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"20px"}
         w="100%"
-        my="10px"
+        my="20px"
       >
+
         <Box
-          w='50%'
-          height={"367px"}
+          w={{base: "90%", md:"50%"}}
+          height={{base: "none", md:"367px"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -168,256 +184,12 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          mr="10px"
         >
-          <Flex
-            height={"50px"}
-            borderRadius={"6px"}
-            _dark={{
-              bg: "#202020",
-              color: "#FFFFFF"
-            }}
-            _light={{
-              bg: "#FFFFFF",
-              color: "#16171B"
-            }}
-            pb="14px"
-          >
-            <Text
-              fontSize={"18px"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-              ml={"20px"}
-              mr={"6px"}
-              paddingTop={"15px"}
-            >
-              Protocol Allocation
-            </Text>
-            <>
-              <Tooltip label="Protocol allocations talks about the value distribution among different Defies.">
-                <Image width={"12px"}
-                  height={"12px"}
-                  flexShrink={"0"}
-                  mt={"20px"}
-                  alt=''
-                  src="/images/Frame.svg">
-                </Image>
-              </Tooltip>
-            </>
-          </Flex>
-
-          <TableContainer>
-            <Table variant='simple'>
-              <Thead
-                _dark={{
-                  color: "#FFFFFF",
-                  bg: "#191919"
-                }}
-                _light={{
-                  color: "#16171B",
-                  bg: "#F5F5F7"
-                }}
-                fontSize={"14px"}
-                fontWeight={"400"}
-                lineHeight={"20px"}
-                letterSpacing={"1px"}
-                textTransform={"uppercase"}>
-                <Tr>
-
-                  <Th>
-                    <Flex>
-                      <Text _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        letterSpacing={"1px"}
-                        textTransform={"uppercase"}>
-                        DeFi Name</Text>
-
-                      <>
-                        <Image width={"12px"}
-                          height={"12px"}
-                          flexShrink={"0"}
-                          alt=''
-                          mt={"5px"}
-                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                        </Image>
-                      </>
-                    </Flex>
-                  </Th>
-
-                  <Th>
-                    <Flex >
-                      <Text _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        letterSpacing={"1px"}
-                        textTransform={"uppercase"}>
-                        Share</Text>
-                      <>
-                        <Image width={"12px"}
-                          height={"12px"}
-                          flexShrink={"0"}
-                          alt=''
-                          mt={"5px"}
-                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                        </Image>
-                      </>
-                    </Flex>
-                  </Th>
-
-                  <Th>
-                    <Flex>
-                      <Text _light={{ color: "#434347" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        letterSpacing={"1px"}
-                        textTransform={"uppercase"}>
-                        Value</Text>
-                      <>
-                        <Image width={"12px"}
-                          height={"12px"}
-                          flexShrink={"0"}
-                          alt=''
-                          mt={"5px"}
-                          src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                        </Image>
-                      </>
-                    </Flex>
-                  </Th>
-                </Tr>
-              </Thead>
-
-              <Tbody
-                fontSize={"14px"}
-                fontWeight={"400"}
-                lineHeight={"20px"}
-                _dark={{ bgColor: "#202020" }}
-                _light={{ bgColor: "#FFF" }} >
-                {protocolAllocationData?.isError && (
-                  <>
-                    <Tr >
-                      <Td
-                        _dark={{
-                          color: "#FFF"
-                        }}
-                        _light={{
-                          color: "#16171B"
-                        }}
-                        fontSize={"20px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
-                        colSpan={8}
-                        textAlign={"center"}
-                        height={"245px"}
-                      >
-                        No Data Available
-                      </Td>
-                    </Tr>
-                  </>
-                )}
-                {protocolAllocationData?.isLoading && (
-                  <>
-                    <SkeletonRow />
-                    <SkeletonRow />
-                    <SkeletonRow />
-                    <SkeletonRow />
-                    <SkeletonRow />
-                  </>
-                )}
-                {protocolAllocationData?.isSuccess &&
-                  (Object.keys(protocolAllocationData?.data)?.length > 0 ?
-                    (Object.keys(protocolAllocationData?.data)?.map((item, i) => {
-
-                      return (
-                        <>
-                          <Tr height={"40px"} key={i}>
-                            <Td _dark={{ color: "#FFFFFF" }}
-                              _light={{ color: "#16171B" }}
-                            >
-
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <>
-                                  <Image
-                                    width={5}
-                                    height={5}
-                                    alt='logo'
-                                    src={protocolAllocationData?.data[item]?.logo}
-                                  ></Image>
-                                </>
-
-                                <Text ml="6px"
-                                  fontSize={"14px"}>{protocolAllocationData?.data[item]?.name}</Text>
-                              </Box>
-                            </Td>
-
-                            <Td>
-                              <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
-                                <Text
-                                  fontSize={"14px"}
-                                  fontWeight={"400"}
-                                  letterSpacing={"1px"}
-                                  ml="6px"
-                                  _light={{ color: "#16171B" }}
-                                  _dark={{ color: "#FFFFFF" }}
-                                >
-                                  {protocolAllocationData?.data[item]?.percentage} %
-                                </Text>
-                              </Box>
-                            </Td>
-                            <Td fontSize={"14px"}>USD {protocolAllocationData?.data[item]?.value}</Td>
-                          </Tr>
-                        </>
-                      )
-                    }))
-                    :
-                    (
-                      <>
-                        <>
-                          <Tr >
-                            <Td
-                              _dark={{
-                                color: "#FFF"
-                              }}
-                              _light={{
-                                color: "#16171B"
-                              }}
-                              fontSize={"20px"}
-                              fontWeight={"400"}
-                              letterSpacing={"1px"}
-                              colSpan={8}
-                              textAlign={"center"}
-                              height={"245px"}
-                            >
-                              No Data Available
-                            </Td>
-                          </Tr>
-                        </>
-                      </>
-                    )
-                  )
-                }
-
-              </Tbody>
-
-            </Table>
-          </TableContainer>
+          <ProtocolAllocationTable />
         </Box>
 
-
         <Box
-          w='50%'
+          w={{base: "90%", md:"50%"}}
           height={"367px"}
           display={"flex"}
           flexDirection={"column"}
@@ -430,7 +202,6 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          ml="10px"
         >
           <Flex
             height={"50px"}
@@ -818,15 +589,21 @@ const WalletAnalyticsPanel = () => {
             </Table>
           </TableContainer>
         </Box>
+
       </Box>
 
       <Box
-        display={'inline-flex'}
+        display={"flex"}
+        flexDir={{base: "column", md: "row"}}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"20px"}
         w="100%"
-        my="10px"
+        my="20px"
       >
+
         <Box
-          w='50%'
+          w={{base: "90%", md:"50%"}}
           height={"367px"}
           display={"flex"}
           flexDirection={"column"}
@@ -839,7 +616,6 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          mr="10px"
         >
           <Flex
             height={"50px"}
@@ -1093,10 +869,8 @@ const WalletAnalyticsPanel = () => {
           </TableContainer>
         </Box>
 
-        {/* Table divider */}
-
         <Box
-          w='50%'
+          w={{base: "90%", md:"50%"}}
           height={"367px"}
           display={"flex"}
           flexDirection={"column"}
@@ -1109,7 +883,6 @@ const WalletAnalyticsPanel = () => {
             bg: "#FFFFFF",
             border: "1px solid #ADADAD"
           }}
-          ml="10px"
         >
 
           <Flex
@@ -1602,6 +1375,7 @@ const WalletAnalyticsPanel = () => {
             </Table>
           </TableContainer>
         </Box>
+
       </Box>
 
       {/* End of varun's code */}
@@ -1642,51 +1416,56 @@ const WalletAnalyticsPanel = () => {
       </Box> */}
 
 
-
       <Box
-        my="20px"
-        w='100%'
         display={"flex"}
-        flexDirection={"column"}
-        borderRadius={"6px"}
-        _dark={{
-          bg: "#202020",
-          border: "1px solid #272727"
-        }}
-        _light={{
-          bg: "#FFFFFF",
-          border: "1px solid #ADADAD"
-        }}
-        p="25px"
+        flexDir={{ base: "column", md: "row" }}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"20px"}
+        w="100%"
+        mt="20px"
       >
-        {/* <Box
+
+        <Box
+          my="20px"
+          w={{base: "90%", md: "100%"}}
           display={"flex"}
-          justifyContent={"space-between"}
-        > */}
-        <Flex
-          height={"10px"}
+          flexDirection={"column"}
           borderRadius={"6px"}
           _dark={{
             bg: "#202020",
-            color: "#FFFFFF"
+            border: "1px solid #272727"
           }}
           _light={{
             bg: "#FFFFFF",
-            color: "#16171B"
+            border: "1px solid #ADADAD"
           }}
-          pb="14px"
+          p="25px"
         >
-          <Text
-            fontSize={"18px"}
-            fontWeight={600}
-            lineHeight={"20px"}
-            _dark={{ color: "#FFF" }}
-            _light={{ color: "#212121" }}
-            paddingLeft={"15px"}
+          <Flex
+            height={"10px"}
+            borderRadius={"6px"}
+            _dark={{
+              bg: "#202020",
+              color: "#FFFFFF"
+            }}
+            _light={{
+              bg: "#FFFFFF",
+              color: "#16171B"
+            }}
+            pb="14px"
           >
-            Performance
-          </Text>
-          <>
+            <Text
+              fontSize={"18px"}
+              fontWeight={600}
+              lineHeight={"20px"}
+              _dark={{ color: "#FFF" }}
+              _light={{ color: "#212121" }}
+              paddingLeft={"15px"}
+            >
+              Performance
+            </Text>
+
             <Tooltip label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance.">
               <Image width={"12px"}
                 height={"12px"}
@@ -1697,28 +1476,27 @@ const WalletAnalyticsPanel = () => {
                 src="/images/Frame.svg">
               </Image>
             </Tooltip>
-          </>
-        </Flex>
-        {/* </Box> */}
-        {/* <Box paddingTop={"10px"}>
-          <PerformanceMultiLineChart />
-        </Box> */}
-        <Box _dark={{
-          color: "#FFF"
-        }}
-          _light={{
-            color: "#16171B"
+          </Flex>
+
+          <Box _dark={{
+            color: "#FFF"
           }}
-          fontSize={"20px"}
-          fontWeight={"400"}
-          letterSpacing={"1px"}
-          mt={"100px"}
-          colSpan={8}
-          textAlign={"center"}
-          p="20px"
-          height={"245px"}
-        >
-          No Data Available</Box>
+            _light={{
+              color: "#16171B"
+            }}
+            fontSize={"20px"}
+            fontWeight={"400"}
+            letterSpacing={"1px"}
+            mt={"100px"}
+            colSpan={8}
+            textAlign={"center"}
+            p="20px"
+            height={"245px"}
+          >
+            No Data Available
+          </Box>
+        </Box>
+
       </Box>
     </>
   );
