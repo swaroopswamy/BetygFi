@@ -1,8 +1,9 @@
-import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, colorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { SkeletonRow } from './wallet_analytics';
 
 const ProtocolAllocationTable = () => {
+    const { colorMode } = useColorMode();
     const protocolAllocationData = useSelector((state) => state?.walletDashboardTableData?.protocolAllocationForAddress);
 
     return (
@@ -48,7 +49,7 @@ const ProtocolAllocationTable = () => {
                     <Table variant='simple'>
 
                         <Thead
-                            display={{base: "none", md: "table-header-group"}}
+                            display={{ base: "none", md: "table-header-group" }}
                             _dark={{
                                 color: "#FFFFFF",
                                 bg: "#191919"
@@ -138,7 +139,7 @@ const ProtocolAllocationTable = () => {
                         </Thead>
 
                         <Thead
-                            display={{base: "table-header-group", md: "none"}}
+                            display={{ base: "table-header-group", md: "none" }}
                             _dark={{
                                 color: "#FFFFFF",
                                 bg: "#191919"
@@ -159,7 +160,7 @@ const ProtocolAllocationTable = () => {
                                     width={"50%"}
                                 >
                                     <Flex>
-                                        <Text 
+                                        <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
@@ -179,7 +180,7 @@ const ProtocolAllocationTable = () => {
                                     <Flex
                                         ml={"25px"}
                                     >
-                                        <Text 
+                                        <Text
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
@@ -368,7 +369,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                 p={0}
                 colSpan={3}
             >
-                <Accordion  
+                <Accordion
                     allowMultiple
                 >
                     <AccordionItem
