@@ -1,17 +1,12 @@
 "use client";
 import { Box, Flex, Text, useColorMode, useColorModeValue, Image, Icon } from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
-import HomeIcon from "../../../../public/icons/home_sm_logo.svg";
-import ApproachPaperIcon from '../../../../public/icons/approach-paper-icon.svg';
-import WalletIcon from "../../../../public/icons/wallet_sm_logo.svg";
-import CommunityIcon from "../../../../public/icons/community_sm_logo.svg";
 import React, { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 
 const Footer = ( {...rest}) => {
-  const [ footerTab, setFooterTab ] = useState("Home");
-
   return (
     <>
       <Box
@@ -111,27 +106,23 @@ const Footer = ( {...rest}) => {
         >
           <FooterMobileLink
             name={"Home"}
-            FooterIcon={HomeIcon}
-            footerTab={footerTab}
-            setFooterTab={setFooterTab}
+            id={"home"}
+            link={"/"}
           />
           <FooterMobileLink
             name={"Approach Paper"}
-            FooterIcon={ApproachPaperIcon}
-            footerTab={footerTab}
-            setFooterTab={setFooterTab}
+            id={"approachpaper"}
+            link={"/approach-paper"}
           />
           <FooterMobileLink
             name={"Top Wallets"}
-            FooterIcon={WalletIcon}
-            footerTab={footerTab}
-            setFooterTab={setFooterTab}
+            id={"wallet"}
+            link={"/top-wallets"}
           />
           <FooterMobileLink
             name={"Community"}
-            FooterIcon={CommunityIcon}
-            footerTab={footerTab}
-            setFooterTab={setFooterTab}
+            id={"community"}
+            link={""}
           />
         </Box>
       </Box>
@@ -141,8 +132,10 @@ const Footer = ( {...rest}) => {
 
 export default Footer;
 
-const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
+const FooterMobileLink = ( {name, id, link} ) => {
   const { colorMode } = useColorMode();
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <>
@@ -155,13 +148,13 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
         position="relative"
         className="test"
         gap={"10px"}
+        cursor={"pointer"}
         onClick={() => {
-          setFooterTab(name);
+          router.push(link);
         }}
-        //borderBottom={footerTab === name ? "3px" : "none"}
         borderColor={"#FFF"}
         _after={
-          footerTab === name && {
+          pathname === link && {
             position: "absolute",
             content: '""',
             top: "72px",
@@ -178,23 +171,17 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
           justifyContent={"center"}
         >
           <Image
-            _groupHover={{
-              color: "white",
-            }}
-            width={"15px"} 
-            height={"20px"}
-            as={FooterIcon}
-            style={{
-              opacity: footerTab === name ? 1 : 0.4,  
-              borderStyle: "solid"
-            }}
-            
-            
+            width={"30px"} 
+            height={"30px"}
+            src={pathname === link ? (colorMode === 'light' ? `/icons/${id}_footer_logo_bold_dark.svg` : `/icons/${id}_footer_logo_bold_light.svg`)
+              : `/icons/${id}_footer_logo.svg`}
           />
+
+
         </Box>
         <Text
           fontSize={"14px"}
-          fontWeight={footerTab === name ? "600" : "400"}
+          fontWeight={pathname === link ? "600" : "400"}
           lineHeight={"20px"}
           textTransform={"capitalize"}
         >
@@ -205,9 +192,8 @@ const FooterMobileLink = ( {name, FooterIcon, footerTab, setFooterTab} ) => {
   )
 }
 
-// const HomeIcon = (props) => {
-//   <Icon viewBox="0 0 15 15" {...props}>
-//     <path d="M1 5.2L6.4 1L11.8 5.2V11.8C11.8 12.1183 11.6736 12.4235 11.4485 12.6485C11.2235 12.8736 10.9183 13 10.6 13H2.2C1.88174 13 1.57652 12.8736 1.35147 12.6485C1.12643 12.4235 1 12.1183 1 11.8V5.2Z" 
-//     stroke='#FFF' stroke-linecap="round" stroke-linejoin="round"/>
-//   </Icon>
-// }
+const HomeIconONE = (props) => {
+  <Icon width="32" height="32" viewBox="0 0 32 32" fill="none" {...props}>
+    <path d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </Icon>
+}

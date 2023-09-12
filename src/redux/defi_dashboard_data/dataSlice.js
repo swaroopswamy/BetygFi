@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getGovernanceTableData, getDefiAssetCompositionTableData } from "../../services/defiDashboardService";
+import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getDefiAssetCompositionTableData } from "../../services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
   const response = await getDefiData(payload);
@@ -21,10 +21,10 @@ export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAsset
   return response.data;
 })
 
-export const fetchGovernanceTableData = createAsyncThunk('getGovernanceTableData', async (payload) => {
+/* export const fetchGovernanceTableData = createAsyncThunk('getGovernanceTableData', async (payload) => {
   const response = await getGovernanceTableData(payload);
   return response.data;
-})
+}) */
 
 
 const DefiDashboardDataSlice = createSlice({

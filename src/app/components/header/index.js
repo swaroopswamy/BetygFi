@@ -23,6 +23,8 @@ import {
   InputGroup,
   InputLeftElement,
   Image,
+  Drawer,
+  DrawerOverlay
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -36,13 +38,14 @@ import isEmpty from "is-empty";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { color } from "framer-motion";
 import { mobileSidebarCollapsedReducer, sidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
+import { MobileSidebar } from "../sidebar/index";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
+  const { isOpen: isMobileSidebarOpen, onOpen: onMobileSidebarOpen, onClose: onMobileSidebarClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
@@ -78,6 +81,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   useEffect(() => {
     dispatch(FetchLocalStorageData());
   }, []);
+
   return (
     <>
       <Flex
@@ -264,12 +268,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         >
           <Box
             cursor={"pointer"}
-            onClick={() => {
-              MobileSidebarHandler(!isMobileSidebarCollapsed);
-            }}
+            onClick={onMobileSidebarOpen}
+            // onClick={() => {
+            //   MobileSidebarHandler(!isMobileSidebarCollapsed);
+            // }}
           >
             <Image
-              src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg" }
+              src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg"}
               w={"18px"}
               h={"18px"}
             >
@@ -302,6 +307,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         </Box>
 
       </Flex>
+
+      <MobileSidebar
+        isOpen={isMobileSidebarOpen}
+        onOpen={onMobileSidebarOpen}
+        onClose={onMobileSidebarClose}
+      />
 
       <Box
         px={{ base: 4, md: 4 }}
@@ -363,3 +374,4 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 };
 
 export default Navbar;
+

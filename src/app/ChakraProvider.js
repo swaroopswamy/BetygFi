@@ -20,7 +20,7 @@ export function Providers({ children }) {
   return (
     <>
       <CacheProvider>
-        <ChakraProvider>{children}</ChakraProvider>
+        <ChakraProvider theme={theme}>{children}</ChakraProvider>
       </CacheProvider>
     </>
   );

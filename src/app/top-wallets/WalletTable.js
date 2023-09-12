@@ -41,7 +41,7 @@ const WalletTable = () => {
                     </Box>
                 </Box>
                 <Table variant='unstyled'
-                    display={{ base: "unset", md: "none" }}
+                    display={{ base: "table", md: "none" }}
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
@@ -140,7 +140,12 @@ const WalletTable = () => {
                                                                     alt=""
                                                                 ></Image>
                                                                 <Text
-                                                                    color={useColorModeValue("#16171B", "#FFFFFF")}
+                                                                    _light={{
+                                                                        color: "#16171B"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"600"}
@@ -164,7 +169,12 @@ const WalletTable = () => {
 
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -233,21 +243,30 @@ const WalletTable = () => {
                                                                 mt="10px"
                                                                 display={"flex"}
                                                                 flexDirection={"column"}
-
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
                                                                     lineHeight={"20px"}
                                                                     textAlign={"left"}
                                                                 >
-                                                                    Total Tokens
+                                                                    Total Protocols
                                                                 </Text>
                                                                 <Text
                                                                     mt="10px"
-                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    _light={{
+                                                                        color: "#090909"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -264,7 +283,12 @@ const WalletTable = () => {
 
                                                             >
                                                                 <Text
-                                                                    color={useColorModeValue("#8F8F8F", "#A8ADBD")}
+                                                                    _light={{
+                                                                        color: "#8F8F8F"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#A8ADBD"
+                                                                    }}
                                                                     fontSize={"12px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -275,7 +299,12 @@ const WalletTable = () => {
                                                                 </Text>
                                                                 <Text
                                                                     mt="10px"
-                                                                    color={useColorModeValue("#090909", "#FFFFFFF")}
+                                                                    _light={{
+                                                                        color: "#090909"
+                                                                    }}
+                                                                    _dark={{
+                                                                        color: "#FFFFFFF"
+                                                                    }}
                                                                     fontSize={"14px"}
                                                                     fontStyle={"normal"}
                                                                     fontWeight={"400"}
@@ -298,14 +327,12 @@ const WalletTable = () => {
 
 
                     </Tbody >
-                    
-                    <Tfoot>
-                    </Tfoot>
+
 
                 </Table>
 
                 <Table variant='unstyled'
-                    display={{ base: "none", md: "unset" }}
+                    display={{ base: "none", md: "table" }}
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
@@ -407,9 +434,6 @@ const WalletTable = () => {
 
 
                     </Tbody>
-                    <Tfoot>
-                    </Tfoot>
-
                 </Table>
 
                 {/*   <PageButtons /> */}

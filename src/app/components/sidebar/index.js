@@ -14,6 +14,10 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
+  Drawer,
+  DrawerOverlay,
+  DrawerBody,
+  DrawerContent
 } from "@chakra-ui/react";
 import Image from "next/image";
 import StarIcon from "../../../../public/icons/star_sm_logo.svg";
@@ -491,194 +495,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Box>
 
       </Box>
-
-      <Box
-        bg={useColorModeValue("white", "#191919")}
-        borderRight="1px"
-        borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        minH="100vh"
-        boxShadow={useColorModeValue(
-          "1px 0px 0px 0px #E1E1E1",
-          "1px 0px 0px 0px #333"
-        )}
-        display={isMobileSidebarCollapsed ? {base: "none", md: "none"} : {base: "flex", md: "none"}}
-        pos={"fixed"}
-        w={"100%"}
-        {...rest}
-      >
-
-        <Box
-          w="100%"
-          h="100%"
-          display={"flex"}
-          flexDirection={"column"}
-          justifyContent={"space-between"}
-        >
-          {/* Top Half */}
-          <Box>
-
-            <Box
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
-              padding={"5px 20px"}
-              borderBottom={"2px"}
-              borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-              mb={"10px"}
-            >
-              <Box
-                display={"flex"}
-                alignItems={"center"}
-              >
-                <Box
-                  mr="10px"
-                  cursor={"pointer"}
-                  onClick={() => {
-                    MobileSidebarHandler(!isMobileSidebarCollapsed);
-                  }}
-                >
-                  <Image
-                    height={40}
-                    width={40}
-                    src={colorMode === 'light' ? "/icons/x_dark.svg" : "/icons/x_light.svg"}
-                  ></Image>
-                </Box>
-
-                <Box
-                  h="20"
-                  display={"flex"}
-                  alignItems="center"
-                  justifyContent="center"
-                  cursor={"pointer"}
-                >
-                  <Image
-                    width={100}
-                    height={50}
-                    alt="logo"
-                    src={colorMode === 'light' ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
-                    cursor={"pointer"}
-                    onClick={() => router.push('/')}
-                  />
-                </Box>
-              </Box>
-
-              <Box>
-                <div className="controller-row">
-                  <label className="switch">
-                    <input id="toggler" type="checkbox" checked={colorMode !== "light"} onChange={(e) => {
-                      toggleColorMode();
-                    }} />
-                    <span className="slider round"></span>
-                  </label>
-                </div>
-              </Box>
-
-            </Box>
-
-            {LinkItemsUp.map((link, i) => (
-              <NavItem
-                key={link.name}
-                icon={link.icon}
-                path={link.path}
-                newTab={link.newTab}
-                _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
-                          color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                          fontWeight: "600",
-                        }}
-                // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) && 
-                bg={pathname === link.path ? (colorMode === "light"? "#202020" : "#FFFFFF") : null}
-                color={pathname === link.path ? (colorMode === "light" ? "#FFFFFF" : "#191919") : null}
-                fontSize="14px"
-                fontWeight={pathname == link.path ? "600" : "400"}
-                lineHeight="20px"
-                letterSpacing="1.4px"
-                alignContent="center"
-              >
-                {link.name}
-              </NavItem>
-            ))}
-
-            {/* communities */}
-            {/* {LinkItemsDown.map((link) => (
-              <>
-                {link?.dropdown ? (
-                  <>
-                  </>
-                ) : (
-                  <>
-                    <NavItem
-                      key={link.name}
-                      icon={link.icon}
-                      path={link.path}
-                      _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
-                          color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                          fontWeight: "600",
-                          }}
-                      fontSize="12px"
-                      fontWeight="400"
-                      lineHeight="20px" 
-                      letterSpacing="1.2px"
-                    >
-                      {link.name}
-                    </NavItem>
-                  </>
-                )}
-              </>
-            ))} */}
-
-
-            {bottomMenu.map((link) => (
-              <NavItem
-                key={link.name}
-                icon={link.icon}
-                path={link.path}
-                _hover={{
-                  bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                  color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                  fontWeight: "600",
-                }}
-                newTab={link.newTab}
-                fontSize="14px"
-                fontWeight="400"
-                lineHeight="20px"
-                letterSpacing="1.2px"
-              >
-                {link.name}
-              </NavItem>
-            ))}
-          </Box>
-
-          <Box
-            display={"flex"}
-            justifyContent={"center"}
-            padding={"10px"}
-          >
-            <Box
-              cursor={"pointer"}
-              // onClick={onLoginModalOpen}
-              bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              borderRadius={"2px"}
-              p={"15px 20px"}
-              width={"80%"}
-            >
-              <Text
-                fontSize={"14px"}
-                fontWeight={"600"}
-                lineHeight={"10px"}
-                color={colorMode === 'light' ? "#FAFAFB" : "#000"}
-              >
-                Connect Wallet
-              </Text>
-            </Box>
-
-          </Box>
-
-        </Box>
-      
-      </Box>
     </>
   );
 };
@@ -751,3 +567,224 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
 };
 
 export default SidebarContent;
+
+const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  return (
+    <>
+      <Drawer
+        isOpen={isOpen}
+        placement={'left'}
+        onClose={onClose}
+        //size={"md"}
+        w="80%"
+      >
+        <DrawerOverlay />
+
+        <DrawerContent>
+          <DrawerBody
+            p={0}
+          >
+            <Box
+              bg={useColorModeValue("white", "#191919")}
+              borderRight="1px"
+              borderRightColor={useColorModeValue("gray.200", "gray.700")}
+              minH="100vh"
+              boxShadow={useColorModeValue(
+                "1px 0px 0px 0px #E1E1E1",
+                "1px 0px 0px 0px #333"
+              )}
+              display={"flex"}
+              pos={"fixed"}
+              zIndex={"100"}
+              w={"100%"}
+              h={"100%"}
+            >
+
+              <Box
+                w="100%"
+                h="100%"
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"space-between"}
+              >
+                {/* Top Half */}
+                <Box>
+
+                  <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"space-between"}
+                    padding={"5px 20px"}
+                    borderBottom={"2px"}
+                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    mb={"10px"}
+                  >
+                    <Box
+                      display={"flex"}
+                      alignItems={"center"}
+                    >
+                      <Box
+                        mr="10px"
+                        cursor={"pointer"}
+                        onClick={onClose}
+                        // onClick={() => {
+                        //   MobileSidebarHandler(!isMobileSidebarCollapsed);
+                        // }}
+                      >
+                        <Image
+                          height={40}
+                          width={40}
+                          src={colorMode === 'light' ? "/icons/x_dark.svg" : "/icons/x_light.svg"}
+                        ></Image>
+                      </Box>
+
+                      <Box
+                        h="20"
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent="center"
+                        cursor={"pointer"}
+                      >
+                        <Image
+                          width={100}
+                          height={50}
+                          alt="logo"
+                          src={colorMode === 'light' ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
+                          cursor={"pointer"}
+                          onClick={() => router.push('/')}
+                        />
+                      </Box>
+                    </Box>
+
+                    <Box>
+                      <div className="controller-row">
+                        <label className="switch">
+                          <input id="toggler" type="checkbox" checked={colorMode !== "light"} onChange={(e) => {
+                            toggleColorMode();
+                          }} />
+                          <span className="slider round"></span>
+                        </label>
+                      </div>
+                    </Box>
+
+                  </Box>
+
+                  {LinkItemsUp.map((link, i) => (
+                    <NavItem
+                      key={link.name}
+                      icon={link.icon}
+                      path={link.path}
+                      newTab={link.newTab}
+                      _hover={{
+                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        fontWeight: "600",
+                      }}
+                      // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) && 
+                      bg={pathname === link.path ? (colorMode === "light" ? "#202020" : "#FFFFFF") : null}
+                      color={pathname === link.path ? (colorMode === "light" ? "#FFFFFF" : "#191919") : null}
+                      fontSize="14px"
+                      fontWeight={pathname == link.path ? "600" : "400"}
+                      lineHeight="20px"
+                      letterSpacing="1.4px"
+                      alignContent="center"
+                    >
+                      {link.name}
+                    </NavItem>
+                  ))}
+
+                  {/* communities */}
+                  {/* {LinkItemsDown.map((link) => (
+                  <>
+                    {link?.dropdown ? (
+                      <>
+                      </>
+                    ) : (
+                      <>
+                        <NavItem
+                          key={link.name}
+                          icon={link.icon}
+                          path={link.path}
+                          _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                              color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                              fontWeight: "600",
+                              }}
+                          fontSize="12px"
+                          fontWeight="400"
+                          lineHeight="20px" 
+                          letterSpacing="1.2px"
+                        >
+                          {link.name}
+                        </NavItem>
+                      </>
+                    )}
+                  </>
+                ))} */}
+
+
+                  {bottomMenu.map((link) => (
+                    <NavItem
+                      key={link.name}
+                      icon={link.icon}
+                      path={link.path}
+                      _hover={{
+                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        fontWeight: "600",
+                      }}
+                      newTab={link.newTab}
+                      fontSize="14px"
+                      fontWeight="400"
+                      lineHeight="20px"
+                      letterSpacing="1.2px"
+                    >
+                      {link.name}
+                    </NavItem>
+                  ))}
+                </Box>
+
+                <Box
+                  display={"flex"}
+                  justifyContent={"center"}
+                  padding={"10px"}
+                  mb={"20px"}
+                >
+                  <Box
+                    cursor={"pointer"}
+                    // onClick={onLoginModalOpen}
+                    bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    borderRadius={"2px"}
+                    p={"15px 20px"}
+                    width={"80%"}
+                  >
+                    <Text
+                      fontSize={"14px"}
+                      fontWeight={"600"}
+                      lineHeight={"10px"}
+                      color={colorMode === 'light' ? "#FAFAFB" : "#000"}
+                    >
+                      Connect Wallet
+                    </Text>
+                  </Box>
+
+                </Box>
+
+              </Box>
+
+            </Box>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
+    </>
+  )
+}
+
+export {MobileSidebar};
