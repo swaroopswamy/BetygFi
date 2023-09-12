@@ -55,7 +55,7 @@ const TransactionPanelComponent = () => {
         </Text>
       </Flex>
 
-      
+
 
       <Box width={"100%"}>
         <Table variant="simple" key={1} bgColor={"#FFF"}
@@ -434,26 +434,26 @@ const TransactionPanelComponent = () => {
             }
           </Tbody>
         </Table>
-        </Box>
+      </Box>
 
 
-        <Box  w={{ base: "100%", md: "100%" }}
+      <Box w={{ base: "100%", md: "100%" }}
         ml={"20px"}
         mr={"20px"}>
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
-        mt="25px"
-        bgColor={useColorModeValue("#FFF", "#202020")}
-        display={{ base: "block", md: "none" }}
-        w={{ base: "90%", md: "100%" }} >
-        <Text
-          fontSize="18"
-          fontWeight={"600"}
-          color={useColorModeValue("#16171B", "#FFF")}
+          mt="25px"
+          bgColor={useColorModeValue("#FFF", "#202020")}
+          display={{ base: "block", md: "none" }}
+          w={{ base: "90%", md: "100%" }} >
+          <Text
+            fontSize="18"
+            fontWeight={"600"}
+            color={useColorModeValue("#16171B", "#FFF")}
 
-        >
-          Wallet Transaction
-        </Text>
-      </Flex>
+          >
+            Wallet Transaction
+          </Text>
+        </Flex>
         <Table variant={"unstyled"} display={{ base: "table", md: "none" }}
           _dark={{
             bg: "#16171B"
@@ -462,7 +462,7 @@ const TransactionPanelComponent = () => {
             bg: "#FFFFFF"
           }}
           w={{ base: "90%", md: "100%" }}
-          >
+        >
           <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
             <Tr>
               <Th
@@ -489,8 +489,8 @@ const TransactionPanelComponent = () => {
             </Tr>
           </Thead>
           <Tbody
-            //w={{ base: "100%", md: "100%" }}
-            >
+          //w={{ base: "100%", md: "100%" }}
+          >
             {walletTransactionsData.isError && (
               <Tr>
                 <Td
@@ -520,26 +520,26 @@ const TransactionPanelComponent = () => {
             )}
             {walletTransactionsData?.isSuccess && walletTransactionsData?.data?.data.length > 0 ? (
               walletTransactionsData?.data?.data.map((item, i) => (
-                <Tr 
-                key={i}
+                <Tr
+                  key={i}
                 >
                   <Td
-                  p={0}
+                    p={0}
                     colSpan={2}
                   >
                     <Accordion allowToggle
-                      //mr={"20px"}
-                      >
+                    //mr={"20px"}
+                    >
                       <AccordionItem>
                         <h2>
-                          <AccordionButton 
-                          _dark={{
-                            bg: "#16171B"
-                          }}
+                          <AccordionButton
+                            _dark={{
+                              bg: "#16171B"
+                            }}
                             _light={{
                               bg: "#FFFFFF"
                             }}
-                            >
+                          >
                             <Box
                               display={"flex"}
                               w="100%"
@@ -620,13 +620,19 @@ const TransactionPanelComponent = () => {
                           _light={{
                             bg: "#FFFFFF"
                           }}
-                         >
+                        >
                           <Box>
                             <Tr>
                               <Td justifyContent={"space-between"}
                                 alignItems={"center"}>
                                 <Text
-                                  color={useColorModeValue("#434347", "#A8ADBD")}
+
+                                  _light={{
+                                    color: "#434347"
+                                  }}
+                                  _dark={{
+                                    color: "#A8ADBD"
+                                  }}
                                   fontSize={"14px"}
                                   fontWeight={400}
                                   letterSpacing={"1.4px"}
@@ -686,7 +692,13 @@ const TransactionPanelComponent = () => {
                               <Td display={"flex"}
                                 alignItems={"center"}>
 
-                                <Text color={useColorModeValue("#434347", "#A8ADBD")}
+                                <Text
+                                  _light={{
+                                    color: "#434347"
+                                  }}
+                                  _dark={{
+                                    color: "#A8ADBD"
+                                  }}
                                   fontSize={"14px"}
                                   fontWeight={400}
                                   letterSpacing={"1.4px"}
@@ -746,7 +758,12 @@ const TransactionPanelComponent = () => {
                             <Tr>
                               <Td>
                                 <Text
-                                  color={useColorModeValue("#434347", "#A8ADBD")}
+                                  _light={{
+                                    color: "#434347"
+                                  }}
+                                  _dark={{
+                                    color: "#A8ADBD"
+                                  }}
                                   fontSize={"14px"}
                                   fontWeight={400}
                                   letterSpacing={"1.4px"}
@@ -800,7 +817,12 @@ const TransactionPanelComponent = () => {
 
                             <Tr>
                               <Td
-                                color={useColorModeValue("#434347", "#A8ADBD")}
+                                _light={{
+                                  color: "#434347"
+                                }}
+                                _dark={{
+                                  color: "#A8ADBD"
+                                }}
                                 fontSize={"14px"}
                                 fontWeight={400}
                                 letterSpacing={"1.4px"}
