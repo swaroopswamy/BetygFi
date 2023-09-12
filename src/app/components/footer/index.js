@@ -97,7 +97,7 @@ const Footer = ( {...rest}) => {
         width="100%"
         display={{ base: "flex", md: "none" }}
         bg={useColorModeValue("#F0F0F5", "#191919")}
-        height={"75px"}
+        height={"85px"}
       >
         <Box
           width={"100%"}
@@ -144,7 +144,7 @@ const FooterMobileLink = ( {name, id, link} ) => {
         flexDir={"column"}
         padding={"10px 10px"}
         justifyContent={"center"}
-        justifyItems={"stretch"}
+        justifyItems={"center"}
         position="relative"
         className="test"
         gap={"10px"}
@@ -171,8 +171,8 @@ const FooterMobileLink = ( {name, id, link} ) => {
           justifyContent={"center"}
         >
           <Image
-            width={"30px"} 
-            height={"30px"}
+            width={{base:"25px", sm: "30px"}} 
+            height={{base:"25px", sm: "30px"}} 
             src={pathname === link ? (colorMode === 'light' ? `/icons/${id}_footer_logo_bold_dark.svg` : `/icons/${id}_footer_logo_bold_light.svg`)
               : `/icons/${id}_footer_logo.svg`}
           />
@@ -180,10 +180,11 @@ const FooterMobileLink = ( {name, id, link} ) => {
 
         </Box>
         <Text
-          fontSize={"14px"}
+          fontSize={{base: "12px", sm: "14px"}}
           fontWeight={pathname === link ? "600" : "400"}
           lineHeight={"20px"}
           textTransform={"capitalize"}
+          textAlign={"center"}
         >
           {name}
         </Text>
