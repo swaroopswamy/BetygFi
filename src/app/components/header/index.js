@@ -24,7 +24,8 @@ import {
   InputLeftElement,
   Image,
   Drawer,
-  DrawerOverlay
+  DrawerOverlay,
+  Collapse
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -47,11 +48,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const pathname = usePathname();
   const { isOpen: isMobileSidebarOpen, onOpen: onMobileSidebarOpen, onClose: onMobileSidebarClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
+  const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
   const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
-
-  const [showSearch, setShowSearch] = useState(false);
 
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
@@ -295,9 +295,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
         <Box
           cursor={"pointer"}
-          onClick={() => {
-            setShowSearch(!showSearch);
-          }}
+          onClick={onMobileSearchToggle}
         >
           <Image
             src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
@@ -308,66 +306,71 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
       </Flex>
 
+      <Collapse
+        in={isMobileSearchOpen}
+        animateOpacity={"true"}
+      >
+        <Box
+          px={{ base: 4, md: 4 }}
+          display={"flex"}
+          bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+          border={"1px"}
+          borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+          padding={"8px 19px"}
+        >
+          <InputGroup w="100%">
+            <InputLeftElement pointerEvents='none'>
+              <Image
+                src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+                w="14px"
+                h="14px"
+                alt="search_icon"
+              />
+            </InputLeftElement>
+            <Input
+              type="text"
+              border="1px"
+              borderRadius="0px"
+              borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+              bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+              fontSize="12px"
+              fontWeight="400"
+              lineHeight="20px"
+              letterSpacing="1.2px"
+              w="100%"
+              placeholder="Search Wallet Address"
+              value={searchWalletAddressValue}
+              onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
+              onChange={(e) => { handleSearchByWalletAddress(e) }}
+            ></Input>
+            <Box
+              alignContent={"center"}
+              justifyContent={"center"}
+              cursor={"pointer"}
+              w={"70px"}
+              p={"14px 10px"}
+              bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+              border="1px"
+              borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+            >
+              <Text
+                fontSize={{base: "12px", sm: "14px"}}
+                fontWeight={"500"}
+                lineHeight={"10px"}
+                textAlign={"center"}
+              >
+                Search
+              </Text>
+            </Box>
+          </InputGroup>
+        </Box>
+      </Collapse>
+
       <MobileSidebar
         isOpen={isMobileSidebarOpen}
         onOpen={onMobileSidebarOpen}
         onClose={onMobileSidebarClose}
       />
-
-      <Box
-        px={{ base: 4, md: 4 }}
-        display={showSearch ? { base: "flex", md: "none" } : "none"}
-        bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
-        border={"1px"}
-        borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-        padding={"8px 19px"}
-      >
-        <InputGroup w="100%">
-          <InputLeftElement pointerEvents='none'>
-            <Image
-              src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
-              w="14px"
-              h="14px"
-              alt="search_icon"
-            />
-          </InputLeftElement>
-          <Input
-            type="text"
-            border="1px"
-            borderRadius="0px"
-            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-            fontSize="12px"
-            fontWeight="400"
-            lineHeight="20px"
-            letterSpacing="1.2px"
-            w="100%"
-            placeholder="Search Wallet Address"
-            value={searchWalletAddressValue}
-            onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
-            onChange={(e) => { handleSearchByWalletAddress(e) }}
-          ></Input>
-          <Box
-            alignContent={"center"}
-            justifyContent={"center"}
-            cursor={"pointer"}
-            w={"70px"}
-            p={"14px 10px"}
-            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-            border="1px"
-            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-          >
-            <Text
-              fontSize={{base: "12px", sm: "14px"}}
-              fontWeight={"500"}
-              lineHeight={"10px"}
-              textAlign={"center"}
-            >
-              Search
-            </Text>
-          </Box>
-        </InputGroup>
-      </Box>
 
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
     </>
