@@ -17,7 +17,9 @@ import {
   Drawer,
   DrawerOverlay,
   DrawerBody,
-  DrawerContent
+  DrawerContent,
+  Collapse,
+  useDisclosure
 } from "@chakra-ui/react";
 import Image from "next/image";
 import StarIcon from "../../../../public/icons/star_sm_logo.svg";
@@ -570,6 +572,7 @@ export default SidebarContent;
 
 const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } = useDisclosure();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -631,9 +634,6 @@ const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
                         mr="10px"
                         cursor={"pointer"}
                         onClick={onClose}
-                        // onClick={() => {
-                        //   MobileSidebarHandler(!isMobileSidebarCollapsed);
-                        // }}
                       >
                         <Image
                           height={40}
@@ -698,33 +698,86 @@ const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
                   ))}
 
                   {/* communities */}
-                  {/* {LinkItemsDown.map((link) => (
-                  <>
-                    {link?.dropdown ? (
-                      <>
-                      </>
-                    ) : (
-                      <>
-                        <NavItem
-                          key={link.name}
-                          icon={link.icon}
-                          path={link.path}
-                          _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
-                              color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                              fontWeight: "600",
-                              }}
-                          fontSize="12px"
-                          fontWeight="400"
-                          lineHeight="20px" 
-                          letterSpacing="1.2px"
-                        >
-                          {link.name}
-                        </NavItem>
-                      </>
-                    )}
-                  </>
-                ))} */}
+                  <Flex
+                    alignItems="stretch"
+                    alignContent={"center"}
+                    justifyContent={"space-between"}
+                    height={"38px"}
+                    padding={"9px"}
+                    role="group"
+                    cursor="pointer"
+                    _hover={{
+                      bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                      color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                      fontWeight: "600",
+                    }}
+                    fontSize="14px"
+                    fontWeight={"400"}
+                    lineHeight="20px"
+                    letterSpacing="1.4px"
+                    onClick={onCommunitiesToggle}
+                  >
+                    <Box
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"stretch"}
+                      alignContent={"center"}
+                    >
+                      <Icon
+                        mt="1px"
+                        ml="3"
+                        p="0"
+                        w="25px"
+                        h="25px"
+                        fontSize="16"
+                        _groupHover={{
+                          color: "white",
+                        }}
+                        as={CommunityIcon}
+                      />
+                        Communities
+                    </Box>
+                    
+                    <Image
+                      width={20}
+                      height={20}
+                      src="/icons/direction-arrow.svg"
+                      style={{rotate: "90deg"}}
+                    ></Image>
+                  </Flex>
 
+                  <Collapse
+                    in={isCommunitiesOpen}
+                    animateOpacity={"true"}
+                  >
+                    {LinkItemsDown.map((link) => (
+                    <>
+                      {link?.dropdown ? (
+                        <>
+                        </>
+                      ) : (
+                        <>
+                          <NavItem
+                            key={link.name}
+                            icon={link.icon}
+                            path={link.path}
+                            _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                                color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                                fontWeight: "600",
+                                }}
+                            fontSize="12px"
+                            fontWeight="400"
+                            lineHeight="20px" 
+                            letterSpacing="1.2px"
+                            ml={"20px"}
+                          >
+                            {link.name}
+                          </NavItem>
+                        </>
+                      )}
+                    </>
+                    ))}
+                  </Collapse>
 
                   {bottomMenu.map((link) => (
                     <NavItem
