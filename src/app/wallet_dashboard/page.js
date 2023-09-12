@@ -84,6 +84,7 @@ const WalletDashboardPage = () => {
         }
         dispatch(fetchBlockchainAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+    
 
     const fetchInflowOutflowTokensForAddressHandler = useCallback(() => {
         const data = {

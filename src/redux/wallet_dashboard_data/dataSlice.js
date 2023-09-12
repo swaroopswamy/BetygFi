@@ -39,7 +39,7 @@ export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockcha
 
 export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', async (payload) => {
   const response = await getInflowOutflowTokensForAddress(payload);
-  return response.data;
+  return response;
 })
 
 
