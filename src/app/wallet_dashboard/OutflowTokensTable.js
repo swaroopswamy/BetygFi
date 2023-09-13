@@ -2,9 +2,9 @@ import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer
 import { useSelector } from 'react-redux';
 import { SkeletonRow, USDollar } from './wallet_analytics';
 
-const InteractionWithKnownEntitiesTable = () => {
+const OutflowTokensTable = () => {
     const { colorMode } = useColorMode();
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
 
     return (
         <>
@@ -29,10 +29,10 @@ const InteractionWithKnownEntitiesTable = () => {
                     mr={"6px"}
                     paddingTop={"15px"}
                 >
-                    Interaction with Known Entities
+                    Outflow Tokens (30 Days)
                 </Text>
                 <>
-                    <Tooltip label="Interaction with Known Entities shows the transactions that the wallet is doing with the centralized bodies i.e., exchanges.">
+                    <Tooltip label="Inflow/outflow shows the number of tokens that are coming in wallet.">
                         <Image width={"12px"}
                             height={"12px"}
                             flexShrink={"0"}
@@ -73,8 +73,10 @@ const InteractionWithKnownEntitiesTable = () => {
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         letterSpacing={"1px"}
-                                        textTransform={"capitalize"}>
-                                        DeFi Name</Text>
+                                        textTransform={"capitalize"}
+                                    >
+                                        Asset Name
+                                    </Text>
 
                                     <>
                                         <Image width={"12px"}
@@ -97,7 +99,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                         lineHeight={"20px"}
                                         letterSpacing={"1px"}
                                         textTransform={"capitalize"}>
-                                        Share</Text>
+                                        Value</Text>
                                     <>
                                         <Image width={"12px"}
                                             height={"12px"}
@@ -119,7 +121,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                         lineHeight={"20px"}
                                         letterSpacing={"1px"}
                                         textTransform={"capitalize"}>
-                                        Value</Text>
+                                        Share</Text>
                                     <>
                                         <Image width={"12px"}
                                             height={"12px"}
@@ -167,7 +169,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                         letterSpacing={"1px"}
                                         textTransform={"capitalize"}
                                     >
-                                        DeFi Name
+                                        Asset Name
                                     </Text>
                                 </Flex>
                             </Th>
@@ -187,7 +189,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                         letterSpacing={"1px"}
                                         textTransform={"capitalize"}
                                     >
-                                        Share
+                                        Value
                                     </Text>
                                 </Flex>
                             </Th>
@@ -201,9 +203,8 @@ const InteractionWithKnownEntitiesTable = () => {
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         _dark={{ bgColor: "#202020" }}
-                        _light={{ bgColor: "#FFF" }}
-                    >
-                        {/* {!walletBalanceData?.isError && (
+                        _light={{ bgColor: "#FFF" }} >
+                        {inflowOutflowTokensData?.isError && (
                             <>
                                 <Tr >
                                     <Td
@@ -214,7 +215,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                             color: "#16171B"
                                         }}
                                         fontSize={"20px"}
-                                        fontWeight={"400"}
+                                        fontWeight={400}
                                         letterSpacing={"1px"}
                                         colSpan={8}
                                         textAlign={"center"}
@@ -226,7 +227,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                 </Tr>
                             </>
                         )}
-                        {walletBalanceData?.isLoading && (
+                        {inflowOutflowTokensData?.isLoading && (
                             <>
                                 <SkeletonRow />
                                 <SkeletonRow />
@@ -235,87 +236,43 @@ const InteractionWithKnownEntitiesTable = () => {
                                 <SkeletonRow />
                             </>
                         )}
-                        {walletBalanceData?.isSuccess &&
-                        (walletBalanceData?.data?.data?.length > 0 ?
-                            (
-                                walletBalanceData?.data?.data.map((item, i) => {
-                                    return (
-                                        <Tr height={"40px"}>
-
-                                        <Td _dark={{ color: "#FFFFFF" }}
-                                            _light={{ color: "#16171B" }}
-                                        >
-
-                                            <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            >
-                                            <>
-                                                <Image
-                                                width={5}
-                                                height={5}
-                                                alt='logo'
-                                                src="/images/Venus.svg"
-                                                ></Image>
-                                            </>
-
-                                            <Text ml="6px"> Venus</Text>
-                                            </Box>
-                                        </Td>
-
-                                        <Td>
-                                            <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            >
-                                            <Text
-                                                fontSize={"14px"}
-                                                fontWeight={"400"}
-                                                letterSpacing={"1px"}
-                                                ml="6px"
-                                                _light={{ color: "#16171B" }}
-                                                _dark={{ color: "#FFFFFF" }}
-                                            >
-                                                60%
-                                            </Text>
-                                            </Box>
-                                        </Td>
-                                        <Td fontSize={"14px"}>USD 356,456,560</Td>
-                                        </Tr>
-                                    );
-                                })
-                            ) 
-                            :
-                            (
-                                <Tr >
-                                    <Td
-                                        _dark={{ color: "#FFF" }}
-                                        _light={{ color: "#16171B" }}
-                                        fontSize={"20px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
-                                        colSpan={8}
-                                        textAlign={"center"}
-                                        height={"245px"}
-                                    >
-                                        No Data Available
-                                    </Td>
-                                </Tr>
-                            ))} */}
-
-                            {[0, 1, 2, 3, 4].map((item, i) => {
+                        {inflowOutflowTokensData?.isSuccess &&
+                            inflowOutflowTokensData?.data?.outflow.length > 0 ?
+                            inflowOutflowTokensData.data.outflow.map((item, i) => {
                                 return (
                                     <TableRow
-                                        key={i}
-                                        logoUrl={"https://assets.coingecko.com/coins/images/25244/thumb/Optimism.png?1660904599"}
-                                        name={"Placeholder Name"}
-                                        percentage={"70"}
-                                        value={"7657"}
+                                        i={i}
+                                        logoUrl={item?.logoUrl}
+                                        value={item?.value}
+                                        symbol={item?.symbol}
+                                        percentage={item?.percentage}
                                     />
                                 )
-                            })}
-
-
+                            })
+                            :
+                            (
+                                <>
+                                    <Tr >
+                                        <Td
+                                            _dark={{
+                                                color: "#FFF"
+                                            }}
+                                            _light={{
+                                                color: "#16171B"
+                                            }}
+                                            fontSize={"20px"}
+                                            fontWeight={400}
+                                            letterSpacing={"1px"}
+                                            colSpan={8}
+                                            textAlign={"center"}
+                                            height={"245px"}
+                                        >
+                                            No Data Available
+                                        </Td>
+                                    </Tr>
+                                </>
+                            )
+                        }
                     </Tbody>
 
                 </Table>
@@ -324,9 +281,9 @@ const InteractionWithKnownEntitiesTable = () => {
     )
 }
 
-export default InteractionWithKnownEntitiesTable;
+export default OutflowTokensTable;
 
-const TableRow = ({ i, logoUrl, name, percentage, value }) => {
+const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
     return <>
         <Tr
             height={"40px"}
@@ -336,7 +293,6 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
             <Td _dark={{ color: "#FFFFFF" }}
                 _light={{ color: "#16171B" }}
             >
-
                 <Box
                     display={"flex"}
                     alignItems={"center"}
@@ -346,15 +302,31 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                             width={5}
                             height={5}
                             alt='logo'
+                            borderRadius={"50%"}
                             src={logoUrl}
                         ></Image>
                     </>
-
-                    <Text
-                        ml="6px"
+                    <Text 
+                        ml="6px" 
                         fontSize={"14px"}
                     >
-                        {name}
+                        {symbol}
+                    </Text>
+                </Box>
+            </Td>
+
+            <Td>
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
+                >
+                    <Text
+                    fontSize={"14px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1.4px"}
+                    color={value > 0 ? '#60C000' : '#FF3535'}
+                    >
+                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
                     </Text>
                 </Box>
             </Td>
@@ -368,18 +340,12 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                         fontSize={"14px"}
                         fontWeight={"400"}
                         letterSpacing={"1px"}
-                        ml="6px"
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                     >
-                        {percentage}
+                        {percentage}%
                     </Text>
                 </Box>
-            </Td>
-            <Td
-                fontSize={"14px"}
-            >
-                USD {USDollar.format(value)}
             </Td>
         </Tr>
 
@@ -414,7 +380,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         display={"flex"}
                                         justifyContent={"space-between"}
                                         alignItems={"center"}
-                                        w={"70%"}
+                                        w={"80%"}
                                     >
                                         <Box
                                             display={"flex"}
@@ -442,24 +408,19 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                                 lineHeight={"20px"}
                                                 ml="12px"
                                             >
-                                                {name}
+                                                {symbol}
                                             </Text>
                                         </Box>
 
                                         <Text
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            _dark={{
-                                                color: "#FFFFFF"
-                                            }}
+                                            color={value > 0 ? '#60C000' : '#FF3535'}
                                             fontSize={"14px"}
                                             fontStyle={"normal"}
                                             fontWeight={"600"}
                                             lineHeight={"20px"}
                                             textAlign={"left"}
                                         >
-                                            {percentage}%
+                                            {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
                                         </Text>
                                     </Box>
 
@@ -487,7 +448,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         letterSpacing={"1.4"}
                                         textAlign={"left"}
                                     >
-                                        Value
+                                        Share
                                     </Text>
 
                                     <Text
@@ -504,7 +465,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         textAlign={"left"}
                                         ml={"20px"}
                                     >
-                                        USD {USDollar.format(value)}
+                                        {percentage}%
                                     </Text>
                                 </Box>
                             </Box>

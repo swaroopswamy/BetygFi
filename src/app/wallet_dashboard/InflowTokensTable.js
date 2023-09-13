@@ -305,8 +305,8 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                             src={logoUrl}
                         ></Image>
                     </>
-                    <Text 
-                        ml="6px" 
+                    <Text
+                        ml="6px"
                         fontSize={"14px"}
                     >
                         {symbol}
@@ -320,12 +320,12 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                     alignItems={"center"}
                 >
                     <Text
-                    fontSize={"14px"}
-                    fontWeight={"400"}
-                    letterSpacing={"1.4px"}
-                    color={value > 0 ? '#60C000' : '#FF3535'}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1.4px"}
+                        color={value > 0 ? '#60C000' : '#FF3535'}
                     >
-                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
+                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                     </Text>
                 </Box>
             </Td>
@@ -377,46 +377,55 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                                 >
                                     <Box
                                         display={"flex"}
-                                        justifyContent={"center"}
+                                        justifyContent={"space-between"}
                                         alignItems={"center"}
+                                        w={"80%"}
                                     >
-                                        <Image
-                                            w={"20px"}
-                                            h={"20px"}
-                                            src={logoUrl}
-                                            alt=""
-                                        ></Image>
+                                        <Box
+                                            display={"flex"}
+                                            alignItems={"center"}
+                                        >
+                                            <Image
+                                                w={"20px"}
+                                                h={"20px"}
+                                                src={logoUrl}
+                                                borderRadius={"50%"}
+                                                alt=""
+                                            ></Image>
+
+                                            <Text
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                _dark={{
+                                                    color: "#FFFFFF"
+                                                }}
+                                                fontSize={"14px"}
+                                                fontStyle={"normal"}
+                                                fontWeight={"600"}
+                                                letterSpacing={"1.4px"}
+                                                lineHeight={"20px"}
+                                                ml="12px"
+                                            >
+                                                {symbol}
+                                            </Text>
+                                        </Box>
 
                                         <Text
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            _dark={{
-                                                color: "#FFFFFF"
-                                            }}
+                                            color={value > 0 ? '#60C000' : '#FF3535'}
                                             fontSize={"14px"}
                                             fontStyle={"normal"}
                                             fontWeight={"600"}
-                                            letterSpacing={"1.4px"}
                                             lineHeight={"20px"}
-                                            ml="12px"
+                                            textAlign={"left"}
                                         >
-                                            {symbol}
+                                            {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                                         </Text>
                                     </Box>
 
-                                    <Text
-                                        color={value > 0 ? '#60C000' : '#FF3535'}
-                                        fontSize={"14px"}
-                                        fontStyle={"normal"}
-                                        fontWeight={"600"}
-                                        lineHeight={"20px"}
-                                        ml="12px"
-                                    >
-                                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
-                                    </Text>
+                                    <AccordionIcon
+                                    />
 
-                                    <AccordionIcon />
                                 </Box>
                             </AccordionButton>
                         </h2>
