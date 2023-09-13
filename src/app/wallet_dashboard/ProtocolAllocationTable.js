@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-import { SkeletonRow } from './wallet_analytics';
+import { SkeletonRow, USDollar } from './wallet_analytics';
 
 const ProtocolAllocationTable = () => {
     const { colorMode } = useColorMode();
@@ -14,12 +14,13 @@ const ProtocolAllocationTable = () => {
                     borderRadius={"6px"}
                     _dark={{
                         bg: "#202020",
-                        color: "#FFFFFF"
+                        // color: "#FFFFFF"
                     }}
                     _light={{
                         bg: "#FFFFFF",
-                        color: "#16171B"
+                        // color: "#16171B"
                     }}
+                    // borderColor={colorMode === 'light' ? }
                     pb="14px"
                 >
                     <Text
@@ -286,7 +287,7 @@ const ProtocolAllocationTable = () => {
                                         key={i}
                                         logoUrl={"https://assets.coingecko.com/coins/images/25244/thumb/Optimism.png?1660904599"}
                                         name={"Placeholder Name"}
-                                        percentage={"70%"}
+                                        percentage={"70"}
                                         value={"7657"}
                                     />
                                 )
@@ -349,14 +350,14 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                     >
-                        {percentage}
+                        {percentage}%
                     </Text>
                 </Box>
             </Td>
             <Td
                 fontSize={"14px"}
             >
-                USD {value}
+                USD {USDollar.format(value)}
             </Td>
         </Tr>
 
@@ -429,7 +430,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         lineHeight={"20px"}
                                         ml="12px"
                                     >
-                                        {percentage}
+                                        {percentage}%
                                     </Text>
 
                                     <AccordionIcon />
@@ -447,12 +448,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                     display={"flex"}
                                 >
                                     <Text
-                                        _light={{
-                                            color: "#8F8F8F"
-                                        }}
-                                        _dark={{
-                                            color: "##8F8F8F"
-                                        }}
+                                        color="#8F8F8F"
                                         fontSize={"14px"}
                                         fontStyle={"normal"}
                                         fontWeight={"400"}
@@ -464,10 +460,10 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
 
                                     <Text
                                         _light={{
-                                            color: "#8F8F8F"
+                                            color: "#16171B"
                                         }}
                                         _dark={{
-                                            color: "##8F8F8F"
+                                            color: "#FFF"
                                         }}
                                         fontSize={"14px"}
                                         fontStyle={"normal"}
@@ -476,7 +472,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         textAlign={"left"}
                                         ml={"20px"}
                                     >
-                                        {value}
+                                        USD {USDollar.format(value)}
                                     </Text>
                                 </Box>
                             </Box>
