@@ -384,7 +384,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
         </Tr>
 
         <Tr
-            key={i}
+            key={name}
             display={{ base: "table-row", md: "none" }}
             height={"50px"}
         >
