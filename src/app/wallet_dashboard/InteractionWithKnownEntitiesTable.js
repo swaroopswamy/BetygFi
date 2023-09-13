@@ -4,7 +4,8 @@ import { SkeletonRow, USDollar } from './wallet_analytics';
 
 const InteractionWithKnownEntitiesTable = () => {
     const { colorMode } = useColorMode();
-    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData)
+    const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
+    console.log("data ", walletBalanceData);
 
     return (
         <>
@@ -235,38 +236,39 @@ const InteractionWithKnownEntitiesTable = () => {
                                 <SkeletonRow />
                             </>
                         )}
-                        {walletBalanceData?.isSuccess &&
-                        (walletBalanceData?.data?.data?.length > 0 ?
-                            (
-                                walletBalanceData?.data?.data.map((item, i) => {
-                                    return (
-                                        <TableRow
-                                            key={i}
-                                            logoUrl={item.logoUrl}
-                                            name={item.name}
-                                            percentage={item.percentage}
-                                            value={item.value}
-                                        />
-                                    );
-                                })
-                            ) 
-                            :
-                            (
-                                <Tr >
-                                    <Td
-                                        _dark={{ color: "#FFF" }}
-                                        _light={{ color: "#16171B" }}
-                                        fontSize={"20px"}
-                                        fontWeight={"400"}
-                                        letterSpacing={"1px"}
-                                        colSpan={8}
-                                        textAlign={"center"}
-                                        height={"245px"}
-                                    >
-                                        No Data Available
-                                    </Td>
-                                </Tr>
-                            ))}
+                        {!walletBalanceData?.isSuccess &&
+                            (walletBalanceData?.data?.data?.length > 0 ?
+                                (
+                                    walletBalanceData?.data?.data.map((item, i) => {
+                                        return (
+                                            <TableRow
+                                                key={i}
+                                                logoUrl={item.logoUrl}
+                                                name={item.name}
+                                                percentage={item.percentage}
+                                                value={item.value}
+                                            />
+                                        );
+                                    })
+                                ) 
+                                :
+                                (
+                                    <Tr >
+                                        <Td
+                                            _dark={{ color: "#FFF" }}
+                                            _light={{ color: "#16171B" }}
+                                            fontSize={"20px"}
+                                            fontWeight={"400"}
+                                            letterSpacing={"1px"}
+                                            colSpan={8}
+                                            textAlign={"center"}
+                                            height={"245px"}
+                                        >
+                                            No Data Available
+                                        </Td>
+                                    </Tr>
+                                )
+                        )}
 
                             {/* {[0, 1, 2, 3, 4].map((item, i) => {
                                 return (
