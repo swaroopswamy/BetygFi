@@ -214,7 +214,7 @@ const WalletAnalyticsPanel = () => {
 
         <Box
           w={{base: "90%", md:"50%"}}
-          height={"367px"}
+          height={{base: "none", md:"367px"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -232,7 +232,7 @@ const WalletAnalyticsPanel = () => {
 
         <Box
           w={{base: "90%", md:"50%"}}
-          height={"367px"}
+          height={{base: "none", md:"367px"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
