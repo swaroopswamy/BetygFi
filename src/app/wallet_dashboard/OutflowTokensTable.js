@@ -241,7 +241,7 @@ const OutflowTokensTable = () => {
                             inflowOutflowTokensData.data.outflow.map((item, i) => {
                                 return (
                                     <TableRow
-                                        i={i}
+                                        key={i}
                                         logoUrl={item?.logoUrl}
                                         value={item?.value}
                                         symbol={item?.symbol}
@@ -350,7 +350,7 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
         </Tr>
 
         <Tr
-            key={name}
+            key={symbol}
             display={{ base: "table-row", md: "none" }}
             height={"50px"}
         >
