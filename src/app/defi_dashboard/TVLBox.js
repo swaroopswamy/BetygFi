@@ -100,11 +100,14 @@ const TVLBox = () => {
                                     locales: "en-US"
                                 })) : "-"}
                                 <br></br>
+
                                 1,28,262<br></br>
+
                                 ${" "}{defiData?.isSuccess ? (millify(1511121239, {
                                     precision: 2,
                                     locales: "en-US"
-                                })) : "-"}<br></br>
+                                })) : "-"}
+                                <br></br>
                                 {/* 
                                 38,682<br></br>
                                 $304,481,901<br></br>
