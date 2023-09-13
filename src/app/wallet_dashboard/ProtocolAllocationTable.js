@@ -207,7 +207,7 @@ const ProtocolAllocationTable = () => {
                             _light={{ bgColor: "#FFF" }}
                         >
 
-                            {/* {protocolAllocationData?.isError && (
+                            {protocolAllocationData?.isError && (
                                 <>
                                     <Tr >
                                         <Td
@@ -247,6 +247,7 @@ const ProtocolAllocationTable = () => {
                                                     key={i}
                                                     logoUrl={item.logoUrl}
                                                     name={item.name}
+                                                    percentage={item.percentage}
                                                     value={item.value}
                                                 />
                                             )
@@ -279,9 +280,9 @@ const ProtocolAllocationTable = () => {
                                         </>
                                     )
                                 )
-                            } */}
+                            }
 
-                            {[0, 1, 2, 3, 4].map((item, i) => {
+                            {/* {[0, 1, 2, 3, 4].map((item, i) => {
                                 return (
                                     <TableRow
                                         key={i}
@@ -291,7 +292,7 @@ const ProtocolAllocationTable = () => {
                                         value={"7657"}
                                     />
                                 )
-                            })}
+                            })} */}
 
                         </Tbody>
 

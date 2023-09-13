@@ -203,7 +203,7 @@ const InteractionWithKnownEntitiesTable = () => {
                         _dark={{ bgColor: "#202020" }}
                         _light={{ bgColor: "#FFF" }}
                     >
-                        {/* {!walletBalanceData?.isError && (
+                        {!walletBalanceData?.isError && (
                             <>
                                 <Tr >
                                     <Td
@@ -240,48 +240,13 @@ const InteractionWithKnownEntitiesTable = () => {
                             (
                                 walletBalanceData?.data?.data.map((item, i) => {
                                     return (
-                                        <Tr height={"40px"}>
-
-                                        <Td _dark={{ color: "#FFFFFF" }}
-                                            _light={{ color: "#16171B" }}
-                                        >
-
-                                            <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            >
-                                            <>
-                                                <Image
-                                                width={5}
-                                                height={5}
-                                                alt='logo'
-                                                src="/images/Venus.svg"
-                                                ></Image>
-                                            </>
-
-                                            <Text ml="6px"> Venus</Text>
-                                            </Box>
-                                        </Td>
-
-                                        <Td>
-                                            <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            >
-                                            <Text
-                                                fontSize={"14px"}
-                                                fontWeight={"400"}
-                                                letterSpacing={"1px"}
-                                                ml="6px"
-                                                _light={{ color: "#16171B" }}
-                                                _dark={{ color: "#FFFFFF" }}
-                                            >
-                                                60%
-                                            </Text>
-                                            </Box>
-                                        </Td>
-                                        <Td fontSize={"14px"}>USD 356,456,560</Td>
-                                        </Tr>
+                                        <TableRow
+                                            key={i}
+                                            logoUrl={item.logoUrl}
+                                            name={item.name}
+                                            percentage={item.percentage}
+                                            value={item.value}
+                                        />
                                     );
                                 })
                             ) 
@@ -301,9 +266,9 @@ const InteractionWithKnownEntitiesTable = () => {
                                         No Data Available
                                     </Td>
                                 </Tr>
-                            ))} */}
+                            ))}
 
-                            {[0, 1, 2, 3, 4].map((item, i) => {
+                            {/* {[0, 1, 2, 3, 4].map((item, i) => {
                                 return (
                                     <TableRow
                                         key={i}
@@ -313,7 +278,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                         value={"7657"}
                                     />
                                 )
-                            })}
+                            })} */}
 
 
                     </Tbody>
