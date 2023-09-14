@@ -242,6 +242,7 @@ function SelectorGraph({ tvlData }) {
     }]
 
     const { colorMode } = useColorMode;
+
     const options = {
         chart: {
             toolbar: {
@@ -256,13 +257,13 @@ function SelectorGraph({ tvlData }) {
             selection: {
                 enabled: true,
                 fill: {
-                    color: '#ccc',
-                    opacity: 0
+                    color: '#515151',
+                    opacity: 0.2
                 },
                 stroke: {
-                    width: 1,
+                    width: 0,
                     dashArray: 0,
-                    color: colorMode === 'light' ? '#000' : '#FFF',
+                    color: colorMode === 'light' ? '#313131' : '#FFF',
                 }
             }
         },
@@ -274,7 +275,7 @@ function SelectorGraph({ tvlData }) {
         stroke: {
             show: false
         },
-        colors: ["#3A3D46"],
+        colors: ["#000"],
         xaxis: {
             labels: {
                 show: false
