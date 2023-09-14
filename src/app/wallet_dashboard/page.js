@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
+import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text,Tooltip, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -474,6 +474,8 @@ const WalletDashboardPage = () => {
                                                 whiteSpace="nowrap"
                                              
                                             >
+                                                 <Tooltip
+                                                        key={i} label={item.name}>
                                                 <Image
                                                     w={"18px"}
                                                     h={"18px"}
@@ -481,6 +483,7 @@ const WalletDashboardPage = () => {
                                                     src={item.logoUrl}
                                                     alt={`${item.id}_icon`}
                                                 ></Image>
+                                                </Tooltip>
                                                 <Text
                                                     fontSize={"14px"}
                                                     fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
