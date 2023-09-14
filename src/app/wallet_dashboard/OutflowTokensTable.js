@@ -20,28 +20,42 @@ const OutflowTokensTable = () => {
                     color: "#16171B"
                 }}
                 pb="14px"
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                px={"20px"}
             >
-                <Text
-                    fontSize={"18px"}
-                    fontWeight={"600"}
-                    lineHeight={"20px"}
-                    ml={"20px"}
-                    mr={"6px"}
-                    paddingTop={"15px"}
+                <Box
+                    display={"flex"}
+                    alignItems={"center"}
                 >
-                    Outflow Tokens (30 Days)
-                </Text>
-                <>
-                    <Tooltip label="Inflow/outflow shows the number of tokens that are coming in wallet.">
-                        <Image width={"12px"}
-                            height={"12px"}
-                            flexShrink={"0"}
-                            mt={"20px"}
-                            alt=''
-                            src="/images/Frame.svg">
-                        </Image>
-                    </Tooltip>
-                </>
+                    <Text
+                        fontSize={"18px"}
+                        fontWeight={"600"}
+                        lineHeight={"20px"}
+                        mr={"6px"}
+                        paddingTop={"15px"}
+                    >
+                        Outflow Tokens (30 Days)
+                    </Text>
+                    <>
+                        <Tooltip label="Inflow/outflow shows the number of tokens that are coming in wallet.">
+                            <Image width={"12px"}
+                                height={"12px"}
+                                flexShrink={"0"}
+                                mt={"20px"}
+                                alt=''
+                                src="/images/Frame.svg">
+                            </Image>
+                        </Tooltip>
+                    </>
+                </Box>
+
+                <Image
+                    cursor={"pointer"}
+                    width={"24px"}
+                    height={"24px"}
+                    src={"/icons/Filter.svg"}
+                ></Image>
             </Flex>
 
             <TableContainer>

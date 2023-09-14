@@ -5,8 +5,7 @@ import { SkeletonRow, USDollar } from './wallet_analytics';
 const InteractionWithKnownEntitiesTable = () => {
     const { colorMode } = useColorMode();
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
-    console.log("data ", walletBalanceData);
-
+    
     return (
         <>
             <Flex
@@ -21,28 +20,42 @@ const InteractionWithKnownEntitiesTable = () => {
                     color: "#16171B"
                 }}
                 pb="14px"
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                px={"20px"}
             >
-                <Text
-                    fontSize={"18px"}
-                    fontWeight={"600"}
-                    lineHeight={"20px"}
-                    ml={"20px"}
-                    mr={"6px"}
-                    paddingTop={"15px"}
+                <Box
+                        display={"flex"}
+                        alignItems={"center"}
                 >
-                    Interaction with Known Entities
-                </Text>
-                <>
-                    <Tooltip label="Interaction with Known Entities shows the transactions that the wallet is doing with the centralized bodies i.e., exchanges.">
-                        <Image width={"12px"}
-                            height={"12px"}
-                            flexShrink={"0"}
-                            mt={"20px"}
-                            alt=''
-                            src="/images/Frame.svg">
-                        </Image>
-                    </Tooltip>
-                </>
+                    <Text
+                        fontSize={"18px"}
+                        fontWeight={"600"}
+                        lineHeight={"20px"}
+                        mr={"6px"}
+                        paddingTop={"15px"}
+                    >
+                        Interaction with Known Entities
+                    </Text>
+                    <>
+                        <Tooltip label="Interaction with Known Entities shows the transactions that the wallet is doing with the centralized bodies i.e., exchanges.">
+                            <Image width={"12px"}
+                                height={"12px"}
+                                flexShrink={"0"}
+                                mt={"20px"}
+                                alt=''
+                                src="/images/Frame.svg">
+                            </Image>
+                        </Tooltip>
+                    </>
+                </Box>
+
+                <Image
+                    cursor={"pointer"}
+                    width={"24px"}
+                    height={"24px"}
+                    src={"/icons/Filter.svg"}
+                ></Image>
             </Flex>
 
             <TableContainer>

@@ -8,6 +8,8 @@ import './styles.css';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+let USDollar = new Intl.NumberFormat('en-US');
+
 function DonutChart() {
 
   const { colorMode } = useColorMode();
@@ -36,7 +38,7 @@ function DonutChart() {
           w.globals.labels[seriesIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[seriesIndex] + "USD" +
+          USDollar.format(series[seriesIndex]) + " USD" +
           '</div>' +
           "</div>"
         );
@@ -58,7 +60,7 @@ function DonutChart() {
         offsetY: 2
       },
       formatter: function (text, opts) {
-        return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
+        return [text, USDollar.format(opts.w.globals.series[opts.seriesIndex]) + " USD"]
       },
     },
     dataLabels: {
