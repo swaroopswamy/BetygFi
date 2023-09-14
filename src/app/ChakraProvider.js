@@ -9,6 +9,7 @@ export function Providers({ children }) {
   const breakpoints = {
     base: "0px",
     sm: "320px",
+    midSize:"460px",
     md: "768px",
     lg: "960px",
     xl: "1200px",

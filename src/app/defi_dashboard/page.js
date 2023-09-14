@@ -37,24 +37,28 @@ const DefiDashboardPage = () => {
 
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
+    );
+    //console.log("time",defiData);
+    const defiUsersTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiUsersTableData?.data
     )
-    // const defiUsersTableData = useSelector(
-    //     (state) => state?.defiDashboardData?.DefiUsersTableData?.data
-    // )
+    //console.log("yes",defiUsersTableData);
     const [tabIndex, setTabIndex] = useState(0)
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
-    //console.log(blockchainSelected);
+    //console.log("test",blockchainSelected);
 
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
+    //console.log("hi",BlockchainTypeHandler);
+
     const blockchains = useSelector(
         (state) => state?.appData?.BlockchainListData?.data
     );
-
+    //console.log("timer",blockchains);
     const getDefiDataHandler = () => {
         const payload = {
             id: id,
@@ -65,7 +69,7 @@ const DefiDashboardPage = () => {
     const getDefiUsersTableDataHandler = () => {
         const payload = {
             defi: defi,
-            blockchain: ["ethereum,polygon,avalanche"].join(","),
+            blockchain: [blockchainSelected],
         };
         dispatch(fetchDefiUsersTableData(payload));
     };
@@ -88,7 +92,7 @@ const DefiDashboardPage = () => {
         getDefiDataHandler();
         //getDefiUsersTableDataHandler();
         getDefiHotContractsDataHandler();
-        getDefiAssetCompositionDataHandler(); 
+        getDefiAssetCompositionDataHandler();
     }, []);
 
     useEffect(() => {
@@ -140,8 +144,8 @@ const DefiDashboardPage = () => {
                             marginRight={"22px"}
                         >
                             <Image
-                                w={{base:"30px",md:"30px"}}
-                                h={{base:"30px",md:"30px"}}
+                                w={{ base: "30px", md: "30px" }}
+                                h={{ base: "30px", md: "30px" }}
                                 borderRadius={"50%"}
                                 src={defiData?.logo ?? "/images/basic_profile.png"}
                                 alt="proifile_img"
@@ -155,7 +159,7 @@ const DefiDashboardPage = () => {
                             {
                                 defiData?.name !== undefined && (
                                     <Text
-                                        fontSize={{base:"18px",md:"24px"}}
+                                        fontSize={{ base: "18px", md: "24px" }}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         //opacity={"0.5"}
@@ -231,6 +235,7 @@ const DefiDashboardPage = () => {
                                         {blockchains?.map((item, i) => (
                                             <>
                                                 {defiData?.chains?.includes(toCapitalize(item.name)) &&
+                                                
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>
@@ -274,15 +279,6 @@ const DefiDashboardPage = () => {
                                                                 BlockchainTypeHandler(item.id);
                                                             }}
                                                             _hover={{ borderColor: "blue" }}
-                                                        /* bgColor={
-                                                          blockchainSelected.includes(item)
-                                                            ? useColorModeValue("#F5F5F7", "#191919")
-                                                            : useColorModeValue("#FFFFFF", "#202020")
-                                                        }
-                                                        border={useColorModeValue(
-                                                          "1px solid #E0E0E0",
-                                                          "1px solid #333"
-                                                        )}  */
                                                         >
                                                             <Image
                                                                 width={18}
@@ -291,22 +287,13 @@ const DefiDashboardPage = () => {
                                                                 alt={`${item.id}_icon`}
 
                                                             ></Image>
-                                                            {/* <Text
-                     fontSize={"10px"}
-                     fontWeight={"400"}
-                     lineHeight={"20px"}
-                     letterSpacing={"1px"}
-                     color={useColorModeValue("#16171B", "#FFF")}
-                   >
-                     {item}
-                   </Text> */}
                                                         </Box>
 
                                                     </Tooltip>
                                                 }
                                             </>
                                         ))}
-                                        {/*   <Menu closeOnSelect={false}>
+                                          {/* <Menu closeOnSelect={false}>
                                             <MenuButton
                                                 bg={"#D9D9D9"}
                                                 borderRadius="50%"

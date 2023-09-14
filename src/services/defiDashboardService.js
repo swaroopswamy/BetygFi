@@ -5,6 +5,7 @@ export const getDefiData = async (payload) => {
         const { data } = await axiosInstance.post(
           `protocols/${payload.id}/get`, payload
         );
+        //console.log("hi",data);
         return data;
       } catch (err) {
         return rejectWithValue(err);

@@ -37,7 +37,6 @@ const TransactionPanelComponent = () => {
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
-  console.log(walletTransactionsData);
   return (
     <>
       <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}

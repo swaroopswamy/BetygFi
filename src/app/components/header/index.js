@@ -25,7 +25,8 @@ import {
   Image,
   Drawer,
   DrawerOverlay,
-  Collapse
+  Collapse,
+  Slide
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -249,14 +250,17 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
       </Flex>
 
       <Flex
+        position={"fixed"}
+        top={"0"}
+        zIndex={"90"}
         px={{ base: 4, md: 4 }}
         display={{ base: "flex", md: "none" }}
         width={"full"}
         height="60px"
         alignItems="center"
         bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
-        // borderBottom={"1px"}
-        // borderColor={colorMode === 'light' ? "#515151" : "#272727"}
+        borderBottom={"1px"}
+        borderColor={colorMode === 'light' ? "#E1E1E1" : "#333"}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
@@ -284,7 +288,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           <Box>
             <Image
               src={colorMode === "light" ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
-              h={"25px"}
+              h={25}
               cursor={"pointer"}
               onClick={() => {
                 router.push('/');
@@ -308,10 +312,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
       <Collapse
         in={isMobileSearchOpen}
+        style={{position: "fixed", width: "100%", zIndex: "80"}}
         animateOpacity={"true"}
       >
         <Box
           px={{ base: 4, md: 4 }}
+          w={"100%"}
           display={"flex"}
           bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
           border={"1px"}

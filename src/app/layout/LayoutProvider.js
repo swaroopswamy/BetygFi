@@ -80,6 +80,7 @@ export default function LayoutProvider({ children }) {
           display={{base:"flex",md:"none"}}
           flexDirection={"column"}
           // ml={"225px"}
+          mt={"60px"}
           /* ml={screenSize?.width < 1450 ?
             0 :
             (isSidebarCollapsed ? 20 : 225)
