@@ -391,7 +391,7 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          padding={"20px 32px"}
+          padding={"20px 20px"}
           display={"inline-flex"}
           flexDirection={"column"}
           bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -610,9 +610,8 @@ const Dashboard = () => {
               </Text>
               <OverviewColumnChart />
             </Box>
-
-
           </Box>
+
           <Box
             display={"flex"}
             mb={"20px"}

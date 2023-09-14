@@ -1,5 +1,5 @@
 "use client"
-import { Container, Button, Table, Thead, Text, Tbody, useColorModeValue, Box, Skeleton, Tr, Th, Td, Flex, Image, Link, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react'
+import { Container, Button, Table, Thead, Text, Tbody, useColorModeValue, Box, Tooltip, Skeleton, Tr, Th, Td, Flex, Image, Link, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react'
 import { useSelector } from "react-redux";
 import isEmpty from 'is-empty';
 import millify from 'millify';
@@ -74,7 +74,7 @@ const TransactionPanelComponent = () => {
       <Box width={"100%"}>
         <Table variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
-         w={"100%"}>
+          w={"100%"}>
           <Thead bgColor={useColorModeValue("#FFF", "#202020")}>
 
             <Tr>
@@ -224,16 +224,20 @@ const TransactionPanelComponent = () => {
                             alignItems={"center"}
                             gap={"10px"}
                           >
+                            
+                            <Tooltip
+                                key={i} label={item.name}>
                             <>
                               <Image
-                                width={5}
-                                height={5}
-                                alt='logo'
-                                src={item?.logoUrl}
-                                borderRadius={"50%"}
-                              ></Image>
-                            </>
-
+                                  w={"18px"}
+                                  h={"18px"}
+                                  mr={"3px"}
+                                  src={item.logoUrl}
+                                  alt={`${item.id}_icon`}
+                                ></Image>
+                             </>
+                             </Tooltip>
+                             
                             <Box>
                               <Text
                                 _dark={{
@@ -482,30 +486,30 @@ const TransactionPanelComponent = () => {
               <Th
                 colSpan={2}
               >
-                <Box  display={"flex"}
-                alignItems={"center"}
-                justifyContent={"space-between"}>
+                <Box display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"space-between"}>
 
-                <Text color={useColorModeValue("#434347", "#A8ADBD")}
-                fontSize={"14px"}
-                fontWeight={400}
-                letterSpacing={"1.4px"}
-                lineHeight={"20px"}
-                alignItems={"center"}
-                textTransform={"capitalize"}
-                >
-                Address And Date
-                </Text>
-              <Text
-                color={useColorModeValue("#434347", "#A8ADBD")}
-                fontSize={"14px"}
-                fontWeight={400}
-                letterSpacing={"1.4px"}
-                lineHeight={"20px"}
-                textTransform={"capitalize"}
-              >
-                USD Value
-                </Text>
+                  <Text color={useColorModeValue("#434347", "#A8ADBD")}
+                    fontSize={"14px"}
+                    fontWeight={400}
+                    letterSpacing={"1.4px"}
+                    lineHeight={"20px"}
+                    alignItems={"center"}
+                    textTransform={"capitalize"}
+                  >
+                    Address And Date
+                  </Text>
+                  <Text
+                    color={useColorModeValue("#434347", "#A8ADBD")}
+                    fontSize={"14px"}
+                    fontWeight={400}
+                    letterSpacing={"1.4px"}
+                    lineHeight={"20px"}
+                    textTransform={"capitalize"}
+                  >
+                    USD Value
+                  </Text>
                 </Box>
               </Th>
             </Tr>
@@ -639,7 +643,7 @@ const TransactionPanelComponent = () => {
                           _light={{
                             bg: "#FFFFFF"
                           }}
-                         display={"flex"}
+                          display={"flex"}
 
                         >
                           <Box>
