@@ -136,7 +136,8 @@ const BlockchainAllocationTreemapChart = () => {
         }
     })
 
-    toScaleSeries[3].data.push(otherItem);
+    if (otherItem.y != 0)
+        toScaleSeries[3].data.push(otherItem);
 
     let finalSeries = [];
     toScaleSeries.map((item, i) => {
@@ -151,6 +152,7 @@ const BlockchainAllocationTreemapChart = () => {
     })
 
     console.log("orig ", series)
+    console.log("toscale ", toScaleSeries);
     console.log("final ", finalSeries);
 
 
