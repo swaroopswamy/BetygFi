@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-import { SkeletonRow } from './wallet_analytics';
+import { SkeletonRow, USDollar } from './wallet_analytics';
 
 const ProtocolAllocationTable = () => {
     const { colorMode } = useColorMode();
@@ -14,12 +14,13 @@ const ProtocolAllocationTable = () => {
                     borderRadius={"6px"}
                     _dark={{
                         bg: "#202020",
-                        color: "#FFFFFF"
+                        // color: "#FFFFFF"
                     }}
                     _light={{
                         bg: "#FFFFFF",
-                        color: "#16171B"
+                        // color: "#16171B"
                     }}
+                    // borderColor={colorMode === 'light' ? }
                     pb="14px"
                 >
                     <Text
@@ -206,7 +207,7 @@ const ProtocolAllocationTable = () => {
                             _light={{ bgColor: "#FFF" }}
                         >
 
-                            {/* {protocolAllocationData?.isError && (
+                            {protocolAllocationData?.isError && (
                                 <>
                                     <Tr >
                                         <Td
@@ -246,6 +247,7 @@ const ProtocolAllocationTable = () => {
                                                     key={i}
                                                     logoUrl={item.logoUrl}
                                                     name={item.name}
+                                                    percentage={item.percentage}
                                                     value={item.value}
                                                 />
                                             )
@@ -278,19 +280,19 @@ const ProtocolAllocationTable = () => {
                                         </>
                                     )
                                 )
-                            } */}
+                            }
 
-                            {[0, 1, 2, 3, 4].map((item, i) => {
+                            {/* {[0, 1, 2, 3, 4].map((item, i) => {
                                 return (
                                     <TableRow
                                         key={i}
                                         logoUrl={"https://assets.coingecko.com/coins/images/25244/thumb/Optimism.png?1660904599"}
                                         name={"Placeholder Name"}
-                                        percentage={"70%"}
+                                        percentage={"70"}
                                         value={"7657"}
                                     />
                                 )
-                            })}
+                            })} */}
 
                         </Tbody>
 
@@ -349,19 +351,19 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
                     >
-                        {percentage}
+                        {percentage}%
                     </Text>
                 </Box>
             </Td>
             <Td
                 fontSize={"14px"}
             >
-                USD {value}
+                USD {USDollar.format(value)}
             </Td>
         </Tr>
 
         <Tr
-            key={i}
+            key={name}
             display={{ base: "table-row", md: "none" }}
             height={"50px"}
         >
@@ -389,15 +391,39 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                 >
                                     <Box
                                         display={"flex"}
-                                        justifyContent={"center"}
+                                        justifyContent={"space-between"}
                                         alignItems={"center"}
+                                        w={"70%"}
                                     >
-                                        <Image
-                                            w={"20px"}
-                                            h={"20px"}
-                                            src={logoUrl}
-                                            alt=""
-                                        ></Image>
+                                        <Box
+                                            display={"flex"}
+                                            alignItems={"center"}
+                                        >
+                                            <Image
+                                                w={"20px"}
+                                                h={"20px"}
+                                                src={logoUrl}
+                                                borderRadius={"50%"}
+                                                alt=""
+                                            ></Image>
+
+                                            <Text
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                _dark={{
+                                                    color: "#FFFFFF"
+                                                }}
+                                                fontSize={"14px"}
+                                                fontStyle={"normal"}
+                                                fontWeight={"600"}
+                                                letterSpacing={"1.4px"}
+                                                lineHeight={"20px"}
+                                                ml="12px"
+                                            >
+                                                {name}
+                                            </Text>
+                                        </Box>
 
                                         <Text
                                             _light={{
@@ -410,29 +436,15 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                             fontStyle={"normal"}
                                             fontWeight={"600"}
                                             lineHeight={"20px"}
-                                            ml="12px"
+                                            textAlign={"left"}
                                         >
-                                            {name}
+                                            {percentage}%
                                         </Text>
                                     </Box>
 
-                                    <Text
-                                        _light={{
-                                            color: "#16171B"
-                                        }}
-                                        _dark={{
-                                            color: "#FFFFFF"
-                                        }}
-                                        fontSize={"14px"}
-                                        fontStyle={"normal"}
-                                        fontWeight={"600"}
-                                        lineHeight={"20px"}
-                                        ml="12px"
-                                    >
-                                        {percentage}
-                                    </Text>
+                                    <AccordionIcon
+                                    />
 
-                                    <AccordionIcon />
                                 </Box>
                             </AccordionButton>
                         </h2>
@@ -447,12 +459,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                     display={"flex"}
                                 >
                                     <Text
-                                        _light={{
-                                            color: "#8F8F8F"
-                                        }}
-                                        _dark={{
-                                            color: "##8F8F8F"
-                                        }}
+                                        color="#8F8F8F"
                                         fontSize={"14px"}
                                         fontStyle={"normal"}
                                         fontWeight={"400"}
@@ -464,10 +471,10 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
 
                                     <Text
                                         _light={{
-                                            color: "#8F8F8F"
+                                            color: "#16171B"
                                         }}
                                         _dark={{
-                                            color: "##8F8F8F"
+                                            color: "#FFF"
                                         }}
                                         fontSize={"14px"}
                                         fontStyle={"normal"}
@@ -476,7 +483,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                                         textAlign={"left"}
                                         ml={"20px"}
                                     >
-                                        {value}
+                                        USD {USDollar.format(value)}
                                     </Text>
                                 </Box>
                             </Box>
