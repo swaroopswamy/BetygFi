@@ -314,7 +314,9 @@ const Dashboard = () => {
           >
             Select the blockchains you'd like to analyze
           </Text> */}
-          <Box mr={{ base: 2, md: 4 }} display={"flex"}>
+          <Box 
+          //mr={{ base: 2, md: 4 }} 
+          display={"flex"}>
             {/* <Flex
               cursor={"pointer"}
               alignItems={"center"}
@@ -882,7 +884,7 @@ const Dashboard = () => {
               py={{ base: "0px", md: "25px" }}
             >
               <Flex justifyContent={"space-between"} 
-              padding={"23px 0px 23px" }
+              //padding={"23px 0px 23px" }
               >
                 <Text
                   fontSize={"18px"}

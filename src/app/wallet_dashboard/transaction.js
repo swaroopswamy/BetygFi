@@ -531,7 +531,7 @@ const TransactionPanelComponent = () => {
                     //mr={"20px"}
                     >
                       <AccordionItem>
-                        <h2>
+                        <h2  w={{ base: "90%", md: "100%" }}>
                           <AccordionButton
                             _dark={{
                               bg: "#16171B"
