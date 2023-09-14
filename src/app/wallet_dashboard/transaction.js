@@ -28,6 +28,21 @@ const SkeletonRow = () => (
     </Td>
   </Box>
 )
+
+const MobileSkeletonRow = () => (
+  <Box as="tr">
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    <Td>
+      <Skeleton height="20px" my={4} />
+    </Td>
+    {/* <Td>
+      <Skeleton height="20px" my={4} />
+    </Td> */}
+  </Box>
+)
+
 const TransactionPanelComponent = () => {
 
   const value1 = "300";
@@ -59,7 +74,7 @@ const TransactionPanelComponent = () => {
       <Box width={"100%"}>
         <Table variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
-          w={{ base: "100%", md: "100%" }}>
+         w={"100%"}>
           <Thead bgColor={useColorModeValue("#FFF", "#202020")}>
 
             <Tr>
@@ -465,17 +480,23 @@ const TransactionPanelComponent = () => {
           <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
             <Tr>
               <Th
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                colSpan={2}
+              >
+                <Box  display={"flex"}
+                alignItems={"center"}
+                justifyContent={"space-between"}>
+
+                <Text color={useColorModeValue("#434347", "#A8ADBD")}
                 fontSize={"14px"}
                 fontWeight={400}
                 letterSpacing={"1.4px"}
                 lineHeight={"20px"}
                 alignItems={"center"}
                 textTransform={"capitalize"}
-              >
+                >
                 Address And Date
-              </Th>
-              <Th
+                </Text>
+              <Text
                 color={useColorModeValue("#434347", "#A8ADBD")}
                 fontSize={"14px"}
                 fontWeight={400}
@@ -484,12 +505,13 @@ const TransactionPanelComponent = () => {
                 textTransform={"capitalize"}
               >
                 USD Value
+                </Text>
+                </Box>
               </Th>
             </Tr>
           </Thead>
-          <Tbody
-          //w={{ base: "100%", md: "100%" }}
-          >
+
+          <Tbody>
             {walletTransactionsData.isError && (
               <Tr>
                 <Td
@@ -512,9 +534,9 @@ const TransactionPanelComponent = () => {
             )}
             {walletTransactionsData.isLoading && (
               <>
-                <SkeletonRow />
-                <SkeletonRow />
-                <SkeletonRow />
+                <MobileSkeletonRow />
+                <MobileSkeletonRow />
+                <MobileSkeletonRow />
               </>
             )}
             {walletTransactionsData?.isSuccess && walletTransactionsData?.data?.data.length > 0 ? (
@@ -524,13 +546,11 @@ const TransactionPanelComponent = () => {
                 >
                   <Td
                     p={0}
-                    colSpan={2}
+                    colSpan={1}
                   >
-                    <Accordion allowToggle
-                    //mr={"20px"}
-                    >
-                      <AccordionItem>
-                        <h2  w={{ base: "90%", md: "100%" }}>
+                    <Accordion allowToggle>
+                      <AccordionItem  >
+                        <h2 >
                           <AccordionButton
                             _dark={{
                               bg: "#16171B"
@@ -619,6 +639,8 @@ const TransactionPanelComponent = () => {
                           _light={{
                             bg: "#FFFFFF"
                           }}
+                         display={"flex"}
+
                         >
                           <Box>
                             <Tr>
