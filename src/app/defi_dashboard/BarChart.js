@@ -8,10 +8,7 @@ import { useSelector } from "react-redux";
 import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-let USDollar = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+let USDollar = new Intl.NumberFormat('en-US');
 
 function BarChart() {
   const { colorMode } = useColorMode();
@@ -68,7 +65,7 @@ function BarChart() {
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          USDollar.format(series[0][dataPointIndex]) + "" +
+          USDollar.format(series[0][dataPointIndex]) + " USD" +
           '</div>' +
           "</div>"
         );
@@ -83,6 +80,12 @@ function BarChart() {
           fontSize: "11px",
           fontWeight: 400,
         },
+        formatter: function(value, opts) {
+          return millify(value, {
+            precision: 2,
+            locales: "en-US"
+          });
+        }
       },
       axisTicks: {
         show: true,
