@@ -90,7 +90,7 @@ const WalletAnalyticsPanel = () => {
           </Box>
 
           <Box
-            paddingLeft={"15px"}
+            px={"15px"}
           >
             <BlockchainAllocationTreemapChart />
           </Box>

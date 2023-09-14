@@ -29,12 +29,11 @@ const BlockchainAllocationTreemapChart = () => {
         },
         plotOptions: {
             treemap: {
-                distributed: true,
-                enableShades: false
+                distributed: false,
+                enableShades: true
             }
         },
         dataLabels: {
-
             enabled: true,
             style: {
                 fontSize: '16px',
@@ -43,8 +42,7 @@ const BlockchainAllocationTreemapChart = () => {
             },
             formatter: function (text, op) {
                 if (op.value > 0) {
-
-                    return [text, op.value + "%",]
+                    return [text.split(" ")[0], text.split(" ")[1]]
                 }
             },
             offsetY: -4
@@ -53,15 +51,15 @@ const BlockchainAllocationTreemapChart = () => {
             theme: colorMode,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
 
-                let xAxisName = w?.config?.series[0].data;
+                let xAxisName = w?.config?.series[seriesIndex].data;
                 if (xAxisName[dataPointIndex]["y"] > 0) {
                     return (
                         '<div class="graph_box">' +
                         '<div class="graph_inner_text_big" >' +
                         '<div class="inner_box">' +
-                        xAxisName[dataPointIndex]["x"] +
+                        xAxisName[dataPointIndex]["x"].split(" ")[0] +
                         '<div class="graph_inner_text_sm">' +
-                        xAxisName[dataPointIndex]["y"] + '%' +
+                        xAxisName[dataPointIndex]["x"].split(" ")[1] +
                         '</div>' +
                         '</div>' +
                         '</div>' +
@@ -78,9 +76,84 @@ const BlockchainAllocationTreemapChart = () => {
                 return {
                     x: item,
                     y: blockchainAllocationData?.data[item]
-                }
-            })
+                }}
+            )
         }]
+
+    let toScaleSeries = [
+        {
+            name: "Largest",
+            data: [] // More than 20%
+        },
+        {
+            name: "Smaller",
+            data: [] // 10 - 20%
+        },
+        {
+            name: "Smallest",
+            data: [] // Under 10%
+        },
+        {
+            name: "Other",
+            data: [] // Only Other Item
+        }
+    ];
+
+    let otherItem = {
+        x: "Other",
+        y: 0
+    }
+
+    let bucketSums = [0, 0, 0, 0];
+    let scale = [60, 20, 15, 5];
+
+    Object.keys(blockchainAllocationData?.data || {})?.map((item, i) => {
+        let val = Number(blockchainAllocationData?.data[item]);
+        if (val >= 20.00) {
+            bucketSums[0] += val;
+            toScaleSeries[0].data.push({
+                x: item,
+                y: val
+            })
+        }
+        if (val < 20.00 && val >= 10.00) {
+            bucketSums[1] += val;
+            toScaleSeries[1].data.push({
+                x: item,
+                y: val
+            })
+        }
+        if (val < 10.00 && val >= 1.00) {
+            bucketSums[2] += val;
+            toScaleSeries[2].data.push({
+                x: item,
+                y: val
+            })
+        }
+        if (val < 1.00) {
+            bucketSums[3] += val;
+            otherItem.y += val;
+        }
+    })
+
+    toScaleSeries[3].data.push(otherItem);
+
+    let finalSeries = [];
+    toScaleSeries.map((item, i) => {
+        if (item.data.length !== 0) {
+            item.data.map((obj, j) => {
+                obj.x = obj.x + " " + obj.y.toFixed(2) + "%";
+                obj.y = obj.y * scale[i]/bucketSums[i];
+                obj.y = obj.y;
+            })
+            finalSeries.push(item);
+        }
+    })
+
+    console.log("orig ", series)
+    console.log("final ", finalSeries);
+
+
     return (
         <>
             {blockchainAllocationData?.isLoading && (
@@ -145,7 +218,7 @@ const BlockchainAllocationTreemapChart = () => {
                     :
                     (
                         <>
-                            <ApexCharts options={options} series={series} type="treemap" height={300} />
+                            <ApexCharts options={options} series={finalSeries} type="treemap" height={300} />
                         </>
                     )
 
