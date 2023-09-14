@@ -5,8 +5,7 @@ import { SkeletonRow, USDollar } from './wallet_analytics';
 const InteractionWithKnownEntitiesTable = () => {
     const { colorMode } = useColorMode();
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
-    console.log("data ", walletBalanceData);
-
+    
     return (
         <>
             <Flex

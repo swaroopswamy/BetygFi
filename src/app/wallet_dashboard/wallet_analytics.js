@@ -220,11 +220,9 @@ const WalletAnalyticsPanel = () => {
           borderRadius={"6px"}
           _dark={{
             bg: "#202020",
-            border: "1px solid #272727"
           }}
           _light={{
             bg: "#FFFFFF",
-            border: "1px solid #ADADAD"
           }}
         >
           <InflowTokensTable />
@@ -238,11 +236,9 @@ const WalletAnalyticsPanel = () => {
           borderRadius={"6px"}
           _dark={{
             bg: "#202020",
-            border: "1px solid #272727"
           }}
           _light={{
             bg: "#FFFFFF",
-            border: "1px solid #ADADAD"
           }}
         >
           <OutflowTokensTable />
@@ -306,7 +302,6 @@ const WalletAnalyticsPanel = () => {
           borderRadius={"6px"}
           _dark={{
             bg: "#202020",
-            border: "1px solid #272727"
           }}
           _light={{
             bg: "#FFFFFF",
