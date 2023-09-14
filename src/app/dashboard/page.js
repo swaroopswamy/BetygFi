@@ -711,7 +711,8 @@ const Dashboard = () => {
             </Accordion>
 
             <Accordion w={{ base: "100%", md: "35%" }}
-              allowToggle>
+              allowToggle
+              mt={"15px"}>
               <AccordionItem
                 w={{ base: "100%", md: "35%" }}
                 display={{ base: "block", md: "none" }}

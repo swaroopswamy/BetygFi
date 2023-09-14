@@ -655,8 +655,7 @@ const Rankings = () => {
             </>
           )}
           {tableData.DefiRankingsTableData.isSuccess &&
-            (
-              tableData.DefiRankingsTableData?.data?.data?.length > 0 ?
+            (tableData.DefiRankingsTableData?.data?.data?.length > 0 ?
                 (tableData.DefiRankingsTableData?.data?.data.map((item, i) => {
                   return (
                     <>
@@ -1032,7 +1031,7 @@ const Rankings = () => {
                                   <Button
                                     width={"100%"}
                                     variant='solid'
-                                    background={useColorModeValue("#FFF", "#333")}
+                                    background={useColorModeValue("#F5F5F7", "#333")}
                                   >
                                     <Text
                                       color={useColorModeValue("#202020", "#FFF")}
