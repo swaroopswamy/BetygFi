@@ -39,17 +39,14 @@ const PortfolioPanelComponent = () => {
       <Box
         display={"flex"}
         flexDirection={"column"}
+        px={{ base: 4 }}
       >
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-        >
-        </Box>
 
         <Box
           mt="25px"
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFFFFF", "#202020")}
+
         >
           <Box
             display={"flex"}
@@ -746,176 +743,305 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
           </h2>
 
           <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
-            <TableContainer>
-              <Table variant='simple'>
+            <Table variant='simple'
+              display={{ base: "none", md: 'table' }}
+              w={"100%"}
+            >
 
-                <Thead>
-                  <Tr
-                    bg={useColorModeValue("#F5F5F7", "#191919")}
-                    width={"100%"}
-                    flex-shrink={"0"}
-                  >
-                    {thread.map((item, i) => {
-                      return (
-                        <Th
-                          key={i}
+              <Thead>
+                <Tr
+                  bg={useColorModeValue("#F5F5F7", "#191919")}
+                  width={"100%"}
+                  flex-shrink={"0"}
+                >
+                  {thread.map((item, i) => {
+                    return (
+                      <Th
+                        key={i}
+                        _light={{
+                          color: "#434347"
+                        }}
+                        _dark={{
+                          color: "#A8ADBD"
+                        }}
+                        fontSize={"14px"}
+                        fontStyle={"normal"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        letterSpacing={"1px"}
+                        textTransform={"uppercase"}
+                        textAlign={"left"}
+                      >
+                        {item}
+                      </Th>
+                    );
+                  })}
+                </Tr>
+              </Thead>
+
+              <Tbody>
+                {(tableData?.isError || !tableData?.data?.defiBalance) && (
+                  <>
+                    <Tr>
+                      <Td
+                        colSpan={"8"}
+                      >
+                        <Text
                           _light={{
-                            color: "#434347"
+                            color: "#16171B"
                           }}
                           _dark={{
-                            color: "#A8ADBD"
+                            color: "#FF"
                           }}
-                          fontSize={"14px"}
-                          fontStyle={"normal"}
+                          fontSize={"20px"}
                           fontWeight={"400"}
-                          lineHeight={"20px"}
                           letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
+                          textAlign={"center"}
+                          p="20px"
                         >
-                          {item}
-                        </Th>
-                      );
-                    })}
-                  </Tr>
-                </Thead>
+                          No Data available
+                        </Text>
+                      </Td>
+                    </Tr>
+                  </>
+                )}
 
-                <Tbody>
-                  {(tableData?.isError || !tableData?.data?.defiBalance) && (
-                    <>
-                      <Tr>
-                        <Td
-                          colSpan={"8"}
-                        >
+                {tableData?.isLoading && (
+                  <>
+                    <SkeletonRow />
+                    <SkeletonRow />
+                    <SkeletonRow />
+                  </>
+                )}
+
+                {tableData?.isSuccess && tableData?.data?.defiBalance && tableData?.data?.defiBalance?.map((item, i) => {
+                  return (
+                    <Tr key={i}>
+                      <Td >
+                        <Flex>
+                          <Image
+                            width={"24px"}
+                            height={"24px"}
+                            src={item.tokenLogoUrl}
+                            alt="">
+                          </Image>
                           <Text
                             _light={{
                               color: "#16171B"
                             }}
                             _dark={{
-                              color: "#FF"
+                              color: "#FFFFFF"
                             }}
-                            fontSize={"20px"}
-                            fontWeight={"400"}
-                            letterSpacing={"1px"}
-                            textAlign={"center"}
-                            p="20px"
+                            fontSize={"14px"}
+                            fontStyle={"normal"}
+                            fontWeight={"600"}
+                            lineHeight={"11px"}
+                            mt={"10px"}
+                            ml={"10px"}
                           >
-                            No Data available
+                            {item.token}
                           </Text>
-                        </Td>
-                      </Tr>
-                    </>
-                  )}
+                        </Flex>
+                      </Td>
 
-                  {tableData?.isLoading && (
-                    <>
-                      <SkeletonRow />
-                      <SkeletonRow />
-                      <SkeletonRow />
-                    </>
-                  )}
+                      <Td>
+                        <Flex>
+                          <Text
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            _dark={{
+                              color: "#FFFFFF"
+                            }}
+                            fontSize={"14px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            {item.balance}
+                          </Text>
+                        </Flex>
+                      </Td>
 
-                  {tableData?.isSuccess && tableData?.data?.defiBalance && tableData?.data?.defiBalance?.map((item, i) => {
-                    return (
-                      <Tr key={i}>
-                        <Td >
-                          <Flex>
-                            <Image
-                              width={"24px"}
-                              height={"24px"} 
-                              src={item.tokenLogoUrl} 
-                              alt="">
-                            </Image>
-                            <Text
-                              _light={{
-                                color: "#16171B"
-                              }}
-                              _dark={{
-                                color: "#FFFFFF"
-                              }}
-                              fontSize={"14px"}
-                              fontStyle={"normal"}
-                              fontWeight={"600"}
-                              lineHeight={"11px"}
-                              mt={"10px"}
-                              ml={"10px"}
-                            >
-                              {item.token}
-                            </Text>
-                          </Flex>
-                        </Td>
+                      <Td>
+                        <Flex>
+                          <Text
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            _dark={{
+                              color: "#FFFFFF"
+                            }}
+                            fontSize={"14px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            {item.price}
+                          </Text>
+                        </Flex>
+                      </Td>
 
-                        <Td>
-                          <Flex>
-                            <Text
-                              _light={{
-                                color: "#16171B"
-                              }}
-                              _dark={{
-                                color: "#FFFFFF"
-                              }}
-                              fontSize={"14px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              {item.balance}
-                            </Text>
-                          </Flex>
-                        </Td>
+                      <Td>
+                        <Flex>
+                          <Text
+                            _light={{
+                              color: "#16171B"
+                            }}
+                            _dark={{
+                              color: "#FFFFFF"
+                            }}
+                            fontSize={"14px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                          >
+                            {
+                              ((item?.value)).toLocaleString('en-US', {
+                                style: 'currency',
+                                currency: 'USD'
+                              })
+                            }
+                          </Text>
+                        </Flex>
+                      </Td>
+                    </Tr>
+                  )
+                })}
 
-                        <Td>
-                          <Flex>
-                            <Text
-                              _light={{
-                                color: "#16171B"
-                              }}
-                              _dark={{
-                                color: "#FFFFFF"
-                              }}
-                              fontSize={"14px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              {item.price}
-                            </Text>
-                          </Flex>
-                        </Td>
+              </Tbody>
 
-                        <Td>
-                          <Flex>
-                            <Text
-                              _light={{
-                                color: "#16171B"
-                              }}
-                              _dark={{
-                                color: "#FFFFFF"
-                              }}
-                              fontSize={"14px"}
-                              fontStyle={"normal"}
-                              fontWeight={"400"}
-                              lineHeight={"20px"}
-                            >
-                              {
-                                ((item?.value)).toLocaleString('en-US', {
-                                    style: 'currency',
-                                    currency: 'USD'
-                                })
-                              }
-                            </Text>
-                          </Flex>
-                        </Td>
-                      </Tr>
-                    )
-                  })}
+            </Table >
+            
+            {tableData?.isSuccess && tableData?.data?.defiBalance && tableData?.data?.defiBalance?.map((item, i) => {
+              return (
+                <>
+                  <Box
+                    display={{ base: "flex", md: 'none' }}
+                    flexDirection={"column"}
+                    p={2}
+                  >
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
 
-                </Tbody>
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F"
+                        }}
+                        _dark={{
+                          color: "#ADADAD"
+                        }}
+                      >
+                        Token
+                      </Text>
+                      <Flex>
+                        <Image
+                          width={"24px"}
+                          height={"24px"}
+                          src={item?.tokenLogoUrl}
+                          alt="">
+                        </Image>
+                        <Text
+                          _light={{
+                            color: "#16171B"
+                          }}
+                          _dark={{
+                            color: "#FFFFFF"
+                          }}
+                          fontSize={"14px"}
+                          fontStyle={"normal"}
+                          fontWeight={"600"}
+                          lineHeight={"11px"}
+                          mt={"10px"}
+                          ml={"10px"}
+                        >
+                          {item?.token}
+                        </Text>
+                      </Flex>
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
 
-              </Table >
-            </TableContainer >
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F"
+                        }}
+                        _dark={{
+                          color: "#ADADAD"
+                        }}
+                      >
+                        Balance
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF"
+                        }}
+                        _light={{
+                          color: "#16171B"
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      >
+
+                      </Text>
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F"
+                        }}
+                        _dark={{
+                          color: "#ADADAD"
+                        }}
+                      >
+                        % Share
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF"
+                        }}
+                        _light={{
+                          color: "#16171B"
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      >
+                      </Text>
+                    </Box>
+                  </Box>
+                </>
+              )
+            })}
+
           </AccordionPanel >
-
         </AccordionItem >
       </Accordion >
     </>
