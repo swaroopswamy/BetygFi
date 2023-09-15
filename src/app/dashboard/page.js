@@ -682,8 +682,9 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          //padding={"20px 20px"}
-          paddingX={"20px"}
+          padding={"20px 20px"}
+          mb={{base: "60px", md:"20px"}}
+          // paddingX={"20px"}
           //display={"inline-flex"}
           flexDirection={"column"}
           bgColor={{base: useColorModeValue("#F0F0F5", "none"), md: useColorModeValue("#F0F0F5", "#191919")}}

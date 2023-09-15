@@ -73,7 +73,7 @@ export default function LayoutProvider({ children }) {
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
             {children}
-            <Prefooter />
+            {/* <Prefooter /> */}
             <Footer />
           </Box>
         </Box>
@@ -92,7 +92,7 @@ export default function LayoutProvider({ children }) {
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
             {children}
-            <Prefooter />
+            {/* <Prefooter /> */}
             <Footer />
           </Box>
         </Box>
