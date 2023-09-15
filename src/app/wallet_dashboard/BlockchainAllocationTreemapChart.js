@@ -151,11 +151,6 @@ const BlockchainAllocationTreemapChart = () => {
         }
     })
 
-    console.log("orig ", series)
-    console.log("toscale ", toScaleSeries);
-    console.log("final ", finalSeries);
-
-
     return (
         <>
             {blockchainAllocationData?.isLoading && (
