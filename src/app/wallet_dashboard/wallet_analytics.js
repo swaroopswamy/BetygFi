@@ -62,7 +62,7 @@ const WalletAnalyticsPanel = () => {
         >
           <Box
             display="flex"
-            justifyContent={"space-between"}
+            //justifyContent={"space-between"}
             alignItems={"center"}
             p="22px 25px"
           >
@@ -75,6 +75,18 @@ const WalletAnalyticsPanel = () => {
             >
               Blockchain Allocation
             </Text>
+            <>
+              <Tooltip label="Frame">
+                <Image width={"12px"}
+                  height={"12px"}
+                  flexShrink={"0"}
+                  mt={"5px"}
+                  ml={"5px"}
+                  alt=''
+                  src="/images/Frame.svg">
+                </Image>
+              </Tooltip>
+            </>
 
             {/*   <Button
               fontSize={"10px"}

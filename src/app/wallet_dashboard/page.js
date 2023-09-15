@@ -544,10 +544,13 @@ function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
     return (
         <>
             <Box
+            //w={"100%"}
                 display={"flex"}
                 alignItems={"flex-start"}
                 justifyContent={"end"}
-                padding="20px 30px"
+                padding="20px 10px"
+                marginLeft={"20px"}
+                marginRight={"17px"}
                 background={useColorModeValue('#FFFFFF', '#202020')}
             >
 
