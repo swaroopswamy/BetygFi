@@ -40,7 +40,7 @@ const Approach = () => {
 
            
             <Box padding={"29px 0px 0px 50px"} color={useColorModeValue("#191919", "#FFFFFF")}>
-              <Heading as="h1" size="xl" fontSize={"22px"} paddingTop={"10px"}>1.Abstract:</Heading>
+              <Heading as="h1" size="xl" fontSize={"22px"} paddingTop={"10px"}>1. Abstract:</Heading>
               <Text padding={"10px 0px 0px 20px"} fontSize={"14px"}>
                 Decentralized Finance (DeFi) has gained significant traction in recent years. We believe that, in
                 the future Decentralized Finance holds promise for it has the potential to democratize finance
