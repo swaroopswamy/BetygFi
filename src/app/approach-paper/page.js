@@ -1,12 +1,27 @@
 "use client"
 import { Box, Container, Image, useColorModeValue, Text, Heading,useColorMode, div, h1, h2, br, Flex, Button } from "@chakra-ui/react";
 import { TriangleUpIcon } from '@chakra-ui/icons'
+import { useEffect, useState } from "react";
 
 const Approach = () => {
   const handleScrollToTop = () => {
     window && window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const { colorMode } = useColorMode();
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  useEffect(() => {
+    const handleScrollButtonVisibility = () => {
+      window.scrollY > 300 ? setShowScrollButton(true) : setShowScrollButton(false);
+    };
+
+    window.addEventListener('scroll', handleScrollButtonVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', handleScrollButtonVisibility);
+    };
+  }, []);
+
   return (
     <>
       {
@@ -262,10 +277,10 @@ const Approach = () => {
 
                   
               </Box>
-              <Box
+              {showScrollButton && 
+                (<Box
                 _dark={{ bgcolor: "#FFFFFF" }}
                 _ light={{ bgcolor: "#16171B" }}
-                display={window.scrollY > window.innerHeight ? "flex" : "none"}
               >
                 <Button alt=""
                   component="button"
@@ -279,8 +294,8 @@ const Approach = () => {
                   strokeWidth="1px"
                   style={{
                     position: 'fixed',
-                    bottom: '42px',
-                    right: '2px',
+                    bottom: '80px',
+                    right: '20px',
                     zIndex: '9999'
                   }}
                   _dark={{
@@ -296,7 +311,8 @@ const Approach = () => {
                   <Text fontSize={"10px"}>Back to Top</Text>
 
                 </Button>
-              </Box>
+                </Box>)
+              }
             </Box>
           </Box>
         </Container>
