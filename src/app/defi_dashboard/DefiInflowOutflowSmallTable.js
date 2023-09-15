@@ -10,12 +10,13 @@ function Defiflow() {
 
     const tableName = "DeFi Inflow/Outflow";
     const thread = ["Users Address", "Net Value Flow (7 Days)"];
+    const Definitions = "DeFi Inflow/Outflow: DeFi inflow is the flow of the assets that DeFi smart contract are receiving as deposits/supply and DeFi outflow are the assets that DeFi smart contract send as borrow/withdraw. "
 
 
-    /*  const defiflowTableData = useSelector(
-       (state) => state?.defiDashboardData?.DefiHotContractsTableData
-   )
-    */
+//       const defiflowTableData = useSelector(
+//        (state) => state?.defiDashboardData?.DefiHotContractsTableData
+//    )
+    
     const tableData = [
         ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],
         ["/images/Trondefiusers.svg", "Tron", "+ 256,456,560 USD"],
@@ -35,8 +36,8 @@ function Defiflow() {
                 thread={thread}
                 tableData={tableData}
                 RowComponent={RowComponent}
-            // Tablepath={Tablepath}
-            // Definitions={Definitions}
+                //Tablepath={Tablepath}
+                Definitions={Definitions}
             />
         </Box>
     )

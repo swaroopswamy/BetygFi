@@ -45,6 +45,7 @@ import {
 } from "@/redux/dashboard_data/dataSlice";
 import isEmpty from "is-empty";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import './page.module.css';
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
@@ -135,7 +136,7 @@ const Dashboard = () => {
     <>
       <Box display={"flex"} flexDirection={"column"}>
         <Box
-          display={"flex"}
+          display={{ base: "none", md: "block" }}
           flexDirection={"column"}
           px={{ base: "10px", md: "29px" }}
           paddingTop={"20px"}
@@ -206,12 +207,12 @@ const Dashboard = () => {
                           BlockchainTypeHandler(item.id);
                         }}
                       >
+
                         <Image
                           width={18}
                           height={18}
                           src={item.logoUrl}
                           alt={`${item.id}_icon`}
-
                         ></Image>
                         {/* <Text
                      fontSize={"10px"}
@@ -314,9 +315,9 @@ const Dashboard = () => {
           >
             Select the blockchains you'd like to analyze
           </Text> */}
-          <Box 
-          //mr={{ base: 2, md: 4 }} 
-          display={"flex"}>
+          <Box
+            //mr={{ base: 2, md: 4 }} 
+            display={"flex"}>
             {/* <Flex
               cursor={"pointer"}
               alignItems={"center"}
@@ -390,8 +391,110 @@ const Dashboard = () => {
 
           </Box>
         </Box>
+
         <Box
-          padding={"20px 32px"}
+          display={{base:"block",md:"none"}}
+          flexDirection={"column"}
+          px={{ base: "15px", md: "29px" }}
+          paddingTop={"20px"}
+          paddingBottom={"10px"}
+          bgColor={useColorModeValue("#FFF", "#131313")}
+        >
+          <Box
+           //display={"flex"}
+            //alignItems={"center"}
+            w="100%"
+            mb="15px"
+            justifyContent={"left"}
+            position={"relative"}
+          >
+            <Text
+              fontSize={"18px"}
+              fontWeight={"600"}
+              letterSpacing={"1.8px"}
+              lineHeight={"20px"}
+              textTransform={"capitalise"}
+              color={useColorModeValue("#191919", "#FFFFFF")}
+            >
+              DeFi Markets
+            </Text>
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              mr={"22px"}
+              mt={"15px"}
+            >
+              {blockchainListData.data?.map((item, i) => (
+                <>
+                  {/* {i < 4 && */}
+                    <Tooltip key={i} label={item.name}>
+                      <Box
+                        display={"flex"}
+                        cursor={"pointer"}
+                        alignItems={"center"}
+                        justifyContent={"center"}
+
+                        flexDirection={"row"}
+                        bg={"#D9D9D9"}
+                        borderRadius="50%"
+                        border={blockchainSelected.includes(item.id) ? "5px solid #55A406" : ""}
+                        boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                        w="40px"
+                        h="35px"
+                        ml={i !== 0 && '5px'}
+                        _hover={{ borderColor: "blue" }}
+                        onClick={() => {
+                          BlockchainTypeHandler(item.id);
+                        }}
+                        overflowX="auto"
+                        flexWrap="nowrap"
+                        css={{
+                          '&::-webkit-scrollbar': {
+                            width: '0.2rem',
+                            height: '0.2rem',
+                          },
+                          '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: 'transparent',
+                          },
+                        }}
+                      >
+                        
+                        <Image
+                          width={20}
+                          height={20}
+                          src={item.logoUrl}
+                          alt={`${item.id}_icon`}
+                        ></Image>
+                      </Box>
+                    </Tooltip>
+                  {/* } */}
+                </>
+              ))}
+             
+            </Box>
+          </Box>
+          <Text
+            fontSize={"14px"}
+            fontWeight={"400"}
+            letterSpacing={"1.4px"}
+            lineHeight={"20px"}
+            mb="20px"
+            pl="3px"
+            opacity={"0.6"}
+            color={useColorModeValue("#16171B", "#A8ADBD")}
+          >
+            Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
+          </Text>
+         
+          <Box 
+          //mr={{ base: 2, md: 4 }} 
+          display={"flex"}>
+          </Box>
+        </Box>
+
+        <Box
+          padding={"20px 20px"}
           display={"inline-flex"}
           flexDirection={"column"}
           bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -408,7 +511,6 @@ const Dashboard = () => {
               Choose the markets you'd like to explore
             </Text>
           </Box>
-
 
           <Box
             display="flex"
@@ -610,9 +712,8 @@ const Dashboard = () => {
               </Text>
               <OverviewColumnChart />
             </Box>
-
-
           </Box>
+
           <Box
             display={"flex"}
             mb={"20px"}
@@ -623,8 +724,9 @@ const Dashboard = () => {
                 w={{ base: "100%", md: "62%" }}
                 display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
+                borderColor={useColorModeValue("#E1E1E1", "#272727")}
+                border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
                 px={{ base: "10px", md: "20px" }}
                 py={{ base: "10px", md: "25px" }}
                 mr={{ base: "10px", md: "25px" }}
@@ -719,8 +821,9 @@ const Dashboard = () => {
                 w={{ base: "100%", md: "35%" }}
                 display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
+                borderColor={useColorModeValue("#E1E1E1", "#272727")}
+                border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
                 px={{ base: "10px", md: "20px" }}
                 py={{ base: "10px", md: "25px" }}
               >
@@ -884,53 +987,48 @@ const Dashboard = () => {
               px={{ base: "0px", md: "20px" }}
               py={{ base: "0px", md: "25px" }}
             >
-              <Flex justifyContent={"space-between"} 
-              //padding={"23px 0px 23px" }
+              <Flex 
+                justifyContent={"space-between"}
+                alignItems={"center"}
+                padding={"20px 10px 10px 10px"}
               >
                 <Text
                   fontSize={"18px"}
                   fontWeight={600}
                   lineHeight={"20px"}
-                  pt={"10px"}
                   ml={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
                   Defi Ranking
                 </Text>
-                <Flex alignItems={"center"}>
-                  <Box>
-                    {/* <Input
-                      borderColor={useColorModeValue("#E8E8E8", "#333")}
-                      bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                      color={useColorModeValue("#16171B", "#A8ADBD")}
-                      fontSize={"10px"}
-                      fontWeight={"400"}
-                      lineHeight={"20px"}
-                      letterSpacing={"1px"}
-                      w="207px"
-                     // placeholder="Search DeFi"
-                      onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    /> */}
-                    {/* <SearchIcon bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                      color={useColorModeValue("#16171B", "#A8ADBD")}
-                      bg={useColorModeValue("#F5F5F7", "#191919")}
-                      onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    /> */}
 
-                    <InputGroup w="80%" ml={"40px"}>
+                <Flex 
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  ml={"auto"}
+                >
+                    <InputGroup
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
                       <Input
                         type="text"
                         border="none"
                         bgColor={"transparent"}
+                        borderRadius={"0px"}
                         color={useColorModeValue("#16171B", "#A8ADBD")}
                         fontSize="12px"
                         fontWeight="400"
                         lineHeight="20px"
                         letterSpacing="1.2px"
-                        w="100%"
-                     // placeholder="Search"                     
+                        h={"30px"}
+                        w="80%"                  
                       ></Input>
-                      <InputRightElement pointerEvents='none'>
+                      <InputRightElement
+                        mt={"-5px"}
+                        // pointerEvents='none'
+                        mr={"0"}
+                      >
                         <Image
                           src="/images/search_icon.svg"
                           width={20}
@@ -939,7 +1037,6 @@ const Dashboard = () => {
                         />
                       </InputRightElement>
                     </InputGroup>
-                  </Box>
                 </Flex>
               </Flex>
 
