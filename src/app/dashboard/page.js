@@ -987,53 +987,48 @@ const Dashboard = () => {
               px={{ base: "0px", md: "20px" }}
               py={{ base: "0px", md: "25px" }}
             >
-              <Flex justifyContent={"space-between"}
-              //padding={"23px 0px 23px" }
+              <Flex 
+                justifyContent={"space-between"}
+                alignItems={"center"}
+                padding={"20px 10px 10px 10px"}
               >
                 <Text
                   fontSize={"18px"}
                   fontWeight={600}
                   lineHeight={"20px"}
-                  pt={"10px"}
                   ml={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
                   Defi Ranking
                 </Text>
-                <Flex alignItems={"center"}>
-                  <Box>
-                    {/* <Input
-                      borderColor={useColorModeValue("#E8E8E8", "#333")}
-                      bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                      color={useColorModeValue("#16171B", "#A8ADBD")}
-                      fontSize={"10px"}
-                      fontWeight={"400"}
-                      lineHeight={"20px"}
-                      letterSpacing={"1px"}
-                      w="207px"
-                     // placeholder="Search DeFi"
-                      onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    /> */}
-                    {/* <SearchIcon bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                      color={useColorModeValue("#16171B", "#A8ADBD")}
-                      bg={useColorModeValue("#F5F5F7", "#191919")}
-                      onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    /> */}
 
-                    <InputGroup w="80%" ml={"40px"}>
+                <Flex 
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  ml={"auto"}
+                >
+                    <InputGroup
+                      justifyContent={"space-between"}
+                      alignItems={"center"}
+                    >
                       <Input
                         type="text"
                         border="none"
                         bgColor={"transparent"}
+                        borderRadius={"0px"}
                         color={useColorModeValue("#16171B", "#A8ADBD")}
                         fontSize="12px"
                         fontWeight="400"
                         lineHeight="20px"
                         letterSpacing="1.2px"
-                        w="100%"
-                      // placeholder="Search"                     
+                        h={"30px"}
+                        w="80%"                  
                       ></Input>
-                      <InputRightElement pointerEvents='none'>
+                      <InputRightElement
+                        mt={"-5px"}
+                        // pointerEvents='none'
+                        mr={"0"}
+                      >
                         <Image
                           src="/images/search_icon.svg"
                           width={20}
@@ -1042,7 +1037,6 @@ const Dashboard = () => {
                         />
                       </InputRightElement>
                     </InputGroup>
-                  </Box>
                 </Flex>
               </Flex>
 
