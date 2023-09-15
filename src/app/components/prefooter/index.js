@@ -11,11 +11,10 @@ const Prefooter = () => {
                 justifyContent={"center"}
                 alignItems={"center"}
                 position="relative"
-                padding={"10px"}
+                padding={"25px"}
                 mb={{base: "70px", md: "30px"}}
                 w={"100%"}
-                mx={"3px"}
-                bgColor={colorMode === 'light' ? "#FFF" : "#191919"}
+                bgColor={colorMode === 'light' ? "#F0F0F5" : "#191919"}
             >
                 <Box
                     display={{base: "flex", md: "none"}}
@@ -24,7 +23,7 @@ const Prefooter = () => {
                         fontSize={"14px"}
                         lineHeight={"20px"}
                         letterSpacing={"1.4"}
-                        color={"#FFF"}
+                        color={colorMode ===  'light' ? "#16171B" : "#FFF"}
                     >
                         -- End of Page --
                     </Text>

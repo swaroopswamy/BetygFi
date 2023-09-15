@@ -793,9 +793,10 @@ const Dashboard = () => {
                     </Box>
                     <Box 
                     borderRadius="50%"
-                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
-                    background={useColorModeValue("#F0F0F5", "#191919")}
+                    border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
+                    background={useColorModeValue("#F5F5F7", "#191919")}
                     ml={"5px"}
+                    mt={"5px"}
                     >
                     <AccordionIcon margin={"4px"} />
                     </Box>
@@ -845,8 +846,8 @@ const Dashboard = () => {
                   </Text>
                   <Box 
                     borderRadius="50%"
-                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
-                    background={useColorModeValue("#F0F0F5", "#191919")}
+                    border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
+                    background={useColorModeValue("#F5F5F7", "#191919")}
                     ml={"5px"}
                     >
                     <AccordionIcon margin={"4px"} />

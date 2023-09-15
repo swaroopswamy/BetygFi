@@ -1,4 +1,4 @@
-import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
+import { Box, Image, Input, Text, useColorModeValue, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Flex, Spacer, Skeleton, useColorMode, isLoaded } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { defiArrayChangedReducer, fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -732,13 +732,21 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 </Box>
               </Box>
 
-              <Box>
+              {/* <Box>
                 <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
                   width={"24px"}
                   height={"24px"}
                   flex-shrink={"0"}
                 ></Image>
-              </Box>
+              </Box> */}
+              <Box 
+                    borderRadius="50%"
+                    border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
+                    background={useColorModeValue("#F5F5F7", "#191919")}
+                    ml={"5px"}
+                    >
+                    <AccordionIcon margin={"4px"} />
+                    </Box>
             </AccordionButton>
           </h2>
 
