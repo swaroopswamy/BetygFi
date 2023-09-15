@@ -373,6 +373,7 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                 colSpan={3}
             >
                 <Accordion
+                    p={"0"}
                     allowMultiple
                 >
                     <AccordionItem
@@ -380,12 +381,14 @@ const TableRow = ({ i, logoUrl, name, percentage, value }) => {
                     >
                         <h2>
                             <AccordionButton
-                                _expanded={{
-                                    mt: "10px"
-                                }}
+                                p={"0"}
+                                // _expanded={{
+                                //     mt: "10px"
+                                // }}
                             >
                                 <Box
                                     w="100%"
+                                    m={"16px"}
                                     display={"flex"}
                                     alignItems={"center"}
                                     justifyContent={"space-between"}

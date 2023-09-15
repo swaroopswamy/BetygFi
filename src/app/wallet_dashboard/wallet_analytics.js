@@ -305,7 +305,6 @@ const WalletAnalyticsPanel = () => {
           }}
           _light={{
             bg: "#FFFFFF",
-            border: "1px solid #ADADAD"
           }}
           p="25px"
         >
