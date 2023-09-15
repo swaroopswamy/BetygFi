@@ -395,7 +395,7 @@ const Dashboard = () => {
         <Box
           display={{base:"block",md:"none"}}
           flexDirection={"column"}
-          px={{ base: "10px", md: "29px" }}
+          px={{ base: "15px", md: "29px" }}
           paddingTop={"20px"}
           paddingBottom={"10px"}
           bgColor={useColorModeValue("#FFF", "#131313")}
@@ -409,12 +409,11 @@ const Dashboard = () => {
             position={"relative"}
           >
             <Text
-              fontSize={"24px"}
-              fontWeight={"400"}
-              letterSpacing={"2.4px"}
+              fontSize={"18px"}
+              fontWeight={"600"}
+              letterSpacing={"1.8px"}
               lineHeight={"20px"}
-
-              textTransform={"uppercase"}
+              textTransform={"capitalise"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
               DeFi Markets
@@ -725,8 +724,9 @@ const Dashboard = () => {
                 w={{ base: "100%", md: "62%" }}
                 display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
+                borderColor={useColorModeValue("#E1E1E1", "#272727")}
+                border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
                 px={{ base: "10px", md: "20px" }}
                 py={{ base: "10px", md: "25px" }}
                 mr={{ base: "10px", md: "25px" }}
@@ -821,8 +821,9 @@ const Dashboard = () => {
                 w={{ base: "100%", md: "35%" }}
                 display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
+                borderColor={useColorModeValue("#E1E1E1", "#272727")}
+                border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
                 px={{ base: "10px", md: "20px" }}
                 py={{ base: "10px", md: "25px" }}
               >
