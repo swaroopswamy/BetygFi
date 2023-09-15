@@ -793,7 +793,7 @@ const Dashboard = () => {
                     </Box>
                     <Box 
                     borderRadius="50%"
-                    border={useColorModeValue("2px solid v#16171B","2px solid #333333")}
+                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
                     background={useColorModeValue("#F0F0F5", "#191919")}
                     ml={"5px"}
                     >
@@ -845,7 +845,7 @@ const Dashboard = () => {
                   </Text>
                   <Box 
                     borderRadius="50%"
-                    border={useColorModeValue("2px solid v#16171B","2px solid #333333")}
+                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
                     background={useColorModeValue("#F0F0F5", "#191919")}
                     ml={"5px"}
                     >
