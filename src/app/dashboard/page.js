@@ -502,7 +502,7 @@ const Dashboard = () => {
           flexDirection={"column"}
           bgColor={useColorModeValue("#F0F0F5", "#191919")}
         >
-          <Box>
+          {/* <Box>
             <Text
               fontSize={"10px"}
               fontWeight={400}
@@ -513,15 +513,16 @@ const Dashboard = () => {
             >
               Choose the markets you'd like to explore
             </Text>
-          </Box>
+          </Box> */}
 
           <Box
             display="flex"
             flexDirection="column"
-            mb="15px"
+           // mb="15px"
+           h={"40px"}
             w="100%"
             overflow="hidden"
-          >
+            >
             <Box
               display="flex"
               height="100%"
@@ -537,13 +538,11 @@ const Dashboard = () => {
                   backgroundColor: 'transparent',
                 },
               }}
-            >
+               >
               <Box
                 key="all"
                 borderRadius="2px"
-                padding="7px 9px"
-                mr="4px"
-                cursor="pointer"
+               cursor="pointer"
                 _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
                 border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
                 bgColor={categorySelected.length === 0 ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
@@ -551,12 +550,15 @@ const Dashboard = () => {
                 onClick={() => {
                   categoryChangedHandler('All');
                 }}
-              >
+                paddingX="9px"
+               pt={"4px"}
+           >
                 <Text
                   fontSize="14px"
                   fontWeight="700"
                   letterSpacing="1px"
                   lineHeight="10px"
+                  mt={"10px"}
                   color={useColorModeValue('#191919', '#FFFFFF')}
                 >
                   All
@@ -567,7 +569,7 @@ const Dashboard = () => {
                   key={i}
                   borderRadius="2px"
                   padding="7px 9px"
-                  mr="4px"
+                 // mr="4px"
                   cursor="pointer"
                   _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
                   border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
@@ -582,6 +584,7 @@ const Dashboard = () => {
                     fontWeight="400"
                     letterSpacing="1px"
                     lineHeight="10px"
+                    mt={"5px"}
                     color={useColorModeValue('#191919', '#FFFFFF')}
                   >
                     {category}
