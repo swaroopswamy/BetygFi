@@ -68,6 +68,7 @@ export default function LayoutProvider({ children }) {
             (isSidebarCollapsed ? 20 : 225)
           }
           w="100%"
+          overflowX={"hidden"}
         >
           <Navbar onOpenMenu={onOpen} />
           <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
@@ -79,6 +80,7 @@ export default function LayoutProvider({ children }) {
         <Box
           display={{base:"flex",md:"none"}}
           flexDirection={"column"}
+          overflowX={"hidden"}
           // ml={"225px"}
           mt={"60px"}
           /* ml={screenSize?.width < 1450 ?

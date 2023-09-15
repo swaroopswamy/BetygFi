@@ -512,6 +512,7 @@ const Dashboard = () => {
             </Text>
           </Box> */}
 
+        {/* Desktop defi selection */}
         <Box
           display={{ base: "none", md: "block" }}
           flexDirection="column"
@@ -595,98 +596,100 @@ const Dashboard = () => {
           </Box>
         </Box>
 
+        {/* Mobile defi selection */}
+        <Box
+          display={{ base: "block", md: "none" }}
+          //display="flex"
+          flexDirection="column"
+          // mb="20px"
+          h={"40px"}
+          mr={"20px"}
+          ml={"20px"}
+          w="100%"
+          // mt={"20px"}
+          overflow="hidden"
+        >
+          <Box
+            display="flex"
+            height="100%"
+            flexDirection="row"
+            overflowX="auto"
+            flexWrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '0.2rem',
+                height: '0.2rem',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'transparent',
+              },
+            }}
+          >
+            <Box
+              key="all"
+              borderRadius="2px"
+              cursor="pointer"
+              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
+              borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+              bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+              color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+              whiteSpace="nowrap"
+              onClick={() => {
+                categoryChangedHandler('All');
+              }}
+              paddingX="9px"
+              pt={"4px"}
+            >
+              <Text
+                fontSize="14px"
+                fontWeight="700"
+                letterSpacing="1px"
+                lineHeight="10px"
+                mt={"10px"}
+              // color={useColorModeValue('#191919', '#FFFFFF')}
+              >
+                All
+              </Text>
+            </Box>
+            {categories.map((category, i) => (
+              <Box
+                key={i}
+                borderRadius="2px"
+                padding="7px 9px"
+                cursor="pointer"
+                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
+                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+                whiteSpace="nowrap"
+                onClick={() => {
+                  categoryChangedHandler(category);
+                }}
+              >
+                <Text
+                  fontSize="14px"
+                  fontWeight="400"
+                  letterSpacing="1px"
+                  lineHeight="10px"
+                  mt={"5px"}
+                // color={useColorModeValue('#191919', '#FFFFFF')}
+                >
+                  {category}
+                </Text>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+
         <Box
           //padding={"20px 20px"}
           paddingX={"20px"}
           //display={"inline-flex"}
           flexDirection={"column"}
-          bgColor={useColorModeValue("#F0F0F5", "#191919")}
+          bgColor={{base: useColorModeValue("#F0F0F5", "none"), md: useColorModeValue("#F0F0F5", "#191919")}}
         >
-          <Box
-            display={{ base: "block", md: "none" }}
-            //display="flex"
-            flexDirection="column"
-            // mb="20px"
-            h={"40px"}
-            mr={"20px"}
-            w="100%"
-            // mt={"20px"}
-            overflow="hidden"
-          >
-            <Box
-              display="flex"
-              height="100%"
-              flexDirection="row"
-              overflowX="auto"
-              flexWrap="nowrap"
-              css={{
-                '&::-webkit-scrollbar': {
-                  width: '0.2rem',
-                  height: '0.2rem',
-                },
-                '&::-webkit-scrollbar-thumb': {
-                  backgroundColor: 'transparent',
-                },
-              }}
-            >
-              <Box
-                key="all"
-                borderRadius="2px"
-                cursor="pointer"
-                _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
-                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
-                color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
-                whiteSpace="nowrap"
-                onClick={() => {
-                  categoryChangedHandler('All');
-                }}
-                paddingX="9px"
-                pt={"4px"}
-              >
-                <Text
-                  fontSize="14px"
-                  fontWeight="700"
-                  letterSpacing="1px"
-                  lineHeight="10px"
-                  mt={"10px"}
-                  // color={useColorModeValue('#191919', '#FFFFFF')}
-                >
-                  All
-                </Text>
-              </Box>
-              {categories.map((category, i) => (
-                <Box
-                  key={i}
-                  borderRadius="2px"
-                  padding="7px 9px"
-                  cursor="pointer"
-                  _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
-                  borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                  bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
-                  color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
-                  whiteSpace="nowrap"
-                  onClick={() => {
-                    categoryChangedHandler(category);
-                  }}
-                >
-                  <Text
-                    fontSize="14px"
-                    fontWeight="400"
-                    letterSpacing="1px"
-                    lineHeight="10px"
-                    mt={"5px"}
-                    // color={useColorModeValue('#191919', '#FFFFFF')}
-                  >
-                    {category}
-                  </Text>
-                </Box>
-              ))}
-            </Box>
-          </Box>
 
-
-
+          {/* Overview score boxes */}
           <Box
             display={"inline-flex"}
             mb={"30px"}
@@ -813,6 +816,7 @@ const Dashboard = () => {
             </Box>
           </Box>
 
+          {/* Overview score Accordions */}
           <Box
             display={"flex"}
             mb={"20px"}
@@ -959,7 +963,7 @@ const Dashboard = () => {
             </Accordion>
           </Box>
 
-
+          {/* Tables */}
           <Box>
 
             <Box
