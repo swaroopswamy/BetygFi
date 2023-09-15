@@ -315,6 +315,8 @@ const Rankings = () => {
                   fontWeight={"400"}
                   letterSpacing={"1px"}
                   p="20px"
+                  textAlign={"center"}
+                  colSpan={8}
                 >
                   No data available
                 </Td>
@@ -630,20 +632,22 @@ const Rankings = () => {
             <>
               <Tr>
                 <Td
+                  colSpan={8}
+                >
+                  <Text
                     _dark={{
                       color: "#FFF"
                     }}
                     _light={{
                       color: "#16171B"
                     }}
-                  fontSize={"20px"}
-                  fontWeight={400}
-                  letterSpacing={"1px"}
-                  textAlign={"center"}
-                  colSpan={8}
-                  p="20px"
-                >
-                  No data available
+                    fontSize={"20px"}
+                    fontWeight={400}
+                    letterSpacing={"1px"}
+                    textAlign={"center"}
+                  >
+                    No data available
+                  </Text>
                 </Td>
               </Tr>
             </>
@@ -1056,24 +1060,29 @@ const Rankings = () => {
                   );
                 })) : (
                   <>
-                    <Tr>
-                      <Td
-                          _dark={{
-                            color: "#FFF"
-                          }}
-                          _light={{
-                            color: "#16171B"
-                          }}
+                  <Tr>
+                    <Td
+                      justifyContent={"center"}
+                      textAlign={"center"}
+                      colSpan={8}
+                      p="20px"
+                    >
+                      <Text
+                        _dark={{
+                          color: "#FFF"
+                        }}
+                        _light={{
+                          color: "#16171B"
+                        }}
                         fontSize={"20px"}
                         fontWeight={400}
                         letterSpacing={"1px"}
-                        colSpan={8}
                         textAlign={"center"}
-                        p="20px"
                       >
                         No data available
-                      </Td>
-                    </Tr>
+                      </Text>
+                    </Td>
+                  </Tr>
                   </>
                 )
             )

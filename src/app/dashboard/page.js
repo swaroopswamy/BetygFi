@@ -24,8 +24,10 @@ import {
   AccordionPanel,
   Input,
   InputGroup,
-  InputRightElement,
-  AccordionIcon
+  InputLeftElement,
+  AccordionIcon,
+  useDisclosure,
+  Collapse
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Rankings from "./DefiRankingsTable";
@@ -51,6 +53,7 @@ const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);
   const [searchByName, setSearchByName] = useState('');
   const dispatch = useDispatch();
+  const { isOpen: isRankingsSearchOpen, onToggle: onRankingsSearchToggle } = useDisclosure();
 
   const BlockchainTypeHandler = (type) => {
     dispatch(blockchainTypeChangedReducer(type));
@@ -393,15 +396,16 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          display={{base:"block",md:"none"}}
+          display={{ base: "block", md: "none" }}
           flexDirection={"column"}
+          w={"100%"}
           px={{ base: "15px", md: "29px" }}
           paddingTop={"20px"}
           paddingBottom={"10px"}
           bgColor={useColorModeValue("#FFF", "#131313")}
         >
           <Box
-           //display={"flex"}
+            //display={"flex"}
             //alignItems={"center"}
             w="100%"
             mb="15px"
@@ -428,52 +432,53 @@ const Dashboard = () => {
               {blockchainListData.data?.map((item, i) => (
                 <>
                   {/* {i < 4 && */}
-                    <Tooltip key={i} label={item.name}>
-                      <Box
-                        display={"flex"}
-                        cursor={"pointer"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
+                  <Tooltip key={i} label={item.name}>
+                    <Box
+                      display={"flex"}
+                      cursor={"pointer"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
 
-                        flexDirection={"row"}
-                        bg={"#D9D9D9"}
-                        borderRadius="50%"
-                        border={blockchainSelected.includes(item.id) ? "5px solid #55A406" : ""}
-                        boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
-                        w="40px"
-                        h="35px"
-                        ml={i !== 0 && '5px'}
-                        _hover={{ borderColor: "blue" }}
-                        onClick={() => {
-                          BlockchainTypeHandler(item.id);
-                        }}
-                        overflowX="auto"
-                        flexWrap="nowrap"
-                        css={{
-                          '&::-webkit-scrollbar': {
-                            width: '0.2rem',
-                            height: '0.2rem',
-                          },
-                          '&::-webkit-scrollbar-thumb': {
-                            backgroundColor: 'transparent',
-                          },
-                        }}
-                      >
-                        
-                        <Image
-                          width={20}
-                          height={20}
-                          src={item.logoUrl}
-                          alt={`${item.id}_icon`}
-                        ></Image>
-                      </Box>
-                    </Tooltip>
+                      flexDirection={"row"}
+                      bg={"#D9D9D9"}
+                      borderRadius="50%"
+                      border={blockchainSelected.includes(item.id) ? "5px solid #55A406" : ""}
+                      boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                      w="40px"
+                      h="35px"
+                      ml={i !== 0 && '5px'}
+                      _hover={{ borderColor: "blue" }}
+                      onClick={() => {
+                        BlockchainTypeHandler(item.id);
+                      }}
+                      overflowX="auto"
+                      flexWrap="nowrap"
+                      css={{
+                        '&::-webkit-scrollbar': {
+                          width: '0.2rem',
+                          height: '0.2rem',
+                        },
+                        '&::-webkit-scrollbar-thumb': {
+                          backgroundColor: 'transparent',
+                        },
+                      }}
+                    >
+
+                      <Image
+                        width={20}
+                        height={20}
+                        src={item.logoUrl}
+                        alt={`${item.id}_icon`}
+                      ></Image>
+                    </Box>
+                  </Tooltip>
                   {/* } */}
                 </>
               ))}
-             
+
             </Box>
           </Box>
+
           <Text
             fontSize={"14px"}
             fontWeight={"400"}
@@ -486,20 +491,15 @@ const Dashboard = () => {
           >
             Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
           </Text>
-         
-          <Box 
-          //mr={{ base: 2, md: 4 }} 
-          display={"flex"}>
+
+          <Box
+            //mr={{ base: 2, md: 4 }} 
+            display={"flex"}>
           </Box>
         </Box>
 
-        <Box
-          padding={"20px 20px"}
-          display={"inline-flex"}
-          flexDirection={"column"}
-          bgColor={useColorModeValue("#F0F0F5", "#191919")}
-        >
-          <Box>
+
+        {/* <Box>
             <Text
               fontSize={"10px"}
               fontWeight={400}
@@ -510,89 +510,191 @@ const Dashboard = () => {
             >
               Choose the markets you'd like to explore
             </Text>
-          </Box>
+          </Box> */}
 
+        {/* Desktop defi selection */}
+        <Box
+          display={{ base: "none", md: "block" }}
+          flexDirection="column"
+          h={"40px"}
+          w="100%"
+          ml={"25px"}
+          overflow="hidden"
+        >
           <Box
             display="flex"
-            flexDirection="column"
-            mb="15px"
-            w="100%"
-            overflow="hidden"
+            height="100%"
+            flexDirection="row"
+            overflowX="auto"
+            flexWrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '0.2rem',
+                height: '0.2rem',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'transparent',
+              },
+            }}
           >
             <Box
-              display="flex"
-              height="100%"
-              flexDirection="row"
-              overflowX="auto"
-              flexWrap="nowrap"
-              css={{
-                '&::-webkit-scrollbar': {
-                  width: '0.2rem',
-                  height: '0.2rem',
-                },
-                '&::-webkit-scrollbar-thumb': {
-                  backgroundColor: 'transparent',
-                },
+              key="all"
+              borderRadius="2px"
+              cursor="pointer"
+              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+              borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+              bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+              color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+              whiteSpace="nowrap"
+              onClick={() => {
+                categoryChangedHandler('All');
               }}
+              paddingX="9px"
+              pt={"4px"}
             >
+              <Text
+                fontSize="14px"
+                fontWeight="700"
+                letterSpacing="1px"
+                lineHeight="10px"
+                mt={"10px"}
+                // _hover={{color: useColorModeValue('#FFF', '#000')}}
+                // color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#F5F5F7', '#202020')}
+              >
+                All
+              </Text>
+            </Box>
+            {categories.map((category, i) => (
               <Box
-                key="all"
+                key={i}
                 borderRadius="2px"
                 padding="7px 9px"
-                mr="4px"
+                // mr="4px"
                 cursor="pointer"
-                _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                bgColor={categorySelected.length === 0 ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
+                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
                 whiteSpace="nowrap"
                 onClick={() => {
-                  categoryChangedHandler('All');
+                  categoryChangedHandler(category);
                 }}
               >
                 <Text
                   fontSize="14px"
-                  fontWeight="700"
+                  fontWeight="400"
                   letterSpacing="1px"
                   lineHeight="10px"
-                  color={useColorModeValue('#191919', '#FFFFFF')}
+                  mt={"5px"}
+                  // _hover={{color: useColorModeValue('#FFF', '#000')}}
+                  // color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
                 >
-                  All
+                  {category}
                 </Text>
               </Box>
-              {categories.map((category, i) => (
-                <Box
-                  key={i}
-                  borderRadius="2px"
-                  padding="7px 9px"
-                  mr="4px"
-                  cursor="pointer"
-                  _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                  border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                  bgColor={categorySelected.includes(category) ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
-                  whiteSpace="nowrap"
-                  onClick={() => {
-                    categoryChangedHandler(category);
-                  }}
-                >
-                  <Text
-                    fontSize="14px"
-                    fontWeight="400"
-                    letterSpacing="1px"
-                    lineHeight="10px"
-                    color={useColorModeValue('#191919', '#FFFFFF')}
-                  >
-                    {category}
-                  </Text>
-                </Box>
-              ))}
-            </Box>
+            ))}
           </Box>
+        </Box>
 
+        {/* Mobile defi selection */}
+        <Box
+          display={{ base: "block", md: "none" }}
+          //display="flex"
+          flexDirection="column"
+          // mb="20px"
+          h={"40px"}
+          mr={"20px"}
+          ml={"20px"}
+          w="100%"
+          // mt={"20px"}
+          overflow="hidden"
+        >
+          <Box
+            display="flex"
+            height="100%"
+            flexDirection="row"
+            overflowX="auto"
+            flexWrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '0.2rem',
+                height: '0.2rem',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'transparent',
+              },
+            }}
+          >
+            <Box
+              key="all"
+              borderRadius="2px"
+              cursor="pointer"
+              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
+              borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+              bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+              color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+              whiteSpace="nowrap"
+              onClick={() => {
+                categoryChangedHandler('All');
+              }}
+              paddingX="9px"
+              pt={"4px"}
+            >
+              <Text
+                fontSize="14px"
+                fontWeight="700"
+                letterSpacing="1px"
+                lineHeight="10px"
+                mt={"10px"}
+              // color={useColorModeValue('#191919', '#FFFFFF')}
+              >
+                All
+              </Text>
+            </Box>
+            {categories.map((category, i) => (
+              <Box
+                key={i}
+                borderRadius="2px"
+                padding="7px 9px"
+                cursor="pointer"
+                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
+                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+                whiteSpace="nowrap"
+                onClick={() => {
+                  categoryChangedHandler(category);
+                }}
+              >
+                <Text
+                  fontSize="14px"
+                  fontWeight="400"
+                  letterSpacing="1px"
+                  lineHeight="10px"
+                  mt={"5px"}
+                // color={useColorModeValue('#191919', '#FFFFFF')}
+                >
+                  {category}
+                </Text>
+              </Box>
+            ))}
+          </Box>
+        </Box>
 
+        <Box
+          padding={"20px 20px"}
+          mb={{base: "60px", md:"20px"}}
+          // paddingX={"20px"}
+          //display={"inline-flex"}
+          flexDirection={"column"}
+          bgColor={{base: useColorModeValue("#F0F0F5", "none"), md: useColorModeValue("#F0F0F5", "#191919")}}
+        >
 
+          {/* Overview score boxes */}
           <Box
             display={"inline-flex"}
             mb={"30px"}
+            mt={"30px"}
           >
             <Box
               w="62%"
@@ -603,6 +705,7 @@ const Dashboard = () => {
               px={{ base: "10px", md: "20px" }}
               py={{ base: "10px", md: "25px" }}
               mr={{ base: "10px", md: "25px" }}
+
             >
               <Box
                 display={"flex"}
@@ -690,9 +793,9 @@ const Dashboard = () => {
                   For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
                 </Text>
               </Box>
-
-
             </Box>
+
+
             <Box
               w="35%"
               display={{ base: "none", md: "block" }}
@@ -714,6 +817,7 @@ const Dashboard = () => {
             </Box>
           </Box>
 
+          {/* Overview score Accordions */}
           <Box
             display={"flex"}
             mb={"20px"}
@@ -791,14 +895,13 @@ const Dashboard = () => {
                         </Text>
                       </Box>
                     </Box>
-                    <Box 
-                    borderRadius="50%"
-                    border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
-                    background={useColorModeValue("#F5F5F7", "#191919")}
-                    ml={"5px"}
-                    mt={"5px"}
+                    <Box
+                      borderRadius="50%"
+                      border={useColorModeValue("1px solid #16171B", "1px solid #333333")}
+                      background={useColorModeValue("#F0F0F5", "#191919")}
+                      ml={"5px"}
                     >
-                    <AccordionIcon margin={"4px"} />
+                      <AccordionIcon margin={"4px"} />
                     </Box>
                   </AccordionButton>
                 </h2>
@@ -844,14 +947,14 @@ const Dashboard = () => {
                   >
                     Score Distribution
                   </Text>
-                  <Box 
+                  <Box
                     borderRadius="50%"
-                    border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
-                    background={useColorModeValue("#F5F5F7", "#191919")}
+                    border={useColorModeValue("1px solid #16171B", "1px solid #333333")}
+                    background={useColorModeValue("#F0F0F5", "#191919")}
                     ml={"5px"}
-                    >
+                  >
                     <AccordionIcon margin={"4px"} />
-                    </Box>
+                  </Box>
                 </AccordionButton>
 
                 <AccordionPanel pb={4}>
@@ -861,7 +964,7 @@ const Dashboard = () => {
             </Accordion>
           </Box>
 
-
+          {/* Tables */}
           <Box>
 
             <Box
@@ -875,14 +978,18 @@ const Dashboard = () => {
               borderRadius={"6px"}
               dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
             >
-              <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}>
+              <Flex
+                justifyContent={"space-between"}
+                padding={"23px 29px 27px"}
+                alignItems={"center"}
+              >
                 <Text
                   fontSize={"18px"}
                   fontWeight={600}
                   lineHeight={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
-                  Defi Ranking
+                  Defi Rankings
                 </Text>
                 <Flex alignItems={"center"}>
                   <Box>
@@ -1002,10 +1109,10 @@ const Dashboard = () => {
               px={{ base: "0px", md: "20px" }}
               py={{ base: "0px", md: "25px" }}
             >
-              <Flex 
+              <Flex
                 justifyContent={"space-between"}
                 alignItems={"center"}
-                padding={"20px 10px 10px 10px"}
+                padding={"20px 20px 10px 10px"}
               >
                 <Text
                   fontSize={"18px"}
@@ -1014,48 +1121,83 @@ const Dashboard = () => {
                   ml={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
-                  Defi Ranking
+                  DeFi Rankings
                 </Text>
 
-                <Flex 
-                  justifyContent={"space-between"}
-                  alignItems={"center"}
-                  ml={"auto"}
+                <Box
+                  cursor={"pointer"}
+                  onClick={onRankingsSearchToggle}
                 >
-                    <InputGroup
-                      justifyContent={"space-between"}
-                      alignItems={"center"}
-                    >
-                      <Input
-                        type="text"
-                        border="none"
-                        bgColor={"transparent"}
-                        borderRadius={"0px"}
-                        color={useColorModeValue("#16171B", "#A8ADBD")}
-                        fontSize="12px"
-                        fontWeight="400"
-                        lineHeight="20px"
-                        letterSpacing="1.2px"
-                        h={"30px"}
-                        w="80%"                  
-                      ></Input>
-                      <InputRightElement
-                        mt={"-5px"}
-                        // pointerEvents='none'
-                        mr={"0"}
-                      >
-                        <Image
-                          src="/images/search_icon.svg"
-                          width={20}
-                          height={20}
-                          alt="search_icon"
-                        />
-                      </InputRightElement>
-                    </InputGroup>
-                </Flex>
+                  <Image
+                    src="/images/search_icon.svg"
+                    width={20}
+                    height={20}
+                    alt="search_icon"
+                  />
+                </Box>
               </Flex>
 
+              <Collapse
+                in={isRankingsSearchOpen}
+                animateOpacity={"true"}
+              >
+                <Box
+                  px={{ base: 4, md: 4 }}
+                  w={"100%"}
+                  display={"flex"}
+                  borderColor={colorMode === "light" ? "#E1E1E1" : "#191919"}
+                  bgColor={colorMode === "light" ? "#F5F5F7" : "#272727"}
+                  borderBottom={"0px"}
+                  padding={"8px 19px"}
+                >
+                  <InputGroup w="100%">
+                    <InputLeftElement pointerEvents='none'>
+                      <Image
+                        src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+                        width={14}
+                        height={14}
+                        alt="search_icon"
+                      />
+                    </InputLeftElement>
+                    <Input
+                      type="text"
+                      border="1px"
+                      borderRadius="0px"
+                      borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                      bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+                      fontSize="12px"
+                      fontWeight="400"
+                      lineHeight="20px"
+                      letterSpacing="1.2px"
+                      w="100%"
+                      placeholder="Search DeFi"
+                      onChange={(e) => { searchByNameHandler(e.target.value) }}
+                    ></Input>
+                    {/* <Box
+                      alignContent={"center"}
+                      justifyContent={"center"}
+                      cursor={"pointer"}
+                      w={"70px"}
+                      p={"14px 10px"}
+                      bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+                      border="1px"
+                      borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    >
+                      <Text
+                        fontSize={{ base: "12px", sm: "14px" }}
+                        fontWeight={"500"}
+                        lineHeight={"10px"}
+                        textAlign={"center"}
+                      >
+                        Search
+                      </Text>
+                    </Box> */}
+                  </InputGroup>
+                </Box>
+              </Collapse>
+
               <Rankings />
+
               <Box
                 display={"flex"}
                 alignItems={"flex-start"}
@@ -1137,6 +1279,7 @@ const Dashboard = () => {
                     </Button>
                   </>)}
               </Box>
+
             </Box>
           </Box>
         </Box>
