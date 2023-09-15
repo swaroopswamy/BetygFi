@@ -258,7 +258,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         width={"full"}
         height="60px"
         alignItems="center"
-        bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+        bgColor={colorMode === "light" ? "#F0F0F5" : "#272727"}
         borderBottom={"1px"}
         borderColor={colorMode === 'light' ? "#E1E1E1" : "#333"}
         justifyContent={{ base: "space-between", md: "flex-end" }}

@@ -8,7 +8,6 @@ export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => 
 
 export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload) => {
   const response = await getDefiUsersTableData(payload);
-  //console.log("check",response);
   return response.data;
 })
 

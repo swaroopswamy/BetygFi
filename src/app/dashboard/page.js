@@ -797,7 +797,14 @@ const Dashboard = () => {
                         </Text>
                       </Box>
                     </Box>
-                    <AccordionIcon ml={"10px"} />
+                    <Box 
+                    borderRadius="50%"
+                    border={useColorModeValue("2px solid v#16171B","2px solid #333333")}
+                    background={useColorModeValue("#F0F0F5", "#191919")}
+                    ml={"5px"}
+                    >
+                    <AccordionIcon margin={"4px"} />
+                    </Box>
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
@@ -842,7 +849,14 @@ const Dashboard = () => {
                   >
                     Score Distribution
                   </Text>
-                  <AccordionIcon />
+                  <Box 
+                    borderRadius="50%"
+                    border={useColorModeValue("2px solid v#16171B","2px solid #333333")}
+                    background={useColorModeValue("#F0F0F5", "#191919")}
+                    ml={"5px"}
+                    >
+                    <AccordionIcon margin={"4px"} />
+                    </Box>
                 </AccordionButton>
 
                 <AccordionPanel pb={4}>

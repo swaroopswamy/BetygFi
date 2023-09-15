@@ -96,7 +96,7 @@ const Footer = ( {...rest}) => {
         bottom="0"
         width="100%"
         display={{ base: "flex", md: "none" }}
-        bg={useColorModeValue("#F0F0F5", "#191919")}
+        bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
       >
         <Box
