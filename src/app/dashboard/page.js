@@ -478,6 +478,7 @@ const Dashboard = () => {
 
             </Box>
           </Box>
+
           <Text
             fontSize={"14px"}
             fontWeight={"400"}
@@ -497,8 +498,8 @@ const Dashboard = () => {
           </Box>
         </Box>
 
-        
-          {/* <Box>
+
+        {/* <Box>
             <Text
               fontSize={"10px"}
               fontWeight={400}
@@ -511,16 +512,107 @@ const Dashboard = () => {
             </Text>
           </Box> */}
 
+        <Box
+          display={{ base: "none", md: "block" }}
+          flexDirection="column"
+          h={"40px"}
+          w="100%"
+          ml={"25px"}
+          overflow="hidden"
+        >
           <Box
-          display={{base:"none",md:"block"}}
-           // display="flex"
-            flexDirection="column"
-            mb="25px"
-           h={"40px"}
-            w="100%"
-            ml={"25px"}
-            overflow="hidden"
+            display="flex"
+            height="100%"
+            flexDirection="row"
+            overflowX="auto"
+            flexWrap="nowrap"
+            css={{
+              '&::-webkit-scrollbar': {
+                width: '0.2rem',
+                height: '0.2rem',
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'transparent',
+              },
+            }}
+          >
+            <Box
+              key="all"
+              borderRadius="2px"
+              cursor="pointer"
+              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+              borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+              bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+              color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+              whiteSpace="nowrap"
+              onClick={() => {
+                categoryChangedHandler('All');
+              }}
+              paddingX="9px"
+              pt={"4px"}
             >
+              <Text
+                fontSize="14px"
+                fontWeight="700"
+                letterSpacing="1px"
+                lineHeight="10px"
+                mt={"10px"}
+                // _hover={{color: useColorModeValue('#FFF', '#000')}}
+                // color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#F5F5F7', '#202020')}
+              >
+                All
+              </Text>
+            </Box>
+            {categories.map((category, i) => (
+              <Box
+                key={i}
+                borderRadius="2px"
+                padding="7px 9px"
+                // mr="4px"
+                cursor="pointer"
+                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+                whiteSpace="nowrap"
+                onClick={() => {
+                  categoryChangedHandler(category);
+                }}
+              >
+                <Text
+                  fontSize="14px"
+                  fontWeight="400"
+                  letterSpacing="1px"
+                  lineHeight="10px"
+                  mt={"5px"}
+                  // _hover={{color: useColorModeValue('#FFF', '#000')}}
+                  // color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+                >
+                  {category}
+                </Text>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+
+        <Box
+          //padding={"20px 20px"}
+          paddingX={"20px"}
+          //display={"inline-flex"}
+          flexDirection={"column"}
+          bgColor={useColorModeValue("#F0F0F5", "#191919")}
+        >
+          <Box
+            display={{ base: "block", md: "none" }}
+            //display="flex"
+            flexDirection="column"
+            // mb="20px"
+            h={"40px"}
+            mr={"20px"}
+            w="100%"
+            // mt={"20px"}
+            overflow="hidden"
+          >
             <Box
               display="flex"
               height="100%"
@@ -536,117 +628,29 @@ const Dashboard = () => {
                   backgroundColor: 'transparent',
                 },
               }}
-               >
-              <Box
-                key="all"
-                borderRadius="2px"
-                cursor="pointer"
-                _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                bgColor={categorySelected.length === 0 ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
-                whiteSpace="nowrap"
-                onClick={() => {
-                  categoryChangedHandler('All');
-                }}
-                paddingX="9px"
-                pt={"4px"}
-           >
-                <Text
-                  fontSize="14px"
-                  fontWeight="700"
-                  letterSpacing="1px"
-                  lineHeight="10px"
-                  mt={"10px"}
-                  color={useColorModeValue('#191919', '#FFFFFF')}
-                >
-                  All
-                </Text>
-              </Box>
-              {categories.map((category, i) => (
-                <Box
-                  key={i}
-                  borderRadius="2px"
-                  padding="7px 9px"
-                 // mr="4px"
-                  cursor="pointer"
-                  _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                  border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                  bgColor={categorySelected.includes(category) ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
-                  whiteSpace="nowrap"
-                  onClick={() => {
-                    categoryChangedHandler(category);
-                  }}
-                >
-                  <Text
-                    fontSize="14px"
-                    fontWeight="400"
-                    letterSpacing="1px"
-                    lineHeight="10px"
-                    mt={"5px"}
-                    color={useColorModeValue('#191919', '#FFFFFF')}
-                  >
-                    {category}
-                  </Text>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-
-          <Box
-          //padding={"20px 20px"}
-          paddingX={"20px"}
-          //display={"inline-flex"}
-          flexDirection={"column"}
-          bgColor={useColorModeValue("#F0F0F5", "#191919")}
-        >
-          <Box
-          display={{base:"block",md:"none"}}
-            //display="flex"
-            flexDirection="column"
-           // mb="20px"
-           h={"40px"}
-           mr={"20px"}
-            w="100%"
-            mt={"20px"}
-           overflow="hidden"
             >
-            <Box
-              display="flex"
-              height="100%"
-              flexDirection="row"
-             overflowX="auto"
-              flexWrap="nowrap"
-              css={{
-                '&::-webkit-scrollbar': {
-                  width: '0.2rem',
-                  height: '0.2rem',
-                },
-                '&::-webkit-scrollbar-thumb': {
-                  backgroundColor: 'transparent',
-                },
-              }}
-               >
               <Box
                 key="all"
                 borderRadius="2px"
                 cursor="pointer"
-                _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                bgColor={categorySelected.length === 0 ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
+                _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+                borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
                 whiteSpace="nowrap"
                 onClick={() => {
                   categoryChangedHandler('All');
                 }}
                 paddingX="9px"
                 pt={"4px"}
-           >
+              >
                 <Text
                   fontSize="14px"
                   fontWeight="700"
                   letterSpacing="1px"
                   lineHeight="10px"
                   mt={"10px"}
-                  color={useColorModeValue('#191919', '#FFFFFF')}
+                  // color={useColorModeValue('#191919', '#FFFFFF')}
                 >
                   All
                 </Text>
@@ -657,9 +661,10 @@ const Dashboard = () => {
                   borderRadius="2px"
                   padding="7px 9px"
                   cursor="pointer"
-                  _hover={{ bg: useColorModeValue('#FFFFFF', '#191919') }}
-                  border={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-                  bgColor={categorySelected.includes(category) ? useColorModeValue('#FFFFFF', '#191919') : useColorModeValue('#F5F5F7', '#202020')}
+                  _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+                  borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
+                  bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
+                  color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
                   whiteSpace="nowrap"
                   onClick={() => {
                     categoryChangedHandler(category);
@@ -671,7 +676,7 @@ const Dashboard = () => {
                     letterSpacing="1px"
                     lineHeight="10px"
                     mt={"5px"}
-                    color={useColorModeValue('#191919', '#FFFFFF')}
+                    // color={useColorModeValue('#191919', '#FFFFFF')}
                   >
                     {category}
                   </Text>
@@ -680,8 +685,8 @@ const Dashboard = () => {
             </Box>
           </Box>
 
-          
-         
+
+
           <Box
             display={"inline-flex"}
             mb={"30px"}
@@ -696,7 +701,7 @@ const Dashboard = () => {
               px={{ base: "10px", md: "20px" }}
               py={{ base: "10px", md: "25px" }}
               mr={{ base: "10px", md: "25px" }}
-              
+
             >
               <Box
                 display={"flex"}
@@ -885,13 +890,13 @@ const Dashboard = () => {
                         </Text>
                       </Box>
                     </Box>
-                    <Box 
-                    borderRadius="50%"
-                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
-                    background={useColorModeValue("#F0F0F5", "#191919")}
-                    ml={"5px"}
+                    <Box
+                      borderRadius="50%"
+                      border={useColorModeValue("1px solid #16171B", "1px solid #333333")}
+                      background={useColorModeValue("#F0F0F5", "#191919")}
+                      ml={"5px"}
                     >
-                    <AccordionIcon margin={"4px"} />
+                      <AccordionIcon margin={"4px"} />
                     </Box>
                   </AccordionButton>
                 </h2>
@@ -937,14 +942,14 @@ const Dashboard = () => {
                   >
                     Score Distribution
                   </Text>
-                  <Box 
+                  <Box
                     borderRadius="50%"
-                    border={useColorModeValue("1px solid #16171B","1px solid #333333")}
+                    border={useColorModeValue("1px solid #16171B", "1px solid #333333")}
                     background={useColorModeValue("#F0F0F5", "#191919")}
                     ml={"5px"}
-                    >
+                  >
                     <AccordionIcon margin={"4px"} />
-                    </Box>
+                  </Box>
                 </AccordionButton>
 
                 <AccordionPanel pb={4}>
