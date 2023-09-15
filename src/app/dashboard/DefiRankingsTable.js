@@ -673,7 +673,6 @@ const Rankings = () => {
                             <AccordionItem>
                               <h2>
                                 <AccordionButton
-                                  _expanded={{ mt: "10px" }}
                                 >
                                   <Box
                                     display={"flex"}
