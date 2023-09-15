@@ -52,7 +52,7 @@ import { color } from "framer-motion";
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: ApproachPaperIcon, path: './approach-paper'  },
+  { name: "Approach Paper", icon: ApproachPaperIcon, path: '/approach-paper'  },
   { name: "About", icon: CompanyIcon, path: '/about'},
   { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
   // { name: "Significant", icon: StarIcon, path: '#' },
@@ -170,7 +170,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   letterSpacing="1.4px"
                   alignContent="center"
                 >
-                  {link.name}
+                  {link.name} 
                 </NavItem>
               ))}
 
