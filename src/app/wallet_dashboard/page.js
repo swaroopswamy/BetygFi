@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text,Tooltip, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
+import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Tooltip, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -127,6 +127,7 @@ const WalletDashboardPage = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 w="100%"
+                
             >
                 <Box
                     display={"flex"}
@@ -174,7 +175,7 @@ const WalletDashboardPage = () => {
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
-                                mt={{base:"5px",md:"13px"}}
+                                mt={{ base: "5px", md: "13px" }}
                             >
                                 <Text
                                     display={{ base: "none", md: "flex" }}
@@ -411,13 +412,13 @@ const WalletDashboardPage = () => {
                                     overflowX="auto"
                                     flexWrap="nowrap"
                                     css={{
-                                      '&::-webkit-scrollbar': {
-                                        width: '0.2rem',
-                                        height: '0.2rem',
-                                      },
-                                      '&::-webkit-scrollbar-thumb': {
-                                        backgroundColor: 'transparent',
-                                      },
+                                        '&::-webkit-scrollbar': {
+                                            width: '0.2rem',
+                                            height: '0.2rem',
+                                        },
+                                        '&::-webkit-scrollbar-thumb': {
+                                            backgroundColor: 'transparent',
+                                        },
                                     }}
                                 >
                                     <Box
@@ -472,17 +473,17 @@ const WalletDashboardPage = () => {
                                                 display={"flex"}
                                                 alignItems={"center"}
                                                 whiteSpace="nowrap"
-                                             
+
                                             >
-                                                 <Tooltip
-                                                        key={i} label={item.name}>
-                                                <Image
-                                                    w={"18px"}
-                                                    h={"18px"}
-                                                    mr={"3px"}
-                                                    src={item.logoUrl}
-                                                    alt={`${item.id}_icon`}
-                                                ></Image>
+                                                <Tooltip
+                                                    key={i} label={item.name}>
+                                                    <Image
+                                                        w={"18px"}
+                                                        h={"18px"}
+                                                        mr={"3px"}
+                                                        src={item.logoUrl}
+                                                        alt={`${item.id}_icon`}
+                                                    ></Image>
                                                 </Tooltip>
                                                 <Text
                                                     fontSize={"14px"}
@@ -544,14 +545,10 @@ function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
     return (
         <>
             <Box
-            //w={"100%"}
                 display={"flex"}
                 alignItems={"flex-start"}
                 justifyContent={"end"}
-                padding="20px 10px"
-                marginLeft={"20px"}
-                marginRight={"17px"}
-                background={useColorModeValue('#FFFFFF', '#202020')}
+                padding="20px 30px"
             >
 
                 <Box
@@ -573,7 +570,7 @@ function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
                         <Text
                             color={useColorModeValue("#16171B", "#FFF")}
                             fontSize={"14px"}
-                            fontWeight={"600"}
+                            fontWeight={600}
                         >
                             {tablePage}
                         </Text>

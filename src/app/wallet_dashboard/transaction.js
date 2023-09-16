@@ -54,27 +54,27 @@ const TransactionPanelComponent = () => {
   );
   return (
     <>
-      <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
-        mt="25px"
-        bgColor={useColorModeValue("#FFF", "#202020")}
-        display={{ base: "none", md: "block" }}
-        w={{ base: "100%", md: "100%" }}>
-        <Text
-          fontSize="18"
-          fontWeight={"600"}
-          color={useColorModeValue("#16171B", "#FFF")}
+      <Box  w={{ base: "100%", md: "100%" }}>
+        <Flex
+          width={"100%"}
+          justifyContent={"space-between"}
+          padding={"23px 29px 27px 29px"}
+          mt="25px"
+          bgColor={useColorModeValue("#FFF", "#202020")}
+          display={{ base: "none", md: "block" }}
+          w={{ base: "100%", md: "100%" }}>
+          <Text
+            fontSize="18"
+            fontWeight={600}
+            color={useColorModeValue("#16171B", "#FFF")}
 
-        >
-          Wallet Transaction
-        </Text>
-      </Flex>
-
-
-
-      <Box width={"100%"}>
+          >
+            Wallet Transaction
+          </Text>
+        </Flex>
         <Table variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
-          w={"100%"}>
+        >
           <Thead bgColor={useColorModeValue("#FFF", "#202020")}>
 
             <Tr>
@@ -224,20 +224,20 @@ const TransactionPanelComponent = () => {
                             alignItems={"center"}
                             gap={"10px"}
                           >
-                            
+
                             <Tooltip
-                                key={i} label={item.name}>
-                            <>
-                              <Image
+                              key={i} label={item.name}>
+                              <>
+                                <Image
                                   w={"18px"}
                                   h={"18px"}
                                   mr={"3px"}
                                   src={item.logoUrl}
                                   alt={`${item.id}_icon`}
                                 ></Image>
-                             </>
-                             </Tooltip>
-                             
+                              </>
+                            </Tooltip>
+
                             <Box>
                               <Text
                                 _dark={{
@@ -457,7 +457,8 @@ const TransactionPanelComponent = () => {
 
       <Box w={{ base: "100%", md: "100%" }}
         ml={"20px"}
-        mr={"20px"}>
+        mr={"20px"}
+      >
         <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
           mt="25px"
           bgColor={useColorModeValue("#FFF", "#202020")}
@@ -480,6 +481,7 @@ const TransactionPanelComponent = () => {
             bg: "#FFFFFF"
           }}
           w={{ base: "90%", md: "100%" }}
+        //mb={"40px"}
         >
           <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
             <Tr>
@@ -552,7 +554,9 @@ const TransactionPanelComponent = () => {
                     p={0}
                     colSpan={1}
                   >
-                    <Accordion allowToggle>
+                    <Accordion
+                      allowToggle
+                    >
                       <AccordionItem  >
                         <h2 >
                           <AccordionButton

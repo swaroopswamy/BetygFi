@@ -671,7 +671,12 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
 
   return (
     <>
-      <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFFFFF", "#202020")}>
+      <Accordion 
+      defaultIndex={[0]} 
+      allowMultiple 
+      background={useColorModeValue("#FFFFFF", "#202020")}
+      mb={"40px"}
+      >
 
         <AccordionItem>
           <h2>
@@ -742,7 +747,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
               <Box 
                     borderRadius="50%"
                     border={useColorModeValue("1px solid #E8E8E8","1px solid #333333")}
-                    background={useColorModeValue("#F5F5F7", "#191919")}
+                    background={useColorModeValue("#D9D9D9", "#191919")}
                     ml={"5px"}
                     >
                     <AccordionIcon margin={"4px"} />
