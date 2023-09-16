@@ -28,7 +28,7 @@ const Approach = () => {
         <Container maxW={"100%"} padding={"0px"}>
 
           <Box background={useColorModeValue("#E8E8E8", "#222")}
-                 display={{ base: "none", md: "block" }}>
+            display={{ base: "none", md: "block" }}>
 
             <Box display={"flex"}
               flexDirection={"row"}
@@ -318,7 +318,7 @@ const Approach = () => {
 
           {/* mobile Optimized part */}
           <Box background={useColorModeValue("#E8E8E8", "#222")}
-           display={{ base: "block", md: "none" }}>
+            display={{ base: "block", md: "none" }}>
 
             <Box display={"flex"}
               flexDirection={"row"}
@@ -332,14 +332,14 @@ const Approach = () => {
                 color={useColorModeValue("#191919", "#FFFFFF")}
                 //padding={"20px 0px 0px 20px"} 
                 ml={"20px"}
-                >
+              >
                 Approach Paper
               </Text>
 
               {/* <Box paddingRight={"100px"}> */}
-                <Image h={40}
-                        w={40}
-                src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")} 
+              <Image h={40}
+                w={40}
+                src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")}
                 alt=""></Image>
               {/* </Box> */}
             </Box>
@@ -419,12 +419,12 @@ const Approach = () => {
                   paddingTop={"10px"}>2.3 Financial/Market Risk</Heading>
                 <Text padding={"10px 0px 0px 20px"}
                   fontSize={"14px"}>
-                  • Collateralization Ratio <br/>
-                  • 30-day Exponential Moving Average (EMA) <br/>
-                  • Liquidity 30-day EMA <br/>
-                  • Total Value Locked (TVL) 30-day EMA  <br/>
-                  • Volume Weighted Average Price (VWAP)  <br/>
-                  • Relative Strength Index (RSI)  <br/>
+                  • Collateralization Ratio <br />
+                  • 30-day Exponential Moving Average (EMA) <br />
+                  • Liquidity 30-day EMA <br />
+                  • Total Value Locked (TVL) 30-day EMA  <br />
+                  • Volume Weighted Average Price (VWAP)  <br />
+                  • Relative Strength Index (RSI)  <br />
                   • Asset Breakdown </Text>
               </Box>
 
@@ -609,12 +609,12 @@ const Approach = () => {
                   _ light={{ bgcolor: "#16171B" }}
                 >
                   <Button alt=""
-                  mb={"5px"}
+                    mb={"5px"}
                     component="button"
                     onClick={handleScrollToTop}
                     id="myBtn"
                     title="Go to top"
-                    width="91px"
+                    width="70px"
                     height="30px"
                     flexShrink="0"
                     fill="#202020"
@@ -635,7 +635,7 @@ const Approach = () => {
                     }}
                   >
                     <TriangleUpIcon mr={"5px"} />
-                    <Text fontSize={"10px"}>Back to Top</Text>
+                    <Text fontSize={"9px"}>Back to Top</Text>
 
                   </Button>
                 </Box>)
