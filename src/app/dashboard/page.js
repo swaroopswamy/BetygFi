@@ -682,7 +682,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          padding={"20px 20px"}
+          padding={"0px 20px 20px 20px"}
           mb={{base: "60px", md:"20px"}}
           // paddingX={"20px"}
           //display={"inline-flex"}
@@ -694,7 +694,7 @@ const Dashboard = () => {
           <Box
             display={"inline-flex"}
             mb={"30px"}
-            mt={"30px"}
+            //mt={"30px"}
           >
             <Box
               w="62%"
