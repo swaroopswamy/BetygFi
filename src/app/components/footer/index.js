@@ -1,12 +1,33 @@
 "use client";
-import { Box, Flex, Text, useColorMode, useColorModeValue, Image, Icon } from "@chakra-ui/react";
+import { Box, Flex, Text, useColorMode, useColorModeValue, Image, Icon, useDisclosure, Slide } from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 
-const Footer = ( {...rest}) => {
+const Footer = ({ ...rest }) => {
+  const { isOpen, onToggle } = useDisclosure();
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
+  const [scrollValue, setScrollValue] = useState(0);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > scrollValue) {
+        setIsScrolledDown(true);
+        setScrollValue(window.scrollY);
+      } else {
+        onToggle();
+        setIsScrolledDown(false);
+        setScrollValue(window.scrollY);
+      }
+
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
     <>
       <Box
@@ -92,6 +113,8 @@ const Footer = ( {...rest}) => {
       </Box>
 
       <Box
+        opacity={!isScrolledDown ? 1 : 0} // Adjust opacity based on visibility
+        transition="opacity 0.1 s ease-in-out" // Add a fade transition
         position={"fixed"}
         bottom="0"
         width="100%"
@@ -126,13 +149,14 @@ const Footer = ( {...rest}) => {
           />
         </Box>
       </Box>
+
     </>
   );
 };
 
 export default Footer;
 
-const FooterMobileLink = ( {name, id, link} ) => {
+const FooterMobileLink = ({ name, id, link }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
   const pathname = usePathname();
@@ -171,8 +195,8 @@ const FooterMobileLink = ( {name, id, link} ) => {
           justifyContent={"center"}
         >
           <Image
-            width={{base:"25px", sm: "30px"}} 
-            height={{base:"25px", sm: "30px"}} 
+            width={{ base: "25px", sm: "30px" }}
+            height={{ base: "25px", sm: "30px" }}
             src={pathname === link ? (colorMode === 'light' ? `/icons/${id}_footer_logo_bold_dark.svg` : `/icons/${id}_footer_logo_bold_light.svg`)
               : `/icons/${id}_footer_logo.svg`}
           />
@@ -180,7 +204,7 @@ const FooterMobileLink = ( {name, id, link} ) => {
 
         </Box>
         <Text
-          fontSize={{base: "12px", sm: "14px"}}
+          fontSize={{ base: "12px", sm: "14px" }}
           fontWeight={pathname === link ? "600" : "400"}
           lineHeight={"20px"}
           textTransform={"capitalize"}
@@ -195,6 +219,6 @@ const FooterMobileLink = ( {name, id, link} ) => {
 
 const HomeIconONE = (props) => {
   <Icon width="32" height="32" viewBox="0 0 32 32" fill="none" {...props}>
-    <path d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
   </Icon>
 }
