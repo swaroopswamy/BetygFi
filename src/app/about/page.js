@@ -55,7 +55,7 @@ const About = () => {
             opacity={"0.8"}
             padding={"20px  70px  0px  30px"}
             mt={17}>
-            BetygFi is a blockchain analytics platform that enriches on-chain data with millions of wallet labels. Powered By Solvendo. Crypto investors use Nansen to discover opportunities, perform due diligence and defend their portfolios with our real-time dashboards and alerts.
+            BetygFi is a blockchain analytics platform that enriches on-chain data with millions of wallet labels. Powered By Solvendo. Crypto investors use BetygFi to discover opportunities, perform due diligence and defend their portfolios with our real-time dashboards and alerts.
           </Text>
         </Box>
       </Flex>
