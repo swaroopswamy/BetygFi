@@ -59,7 +59,9 @@ const GovernanceTable = ({ }) => {
         >
             {/* Governance Table */}
 
-            <Flex
+            <Box
+                display={"flex"}
+                alignItems="center"
                 padding={"25px 29px 27px"}
                 bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
                 <Text
@@ -74,9 +76,25 @@ const GovernanceTable = ({ }) => {
                     paddingTop={"5px"}
                     fontSize={"16px"}
                     fontWeight={400}
-                    lineHeight={"20px"}>|  Proposals</Text>
+                    lineHeight={"20px"}>|  Proposals
+                </Text>
+                <Tooltip
+                    bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                    padding="4px 8px"
+                    fontWeight={400}
+                    fontSize={"10px"}
+                    label="Governance in DeFi is to ensure the integrity and stability of the decentralized financial system. DeFi governance allows for greater participation, accountability, and efficiency. Proposals form the basis of the decentralized/open/ transparent nature of DeFi’s. Proposals when voted become rules, that are programmed for the benefit of governance of DeFi’s."
+                    
+                >
+                    <Image
+                        src={"/icons/info_sm_icon.svg"}
+                        width={3}
+                        height={3}
+                        alt='info-icon'
+                        style={{ marginLeft: "8px", marginTop: "8px"  }}
+                    ></Image>
+                </Tooltip>
 
-                <Spacer />
                 {/* <Box>
                         <Checkbox 
                             width={"14px"}
@@ -111,7 +129,7 @@ const GovernanceTable = ({ }) => {
                             />
                         </Box> */}
 
-            </Flex>
+            </Box>
             <Table variant="simple" key={1} bgColor={"#FFF"} >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
@@ -303,7 +321,7 @@ const GovernanceTable = ({ }) => {
                         </>
                     )}
 
-                    { governanceTableData?.data?.map((item, i) => {
+                    {governanceTableData?.data?.map((item, i) => {
                         return (
                             <>
                                 <Tr
@@ -341,17 +359,17 @@ const GovernanceTable = ({ }) => {
 
 const SkeletonRow = () => (
     <Box as="tr">
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
     </Box>
-  )
+)
 
-  
+
 export default GovernanceTable;

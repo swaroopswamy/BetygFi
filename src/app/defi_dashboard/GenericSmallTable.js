@@ -66,7 +66,13 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                         >
                             {tableName}
                         </Text>
-                        <Tooltip label= {Definitions}>
+                        <Tooltip label= {Definitions}
+                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                        padding="4px 8px"
+                        fontWeight={400}
+                        fontSize={"10px"}
+                        
+                        >
                         <Image width={"12px"}
                             height={"12px"}
                             flexShrink={"0"}

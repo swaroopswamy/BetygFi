@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, useColorModeValue } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { SkeletonRow, USDollar } from './wallet_analytics';
 
@@ -38,7 +38,14 @@ const InflowTokensTable = () => {
                         Inflow Tokens (30 Days)
                     </Text>
                     <>
-                        <Tooltip label="Inflow/outflow shows the number of tokens that are coming in wallet.">
+                        <Tooltip
+                            bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                            padding="4px 8px"
+                            fontWeight={400}
+                            fontSize={"10px"}
+
+
+                            label="Inflow shows the number of tokens received by the wallet.">
                             <Image width={"12px"}
                                 height={"12px"}
                                 flexShrink={"0"}
@@ -381,9 +388,9 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         <h2>
                             <AccordionButton
                                 p={"0"}
-                                // _expanded={{
-                                //     mt: "10px"
-                                // }}
+                            // _expanded={{
+                            //     mt: "10px"
+                            // }}
                             >
                                 <Box
                                     w="100%"

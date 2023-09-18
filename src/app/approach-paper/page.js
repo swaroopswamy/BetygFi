@@ -200,7 +200,7 @@ const Approach = () => {
               <Heading as="h1" size="xl" fontSize={"22px"} paddingTop={"10px"}>6. Future:</Heading>
               <Text padding={"10px 0px 0px 20px"} fontSize={"14px"}>The model’s evolution will be reflected in the accuracy, predictive performance and therefore
                 usefulness of the score. We have a broad outline of how we plan to train and evolve the model
-                for the benefit of users and their better understanding of Defi protocols/projects. <br />
+                for the benefit of users and their better understanding of DeFi protocols/projects. <br />
                 Keeping with our intention to continuously improve the accuracy and efficiency of the model,
                 our ongoing efforts include as under:
               </Text>
@@ -521,7 +521,7 @@ const Approach = () => {
               <Text padding={"10px 0px 0px 20px"}
                 fontSize={"14px"}>The model’s evolution will be reflected in the accuracy, predictive performance and therefore
                 usefulness of the score. We have a broad outline of how we plan to train and evolve the model
-                for the benefit of users and their better understanding of Defi protocols/projects. <br />
+                for the benefit of users and their better understanding of DeFi protocols/projects. <br />
                 Keeping with our intention to continuously improve the accuracy and efficiency of the model,
                 our ongoing efforts include as under:
               </Text>

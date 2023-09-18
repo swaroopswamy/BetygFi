@@ -10,7 +10,7 @@ import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 function Defi_Hot_Contracts() {
     const router = useRouter();
     const { colorMode } = useColorMode();
-    const tableName = "Defi Name";
+    const tableName = "DeFi Name";
     const thread = ["Blockchain | Asset Name", "Inflow (7 Days)", "Outflow (7 Days)", "Net Value flow "];
     const tableData = [
         ["AAVE V2 ", "+USD 65.930000", "-USD 356,456,560", "-USD 65.930000", "/icons/aave_logo.svg"],

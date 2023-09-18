@@ -14,7 +14,7 @@ function DonutChart() {
 
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const Definitions = "DeFi fee is the amount of value DeFi has collected by providing services and revenue show the earning of the DeFi.";
+  const Definitions = "DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution.";
 
   const options = {
     labels: ["Fee", "Revenue"],
@@ -96,9 +96,15 @@ function DonutChart() {
                 lineHeight={"20px"}
                 color={useColorModeValue("#16171B", "#FFFFFF")}
               >
-                Defi Fee and Revenue
+                DeFi Fee and Revenue
               </Text>
-              <Tooltip label={Definitions}>
+              <Tooltip label={Definitions}
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                fontWeight={400}
+                fontSize={"10px"}
+
+              >
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}

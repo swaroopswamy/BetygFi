@@ -142,7 +142,7 @@ const PortfolioPanelComponent = () => {
             fontWeight={"600"}
             lineHeight={"20px"}
           >
-            Defi Positions
+            DeFi Positions
           </Text>
         </Box>
 

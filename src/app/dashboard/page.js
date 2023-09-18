@@ -694,7 +694,8 @@ const Dashboard = () => {
           <Box
             display={"inline-flex"}
             mb={"30px"}
-            //mt={"30px"}
+            mt={"30px"}
+            w="100%"
           >
             <Box
               w="62%"
@@ -989,7 +990,7 @@ const Dashboard = () => {
                   lineHeight={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
                 >
-                  Defi Rankings
+                  DeFi Rankings
                 </Text>
                 <Flex alignItems={"center"}>
                   <Box>

@@ -10,7 +10,7 @@ function DefiUsersSmallTableComponent() {
 
     const tableName = "DeFi Users";
     const thread = ["Users Address"];
-    const Definitions= "DeFi Users: Users list shows the wallet address that are/have used the protocols smart contract address. ";
+    const Definitions= "User(s) list shows the wallet address(es) that are/have used the DeFi’s smart contract address(s).";
     const Tablepath= "/defi_dashboard/defi_users";
 
     const defiUsersTableData = useSelector(

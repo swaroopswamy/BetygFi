@@ -10,7 +10,7 @@ function Defiflow() {
 
     const tableName = "DeFi Inflow/Outflow";
     const thread = ["Users Address", "Net Value Flow (7 Days)"];
-    const Definitions = "DeFi Inflow/Outflow: DeFi inflow is the flow of the assets that DeFi smart contract are receiving as deposits/supply and DeFi outflow are the assets that DeFi smart contract send as borrow/withdraw. "
+    const Definitions = "DeFi inflow is the flow of assets that the DeFi smart contract(s) are receiving; inflow of the assets is because of the users depositing or supplying assets to the DeFi. DeFi outflow is the flow of assets that the DeFi smart contract(s) sends; outflow of assets is because of the users borrowing or withdrawing assets from the DeFi."
 
 
 //       const defiflowTableData = useSelector(

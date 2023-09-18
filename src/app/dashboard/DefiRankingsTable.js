@@ -83,7 +83,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="#Frame"
+                  label="Rank of the DeFi out of all the available DeFi’s tracked by BetygFi based on the score."
                   fontWeight={400}
                   fontSize={"10px"}
                 >
@@ -130,7 +130,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="#Frame"
+                  label="Category outline the type of the services DeFi provides."
                   fontWeight={400}
                   fontSize={"10px"}
                 >
@@ -161,7 +161,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="#Frame"
+                  label="Market price of the DeFi token."
                   fontWeight={400}
                   fontSize={"10px"}
                 >
@@ -192,7 +192,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="TVL : Total Market Cap tracked by Solvendo."
+                  label="Total value locked (TVL) is the real-time value of the assets that the DeFi holds."
                   fontWeight={400}
                   fontSize={"10px"}
                 >
@@ -223,7 +223,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="#Frame"
+                  label="Market capitalization of the DeFi is the total value of tokens of the DeFi."
                   fontWeight={400}
                   fontSize={"10px"}
                 >
@@ -255,7 +255,7 @@ const Rankings = () => {
                 <Tooltip
                   bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                   padding="4px 8px"
-                  label="The MCap/TVL gives the understanding whether DeFi is over/under valued."
+                  label="The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (market value of the DeFi) and the total value of assets of the DeFi."
                   fontWeight={400}
                   fontSize={"10px"}
                 >

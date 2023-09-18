@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, useColorModeValue } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { SkeletonRow, USDollar } from './wallet_analytics';
 
@@ -38,7 +38,13 @@ const InteractionWithKnownEntitiesTable = () => {
                         Interaction with Known Entities
                     </Text>
                     <>
-                        <Tooltip label="Interaction with Known Entities shows the transactions that the wallet is doing with the centralized bodies i.e., exchanges.">
+                        <Tooltip 
+                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                        padding="4px 8px"
+                        fontWeight={400}
+                        fontSize={"10px"}
+                        
+                        label="Interaction with Known Entities shows transactions of an individual wallet with the entities i.e., exchanges.">
                             <Image width={"12px"}
                                 height={"12px"}
                                 flexShrink={"0"}
