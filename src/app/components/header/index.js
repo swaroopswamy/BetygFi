@@ -23,6 +23,10 @@ import {
   InputGroup,
   InputLeftElement,
   Image,
+  Drawer,
+  DrawerOverlay,
+  Collapse,
+  Slide
 } from "@chakra-ui/react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
@@ -34,20 +38,31 @@ import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataS
 import { useEffect, useState } from "react";
 import isEmpty from "is-empty";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
+import { color } from "framer-motion";
+import { mobileSidebarCollapsedReducer, sidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
+import { MobileSidebar } from "../sidebar/index";
 
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const { isOpen: isHeaderOpen, onOpen: onHeaderOpen, onClose: onHeaderClose } = useDisclosure();
+  const { isOpen: isMobileSidebarOpen, onOpen: onMobileSidebarOpen, onClose: onMobileSidebarClose } = useDisclosure();
   const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
+  const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
   const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
 
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
+
+  const isMobileSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isMobileSidebarCollapsed
+  );
+  const MobileSidebarHandler = (value) => {
+    dispatch(mobileSidebarCollapsedReducer(value));
+  };
 
   const handleSearchByWalletAddress = (e) => {
     if (e.key === 'Enter') {
@@ -67,34 +82,19 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   useEffect(() => {
     dispatch(FetchLocalStorageData());
   }, []);
+
   return (
     <>
       <Flex
-
         px={{ base: 4, md: 4 }}
+        display={{ base: "none", md: "flex" }}
         height="20"
         alignItems="center"
-        //borderBottomWidth="1px"
         bg={useColorModeValue("#F0F0F5", "#191919")}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
-        {/* <IconButton
-          display={{ base: "flex", md: "none" }}
-          onClick={onHeaderOpen}
-          variant="outline"
-          aria-label="open menu"
-          icon={<FiMenu />}
-        />
 
-        <Text
-          display={{ base: "flex", md: "none" }}
-          fontSize="2xl"
-          fontFamily="monospace"
-          fontWeight="bold"
-        >
-          Log
-        </Text> */}
         <InputGroup w="100%">
           <InputLeftElement pointerEvents='none'>
             <Image
@@ -154,16 +154,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     borderLeft={"1px solid #333333"}
                     alignContent={"center"}
                   >
-                    {/* <Image
-                      src={colorMode === 'light' ? "/icons/login_black.svg" : "/icons/login_white.svg"}
-                      w="30px"
-                      h="30px"
-                      cursor={"pointer"}
-                      borderRadius={"50%"}
-                      alt="search_icon"
-
-                      onClick={onLoginModalOpen}
-                    /> */}
 
                     <Box
                       cursor={"pointer"}
@@ -186,14 +176,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                       </Text>
                     </Box>
                   </Box>
-
-                  {/*   <IconButton
-                    size="lg"
-                    variant="ghost"
-                    aria-label="open menu"
-                    icon={<FiBell />}
-                    onClick={onLoginModalOpen}
-                  /> */}
                 </>
               )
               :
@@ -266,9 +248,140 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         </Box>
 
       </Flex>
+
+      <Flex
+        position={"fixed"}
+        top={"0"}
+        zIndex={"90"}
+        px={{ base: 4, md: 4 }}
+        display={{ base: "flex", md: "none" }}
+        width={"full"}
+        height="60px"
+        alignItems="center"
+        bgColor={colorMode === "light" ? "#F0F0F5" : "#272727"}
+        borderBottom={"1px"}
+        borderColor={colorMode === 'light' ? "#E1E1E1" : "#333"}
+        justifyContent={{ base: "space-between", md: "flex-end" }}
+        {...rest}
+      >
+
+        <Box
+          display={"flex"}
+          gap={"20px"}
+          alignItems={"center"}
+        >
+          <Box
+            cursor={"pointer"}
+            onClick={onMobileSidebarOpen}
+            // onClick={() => {
+            //   MobileSidebarHandler(!isMobileSidebarCollapsed);
+            // }}
+          >
+            <Image
+              src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg"}
+              w={"18px"}
+              h={"18px"}
+            >
+            </Image>
+          </Box>
+
+          <Box>
+            <Image
+              src={colorMode === "light" ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
+              h={25}
+              cursor={"pointer"}
+              onClick={() => {
+                router.push('/');
+              }}
+            ></Image>
+          </Box>
+        </Box>
+
+        <Box
+          cursor={"pointer"}
+          onClick={onMobileSearchToggle}
+        >
+          <Image
+            src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+            h={"20px"}
+            w={"20px"}
+          ></Image>
+        </Box>
+
+      </Flex>
+
+      <Collapse
+        in={isMobileSearchOpen}
+        style={{position: "fixed", width: "100%", zIndex: "80"}}
+        animateOpacity={"true"}
+      >
+        <Box
+          px={{ base: 4, md: 4 }}
+          w={"100%"}
+          display={"flex"}
+          bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+          border={"1px"}
+          borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+          padding={"8px 19px"}
+        >
+          <InputGroup w="100%">
+            <InputLeftElement pointerEvents='none'>
+              <Image
+                src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+                w="14px"
+                h="14px"
+                alt="search_icon"
+              />
+            </InputLeftElement>
+            <Input
+              type="text"
+              border="1px"
+              borderRadius="0px"
+              borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+              bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+              fontSize="12px"
+              fontWeight="400"
+              lineHeight="20px"
+              letterSpacing="1.2px"
+              w="100%"
+              placeholder="Search Wallet Address"
+              value={searchWalletAddressValue}
+              onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
+              onChange={(e) => { handleSearchByWalletAddress(e) }}
+            ></Input>
+            <Box
+              alignContent={"center"}
+              justifyContent={"center"}
+              cursor={"pointer"}
+              w={"70px"}
+              p={"14px 10px"}
+              bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+              border="1px"
+              borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+            >
+              <Text
+                fontSize={{base: "12px", sm: "14px"}}
+                fontWeight={"500"}
+                lineHeight={"10px"}
+                textAlign={"center"}
+              >
+                Search
+              </Text>
+            </Box>
+          </InputGroup>
+        </Box>
+      </Collapse>
+
+      <MobileSidebar
+        isOpen={isMobileSidebarOpen}
+        onOpen={onMobileSidebarOpen}
+        onClose={onMobileSidebarClose}
+      />
+
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
     </>
   );
 };
 
 export default Navbar;
+

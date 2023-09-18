@@ -7,6 +7,7 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
 import millify from "millify";
+import { color } from "framer-motion";
 const axios = require('axios');
 
 function TrendGraph() {
@@ -16,6 +17,7 @@ function TrendGraph() {
     const [series, setSeries] = useState([]);
 
     const [graphData, setGraphData] = useState(null);
+    const [tvlData, setTVLData] = useState(null);
 
 
     const graphTypes = [
@@ -69,6 +71,11 @@ function TrendGraph() {
             if (graphTypeSelected.includes(item.name)) {
                 if (item.name === "tvl") {
                     item.data = graphData["total_volumes"];
+                    if (!tvlData) {
+                        let tvl = [];
+                        tvl.push(item);
+                        setTVLData(tvl);
+                    }
                 }
                 if (item.name === "mcap") {
                     item.data = graphData["market_caps"];
@@ -104,7 +111,7 @@ function TrendGraph() {
                 display={"flex"}
                 flexDirection={"column"}
                 alignContent={"center"}
-                height={"349px"}
+                // height={"400px"}
                 w="-webkit-fill-available"
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
@@ -204,17 +211,128 @@ function TrendGraph() {
                 </Box>
 
                 <Box
-                    padding={"20px 20px"}
+                    padding={"20px 20px 0px 20px"}
+                    borderBottom={"1px"}
+                    borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
                 >
                     <Graph
                         series={series}
                     />
                 </Box>
 
+                <SelectorGraph
+                    tvlData={tvlData}
+                />
 
             </Box>
         </>
     );
+}
+
+function SelectorGraph({ tvlData }) {
+
+    if (!tvlData)
+        return;
+
+    const tvl = [{
+        "name": "tvl",
+        "type": "area",
+        "color": "#3A3D46",
+        "data": tvlData ? tvlData[0].data : null
+    }]
+
+    const { colorMode } = useColorMode;
+
+    const options = {
+        chart: {
+            toolbar: {
+                show: false,
+            },
+            stacked: false,
+            type: "line",
+            brush: {
+                enabled: true,
+                target: 'trendgraph'
+            },
+            selection: {
+                enabled: true,
+                fill: {
+                    color: '#515151',
+                    opacity: 0.2
+                },
+                stroke: {
+                    width: 0,
+                    dashArray: 0,
+                    color: colorMode === 'light' ? '#313131' : '#FFF',
+                }
+            }
+        },
+        fill: {
+            colors: ["#3A3D46"],
+            type: "solid",
+            opacity: colorMode === 'light' ? "0.5" : "0.6",
+        },
+        stroke: {
+            show: false
+        },
+        colors: ["#000"],
+        xaxis: {
+            labels: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            axisBorder: {
+                show: false
+            }
+        },
+        yaxis: {
+            labels: {
+                show: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false,
+        },
+        tooltip: {
+            enabled: false
+        },
+        grid: {
+            borderColor: colorMode === 'light' ? "#191919" : "#36363A",
+            xaxis: {
+                lines: {
+                    show: false,
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: false,
+                }
+            }
+        },
+    }
+
+    return (
+        <>
+            <Box
+                marginTop={"-30px"}
+                marginBottom={"-48px"}
+            >
+                <Chart
+                    options={options}
+                    series={tvl}
+                    type={options.chart.type}
+                    height={"100px"}
+                    width={"100%"}
+                />
+            </Box>
+
+        </>
+    )
 }
 
 function Graph({ series }) {
@@ -225,7 +343,7 @@ function Graph({ series }) {
             toolbar: {
                 show: false,
             },
-
+            id: 'trendgraph',
             stacked: false
         },
         stroke: {

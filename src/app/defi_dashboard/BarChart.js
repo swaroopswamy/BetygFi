@@ -8,10 +8,7 @@ import { useSelector } from "react-redux";
 import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-let USDollar = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
+let USDollar = new Intl.NumberFormat('en-US');
 
 function BarChart() {
   const { colorMode } = useColorMode();
@@ -19,7 +16,7 @@ function BarChart() {
   const defiData = useSelector(
     (state) => state?.defiDashboardData?.DefiData?.data
   )
-  const Definitions = "DeFi borrow is the total amount of assets DeFi has lent to its users. DeFi Supply is the total amount of assets users have lent to DeFi. Total value locked (TVL) is the amount assets DeFi holds.";
+  const Definitions = "DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds.";
   const options = {
     chart: {
       toolbar: {
@@ -68,7 +65,7 @@ function BarChart() {
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          USDollar.format(series[0][dataPointIndex]) + "" +
+          USDollar.format(series[0][dataPointIndex]) + " USD" +
           '</div>' +
           "</div>"
         );
@@ -83,6 +80,12 @@ function BarChart() {
           fontSize: "11px",
           fontWeight: 400,
         },
+        formatter: function (value, opts) {
+          return millify(value, {
+            precision: 2,
+            locales: "en-US"
+          });
+        }
       },
       axisTicks: {
         show: true,
@@ -148,9 +151,15 @@ function BarChart() {
                 lineHeight={"20px"}
                 color={useColorModeValue("#16171B", "#FFFFFF")}
               >
-                Defi Borrow/Supply/TVL
+                DeFi Borrow/Supply/TVL
               </Text>
-              <Tooltip label={Definitions}>
+              <Tooltip label={Definitions}
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                fontWeight={400}
+                fontSize={"10px"}
+
+              >
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}

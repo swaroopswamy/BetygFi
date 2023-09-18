@@ -8,11 +8,13 @@ import './styles.css';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+let USDollar = new Intl.NumberFormat('en-US');
+
 function DonutChart() {
 
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const Definitions = "DeFi fee is the amount of value DeFi has collected by providing services and revenue show the earning of the DeFi.";
+  const Definitions = "DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution.";
 
   const options = {
     labels: ["Fee", "Revenue"],
@@ -36,7 +38,7 @@ function DonutChart() {
           w.globals.labels[seriesIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          series[seriesIndex] + "USD" +
+          USDollar.format(series[seriesIndex]) + " USD" +
           '</div>' +
           "</div>"
         );
@@ -58,7 +60,7 @@ function DonutChart() {
         offsetY: 2
       },
       formatter: function (text, opts) {
-        return [text, opts.w.globals.series[opts.seriesIndex] + " USD"]
+        return [text, USDollar.format(opts.w.globals.series[opts.seriesIndex]) + " USD"]
       },
     },
     dataLabels: {
@@ -94,9 +96,15 @@ function DonutChart() {
                 lineHeight={"20px"}
                 color={useColorModeValue("#16171B", "#FFFFFF")}
               >
-                Defi Fee and Revenue
+                DeFi Fee and Revenue
               </Text>
-              <Tooltip label={Definitions}>
+              <Tooltip label={Definitions}
+                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                padding="4px 8px"
+                fontWeight={400}
+                fontSize={"10px"}
+
+              >
                 <Image width={"12px"}
                   height={"12px"}
                   flexShrink={"0"}
@@ -139,17 +147,17 @@ function DonutChart() {
 
         <Box
           padding={"5px 50px 20px 10px"}
-          mt={"20px"}
-          mr={"30px"}
           fontSize={"14px"}
           fontWeight={400}
           lineHeight={"10px"}
+          height={"280px"}
+          justifyContent={"center"}
         >
           <Chart
             options={options}
             series={series}
             type={options.chart.type}
-            height={"200px"}
+            height={"250px"}
           />
         </Box>
 
@@ -177,7 +185,7 @@ function DonutChart() {
           gap={"10px"}
           justifyContent={"right"}
           mr={"20px"}
-          mt={"40px"}
+          mb={"10px"}
         >
           <Text
             color={"#A8ADBD"}

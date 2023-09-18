@@ -13,7 +13,7 @@ import GenericBigTableComponent from "../GenericBigTable";
 function DefiUsers() {
     const router = useRouter();
     const { colorMode, toggleColorMode } = useColorMode();
-    const tableName = "Defi Users";
+    const tableName = "DeFi Users";
     const thread = ["Users", "Deposited", "Borrowed", "Assets", "Share"];
     const tableData = [
         ["/images/Ethereumlogo.svg", "AAVE V2 ", "USD 65.930000", "USD 356,456,560", "/images/Ethlogo(withbackground).svg", "/images/Tron&Binancelogo(withbackground).svg", "/images/Arbitrumlogo(withbackground).svg", "/images/Ellipselogo(withbackground).svg", "/images/Polygonlogo(withbackground).svg", "/images/SquareEllipselogo(withbackground).svg", "60%"],

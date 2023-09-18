@@ -94,7 +94,7 @@ function Defi_Hot_Contracts () {
                           //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
-                          Defi Hot Contract
+                          DeFi Hot Contract
                       </Text>
                   </Box>
               </Tab>
@@ -114,7 +114,7 @@ function Defi_Hot_Contracts () {
                           //textTransform={"uppercase"}
                           letterSpacing={"1px"}
                       >
-                          Defi Functions/Methods
+                          DeFi Functions/Methods
                       </Text>
                   </Box>
               </Tab>
@@ -130,7 +130,7 @@ function Defi_Hot_Contracts () {
                       p="0px"
                   >
                     <GenericBigTableComponent
-                        tableName={"Defi Hot Contract"}
+                        tableName={"DeFi Hot Contract"}
                         thread={["Blockchain|Contract Name", "No. of Users", "No. of Transactions", "Total Deposit", "Share"]}
                         tableData={hotContractData}
                         RowComponent={RowComponent}
@@ -141,7 +141,7 @@ function Defi_Hot_Contracts () {
                       p="0px"
                   >
                     <GenericBigTableComponent
-                        tableName={"Defi Functions/Methods"}
+                        tableName={"DeFi Functions/Methods"}
                         thread={["Blockchain | Function Name","No of Users","No of Calls","Fee Consumed"]}
                         tableData={defiFunctionsData}
                         RowComponent={RowComponent}

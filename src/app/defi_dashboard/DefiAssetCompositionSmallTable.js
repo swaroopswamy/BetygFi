@@ -15,7 +15,7 @@ let USDollar = new Intl.NumberFormat('en-US', {
 function Assetcomposition() {
     const tableName = "DeFi Asset Composition";
     const thread = ["Asset Name",   /* "Share",  */"Value"];
-    const Definitions = "DeFi Asset Composition: Asset composition matrix shows the distribution of value in different assets. "
+    const Definitions = "Asset composition matrix shows the compositions of the assets of the DeFi in percentage terms and the individual value of the subclass of the assets of the DeFi."
     const Tablepath = "/defi_dashboard/asset_composition"
     /*  const tableData = [
          ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],

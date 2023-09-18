@@ -1,15 +1,16 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Tooltip, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
 import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
-import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchInflowOutflowTokensForAddress, fetchWalletBalanceData, fetchWalletTransactionsData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import './styles.css';
 
 const WalletDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -31,6 +32,9 @@ const WalletDashboardPage = () => {
         (state) => state?.appData?.BlockchainListData?.data
     );
     const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data)
+
+    const walletTransactionsData = useSelector((state) => state?.walletDashboardTableData?.walletTransactionsData)
+
     const fetchWalletBalanceDataHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
@@ -57,24 +61,38 @@ const WalletDashboardPage = () => {
         dispatch(fetchWalletTransactionsData(data));
     }, [blockchainSelected, tablePage, searchParam.get("address")])
 
+
     const fetchAssetAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchAssetAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+
     const fetchProtocolAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchProtocolAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+
     const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
         const data = {
             address: searchParam.get("address"),
         }
         dispatch(fetchBlockchainAllocationForAddress(data));
     }, [blockchainSelected, searchParam.get("address")])
+
+
+    const fetchInflowOutflowTokensForAddressHandler = useCallback(() => {
+        const data = {
+            address: searchParam.get("address"),
+        }
+        dispatch(fetchInflowOutflowTokensForAddress(data));
+    }, [blockchainSelected, searchParam.get("address")])
+
 
 
     useEffect(() => {
@@ -86,6 +104,7 @@ const WalletDashboardPage = () => {
         fetchAssetAllocationForAddressHandler();
         fetchProtocolAllocationForAddressHandler();
         fetchBlockchainAllocationForAddressHandler();
+        fetchInflowOutflowTokensForAddressHandler();
     }, [fetchWalletBalanceDataHandler, fetchWalletTransactionsDataHandler])
 
     useEffect(() => {
@@ -108,11 +127,12 @@ const WalletDashboardPage = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 w="100%"
+                
             >
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={"38px 30px 50px 30px"}
+                    padding={{ base: "17px 13px 50px", md: "38px 30px 50px 30px" }}
 
                 >
                     <Box
@@ -123,8 +143,8 @@ const WalletDashboardPage = () => {
                             marginRight={"22px"}
                         >
                             <Image
-                                w="47px"
-                                h="47px"
+                                w={{ base: "30px", md: "30px" }}
+                                h={{ base: "30px", md: "30px" }}
                                 borderRadius={"50%"}
                                 src="/images/basic_profile.png"
                                 alt="proifile_img"
@@ -137,7 +157,7 @@ const WalletDashboardPage = () => {
                             {
                                 walletBalanceData?.name === undefined && (
                                     <Text
-                                        fontSize={"24px"}
+                                        fontSize={{ base: "18px", md: "24px" }}
                                         fontWeight={"400"}
                                         lineHeight={"20px"}
                                         opacity={"0.5"}
@@ -155,16 +175,27 @@ const WalletDashboardPage = () => {
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
-                                mt={"13px"}
+                                mt={{ base: "5px", md: "13px" }}
                             >
                                 <Text
-                                    fontSize={"14px"}
+                                    display={{ base: "none", md: "flex" }}
+                                    fontSize={{ base: "12px", md: "14px" }}
                                     fontWeight={"400"}
                                     color={useColorModeValue("#000000", "#A8ADBD")}
                                     //borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
                                     paddingRight={"15px"}
                                 >
                                     {walletAddress}
+                                </Text>
+                                <Text
+                                    display={{ base: "flex", md: "none" }}
+                                    fontSize={{ base: "12px", md: "14px" }}
+                                    fontWeight={"400"}
+                                    color={useColorModeValue("#000000", "#A8ADBD")}
+                                    //borderRight={useColorModeValue("1px solid #000000", "1px solid #A8ADBD")}
+                                    paddingRight={"15px"}
+                                >
+                                    {walletAddress?.split("").join("").substring(0, 6) + "......" + walletAddress?.slice(-5)}
                                 </Text>
                                 {/* <Text
                                     fontSize={"14px"}
@@ -265,22 +296,25 @@ const WalletDashboardPage = () => {
                 <Box>
                     <Tabs onChange={(index) => setTabIndex(index)} >
                         <TabList
-                            paddingLeft="30px"
+                            paddingLeft={{ base: "0px", md: "30px" }}
+                            w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                         >
                             <Tab
                                 padding="0"
+                                w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                             >
                                 <Box
                                     display={"flex"}
+                                    w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                                     alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
+                                    padding={{ base: "12px 6px 12px 6px", md: "13px 19px 13px 17px" }}
                                     bgColor={tabIndex === 0 ? colorMode === 'light' ? ("#202020") : ("#FFFFFF") : colorMode === 'light' ? ("#F0F0F5") : ("#202020")}
                                 >
                                     <Text
-                                        fontSize={"14px"}
+                                        fontSize={{ base: "10px", md: "14px" }}
                                         fontWeight={tabIndex === 0 ? "700" : "400"}
                                         color={tabIndex === 0 ? colorMode === 'light' ? ("#FFFFFF") : ("#000000") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
-                                        mr="44px"
+                                        mr={{ base: "10px", md: "44px" }}
                                     >
                                         Transactions
                                     </Text>
@@ -294,24 +328,26 @@ const WalletDashboardPage = () => {
                             </Tab>
                             <Tab
                                 padding="0"
+                                w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                             >
                                 <Box
+                                    w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                                     display={"flex"}
                                     alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
+                                    padding={{ base: "12px 6px 12px 6px", md: "13px 19px 13px 17px" }}
                                     bgColor={tabIndex === 1 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
                                         (colorMode === 'light' ? "#F0F0F5" : "#202020")
                                     }
                                 >
                                     <Text
-                                        fontSize={"14px"}
+                                        fontSize={{ base: "10px", md: "14px" }}
                                         color={tabIndex === 1 ?
                                             (colorMode === 'light' ? "#FFFFFF" : "#202020") :
                                             (colorMode === 'light' ? "#202020" : "#FFFFFF")
                                         }
                                         fontWeight={tabIndex === 1 ? "700" : "400"}
-                                        mr="44px"
+                                        mr={{ base: "10px", md: "44px" }}
                                     >
                                         Portfolio
                                     </Text>
@@ -325,24 +361,26 @@ const WalletDashboardPage = () => {
                             </Tab>
                             <Tab
                                 padding="0"
+                                w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                             >
                                 <Box
+                                    w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                                     display={"flex"}
                                     alignItems={"center"}
-                                    padding={"13px 19px 13px 17px"}
+                                    padding={{ base: "12px 6px 12px 6px", md: "13px 19px 13px 17px" }}
                                     bgColor={tabIndex === 2 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
                                         (colorMode === 'light' ? "#F0F0F5" : "#202020")
                                     }
                                 >
                                     <Text
-                                        fontSize={"14px"}
+                                        fontSize={{ base: "10px", md: "14px" }}
                                         color={tabIndex === 2 ?
                                             (colorMode === 'light' ? "#FFFFFF" : "#202020") :
                                             (colorMode === 'light' ? "#202020" : "#FFFFFF")
                                         }
                                         fontWeight={tabIndex === 2 ? "700" : "400"}
-                                        mr="44px"
+                                        mr={{ base: "10px", md: "44px" }}
                                     >
                                         Wallet Analytics
                                     </Text>
@@ -358,7 +396,7 @@ const WalletDashboardPage = () => {
                         </TabList>
                         <Box
                             bgColor={useColorModeValue("#F0F0F5", "#191919")}
-                            padding={"32px"}
+                            padding={{ base: "0px", md: "32px" }}
                         >
                             <Box
                                 display={"flex"}
@@ -370,6 +408,18 @@ const WalletDashboardPage = () => {
                                     alignItems={"center"}
                                     borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
                                     pb="14px"
+                                    pt={{ base: "30px" }}
+                                    overflowX="auto"
+                                    flexWrap="nowrap"
+                                    css={{
+                                        '&::-webkit-scrollbar': {
+                                            width: '0.2rem',
+                                            height: '0.2rem',
+                                        },
+                                        '&::-webkit-scrollbar-thumb': {
+                                            backgroundColor: 'transparent',
+                                        },
+                                    }}
                                 >
                                     <Box
                                         position={"relative"}
@@ -378,6 +428,7 @@ const WalletDashboardPage = () => {
                                         fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
                                         lineHeight={"20px"}
                                         color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+                                        whiteSpace="nowrap"
 
                                         _after={
                                             blockchainSelected.length === 0 && {
@@ -393,12 +444,13 @@ const WalletDashboardPage = () => {
                                         onClick={() => {
                                             BlockchainTypeHandler("All");
                                         }}
-                                        mr={"18px"}
+                                        mr={{ base: "18px", md: "18px" }}
+                                        ml={{ base: "10px" }}
                                     >
                                         All
                                     </Box>
                                     {blockchains?.map((item, i) => {
-                                        return i < 5 && (
+                                        return (
                                             <Box
                                                 position={"relative"}
                                                 cursor={"pointer"}
@@ -417,17 +469,22 @@ const WalletDashboardPage = () => {
                                                 onClick={() => {
                                                     BlockchainTypeHandler(item.id);
                                                 }}
-                                                mr={"18px"}
+                                                mr={{ base: "18px", md: "18px" }}
                                                 display={"flex"}
                                                 alignItems={"center"}
+                                                whiteSpace="nowrap"
+
                                             >
-                                                <Image
-                                                    w={"18px"}
-                                                    h={"18px"}
-                                                    mr={"5px"}
-                                                    src={item.logoUrl}
-                                                    alt={`${item.id}_icon`}
-                                                ></Image>
+                                                <Tooltip
+                                                    key={i} label={item.name}>
+                                                    <Image
+                                                        w={"18px"}
+                                                        h={"18px"}
+                                                        mr={"3px"}
+                                                        src={item.logoUrl}
+                                                        alt={`${item.id}_icon`}
+                                                    ></Image>
+                                                </Tooltip>
                                                 <Text
                                                     fontSize={"14px"}
                                                     fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
@@ -438,6 +495,7 @@ const WalletDashboardPage = () => {
                                                         blockchainSelected.includes(item.id) ? "#FFFFFF" : "#FFFFFF"
                                                     }
                                                     textTransform={"capitalize"}
+                                                    mr={{ base: "18px", md: "18px" }}
                                                 >
                                                     {item.name}
                                                 </Text>
@@ -453,9 +511,10 @@ const WalletDashboardPage = () => {
                                     p="0px"
                                 >
                                     <TransactionPanelComponent />
-                                    <PageButtons 
+                                    <PageButtons
                                         tablePage={tablePage}
                                         pageChangeHandler={pageChangeHandler}
+                                        totalPages={walletTransactionsData?.data?.totalPages}
                                     />
                                 </TabPanel>
                                 <TabPanel
@@ -480,9 +539,9 @@ const WalletDashboardPage = () => {
     );
 };
 
-export default WalletDashboardPage; 
+export default WalletDashboardPage;
 
-function PageButtons( {tablePage, pageChangeHandler} ) {
+function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
     return (
         <>
             <Box
@@ -490,9 +549,8 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                 alignItems={"flex-start"}
                 justifyContent={"end"}
                 padding="20px 30px"
-                background={useColorModeValue('#FFFFFF', '#202020')}
             >
-  
+
                 <Box
                     display={"flex"}
                 >
@@ -512,12 +570,12 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                         <Text
                             color={useColorModeValue("#16171B", "#FFF")}
                             fontSize={"14px"}
-                            fontWeight={"600"}
+                            fontWeight={600}
                         >
                             {tablePage}
                         </Text>
                     </Box>
-  
+
                     {/* <Button
                         display={"flex"}
                         alignItems={"center"}
@@ -536,7 +594,7 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                             src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
                         ></Image>
                     </Button> */}
-  
+
                     <Button
                         display={"flex"}
                         alignItems={"center"}
@@ -550,7 +608,7 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                         padding="0px"
                         onClick={() => {
                             if (tablePage > 1)
-                                pageChangeHandler(tablePage-1);
+                                pageChangeHandler(tablePage - 1);
                         }}
                         cursor={tablePage === 1 ? "not-allowed" : "pointer"}
                         disabled={tablePage === 1}
@@ -563,7 +621,7 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                             alt="prev-arrow"
                         ></Image>
                     </Button>
-  
+
                     <Button
                         display={"flex"}
                         alignItems={"center"}
@@ -576,11 +634,11 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                         borderColor={useColorModeValue("#C7CAD2", "#454853")}
                         padding="0px"
                         onClick={() => {
-                            if (tablePage < 5) // totalPages goes here
-                                pageChangeHandler(tablePage+1);
+                            if (tablePage < totalPages) // totalPages goes here
+                                pageChangeHandler(tablePage + 1);
                         }}
-                        cursor={tablePage === 5 ? "not-allowed" : "pointer"}
-                        disabled={tablePage === 5}
+                        cursor={tablePage === totalPages ? "not-allowed" : "pointer"}
+                        disabled={tablePage === totalPages}
                     >
                         <Image
                             width={15}
@@ -590,7 +648,7 @@ function PageButtons( {tablePage, pageChangeHandler} ) {
                         ></Image>
                     </Button>
                 </Box>
-  
+
             </Box>
         </>)
-  }
+}

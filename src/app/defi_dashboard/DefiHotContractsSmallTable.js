@@ -12,7 +12,7 @@ function Defihotcontracts() {
     const tableName = "DeFi Hot/Active Contracts";
     const thread = ["Contract Name", "No. of users", "No. of Transactions"];
     const Tablepath = "/defi_dashboard/defi_hot_contract";
-    const Definitions = "DeFi Hot/Active Contracts : DeFi Hot/Active contract talks about the most interacted contract address by wallet address. "
+    const Definitions = "DeFi Hot/Active contract is a list of the most interacted smart contract address(es) by wallet address(es)."
     const defiHotContractsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiHotContractsTableData
     )
