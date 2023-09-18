@@ -76,7 +76,7 @@ const WalletAnalyticsPanel = () => {
               Blockchain Allocation
             </Text>
             <>
-              <Tooltip label="Frame"
+              <Tooltip label="Blockchain allocation chart shows the value distribution of an individual wallet assets among different Blockchains."
                 bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
                 padding="4px 8px"
                 fontWeight={400}
