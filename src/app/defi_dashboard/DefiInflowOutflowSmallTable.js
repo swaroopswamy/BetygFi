@@ -13,10 +13,10 @@ function Defiflow() {
     const Definitions = "DeFi inflow is the flow of assets that the DeFi smart contract(s) are receiving; inflow of the assets is because of the users depositing or supplying assets to the DeFi. DeFi outflow is the flow of assets that the DeFi smart contract(s) sends; outflow of assets is because of the users borrowing or withdrawing assets from the DeFi."
 
 
-//       const defiflowTableData = useSelector(
-//        (state) => state?.defiDashboardData?.DefiHotContractsTableData
-//    )
-    
+    //       const defiflowTableData = useSelector(
+    //        (state) => state?.defiDashboardData?.DefiHotContractsTableData
+    //    )
+
     const tableData = [
         ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],
         ["/images/Trondefiusers.svg", "Tron", "+ 256,456,560 USD"],
@@ -27,7 +27,7 @@ function Defiflow() {
 
     return (
         <Box
-            width={"50%"}
+            width={{ base: "100%", md: "50%" }}
             bgColor={useColorModeValue("#F0F0F5", "#191919")}
             borderColor={useColorModeValue("#F0F0F5", "#191919")}
         >

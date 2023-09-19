@@ -10,8 +10,8 @@ function DefiUsersSmallTableComponent() {
 
     const tableName = "DeFi Users";
     const thread = ["Users Address"];
-    const Definitions= "User(s) list shows the wallet address(es) that are/have used the DeFi’s smart contract address(s).";
-    const Tablepath= "/defi_dashboard/defi_users";
+    const Definitions = "User(s) list shows the wallet address(es) that are/have used the DeFi’s smart contract address(s).";
+    const Tablepath = "/defi_dashboard/defi_users";
 
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
@@ -19,7 +19,7 @@ function DefiUsersSmallTableComponent() {
 
     return (
         <Box
-            width={"50%"}
+            width={{ base: "100%", md: "50%" }}
             bgColor={useColorModeValue("#F0F0F5", "#191919")}
             borderColor={useColorModeValue("#F0F0F5", "#191919")}
         >
@@ -42,10 +42,10 @@ function RowComponent({ tableData }) {
             {tableData?.isError && (
                 <>
                     <Tr
-                    height={"250px"}
+                        height={"250px"}
                     >
                         <Td
-                         colSpan={3}
+                            colSpan={3}
                         >
                             <Text
                                 _light={{
@@ -59,7 +59,7 @@ function RowComponent({ tableData }) {
                                 letterSpacing={"1px"}
                                 textAlign={"center"}
                                 p="20px"
-                               
+
                             >
                                 No Data available
                             </Text>
@@ -75,7 +75,7 @@ function RowComponent({ tableData }) {
                 </>
             )}
             {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                return i < 7 && ( 
+                return i < 7 && (
                     <>
                         <TableRow
                             key={i}
@@ -84,8 +84,8 @@ function RowComponent({ tableData }) {
                                 name: item?.user,
                                 amount: ''
                             }}
-                            // share={''}
-                            // tokens={{ src1: '', name1: '', percentage1: '', src2: '', name2: '', percentage2: '' }}
+                        // share={''}
+                        // tokens={{ src1: '', name1: '', percentage1: '', src2: '', name2: '', percentage2: '' }}
                         //user={item.id}
                         />
                     </>
@@ -285,14 +285,14 @@ function TableRow({ key, address, share, tokens }) {
 
 const SkeletonRow = () => (
     <Box as="tr">
-      <Td>
-        <Skeleton height="20px" my={4} />
-      </Td>
-      {/* <Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        {/* <Td>
         <Skeleton height="20px" my={4} />
       </Td>
       <Td>
         <Skeleton height="20px" my={4} />
       </Td> */}
     </Box>
-  )
+)

@@ -235,7 +235,7 @@ const DefiDashboardPage = () => {
                                         {blockchains?.map((item, i) => (
                                             <>
                                                 {defiData?.chains?.includes(toCapitalize(item.name)) &&
-                                                
+
                                                     <Tooltip
                                                         key={i} label={item.name}
                                                     // <>
@@ -293,7 +293,7 @@ const DefiDashboardPage = () => {
                                                 }
                                             </>
                                         ))}
-                                          {/* <Menu closeOnSelect={false}>
+                                        {/* <Menu closeOnSelect={false}>
                                             <MenuButton
                                                 bg={"#D9D9D9"}
                                                 borderRadius="50%"
@@ -432,7 +432,9 @@ const DefiDashboardPage = () => {
                 </Box>
                 {/* <hr style={colorMode === 'light' ? ({background:"#BFBFBF", margin:"10px 30px"}) : ({background:"#2F2F2F", margin:"10px 30px"})} /> */}
             </Box>
-            <Box
+
+
+            <Box display={{ base: "none", md: "block" }}
                 _light={{
                     bgColor: "#F0F0F5"
                 }}
@@ -486,6 +488,111 @@ const DefiDashboardPage = () => {
                     gap={"25px"}
                 >
                     <DefiHotContractsSmallTableComponent />
+                    <DefiInflowOutflowSmallTableComponent />
+
+                </Box>
+
+                <Box
+                    mt="20px"
+                >
+                    <GovernanceTable />
+                </Box>
+            </Box>
+
+            <Box
+                display={{ base: "block", md: "none" }}
+                w={"100%"}
+                _light={{
+                    bgColor: "#F0F0F5"
+                }}
+                _dark={{
+                    bgColor: "#191919"
+                }}
+            >
+                <Box
+                    mb="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                >
+                    <TVLBox />
+                </Box>
+
+                <Box
+                    mb="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                >
+                    <TrendGraph />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
+                    <DefiUsersSmallTableComponent />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
+                    <BarChart />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
+                    <DefiAssetCompositionSmallTable />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
+                    <DonutChart />
+
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
+                    <DefiHotContractsSmallTableComponent />
+                </Box>
+
+                <Box
+                    my="10px"
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    mx={"20px"}
+                    padding={"10px 0 0 10px"}
+                    gap={"25px"}
+                >
                     <DefiInflowOutflowSmallTableComponent />
 
                 </Box>
