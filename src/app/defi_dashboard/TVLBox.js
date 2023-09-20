@@ -10,7 +10,7 @@ import millify from "millify";
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  });
+});
 
 const TVLBox = () => {
     const { colorMode } = useColorMode();
@@ -18,19 +18,20 @@ const TVLBox = () => {
         (state) => state?.defiDashboardData?.DefiData
     )
     return (
+        <>
 
-        <Box
-            minW={"331px"}
-            height={"auto"}
-            display={"flex"}
-            flexDirection={"column"}
-            borderRadius={"6px"}
-
-            _dark={{ bg: "#202020" }}
-            _light={{ bg: "#FFFFFF" }}
-            mr="20px"
-        >
-            <Box h="100%">
+            <Box
+                display={'flex'}
+                minW={"331px"}
+                height={"auto"}
+                flexDirection={"column"}
+                borderRadius={"6px"}
+                _dark={{ bg: "#202020" }}
+                _light={{ bg: "#FFFFFF" }}
+                mr="20px"
+                h={"100%"}
+            //w={{ base: "100%", md: "100%" }}
+            >
                 <Box p={"20px"} h="80%">
                     <Text
                         _light={{ color: "#16171B" }}
@@ -169,10 +170,9 @@ const TVLBox = () => {
                     </Box>
 
                 </Box>
-            </Box>
+            </Box >
 
-        </Box >
-
+        </>
     )
 
 }
