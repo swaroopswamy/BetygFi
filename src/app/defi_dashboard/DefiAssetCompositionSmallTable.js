@@ -31,7 +31,7 @@ function Assetcomposition() {
 
     return (
         <Box
-            width={"50%"}
+            width={{ base: "100%", md: "50%" }}
             bgColor={useColorModeValue("#F0F0F5", "#191919")}
             borderColor={useColorModeValue("#F0F0F5", "#191919")}
         >
@@ -197,7 +197,7 @@ function TableRow({ key, asset, share, value }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                               {value/10**6}
+                                {value / 10 ** 6}
                             </Text>
                         </Box>
                     </Flex>

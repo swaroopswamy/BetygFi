@@ -37,7 +37,6 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
     return (
         <>
             <Box
-          
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
@@ -149,6 +148,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                 </Table>
                 <SmallTable_LastUpdate />
             </Box>
+
         </>
     )
 };

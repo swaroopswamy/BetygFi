@@ -50,52 +50,53 @@ const GovernanceTable = ({ }) => {
 
 
     return (
-        <Box
-            _dark={{ bg: "#191919" }}
-            _light={{ bg: " #F0F0F5" }}
-            mr={"20px"}
-            ml={"30px"}
-            paddingBottom={"60px"}
-        >
-            {/* Governance Table */}
+        <Box>
+            <Box display={{base:"none",md:"block"}}
+                _dark={{ bg: "#191919" }}
+                _light={{ bg: " #F0F0F5" }}
+                mr={"20px"}
+                ml={"30px"}
+                paddingBottom={"60px"}
+            >
+                {/* Governance Table */}
 
-            <Box
-                display={"flex"}
-                alignItems="center"
-                padding={"25px 29px 27px"}
-                bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
-                <Text
-                    fontSize={"18px"}
-                    fontWeight={600}
-                    mr={"5px"}
-                    color={useColorModeValue("#16171B", "#FFF")}>
-                    Governance
-                </Text>
+                <Box
+                    display={"flex"}
+                    alignItems="center"
+                    padding={"25px 29px 27px"}
+                    bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
+                    <Text
+                        fontSize={"18px"}
+                        fontWeight={600}
+                        mr={"5px"}
+                        color={useColorModeValue("#16171B", "#FFF")}>
+                        Governance
+                    </Text>
 
-                <Text
-                    paddingTop={"5px"}
-                    fontSize={"16px"}
-                    fontWeight={400}
-                    lineHeight={"20px"}>|  Proposals
-                </Text>
-                <Tooltip
-                    bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                    padding="4px 8px"
-                    fontWeight={400}
-                    fontSize={"10px"}
-                    label="Governance in DeFi is to ensure the integrity and stability of the decentralized financial system. DeFi governance allows for greater participation, accountability, and efficiency. Proposals form the basis of the decentralized/open/ transparent nature of DeFi’s. Proposals when voted become rules, that are programmed for the benefit of governance of DeFi’s."
-                    
-                >
-                    <Image
-                        src={"/icons/info_sm_icon.svg"}
-                        width={3}
-                        height={3}
-                        alt='info-icon'
-                        style={{ marginLeft: "8px", marginTop: "8px"  }}
-                    ></Image>
-                </Tooltip>
+                    <Text
+                        paddingTop={"5px"}
+                        fontSize={"16px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}>|  Proposals
+                    </Text>
+                    <Tooltip
+                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                        padding="4px 8px"
+                        fontWeight={400}
+                        fontSize={"10px"}
+                        label="Governance in DeFi is to ensure the integrity and stability of the decentralized financial system. DeFi governance allows for greater participation, accountability, and efficiency. Proposals form the basis of the decentralized/open/ transparent nature of DeFi’s. Proposals when voted become rules, that are programmed for the benefit of governance of DeFi’s."
 
-                {/* <Box>
+                    >
+                        <Image
+                            src={"/icons/info_sm_icon.svg"}
+                            width={3}
+                            height={3}
+                            alt='info-icon'
+                            style={{ marginLeft: "8px", marginTop: "8px" }}
+                        ></Image>
+                    </Tooltip>
+
+                    {/* <Box>
                         <Checkbox 
                             width={"14px"}
                                 height={"14px"}
@@ -113,7 +114,7 @@ const GovernanceTable = ({ }) => {
                                 fontWeight={400}
                                 lineHeight={"20px"}>Filter Controversial Proposals</Text>
                         </Box> */}
-                {/* <Box>
+                    {/* <Box>
                             <Input
                                 borderColor={useColorModeValue("#E8E8E8", "#333")}
                                 bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -129,11 +130,11 @@ const GovernanceTable = ({ }) => {
                             />
                         </Box> */}
 
-            </Box>
-            <Table variant="simple" key={1} bgColor={"#FFF"} >
-                <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
-                    <Tr>
-                        {/* <Th
+                </Box>
+                <Table variant="simple" key={1} bgColor={"#FFF"} >
+                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                        <Tr>
+                            {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={400}
@@ -254,27 +255,27 @@ const GovernanceTable = ({ }) => {
 
                             </Th> */}
 
-                        {['Title', 'Description', 'Topics', ' '].map((item, i) => {
-                            return (
-                                <>
-                                    <Th
-                                        key={i}
-                                        _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={400}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1.4px"}
-                                        textTransform={"capitalize"}
-                                    >
-                                        {item}
-                                    </Th>
-                                </>
-                            );
-                        })}
+                            {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                                return (
+                                    <>
+                                        <Th
+                                            key={i}
+                                            _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            {item}
+                                        </Th>
+                                    </>
+                                );
+                            })}
 
 
-                        {/* <Th
+                            {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
@@ -282,19 +283,19 @@ const GovernanceTable = ({ }) => {
                             >
                                 DISCUSSION
                             </Th> */}
-                    </Tr>
-                </Thead>
+                        </Tr>
+                    </Thead>
 
 
-                <Tbody
-                    fontSize={"14px"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    _dark={{ bgColor: "#202020" }}
-                    _light={{ bgColor: "#FFF" }}
-                >
+                    <Tbody
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        _dark={{ bgColor: "#202020" }}
+                        _light={{ bgColor: "#FFF" }}
+                    >
 
-                    {/* {governanceTableData.isError && (
+                        {/* {governanceTableData.isError && (
                         <>
                             <Tr>
                                 <Td
@@ -313,46 +314,165 @@ const GovernanceTable = ({ }) => {
                         </>
                     )} */}
 
-                    {governanceTableData.isLoading && (
-                        <>
-                            <SkeletonRow />
-                            <SkeletonRow />
-                            <SkeletonRow />
-                        </>
-                    )}
-
-                    {governanceTableData?.data?.map((item, i) => {
-                        return (
+                        {governanceTableData.isLoading && (
                             <>
-                                <Tr
-                                    height={"40px"}
-                                    _dark={{ color: "#FFFFFF" }}
-                                    _light={{ color: "#16171B" }}
-                                >
-                                    <Td fontSize={"14px"}>{item.name}</Td>
-                                    <Td fontSize={"14px"}>{item.description_text}</Td>
-                                    <Td fontSize={"14px"}>{item.topics.length}</Td>
-                                    <Td fontSize={"14px"}>
-                                        <Button
-                                            size={"sm"}
-                                            onClick={() => {
-                                                router.push(`https://governance.aave.com${item.topic_url}`)
-                                            }}
-                                        >
-                                            View More
-                                        </Button>
-                                    </Td>
-                                </Tr>
+                                <SkeletonRow />
+                                <SkeletonRow />
+                                <SkeletonRow />
                             </>
-                        );
-                    })}
+                        )}
 
-                </Tbody>
+                        {governanceTableData?.data?.map((item, i) => {
+                            return (
+                                <>
+                                    <Tr
+                                        height={"40px"}
+                                        _dark={{ color: "#FFFFFF" }}
+                                        _light={{ color: "#16171B" }}
+                                    >
+                                        <Td fontSize={"14px"}>{item.name}</Td>
+                                        <Td fontSize={"14px"}>{item.description_text}</Td>
+                                        <Td fontSize={"14px"}>{item.topics.length}</Td>
+                                        <Td fontSize={"14px"}>
+                                            <Button
+                                                size={"sm"}
+                                                onClick={() => {
+                                                    router.push(`https://governance.aave.com${item.topic_url}`)
+                                                }}
+                                            >
+                                                View More
+                                            </Button>
+                                        </Td>
+                                    </Tr>
+                                </>
+                            );
+                        })}
 
-            </Table>
+                    </Tbody>
 
+                </Table>
+
+            </Box>
+
+            <Box  display={{base:"block",md:"none"}}
+                 w={"100%"}
+                _dark={{ bg: "#191919" }}
+                _light={{ bg: " #F0F0F5" }}
+                mr={"20px"}
+                ml={"30px"}
+                paddingBottom={"60px"}
+            >
+                <Box
+                    display={"flex"}
+                    alignItems="center"
+                    padding={"25px 29px 27px"}
+                    bgColor={useColorModeValue("#FFF", "#202020")} borderRadius={"6px"} >
+                    <Text
+                        fontSize={"18px"}
+                        fontWeight={600}
+                        mr={"5px"}
+                        color={useColorModeValue("#16171B", "#FFF")}>
+                        Governance
+                    </Text>
+
+                    <Text
+                        paddingTop={"5px"}
+                        fontSize={"16px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}>|  Proposals
+                    </Text>
+                    <Tooltip
+                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                        padding="4px 8px"
+                        fontWeight={400}
+                        fontSize={"10px"}
+                        label="Governance in DeFi is to ensure the integrity and stability of the decentralized financial system. DeFi governance allows for greater participation, accountability, and efficiency. Proposals form the basis of the decentralized/open/ transparent nature of DeFi’s. Proposals when voted become rules, that are programmed for the benefit of governance of DeFi’s."
+
+                    >
+                        <Image
+                            src={"/icons/info_sm_icon.svg"}
+                            width={3}
+                            height={3}
+                            alt='info-icon'
+                            style={{ marginLeft: "8px", marginTop: "8px" }}
+                        ></Image>
+                    </Tooltip>
+
+                </Box>
+                <Table variant="simple" key={1} bgColor={"#FFF"} >
+                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                        <Tr>
+                            {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                                return (
+                                    <>
+                                        <Th
+                                            key={i}
+                                            _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            {item}
+                                        </Th>
+                                    </>
+                                );
+                            })}
+
+                        </Tr>
+                    </Thead>
+
+
+                    <Tbody
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        lineHeight={"20px"}
+                        _dark={{ bgColor: "#202020" }}
+                        _light={{ bgColor: "#FFF" }}
+                    >
+
+                        {governanceTableData.isLoading && (
+                            <>
+                                <SkeletonRow />
+                                <SkeletonRow />
+                                <SkeletonRow />
+                            </>
+                        )}
+
+                        {governanceTableData?.data?.map((item, i) => {
+                            return (
+                                <>
+                                    <Tr
+                                        height={"40px"}
+                                        _dark={{ color: "#FFFFFF" }}
+                                        _light={{ color: "#16171B" }}
+                                    >
+                                        <Td fontSize={"14px"}>{item.name}</Td>
+                                        <Td fontSize={"14px"}>{item.description_text}</Td>
+                                        <Td fontSize={"14px"}>{item.topics.length}</Td>
+                                        <Td fontSize={"14px"}>
+                                            <Button
+                                                size={"sm"}
+                                                onClick={() => {
+                                                    router.push(`https://governance.aave.com${item.topic_url}`)
+                                                }}
+                                            >
+                                                View More
+                                            </Button>
+                                        </Td>
+                                    </Tr>
+                                </>
+                            );
+                        })}
+
+                    </Tbody>
+
+                </Table>
+
+            </Box>
         </Box>
-
     )
 
 }

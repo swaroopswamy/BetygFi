@@ -14,7 +14,7 @@ const manrope = Manrope({
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
-  viewport: `width=1200`
+  //viewport: `width=1200`
 };
 
 export default function RootLayout({ children }) {
