@@ -528,20 +528,17 @@ const GovernanceTable = ({ }) => {
                                                             </Box>
                                                             
                                                             <Box display={"flex"}
-                                                               // justifyContent={"space-between"}
-                                                                alignItems={"center"}
+                                                              alignItems={"center"}
                                                                 mt={"10px"}>
 
                                                                 <Box display={"flex"}
-                                                                    //justifyContent={"space-between"}
-                                                                    alignItems={"center"}>
+                                                                   alignItems={"center"}>
 
                                                                     <Text
                                                                         justifyContent={"space-between"}
                                                                     >Topics:</Text></Box>
 
                                                                 <Box display={"flex"}
-                                                                    //justifyContent={"space-between"}
                                                                     alignItems={"center"}
                                                                     >
                                                                     <Text
@@ -575,19 +572,7 @@ const GovernanceTable = ({ }) => {
                                                     </AccordionPanel>
                                                 </AccordionItem>
                                             </Accordion>
-                                            {/* <Td fontSize={"14px"}>{item.name}</Td>
-                                        <Td fontSize={"14px"}>{item.description_text}</Td>
-                                        <Td fontSize={"14px"}>{item.topics.length}</Td>
-                                        <Td fontSize={"14px"}>
-                                            <Button
-                                                size={"sm"}
-                                                onClick={() => {
-                                                    router.push(`https://governance.aave.com${item.topic_url}`)
-                                                }}
-                                            >
-                                                View More
-                                            </Button>
-                                        </Td> */}
+                                           
                                         </Td>
                                     </Tr>
                                 </>

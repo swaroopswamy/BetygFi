@@ -428,6 +428,19 @@ const Dashboard = () => {
               justifyContent={"center"}
               mr={"22px"}
               mt={"15px"}
+              w={"100%"}
+              overflowX="auto"
+              whiteSpace="nowrap"
+              flexWrap="nowrap"
+                      // css={{
+                      //   '&::-webkit-scrollbar': {
+                      //     width: '0.2rem',
+                      //     height: '0.2rem',
+                      //   },
+                      //   '&::-webkit-scrollbar-thumb': {
+                      //     backgroundColor: 'transparent',
+                      //   },
+                      // }}
             >
               {blockchainListData.data?.map((item, i) => (
                 <>
@@ -444,24 +457,14 @@ const Dashboard = () => {
                       borderRadius="50%"
                       border={blockchainSelected.includes(item.id) ? "5px solid #55A406" : ""}
                       boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
-                      w="40px"
+                      w="50px"
                       h="35px"
-                      ml={i !== 0 && '5px'}
+                      ml={i !== 0 && '10px'}
                       _hover={{ borderColor: "blue" }}
                       onClick={() => {
                         BlockchainTypeHandler(item.id);
                       }}
-                      overflowX="auto"
-                      flexWrap="nowrap"
-                      css={{
-                        '&::-webkit-scrollbar': {
-                          width: '0.2rem',
-                          height: '0.2rem',
-                        },
-                        '&::-webkit-scrollbar-thumb': {
-                          backgroundColor: 'transparent',
-                        },
-                      }}
+                      
                     >
 
                       <Image
