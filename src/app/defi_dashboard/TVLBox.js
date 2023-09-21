@@ -18,21 +18,23 @@ const TVLBox = () => {
         (state) => state?.defiDashboardData?.DefiData
     )
     return (
-        <>
+     
+        <Box
+           // minW={"331px"}
+           w={{base:"100%",md:"331px"}}
+            height={"auto"}
+            display={"flex"}
+            flexDirection={"column"}
+            borderRadius={"6px"}
 
-            <Box
-                display={'flex'}
-                minW={"331px"}
-                height={"auto"}
-                flexDirection={"column"}
-                borderRadius={"6px"}
-                _dark={{ bg: "#202020" }}
-                _light={{ bg: "#FFFFFF" }}
-                mr="20px"
-                h={"100%"}
-            //w={{ base: "100%", md: "100%" }}
-            >
-                <Box p={"20px"} h="80%">
+            _dark={{ bg: "#202020" }}
+            _light={{ bg: "#FFFFFF" }}
+              mr={{base:"0px",md:"20px"}}
+        >
+            <Box h="100%">
+                <Box 
+                p={"20px"} 
+                h="80%">
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
@@ -58,7 +60,8 @@ const TVLBox = () => {
                     >
                         Total Value Locked
                     </Text>
-                    <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")} pt={"20px"} alt=""></Image>
+                    <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")}
+                           pt={"20px"} alt="" w={"100%"}></Image>
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
@@ -172,7 +175,7 @@ const TVLBox = () => {
                 </Box>
             </Box >
 
-        </>
+        </Box>
     )
 
 }
