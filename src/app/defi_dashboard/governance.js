@@ -1,5 +1,5 @@
 "use client"
-import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Skeleton } from "@chakra-ui/react";
+import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Skeleton, Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from "@chakra-ui/react";
 import { List, ListItem, ListIcon, Checkbox } from '@chakra-ui/react';
 import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
@@ -51,7 +51,7 @@ const GovernanceTable = ({ }) => {
 
     return (
         <Box>
-            <Box display={{base:"none",md:"block"}}
+            <Box display={{ base: "none", md: "block" }}
                 _dark={{ bg: "#191919" }}
                 _light={{ bg: " #F0F0F5" }}
                 mr={"20px"}
@@ -354,12 +354,13 @@ const GovernanceTable = ({ }) => {
 
             </Box>
 
-            <Box  display={{base:"block",md:"none"}}
-                 w={"100%"}
+            <Box display={{ base: "block", md: "none" }}
+                w={"90%"}
                 _dark={{ bg: "#191919" }}
                 _light={{ bg: " #F0F0F5" }}
                 mr={"20px"}
                 ml={"30px"}
+                mb={"30px"}
                 paddingBottom={"60px"}
             >
                 <Box
@@ -399,13 +400,16 @@ const GovernanceTable = ({ }) => {
                     </Tooltip>
 
                 </Box>
-                <Table variant="simple" key={1} bgColor={"#FFF"} >
+                <Table variant="unstyled" key={1} bgColor={"#FFF"}
+                    display={{ base: "table", md: "none" }}
+                    width={"100%"} >
                     <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                         <Tr>
-                            {['Title', 'Description', 'Topics', ' '].map((item, i) => {
+                            {/* {['Title', 'Topics'].map((item, i) => {
                                 return (
                                     <>
                                         <Th
+                                            colSpan={1}
                                             key={i}
                                             _light={{ color: "#434347" }}
                                             _dark={{ color: "#A8ADBD" }}
@@ -419,7 +423,22 @@ const GovernanceTable = ({ }) => {
                                         </Th>
                                     </>
                                 );
-                            })}
+                            })} */}
+                            <Th
+                                display={"flex"}
+                                flexDirection={"row"}
+                                _light={{ color: "#434347" }}
+                                _dark={{ color: "#A8ADBD" }}
+                                fontSize={"14px"}
+                                fontWeight={400}
+                                lineHeight={"20px"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
+                                justifyContent={"space-between"}>
+                                <Text
+                                    justifyContent={"space-between"}>Title</Text>
+
+                            </Th>
 
                         </Tr>
                     </Thead>
@@ -435,9 +454,9 @@ const GovernanceTable = ({ }) => {
 
                         {governanceTableData.isLoading && (
                             <>
-                                <SkeletonRow />
-                                <SkeletonRow />
-                                <SkeletonRow />
+                                <MobileSkeletonRow />
+                                <MobileSkeletonRow />
+                                <MobileSkeletonRow />
                             </>
                         )}
 
@@ -445,11 +464,118 @@ const GovernanceTable = ({ }) => {
                             return (
                                 <>
                                     <Tr
-                                        height={"40px"}
+                                        //height={"10px"}
                                         _dark={{ color: "#FFFFFF" }}
                                         _light={{ color: "#16171B" }}
                                     >
-                                        <Td fontSize={"14px"}>{item.name}</Td>
+                                        <Td colSpan={1}
+                                            p={0}>
+                                            <Accordion allowMultiple>
+                                                <AccordionItem>
+                                                    <AccordionButton
+                                                        justifyContent={"space-between"}
+                                                    >
+                                                        {/* <Flex
+                                                           justifyContent={"space-between"}
+                                                           flexDirection={"row"}
+                                                           alignItems={"center"}
+                                                        > */}
+                                                            <Box justifyContent={"space-between"}
+                                                                alignItems={"center"}>
+                                                                <Text
+                                                                    _light={{ color: "#434347" }}
+                                                                    _dark={{ color: "#A8ADBD" }}
+                                                                    fontSize={"14px"}
+                                                                    fontWeight={"400"}
+                                                                    lineHeight={"20px"}
+                                                                    letterSpacing={"1.4px"}
+                                                                    textTransform={"capitalize"}
+                                                                >
+                                                                    {item.name}
+                                                                </Text></Box>
+                                                                    {/* </Flex> */}
+                                                        
+                                                        <AccordionIcon />
+                                                    </AccordionButton>
+
+
+                                                    <AccordionPanel>
+                                                        <Box display={"flex"}
+                                                            flexDirection={"column"}
+                                                            _light={{ color: "#434347" }}
+                                                            _dark={{ color: "#A8ADBD" }}
+                                                            fontSize={"14px"}
+                                                            letterSpacing={"1.4px"}
+                                                            textTransform={"capitalize"}
+                                                            justifyContent={"space-between"}>
+
+                                                           
+                                                            <Box display={"flex"}
+                                                                    alignItems={"center"}
+                                                                    justifyContent={"space-between"}>
+                                                                <Box display={"flex"}
+                                                                    alignItems={"center"}
+                                                                    justifyContent={"space-between"}
+                                                                    >
+                                                                    <Text mb={"35px"}>Description:</Text></Box>
+
+                                                                <Box display={"flex"}
+                                                                    alignItems={"center"}
+                                                                    justifyContent={"space-between"}
+                                                                     ml={"30px"}
+                                                                    >
+                                                                    <Text>{item.description_text}</Text></Box>
+                                                            </Box>
+                                                            
+                                                            <Box display={"flex"}
+                                                               // justifyContent={"space-between"}
+                                                                alignItems={"center"}
+                                                                mt={"10px"}>
+
+                                                                <Box display={"flex"}
+                                                                    //justifyContent={"space-between"}
+                                                                    alignItems={"center"}>
+
+                                                                    <Text
+                                                                        justifyContent={"space-between"}
+                                                                    >Topics:</Text></Box>
+
+                                                                <Box display={"flex"}
+                                                                    //justifyContent={"space-between"}
+                                                                    alignItems={"center"}
+                                                                    >
+                                                                    <Text
+                                                                        _light={{ color: "#434347" }}
+                                                                        _dark={{ color: "#A8ADBD" }}
+                                                                        fontSize={"14px"}
+                                                                        letterSpacing={"1.4px"}
+                                                                        textTransform={"capitalize"}
+                                                                       ml={"65px"}
+                                                                       justifyContent={"flex-end"}
+                                                                    >
+                                                                        {item.topics.length}
+                                                                    </Text></Box></Box>
+
+                                                            </Box>
+
+                                                        <Box alignItems={"center"}
+                                                            justifyContent={"space-between"}
+                                                            ml={"130px"}
+                                                            mt={"10px"}>
+                                                            <Button
+                                                                size={"sm"}
+                                                                onClick={() => {
+                                                                    router.push(`https://governance.aave.com${item.topic_url}`)
+                                                                }}
+                                                            >
+                                                                View More
+                                                            </Button>
+                                                        </Box>
+
+                                                    </AccordionPanel>
+                                                </AccordionItem>
+                                            </Accordion>
+                                            {/* <Td fontSize={"14px"}>{item.name}</Td>
                                         <Td fontSize={"14px"}>{item.description_text}</Td>
                                         <Td fontSize={"14px"}>{item.topics.length}</Td>
                                         <Td fontSize={"14px"}>
@@ -461,6 +587,7 @@ const GovernanceTable = ({ }) => {
                                             >
                                                 View More
                                             </Button>
+                                        </Td> */}
                                         </Td>
                                     </Tr>
                                 </>
@@ -474,7 +601,6 @@ const GovernanceTable = ({ }) => {
             </Box>
         </Box>
     )
-
 }
 
 const SkeletonRow = () => (
@@ -491,5 +617,17 @@ const SkeletonRow = () => (
     </Box>
 )
 
-
+const MobileSkeletonRow = () => (
+    <Box as="tr">
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+        <Td>
+            <Skeleton height="20px" my={4} />
+        </Td>
+    </Box>
+)
 export default GovernanceTable;

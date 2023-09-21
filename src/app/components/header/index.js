@@ -376,6 +376,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         isOpen={isMobileSidebarOpen}
         onOpen={onMobileSidebarOpen}
         onClose={onMobileSidebarClose}
+        isLoginModalOpen={isLoginModalOpen} 
+        onLoginModalOpen={onLoginModalOpen}
+         onLoginModalClose={onLoginModalClose}
       />
 
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />

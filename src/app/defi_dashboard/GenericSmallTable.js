@@ -83,7 +83,6 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                     >
                    </Image>
                     </Tooltip>
-                    <Spacer />
                     {/* <Button
                         variant={"outline"}
                         size={"xs"}

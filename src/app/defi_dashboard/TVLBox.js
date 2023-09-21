@@ -10,7 +10,7 @@ import millify from "millify";
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  });
+});
 
 const TVLBox = () => {
     const { colorMode } = useColorMode();
@@ -18,7 +18,7 @@ const TVLBox = () => {
         (state) => state?.defiDashboardData?.DefiData
     )
     return (
-
+     
         <Box
            // minW={"331px"}
            w={{base:"100%",md:"331px"}}
@@ -29,10 +29,12 @@ const TVLBox = () => {
 
             _dark={{ bg: "#202020" }}
             _light={{ bg: "#FFFFFF" }}
-              mr="20px"
+              mr={{base:"0px",md:"20px"}}
         >
             <Box h="100%">
-                <Box p={"20px"} h="80%">
+                <Box 
+                p={"20px"} 
+                h="80%">
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}
@@ -58,7 +60,8 @@ const TVLBox = () => {
                     >
                         Total Value Locked
                     </Text>
-                    <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")} pt={"20px"} alt=""></Image>
+                    <Image src={colorMode === 'light' ? ("/images/TVLline(light).svg") : ("/images/TVLline(dark).svg")}
+                           pt={"20px"} alt="" w={"100%"}></Image>
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
@@ -170,10 +173,9 @@ const TVLBox = () => {
                     </Box>
 
                 </Box>
-            </Box>
+            </Box >
 
-        </Box >
-
+        </Box>
     )
 
 }

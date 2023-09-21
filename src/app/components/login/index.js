@@ -42,9 +42,10 @@ const LoginPage = ({ isOpen, onClose }) => {
             <Modal isOpen={isOpen} onClose={onClose}
                 borderRadius={"6px"}
                 boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
+                mx={{base:"14px",md:"0px"}}
             >
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent    mx={{base:"14px",md:"0px"}}>
                     <ModalHeader
 
                         bg={useColorModeValue("#F5F5F7", "#202020")}

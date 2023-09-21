@@ -570,7 +570,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
 
 export default SidebarContent;
 
-const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
+const MobileSidebar = ( { isOpen, onOpen, onClose , isLoginModalOpen, onLoginModalOpen, onLoginModalClose , } ) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } = useDisclosure();
   const router = useRouter();
@@ -808,7 +808,7 @@ const MobileSidebar = ( { isOpen, onOpen, onClose } ) => {
                 >
                   <Box
                     cursor={"pointer"}
-                    // onClick={onLoginModalOpen}
+                    onClick={onLoginModalOpen}
                     bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
                     display={"flex"}
                     alignItems={"center"}
