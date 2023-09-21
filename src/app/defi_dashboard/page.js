@@ -127,7 +127,7 @@ const DefiDashboardPage = () => {
                 flexDirection={"column"}
             >
                 <Box
-                    display={"flex"}
+                    display={{ base: "none", md: "flex" }}
                     justifyContent={"space-between"}
                     margin={"10px 30px 50px 30px"}
                     paddingBottom={"33px"}
@@ -238,28 +238,22 @@ const DefiDashboardPage = () => {
 
                                                     <Tooltip
                                                         key={i} label={item.name}
-                                                    // <>
-                                                    //     <div style={{ display:'flex',alignItems:'center',paddingTop:'10px'}}>
-                                                    //         {renderIcon(item)}
-                                                    //         <span style={{paddingLeft:"5px",paddingTop:"2px"}}>{item}</span>
-                                                    //     </div>
-                                                    //     <Text
-                                                    //     _light={{color:"#191919"}}
-                                                    //     _dark={{color:"#FFF"}}
-                                                    //     fontSize={"16px"}
-                                                    //     fontWeight={400}
-                                                    //     lineHeight={"20px"}
-                                                    //     mt={"10px"}
-                                                    //     ml={"5px"}
-                                                    //     >
-                                                    //         37% of TVL</Text>
-                                                    // </>
-
-                                                    // width={"168px"}
-                                                    // height={"78px"}
-                                                    // _light={{ bgColor: "#FFF", color: "#191919" }}
-                                                    // _dark={{ bgColor: "#202020", color: "#FFF" }}
                                                     >
+                                                        {/* <div style={{ display: 'flex', alignItems: 'center', paddingTop: '10px' }}>
+                                                            {renderIcon(item)}
+                                                            <span style={{ paddingLeft: "5px", paddingTop: "2px" }}>{item}</span>
+                                                        </div>
+                                                        <Text
+                                                            _light={{ color: "#191919" }}
+                                                            _dark={{ color: "#FFF" }}
+                                                            fontSize={"16px"}
+                                                            fontWeight={400}
+                                                            lineHeight={"20px"}
+                                                            mt={"10px"}
+                                                            ml={"5px"}
+                                                        >
+                                                            37% of TVL
+                                                        </Text> */}
 
                                                         <Box
                                                             display={"flex"}
@@ -430,7 +424,301 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
-                {/* <hr style={colorMode === 'light' ? ({background:"#BFBFBF", margin:"10px 30px"}) : ({background:"#2F2F2F", margin:"10px 30px"})} /> */}
+                <Box
+                    display={{ base: "flex", md: "none" }}
+                    margin={"17px 13px"}
+                    //paddingBottom={"33px"}
+                    borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
+                    bgColor={useColorModeValue("#F0F0F5", "#191919")}
+                    w="100%"
+
+                >
+                    <Box
+                        w="100%"
+                        display={"flex"}
+                        flexDirection={"column"}
+                        alignItems={"start"}
+                        bgColor={useColorModeValue("#F0F0F5", "#191919")}
+                    >
+                        <Box
+                            display={"flex"}
+                            alignItems={"center"}
+
+                        >
+                            <Image
+                                marginRight={"22px"}
+                                w={{ base: "30px", md: "30px" }}
+                                h={{ base: "30px", md: "30px" }}
+                                borderRadius={"50%"}
+                                src={defiData?.logo ?? "/images/basic_profile.png"}
+                                alt="proifile_img"
+                            />
+                            <Box
+                                display={"flex"}
+                                flexDirection={"column"}
+                            >
+                                {
+                                    defiData?.name !== undefined && (
+                                        <Text
+                                            fontSize={{ base: "18px", md: "24px" }}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            //opacity={"0.5"}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                            _light={{
+                                                color: "#191919"
+                                            }}
+                                            letterSpacing={"2.4px"}
+                                        >
+                                            {defiData?.name}
+                                        </Text>
+                                    )}
+                                <Box
+                                    h="100%"
+                                    py={"4px"}
+                                    cursor={"pointer"}
+                                    //borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
+                                    onClick={() => {
+                                        router.push(defiData.url);
+                                    }}
+                                >
+                                    <a
+                                        href={defiData?.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Text
+                                            fontSize={"14px"}
+                                            fontWeight={"300"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                            color={useColorModeValue("#000000", "#A8ADBD")}
+                                            textDecoration={"underline"}
+                                        >
+                                            {defiData?.url}
+                                        </Text>
+                                    </a>
+                                </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            display={"flex"}
+                            flexDirection={"column"}
+                            h="100%"
+                            mt="20px"
+
+                        >
+                            <Text
+                                fontSize={"14px"}
+                                fontWeight={"400"}
+                                lineHeight={"20px"}
+                                letterSpacing={"1.4px"}
+                                color={useColorModeValue("#3A3A3A", "#A8ADBD")}
+                            >
+                                {defiData?.chains?.length ?? 0} chains
+                            </Text>
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                                justifyContent={"center"}
+                                mt="10px"
+                            >
+                                {blockchains?.map((item, i) => (
+                                    <>
+                                        {defiData?.chains?.includes(toCapitalize(item.name)) &&
+
+                                            <Tooltip
+                                                key={i} label={item.name}
+                                            >
+                                                {/* <div style={{ display: 'flex', alignItems: 'center', paddingTop: '10px' }}>
+                                                            {renderIcon(item)}
+                                                            <span style={{ paddingLeft: "5px", paddingTop: "2px" }}>{item}</span>
+                                                        </div>
+                                                        <Text
+                                                            _light={{ color: "#191919" }}
+                                                            _dark={{ color: "#FFF" }}
+                                                            fontSize={"16px"}
+                                                            fontWeight={400}
+                                                            lineHeight={"20px"}
+                                                            mt={"10px"}
+                                                            ml={"5px"}
+                                                        >
+                                                            37% of TVL
+                                                        </Text> */}
+
+                                                <Box
+                                                    display={"flex"}
+                                                    cursor={"pointer"}
+                                                    alignItems={"center"}
+                                                    justifyContent={"center"}
+
+                                                    flexDirection={"row"}
+                                                    bg={"#D9D9D9"}
+                                                    borderRadius="50%"
+                                                    border={blockchainSelected.includes(item.id) ? "3px solid #55A406" : ""}
+                                                    boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
+                                                    w="40px"
+                                                    h="40px"
+                                                    mr="10px"
+                                                    onClick={() => {
+                                                        BlockchainTypeHandler(item.id);
+                                                    }}
+                                                    _hover={{ borderColor: "blue" }}
+                                                >
+                                                    <Image
+                                                        width={18}
+                                                        height={18}
+                                                        src={item.logoUrl}
+                                                        alt={`${item.id}_icon`}
+
+                                                    ></Image>
+                                                </Box>
+
+                                            </Tooltip>
+                                        }
+                                    </>
+                                ))}
+                                {/* <Menu closeOnSelect={false}>
+                                            <MenuButton
+                                                bg={"#D9D9D9"}
+                                                borderRadius="50%"
+                                                w="40px"
+                                                h="40px"
+                                                transition='all 0.2s'
+
+                                                border="2px solid #191919"
+                                                ml='-10px'
+                                                _focus={{ boxShadow: 'outline' }}
+                                                color="#000"
+                                            >
+                                                +4
+                                            </MenuButton>
+                                            <MenuList
+                                                boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
+                                                bgColor={useColorModeValue("#FFF", "#191919")}
+                                            >
+                                                {blockchains?.map((item, i) => {
+                                                    return (
+                                                        <>
+                                                            {i >= 4 &&
+                                                                <MenuItem key={i}
+                                                                    _light={{
+                                                                        bgColor: "#FFF",
+                                                                    }}
+                                                                    _dark={{
+                                                                        bgColor: "#191919",
+                                                                    }}
+                                                                    _hover={{ bg: colorMode === 'light' ? "#F5F5F7" : "#202020" }}
+                                                                >
+                                                                    <Checkbox colorScheme='green'
+                                                                        value={item.name}
+                                                                        checked={blockchainSelected.includes(item.name)} onChange={(e) => {
+                                                                            BlockchainTypeHandler(item.name);
+                                                                        }}>
+                                                                        <Box
+                                                                            display={"flex"}
+                                                                            cursor={"pointer"}
+                                                                            alignItems={"center"}
+                                                                            justifyContent={"center"}
+                                                                        >
+                                                                            <Image
+                                                                                width={18}
+                                                                                height={18}
+                                                                                src={item.logoUrl}
+                                                                                alt={`${item.id}_icon`}
+
+                                                                                style={{ marginRight: "20px", marginLeft: "14px" }}
+                                                                            ></Image>
+                                                                            <Text
+                                                                                fontSize={"12px"}
+                                                                                fontWeight={"400"}
+                                                                                lineHeight={"20px"}
+                                                                                letterSpacing={"1px"}
+                                                                                _light={{
+                                                                                    color: "#16171B",
+                                                                                }}
+                                                                                _dark={{
+                                                                                    color: "#FFF",
+                                                                                }}
+                                                                            >
+                                                                                {item.name}
+                                                                            </Text>
+                                                                        </Box>
+                                                                    </Checkbox>
+                                                                </MenuItem>
+                                                            }
+                                                        </>)
+                                                })}
+                                            </MenuList>
+                                        </Menu> */}
+                            </Box>
+                        </Box>
+                        <Box
+                            h="100%"
+                            py={"11px"}
+                            display={"flex"}
+                            alignItems={"center"}
+                        >
+                            <Text
+                                fontSize={"14px"}
+                                fontWeight={400}
+                                lineHeight={"20px"}
+                                letterSpacing={"1.4px"}
+                                color={useColorModeValue("#000000", "#A8ADBD")}
+                                paddingRight={"15px"}
+                            >
+                                Token
+                            </Text>
+                            <Text
+                                fontSize={"10px"}
+                                fontWeight={600}
+                                lineHeight={"20px"}
+                                letterSpacing={"1px"}
+                                color={useColorModeValue("#000000", "#A8ADBD")}
+                                paddingRight={"15px"}
+                            >
+                                <a target="_blank" href={`https://www.coingecko.com/en/coins/${defiData?.symbol.toLowerCase()}`}>{defiData?.symbol}</a>
+                            </Text>
+                        </Box>
+                        <Box
+                            //w="100%"
+                            display={"flex"}
+                            alignItems={"center"}
+                            justifyContent={"center"}
+                            position={"relative"}
+                            bgColor={useColorModeValue("#FFF", "#202020")}
+                            mx="auto"
+                            padding={"10px 10px"}
+                            h="fit-content"
+                            borderRadius={"6px"}
+                            _after={{
+                                position: "absolute",
+                                content: '""',
+                                bottom: "0px",
+                                left: "10px",
+                                width: "85%",
+                                height: "1px",
+                                bgColor: "#00B913",
+
+                            }}
+                        >
+                            Safety Score
+                            <Text
+                                ml="10px"
+                                fontWeight={"600"}
+                                fontSize={"16px"}
+
+                            >
+                                {defiData?.safety_score}/100
+                            </Text>
+                        </Box>
+                    </Box>
+
+                </Box>
+
+
             </Box>
 
 

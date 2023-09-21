@@ -10,7 +10,7 @@ import millify from "millify";
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  });
+});
 
 const TVLBox = () => {
     const { colorMode } = useColorMode();
@@ -18,7 +18,7 @@ const TVLBox = () => {
         (state) => state?.defiDashboardData?.DefiData
     )
     return (
-
+     
         <Box
            // minW={"331px"}
            w={{base:"100%",md:"331px"}}
@@ -173,10 +173,9 @@ const TVLBox = () => {
                     </Box>
 
                 </Box>
-            </Box>
+            </Box >
 
-        </Box >
-
+        </Box>
     )
 
 }
