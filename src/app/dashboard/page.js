@@ -715,7 +715,7 @@ const Dashboard = () => {
                 <Text
                   color={useColorModeValue("#16171B", "#FFF")}
                   fontSize={"18px"}
-                  fontWeight={"600"}
+                  fontWeight={600}
                   lineHeight={"20px"}
                 >
                   Overview
@@ -964,35 +964,43 @@ const Dashboard = () => {
             </Accordion>
           </Box>
 
-          {/* Tables */}
-          <Box>
+          {/* DeFi Rankings Tables */}
 
-            <Box
-              w={{ base: "100%", md: "100%" }}
-              display={{ base: "none", md: "block" }}
-              //display={"flex"}
-              flexDirection={"column"}
-              bgColor={useColorModeValue("#FFFFFF", "#202020")}
-              border={"1px solid"}
-              borderColor={useColorModeValue("#FFFFFF", "#272727")}
-              borderRadius={"6px"}
-              dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
+          <Box
+            w={{ base: "100%", md: "100%" }}
+            display={{ base: "none", md: "block" }}
+            //display={"flex"}
+            flexDirection={"column"}
+            bgColor={useColorModeValue("#FFFFFF", "#202020")}
+            border={"1px solid"}
+            borderColor={useColorModeValue("#FFFFFF", "#272727")}
+            borderRadius={"6px"}
+            dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
+          >
+            <Flex
+              justifyContent={"space-between"}
+              padding={"23px 29px 27px"}
+              alignItems={"center"}
             >
-              <Flex
-                justifyContent={"space-between"}
-                padding={"23px 29px 27px"}
-                alignItems={"center"}
+              <Text
+                fontSize={"18px"}
+                fontWeight={600}
+                lineHeight={"20px"}
+                color={useColorModeValue("#16171B", "#FFF")}
               >
-                <Text
-                  fontSize={"18px"}
-                  fontWeight={600}
-                  lineHeight={"20px"}
-                  color={useColorModeValue("#16171B", "#FFF")}
-                >
-                  DeFi Rankings
-                </Text>
-                <Flex alignItems={"center"}>
-                  <Box>
+                DeFi Rankings
+              </Text>
+              <Flex alignItems={"center"}>
+                <Box>
+                  <InputGroup w={"100%"}>
+                    <InputLeftElement pointerEvents='none'>
+                      <Image
+                        src="/images/search_icon.svg"
+                        width={14}
+                        height={14}
+                        alt="search_icon"
+                      />
+                    </InputLeftElement>
                     <Input
                       borderColor={useColorModeValue("#E8E8E8", "#333")}
                       bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -1005,175 +1013,174 @@ const Dashboard = () => {
                       placeholder="Search DeFi"
                       onChange={(e) => { searchByNameHandler(e.target.value) }}
                     />
-                  </Box>
-                </Flex>
+                  </InputGroup>
+                </Box>
               </Flex>
+            </Flex>
 
-              <Rankings />
+            <Rankings />
+            <Box
+              display={"flex"}
+              alignItems={"flex-start"}
+              justifyContent={"end"}
+              padding="10px 30px 14px"
+            >
               <Box
                 display={"flex"}
-                alignItems={"flex-start"}
-                justifyContent={"end"}
-                padding="10px 30px 14px"
-              >
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  mr="20px"
-                >
-                  <Text
-                    color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"14px"}
-                    fontWeight={400}
-                    lineHeight={"20px"}
-                    mr="10px"
-                  >
-                    Page
-                  </Text>
-                  <Text
-                    color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"15px"}
-                    fontWeight={"600"}
-                  >
-                    {tablePage}
-                  </Text>
-                </Box>
-                {/* Fix */}
-                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
-                  <>
-                    <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w="30px"
-                      h="26px"
-                      border={"1px solid #C7CAD2"}
-                      bg={useColorModeValue("#FFF", "#191919")}
-                      padding="0px"
-                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                      disabled={tablePage === 1}
-                      onClick={() => {
-                        tablePage !== 1 && pageChangeHandler(tablePage - 1)
-                      }}
-                    >
-                      <Image
-                        width={15}
-                        height={15}
-                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                        _disabled={tablePage === 1}
-                        style={{ rotate: '180deg' }}
-                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                        alt="prev-arrow"
-                      ></Image>
-                    </Button>
-                    <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w="30px"
-                      h="26px"
-                      border={"1px solid #C7CAD2"}
-                      bg={useColorModeValue("#FFF", "#191919")}
-                      padding="0px"
-                      cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
-                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
-                      onClick={() => {
-                        // fix 3
-                        tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
-                      }}
-                    >
-                      <Image
-                        width={15}
-                        height={15}
-                        alt="next-arrow"
-                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                      ></Image>
-                    </Button>
-                  </>)}
-
-              </Box>
-            </Box>
-
-
-
-            <Box
-              w={{ base: "100%", md: "100%" }}
-              display={{ base: "block", md: "none" }}
-              //display={"flex"}
-              flexDirection={"column"}
-              bgColor={useColorModeValue("#FFFFFF", "#202020")}
-              border={"1px solid"}
-              borderColor={useColorModeValue("#FFFFFF", "#272727")}
-              borderRadius={"6px"}
-              dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
-              px={{ base: "0px", md: "20px" }}
-              py={{ base: "0px", md: "25px" }}
-            >
-              <Flex
-                justifyContent={"space-between"}
                 alignItems={"center"}
-                padding={"20px 20px 10px 10px"}
+                mr="20px"
               >
                 <Text
-                  fontSize={"18px"}
-                  fontWeight={600}
-                  lineHeight={"20px"}
-                  ml={"20px"}
                   color={useColorModeValue("#16171B", "#FFF")}
+                  fontSize={"14px"}
+                  fontWeight={400}
+                  lineHeight={"20px"}
+                  mr="10px"
                 >
-                  DeFi Rankings
+                  Page
                 </Text>
-
-                <Box
-                  cursor={"pointer"}
-                  onClick={onRankingsSearchToggle}
+                <Text
+                  color={useColorModeValue("#16171B", "#FFF")}
+                  fontSize={"15px"}
+                  fontWeight={"600"}
                 >
-                  <Image
-                    src="/images/search_icon.svg"
-                    width={20}
-                    height={20}
-                    alt="search_icon"
-                  />
-                </Box>
-              </Flex>
+                  {tablePage}
+                </Text>
+              </Box>
+              {/* Fix */}
+              {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
+                <>
+                  <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w="30px"
+                    h="26px"
+                    border={useColorModeValue("1px solid #C7CAD2", "1px solid #454853")}
+                    bg={useColorModeValue("#FFF", "#202020")}
+                    padding="0px"
+                    cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                    disabled={tablePage === 1}
+                    onClick={() => {
+                      tablePage !== 1 && pageChangeHandler(tablePage - 1)
+                    }}
+                  >
+                    <Image
+                      width={15}
+                      height={15}
+                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                      _disabled={tablePage === 1}
+                      style={{ rotate: '180deg' }}
+                      src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                      alt="prev-arrow"
+                    ></Image>
+                  </Button>
+                  <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w="30px"
+                    h="26px"
+                    border={useColorModeValue("1px solid #C7CAD2", "1px solid #454853")}
+                    bg={useColorModeValue("#FFF", "#202020")}
+                    padding="0px"
+                    cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
+                    disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
+                    onClick={() => {
+                      // fix 3
+                      tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
+                    }}
+                  >
+                    <Image
+                      width={15}
+                      height={15}
+                      alt="next-arrow"
+                      src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                    ></Image>
+                  </Button>
+                </>)}
 
-              <Collapse
-                in={isRankingsSearchOpen}
-                animateOpacity={"true"}
+            </Box>
+          </Box>
+
+          <Box
+            w={{ base: "100%", md: "100%" }}
+            display={{ base: "block", md: "none" }}
+            //display={"flex"}
+            flexDirection={"column"}
+            bgColor={useColorModeValue("#FFFFFF", "#202020")}
+            border={"1px solid"}
+            borderColor={useColorModeValue("#FFFFFF", "#272727")}
+            borderRadius={"6px"}
+            dropShadow={"box-shadow: 0px 4px 4px 0px #0000000D;"}
+            px={{ base: "0px", md: "20px" }}
+            py={{ base: "0px", md: "25px" }}
+          >
+            <Flex
+              justifyContent={"space-between"}
+              alignItems={"center"}
+              padding={"20px 20px 10px 10px"}
+            >
+              <Text
+                fontSize={"18px"}
+                fontWeight={600}
+                lineHeight={"20px"}
+                ml={"20px"}
+                color={useColorModeValue("#16171B", "#FFF")}
               >
-                <Box
-                  px={{ base: 4, md: 4 }}
-                  w={"100%"}
-                  display={"flex"}
-                  borderColor={colorMode === "light" ? "#E1E1E1" : "#191919"}
-                  bgColor={colorMode === "light" ? "#F5F5F7" : "#272727"}
-                  borderBottom={"0px"}
-                  padding={"8px 19px"}
-                >
-                  <InputGroup w="100%">
-                    <InputLeftElement pointerEvents='none'>
-                      <Image
-                        src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
-                        width={14}
-                        height={14}
-                        alt="search_icon"
-                      />
-                    </InputLeftElement>
-                    <Input
-                      type="text"
-                      border="1px"
-                      borderRadius="0px"
-                      borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                      bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-                      fontSize="12px"
-                      fontWeight="400"
-                      lineHeight="20px"
-                      letterSpacing="1.2px"
-                      w="100%"
-                      placeholder="Search DeFi"
-                      onChange={(e) => { searchByNameHandler(e.target.value) }}
-                    ></Input>
-                    {/* <Box
+                DeFi Rankings
+              </Text>
+
+              <Box
+                cursor={"pointer"}
+                onClick={onRankingsSearchToggle}
+              >
+                <Image
+                  src="/images/search_icon.svg"
+                  width={20}
+                  height={20}
+                  alt="search_icon"
+                />
+              </Box>
+            </Flex>
+
+            <Collapse
+              in={isRankingsSearchOpen}
+              animateOpacity={"true"}
+            >
+              <Box
+                px={{ base: 4, md: 4 }}
+                w={"100%"}
+                display={"flex"}
+                borderColor={colorMode === "light" ? "#E1E1E1" : "#191919"}
+                bgColor={colorMode === "light" ? "#F5F5F7" : "#272727"}
+                borderBottom={"0px"}
+                padding={"8px 19px"}
+              >
+                <InputGroup w="100%">
+                  <InputLeftElement pointerEvents='none'>
+                    <Image
+                      src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+                      width={14}
+                      height={14}
+                      alt="search_icon"
+                    />
+                  </InputLeftElement>
+                  <Input
+                    type="text"
+                    border="1px"
+                    borderRadius="0px"
+                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+                    fontSize="12px"
+                    fontWeight="400"
+                    lineHeight="20px"
+                    letterSpacing="1.2px"
+                    w="100%"
+                    placeholder="Search DeFi"
+                    onChange={(e) => { searchByNameHandler(e.target.value) }}
+                  ></Input>
+                  {/* <Box
                       alignContent={"center"}
                       justifyContent={"center"}
                       cursor={"pointer"}
@@ -1192,96 +1199,96 @@ const Dashboard = () => {
                         Search
                       </Text>
                     </Box> */}
-                  </InputGroup>
-                </Box>
-              </Collapse>
+                </InputGroup>
+              </Box>
+            </Collapse>
 
-              <Rankings />
+            <Rankings />
 
+            <Box
+              display={"flex"}
+              alignItems={"flex-start"}
+              justifyContent={"end"}
+              padding="10px 30px 14px"
+            >
               <Box
                 display={"flex"}
-                alignItems={"flex-start"}
-                justifyContent={"end"}
-                padding="10px 30px 14px"
+                alignItems={"center"}
+                mr="20px"
               >
-                <Box
-                  display={"flex"}
-                  alignItems={"center"}
-                  mr="20px"
+                <Text
+                  color={useColorModeValue("#16171B", "#FFF")}
+                  fontSize={"14px"}
+                  fontWeight={400}
+                  lineHeight={"20px"}
+                  mr="10px"
                 >
-                  <Text
-                    color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"14px"}
-                    fontWeight={400}
-                    lineHeight={"20px"}
-                    mr="10px"
-                  >
-                    Page
-                  </Text>
-                  <Text
-                    color={useColorModeValue("#16171B", "#FFF")}
-                    fontSize={"15px"}
-                    fontWeight={"600"}
-                  >
-                    {tablePage}
-                  </Text>
-                </Box>
-                {/* Fix */}
-                {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
-                  <>
-                    <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w="30px"
-                      h="26px"
-                      border={"1px solid #C7CAD2"}
-                      bg={useColorModeValue("#FFF", "#191919")}
-                      padding="0px"
-                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                      disabled={tablePage === 1}
-                      onClick={() => {
-                        tablePage !== 1 && pageChangeHandler(tablePage - 1)
-                      }}
-                    >
-                      <Image
-                        width={15}
-                        height={15}
-                        cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-                        _disabled={tablePage === 1}
-                        style={{ rotate: '180deg' }}
-                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                        alt="prev-arrow"
-                      ></Image>
-                    </Button>
-                    <Button
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      w="30px"
-                      h="26px"
-                      border={"1px solid #C7CAD2"}
-                      bg={useColorModeValue("#FFF", "#191919")}
-                      padding="0px"
-                      cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
-                      disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
-                      onClick={() => {
-                        // fix 3
-                        tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
-                      }}
-                    >
-                      <Image
-                        width={15}
-                        height={15}
-                        alt="next-arrow"
-                        src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
-                      ></Image>
-                    </Button>
-                  </>)}
+                  Page
+                </Text>
+                <Text
+                  color={useColorModeValue("#16171B", "#FFF")}
+                  fontSize={"15px"}
+                  fontWeight={"600"}
+                >
+                  {tablePage}
+                </Text>
               </Box>
-
+              {/* Fix */}
+              {tableData.DefiRankingsTableData?.isSuccess && tableData.DefiRankingsTableData?.data.totalPages > 1 && (
+                <>
+                  <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w="30px"
+                    h="26px"
+                    border={"1px solid #C7CAD2"}
+                    bg={useColorModeValue("#FFF", "#191919")}
+                    padding="0px"
+                    cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                    disabled={tablePage === 1}
+                    onClick={() => {
+                      tablePage !== 1 && pageChangeHandler(tablePage - 1)
+                    }}
+                  >
+                    <Image
+                      width={15}
+                      height={15}
+                      cursor={tablePage === 1 ? "not-allowed" : "pointer"}
+                      _disabled={tablePage === 1}
+                      style={{ rotate: '180deg' }}
+                      src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                      alt="prev-arrow"
+                    ></Image>
+                  </Button>
+                  <Button
+                    display={"flex"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    w="30px"
+                    h="26px"
+                    border={"1px solid #C7CAD2"}
+                    bg={useColorModeValue("#FFF", "#191919")}
+                    padding="0px"
+                    cursor={tablePage === tableData.DefiRankingsTableData?.data?.totalPages ? "not-allowed" : "pointer"}
+                    disabled={tablePage === tableData.DefiRankingsTableData?.data?.totalPages}
+                    onClick={() => {
+                      // fix 3
+                      tablePage !== tableData.DefiRankingsTableData?.data?.totalPages && pageChangeHandler(tablePage + 1)
+                    }}
+                  >
+                    <Image
+                      width={15}
+                      height={15}
+                      alt="next-arrow"
+                      src={useColorModeValue('/icons/direction-arrow.svg', '/icons/direction-icon-dark.svg')}
+                    ></Image>
+                  </Button>
+                </>)}
             </Box>
+
           </Box>
+
         </Box>
       </Box>
     </>
