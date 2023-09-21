@@ -146,7 +146,9 @@ function DonutChart() {
 
 
         <Box
-          padding={"5px 50px 20px 10px"}
+          display={{ base: "none", md: "block" }}
+          //width={{ base: "100%", md: "50%" }}
+          padding={"40px 50px 20px 10px"}
           fontSize={"14px"}
           fontWeight={400}
           lineHeight={"10px"}
@@ -158,6 +160,24 @@ function DonutChart() {
             series={series}
             type={options.chart.type}
             height={"250px"}
+          />
+        </Box>
+
+        <Box
+          display={{ base: "block", md: "none" }}
+          //width={{ base: "100%", md: "50%" }}
+          padding={"70px 20px 20px 20px"}
+          fontSize={"14px"}
+          fontWeight={400}
+          lineHeight={"10px"}
+          height={"280px"}
+          justifyContent={"center"}
+        >
+          <Chart
+            options={options}
+            series={series}
+            type={options.chart.type}
+            height={"202px"}
           />
         </Box>
 
@@ -205,6 +225,10 @@ function DonutChart() {
           </Text>
         </Box>
       </Box>
+
+      {/* Mobile optimization part */}
+
+
     </>
   );
 }
