@@ -278,11 +278,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       style={{ marginRight: "10px" }}
                     />
                     <Text
-                      as={"capital"}
+                      //as={"capital"}
+                      //opacity={"0.5"}
                       fontSize={"11px"}
                       fontStyle={"normal"}
-                      fontWeight={"400"}
+                      fontWeight={400}
                       letterSpacing={"1.1px"}
+                      lineHeight={"20px"}
+                      textTransform={"capitalize"}
                       _dark={{
                         color:"#FFF"
                       }}
@@ -290,7 +293,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         color:"#16171B"
                       }}
                     >
-                      POWERED BY SOLVENDO
+                      Powered by Solvendo
                     </Text>
 
                   </Box>
@@ -549,7 +552,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
       >
           {icon && (
             <Icon
-              mt="1px"
+              mt="5px"
               ml="3"
               p="0"
               w="25px"

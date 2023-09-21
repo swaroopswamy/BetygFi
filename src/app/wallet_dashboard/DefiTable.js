@@ -57,17 +57,17 @@ const DefiTable = () => {
             >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
-                        <Th
-                        >
+                        <Th>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
+                                    fontWeight={400}
+                                    letterSpacing={"1.4px"}
+                                    lineHeight={"20px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
                                 >
@@ -82,17 +82,18 @@ const DefiTable = () => {
                                 ></Icon>
                             </Box>
                         </Th>
-                        <Th
-                        >
+
+                        <Th>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
+                                    fontWeight={400}
+                                    lineHeight={"20px"}
+                                    letterSpacing={"1.4px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
                                 >
@@ -108,17 +109,18 @@ const DefiTable = () => {
                                 ></Image>
                             </Box>
                         </Th>
-                        <Th
-                        >
+
+                        <Th>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
+                                    fontWeight={400}
+                                    lineHeight={"20px"}
+                                    letterSpacing={"1.4px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
                                 >
@@ -135,17 +137,17 @@ const DefiTable = () => {
                             </Box>
                         </Th>
 
-                        <Th
-                        >
+                        <Th>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
+                                    fontWeight={400}
+                                    lineHeight={"20px"}
+                                    letterSpacing={"1.4px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
                                 >
@@ -161,16 +163,17 @@ const DefiTable = () => {
                                 ></Image>
                             </Box>
                         </Th>
-                        <Th
-                        >
+
+                        <Th>
                             <Box
                                 display={"flex"}
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
+                                    fontWeight={400}
+                                    lineHeight={"20px"}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
@@ -305,8 +308,7 @@ const DefiTable = () => {
                                         >
                                             {item?.symbol}
                                         </Td> */}
-                                            <Td
-                                            >
+                                            <Td>
                                                 <Box
                                                     display={"flex"}
                                                     alignItems={"center"}
@@ -342,7 +344,7 @@ const DefiTable = () => {
                                                                     <Text
                                                                         color={"#FFF"}
                                                                         fontSize={"12px"}
-                                                                        fontWeight={"600"}
+                                                                        fontWeight={600}
                                                                     >
                                                                         {item.symbol.charAt(0)}
                                                                     </Text>
@@ -358,7 +360,7 @@ const DefiTable = () => {
                                                             color: "#FFF"
                                                         }}
                                                         fontSize={"14px"}
-                                                        fontWeight={"400"}
+                                                        fontWeight={400}
                                                         letterSpacing={"1px"}
                                                         ml="6px"
                                                     >
@@ -374,7 +376,7 @@ const DefiTable = () => {
                                                     color: "#16171B"
                                                 }}
                                                 fontSize={"14px"}
-                                                fontWeight={"400"}
+                                                fontWeight={400}
                                                 letterSpacing={"1px"}
                                             >
                                                 {item?.price === undefined ? '-' : item?.price}

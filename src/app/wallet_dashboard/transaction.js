@@ -64,9 +64,11 @@ const TransactionPanelComponent = () => {
           display={{ base: "none", md: "block" }}
           w={{ base: "100%", md: "100%" }}>
           <Text
-            fontSize="18"
+            fontSize={"18px"}
             fontWeight={600}
+            lineHeight={"20px"}
             color={useColorModeValue("#16171B", "#FFF")}
+            textTransform={"capitalize"}
 
           >
             Wallet Transaction
@@ -75,7 +77,7 @@ const TransactionPanelComponent = () => {
         <Table variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
         >
-          <Thead bgColor={useColorModeValue("#FFF", "#202020")}>
+          <Thead bgColor={useColorModeValue("#F5F5F7", "#202020")}>
 
             <Tr>
               <Th
@@ -92,7 +94,9 @@ const TransactionPanelComponent = () => {
 
               <Th>
                 <Box display={"flex"}
-                  alignItems={"center"}>
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  >
                   <Text
                     color={useColorModeValue("#434347", "#A8ADBD")}
                     fontSize={"14px"}
@@ -279,10 +283,11 @@ const TransactionPanelComponent = () => {
                           <Box
                             display={"flex"}
                             alignItems={"center"}
+                            justifyContent={"center"}
                           >
                             <Link
                               fontSize={"14px"}
-                              fontWeight={"400"}
+                              fontWeight={500}
                               fontStyle={"normal"}
                               letterSpacing={"1px"}
                               ml="4px"
@@ -292,7 +297,7 @@ const TransactionPanelComponent = () => {
                                 color: "#FFF"
                               }}
                               _light={{
-                                color: "#16171B"
+                                color: "#6F7383"
                               }}
                               isExternal
                               href={item?.blockExplorerUrl}
@@ -300,12 +305,12 @@ const TransactionPanelComponent = () => {
                               {item?.hash.substring(0, 0)}
                               <ExternalLinkIcon mx='4px' />
                               <Text
-                                color={"#16171B"}
                                 fontSize={"14px"}
                                 fontWeight={500}
                                 lineHeight={"20px"}
                                 _dark={{
-                                  color: "#FFF"
+                                  color: "#FFF",
+                                  opacity: "0.6"
                                 }}
                                 _light={{
                                   color: "#16171B"

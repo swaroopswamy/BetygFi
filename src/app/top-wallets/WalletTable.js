@@ -35,6 +35,7 @@ const WalletTable = () => {
                             fontSize={{ base: "14px", md: "18px" }}
                             fontWeight={600}
                             lineHeight={"20px"}
+                            textTransform={"capitalize"}
                         >
                             Top Value Holders
                         </Text>

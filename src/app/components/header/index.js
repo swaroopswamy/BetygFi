@@ -90,45 +90,53 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         display={{ base: "none", md: "flex" }}
         height="20"
         alignItems="center"
-        bg={useColorModeValue("#F0F0F5", "#191919")}
-        justifyContent={{ base: "space-between", md: "flex-end" }}
+        bg={useColorModeValue("#FFFFFF", "#191919")}
+        borderBottom={useColorModeValue("2px solid #E8E8E8","2px solid #202020")}
+        justifyContent={{ base: "space-between", md: "space-between" }}
         {...rest}
       >
+        <Box
+          w={"64%"}
+          height={"36px"}
+          flexShrink={0}
+          borderRadius={"20px"}
+          bg={useColorModeValue("#E8E8E8", "#000000")}
+        >
+          <InputGroup w="100%">
+            <InputLeftElement pointerEvents='none'>
+              <Image
+                src="/images/search_icon.svg"
+                w="20px"
+                h="20px"
+                alt="search_icon"
+              />
+            </InputLeftElement>
+            <Input
+              type="text"
+              border="none"
+              _selected={{
+                outline: "none",
+                border: "none"
+              }}
+              _focusVisible={{
+                outline: "none",
+                border: "none"
+              }}
+              value={searchWalletAddressValue}
+              bgColor={"transparent"}
+              color={useColorModeValue("#16171B", "#A8ADBD")}
+              fontSize="12px"
+              fontWeight="400"
+              lineHeight="20px"
+              letterSpacing="1.2px"
+              w="100%"
+              placeholder="Search Wallet Address"
+              onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
+              onChange={(e) => { handleSearchByWalletAddress(e) }}
 
-        <InputGroup w="100%">
-          <InputLeftElement pointerEvents='none'>
-            <Image
-              src="/images/search_icon.svg"
-              w="20px"
-              h="20px"
-              alt="search_icon"
-            />
-          </InputLeftElement>
-          <Input
-            type="text"
-            border="none"
-            _selected={{
-              outline: "none",
-              border: "none"
-            }}
-            _focusVisible={{
-              outline: "none",
-              border: "none"
-            }}
-            value={searchWalletAddressValue}
-            bgColor={"transparent"}
-            color={useColorModeValue("#16171B", "#A8ADBD")}
-            fontSize="12px"
-            fontWeight="400"
-            lineHeight="20px"
-            letterSpacing="1.2px"
-            w="100%"
-            placeholder="Search Wallet Address"
-            onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
-            onChange={(e) => { handleSearchByWalletAddress(e) }}
-
-          ></Input>
-        </InputGroup>
+            ></Input>
+          </InputGroup>
+        </Box>
 
         <Box
           display={"flex"}
@@ -273,9 +281,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           <Box
             cursor={"pointer"}
             onClick={onMobileSidebarOpen}
-            // onClick={() => {
-            //   MobileSidebarHandler(!isMobileSidebarCollapsed);
-            // }}
+          // onClick={() => {
+          //   MobileSidebarHandler(!isMobileSidebarCollapsed);
+          // }}
           >
             <Image
               src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg"}
@@ -312,7 +320,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
 
       <Collapse
         in={isMobileSearchOpen}
-        style={{position: "fixed", width: "100%", zIndex: "80"}}
+        style={{ position: "fixed", width: "100%", zIndex: "80" }}
         animateOpacity={"true"}
       >
         <Box
@@ -360,7 +368,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
             >
               <Text
-                fontSize={{base: "12px", sm: "14px"}}
+                fontSize={{ base: "12px", sm: "14px" }}
                 fontWeight={"500"}
                 lineHeight={"10px"}
                 textAlign={"center"}
@@ -376,9 +384,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         isOpen={isMobileSidebarOpen}
         onOpen={onMobileSidebarOpen}
         onClose={onMobileSidebarClose}
-        isLoginModalOpen={isLoginModalOpen} 
+        isLoginModalOpen={isLoginModalOpen}
         onLoginModalOpen={onLoginModalOpen}
-         onLoginModalClose={onLoginModalClose}
+        onLoginModalClose={onLoginModalClose}
       />
 
       <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />

@@ -148,7 +148,7 @@ function DonutChart() {
         <Box
           display={{ base: "none", md: "block" }}
           //width={{ base: "100%", md: "50%" }}
-          padding={"40px 50px 20px 10px"}
+          padding={"25px 50px 20px 10px"}
           fontSize={"14px"}
           fontWeight={400}
           lineHeight={"10px"}
