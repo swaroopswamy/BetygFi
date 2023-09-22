@@ -346,7 +346,9 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         fontSize={"14px"}
                         fontWeight={"400"}
                         letterSpacing={"1.4px"}
-                        color={value > 0 ? '#60C000' : '#FF3535'}
+                        _light={{color:"#245F00"}}
+                        _dark={{color:"#60C000"}}
+                        //color={value > 0 ? '#60C000' : '#FF3535'}
                     >
                         {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                     </Text>

@@ -185,10 +185,9 @@ const Dashboard = () => {
                         cursor={"pointer"}
                         alignItems={"center"}
                         justifyContent={"center"}
-
                         flexDirection={"row"}
                         bg={"#D9D9D9"}
-                        borderRadius="50%"
+                        borderRadius={"50%"}
                         border={blockchainSelected.includes(item.id) ? "3px solid #55A406" : ""}
                         boxShadow={!blockchainSelected.includes(item.id) ? "-2px 0px 5px 1px rgba(0, 0, 0, 0.10)" : ""}
                         w="40px"

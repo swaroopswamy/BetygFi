@@ -414,7 +414,7 @@ const Rankings = () => {
                                 height={18}
                                 alt='logo'
                                 style={{ marginLeft: "10px" }}
-                                src={colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
+                                src={colorMode === 'light' ? ('/images/wallet_analytics_white.svg') : ('/images/wallet_analytics_black.svg')}
                               >
                               </Image>
                               }
@@ -754,7 +754,7 @@ const Rankings = () => {
                                           height={18}
                                           alt='logo'
                                           style={{ marginLeft: "10px" }}
-                                          src={colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
+                                          src={colorMode === 'light' ? ('/images/wallet_analytics_white.svg') : ('/images/wallet_analytics_black.svg')}
                                         >
                                         </Image>
                                         }
