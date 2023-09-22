@@ -336,7 +336,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   width={180}
                   height={80}
                   alt="logo"
-                  src="/icons/company_sidebar_sm_logo_dark.png"
+                  src="/icons/company_sidebar_sm_logo_dark.svg"
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
                 />)}
@@ -345,7 +345,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   width={180}
                   height={80}
                   alt="logo"
-                  src="/icons/company_sidebar_sm_logo_light.png"
+                  src="/icons/company_sidebar_sm_logo_light.svg"
                   cursor={"pointer"}
                   onClick={() => router.push('/')}
                 />)}

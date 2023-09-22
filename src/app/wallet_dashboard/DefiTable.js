@@ -455,7 +455,7 @@ const DefiTable = () => {
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}
@@ -482,7 +482,7 @@ const DefiTable = () => {
                                 justifyContent={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                                    color={useColorModeValue("#16171B", "#A8ADBD")}
                                     fontSize={"14px"}
                                     fontWeight={"400"}
                                     letterSpacing={"1px"}

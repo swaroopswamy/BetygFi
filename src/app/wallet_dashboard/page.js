@@ -143,10 +143,10 @@ const WalletDashboardPage = () => {
                             marginRight={"22px"}
                         >
                             <Image
-                                w={{ base: "30px", md: "30px" }}
-                                h={{ base: "30px", md: "30px" }}
+                                w={{ base: "35px", md: "47px" }}
+                                h={{ base: "35px", md: "47px" }}
                                 borderRadius={"50%"}
-                                src="/images/basic_profile.png"
+                                src="/images/basic_profile.svg"
                                 alt="proifile_img"
                             />
                         </Box>
@@ -322,7 +322,7 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 0 ? colorMode === 'light' ? ('/images/transactions_white.png') : ('/images/transactions_black.png') : colorMode === 'light' ? ('/images/transactions_black.png') : ('/images/transactions_white.png')}
+                                        src={tabIndex === 0 ? colorMode === 'light' ? ('/images/transactions_black.svg') : ('/images/transactions_white.svg') : colorMode === 'light' ? ('/images/transactions_white.svg') : ('/images/transactions_black.svg')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -355,7 +355,7 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 1 ? colorMode === 'light' ? ('/images/portfolio_white.png') : ('/images/portfolio_black.png') : colorMode === 'light' ? ('/images/portfolio_black.png') : ('/images/portfolio_white.png')}
+                                        src={tabIndex === 1 ? colorMode === 'light' ? ('/images/portfolio_black.svg') : ('/images/portfolio_white.svg') : colorMode === 'light' ? ('/images/portfolio_white.svg') : ('/images/portfolio_black.svg')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -388,7 +388,7 @@ const WalletDashboardPage = () => {
                                         w="14px"
                                         h="14px"
                                         alt="icon"
-                                        src={tabIndex === 2 ? colorMode === 'light' ? ('/images/wallet_analytics_white.png') : ('/images/wallet_analytics_black.png') : colorMode === 'light' ? ('/images/wallet_analytics_black.png') : ('/images/wallet_analytics_white.png')}
+                                        src={tabIndex === 2 ? colorMode === 'light' ? ('/images/wallet_analytics_black.svg') : ('/images/wallet_analytics_white.svg') : colorMode === 'light' ? ('/images/wallet_analytics_white.svg') : ('/images/wallet_analytics_black.svg')}
                                     ></Image>
                                 </Box>
                             </Tab>
@@ -437,8 +437,8 @@ const WalletDashboardPage = () => {
                                                 bottom: "-14px",
                                                 left: 0,
                                                 width: "100%",
-                                                height: "1px",
-                                                bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                                height: "2px",
+                                                bgColor: colorMode === 'light' ? "#16171B" : "#FFFFFF",
                                             }
                                         }
                                         onClick={() => {
@@ -462,8 +462,8 @@ const WalletDashboardPage = () => {
                                                         bottom: "-14px",
                                                         left: 0,
                                                         width: "100%",
-                                                        height: "1px",
-                                                        bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                                        height: "2px",
+                                                        bgColor: colorMode === 'light' ? "#16171B" : "#FFFFFF",
                                                     }
                                                 }
                                                 onClick={() => {

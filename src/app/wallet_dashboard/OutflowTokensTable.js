@@ -8,6 +8,7 @@ const OutflowTokensTable = () => {
 
     return (
         <>
+        <Box px={"2px"}>
             <Flex
                 height={"50px"}
                 borderRadius={"6px"}
@@ -297,6 +298,7 @@ const OutflowTokensTable = () => {
 
                 </Table>
             </TableContainer>
+            </Box>
         </>
     )
 }

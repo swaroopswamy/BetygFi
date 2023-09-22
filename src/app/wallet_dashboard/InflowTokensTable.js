@@ -8,270 +8,225 @@ const InflowTokensTable = () => {
 
     return (
         <>
-            <Flex
-                height={"50px"}
-                borderRadius={"6px"}
-                _dark={{
-                    bg: "#202020",
-                    color: "#FFFFFF"
-                }}
-                _light={{
-                    bg: "#FFFFFF",
-                    color: "#16171B"
-                }}
-                pb="14px"
-                alignItems={"center"}
-                justifyContent={"space-between"}
-                px={"20px"}
-            >
-                <Box
-                    display={"flex"}
+            <Box px={"2px"}>
+                <Flex
+                    height={"50px"}
+                    borderRadius={"6px"}
+                    _dark={{
+                        bg: "#202020",
+                        color: "#FFFFFF"
+                    }}
+                    _light={{
+                        bg: "#FFFFFF",
+                        color: "#16171B"
+                    }}
+                    pb="14px"
                     alignItems={"center"}
+                    justifyContent={"space-between"}
+                    px={"20px"}
                 >
-                    <Text
-                        fontSize={"18px"}
-                        fontWeight={"600"}
-                        lineHeight={"20px"}
-                        mr={"6px"}
-                        paddingTop={"15px"}
+                    <Box
+                        display={"flex"}
+                        alignItems={"center"}
                     >
-                        Inflow Tokens (30 Days)
-                    </Text>
-                    <>
-                        <Tooltip
-                            bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                            padding="4px 8px"
-                            fontWeight={400}
-                            fontSize={"10px"}
+                        <Text
+                            fontSize={"18px"}
+                            fontWeight={"600"}
+                            lineHeight={"20px"}
+                            mr={"6px"}
+                            paddingTop={"15px"}
+                        >
+                            Inflow Tokens (30 Days)
+                        </Text>
+                        <>
+                            <Tooltip
+                                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                                padding="4px 8px"
+                                fontWeight={400}
+                                fontSize={"10px"}
 
 
-                            label="Inflow shows the number of tokens received by the wallet.">
-                            <Image width={"12px"}
-                                height={"12px"}
-                                flexShrink={"0"}
-                                mt={"20px"}
-                                alt=''
-                                src="/images/Frame.svg">
-                            </Image>
-                        </Tooltip>
-                    </>
-                </Box>
+                                label="Inflow shows the number of tokens received by the wallet.">
+                                <Image width={"12px"}
+                                    height={"12px"}
+                                    flexShrink={"0"}
+                                    mt={"20px"}
+                                    alt=''
+                                    src="/images/Frame.svg">
+                                </Image>
+                            </Tooltip>
+                        </>
+                    </Box>
 
-                <Image
-                    cursor={"pointer"}
-                    width={"24px"}
-                    height={"24px"}
-                    src={"/icons/Filter.svg"}
-                ></Image>
-            </Flex>
+                    <Image
+                        cursor={"pointer"}
+                        width={"24px"}
+                        height={"24px"}
+                        src={"/icons/Filter.svg"}
+                    ></Image>
+                </Flex>
 
-            <TableContainer>
-                <Table variant='simple'>
-                    <Thead
-                        display={{ base: "none", md: "table-header-group" }}
-                        _dark={{
-                            color: "#FFFFFF",
-                            bg: "#191919"
-                        }}
-                        _light={{
-                            color: "#16171B",
-                            bg: "#F5F5F7"
-                        }}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        letterSpacing={"1px"}
-                        textTransform={"uppercase"}
-                    >
+                <TableContainer>
+                    <Table variant='simple'>
+                        <Thead
+                            display={{ base: "none", md: "table-header-group" }}
+                            _dark={{
+                                color: "#FFFFFF",
+                                bg: "#191919"
+                            }}
+                            _light={{
+                                color: "#16171B",
+                                bg: "#F5F5F7"
+                            }}
+                            fontSize={"14px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}
+                        >
 
-                        <Tr>
+                            <Tr>
 
-                            <Th>
-                                <Flex>
-                                    <Text _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1px"}
-                                        textTransform={"capitalize"}
-                                    >
-                                        Asset Name
-                                    </Text>
+                                <Th>
+                                    <Flex>
+                                        <Text _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            Asset Name
+                                        </Text>
 
-                                    <>
-                                        <Image width={"12px"}
-                                            height={"12px"}
-                                            flexShrink={"0"}
-                                            alt=''
-                                            mt={"5px"}
-                                            src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                                        </Image>
-                                    </>
-                                </Flex>
-                            </Th>
+                                        <>
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+                                    </Flex>
+                                </Th>
 
-                            <Th>
-                                <Flex >
-                                    <Text _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1px"}
-                                        textTransform={"capitalize"}>
-                                        Value</Text>
-                                    <>
-                                        <Image width={"12px"}
-                                            height={"12px"}
-                                            flexShrink={"0"}
-                                            alt=''
-                                            mt={"5px"}
-                                            src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                                        </Image>
-                                    </>
-                                </Flex>
-                            </Th>
+                                <Th>
+                                    <Flex >
+                                        <Text _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1px"}
+                                            textTransform={"capitalize"}>
+                                            Value</Text>
+                                        <>
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+                                    </Flex>
+                                </Th>
 
-                            <Th>
-                                <Flex>
-                                    <Text _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1px"}
-                                        textTransform={"capitalize"}>
-                                        Share</Text>
-                                    <>
-                                        <Image width={"12px"}
-                                            height={"12px"}
-                                            flexShrink={"0"}
-                                            alt=''
-                                            mt={"5px"}
-                                            src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
-                                        </Image>
-                                    </>
-                                </Flex>
-                            </Th>
+                                <Th>
+                                    <Flex>
+                                        <Text _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1px"}
+                                            textTransform={"capitalize"}>
+                                            Share</Text>
+                                        <>
+                                            <Image width={"12px"}
+                                                height={"12px"}
+                                                flexShrink={"0"}
+                                                alt=''
+                                                mt={"5px"}
+                                                src={colorMode === 'light' ? ("/images/Definame(light).svg") : ("/images/Definame(black).svg")}>
+                                            </Image>
+                                        </>
+                                    </Flex>
+                                </Th>
 
-                        </Tr>
+                            </Tr>
 
-                    </Thead>
+                        </Thead>
 
-                    <Thead
-                        display={{ base: "table-header-group", md: "none" }}
-                        _dark={{
-                            color: "#FFFFFF",
-                            bg: "#191919"
-                        }}
-                        _light={{
-                            color: "#16171B",
-                            bg: "#F5F5F7"
-                        }}
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        letterSpacing={"1px"}
-                        textTransform={"uppercase"}
-                    >
+                        <Thead
+                            display={{ base: "table-header-group", md: "none" }}
+                            _dark={{
+                                color: "#FFFFFF",
+                                bg: "#191919"
+                            }}
+                            _light={{
+                                color: "#16171B",
+                                bg: "#F5F5F7"
+                            }}
+                            fontSize={"14px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            textTransform={"uppercase"}
+                        >
 
-                        <Tr>
-                            <Th
-                                width={"50%"}
-                            >
-                                <Flex>
-                                    <Text
-                                        _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1px"}
-                                        textTransform={"capitalize"}
-                                    >
-                                        Asset Name
-                                    </Text>
-                                </Flex>
-                            </Th>
-
-                            <Th
-                                width={"50%"}
-                            >
-                                <Flex
-                                    ml={"25px"}
+                            <Tr>
+                                <Th
+                                    width={"50%"}
                                 >
-                                    <Text
-                                        _light={{ color: "#434347" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                        fontSize={"14px"}
-                                        fontWeight={"400"}
-                                        lineHeight={"20px"}
-                                        letterSpacing={"1px"}
-                                        textTransform={"capitalize"}
+                                    <Flex>
+                                        <Text
+                                            _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            Asset Name
+                                        </Text>
+                                    </Flex>
+                                </Th>
+
+                                <Th
+                                    width={"50%"}
+                                >
+                                    <Flex
+                                        ml={"25px"}
                                     >
-                                        Value
-                                    </Text>
-                                </Flex>
-                            </Th>
+                                        <Text
+                                            _light={{ color: "#434347" }}
+                                            _dark={{ color: "#A8ADBD" }}
+                                            fontSize={"14px"}
+                                            fontWeight={"400"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1px"}
+                                            textTransform={"capitalize"}
+                                        >
+                                            Value
+                                        </Text>
+                                    </Flex>
+                                </Th>
 
-                        </Tr>
+                            </Tr>
 
-                    </Thead>
+                        </Thead>
 
-                    <Tbody
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                        _dark={{ bgColor: "#202020" }}
-                        _light={{ bgColor: "#FFF" }} >
-                        {inflowOutflowTokensData?.isError && (
-                            <>
-                                <Tr >
-                                    <Td
-                                        _dark={{
-                                            color: "#FFF"
-                                        }}
-                                        _light={{
-                                            color: "#16171B"
-                                        }}
-                                        fontSize={"20px"}
-                                        fontWeight={400}
-                                        letterSpacing={"1px"}
-                                        colSpan={8}
-                                        textAlign={"center"}
-                                        p="20px"
-                                        height={"245px"}
-                                    >
-                                        No Data Available
-                                    </Td>
-                                </Tr>
-                            </>
-                        )}
-                        {inflowOutflowTokensData?.isLoading && (
-                            <>
-                                <SkeletonRow />
-                                <SkeletonRow />
-                                <SkeletonRow />
-                                <SkeletonRow />
-                                <SkeletonRow />
-                            </>
-                        )}
-                        {inflowOutflowTokensData?.isSuccess &&
-                            inflowOutflowTokensData?.data?.inflow.length > 0 ?
-                            inflowOutflowTokensData.data.inflow.map((item, i) => {
-                                return (
-                                    <TableRow
-                                        key={i}
-                                        logoUrl={item?.logoUrl}
-                                        value={item?.value}
-                                        symbol={item?.symbol}
-                                        percentage={item?.percentage}
-                                    />
-                                )
-                            })
-                            :
-                            (
+                        <Tbody
+                            fontSize={"14px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            _dark={{ bgColor: "#202020" }}
+                            _light={{ bgColor: "#FFF" }} >
+                            {inflowOutflowTokensData?.isError && (
                                 <>
                                     <Tr >
                                         <Td
@@ -286,18 +241,65 @@ const InflowTokensTable = () => {
                                             letterSpacing={"1px"}
                                             colSpan={8}
                                             textAlign={"center"}
+                                            p="20px"
                                             height={"245px"}
                                         >
                                             No Data Available
                                         </Td>
                                     </Tr>
                                 </>
-                            )
-                        }
-                    </Tbody>
+                            )}
+                            {inflowOutflowTokensData?.isLoading && (
+                                <>
+                                    <SkeletonRow />
+                                    <SkeletonRow />
+                                    <SkeletonRow />
+                                    <SkeletonRow />
+                                    <SkeletonRow />
+                                </>
+                            )}
+                            {inflowOutflowTokensData?.isSuccess &&
+                                inflowOutflowTokensData?.data?.inflow.length > 0 ?
+                                inflowOutflowTokensData.data.inflow.map((item, i) => {
+                                    return (
+                                        <TableRow
+                                            key={i}
+                                            logoUrl={item?.logoUrl}
+                                            value={item?.value}
+                                            symbol={item?.symbol}
+                                            percentage={item?.percentage}
+                                        />
+                                    )
+                                })
+                                :
+                                (
+                                    <>
+                                        <Tr >
+                                            <Td
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"20px"}
+                                                fontWeight={400}
+                                                letterSpacing={"1px"}
+                                                colSpan={8}
+                                                textAlign={"center"}
+                                                height={"245px"}
+                                            >
+                                                No Data Available
+                                            </Td>
+                                        </Tr>
+                                    </>
+                                )
+                            }
+                        </Tbody>
 
-                </Table>
-            </TableContainer>
+                    </Table>
+                </TableContainer>
+            </Box>
         </>
     )
 }
