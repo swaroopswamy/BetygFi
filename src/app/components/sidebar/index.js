@@ -235,7 +235,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
             {/* Bottom Half */}
             <Box>
-              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
                 {bottomMenu.map((link) => (
                   <NavItem
                     key={link.name}
@@ -299,9 +298,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
               {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
             </Box> */}
                 </Box>
-
-              </div>
-
             </Box>
 
           </Box>
