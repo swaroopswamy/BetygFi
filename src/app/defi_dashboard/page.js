@@ -170,6 +170,7 @@ const DefiDashboardPage = () => {
                                             color: "#191919"
                                         }}
                                         letterSpacing={"2.4px"}
+                                        textTransform={"capitalize"}
                                     >
                                         {defiData?.name}
                                     </Text>

@@ -166,7 +166,7 @@ const Dashboard = () => {
               letterSpacing={"2.4px"}
               lineHeight={"20px"}
 
-              textTransform={"uppercase"}
+              textTransform={"capitalize"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
               DeFi Markets
@@ -430,7 +430,6 @@ const Dashboard = () => {
               mt={"15px"}
               w={"100%"}
               overflowX="auto"
-              whiteSpace="nowrap"
               flexWrap="nowrap"
                       // css={{
                       //   '&::-webkit-scrollbar': {
@@ -451,7 +450,7 @@ const Dashboard = () => {
                       cursor={"pointer"}
                       alignItems={"center"}
                       justifyContent={"center"}
-
+                      whiteSpace="nowrap"
                       flexDirection={"row"}
                       bg={"#D9D9D9"}
                       borderRadius="50%"
@@ -495,10 +494,10 @@ const Dashboard = () => {
             Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
           </Text>
 
-          <Box
+          {/* <Box
             //mr={{ base: 2, md: 4 }} 
             display={"flex"}>
-          </Box>
+          </Box> */}
         </Box>
 
 
@@ -528,17 +527,17 @@ const Dashboard = () => {
             display="flex"
             height="100%"
             flexDirection="row"
-            overflowX="auto"
-            flexWrap="nowrap"
-            css={{
-              '&::-webkit-scrollbar': {
-                width: '0.2rem',
-                height: '0.2rem',
-              },
-              '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'transparent',
-              },
-            }}
+            // overflowX="auto"
+            // flexWrap="nowrap"
+            // css={{
+            //   '&::-webkit-scrollbar': {
+            //     width: '0.2rem',
+            //     height: '0.2rem',
+            //   },
+            //   '&::-webkit-scrollbar-thumb': {
+            //     backgroundColor: 'transparent',
+            //   },
+            // }}
           >
             <Box
               key="all"

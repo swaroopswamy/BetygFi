@@ -36,7 +36,7 @@ const SmallTable_LastUpdate=()=>{
                     lineHeight={"20px"}
                     pl={"2px"}
                     mr={"20px"}
-                    ml={"10px"}
+                    ml={"2px"}
                 >
                     3 mins ago
                 </Text>
