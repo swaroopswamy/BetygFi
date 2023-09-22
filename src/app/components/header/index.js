@@ -74,6 +74,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     }
     setSearchWalletAddressValue(e.target.value)
   }
+
+  const handleMobileSearchByWalletAddress = () => {
+    dispatch(walletAddressChangedReducer(searchWalletAddressValue));
+    router.push(`/wallet_dashboard?address=${searchWalletAddressValue}`)
+    setSearchWalletAddressValue(searchWalletAddressValue)
+  }
+
   useEffect(() => {
     if (pathname === '/wallet_dashboard') {
       setSearchWalletAddressValue(searchParams.get('address'))
@@ -346,7 +353,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               w="100%"
               placeholder="Search Wallet Address"
               value={searchWalletAddressValue}
-              onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
               onChange={(e) => { handleSearchByWalletAddress(e) }}
             ></Input>
             <Box
@@ -358,6 +364,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
               border="1px"
               borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+              onClick={() => {
+                handleMobileSearchByWalletAddress();
+              }}
             >
               <Text
                 fontSize={{base: "12px", sm: "14px"}}
