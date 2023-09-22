@@ -100,10 +100,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={isSidebarCollapsed ? "50px" : "210px"}
-        pos={"fixed"}
+        pos={"sticky"}
+        // position={"-webkit-sticky"}
+        top={0}
         zIndex={"999"}
         // pos={screenSize?.width < 1450 ? "relative" : "fixed"}
-        minH="100vh"
+        minH="100%"
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
           "1px 0px 0px 0px #333"
