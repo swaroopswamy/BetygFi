@@ -100,7 +100,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={isSidebarCollapsed ? "50px" : "210px"}
-        pos={screenSize?.width < 1450 ? "relative" : "fixed"}
+        pos={"fixed"}
+        zIndex={"999"}
+        // pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         minH="100vh"
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
@@ -234,74 +236,72 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </Box>
 
             {/* Bottom Half */}
-            <Box>
-              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
-                {bottomMenu.map((link) => (
-                  <NavItem
-                    key={link.name}
-                    icon={link.icon}
-                    path={link.path}
-                    _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
-                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                            fontWeight: "600",
-                          }}
-                    newTab={link.newTab}
-                    fontSize="12px"
-                    fontWeight="400"
-                    lineHeight="20px"
-                    letterSpacing="1.2px"
-                  >
-                    {link.name}
-                  </NavItem>
-                ))}
+            <Box
+              mb={"15px"}
+            >
+              {bottomMenu.map((link) => (
+                <NavItem
+                  key={link.name}
+                  icon={link.icon}
+                  path={link.path}
+                  _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
+                          color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                          fontWeight: "600",
+                        }}
+                  newTab={link.newTab}
+                  fontSize="12px"
+                  fontWeight="400"
+                  lineHeight="20px"
+                  letterSpacing="1.2px"
+                >
+                  {link.name}
+                </NavItem>
+              ))}
 
-                <hr style={{ marginBottom: "15px" }} />
+              <hr style={{ marginBottom: "15px" }} />
 
+              <Box
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                flexDirection={"column"}
+                w={"100%"}
+              >
                 <Box
                   display={"flex"}
                   alignItems={"center"}
-                  justifyContent={"center"}
-                  flexDirection={"column"}
                   w={"100%"}
+                  pl={6}
                 >
-                  <Box
-                    display={"flex"}
-                    alignItems={"center"}
-                    w={"100%"}
-                    pl={6}
+                  <Image
+                    width={15}
+                    height={15}
+                    alt="logo"
+                    src={"/icons/company_sm_logo.svg"}
+                    style={{ marginRight: "10px" }}
+                  />
+                  <Text
+                    as={"capital"}
+                    fontSize={"11px"}
+                    fontStyle={"normal"}
+                    fontWeight={"400"}
+                    letterSpacing={"1.1px"}
+                    _dark={{
+                      color:"#FFF"
+                    }}
+                    _light={{
+                      color:"#16171B"
+                    }}
                   >
-                    <Image
-                      width={15}
-                      height={15}
-                      alt="logo"
-                      src={"/icons/company_sm_logo.svg"}
-                      style={{ marginRight: "10px" }}
-                    />
-                    <Text
-                      as={"capital"}
-                      fontSize={"11px"}
-                      fontStyle={"normal"}
-                      fontWeight={"400"}
-                      letterSpacing={"1.1px"}
-                      _dark={{
-                        color:"#FFF"
-                      }}
-                      _light={{
-                        color:"#16171B"
-                      }}
-                    >
-                      POWERED BY SOLVENDO
-                    </Text>
+                    POWERED BY SOLVENDO
+                  </Text>
 
-                  </Box>
-
-                  {/* <Box onClick={toggleColorMode}>
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
-            </Box> */}
                 </Box>
 
-              </div>
-
+                {/* <Box onClick={toggleColorMode}>
+            {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
+          </Box> */}
+              </Box>
             </Box>
 
           </Box>
@@ -474,6 +474,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
         <Box
           display={"flex"}
+          // justifyContent={"center"}
+          // alignItems={"center"}
         >
             <Flex
               mr={"-12px"}
