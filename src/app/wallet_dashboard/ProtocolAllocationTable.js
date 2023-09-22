@@ -47,7 +47,8 @@ const ProtocolAllocationTable = () => {
                                 fontSize={"10px"}
 
                                 label="Protocol allocation list shows how the assets of an individual wallet are distributed between DeFi’s in value and percentage terms.">
-                                <Image width={"12px"}
+                                <Image
+                                    width={"12px"}
                                     height={"12px"}
                                     flexShrink={"0"}
                                     mt={"20px"}
@@ -59,10 +60,11 @@ const ProtocolAllocationTable = () => {
                     </Box>
 
                     <Image
+                        display={{ base: "block", md: "none" }}
                         cursor={"pointer"}
                         width={"24px"}
                         height={"24px"}
-                        src={"/icons/Filter.svg"}
+                        src={colorMode === 'light' ? ('/icons/Filter.svg') : ('/icons/Filter-darkmode.svg')}
                     ></Image>
 
                 </Flex>
@@ -84,10 +86,11 @@ const ProtocolAllocationTable = () => {
                             fontWeight={"400"}
                             lineHeight={"20px"}
                             letterSpacing={"1px"}
+                            w={"90%"}
                             textTransform={"uppercase"}
                         >
 
-                            <Tr>
+                            <Tr w={"90%"}>
 
                                 <Th>
                                     <Flex>

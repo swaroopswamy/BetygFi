@@ -305,7 +305,7 @@ const Rankings = () => {
           </Tr>
         </Thead>
 
-        <Tbody>
+        <Tbody  overflowY={"auto"}  maxHeight= '400px'>
           {tableData.DefiRankingsTableData.isError && (
             <>
               <Tr>
