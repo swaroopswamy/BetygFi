@@ -445,7 +445,7 @@ const DefiTable = () => {
             </Table>
             <Table variant="simple" key={2}
                 display={{ base: "table", md: "none" }}
-            >
+                            >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
                         <Th
