@@ -52,368 +52,256 @@ const DefiTable = () => {
 
     return (
         <>
-            <Table variant="simple" key={1}
-                display={{ base: "none", md:"table" }}
+            <Box
+                display={"flex"}
+                overflow={"auto"}
             >
-                <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
-                    <Tr>
-                        <Th>
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
-                                    fontSize={"14px"}
-                                    fontWeight={400}
-                                    letterSpacing={"1.4px"}
-                                    lineHeight={"20px"}
+                <Table 
+                    variant="simple"
+                    key={1}
+                    display={{ base: "none", md:"table" }}
+                >
+                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                        <Tr>
+                            <Th>
+                                <Box
+                                    display={"flex"}
                                     alignItems={"center"}
-                                    textTransform={"capitalize"}
                                 >
-                                    Token
-                                </Text>
-                                <Icon
-                                    ml="3px"
-                                    mt="5px"
-                                    w="10px"
-                                    h="10px"
-                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
-                                ></Icon>
-                            </Box>
-                        </Th>
-
-                        <Th>
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
-                                    fontSize={"14px"}
-                                    fontWeight={400}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1.4px"}
-                                    alignItems={"center"}
-                                    textTransform={"capitalize"}
-                                >
-                                    Price(USD)
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    mt="5px"
-                                    w="10px"
-                                    h="10px"
-                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
-                                    alt=""
-                                ></Image>
-                            </Box>
-                        </Th>
-
-                        <Th>
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
-                                    fontSize={"14px"}
-                                    fontWeight={400}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1.4px"}
-                                    alignItems={"center"}
-                                    textTransform={"capitalize"}
-                                >
-                                    Token/Amount
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    mt="5px"
-                                    w="10px"
-                                    h="10px"
-                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
-                                    alt=""
-                                ></Image>
-                            </Box>
-                        </Th>
-
-                        <Th>
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
-                                    fontSize={"14px"}
-                                    fontWeight={400}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1.4px"}
-                                    alignItems={"center"}
-                                    textTransform={"capitalize"}
-                                >
-                                    Value(USD)
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    mt="5px"
-                                    w="10px"
-                                    h="10px"
-                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
-                                    alt=""
-                                ></Image>
-                            </Box>
-                        </Th>
-
-                        <Th>
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                            >
-                                <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
-                                    fontSize={"14px"}
-                                    fontWeight={400}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1px"}
-                                    alignItems={"center"}
-                                    textTransform={"capitalize"}
-                                >
-                                    % Share
-                                </Text>
-                                <Image
-                                    ml="3px"
-                                    mt="5px"
-                                    w="10px"
-                                    h="10px"
-                                    as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
-                                    alt=""
-                                ></Image>
-                            </Box>
-                        </Th>
-                    </Tr>
-                </Thead>
-                <Tbody >
-
-                    {(walletBalanceData?.isLoading || walletBalanceData.data?.isQueryInPendingState) && (
-                        <>
-                            <Tr>
-                                <Td
-                                    minH={"212px"}
-                                    colSpan={8}
-                                    textAlign={"center"}
-                                    p="20px"
-                                >
-                                    <Box
-                                        display={"flex"}
-                                        flexDirection={"column"}
+                                    <Text
+                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        letterSpacing={"1.4px"}
+                                        lineHeight={"20px"}
                                         alignItems={"center"}
-                                        justifyContent={"center"}
-
+                                        textTransform={"capitalize"}
                                     >
-                                        <Text
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            mt="44px"
-                                            mb="20px"
-                                        >
-                                            We are retrieving data from the Blockchain.
-                                        </Text>
-                                        <Spinner
-                                            thickness='4px'
-                                            speed='0.65s'
-                                            emptyColor='gray.200'
-                                            color='blue.500'
-                                            size='xl'
-                                        />
-                                        <Text
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            mt="20px"
-                                            mb="8px"
-                                        >
-                                            This process might take approximately 2-3 minutes.
-                                        </Text>
-                                        <Text
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"20px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
-                                            mb="50px"
-                                        >
-                                            You have the option to wait or return later.
-                                        </Text>
-                                    </Box>
-                                </Td>
-                            </Tr>
-                        </>
-                    )}
-                    {(walletBalanceData?.isError || !(walletBalanceData?.data?.data?.length > 0)) && (
-                        <>
-                            <Tr >
-                                <Td
-                                    _dark={{
-                                        color: "#FFF"
-                                    }}
-                                    _light={{
-                                        color: "#16171B"
-                                    }}
-                                    fontSize={"20px"}
-                                    fontWeight={"400"}
-                                    letterSpacing={"1px"}
-                                    colSpan={8}
-                                    textAlign={"center"}
-                                    p="20px"
+                                        Token
+                                    </Text>
+                                    <Icon
+                                        ml="3px"
+                                        mt="5px"
+                                        w="10px"
+                                        h="10px"
+                                        as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                    ></Icon>
+                                </Box>
+                            </Th>
+
+                            <Th>
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
                                 >
-                                    No Data Available
-                                </Td>
-                            </Tr>
-                        </>
-                    )}
+                                    <Text
+                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
+                                        alignItems={"center"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        Price(USD)
+                                    </Text>
+                                    <Image
+                                        ml="3px"
+                                        mt="5px"
+                                        w="10px"
+                                        h="10px"
+                                        as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                        alt=""
+                                    ></Image>
+                                </Box>
+                            </Th>
 
-                    {walletBalanceData?.isSuccess &&
-                        (
-                            (walletBalanceData?.data?.data.map((item, i) => {
-                                return (
-                                    <>
-                                        <Tr key={i + 1}>
-                                            {/*   <Td
-                                            _dark={{
-                                                color: "#FFF"
-                                            }}
-                                            _light={{
-                                                color: "#16171B"
-                                            }}
-                                            fontSize={"14px"}
-                                            fontWeight={"400"}
-                                            letterSpacing={"1px"}
+                            <Th>
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                >
+                                    <Text
+                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
+                                        alignItems={"center"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        Token/Amount
+                                    </Text>
+                                    <Image
+                                        ml="3px"
+                                        mt="5px"
+                                        w="10px"
+                                        h="10px"
+                                        as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                        alt=""
+                                    ></Image>
+                                </Box>
+                            </Th>
+
+                            <Th>
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                >
+                                    <Text
+                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1.4px"}
+                                        alignItems={"center"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        Value(USD)
+                                    </Text>
+                                    <Image
+                                        ml="3px"
+                                        mt="5px"
+                                        w="10px"
+                                        h="10px"
+                                        as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                        alt=""
+                                    ></Image>
+                                </Box>
+                            </Th>
+
+                            <Th>
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                >
+                                    <Text
+                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        fontSize={"14px"}
+                                        fontWeight={400}
+                                        lineHeight={"20px"}
+                                        letterSpacing={"1px"}
+                                        alignItems={"center"}
+                                        textTransform={"capitalize"}
+                                    >
+                                        % Share
+                                    </Text>
+                                    <Image
+                                        ml="3px"
+                                        mt="5px"
+                                        w="10px"
+                                        h="10px"
+                                        as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+                                        alt=""
+                                    ></Image>
+                                </Box>
+                            </Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody >
+
+                        {(walletBalanceData?.isLoading || walletBalanceData.data?.isQueryInPendingState) && (
+                            <>
+                                <Tr>
+                                    <Td
+                                        minH={"212px"}
+                                        colSpan={8}
+                                        textAlign={"center"}
+                                        p="20px"
+                                    >
+                                        <Box
+                                            display={"flex"}
+                                            flexDirection={"column"}
+                                            alignItems={"center"}
+                                            justifyContent={"center"}
+
                                         >
-                                            {item?.symbol}
-                                        </Td> */}
-                                            <Td>
-                                                <Box
-                                                    display={"flex"}
-                                                    alignItems={"center"}
-                                                >
-                                                    {!isEmpty(item?.logoUrl)
-                                                        ? (
-                                                            <>
-                                                                <Image
-                                                                    width={5}
-                                                                    height={5}
-                                                                    style={{borderRadius:"50%"}}
-                                                                    alt='logo'
-                                                                    src={item?.logoUrl}
-                                                                ></Image>
-                                                            </>
-                                                        )
-                                                        :
-                                                        (
-                                                            <>
-                                                                <Box
-                                                                    width={"20px"}
-                                                                    height={"20px"}
-                                                                    alignItems={"center"}
-                                                                    justifyContent={"center"}
-                                                                    display={"flex"}
-                                                                    borderRadius={"50%"}
-                                                                    _light={{
-                                                                        bgColor: "#676DFF"
-                                                                    }}
-                                                                    _dark={{
-                                                                        bgColor: "#ADADAD"
-                                                                    }}
-                                                                >
-                                                                    <Text
-                                                                        color={"#FFF"}
-                                                                        fontSize={"12px"}
-                                                                        fontWeight={600}
-                                                                    >
-                                                                        {item.symbol.charAt(0)}
-                                                                    </Text>
-                                                                </Box>
-                                                            </>
-                                                        )
-                                                    }
-                                                    <Text
-                                                        _light={{
-                                                            color: "#16171B"
-                                                        }}
-                                                        _dark={{
-                                                            color: "#FFF"
-                                                        }}
-                                                        fontSize={"14px"}
-                                                        fontWeight={400}
-                                                        letterSpacing={"1px"}
-                                                        ml="6px"
-                                                    >
-                                                        {item?.symbol}
-                                                    </Text>
-                                                </Box>
-                                            </Td>
-                                            <Td
+                                            <Text
                                                 _dark={{
                                                     color: "#FFF"
                                                 }}
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"14px"}
-                                                fontWeight={400}
-                                                letterSpacing={"1px"}
-                                            >
-                                                {item?.price === undefined ? '-' : item?.price}
-                                            </Td>
-                                            <Td
-                                                _dark={{
-                                                    color: "#FFF"
-                                                }}
-                                                _light={{
-                                                    color: "#16171B"
-                                                }}
-                                                fontSize={"14px"}
+                                                fontSize={"20px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
+                                                mt="44px"
+                                                mb="20px"
                                             >
-                                                {item?.value?.toFixed(3)}
-                                            </Td>
-                                            <Td
+                                                We are retrieving data from the Blockchain.
+                                            </Text>
+                                            <Spinner
+                                                thickness='4px'
+                                                speed='0.65s'
+                                                emptyColor='gray.200'
+                                                color='blue.500'
+                                                size='xl'
+                                            />
+                                            <Text
                                                 _dark={{
                                                     color: "#FFF"
                                                 }}
                                                 _light={{
                                                     color: "#16171B"
                                                 }}
-                                                fontSize={"14px"}
+                                                fontSize={"20px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
+                                                mt="20px"
+                                                mb="8px"
                                             >
-                                                {
-                                                    (Math.trunc(item?.value * item?.price)).toLocaleString('en-US', {
-                                                        style: 'currency',
-                                                        currency: 'USD'
-                                                    })}
-                                            </Td>
+                                                This process might take approximately 2-3 minutes.
+                                            </Text>
+                                            <Text
+                                                _dark={{
+                                                    color: "#FFF"
+                                                }}
+                                                _light={{
+                                                    color: "#16171B"
+                                                }}
+                                                fontSize={"20px"}
+                                                fontWeight={"400"}
+                                                letterSpacing={"1px"}
+                                                mb="50px"
+                                            >
+                                                You have the option to wait or return later.
+                                            </Text>
+                                        </Box>
+                                    </Td>
+                                </Tr>
+                            </>
+                        )}
+                        {(walletBalanceData?.isError || !(walletBalanceData?.data?.data?.length > 0)) && (
+                            <>
+                                <Tr >
+                                    <Td
+                                        _dark={{
+                                            color: "#FFF"
+                                        }}
+                                        _light={{
+                                            color: "#16171B"
+                                        }}
+                                        fontSize={"20px"}
+                                        fontWeight={"400"}
+                                        letterSpacing={"1px"}
+                                        colSpan={8}
+                                        textAlign={"center"}
+                                        p="20px"
+                                    >
+                                        No Data Available
+                                    </Td>
+                                </Tr>
+                            </>
+                        )}
 
-                                            <Td
+                        {walletBalanceData?.isSuccess &&
+                            (
+                                (walletBalanceData?.data?.data.map((item, i) => {
+                                    return (
+                                        <>
+                                            <Tr key={i + 1}>
+                                                {/*   <Td
                                                 _dark={{
                                                     color: "#FFF"
                                                 }}
@@ -423,30 +311,153 @@ const DefiTable = () => {
                                                 fontSize={"14px"}
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
-                                                h="100%"
                                             >
-                                                <Box
-                                                    display={"flex"}
-                                                    alignItems={"center"}
+                                                {item?.symbol}
+                                            </Td> */}
+                                                <Td>
+                                                    <Box
+                                                        display={"flex"}
+                                                        alignItems={"center"}
+                                                    >
+                                                        {!isEmpty(item?.logoUrl)
+                                                            ? (
+                                                                <>
+                                                                    <Image
+                                                                        width={5}
+                                                                        height={5}
+                                                                        style={{borderRadius:"50%"}}
+                                                                        alt='logo'
+                                                                        src={item?.logoUrl}
+                                                                    ></Image>
+                                                                </>
+                                                            )
+                                                            :
+                                                            (
+                                                                <>
+                                                                    <Box
+                                                                        width={"20px"}
+                                                                        height={"20px"}
+                                                                        alignItems={"center"}
+                                                                        justifyContent={"center"}
+                                                                        display={"flex"}
+                                                                        borderRadius={"50%"}
+                                                                        _light={{
+                                                                            bgColor: "#676DFF"
+                                                                        }}
+                                                                        _dark={{
+                                                                            bgColor: "#ADADAD"
+                                                                        }}
+                                                                    >
+                                                                        <Text
+                                                                            color={"#FFF"}
+                                                                            fontSize={"12px"}
+                                                                            fontWeight={600}
+                                                                        >
+                                                                            {item.symbol.charAt(0)}
+                                                                        </Text>
+                                                                    </Box>
+                                                                </>
+                                                            )
+                                                        }
+                                                        <Text
+                                                            _light={{
+                                                                color: "#16171B"
+                                                            }}
+                                                            _dark={{
+                                                                color: "#FFF"
+                                                            }}
+                                                            fontSize={"14px"}
+                                                            fontWeight={400}
+                                                            letterSpacing={"1px"}
+                                                            ml="6px"
+                                                        >
+                                                            {item?.symbol}
+                                                        </Text>
+                                                    </Box>
+                                                </Td>
+                                                <Td
+                                                    _dark={{
+                                                        color: "#FFF"
+                                                    }}
+                                                    _light={{
+                                                        color: "#16171B"
+                                                    }}
+                                                    fontSize={"14px"}
+                                                    fontWeight={400}
+                                                    letterSpacing={"1px"}
+                                                >
+                                                    {item?.price === undefined ? '-' : item?.price}
+                                                </Td>
+                                                <Td
+                                                    _dark={{
+                                                        color: "#FFF"
+                                                    }}
+                                                    _light={{
+                                                        color: "#16171B"
+                                                    }}
+                                                    fontSize={"14px"}
+                                                    fontWeight={"400"}
+                                                    letterSpacing={"1px"}
+                                                >
+                                                    {item?.value?.toFixed(3)}
+                                                </Td>
+                                                <Td
+                                                    _dark={{
+                                                        color: "#FFF"
+                                                    }}
+                                                    _light={{
+                                                        color: "#16171B"
+                                                    }}
+                                                    fontSize={"14px"}
+                                                    fontWeight={"400"}
+                                                    letterSpacing={"1px"}
+                                                >
+                                                    {
+                                                        (Math.trunc(item?.value * item?.price)).toLocaleString('en-US', {
+                                                            style: 'currency',
+                                                            currency: 'USD'
+                                                        })}
+                                                </Td>
+
+                                                <Td
+                                                    _dark={{
+                                                        color: "#FFF"
+                                                    }}
+                                                    _light={{
+                                                        color: "#16171B"
+                                                    }}
+                                                    fontSize={"14px"}
+                                                    fontWeight={"400"}
+                                                    letterSpacing={"1px"}
                                                     h="100%"
                                                 >
+                                                    <Box
+                                                        display={"flex"}
+                                                        alignItems={"center"}
+                                                        h="100%"
+                                                    >
 
-                                                    {item.percentageValue?.toFixed(2)} {" "}{"%"}
-                                                </Box>
-                                            </Td>
-                                        </Tr>
-                                    </>
-                                );
-                            }))
-                        )
+                                                        {item.percentageValue?.toFixed(2)} {" "}{"%"}
+                                                    </Box>
+                                                </Td>
+                                            </Tr>
+                                        </>
+                                    );
+                                }))
+                            )
 
 
-                    }
-                </Tbody>
-            </Table>
-            <Table variant="simple" key={2}
+                        }
+                    </Tbody>
+                </Table>
+            </Box>
+
+            <Table 
+                variant="simple"
+                key={2}
                 display={{ base: "table",md:"none" }}
-                  w={"90%"}>
+                w={"90%"}
+            >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
                         <Th
