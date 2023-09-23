@@ -139,7 +139,7 @@ const Dashboard = () => {
     <>
       <Box display={"flex"} flexDirection={"column"}>
         <Box
-          display={{ base: "none", md: "none",bigSize:"block" }}
+          display={{ base: "none", md: "block" }}
           flexDirection={"column"}
           px={{ base: "10px", md: "29px" }}
           paddingTop={"20px"}
@@ -210,7 +210,7 @@ const Dashboard = () => {
                       >
 
                         <Image
-                        style={{borderRadius:"50%"}}
+                          style={{ borderRadius: "50%" }}
                           width={18}
                           height={18}
                           src={item.logoUrl}
@@ -395,7 +395,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          display={{ md: "block",bigSize:"none" }}
+          display={{ base: "block", md: "none" }}
           flexDirection={"column"}
           w={"100%"}
           px={{ base: "15px", md: "29px" }}
@@ -430,15 +430,15 @@ const Dashboard = () => {
               w={"100%"}
               overflowX="auto"
               flexWrap="nowrap"
-                      // css={{
-                      //   '&::-webkit-scrollbar': {
-                      //     width: '0.2rem',
-                      //     height: '0.2rem',
-                      //   },
-                      //   '&::-webkit-scrollbar-thumb': {
-                      //     backgroundColor: 'transparent',
-                      //   },
-                      // }}
+            // css={{
+            //   '&::-webkit-scrollbar': {
+            //     width: '0.2rem',
+            //     height: '0.2rem',
+            //   },
+            //   '&::-webkit-scrollbar-thumb': {
+            //     backgroundColor: 'transparent',
+            //   },
+            // }}
             >
               {blockchainListData.data?.map((item, i) => (
                 <>
@@ -462,13 +462,13 @@ const Dashboard = () => {
                       onClick={() => {
                         BlockchainTypeHandler(item.id);
                       }}
-                      
+
                     >
 
                       <Image
                         width={20}
                         height={20}
-                        style={{borderRadius:"50%"}}
+                        style={{ borderRadius: "50%" }}
                         src={item.logoUrl}
                         alt={`${item.id}_icon`}
                       ></Image>
@@ -527,17 +527,17 @@ const Dashboard = () => {
             display="flex"
             height="100%"
             flexDirection="row"
-            // overflowX="auto"
-            // flexWrap="nowrap"
-            // css={{
-            //   '&::-webkit-scrollbar': {
-            //     width: '0.2rem',
-            //     height: '0.2rem',
-            //   },
-            //   '&::-webkit-scrollbar-thumb': {
-            //     backgroundColor: 'transparent',
-            //   },
-            // }}
+          // overflowX="auto"
+          // flexWrap="nowrap"
+          // css={{
+          //   '&::-webkit-scrollbar': {
+          //     width: '0.2rem',
+          //     height: '0.2rem',
+          //   },
+          //   '&::-webkit-scrollbar-thumb': {
+          //     backgroundColor: 'transparent',
+          //   },
+          // }}
           >
             <Box
               key="all"
@@ -694,14 +694,13 @@ const Dashboard = () => {
 
           {/* Overview score boxes */}
           <Box
-            display={"inline-flex"}
+            display={{ base: "none", bigSize: "inline-flex" }}
             mb={"30px"}
             mt={"30px"}
             w="100%"
           >
             <Box
               w="62%"
-              display={{ base: "none", md: "block" }}
               borderRadius={"4px"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
@@ -801,7 +800,6 @@ const Dashboard = () => {
 
             <Box
               w="35%"
-              display={{ base: "none", md: "block" }}
               borderRadius={"4px"}
               bgColor={useColorModeValue("#FFFFFF", "#202020")}
               filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
@@ -822,21 +820,20 @@ const Dashboard = () => {
 
           {/* Overview score Accordions */}
           <Box
-            display={"flex"}
-            mb={"20px"}
+            my={"20px"}
             flexDirection={"column"}
+            display={{ base: "flex", bigSize: "none" }}
           >
-            <Accordion allowToggle>
+            <Accordion
+              w={"100%"}
+              allowToggle
+            >
               <AccordionItem
-                w={{ base: "100%", md: "62%" }}
-                display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
                 borderColor={useColorModeValue("#E1E1E1", "#272727")}
                 border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                px={{ base: "10px", md: "20px" }}
-                py={{ base: "10px", md: "25px" }}
-                mr={{ base: "10px", md: "25px" }}
+                p={"10px"}
               >
                 <h2>
                   <AccordionButton>
@@ -928,18 +925,17 @@ const Dashboard = () => {
               </AccordionItem>
             </Accordion>
 
-            <Accordion w={{ base: "100%", md: "35%" }}
+            <Accordion
+              w={"100%"}
               allowToggle
-              mt={"15px"}>
+              mt={"15px"}
+            >
               <AccordionItem
-                w={{ base: "100%", md: "35%" }}
-                display={{ base: "block", md: "none" }}
                 borderRadius={"4px"}
                 borderColor={useColorModeValue("#E1E1E1", "#272727")}
                 border={"1x"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                px={{ base: "10px", md: "20px" }}
-                py={{ base: "10px", md: "25px" }}
+                p={"10px"}
               >
                 <AccordionButton justifyContent={"space-between"}>
                   <Text

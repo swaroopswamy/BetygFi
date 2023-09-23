@@ -62,7 +62,7 @@ const Rankings = () => {
   return (
     <Box 
       width={"100%"}
-      overflowX={"auto"}
+      overflow={"auto"}
     >
       <Table
         variant="simple" key={1}
