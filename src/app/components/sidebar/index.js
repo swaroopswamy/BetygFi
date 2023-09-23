@@ -49,7 +49,7 @@ import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice"
 import { mobileSidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
 import { color } from "framer-motion";
 
-// import "./styles.scss";
+ import "../../styles.scss";
 
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
@@ -103,7 +103,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={isSidebarCollapsed ? "50px" : "210px"}
         // h={"100vh"}
-        pos={screenSize?.width < 1450 ? "relative" : "fixed"}
+        //pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         className="sidebar-styles"
         zIndex={"999"}
         boxShadow={useColorModeValue(

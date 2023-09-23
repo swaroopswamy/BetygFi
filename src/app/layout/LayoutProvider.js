@@ -37,6 +37,7 @@ import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
 import useScreenSize from "@/hooks/useScreenSize";
 import Prefooter from "../components/prefooter";
+import "../styles.scss";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -64,8 +65,11 @@ export default function LayoutProvider({ children }) {
         <Box
           display={{ base: "none", md: isMobileSidebarCollapsed ? "flex" : "none" }}
           flexDirection={"column"}
+          className="margin-conditions"
+          id="main-body"
+          aria-expanded={isSidebarCollapsed ? "false" : "true"}
           // ml={"225px"}
-          ml={isSidebarCollapsed ? 20 : 225}
+          //ml={isSidebarCollapsed ? 20 : 225}
           // ml={screenSize?.width < 1450 ?
           //   0 :
           //   (isSidebarCollapsed ? 20 : 225)
