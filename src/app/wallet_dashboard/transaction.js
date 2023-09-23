@@ -94,6 +94,7 @@ const TransactionPanelComponent = () => {
         borderRadius={"6px"}
         bgColor={useColorModeValue("#FFF", "#202020")}
         px={"2px"}
+        overflow={"auto"}
       >
 
         <Flex
