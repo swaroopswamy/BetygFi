@@ -54,28 +54,38 @@ const TransactionPanelComponent = () => {
   );
   return (
     <>
-      <Box w={{ base: "100%", md: "100%" }}>
+      <Box
+        w={{ base: "100%", md: "100%" }}
+        mt="25px"
+        borderRadius={"6px"}
+        bgColor={useColorModeValue("#FFF", "#202020")}
+        px={"2px"}
+      >
         <Flex
-          width={"100%"}
-          justifyContent={"space-between"}
           padding={"23px 29px 27px 29px"}
-          mt="25px"
+          borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={{ base: "none", md: "block" }}
           w={{ base: "100%", md: "100%" }}>
           <Text
-            fontSize="18"
+            fontSize={"18px"}
             fontWeight={600}
+            lineHeight={"20px"}
             color={useColorModeValue("#16171B", "#FFF")}
+            textTransform={"capitalize"}
 
           >
             Wallet Transaction
           </Text>
         </Flex>
-        <Table variant="simple" key={1} bgColor={"#FFF"}
+        <Table
+          variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
+          borderRadius={"6px"}
         >
-          <Thead bgColor={useColorModeValue("#FFF", "#202020")}>
+          <Thead
+            bgColor={useColorModeValue("#F5F5F7", "#202020")}
+          >
 
             <Tr>
               <Th
@@ -92,7 +102,9 @@ const TransactionPanelComponent = () => {
 
               <Th>
                 <Box display={"flex"}
-                  alignItems={"center"}>
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                >
                   <Text
                     color={useColorModeValue("#434347", "#A8ADBD")}
                     fontSize={"14px"}
@@ -108,9 +120,9 @@ const TransactionPanelComponent = () => {
                     <Image width={"6px"}
                       height={"8px"}
                       alt='logo'
-                      mt={"5px"}
+                      mt={"2px"}
                       ml={"5px"}
-                      src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
+                      src={useColorModeValue("/images/updown-triangleicon-light.svg", "/images/updown-triangleicon-dark.svg")}>
                     </Image>
                   </>
                 </Box>
@@ -131,11 +143,12 @@ const TransactionPanelComponent = () => {
                     Amount  / Token
                   </Text>
                   <>
-                    <Image width={"6px"}
+                    <Image
+                      width={"6px"}
                       height={"8px"}
                       alt='logo'
-                      mt={"5px"}
-                      src={useColorModeValue("/images/updown-triangleicon-light.png", "/images/updown-triangleicon-dark.png")}>
+                      mt={"2px"}
+                      src={useColorModeValue("/images/updown-triangleicon-light.svg", "/images/updown-triangleicon-dark.svg")}>
                     </Image>
                   </>
                 </Box>
@@ -179,7 +192,9 @@ const TransactionPanelComponent = () => {
 
           </Thead>
 
-          <Tbody bgColor={useColorModeValue("#FFF", "#202020")}>
+          <Tbody
+            bgColor={useColorModeValue("#FFF", "#202020")}
+          >
             {walletTransactionsData.isError && (
               <>
                 <Tr>
@@ -195,6 +210,7 @@ const TransactionPanelComponent = () => {
                     letterSpacing={"1px"}
                     colSpan={8}
                     textAlign={"center"}
+                    borderRadius={"6px"}
                     p="20px"
                   >
                     No data available
@@ -233,6 +249,7 @@ const TransactionPanelComponent = () => {
                                   mr={"3px"}
                                   src={item.logoUrl}
                                   alt={`${item.id}_icon`}
+                                  borderRadius={"50%"}
                                 ></Image>
                               </>
                             </Tooltip>
@@ -247,11 +264,11 @@ const TransactionPanelComponent = () => {
                                 }}
                                 fontSize={"14px"}
                                 fontWeight={"400"}
-                                letterSpacing={"1px"}
+                                //letterSpacing={"1px"}
                                 ml="6px"
                                 w="95px"
                               >
-                                {walletAddress?.split("").join("").substring(0, 8) + "..." + walletAddress?.slice(-5)}
+                                {walletAddress?.split("").join("").substring(0, 8) + "......" + walletAddress?.slice(-5)}
                               </Text>
                               <Text opacity={"0.6000000238418579"}
                                 _dark={{
@@ -262,7 +279,7 @@ const TransactionPanelComponent = () => {
                                 }}
                                 fontSize={"12px"}
                                 fontWeight={"400"}
-                                letterSpacing={"1px"}
+                                //letterSpacing={"1px"}
                                 ml="6px"
                               >
                                 {
@@ -278,10 +295,11 @@ const TransactionPanelComponent = () => {
                           <Box
                             display={"flex"}
                             alignItems={"center"}
+                            justifyContent={"center"}
                           >
                             <Link
                               fontSize={"14px"}
-                              fontWeight={"400"}
+                              fontWeight={500}
                               fontStyle={"normal"}
                               letterSpacing={"1px"}
                               ml="4px"
@@ -291,7 +309,7 @@ const TransactionPanelComponent = () => {
                                 color: "#FFF"
                               }}
                               _light={{
-                                color: "#16171B"
+                                color: "#6F7383"
                               }}
                               isExternal
                               href={item?.blockExplorerUrl}
@@ -299,12 +317,12 @@ const TransactionPanelComponent = () => {
                               {item?.hash.substring(0, 0)}
                               <ExternalLinkIcon mx='4px' />
                               <Text
-                                color={"#16171B"}
                                 fontSize={"14px"}
                                 fontWeight={500}
                                 lineHeight={"20px"}
                                 _dark={{
-                                  color: "#FFF"
+                                  color: "#FFF",
+                                  opacity: "0.6"
                                 }}
                                 _light={{
                                   color: "#16171B"
@@ -323,8 +341,8 @@ const TransactionPanelComponent = () => {
                             alignItems={"center"}
                           >
                             <Image
-                              width={5}
-                              height={5}
+                              width={"18px"}
+                              height={"18px"}
                               alt='logo'
                               src={item?.tokenUrl}
                               borderRadius={"50%"}
@@ -337,8 +355,8 @@ const TransactionPanelComponent = () => {
                               _light={{
                                 color: "#16171B"
                               }}
-                              fontSize={"14px"}
-                              fontWeight={"400"}
+                              fontSize={5}
+                              fontWeight={5}
                               letterSpacing={"1px"}
                               ml="6px"
                             >
@@ -353,7 +371,7 @@ const TransactionPanelComponent = () => {
                               }}
                               fontSize={"14px"}
                               fontWeight={400}
-                              letterSpacing={"1px"}
+                              //letterSpacing={"1px"}
                               ml="6px"
                             >
                               {Number(item?.value).toFixed(2)}{" ETH"}
@@ -415,7 +433,7 @@ const TransactionPanelComponent = () => {
                             <Text
                               fontSize={"14px"}
                               fontWeight={"400"}
-                              letterSpacing={"1px"}
+                              //letterSpacing={"1px"}
                               ml="4px"
                               color={item?.usdValue >= 0 ? '#60C000' : '#FF3535'}
                             >
@@ -453,18 +471,21 @@ const TransactionPanelComponent = () => {
       </Box>
 
 
-      <Box w={{ base: "100%", md: "100%" }}
+      <Box
+        w={{ base: "100%", md: "100%" }}
         ml={"20px"}
         mr={"20px"}
+        mt="25px"
+        px={"2px"}
+        borderRadius={"6px"}
       >
         <Flex
           justifyContent={"space-between"}
-          padding={"23px 29px 27px"}
-          mt="25px"
+          padding={"16px 0px 15px 27px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={{ base: "block", md: "none" }}
           w={{ base: "90%", md: "100%" }}
-          >
+        >
           <Box  
               justifyContent={"space-between"}
               alignContent={"center"}
@@ -502,7 +523,9 @@ const TransactionPanelComponent = () => {
           w={{ base: "90%", md: "100%" }}
         //mb={"40px"}
         >
-          <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+          <Thead 
+          bgColor={useColorModeValue("#F5F5F7", "#191919")}
+          >
             <Tr>
               <Th
                 colSpan={2}
@@ -550,6 +573,7 @@ const TransactionPanelComponent = () => {
                   fontWeight={"400"}
                   letterSpacing={"1px"}
                   colSpan={8}
+                  borderRadius={"6px"}
                   textAlign={"center"}
                   p="20px"
                 >
@@ -667,7 +691,6 @@ const TransactionPanelComponent = () => {
                             bg: "#FFFFFF"
                           }}
                           display={"flex"}
-
                         >
                           <Box>
                             <Tr>

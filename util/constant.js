@@ -10,7 +10,7 @@ export const blockchains = [
 ];
 
 export const categories = [
-    "Prediction Market",
+    "Prediction Markets",
     "Derivatives",
     "Insurance",
     "Yield",

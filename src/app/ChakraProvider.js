@@ -12,6 +12,7 @@ export function Providers({ children }) {
     midSize:"460px",
     md: "768px",
     lg: "960px",
+    bigSize:"1164px",
     xl: "1200px",
     "2xl": "1536px",
   };

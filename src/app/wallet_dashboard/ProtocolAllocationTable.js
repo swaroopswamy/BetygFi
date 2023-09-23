@@ -8,7 +8,7 @@ const ProtocolAllocationTable = () => {
 
     return (
         <>
-            <Box>
+            <Box px={"2px"}>
                 <Flex
                     height={"50px"}
                     borderRadius={"6px"}

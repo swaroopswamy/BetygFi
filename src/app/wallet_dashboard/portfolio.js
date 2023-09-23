@@ -65,7 +65,7 @@ const PortfolioPanelComponent = () => {
               <Box
                 textAlign={"center"}
                 p="8px"
-                bgColor={defiSelected.length === 0 ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#E0E0E0") : ("#202020")}
+                bgColor={defiSelected.length === 0 ? colorMode === 'light' ? ("#202020") : ("#FFF") : colorMode === 'light' ? ("#FFF") : ("#202020")}
                 onClick={() => {
                   DefiArrayHandler('All');
                 }}
@@ -79,7 +79,7 @@ const PortfolioPanelComponent = () => {
                   fontSize={"14px"}
                   fontWeight={defiSelected.length === 0 ? "600" : "400"}
                   lineHeight={"20px"}
-                  color={defiSelected.length === 0 ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                  color={defiSelected.length === 0 ? colorMode === 'light' ? ("#FFF") : ("#191919") : colorMode === 'light' ? ("#191919") : ("#FFFFFF")}
 
                 >
                   All
@@ -92,7 +92,7 @@ const PortfolioPanelComponent = () => {
                       key={i}
                       textAlign={"center"}
                       p="8px"
-                      bgColor={defiSelected.includes(item) ? colorMode === 'light' ? ("#E3E4E8") : ("#191919") : colorMode === 'light' ? ("#FFFFFF") : ("#202020")}
+                      bgColor={defiSelected.includes(item) ? colorMode === 'light' ? ("#202020") : ("#FFF") : colorMode === 'light' ? ("#FFFFFF") : ("#202020")}
                       onClick={() => {
                         DefiArrayHandler(item);
                       }}
@@ -107,7 +107,7 @@ const PortfolioPanelComponent = () => {
                         fontSize={"14px"}
                         fontWeight={defiSelected.includes(item) ? "600" : "400"}
                         lineHeight={"20px"}
-                        color={defiSelected.includes(item) ? colorMode === 'light' ? ("#16171B") : ("#FFFFFF") : colorMode === 'light' ? ("#000000") : ("#FFFFFF")}
+                        color={defiSelected.includes(item) ? colorMode === 'light' ? ("#FFF") : ("#191919") : colorMode === 'light' ? ("#191919") : ("#FFFFFF")}
 
                       >
                         {item}
@@ -676,6 +676,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
       allowMultiple 
       background={useColorModeValue("#FFFFFF", "#202020")}
       mb={"40px"}
+      borderRadius={"6px"}
       >
 
         <AccordionItem>

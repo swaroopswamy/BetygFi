@@ -21,7 +21,7 @@ const TVLBox = () => {
      
         <Box
            // minW={"331px"}
-           w={{base:"100%",md:"331px"}}
+            w={{base:"100%",md:"30%"}}
             height={"auto"}
             display={"flex"}
             flexDirection={"column"}
@@ -31,10 +31,13 @@ const TVLBox = () => {
             _light={{ bg: "#FFFFFF" }}
               mr={{base:"0px",md:"20px"}}
         >
-            <Box h="100%">
+            <Box 
+            h="100%"
+            >
                 <Box 
                 p={"20px"} 
-                h="80%">
+                h="80%"
+                >
                     <Text
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#FFFFFF" }}

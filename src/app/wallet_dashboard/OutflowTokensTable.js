@@ -8,6 +8,7 @@ const OutflowTokensTable = () => {
 
     return (
         <>
+        <Box px={"2px"}>
             <Flex
                 height={"50px"}
                 borderRadius={"6px"}
@@ -298,6 +299,7 @@ const OutflowTokensTable = () => {
 
                 </Table>
             </TableContainer>
+            </Box>
         </>
     )
 }
@@ -342,12 +344,14 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                     alignItems={"center"}
                 >
                     <Text
-                        fontSize={"14px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1.4px"}
-                        color={value > 0 ? '#60C000' : '#FF3535'}
+                    fontSize={"14px"}
+                    fontWeight={"400"}
+                    letterSpacing={"1.4px"}
+                    _light={{color:"#EF1E1E"}}
+                    _dark={{color:"#FF3535"}}
+                    //color={value > 0 ? '#60C000' : '#FF3535'}
                     >
-                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
+                        {value > 0 ? "-" : "+"}USD {USDollar.format(value)}  
                     </Text>
                 </Box>
             </Td>

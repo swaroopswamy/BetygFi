@@ -45,8 +45,9 @@ const WalletDashboardPage = () => {
                             lineHeight={"20px"}
                             color={useColorModeValue("#191919", "#FFF")}
                             letterSpacing={"2.4px"}
+                            textTransform={"capitalize"}
                         >
-                            TOP WALLETS
+                            Top Wallets
                         </Text>
 
                         <Box
