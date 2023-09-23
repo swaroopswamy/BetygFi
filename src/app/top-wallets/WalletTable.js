@@ -18,6 +18,8 @@ const WalletTable = () => {
                 borderRadius={"6px"}
                 _light={{ borderColor: "#FFFFFF" }}
                 _dark={{ borderColor: "#202020" }}
+                overflow={"auto"}
+              
             >
                 <Box
                     display={"flex"}
@@ -334,6 +336,7 @@ const WalletTable = () => {
                 </Table>
 
                 <Table variant='unstyled'
+                    minW={"1048px"}
                     display={{ base: "none", md: "table" }}
                     size={'sm'}
                     border={"1px"}
