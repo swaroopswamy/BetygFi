@@ -137,7 +137,7 @@ const WalletTable = () => {
                                                                 <Image
                                                                     w={"20px"}
                                                                     h={"20px"}
-                                                                    src={`/icons/dummy1.png`}
+                                                                    src={`/icons/dummy1.svg`}
                                                                     alt=""
                                                                 ></Image>
                                                                 <Text
@@ -212,6 +212,7 @@ const WalletTable = () => {
                                                                                     <Image
                                                                                         w={"14px"}
                                                                                         h={"14px"}
+                                                                                        style={{borderRadius:"50%"}}
                                                                                         src={item.logo_url}
                                                                                         alt=""
                                                                                     ></Image>
@@ -632,6 +633,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                                 <Image
                                     w={"20px"}
                                     h={"20px"}
+                                    style={{borderRadius:"50%"}}
                                     src={item.logo_url}
                                     alt=""
                                 ></Image>
