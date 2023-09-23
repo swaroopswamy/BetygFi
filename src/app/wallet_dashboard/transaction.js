@@ -251,6 +251,7 @@ const TransactionPanelComponent = () => {
                     textAlign={"center"}
                     borderRadius={"6px"}
                     p="20px"
+                    opacity={0.6}
                   >
                     No data available
                   </Td>
@@ -632,6 +633,7 @@ const TransactionPanelComponent = () => {
                   borderRadius={"6px"}
                   textAlign={"center"}
                   p="20px"
+                  opacity={0.6}
                 >
                   No data available
                 </Td>

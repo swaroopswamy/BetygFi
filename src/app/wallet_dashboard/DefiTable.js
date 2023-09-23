@@ -228,6 +228,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                                 mt="44px"
                                                 mb="20px"
+                                                opacity={0.6}
                                             >
                                                 We are retrieving data from the Blockchain.
                                             </Text>
@@ -250,6 +251,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                                 mt="20px"
                                                 mb="8px"
+                                                opacity={0.6}
                                             >
                                                 This process might take approximately 2-3 minutes.
                                             </Text>
@@ -264,6 +266,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                                 mb="50px"
+                                                opacity={0.6}
                                             >
                                                 You have the option to wait or return later.
                                             </Text>
@@ -288,6 +291,7 @@ const DefiTable = () => {
                                         colSpan={8}
                                         textAlign={"center"}
                                         p="20px"
+                                        opacity={0.6}
                                     >
                                         No Data Available
                                     </Td>
@@ -546,6 +550,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="44px"
                                             mb="20px"
+                                            opacity={0.6}
                                         >
                                             We are retrieving data from the Blockchain.
                                         </Text>
@@ -568,6 +573,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="20px"
                                             mb="8px"
+                                            opacity={0.6}
                                         >
                                             This process might take approximately 2-3 minutes.
                                         </Text>
@@ -582,6 +588,7 @@ const DefiTable = () => {
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                             mb="50px"
+                                            opacity={0.6}
                                         >
                                             You have the option to wait or return later.
                                         </Text>
@@ -618,6 +625,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="44px"
                                             mb="20px"
+                                            opacity={0.6}
                                         >
                                             We are retrieving data<br /> from the Blockchain.
                                         </Text>
@@ -640,6 +648,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="20px"
                                             mb="8px"
+                                            opacity={0.6}
                                         >
                                             This process might take <br /> approximately 2-3 minutes.
                                         </Text>
@@ -654,6 +663,7 @@ const DefiTable = () => {
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                             mb="50px"
+                                            opacity={0.6}
                                         >
                                             You can wait or return later.
                                         </Text>
@@ -678,6 +688,7 @@ const DefiTable = () => {
                                     colSpan={8}
                                     textAlign={"center"}
                                     p="20px"
+                                    opacity={0.6}
                                 >
                                     No Data Available
                                 </Td>

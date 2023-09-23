@@ -183,6 +183,7 @@ const BlockchainAllocationTreemapChart = () => {
                         display={"flex"}
                         alignItems={"center"}
                         justifyContent={"center"}
+                        opacity={0.6}
                     >
                         No Data Available
                     </Box>
