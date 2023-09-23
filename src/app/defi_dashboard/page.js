@@ -725,7 +725,7 @@ const DefiDashboardPage = () => {
             </Box>
 
 
-            <Box  display={{ base: "none", bigSize: "inline-flex",md:"none" }}
+            <Box  display={{ base: "none", bigSize: "block",md:"none" }}
                 _light={{
                     bgColor: "#F0F0F5"
                 }}

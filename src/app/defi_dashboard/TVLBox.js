@@ -21,7 +21,7 @@ const TVLBox = () => {
      
         <Box
            // minW={"331px"}
-            w={{base:"100%",md:"100%", bigSize:"30"}}
+            w={{base:"100%", bigSize:"30%"}}
             height={"auto"}
             display={"flex"}
             flexDirection={"column"}
