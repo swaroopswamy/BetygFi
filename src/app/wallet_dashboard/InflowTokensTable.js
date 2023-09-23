@@ -58,12 +58,12 @@ const InflowTokensTable = () => {
                         </>
                     </Box>
 
-                    <Image
+                   {/*  <Image
                         cursor={"pointer"}
                         width={"24px"}
                         height={"24px"}
                         src={"/icons/Filter.svg"}
-                    ></Image>
+                    ></Image> */}
                 </Flex>
 
                 <TableContainer>

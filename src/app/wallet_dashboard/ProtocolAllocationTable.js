@@ -59,13 +59,13 @@ const ProtocolAllocationTable = () => {
                         </>
                     </Box>
 
-                    <Image
+                   {/*  <Image
                         display={{ base: "block", md: "none" }}
                         cursor={"pointer"}
                         width={"24px"}
                         height={"24px"}
                         src={colorMode === 'light' ? ('/icons/Filter.svg') : ('/icons/Filter-darkmode.svg')}
-                    ></Image>
+                    ></Image> */}
 
                 </Flex>
 
