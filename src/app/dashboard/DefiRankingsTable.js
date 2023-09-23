@@ -397,6 +397,7 @@ const Rankings = () => {
                                   <Image
                                     width={24}
                                     height={24}
+                                    style={{borderRadius:"50%"}}
                                     alt='logo'
                                     src={item.logo}
                                   ></Image>
@@ -791,6 +792,7 @@ const Rankings = () => {
                                             <Image
                                               width={24}
                                               height={24}
+                                              style={{borderRadius:"50%"}}
                                               alt='logo'
                                               src={item.logo}
                                             ></Image>

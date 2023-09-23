@@ -57,14 +57,14 @@ const GovernanceTable = ({ }) => {
                 mr={"20px"}
                 ml={"30px"}
                 paddingBottom={"60px"}
+                borderRadius={"6px"}
             >
-                {/* Governance Table */}
-
-                <Flex
+                <Box
+                    display={"flex"}
                     alignItems="center"
                     padding={"25px 29px 27px"}
                     bgColor={useColorModeValue("#FFF", "#202020")}
-                //borderRadius={"6px"} 
+                //borderRadius={"6px"}
                 >
                     <Text
                         fontSize={"18px"}
@@ -131,10 +131,10 @@ const GovernanceTable = ({ }) => {
                             />
                         </Box> */}
 
-                </Flex>
+                </Box>
                 <Table
-                    variant="simple" key={1}
-                    bgColor={"#FFF"}
+                    variant="simple"
+                    key={1}
                 >
                     <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}
                     >
@@ -354,7 +354,6 @@ const GovernanceTable = ({ }) => {
 
                     </Tbody>
                 </Table>
-
             </Box>
 
             <Box display={{ base: "block", md: "none" }}
@@ -585,7 +584,6 @@ const GovernanceTable = ({ }) => {
                     </Tbody>
 
                 </Table>
-
             </Box>
         </>
     )
