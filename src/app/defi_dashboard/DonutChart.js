@@ -74,7 +74,7 @@ function DonutChart() {
   return (
     <>
       <Box
-        width={{ base: "100%", md: "50%" }}
+        width={{ base: "100%", md: "100%",bigSize:"50%" }}
         display={"flex"}
         flexDirection={"column"}
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
