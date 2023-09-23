@@ -324,7 +324,7 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         <Image
                             width={5}
                             height={5}
-                            style={{borderRadius:"50%"}}
+                            style={{ borderRadius: "50%" }}
                             alt='logo'
                             src={logoUrl}
                         ></Image>
@@ -347,9 +347,9 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         fontSize={"14px"}
                         fontWeight={"400"}
                         letterSpacing={"1.4px"}
-                        _light={{color:"#245F00"}}
-                        _dark={{color:"#60C000"}}
-                        //color={value > 0 ? '#60C000' : '#FF3535'}
+                        _light={{ color: "#245F00" }}
+                        _dark={{ color: "#60C000" }}
+                    //color={value > 0 ? '#60C000' : '#FF3535'}
                     >
                         {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                     </Text>
@@ -418,7 +418,7 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                                                 w={"20px"}
                                                 h={"20px"}
                                                 src={logoUrl}
-                                                style={{borderRadius:"50%"}}
+                                                style={{ borderRadius: "50%" }}
                                                 alt=""
                                             ></Image>
 
@@ -441,7 +441,9 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                                         </Box>
 
                                         <Text
-                                            color={value > 0 ? '#60C000' : '#FF3535'}
+                                            _light={{ color: "#245F00" }}
+                                            _dark={{ color: "#60C000" }}
+                                            //color={value > 0 ? '#60C000' : '#FF3535'}
                                             fontSize={"14px"}
                                             fontStyle={"normal"}
                                             fontWeight={"600"}
