@@ -60,7 +60,10 @@ const Rankings = () => {
   const { colorMode } = useColorMode();
   const { focusedCell } = useTableKeyboardNavigation(tableData.DefiRankingsTableData?.data?.data?.length, 8);
   return (
-    <Box width={"100%"}>
+    <Box 
+      width={"100%"}
+      overflow={"auto"}
+    >
       <Table
         variant="simple" key={1}
         w={{ base: "100%", md: "100%" }}
