@@ -139,7 +139,7 @@ const Dashboard = () => {
     <>
       <Box display={"flex"} flexDirection={"column"}>
         <Box
-          display={{ base: "none", md: "none",bigSize:"block" }}
+          display={{ base: "none", md: "none", bigSize: "block" }}
           flexDirection={"column"}
           px={{ base: "10px", md: "29px" }}
           paddingTop={"20px"}
@@ -210,7 +210,7 @@ const Dashboard = () => {
                       >
 
                         <Image
-                        style={{borderRadius:"50%"}}
+                          style={{ borderRadius: "50%" }}
                           width={18}
                           height={18}
                           src={item.logoUrl}
@@ -395,7 +395,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          display={{ md: "block",bigSize:"none" }}
+          display={{ md: "block", bigSize: "none" }}
           flexDirection={"column"}
           w={"100%"}
           px={{ base: "15px", md: "29px" }}
@@ -430,15 +430,15 @@ const Dashboard = () => {
               w={"100%"}
               overflowX="auto"
               flexWrap="nowrap"
-                      // css={{
-                      //   '&::-webkit-scrollbar': {
-                      //     width: '0.2rem',
-                      //     height: '0.2rem',
-                      //   },
-                      //   '&::-webkit-scrollbar-thumb': {
-                      //     backgroundColor: 'transparent',
-                      //   },
-                      // }}
+            // css={{
+            //   '&::-webkit-scrollbar': {
+            //     width: '0.2rem',
+            //     height: '0.2rem',
+            //   },
+            //   '&::-webkit-scrollbar-thumb': {
+            //     backgroundColor: 'transparent',
+            //   },
+            // }}
             >
               {blockchainListData.data?.map((item, i) => (
                 <>
@@ -462,13 +462,13 @@ const Dashboard = () => {
                       onClick={() => {
                         BlockchainTypeHandler(item.id);
                       }}
-                      
+
                     >
 
                       <Image
                         width={20}
                         height={20}
-                        style={{borderRadius:"50%"}}
+                        style={{ borderRadius: "50%" }}
                         src={item.logoUrl}
                         alt={`${item.id}_icon`}
                       ></Image>
@@ -527,17 +527,17 @@ const Dashboard = () => {
             display="flex"
             height="100%"
             flexDirection="row"
-            // overflowX="auto"
-            // flexWrap="nowrap"
-            // css={{
-            //   '&::-webkit-scrollbar': {
-            //     width: '0.2rem',
-            //     height: '0.2rem',
-            //   },
-            //   '&::-webkit-scrollbar-thumb': {
-            //     backgroundColor: 'transparent',
-            //   },
-            // }}
+          // overflowX="auto"
+          // flexWrap="nowrap"
+          // css={{
+          //   '&::-webkit-scrollbar': {
+          //     width: '0.2rem',
+          //     height: '0.2rem',
+          //   },
+          //   '&::-webkit-scrollbar-thumb': {
+          //     backgroundColor: 'transparent',
+          //   },
+          // }}
           >
             <Box
               key="all"
@@ -968,7 +968,6 @@ const Dashboard = () => {
           </Box>
 
           {/* DeFi Rankings Tables */}
-
           <Box
             w={{ base: "100%", md: "100%" }}
             display={{ base: "none", md: "block" }}
@@ -1106,6 +1105,7 @@ const Dashboard = () => {
             </Box>
           </Box>
 
+          {/* DeFi Rankings Table Mobile optimization part */}
           <Box
             w={{ base: "100%", md: "100%" }}
             display={{ base: "block", md: "none" }}

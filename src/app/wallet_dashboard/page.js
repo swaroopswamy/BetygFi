@@ -481,6 +481,7 @@ const WalletDashboardPage = () => {
                                                         w={"18px"}
                                                         h={"18px"}
                                                         mr={"3px"}
+                                                        style={{borderRadius:"50%"}}
                                                         src={item.logoUrl}
                                                         alt={`${item.id}_icon`}
                                                     ></Image>

@@ -84,7 +84,7 @@ const TransactionPanelComponent = () => {
           borderRadius={"6px"}
         >
           <Thead
-            bgColor={useColorModeValue("#F5F5F7", "#202020")}
+            bgColor={useColorModeValue("#F5F5F7", "#191919")}
           >
 
             <Tr>
