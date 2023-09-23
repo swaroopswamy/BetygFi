@@ -139,7 +139,7 @@ const Dashboard = () => {
     <>
       <Box display={"flex"} flexDirection={"column"}>
         <Box
-          display={{ base: "none", md: "block" }}
+          display={{ base: "none", md: "none",bigSize:"block" }}
           flexDirection={"column"}
           px={{ base: "10px", md: "29px" }}
           paddingTop={"20px"}
@@ -210,6 +210,7 @@ const Dashboard = () => {
                       >
 
                         <Image
+                        style={{borderRadius:"50%"}}
                           width={18}
                           height={18}
                           src={item.logoUrl}
@@ -394,7 +395,7 @@ const Dashboard = () => {
         </Box>
 
         <Box
-          display={{ base: "block", md: "none" }}
+          display={{ md: "block",bigSize:"none" }}
           flexDirection={"column"}
           w={"100%"}
           px={{ base: "15px", md: "29px" }}
@@ -465,6 +466,7 @@ const Dashboard = () => {
                       <Image
                         width={20}
                         height={20}
+                        style={{borderRadius:"50%"}}
                         src={item.logoUrl}
                         alt={`${item.id}_icon`}
                       ></Image>
@@ -1118,7 +1120,7 @@ const Dashboard = () => {
             <Flex
               justifyContent={"space-between"}
               alignItems={"center"}
-              padding={"20px 20px 10px 10px"}
+              padding={"20px 20px 20px 10px"}
             >
               <Text
                 fontSize={"18px"}
