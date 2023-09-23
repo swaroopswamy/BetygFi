@@ -304,7 +304,7 @@ function SelectorGraph({ tvlData }) {
             show: false,
         },
         tooltip: {
-            enabled: true,
+            enabled: false,
             custom: function({series, seriesIndex, dataPointIndex, w}) {
                 console.log(Math.max(...series[0]))
                 return '<div class="selection_box_tooltip">' +
