@@ -252,25 +252,30 @@ function SelectorGraph({ tvlData }) {
             type: "line",
             brush: {
                 enabled: true,
-                target: 'trendgraph'
+                target: 'trendgraph',
+                autoScaleYaxis: true
             },
             selection: {
                 enabled: true,
                 fill: {
-                    color: '#515151',
-                    opacity: 0.2
+                    color: '#00E0FF',
+                    opacity: 0.15
                 },
                 stroke: {
                     width: 0,
                     dashArray: 0,
                     color: colorMode === 'light' ? '#313131' : '#FFF',
+                },
+                xaxis: {
+                    min: new Date('19 Jun 2021').getTime(),
+                    max: new Date('14 Aug 2023').getTime()
                 }
             }
         },
         fill: {
             colors: ["#3A3D46"],
             type: "solid",
-            opacity: colorMode === 'light' ? "0.5" : "0.6",
+            opacity: "0.25",
         },
         stroke: {
             show: false
@@ -299,7 +304,13 @@ function SelectorGraph({ tvlData }) {
             show: false,
         },
         tooltip: {
-            enabled: false
+            enabled: true,
+            custom: function({series, seriesIndex, dataPointIndex, w}) {
+                console.log(Math.max(...series[0]))
+                return '<div class="selection_box_tooltip">' +
+                  '<span>' + Math.max(series[0]) + '</span>' +
+                  '</div>'
+            }
         },
         grid: {
             borderColor: colorMode === 'light' ? "#191919" : "#36363A",
