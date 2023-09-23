@@ -95,6 +95,7 @@ const TransactionPanelComponent = () => {
         bgColor={useColorModeValue("#FFF", "#202020")}
         px={"2px"}
         overflow={"auto"}
+        mb="20px"
       >
 
         <Flex
@@ -119,6 +120,7 @@ const TransactionPanelComponent = () => {
           variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
           borderRadius={"6px"}
+          minW={"1260px"}
         >
           <Thead
             bgColor={useColorModeValue("#F5F5F7", "#191919")}
