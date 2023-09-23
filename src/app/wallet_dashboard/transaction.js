@@ -1,5 +1,5 @@
 "use client"
-import { Container, Button, Table, Thead, Text, Tbody, useColorModeValue, Box, Tooltip, Skeleton, Tr, Th, Td, Flex, Image, Link, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react'
+import { Container, Button, Table, Thead, Text, Tbody, useColorModeValue,useColorMode, Box, Tooltip, Skeleton, Tr, Th, Td, Flex, Image, Link, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel } from '@chakra-ui/react'
 import { useSelector } from "react-redux";
 import isEmpty from 'is-empty';
 import millify from 'millify';
@@ -44,7 +44,7 @@ const MobileSkeletonRow = () => (
 )
 
 const TransactionPanelComponent = () => {
-
+  const { colorMode } = useColorMode();
   const value1 = "300";
   const value2 = "200";
   const value3 = "-300";
@@ -54,7 +54,7 @@ const TransactionPanelComponent = () => {
   );
   return (
     <>
-      <Box  w={{ base: "100%", md: "100%" }}>
+      <Box w={{ base: "100%", md: "100%" }}>
         <Flex
           width={"100%"}
           justifyContent={"space-between"}
@@ -457,19 +457,40 @@ const TransactionPanelComponent = () => {
         ml={"20px"}
         mr={"20px"}
       >
-        <Flex justifyContent={"space-between"} padding={"23px 29px 27px"}
+        <Flex
+          justifyContent={"space-between"}
+          padding={"23px 29px 27px"}
           mt="25px"
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={{ base: "block", md: "none" }}
-          w={{ base: "90%", md: "100%" }} >
-          <Text
-            fontSize="18"
-            fontWeight={"600"}
-            color={useColorModeValue("#16171B", "#FFF")}
-
+          w={{ base: "90%", md: "100%" }}
           >
-            Wallet Transaction
-          </Text>
+          <Box  
+              justifyContent={"space-between"}
+              alignContent={"center"}
+              display={"flex"}
+              flexDirection={"row"}>
+          <Box
+            justifyContent={"space-between"}
+            alignItems={"center"}  >
+            <Text
+              fontSize="18"
+              fontWeight={"600"}
+              color={useColorModeValue("#16171B", "#FFF")}
+
+            >
+              Wallet Transaction
+            </Text>
+          </Box>
+          <Box
+            justifyContent={"space-between"}
+            alignItems={"center"}>
+            <Image
+              cursor={"pointer"}
+              width={"24px"}
+              height={"24px"}
+              src={colorMode === 'light' ? ('/icons/Filter.svg') : ('/icons/Filter-darkmode.svg')}
+            ></Image></Box></Box>
         </Flex>
         <Table variant={"unstyled"} display={{ base: "table", md: "none" }}
           _dark={{

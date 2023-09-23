@@ -38,13 +38,13 @@ const OutflowTokensTable = () => {
                         Outflow Tokens (30 Days)
                     </Text>
                     <>
-                        <Tooltip 
-                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                        padding="4px 8px"
-                        fontWeight={400}
-                        fontSize={"10px"}
-                        
-                        label="Outflow shows the number of tokens sent by the wallet.">
+                        <Tooltip
+                            bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                            padding="4px 8px"
+                            fontWeight={400}
+                            fontSize={"10px"}
+
+                            label="Outflow shows the number of tokens sent by the wallet.">
                             <Image width={"12px"}
                                 height={"12px"}
                                 flexShrink={"0"}
@@ -57,10 +57,11 @@ const OutflowTokensTable = () => {
                 </Box>
 
                 <Image
+                    display={{ base: "block", md: "none" }}
                     cursor={"pointer"}
                     width={"24px"}
                     height={"24px"}
-                    src={"/icons/Filter.svg"}
+                    src={colorMode === 'light' ? ('/icons/Filter.svg') : ('/icons/Filter-darkmode.svg')}
                 ></Image>
             </Flex>
 
@@ -326,8 +327,8 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                             src={logoUrl}
                         ></Image>
                     </>
-                    <Text 
-                        ml="6px" 
+                    <Text
+                        ml="6px"
                         fontSize={"14px"}
                     >
                         {symbol}
@@ -341,12 +342,12 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                     alignItems={"center"}
                 >
                     <Text
-                    fontSize={"14px"}
-                    fontWeight={"400"}
-                    letterSpacing={"1.4px"}
-                    color={value > 0 ? '#60C000' : '#FF3535'}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1.4px"}
+                        color={value > 0 ? '#60C000' : '#FF3535'}
                     >
-                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
+                        {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                     </Text>
                 </Box>
             </Td>
@@ -388,9 +389,9 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         <h2>
                             <AccordionButton
                                 p={0}
-                                // _expanded={{
-                                //     mt: "10px"
-                                // }}
+                            // _expanded={{
+                            //     mt: "10px"
+                            // }}
                             >
                                 <Box
                                     w="100%"
@@ -443,11 +444,11 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                                             lineHeight={"20px"}
                                             textAlign={"left"}
                                         >
-                                            {value > 0 ? "+" : "-"}USD {USDollar.format(value)}  
+                                            {value > 0 ? "+" : "-"}USD {USDollar.format(value)}
                                         </Text>
                                     </Box>
 
-                                    <AccordionIcon 
+                                    <AccordionIcon
                                     />
 
                                 </Box>

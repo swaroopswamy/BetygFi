@@ -58,10 +58,11 @@ const InflowTokensTable = () => {
                 </Box>
 
                 <Image
+                    display={{ base: "block", md: "none" }}
                     cursor={"pointer"}
                     width={"24px"}
                     height={"24px"}
-                    src={"/icons/Filter.svg"}
+                    src={colorMode === 'light' ? ('/icons/Filter.svg') : ('/icons/Filter-darkmode.svg')}
                 ></Image>
             </Flex>
 

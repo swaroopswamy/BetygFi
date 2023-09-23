@@ -129,7 +129,7 @@ const DefiDashboardPage = () => {
                 <Box
                     display={{ base: "none", md: "flex" }}
                     justifyContent={"space-between"}
-                    margin={"10px 30px 50px 30px"}
+                    margin={"10px 30px 10px 30px"}
                     paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
                     bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -170,6 +170,7 @@ const DefiDashboardPage = () => {
                                             color: "#191919"
                                         }}
                                         letterSpacing={"2.4px"}
+                                        textTransform={"capitalize"}
                                     >
                                         {defiData?.name}
                                     </Text>
@@ -400,6 +401,7 @@ const DefiDashboardPage = () => {
                         position={"relative"}
                         bgColor={useColorModeValue("#FFF", "#202020")}
                         padding={"10px 10px"}
+                        mt={"40px"}
                         h="fit-content"
                         borderRadius={"6px"}
                         _after={{
@@ -416,6 +418,7 @@ const DefiDashboardPage = () => {
                         Safety Score
                         <Text
                             ml="10px"
+                           // mt={"50px"}
                             fontWeight={"600"}
                             fontSize={"16px"}
 
