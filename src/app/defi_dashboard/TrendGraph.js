@@ -112,7 +112,7 @@ function TrendGraph() {
                 flexDirection={"column"}
                 alignContent={"center"}
                 // height={"400px"}
-                w={{base:"100%",md:"70%"}}
+                width={{ base: "100%", md: "100%",bigSize:"50%" }}
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
                 borderColor={useColorModeValue('#FFFFFF', '#272727')}

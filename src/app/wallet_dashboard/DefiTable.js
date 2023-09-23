@@ -53,7 +53,7 @@ const DefiTable = () => {
     return (
         <>
             <Table variant="simple" key={1}
-                display={{ base: "none", md: "table" }}
+                display={{ base: "none", md:"table" }}
             >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
@@ -445,8 +445,8 @@ const DefiTable = () => {
                 </Tbody>
             </Table>
             <Table variant="simple" key={2}
-                display={{ base: "table", md: "none" }}
-            >
+                display={{ base: "table",md:"none" }}
+                  w={"90%"}>
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                     <Tr>
                         <Th

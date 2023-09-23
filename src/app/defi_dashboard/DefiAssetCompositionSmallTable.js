@@ -31,7 +31,7 @@ function Assetcomposition() {
 
     return (
         <Box
-            width={{ base: "100%", md: "50%" }}
+            width={{ base: "100%", md: "100%",bigSize:"50%" }}
             bgColor={useColorModeValue("#F0F0F5", "#191919")}
             borderColor={useColorModeValue("#F0F0F5", "#191919")}
         >
