@@ -319,6 +319,7 @@ const DefiTable = () => {
                                                                 <img
                                                                     width={20}
                                                                     height={20}
+                                                                    style={{borderRadius:"50%"}}
                                                                     alt='logo'
                                                                     src={item?.logoUrl}
                                                                 ></img>
@@ -730,6 +731,7 @@ const DefiTable = () => {
                                                                                         <img
                                                                                             width={20}
                                                                                             height={20}
+                                                                                            style={{borderRadius:"50%"}}
                                                                                             alt='logo'
                                                                                             src={item?.logoUrl}
                                                                                         ></img>

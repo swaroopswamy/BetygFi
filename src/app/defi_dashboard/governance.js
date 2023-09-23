@@ -50,24 +50,22 @@ const GovernanceTable = ({ }) => {
 
 
     return (
-        <Box>
+        <>
             <Box display={{ base: "none", md: "block" }}
                 _dark={{ bg: "#191919" }}
                 _light={{ bg: " #F0F0F5" }}
                 mr={"20px"}
                 ml={"30px"}
                 paddingBottom={"60px"}
-                px={"2px"}
             >
                 {/* Governance Table */}
 
-                <Box
-                    display={"flex"}
+                <Flex
                     alignItems="center"
                     padding={"25px 29px 27px"}
-                    bgColor={useColorModeValue("#FFF", "#202020")} 
-                    //borderRadius={"6px"} 
-                    >
+                    bgColor={useColorModeValue("#FFF", "#202020")}
+                //borderRadius={"6px"} 
+                >
                     <Text
                         fontSize={"18px"}
                         fontWeight={600}
@@ -133,9 +131,13 @@ const GovernanceTable = ({ }) => {
                             />
                         </Box> */}
 
-                </Box>
-                <Table variant="simple" key={1} bgColor={"#FFF"} >
-                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+                </Flex>
+                <Table
+                    variant="simple" key={1}
+                    bgColor={"#FFF"}
+                >
+                    <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}
+                    >
                         <Tr>
                             {/* <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
@@ -289,7 +291,6 @@ const GovernanceTable = ({ }) => {
                         </Tr>
                     </Thead>
 
-
                     <Tbody
                         fontSize={"14px"}
                         fontWeight={"400"}
@@ -352,7 +353,6 @@ const GovernanceTable = ({ }) => {
                         })}
 
                     </Tbody>
-
                 </Table>
 
             </Box>
@@ -483,21 +483,21 @@ const GovernanceTable = ({ }) => {
                                                            flexDirection={"row"}
                                                            alignItems={"center"}
                                                         > */}
-                                                            <Box justifyContent={"space-between"}
-                                                                alignItems={"center"}>
-                                                                <Text
-                                                                    _light={{ color: "#434347" }}
-                                                                    _dark={{ color: "#A8ADBD" }}
-                                                                    fontSize={"14px"}
-                                                                    fontWeight={"400"}
-                                                                    lineHeight={"20px"}
-                                                                    letterSpacing={"1.4px"}
-                                                                    textTransform={"capitalize"}
-                                                                >
-                                                                    {item.name}
-                                                                </Text></Box>
-                                                                    {/* </Flex> */}
-                                                        
+                                                        <Box justifyContent={"space-between"}
+                                                            alignItems={"center"}>
+                                                            <Text
+                                                                _light={{ color: "#434347" }}
+                                                                _dark={{ color: "#A8ADBD" }}
+                                                                fontSize={"14px"}
+                                                                fontWeight={"400"}
+                                                                lineHeight={"20px"}
+                                                                letterSpacing={"1.4px"}
+                                                                textTransform={"capitalize"}
+                                                            >
+                                                                {item.name}
+                                                            </Text></Box>
+                                                        {/* </Flex> */}
+
                                                         <AccordionIcon />
                                                     </AccordionButton>
 
@@ -512,30 +512,30 @@ const GovernanceTable = ({ }) => {
                                                             textTransform={"capitalize"}
                                                             justifyContent={"space-between"}>
 
-                                                           
+
                                                             <Box display={"flex"}
-                                                                    alignItems={"center"}
-                                                                    justifyContent={"space-between"}>
+                                                                alignItems={"center"}
+                                                                justifyContent={"space-between"}>
                                                                 <Box display={"flex"}
                                                                     alignItems={"center"}
                                                                     justifyContent={"space-between"}
-                                                                    >
+                                                                >
                                                                     <Text mb={"35px"}>Description:</Text></Box>
 
                                                                 <Box display={"flex"}
                                                                     alignItems={"center"}
                                                                     justifyContent={"space-between"}
-                                                                     ml={"30px"}
-                                                                    >
+                                                                    ml={"30px"}
+                                                                >
                                                                     <Text>{item.description_text}</Text></Box>
                                                             </Box>
-                                                            
+
                                                             <Box display={"flex"}
-                                                              alignItems={"center"}
+                                                                alignItems={"center"}
                                                                 mt={"10px"}>
 
                                                                 <Box display={"flex"}
-                                                                   alignItems={"center"}>
+                                                                    alignItems={"center"}>
 
                                                                     <Text
                                                                         justifyContent={"space-between"}
@@ -543,20 +543,20 @@ const GovernanceTable = ({ }) => {
 
                                                                 <Box display={"flex"}
                                                                     alignItems={"center"}
-                                                                    >
+                                                                >
                                                                     <Text
                                                                         _light={{ color: "#434347" }}
                                                                         _dark={{ color: "#A8ADBD" }}
                                                                         fontSize={"14px"}
                                                                         letterSpacing={"1.4px"}
                                                                         textTransform={"capitalize"}
-                                                                       ml={"65px"}
-                                                                       justifyContent={"flex-end"}
+                                                                        ml={"65px"}
+                                                                        justifyContent={"flex-end"}
                                                                     >
                                                                         {item.topics.length}
                                                                     </Text></Box></Box>
 
-                                                            </Box>
+                                                        </Box>
 
                                                         <Box alignItems={"center"}
                                                             justifyContent={"space-between"}
@@ -575,7 +575,7 @@ const GovernanceTable = ({ }) => {
                                                     </AccordionPanel>
                                                 </AccordionItem>
                                             </Accordion>
-                                           
+
                                         </Td>
                                     </Tr>
                                 </>
@@ -587,7 +587,7 @@ const GovernanceTable = ({ }) => {
                 </Table>
 
             </Box>
-        </Box>
+        </>
     )
 }
 

@@ -324,6 +324,7 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                         <Image
                             width={5}
                             height={5}
+                            style={{borderRadius:"50%"}}
                             alt='logo'
                             src={logoUrl}
                         ></Image>
@@ -417,7 +418,7 @@ const TableRow = ({ i, logoUrl, value, symbol, percentage }) => {
                                                 w={"20px"}
                                                 h={"20px"}
                                                 src={logoUrl}
-                                                borderRadius={"50%"}
+                                                style={{borderRadius:"50%"}}
                                                 alt=""
                                             ></Image>
 
