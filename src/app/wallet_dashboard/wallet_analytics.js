@@ -39,7 +39,7 @@ const WalletAnalyticsPanel = () => {
     <>
       <Box
         display={"flex"}
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column", bigSize: "row" }}
         justifyContent={"center"}
         alignItems={"center"}
         gap={"20px"}
@@ -48,7 +48,7 @@ const WalletAnalyticsPanel = () => {
       >
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+          w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -114,7 +114,7 @@ const WalletAnalyticsPanel = () => {
         </Box>
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           display={"flex"}
           flexDirection={"column"}
           borderRadius={"6px"}
@@ -182,7 +182,7 @@ const WalletAnalyticsPanel = () => {
 
       <Box
         display={"flex"}
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column", bigSize: "row" }}
         justifyContent={"center"}
         alignItems={"center"}
         gap={"20px"}
@@ -191,7 +191,7 @@ const WalletAnalyticsPanel = () => {
       >
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+          w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
@@ -207,7 +207,7 @@ const WalletAnalyticsPanel = () => {
         </Box>
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           height={"367px"}
           display={"flex"}
           flexDirection={"column"}
@@ -226,7 +226,7 @@ const WalletAnalyticsPanel = () => {
 
       <Box
         display={"flex"}
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column", bigSize: "row" }}
         justifyContent={"center"}
         alignItems={"center"}
         gap={"20px"}
@@ -235,7 +235,7 @@ const WalletAnalyticsPanel = () => {
       >
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
@@ -251,7 +251,7 @@ const WalletAnalyticsPanel = () => {
         </Box>
 
         <Box
-          w={{ base: "90%", md: "50%" }}
+         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
