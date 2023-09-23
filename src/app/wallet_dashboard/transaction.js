@@ -230,7 +230,6 @@ const TransactionPanelComponent = () => {
               (walletTransactionsData?.data?.data.length > 0 ?
                 (walletTransactionsData?.data?.data.map((item, i) => {
                   return (
-                    <>
                       <Tr
                         key={i}
                       >
@@ -443,7 +442,6 @@ const TransactionPanelComponent = () => {
                           </Box>
                         </Td>
                       </Tr>
-                    </>
                   )
                 })) : (
                   <>

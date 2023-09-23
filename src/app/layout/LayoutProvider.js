@@ -37,6 +37,7 @@ import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
 import useScreenSize from "@/hooks/useScreenSize";
 import Prefooter from "../components/prefooter";
+import "../styles.scss";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,7 +52,8 @@ export default function LayoutProvider({ children }) {
     <>
       <Box
         width="100%"
-        minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
+        minH="100vh" 
+        bg={useColorModeValue("#F0F0F5", "#191919")}
         display={"flex"}
       >
         <SidebarContent
@@ -59,14 +61,19 @@ export default function LayoutProvider({ children }) {
           w={isMobileSidebarCollapsed ? "null" : "80%"}
           h={"100%"}
         />
+        
         <Box
           display={{ base: "none", md: isMobileSidebarCollapsed ? "flex" : "none" }}
           flexDirection={"column"}
+          className="margin-conditions"
+          id="main-body"
+          aria-expanded={isSidebarCollapsed ? "false" : "true"}
           // ml={"225px"}
-          ml={screenSize?.width < 1450 ?
-            0 :
-            (isSidebarCollapsed ? 20 : 225)
-          }
+          //ml={isSidebarCollapsed ? 20 : 225}
+          // ml={screenSize?.width < 1450 ?
+          //   0 :
+          //   (isSidebarCollapsed ? 20 : 225)
+          // }
           w="100%"
           overflowX={"hidden"}
         >
@@ -77,6 +84,7 @@ export default function LayoutProvider({ children }) {
             <Footer />
           </Box>
         </Box>
+
         <Box
           display={{base:"flex",md:"none"}}
           flexDirection={"column"}

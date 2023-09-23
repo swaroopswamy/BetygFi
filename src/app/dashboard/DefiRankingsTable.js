@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import Image from "next/image";
-
+import useTableKeyboardNavigation from "@/hooks/useTableKeyboardNavigation";
+import './styles.scss';
 
 const SkeletonRow = () => (
   <Box as="tr">
@@ -57,6 +58,7 @@ const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData);
   const router = useRouter();
   const { colorMode } = useColorMode();
+  const { focusedCell } = useTableKeyboardNavigation(tableData.DefiRankingsTableData?.data?.data?.length, 8);
   return (
     <Box width={"100%"}>
       <Table
@@ -333,10 +335,12 @@ const Rankings = () => {
           {tableData.DefiRankingsTableData.isSuccess &&
             (
               tableData.DefiRankingsTableData?.data?.data?.length > 0 ?
-                (tableData.DefiRankingsTableData?.data?.data.map((item, i) => {
+                (tableData.DefiRankingsTableData?.data?.data.map((item, rowIndex) => {
                   return (
                     <>
-                      <Tr key={i + 1}
+                      <Tr
+                        key={rowIndex}
+
                         cursor={item.name === "AAVE V2" ? "pointer" : "cursor"}
                         onClick={() => {
                           if (item.name === "AAVE V2")
@@ -344,6 +348,16 @@ const Rankings = () => {
                         }}
                       >
                         <Td
+                          key={0}
+
+                          _light={rowIndex === focusedCell.row && 0 === focusedCell.col && {
+                            border: '2px solid black',
+                            borderRadius: '4px',
+                          }}
+                          _dark={rowIndex === focusedCell.row && 0 === focusedCell.col && {
+                            border: '2px solid white',
+                            borderRadius: '4px',
+                          }}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
@@ -353,7 +367,15 @@ const Rankings = () => {
                           {item?.Rank === undefined ? '-' : item?.Rank}
                         </Td>
                         <Td
-                        >
+                          key={1}
+                          _light={rowIndex === focusedCell.row && 1 === focusedCell.col && {
+                            border: '2px solid black',
+                            borderRadius: '4px',
+                          }}
+                          _dark={rowIndex === focusedCell.row && 1 === focusedCell.col && {
+                            border: '2px solid white',
+                            borderRadius: '4px',
+                          }}>
                           <Box
                             display={"flex"}
                             alignItems={"center"}
@@ -423,7 +445,16 @@ const Rankings = () => {
                           </Box>
                         </Td>
                         <Td
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          key={2}
+                          _light={ rowIndex === focusedCell.row && 2 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 2 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
+                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
                           lineHeight={"20px"}
@@ -432,6 +463,15 @@ const Rankings = () => {
                           {item.category}
                         </Td>
                         <Td
+                          key={3}
+                          _light={ rowIndex === focusedCell.row && 3 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 3 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
@@ -447,7 +487,16 @@ const Rankings = () => {
                             : 0}
                         </Td>
                         <Td
-                          color={useColorModeValue("#16171B", "#FFF")}
+                          key={4}
+                          _light={ rowIndex === focusedCell.row && 4 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 4 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
+                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
                           lineHeight={"20px"}
@@ -460,6 +509,15 @@ const Rankings = () => {
                             })}
                         </Td>
                         <Td
+                          key={5}
+                          _light={ rowIndex === focusedCell.row && 5 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 5 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
@@ -472,6 +530,15 @@ const Rankings = () => {
                           })}` : "NA"}
                         </Td>
                         <Td
+                          key={6}
+                          _light={ rowIndex === focusedCell.row && 6 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 6 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}
@@ -481,6 +548,15 @@ const Rankings = () => {
                           {!isEmpty(item.mcap) && item.tvl !== 0 ? (item.mcap / item.tvl).toFixed(2) : "NA"}
                         </Td>
                         <Td
+                          key={7}
+                          _light={ rowIndex === focusedCell.row && 7 === focusedCell.col && {
+                            border:'2px solid black',
+                            borderRadius:'4px',
+                          }}
+                          _dark={ rowIndex === focusedCell.row && 7 === focusedCell.col && {
+                            border:'2px solid white',
+                            borderRadius:'4px',
+                          }}
                           color={useColorModeValue("#16171B", "#FFF")}
                           fontSize={"14px"}
                           fontWeight={400}

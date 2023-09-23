@@ -49,6 +49,8 @@ import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice"
 import { mobileSidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
 import { color } from "framer-motion";
 
+ import "../../styles.scss";
+
 const LinkItemsUp = [
   { name: "Home", icon: HomeIcon, path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
@@ -100,8 +102,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
         minWidth={isSidebarCollapsed ? "50px" : "210px"}
-        pos={screenSize?.width < 1450 ? "relative" : "fixed"}
-        minH="100vh"
+        // h={"100vh"}
+        //pos={screenSize?.width < 1450 ? "relative" : "fixed"}
+        className="sidebar-styles"
+        zIndex={"999"}
         boxShadow={useColorModeValue(
           "1px 0px 0px 0px #E1E1E1",
           "1px 0px 0px 0px #333"
@@ -234,8 +238,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </Box>
 
             {/* Bottom Half */}
-            <Box>
-              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+            <Box
+              mb={"15px"}
+            >
                 {bottomMenu.map((link) => (
                   <NavItem
                     key={link.name}
@@ -302,9 +307,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
               {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
             </Box> */}
                 </Box>
-
-              </div>
-
             </Box>
 
           </Box>
