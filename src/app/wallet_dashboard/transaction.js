@@ -499,6 +499,7 @@ const TransactionPanelComponent = () => {
                         colSpan={8}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
                       >
                         No data available
                       </Td>

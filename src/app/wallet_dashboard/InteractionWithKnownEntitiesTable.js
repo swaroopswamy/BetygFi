@@ -241,6 +241,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                             textAlign={"center"}
                                             p="20px"
                                             height={"245px"}
+                                            opacity={0.6}
                                         >
                                             No Data Available
                                         </Td>
@@ -283,6 +284,7 @@ const InteractionWithKnownEntitiesTable = () => {
                                                 colSpan={8}
                                                 textAlign={"center"}
                                                 height={"245px"}
+                                                opacity={0.6}
                                             >
                                                 No Data Available
                                             </Td>

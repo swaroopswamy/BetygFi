@@ -247,6 +247,7 @@ const ProtocolAllocationTable = () => {
                                             colSpan={8}
                                             textAlign={"center"}
                                             height={"245px"}
+                                            opacity={0.6}
                                         >
                                             No Data Available
                                         </Td>
@@ -296,6 +297,7 @@ const ProtocolAllocationTable = () => {
                                                         colSpan={3}
                                                         textAlign={"center"}
                                                         height={"245px"}
+                                                        opacity={0.6}
                                                     >
                                                         No Data Available
                                                     </Td>

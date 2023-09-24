@@ -243,6 +243,7 @@ const OutflowTokensTable = () => {
                                             textAlign={"center"}
                                             p="20px"
                                             height={"245px"}
+                                            opacity={0.6}
                                         >
                                             No Data Available
                                         </Td>
@@ -288,6 +289,7 @@ const OutflowTokensTable = () => {
                                                 colSpan={8}
                                                 textAlign={"center"}
                                                 height={"245px"}
+                                                opacity={0.6}
                                             >
                                                 No Data Available
                                             </Td>

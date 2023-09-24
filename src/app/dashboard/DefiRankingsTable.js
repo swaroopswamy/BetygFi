@@ -330,6 +330,7 @@ const Rankings = () => {
                   p="20px"
                   textAlign={"center"}
                   colSpan={8}
+                  opacity={0.6}
                 >
                   No data available
                 </Td>
@@ -618,6 +619,7 @@ const Rankings = () => {
                         colSpan={8}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
                       >
                         No data available
                       </Td>
@@ -733,6 +735,7 @@ const Rankings = () => {
                     fontWeight={400}
                     letterSpacing={"1px"}
                     textAlign={"center"}
+                    opacity={0.6}
                   >
                     No data available
                   </Text>
@@ -1167,6 +1170,7 @@ const Rankings = () => {
                         fontWeight={400}
                         letterSpacing={"1px"}
                         textAlign={"center"}
+                        opacity={0.6}
                       >
                         No data available
                       </Text>
