@@ -18,7 +18,8 @@ const BlockchainAllocationTreemapChart = () => {
             zoom: {
                 enabled: false,
             },
-            width: '100%'
+            width: '100%',
+            fontFamily: 'Manrope'
         },
         colors: ["#988FF8", "#F48AE9", "#E57F7F", "#0FBFBF", "#99B1E9", "#EDBF45", "#95DA7D", "#F8D8E6", "#6575F6"],
         grid: {

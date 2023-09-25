@@ -19,6 +19,7 @@ const AssetAllocationPieChart = () => {
             zoom: {
                 enabled: false,
             },
+            fontFamily: 'Manrope'
         },
         plotOptions: {
             pie: {
