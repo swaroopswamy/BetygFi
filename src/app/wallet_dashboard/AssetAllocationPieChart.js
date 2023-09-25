@@ -59,7 +59,7 @@ const AssetAllocationPieChart = () => {
                                 label +
                             '</div>' + '<br/>' +
                             '<div class="graph_inner_text_sm" >' +
-                                data +
+                                data + '%' +
                             '</div>' +
                         '</div>' +
                     '</div>'
