@@ -62,7 +62,7 @@ const Rankings = () => {
   return (
     <Box
       width={"100%"}
-
+      overflowY={"auto"} maxHeight='420px'
       overflow={"auto"}
       css={{
         '&::-webkit-scrollbar': {
@@ -77,7 +77,7 @@ const Rankings = () => {
         w={{ base: "100%", md: "100%" }}
         display={{ base: "none", md: "table" }}
       >
-        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}  position="sticky" top={0} >
           <Tr>
             <Th>
               <Box
@@ -318,7 +318,8 @@ const Rankings = () => {
           </Tr>
         </Thead>
 
-        <Tbody overflowY={"auto"} maxHeight='400px'>
+        
+        <Tbody overflowY={"auto"} maxHeight='360px'>
           {tableData.DefiRankingsTableData.isError && (
             <>
               <Tr>
@@ -349,6 +350,7 @@ const Rankings = () => {
                 (tableData.DefiRankingsTableData?.data?.data.map((item, rowIndex) => {
                   return (
                     <>
+                    
                       <Tr
                         key={rowIndex}
 
@@ -625,7 +627,7 @@ const Rankings = () => {
                   </>
                 )
             )
-          }
+          } 
         </Tbody>
       </Table>
 
