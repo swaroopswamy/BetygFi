@@ -127,7 +127,7 @@ const DefiDashboardPage = () => {
                 flexDirection={"column"}
             >
                 <Box
-                    display={{ md:"none",bigSize:"flex" }}
+                    display={{ base:"none", md:"none",bigSize:"flex" }}
                     justifyContent={"space-between"}
                     margin={"10px 30px 10px 30px"}
                     paddingBottom={"33px"}
@@ -427,8 +427,7 @@ const DefiDashboardPage = () => {
                         </Text>
                     </Box>
                 </Box>
-                <Box
-                     display={{md:"flex" ,bigSize:"none"}}
+                <Box display={{md:"flex" ,bigSize:"none"}}
                     margin={"17px 20px"}
                     //paddingBottom={"33px"}
                     borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}
@@ -723,7 +722,7 @@ const DefiDashboardPage = () => {
             </Box>
 
 
-            <Box  display={{ md:"none" , bigSize: "block"}}
+            <Box  display={{base:"none",  md:"none" , bigSize: "block"}}
                 _light={{
                     bgColor: "#F0F0F5"
                 }}
@@ -788,8 +787,7 @@ const DefiDashboardPage = () => {
                 </Box>
             </Box>
 
-            <Box
-               display={{md:"block", bigSize: "none" }}
+            <Box display={{md:"block", bigSize: "none" }}
                 w={"100%"}
                 _light={{
                     bgColor: "#F0F0F5"

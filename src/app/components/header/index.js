@@ -247,7 +247,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     </Box>
 
                     <Image
-                      src={colorMode === 'light' ? "/icons/logout_black.svg" : "/icons/logout_white.svg"}
+                      src={colorMode === 'light' ? "/icons/logout_icon_light.svg" : "/icons/logout_white.svg"}
                       w="20px"
                       h="20px"
                       cursor={"pointer"}
