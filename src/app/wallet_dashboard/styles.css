@@ -5,6 +5,7 @@
     min-height: 99px;
     display: flex;
     flex-direction: column;
+    justify-content: start;
 }
 
 .graph_inner_text_big {
