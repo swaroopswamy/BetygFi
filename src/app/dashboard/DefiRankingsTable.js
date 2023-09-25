@@ -85,8 +85,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -116,8 +121,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -132,8 +142,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -163,8 +178,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -194,8 +214,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -225,8 +250,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -256,8 +286,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -290,8 +325,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -398,7 +438,7 @@ const Rankings = () => {
                                   <Image
                                     width={24}
                                     height={24}
-                                    style={{borderRadius:"50%"}}
+                                    style={{ borderRadius: "50%" }}
                                     alt='logo'
                                     src={item.logo}
                                   ></Image>
@@ -655,7 +695,11 @@ const Rankings = () => {
                   alignItems={"center"}
                 >
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -683,7 +727,11 @@ const Rankings = () => {
                   </Tooltip>
 
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -697,7 +745,11 @@ const Rankings = () => {
                 </Box>
 
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                   _light={{
+                    color:"#16171B",
+                    opacity:"0.8"
+                  }}
+                  _dark={{color:"#A8ADBD"}}
                   fontSize={"14px"}
                   fontWeight={400}
                   lineHeight={"20px"}
@@ -795,7 +847,7 @@ const Rankings = () => {
                                             <Image
                                               width={24}
                                               height={24}
-                                              style={{borderRadius:"50%"}}
+                                              style={{ borderRadius: "50%" }}
                                               alt='logo'
                                               src={item.logo}
                                             ></Image>

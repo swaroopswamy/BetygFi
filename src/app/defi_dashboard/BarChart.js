@@ -78,6 +78,7 @@ function BarChart() {
         style: {
           colors: useColorModeValue("#16171B", "#FFF"),
           fontSize: "11px",
+          fontFamily: "Manrope",
           fontWeight: 400,
         },
         formatter: function (value, opts) {
@@ -101,6 +102,7 @@ function BarChart() {
         style: {
           colors: useColorModeValue("#16171B", "#FFF"),
           fontSize: "11px",
+          fontFamily: "Manrope",
           fontWeight: 400,
         },
       }

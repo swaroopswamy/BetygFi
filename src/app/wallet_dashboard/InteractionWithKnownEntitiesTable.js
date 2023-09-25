@@ -88,9 +88,14 @@ const InteractionWithKnownEntitiesTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                        <Text 
+                                         _light={{
+                                            color:"#16171B",
+                                            opacity:"0.8"
+                                          }}
+                                          _dark={{color:"#A8ADBD"}}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -111,9 +116,14 @@ const InteractionWithKnownEntitiesTable = () => {
 
                                 <Th>
                                     <Flex >
-                                        <Text _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                        <Text
+                                         _light={{
+                                            color:"#16171B",
+                                            opacity:"0.8"
+                                          }}
+                                          _dark={{color:"#A8ADBD"}}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -133,9 +143,14 @@ const InteractionWithKnownEntitiesTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                        <Text 
+                                         _light={{
+                                            color:"#16171B",
+                                            opacity:"0.8"
+                                          }}
+                                          _dark={{color:"#A8ADBD"}}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -180,9 +195,13 @@ const InteractionWithKnownEntitiesTable = () => {
                                 >
                                     <Flex>
                                         <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                             _light={{
+                                                color:"#16171B",
+                                                opacity:"0.8"
+                                              }}
+                                              _dark={{color:"#A8ADBD"}}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -200,9 +219,13 @@ const InteractionWithKnownEntitiesTable = () => {
                                         ml={"25px"}
                                     >
                                         <Text
-                                            _light={{ color: "#434347" }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                             _light={{
+                                                color:"#16171B",
+                                                opacity:"0.8"
+                                              }}
+                                              _dark={{color:"#A8ADBD"}}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}

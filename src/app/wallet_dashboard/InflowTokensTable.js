@@ -58,7 +58,7 @@ const InflowTokensTable = () => {
                         </>
                     </Box>
 
-                   {/*  <Image
+                    {/*  <Image
                         cursor={"pointer"}
                         width={"24px"}
                         height={"24px"}
@@ -89,9 +89,14 @@ const InflowTokensTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -114,9 +119,14 @@ const InflowTokensTable = () => {
 
                                 <Th>
                                     <Flex >
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -136,9 +146,14 @@ const InflowTokensTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -183,9 +198,13 @@ const InflowTokensTable = () => {
                                 >
                                     <Flex>
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -203,9 +222,13 @@ const InflowTokensTable = () => {
                                         ml={"25px"}
                                     >
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}

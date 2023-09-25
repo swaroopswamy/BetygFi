@@ -90,6 +90,7 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
                             fontSize={"14px"}
+                            fontFamily={"Manrope"}
                             fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
@@ -130,8 +131,13 @@ function ThreadItem({ key, name }) {
         <>
             <Th
                 key={key}
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                _light={{
+                    color:"#16171B",
+                    opacity:"0.8"
+                  }}
+                  _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
+                fontFamily={"Manrope"}
                 fontStyle={"normal"}
                 fontWeight={"400"}
                 lineHeight={"20px"}

@@ -69,26 +69,34 @@ const WalletTable = () => {
                             >
                             </Th> */}
                             <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"12px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
+                                 _light={{
+                                    color:"#16171B",
+                                    opacity:"0.8"
+                                  }}
+                                  _dark={{color:"#A8ADBD"}}
+                                fontSize={"14px"}
+                                fontFamily={"Manrope"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                                 textAlign={"left"}
                             >
                                 Wallet Address</Th>
                             <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"12px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
+                                 _light={{
+                                    color:"#16171B",
+                                    opacity:"0.8"
+                                  }}
+                                  _dark={{color:"#A8ADBD"}}
+                                fontSize={"14px"}
+                                fontFamily={"Manrope"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
-                                textAlign={"left"}
-                                width={"11%"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
+                                textAlign={"right"}
+                                //width={"11%"}
                             >
                                 Net Worth</Th>
 
@@ -363,13 +371,17 @@ const WalletTable = () => {
                             >
                             </Th> */}
                             <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
+                                 _light={{
+                                    color:"#16171B",
+                                    opacity:"0.8"
+                                  }}
+                                  _dark={{color:"#A8ADBD"}}
+                                fontSize={"14px"}
+                                fontFamily={"Manrope"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                                 textAlign={"left"}
                             >
                                 Wallet Address</Th>
@@ -386,25 +398,33 @@ const WalletTable = () => {
                             >
                                 Net Worth</Th> */}
                             <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
+                                 _light={{
+                                    color:"#16171B",
+                                    opacity:"0.8"
+                                  }}
+                                  _dark={{color:"#A8ADBD"}}
+                                fontSize={"14px"}
+                                fontFamily={"Manrope"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                                 textAlign={"left"}
                                 width={"50%"}
                             >
                                 Total Tokens</Th>
                             <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
+                                 _light={{
+                                    color:"#16171B",
+                                    opacity:"0.8"
+                                  }}
+                                  _dark={{color:"#A8ADBD"}}
+                                fontSize={"14px"}
+                                fontFamily={"Manrope"}
+                                fontWeight={400}
                                 lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
+                                letterSpacing={"1.4px"}
+                                textTransform={"capitalize"}
                                 textAlign={"left"}
                             >
                                 Total Protocols</Th>

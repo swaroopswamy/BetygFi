@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Tooltip, useColorModeValue, useColorMode, useBreakpoint } from "@chakra-ui/react";
+import { Box, Button, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Tooltip, useColorModeValue, useColorMode, useBreakpoint, Flex } from "@chakra-ui/react";
 import SplineAreaChart from "./SplineAreaChart"
 import { useDispatch, useSelector } from "react-redux";
 import PortfolioPanelComponent from "./portfolio.js"
@@ -8,6 +8,7 @@ import WalletAnalyticsPanel from "./wallet_analytics";
 import TransactionPanelComponent from "./transaction";
 import { blockchainTypeChangedReducer, fetchAssetAllocationForAddress, fetchBlockchainAllocationForAddress, fetchProtocolAllocationForAddress, fetchInflowOutflowTokensForAddress, fetchWalletBalanceData, walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { blockchains } from "../../../util/constant";
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import './styles.css';
@@ -15,6 +16,7 @@ import './styles.css';
 const WalletDashboardPage = () => {
     const searchParam = useSearchParams();
     const { colorMode } = useColorMode();
+    const router = useRouter();
     const dispatch = useDispatch();
     const [tabIndex, setTabIndex] = useState(0)
 
@@ -108,12 +110,59 @@ const WalletDashboardPage = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 w="100%"
-                
+
             >
+                <Box
+                    display={{base:"none",md:"flex"}}
+                    cursor={"pointer"}
+                    onClick={() => router.push('../../../top-wallets')}
+                >
+                    <ChevronLeftIcon
+                        ml={"35px"}
+                        mt={"15px"}
+                        borderRadius={"50%"}
+                        border={useColorModeValue("1px solid #E1E1E1", "1px solid #333333")}
+                    />
+                    <Text
+                        _dark={{
+                            color: "#A8ADBD"
+                        }}
+                        _light={{
+                            color: "#16171B"
+                        }}
+                        fontSize={"12px"}
+                        fontWeight={400}
+                        lineHeight={"20px"}
+                        letterSpacing={"1.2px"}
+                        textTransform={"capitalize"}
+                        p={"12px 0px 0px 9px"}
+                    >
+                        Top Wallets/
+                    </Text>
+
+                    {walletBalanceData?.name === undefined && (
+                        <Text
+                            fontSize={"12px"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
+                            p={"12px 0px 0px 0px"}
+                            textTransform={"capitalize"}
+                            _dark={{
+                                color: "#A8ADBD"
+                            }}
+                            _light={{
+                                color: "#16171B"
+                            }}
+                        >
+                            No Name
+                        </Text>
+                    )}
+
+                </Box>
                 <Box
                     display={"flex"}
                     justifyContent={"space-between"}
-                    padding={{ base: "17px 13px 50px", md: "38px 30px 50px 30px" }}
+                    padding={{ base: "17px 13px 50px", md: "20px 30px 50px 30px" }}
 
                 >
                     <Box
@@ -389,7 +438,7 @@ const WalletDashboardPage = () => {
                                     alignItems={"center"}
                                     borderBottom={useColorModeValue("1px solid #CECECE", "1px solid #2F2F2F")}
                                     pb="14px"
-                                    pt={{ base: "30px" }}
+                                    pt={{ base: "10px" }}
                                     overflowX="auto"
                                     flexWrap="nowrap"
                                     css={{
@@ -450,7 +499,7 @@ const WalletDashboardPage = () => {
                                                 onClick={() => {
                                                     BlockchainTypeHandler(item.id);
                                                 }}
-                                                mr={{ base: "18px", md: "18px" }}
+                                                mr={{ base: "20px", md: "20px" }}
                                                 display={"flex"}
                                                 alignItems={"center"}
                                                 whiteSpace="nowrap"
@@ -462,13 +511,14 @@ const WalletDashboardPage = () => {
                                                         w={"18px"}
                                                         h={"18px"}
                                                         mr={"3px"}
-                                                        style={{borderRadius:"50%"}}
+                                                        style={{ borderRadius: "50%" }}
                                                         src={item.logoUrl}
                                                         alt={`${item.id}_icon`}
                                                     ></Image>
                                                 </Tooltip>
                                                 <Text
                                                     fontSize={"14px"}
+                                                    ml={"6px"}
                                                     fontWeight={blockchainSelected.includes(item.id) ? "700" : "400"}
                                                     lineHeight={"20px"}
                                                     color={colorMode === 'light' ?

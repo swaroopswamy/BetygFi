@@ -143,6 +143,7 @@ function TableRow({ key, address, share, tokens }) {
                                     color: "#16171B"
                                 }}
                                 fontSize={"14px"}
+                                
                                 fontStyle={"normal"}
                                 fontWeight={400}
                                 lineHeight={"20px"}
