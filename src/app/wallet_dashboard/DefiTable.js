@@ -316,13 +316,13 @@ const DefiTable = () => {
                                                     {!isEmpty(item?.logoUrl)
                                                         ? (
                                                             <>
-                                                                <img
-                                                                    width={20}
-                                                                    height={20}
+                                                                <Image
+                                                                    width={5}
+                                                                    height={5}
                                                                     style={{borderRadius:"50%"}}
                                                                     alt='logo'
                                                                     src={item?.logoUrl}
-                                                                ></img>
+                                                                ></Image>
                                                             </>
                                                         )
                                                         :
@@ -728,13 +728,13 @@ const DefiTable = () => {
                                                                             {!isEmpty(item?.logoUrl)
                                                                                 ? (
                                                                                     <>
-                                                                                        <img
-                                                                                            width={20}
-                                                                                            height={20}
+                                                                                        <Image
+                                                                                            width={5}
+                                                                                            height={5}
                                                                                             style={{borderRadius:"50%"}}
                                                                                             alt='logo'
                                                                                             src={item?.logoUrl}
-                                                                                        ></img>
+                                                                                        ></Image>
                                                                                     </>
                                                                                 )
                                                                                 :

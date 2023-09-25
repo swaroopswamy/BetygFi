@@ -89,11 +89,13 @@ const TransactionPanelComponent = () => {
     <>
       <Box
         w={"100%"}
-        display={{base: "none", md: "block"}}
+        display={{ base: "none", md: "block" }}
         mt="25px"
         borderRadius={"6px"}
         bgColor={useColorModeValue("#FFF", "#202020")}
         px={"2px"}
+        overflow={"auto"}
+        mb="20px"
       >
 
         <Flex
@@ -118,6 +120,7 @@ const TransactionPanelComponent = () => {
           variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
           borderRadius={"6px"}
+          minW={"1260px"}
         >
           <Thead
             bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -285,7 +288,7 @@ const TransactionPanelComponent = () => {
                                 mr={"3px"}
                                 src={item.logoUrl}
                                 alt={`${item.id}_icon`}
-                                borderRadius={"50%"}
+                                style={{ borderRadius: "50%" }}
                               ></Image>
                             </>
                           </Tooltip>
@@ -381,7 +384,7 @@ const TransactionPanelComponent = () => {
                             height={"18px"}
                             alt='logo'
                             src={item?.tokenUrl}
-                            borderRadius={"50%"}
+                            style={{ borderRadius: "50%" }}
                           ></Image>
 
                           <Text
@@ -527,7 +530,7 @@ const TransactionPanelComponent = () => {
 
       <Box
         w={"100%"}
-        display={{base: "flex", md: "none"}}
+        display={{ base: "flex", md: "none" }}
         flexDir={"column"}
         justifyContent={"center"}
         alignItems={"center"}
@@ -678,7 +681,7 @@ const TransactionPanelComponent = () => {
                                   width={5}
                                   height={5}
                                   alt='logo'
-                                  borderRadius={"50%"}
+                                  style={{ borderRadius: "50%" }}
                                   src={item?.logoUrl}
                                 />
                                 <Box
@@ -844,7 +847,7 @@ const TransactionPanelComponent = () => {
                                     height={5}
                                     alt='logo'
                                     src={item?.tokenUrl}
-                                    borderRadius={"50%"}
+                                    style={{ borderRadius: "50%" }}
                                   ></Image>
 
                                   <Text
@@ -1063,7 +1066,7 @@ function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
         >
           {tablePage}
         </Text>
-        
+
         <Button
           display={"flex"}
           alignItems={"center"}

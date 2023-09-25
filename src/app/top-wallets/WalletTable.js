@@ -18,6 +18,8 @@ const WalletTable = () => {
                 borderRadius={"6px"}
                 _light={{ borderColor: "#FFFFFF" }}
                 _dark={{ borderColor: "#202020" }}
+                overflow={"auto"}
+              
             >
                 <Box
                     display={"flex"}
@@ -212,7 +214,7 @@ const WalletTable = () => {
                                                                                     <Image
                                                                                         w={"14px"}
                                                                                         h={"14px"}
-                                                                                        style={{borderRadius:"50%"}}
+                                                                                        style={{ borderRadius: "50%" }}
                                                                                         src={item.logo_url}
                                                                                         alt=""
                                                                                     ></Image>
@@ -334,6 +336,7 @@ const WalletTable = () => {
                 </Table>
 
                 <Table variant='unstyled'
+                    minW={"1048px"}
                     display={{ base: "none", md: "table" }}
                     size={'sm'}
                     border={"1px"}
@@ -633,7 +636,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                                 <Image
                                     w={"20px"}
                                     h={"20px"}
-                                    style={{borderRadius:"50%"}}
+                                    style={{ borderRadius: "50%" }}
                                     src={item.logo_url}
                                     alt=""
                                 ></Image>
