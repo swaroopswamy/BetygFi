@@ -19,7 +19,7 @@ const WalletTable = () => {
                 _light={{ borderColor: "#FFFFFF" }}
                 _dark={{ borderColor: "#202020" }}
                 overflow={"auto"}
-              
+            // maxHeight='500px'
             >
                 <Box
                     display={"flex"}
@@ -43,6 +43,7 @@ const WalletTable = () => {
                         </Text>
                     </Box>
                 </Box>
+                {/* <Box  overflowY={"auto"} > */}
                 <Table variant='unstyled'
                     display={{ base: "table", md: "none" }}
                     size={'sm'}
@@ -50,12 +51,14 @@ const WalletTable = () => {
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
                     borderRadius={"6px"}
                 >
+
                     <Thead>
                         <Tr
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
+                            position="sticky" top={0}
                         >
                             {/*   <Th
                                 color={useColorModeValue("#434347", "#A8ADBD")}
@@ -95,7 +98,7 @@ const WalletTable = () => {
                         </Tr>
                     </Thead>
 
-                    <Tbody>
+                    <Tbody  >
                         {TableData.whales.map((item, i) => {
                             return (
                                 <>
@@ -139,7 +142,7 @@ const WalletTable = () => {
                                                                 <Image
                                                                     w={"20px"}
                                                                     h={"20px"}
-                                                                    style={{borderRadius:"50%"}}
+                                                                    style={{ borderRadius: "50%" }}
                                                                     src={`/icons/dummy1.svg`}
                                                                     alt=""
                                                                 ></Image>
@@ -441,9 +444,9 @@ const WalletTable = () => {
 
                     </Tbody>
                 </Table>
-
-                {/*   <PageButtons /> */}
             </Box>
+            {/*   <PageButtons /> */}
+            {/* </Box> */}
         </>
     )
 };
@@ -637,7 +640,7 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                                 <Image
                                     w={"20px"}
                                     h={"20px"}
-                                    style={{ borderRadius:"50%"}}
+                                    style={{ borderRadius: "50%" }}
                                     src={item.logo_url}
                                     alt=""
                                 ></Image>

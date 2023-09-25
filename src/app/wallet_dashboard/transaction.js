@@ -95,6 +95,7 @@ const TransactionPanelComponent = () => {
         bgColor={useColorModeValue("#FFF", "#202020")}
         px={"2px"}
         overflow={"auto"}
+       // maxHeight={"400px"}
         mb="20px"
       >
 
@@ -115,7 +116,11 @@ const TransactionPanelComponent = () => {
             Wallet Transaction
           </Text>
         </Flex>
-
+        
+        <Box
+        overflow={"auto"}
+        maxHeight={"400px"}
+      >
         <Table
           variant="simple" key={1} bgColor={"#FFF"}
           display={{ base: "none", md: "table" }}
@@ -123,6 +128,7 @@ const TransactionPanelComponent = () => {
           minW={"1260px"}
         >
           <Thead
+           position="sticky" top={0} zIndex="sticky"
             bgColor={useColorModeValue("#F5F5F7", "#191919")}
           >
 
@@ -232,6 +238,7 @@ const TransactionPanelComponent = () => {
           </Thead>
 
           <Tbody
+           overflowY={"auto"} maxHeight='380px'
             bgColor={useColorModeValue("#FFF", "#202020")}
           >
             {walletTransactionsData.isError && (
@@ -507,7 +514,7 @@ const TransactionPanelComponent = () => {
             }
           </Tbody>
         </Table>
-
+          </Box>
         <Box
           _dark={{
             bg: "#202020"
