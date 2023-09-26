@@ -44,7 +44,10 @@ const LoginPage = ({ isOpen, onClose }) => {
                 boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
                 mx={{base:"14px",md:"0px"}}
             >
-                <ModalOverlay />
+                <ModalOverlay
+                    bg='blackAlpha.300'
+                    backdropFilter='blur(3px) hue-rotate(90deg)'
+                />
                 <ModalContent    mx={{base:"14px",md:"0px"}}>
                     <ModalHeader
 

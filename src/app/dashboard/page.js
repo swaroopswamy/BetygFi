@@ -47,7 +47,8 @@ import {
 } from "@/redux/dashboard_data/dataSlice";
 import isEmpty from "is-empty";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import './page.module.css';
+// import './page.module.css';
+import '/styles/styles.scss';
 
 const Dashboard = () => {
   const [tablePage, setTablePage] = useState(1);

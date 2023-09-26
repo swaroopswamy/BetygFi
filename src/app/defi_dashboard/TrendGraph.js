@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import ApexCharts from "apexcharts";
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
 import millify from "millify";
@@ -103,7 +104,6 @@ function TrendGraph() {
                 console.log(error);
             });
     }, []);
-
 
     return (
         <>
@@ -231,6 +231,8 @@ function TrendGraph() {
 
 function SelectorGraph({ tvlData }) {
 
+    
+
     if (!tvlData)
         return;
 
@@ -242,6 +244,12 @@ function SelectorGraph({ tvlData }) {
     }]
 
     const { colorMode } = useColorMode;
+
+    useEffect(() => {
+        let chart = ApexCharts.getChartByID('trendgraph');
+        console.log(chart.w.globals.minX, chart.w.globals.maxX);
+    })
+
 
     const options = {
         chart: {
@@ -306,7 +314,7 @@ function SelectorGraph({ tvlData }) {
         tooltip: {
             enabled: false,
             custom: function({series, seriesIndex, dataPointIndex, w}) {
-                console.log(Math.max(...series[0]))
+                // console.log(Math.max(...series[0]))
                 return '<div class="selection_box_tooltip">' +
                   '<span>' + Math.max(series[0]) + '</span>' +
                   '</div>'
