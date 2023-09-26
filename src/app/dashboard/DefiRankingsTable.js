@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import Image from "next/image";
 import useTableKeyboardNavigation from "@/hooks/useTableKeyboardNavigation";
-import './styles.scss';
+import '/styles/styles.scss';
 
 const SkeletonRow = () => (
   <Box as="tr">
