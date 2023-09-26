@@ -7,6 +7,10 @@ const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 const OverviewColumnChart = () => {
     const { colorMode } = useColorMode();
     const graphData = useSelector((state) => state.dashboardTableData.ScoreGraphData);
+
+    const labels = ["Worst", "Below Average", "Above Average", "Best"];
+    const colors = ["#FF7272", "#FF9F6A", "#FFD976", "#9ADA8A"];
+
     const options = {
         chart: {
             height: 205,
@@ -18,18 +22,22 @@ const OverviewColumnChart = () => {
             },
         },
         tooltip: {
-            style: {
-                fontSize: '12px',
-            },
-            x: {
-                show: false,
-            },
-            y: {
-                title: {
-                    formatter: () => `DeFis :`,
-                }
-            },
             theme: colorMode,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+              console.log(series);
+              console.log(graphData);
+              return (
+                '<div class="donut_tooltip">' +
+                '<div class="donut_tooltip_text">' +
+                series[0][dataPointIndex] + " DeFi" +
+                "</div>" +
+                '<div class="donut_tooltip_body_text">' +
+                `<span style="display: inline-block; border-radius: 50%; height: 14px; width: 14px; background-color: ${colors[dataPointIndex]};"></span>` + 
+                labels[dataPointIndex] +
+                '</div>' +
+                "</div>"
+              );
+            }
         },
         grid: {
             show: false,

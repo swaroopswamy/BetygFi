@@ -19,7 +19,8 @@ import {
   DrawerBody,
   DrawerContent,
   Collapse,
-  useDisclosure
+  useDisclosure,
+  createIcon
 } from "@chakra-ui/react";
 import Image from "next/image";
 import StarIcon from "../../../../public/icons/star_sm_logo.svg";
@@ -52,25 +53,25 @@ import { color } from "framer-motion";
  import "../../styles.scss";
 
 const LinkItemsUp = [
-  { name: "Home", icon: HomeIcon, path: '/' },
+  { name: "Home", icon: "icons/home_sm_logo.svg", path: '/' },
   // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  { name: "Approach Paper", icon: ApproachPaperIcon, path: '/approach-paper'  },
-  { name: "About", icon: CompanyIcon, path: '/about'},
-  { name: "Top Wallets", icon: SpeclationIcon, path: '/top-wallets' },
+  { name: "Approach Paper", icon: "icons/approach-paper-icon.svg", path: '/approach-paper'  },
+  { name: "Top Wallets", icon: "icons/wallet_sm_logo.svg", path: '/top-wallets' },
+  { name: "About", icon: "icons/company_sm_logo.svg", path: '/about'}
   // { name: "Significant", icon: StarIcon, path: '#' },
 ];
 
 const LinkItemsDown = [
-  { name: "Reddit", icon: RedditIcon, path: 'https://www.reddit.com/r/betygFi', newTab: true },
-  { name: "Discord", icon: DiscordIcon, path: 'https://discord.gg/bGMmeNRJtW', newTab: true },
-  { name: "Twitter", icon: TwitterIcon, path: 'https://twitter.com/betygFi', newTab: true },
+  { name: "Reddit", icon: "icons/reddit-icon.svg", path: 'https://www.reddit.com/r/betygFi', newTab: true },
+  { name: "Discord", icon: "icons/discord-icon-light.svg", path: 'https://discord.gg/bGMmeNRJtW', newTab: true },
+  { name: "Twitter", icon: "icons/twitter-icon.svg", path: 'https://twitter.com/betygFi', newTab: true },
 ];
 
 const bottomMenu = [
   // { name: "Help", icon: QuestionIcon, path: '#' },
   // { name: "Settings", icon: SettingIcon, path: '#' },
-  { name: "Suggest Feature", icon: BulbIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
-  { name: "Report Bug", icon: BugIcon, newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
+  { name: "Suggest Feature", icon: "icons/bulb_sm_icon.svg", newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
+  { name: "Report Bug", icon: "icons/bug_sm_icon.svg", newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];
 
 const SidebarContent = ({ onClose, ...rest }) => {
@@ -174,7 +175,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   letterSpacing="1.4px"
                   alignContent="center"
                 >
-                  {link.name} 
+                  <Text>
+                    {link.name} 
+                  </Text>
                 </NavItem>
               ))}
 
@@ -224,7 +227,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
                             mr: "-13px"}}
-                        fontSize="12px"
+                        fontSize="14px"
                         fontWeight="400"
                         lineHeight="20px" 
                         letterSpacing="1.2px"
@@ -364,7 +367,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   _hover={{ bg: colorMode === "light"? "#202020" : "#FFFFFF",
                             color: colorMode === "light" ? "#FFFFFF" : "#191919",
                             fontWeight: "600",
-                            mr: "-1px"}}
+                            mr: "-1 px"}}
                   fontSize="14px"
                   fontWeight="400"
                   lineHeight="20px"
@@ -379,7 +382,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </CollapsedNavItem>
                 ))}
 
-              <hr style={{ margin: "25px 0px" }} />
+              <hr style={{ margin: "15px 0px" }} />
 
               <Box>
 
@@ -426,8 +429,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
               </Box>
             </Box>
 
-            <Box>
-              <div style={{ position: screenSize?.width < 1450  ? "relative " : "absolute", bottom: "10px", width: "100%" }}>
+            <Box
+              mb={"50px"}
+            >
                   {bottomMenu.map((link) => (
                     <CollapsedNavItem
                       key={link.name}
@@ -452,12 +456,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     </CollapsedNavItem>
                   ))}
 
-                  <hr style={{ marginBottom: "15px" }} />
+                  <hr style={{ margin: "25px 0px" }} />
                   
                   <Box
                     display={"flex"}
                     justifyContent={"center"}
                     w={"100%"}
+                    mt={"20px"}
                   >
                     <Image
                       width={15}
@@ -466,12 +471,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                       src={"/icons/company_sm_logo.svg"}
                     />
 
-                    {/* <Box onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
-              </Box> */}
                   </Box>
 
-              </div>
             </Box>
 
           </Box>
@@ -517,19 +518,17 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
       <Flex
         justifyContent="center"
         height={"38px"}
-        padding={"9px"}
+        padding={"9px 20px"}
         role="group"
         cursor="pointer"
         {...rest}
       >
-        {icon && (
-          <Icon
-            ml="10px"
-            paddingTop={"3px"}
-            boxSize={25}
-            as={icon}
-          />
-        )}
+        <Image
+          paddingTop={"3px"}
+          height={20}
+          width={20}
+          src={icon}
+        />
       </Flex>
     </Link>
   );
@@ -544,29 +543,24 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
       _focus={{ boxShadow: "none" }}
     >
       <Flex
-        alignItems="stretch"
-        alignContent={"center"}
+        alignItems="center"
+        justifyContent={"left"}
         height={"38px"}
-        padding={"9px"}
+        padding={"9px 20px"}
         role="group"
         cursor="pointer"
+        gap={"10px"}
         {...rest}
       >
-          {icon && (
-            <Icon
-              mt="5px"
-              ml="3"
-              p="0"
-              w="25px"
-              h="25px"
-              fontSize="16"
-              _groupHover={{
-                color: "white",
-              }}
-              as={icon}
-            />
-          )}
-          {children}
+        <Image
+          height={"14"}
+          width={"14"}
+          _groupHover={{
+            color: "white",
+          }}
+          src={icon}
+        />
+        {children}
 
       </Flex>
     </Link>
@@ -708,7 +702,7 @@ const MobileSidebar = ( { isOpen, onOpen, onClose , isLoginModalOpen, onLoginMod
                     alignContent={"center"}
                     justifyContent={"space-between"}
                     height={"38px"}
-                    padding={"9px"}
+                    padding={"9px 20px"}
                     role="group"
                     cursor="pointer"
                     _hover={{
@@ -725,30 +719,34 @@ const MobileSidebar = ( { isOpen, onOpen, onClose , isLoginModalOpen, onLoginMod
                     <Box
                       display={"flex"}
                       justifyContent={"center"}
-                      alignItems={"stretch"}
+                      alignItems={"center"}
                       alignContent={"center"}
+                      gap={"10px"}
                     >
-                      <Icon
-                        mt="1px"
-                        ml="3"
-                        p="0"
-                        w="25px"
-                        h="25px"
-                        fontSize="16"
+                      <Image
+                        width={"15"}
+                        height={"15"}
                         _groupHover={{
                           color: "white",
                         }}
-                        as={CommunityIcon}
+                        src={"icons/community_sm_logo.svg"}
                       />
-                        Communities
+                        <Text>
+                          Communities
+                        </Text>
                     </Box>
                     
-                    <Image
-                      width={20}
-                      height={20}
-                      src="/icons/direction-arrow.svg"
-                      style={{rotate: "90deg"}}
-                    ></Image>
+                    <Box>
+                      <DirectionArrowIcon 
+                        boxSize={25}
+                        color={colorMode === 'light' ? "dark" : "white"}
+                        _groupHover={{
+                          color: colorMode === 'light' ? "white" : "dark"
+                        }}
+                        style={{rotate: '90deg'}}
+                      />
+                    </Box>
+ 
                   </Flex>
 
                   <Collapse
@@ -846,3 +844,20 @@ const MobileSidebar = ( { isOpen, onOpen, onClose , isLoginModalOpen, onLoginMod
 }
 
 export {MobileSidebar};
+
+const DirectionArrowIcon = createIcon({
+  displayName: "DirectionArrow",
+  viewBox: "0 0 13 13",
+  path: (
+    <>
+      <path
+        fill="currentColor"
+        d="M5.8 8.6l2.4-2.4-2.4-2.4"
+      />
+      <path
+        fill="currentColor"
+        d="M5.8 8.6l2.4-2.4-2.4-2.4v4.8z"
+      />
+    </>
+  ),
+});

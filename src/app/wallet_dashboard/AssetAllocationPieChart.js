@@ -19,6 +19,7 @@ const AssetAllocationPieChart = () => {
             zoom: {
                 enabled: false,
             },
+            fontFamily: 'Manrope'
         },
         plotOptions: {
             pie: {
@@ -46,7 +47,24 @@ const AssetAllocationPieChart = () => {
         },
         tooltip: {
             enabled: true,
-
+            theme: colorMode,
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                let data = w?.config?.series[seriesIndex];
+                let label = w?.config?.labels[seriesIndex];
+                console.log(label, data);
+                return (
+                    '<div class="graph_box">' +
+                        '<div class="inner_box">' +
+                            '<div class="graph_inner_text_big" >' +
+                                label +
+                            '</div>' + '<br/>' +
+                            '<div class="graph_inner_text_sm" >' +
+                                data + '%' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                )
+            }
         },
         labels: assetAllocationData.isSuccess && Object.keys(assetAllocationData?.data).map((item, i) => {
             return `${item}`

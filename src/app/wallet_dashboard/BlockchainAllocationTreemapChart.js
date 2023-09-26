@@ -18,7 +18,8 @@ const BlockchainAllocationTreemapChart = () => {
             zoom: {
                 enabled: false,
             },
-            width: '100%'
+            width: '100%',
+            fontFamily: 'Manrope'
         },
         colors: ["#988FF8", "#F48AE9", "#E57F7F", "#0FBFBF", "#99B1E9", "#EDBF45", "#95DA7D", "#F8D8E6", "#6575F6"],
         grid: {
@@ -38,7 +39,7 @@ const BlockchainAllocationTreemapChart = () => {
             style: {
                 fontSize: '16px',
                 fontWeight: '600',
-                color: "#000000"
+                colors: ['#000000']
             },
             formatter: function (text, op) {
                 if (op.value > 0) {
@@ -50,20 +51,23 @@ const BlockchainAllocationTreemapChart = () => {
         tooltip: {
             theme: colorMode,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-
                 let xAxisName = w?.config?.series[seriesIndex].data;
                 if (xAxisName[dataPointIndex]["y"] > 0) {
                     return (
                         '<div class="graph_box">' +
-                        '<div class="graph_inner_text_big" >' +
-                        '<div class="inner_box">' +
-                        xAxisName[dataPointIndex]["x"].split(" ")[0] +
-                        '<div class="graph_inner_text_sm">' +
-                        xAxisName[dataPointIndex]["x"].split(" ")[1] +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>')
+                            '<div class="inner_box">' +
+                                '<div class="graph_inner_text_big" >' +
+                                    xAxisName[dataPointIndex]["x"].split(" ")[0] +
+                                '</div>' +
+                                '<div class="graph_inner_text_sm">' +
+                                    xAxisName[dataPointIndex]["y"] +
+                                '</div>' + '<br/>' +
+                                '<div class="graph_inner_text_big" >' +
+                                    xAxisName[dataPointIndex]["x"].split(" ")[1] +
+                                '</div>' +
+                            '</div>' +
+                        '</div>'
+                    )
                 }
 
             }
