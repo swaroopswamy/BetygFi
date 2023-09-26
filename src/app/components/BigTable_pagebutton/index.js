@@ -1,8 +1,7 @@
 "use client"
 import {
-    Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-    Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode
+    Text, Box, useColorModeValue,
+    Image, Button
 } from "@chakra-ui/react";
 
 const BigTablePageButtons = () => {

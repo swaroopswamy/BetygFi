@@ -773,13 +773,12 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                       <Th
                         key={i}
                         _light={{
-                          color: "#434347"
+                          color:"#16171B",
+                          opacity:"0.8"
                         }}
-                        _dark={{
-                          color: "#A8ADBD"
-                        }}
+                        _dark={{color:"#A8ADBD"}}
                         fontSize={"14px"}
-                        fontStyle={"normal"}
+                        fontFamily={"Manrope"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}
@@ -812,6 +811,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                           letterSpacing={"1px"}
                           textAlign={"center"}
                           p="20px"
+                          opacity={0.6}
                         >
                           No Data available
                         </Text>

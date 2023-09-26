@@ -530,23 +530,12 @@ const Dashboard = () => {
             display="flex"
             height="100%"
             flexDirection="row"
-          // overflowX="auto"
-          // flexWrap="nowrap"
-          // css={{
-          //   '&::-webkit-scrollbar': {
-          //     width: '0.2rem',
-          //     height: '0.2rem',
-          //   },
-          //   '&::-webkit-scrollbar-thumb': {
-          //     backgroundColor: 'transparent',
-          //   },
-          // }}
           >
             <Box
               key="all"
               borderRadius="2px"
               cursor="pointer"
-              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+              _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
               borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
               bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
               color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
@@ -563,8 +552,8 @@ const Dashboard = () => {
                 letterSpacing="1px"
                 lineHeight="10px"
                 mt={"10px"}
-                // _hover={{color: useColorModeValue('#FFF', '#000')}}
-                // color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#F5F5F7', '#202020')}
+              // _hover={{color: useColorModeValue('#FFF', '#000')}}
+              // color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#F5F5F7', '#202020')}
               >
                 All
               </Text>
@@ -576,7 +565,7 @@ const Dashboard = () => {
                 padding="7px 9px"
                 // mr="4px"
                 cursor="pointer"
-                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000')}}
+                _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
                 borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
                 bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
                 color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
@@ -590,9 +579,11 @@ const Dashboard = () => {
                   fontWeight="400"
                   letterSpacing="1px"
                   lineHeight="10px"
-                  mt={"5px"}
-                  // _hover={{color: useColorModeValue('#FFF', '#000')}}
-                  // color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
+                  mt={"8px"}
+                // _hover={{color: useColorModeValue('#FFF', '#000')}}
+                // color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
                 >
                   {category}
                 </Text>
@@ -688,11 +679,11 @@ const Dashboard = () => {
 
         <Box
           padding={"0px 20px 20px 20px"}
-          mb={{base: "60px", md:"20px"}}
+          mb={{ base: "60px", md: "20px" }}
           // paddingX={"20px"}
           //display={"inline-flex"}
           flexDirection={"column"}
-          bgColor={{base: useColorModeValue("#F0F0F5", "none"), md: useColorModeValue("#F0F0F5", "#191919")}}
+          bgColor={{ base: useColorModeValue("#F0F0F5", "none"), md: useColorModeValue("#F0F0F5", "#191919") }}
         >
 
           {/* Overview score boxes */}

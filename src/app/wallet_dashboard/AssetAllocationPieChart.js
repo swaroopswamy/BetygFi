@@ -39,7 +39,7 @@ const AssetAllocationPieChart = () => {
                 colors: colorMode === "light" ? "#000000" : "FFFFFF"
             },
             formatter: function (seriesName, opts) {
-                return [seriesName, " ", opts.w.globals.series[opts.seriesIndex].toFixed(2), " %"];
+                return [seriesName, " ", opts.w.globals.series[opts.seriesIndex].toFixed(2), "%"];
             },
         },
         dataLabels: {
@@ -108,6 +108,7 @@ const AssetAllocationPieChart = () => {
                             display={"flex"}
                             alignItems={"center"}
                             justifyContent={"center"}
+                            opacity={0.6}
                         >
                             No Data Available
                         </Box>

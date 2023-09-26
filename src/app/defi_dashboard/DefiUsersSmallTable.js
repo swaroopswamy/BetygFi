@@ -59,6 +59,7 @@ function RowComponent({ tableData }) {
                                 letterSpacing={"1px"}
                                 textAlign={"center"}
                                 p="20px"
+                                opacity={0.6}
 
                             >
                                 No Data available
@@ -142,6 +143,7 @@ function TableRow({ key, address, share, tokens }) {
                                     color: "#16171B"
                                 }}
                                 fontSize={"14px"}
+                                
                                 fontStyle={"normal"}
                                 fontWeight={400}
                                 lineHeight={"20px"}

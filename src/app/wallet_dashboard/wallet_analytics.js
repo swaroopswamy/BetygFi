@@ -385,6 +385,7 @@ const WalletAnalyticsPanel = () => {
             textAlign={"center"}
             p="20px"
             height={"245px"}
+            opacity={0.6}
           >
             No Data Available
           </Box>

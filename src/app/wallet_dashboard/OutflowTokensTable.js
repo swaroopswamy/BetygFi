@@ -89,9 +89,14 @@ const OutflowTokensTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -114,9 +119,14 @@ const OutflowTokensTable = () => {
 
                                 <Th>
                                     <Flex >
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -136,9 +146,14 @@ const OutflowTokensTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -183,9 +198,13 @@ const OutflowTokensTable = () => {
                                 >
                                     <Flex>
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -203,9 +222,13 @@ const OutflowTokensTable = () => {
                                         ml={"25px"}
                                     >
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
+                                            fontFamily={"Manrope"}
                                             fontWeight={"400"}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
@@ -243,6 +266,7 @@ const OutflowTokensTable = () => {
                                             textAlign={"center"}
                                             p="20px"
                                             height={"245px"}
+                                            opacity={0.6}
                                         >
                                             No Data Available
                                         </Td>
@@ -288,6 +312,7 @@ const OutflowTokensTable = () => {
                                                 colSpan={8}
                                                 textAlign={"center"}
                                                 height={"245px"}
+                                                opacity={0.6}
                                             >
                                                 No Data Available
                                             </Td>

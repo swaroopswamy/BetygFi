@@ -62,7 +62,8 @@ const Rankings = () => {
   return (
     <Box
       width={"100%"}
-
+      //overflowY={"auto"} 
+      maxHeight='420px'
       overflow={"auto"}
       css={{
         '&::-webkit-scrollbar': {
@@ -77,7 +78,7 @@ const Rankings = () => {
         w={{ base: "100%", md: "100%" }}
         display={{ base: "none", md: "table" }}
       >
-        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")} position="sticky" top={0} >
           <Tr>
             <Th>
               <Box
@@ -85,8 +86,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -116,8 +122,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -132,8 +143,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -163,8 +179,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -194,8 +215,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -225,8 +251,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -256,8 +287,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -290,8 +326,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -318,7 +359,8 @@ const Rankings = () => {
           </Tr>
         </Thead>
 
-        <Tbody overflowY={"auto"} maxHeight='400px'>
+
+        <Tbody overflowY={"auto"} maxHeight='360px'>
           {tableData.DefiRankingsTableData.isError && (
             <>
               <Tr>
@@ -330,6 +372,7 @@ const Rankings = () => {
                   p="20px"
                   textAlign={"center"}
                   colSpan={8}
+                  opacity={0.6}
                 >
                   No data available
                 </Td>
@@ -349,6 +392,7 @@ const Rankings = () => {
                 (tableData.DefiRankingsTableData?.data?.data.map((item, rowIndex) => {
                   return (
                     <>
+
                       <Tr
                         key={rowIndex}
 
@@ -397,7 +441,7 @@ const Rankings = () => {
                                   <Image
                                     width={24}
                                     height={24}
-                                    style={{borderRadius:"50%"}}
+                                    style={{ borderRadius: "50%" }}
                                     alt='logo'
                                     src={item.logo}
                                   ></Image>
@@ -618,6 +662,7 @@ const Rankings = () => {
                         colSpan={8}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
                       >
                         No data available
                       </Td>
@@ -637,6 +682,7 @@ const Rankings = () => {
         w={"100%"}
       >
         <Thead
+          position="sticky" top={0} zIndex="sticky"
           bg={useColorModeValue("#F5F5F7", "#191919")}
         >
           <Tr>
@@ -653,7 +699,11 @@ const Rankings = () => {
                   alignItems={"center"}
                 >
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -681,7 +731,11 @@ const Rankings = () => {
                   </Tooltip>
 
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -695,7 +749,11 @@ const Rankings = () => {
                 </Box>
 
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                   _light={{
+                    color:"#16171B",
+                    opacity:"0.8"
+                  }}
+                  _dark={{color:"#A8ADBD"}}
                   fontSize={"14px"}
                   fontWeight={400}
                   lineHeight={"20px"}
@@ -715,6 +773,7 @@ const Rankings = () => {
 
         <Tbody
           w={{ base: "100%", md: "100%" }}
+          overflowY={"auto"} maxHeight='380px'
         >
           {tableData.DefiRankingsTableData.isError && (
             <>
@@ -733,6 +792,7 @@ const Rankings = () => {
                     fontWeight={400}
                     letterSpacing={"1px"}
                     textAlign={"center"}
+                    opacity={0.6}
                   >
                     No data available
                   </Text>
@@ -792,7 +852,7 @@ const Rankings = () => {
                                             <Image
                                               width={24}
                                               height={24}
-                                              style={{borderRadius:"50%"}}
+                                              style={{ borderRadius: "50%" }}
                                               alt='logo'
                                               src={item.logo}
                                             ></Image>
@@ -1167,6 +1227,7 @@ const Rankings = () => {
                         fontWeight={400}
                         letterSpacing={"1px"}
                         textAlign={"center"}
+                        opacity={0.6}
                       >
                         No data available
                       </Text>

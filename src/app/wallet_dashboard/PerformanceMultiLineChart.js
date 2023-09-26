@@ -108,6 +108,7 @@ const PerformanceMultiLineChart = () => {
               justifyContent={"center"}
               textAlign={"center"}
               height={"245px"}
+              opacity={0.6}
             >
               No Data Available
             </Box>

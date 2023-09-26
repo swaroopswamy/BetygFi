@@ -2,34 +2,16 @@
 import {
   Box,
   Flex,
-  Avatar,
-  Link,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
-  Stack,
   useColorMode,
-  Center,
-  IconButton,
   Text,
-  HStack,
-  VStack,
   Input,
   InputGroup,
   InputLeftElement,
   Image,
-  Drawer,
-  DrawerOverlay,
   Collapse,
-  Slide
 } from "@chakra-ui/react";
-import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import LoginPage from "../login";
 import './index.css';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'

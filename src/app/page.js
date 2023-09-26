@@ -4,7 +4,7 @@ import Script from 'next/script';
 
 export default function Home() {
 
-  
+
   return (
     <>
       <main>
@@ -24,8 +24,6 @@ export default function Home() {
           gtag('config', 'G-Q0B2YDZPET');
         `}
         </Script>
-
-
 
         <Dashboard />
       </main>
