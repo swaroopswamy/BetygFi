@@ -17,14 +17,6 @@ function Assetcomposition() {
     const thread = ["Asset Name",   /* "Share",  */"Value"];
     const Definitions = "Asset composition matrix shows the compositions of the assets of the DeFi in percentage terms and the individual value of the subclass of the assets of the DeFi."
     const Tablepath = "/defi_dashboard/asset_composition"
-    /*  const tableData = [
-         ["/images/Ethdefiusers.svg", "Ethereum", "+ 356,456,560 USD "],
-         ["/images/Trondefiusers.svg", "Tron", "+ 256,456,560 USD"],
-         ["/images/Binancedefiusers.svg", "BSC", "+ 46,456,560 USD"],
-         ["/images/Arbitrumdefiusers.svg", "Arbitrum", "+ 66,456,560 USD"],
-         ["/images/Polygondefiusers.svg", "Polygon", "+ 56,456,560 USD"],
-     ]; */
-
     const AssetcompositionTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     )
