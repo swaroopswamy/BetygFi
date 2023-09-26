@@ -606,8 +606,8 @@ function TableRow({ key, user, netWorth, totalTokens, totalProtocols, totalNFT }
                         fontStyle={"normal"}
                         fontWeight={"600"}
                         lineHeight={"20px"}
-                    >
-                        {user}
+                    >   
+                        {user?.split("").join("").substring(0, 8) + "....." + user?.slice(-5)}
                     </Text>
                 </Box>
             </Flex>
