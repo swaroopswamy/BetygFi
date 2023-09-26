@@ -70,6 +70,7 @@ const LinkItemsDown = [
 const bottomMenu = [
   // { name: "Help", icon: QuestionIcon, path: '#' },
   // { name: "Settings", icon: SettingIcon, path: '#' },
+  { name: "Settings", icon: "icons/settings-icon.svg", path: '/settings'},
   { name: "Suggest Feature", icon: "icons/bulb_sm_icon.svg", newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform' },
   { name: "Report Bug", icon: "icons/bug_sm_icon.svg", newTab: true, path: 'https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform' },
 ];

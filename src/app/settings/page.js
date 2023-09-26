@@ -11,7 +11,6 @@ const Settings = () => {
             <Text
                 color={useColorModeValue("#191919", "#FFFFFF")}
                 fontSize={"24px"}
-                fontStyle={"normal"}
                 fontWeight={400}
                 lineHeight={"46px"}
                 ml={"33px"}
@@ -44,7 +43,6 @@ const Settings = () => {
                     </Text>
                 </Box>
                 <Box
-
                     display={"flex"}
                     alignItems={"center"}
                     justifyContent={"space-evenly"}
@@ -53,6 +51,7 @@ const Settings = () => {
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
+                        cursor={"pointer"}
                     >
 
                         <Image src="/images/SystemDefault.svg" w="183px" h="133px" alt=""></Image>
@@ -81,9 +80,11 @@ const Settings = () => {
                         </Box>
 
                     </Box>
+
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
+                        cursor={"pointer"}
                     >
                         <Image src="/images/LightTheme.svg" w="183px" h="133px" alt=""></Image>
 
@@ -111,9 +112,11 @@ const Settings = () => {
                         </Box>
 
                     </Box>
+
                     <Box
                         display={"flex"}
                         flexDirection={"column"}
+                        cursor={"pointer"}
                     >
                         <Image src="/images/DarkTheme.svg" w="183px" h="133px" alt=""></Image>
 
