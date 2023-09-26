@@ -59,7 +59,7 @@ const ProtocolAllocationTable = () => {
                         </>
                     </Box>
 
-                   {/*  <Image
+                    {/*  <Image
                         display={{ base: "block", md: "none" }}
                         cursor={"pointer"}
                         width={"24px"}
@@ -94,10 +94,15 @@ const ProtocolAllocationTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontFamily={"Manrope"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
                                             textTransform={"capitalize"}>
@@ -117,10 +122,15 @@ const ProtocolAllocationTable = () => {
 
                                 <Th>
                                     <Flex >
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontFamily={"Manrope"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
                                             textTransform={"capitalize"}>
@@ -139,10 +149,15 @@ const ProtocolAllocationTable = () => {
 
                                 <Th>
                                     <Flex>
-                                        <Text _light={{ color: "#434347" }}
+                                        <Text
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontFamily={"Manrope"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
                                             textTransform={"capitalize"}>
@@ -186,10 +201,14 @@ const ProtocolAllocationTable = () => {
                                 >
                                     <Flex>
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontFamily={"Manrope"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
                                             textTransform={"capitalize"}
@@ -206,10 +225,14 @@ const ProtocolAllocationTable = () => {
                                         ml={"25px"}
                                     >
                                         <Text
-                                            _light={{ color: "#434347" }}
+                                            _light={{
+                                                color: "#16171B",
+                                                opacity: "0.8"
+                                            }}
                                             _dark={{ color: "#A8ADBD" }}
                                             fontSize={"14px"}
-                                            fontWeight={"400"}
+                                            fontFamily={"Manrope"}
+                                            fontWeight={400}
                                             lineHeight={"20px"}
                                             letterSpacing={"1px"}
                                             textTransform={"capitalize"}
@@ -247,6 +270,7 @@ const ProtocolAllocationTable = () => {
                                             colSpan={8}
                                             textAlign={"center"}
                                             height={"245px"}
+                                            opacity={0.6}
                                         >
                                             No Data Available
                                         </Td>
@@ -296,6 +320,7 @@ const ProtocolAllocationTable = () => {
                                                         colSpan={3}
                                                         textAlign={"center"}
                                                         height={"245px"}
+                                                        opacity={0.6}
                                                     >
                                                         No Data Available
                                                     </Td>

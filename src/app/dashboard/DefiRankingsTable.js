@@ -86,8 +86,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -117,8 +122,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -133,8 +143,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -164,8 +179,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -195,8 +215,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -226,8 +251,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -257,8 +287,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -291,8 +326,13 @@ const Rankings = () => {
                 alignItems={"center"}
               >
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                  _light={{
+                    color: "#16171B",
+                    opacity: "0.8"
+                  }}
+                  _dark={{ color: "#A8ADBD" }}
                   fontSize={"14px"}
+                  fontFamily={"Manrope"}
                   fontWeight={400}
                   lineHeight={"20px"}
                   letterSpacing={"1.4px"}
@@ -332,6 +372,7 @@ const Rankings = () => {
                   p="20px"
                   textAlign={"center"}
                   colSpan={8}
+                  opacity={0.6}
                 >
                   No data available
                 </Td>
@@ -621,6 +662,7 @@ const Rankings = () => {
                         colSpan={8}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
                       >
                         No data available
                       </Td>
@@ -657,7 +699,11 @@ const Rankings = () => {
                   alignItems={"center"}
                 >
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -685,7 +731,11 @@ const Rankings = () => {
                   </Tooltip>
 
                   <Text
-                    color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
                     fontWeight={400}
                     lineHeight={"20px"}
@@ -699,7 +749,11 @@ const Rankings = () => {
                 </Box>
 
                 <Text
-                  color={useColorModeValue("#A8ADBD", "#A8ADBD")}
+                   _light={{
+                    color:"#16171B",
+                    opacity:"0.8"
+                  }}
+                  _dark={{color:"#A8ADBD"}}
                   fontSize={"14px"}
                   fontWeight={400}
                   lineHeight={"20px"}
@@ -738,6 +792,7 @@ const Rankings = () => {
                     fontWeight={400}
                     letterSpacing={"1px"}
                     textAlign={"center"}
+                    opacity={0.6}
                   >
                     No data available
                   </Text>
@@ -1172,6 +1227,7 @@ const Rankings = () => {
                         fontWeight={400}
                         letterSpacing={"1px"}
                         textAlign={"center"}
+                        opacity={0.6}
                       >
                         No data available
                       </Text>

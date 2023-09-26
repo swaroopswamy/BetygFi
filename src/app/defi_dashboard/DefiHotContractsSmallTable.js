@@ -107,6 +107,7 @@ function RowComponent({ tableData }) {
                         letterSpacing={"1px"}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
 
                     >
                         No Data available

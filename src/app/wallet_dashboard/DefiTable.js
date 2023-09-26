@@ -56,10 +56,10 @@ const DefiTable = () => {
                 display={"flex"}
                 overflow={"auto"}
             >
-                <Table 
+                <Table
                     variant="simple"
                     key={1}
-                    display={{ base: "none", md:"table" }}
+                    display={{ base: "none", md: "table" }}
                 >
                     <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
                         <Tr>
@@ -69,8 +69,13 @@ const DefiTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        _light={{
+                                            color: "#16171B",
+                                            opacity: "0.8"
+                                        }}
+                                        _dark={{ color: "#A8ADBD" }}
                                         fontSize={"14px"}
+                                        fontFamily={"Manrope"}
                                         fontWeight={400}
                                         letterSpacing={"1.4px"}
                                         lineHeight={"20px"}
@@ -95,8 +100,13 @@ const DefiTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        _light={{
+                                            color: "#16171B",
+                                            opacity: "0.8"
+                                        }}
+                                        _dark={{ color: "#A8ADBD" }}
                                         fontSize={"14px"}
+                                        fontFamily={"Manrope"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
                                         letterSpacing={"1.4px"}
@@ -122,8 +132,13 @@ const DefiTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        _light={{
+                                            color: "#16171B",
+                                            opacity: "0.8"
+                                        }}
+                                        _dark={{ color: "#A8ADBD" }}
                                         fontSize={"14px"}
+                                        fontFamily={"Manrope"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
                                         letterSpacing={"1.4px"}
@@ -149,8 +164,13 @@ const DefiTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        _light={{
+                                            color: "#16171B",
+                                            opacity: "0.8"
+                                        }}
+                                        _dark={{ color: "#A8ADBD" }}
                                         fontSize={"14px"}
+                                        fontFamily={"Manrope"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
                                         letterSpacing={"1.4px"}
@@ -176,8 +196,13 @@ const DefiTable = () => {
                                     alignItems={"center"}
                                 >
                                     <Text
-                                        color={useColorModeValue("#16171B", "#A8ADBD")}
+                                        _light={{
+                                            color: "#16171B",
+                                            opacity: "0.8"
+                                        }}
+                                        _dark={{ color: "#A8ADBD" }}
                                         fontSize={"14px"}
+                                        fontFamily={"Manrope"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
                                         letterSpacing={"1px"}
@@ -228,6 +253,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                                 mt="44px"
                                                 mb="20px"
+                                                opacity={0.6}
                                             >
                                                 We are retrieving data from the Blockchain.
                                             </Text>
@@ -250,6 +276,7 @@ const DefiTable = () => {
                                                 letterSpacing={"1px"}
                                                 mt="20px"
                                                 mb="8px"
+                                                opacity={0.6}
                                             >
                                                 This process might take approximately 2-3 minutes.
                                             </Text>
@@ -264,6 +291,7 @@ const DefiTable = () => {
                                                 fontWeight={"400"}
                                                 letterSpacing={"1px"}
                                                 mb="50px"
+                                                opacity={0.6}
                                             >
                                                 You have the option to wait or return later.
                                             </Text>
@@ -288,6 +316,7 @@ const DefiTable = () => {
                                         colSpan={8}
                                         textAlign={"center"}
                                         p="20px"
+                                        opacity={0.6}
                                     >
                                         No Data Available
                                     </Td>
@@ -325,7 +354,7 @@ const DefiTable = () => {
                                                                     <Image
                                                                         width={5}
                                                                         height={5}
-                                                                        style={{borderRadius:"50%"}}
+                                                                        style={{ borderRadius: "50%" }}
                                                                         alt='logo'
                                                                         src={item?.logoUrl}
                                                                     ></Image>
@@ -452,10 +481,10 @@ const DefiTable = () => {
                 </Table>
             </Box>
 
-            <Table 
+            <Table
                 variant="simple"
                 key={2}
-                display={{ base: "table",md:"none" }}
+                display={{ base: "table", md: "none" }}
                 w={"90%"}
             >
                 <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
@@ -467,9 +496,14 @@ const DefiTable = () => {
                                 alignItems={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
+                                    _light={{
+                                        color: "#16171B",
+                                        opacity: "0.8"
+                                    }}
+                                    _dark={{ color: "#A8ADBD" }}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
+                                    fontFamily={"Manrope"}
+                                    fontWeight={400}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
@@ -494,9 +528,14 @@ const DefiTable = () => {
                                 justifyContent={"center"}
                             >
                                 <Text
-                                    color={useColorModeValue("#16171B", "#A8ADBD")}
+                                    _light={{
+                                        color: "#16171B",
+                                        opacity: "0.8"
+                                    }}
+                                    _dark={{ color: "#A8ADBD" }}
                                     fontSize={"14px"}
-                                    fontWeight={"400"}
+                                    fontFamily={"Manrope"}
+                                    fontWeight={400}
                                     letterSpacing={"1px"}
                                     alignItems={"center"}
                                     textTransform={"capitalize"}
@@ -546,6 +585,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="44px"
                                             mb="20px"
+                                            opacity={0.6}
                                         >
                                             We are retrieving data from the Blockchain.
                                         </Text>
@@ -568,6 +608,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="20px"
                                             mb="8px"
+                                            opacity={0.6}
                                         >
                                             This process might take approximately 2-3 minutes.
                                         </Text>
@@ -582,6 +623,7 @@ const DefiTable = () => {
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                             mb="50px"
+                                            opacity={0.6}
                                         >
                                             You have the option to wait or return later.
                                         </Text>
@@ -589,7 +631,7 @@ const DefiTable = () => {
                                 </Td>
                             </Tr>
                             <Tr
-                            
+
                                 display={{ base: "table-row", md: "none" }}
                             >
                                 <Td
@@ -618,6 +660,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="44px"
                                             mb="20px"
+                                            opacity={0.6}
                                         >
                                             We are retrieving data<br /> from the Blockchain.
                                         </Text>
@@ -640,6 +683,7 @@ const DefiTable = () => {
                                             letterSpacing={"1px"}
                                             mt="20px"
                                             mb="8px"
+                                            opacity={0.6}
                                         >
                                             This process might take <br /> approximately 2-3 minutes.
                                         </Text>
@@ -654,6 +698,7 @@ const DefiTable = () => {
                                             fontWeight={"400"}
                                             letterSpacing={"1px"}
                                             mb="50px"
+                                            opacity={0.6}
                                         >
                                             You can wait or return later.
                                         </Text>
@@ -678,6 +723,7 @@ const DefiTable = () => {
                                     colSpan={8}
                                     textAlign={"center"}
                                     p="20px"
+                                    opacity={0.6}
                                 >
                                     No Data Available
                                 </Td>
@@ -742,7 +788,7 @@ const DefiTable = () => {
                                                                                         <Image
                                                                                             width={5}
                                                                                             height={5}
-                                                                                            style={{borderRadius:"50%"}}
+                                                                                            style={{ borderRadius: "50%" }}
                                                                                             alt='logo'
                                                                                             src={item?.logoUrl}
                                                                                         ></Image>

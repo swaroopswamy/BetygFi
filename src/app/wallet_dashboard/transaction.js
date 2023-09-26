@@ -134,8 +134,13 @@ const TransactionPanelComponent = () => {
 
             <Tr>
               <Th
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                 _light={{
+                  color:"#16171B",
+                  opacity:"0.8"
+                }}
+                _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
+                fontFamily={"Manrope"}
                 fontWeight={400}
                 letterSpacing={"1.4px"}
                 lineHeight={"20px"}
@@ -151,8 +156,13 @@ const TransactionPanelComponent = () => {
                   justifyContent={"center"}
                 >
                   <Text
-                    color={useColorModeValue("#434347", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
+                    fontFamily={"Manrope"}
                     fontWeight={400}
                     letterSpacing={"1.4px"}
                     lineHeight={"20px"}
@@ -177,8 +187,14 @@ const TransactionPanelComponent = () => {
                 <Box display={"flex"}
                   alignItems={"center"}>
 
-                  <Text color={useColorModeValue("#434347", "#A8ADBD")}
+                  <Text 
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
+                    fontFamily={"Manrope"}
                     fontWeight={400}
                     letterSpacing={"1.4px"}
                     lineHeight={"20px"}
@@ -201,8 +217,13 @@ const TransactionPanelComponent = () => {
 
 
               <Th
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                 _light={{
+                  color:"#16171B",
+                  opacity:"0.8"
+                }}
+                _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
+                fontFamily={"Manrope"}
                 fontWeight={400}
                 letterSpacing={"1.4px"}
                 lineHeight={"20px"}
@@ -213,8 +234,13 @@ const TransactionPanelComponent = () => {
 
 
               <Th
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                 _light={{
+                  color:"#16171B",
+                  opacity:"0.8"
+                }}
+                _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
+                fontFamily={"Manrope"}
                 fontWeight={400}
                 letterSpacing={"1.4px"}
                 lineHeight={"20px"}
@@ -224,8 +250,13 @@ const TransactionPanelComponent = () => {
               </Th>
 
               <Th
-                color={useColorModeValue("#434347", "#A8ADBD")}
+                 _light={{
+                  color:"#16171B",
+                  opacity:"0.8"
+                }}
+                _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
+                fontFamily={"Manrope"}
                 fontWeight={400}
                 letterSpacing={"1.4px"}
                 lineHeight={"20px"}
@@ -258,6 +289,7 @@ const TransactionPanelComponent = () => {
                     textAlign={"center"}
                     borderRadius={"6px"}
                     p="20px"
+                    opacity={0.6}
                   >
                     No data available
                   </Td>
@@ -505,6 +537,7 @@ const TransactionPanelComponent = () => {
                         colSpan={8}
                         textAlign={"center"}
                         p="20px"
+                        opacity={0.6}
                       >
                         No data available
                       </Td>
@@ -597,8 +630,14 @@ const TransactionPanelComponent = () => {
                   alignItems={"center"}
                   justifyContent={"space-between"}>
 
-                  <Text color={useColorModeValue("#434347", "#A8ADBD")}
+                  <Text 
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
+                    fontFamily={"Manrope"}
                     fontWeight={400}
                     letterSpacing={"1.4px"}
                     lineHeight={"20px"}
@@ -608,8 +647,13 @@ const TransactionPanelComponent = () => {
                     Address And Date
                   </Text>
                   <Text
-                    color={useColorModeValue("#434347", "#A8ADBD")}
+                     _light={{
+                      color:"#16171B",
+                      opacity:"0.8"
+                    }}
+                    _dark={{color:"#A8ADBD"}}
                     fontSize={"14px"}
+                    fontFamily={"Manrope"}
                     fontWeight={400}
                     letterSpacing={"1.4px"}
                     lineHeight={"20px"}
@@ -639,6 +683,7 @@ const TransactionPanelComponent = () => {
                   borderRadius={"6px"}
                   textAlign={"center"}
                   p="20px"
+                  opacity={0.6}
                 >
                   No data available
                 </Td>

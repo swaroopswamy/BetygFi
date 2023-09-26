@@ -52,6 +52,7 @@ function DonutChart() {
       position: 'left',
       horizontalAlign: 'center',
       fontSize: '14px',
+      fontFamily: 'Manrope',
       fontWeight: '400',
       labels: {
         colors: useColorModeValue('#16171B', '#FFFFFF')
