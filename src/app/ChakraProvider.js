@@ -5,6 +5,7 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider, useColorModeValue } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import Button from "/src/app/components/button";
+import Text from "/src/app/components/text";
 
 export function Providers({ children }) {
   const breakpoints = {
@@ -21,23 +22,8 @@ export function Providers({ children }) {
   const theme = extendTheme({ 
     breakpoints,
     components: {
-      Button
-    },
-    layerStyles: {
-      one: {
-        bg: {
-          light: '#FF0000',
-          dark: '#131313'
-        },
-        border: '0px',
-      },
-      two: {
-        bg: {
-          light: '#F0F0F5',
-          dark: '#191919'
-        },
-        border: '0px',
-      }
+      Button,
+      Text,
     },
     textStyles: {
       h1: {
@@ -45,10 +31,6 @@ export function Providers({ children }) {
         fontWeight: '600',
         lineHeight: '20px',
         letterSpacing: {base: '1.8px', md: '2.4px'},
-        color: {
-          light: '#191919',
-          dark: '#FFFFFF'
-        }
       },
       body: {
         fontSize: '14px',

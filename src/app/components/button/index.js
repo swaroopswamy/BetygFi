@@ -9,30 +9,18 @@ const Button = defineStyleConfig({
     },
     variants: {
         base: {},
-        light: {
-            bg: "#F0F0F5",
-            color: "#000000",
+        defi: ({ colorMode }) => ({
+            bg: colorMode === 'light' ? "#F0F0F5" : '#202020',
+            color: colorMode === 'light' ? "#000000" : '#FFFFFF',
             _hover: {
-                bg: "#202020",
-                color: "#FFFFFF"
+                bg: colorMode === 'light' ? "#202020" : '#FFFFFF',
+                color: colorMode === 'light' ? "#FFFFFF" : '#000000'
             },
             _active: {
-                bg: "#202020",
-                color: "#FFFFFF"
+                bg: colorMode === 'light' ? "#202020" : '#FFFFFF',
+                color: colorMode === 'light' ? "#FFFFFF" : '#000000'
             }
-        },
-        dark: {
-            bg: "#202020",
-            color: "#FFFFFF",
-            _hover: {
-                bg: "#FFFFFF",
-                color: "#000000"
-            },
-            _active: {
-                bg: "#FFFFFF",
-                color: "#000000"
-            }
-        }
+        }),
     },
     defaultProps: {
         variant: 'base'

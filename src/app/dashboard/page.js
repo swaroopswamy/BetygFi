@@ -126,7 +126,7 @@ const Dashboard = () => {
     <>
       <Box display={"flex"} flexDir={"column"} layerStyle='one'>
         <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
-          <Text textStyle='h1' px={"30px"}> DeFi Markets </Text>
+          <Text variant='h1' px={"30px"}> DeFi Markets </Text>
           <DashboardBlockchainSelection />
         </Box>
 
@@ -138,7 +138,6 @@ const Dashboard = () => {
           <DashboardBlockchainSelection />
         </Box>
 
-
         <Box px={{base: "18px", md: "30px"}} py={"15px"} w={{base: "100%", md: "80%"}}>
           <Text textStyle='body'>
               Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
@@ -149,7 +148,7 @@ const Dashboard = () => {
           <DashboardDefiSelection />
         </Box>
 
-        <Box display={"flex"} flexDir={"column"} layerStyle='two'>
+        <Box display={"flex"} flexDir={"column"} bg={useColorModeValue('#F0F0F5', '#191919')}>
           <Box display={"flex"} flexDir={{base: "column", md: "row"}} px={{base: "18px", md: "30px"}} py={"30px"} gap={"15px"}>
             <OverviewBox />
             <OverviewBox />
@@ -182,13 +181,13 @@ const DashboardDefiSelection = ( {...rest} ) => {
         {...rest}
       >
         <Button 
-          variant={useColorModeValue('light', 'dark')}
+          variant={'defi'}
           isActive={categorySelected.length === 0} 
           onClick={() => categoryChangedHandler('All')}
           borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
         > All </Button>
         {categories.map((category, i) => (
-          <Button variant={useColorModeValue('light', 'dark')}
+          <Button variant={'defi'}
           isActive={categorySelected.includes(category)}
           onClick={() => categoryChangedHandler(category)}
           borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
