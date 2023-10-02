@@ -127,19 +127,30 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box display={"flex"} flexDir={"column"} px={{base: "18px", md: "30px"}} layerStyle='one' >
-        <Box display={"flex"} flexDir={{ base: "column", md: "row"}} alignItems={{base: "start", md: "center"}} pt={"30px"} gap={"20px"}>
-          <Text textStyle='h1'> DeFi Markets </Text>
+      <Box display={"flex"} flexDir={"column"} layerStyle='one' >
+        <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
+          <Text textStyle='h1' px={"30px"}> DeFi Markets </Text>
           <DashboardBlockchainSelection />
         </Box>
 
-        <Box py={"15px"} w={{base: "100%", md: "80%"}}>
+        <Box display={{base: "flex", md: "none"}} pt={"30px"}>
+          <Text textStyle='h1' px={"18px"}> DeFi Markets </Text>
+        </Box>
+
+        <Box display={{base: "flex", md: "none"}} pt={"15px"} overflow={"auto"}>
+          <DashboardBlockchainSelection />
+        </Box>
+
+
+        <Box px={{base: "18px", md: "30px"}} py={"15px"} w={{base: "100%", md: "80%"}}>
           <Text textStyle='body'>
               Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
           </Text>
         </Box>
 
-        <DashboardDefiSelection />
+        <Box display={"flex"} overflow={"auto"}>
+          <DashboardDefiSelection />
+        </Box>
 
       </Box>
     </>
@@ -148,7 +159,7 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-const DashboardDefiSelection = () => {
+const DashboardDefiSelection = ( {...rest} ) => {
   const dispatch = useDispatch();
 
   const categorySelected = useSelector(
@@ -163,66 +174,21 @@ const DashboardDefiSelection = () => {
       <Box
         display={"flex"}
         h={"40px"}
-        w="100%"
-        overflow="hidden"
+        px={{base: "18px", md: "30px"}}
+        {...rest}
       >
-        <Box
-          key="all"
-          borderRadius="2px"
-          cursor="pointer"
-          _hover={{ bg: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
-          borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-          bgColor={categorySelected.length === 0 ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
-          color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
-          whiteSpace="nowrap"
-          onClick={() => {
-            categoryChangedHandler('All');
-          }}
-          paddingX="9px"
-          pt={"4px"}
-        >
-          <Text
-            fontSize="14px"
-            fontWeight="700"
-            letterSpacing="1px"
-            lineHeight="10px"
-            mt={"10px"}
-          // _hover={{color: useColorModeValue('#FFF', '#000')}}
-          // color={categorySelected.length === 0 ? useColorModeValue('#FFF', '#000') : useColorModeValue('#F5F5F7', '#202020')}
-          >
-            All
-          </Text>
-        </Box>
+        <Button 
+          variant={useColorModeValue('light', 'dark')}
+          isActive={categorySelected.length === 0} 
+          onClick={() => categoryChangedHandler('All')}
+          borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
+        > All </Button>
         {categories.map((category, i) => (
-          <Box
-            key={i}
-            borderRadius="2px"
-            padding="7px 9px"
-            // mr="4px"
-            cursor="pointer"
-            _hover={{ bgColor: useColorModeValue('#202020', '#FFF'), color: useColorModeValue('#FFF', '#000') }}
-            borderRight={useColorModeValue('1px solid #E8E8E8', '1px solid #333')}
-            bgColor={categorySelected.includes(category) ? useColorModeValue('#202020', '#FFF') : useColorModeValue('#F5F5F7', '#202020')}
-            color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
-            whiteSpace="nowrap"
-            onClick={() => {
-              categoryChangedHandler(category);
-            }}
-          >
-            <Text
-              fontSize="14px"
-              fontWeight="400"
-              letterSpacing="1px"
-              lineHeight="10px"
-              justifyContent={"space-between"}
-              alignItems={"center"}
-              mt={"8px"}
-            // _hover={{color: useColorModeValue('#FFF', '#000')}}
-            // color={categorySelected.includes(category) ? useColorModeValue('#FFF', '#000') : useColorModeValue('#000', '#FFF')}
-            >
-              {category}
-            </Text>
-          </Box>
+          <Button variant={useColorModeValue('light', 'dark')}
+          isActive={categorySelected.includes(category)}
+          onClick={() => categoryChangedHandler(category)}
+          borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
+          > {category} </Button>
         ))}
       </Box>
     </>

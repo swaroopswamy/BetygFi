@@ -136,11 +136,11 @@ const DashboardBlockchainSelection = () => {
         </Box>
   
         <Box
-          className="center"
           display={{base: "flex", md: "none"}}
+          justifyContent={"start"}
+          alignItems={"center"}
+          pl={"18px"}
           gap={"7px"}
-          overflowX={"scroll"}
-          whiteSpace={"nowrap"}
         >
           {blockchainListData?.data?.map((item, i) => (
             <Box
