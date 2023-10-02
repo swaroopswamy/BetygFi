@@ -19,9 +19,7 @@ const OverviewBox = () => {
                 w={{base: "100%", md: "50%"}}
                 borderRadius={"4px"}
                 bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                filter={"filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));"}
-                px={{ base: "10px", md: "20px" }}
-                py={{ base: "10px", md: "25px" }}
+                p={{ base: "10px", md: "25px 20px" }}
             >
                 <Box
                     display={"flex"}
@@ -36,9 +34,7 @@ const OverviewBox = () => {
                     >
                         Overview
                     </Text>
-                    <Box display={"flex"} alignItems={"center"}
-
-                    >
+                    <Box display={"flex"} alignItems={"center"}>
                         <Text
                             color={useColorModeValue("#16171B", "#FFF")}
                             fontSize={"14px"}

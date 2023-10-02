@@ -62,9 +62,7 @@ const Rankings = () => {
   return (
     <Box
       width={"100%"}
-      //overflowY={"auto"} 
       maxHeight='420px'
-      overflow={"auto"}
       css={{
         '&::-webkit-scrollbar': {
           // position: 'fixed',
