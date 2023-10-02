@@ -49,6 +49,7 @@ import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import DashboardBlockchainSelection from "./DashboardBlockchainSelection";
+import OverviewBox from "./OverviewBox";
 
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -62,10 +63,6 @@ const Dashboard = () => {
   );
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
-  );
-
-  const overviewData = useSelector(
-    (state) => state?.dashboardTableData?.OverviewData?.data
   );
 
   const pageChangeHandler = (page) => {
@@ -127,7 +124,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box display={"flex"} flexDir={"column"} layerStyle='one' >
+      <Box display={"flex"} flexDir={"column"} layerStyle='one'>
         <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
           <Text textStyle='h1' px={"30px"}> DeFi Markets </Text>
           <DashboardBlockchainSelection />
@@ -150,6 +147,13 @@ const Dashboard = () => {
 
         <Box display={"flex"} overflow={"auto"}>
           <DashboardDefiSelection />
+        </Box>
+
+        <Box display={"flex"} flexDir={"column"} layerStyle='two'>
+          <Box display={"flex"} flexDir={{base: "column", md: "row"}} px={{base: "18px", md: "30px"}} py={"30px"} gap={"15px"}>
+            <OverviewBox />
+            <OverviewBox />
+          </Box>
         </Box>
 
       </Box>

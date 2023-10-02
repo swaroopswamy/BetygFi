@@ -26,7 +26,14 @@ export function Providers({ children }) {
     layerStyles: {
       one: {
         bg: {
-          light: '#FFFFFF',
+          light: '#FF0000',
+          dark: '#131313'
+        },
+        border: '0px',
+      },
+      two: {
+        bg: {
+          light: '#F0F0F5',
           dark: '#191919'
         },
         border: '0px',
