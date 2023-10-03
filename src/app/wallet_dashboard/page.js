@@ -32,7 +32,6 @@ import BlockchainSelectionMenuBlocks from "@/app/components/BlockchainSelectionM
 
 const WalletDashboardPage = () => {
   const searchParam = useSearchParams();
-  const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);
 
