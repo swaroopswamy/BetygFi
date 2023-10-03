@@ -6,6 +6,7 @@ import { ChakraProvider, useColorModeValue } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import Button from "/src/app/components/button";
 import Text from "/src/app/components/text";
+import Accordion from "/src/app/components/accordion";
 
 export function Providers({ children }) {
   const breakpoints = {
@@ -23,7 +24,8 @@ export function Providers({ children }) {
     breakpoints,
     components: {
       Button,
-      Text    },
+      Text
+    },
     layerStyles: {
       spacebetween: {
         display: "flex",
