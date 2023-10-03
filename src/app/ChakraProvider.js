@@ -23,34 +23,16 @@ export function Providers({ children }) {
     breakpoints,
     components: {
       Button,
-      Text,
-    },
-    textStyles: {
-      h1: {
-        fontSize: {base: '18px', md:'24px'},
-        fontWeight: '600',
-        lineHeight: '20px',
-        letterSpacing: {base: '1.8px', md: '2.4px'},
+      Text    },
+    layerStyles: {
+      spacebetween: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
       },
-      body: {
-        fontSize: '14px',
-        fontWeight: '400',
-        lineHeight: '20px',
-        letterSpacing: {base: '1.2px', md: '1.4px'},
-        color: {
-          light: '#16171B',
-          dark: '#A8ADBD'
-        }
-      },
-      h4: {
-        fontSize: '10px',
-        fontWeight: '400',
-        lineHeight: '20px',
-        letterSpacing: '1.4px',
-        color: {
-          light: '#191919',
-          dark: '#FFFFFF'
-        }
+      flexcenter: {
+        display: "flex",
+        alignItems: "center"
       }
     }
   });
