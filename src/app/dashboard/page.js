@@ -30,14 +30,8 @@ import {
   Collapse
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import Rankings from "./DefiRankingsTable";
 import { blockchains, categories } from "../../../util/constant";
-import OverviewColumnChart from "./OverviewColumnChart";
-import OverviewAreaChart from "./OverviewAreaChart";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
-import { MoonIcon, SunIcon, SearchIcon } from "@chakra-ui/icons";
-import millify from "millify";
 import {
   categoryChangedReducer,
   fetchDefiRankingTableData,
@@ -45,11 +39,12 @@ import {
   fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import isEmpty from "is-empty";
-// import './page.module.css';
 import '/styles/styles.scss';
 
-import DashboardBlockchainSelection from "./DashboardBlockchainSelection";
-import OverviewBox from "./OverviewBox";
+import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
+import Rankings from "/src/app/components/pages/dashboard/DefiRankingsTable";
+import OverviewColumnChart from "/src/app/components/pages/dashboard/OverviewColumnChart";
+import OverviewBox from "/src/app/components/pages/dashboard/OverviewBox";
 
 const Dashboard = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -127,7 +122,7 @@ const Dashboard = () => {
       <Box display={"flex"} flexDir={"column"} layerStyle='one'>
         <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
           <Text variant='h1' px={"30px"}> DeFi Markets </Text>
-          <DashboardBlockchainSelection />
+          <BlockchainSelectionMenu />
         </Box>
 
         <Box display={{base: "flex", md: "none"}} pt={"30px"}>
@@ -135,7 +130,7 @@ const Dashboard = () => {
         </Box>
 
         <Box display={{base: "flex", md: "none"}} pt={"15px"} overflow={"auto"}>
-          <DashboardBlockchainSelection />
+          <BlockchainSelectionMenu />
         </Box>
 
         <Box px={{base: "18px", md: "30px"}} py={"15px"} w={{base: "100%", md: "80%"}}>

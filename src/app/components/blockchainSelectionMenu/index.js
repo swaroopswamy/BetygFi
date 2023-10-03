@@ -16,7 +16,7 @@ import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import React, { useEffect } from "react";
 
-const DashboardBlockchainSelection = () => {
+const BlockchainSelectionMenu = () => {
     const dispatch = useDispatch();
   
     const blockchainListData = useSelector(
@@ -171,4 +171,4 @@ const DashboardBlockchainSelection = () => {
     )
 }
 
-export default DashboardBlockchainSelection;
+export default BlockchainSelectionMenu;

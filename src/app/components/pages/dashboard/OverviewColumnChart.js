@@ -146,12 +146,7 @@ const OverviewColumnChart = () => {
 
     return (
         <>
-            <Box
-                w={{base: "100%", md: "50%"}}
-                borderRadius={"4px"}
-                bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                p={{ base: "10px", md: "25px 20px" }}
-            >
+            <Box w={{base: "100%", md: "50%"}} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }} >
                 <Text variant='h2'> Score Distribution </Text>
                 <ApexCharts options={options} series={series} type="bar" height={205} />
             </Box>
