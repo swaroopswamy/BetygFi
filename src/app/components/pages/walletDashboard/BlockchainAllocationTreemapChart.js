@@ -1,7 +1,6 @@
 import { useColorMode, useColorModeValue, Skeleton, Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import './styles.css'
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import isEmpty from "is-empty";
