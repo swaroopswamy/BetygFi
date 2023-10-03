@@ -11,32 +11,41 @@ export function Providers({ children }) {
   const breakpoints = {
     base: "0px",
     sm: "320px",
-    midSize:"460px",
+    midSize: "460px",
     md: "768px",
     lg: "960px",
-    bigSize:"1164px",
+    bigSize: "1164px",
     xl: "1200px",
     "2xl": "1536px",
   };
 
-  const theme = extendTheme({ 
+  const theme = extendTheme({
     breakpoints,
     components: {
       Button,
-      Text    },
+      Text,
+    },
     layerStyles: {
       spacebetween: {
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
       },
-      flexcenter: {
+      flexCenter: {
         display: "flex",
-        alignItems: "center"
-      }
-    }
+        alignItems: "center",
+      },
+      flexColumn: {
+        display: "flex",
+        flexDirection: "column",
+      },
+      flexSpaceBetween: {
+        display: "flex",
+        justifyContent: "space-between",
+      },
+    },
   });
-  
+
   return (
     <>
       <CacheProvider>
