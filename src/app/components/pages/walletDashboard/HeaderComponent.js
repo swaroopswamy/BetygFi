@@ -7,7 +7,7 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
       layerStyles={"flexSpaceBetween"}
       padding={{ base: "17px 13px 50px", md: "20px 30px 50px 30px" }}
     >
-      <Box layerStyles={"flexCenter"}>
+      <Box layerStyle={"flexCenter"}>
         <Box mr={"22px"}>
           <Image
             w={{ base: "35px", md: "47px" }}
@@ -17,7 +17,7 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
             alt="proifile_img"
           />
         </Box>
-        <Box layerStyles={"flexColumn"}>
+        <Box layerStyle={"flexColumn"}>
           {walletBalanceData?.name === undefined && (
             <Text
               fontSize={{ base: "18px", md: "24px" }}
@@ -35,11 +35,7 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
               No Name
             </Text>
           )}
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            mt={{ base: "5px", md: "13px" }}
-          >
+          <Box layerStyle={"flexCenter"} mt={{ base: "5px", md: "13px" }}>
             <Text
               display={{ base: "none", md: "flex" }}
               fontSize={{ base: "12px", md: "14px" }}
