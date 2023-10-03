@@ -53,7 +53,7 @@ const OverviewBox = () => {
                 </Box>
             </Box>
 
-            <SingleAccordionComp display={{base: "block", md: "none"}} height={"50px"}
+            <SingleAccordionComp display={{base: "flex", md: "none"}} minH={"50px"}
                 ButtonComp={() => {
                     return (
                         <Box layerStyle='spacebetween' w={"100%"} gap={"10px"} mr={"10px"}>

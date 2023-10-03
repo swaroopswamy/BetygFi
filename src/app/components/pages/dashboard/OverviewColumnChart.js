@@ -2,6 +2,7 @@ import { Box, useColorMode, useColorModeValue, Text } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
+import { SingleAccordionComp } from "../../accordion";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
@@ -146,10 +147,25 @@ const OverviewColumnChart = () => {
 
     return (
         <>
-            <Box w={{base: "100%", md: "50%"}} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }} >
+            <Box w={"50%"} display={{base: "none", md: "block"}} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={"25px 20px"} >
                 <Text variant='h2'> Score Distribution </Text>
                 <ApexCharts options={options} series={series} type="bar" height={205} />
             </Box>
+
+            <SingleAccordionComp display={{base: "flex", md: "none"}} minH="50px"
+                ButtonComp={() => {
+                    return (
+                        <Text variant='h2'> Score Distribution </Text>
+                    )
+                }}
+                PanelComp={() => {
+                    return (
+                        <Box>
+                            <ApexCharts options={options} series={series} type="bar" height={205} />
+                        </Box>
+                    )
+                }}
+            />
         </>
     );
 }
