@@ -119,7 +119,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box display={"flex"} flexDir={"column"} layerStyle='one'>
+      <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
         <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
           <Text variant='h1' px={"30px"}> DeFi Markets </Text>
           <BlockchainSelectionMenu />
