@@ -20,12 +20,12 @@ const OverviewBox = () => {
     return (
         <>
             <Box w="50%" display={{base: "none", md: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
-                <Box layerStyle='spacebetween' gap={"10px"}>
+                <Box layerStyle='spaceBetween' gap={"10px"}>
                     <Text variant={"h2"}>
                         Overview
                     </Text>
 
-                    <Box layerStyle={"flexcenter"} gap={"5px"}>
+                    <Box layerStyle={"flexCenter"} gap={"5px"}>
                         <Text variant={"h3"}>
                             Total Market Cap
                         </Text>
@@ -56,12 +56,12 @@ const OverviewBox = () => {
             <SingleAccordionComp display={{base: "flex", md: "none"}} minH={"50px"}
                 ButtonComp={() => {
                     return (
-                        <Box layerStyle='spacebetween' w={"100%"} gap={"10px"} mr={"10px"}>
+                        <Box layerStyle='spaceBetween' w={"100%"} gap={"10px"} mr={"10px"}>
                             <Text variant={"h2"}>
                                 Overview
                             </Text>
 
-                            <Box layerStyle={"flexcenter"} gap={"5px"}>
+                            <Box layerStyle={"flexCenter"} gap={"5px"}>
                                 <Text variant={"h3"}>
                                     Total Market Cap
                                 </Text>

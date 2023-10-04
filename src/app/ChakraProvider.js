@@ -27,13 +27,22 @@ export function Providers({ children }) {
       Text
     },
     layerStyles: {
-      spacebetween: {
+      spaceBetween: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center"
       },
-      flexcenter: {
+      flexCenter: {
         display: "flex",
+        alignItems: "center"
+      },
+      flexColumn: {
+        display: "flex",
+        flexDir: "column"
+      },
+      center: {
+        display: "flex",
+        justifyContent: "center",
         alignItems: "center"
       }
     }
