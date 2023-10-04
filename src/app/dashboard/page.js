@@ -119,7 +119,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box display={"flex"} flexDir={"column"} layerStyle='one'>
+      <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
         <Box display={{base: "none", md: "flex"}} alignItems={"center"} w={"100%"} pt={"30px"} gap={"20px"}>
           <Text variant='h1' px={"30px"}> DeFi Markets </Text>
           <BlockchainSelectionMenu />
@@ -144,7 +144,7 @@ const Dashboard = () => {
         </Box>
 
         <Box display={"flex"} flexDir={"column"} bg={useColorModeValue('#F0F0F5', '#191919')} px={{base: "18px", md: "30px"}} borderTop={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}>
-          <Box display={"flex"} flexDir={{base: "column", md: "row"}} py={"30px"} gap={"15px"}>
+          <Box display={"flex"} flexDir={{base: "column", lg: "row"}} py={"30px"} gap={"15px"}>
             <OverviewBox />
             <OverviewColumnChart />
           </Box>

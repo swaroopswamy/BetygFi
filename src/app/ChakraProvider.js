@@ -128,7 +128,7 @@ export function Providers({ children }) {
       Text,
     },
     layerStyles: {
-      spacebetween: {
+      spaceBetween: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
