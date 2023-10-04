@@ -121,27 +121,29 @@ import {
                   tableData.data?.data.map((item, rowIndex) => {
                     return (
                       <>
-                      <Tr>
-                        {/* <Td> */}
+                      {/* <Tr>
+                        <Td> */}
                           <SingleAccordionComp
                             display={"flex"}
+                            minH={"50px"}
+                            w={"100%"}
                             ButtonComp={() => {
                               return (
-                                <Box>
+                                <Box display={"flex"} w={"100%"}>
                                   HI
                                 </Box>
                               )
                             }}
                             PanelComp={() => {
                               return (
-                                <Box>
+                                <Box display={"flex"} w={"100%"}>
                                   HI
                                 </Box>
                               )
                             }}
                           />
-                        {/* </Td> */}
-                      </Tr>
+                        {/* </Td>
+                      </Tr> */}
                       </>
                     );
                   })
