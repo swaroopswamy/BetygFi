@@ -84,13 +84,7 @@ const TransactionPanelComponent = () => {
           display={{ base: "none", md: "block" }}
           w={{ base: "100%", md: "100%" }}
         >
-          <Text
-            fontSize={"18px"}
-            fontWeight={600}
-            lineHeight={"20px"}
-            color={useColorModeValue("#16171B", "#FFF")}
-            textTransform={"capitalize"}
-          >
+          <Text variant={"h2"} textTransform={"capitalize"}>
             Wallet Transaction
           </Text>
         </Flex>
@@ -112,9 +106,8 @@ const TransactionPanelComponent = () => {
           _light={{
             bg: "#FFFFFF",
           }}
-          display={"flex"}
+          layerStyle={"flexCenter"}
           justifyContent={"right"}
-          alignItems={"center"}
           mb={"20px"}
         >
           <PageButtons
@@ -136,7 +129,7 @@ const TableRow = ({ item, rowIndex }) => {
     <>
       <Tr key={rowIndex}>
         <Td>
-          <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+          <Box layerStyle={"flexCenter"} gap={"10px"}>
             <Tooltip key={rowIndex} label={item.name}>
               <>
                 <Image
@@ -151,19 +144,7 @@ const TableRow = ({ item, rowIndex }) => {
             </Tooltip>
 
             <Box>
-              <Text
-                _dark={{
-                  color: "#FFF",
-                }}
-                _light={{
-                  color: "#16171B",
-                }}
-                fontSize={"14px"}
-                fontWeight={"400"}
-                //letterSpacing={"1px"}
-                ml="6px"
-                w="95px"
-              >
+              <Text variant={"h3"} ml="6px" w="95px">
                 {walletAddress?.split("").join("").substring(0, 8) +
                   "......" +
                   walletAddress?.slice(-5)}
@@ -188,7 +169,7 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+          <Box layerStyle={"flexAlignCenterJustifyCenter"}>
             <Link
               fontSize={"14px"}
               fontWeight={500}
@@ -209,15 +190,9 @@ const TableRow = ({ item, rowIndex }) => {
               {item?.hash.substring(0, 0)}
               <ExternalLinkIcon mx="4px" />
               <Text
-                fontSize={"14px"}
-                fontWeight={500}
-                lineHeight={"20px"}
+                variant={"h3"}
                 _dark={{
-                  color: "#FFF",
                   opacity: "0.6",
-                }}
-                _light={{
-                  color: "#16171B",
                 }}
                 textTransform={"capitalize"}
               >
@@ -228,7 +203,7 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box display={"flex"} alignItems={"center"}>
+          <Box layerStyle={"flexCenter"}>
             <Image
               width={"18px"}
               height={"18px"}
@@ -237,33 +212,10 @@ const TableRow = ({ item, rowIndex }) => {
               style={{ borderRadius: "50%" }}
             ></Image>
 
-            <Text
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              fontSize={5}
-              fontWeight={5}
-              letterSpacing={"1px"}
-              ml="6px"
-            >
+            <Text variant={"h3"} letterSpacing={"1px"} ml="6px">
               {item?.tokenSymbol}
             </Text>
-            <Text
-              opacity={"0.6000000238418579"}
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              fontSize={"14px"}
-              fontWeight={400}
-              //letterSpacing={"1px"}
-              ml="6px"
-            >
+            <Text variant={"h3"} ml="6px">
               {Number(item?.value).toFixed(2)}
               {" ETH"}
             </Text>
@@ -271,19 +223,8 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box display={"flex"} alignItems={"center"}>
-            <Text
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              fontSize={"14px"}
-              fontWeight={"400"}
-              letterSpacing={"1px"}
-              w="95px"
-            >
+          <Box layerStyle={"flexCenter"}>
+            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
               {item?.from.split("").join("").substring(0, 6) +
                 "..." +
                 item?.from.slice(-5)}
@@ -292,19 +233,8 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box display={"flex"} alignItems={"center"}>
-            <Text
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              fontSize={"14px"}
-              fontWeight={"400"}
-              letterSpacing={"1px"}
-              w="95px"
-            >
+          <Box layerStyle={"flexCenter"}>
+            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
               {item?.to.split("").join("").substring(0, 6) +
                 "..." +
                 item?.to.slice(-5)}
@@ -313,11 +243,10 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box display={"flex"} alignItems={"center"}>
+          <Box layerStyle={"flexCenter"}>
             <Text
               fontSize={"14px"}
               fontWeight={"400"}
-              //letterSpacing={"1px"}
               ml="4px"
               color={item?.usdValue >= 0 ? "#60C000" : "#FF3535"}
             >
@@ -336,11 +265,7 @@ const TableHeaderRowMobile = () => {
     <>
       <Tr>
         <Th colSpan={2}>
-          <Box
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-          >
+          <Box layerStyle={"spacebetween"}>
             <Text
               _light={{
                 color: "#16171B",
@@ -348,7 +273,6 @@ const TableHeaderRowMobile = () => {
               }}
               _dark={{ color: "#A8ADBD" }}
               fontSize={"14px"}
-              fontFamily={"Manrope"}
               fontWeight={400}
               letterSpacing={"1.4px"}
               lineHeight={"20px"}

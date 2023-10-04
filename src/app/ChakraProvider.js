@@ -145,6 +145,11 @@ export function Providers({ children }) {
         display: "flex",
         justifyContent: "space-between",
       },
+      flexAlignCenterJustifyCenter: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
     },
   });
 

@@ -12,8 +12,6 @@ import {
 export const SingleAccordionComp = ({
   ButtonComp,
   PanelComp,
-  item,
-  rowIndex,
   ...rest
 }) => {
   return (
@@ -29,11 +27,11 @@ export const SingleAccordionComp = ({
       >
         <AccordionItem w={"100%"} border={"0px"}>
           <AccordionButton layerStyle={"spacebetween"}>
-            <ButtonComp item={item} rowIndex={rowIndex} />
+            <ButtonComp />
             <AccordionIcon />
           </AccordionButton>
           <AccordionPanel>
-            <PanelComp item={item} />
+            <PanelComp />
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

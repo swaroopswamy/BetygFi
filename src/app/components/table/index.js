@@ -186,11 +186,9 @@ const GenericTable = ({
                     <SingleAccordionComp
                       display={{ base: "flex", md: "none" }}
                       minH={"50px"}
-                      ButtonComp={ButtonComp}
-                      PanelComp={PanelComp}
-                      item={item}
+                      ButtonComp={ButtonComp(item)}
+                      PanelComp={PanelComp(item)}
                       rowIndex={rowIndex}
-                     
                     />
                   </>
                 );
