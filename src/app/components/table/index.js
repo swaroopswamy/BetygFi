@@ -12,6 +12,7 @@ import {
       Th,
       Thead,
       Tr,
+      Td,
       useColorModeValue,
     } from "@chakra-ui/react";
     import React from "react";
@@ -121,29 +122,29 @@ import {
                   tableData.data?.data.map((item, rowIndex) => {
                     return (
                       <>
-                      {/* <Tr>
-                        <Td> */}
-                          <SingleAccordionComp
-                            display={"flex"}
-                            minH={"50px"}
-                            w={"100%"}
-                            ButtonComp={() => {
-                              return (
-                                <Box display={"flex"} w={"100%"}>
-                                  HI
-                                </Box>
-                              )
-                            }}
-                            PanelComp={() => {
-                              return (
-                                <Box display={"flex"} w={"100%"}>
-                                  HI
-                                </Box>
-                              )
-                            }}
-                          />
-                        {/* </Td>
-                      </Tr> */}
+                        <Tr>
+                          <Td p={0} colSpan={3}>
+                            <SingleAccordionComp
+                              display={"flex"}
+                              minH={"50px"}
+                              w={"100%"}
+                              borderRadius={"0px"}
+                              ButtonComp={() => {
+                                return (
+                                  <ButtonComp
+                                    item={item}
+                                  />
+                                )
+                              }}
+                              PanelComp={() => {
+                                return (
+                                  <PanelComp
+                                    item={item}
+                                  />
+                                )
+                              }}                            />
+                          </Td>
+                        </Tr>
                       </>
                     );
                   })
