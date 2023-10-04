@@ -33,6 +33,12 @@ const Text = defineStyleConfig({
       lineHeight: "20px",
       color: colorMode === "light" ? "#16171B" : "#A8ADBD",
     }),
+    h5: ({ colorMode }) => ({
+      fontSize: "12px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+    }),
   },
   defaultProps: {
     variant: "base",

@@ -1,183 +1,42 @@
 "use client";
-import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, colorMode, Tooltip, Skeleton, useColorModeValue } from '@chakra-ui/react';
-import React from 'react'
-import AssetAllocationPieChart from './AssetAllocationPieChart';
-import AssetTrendSplineChart from './AssetTrendSplineChart';
-import PerformanceMultiLineChart from './PerformanceMultiLineChart';
-import BlockchainAllocationTreemapChart from './BlockchainAllocationTreemapChart';
-import { useSelector } from 'react-redux';
-import isEmpty from "is-empty";
-import dynamic from "next/dynamic";
-import ProtocolAllocationTable from './ProtocolAllocationTable';
-import InteractionWithKnownEntitiesTable from './InteractionWithKnownEntitiesTable';
-import InflowTokensTable from './InflowTokensTable';
-import OutflowTokensTable from './OutflowTokensTable';
+import {
+  Box,
+  Flex,
+  Image,
+  Text,
+  useColorMode,
+  Tooltip,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import React from "react";
+import { useSelector } from "react-redux";
 
-const SkeletonRow = () => (
-  <Box as="tr">
-    <Td>
-      <Skeleton height="10px" my={4} />
-    </Td>
-    <Td>
-      <Skeleton height="10px" my={4} />
-    </Td>
-    <Td>
-      <Skeleton height="10px" my={4} />
-    </Td>
-  </Box>
-)
-
-const USDollar = new Intl.NumberFormat('en-US');
-
-export { SkeletonRow, USDollar };
+import ProtocolAllocationTable from "./ProtocolAllocationTable";
+import InteractionWithKnownEntitiesTable from "./InteractionWithKnownEntitiesTable";
+import InflowTokensTable from "./InflowTokensTable";
+import OutflowTokensTable from "./OutflowTokensTable";
+import { USDollar } from "../../../../../util/globalHelper";
+import BlockchainAllocationBox from "./BlockchainAllocationBox";
+import AssetAllocationBox from "./AssetAllocationBox";
 
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();
-  const inflowOutflowTokensData = useSelector((state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress);
+  const inflowOutflowTokensData = useSelector(
+    (state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress
+  );
 
   return (
     <>
       <Box
-        display={"flex"}
+        layerStyle={"flexAlignCenterJustifyCenter"}
         flexDir={{ base: "column", bigSize: "row" }}
-        justifyContent={"center"}
-        alignItems={"center"}
         gap={"20px"}
         w="100%"
         my="20px"
       >
+        <BlockchainAllocationBox />
 
-        <Box
-          w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
-          display={"flex"}
-          flexDirection={"column"}
-          borderRadius={"6px"}
-          _dark={{
-            bg: "#202020",
-          }}
-          _light={{
-            bg: "#FFFFFF",
-          }}
-          height={"380px"}
-        >
-          <Box
-            display="flex"
-            //justifyContent={"space-between"}
-            alignItems={"center"}
-            p="22px 25px"
-          >
-            <Text
-              fontSize={"18px"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-              _dark={{ color: "#FFF" }}
-              _light={{ color: "#212121" }}
-            >
-              Blockchain Allocation
-            </Text>
-            <>
-              <Tooltip label="Blockchain allocation chart shows the value distribution of an individual wallet assets among different Blockchains."
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                fontWeight={400}
-                fontSize={"10px"}
-              >
-                <Image width={"12px"}
-                  height={"12px"}
-                  flexShrink={"0"}
-                  mt={"5px"}
-                  ml={"5px"}
-                  alt=''
-                  src="/images/Frame.svg">
-                </Image>
-              </Tooltip>
-            </>
-
-            {/*   <Button
-              fontSize={"10px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              _dark={{ color: "#FFF", bgColor: "#191919", border: "1px solid #979AA5" }}
-              _light={{ color: "#16171B", bgColor: "#979AA5", border: "1px solid #787878" }}
-              padding={"7px 11px"}
-            >
-              View More
-            </Button> */}
-
-          </Box>
-
-          <Box
-            paddingLeft={"45px"}
-          >
-            <BlockchainAllocationTreemapChart />
-          </Box>
-        </Box>
-
-        <Box
-         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
-          display={"flex"}
-          flexDirection={"column"}
-          borderRadius={"6px"}
-          _dark={{
-            bg: "#202020",
-          }}
-          _light={{
-            bg: "#FFFFFF",
-          }}
-          height={"380px"}
-        >
-          {/* <Box
-            display="flex"
-            p="22px 25px"
-          > */}
-          <Flex
-            height={"30px"}
-            borderRadius={"6px"}
-            _dark={{
-              bg: "#202020",
-              color: "#FFFFFF"
-            }}
-            _light={{
-              bg: "#FFFFFF",
-              color: "#16171B"
-            }} >
-            <Text
-              fontSize={"18px"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-              _dark={{ color: "#FFF" }}
-              _light={{ color: "#212121" }}
-              mt={"20px"}
-              ml={"25px"}
-            >
-              Assets Allocation
-            </Text>
-            <>
-              <Tooltip
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                fontWeight={400}
-                fontSize={"10px"}
-                label="Assets allocation chart shows the value distribution of an individual wallet among different assets i.e., Token, Cryptocurrencies.">
-                <Image width={"12px"}
-                  height={"12px"}
-                  flexShrink={"0"}
-                  mt={"25px"}
-                  ml={"5px"}
-                  alt=''
-                  src="/images/Frame.svg">
-                </Image>
-              </Tooltip>
-            </>
-          </Flex>
-          {/* </Box> */}
-          <Box
-            mt={"20px"}
-          >
-            <AssetAllocationPieChart />
-          </Box>
-        </Box>
-
+        <AssetAllocationBox />
       </Box>
 
       <Box
@@ -189,9 +48,8 @@ const WalletAnalyticsPanel = () => {
         w="100%"
         my="20px"
       >
-
         <Box
-          w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
+          w={{ base: "90%", bigSize: "50%", md: "90%" }}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
@@ -207,7 +65,7 @@ const WalletAnalyticsPanel = () => {
         </Box>
 
         <Box
-         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
+          w={{ base: "90%", bigSize: "50%", md: "90%" }}
           height={"367px"}
           display={"flex"}
           flexDirection={"column"}
@@ -221,7 +79,6 @@ const WalletAnalyticsPanel = () => {
         >
           <InteractionWithKnownEntitiesTable />
         </Box>
-
       </Box>
 
       <Box
@@ -233,9 +90,8 @@ const WalletAnalyticsPanel = () => {
         w="100%"
         my="20px"
       >
-
         <Box
-         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
+          w={{ base: "90%", bigSize: "50%", md: "90%" }}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
@@ -251,7 +107,7 @@ const WalletAnalyticsPanel = () => {
         </Box>
 
         <Box
-         w={{ base: "90%", bigSize:"50%" ,md:"90%"}}
+          w={{ base: "90%", bigSize: "50%", md: "90%" }}
           height={{ base: "none", md: "367px" }}
           display={"flex"}
           flexDirection={"column"}
@@ -265,7 +121,6 @@ const WalletAnalyticsPanel = () => {
         >
           <OutflowTokensTable />
         </Box>
-
       </Box>
 
       {/* End of varun's code */}
@@ -305,7 +160,6 @@ const WalletAnalyticsPanel = () => {
         </Box>
       </Box> */}
 
-
       <Box
         display={"flex"}
         flexDir={{ base: "column", md: "row" }}
@@ -315,7 +169,6 @@ const WalletAnalyticsPanel = () => {
         w="100%"
         mt="20px"
       >
-
         <Box
           my="20px"
           w={{ base: "90%", md: "100%" }}
@@ -335,11 +188,11 @@ const WalletAnalyticsPanel = () => {
             borderRadius={"6px"}
             _dark={{
               bg: "#202020",
-              color: "#FFFFFF"
+              color: "#FFFFFF",
             }}
             _light={{
               bg: "#FFFFFF",
-              color: "#16171B"
+              color: "#16171B",
             }}
             pb="14px"
           >
@@ -359,23 +212,26 @@ const WalletAnalyticsPanel = () => {
               padding="4px 8px"
               fontWeight={400}
               fontSize={"10px"}
-              label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance.">
-              <Image width={"12px"}
+              label="Performance graph shows the wallet portfolio performance in comparison with Bitcoin and Ethereum market performance."
+            >
+              <Image
+                width={"12px"}
                 height={"12px"}
                 flexShrink={"0"}
                 mt={"5px"}
                 ml={"5px"}
-                alt=''
-                src="/images/Frame.svg">
-              </Image>
+                alt=""
+                src="/images/Frame.svg"
+              ></Image>
             </Tooltip>
           </Flex>
 
-          <Box _dark={{
-            color: "#FFF"
-          }}
+          <Box
+            _dark={{
+              color: "#FFF",
+            }}
             _light={{
-              color: "#16171B"
+              color: "#16171B",
             }}
             fontSize={"20px"}
             fontWeight={"400"}
@@ -390,10 +246,9 @@ const WalletAnalyticsPanel = () => {
             No Data Available
           </Box>
         </Box>
-
       </Box>
     </>
   );
-}
+};
 
 export default WalletAnalyticsPanel;

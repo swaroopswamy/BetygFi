@@ -6,7 +6,6 @@ import {
   useColorMode,
   Box,
   Tooltip,
-  Skeleton,
   Tr,
   Th,
   Td,
@@ -15,40 +14,31 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import isEmpty from "is-empty";
-import millify from "millify";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useEffect, useState, useCallback } from "react";
-import { thread } from "@/app/components/pages/walletDashboard/helper";
+import {
+  tableHeader,
+  TransactionTableDesktop,
+  TransactionTableMobile,
+} from "@/app/components/pages/walletDashboard/helper";
 import GenericTable from "@/app/components/table/index";
-import SingleAccordionComp from "@/app/components/accordion";
 
 const TransactionPanelComponent = () => {
   const searchParam = useSearchParams();
-  const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-  const value1 = "300";
-  const value2 = "200";
-  const value3 = "-300";
   const [tablePage, setTablePage] = useState(1);
-
   const walletTransactionsData = useSelector(
     (state) => state?.walletDashboardTableData?.walletTransactionsData
-  );
-  const walletAddress = useSelector(
-    (state) => state?.walletDashboardTableData?.walletAddress
   );
   const blockchainSelected = useSelector(
     (state) => state?.walletDashboardTableData?.blockchainType
   );
-
   const pageChangeHandler = (page) => {
     tablePage >= 1 && setTablePage(page);
   };
-
   const fetchWalletTransactionsDataHandler = useCallback(() => {
     const data = {
       address: searchParam.get("address"),
@@ -69,7 +59,6 @@ const TransactionPanelComponent = () => {
     <>
       <Box
         w={"100%"}
-        // display={{ base: "none", md: "block" }}
         mt="25px"
         borderRadius={"6px"}
         bgColor={useColorModeValue("#FFF", "#202020")}
@@ -91,15 +80,18 @@ const TransactionPanelComponent = () => {
 
         <Box overflow={"auto"}>
           <GenericTable
-            thread={thread}
+            tableHeader={tableHeader}
             tableData={walletTransactionsData}
             TableRow={TableRow}
             TableHeaderRowMobile={TableHeaderRowMobile}
             ButtonComp={TableBodyRowMobileButtonComp}
             PanelComp={TableBodyRowMobilePanelComp}
+            SkeletonRowsColumnsDesktop={TransactionTableDesktop}
+            SkeletonRowsColumnsMobile={TransactionTableMobile}
           />
         </Box>
         <Box
+          display={{ base: "none", md: "block" }}
           _dark={{
             bg: "#202020",
           }}
@@ -130,38 +122,26 @@ const TableRow = ({ item, rowIndex }) => {
       <Tr key={rowIndex}>
         <Td>
           <Box layerStyle={"flexCenter"} gap={"10px"}>
-            <Tooltip key={rowIndex} label={item.name}>
+            <Tooltip label={item?.blockchain}>
               <>
                 <Image
                   w={"18px"}
                   h={"18px"}
                   mr={"3px"}
                   src={item.logoUrl}
-                  alt={`${item.id}_icon`}
+                  alt={`${item?.blockchain}_icon`}
                   style={{ borderRadius: "50%" }}
                 ></Image>
               </>
             </Tooltip>
 
-            <Box>
-              <Text variant={"h3"} ml="6px" w="95px">
+            <Box w={"100%"}>
+              <Text variant={"h3"} ml="6px">
                 {walletAddress?.split("").join("").substring(0, 8) +
                   "......" +
                   walletAddress?.slice(-5)}
               </Text>
-              <Text
-                opacity={"0.6000000238418579"}
-                _dark={{
-                  color: "#FFF",
-                }}
-                _light={{
-                  color: "#16171B",
-                }}
-                fontSize={"12px"}
-                fontWeight={"400"}
-                //letterSpacing={"1px"}
-                ml="6px"
-              >
+              <Text opacity={"0.6000000238418579"} variant={"h5"} ml="6px">
                 {moment.unix(item?.timeStamp).format("Do MMM YYYY")}
               </Text>
             </Box>
@@ -169,15 +149,11 @@ const TableRow = ({ item, rowIndex }) => {
         </Td>
 
         <Td>
-          <Box layerStyle={"flexAlignCenterJustifyCenter"}>
+          <Box layerStyle={"flexCenter"}>
             <Link
               fontSize={"14px"}
-              fontWeight={500}
-              fontStyle={"normal"}
-              letterSpacing={"1px"}
               ml="4px"
-              display={"flex"}
-              alignItems={"center"}
+              layerStyle={"flexCenter"}
               _dark={{
                 color: "#FFF",
               }}
@@ -265,18 +241,12 @@ const TableHeaderRowMobile = () => {
     <>
       <Tr>
         <Th colSpan={2}>
-          <Box layerStyle={"spacebetween"}>
+          <Box layerStyle={"spaceBetween"}>
             <Text
               _light={{
-                color: "#16171B",
                 opacity: "0.8",
               }}
-              _dark={{ color: "#A8ADBD" }}
-              fontSize={"14px"}
-              fontWeight={400}
-              letterSpacing={"1.4px"}
-              lineHeight={"20px"}
-              alignItems={"center"}
+              variant={"h3"}
               textTransform={"capitalize"}
             >
               Address And Date
@@ -284,14 +254,8 @@ const TableHeaderRowMobile = () => {
             <Text
               _light={{
                 color: "#16171B",
-                opacity: "0.8",
               }}
-              _dark={{ color: "#A8ADBD" }}
-              fontSize={"14px"}
-              fontFamily={"Manrope"}
-              fontWeight={400}
-              letterSpacing={"1.4px"}
-              lineHeight={"20px"}
+              variant={"h3"}
               textTransform={"capitalize"}
             >
               USD Value
@@ -530,14 +494,7 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               fontStyle={"normal"}
               letterSpacing={"1px"}
               ml="4px"
-              display={"flex"}
-              alignItems={"center"}
-              // _dark={{
-              //   color: "#FFF"
-              // }}
-              // _light={{
-              //   color: "#16171B"
-              // }}
+              layerStyle={"flexCenter"}
               isExternal
               href={item?.blockExplorerUrl}
             >
@@ -587,14 +544,7 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               fontStyle={"normal"}
               letterSpacing={"1px"}
               ml="4px"
-              display={"flex"}
-              alignItems={"center"}
-              // _dark={{
-              //   color: "#FFF"
-              // }}
-              // _light={{
-              //   color: "#16171B"
-              // }}
+              layerStyle={"flexCenter"}
               isExternal
               href={item?.blockExplorerUrl}
             >

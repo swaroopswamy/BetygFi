@@ -1,4 +1,4 @@
-export const thread = [
+export const tableHeader = [
   {
     value: "addressAndDate",
     label: " Address And Date",
@@ -14,8 +14,8 @@ export const thread = [
     tooltipLabel: null,
   },
   {
-    value: "from",
-    label: "From",
+    value: "Amount / Token",
+    label: "Amount / Token",
     isTooltip: false,
     isSortingEnabled: true,
     tooltipLabel: null,
@@ -42,3 +42,12 @@ export const thread = [
     tooltipLabel: null,
   },
 ];
+
+export const TransactionTableDesktop = {
+  numColumns: 6,
+  numRows: 4,
+};
+export const TransactionTableMobile = {
+  numColumns: 2,
+  numRows: 4,
+};

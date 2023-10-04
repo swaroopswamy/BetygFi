@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text, Table, Thead, Tbody, Tr, Th, Td, TableContainer, useColorMode, Tooltip, Skeleton, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, useColorModeValue } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
-import { SkeletonRow, USDollar } from './wallet_analytics';
+import { USDollar } from "../../../../../util/globalHelper";
 
 const OutflowTokensTable = () => {
     const { colorMode } = useColorMode();

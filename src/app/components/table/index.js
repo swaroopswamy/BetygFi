@@ -27,6 +27,8 @@ const GenericTable = ({
   TableHeaderRowMobile,
   ButtonComp,
   PanelComp,
+  SkeletonRowsColumnsDesktop,
+  SkeletonRowsColumnsMobile,
 }) => {
   return (
     <>
@@ -87,7 +89,10 @@ const GenericTable = ({
           )}
           {tableData?.isLoading && (
             <>
-              <SkeletonTable numColumns={8} numRows={3} />
+              <SkeletonTable
+                numColumns={SkeletonRowsColumnsDesktop.numColumns}
+                numRows={SkeletonRowsColumnsDesktop.numRows}
+              />
             </>
           )}
 
@@ -123,7 +128,10 @@ const GenericTable = ({
           )}
           {tableData?.isLoading && (
             <>
-              <SkeletonTable numColumns={3} numRows={3} />
+              <SkeletonTable
+                numColumns={SkeletonRowsColumnsMobile.numColumns}
+                numRows={SkeletonRowsColumnsMobile.numRows}
+              />
             </>
           )}
 

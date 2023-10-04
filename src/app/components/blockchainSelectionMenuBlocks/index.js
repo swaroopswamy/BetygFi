@@ -42,6 +42,7 @@ const BlockchainSelectionMenuBlocks = () => {
       }}
     >
       <Box
+        layerStyle={"flexCenter"}
         position={"relative"}
         cursor={"pointer"}
         fontSize={"14px"}

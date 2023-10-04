@@ -4,7 +4,7 @@ import React from "react";
 const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
   return (
     <Box
-      layerStyles={"flexSpaceBetween"}
+      layerStyle={"flexSpaceBetween"}
       padding={{ base: "17px 13px 50px", md: "20px 30px 50px 30px" }}
     >
       <Box layerStyle={"flexCenter"}>
