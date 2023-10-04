@@ -13,13 +13,14 @@ import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import GenericTable from "/src/app/components/table";
+
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
   const router = useRouter();
   const { colorMode } = useColorMode();
 
   return (
-    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"}>
+    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"50px"}>
       <Box layerStyle={"flexCenter"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
@@ -30,6 +31,8 @@ const Rankings = () => {
         tableData={tableData}
         TableRow={TableRow}
         TableHeaderRowMobile={TableHeaderRowMobile}
+        ButtonComp={ButtonComp}
+        PanelComp={PanelComp}
       />
     </Box>
   );
@@ -254,5 +257,36 @@ const TableHeaderRowMobile = () => {
         </Text>
       </Th>
     </Tr>
+  )
+}
+
+const ButtonComp = ( {item} ) => {
+  return (
+    <Box display={"flex"} w="100%" justifyContent={"space-between"} alignItems={"center"} ml={"20px"}>
+        <Box display={"flex"} w={"50%"} justifyContent={"start"}>
+          <Text variant={"h3"}>
+            {item?.Rank === undefined ? '-' : item?.Rank}
+          </Text>
+
+          <Box ml={"50px"}>
+            <Text variant={"h3"}>
+              {item?.name}
+            </Text>
+          </Box>
+        </Box>
+
+        <Box w={"50%"} layerStyle={"center"} justifyContent={"center"}>
+          <Text variant={"h3"}>
+            {item?.Rank === undefined ? '-' : item?.Rank}
+          </Text>
+        </Box>
+    </Box>
+  )
+}
+
+const PanelComp = ( {item} ) => {
+  return (
+    <Box layerStyle={"flexColumn"}  w="100%" justifyContent={"space-between"}>
+    </Box>
   )
 }

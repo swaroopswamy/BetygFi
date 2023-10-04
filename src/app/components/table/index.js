@@ -1,4 +1,8 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Flex,
   Image,
@@ -8,15 +12,16 @@ import {
   Th,
   Thead,
   Tr,
+  Td,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import GenericInfoTooltip from "../infoTooltip";
+import TooltipComp from "/src/app/components/tooltipComp";
+import SkeletonTable from "/src/app/components/skeleton";
+import { SingleAccordionComp } from "/src/app/components/accordion";
 
-import SkeletonTable from "../skeleton";
-import { SingleAccordionComp } from "../accordion";
 const GenericTable = ({
-  thread,
+  tableHeader,
   tableData,
   TableRow,
   TableHeaderRowMobile,
@@ -33,27 +38,17 @@ const GenericTable = ({
         minW={"1400px"}
       >
         <Thead
-          bgColor={useColorModeValue("#F5F5F7", "colors.primary.black.4")}
+          bgColor={useColorModeValue("#F5F5F7", "#191919")}
           position="sticky"
           top={0}
         >
           <Tr>
-            {thread.map((item, i) => {
+            {tableHeader.map((item, i) => {
               return (
-                <Th key={i}>
+                <Th key={i} border={"0px"}>
                   <Flex>
                     <Text
-                      _light={{
-                        color: "#16171B",
-                        opacity: "0.8",
-                      }}
-                      _dark={{ color: "colors.primary.gray.5" }}
-                      fontSize={"14px"}
-                      fontFamily={"Manrope"}
-                      fontStyle={"normal"}
-                      fontWeight={"400"}
-                      lineHeight={"20px"}
-                      letterSpacing={"1px"}
+                      variant={"tableHead"}
                       textTransform={"capitalize"}
                       textAlign={"left"}
                     >
@@ -71,7 +66,7 @@ const GenericTable = ({
                       />
                     )}
                     {item.isTooltip && (
-                      <GenericInfoTooltip label={item?.tooltipLabel} />
+                      <TooltipComp label={item?.tooltipLabel} />
                     )}
                   </Flex>
                 </Th>
@@ -80,21 +75,12 @@ const GenericTable = ({
           </Tr>
         </Thead>
 
-        <Tbody>
+        <Tbody border={"0px"}>
           {tableData?.isError && (
             <>
               <Tr>
-                <Td
-                  color={useColorModeValue("colors.primary.dark.3", "#FFF")}
-                  fontSize={"20px"}
-                  fontWeight={"400"}
-                  letterSpacing={"1px"}
-                  p="20px"
-                  textAlign={"center"}
-                  colSpan={8}
-                  opacity={0.6}
-                >
-                  No data available
+                <Td p="20px" textAlign={"center"} colSpan={8} opacity={0.6}>
+                  <Text variant={"h4"}>No data available</Text>
                 </Td>
               </Tr>
             </>
@@ -108,67 +94,30 @@ const GenericTable = ({
           {tableData.isSuccess &&
             (tableData.data?.data?.length > 0 ? (
               tableData.data?.data.map((item, rowIndex) => {
-                return (
-                  <TableRow
-                    item={item}
-                    rowIndex={rowIndex}
-                    tableData={tableData}
-                  />
-                );
+                return <TableRow item={item} rowIndex={rowIndex} />;
               })
             ) : (
               <>
                 <Tr>
-                  <Td
-                    color={useColorModeValue("colors.primary.dark.3", "#FFF")}
-                    fontSize={"20px"}
-                    fontWeight={"400"}
-                    letterSpacing={"1px"}
-                    colSpan={8}
-                    textAlign={"center"}
-                    p="20px"
-                    opacity={0.6}
-                  >
-                    No data available
+                  <Td p="20px" textAlign={"center"} colSpan={8} opacity={0.6}>
+                    <Text variant={"h4"}>No data available</Text>
                   </Td>
                 </Tr>
               </>
             ))}
         </Tbody>
       </Table>
-      <Table
-        variant={"unstyled"}
-        bgColor={useColorModeValue(
-          "colors.primary.white.4",
-          "colors.primary.black.3"
-        )}
-        borderRadius={"6px"}
-        display={{ base: "table", md: "none" }}
-      >
-        <Thead
-          bg={useColorModeValue(
-            "colors.primary.gray.14",
-            "colors.primary.black.4"
-          )}
-        >
+
+      <Table variant={"unstyled"} display={{ base: "table", md: "none" }}>
+        <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
           <TableHeaderRowMobile />
         </Thead>
 
         <Tbody>
           {tableData?.isError && (
             <Tr>
-              <Td colSpan={2}>
-                <Text
-                  _dark={{
-                    color: "colors.primary.white.4",
-                  }}
-                  _light={{
-                    color: "colors.primary.dark.3",
-                  }}
-                  className="bigtable-nodata"
-                >
-                  No data available
-                </Text>
+              <Td p="20px" textAlign={"center"} colSpan={2} opacity={0.6}>
+                <Text variant={"h4"}>No data available</Text>
               </Td>
             </Tr>
           )}
@@ -183,30 +132,29 @@ const GenericTable = ({
               tableData.data?.data.map((item, rowIndex) => {
                 return (
                   <>
-                    <SingleAccordionComp
-                      display={{ base: "flex", md: "none" }}
-                      minH={"50px"}
-                      ButtonComp={ButtonComp(item)}
-                      PanelComp={PanelComp(item)}
-                      rowIndex={rowIndex}
-                    />
+                    <Tr>
+                      <Td p={0} colSpan={3}>
+                        <SingleAccordionComp
+                          display={"flex"}
+                          minH={"50px"}
+                          w={"100%"}
+                          borderRadius={"0px"}
+                          ButtonComp={() => {
+                            return <ButtonComp item={item} />;
+                          }}
+                          PanelComp={() => {
+                            return <PanelComp item={item} />;
+                          }}
+                        />
+                      </Td>
+                    </Tr>
                   </>
                 );
               })
             ) : (
               <Tr>
-                <Td colSpan={2}>
-                  <Text
-                    _dark={{
-                      color: "colors.primary.white.4",
-                    }}
-                    _light={{
-                      color: "colors.primary.dark.3",
-                    }}
-                    className="bigtable-nodata"
-                  >
-                    No data available
-                  </Text>
+                <Td p="20px" textAlign={"center"} colSpan={2} opacity={0.6}>
+                  <Text variant={"h4"}>No data available</Text>
                 </Td>
               </Tr>
             ))}
