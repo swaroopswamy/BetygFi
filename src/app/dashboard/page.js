@@ -144,7 +144,7 @@ const Dashboard = () => {
         </Box>
 
         <Box display={"flex"} flexDir={"column"} bg={useColorModeValue('#F0F0F5', '#191919')} px={{base: "18px", md: "30px"}} borderTop={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}>
-          <Box display={"flex"} flexDir={{base: "column", md: "row"}} py={"30px"} gap={"15px"}>
+          <Box display={"flex"} flexDir={{base: "column", lg: "row"}} py={"30px"} gap={"15px"}>
             <OverviewBox />
             <OverviewColumnChart />
           </Box>

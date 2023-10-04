@@ -19,7 +19,7 @@ const OverviewBox = () => {
 
     return (
         <>
-            <Box w="50%" display={{base: "none", md: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
+            <Box w="50%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
                 <Box layerStyle='spaceBetween' gap={"10px"}>
                     <Text variant={"h2"}>
                         Overview
@@ -53,7 +53,7 @@ const OverviewBox = () => {
                 </Box>
             </Box>
 
-            <SingleAccordionComp display={{base: "flex", md: "none"}} minH={"50px"}
+            <SingleAccordionComp display={{base: "flex", lg: "none"}} minH={"50px"}
                 ButtonComp={() => {
                     return (
                         <Box layerStyle='spaceBetween' w={"100%"} gap={"10px"} mr={"10px"}>

@@ -19,7 +19,7 @@ const Rankings = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"}>
+    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"}>
       <Box layerStyle={"flexCenter"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
