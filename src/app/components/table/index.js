@@ -90,8 +90,8 @@ const GenericTable = ({
           {tableData?.isLoading && (
             <>
               <SkeletonTable
-                numColumns={SkeletonRowsColumnsDesktop.numColumns}
-                numRows={SkeletonRowsColumnsDesktop.numRows}
+                numColumns={SkeletonRowsColumnsDesktop?.numColumns}
+                numRows={SkeletonRowsColumnsDesktop?.numRows}
               />
             </>
           )}

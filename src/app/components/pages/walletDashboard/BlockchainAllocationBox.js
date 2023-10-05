@@ -1,17 +1,9 @@
-import {
-  useColorMode,
-  useColorModeValue,
-  Skeleton,
-  Box,
-  Text,
-  Tooltip,
-  Image,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { useColorMode, Skeleton, Box, Text } from "@chakra-ui/react";
+import React from "react";
 import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import isEmpty from "is-empty";
+import TooltipComp from "@/app/components/tooltipComp";
+import CustomChart from "@/app/components/graph";
 const BlockchainAllocationBox = () => {
   const { colorMode } = useColorMode();
   const walletBalanceData = useSelector(
@@ -192,118 +184,34 @@ const BlockchainAllocationBox = () => {
         }}
         height={"380px"}
       >
-        <Box
-          display="flex"
-          //justifyContent={"space-between"}
-          alignItems={"center"}
-          p="22px 25px"
-        >
-          <Text
-            fontSize={"18px"}
-            fontWeight={"600"}
-            lineHeight={"20px"}
-            _dark={{ color: "#FFF" }}
-            _light={{ color: "#212121" }}
-          >
-            Blockchain Allocation
-          </Text>
-          <>
-            <Tooltip
-              label="Blockchain allocation chart shows the value distribution of an individual wallet assets among different Blockchains."
-              bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-              padding="4px 8px"
-              fontWeight={400}
-              fontSize={"10px"}
-            >
-              <Image
-                width={"12px"}
-                height={"12px"}
-                flexShrink={"0"}
-                mt={"5px"}
-                ml={"5px"}
-                alt=""
-                src="/images/Frame.svg"
-              ></Image>
-            </Tooltip>
-          </>
-
-          {/*   <Button
-              fontSize={"10px"}
-              fontWeight={400}
-              lineHeight={"20px"}
-              _dark={{ color: "#FFF", bgColor: "#191919", border: "1px solid #979AA5" }}
-              _light={{ color: "#16171B", bgColor: "#979AA5", border: "1px solid #787878" }}
-              padding={"7px 11px"}
-            >
-              View More
-            </Button> */}
+        <Box layerStyle={"flexCenter"} p="22px 25px">
+          <Text variant={"smallTableHeader"}>Blockchain Allocation</Text>
+          <TooltipComp label="Blockchain allocation chart shows the value distribution of an individual wallet assets among different Blockchains." />
         </Box>
 
         <Box paddingLeft={"45px"}>
           {blockchainAllocationData?.isLoading && (
             <Skeleton>
-              <Box
-                height={"282px"}
-                pt={"9px"}
-                /*    display={"flex"}
-                       justifyContent={"center"}
-                       alignItems={"center"} */
-              ></Box>
+              <Box height={"282px"} pt={"9px"}></Box>
             </Skeleton>
           )}
           {blockchainAllocationData?.isError && (
-            <Box
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              fontSize={"20px"}
-              fontWeight={"400"}
-              letterSpacing={"1px"}
-              textAlign={"center"}
-              height={"245px"}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              opacity={0.6}
-            >
-              No Data Available
+            <Box layerStyle={"flexAlignCenterJustifyCenter"} height={"245px"}>
+              <Text variant={"noDataText"}>No Data Available</Text>
             </Box>
           )}
           {blockchainAllocationData?.isSuccess &&
             (isEmpty(blockchainAllocationData?.data) ? (
-              <>
-                <Box
-                  _dark={{
-                    color: "#FFF",
-                  }}
-                  _light={{
-                    color: "#16171B",
-                  }}
-                  fontSize={"20px"}
-                  fontWeight={"400"}
-                  letterSpacing={"1px"}
-                  display={"flex"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  textAlign={"center"}
-                  height={"245px"}
-                  opacity={0.6}
-                >
-                  No Data Available
-                </Box>
-              </>
+              <Box layerStyle={"flexAlignCenterJustifyCenter"} height={"245px"}>
+                <Text variant={"noDataText"}>No Data Available</Text>
+              </Box>
             ) : (
-              <>
-                <ApexCharts
-                  options={options}
-                  series={finalSeries}
-                  type="treemap"
-                  height={300}
-                />
-              </>
+              <CustomChart
+                options={options}
+                series={finalSeries}
+                type="treemap"
+                height={300}
+              />
             ))}
         </Box>
       </Box>

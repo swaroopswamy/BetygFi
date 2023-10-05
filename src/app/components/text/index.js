@@ -39,6 +39,20 @@ const Text = defineStyleConfig({
       lineHeight: "20px",
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
+    noDataText: ({ colorMode }) => ({
+      fontSize: "20px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      letterSpacing: "1px",
+      opacity: 0.6,
+      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+    }),
+    smallTableHeader: ({ colorMode }) => ({
+      fontSize: "18px",
+      fontWeight: "600",
+      lineHeight: "20px",
+      color: colorMode === "light" ? "#212121" : "#FFFFFF",
+    }),
   },
   defaultProps: {
     variant: "base",

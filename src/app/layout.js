@@ -5,6 +5,7 @@ import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from './Web3Provider';
 import './styles.scss';
+import '../../styles/styles.scss';
 import Script from "next/script";
 const manrope = Manrope({
   weight: ['400', '700'],
@@ -15,7 +16,6 @@ const manrope = Manrope({
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
-  //viewport: `width=1200`
 };
 
 export default function RootLayout({ children }) {

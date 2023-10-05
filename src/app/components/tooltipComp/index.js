@@ -10,6 +10,7 @@ const TooltipComp = ({ label }) => {
                     width={"12px"}
                     height={"12px"}
                     alt={label}
+                    ml={"5px"}
                 ></TooltipIcon>
             </Tooltip>
         </>
