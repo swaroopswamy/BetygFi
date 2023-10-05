@@ -21,6 +21,8 @@ import {
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
+  const [searchByName, setSearchByName] = useState('');
+
   const dispatch = useDispatch();
 
   const blockchainSelected = useSelector(
@@ -38,21 +40,29 @@ const Rankings = () => {
 
   const searchByNameHandler = (name) => {
     setSearchByName(name);
-    setTablePage(1); // fix 2
+    setTablePage(1);
   }
 
   const getDefiRankingsTableDataHandler = () => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-      page: tablePage,
-    };
-    dispatch(fetchDefiRankingTableData(payload));
+    if (!isEmpty(searchByName)) {
+      const payload = {
+        name: searchByName,
+        page: tablePage,
+      };
+      dispatch(fetchDefiRankingTableData(payload));
+    } else {
+      const payload = {
+        blockchain: blockchainSelected,
+        category: categorySelected,
+        page: tablePage,
+      };
+      dispatch(fetchDefiRankingTableData(payload));
+    }
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-  }, [blockchainSelected, categorySelected, tablePage]);
+  }, [blockchainSelected, categorySelected, tablePage, searchByName]);
 
   return (
     <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} mb={{base: "100px", md: "60px"}}>
@@ -63,6 +73,9 @@ const Rankings = () => {
 
         <SearchBox
           placeholder={"Search Defi"}
+          onChange={(e) => {
+            searchByNameHandler(e.target.value)
+          }}
         />
       </Box>
 
