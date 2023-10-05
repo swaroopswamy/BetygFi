@@ -13,6 +13,7 @@ import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import GenericTable from "/src/app/components/table";
+import SearchBox from "/src/app/components/searchBox";
 import TooltipComp from "/src/app/components/tooltipComp";
 
 
@@ -23,10 +24,12 @@ const Rankings = () => {
 
   return (
     <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"50px"}>
-      <Box layerStyle={"flexCenter"} p={"20px"} h={"75px"}>
+      <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
         </Text>
+
+        <SearchBox />
       </Box>
       <GenericTable 
         tableHeader={tableHeader}
