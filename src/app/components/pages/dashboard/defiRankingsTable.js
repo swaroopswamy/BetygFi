@@ -3,7 +3,7 @@
 import {
   Text, Td, Th, Tr, Box, useColorModeValue,useColorMode
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import isEmpty from "is-empty";
@@ -13,8 +13,11 @@ import GenericTable from "/src/app/components/table";
 import SearchBox from "/src/app/components/searchBox";
 import TooltipComp from "/src/app/components/tooltipComp";
 import { tableHeader } from "/src/app/components/pages/dashboard/helper";
+import PageButtons from "/src/app/components/pageButtons";
 
 const Rankings = () => {
+  const [tablePage, setTablePage] = useState(1);
+
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
 
   const pageChangeHandler = (page) => {
@@ -27,7 +30,7 @@ const Rankings = () => {
   }
 
   return (
-    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"60px"}>
+    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} mb={"60px"}>
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
@@ -36,14 +39,25 @@ const Rankings = () => {
         <SearchBox />
       </Box>
 
-      <GenericTable 
-        tableHeader={tableHeader}
-        tableData={tableData}
-        TableRow={TableRow}
-        TableHeaderRowMobile={TableHeaderRowMobile}
-        ButtonComp={ButtonComp}
-        PanelComp={PanelComp}
-      />
+      <Box display={"flex"} overflowX={"auto"}>
+        <GenericTable 
+          tableHeader={tableHeader}
+          tableData={tableData}
+          TableRow={TableRow}
+          TableHeaderRowMobile={TableHeaderRowMobile}
+          ButtonComp={ButtonComp}
+          PanelComp={PanelComp}
+        />
+      </Box>
+
+
+      <Box display={"flex"} alignItems={"center"} justifyContent={"right"} h={"50px"} p={"40px"}>
+        <PageButtons
+          page={tablePage}
+          totalPages={tableData?.data?.totalPages}
+          pageChangeHandler={pageChangeHandler}
+        />
+      </Box>
     </Box>
   );
 };

@@ -4,7 +4,7 @@ import { Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from './Web3Provider';
-import './styles.scss';
+import '/styles/styles.scss';
 import Script from "next/script";
 const manrope = Manrope({
   weight: ['400', '700'],

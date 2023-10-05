@@ -37,7 +37,7 @@ import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
 import useScreenSize from "@/hooks/useScreenSize";
 import Prefooter from "../components/prefooter";
-import "../styles.scss";
+import "/styles/styles.scss";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
