@@ -61,7 +61,9 @@ const Rankings = () => {
           Defi Rankings
         </Text>
 
-        <SearchBox />
+        <SearchBox
+          placeholder={"Search Defi"}
+        />
       </Box>
 
       <Box display={"flex"} overflowX={"auto"}>
