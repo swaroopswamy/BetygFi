@@ -26,7 +26,14 @@ const Text = defineStyleConfig({
             fontWeight: '400',
             lineHeight: '20px',
             color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
-        })
+        }),
+        tableHead: ({ colorMode }) => ({
+            fontSize: '14px',
+            fontWeight: '400',
+            lineHeight: '20px',
+            letterSpacing: '1.2px',
+            color: colorMode === 'light' ? 'rgba(22, 23, 27, 0.80)' : '#A8ADBD'
+        }),
     },
     defaultProps: {
         variant: 'base'

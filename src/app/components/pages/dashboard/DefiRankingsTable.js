@@ -13,6 +13,8 @@ import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import GenericTable from "/src/app/components/table";
+import TooltipComp from "/src/app/components/tooltipComp";
+
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
@@ -118,13 +120,10 @@ const TableRow = ( {item, rowIndex} ) => {
       </Td>
       <Td key={3}>
         <Text variant={"h3"}>
-          {!isEmpty(item.price)
-            ?
-            (item.price.toFixed(2)).toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD'
-            }) + " USD"
-            : 0}
+          {(Math.trunc(item.tvl)).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+              })}
           </Text>
       </Td>
       <Td key={4}>
@@ -149,7 +148,7 @@ const TableRow = ( {item, rowIndex} ) => {
         </Text>
       </Td>
       <Td key={7}>
-        <Box layerStyle={"center"} h="100%">
+        <Box layerStyle={"center"} h="100%" gap={"5px"}>
           {
             item?.safety_score === undefined ? '-' : (
               <>
@@ -167,7 +166,7 @@ const TableRow = ( {item, rowIndex} ) => {
                           ? "#FFB287"
                           : "#FF7373"
                   }
-                ></Box>{" "}
+                ></Box>
                 <Text variant={"h3"}>
                   {item?.safety_score?.toFixed(0)}
                 </Text>
@@ -264,21 +263,37 @@ const ButtonComp = ( {item} ) => {
   return (
     <Box display={"flex"} w="100%" justifyContent={"space-between"} alignItems={"center"} ml={"20px"}>
         <Box display={"flex"} w={"50%"} justifyContent={"start"}>
-          <Text variant={"h3"}>
-            {item?.Rank === undefined ? '-' : item?.Rank}
-          </Text>
+          <Text variant={"h3"}> {item?.Rank === undefined ? '-' : item?.Rank} </Text>
 
-          <Box ml={"50px"}>
-            <Text variant={"h3"}>
-              {item?.name}
-            </Text>
+          <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
+            <Image
+              width={24}
+              height={24}
+              style={{ borderRadius: "50%" }}
+              alt='logo'
+              src={item.logo}
+            ></Image>
+            <Text variant={"h3"}> {item?.name} </Text>
           </Box>
         </Box>
 
-        <Box w={"50%"} layerStyle={"center"} justifyContent={"center"}>
-          <Text variant={"h3"}>
-            {item?.Rank === undefined ? '-' : item?.Rank}
-          </Text>
+        <Box w={"50%"} layerStyle={"center"} justifyContent={"center"} gap={"5px"}>
+          <Box
+            w="12px"
+            h="9px"
+            borderRadius={"30px"}
+            mr={"4px"}
+            bgColor={
+              item.safety_score >= 75
+                ? "#9ADA8A"
+                : item.safety_score < 75 && item.safety_score >= 50
+                  ? "#FFD976"
+                  : item.safety_score < 50 && item.safety_score >= 25
+                    ? "#FFB287"
+                    : "#FF7373"
+            }
+          ></Box>
+          <Text variant={"h3"}> {item?.Rank === undefined ? '-' : item?.Rank} </Text>
         </Box>
     </Box>
   )
@@ -286,7 +301,71 @@ const ButtonComp = ( {item} ) => {
 
 const PanelComp = ( {item} ) => {
   return (
-    <Box layerStyle={"flexColumn"}  w="100%" justifyContent={"space-between"}>
+    <Box display={"flex"} flexDir={"column"} alignItems={"left"} w="100%" gap={"15px"}>
+        <Box display={"flex"} alignItems={"center"} justifyContent={"start"} gap={"10px"}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"start"} w={"40%"}>
+              <Text variant='tableHead'> Category </Text>
+              <TooltipComp label='hi' />
+          </Box>
+
+          <Text variant={"h3"} textAlign={"left"}>
+            {item.category}
+          </Text>
+        </Box>
+
+        <Box display={"flex"} alignItems={"center"} justifyContent={"start"} gap={"10px"}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"start"} w={"40%"}>
+              <Text variant='tableHead'> Price </Text>
+              <TooltipComp label='hi' />
+          </Box>
+
+          <Text variant={"h3"} textAlign={"left"}>
+            {(Math.trunc(item.price)).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+              })}
+          </Text>
+        </Box>
+
+        <Box display={"flex"} alignItems={"center"} justifyContent={"start"} gap={"10px"}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"start"} w={"40%"}>
+              <Text variant='tableHead'> TVL </Text>
+              <TooltipComp label='hi' />
+          </Box>
+
+          <Text variant={"h3"} textAlign={"left"}>
+            {(Math.trunc(item.tvl)).toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+              })}
+          </Text>
+        </Box>
+
+        <Box display={"flex"} alignItems={"center"} justifyContent={"start"} gap={"10px"}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"start"} w={"40%"}>
+              <Text variant='tableHead'> MCap </Text>
+              <TooltipComp label='hi' />
+          </Box>
+
+          <Text variant={"h3"} textAlign={"left"}>
+            {!isEmpty(item.mcap) ? `${(Math.trunc(item.mcap)).toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD'
+            })}` : "NA"}
+          </Text>
+        </Box>
+
+        <Box display={"flex"} alignItems={"center"} justifyContent={"start"} gap={"10px"}>
+          <Box display={"flex"} alignItems={"center"} justifyContent={"start"} w={"40%"}>
+              <Text variant='tableHead'> MCap/TVL </Text>
+              <TooltipComp label='hi' />
+          </Box>
+
+          <Text variant={"h3"} textAlign={"left"}>
+            {!isEmpty(item.mcap) && item.tvl !== 0 ? (item.mcap / item.tvl).toFixed(2) : "NA"}
+          </Text>
+        </Box>
+
     </Box>
   )
 }
