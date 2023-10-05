@@ -12,7 +12,7 @@ import '/styles/styles.scss';
 import GenericTable from "/src/app/components/table";
 import SearchBox from "/src/app/components/searchBox";
 import TooltipComp from "/src/app/components/tooltipComp";
-
+import { tableHeader } from "/src/app/components/pages/dashboard/helper";
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
@@ -27,7 +27,7 @@ const Rankings = () => {
   }
 
   return (
-    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"50px"}>
+    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"60px"}>
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
@@ -185,65 +185,6 @@ const TableRow = ( {item, rowIndex} ) => {
     </Tr>
   )
 }
-
-export const tableHeader = [
-  {
-    value: "rank",
-    label: "Rank",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "name",
-    label: "Name",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "category",
-    label: "Category",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "category",
-    label: "Price",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "tvl",
-    label: "TVL",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "mcap",
-    label: "MCap",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "mcaptvl",
-    label: "MCap/TVL",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-  {
-    value: "score",
-    label: "Score",
-    isTooltip: true,
-    isSortingEnabled: false,
-    tooltipLabel: null,
-  },
-];
 
 const TableHeaderRowMobile = () => {
   return (

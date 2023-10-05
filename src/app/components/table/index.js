@@ -23,13 +23,13 @@ import {
     const GenericTable = ({ tableHeader, tableData, TableRow, TableHeaderRowMobile, ButtonComp, PanelComp}) => {
       return (
         <>
-          <Table variant="simple" key={1} w={{ base: "100%", md: "100%" }} display={{ base: "none", md: "table" }} minW={"1400px"}>
+          <Table variant="simple" key={1} w={{ base: "100%", md: "100%" }} display={{ base: "none", md: "table" }} minW={"1200px"}>
             <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")} position="sticky" top={0}>
               <Tr>
                 {tableHeader.map((item, i) => {
                   return (
                     <Th key={i} border={"0px"}>
-                      <Flex>
+                      <Box display={"flex"} alignItems={"center"} gap={"3px"}>
                         <Text variant={"tableHead"} textTransform={"capitalize"} textAlign={"left"}>
                           {item.label}
                         </Text>
@@ -47,7 +47,7 @@ import {
                         {item.isTooltip && (
                           <TooltipComp label={item?.tooltipLabel} />
                         )}
-                      </Flex>
+                      </Box>
                     </Th>
                   );
                 })}

@@ -1,0 +1,58 @@
+export const tableHeader = [
+    {
+      value: "rank",
+      label: "Rank",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "name",
+      label: "Name",
+      isTooltip: false,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "category",
+      label: "Category",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "category",
+      label: "Price",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "tvl",
+      label: "TVL",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "mcap",
+      label: "MCap",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "mcaptvl",
+      label: "MCap/TVL",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+    {
+      value: "score",
+      label: "Score",
+      isTooltip: true,
+      isSortingEnabled: false,
+      tooltipLabel: null,
+    },
+  ];
