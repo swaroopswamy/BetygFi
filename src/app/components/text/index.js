@@ -1,62 +1,69 @@
 import { defineStyleConfig } from "@chakra-ui/react";
 
 const Text = defineStyleConfig({
-  baseStyle: {
-    fontSize: "14px",
-    fontWeight: "400",
-    lineHeight: "20px",
-  },
-  variants: {
-    base: {},
-    h1: ({ colorMode }) => ({
-      fontSize: { base: "18px", md: "24px" },
-      fontWeight: "600",
-      lineHeight: "20px",
-      letterSpacing: { base: "1.8px", md: "2.4px" },
-      color: colorMode === "light" ? "#191919" : "#FFFFFF",
-    }),
-    h2: ({ colorMode }) => ({
-      fontSize: "18px",
-      fontWeight: "600",
-      lineHeight: { base: "10px", md: "20px" },
-      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
-    }),
-    h3: ({ colorMode }) => ({
-      fontSize: "14px",
-      fontWeight: "400",
-      lineHeight: "20px",
-      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
-    }),
-    h4: ({ colorMode }) => ({
-      fontSize: "12px",
-      fontWeight: "400",
-      lineHeight: "20px",
-      color: colorMode === "light" ? "#16171B" : "#A8ADBD",
-    }),
-    h5: ({ colorMode }) => ({
-      fontSize: "12px",
-      fontWeight: "400",
-      lineHeight: "20px",
-      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
-    }),
-    noDataText: ({ colorMode }) => ({
-      fontSize: "20px",
-      fontWeight: "400",
-      lineHeight: "20px",
-      letterSpacing: "1px",
-      opacity: 0.6,
-      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
-    }),
-    smallTableHeader: ({ colorMode }) => ({
-      fontSize: "18px",
-      fontWeight: "600",
-      lineHeight: "20px",
-      color: colorMode === "light" ? "#212121" : "#FFFFFF",
-    }),
-  },
-  defaultProps: {
-    variant: "base",
-  },
-});
+    baseStyle: {
+        fontSize: "14px",
+        fontWeight: "400",
+        lineHeight: "20px",
+    },
+    variants: {
+        base: {},
+        h1: ({ colorMode }) => ({
+            fontSize: {base: '18px', md:'24px'},
+            fontWeight: '600',
+            lineHeight: '20px',
+            letterSpacing: {base: '1.8px', md: '2.4px'},
+            color: colorMode === 'light' ? '#191919' : '#FFFFFF'
+        }),
+        h2: ({ colorMode }) => ({
+            fontSize: '18px',
+            fontWeight: '600',
+            lineHeight: {base: '10px', md: '20px'},
+            color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
+        }),
+        h3: ({ colorMode }) => ({
+            fontSize: '14px',
+            fontWeight: '400',
+            lineHeight: '20px',
+            color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
+        }),
+        tableHead: ({ colorMode }) => ({
+            fontSize: '14px',
+            fontWeight: '400',
+            lineHeight: '20px',
+            letterSpacing: '1.2px',
+            color: colorMode === 'light' ? 'rgba(22, 23, 27, 0.80)' : '#A8ADBD'
+        }),
+        h4: ({ colorMode }) => ({
+          fontSize: "12px",
+          fontWeight: "400",
+          lineHeight: "20px",
+          color: colorMode === "light" ? "#16171B" : "#A8ADBD",
+        }),
+        h5: ({ colorMode }) => ({
+          fontSize: "12px",
+          fontWeight: "400",
+          lineHeight: "20px",
+          color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+        }),
+        noDataText: ({ colorMode }) => ({
+          fontSize: "20px",
+          fontWeight: "400",
+          lineHeight: "20px",
+          letterSpacing: "1px",
+          opacity: 0.6,
+          color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+        }),
+        smallTableHeader: ({ colorMode }) => ({
+          fontSize: "18px",
+          fontWeight: "600",
+          lineHeight: "20px",
+          color: colorMode === "light" ? "#212121" : "#FFFFFF",
+        }),
+    },
+    defaultProps: {
+        variant: 'base'
+    }
+})
 
 export default Text;

@@ -37,7 +37,7 @@ const GenericTable = ({
         key={1}
         w={{ base: "100%", md: "100%" }}
         display={{ base: "none", md: "table" }}
-        minW={"1400px"}
+        minW={"1200px"}
       >
         <Thead
           bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -48,7 +48,7 @@ const GenericTable = ({
             {tableHeader.map((item, i) => {
               return (
                 <Th key={i} border={"0px"}>
-                  <Flex>
+                  <Box display={"flex"} alignItems={"center"} gap={"3px"}>
                     <Text
                       variant={"tableHead"}
                       textTransform={"capitalize"}
@@ -70,7 +70,7 @@ const GenericTable = ({
                     {item.isTooltip && (
                       <TooltipComp label={item?.tooltipLabel} />
                     )}
-                  </Flex>
+                  </Box>
                 </Th>
               );
             })}
@@ -88,12 +88,10 @@ const GenericTable = ({
             </>
           )}
           {tableData?.isLoading && (
-            <>
-              <SkeletonTable
-                numColumns={SkeletonRowsColumnsDesktop?.numColumns}
-                numRows={SkeletonRowsColumnsDesktop?.numRows}
-              />
-            </>
+            <SkeletonTable
+              numColumns={SkeletonRowsColumnsDesktop?.numColumns}
+              numRows={SkeletonRowsColumnsDesktop?.numRows}
+            />
           )}
 
           {tableData.isSuccess &&
@@ -127,12 +125,10 @@ const GenericTable = ({
             </Tr>
           )}
           {tableData?.isLoading && (
-            <>
-              <SkeletonTable
-                numColumns={SkeletonRowsColumnsMobile.numColumns}
-                numRows={SkeletonRowsColumnsMobile.numRows}
-              />
-            </>
+            <SkeletonTable
+              numColumns={SkeletonRowsColumnsMobile.numColumns}
+              numRows={SkeletonRowsColumnsMobile.numRows}
+            />
           )}
 
           {tableData.isSuccess &&

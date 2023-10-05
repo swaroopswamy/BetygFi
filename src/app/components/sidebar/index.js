@@ -50,7 +50,7 @@ import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice"
 import { mobileSidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
 import { color } from "framer-motion";
 
- import "../../styles.scss";
+ import "/styles/styles.scss";
 
 const LinkItemsUp = [
   { name: "Home", icon: "icons/home_sm_logo.svg", path: '/' },

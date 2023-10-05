@@ -2,35 +2,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
-
   Box,
   Button,
-  Checkbox,
-  Flex,
-  Grid,
-  GridItem,
-  Icon,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Text,
-  Tooltip,
   useColorMode,
   useColorModeValue,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  AccordionIcon,
   useDisclosure,
-  Collapse
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { blockchains, categories } from "../../../util/constant";
+import { categories } from "../../../util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
   categoryChangedReducer,
@@ -42,16 +22,14 @@ import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
-import Rankings from "/src/app/components/pages/dashboard/DefiRankingsTable";
-import OverviewColumnChart from "/src/app/components/pages/dashboard/OverviewColumnChart";
-import OverviewBox from "/src/app/components/pages/dashboard/OverviewBox";
+import Rankings from "/src/app/components/pages/dashboard/defiRankingsTable";
+import OverviewColumnChart from "/src/app/components/pages/dashboard/overviewColumnChart";
+import OverviewBox from "/src/app/components/pages/dashboard/overviewBox";
 
 const Dashboard = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
   const [tablePage, setTablePage] = useState(1);
   const [searchByName, setSearchByName] = useState('');
   const dispatch = useDispatch();
-  const { isOpen: isRankingsSearchOpen, onToggle: onRankingsSearchToggle } = useDisclosure();
 
   const categorySelected = useSelector(
     (state) => state?.dashboardTableData?.categorySelected
@@ -59,18 +37,6 @@ const Dashboard = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
-
-  const pageChangeHandler = (page) => {
-    tablePage >= 1 && setTablePage(page);
-  }
-
-  const searchByNameHandler = (name) => {
-    setSearchByName(name);
-    setTablePage(1); // fix 2
-    //getDefiRankingsTableDataHandler(name);
-  }
-
-  const tableData = useSelector((state) => state?.dashboardTableData);
 
   const getScoreGraphDataHandler = () => {
     const payload = {
@@ -105,7 +71,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
-    // getScoreGraphDataHandler();
     getOverviewDataHandler();
   }, [blockchainSelected, categorySelected, tablePage]);
 

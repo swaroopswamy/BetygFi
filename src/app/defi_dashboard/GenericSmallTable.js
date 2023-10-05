@@ -15,8 +15,6 @@ import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import SmallTable_LastUpdate from '/src/app/components/smallTable_LastUpdate';
-
 
 const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();
@@ -146,7 +144,6 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 
 
                 </Table>
-                <SmallTable_LastUpdate />
             </Box>
 
         </>
