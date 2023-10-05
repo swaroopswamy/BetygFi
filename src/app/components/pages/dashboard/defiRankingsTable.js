@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
   Text, Td, Th, Tr, Box, useColorModeValue,useColorMode, Collapse, useDisclosure
@@ -20,12 +19,12 @@ import {
   fetchDefiRankingTableData,
 } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
+import { useRouter } from "next/navigation";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
   const [searchByName, setSearchByName] = useState('');
   const { isOpen: isMobileRankingsSearchOpen, onToggle: onMobileRankingsSearchToggle } = useDisclosure();
-
 
   const dispatch = useDispatch();
 
@@ -131,6 +130,7 @@ export default Rankings;
 
 const TableRow = ( {item, rowIndex} ) => {
   const { colorMode } = useColorMode();
+  const router = useRouter();
 
   return (
     <Tr 
