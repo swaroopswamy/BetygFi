@@ -3,8 +3,8 @@
 import {
   Text, Td, Th, Tr, Box, useColorModeValue,useColorMode
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import isEmpty from "is-empty";
 import '/styles/styles.scss';
@@ -15,8 +15,20 @@ import TooltipComp from "/src/app/components/tooltipComp";
 import { tableHeader } from "/src/app/components/pages/dashboard/helper";
 import PageButtons from "/src/app/components/pageButtons";
 
+import {
+  fetchDefiRankingTableData,
+} from "@/redux/dashboard_data/dataSlice";
+
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
+  const dispatch = useDispatch();
+
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
+  const categorySelected = useSelector(
+    (state) => state?.dashboardTableData?.categorySelected
+  );
 
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
 
@@ -29,8 +41,21 @@ const Rankings = () => {
     setTablePage(1); // fix 2
   }
 
+  const getDefiRankingsTableDataHandler = () => {
+    const payload = {
+      blockchain: blockchainSelected,
+      category: categorySelected,
+      page: tablePage,
+    };
+    dispatch(fetchDefiRankingTableData(payload));
+  };
+
+  useEffect(() => {
+    getDefiRankingsTableDataHandler();
+  }, [blockchainSelected, categorySelected, tablePage]);
+
   return (
-    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} mb={"60px"}>
+    <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} mb={{base: "100px", md: "60px"}}>
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>
           Defi Rankings
