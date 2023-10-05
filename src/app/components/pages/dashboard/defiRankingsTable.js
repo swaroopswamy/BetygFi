@@ -1,14 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
-  Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-  Tr, Flex, Box, useColorModeValue, Icon, Tooltip, Skeleton, Stack, useColorMode, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Button, Spacer
+  Text, Td, Th, Tr, Box, useColorModeValue,useColorMode
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import useTableKeyboardNavigation from "@/hooks/useTableKeyboardNavigation";
 import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
@@ -19,8 +16,15 @@ import TooltipComp from "/src/app/components/tooltipComp";
 
 const Rankings = () => {
   const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
-  const router = useRouter();
-  const { colorMode } = useColorMode();
+
+  const pageChangeHandler = (page) => {
+    tablePage >= 1 && setTablePage(page);
+  }
+
+  const searchByNameHandler = (name) => {
+    setSearchByName(name);
+    setTablePage(1); // fix 2
+  }
 
   return (
     <Box layerStyle={"flexColumn"} bg={useColorModeValue('#FFFFFF', '#202020')} borderRadius={"6px"} overflowX={"auto"} mb={"50px"}>
@@ -31,6 +35,7 @@ const Rankings = () => {
 
         <SearchBox />
       </Box>
+
       <GenericTable 
         tableHeader={tableHeader}
         tableData={tableData}
