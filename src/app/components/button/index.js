@@ -21,6 +21,13 @@ const Button = defineStyleConfig({
                 color: colorMode === 'light' ? "#FFFFFF" : '#000000'
             }
         }),
+        search: ({ colorMode }) => ({
+            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
+            border: "1px",
+            borderColor: colorMode === 'light' ? '#E8E8E8' :'#333333',
+            fontWeight: "500",
+            color: colorMode === 'light' ? "#000000" : '#FFFFFF'
+        })
     },
     defaultProps: {
         variant: 'base'

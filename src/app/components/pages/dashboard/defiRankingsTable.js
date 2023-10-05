@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import {
-  Text, Td, Th, Tr, Box, useColorModeValue,useColorMode
+  Text, Td, Th, Tr, Box, useColorModeValue,useColorMode, Collapse, useDisclosure
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,14 +14,18 @@ import SearchBox from "/src/app/components/searchBox";
 import TooltipComp from "/src/app/components/tooltipComp";
 import { tableHeader } from "/src/app/components/pages/dashboard/helper";
 import PageButtons from "/src/app/components/pageButtons";
+import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
 import {
   fetchDefiRankingTableData,
 } from "@/redux/dashboard_data/dataSlice";
+import { Search2Icon } from "@chakra-ui/icons";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
   const [searchByName, setSearchByName] = useState('');
+  const { isOpen: isMobileRankingsSearchOpen, onToggle: onMobileRankingsSearchToggle } = useDisclosure();
+
 
   const dispatch = useDispatch();
 
@@ -71,13 +75,34 @@ const Rankings = () => {
           Defi Rankings
         </Text>
 
-        <SearchBox
-          placeholder={"Search Defi"}
-          onChange={(e) => {
-            searchByNameHandler(e.target.value)
-          }}
-        />
+        <Box display={{base: "none", md: "flex"}} justifyContent={"center"} alignItems={"center"}>
+          <SearchBox
+            placeholder={"Search Defi"}
+            onChange={(e) => {
+              searchByNameHandler(e.target.value)
+            }}
+          />
+        </Box>
+
+        <Box display={{base: "flex", md: "none"}} justifyContent={"center"} alignItems={"center"} cursor={"pointer"}
+          onClick={onMobileRankingsSearchToggle}
+        >
+          <Search2Icon
+            boxSize={"16px"}
+            color={useColorModeValue('#16171B', '#FFFFFF')}
+          />
+        </Box>
+
       </Box>
+
+      <Collapse in={isMobileRankingsSearchOpen} animateOpacity={"true"}>
+            <MobileSearchBox
+              placeholder="Search DeFi"
+              onChange={(e) => {
+                searchByNameHandler(e.target.value)
+              }}
+            />
+      </Collapse>
 
       <Box display={"flex"} overflowX={"auto"}>
         <GenericTable 
