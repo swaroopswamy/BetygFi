@@ -1,16 +1,13 @@
-import { Box, Image, Text, useColorModeValue, Tooltip } from "@chakra-ui/react";
+import { Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
-import { px } from "framer-motion";
 
 export const Banner = () => {
     const router = useRouter();
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
     );
-    console.log("defidata: ", defiData);
-
     return (
         <>
             <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} m={"10px 30px"} py={"20px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
