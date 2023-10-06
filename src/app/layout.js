@@ -1,16 +1,9 @@
-
 import { ReduxProvider } from "@/redux/provider";
-import { Manrope } from "next/font/google";
 import { Providers } from "./ChakraProvider";
 import LayoutProvider from "./layout/LayoutProvider";
-import { Web3Provider } from './Web3Provider';
-import '/styles/styles.scss';
+import { Web3Provider } from "./Web3Provider";
+import "/styles/styles.scss";
 import Script from "next/script";
-const manrope = Manrope({
-  weight: ['400', '700'],
-  style: ['normal'],
-  subsets: ["latin"]
-});
 
 export const metadata = {
   title: "BetygFi : Elevate your game",
@@ -22,9 +15,9 @@ export default function RootLayout({ children }) {
     <>
       <html lang="en">
         <head>
-          {/* Hotjar Tracking Code for https://betygfi.com/ 
-          */}
-          <Script id="hotjar-analytics" >
+          {/* Hotjar Tracking Code for https://betygfi.com/
+           */}
+          <Script id="hotjar-analytics">
             {`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:3667973,hjsv:6}; 
@@ -36,9 +29,8 @@ export default function RootLayout({ children }) {
             (window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             `}
           </Script>
-
         </head>
-        <body className={manrope.className}>
+        <body>
           <ReduxProvider>
             <Web3Provider>
               <Providers>

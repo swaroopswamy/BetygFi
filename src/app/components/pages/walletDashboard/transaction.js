@@ -88,6 +88,7 @@ const TransactionPanelComponent = () => {
             PanelComp={TableBodyRowMobilePanelComp}
             SkeletonRowsColumnsDesktop={TransactionTableDesktop}
             SkeletonRowsColumnsMobile={TransactionTableMobile}
+            bigTable={true}
           />
         </Box>
         <Box

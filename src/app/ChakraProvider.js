@@ -19,6 +19,8 @@ export function Providers({ children }) {
     "2xl": "1536px",
   };
 
+  // Naming convention diplayAlignItemsJustifyContent
+  // For ex flexCenterCenter ==  display= flex alignItems = center justifyContent = center
   const theme = extendTheme({
     breakpoints,
     colors,
@@ -48,6 +50,11 @@ export function Providers({ children }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+      },
+      flexCenterSpaceBetween: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
       },
     },
   });

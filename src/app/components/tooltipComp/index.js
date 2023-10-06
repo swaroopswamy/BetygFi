@@ -1,4 +1,4 @@
-import { Tooltip, useColorModeValue } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 
 const TooltipComp = ({ label }) => {

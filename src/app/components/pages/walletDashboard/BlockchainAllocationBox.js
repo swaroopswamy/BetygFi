@@ -22,7 +22,7 @@ const BlockchainAllocationBox = () => {
         enabled: false,
       },
       width: "100%",
-      fontFamily: "Manrope",
+      fontFamily: "Inter",
     },
     colors: [
       "#988FF8",
