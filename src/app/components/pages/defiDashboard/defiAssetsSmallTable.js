@@ -10,35 +10,38 @@ import LastUpdate from "/src/app/components/lastUpdate";
 import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import TooltipComp from "/src/app/components/tooltipComp";
 
+let USDollar = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 function DefiAssetsSmallTable() {
     const searchParam = useSearchParams();
     const dispatch = useDispatch();
     const router = useRouter();
 
     const defi = searchParam.get("defi");
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
-    const defiUsersTableData = useSelector(
-        (state) => state?.defiDashboardData?.DefiUsersTableData
-    );
 
-    const getDefiUsersTableDataHandler = () => {
+    const defiAssetsTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
+    );
+    console.log("assets: ", defiAssetsTableData);
+
+    const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
-            blockchain: [blockchainSelected],
         };
         dispatch(fetchDefiUsersTableData(payload));
     };
 
     useEffect(() => {
-        getDefiUsersTableDataHandler();
-    }, [blockchainSelected]);
+        getDefiAssetsTableDataHandler();
+    }, []);
 
     return (
         <Box w={{base: "100%", lg: "50%"}} height={"350px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
             <Box layerStyle={"spaceBetween"} p={"20px"}>
-                <Box layerStyle={"flexCenter"} gap={"5px"}> 
+                <Box layerStyle={"center"} gap={"5px"}> 
                     <Text variant={"smallTableHeader"}>
                         DeFi Asset Composition
                     </Text>
@@ -54,10 +57,10 @@ function DefiAssetsSmallTable() {
                 > View More </Button>
             </Box>
 
-            <Box h={"70%"} overflow={"auto"}>
+            <Box h={"70%"} overflowY={"auto"} overflowX={"hidden"}>
                 <GenericTable
                     tableHeader={DefiAssetsSmallTableHeader}
-                    tableData={defiUsersTableData}
+                    tableData={defiAssetsTableData}
                     TableRow={TableRow}
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={(item) => {
@@ -91,9 +94,7 @@ function DefiAssetsSmallTable() {
 };
 export default DefiAssetsSmallTable;
 
-const  TableRow = ({ item, i }) => {
-    const [clicked, setClick] = useState(false);
-    const { colorMode } = useColorMode();
+function TableRow({ item, i }) {
     const router = useRouter();
 
     return (
@@ -101,25 +102,26 @@ const  TableRow = ({ item, i }) => {
             <Tr
                 key={i}
                 cursor={"pointer"}
-                bgColor={clicked ?
-                    (colorMode === "light" ? '#F5F5F7' : '#191919') :
-                    (colorMode === "light" ? '#FFFFFF' : '#202020')
-                }
-
-                onClick={() => {
-                    setClick(!clicked)
-                    router.push(`/wallet_dashboard?address=${item.user}`)
-                }}
+                bgColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderBottom={'1px'}
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
                 <Td>
-                    <Box
-                        alignItems={"center"}
-                        display={"flex"}
-                        gap={"10px"}
-                    >
+                    <Box layerStyle={"flexCenter"} gap={"10px"}>
+                        <Image
+                            height={"24px"}
+                            width={"24px"}
+                            src={asset.src}
+                            alt="logo"
+                        >
+                        </Image>
+                        <Text variant={"h3"}> {item?.assetName} </Text>
+                    </Box>
+                </Td>
+
+                <Td>
+                    <Box>
                         <Text
                             _dark={{
                                 color: "#FFFFFF"
@@ -128,30 +130,34 @@ const  TableRow = ({ item, i }) => {
                                 color: "#16171B"
                             }}
                             fontSize={"14px"}
-                            
                             fontStyle={"normal"}
-                            fontWeight={400}
+                            fontWeight={"400"}
                             lineHeight={"20px"}
                         >
-                            {item?.user}
-                        </Text>
-                        <Text
-                            _dark={{
-                                color: "#A8ADBD"
-                            }}
-                            _light={{
-                                color: "#A8ADBD"
-                            }}
-                            fontSize={"12px"}
-                            fontStyle={"normal"}
-                            fontWeight={400}
-                            lineHeight={"20px"}
-                            textTransform={"uppercase"}
-                        >
-                            {item?.amount}
+                            {item?.share}
                         </Text>
                     </Box>
                 </Td>
+
+                <Td>
+                    <Box>
+                        <Text
+                            _dark={{
+                                color: "#FFFFFF"
+                            }}
+                            _light={{
+                                color: "#16171B"
+                            }}
+                            fontSize={"14px"}
+                            fontStyle={"normal"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                        >
+                            {USDollar(item?.value)}
+                        </Text>
+                    </Box>
+                </Td>
+
             </Tr>
         </>
     );

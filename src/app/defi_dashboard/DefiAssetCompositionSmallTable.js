@@ -6,12 +6,6 @@ import { useRouter } from "next/navigation";
 import { Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton } from "@chakra-ui/react";
 import GenericSmallTableComponent from "./GenericSmallTable";
 
-
-let USDollar = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-});
-
 function Assetcomposition() {
     const tableName = "DeFi Asset Composition";
     const thread = ["Asset Name",   /* "Share",  */"Value"];

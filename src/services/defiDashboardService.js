@@ -35,7 +35,7 @@ export const getDefiHotContractsTableData = async (payload) => {
 export const getDefiAssetCompositionTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.get(
-      `protocols/aavev3/compositionData`
+      `protocols/${payload.defi}/asset-composition`
     );
     return data;
   } catch (err) {

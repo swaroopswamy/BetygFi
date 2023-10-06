@@ -14,8 +14,7 @@ const TVLBox = () => {
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData
     )
-    console.log("defidata: ", defiData);
-
+    
     return (
         <Box w={{ base: "100%", lg: "40%" }} layerStyle={"flexColumn"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")}>
             <Box p={"20px"} gap={"10px"}>
