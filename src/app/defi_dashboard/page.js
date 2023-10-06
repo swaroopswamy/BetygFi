@@ -20,6 +20,7 @@ import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
 import DefiUsersSmallTable from "/src/app/components/pages/defiDashboard/defiUsersSmallTable";
 import DefiTVLChart from "/src/app/components/pages/defiDashboard/defiTVLchart";
+import DefiAssetsSmallTable from "/src/app/components/pages/defiDashboard/defiAssetsSmallTable";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -82,7 +83,7 @@ const DefiDashboardPage = () => {
                 </Box>
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
-                    <DefiAssetCompositionSmallTable />
+                    <DefiAssetsSmallTable />
                     <DonutChart />
                 </Box>
 

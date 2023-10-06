@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Text, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td } from "@chakra-ui/react";
 import GenericTable from "/src/app/components/table";
-import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
+import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
 import LastUpdate from "/src/app/components/lastUpdate";
 import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import TooltipComp from "/src/app/components/tooltipComp";
 
-function DefiUsersSmallTable() {
+function DefiAssetsSmallTable() {
     const searchParam = useSearchParams();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -36,10 +37,14 @@ function DefiUsersSmallTable() {
 
     return (
         <Box w={{base: "100%", lg: "50%"}} height={"350px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
-            <Box layerStyle={"spaceBetween"} p={"20px"} >
-                <Text variant={"smallTableHeader"}>
-                    DeFi Users
-                </Text>
+            <Box layerStyle={"spaceBetween"} p={"20px"}>
+                <Box layerStyle={"flexCenter"} gap={"5px"}> 
+                    <Text variant={"smallTableHeader"}>
+                        DeFi Asset Composition
+                    </Text>
+                    <TooltipComp label="Asset composition matrix shows the compositions of the assets of the DeFi in percentage terms and the individual value of the subclass of the assets of the DeFi." />
+                </Box>
+
 
                 <Button
                     variant={'viewMore'}
@@ -51,7 +56,7 @@ function DefiUsersSmallTable() {
 
             <Box h={"70%"} overflow={"auto"}>
                 <GenericTable
-                    tableHeader={DefiUsersSmallTableHeader}
+                    tableHeader={DefiAssetsSmallTableHeader}
                     tableData={defiUsersTableData}
                     TableRow={TableRow}
                     TableHeaderRowMobile={TableHeaderRowMobile}
@@ -84,7 +89,7 @@ function DefiUsersSmallTable() {
         </Box>
     )
 };
-export default DefiUsersSmallTable;
+export default DefiAssetsSmallTable;
 
 const  TableRow = ({ item, i }) => {
     const [clicked, setClick] = useState(false);
@@ -157,12 +162,12 @@ const TableHeaderRowMobile = () => {
       <Tr>
         <Th>
           <Box layerStyle={"flexCenter"}>
-            <Text variant={"smallTableHeaderMobile"}>User Address</Text>
+            <Text variant={"smallTableHeaderMobile"}>Asset Name</Text>
           </Box>
         </Th>
         <Th>
           <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
-            <Text variant={"smallTableHeaderMobile"}>Share</Text>
+            <Text variant={"smallTableHeaderMobile"}>Value</Text>
           </Box>
         </Th>
       </Tr>

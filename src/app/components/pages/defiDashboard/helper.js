@@ -21,3 +21,27 @@ export const DefiUsersSmallTableHeader = [
     //     tooltipLabel: null,
     // }
 ]
+
+export const DefiAssetsSmallTableHeader = [
+    {
+        value: "assetName",
+        label: " Asset Name",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "share",
+        label: " Share",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "value",
+        label: " Value",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+]
