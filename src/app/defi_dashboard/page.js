@@ -1,7 +1,6 @@
 
 "use client"
 import Governance from "./governance";
-import BarChart from "./BarChart";
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox, Container } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +19,7 @@ import Banner from "/src/app/components/pages/defiDashboard/banner";
 import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
 import DefiUsersSmallTable from "/src/app/components/pages/defiDashboard/defiUsersSmallTable";
+import DefiTVLChart from "/src/app/components/pages/defiDashboard/defiTVLchart";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -30,10 +30,6 @@ const DefiDashboardPage = () => {
 
     const defi = searchParam.get("defi");
     const id = searchParam.get("id");
-
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
     
     const getDefiDataHandler = () => {
         const payload = {
@@ -42,13 +38,7 @@ const DefiDashboardPage = () => {
         dispatch(fetchDefiData(payload));
     }
 
-    const getDefiUsersTableDataHandler = () => {
-        const payload = {
-            defi: defi,
-            blockchain: [blockchainSelected],
-        };
-        dispatch(fetchDefiUsersTableData(payload));
-    };
+    
     const getDefiHotContractsDataHandler = () => {
         const payload = {
             defi: defi,
@@ -74,10 +64,6 @@ const DefiDashboardPage = () => {
         dispatch(fetchBlockchainListData());
     }, []);
 
-    useEffect(() => {
-        getDefiUsersTableDataHandler();
-    }, [blockchainSelected]);
-
     return (
         <>
             <Box bgColor={useColorModeValue("#F0F0F5", "#191919")} layerStyle={"center"} w={"100%"}>
@@ -92,7 +78,7 @@ const DefiDashboardPage = () => {
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
                     <DefiUsersSmallTable />
-                    <BarChart />
+                    <DefiTVLChart />
                 </Box>
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>

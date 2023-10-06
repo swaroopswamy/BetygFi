@@ -7,16 +7,17 @@ import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import TooltipComp from "/src/app/components/tooltipComp";
 
 let USDollar = new Intl.NumberFormat('en-US');
 
-function BarChart() {
+function DefiTVLChart() {
   const { colorMode } = useColorMode();
   const router = useRouter();
   const defiData = useSelector(
     (state) => state?.defiDashboardData?.DefiData?.data
   )
-  const Definitions = "DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds.";
+
   const options = {
     chart: {
       toolbar: {
@@ -125,58 +126,30 @@ function BarChart() {
 
   return (
     <>
-
-
       <Box
-        display={"flex"}
-        width={{ base: "100%", md: "100%",bigSize:"50%" }}
-        flexDir={"column"}
+        width={{ base: "100%", md: "100%", bigSize:"50%" }}
+        height={"350px"}
         borderRadius={"6px"}
-        alignContent={"center"}
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
-      //borderColor={useColorModeValue('#FFFFFF', '#202020')}
       >
-        <Box
-          display={"flex"}
-          flexDirection={"column"}
-          // bgColor={useColorModeValue('#FFFFFF', "#191919")}
-          alignContent={"center"}
-          justifyContent={"space-between"}
-        >
-          <Box
-            padding={"15px 0 20px 20px"}
-          >
-            <Flex>
-              <Text
-                fontSize={"18px"}
-                fontWeight={"600"}
-                lineHeight={"20px"}
-                color={useColorModeValue("#16171B", "#FFFFFF")}
-              >
-                DeFi Borrow/Supply/TVL
-              </Text>
-              <Tooltip label={Definitions}
-                bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
-                padding="4px 8px"
-                fontWeight={400}
-                fontSize={"10px"}
+          <Box layerStyle={"spaceBetween"} p={"20px"} >
+              <Box layerStyle={"flexCenter"} gap={"5px"}>
+                <Text variant={"smallTableHeader"}>
+                    DeFi Borrow/Supply/TVL
+                </Text>
+                <TooltipComp label="DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
+              </Box>
+                
 
-              >
-                <Image width={"12px"}
-                  height={"12px"}
-                  flexShrink={"0"}
-                  mt={"5px"}
-                  ml={"4px"}
-                  alt=''
-                  src="/images/Frame.svg">
-                </Image>
-              </Tooltip>
-            </Flex>
-          </Box>
-          <Box
-            padding={"5px 20px 5px 10px"}
-            fontSize={"12px"}
-          >
+              <Button
+                  variant={'viewMore'}
+                  // onClick={() => {
+                  //     router.push("/defi_dashboard/defi_users");
+                  // }}
+              > View More </Button>
+            </Box>
+
+          <Box>
             {
               defiData?.tvl > 0 && (
                 <>
@@ -184,38 +157,17 @@ function BarChart() {
                     options={options}
                     series={series}
                     type={options.chart.type}
-                    height={"300px"}
+                    height={"280px"}
                   />
                 </>
               )
             }
 
           </Box>
-          {/* 
-          <Box
-            _dark={{
-              color: "#FFF"
-            }}
-            _light={{
-              color: "#16171B"
-            }}
-            fontSize={"20px"}
-            fontWeight={"400"}
-            letterSpacing={"1px"}
-            display={"flex"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            textAlign={"center"}
-            height={"245px"}
-          >
-            No Data Available
-          </Box> */}
-        </Box>
       </Box>
-
     </>
   );
 }
 
-export default BarChart;
+export default DefiTVLChart;
 

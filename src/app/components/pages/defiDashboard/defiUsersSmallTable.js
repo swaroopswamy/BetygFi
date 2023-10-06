@@ -1,19 +1,38 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
-import { Text, Skeleton, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Text, Skeleton, Flex, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td } from "@chakra-ui/react";
 import GenericTable from "/src/app/components/table";
 import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
 import LastUpdate from "/src/app/components/lastUpdate";
+import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 
 function DefiUsersSmallTable() {
+    const searchParam = useSearchParams();
+    const dispatch = useDispatch();
     const router = useRouter();
 
+    const defi = searchParam.get("defi");
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
-    )
+    );
+
+    const getDefiUsersTableDataHandler = () => {
+        const payload = {
+            defi: defi,
+            blockchain: [blockchainSelected],
+        };
+        dispatch(fetchDefiUsersTableData(payload));
+    };
+
+    useEffect(() => {
+        getDefiUsersTableDataHandler();
+    }, [blockchainSelected]);
 
     return (
         <Box w={{base: "100%", lg: "50%"}} height={"350px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
