@@ -11,7 +11,7 @@ import millify from "millify";
 import { color } from "framer-motion";
 const axios = require('axios');
 
-function TrendGraph() {
+function DashboardTrendGraph() {
     const { colorMode } = useColorMode();
     const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
     const [currencySelected, setCurrencyType] = useState("USD");
@@ -228,6 +228,8 @@ function TrendGraph() {
         </>
     );
 }
+
+export default DashboardTrendGraph;
 
 function SelectorGraph({ tvlData }) {
 
@@ -618,5 +620,3 @@ function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHa
     )
 }
 
-
-export default TrendGraph;

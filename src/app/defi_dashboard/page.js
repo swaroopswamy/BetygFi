@@ -7,9 +7,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import millify from "millify";
-import TVLBox from "./TVLBox";
 import DonutChart from "./DonutChart";
-import TrendGraph from "./TrendGraph";
 import DefiUsersSmallTableComponent from "./DefiUsersSmallTable";
 import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
@@ -19,7 +17,9 @@ import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData,
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 import { Router } from "next/router";
-import { Banner } from "/src/app/components/pages/defi-dashboard/banner";
+import Banner from "/src/app/components/pages/defiDashboard/banner";
+import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
+import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
 
-export const Banner = () => {
+const Banner = () => {
     const router = useRouter();
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
@@ -167,6 +167,8 @@ export const Banner = () => {
         </>
     )
 }
+
+export default Banner;
 
 const ScoreBox = ( {score} ) => {
     return (
