@@ -27,6 +27,12 @@ const Text = defineStyleConfig({
             lineHeight: '20px',
             color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
         }),
+        h4: ({ colorMode }) => ({
+            fontSize: '16px',
+            fontWeight: '400',
+            lineHeight: '10px',
+            color: colorMode === 'light' ? '#191919' : '#FFFFFF'
+        }),
         tableHead: ({ colorMode }) => ({
             fontSize: '14px',
             fontWeight: '400',
