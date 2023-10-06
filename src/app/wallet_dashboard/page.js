@@ -28,7 +28,7 @@ import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import Breadcrumb from "@/app/components/breadcrumb";
 import HeaderComponent from "@/app/components/pages/walletDashboard/HeaderComponent";
 import DashboardTabList from "../components/pages/walletDashboard/DashboardTabList";
-import BlockchainSelectionMenuBlocks from "@/app/components/BlockchainSelectionMenuBlocks";
+import BlockchainSelectionMenuBlocks from "@/app/components/blockchainSelectionMenuBlocks";
 
 const WalletDashboardPage = () => {
   const searchParam = useSearchParams();

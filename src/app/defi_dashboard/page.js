@@ -2,8 +2,6 @@
 "use client"
 import Governance from "./governance";
 import BarChart from "./BarChart";
-import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
-
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox, Container } from "@chakra-ui/react";
 
