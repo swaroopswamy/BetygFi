@@ -16,60 +16,62 @@ const TVLBox = () => {
     )
     
     return (
-        <Box w={{ base: "100%", lg: "40%" }} layerStyle={"flexColumn"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")}>
-            <Box p={"20px"} gap={"10px"}>
-                <Box py={"10px"}>
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize={"24px"}
-                        fontWeight={600}
-                        lineHeight={"20px"}
-                        letterSpacing={"2.4px"}
-                        textTransform={"uppercase"}>
-                        ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
-                            precision: 2,
-                            locales: "en-US"
-                        })) :
-                            "-"}
-                    </Text>
+        <Box w={{ base: "100%", lg: "40%" }}  borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")}>
+            <Box layerStyle={"flexColumn"} justifyContent={"space-between"} p={"20px"} gap={"10px"} h={"100%"}>
+                <Box>
+                    <Box py={"10px"}>
+                        <Text
+                            _light={{ color: "#16171B" }}
+                            _dark={{ color: "#FFFFFF" }}
+                            fontSize={"24px"}
+                            fontWeight={600}
+                            lineHeight={"20px"}
+                            letterSpacing={"2.4px"}
+                            textTransform={"uppercase"}>
+                            ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
+                                precision: 2,
+                                locales: "en-US"
+                            })) :
+                                "-"}
+                        </Text>
 
-                    <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        textAlign={"left"}
-                        fontSize={"12px"}
-                        fontWeight={400}
-                        lineHeight={"10px"}
-                        pt={"10px"}
-                    >
-                        Total Value Locked
-                    </Text>
+                        <Text
+                            _light={{ color: "#16171B" }}
+                            _dark={{ color: "#FFFFFF" }}
+                            textAlign={"left"}
+                            fontSize={"12px"}
+                            fontWeight={400}
+                            lineHeight={"10px"}
+                            pt={"10px"}
+                        >
+                            Total Value Locked
+                        </Text>
+                    </Box>
+
+                    <hr/>
+
+                    <Box display={"flex"} flexDirection={"column"} justifyContent={"space-between"} py={"10px"} gap={"5px"}>
+                        <TVLRow
+                            name={"Market Cap"}
+                            value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
+                                precision: 2,
+                                locales: "en-US"
+                            })) : "-"}
+                        />
+                        <TVLRow
+                            name={"Token Price"}
+                            value={defiData?.isSuccess ? "$" + defiData?.data?.price.toFixed(2) : "-"}
+                        />
+                        {/* <TVLRow
+                            name={"Fully Diluted"}
+                            value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
+                                precision: 2,
+                                locales: "en-US"
+                            })) : "-"}
+                        /> */}
+                    </Box>
                 </Box>
-
-                <hr/>
-
-                <Box display={"flex"} flexDirection={"column"} justifyContent={"space-between"} py={"10px"} gap={"5px"}>
-                    <TVLRow
-                        name={"Market Cap"}
-                        value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
-                            precision: 2,
-                            locales: "en-US"
-                        })) : "-"}
-                    />
-                    <TVLRow
-                        name={"Token Price"}
-                        value={defiData?.isSuccess ? "$" + defiData?.data?.price.toFixed(2) : "-"}
-                    />
-                    {/* <TVLRow
-                        name={"Fully Diluted"}
-                        value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
-                            precision: 2,
-                            locales: "en-US"
-                        })) : "-"}
-                    /> */}
-                </Box>
-
+                
                 <LastUpdate time={"3"} />
             </Box>
         </Box >

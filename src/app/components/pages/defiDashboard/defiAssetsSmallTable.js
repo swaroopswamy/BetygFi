@@ -80,6 +80,7 @@ function DefiAssetsSmallTable() {
                                 <Box layerStyle={"center"}>
                                     <Text variant={"h3"}
                                         fontWeight={"600"}
+                                        letterSpacing={"1.4px"}
                                         color={item?.item?.value > 0 ? '#245F00' : "#EF1E1E"}
                                     >
                                         {item?.item?.value > 0 ? '+ ' : "- "}{USDollar.format(item?.item?.value)}

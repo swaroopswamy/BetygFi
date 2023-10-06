@@ -215,15 +215,14 @@ function DashboardTrendGraph() {
                     borderBottom={"1px"}
                     borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
                 >
-                    {/* <Graph
+                    <Graph
                         series={series}
-                    /> */}
+                    />
                 </Box>
 
-                {/* <SelectorGraph
+                <SelectorGraph
                     tvlData={tvlData}
-                /> */}
-
+                />
             </Box>
         </>
     );
@@ -249,7 +248,7 @@ function SelectorGraph({ tvlData }) {
 
     useEffect(() => {
         let chart = ApexCharts.getChartByID('trendgraph');
-        console.log(chart.w.globals.minX, chart.w.globals.maxX);
+        // console.log(chart.w.globals.minX, chart.w.globals.maxX);
     })
 
 
