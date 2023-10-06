@@ -21,7 +21,6 @@ function DefiUsersSmallTable() {
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData
     );
-    console.log("users", defiUsersTableData);
 
     const getDefiUsersTableDataHandler = () => {
         const payload = {

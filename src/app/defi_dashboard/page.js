@@ -1,13 +1,10 @@
 
 "use client"
-import Governance from "./governance";
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Tooltip, Menu, MenuButton, MenuList, MenuItem, Checkbox, Container } from "@chakra-ui/react";
+import { Box, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import millify from "millify";
 import DonutChart from "./DonutChart";
-import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
 import GovernanceTable from "./governance";

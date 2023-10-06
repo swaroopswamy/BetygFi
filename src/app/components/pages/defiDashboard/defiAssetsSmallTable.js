@@ -9,6 +9,7 @@ import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashbo
 import LastUpdate from "/src/app/components/lastUpdate";
 import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import TooltipComp from "/src/app/components/tooltipComp";
+import Image from "next/image";
 
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -57,7 +58,7 @@ function DefiAssetsSmallTable() {
                 > View More </Button>
             </Box>
 
-            <Box h={"70%"} overflow={"hidden"}>
+            <Box h={"70%"} overflowY={"hidden"} overflowX={"auto"}>
                 <GenericTable
                     tableHeader={DefiAssetsSmallTableHeader}
                     tableData={defiAssetsTableData}
@@ -65,15 +66,33 @@ function DefiAssetsSmallTable() {
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={(item) => {
                         return (
-                            <Box layerStyle={"flexCenter"}>
-                                <Text variant={"h3"}> {item?.item?.user} </Text>
+                            <Box layerStyle={"spaceBetween"} w={"90%"}>
+                                <Box layerStyle={"flexCenter"} gap={"10px"}>
+                                    <Image
+                                        height={24}
+                                        width={24}
+                                        src={item?.item?.logoUrl}
+                                        alt="logo"
+                                    >
+                                    </Image>
+                                    <Text variant={"h3"}> {item?.item?.assetName} </Text>
+                                </Box>
+                                <Box layerStyle={"center"}>
+                                    <Text variant={"h3"}
+                                        fontWeight={"600"}
+                                        color={item?.item?.value > 0 ? '#245F00' : "#EF1E1E"}
+                                    >
+                                        {item?.item?.value > 0 ? '+ ' : "- "}{USDollar.format(item?.item?.value)}
+                                    </Text>
+                                </Box>
                             </Box>
                         )
                     }}
-                    PanelComp={() => {
+                    PanelComp={(item) => {
                         return (
-                            <Box>
-                                
+                            <Box display={"flex"} minH={"50px"} gap={"20px"}>
+                                <Text variant={"h3"} color={"#8F8F8F"}> Share </Text>
+                                <Text variant={"h3"}> {item?.item?.share}% </Text>
                             </Box>
                         )
                     }}
@@ -110,9 +129,9 @@ function TableRow({ item, i }) {
                 <Td>
                     <Box layerStyle={"flexCenter"} gap={"10px"}>
                         <Image
-                            height={"24px"}
-                            width={"24px"}
-                            src={asset.src}
+                            height={24}
+                            width={24}
+                            src={item?.logoUrl}
                             alt="logo"
                         >
                         </Image>
@@ -122,39 +141,13 @@ function TableRow({ item, i }) {
 
                 <Td>
                     <Box>
-                        <Text
-                            _dark={{
-                                color: "#FFFFFF"
-                            }}
-                            _light={{
-                                color: "#16171B"
-                            }}
-                            fontSize={"14px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                        >
-                            {item?.share}
-                        </Text>
+                        <Text variant={"h3"}> {item?.share}% </Text>
                     </Box>
                 </Td>
 
                 <Td>
                     <Box>
-                        <Text
-                            _dark={{
-                                color: "#FFFFFF"
-                            }}
-                            _light={{
-                                color: "#16171B"
-                            }}
-                            fontSize={"14px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                        >
-                            {USDollar(item?.value)}
-                        </Text>
+                        <Text variant={"h3"}> {USDollar.format(item?.value)} </Text>
                     </Box>
                 </Td>
 
@@ -172,7 +165,7 @@ const TableHeaderRowMobile = () => {
           </Box>
         </Th>
         <Th>
-          <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
+          <Box layerStyle={"flexCenter"} >
             <Text variant={"smallTableHeaderMobile"}>Value</Text>
           </Box>
         </Th>
