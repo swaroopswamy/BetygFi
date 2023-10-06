@@ -28,10 +28,10 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     h4: ({ colorMode }) => ({
-        fontSize: '16px',
-        fontWeight: '400',
-        lineHeight: '10px',
-        color: colorMode === 'light' ? '#191919' : '#FFFFFF'
+      fontSize: "16px",
+      fontWeight: "400",
+      lineHeight: "10px",
+      color: colorMode === "light" ? "#191919" : "#FFFFFF",
     }),
     tableHead: ({ colorMode }) => ({
       fontFamily: "Inter",
@@ -83,6 +83,27 @@ const Text = defineStyleConfig({
       fontFamily: "Inter",
       letterSpacing: "1.4px",
       color: colorMode === "light" ? "#16171B" : "#FFF",
+    }),
+    bigHeading: ({ colorMode }) => ({
+      fontSize: "36px",
+      fontWeight: "400",
+      lineHeight: "46px",
+      fontFamily: "Inter",
+      color: "#FFF",
+    }),
+    content: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "400",
+      lineHeight: "26px",
+      fontFamily: "Inter",
+      color: colorMode === "light" ? "#191919" : "#F0F0F5",
+    }),
+    contentHeading: ({ colorMode }) => ({
+      fontSize: "24px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      fontFamily: "Inter",
+      color: colorMode === "light" ? "#191919" : "#F0F0F5",
     }),
   },
   defaultProps: {
