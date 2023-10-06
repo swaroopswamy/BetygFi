@@ -112,7 +112,7 @@ function TrendGraph() {
                 flexDirection={"column"}
                 alignContent={"center"}
                 // height={"400px"}
-                width={{ base: "100%", md: "100%",bigSize:"70%" }}
+                width={{ base: "100%", md: "100%", bigSize:"70%" }}
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
                 borderColor={useColorModeValue('#FFFFFF', '#272727')}
@@ -215,14 +215,14 @@ function TrendGraph() {
                     borderBottom={"1px"}
                     borderColor={colorMode === 'light' ? "#F0F0F5" : "#333"}
                 >
-                    <Graph
+                    {/* <Graph
                         series={series}
-                    />
+                    /> */}
                 </Box>
 
-                <SelectorGraph
+                {/* <SelectorGraph
                     tvlData={tvlData}
-                />
+                /> */}
 
             </Box>
         </>

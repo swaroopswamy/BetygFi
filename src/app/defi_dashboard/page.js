@@ -125,68 +125,28 @@ const DefiDashboardPage = () => {
             </Box>
 
 
-            <Box  display={{base:"none",  md:"none" , bigSize: "block"}}
-                _light={{
-                    bgColor: "#F0F0F5"
-                }}
-                _dark={{
-                    bgColor: "#191919"
-                }}
-            >
-                <Box
-                    mb="10px"
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    mx={"20px"}
-                    padding={"10px 0 0 10px"}
-                >
+            <Box display={"flex"} flexDir={"column"} bg={useColorModeValue("#F0F0F5", "#191919")} p={"20px"} gap={"20px"}>
+                <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
                     <TVLBox />
                     <TrendGraph />
                 </Box>
 
-                <Box
-                    my="10px"
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    mx={"20px"}
-                    padding={"10px 0 0 10px"}
-                    gap={"25px"}
-                >
-                    <DefiUsersSmallTableComponent
-                    />
+                <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
+                    <DefiUsersSmallTableComponent/>
                     <BarChart />
-
                 </Box>
 
-                <Box
-                    my="10px"
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    mx={"20px"}
-                    padding={"10px 0 0 10px"}
-                    gap={"25px"}
-                >
+                <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
                     <DefiAssetCompositionSmallTable />
                     <DonutChart />
-
                 </Box>
 
-                <Box
-                    my="10px"
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    mx={"20px"}
-                    padding={"10px 0 0 10px"}
-                    gap={"25px"}
-                >
+                <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
                     <DefiHotContractsSmallTableComponent />
                     <DefiInflowOutflowSmallTableComponent />
-
                 </Box>
 
-                <Box
-                    mt="20px"
-                >
+                <Box>
                     <GovernanceTable />
                 </Box>
             </Box>

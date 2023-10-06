@@ -20,16 +20,13 @@ const TVLBox = () => {
     return (
      
         <Box
-           // minW={"331px"}
             w={{base:"100%",md:"100%", bigSize:"30%"}}
             height={"auto"}
             display={"flex"}
             flexDirection={"column"}
             borderRadius={"6px"}
-
             _dark={{ bg: "#202020" }}
             _light={{ bg: "#FFFFFF" }}
-              mr={{base:"0px",md:"0px",bigSize:"20px"}}
         >
             <Box 
             h="100%"
