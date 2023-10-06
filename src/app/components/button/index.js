@@ -24,9 +24,18 @@ const Button = defineStyleConfig({
         search: ({ colorMode }) => ({
             bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
             border: "1px",
+            p: "0",
             borderColor: colorMode === 'light' ? '#E8E8E8' :'#333333',
             fontWeight: "500",
             color: colorMode === 'light' ? "#000000" : '#FFFFFF'
+        }),
+        viewMore: ({ colorMode }) => ({
+            height: "25px",
+            fontSize: "14px",
+            bg: colorMode === 'light' ? '#D9D9D9' : '#333333',
+            border: "0px",
+            borderRadius: "1px",
+            color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
         })
     },
     defaultProps: {

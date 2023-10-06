@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import millify from "millify";
 import DonutChart from "./DonutChart";
-import DefiUsersSmallTableComponent from "./DefiUsersSmallTable";
 import DefiAssetCompositionSmallTable from './DefiAssetCompositionSmallTable';
 import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
 import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
@@ -20,6 +19,7 @@ import { Router } from "next/router";
 import Banner from "/src/app/components/pages/defiDashboard/banner";
 import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
+import DefiUsersSmallTable from "/src/app/components/pages/defiDashboard/defiUsersSmallTable";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -91,7 +91,7 @@ const DefiDashboardPage = () => {
                 </Box>
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
-                    <DefiUsersSmallTableComponent/>
+                    <DefiUsersSmallTable />
                     <BarChart />
                 </Box>
 

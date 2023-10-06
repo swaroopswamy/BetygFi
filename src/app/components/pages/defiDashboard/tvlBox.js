@@ -3,6 +3,7 @@ import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorMode
 import React from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import LastUpdate from "/src/app/components/lastUpdate";
 
 let USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -70,14 +71,7 @@ const TVLBox = () => {
                     /> */}
                 </Box>
 
-                <Box display={"flex"} alignItems={"center"} justifyContent={"end"} gap={"10px"}>
-                    <Text color={"#A8ADBD"} fontSize={"12px"} fontWeight={400} lineHeight={"20px"}>
-                        Last Update
-                    </Text>
-                    <Text variant={"h6"}>
-                        3 mins ago
-                    </Text>
-                </Box>
+                <LastUpdate time={"3"} />
             </Box>
         </Box >
     )
