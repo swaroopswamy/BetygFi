@@ -128,7 +128,7 @@ function DefiTVLChart() {
     <>
       <Box
         width={{ base: "100%", md: "100%", bigSize:"50%" }}
-        height={"350px"}
+        height={"370px"}
         borderRadius={"6px"}
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
       >

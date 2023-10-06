@@ -39,7 +39,7 @@ function DefiAssetsSmallTable() {
     }, []);
 
     return (
-        <Box w={{base: "100%", lg: "50%"}} height={"350px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
+        <Box w={{base: "100%", lg: "50%"}} height={"370px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
             <Box layerStyle={"spaceBetween"} p={"20px"}>
                 <Box layerStyle={"center"} gap={"5px"}> 
                     <Text variant={"smallTableHeader"}>
@@ -57,7 +57,7 @@ function DefiAssetsSmallTable() {
                 > View More </Button>
             </Box>
 
-            <Box h={"70%"} overflowY={"auto"} overflowX={"hidden"}>
+            <Box h={"70%"} overflow={"hidden"}>
                 <GenericTable
                     tableHeader={DefiAssetsSmallTableHeader}
                     tableData={defiAssetsTableData}

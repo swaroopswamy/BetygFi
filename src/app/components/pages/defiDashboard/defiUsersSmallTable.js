@@ -36,7 +36,7 @@ function DefiUsersSmallTable() {
     }, [blockchainSelected]);
 
     return (
-        <Box w={{base: "100%", lg: "50%"}} height={"350px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
+        <Box w={{base: "100%", lg: "50%"}} height={"370px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
             <Box layerStyle={"spaceBetween"} p={"20px"} >
                 <Text variant={"smallTableHeader"}>
                     DeFi Users
@@ -50,7 +50,7 @@ function DefiUsersSmallTable() {
                 > View More </Button>
             </Box>
 
-            <Box h={"70%"} overflow={"auto"}>
+            <Box h={"70%"} overflow={"hidden"}>
                 <GenericTable
                     tableHeader={DefiUsersSmallTableHeader}
                     tableData={defiUsersTableData}
