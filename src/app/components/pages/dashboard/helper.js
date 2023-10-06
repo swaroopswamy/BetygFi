@@ -56,3 +56,13 @@ export const tableHeader = [
       tooltipLabel: "Solvendo score comprises of DeFi's technical, centralization, financial/market, and userbase quality risks",
     },
   ];
+
+  export const DefiRankingTableDesktop = {
+    numColumns: 8,
+    numRows: 4,
+  };
+  export const DefiRankingTableMobile = {
+    numColumns: 2,
+    numRows: 4,
+  };
+  

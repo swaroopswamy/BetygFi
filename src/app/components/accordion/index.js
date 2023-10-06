@@ -1,4 +1,13 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Text, useColorModeValue } from "@chakra-ui/react"
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 
 export const SingleAccordionComp = ( {ButtonComp, PanelComp, ...rest} ) => {
