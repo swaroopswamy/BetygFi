@@ -84,61 +84,36 @@ const InflowTokensBox = () => {
 
 const TableRowDesktop = ({ item, i }) => {
   return (
-    <>
-      <Tr height={"40px"} key={i}>
-        <Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
-          <Box layerStyle={"flexCenter"}>
-            <Image
-              width={5}
-              height={5}
-              alt="logo"
-              style={{ borderRadius: "50%" }}
-              src={item?.logoUrl}
-            ></Image>
-            <Text ml="6px" variant={"h3"}>
-              {item?.symbol}
-            </Text>
-          </Box>
-        </Td>
+    <Tr height={"40px"} key={i}>
+      <Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
+        <Box layerStyle={"flexCenter"}>
+          <Image
+            width={5}
+            height={5}
+            alt="logo"
+            style={{ borderRadius: "50%" }}
+            src={item?.logoUrl}
+          ></Image>
+          <Text ml="6px" variant={"h3"}>
+            {item?.symbol}
+          </Text>
+        </Box>
+      </Td>
 
-        <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"}>
-              {item?.value > 0 ? "-" : "+"}USD {USDollar.format(item?.value)}
-            </Text>
-          </Box>
-        </Td>
+      <Td>
+        <Box layerStyle={"flexCenter"}>
+          <Text variant={"h3"}>
+            {item?.value > 0 ? "-" : "+"}USD {USDollar.format(item?.value)}
+          </Text>
+        </Box>
+      </Td>
 
-        <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"}>{item?.percentage}%</Text>
-          </Box>
-        </Td>
-      </Tr>
-
-      <Tr
-        key={symbol}
-        display={{ base: "table-row", md: "none" }}
-        height={"50px"}
-      >
-        <Td p={0} colSpan={3}>
-          <Accordion p={"0"} allowMultiple>
-            <AccordionItem border={"0px"}>
-              <h2>
-                <AccordionButton
-                  p={0}
-                  // _expanded={{
-                  //     mt: "10px"
-                  // }}
-                ></AccordionButton>
-              </h2>
-
-              <AccordionPanel></AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Td>
-      </Tr>
-    </>
+      <Td>
+        <Box layerStyle={"flexCenter"}>
+          <Text variant={"h3"}>{item?.percentage}%</Text>
+        </Box>
+      </Td>
+    </Tr>
   );
 };
 const TableHeaderRowMobile = () => {
