@@ -129,8 +129,8 @@ const GenericTable = ({
           {tableData?.isLoading && (
             <>
               <SkeletonTable
-                numColumns={SkeletonRowsColumnsMobile.numColumns}
-                numRows={SkeletonRowsColumnsMobile.numRows}
+                numColumns={SkeletonRowsColumnsMobile?.numColumns}
+                numRows={SkeletonRowsColumnsMobile?.numRows}
               />
             </>
           )}
