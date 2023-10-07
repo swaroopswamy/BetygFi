@@ -4,13 +4,12 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import ApexCharts from "apexcharts";
 import graphData2 from './exampleTrendGraphData.json';
 import { useSelector } from "react-redux";
 import millify from "millify";
-import { color } from "framer-motion";
 const axios = require('axios');
 import "/styles/styles.scss";
+import CustomChart from "/src/app/components/graph";
 
 function DashboardTrendGraph() {
     const { colorMode } = useColorMode();
@@ -340,7 +339,7 @@ function SelectorGraph({ tvlData }) {
                 marginTop={"-30px"}
                 marginBottom={"-48px"}
             >
-                <Chart
+                <CustomChart
                     options={options}
                     series={tvl}
                     type={options.chart.type}
@@ -447,7 +446,7 @@ function Graph({ series }) {
 
     return (
         <>
-            <Chart
+            <CustomChart
                 options={options}
                 series={series}
                 type={options.chart.type}
