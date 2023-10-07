@@ -97,6 +97,7 @@ const Text = defineStyleConfig({
       lineHeight: "26px",
       fontFamily: "Inter",
       color: colorMode === "light" ? "#191919" : "#F0F0F5",
+      opacity: "0.8",
     }),
     contentHeading: ({ colorMode }) => ({
       fontSize: "24px",

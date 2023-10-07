@@ -1,14 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
-  Flex,
   Heading,
   Text,
-  Container,
-  UnorderedList,
-  ListItem,
-  Center,
   Image,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -103,26 +98,10 @@ const About = () => {
         _dark={{ background: "#191919" }}
         _light={{ background: "#F0F0F5" }}
       >
-        <Box
-          width={"100%"}
-          height={"175px"}
-          flexShrink={0}
-          background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}
-        >
-          <Box
-            w={"100%"}
-            display={"flex"}
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-          >
-            <Box
-              color={"#FFFFFF"}
-              fontSize={"36px"}
-              fontWeight={400}
-              lineHeight={"46px"}
-              padding={"51px 0px 78px 20px"}
-            >
-              We BetygFi
+        <Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
+          <Box layerStyle={"flexSpaceBetween"}>
+            <Box padding={"51px 0px 78px 20px"}>
+              <Text variant={"bigHeading"}>We BetygFi</Text>
             </Box>
             <Box padding={"37px 10px 38px 20px"}>
               <Image
@@ -131,7 +110,6 @@ const About = () => {
                 height={"100px"}
                 flexShrink={0}
                 alt="icon"
-                //mt={"30px"}
               ></Image>
             </Box>
           </Box>
@@ -142,21 +120,11 @@ const About = () => {
               "/images/solvendo-logo.svg",
               "/images/solvendo-logo(black).svg"
             )}
-            width={"161px"}
-            height={"127px"}
             alt=""
           ></Image>
         </Box>
         <Box p={"0px 15px 10px 15px"}>
-          <Text
-            _dark={{ color: "#FFFFFF" }}
-            _light={{ color: "#191919" }}
-            fontSize={"14px"}
-            fontWeight={400}
-            lineHeight={"26px"}
-            opacity={"0.8"}
-            //mt={17}
-          >
+          <Text variant={"content"}>
             BetygFi is a blockchain analytics platform that enriches on-chain
             data with millions of wallet labels. Powered By Solvendo. Crypto
             investors use BetygFi to discover opportunities, perform due
@@ -164,24 +132,13 @@ const About = () => {
             and alerts.
           </Text>
         </Box>
-        <Heading
-          _dark={{ color: "#F0F0F5" }}
-          _light={{ color: "#191919" }}
-          fontSize={"18px"}
-          fontWeight={500}
-          lineHeight={"normal"}
-          p={"10px 0px 10px 20px"}
-        >
-          About BetygFi
-        </Heading>
         <Text
-          _dark={{ color: "#F0F0F5" }}
-          _light={{ color: "#191919" }}
-          fontSize={"14px"}
-          fontStyle={"normal"}
-          fontWeight={400}
-          lineHeight={"26px"}
-          opacity={"0.8"}
+          variant={"contentHeading"}
+          p={"25px 0px 15px 12px"}>
+          About BetygFi
+        </Text>
+        <Text
+          variant={"content"}
           p={"0px 15px 55px 15px"}
         >
           We believe that BetygFi represents the beginnings of the future of
