@@ -168,9 +168,8 @@ const TableRow = ({ item, rowIndex }) => {
   return (
     <Tr
       key={rowIndex}
-      cursor={item.name === "AAVE V2" ? "pointer" : "cursor"}
+      cursor={"pointer"}
       onClick={() => {
-        if (item.name === "AAVE V2")
           router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
       }}
       border={"0px"}
@@ -211,7 +210,7 @@ const TableRow = ({ item, rowIndex }) => {
           )}
           <Box layerStyle="center">
             <Text variant={"h3"}>{item.name}</Text>
-            {item.name === "AAVE V2" && (
+            {/* {item.name === "AAVE V2" && (
               <Image
                 width={18}
                 height={18}
@@ -223,7 +222,7 @@ const TableRow = ({ item, rowIndex }) => {
                     : "/images/wallet_analytics_black.svg"
                 }
               ></Image>
-            )}
+            )} */}
           </Box>
         </Box>
       </Td>

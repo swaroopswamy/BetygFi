@@ -104,7 +104,7 @@ const Banner = () => {
                             <Box>
                                 {
                                     defiData?.name !== undefined && (
-                                        <Text variant={'h1'} fontWeight={'500'} textTransform={"capitalize"}>
+                                        <Text variant={'h1'} fontWeight={'500'} textTransform={"capitalize"} textAlign={"left"}>
                                             {defiData?.name}
                                         </Text>
                                 )}
