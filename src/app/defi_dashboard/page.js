@@ -20,8 +20,6 @@ import DefiAssetsSmallTable from "/src/app/components/pages/defiDashboard/defiAs
 import DefiFeeRevenueChart from "/src/app/components/pages/defiDashboard/defiFeeRevenueChart";
 import GovernanceTable from "/src/app/components/pages/defiDashboard/governance";
 
-
-
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
     const pathname = usePathname();
@@ -55,7 +53,6 @@ const DefiDashboardPage = () => {
 
     useEffect(() => {
         getDefiDataHandler();
-        //getDefiUsersTableDataHandler();
         getDefiHotContractsDataHandler();
         getDefiAssetCompositionDataHandler();
     }, []);

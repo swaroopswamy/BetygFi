@@ -40,6 +40,7 @@ const Rankings = () => {
   } = useDisclosure();
 
   const dispatch = useDispatch();
+  const { colorMode } = useColorMode();
 
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
@@ -200,7 +201,7 @@ const TableRow = ({ item, rowIndex }) => {
                 justifyContent={"center"}
                 display={"flex"}
                 borderRadius={"50%"}
-                bgColor={useColorModeValue("#676DFF")}
+                bgColor={"#676DFF"}
               >
                 <Text color={"#FFF"} fontSize={"14px"} fontWeight={600}>
                   {item.name.charAt(0)}

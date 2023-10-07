@@ -150,10 +150,12 @@ const DashboardDefiSelection = ( {...rest} ) => {
           borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
         > All </Button>
         {categories.map((category, i) => (
-          <Button variant={'defi'}
-          isActive={categorySelected.includes(category)}
-          onClick={() => categoryChangedHandler(category)}
-          borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
+          <Button
+            key={i} 
+            variant={'defi'}
+            isActive={categorySelected.includes(category)}
+            onClick={() => categoryChangedHandler(category)}
+            borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
           > {category} </Button>
         ))}
       </Box>

@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Icon, useColorModeValue, Text, Td, Tr, Flex, Image, useColorMode,} from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import GenericBigTableComponent from "../GenericBigTable";
+import GenericBigTableComponent from '/src/app/components/pages/defiDashboard/GenericBigTable';
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Box, Text, Tr, Td, Flex, Icon, Image, useColorModeValue, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from "@chakra-ui/react";
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
-import GenericBigTableComponent from '../GenericBigTable';
+import GenericBigTableComponent from '/src/app/components/pages/defiDashboard/GenericBigTable';
 
 function Defi_Hot_Contracts () {
   const [tabIndex, setTabIndex] = useState(0);

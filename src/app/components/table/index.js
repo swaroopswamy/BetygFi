@@ -62,10 +62,10 @@ const GenericTable = ({
                     {item.isSortingEnabled && (
                       <Image
                         mt={"2px"}
-                        src={useColorModeValue(
-                          "/images/Arrowdown(light).svg",
+                        src={colorMode === 'light' ? 
+                          "/images/Arrowdown(light).svg" :
                           "/images/Arrowdown(dark).svg"
-                        )}
+                        }
                         alt="Sort"
                         ml="2"
                       />
@@ -139,7 +139,7 @@ const GenericTable = ({
           {tableData?.isSuccess &&
             (tableData?.data?.data?.length > 0 ? (
               tableData?.data?.data.map((item, rowIndex) => {
-                return <TableRow item={item} rowIndex={rowIndex} />;
+                return <TableRow key={rowIndex} item={item} rowIndex={rowIndex} />;
               })
             ) : (
               <Tr>
