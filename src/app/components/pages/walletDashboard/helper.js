@@ -153,6 +153,30 @@ export const InflowTokensTableHeader = [
   },
 ];
 
+export const ProtocolAllocationsTableHeader = [
+  {
+    value: "DeFi Name",
+    label: "DeFi Name",
+    isTooltip: false,
+    isSortingEnabled: true,
+    tooltipLabel: null,
+  },
+  {
+    value: "Share",
+    label: "Share",
+    isTooltip: false,
+    isSortingEnabled: true,
+    tooltipLabel: null,
+  },
+  {
+    value: "Value",
+    label: "Value",
+    isTooltip: false,
+    isSortingEnabled: true,
+    tooltipLabel: null,
+  },
+];
+
 export const TransactionTableDesktop = {
   numColumns: 6,
   numRows: 4,
@@ -196,4 +220,11 @@ export const InflowTokensMobile = {
   numRows: 4,
 };
 
-
+export const ProtocolAllocationsDesktop = {
+  numColumns: 3,
+  numRows: 4,
+};
+export const ProtocolAllocationsMobile = {
+  numColumns: 2,
+  numRows: 4,
+};
