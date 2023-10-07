@@ -210,7 +210,7 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
                             <Image
                                 height={"24px"}
                                 width={"24px"}
-                                 src={ blockchain.src}
+                                src={ blockchain?.src}
                                 alt="logo"
                             >
                             </Image>

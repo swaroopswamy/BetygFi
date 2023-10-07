@@ -121,7 +121,7 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
                             <Image
                                 height={"24px"}
                                 width={"24px"}
-                                src={Asset.src}
+                                src={Asset?.src}
                                 alt="logo"
                             // url={"/icons/Ethereum_sm_icon.svg"}
                             //  src="/icons/aave_logo.svg"
