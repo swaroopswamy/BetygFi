@@ -10,11 +10,6 @@ import { useRouter } from "next/navigation";
 //import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import BackIconWhite from '../../../public/icons/backIconWhite.svg';
-import BackIconBlack from '../../../public/icons/backIconBlack.svg';
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import SortWhiteIcon from '../../../public/icons/sort_white.svg';
-import SortBlackIcon from '../../../public/icons/sort_black.svg';
 
 const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();

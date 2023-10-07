@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import millify from "millify";
 import { color } from "framer-motion";
 const axios = require('axios');
+import "/styles/styles.scss";
 
 function DashboardTrendGraph() {
     const { colorMode } = useColorMode();

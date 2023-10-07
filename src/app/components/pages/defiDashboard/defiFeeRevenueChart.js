@@ -1,16 +1,15 @@
 "use client"
 import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Spacer, Button } from "@chakra-ui/react";
-import { color } from "framer-motion";
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import './styles.css';
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+import "/styles/styles.scss";
 
 let USDollar = new Intl.NumberFormat('en-US');
 
-function DonutChart() {
+function DefiFeeRevenueChart() {
 
   const { colorMode } = useColorMode();
   const router = useRouter();
@@ -234,5 +233,5 @@ function DonutChart() {
   );
 }
 
-export default DonutChart;
+export default DefiFeeRevenueChart;
 

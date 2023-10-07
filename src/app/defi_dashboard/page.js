@@ -4,20 +4,23 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import DonutChart from "./DonutChart";
-import DefiHotContractsSmallTableComponent from './DefiHotContractsSmallTable';
-import DefiInflowOutflowSmallTableComponent from './DefiInflowOutflowSmallTable';
-import GovernanceTable from "./governance";
+import DefiHotContractsSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiHotContractsSmallTable';
+import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
 import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 import { Router } from "next/router";
+
 import Banner from "/src/app/components/pages/defiDashboard/banner";
 import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
 import DefiUsersSmallTable from "/src/app/components/pages/defiDashboard/defiUsersSmallTable";
 import DefiTVLChart from "/src/app/components/pages/defiDashboard/defiTVLchart";
 import DefiAssetsSmallTable from "/src/app/components/pages/defiDashboard/defiAssetsSmallTable";
+import DefiFeeRevenueChart from "/src/app/components/pages/defiDashboard/defiFeeRevenueChart";
+import GovernanceTable from "/src/app/components/pages/defiDashboard/governance";
+
+
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -81,7 +84,7 @@ const DefiDashboardPage = () => {
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
                     <DefiAssetsSmallTable />
-                    <DonutChart />
+                    <DefiFeeRevenueChart />
                 </Box>
 
                 <Box display={"flex"} flexDir={{base: "column", lg: "row"}} justifyContent={"space-between"} gap={"20px"}>
