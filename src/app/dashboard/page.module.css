@@ -1,8 +1,0 @@
-/* styles.css */
-@media (max-width: 768px) {
-    .tooltip-wrapper {
-      max-height: 100px; /* Set the maximum height for the tooltip content */
-      overflow-y: auto; /* Enable vertical scrolling when content overflows */
-    }
-  }
-  

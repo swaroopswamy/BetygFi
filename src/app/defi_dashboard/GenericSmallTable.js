@@ -15,8 +15,6 @@ import BackIconBlack from '../../../public/icons/backIconBlack.svg';
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import SortWhiteIcon from '../../../public/icons/sort_white.svg';
 import SortBlackIcon from '../../../public/icons/sort_black.svg';
-import SmallTable_LastUpdate from '/src/app/components/smallTable_LastUpdate';
-
 
 const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();
@@ -120,7 +118,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                             bg={useColorModeValue("#F5F5F7", "#131313")}
                             width={"20%"}
                             fontSize={"14px"}
-                            fontFamily={"Manrope"}
+                            fontFamily={"Inter"}
                             fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
@@ -146,7 +144,6 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 
 
                 </Table>
-                <SmallTable_LastUpdate />
             </Box>
 
         </>
@@ -190,7 +187,7 @@ function ThreadItem({ key, name }) {
                   }}
                   _dark={{color:"#A8ADBD"}}
                 fontSize={"14px"}
-                fontFamily={"Manrope"}
+                fontFamily={"Inter"}
                 fontStyle={"normal"}
                 fontWeight={"400"}
                 lineHeight={"20px"}

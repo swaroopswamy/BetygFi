@@ -1,11 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {
-  Box,
-  SkeletonCircle,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, SkeletonCircle, Text, useColorMode } from "@chakra-ui/react";
 import isEmpty from "is-empty";
 import TooltipComp from "../../tooltipComp";
 import CustomChart from "../../graph";
@@ -24,7 +19,7 @@ const AssetAllocationBox = () => {
       zoom: {
         enabled: false,
       },
-      fontFamily: "Manrope",
+      fontFamily: "Inter",
     },
     plotOptions: {
       pie: {

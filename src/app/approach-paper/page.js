@@ -25,7 +25,7 @@ const Approach = () => {
   return (
     <>
       {
-        <Container maxW={"100%"} padding={"0px"}>
+        <Box maxW={"100%"} padding={"0px"}>
 
           <Box background={useColorModeValue("#E8E8E8", "#222")}
             display={{ base: "none", md: "block" }}>
@@ -320,10 +320,7 @@ const Approach = () => {
           <Box background={useColorModeValue("#E8E8E8", "#222")}
             display={{ base: "block", md: "none" }}>
 
-            <Box display={"flex"}
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}>
+            <Box layerStyle={"flexAlignCenterJustifyCenter"}>
 
               <Text
                 fontSize={"36px"}
@@ -643,7 +640,7 @@ const Approach = () => {
             </Box>
           </Box>
 
-        </Container>
+        </Box>
       }
     </>
   )

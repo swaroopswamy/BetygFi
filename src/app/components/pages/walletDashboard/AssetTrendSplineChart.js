@@ -1,8 +1,7 @@
 import { useColorMode, useColorModeValue, Skeleton, Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+import CustomChart from "../../graph";
 
 
 const AssetTrendSplineChart = () => {
@@ -82,7 +81,7 @@ const AssetTrendSplineChart = () => {
                 </Box>
                 </Skeleton>)
             }
-             {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />}
+             {walletBalanceData?.isSuccess && <CustomChart options={options} series={series} type="line" height={250} />}
         </>
     );
 };

@@ -778,7 +778,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                         }}
                         _dark={{color:"#A8ADBD"}}
                         fontSize={"14px"}
-                        fontFamily={"Manrope"}
+                        fontFamily={"Inter"}
                         fontWeight={"400"}
                         lineHeight={"20px"}
                         letterSpacing={"1px"}

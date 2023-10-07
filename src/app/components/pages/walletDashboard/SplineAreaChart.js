@@ -1,9 +1,6 @@
 import React from "react";
-
-import dynamic from "next/dynamic";
 import { useColorMode } from "@chakra-ui/react";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
-
+import CustomChart from '../../graph/index'
 
 const SplineAreaChart = () => {
     const { colorMode } = useColorMode();
@@ -74,7 +71,7 @@ const SplineAreaChart = () => {
     ];
     return (
         <>
-            <ApexCharts options={options} series={series} type="area" height={80} />
+            <CustomChart options={options} series={series} type="area" height={80} />
         </>
     );
 };

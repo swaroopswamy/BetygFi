@@ -14,6 +14,7 @@ import {
   Tr,
   Td,
   useColorModeValue,
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
 import TooltipComp from "/src/app/components/tooltipComp";
@@ -22,13 +23,15 @@ import { SingleAccordionComp } from "/src/app/components/accordion";
 
 const GenericTable = ({
   tableHeader,
-  tableData,
+  tableData = null,
   TableRow,
   TableHeaderRowMobile,
   ButtonComp,
   PanelComp,
   SkeletonRowsColumnsDesktop,
   SkeletonRowsColumnsMobile,
+  isQueryInPendingState = false,
+  bigTable = false,
 }) => {
   return (
     <>
@@ -37,7 +40,7 @@ const GenericTable = ({
         key={1}
         w={{ base: "100%", md: "100%" }}
         display={{ base: "none", md: "table" }}
-        minW={"1400px"}
+        minW={bigTable ? "1200px" : "unset"}
       >
         <Thead
           bgColor={useColorModeValue("#F5F5F7", "#191919")}
@@ -48,7 +51,7 @@ const GenericTable = ({
             {tableHeader.map((item, i) => {
               return (
                 <Th key={i} border={"0px"}>
-                  <Flex>
+                  <Box display={"flex"} alignItems={"center"} gap={"3px"}>
                     <Text
                       variant={"tableHead"}
                       textTransform={"capitalize"}
@@ -70,7 +73,7 @@ const GenericTable = ({
                     {item.isTooltip && (
                       <TooltipComp label={item?.tooltipLabel} />
                     )}
-                  </Flex>
+                  </Box>
                 </Th>
               );
             })}
@@ -78,37 +81,77 @@ const GenericTable = ({
         </Thead>
 
         <Tbody border={"0px"}>
-          {tableData?.isError && (
-            <>
-              <Tr>
-                <Td p="20px" textAlign={"center"} colSpan={8} opacity={0.6}>
-                  <Text variant={"h4"}>No data available</Text>
-                </Td>
-              </Tr>
-            </>
-          )}
-          {tableData?.isLoading && (
-            <>
-              <SkeletonTable
-                numColumns={SkeletonRowsColumnsDesktop?.numColumns}
-                numRows={SkeletonRowsColumnsDesktop?.numRows}
-              />
-            </>
-          )}
-
-          {tableData.isSuccess &&
-            (tableData.data?.data?.length > 0 ? (
-              tableData.data?.data.map((item, rowIndex) => {
-                return <TableRow item={item} rowIndex={rowIndex} />;
-              })
-            ) : (
+          {tableData?.isError ||
+            (tableData === null && (
               <>
                 <Tr>
-                  <Td p="20px" textAlign={"center"} colSpan={8} opacity={0.6}>
-                    <Text variant={"h4"}>No data available</Text>
+                  <Td
+                    p="20px"
+                    textAlign={"center"}
+                    height={"245px"}
+                    colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                  >
+                    <Text variant={"noDataText"}>No data available</Text>
                   </Td>
                 </Tr>
               </>
+            ))}
+          {tableData?.isLoading && (
+            <SkeletonTable
+              numColumns={SkeletonRowsColumnsDesktop?.numColumns}
+              numRows={SkeletonRowsColumnsDesktop?.numRows}
+            />
+          )}
+          {isQueryInPendingState && (
+            <Tr>
+              <Td
+                minH={"212px"}
+                colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                textAlign={"center"}
+                p="20px"
+              >
+                <Box
+                  display={"flex"}
+                  flexDirection={"column"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                >
+                  <Text variant={"noDataText"} mt="44px" mb="20px">
+                    We are retrieving data from the Blockchain.
+                  </Text>
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                  />
+                  <Text variant={"noDataText"} mt="20px" mb="8px">
+                    This process might take approximately 2-3 minutes.
+                  </Text>
+                  <Text variant={"noDataText"} mb="50px">
+                    You have the option to wait or return later.
+                  </Text>
+                </Box>
+              </Td>
+            </Tr>
+          )}
+          {tableData?.isSuccess &&
+            (tableData?.data?.data?.length > 0 ? (
+              tableData?.data?.data.map((item, rowIndex) => {
+                return <TableRow item={item} rowIndex={rowIndex} />;
+              })
+            ) : (
+              <Tr>
+                <Td
+                  p="20px"
+                  textAlign={"center"}
+                  height={"245px"}
+                  colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                >
+                  <Text variant={"noDataText"}>No data available</Text>
+                </Td>
+              </Tr>
             ))}
         </Tbody>
       </Table>
@@ -119,25 +162,29 @@ const GenericTable = ({
         </Thead>
 
         <Tbody>
-          {tableData?.isError && (
-            <Tr>
-              <Td p="20px" textAlign={"center"} colSpan={2} opacity={0.6}>
-                <Text variant={"h4"}>No data available</Text>
-              </Td>
-            </Tr>
-          )}
+          {tableData?.isError ||
+            (tableData === null && (
+              <Tr>
+                <Td
+                  p="20px"
+                  textAlign={"center"}
+                  height={"245px"}
+                  colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                >
+                  <Text variant={"noDataText"}>No data available</Text>
+                </Td>
+              </Tr>
+            ))}
           {tableData?.isLoading && (
-            <>
-              <SkeletonTable
-                numColumns={SkeletonRowsColumnsMobile?.numColumns}
-                numRows={SkeletonRowsColumnsMobile?.numRows}
-              />
-            </>
+            <SkeletonTable
+              numColumns={SkeletonRowsColumnsMobile.numColumns}
+              numRows={SkeletonRowsColumnsMobile.numRows}
+            />
           )}
 
-          {tableData.isSuccess &&
-            (tableData.data?.data?.length > 0 ? (
-              tableData.data?.data.map((item, rowIndex) => {
+          {tableData?.isSuccess &&
+            (tableData?.data?.data?.length > 0 ? (
+              tableData?.data?.data.map((item, rowIndex) => {
                 return (
                   <>
                     <Tr>
@@ -161,8 +208,13 @@ const GenericTable = ({
               })
             ) : (
               <Tr>
-                <Td p="20px" textAlign={"center"} colSpan={2} opacity={0.6}>
-                  <Text variant={"h4"}>No data available</Text>
+                <Td
+                  p="20px"
+                  textAlign={"center"}
+                  height={"245px"}
+                  colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                >
+                  <Text variant={"noDataText"}>No data available</Text>
                 </Td>
               </Tr>
             ))}

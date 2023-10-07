@@ -11,7 +11,7 @@ import millify from "millify";
 import { color } from "framer-motion";
 const axios = require('axios');
 
-function TrendGraph() {
+function DashboardTrendGraph() {
     const { colorMode } = useColorMode();
     const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
     const [currencySelected, setCurrencyType] = useState("USD");
@@ -112,7 +112,7 @@ function TrendGraph() {
                 flexDirection={"column"}
                 alignContent={"center"}
                 // height={"400px"}
-                width={{ base: "100%", md: "100%",bigSize:"70%" }}
+                width={{ base: "100%", md: "100%", bigSize:"70%" }}
                 bgColor={useColorModeValue('#FFFFFF', "#202020")}
                 border={"1px"}
                 borderColor={useColorModeValue('#FFFFFF', '#272727')}
@@ -223,11 +223,12 @@ function TrendGraph() {
                 <SelectorGraph
                     tvlData={tvlData}
                 />
-
             </Box>
         </>
     );
 }
+
+export default DashboardTrendGraph;
 
 function SelectorGraph({ tvlData }) {
 
@@ -247,7 +248,7 @@ function SelectorGraph({ tvlData }) {
 
     useEffect(() => {
         let chart = ApexCharts.getChartByID('trendgraph');
-        console.log(chart.w.globals.minX, chart.w.globals.maxX);
+        // console.log(chart.w.globals.minX, chart.w.globals.maxX);
     })
 
 
@@ -618,5 +619,3 @@ function TrendGraphTypeButton({ key, name, value, graphTypeSelected, GraphTypeHa
     )
 }
 
-
-export default TrendGraph;
