@@ -189,7 +189,7 @@ const TableRow = ({ item, rowIndex }) => {
                 height={24}
                 style={{ borderRadius: "50%" }}
                 alt="logo"
-                src={item.logo}
+                src={item?.logo}
               ></Image>
             </>
           ) : (
@@ -330,7 +330,7 @@ const ButtonComp = ({ item }) => {
             height={24}
             style={{ borderRadius: "50%" }}
             alt="logo"
-            src={item.logo}
+            src={item?.logo}
           ></Image>
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>

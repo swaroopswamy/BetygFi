@@ -48,6 +48,7 @@ const GenericTable = ({
           bgColor={useColorModeValue("#F5F5F7", "#191919")}
           position="sticky"
           top={0}
+          zIndex={"99"}
         >
           <Tr>
             {tableHeader.map((item, i) => {
@@ -189,7 +190,7 @@ const GenericTable = ({
               tableData?.data?.data.map((item, rowIndex) => {
                 return (
                   <>
-                    <Tr>
+                    <Tr key={rowIndex}>
                       <Td p={0} colSpan={3}>
                         <SingleAccordionComp
                           display={"flex"}

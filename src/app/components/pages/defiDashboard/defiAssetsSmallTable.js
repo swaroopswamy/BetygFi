@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Text, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td } from "@chakra-ui/react";
+import { Text, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td, Avatar } from "@chakra-ui/react";
 import GenericTable from "/src/app/components/table";
 import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
 import LastUpdate from "/src/app/components/lastUpdate";
@@ -57,7 +57,7 @@ function DefiAssetsSmallTable() {
                 > View More </Button>
             </Box>
 
-            <Box h={"70%"} overflowY={"hidden"} overflowX={"auto"}>
+            <Box h={"70%"} overflowY={"auto"} overflowX={"auto"}>
                 <GenericTable
                     tableHeader={DefiAssetsSmallTableHeader}
                     tableData={defiAssetsTableData}
@@ -67,13 +67,13 @@ function DefiAssetsSmallTable() {
                         return (
                             <Box layerStyle={"spaceBetween"} w={"90%"}>
                                 <Box layerStyle={"flexCenter"} gap={"10px"}>
-                                    <Image
-                                        height={24}
-                                        width={24}
+                                    <Avatar
+                                        height={"24px"}
+                                        width={"24px"}
                                         src={item?.item?.logoUrl}
-                                        alt="logo"
+                                        name={item?.item?.assetName}
                                     >
-                                    </Image>
+                                    </Avatar>
                                     <Text variant={"h3"}> {item?.item?.assetName} </Text>
                                 </Box>
                                 <Box layerStyle={"center"}>
@@ -128,13 +128,13 @@ function TableRow({ item, i }) {
             >
                 <Td>
                     <Box layerStyle={"flexCenter"} gap={"10px"}>
-                        <Image
-                            height={24}
-                            width={24}
+                        <Avatar
+                            height={"24px"}
+                            width={"24px"}
                             src={item?.logoUrl}
-                            alt="logo"
+                            name={item?.assetName}
                         >
-                        </Image>
+                        </Avatar>
                         <Text variant={"h3"}> {item?.assetName} </Text>
                     </Box>
                 </Td>

@@ -63,7 +63,7 @@ const BlockchainSelectionMenu = () => {
                       style={{ borderRadius: "50%" }}
                       width={24}
                       height={24}
-                      src={item.logoUrl}
+                      src={item?.logoUrl}
                       alt={`${item.id}_icon`}
                     ></Image>
                   </Box>
