@@ -61,6 +61,16 @@ export function Providers({ children }) {
         alignItems: "center",
         justifyContent: "space-between",
       },
+      flexCenterSpaceEvenly: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+      },
+      flexCenterFlexStart: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+      },
     },
   });
 
