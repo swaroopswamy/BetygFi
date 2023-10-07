@@ -43,6 +43,17 @@ export const getDefiAssetCompositionTableData = async (payload) => {
   }
 };
 
+export const getDefiFeeRevenueData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `protocols/${payload.defi}/fees-revenue?blockchain=${payload.blockchain}`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 // export const getDefiInflowOutflowTableData = async (payload) => {
 //   try {

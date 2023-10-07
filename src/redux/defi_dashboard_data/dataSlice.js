@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getDefiAssetCompositionTableData } from "../../services/defiDashboardService";
+import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getDefiAssetCompositionTableData, getDefiFeeRevenueData } from "../../services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
   const response = await getDefiData(payload);
@@ -18,6 +18,11 @@ export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContra
 
 export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData', async (payload) => {
   const response = await getDefiAssetCompositionTableData(payload);
+  return response.data;
+})
+
+export const fetchDefiFeeRevenueData = createAsyncThunk('getDefiFeeRevenueData', async (payload) => {
+  const response = await getDefiFeeRevenueData(payload);
   return response.data;
 })
 
@@ -49,6 +54,12 @@ const DefiDashboardDataSlice = createSlice({
       isSuccess: false,
     },
     DefiAssetCompositionTableData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    DefiFeeRevenueData: {
       data: null,
       isLoading: false,
       isError: false,
@@ -133,6 +144,24 @@ const DefiDashboardDataSlice = createSlice({
       state.DefiAssetCompositionTableData.isError = true;
       state.DefiAssetCompositionTableData.isLoading = false;
       state.DefiAssetCompositionTableData.data = action.payload;
+    });
+    builder.addCase(fetchDefiFeeRevenueData.fulfilled, (state, action) => {
+      state.DefiFeeRevenueData.data = action.payload;
+      state.DefiFeeRevenueData.isLoading = false;
+      state.DefiFeeRevenueData.isSuccess = true;
+      state.DefiFeeRevenueData.isError = false;
+    });
+    builder.addCase(fetchDefiFeeRevenueData.pending, (state, action) => {
+      state.DefiFeeRevenueData.isLoading = true;
+      state.DefiFeeRevenueData.isError = false;
+      state.DefiFeeRevenueData.isSuccess = false;
+      state.DefiFeeRevenueData.data = action.payload;
+    });
+    builder.addCase(fetchDefiFeeRevenueData.rejected, (state, action) => {
+      state.DefiFeeRevenueData.isSuccess = false;
+      state.DefiFeeRevenueData.isError = true;
+      state.DefiFeeRevenueData.isLoading = false;
+      state.DefiFeeRevenueData.data = action.payload;
     });
 
     // builder.addCase(fetchDefiInflowOutflowTableData.fulfilled, (state, action) => {

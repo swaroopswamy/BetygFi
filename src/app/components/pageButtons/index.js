@@ -1,8 +1,6 @@
 import { Text, Box, useColorModeValue, Image, Button } from "@chakra-ui/react";
 
-const PageButtons = ( {page, totalPages, pageChangeHandler} ) => {
-    console.log("page: ", page);
-    
+const PageButtons = ( {page, totalPages, pageChangeHandler} ) => {    
     return (
         <>
         <Box layerStyle={"flexCenter"} gap={"20px"} >

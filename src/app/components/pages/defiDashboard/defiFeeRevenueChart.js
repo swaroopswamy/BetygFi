@@ -1,19 +1,40 @@
 "use client"
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Spacer, Button } from "@chakra-ui/react";
-import React from "react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Box, Image, Text, useColorModeValue, useColorMode, Flex, Tooltip } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import "/styles/styles.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDefiFeeRevenueData } from "../../../../redux/defi_dashboard_data/dataSlice";
 
 let USDollar = new Intl.NumberFormat('en-US');
 
 function DefiFeeRevenueChart() {
-
+  const searchParam = useSearchParams();
   const { colorMode } = useColorMode();
-  const router = useRouter();
+  const dispatch = useDispatch();
   const Definitions = "DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution.";
+
+  const defi = searchParam.get("defi");
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
+  const DefiFeeRevenueData = useSelector(
+    (state) => state?.defiDashboardData?.DefiFeeRevenueData
+);
+
+  const getFeeRevenueDataHandler = () => {
+    const payload = {
+        defi: defi,
+        blockchain: blockchainSelected,
+    };
+    dispatch(fetchDefiFeeRevenueData(payload));
+  };
+
+  useEffect(() => {
+    getFeeRevenueDataHandler();
+  }, [blockchainSelected]);
 
   const options = {
     labels: ["Fee", "Revenue"],
@@ -68,8 +89,6 @@ function DefiFeeRevenueChart() {
     },
     colors: ["#FF5C01", "#24A48A"],
   };
-
-  const series = [194090, 33900];
 
   return (
     <>
@@ -155,12 +174,14 @@ function DefiFeeRevenueChart() {
           height={"280px"}
           justifyContent={"center"}
         >
-          <Chart
-            options={options}
-            series={series}
-            type={options.chart.type}
-            height={"250px"}
-          />
+          {DefiFeeRevenueData?.isSuccess && 
+            <Chart
+              options={options}
+              series={[DefiFeeRevenueData.data.totalFees, DefiFeeRevenueData.data.totalRevenue]}
+              type={options.chart.type}
+              height={"250px"}
+            />
+          }
         </Box>
 
         <Box
@@ -173,12 +194,14 @@ function DefiFeeRevenueChart() {
           height={"280px"}
           justifyContent={"center"}
         >
-          <Chart
-            options={options}
-            series={series}
-            type={options.chart.type}
-            height={"202px"}
-          />
+          {DefiFeeRevenueData?.isSuccess && 
+            <Chart
+              options={options}
+              series={[DefiFeeRevenueData.data.totalFees, DefiFeeRevenueData.data.totalRevenue]}
+              type={options.chart.type}
+              height={"250px"}
+            />
+          }
         </Box>
 
         <Box

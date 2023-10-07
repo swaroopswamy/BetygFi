@@ -8,6 +8,7 @@ import {
     MenuList,
     Text,
     Tooltip,
+    useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";

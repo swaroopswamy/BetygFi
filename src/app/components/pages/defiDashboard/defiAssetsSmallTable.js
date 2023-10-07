@@ -27,8 +27,6 @@ function DefiAssetsSmallTable() {
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
 
-    console.log("data: ", defiAssetsTableData);
-
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,

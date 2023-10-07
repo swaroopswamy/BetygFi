@@ -16,7 +16,7 @@ function DefiTVLChart() {
   const router = useRouter();
   const defiData = useSelector(
     (state) => state?.defiDashboardData?.DefiData?.data
-  )
+  );
 
   const options = {
     chart: {

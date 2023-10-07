@@ -15,6 +15,7 @@ import {
   Td,
   useColorModeValue,
   Spinner,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import TooltipComp from "/src/app/components/tooltipComp";
@@ -33,6 +34,7 @@ const GenericTable = ({
   isQueryInPendingState = false,
   bigTable = false,
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <>
       <Table
