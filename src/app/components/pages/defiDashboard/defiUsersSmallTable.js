@@ -41,12 +41,12 @@ function DefiUsersSmallTable() {
                     DeFi Users
                 </Text>
 
-                <Button
+                {/* <Button
                     variant={'viewMore'}
-                    // onClick={() => {
-                    //     router.push("/defi_dashboard/defi_users");
-                    // }}
-                > View More </Button>
+                    onClick={() => {
+                        router.push("/defi_dashboard/defi_users");
+                    }}
+                > View More </Button> */}
             </Box>
 
             <Box h={"70%"} overflow={"hidden"}>

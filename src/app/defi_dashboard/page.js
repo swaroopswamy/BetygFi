@@ -38,7 +38,6 @@ const DefiDashboardPage = () => {
         };
         dispatch(fetchDefiData(payload));
     }
-
     
     const getDefiHotContractsDataHandler = () => {
         const payload = {

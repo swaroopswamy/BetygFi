@@ -7,7 +7,7 @@ import { Text, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td } from "
 import GenericTable from "/src/app/components/table";
 import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
 import LastUpdate from "/src/app/components/lastUpdate";
-import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import TooltipComp from "/src/app/components/tooltipComp";
 import Image from "next/image";
 
@@ -26,13 +26,14 @@ function DefiAssetsSmallTable() {
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
-    console.log("assets: ", defiAssetsTableData);
+
+    console.log("data: ", defiAssetsTableData);
 
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
         };
-        dispatch(fetchDefiUsersTableData(payload));
+        dispatch(fetchDefiAssetCompositionTableData(payload));
     };
 
     useEffect(() => {

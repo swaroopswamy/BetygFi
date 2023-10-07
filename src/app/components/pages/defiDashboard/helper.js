@@ -45,3 +45,41 @@ export const DefiAssetsSmallTableHeader = [
         tooltipLabel: null,
     },
 ]
+
+export const DefiAssetsBigTableHeader = [
+    {
+        value: "assetName",
+        label: " Asset Name",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "price",
+        label: " Price",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "amount",
+        label: " Amount",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "value",
+        label: " Value",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+    {
+        value: "share",
+        label: " Share",
+        isTooltip: false,
+        isSortingEnabled: true,
+        tooltipLabel: null,
+    },
+]

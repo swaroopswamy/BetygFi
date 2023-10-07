@@ -232,9 +232,6 @@ function DashboardTrendGraph() {
 export default DashboardTrendGraph;
 
 function SelectorGraph({ tvlData }) {
-
-    
-
     if (!tvlData)
         return;
 
@@ -247,10 +244,10 @@ function SelectorGraph({ tvlData }) {
 
     const { colorMode } = useColorMode;
 
-    useEffect(() => {
-        let chart = ApexCharts.getChartByID('trendgraph');
-        // console.log(chart.w.globals.minX, chart.w.globals.maxX);
-    })
+    // useEffect(() => {
+    //     let chart = ApexCharts.getChartByID('trendgraph');
+    //     console.log(chart.w.globals.minX, chart.w.globals.maxX);
+    // })
 
 
     const options = {
