@@ -83,7 +83,6 @@ const GovernanceTable = ({ }) => {
                     alignItems="center"
                     padding={"25px 29px 27px"}
                     bgColor={useColorModeValue("#FFF", "#202020")}
-                //borderRadius={"6px"}
                 >
                     <Text
                         fontSize={"18px"}
