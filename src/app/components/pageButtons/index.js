@@ -20,7 +20,7 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
           <Box layerStyle={"flexCenter"} gap={"20px"}>
             <Box layerStyle={"flexCenter"} gap={"5px"}>
               <Text variant={"h3"}>Page</Text>
-              <Text variant={"h2"}>1</Text>
+              <Text variant={"h2"}>{page}</Text>
             </Box>
 
             <Box display={"flex"}>

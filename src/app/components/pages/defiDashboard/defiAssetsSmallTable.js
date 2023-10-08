@@ -60,7 +60,7 @@ function DefiAssetsSmallTable() {
                 }
             </Box>
 
-            <Box h={"70%"} overflowY={"auto"} overflowX={"auto"}>
+            <Box h={"70%"} overflow={defiAssetsTableData?.isSuccess ? "auto" : "hidden"}>
                 <GenericTable
                     tableHeader={DefiAssetsSmallTableHeader}
                     tableData={defiAssetsTableData}

@@ -22,7 +22,7 @@ function DefiFeeRevenueChart() {
   );
   const DefiFeeRevenueData = useSelector(
     (state) => state?.defiDashboardData?.DefiFeeRevenueData
-);
+  );
 
   const getFeeRevenueDataHandler = () => {
     const payload = {
@@ -174,6 +174,18 @@ function DefiFeeRevenueChart() {
           height={"280px"}
           justifyContent={"center"}
         >
+          {DefiFeeRevenueData?.isError && (
+              <>
+                <Box
+                  p="20px"
+                  textAlign={"center"}
+                  height={"245px"}
+                  colSpan={1}
+                >
+                  <Text variant={"noDataText"}>No data available</Text>
+                </Box>
+              </>
+            )}
           {DefiFeeRevenueData?.isSuccess && 
             <Chart
               options={options}

@@ -84,8 +84,7 @@ const GenericTable = ({
         </Thead>
 
         <Tbody border={"0px"}>
-          {tableData?.isError ||
-            (tableData === null && (
+          {(tableData?.isError || tableData === null) && (
               <>
                 <Tr>
                   <Td
@@ -98,7 +97,7 @@ const GenericTable = ({
                   </Td>
                 </Tr>
               </>
-            ))}
+            )}
           {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsDesktop?.numColumns}

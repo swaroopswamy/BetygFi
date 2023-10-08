@@ -17,7 +17,7 @@ import DefiUsersSmallTable from "/src/app/components/pages/defiDashboard/defiUse
 import DefiTVLChart from "/src/app/components/pages/defiDashboard/defiTVLchart";
 import DefiAssetsSmallTable from "/src/app/components/pages/defiDashboard/defiAssetsSmallTable";
 import DefiFeeRevenueChart from "/src/app/components/pages/defiDashboard/defiFeeRevenueChart";
-import GovernanceTable from "/src/app/components/pages/defiDashboard/governance";
+import GovernanceTable from "/src/app/components/pages/defiDashboard/governanceTable";
 import DefiHotContractsSmallTable from "../components/pages/defiDashboard/DefiHotContractsSmallTable";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 

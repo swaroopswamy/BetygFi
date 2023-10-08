@@ -21,11 +21,11 @@ const GovernanceTable = ({ }) => {
     const defiGovernanceTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiGovernanceTableData
     );
-    console.log("governance", defiGovernanceTableData);
+    // console.log("governance", defiGovernanceTableData);
 
     const getDefiGovernanceTableDataHandler = () => {
         const payload = {
-            defi: defi,
+            defi: 'arbitrum',
         };
         dispatch(fetchDefiGovernanceTableData(payload));
     };
