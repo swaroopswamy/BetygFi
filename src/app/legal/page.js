@@ -1,7 +1,7 @@
 "use client"
 import { Box, Image, useColorModeValue, Text, Tab, TabList, TabPanels, Tabs, TabPanel, useColorMode } from "@chakra-ui/react";
-import Terms from "./terms";
-import Privacy from "./privacy";
+import Terms from "../../app/components/pages/legal/terms";
+import Privacy from "../../app/components/pages/legal/privacy";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
