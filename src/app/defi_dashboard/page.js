@@ -1,7 +1,7 @@
 
 "use client"
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import { Box, useColorModeValue, useColorMode, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
@@ -19,6 +19,7 @@ import DefiAssetsSmallTable from "/src/app/components/pages/defiDashboard/defiAs
 import DefiFeeRevenueChart from "/src/app/components/pages/defiDashboard/defiFeeRevenueChart";
 import GovernanceTable from "/src/app/components/pages/defiDashboard/governance";
 import DefiHotContractsSmallTable from "../components/pages/defiDashboard/DefiHotContractsSmallTable";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 const DefiDashboardPage = () => {
     const searchParam = useSearchParams();
@@ -63,7 +64,20 @@ const DefiDashboardPage = () => {
 
     return (
         <>
-            <Box bgColor={useColorModeValue("#F0F0F5", "#191919")} layerStyle={"center"} w={"100%"}>
+            <Box bgColor={useColorModeValue("#F0F0F5", "#191919")} display={"flex"} flexDir={"column"} w={"100%"}>
+                <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} m={"20px 30px"}
+                    onClick={() => router.push(`/`)}
+                >
+                    <ChevronLeftIcon
+                        w={"24px"}
+                        h={"24px"}
+                        borderRadius={"50%"}
+                        border={useColorModeValue("1px solid #E1E1E1", "1px solid #333333")}
+                    />
+                    <Text variant={"h6"} letterSpacing={"1.2px"}>
+                        Home/Defi Dashboard
+                    </Text>
+                </Box>
                 <Banner />
             </Box>
 

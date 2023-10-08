@@ -22,6 +22,7 @@ function DefiAssetsSmallTable() {
     const router = useRouter();
 
     const defi = searchParam.get("defi");
+    const id = searchParam.get("id");
 
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
@@ -49,12 +50,14 @@ function DefiAssetsSmallTable() {
                 </Box>
 
 
-                <Button
-                    variant={'viewMore'}
-                    // onClick={() => {
-                    //     router.push("/defi_dashboard/defi_users");
-                    // }}
-                > View More </Button>
+                {defiAssetsTableData?.isSuccess && 
+                    <Button
+                        variant={'viewMore'}
+                        onClick={() => {
+                            router.push(`/defi_dashboard/asset_composition?defi=${defi}&id=${id}`);
+                        }}
+                    > View More </Button>
+                }
             </Box>
 
             <Box h={"70%"} overflowY={"auto"} overflowX={"auto"}>

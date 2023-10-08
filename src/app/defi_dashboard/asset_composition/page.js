@@ -22,6 +22,7 @@ function AssetComposition() {
     const dispatch = useDispatch();
 
     const defi = searchParam.get("defi");
+    const id = searchParam.get("id");
 
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
@@ -41,7 +42,7 @@ function AssetComposition() {
     return (
         <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} mb={"30px"} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
             <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
-                onClick={() => router.push('/defi_dashboard?defi=aave-v2&id=64f89f60c1bf31c698b7a6e8')}
+                onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >
                 <ChevronLeftIcon
                     w={"24px"}
