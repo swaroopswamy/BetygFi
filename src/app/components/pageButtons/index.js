@@ -1,6 +1,8 @@
-import { Text, Box, useColorModeValue, Image, Button } from "@chakra-ui/react";
+import { Text, Box, useColorModeValue, Image, Button, useColorMode } from "@chakra-ui/react";
 
 const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
+  const { colorMode } = useColorMode();
+
   return (
     <>
       {totalPages !== 0 && (
@@ -25,10 +27,10 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
 
             <Box display={"flex"}>
               <Button
-                bg={useColorModeValue("#FFFFFF", "#202020")}
+                bg={colorMode === 'light' ? "#FFFFFF" :"#202020"}
                 border={"1px"}
                 p={"0px"}
-                borderColor={useColorModeValue("#DDDDDD", "#454853")}
+                borderColor={colorMode === 'light' ? "#DDDDDD" : "#454853"}
                 onClick={() => {
                   if (page > 1) pageChangeHandler(page - 1);
                 }}
@@ -39,19 +41,19 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
                   width={15}
                   height={15}
                   style={{ rotate: "180deg" }}
-                  src={useColorModeValue(
-                    "/icons/direction-arrow.svg",
+                  src={colorMode === 'light' ?
+                    "/icons/direction-arrow.svg" :
                     "/icons/direction-icon-dark.svg"
-                  )}
+                  }
                   alt="prev-arrow"
                 ></Image>
               </Button>
 
               <Button
-                bg={useColorModeValue("#FFFFFF", "#202020")}
+                bg={colorMode === 'light' ? "#FFFFFF" :"#202020"}
                 border={"1px"}
                 p={"0px"}
-                borderColor={useColorModeValue("#DDDDDD", "#454853")}
+                borderColor={colorMode === 'light' ? "#DDDDDD" : "#454853"}
                 onClick={() => {
                   if (page < totalPages) pageChangeHandler(page + 1);
                 }}
@@ -62,10 +64,10 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
                   width={15}
                   height={15}
                   alt="next-arrow"
-                  src={useColorModeValue(
-                    "/icons/direction-arrow.svg",
+                  src={colorMode === 'light' ? 
+                    "/icons/direction-arrow.svg" :
                     "/icons/direction-icon-dark.svg"
-                  )}
+                  }
                 ></Image>
               </Button>
             </Box>

@@ -43,7 +43,7 @@ const Help = () => {
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
           {AccordionContent.map((item, i) => {
             return (
-              <AccordionItem>
+              <AccordionItem key={i}>
                 {({ isExpanded }) => (
                   <>
                     <h2>
@@ -128,7 +128,7 @@ const Help = () => {
         <Accordion allowToggle>
           {AccordionContent.map((item, i) => {
             return (
-              <AccordionItem>
+              <AccordionItem key={i}>
                 {({ isExpanded }) => (
                   <>
                     <h2>

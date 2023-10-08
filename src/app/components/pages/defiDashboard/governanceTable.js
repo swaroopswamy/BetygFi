@@ -32,7 +32,6 @@ const GovernanceTable = ({ }) => {
         isLoading: defiGovernanceTableData?.isLoading
     };
 
-
     const getDefiGovernanceTableDataHandler = () => {
         const payload = {
             defi: defi,
@@ -162,7 +161,6 @@ const TableRow = ({ item, i }) => {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
 
-    console.log("item", item);
     return (
         <Tr
             key={i}
