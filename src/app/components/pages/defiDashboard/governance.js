@@ -1,19 +1,40 @@
 "use client"
 import { Box, Image, Link, Text, useColorModeValue, useColorMode, Spacer, Button, Flex, Input, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Skeleton, Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from "@chakra-ui/react";
-import { List, ListItem, ListIcon, Checkbox } from '@chakra-ui/react';
-import { MdCheckCircle } from 'react-icons/md';
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
 import isEmpty from "is-empty";
 import NextLink from 'next/link';
 import categoriesFile from './categories.json';
+import { fetchDefiGovernanceTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+
 const axios = require('axios');
 
 const GovernanceTable = ({ }) => {
+    const searchParam = useSearchParams();
+    const dispatch = useDispatch();
     const router = useRouter();
-    const { colorMode } = useColorMode();
-    const [searchByName, setSearchByName] = useState('');
+
+    const defi = searchParam.get("defi");
+    const id = searchParam.get("id");
+
+    const defiGovernanceTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiGovernanceTableData
+    );
+    console.log("governance", defiGovernanceTableData);
+
+    const getDefiGovernanceTableDataHandler = () => {
+        const payload = {
+            defi: defi,
+        };
+        dispatch(fetchDefiGovernanceTableData(payload));
+    };
+
+    useEffect(() => {
+        getDefiGovernanceTableDataHandler();
+    }, []);
+
+
     const [governanceTableData, setGovernanceTableData] = useState({
         data: categoriesFile['category_list']['categories'],
         isSuccess: false,
@@ -54,8 +75,6 @@ const GovernanceTable = ({ }) => {
             <Box display={{ base: "none", md: "block" }}
                 _dark={{ bg: "#191919" }}
                 _light={{ bg: " #F0F0F5" }}
-                mr={"20px"}
-                ml={"30px"}
                 paddingBottom={"60px"}
                 borderRadius={"6px"}
             >
