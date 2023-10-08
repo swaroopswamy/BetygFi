@@ -4,7 +4,7 @@ export const tableHeader = [
       label: "Rank",
       isTooltip: true,
       isSortingEnabled: false,
-      tooltipLabel: "Rank of DeFi out of all the available DeFis' tracked by BetygFi based on the score",
+      tooltipLabel: "Rank of DeFi out of all the available DeFi's tracked by BetygFi based on the score",
     },
     {
       value: "name",

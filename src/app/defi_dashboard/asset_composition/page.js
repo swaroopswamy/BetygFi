@@ -53,7 +53,7 @@ function AssetComposition() {
                     variant={"h6"}
                     letterSpacing={"1.2px"}
                 >
-                    Home/Defi Dashboard/DeFi Asset Composition
+                    Home/DeFi Dashboard/DeFi Asset Composition
                 </Text>
             </Box>
 

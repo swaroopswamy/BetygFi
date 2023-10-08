@@ -18,7 +18,7 @@ const Banner = () => {
                             h={"50px"}
                             borderRadius={"50%"}
                             src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="Defi Logo"
+                            alt="DeFi Logo"
                         />
                     </Box>
 
@@ -97,7 +97,7 @@ const Banner = () => {
                             h={"50px"}
                             borderRadius={"50%"}
                             src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="Defi Logo"
+                            alt="DeFi Logo"
                         />
 
                         <Box layerStyle={"flexColumn"} justifyContent={"space-between"} px={"20px"}>

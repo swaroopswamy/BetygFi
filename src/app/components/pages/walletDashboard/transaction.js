@@ -1,9 +1,7 @@
 "use client";
 import {
-  Button,
   Text,
   useColorModeValue,
-  useColorMode,
   Box,
   Tooltip,
   Tr,
@@ -25,6 +23,7 @@ import {
   TransactionTableMobile,
 } from "@/app/components/pages/walletDashboard/helper";
 import GenericTable from "@/app/components/table/index";
+import PageButtons from "../../pageButtons";
 
 const TransactionPanelComponent = () => {
   const searchParam = useSearchParams();
@@ -91,24 +90,12 @@ const TransactionPanelComponent = () => {
             bigTable={true}
           />
         </Box>
-        <Box
-          display={{ base: "none", md: "block" }}
-          _dark={{
-            bg: "#202020",
-          }}
-          _light={{
-            bg: "#FFFFFF",
-          }}
-          layerStyle={"flexCenter"}
-          justifyContent={"right"}
-          mb={"20px"}
-        >
-          <PageButtons
-            tablePage={tablePage}
-            pageChangeHandler={pageChangeHandler}
-            totalPages={walletTransactionsData?.data?.totalPages}
-          />
-        </Box>
+
+        <PageButtons
+          tablePage={tablePage}
+          pageChangeHandler={pageChangeHandler}
+          totalPages={walletTransactionsData?.data?.totalPages}
+        />
       </Box>
     </>
   );
@@ -573,93 +560,3 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
   );
 };
 export default TransactionPanelComponent;
-
-function PageButtons({ tablePage, pageChangeHandler, totalPages }) {
-  return (
-    <>
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"center"}
-        padding={"10px"}
-        mr={"20px"}
-      >
-        <Text
-          color={useColorModeValue("#16171B", "#FFF")}
-          fontSize={"14px"}
-          fontWeight={"400"}
-          mr={"10px"}
-        >
-          Page
-        </Text>
-        <Text
-          color={useColorModeValue("#16171B", "#FFF")}
-          fontSize={"14px"}
-          fontWeight={600}
-          mr={"15px"}
-        >
-          {tablePage}
-        </Text>
-
-        <Button
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          w={"8px"}
-          h={"26px"}
-          bg={useColorModeValue("#FFF", "#202020")}
-          border={"1px"}
-          borderColor={useColorModeValue("#C7CAD2", "#454853")}
-          borderRadius={"0px"}
-          padding="0px"
-          onClick={() => {
-            if (tablePage > 1) pageChangeHandler(tablePage - 1);
-          }}
-          cursor={tablePage === 1 ? "not-allowed" : "pointer"}
-          disabled={tablePage === 1}
-        >
-          <Image
-            width={15}
-            height={15}
-            style={{ rotate: "180deg" }}
-            src={useColorModeValue(
-              "/icons/direction-arrow.svg",
-              "/icons/direction-icon-dark.svg"
-            )}
-            alt="prev-arrow"
-          ></Image>
-        </Button>
-
-        <Button
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          w={"10px"}
-          h={"26px"}
-          bg={useColorModeValue("#FFF", "#202020")}
-          border={"1px"}
-          borderRadius={"0px"}
-          borderColor={useColorModeValue("#C7CAD2", "#454853")}
-          padding="0px"
-          onClick={() => {
-            if (tablePage < totalPages)
-              // totalPages goes here
-              pageChangeHandler(tablePage + 1);
-          }}
-          cursor={tablePage === totalPages ? "not-allowed" : "pointer"}
-          disabled={tablePage === totalPages}
-        >
-          <Image
-            width={15}
-            height={15}
-            alt="next-arrow"
-            src={useColorModeValue(
-              "/icons/direction-arrow.svg",
-              "/icons/direction-icon-dark.svg"
-            )}
-          ></Image>
-        </Button>
-      </Box>
-    </>
-  );
-}

@@ -1,24 +1,4 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  useColorMode,
-  Tooltip,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Tr, Th, Td, useColorMode } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
@@ -30,10 +10,15 @@ import TooltipComp from "../../tooltipComp";
 import GenericTable from "../../table/index";
 
 const InflowTokensBox = () => {
-  const { colorMode } = useColorMode();
   const inflowOutflowTokensData = useSelector(
     (state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress
   );
+  let inflowTokensData = {
+    data: { data: inflowOutflowTokensData?.data?.inflow },
+    isError: inflowOutflowTokensData?.isError,
+    isLoading: inflowOutflowTokensData?.isLoading,
+    isSuccess: inflowOutflowTokensData?.isSuccess,
+  };
 
   return (
     <Box
@@ -70,7 +55,7 @@ const InflowTokensBox = () => {
       </Box>
       <GenericTable
         tableHeader={InflowTokensTableHeader}
-        tableData={inflowOutflowTokensData}
+        tableData={inflowTokensData}
         TableRow={TableRowDesktop}
         TableHeaderRowMobile={TableHeaderRowMobile}
         ButtonComp={TableBodyRowMobileButtonComp}
@@ -135,9 +120,9 @@ const TableHeaderRowMobile = () => {
 
 const TableBodyRowMobileButtonComp = ({ item, i }) => {
   return (
-    <Box w="100%" m={"16px"} layerStyle={"flexAlignCenterJustifyCenter"}>
-      <Box layerStyle={"flexAlignCenterJustifyCenter"} w={"80%"}>
-        <Box layerStyle={"flexCenter"}>
+    <Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
+      <Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
+        <Box layerStyle={"flexCenterSpaceBetween"}>
           <Image
             w={"20px"}
             h={"20px"}
@@ -162,7 +147,7 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"}>
+        <Text variant={"smallTableBodyMobile"} textAlign={"left"}  color={"#8F8F8F"}>
           Share
         </Text>
 

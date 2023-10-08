@@ -182,7 +182,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     fontWeight: "600",
                     mr: "-13px",
                   }}
-                  // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) &&
                   bg={
                     pathname === link.path
                       ? colorMode === "light"
@@ -708,7 +707,6 @@ const MobileSidebar = ({
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
                         fontWeight: "600",
                       }}
-                      // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) &&
                       bg={
                         pathname === link.path
                           ? colorMode === "light"

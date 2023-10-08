@@ -38,27 +38,22 @@ const DefiDashboardPage = () => {
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
     );
-    //console.log("time",defiData);
     const defiUsersTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiUsersTableData?.data
     )
-    //console.log("yes",defiUsersTableData);
     const [tabIndex, setTabIndex] = useState(0)
 
     const blockchainSelected = useSelector(
         (state) => state?.walletDashboardTableData?.blockchainType
     );
-    //console.log("test",blockchainSelected);
-
+    
     const BlockchainTypeHandler = (type) => {
         dispatch(blockchainTypeChangedReducer(type));
     };
-    //console.log("hi",BlockchainTypeHandler);
-
+    
     const blockchains = useSelector(
         (state) => state?.appData?.BlockchainListData?.data
     );
-    //console.log("timer",blockchains);
     const getDefiDataHandler = () => {
         const payload = {
             id: id,

@@ -12,12 +12,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import BlockchainAllocationBox from "./BlockchainAllocationBox";
-import AssetAllocationBox from "./AssetAllocationBox";
-import ProtocolAllocationBox from "./ProtocolAllocationBox";
-import InteractionWithKnownEntitiesBox from "./InteractionWithKnownEntitiesBox";
-import InflowTokensBox from "./InflowTokensBox";
-import OutflowTokensBox from "./OutflowTokensBox";
-import PerformanceMultiLineChartBox from "./PerformanceMultiLineChartBox";
+import AssetAllocationBox from "./assetAllocationBox";
+import ProtocolAllocationBox from "./protocolAllocationBox";
+import InteractionWithKnownEntitiesBox from "./interactionWithKnownEntitiesBox";
+import InflowTokensBox from "./inflowTokensBox";
+import OutflowTokensBox from "./outflowTokensBox";
+import PerformanceMultiLineChartBox from "./performanceMultiLineChartBox";
 
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();

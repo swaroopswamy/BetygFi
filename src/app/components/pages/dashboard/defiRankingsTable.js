@@ -91,7 +91,7 @@ const Rankings = () => {
       mb={{ base: "100px", md: "60px" }}
     >
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
-        <Text variant={"h2"}>Defi Rankings</Text>
+        <Text variant={"h2"}>DeFi Rankings</Text>
 
         <Box
           display={{ base: "none", md: "flex" }}
@@ -99,7 +99,7 @@ const Rankings = () => {
           alignItems={"center"}
         >
           <SearchBox
-            placeholder={"Search Defi"}
+            placeholder={"Search DeFi"}
             onChange={(e) => {
               searchByNameHandler(e.target.value);
             }}
@@ -142,19 +142,11 @@ const Rankings = () => {
         />
       </Box>
 
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"right"}
-        h={"50px"}
-        p={"40px"}
-      >
-        <PageButtons
-          page={tablePage}
-          totalPages={tableData?.data?.totalPages}
-          pageChangeHandler={pageChangeHandler}
-        />
-      </Box>
+      <PageButtons
+        page={tablePage}
+        totalPages={tableData?.data?.totalPages}
+        pageChangeHandler={pageChangeHandler}
+      />
     </Box>
   );
 };
@@ -170,7 +162,7 @@ const TableRow = ({ item, rowIndex }) => {
       key={rowIndex}
       cursor={"pointer"}
       onClick={() => {
-          router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
+        router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
       }}
       border={"0px"}
     >
