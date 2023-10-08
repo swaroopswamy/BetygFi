@@ -18,8 +18,6 @@ function DefiTVLChart() {
     (state) => state?.defiDashboardData?.DefiData?.data
   );
 
-  console.log("tvl", defiData);
-
   const options = {
     chart: {
       toolbar: {
