@@ -141,12 +141,12 @@ function DefiTVLChart() {
               </Box>
                 
 
-              <Button
+              {/* <Button
                   variant={'viewMore'}
                   // onClick={() => {
                   //     router.push("/defi_dashboard/defi_users");
                   // }}
-              > View More </Button>
+              > View More </Button> */}
             </Box>
 
           <Box>

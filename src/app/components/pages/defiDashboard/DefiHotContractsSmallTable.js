@@ -1,124 +1,80 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Text, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode, colorMode, Tooltip, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableContainer, Skeleton } from "@chakra-ui/react";
-import GenericSmallTableComponent from "./GenericSmallTable";
-import { useSelector } from "react-redux";
-import { SP } from "next/dist/shared/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Text, Box, useColorModeValue, Button, useColorMode, Tr, Th, Td } from "@chakra-ui/react";
+import GenericTable from "/src/app/components/table";
+import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
+import LastUpdate from "/src/app/components/lastUpdate";
+import TooltipComp from "/src/app/components/tooltipComp";
 
-function Defihotcontracts() {
+function DefiHotContractsSmallTable() {
+    const searchParam = useSearchParams();
+    const dispatch = useDispatch();
+    const router = useRouter();
 
-    const tableName = "DeFi Hot/Active Contracts";
-    const thread = ["Contract Name", "No. of users", "No. of Transactions"];
-    const Tablepath = "/defi_dashboard/defi_hot_contract";
-    const Definitions = "DeFi Hot/Active contract is a list of the most interacted smart contract address(es) by wallet address(es)."
-    const defiHotContractsTableData = useSelector(
-        (state) => state?.defiDashboardData?.DefiHotContractsTableData
-    )
+    const defi = searchParam.get("defi");
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+
     return (
-        <Box
-        width={{ base: "100%", md: "100%",bigSize:"50%" }}
-            bgColor={useColorModeValue("#F0F0F5", "#191919")}
-            borderColor={useColorModeValue("#F0F0F5", "#191919")}
-        >
-            <GenericSmallTableComponent
-                tableName={tableName}
-                thread={thread}
-                tableData={defiHotContractsTableData}
-                RowComponent={RowComponent}
-                Definitions={Definitions}
-                Tablepath={Tablepath}
-            />
+        <Box w={{base: "100%", lg: "50%"}} height={"370px"} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")} borderColor={useColorModeValue("#F0F0F5", "#272727")}>
+            <Box layerStyle={"spaceBetween"} p={"20px"} >
+            <Box layerStyle={"center"} gap={"5px"}> 
+                    <Text variant={"smallTableHeader"}>
+                        DeFi Hot/Active Contracts
+                    </Text>
+                    <TooltipComp label="DeFi Hot/Active contract is a list of the most interacted smart contract address(es) by wallet address(es)." />
+                </Box>
+
+                {/* <Button
+                    variant={'viewMore'}
+                    onClick={() => {
+                        router.push("/defi_dashboard/defi_users");
+                    }}
+                > View More </Button> */}
+            </Box>
+
+            <Box h={"70%"} overflow={"hidden"}>
+                <GenericTable
+                    tableHeader={DefiUsersSmallTableHeader}
+                    tableData={null}
+                    TableRow={TableRow}
+                    TableHeaderRowMobile={TableHeaderRowMobile}
+                    ButtonComp={(item) => {
+                        return (
+                            <Box layerStyle={"flexCenter"}>
+                                <Text variant={"h3"}> {item?.item?.user} </Text>
+                            </Box>
+                        )
+                    }}
+                    PanelComp={() => {
+                        return (
+                            <Box>
+                                
+                            </Box>
+                        )
+                    }}
+                    SkeletonRowsColumnsDesktop={{
+                        numColumns: 3,
+                        numRows: 5
+                    }}
+                    SkeletonRowsColumnsMobile={{
+                        numColumns: 2,
+                        numRows: 5
+                    }}
+                />
+            </Box>
+            
+            <LastUpdate p={"10px"} time={"3"} />
         </Box>
     )
 };
-export default Defihotcontracts;
+export default DefiHotContractsSmallTable;
 
-function RowComponent({ tableData }) {
-    return (
-        /*    <>
-               {tableData?.isError && (
-                   <>
-                       <Tr
-                           height={"250px"}
-                       >
-                           <Td
-                               colSpan={3}
-                           >
-                               <Text
-                                   _light={{
-                                       color: "#16171B"
-                                   }}
-                                   _dark={{
-                                       color: "#FFF"
-                                   }}
-                                   fontSize={"20px"}
-                                   fontWeight={"400"}
-                                   letterSpacing={"1px"}
-                                   textAlign={"center"}
-                                   p="20px"
-   
-                               >
-                                   No Data available
-                               </Text>
-                           </Td>
-                       </Tr>
-                   </>
-               )}
-               {tableData?.isLoading && (
-                   <>
-                       <SkeletonRow />
-                       <SkeletonRow />
-                       <SkeletonRow />
-                   </>
-               )}
-               {tableData?.isSuccess && tableData?.data?.data?.map((item, i) => {
-                   if (i < 5) {
-                       return (
-                           <>
-                               <TableRow
-                                   key={i}
-                                   contract={{ name: item[1], src: item[0] }}
-                                   users={item[2]}
-                                   transactions={item[3]}
-                               />
-                           </>
-                       )
-                   }
-               })}
-           </> */
-        <>
-            <Tr
-                height={"250px"}
-            >
-                <Td
-                    colSpan={3}
-                >
-                    <Text
-                        _light={{
-                            color: "#16171B"
-                        }}
-                        _dark={{
-                            color: "#FFF"
-                        }}
-                        fontSize={"20px"}
-                        fontWeight={"400"}
-                        letterSpacing={"1px"}
-                        textAlign={"center"}
-                        p="20px"
-                        opacity={0.6}
-
-                    >
-                        No Data available
-                    </Text>
-                </Td>
-            </Tr>
-        </>
-    )
-}
-
-function TableRow({ key, contract, users, transactions }) {
+const  TableRow = ({ item, i }) => {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
     const router = useRouter();
@@ -126,106 +82,77 @@ function TableRow({ key, contract, users, transactions }) {
     return (
         <>
             <Tr
-                key={key}
+                key={i}
                 cursor={"pointer"}
                 bgColor={clicked ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
                     (colorMode === "light" ? '#FFFFFF' : '#202020')
                 }
-                onClick={() => { setClick(!clicked) }}
+
+                onClick={() => {
+                    setClick(!clicked)
+                    router.push(`/wallet_dashboard?address=${item.user}`)
+                }}
                 borderBottom={'1px'}
                 borderColor={useColorModeValue('#DFDFDF', '#313131')}
                 borderRadius={'2px'}
             >
                 <Td>
-                    <Flex>
-                        <Box
-                            alignItems={"center"}
-                            display={"flex"}
-                            gap={"10px"}
+                    <Box
+                        alignItems={"center"}
+                        display={"flex"}
+                        gap={"10px"}
+                    >
+                        <Text
+                            _dark={{
+                                color: "#FFFFFF"
+                            }}
+                            _light={{
+                                color: "#16171B"
+                            }}
+                            fontSize={"14px"}
+                            
+                            fontStyle={"normal"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
                         >
-                            <Image
-                                height={"24px"}
-                                width={"24px"}
-                                src={contract.src}
-                                alt="logo"
-                            >
-                            </Image>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"14px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {contract.name}
-                            </Text>
-                        </Box>
-                    </Flex>
+                            {item?.user}
+                        </Text>
+                        <Text
+                            _dark={{
+                                color: "#A8ADBD"
+                            }}
+                            _light={{
+                                color: "#A8ADBD"
+                            }}
+                            fontSize={"12px"}
+                            fontStyle={"normal"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
+                            textTransform={"uppercase"}
+                        >
+                            {item?.amount}
+                        </Text>
+                    </Box>
                 </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"14px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {users}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
-                <Td>
-                    <Flex>
-                        <Box>
-                            <Text
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                                _light={{
-                                    color: "#16171B"
-                                }}
-                                fontSize={"14px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                            >
-                                {transactions}
-                            </Text>
-                        </Box>
-                    </Flex>
-                </Td>
-
             </Tr>
         </>
     );
 }
 
-const SkeletonRow = () => (
-    <Box as="tr">
-        <Td>
-            <Skeleton height="20px" my={4} />
-        </Td>
-        <Td>
-            <Skeleton height="20px" my={4} />
-        </Td>
-        <Td>
-            <Skeleton height="20px" my={4} />
-        </Td>
-    </Box>
-)
+const TableHeaderRowMobile = () => {
+    return (
+      <Tr>
+        <Th>
+          <Box layerStyle={"flexCenter"}>
+            <Text variant={"smallTableHeaderMobile"}>User Address</Text>
+          </Box>
+        </Th>
+        <Th>
+          <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
+            <Text variant={"smallTableHeaderMobile"}>Share</Text>
+          </Box>
+        </Th>
+      </Tr>
+    );
+  };
