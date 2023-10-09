@@ -1,4 +1,4 @@
-import { Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
@@ -65,12 +65,12 @@ const Banner = () => {
                     <Box h={"80%"} display={"flex"} justifyContent={"center"} alignItems={"end"}>
                         <Box layerStyle={"center"} gap={"10px"} px={"15px"}>
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")}> Token </Text>
-                            <Image
+                            <Avatar
                                 w={"16px"}
                                 h={"16px"}
                                 borderRadius={"50%"}
                                 src={defiData?.logo ?? "/images/basic_profile.png"}
-                                alt="Token Logo"
+                                name={defiData?.name ?? "defi_logo"}
                             />
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")} fontWeight={'600'}
                                 as={'a'}
