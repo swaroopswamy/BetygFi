@@ -23,15 +23,6 @@ const GovernanceTable = ({ }) => {
         (state) => state?.defiDashboardData?.DefiGovernanceTableData
     );
 
-    const tableData = {
-        data: {
-            data: defiGovernanceTableData?.isSuccess ? defiGovernanceTableData?.data[0].governanceModel : null
-        },
-        isSuccess: defiGovernanceTableData?.isSuccess,
-        isError: defiGovernanceTableData?.isError,
-        isLoading: defiGovernanceTableData?.isLoading
-    };
-
     const getDefiGovernanceTableDataHandler = () => {
         const payload = {
             defi: defi,
@@ -61,7 +52,7 @@ const GovernanceTable = ({ }) => {
                 <Box h={"70%"} overflow={"hidden"}>
                     <GenericTable
                         tableHeader={GovernanceTableHeader}
-                        tableData={tableData}
+                        tableData={defiGovernanceTableData}
                         TableRow={TableRow}
                         TableHeaderRowMobile={TableHeaderRowMobile}
                         ButtonComp={(item) => {
