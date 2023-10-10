@@ -164,7 +164,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           <Box layerStyle={"spaceBetween"} flexDir={"column"} width={"70px"}>
               <Box layerStyle={"flexColumn"} w={"100%"}>
 
-                <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} py={"20px"}
+                <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} py={"20px"} mr={"-13px"}
                   onClick={() => router.push("/")}
                 >
                   <Image
