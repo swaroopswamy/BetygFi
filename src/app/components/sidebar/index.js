@@ -57,7 +57,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         {...rest}
       >
         {!isSidebarCollapsed && (
-          <Box layerStyle={"spaceBetween"} flexDir={"column"}>
+          <Box layerStyle={"spaceBetween"} flexDir={"column"} mr={"-13px"}>
             <Box layerStyle={"flexColumn"} gap={"15px"}>
               <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} p={"20px"}
                 onClick={() => router.push("/")}
@@ -119,7 +119,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </NavItem>
               ))}
 
-              <hr style={{ marginBottom: "15px" }} />
+              <hr style={{ marginBottom: "15px 0px" }} />
 
               <Box
                 display={"flex"}
@@ -298,6 +298,7 @@ const CollapsedNavItem = ({ NavIcon, path, newTab, isActive }) => {
           _groupHover={{
             color: colorMode === "light" ? "#FFFFFF" : "#191919",
           }}
+          alt="logo"
         />
       </Box>
     </Link>
@@ -326,7 +327,6 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           gap={"10px"}
           bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
           color={colorMode === "light" ? "#FFFFFF" : "#191919"}
-          mr={"-13px"}
         >
           <Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"}/>
           {children}
@@ -355,7 +355,6 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           bg: colorMode === "light" ? "#202020" : "#FFFFFF",
           color: colorMode === "light" ? "#FFFFFF" : "#191919",
           fontWeight: "600",
-          mr: "-13px",
         }}
       >
         <Icon 
