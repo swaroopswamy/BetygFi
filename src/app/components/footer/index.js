@@ -31,7 +31,7 @@ const Footer = ({ ...rest }) => {
   return (
     <>
       <Box
-        position={"fixed"}
+        position={"relative"}
         bottom="0"
         width="100%"
         display={{ base: "none", md: "flex" }}
