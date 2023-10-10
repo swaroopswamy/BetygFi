@@ -49,6 +49,7 @@ const LoginPage = ({ isOpen, onClose }) => {
     {
       name: "Metamask",
       icon: "metamask_logo.png",
+      key: 1,
     },
     /* {
             name: "Other Browser wallet",
@@ -168,55 +169,52 @@ const LoginPage = ({ isOpen, onClose }) => {
                 <Box display={"flex"} flexDirection={"column"}>
                   {walletArray.map((item, i) => {
                     return (
-                      <>
-                        <Box
-                          display={"flex"}
-                          justifyContent={"space-between"}
-                          alignItems={"center"}
-                          //onClick={()=>connectWallet("injected")}
-                          onClick={() => handleProcessSelector(item.name)}
-                          key={i}
-                          mx={"24px"}
-                          my={"15px"}
-                          cursor={"pointer"}
-                          position={"relative"}
-                          _after={{
-                            position: "absolute",
-                            bottom: "-15px",
-                            left: 0,
-                            width: "100%",
-                            height: "1px",
-                            bgColor: "#EDEDED",
-                            content: '""',
-                          }}
-                        >
-                          <Box display={"flex"} alignItems={"center"}>
-                            <Image
-                              width={"36px"}
-                              height={"36px"}
-                              alt="Other Browser wallet"
-                              src={`/images/${item.icon}`}
-                            ></Image>
-                            <Text
-                              fontSize={"15px"}
-                              fontWeight={400}
-                              lineHeight={"20px"}
-                              _dark={{ color: "#FFF" }}
-                              _light={{ color: "#202020" }}
-                              ml="9px"
-                            >
-                              {item.name}
-                            </Text>
-                          </Box>
-
-                          <Box
-                            width={"24px"}
-                            height={"24px"}
-                            _dark={{ bgImage: "/images/next_icon_light.png" }}
-                            _light={{ bgImage: "/images/next_icon_dark.png" }}
-                          ></Box>
+                      <Box
+                        display={"flex"}
+                        justifyContent={"space-between"}
+                        alignItems={"center"}
+                        onClick={() => handleProcessSelector(item.name)}
+                        key={item.key}
+                        mx={"24px"}
+                        my={"15px"}
+                        cursor={"pointer"}
+                        position={"relative"}
+                        _after={{
+                          position: "absolute",
+                          bottom: "-15px",
+                          left: 0,
+                          width: "100%",
+                          height: "1px",
+                          bgColor: "#EDEDED",
+                          content: '""',
+                        }}
+                      >
+                        <Box display={"flex"} alignItems={"center"}>
+                          <Image
+                            width={"36px"}
+                            height={"36px"}
+                            alt="Other Browser wallet"
+                            src={`/images/${item.icon}`}
+                          ></Image>
+                          <Text
+                            fontSize={"15px"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
+                            _dark={{ color: "#FFF" }}
+                            _light={{ color: "#202020" }}
+                            ml="9px"
+                          >
+                            {item.name}
+                          </Text>
                         </Box>
-                      </>
+
+                        <Box
+                          width={"24px"}
+                          height={"24px"}
+                          _dark={{ bgImage: "/images/next_icon_light.png" }}
+                          _light={{ bgImage: "/images/next_icon_dark.png" }}
+                        ></Box>
+                      </Box>
                     );
                   })}
                   <Text

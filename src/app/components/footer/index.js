@@ -209,14 +209,3 @@ const FooterMobileLink = ({ name, id, link }) => {
   );
 };
 
-const HomeIconONE = (props) => {
-  <Icon width="32" height="32" viewBox="0 0 32 32" fill="none" {...props}>
-    <path
-      d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z"
-      stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </Icon>;
-};
