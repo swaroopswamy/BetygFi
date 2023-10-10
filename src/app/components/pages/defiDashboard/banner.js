@@ -1,4 +1,4 @@
-import { Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ const Banner = () => {
     );
     return (
         <>
-            <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} m={"10px 30px"} py={"20px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
+            <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} py={"10px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
                 <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
                     <Box p={"15px"}>
                         <Image
@@ -18,7 +18,7 @@ const Banner = () => {
                             h={"50px"}
                             borderRadius={"50%"}
                             src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="Defi Logo"
+                            alt="DeFi Logo"
                         />
                     </Box>
 
@@ -65,12 +65,12 @@ const Banner = () => {
                     <Box h={"80%"} display={"flex"} justifyContent={"center"} alignItems={"end"}>
                         <Box layerStyle={"center"} gap={"10px"} px={"15px"}>
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")}> Token </Text>
-                            <Image
+                            <Avatar
                                 w={"16px"}
                                 h={"16px"}
                                 borderRadius={"50%"}
                                 src={defiData?.logo ?? "/images/basic_profile.png"}
-                                alt="Token Logo"
+                                name={defiData?.name ?? "defi_logo"}
                             />
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")} fontWeight={'600'}
                                 as={'a'}
@@ -97,14 +97,14 @@ const Banner = () => {
                             h={"50px"}
                             borderRadius={"50%"}
                             src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="Defi Logo"
+                            alt="DeFi Logo"
                         />
 
                         <Box layerStyle={"flexColumn"} justifyContent={"space-between"} px={"20px"}>
                             <Box>
                                 {
                                     defiData?.name !== undefined && (
-                                        <Text variant={'h1'} fontWeight={'500'} textTransform={"capitalize"}>
+                                        <Text variant={'h1'} fontWeight={'500'} textTransform={"capitalize"} textAlign={"left"}>
                                             {defiData?.name}
                                         </Text>
                                 )}

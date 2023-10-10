@@ -1,24 +1,4 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  useColorMode,
-  Tooltip,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
@@ -30,7 +10,6 @@ import TooltipComp from "../../tooltipComp";
 import GenericTable from "../../table/index";
 
 const ProtocolAllocationBox = () => {
-  const { colorMode } = useColorMode();
   const protocolAllocationData = useSelector(
     (state) => state?.walletDashboardTableData?.protocolAllocationForAddress
   );
@@ -127,9 +106,9 @@ const TableHeaderRowMobile = () => {
 
 const TableBodyRowMobileButtonComp = ({ item, i }) => {
   return (
-    <Box w="100%" m={"16px"} layerStyle={"flexAlignCenterJustifyCenter"}>
-      <Box layerStyle={"flexAlignCenterJustifyCenter"} w={"80%"}>
-        <Box layerStyle={"flexCenter"}>
+    <Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
+      <Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
+        <Box layerStyle={"flexCenterSpaceBetween"}>
           <Image
             w={"20px"}
             h={"20px"}
@@ -167,5 +146,3 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
 };
 
 export default ProtocolAllocationBox;
-
-

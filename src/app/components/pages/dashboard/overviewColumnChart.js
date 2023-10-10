@@ -25,8 +25,6 @@ const OverviewColumnChart = () => {
         tooltip: {
             theme: colorMode,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-              console.log(series);
-              console.log(graphData);
               return (
                 '<div class="donut_tooltip">' +
                 '<div class="donut_tooltip_text">' +

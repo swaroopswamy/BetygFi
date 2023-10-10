@@ -6,9 +6,6 @@ import TooltipComp from "@/app/components/tooltipComp";
 import CustomChart from "@/app/components/graph";
 const BlockchainAllocationBox = () => {
   const { colorMode } = useColorMode();
-  const walletBalanceData = useSelector(
-    (state) => state?.walletDashboardTableData?.walletBalanceData
-  );
   const blockchainAllocationData = useSelector(
     (state) => state?.walletDashboardTableData?.blockchainAllocationForAddress
   );

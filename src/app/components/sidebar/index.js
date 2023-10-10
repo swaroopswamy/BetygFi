@@ -182,7 +182,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     fontWeight: "600",
                     mr: "-13px",
                   }}
-                  // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) &&
                   bg={
                     pathname === link.path
                       ? colorMode === "light"
@@ -542,7 +541,7 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
         cursor="pointer"
         {...rest}
       >
-        <Image paddingTop={"3px"} height={20} width={20} src={icon} />
+        <Image paddingTop={"3px"} height={20} width={20} src={icon} alt="logo" />
       </Flex>
     </Link>
   );
@@ -573,6 +572,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
             color: "white",
           }}
           src={icon}
+          alt="logo"
         />
         {children}
       </Flex>
@@ -708,7 +708,6 @@ const MobileSidebar = ({
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
                         fontWeight: "600",
                       }}
-                      // activeStyle={pathname === link.path && console.log("HERE: ", pathname, link.path) &&
                       bg={
                         pathname === link.path
                           ? colorMode === "light"
@@ -767,6 +766,7 @@ const MobileSidebar = ({
                           color: "white",
                         }}
                         src={"icons/community_sm_logo.svg"}
+                        alt="logo"
                       />
                       <Text>Communities</Text>
                     </Box>

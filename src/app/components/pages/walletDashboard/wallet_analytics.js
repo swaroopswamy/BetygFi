@@ -11,13 +11,13 @@ import {
 import React from "react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
-import BlockchainAllocationBox from "./BlockchainAllocationBox";
-import AssetAllocationBox from "./AssetAllocationBox";
-import ProtocolAllocationBox from "./ProtocolAllocationBox";
-import InteractionWithKnownEntitiesBox from "./InteractionWithKnownEntitiesBox";
-import InflowTokensBox from "./InflowTokensBox";
-import OutflowTokensBox from "./OutflowTokensBox";
-import PerformanceMultiLineChartBox from "./PerformanceMultiLineChartBox";
+import BlockchainAllocationBox from "/src/app/components/pages/walletDashboard/BlockchainAllocationBox";
+import AssetAllocationBox from "/src/app/components/pages/walletDashboard/AssetAllocationBox";
+import ProtocolAllocationBox from "/src/app/components/pages/walletDashboard/ProtocolAllocationBox";
+import InteractionWithKnownEntitiesBox from "/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox";
+import InflowTokensBox from "/src/app/components/pages/walletDashboard/InflowTokensBox";
+import OutflowTokensBox from "/src/app/components/pages/walletDashboard/OutflowTokensBox";
+import PerformanceMultiLineChartBox from "/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox";
 
 const WalletAnalyticsPanel = () => {
   const { colorMode } = useColorMode();

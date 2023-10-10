@@ -42,6 +42,11 @@ export function Providers({ children }) {
         display: "flex",
         flexDirection: "column",
       },
+      flexColumnSpaceBetween: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      },
       center: {
         display: "flex",
         justifyContent: "center",
@@ -60,6 +65,16 @@ export function Providers({ children }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+      },
+      flexCenterSpaceEvenly: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+      },
+      flexCenterFlexStart: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
       },
     },
   });

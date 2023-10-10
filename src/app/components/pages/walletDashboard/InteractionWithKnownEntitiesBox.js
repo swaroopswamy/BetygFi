@@ -1,24 +1,11 @@
 import {
   Box,
-  Flex,
   Image,
   Text,
-  Table,
-  Thead,
-  Tbody,
   Tr,
   Th,
   Td,
-  TableContainer,
   useColorMode,
-  Tooltip,
-  Skeleton,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
@@ -31,11 +18,6 @@ import {
 import TooltipComp from "../../tooltipComp";
 
 const InteractionWithKnownEntitiesBox = () => {
-  const { colorMode } = useColorMode();
-  const walletBalanceData = useSelector(
-    (state) => state?.walletDashboardTableData?.walletBalanceData
-  );
-
   return (
     <Box
       w={{ base: "90%", bigSize: "50%", md: "90%" }}
@@ -131,9 +113,9 @@ const TableHeaderRowMobile = () => {
 
 const TableBodyRowMobileButtonComp = ({ item, i }) => {
   return (
-    <Box w="100%" m={"16px"} layerStyle={"flexCenterSpaceBetween"}>
-      <Box layerStyle={"flexCenterSpaceBetween"} w={"70%"}>
-        <Box layerStyle={"flexCenter"}>
+    <Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
+      <Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
+        <Box layerStyle={"flexCenterSpaceBetween"}>
           <Image
             w={"20px"}
             h={"20px"}

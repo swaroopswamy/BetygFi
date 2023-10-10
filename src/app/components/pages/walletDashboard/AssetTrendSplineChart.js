@@ -1,5 +1,5 @@
 import { useColorMode, useColorModeValue, Skeleton, Box } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import CustomChart from "../../graph";
 

@@ -3,7 +3,7 @@ import React from "react";
 import { Box, Icon, useColorModeValue, Text, Td, Tr, Flex, Image, useColorMode,} from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import GenericBigTableComponent from "../GenericBigTable";
+import GenericBigTableComponent from '/src/app/components/pages/defiDashboard/GenericBigTable';
 import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
 import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
 
@@ -121,7 +121,7 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
                             <Image
                                 height={"24px"}
                                 width={"24px"}
-                                src={Asset.src}
+                                src={Asset?.src}
                                 alt="logo"
                             // url={"/icons/Ethereum_sm_icon.svg"}
                             //  src="/icons/aave_logo.svg"

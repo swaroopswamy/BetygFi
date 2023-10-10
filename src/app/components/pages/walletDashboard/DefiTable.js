@@ -1,23 +1,14 @@
 "use client";
 import React from "react";
 import {
-  Table,
   Text,
-  Tbody,
   Td,
   Th,
-  Thead,
   Tr,
   Box,
   useColorModeValue,
   Icon,
   Image,
-  Spinner,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionIcon,
-  AccordionPanel,
 } from "@chakra-ui/react";
 
 import { useSelector } from "react-redux";

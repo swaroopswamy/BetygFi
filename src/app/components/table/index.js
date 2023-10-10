@@ -15,6 +15,7 @@ import {
   Td,
   useColorModeValue,
   Spinner,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import TooltipComp from "/src/app/components/tooltipComp";
@@ -33,6 +34,7 @@ const GenericTable = ({
   isQueryInPendingState = false,
   bigTable = false,
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <>
       <Table
@@ -46,6 +48,7 @@ const GenericTable = ({
           bgColor={useColorModeValue("#F5F5F7", "#191919")}
           position="sticky"
           top={0}
+          zIndex={"99"}
         >
           <Tr>
             {tableHeader.map((item, i) => {
@@ -62,10 +65,10 @@ const GenericTable = ({
                     {item.isSortingEnabled && (
                       <Image
                         mt={"2px"}
-                        src={useColorModeValue(
-                          "/images/Arrowdown(light).svg",
+                        src={colorMode === 'light' ? 
+                          "/images/Arrowdown(light).svg" :
                           "/images/Arrowdown(dark).svg"
-                        )}
+                        }
                         alt="Sort"
                         ml="2"
                       />
@@ -81,8 +84,7 @@ const GenericTable = ({
         </Thead>
 
         <Tbody border={"0px"}>
-          {tableData?.isError ||
-            (tableData === null && (
+          {(tableData?.isError || tableData === null) && (
               <>
                 <Tr>
                   <Td
@@ -95,7 +97,7 @@ const GenericTable = ({
                   </Td>
                 </Tr>
               </>
-            ))}
+            )}
           {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsDesktop?.numColumns}
@@ -139,7 +141,7 @@ const GenericTable = ({
           {tableData?.isSuccess &&
             (tableData?.data?.data?.length > 0 ? (
               tableData?.data?.data.map((item, rowIndex) => {
-                return <TableRow item={item} rowIndex={rowIndex} />;
+                return <TableRow key={rowIndex} item={item} rowIndex={rowIndex} />;
               })
             ) : (
               <Tr>
@@ -187,7 +189,7 @@ const GenericTable = ({
               tableData?.data?.data.map((item, rowIndex) => {
                 return (
                   <>
-                    <Tr>
+                    <Tr key={rowIndex}>
                       <Td p={0} colSpan={3}>
                         <SingleAccordionComp
                           display={"flex"}

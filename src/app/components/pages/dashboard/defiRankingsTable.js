@@ -40,6 +40,7 @@ const Rankings = () => {
   } = useDisclosure();
 
   const dispatch = useDispatch();
+  const { colorMode } = useColorMode();
 
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
@@ -80,6 +81,7 @@ const Rankings = () => {
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, categorySelected, tablePage, searchByName]);
 
   return (
@@ -87,10 +89,10 @@ const Rankings = () => {
       layerStyle={"flexColumn"}
       bg={useColorModeValue("#FFFFFF", "#202020")}
       borderRadius={"6px"}
-      mb={{ base: "100px", md: "60px" }}
+      mb={{ base: "100px", md: "20px" }}
     >
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
-        <Text variant={"h2"}>Defi Rankings</Text>
+        <Text variant={"h2"}>DeFi Rankings</Text>
 
         <Box
           display={{ base: "none", md: "flex" }}
@@ -98,7 +100,7 @@ const Rankings = () => {
           alignItems={"center"}
         >
           <SearchBox
-            placeholder={"Search Defi"}
+            placeholder={"Search DeFi"}
             onChange={(e) => {
               searchByNameHandler(e.target.value);
             }}
@@ -141,19 +143,11 @@ const Rankings = () => {
         />
       </Box>
 
-      <Box
-        display={"flex"}
-        alignItems={"center"}
-        justifyContent={"right"}
-        h={"50px"}
-        p={"40px"}
-      >
-        <PageButtons
-          page={tablePage}
-          totalPages={tableData?.data?.totalPages}
-          pageChangeHandler={pageChangeHandler}
-        />
-      </Box>
+      <PageButtons
+        page={tablePage}
+        totalPages={tableData?.data?.totalPages}
+        pageChangeHandler={pageChangeHandler}
+      />
     </Box>
   );
 };
@@ -167,10 +161,9 @@ const TableRow = ({ item, rowIndex }) => {
   return (
     <Tr
       key={rowIndex}
-      cursor={item.name === "AAVE V2" ? "pointer" : "cursor"}
+      cursor={"pointer"}
       onClick={() => {
-        if (item.name === "AAVE V2")
-          router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
+        router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
       }}
       border={"0px"}
     >
@@ -188,7 +181,7 @@ const TableRow = ({ item, rowIndex }) => {
                 height={24}
                 style={{ borderRadius: "50%" }}
                 alt="logo"
-                src={item.logo}
+                src={item?.logo}
               ></Image>
             </>
           ) : (
@@ -200,7 +193,7 @@ const TableRow = ({ item, rowIndex }) => {
                 justifyContent={"center"}
                 display={"flex"}
                 borderRadius={"50%"}
-                bgColor={useColorModeValue("#676DFF")}
+                bgColor={"#676DFF"}
               >
                 <Text color={"#FFF"} fontSize={"14px"} fontWeight={600}>
                   {item.name.charAt(0)}
@@ -210,7 +203,7 @@ const TableRow = ({ item, rowIndex }) => {
           )}
           <Box layerStyle="center">
             <Text variant={"h3"}>{item.name}</Text>
-            {item.name === "AAVE V2" && (
+            {/* {item.name === "AAVE V2" && (
               <Image
                 width={18}
                 height={18}
@@ -222,7 +215,7 @@ const TableRow = ({ item, rowIndex }) => {
                     : "/images/wallet_analytics_black.svg"
                 }
               ></Image>
-            )}
+            )} */}
           </Box>
         </Box>
       </Td>
@@ -329,7 +322,7 @@ const ButtonComp = ({ item }) => {
             height={24}
             style={{ borderRadius: "50%" }}
             alt="logo"
-            src={item.logo}
+            src={item?.logo}
           ></Image>
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>

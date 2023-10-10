@@ -8,6 +8,7 @@ import {
     MenuList,
     Text,
     Tooltip,
+    useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -18,6 +19,7 @@ import React, { useEffect } from "react";
 
 const BlockchainSelectionMenu = () => {
     const dispatch = useDispatch();
+    const { colorMode } = useColorMode();
   
     const blockchainListData = useSelector(
       (state) => state?.appData?.BlockchainListData
@@ -31,6 +33,7 @@ const BlockchainSelectionMenu = () => {
   
     useEffect(() => {
       dispatch(fetchBlockchainListData());
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
   
     return (
@@ -61,7 +64,7 @@ const BlockchainSelectionMenu = () => {
                       style={{ borderRadius: "50%" }}
                       width={24}
                       height={24}
-                      src={item.logoUrl}
+                      src={item?.logoUrl}
                       alt={`${item.id}_icon`}
                     ></Image>
                   </Box>
@@ -94,8 +97,8 @@ const BlockchainSelectionMenu = () => {
                   <>
                     {i >= 4 &&
                       <MenuItem key={i}
-                        bgColor={useColorModeValue("#FFF", "#191919")}
-                        _hover={{ bg: useColorModeValue("#F5F5F7", "#202020") }}
+                        bgColor={colorMode === 'light' ? "#FFF" :"#191919"}
+                        _hover={{ bg: colorMode === 'light' ? "#F5F5F7" :"#202020"}}
                       >
                         <Checkbox colorScheme='green'
                           value={item.name}
@@ -121,7 +124,7 @@ const BlockchainSelectionMenu = () => {
                               fontWeight={"400"}
                               lineHeight={"20px"}
                               letterSpacing={"1px"}
-                              color={useColorModeValue("#16171B", "#FFF")}
+                              color={colorMode === 'light' ? "#16171B" : "#FFF"}
                             >
                               {item.name}
                             </Text>

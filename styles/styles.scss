@@ -55,6 +55,23 @@ body {
     }
 }
 
+.svg_select_points_l,.svg_select_points_r {
+    width: 20px;
+    y: 0;
+    border-radius: 50%;
+    height: 37px;
+}
+
+.svg_select_points {
+    fill: #A7A7A7 !important;
+    stroke-width: 0 !important;
+}
+
+.selection_box_tooltip {
+    padding: 10px;
+}
+
+
 .graph_box {
     border-radius: 8px;
     padding: 14px !important;
@@ -62,7 +79,7 @@ body {
     min-height: 99px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .graph_inner_text_big {
@@ -89,9 +106,7 @@ body {
 .child {
     height: 100%;
     margin-bottom: -50px;
-    /* maximum width of scrollbar */
     padding-bottom: 50px;
-    /* maximum width of scrollbar */
     overflow-y: hidden;
     overflow-x: scroll;
     white-space: nowrap;

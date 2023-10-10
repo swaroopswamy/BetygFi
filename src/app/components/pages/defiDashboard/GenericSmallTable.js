@@ -4,24 +4,28 @@ import {
     Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
     Image, Spacer, Button, useColorMode, colorMode
 } from "@chakra-ui/react";
-import { blockchains } from "../../../util/constant";
-import React,{ useState, useEffect } from "react";
+// import { blockchains } from "../../../util/constant";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+//import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import BigTablePageButtons from '/src/app/components/BigTable_pagebutton';
-import SelectionBox from '/src/app/components/SelectionBox_BigTable';
 
-const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }) => {
+const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
-    const [searchByName, setSearchByName] = useState('');
+    //const history = useHistory();
 
-    const searchAssetByNameHandler = (name) => {
-        setSearchByName(name);
-    }
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+    };
+    // const handleNavigate = () => {
+    //     history.push('/BigTable');
+    //   };
 
     return (
         <>
@@ -29,61 +33,80 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
                 borderRadius={"6px"}
-                mb={"30px"}
+                //mb={"30px"}
             >
-                <Box
-                    display={"flex"}
-                    justifyContent={"space-between"}
-                    alignItems={"center"}
-                    padding={"8px 30px 8px 30px"}
-                    background={useColorModeValue('#FFFFFF', '#202020')}
+                <Flex
+                    borderRadius={"6px"}
+                    _dark={{
+                        bg: "#202020",
+                        color: "#FFFFFF"
+                    }}
+                    _light={{
+                        bg: "#FFFFFF",
+                        color: "#16171B"
+                    }}
                 >
-                    <Box>
                         <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            //pr={"10px"}
-                            mb={"20px"}
-                            mt={"20px"}
+                            _light={{ color: "#16171B" }}
+                            _dark={{ color: "#FFFFFF" }}
                             fontSize={"18px"}
-                            fontWeight={"600"}
+                            fontWeight={600}
                             lineHeight={"20px"}
+                            ml={"22px"}
+                            mt={"15px"}
+                            mb={"15px"}
                         >
                             {tableName}
                         </Text>
-                    </Box>
-
-                    <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                        gap={"10px"}
+                        <Tooltip label= {Definitions}
+                        bgColor={useColorModeValue("rgba(97, 97, 97, 0.92)", "#FFF")}
+                        padding="4px 8px"
+                        fontWeight={400}
+                        fontSize={"10px"}
+                        
+                        >
+                        <Image width={"12px"}
+                            height={"12px"}
+                            flexShrink={"0"}
+                            mt={"22px"}
+                            ml={"5px"}
+                            alt=''
+                           // src={Tooltip}
+                    src="/images/Frame.svg"
                     >
-                        <SelectionBox
-                            colorMode={colorMode}
-                        />
-
-                        <Input
-                            borderColor={useColorModeValue("#E8E8E8", "#333")}
-                            bgColor={useColorModeValue("#F5F5F7", "#191919")}
-                            color={useColorModeValue("#16171B", "#A8ADBD")}
-                            fontSize={"10px"}
-                            fontWeight={400}
-                            lineHeight={"20px"}
-                            letterSpacing={"1.2px"}
-                            textTransform={"capitalize"}
-                            w="207px"
-                            placeholder="Search"
-                            onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
-                        />
-                    </Box>
-
-
-                </Box>
+                   </Image>
+                    </Tooltip>
+                    {/* <Button
+                        variant={"outline"}
+                        size={"xs"}
+                        _light={{ colorScheme: "#D9D9D9", stroke: "#D9D9D9" }}
+                        _dark={{ colorScheme: "#333", stroke: "#333" }}
+                        strokeWidth={"1px"}
+                        mt={"15px"}
+                        mr={"20px"}
+                        onClick={() => {
+                            router.push(Tablepath);
+                        }}
+                        // onClick={BigTable}
+                    >
+                        <Text
+                            _light={{ color: "#16171B" }}
+                            _dark={{ color: "#FFFFFF" }}
+                            fontSize={"14px"}
+                            fontWeight={"400"}
+                            lineHeight={"10px"}
+                        >
+                            View More
+                        </Text>
+                    </Button> */}
+                </Flex>
 
                 <Table variant='unstyled'
                     size={'sm'}
                     border={"1px"}
                     borderColor={useColorModeValue("#FFFFFF", "#272727")}
                     borderRadius={"6px"}
+                 
                 >
                     <Thead>
                         <Tr
@@ -94,7 +117,6 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                             fontWeight={400}
                             flex-shrink={"0"}
                             borderRadius={'6px'}
-                            textTransform={"capitalize"}
                         >
                             {thread.map((item, i) => {
                                 return (
@@ -108,25 +130,48 @@ const GenericBigTableComponent = ({ tableName, thread, tableData, RowComponent }
                         </Tr>
                     </Thead>
 
-                    <Tbody>
+                    <Tbody
+                    >
                         <RowComponent
                             tableData={tableData}
                         />
                     </Tbody>
-                    <Tfoot>
-                    </Tfoot>
+
 
                 </Table>
-
-                <BigTablePageButtons />
             </Box>
+
         </>
     )
 };
 
-export default GenericBigTableComponent;
+export default GenericSmallTableComponent;
 
 function ThreadItem({ key, name }) {
+
+   
+
+//     const [sortKey, setSortKey] = useState(null);
+//   const [sortOrder, setSortOrder] = useState("asc");
+
+//   const handleSort = (key) => {
+//     if (sortKey === key) {
+//       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+//     } else {
+//       setSortKey(key);
+//       setSortOrder("asc");
+//     }
+//   };
+
+//   const sortedData = data.slice().sort((a, b) => {
+//     const aValue = a[sortKey];
+//     const bValue = b[sortKey];
+//     if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
+//     if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+//     return 0;
+//   });
+
+
     return (
         <>
             <Th
@@ -148,23 +193,35 @@ function ThreadItem({ key, name }) {
                 <Flex>
                     {name}
                     {/* Add an image next to the text */}
-                    <Image mt={"2px"} src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="2" />
+                    <Image src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")} alt="Users" ml="5px" mt={"3px"} />
+                
+{/* <Image
+src={useColorModeValue(
+                sortOrder === "asc"
+                  ? "/images/Arrowdown(light).svg"
+                  : "/images/Arrowup(light).svg",
+                sortOrder === "asc"
+                  ? "/images/Arrowdown(dark).svg"
+                  : "/images/Arrowup(dark).svg"
+              )}
+              alt="Sort"
+              ml="5px"
+              mt="5px"
+              /> */}
                 </Flex>
             </Th>
         </>
     )
 }
 
-// function SelectionBox ({ colorMode }) {
+// function SelectionBox({ blockchainSelected, colorMode, BlockchainTypeHandler }) {
 //     const dispatch = useDispatch();
 //     const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
+//     var blockchains = [];
 
-//     const blockchainSelected = useSelector(
-//         (state) => state?.walletDashboardTableData?.blockchainType
-//     );
-//     const BlockchainTypeHandler = (type) => {
-//         dispatch(blockchainTypeChangedReducer(type));
-//     };
+//     if (blockchainListData.isSuccess) {
+//         blockchains = blockchainListData.data;
+//     }
     
 //     useEffect(() => {
 //         dispatch(fetchBlockchainListData());
@@ -208,7 +265,7 @@ function ThreadItem({ key, name }) {
 //                 >
 //                     All
 //                 </Box>
-//                 {blockchainListData.isSuccess && blockchainListData.data.map((item, i) => {
+//                 {blockchains.map((item, i) => {
 //                     if (i >= 4) return;
 //                     return (
 //                         <Box
@@ -237,7 +294,7 @@ function ThreadItem({ key, name }) {
 //                                 w={"20px"}
 //                                 h={"20px"}
 //                                 mr={"11px"}
-//                                 src={item.logoUrl}
+//                                 src={`/icons/${item.name}_sm_icon.svg`}
 //                                 alt=""
 //                             ></Image>
 //                             <Text
@@ -261,4 +318,5 @@ function ThreadItem({ key, name }) {
 //         </Box>
 //     </>
 // }
+
 

@@ -60,7 +60,7 @@ const TVLBox = () => {
                         />
                         <TVLRow
                             name={"Token Price"}
-                            value={defiData?.isSuccess ? "$" + defiData?.data?.price.toFixed(2) : "-"}
+                            value={defiData?.isSuccess ? "$" + defiData?.data?.price?.toFixed(2) : "-"}
                         />
                         {/* <TVLRow
                             name={"Fully Diluted"}

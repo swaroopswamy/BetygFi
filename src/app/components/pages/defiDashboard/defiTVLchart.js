@@ -16,7 +16,7 @@ function DefiTVLChart() {
   const router = useRouter();
   const defiData = useSelector(
     (state) => state?.defiDashboardData?.DefiData?.data
-  )
+  );
 
   const options = {
     chart: {
@@ -141,12 +141,12 @@ function DefiTVLChart() {
               </Box>
                 
 
-              <Button
+              {/* <Button
                   variant={'viewMore'}
                   // onClick={() => {
                   //     router.push("/defi_dashboard/defi_users");
                   // }}
-              > View More </Button>
+              > View More </Button> */}
             </Box>
 
           <Box>
