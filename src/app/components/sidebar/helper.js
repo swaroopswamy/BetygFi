@@ -1,8 +1,8 @@
 import { Icon, Image } from '@chakra-ui/react';
-import { RiHomeLine, RiTwitterXLine } from 'react-icons/ri';
+import { RiHomeLine, RiTwitterXLine, RiBugLine } from 'react-icons/ri';
 import { TiDocumentText } from 'react-icons/ti';
-import { BiWalletAlt } from 'react-icons/bi';
-import { SlSocialReddit } from 'react-icons/sl';
+import { BiWalletAlt, BiBulb } from 'react-icons/bi';
+import { SlSocialReddit, SlSettings } from 'react-icons/sl';
 import { RxDiscordLogo } from 'react-icons/rx';
 import { BetygFiSmLogo } from '../icons';
 
@@ -49,18 +49,19 @@ export const linkItemsDown = [
 ];
 
 export const bottomMenu = [
-    // { name: "Help", icon: QuestionIcon, path: '#' },
-    // { name: "Settings", icon: SettingIcon, path: '#' },
-    { name: "Settings", icon: "icons/settings-icon.svg", path: "/settings" },
+    {    name: "Settings",
+        icon: SlSettings,
+        path: "/settings"
+    },
     {
         name: "Suggest Feature",
-        icon: RiHomeLine,
+        icon: BiBulb,
         newTab: true,
         path: "https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform",
     },
     {
         name: "Report Bug",
-        icon: RiHomeLine,
+        icon: RiBugLine,
         newTab: true,
         path: "https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform",
     },

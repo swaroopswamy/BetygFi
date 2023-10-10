@@ -106,30 +106,22 @@ const SidebarContent = ({ onClose, ...rest }) => {
           </Box>
 
             {/* Bottom Half */}
-            <Box mb={"15px"}>
-              {/* {bottomMenu.map((link) => (
+            <Box layerStyle={"flexColumn"} w={"100%"} mb={"15px"}>
+              {bottomMenu.map((link, i) => (
                 <NavItem
-                  key={link.name}
-                  Icon={link.icon}
-                  path={link.path}
-                  _hover={{
-                    bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                    color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                    fontWeight: "600",
-                  }}
-                  newTab={link.newTab}
-                  fontSize="12px"
-                  fontWeight="400"
-                  lineHeight="20px"
-                  letterSpacing="1.2px"
-                >
-                  {link.name}
-                </NavItem>
-              ))} */}
+                    key={i}
+                    NavIcon={link.icon}
+                    path={link.path}
+                    newTab={link.newTab}
+                    isActive={pathname === link.path}
+                  >
+                    <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                  </NavItem>
+              ))}
 
               <hr style={{ marginBottom: "15px" }} />
 
-              {/* <Box
+              <Box
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"center"}
@@ -163,7 +155,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     Powered by Solvendo
                   </Text>
                 </Box>
-              </Box> */}
+              </Box>
             </Box>
           </Box>
         )}
