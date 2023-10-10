@@ -107,12 +107,16 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
       >
         <Box
           w={"64%"}
-          height={"36px"}
+          height={"45px"}
           flexShrink={0}
           borderRadius={"20px"}
           bg={useColorModeValue("#E8E8E8", "#000000")}
+          ml={"10px"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
         >
-          <InputGroup w="100%">
+          <InputGroup w="100%" alignItems={"center"}>
             <InputLeftElement pointerEvents="none">
               <Image
                 src="/images/search_icon.svg"
