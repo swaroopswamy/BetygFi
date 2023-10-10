@@ -362,7 +362,7 @@ const ButtonComp = ({ item }) => {
 
 const PanelComp = ({ item }) => {
   const router = useRouter();
-  
+
   return (
     <Box
       display={"flex"}
@@ -495,7 +495,7 @@ const PanelComp = ({ item }) => {
             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
           }}
         >
-          Open DeFi
+          Open
         </Button>
       </Box>
     </Box>

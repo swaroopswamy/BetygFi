@@ -69,7 +69,7 @@ const Banner = () => {
                                 w={"16px"}
                                 h={"16px"}
                                 borderRadius={"50%"}
-                                src={defiData?.logo ?? "/images/basic_profile.png"}
+                                src={defiData?.logo}
                                 name={defiData?.name ?? "defi_logo"}
                             />
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")} fontWeight={'600'}

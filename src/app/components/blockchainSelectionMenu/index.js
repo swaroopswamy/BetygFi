@@ -43,8 +43,7 @@ const BlockchainSelectionMenu = () => {
           display={{base: "none", md: "flex"}}
         >
           {blockchainListData?.data?.map((item, i) => (
-            <>
-              {i < 4 &&
+              i < 4 && 
                 <Tooltip key={i} label={item.name}>
                   <Box
                     className="center"
@@ -69,8 +68,6 @@ const BlockchainSelectionMenu = () => {
                     ></Image>
                   </Box>
                 </Tooltip>
-              }
-            </>
           ))}
   
           <Menu closeOnSelect={false}>
@@ -94,8 +91,7 @@ const BlockchainSelectionMenu = () => {
             >
               {blockchainListData?.isSuccess && blockchainListData?.data?.map((item, i) => {
                 return (
-                  <>
-                    {i >= 4 &&
+                    i >= 4 &&
                       <MenuItem key={i}
                         bgColor={colorMode === 'light' ? "#FFF" :"#191919"}
                         _hover={{ bg: colorMode === 'light' ? "#F5F5F7" :"#202020"}}
@@ -116,7 +112,6 @@ const BlockchainSelectionMenu = () => {
                               height={24}
                               src={item.logoUrl}
                               alt={`${item.id}_icon`}
-  
                               style={{ marginRight: "20px", marginLeft: "14px" }}
                             ></Image>
                             <Text
@@ -131,9 +126,7 @@ const BlockchainSelectionMenu = () => {
                           </Box>
                         </Checkbox>
                       </MenuItem>
-                    }
-                  </>)
-              })}
+              )})}
             </MenuList>
           </Menu>
         </Box>

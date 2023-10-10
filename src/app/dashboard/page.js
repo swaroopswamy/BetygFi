@@ -94,7 +94,7 @@ const Dashboard = () => {
         </Box>
 
         <Box display={{base: "flex", md: "none"}} pt={"30px"}>
-          <Text textStyle='h1' px={"18px"}> DeFi Markets </Text>
+          <Text variant='h1' px={"18px"}> DeFi Markets </Text>
         </Box>
 
         <Box display={{base: "flex", md: "none"}} pt={"15px"} overflow={"auto"}>

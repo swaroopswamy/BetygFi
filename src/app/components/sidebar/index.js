@@ -57,7 +57,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         {...rest}
       >
         {!isSidebarCollapsed && (
-          <Box layerStyle={"spaceBetween"} flexDir={"column"} mr={"-13px"}>
+          <Box layerStyle={"spaceBetween"} flexDir={"column"}>
             <Box layerStyle={"flexColumn"} gap={"15px"}>
               <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} p={"20px"}
                 onClick={() => router.push("/")}
@@ -84,7 +84,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 ))}
               </Box>
 
-              <hr style={{margin: "5px 15px"}} />
+              <hr style={{margin: "5px 2px 5px 15px"}} />
 
               <Box display={"flex"} w="100%" px={"20px"}>
                 <Text variant={"h5"} opacity="0.6" letterSpacing={"1.2px"}> BetygFi Communities </Text>
@@ -161,7 +161,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         )}
 
         {isSidebarCollapsed && (
-          <Box layerStyle={"spaceBetween"} flexDir={"column"} width={"70px"} mr={"-13px"}>
+          <Box layerStyle={"spaceBetween"} flexDir={"column"} width={"70px"}>
               <Box layerStyle={"flexColumn"} w={"100%"}>
 
                 <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} py={"20px"}
@@ -189,7 +189,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   ))}
                 </Box>
 
-                <hr style={{margin: "15px 0px"}} />
+                <hr style={{margin: "15px -13px"}} />
 
                 <Box layerStyle={"flexColumn"}>
                   {linkItemsDown.map((link, i) => (
@@ -215,20 +215,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   ></CollapsedNavItem>
                 ))}
 
-                <hr style={{ margin: "25px 0px" }} />
+                <hr style={{ margin: "25px -13px" }} />
 
                 <Box
                   display={"flex"}
                   justifyContent={"center"}
                   w={"100%"}
-                  mt={"20px"}
                 >
-                  <Image
-                    width={22}
-                    height={22}
-                    alt="logo"
-                    src={"/icons/company_sm_logo.svg"}
-                  />
+                  <Box
+                    display={"flex"}
+                    justifyContent="center"
+                    alignItems={"center"}
+                    height={"45px"}
+                    mr={"-13px"}
+                  >
+                    <Image
+                      width={22}
+                      height={22}
+                      alt="logo"
+                      src={"/icons/company_sm_logo.svg"}
+                    />
+                  </Box>
                 </Box>
               </Box>
           </Box>
@@ -289,7 +296,7 @@ const CollapsedNavItem = ({ NavIcon, path, newTab, isActive }) => {
           color: colorMode === "light" ? "#FFFFFF" : "#191919",
           fontWeight: "600",
         }}
-        // mr={"-13px"}
+        mr={"-13px"}
       >
         <Icon 
           as={NavIcon}
@@ -327,6 +334,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           gap={"10px"}
           bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
           color={colorMode === "light" ? "#FFFFFF" : "#191919"}
+          mr={"-13px"}
           {...rest}
         >
           <Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"}/>
@@ -357,6 +365,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           color: colorMode === "light" ? "#FFFFFF" : "#191919",
           fontWeight: "600",
         }}
+        mr={"-13px"}
         {...rest}
       >
         <Icon 
