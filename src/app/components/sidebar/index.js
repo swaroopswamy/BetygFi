@@ -224,8 +224,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   mt={"20px"}
                 >
                   <Image
-                    width={15}
-                    height={15}
+                    width={22}
+                    height={22}
                     alt="logo"
                     src={"/icons/company_sm_logo.svg"}
                   />
