@@ -23,7 +23,7 @@ import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
 import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
-import { RiHomeLine } from "react-icons/ri";
+import { FaPeopleGroup } from "react-icons/fa6";
 
 const DynamicIcon = dynamic(() => import("../icons/index_new"), {
   loading: () => <span>Loading...</span>,
@@ -327,6 +327,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           gap={"10px"}
           bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
           color={colorMode === "light" ? "#FFFFFF" : "#191919"}
+          {...rest}
         >
           <Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"}/>
           {children}
@@ -356,6 +357,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
           color: colorMode === "light" ? "#FFFFFF" : "#191919",
           fontWeight: "600",
         }}
+        {...rest}
       >
         <Icon 
           as={NavIcon}
@@ -429,34 +431,18 @@ const MobileSidebar = ({
                     padding={"5px 20px"}
                     borderBottom={"2px"}
                     borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                    mb={"10px"}
                   >
                     <Box display={"flex"} alignItems={"center"}>
                       <Box mr="10px" cursor={"pointer"} onClick={onClose}>
-                        {/*  <Image
-                          height={40}
-                          width={40}
-                          src={
-                            colorMode === "light"
-                              ? "/icons/x_dark.svg"
-                              : "/icons/x_light.svg"
-                          }
-                        ></Image> */}
                         <DynamicIcon
                           name={colorMode === "light" ? "x_dark" : "x_light"}
                         />
                       </Box>
 
-                      <Box
-                        h="20"
-                        display={"flex"}
-                        alignItems="center"
-                        justifyContent="center"
-                        cursor={"pointer"}
-                      >
+                      <Box layerStyle={"flexCenter"} cursor={"pointer"} p={"20px"}>
                         <Image
                           width={100}
-                          height={50}
+                          height={70}
                           alt="logo"
                           src={
                             colorMode === "light"
@@ -486,143 +472,100 @@ const MobileSidebar = ({
                     </Box>
                   </Box>
 
-                  {linkItemsUp.map((link, i) => (
-                    <NavItem
-                      key={link.name}
-                      icon={link.icon}
-                      path={link.path}
-                      newTab={link.newTab}
+                  <Box layerStyle={"flexColumn"}>
+                    {linkItemsUp.map((link, i) => (
+                      <NavItem
+                        key={i}
+                        NavIcon={link.icon}
+                        path={link.path}
+                        newTab={link.newTab}
+                        isActive={pathname === link.path}
+                        height={"50px"}
+                      >
+                        <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                      </NavItem>
+                    ))}
+
+                    {/* communities */}
+                    <Flex
+                      alignItems="stretch"
+                      alignContent={"center"}
+                      justifyContent={"space-between"}
+                      height={"50px"}
+                      padding={"9px 20px"}
+                      role="group"
+                      cursor="pointer"
                       _hover={{
                         bg: colorMode === "light" ? "#202020" : "#FFFFFF",
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
                         fontWeight: "600",
                       }}
-                      bg={
-                        pathname === link.path
-                          ? colorMode === "light"
-                            ? "#202020"
-                            : "#FFFFFF"
-                          : null
-                      }
-                      color={
-                        pathname === link.path
-                          ? colorMode === "light"
-                            ? "#FFFFFF"
-                            : "#191919"
-                          : null
-                      }
                       fontSize="14px"
-                      fontWeight={pathname == link.path ? "600" : "400"}
+                      fontWeight={"400"}
                       lineHeight="20px"
                       letterSpacing="1.4px"
-                      alignContent="center"
+                      onClick={onCommunitiesToggle}
                     >
-                      {link.name}
-                    </NavItem>
-                  ))}
+                      <Box
+                        display={"flex"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        alignContent={"center"}
+                        gap={"10px"}
+                      >
+                        <Icon 
+                          as={FaPeopleGroup}
+                          boxSize={18}
+                          color={colorMode === "light" ? "#6F7383" : "#676767"}
+                          _groupHover={{
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                          }}
+                        />
+                        <Text>Communities</Text>
+                      </Box>
 
-                  {/* communities */}
-                  <Flex
-                    alignItems="stretch"
-                    alignContent={"center"}
-                    justifyContent={"space-between"}
-                    height={"38px"}
-                    padding={"9px 20px"}
-                    role="group"
-                    cursor="pointer"
-                    _hover={{
-                      bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                      color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                      fontWeight: "600",
-                    }}
-                    fontSize="14px"
-                    fontWeight={"400"}
-                    lineHeight="20px"
-                    letterSpacing="1.4px"
-                    onClick={onCommunitiesToggle}
-                  >
-                    <Box
-                      display={"flex"}
-                      justifyContent={"center"}
-                      alignItems={"center"}
-                      alignContent={"center"}
-                      gap={"10px"}
-                    >
-                      <Image
-                        width={"15"}
-                        height={"15"}
-                        _groupHover={{
-                          color: "white",
-                        }}
-                        src={"icons/community_sm_logo.svg"}
-                        alt="logo"
-                      />
-                      <Text>Communities</Text>
-                    </Box>
+                      <Box>
+                        <DirectionArrowIcon
+                          boxSize={25}
+                          color={colorMode === "light" ? "dark" : "white"}
+                          _groupHover={{
+                            color: colorMode === "light" ? "white" : "dark",
+                          }}
+                          style={{ rotate: "90deg" }}
+                        />
+                      </Box>
+                    </Flex>
 
-                    <Box>
-                      <DirectionArrowIcon
-                        boxSize={25}
-                        color={colorMode === "light" ? "dark" : "white"}
-                        _groupHover={{
-                          color: colorMode === "light" ? "white" : "dark",
-                        }}
-                        style={{ rotate: "90deg" }}
-                      />
-                    </Box>
-                  </Flex>
+                    <Collapse in={isCommunitiesOpen} animateOpacity={"true"}>
+                      <Box layerStyle={"flexColumn"} pl={"20px"}>
+                        {linkItemsDown.map((link, i) => (
+                          <NavItem
+                            key={i}
+                            NavIcon={link.icon}
+                            path={link.path}
+                            newTab={link.newTab}
+                            isActive={pathname === link.path}
+                            height={"40px"}
+                          >
+                            <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                          </NavItem>
+                        ))}
+                      </Box>
+                    </Collapse>
 
-                  <Collapse in={isCommunitiesOpen} animateOpacity={"true"}>
-                    {linkItemsDown.map((link) => (
-                      <>
-                        {link?.dropdown ? (
-                          <></>
-                        ) : (
-                          <>
-                            <NavItem
-                              key={link.name}
-                              icon={link.icon}
-                              path={link.path}
-                              _hover={{
-                                bg:
-                                  colorMode === "light" ? "#202020" : "#FFFFFF",
-                                color:
-                                  colorMode === "light" ? "#FFFFFF" : "#191919",
-                                fontWeight: "600",
-                              }}
-                              fontSize="12px"
-                              fontWeight="400"
-                              lineHeight="20px"
-                              letterSpacing="1.2px"
-                              ml={"20px"}
-                            >
-                              {link.name}
-                            </NavItem>
-                          </>
-                        )}
-                      </>
+                    {bottomMenu.map((link, i) => (
+                      <NavItem
+                          key={i}
+                          NavIcon={link.icon}
+                          path={link.path}
+                          newTab={link.newTab}
+                          isActive={pathname === link.path}
+                          height={"50px"}
+                        >
+                          <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                        </NavItem>
                     ))}
-                  </Collapse>
-
-                  {bottomMenu.map((link) => (
-                    <NavItem
-                      key={link.name}
-                      icon={link.icon}
-                      path={link.path}
-                      _hover={{
-                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                        fontWeight: "600",
-                      }}
-                      newTab={link.newTab}
-                      fontSize="14px"
-                      fontWeight="400"
-                      lineHeight="20px"
-                      letterSpacing="1.2px"
-                    >
-                      {link.name}
-                    </NavItem>
-                  ))}
+                  </Box>
                 </Box>
 
                 <Box
