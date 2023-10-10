@@ -13,87 +13,28 @@ import {
   Collapse,
   useDisclosure,
   createIcon,
+  Button,
+  Icon,
 } from "@chakra-ui/react";
 import Image from "next/image";
-
 import { usePathname, useRouter } from "next/navigation";
-
-import useScreenSize from "../../../hooks/useScreenSize";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
-import { mobileSidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
+import "/styles/styles.scss";
+import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
+import { RiHomeLine } from "react-icons/ri";
 
 const DynamicIcon = dynamic(() => import("../icons/index_new"), {
   loading: () => <span>Loading...</span>,
 });
 
-import "/styles/styles.scss";
-
-const LinkItemsUp = [
-  { name: "Home", icon: "icons/home_sm_logo.svg", path: "/" },
-  // { name: "Speculation", icon: SpeclationIcon, path: '#' },
-  {
-    name: "Approach Paper",
-    icon: "icons/approach-paper-icon.svg",
-    path: "/approach-paper",
-  },
-  {
-    name: "Top Wallets",
-    icon: "icons/wallet_sm_logo.svg",
-    path: "/top-wallets",
-  },
-  { name: "About", icon: "icons/company_sm_logo.svg", path: "/about" },
-  // { name: "Significant", icon: StarIcon, path: '#' },
-];
-
-const LinkItemsDown = [
-  {
-    name: "Reddit",
-    icon: "icons/reddit-icon.svg",
-    path: "https://www.reddit.com/r/betygFi",
-    newTab: true,
-  },
-  {
-    name: "Discord",
-    icon: "icons/discord-icon-light.svg",
-    path: "https://discord.gg/bGMmeNRJtW",
-    newTab: true,
-  },
-  {
-    name: "Twitter",
-    icon: "icons/twitter-icon.svg",
-    path: "https://twitter.com/betygFi",
-    newTab: true,
-  },
-];
-
-const bottomMenu = [
-  // { name: "Help", icon: QuestionIcon, path: '#' },
-  // { name: "Settings", icon: SettingIcon, path: '#' },
-  { name: "Settings", icon: "icons/settings-icon.svg", path: "/settings" },
-  {
-    name: "Suggest Feature",
-    icon: "icons/bulb_sm_icon.svg",
-    newTab: true,
-    path: "https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform",
-  },
-  {
-    name: "Report Bug",
-    icon: "icons/bug_sm_icon.svg",
-    newTab: true,
-    path: "https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform",
-  },
-];
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const [isCollapsed, setCollapse] = useState(false);
+  const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const router = useRouter();
   const pathname = usePathname();
-  const screenSize = useScreenSize();
 
   const SidebarHandler = (value) => {
     dispatch(sidebarCollapsedReducer(value));
@@ -102,178 +43,74 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const isSidebarCollapsed = useSelector(
     (state) => state?.appData?.isSidebarCollapsed
   );
-  const isMobileSidebarCollapsed = useSelector(
-    (state) => state?.appData?.isMobileSidebarCollapsed
-  );
-  const MobileSidebarHandler = (value) => {
-    dispatch(mobileSidebarCollapsedReducer(value));
-  };
 
   return (
     <>
       <Box
-        bg={useColorModeValue("white", "#191919")}
+        bg={useColorModeValue("#FFFFFF", "#191919")}
         borderRight="1px"
-        borderRightColor={useColorModeValue("gray.200", "gray.700")}
+        borderRightColor={useColorModeValue("#E1E1E1", "#333333")}
         minWidth={isSidebarCollapsed ? "50px" : "210px"}
-        // h={"100vh"}
-        //pos={screenSize?.width < 1450 ? "relative" : "fixed"}
         className="sidebar-styles"
         zIndex={"999"}
-        boxShadow={useColorModeValue(
-          "1px 0px 0px 0px #E1E1E1",
-          "1px 0px 0px 0px #333"
-        )}
         display={{ base: "none", md: "flex" }}
         {...rest}
       >
         {!isSidebarCollapsed && (
-          <Box
-            w="100%"
-            h="100%"
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-          >
-            {/* Top Half */}
-            <Box>
-              <Flex
-                h="20"
-                alignItems="center"
-                mx="17px"
-                mb="40px"
-                justifyContent="space-between"
-                cursor={"pointer"}
+          <Box layerStyle={"spaceBetween"} flexDir={"column"}>
+            <Box layerStyle={"flexColumn"} gap={"15px"}>
+              <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} p={"20px"}
+                onClick={() => router.push("/")}
               >
-                {colorMode === "light" && (
                   <Image
                     width={180}
                     height={80}
                     alt="logo"
-                    src="/icons/light_betgyfi_sm_icon.svg"
-                    cursor={"pointer"}
-                    onClick={() => router.push("/")}
+                    src={colorMode === 'dark' ? "/icons/dark_betgyfi_sm_logo.svg" : "/icons/light_betgyfi_sm_icon.svg"}
                   />
-                )}
-                {colorMode === "dark" && (
-                  <Image
-                    width={180}
-                    height={80}
-                    alt="logo"
-                    src="/icons/dark_betgyfi_sm_logo.svg"
-                    cursor={"pointer"}
-                    onClick={() => router.push("/")}
-                  />
-                )}
+              </Box>
 
-                {/*   <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-                 */}
-              </Flex>
+              <Box layerStyle={"flexColumn"}>
+                {linkItemsUp.map((link, i) => (
+                  <NavItem
+                    key={i}
+                    NavIcon={link.icon}
+                    path={link.path}
+                    newTab={link.newTab}
+                    isActive={pathname === link.path}
+                  >
+                    <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                  </NavItem>
+                ))}
+              </Box>
 
-              {LinkItemsUp.map((link, i) => (
-                <NavItem
-                  key={link.name}
-                  icon={link.icon}
-                  path={link.path}
-                  newTab={link.newTab}
-                  _hover={{
-                    bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                    color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                    fontWeight: "600",
-                    mr: "-13px",
-                  }}
-                  bg={
-                    pathname === link.path
-                      ? colorMode === "light"
-                        ? "#202020"
-                        : "#FFFFFF"
-                      : null
-                  }
-                  color={
-                    pathname === link.path
-                      ? colorMode === "light"
-                        ? "#FFFFFF"
-                        : "#191919"
-                      : null
-                  }
-                  mr={pathname === link.path ? "-13px" : null}
-                  fontSize="14px"
-                  fontWeight={pathname == link.path ? "600" : "400"}
-                  lineHeight="20px"
-                  letterSpacing="1.4px"
-                  alignContent="center"
-                >
-                  <Text>{link.name}</Text>
-                </NavItem>
-              ))}
+              <hr style={{margin: "5px 15px"}} />
 
-              <hr style={{ margin: "25px 20px" }} />
+              <Box display={"flex"} w="100%" px={"20px"}>
+                <Text variant={"h5"} opacity="0.6" letterSpacing={"1.2px"}> BetygFi Communities </Text>
+              </Box>
 
-              <Text
-                fontSize="12px"
-                fontWeight="400"
-                lineHeight="20px"
-                letterSpacing="1.2px"
-                opacity="0.6"
-                _dark={{
-                  color: "#FFF",
-                }}
-                _light={{
-                  color: "#16171B",
-                }}
-                mb="15px"
-                w="100%"
-                mx="4"
-                px="2"
-              >
-                BetygFi Communities
-              </Text>
-
-              {LinkItemsDown.map((link) => (
-                <>
-                  {link?.dropdown ? (
-                    <>
-                      {/*   <Menu key={link.name}>
-                  <MenuButton as={Button} width={"100%"} rightIcon={<ChevronDownIcon />}>
-                    {link.name}
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                  </MenuList>
-                </Menu> */}
-                    </>
-                  ) : (
-                    <>
-                      <NavItem
-                        key={link.name}
-                        icon={link.icon}
-                        path={link.path}
-                        _hover={{
-                          bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                          color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                          fontWeight: "600",
-                          mr: "-13px",
-                        }}
-                        fontSize="14px"
-                        fontWeight="400"
-                        lineHeight="20px"
-                        letterSpacing="1.2px"
-                      >
-                        {link.name}
-                      </NavItem>
-                    </>
-                  )}
-                </>
-              ))}
-            </Box>
+              <Box layerStyle={"flexColumn"}>
+                {linkItemsDown.map((link, i) => (
+                  <NavItem
+                    key={i}
+                    NavIcon={link.icon}
+                    path={link.path}
+                    newTab={link.newTab}
+                    isActive={pathname === link.path}
+                  >
+                    <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                  </NavItem>
+                ))}
+              </Box>
+          </Box>
 
             {/* Bottom Half */}
             <Box mb={"15px"}>
-              {bottomMenu.map((link) => (
+              {/* {bottomMenu.map((link) => (
                 <NavItem
                   key={link.name}
-                  icon={link.icon}
+                  Icon={link.icon}
                   path={link.path}
                   _hover={{
                     bg: colorMode === "light" ? "#202020" : "#FFFFFF",
@@ -288,11 +125,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 >
                   {link.name}
                 </NavItem>
-              ))}
+              ))} */}
 
               <hr style={{ marginBottom: "15px" }} />
 
-              <Box
+              {/* <Box
                 display={"flex"}
                 alignItems={"center"}
                 justifyContent={"center"}
@@ -326,11 +163,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     Powered by Solvendo
                   </Text>
                 </Box>
-
-                {/* <Box onClick={toggleColorMode}>
-              {colorMode === "light" ? <MoonIcon /> : <SunIcon color={"white"} />}
-            </Box> */}
-              </Box>
+              </Box> */}
             </Box>
           </Box>
         )}
@@ -379,7 +212,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                  */}
               </Flex>
 
-              {LinkItemsUp.map((link, i) => (
+              {linkItemsUp.map((link, i) => (
                 <CollapsedNavItem
                   key={link.name}
                   icon={link.icon}
@@ -407,7 +240,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <hr style={{ margin: "15px 0px" }} />
 
               <Box>
-                {LinkItemsDown.map((link) => (
+                {linkItemsDown.map((link) => (
                   <>
                     {link?.dropdown ? (
                       <>
@@ -525,7 +358,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 };
 
-const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
+export default SidebarContent;
+
+
+const CollapsedNavItem = ({ icon, path, newTab, isActive, children, ...rest }) => {
   return (
     <Link
       href={path}
@@ -547,7 +383,37 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
   );
 };
 
-const NavItem = ({ icon, path, newTab, children, ...rest }) => {
+const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
+  const { colorMode } = useColorMode();
+
+  if (isActive) {
+    return (
+      <Link
+        href={path}
+        target={newTab ? "_blank" : null}
+        style={{ textDecoration: "none" }}
+        _focus={{ boxShadow: "none" }}
+      >
+        <Box
+          display={"flex"}
+          alignItems="center"
+          justifyContent={"left"}
+          height={"38px"}
+          padding={"9px 20px"}
+          role="group"
+          cursor="pointer"
+          gap={"10px"}
+          bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
+          color={colorMode === "light" ? "#FFFFFF" : "#191919"}
+          mr={"-13px"}
+        >
+          <Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"}/>
+          {children}
+        </Box>
+      </Link>
+    );
+  }
+
   return (
     <Link
       href={path}
@@ -555,7 +421,8 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >
-      <Flex
+      <Box
+        display={"flex"}
         alignItems="center"
         justifyContent={"left"}
         height={"38px"}
@@ -563,23 +430,26 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
         role="group"
         cursor="pointer"
         gap={"10px"}
-        {...rest}
+        _hover={{
+          bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+          color: colorMode === "light" ? "#FFFFFF" : "#191919",
+          fontWeight: "600",
+          mr: "-13px",
+        }}
       >
-        <Image
-          height={"14"}
-          width={"14"}
+        <Icon 
+          as={NavIcon}
+          boxSize={18}
+          color={colorMode === "light" ? "#6F7383" : "#676767"}
           _groupHover={{
-            color: "white",
+            color: colorMode === "light" ? "#FFFFFF" : "#191919",
           }}
-          src={icon}
         />
         {children}
-      </Flex>
+      </Box>
     </Link>
   );
 };
-
-export default SidebarContent;
 
 const MobileSidebar = ({
   isOpen,
@@ -696,7 +566,7 @@ const MobileSidebar = ({
                     </Box>
                   </Box>
 
-                  {LinkItemsUp.map((link, i) => (
+                  {linkItemsUp.map((link, i) => (
                     <NavItem
                       key={link.name}
                       icon={link.icon}
@@ -782,7 +652,7 @@ const MobileSidebar = ({
                   </Flex>
 
                   <Collapse in={isCommunitiesOpen} animateOpacity={"true"}>
-                    {LinkItemsDown.map((link) => (
+                    {linkItemsDown.map((link) => (
                       <>
                         {link?.dropdown ? (
                           <></>
