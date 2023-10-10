@@ -1,11 +1,12 @@
 "use client";
+import dynamic from 'next/dynamic'
+const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
 import {
   Box,
   Checkbox,
   Menu,
   MenuButton,
   MenuItem,
-  MenuList,
   Text,
   Tooltip,
   useColorMode,

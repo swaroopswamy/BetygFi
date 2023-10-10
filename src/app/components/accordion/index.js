@@ -1,14 +1,12 @@
 import {
-  Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Box,
-  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-
+import dynamic from 'next/dynamic'
+const Accordion = dynamic(import('@chakra-ui/react').then(mod => mod.Accordion), { ssr: false }) // disable ssr
 
 export const SingleAccordionComp = ( {ButtonComp, PanelComp, ...rest} ) => {
     return (
