@@ -164,8 +164,8 @@ const GenericTable = ({
         </Thead>
 
         <Tbody>
-          {tableData?.isError ||
-            (tableData === null && (
+          {(tableData?.isError ||
+            tableData === null) && (
               <Tr>
                 <Td
                   p="20px"
@@ -176,7 +176,7 @@ const GenericTable = ({
                   <Text variant={"noDataText"}>No data available</Text>
                 </Td>
               </Tr>
-            ))}
+            )}
           {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsMobile.numColumns}

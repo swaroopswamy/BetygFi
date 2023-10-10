@@ -13,12 +13,12 @@ const Banner = () => {
             <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} py={"10px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
                 <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
                     <Box p={"15px"}>
-                        <Image
+                        <Avatar
                             w={"50px"}
                             h={"50px"}
                             borderRadius={"50%"}
-                            src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="DeFi Logo"
+                            src={defiData?.logo}
+                            name={defiData?.name}
                         />
                     </Box>
 
@@ -92,12 +92,12 @@ const Banner = () => {
             <Box display={{ base: "flex", lg: "none" }} flexDir={"column"} justifyContent={"space-between"} w={"100%"} gap={"15px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#FFFFFF", "#202020")} >
                 <Box display={"flex"} flexDir={"column"} gap={"15px"}>
                     <Box display={"flex"} w={"100%"} p={"15px"}>
-                        <Image
+                        <Avatar
                             w={"50px"}
                             h={"50px"}
                             borderRadius={"50%"}
-                            src={defiData?.logo ?? "/images/basic_profile.png"}
-                            alt="DeFi Logo"
+                            src={defiData?.logo}
+                            name={defiData?.name}
                         />
 
                         <Box layerStyle={"flexColumn"} justifyContent={"space-between"} px={"20px"}>
@@ -145,8 +145,8 @@ const Banner = () => {
                                 w={"16px"}
                                 h={"16px"}
                                 borderRadius={"50%"}
-                                src={defiData?.logo ?? "/images/basic_profile.png"}
-                                alt="Token Logo"
+                                src={defiData?.logo}
+                                name={defiData?.symbol}
                             />
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")} fontWeight={'600'}
                                 as={'a'}
