@@ -1,4 +1,3 @@
-import { Icon, Image } from '@chakra-ui/react';
 import { RiHomeLine, RiTwitterXLine, RiBugLine } from 'react-icons/ri';
 import { TiDocumentText } from 'react-icons/ti';
 import { BiWalletAlt, BiBulb } from 'react-icons/bi';
