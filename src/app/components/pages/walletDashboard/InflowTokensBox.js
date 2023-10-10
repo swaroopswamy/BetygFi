@@ -53,21 +53,26 @@ const InflowTokensBox = () => {
           <TooltipComp label="Inflow shows the number of tokens received by the wallet." />
         </Box>
       </Box>
-      <GenericTable
-        tableHeader={InflowTokensTableHeader}
-        tableData={inflowTokensData}
-        TableRow={TableRowDesktop}
-        TableHeaderRowMobile={TableHeaderRowMobile}
-        ButtonComp={TableBodyRowMobileButtonComp}
-        PanelComp={TableBodyRowMobilePanelComp}
-        SkeletonRowsColumnsDesktop={InflowTokensDesktop}
-        SkeletonRowsColumnsMobile={InflowTokensMobile}
-      />
+      <Box
+        overflow={inflowTokensData?.isSuccess ? "auto" : "hidden"}
+      >
+        <GenericTable
+          tableHeader={InflowTokensTableHeader}
+          tableData={inflowTokensData}
+          TableRow={TableRowDesktop}
+          TableHeaderRowMobile={TableHeaderRowMobile}
+          ButtonComp={TableBodyRowMobileButtonComp}
+          PanelComp={TableBodyRowMobilePanelComp}
+          SkeletonRowsColumnsDesktop={InflowTokensDesktop}
+          SkeletonRowsColumnsMobile={InflowTokensMobile}
+        />
+      </Box>
     </Box>
   );
 };
 
 const TableRowDesktop = ({ item, i }) => {
+  if (i === 5) return;
   return (
     <Tr height={"40px"} key={i}>
       <Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
@@ -147,7 +152,11 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"}  color={"#8F8F8F"}>
+        <Text
+          variant={"smallTableBodyMobile"}
+          textAlign={"left"}
+          color={"#8F8F8F"}
+        >
           Share
         </Text>
 
