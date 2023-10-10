@@ -132,7 +132,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 outline: "none",
                 border: "none",
               }}
-              value={searchWalletAddressValue}
+              value={searchWalletAddressValue ?? ''}
               bgColor={"transparent"}
               color={useColorModeValue("#16171B", "#A8ADBD")}
               fontSize="12px"
@@ -377,7 +377,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               letterSpacing="1.2px"
               w="100%"
               placeholder="Search Wallet Address"
-              value={searchWalletAddressValue}
+              value={searchWalletAddressValue ?? ''}
               onChange={(e) => {
                 handleSearchByWalletAddress(e);
               }}
