@@ -1,8 +1,17 @@
 "use client"
-import { Box, Container, useColorModeValue, Text, Image, Flex, Button, Spacer, toggleColorMode, colorMode } from "@chakra-ui/react";
+import { Box, useColorMode, useColorModeValue, Text, Image, Button, toggleColorMode, colorMode, useDisclosure, color } from "@chakra-ui/react";
 import React from "react";
+import LoginPage from "../components/login";
+import { LogoutReducer } from "@/redux/auth_data/authSlice";
+import DynamicIcon from '../components/icons/index_new'
+import { useDispatch, useSelector } from "react-redux";
 
 const Settings = () => {
+    const { colorMode, toggleColorMode } = useColorMode();
+    const dispatch = useDispatch();
+    const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
+    const preLoadedData = useSelector((state) => state.authData.preLoadedData);
+
     return (
         <>
             <Box
@@ -49,12 +58,18 @@ const Settings = () => {
 
                         <Box
                             layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
-                            <Image src="/images/LightTheme.svg" w="183px" h="133px" alt=""></Image>
+                            cursor={"pointer"}
+                            onClick={() => {
+                                toggleColorMode();
+                            }}>
+
+                            <Image src=" /images/LightTheme.svg" w="183px" h="133px" alt=""></Image>
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                <Image src="/images/SelectBox.svg" alt=""></Image>
+                                <DynamicIcon
+                                    name={colorMode === "light" ? "green_tick" : "unticked"}
+                                />
                                 <Text
                                     color={useColorModeValue("#191919", "#FFFFFF")}
                                     variant={"ThemeText"}
@@ -67,12 +82,17 @@ const Settings = () => {
 
                         <Box
                             layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
+                            cursor={"pointer"}
+                            onClick={() => {
+                                toggleColorMode();
+                            }}>
                             <Image src="/images/DarkTheme.svg" w="183px" h="133px" alt=""></Image>
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                <Image src="/images/SelectBox.svg" w="24px" h="24px" alt=""></Image>
+                                     <DynamicIcon
+                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
+                                />
                                 <Text
                                     color={useColorModeValue("#191919", "#FFFFFF")}
                                     layerStyle={"ThemeText"}
@@ -204,30 +224,67 @@ const Settings = () => {
                     </Box>
                 </Box>
 
-                <Box layerStyle={"flexSpaceBetween"}
-                    p={"50px 35px 90px 50px"}>
-                    <Text variant={"contentHeading4"}>
-                        Logout of BetygFi
-                    </Text>
-                    <Text
-                        variant={"SettingsText3"}
-                        ml={"50px"}
-                        mt={"3px"}>
-                        After logging out, the verification information for the current address will be deleted from your browser.
-                    </Text>
-                    <Button
-                        width={"116px"}
-                        height={"28px"}
-                        ml={"60px"}
-                        variant={"outline"}
-                        border={"1px"}>
-                        <Text variant={"SettingsButtonText2"}>
-                            Logout
-                        </Text>
-                    </Button>
-                </Box>
+                {
+                    (preLoadedData?.data === null || preLoadedData?.data === undefined)
+                        ?
+                        (
+                            <>
+                                <Box layerStyle={"flexSpaceBetween"}
+                                    p={"50px 35px 90px 50px"}>
+                                    <Text variant={"contentHeading4"}>
+                                        Login to BetygFi
+                                    </Text>
+                                    {/* <Text
+                                        variant={"SettingsText3"}
+                                        ml={"50px"}
+                                        mt={"3px"}>
+                                        After logging out, the verification information for the current address will be deleted from your browser.
+                                    </Text> */}
+                                    <Button
+                                        width={"116px"}
+                                        height={"28px"}
+                                        cursor={"pointer"}
+                                        onClick={onLoginModalOpen}
+                                        ml={"60px"}
+                                        variant={"outline"}
+                                        border={"1px"}>
+                                        <Text variant={"SettingsButtonText2"}>
+                                            Login
+                                        </Text>
+                                    </Button>
+                                </Box>
+                            </>
+                        )
+                        :
+                        (
+                            <>
+                                <Box layerStyle={"flexSpaceBetween"}
+                                    p={"50px 35px 90px 50px"}>
+                                    <Text variant={"contentHeading4"}>
+                                        Logout of BetygFi
+                                    </Text>
+                                    <Text
+                                        variant={"SettingsText3"}
+                                        ml={"50px"}
+                                        mt={"3px"}>
+                                        After logging out, the verification information for the current address will be deleted from your browser.
+                                    </Text>
+                                    <Button
+                                        width={"116px"}
+                                        height={"28px"}
+                                        ml={"60px"}
+                                        variant={"outline"}
+                                        border={"1px"}
+                                        onClick={() => dispatch(LogoutReducer())}>
+                                        <Text variant={"SettingsButtonText2"}>
+                                            Logout
+                                        </Text>
+                                    </Button>
+                                </Box>
+                            </>
+                        )
+                }
             </Box>
-
             {/* Mobile Optimization Part */}
 
             <Box
@@ -267,11 +324,18 @@ const Settings = () => {
 
                         <Box
                             layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
+                            cursor={"pointer"}
+                            onClick={() => {
+                                toggleColorMode();
+                            }}>
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
-                                <Image src="/images/SelectBox.svg" alt="" ml={"21px"}></Image>
+                                    <Box ml={"21px"}>
+                                 <DynamicIcon 
+                                    name={colorMode === "light" ? "green_tick" : "unticked"}
+                                />
+                                </Box>
                                 <Box ml={"10px"}>
                                     <Text variant={"ThemeText"}>
                                         Light THEME
@@ -283,11 +347,18 @@ const Settings = () => {
 
                         <Box
                             layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
+                            cursor={"pointer"}
+                            onClick={() => {
+                                toggleColorMode();
+                            }}>
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
-                                <Image src="/images/SelectBox.svg" w="24px" h="24px" alt="" ml={"21px"}></Image>
+                                <Box ml={"21px"}>
+                                 <DynamicIcon 
+                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
+                                />
+                                </Box>
                                 <Box ml={"10px"}>
                                     <Text layerStyle={"ThemeText"}>
                                         DARK THEME
@@ -412,30 +483,70 @@ const Settings = () => {
                     </Box>
                 </Box>
 
-                <Box layerStyle={"flexColumn"}
-                    p={"30px 15px 90px 15px"}>
-                    <Text variant={"contentHeading4"}>
-                        Logout of BetygFi
-                    </Text>
-                    <Box
-                        mr={"15px"}
-                        mt={"15px"}>
-                        <Text variant={"SettingsText3"}>
-                            After logging out, the verification information for the current address will be deleted from your browser.
-                        </Text>
-                    </Box>
-                    <Button
-                        width={"100%"}
-                        height={"28px"}
-                        variant={"outline"}
-                        mt={"15px"}
-                        border={"1px"}>
-                        <Text variant={"SettingsButtonText2"}>
-                            Logout
-                        </Text>
-                    </Button>
-                </Box>
+                {
+                    (preLoadedData?.data === null || preLoadedData?.data === undefined)
+                        ?
+                        (
+                            <>
+                                <Box layerStyle={"flexColumn"}
+                                    p={"30px 15px 90px 15px"}>
+                                    <Text variant={"contentHeading4"}>
+                                        Login to BetygFi
+                                    </Text>
+                                    {/* <Box
+                                        mr={"15px"}
+                                        mt={"15px"}>
+                                        <Text variant={"SettingsText3"}>
+                                            After logging out, the verification information for the current address will be deleted from your browser.
+                                        </Text>
+                                    </Box> */}
+                                    <Button
+                                        width={"100%"}
+                                        height={"28px"}
+                                        variant={"outline"}
+                                        cursor={"pointer"}
+                                        onClick={onLoginModalOpen}
+                                        mt={"15px"}
+                                        border={"1px"}>
+                                        <Text variant={"SettingsButtonText2"}>
+                                            Login
+                                        </Text>
+                                    </Button>
+                                </Box>
+                            </>
+                        )
+                        :
+                        (
+                            <>
+                                <Box layerStyle={"flexColumn"}
+                                    p={"30px 15px 90px 15px"}>
+                                    <Text variant={"contentHeading4"}>
+                                        Logout of BetygFi
+                                    </Text>
+                                    <Box
+                                        mr={"15px"}
+                                        mt={"15px"}>
+                                        <Text variant={"SettingsText3"}>
+                                            After logging out, the verification information for the current address will be deleted from your browser.
+                                        </Text>
+                                    </Box>
+                                    <Button
+                                        width={"100%"}
+                                        height={"28px"}
+                                        variant={"outline"}
+                                        mt={"15px"}
+                                        border={"1px"}
+                                        onClick={() => dispatch(LogoutReducer())}>
+                                        <Text variant={"SettingsButtonText2"}>
+                                            Logout
+                                        </Text>
+                                    </Button>
+                                </Box>
+                            </>
+                        )
+                }
             </Box>
+            <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
         </>
     )
 };
