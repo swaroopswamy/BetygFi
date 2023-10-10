@@ -21,27 +21,28 @@ import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlic
 function DefiUsersSmallTable() {
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const defi = searchParam.get("defi");
+
   const blockchainSelected = useSelector(
-    (state) => state?.walletDashboardTableData?.blockchainType
+    (state) => state?.dashboardTableData?.blockchainType
   );
+
   const defiUsersTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiUsersTableData
   );
 
   const getDefiUsersTableDataHandler = () => {
+    let blockchains = blockchainSelected.map(item => item.toLowerCase());
     const payload = {
       defi: defi,
-      blockchain: [blockchainSelected],
+      blockchain: blockchains,
     };
     dispatch(fetchDefiUsersTableData(payload));
   };
 
   useEffect(() => {
     getDefiUsersTableDataHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected]);
 
   return (

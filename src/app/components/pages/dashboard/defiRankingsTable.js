@@ -45,6 +45,7 @@ const Rankings = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
+
   const categorySelected = useSelector(
     (state) => state?.dashboardTableData?.categorySelected
   );
