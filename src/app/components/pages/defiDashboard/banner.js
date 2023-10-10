@@ -194,7 +194,7 @@ const ScoreBox = ( {score} ) => {
         >
             <Text variant={'h4'}> Safety Score </Text>
             <Text variant={'h2'} fontWeight={"700"} lineHeight={"20px"}>
-                {score}%
+                {score}/100
             </Text>
         </Box>
     )

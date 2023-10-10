@@ -232,7 +232,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     fontWeight="600"
                     lineHeight="20px"
                   >
-                    Cameron Williamson
+                    No Name
                   </Text>
                   <Text
                     _light={{ color: "#16171B" }}

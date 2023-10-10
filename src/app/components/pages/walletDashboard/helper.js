@@ -28,8 +28,8 @@ export const tableHeader = [
     tooltipLabel: null,
   },
   {
-    value: "TVL",
-    label: "TVL",
+    value: "from",
+    label: "From",
     isTooltip: false,
     isSortingEnabled: false,
     tooltipLabel: null,
@@ -83,8 +83,8 @@ export const portfolioTableHeader = [
 
 export const KnownEntitiesTableHeader = [
   {
-    value: "DeFi Name",
-    label: "DeFi Name",
+    value: "Entity Name",
+    label: "Entity Name",
     isTooltip: false,
     isSortingEnabled: true,
     tooltipLabel: null,
@@ -107,8 +107,8 @@ export const KnownEntitiesTableHeader = [
 
 export const OutflowTokensTableHeader = [
   {
-    value: "DeFi Name",
-    label: "DeFi Name",
+    value: "Asset Name",
+    label: "Asset Name",
     isTooltip: false,
     isSortingEnabled: true,
     tooltipLabel: null,
@@ -131,8 +131,8 @@ export const OutflowTokensTableHeader = [
 
 export const InflowTokensTableHeader = [
   {
-    value: "DeFi Name",
-    label: "DeFi Name",
+    value: "Asset Name",
+    label: "Asset Name",
     isTooltip: false,
     isSortingEnabled: true,
     tooltipLabel: null,
