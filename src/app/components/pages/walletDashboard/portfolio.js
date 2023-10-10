@@ -119,48 +119,46 @@ const PortfolioPanelComponent = () => {
               </Box>
               {defiArray.map((item, i) => {
                 return (
-                  <>
-                    <Box
-                      key={i}
-                      textAlign={"center"}
-                      p="8px"
-                      bgColor={
+                  <Box
+                    key={i}
+                    textAlign={"center"}
+                    p="8px"
+                    bgColor={
+                      defiSelected.includes(item)
+                        ? colorMode === "light"
+                          ? "#202020"
+                          : "#FFF"
+                        : colorMode === "light"
+                        ? "#FFFFFF"
+                        : "#202020"
+                    }
+                    onClick={() => {
+                      DefiArrayHandler(item);
+                    }}
+                    cursor={"pointer"}
+                    opacity={defiSelected.includes(item) ? "1" : "0.5"}
+                    mr={"10px"}
+                    borderRadius={"2px"}
+                    _light={{ border: "1px solid #979AA5" }}
+                    _dark={{ border: "1px solid #787878" }}
+                  >
+                    <Text
+                      fontSize={"14px"}
+                      fontWeight={defiSelected.includes(item) ? "600" : "400"}
+                      lineHeight={"20px"}
+                      color={
                         defiSelected.includes(item)
                           ? colorMode === "light"
-                            ? "#202020"
-                            : "#FFF"
+                            ? "#FFF"
+                            : "#191919"
                           : colorMode === "light"
-                          ? "#FFFFFF"
-                          : "#202020"
+                          ? "#191919"
+                          : "#FFFFFF"
                       }
-                      onClick={() => {
-                        DefiArrayHandler(item);
-                      }}
-                      cursor={"pointer"}
-                      opacity={defiSelected.includes(item) ? "1" : "0.5"}
-                      mr={"10px"}
-                      borderRadius={"2px"}
-                      _light={{ border: "1px solid #979AA5" }}
-                      _dark={{ border: "1px solid #787878" }}
                     >
-                      <Text
-                        fontSize={"14px"}
-                        fontWeight={defiSelected.includes(item) ? "600" : "400"}
-                        lineHeight={"20px"}
-                        color={
-                          defiSelected.includes(item)
-                            ? colorMode === "light"
-                              ? "#FFF"
-                              : "#191919"
-                            : colorMode === "light"
-                            ? "#191919"
-                            : "#FFFFFF"
-                        }
-                      >
-                        {item}
-                      </Text>
-                    </Box>
-                  </>
+                      {item}
+                    </Text>
+                  </Box>
                 );
               })}
             </Box>

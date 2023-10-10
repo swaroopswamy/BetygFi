@@ -65,9 +65,10 @@ const GenericTable = ({
                     {item.isSortingEnabled && (
                       <Image
                         mt={"2px"}
-                        src={colorMode === 'light' ? 
-                          "/images/Arrowdown(light).svg" :
-                          "/images/Arrowdown(dark).svg"
+                        src={
+                          colorMode === "light"
+                            ? "/images/Arrowdown(light).svg"
+                            : "/images/Arrowdown(dark).svg"
                         }
                         alt="Sort"
                         ml="2"
@@ -85,19 +86,19 @@ const GenericTable = ({
 
         <Tbody border={"0px"}>
           {(tableData?.isError || tableData === null) && (
-              <>
-                <Tr>
-                  <Td
-                    p="20px"
-                    textAlign={"center"}
-                    height={"245px"}
-                    colSpan={SkeletonRowsColumnsDesktop?.numColumns}
-                  >
-                    <Text variant={"noDataText"}>No data available</Text>
-                  </Td>
-                </Tr>
-              </>
-            )}
+            <>
+              <Tr>
+                <Td
+                  p="20px"
+                  textAlign={"center"}
+                  height={"245px"}
+                  colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+                >
+                  <Text variant={"noDataText"}>No data available</Text>
+                </Td>
+              </Tr>
+            </>
+          )}
           {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsDesktop?.numColumns}
@@ -141,7 +142,9 @@ const GenericTable = ({
           {tableData?.isSuccess &&
             (tableData?.data?.data?.length > 0 ? (
               tableData?.data?.data.map((item, rowIndex) => {
-                return <TableRow key={rowIndex} item={item} rowIndex={rowIndex} />;
+                return (
+                  <TableRow key={rowIndex} item={item} rowIndex={rowIndex} />
+                );
               })
             ) : (
               <Tr>
@@ -188,24 +191,22 @@ const GenericTable = ({
             (tableData?.data?.data?.length > 0 ? (
               tableData?.data?.data.map((item, rowIndex) => {
                 return (
-                  <>
-                    <Tr key={rowIndex}>
-                      <Td p={0} colSpan={3}>
-                        <SingleAccordionComp
-                          display={"flex"}
-                          minH={"50px"}
-                          w={"100%"}
-                          borderRadius={"0px"}
-                          ButtonComp={() => {
-                            return <ButtonComp item={item} />;
-                          }}
-                          PanelComp={() => {
-                            return <PanelComp item={item} />;
-                          }}
-                        />
-                      </Td>
-                    </Tr>
-                  </>
+                  <Tr key={rowIndex}>
+                    <Td p={0} colSpan={3}>
+                      <SingleAccordionComp
+                        display={"flex"}
+                        minH={"50px"}
+                        w={"100%"}
+                        borderRadius={"0px"}
+                        ButtonComp={() => {
+                          return <ButtonComp item={item} />;
+                        }}
+                        PanelComp={() => {
+                          return <PanelComp item={item} />;
+                        }}
+                      />
+                    </Td>
+                  </Tr>
                 );
               })
             ) : (
