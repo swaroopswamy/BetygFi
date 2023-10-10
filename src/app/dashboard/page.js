@@ -72,14 +72,17 @@ const Dashboard = () => {
   useEffect(() => {
     getDefiRankingsTableDataHandler();
     getOverviewDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, categorySelected, tablePage]);
 
   useEffect(() => {
     getScoreGraphDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, categorySelected]);
 
   useEffect(() => {
     getDefiRankingsTableDataHandler(searchByName);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchByName])
 
   return (

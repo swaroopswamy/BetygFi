@@ -48,10 +48,12 @@ const TransactionPanelComponent = () => {
       },
     };
     dispatch(fetchWalletTransactionsData(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, tablePage, searchParam.get("address")]);
 
   useEffect(() => {
     fetchWalletTransactionsDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchWalletTransactionsDataHandler]);
 
   return (

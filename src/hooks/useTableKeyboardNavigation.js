@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 
 function useTableKeyboardNavigation(data, numColumns) {
@@ -35,6 +35,7 @@ function useTableKeyboardNavigation(data, numColumns) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusedCell]);
 
   return { focusedCell };

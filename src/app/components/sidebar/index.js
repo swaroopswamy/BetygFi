@@ -541,7 +541,7 @@ const CollapsedNavItem = ({ icon, path, newTab, children, ...rest }) => {
         cursor="pointer"
         {...rest}
       >
-        <Image paddingTop={"3px"} height={20} width={20} src={icon} />
+        <Image paddingTop={"3px"} height={20} width={20} src={icon} alt="logo" />
       </Flex>
     </Link>
   );
@@ -572,6 +572,7 @@ const NavItem = ({ icon, path, newTab, children, ...rest }) => {
             color: "white",
           }}
           src={icon}
+          alt="logo"
         />
         {children}
       </Flex>
@@ -765,6 +766,7 @@ const MobileSidebar = ({
                           color: "white",
                         }}
                         src={"icons/community_sm_logo.svg"}
+                        alt="logo"
                       />
                       <Text>Communities</Text>
                     </Box>

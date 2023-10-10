@@ -81,6 +81,7 @@ const Rankings = () => {
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, categorySelected, tablePage, searchByName]);
 
   return (
@@ -88,7 +89,7 @@ const Rankings = () => {
       layerStyle={"flexColumn"}
       bg={useColorModeValue("#FFFFFF", "#202020")}
       borderRadius={"6px"}
-      mb={{ base: "100px", md: "60px" }}
+      mb={{ base: "100px", md: "20px" }}
     >
       <Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
         <Text variant={"h2"}>DeFi Rankings</Text>

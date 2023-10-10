@@ -29,11 +29,13 @@ const WalletTable = () => {
         borderRadius={"6px"}
         _light={{ borderColor: "#FFFFFF" }}
         _dark={{ borderColor: "#202020" }}
-        overflow={"auto"}>
+        overflow={"auto"}
+      >
         <Box
           layerStyle={"flexCenterSpaceBetween"}
           padding={{ base: "0px", md: "8px 30px 8px 30px" }}
-          background={useColorModeValue("#FFFFFF", "#202020")}>
+          background={useColorModeValue("#FFFFFF", "#202020")}
+        >
           <Box>
             <Text
               color={useColorModeValue("#16171B", "#FFFFFF")}
@@ -43,7 +45,8 @@ const WalletTable = () => {
               fontSize={{ base: "14px", md: "18px" }}
               fontWeight={600}
               lineHeight={"20px"}
-              textTransform={"capitalize"}>
+              textTransform={"capitalize"}
+            >
               Top Value Holders
             </Text>
           </Box>
@@ -66,14 +69,10 @@ const WalletTable = () => {
               top={0}
             >
               <Th>
-                <Text variant={"tableHead"}>
-                  Wallet Address
-                </Text>
+                <Text variant={"tableHead"}>Wallet Address</Text>
               </Th>
               <Th>
-                <Text variant={"tableHead"}>
-                  Net Worth
-                </Text>
+                <Text variant={"tableHead"}>Net Worth</Text>
               </Th>
             </Tr>
           </Thead>
@@ -101,9 +100,7 @@ const WalletTable = () => {
                                 mt: "10px",
                               }}
                             >
-                              <Box
-                                w="100%"
-                                layerStyle={"flexCenter"}>
+                              <Box w="100%" layerStyle={"flexCenter"}>
                                 <Image
                                   w={"20px"}
                                   h={"20px"}
@@ -111,9 +108,7 @@ const WalletTable = () => {
                                   src={`/icons/dummy1.svg`}
                                   alt=""
                                 ></Image>
-                                <Text
-                                  variant={"h7"}
-                                  ml="12px">
+                                <Text variant={"h7"} ml="12px">
                                   {item?.id.split("").join("").substring(0, 6) +
                                     "..." +
                                     item?.id.slice(-5)}
@@ -125,20 +120,19 @@ const WalletTable = () => {
                           <AccordionPanel pb={4}>
                             <Box layerStyle={"flexColumn"}>
                               <Box layerStyle={"flexColumn"}>
-                                <Text
-                                  variant={"h8"}
-                                  textAlign={"left"}>
+                                <Text variant={"h8"} textAlign={"left"}>
                                   Total Tokens
                                 </Text>
-                                <Flex mt="10px">
+                                <Box mt="10px" display={"inline-block"}>
                                   {item.stats.top_coins.map((item, i) => {
                                     if (i < 3) {
                                       return (
                                         <Box
+                                          display={"inline-flex"}
                                           key={i}
                                           padding={"7px 9px"}
                                           pr={"2px"}
-                                          minw="170px"
+                                          mt={"10px"}
                                           _light={{
                                             borderColor: "#E8E8E8",
                                             background: "#F5F5F7",
@@ -150,7 +144,8 @@ const WalletTable = () => {
                                           borderRadius={"2px"}
                                           mr={"5px"}
                                           layerStyle={"center"}
-                                          gap={"3px"}>
+                                          gap={"3px"}
+                                        >
                                           <Image
                                             w={"14px"}
                                             h={"14px"}
@@ -163,7 +158,6 @@ const WalletTable = () => {
                                             ml={"2px"}
                                             mt={"1px"}
                                             layerStyle={"center"}
-                                            w="70px"
                                           >
                                             ${" "}
                                             {millify(item.usd_value, {
@@ -175,29 +169,22 @@ const WalletTable = () => {
                                       );
                                     }
                                   })}
-                                </Flex>
+                                </Box>
                               </Box>
-                              <Box
-                                mt="10px"
-                                layerStyle={"flexColumn"}>
-                                <Text
-                                  variant={"h8"}
-                                  textAlign={"left"}>
+                              <Box mt="10px" layerStyle={"flexColumn"}>
+                                <Text variant={"h8"} textAlign={"left"}>
                                   Total Protocols
                                 </Text>
                                 <Text
                                   mt="10px"
                                   variant={"NAtext"}
-                                  textAlign={"left"}>
+                                  textAlign={"left"}
+                                >
                                   -NA-
                                 </Text>
                               </Box>
-                              <Box
-                                mt="10px"
-                                layerStyle={"flexColumn"}>
-                                <Text
-                                  variant={"h8"}
-                                  textAlign={"left"}>
+                              <Box mt="10px" layerStyle={"flexColumn"}>
+                                <Text variant={"h8"} textAlign={"left"}>
                                   Total NFT collections
                                 </Text>
                                 <Text
@@ -278,12 +265,7 @@ const WalletTable = () => {
 
 export default WalletTable;
 
-function TableRow({
-  key,
-  user,
-  totalTokens,
-  totalProtocols,
-}) {
+function TableRow({ key, user, totalTokens, totalProtocols }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
   const router = useRouter();
@@ -297,8 +279,8 @@ function TableRow({
             ? "#F5F5F7"
             : "#191919"
           : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+          ? "#FFFFFF"
+          : "#202020"
       }
       onClick={() => {
         setClick(!clicked);
@@ -340,7 +322,8 @@ function TableRow({
                   borderRadius={"2px"}
                   mr={"5px"}
                   layerStyle={"center"}
-                  gap={"3px"}>
+                  gap={"3px"}
+                >
                   <Image
                     w={"20px"}
                     h={"20px"}
@@ -348,10 +331,7 @@ function TableRow({
                     src={item.logo_url}
                     alt=""
                   ></Image>
-                  <Text
-                    variant={"h9"}
-                    ml={"10px"}
-                    mt={"1px"}>
+                  <Text variant={"h9"} ml={"10px"} mt={"1px"}>
                     ${" "}
                     {millify(item.usd_value, {
                       precision: 2,
@@ -368,9 +348,7 @@ function TableRow({
       <Td>
         <Flex>
           <Box>
-            <Text variant={"h7"}>
-              {totalProtocols}
-            </Text>
+            <Text variant={"h7"}>{totalProtocols}</Text>
           </Box>
         </Flex>
       </Td>

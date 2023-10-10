@@ -56,10 +56,12 @@ const DefiDashboardPage = () => {
         getDefiDataHandler();
         getDefiHotContractsDataHandler();
         getDefiAssetCompositionDataHandler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

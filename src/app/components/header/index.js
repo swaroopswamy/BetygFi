@@ -13,28 +13,44 @@ import {
   Collapse,
 } from "@chakra-ui/react";
 import LoginPage from "../login";
-import './index.css';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import "./index.css";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useEffect, useState } from "react";
 import isEmpty from "is-empty";
-import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
+import {
+  FetchLocalStorageData,
+  LogoutReducer,
+} from "@/redux/auth_data/authSlice";
 import { color } from "framer-motion";
-import { mobileSidebarCollapsedReducer, sidebarCollapsedReducer } from "../../../redux/app_data/dataSlice";
+import {
+  mobileSidebarCollapsedReducer,
+  sidebarCollapsedReducer,
+} from "../../../redux/app_data/dataSlice";
 import { MobileSidebar } from "../sidebar/index";
-
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const { isOpen: isMobileSidebarOpen, onOpen: onMobileSidebarOpen, onClose: onMobileSidebarClose } = useDisclosure();
-  const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
-  const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
+  const {
+    isOpen: isMobileSidebarOpen,
+    onOpen: onMobileSidebarOpen,
+    onClose: onMobileSidebarClose,
+  } = useDisclosure();
+  const {
+    isOpen: isLoginModalOpen,
+    onOpen: onLoginModalOpen,
+    onClose: onLoginModalClose,
+  } = useDisclosure();
+  const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } =
+    useDisclosure();
   const dispatch = useDispatch();
   const { colorMode, toggleColorMode } = useColorMode();
-  const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParams.get('address'));
+  const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(
+    searchParams.get("address")
+  );
 
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
@@ -47,29 +63,31 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   };
 
   const handleSearchByWalletAddress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       if (!isEmpty(e.target.value)) {
         dispatch(walletAddressChangedReducer(e.target.value));
-        router.push(`/wallet_dashboard?address=${e.target.value}`)
-        setSearchWalletAddressValue(e.target.value)
+        router.push(`/wallet_dashboard?address=${e.target.value}`);
+        setSearchWalletAddressValue(e.target.value);
       }
     }
-    setSearchWalletAddressValue(e.target.value)
-  }
+    setSearchWalletAddressValue(e.target.value);
+  };
 
   const handleMobileSearchByWalletAddress = () => {
     dispatch(walletAddressChangedReducer(searchWalletAddressValue));
-    router.push(`/wallet_dashboard?address=${searchWalletAddressValue}`)
-    setSearchWalletAddressValue(searchWalletAddressValue)
-  }
+    router.push(`/wallet_dashboard?address=${searchWalletAddressValue}`);
+    setSearchWalletAddressValue(searchWalletAddressValue);
+  };
 
   useEffect(() => {
-    if (pathname === '/wallet_dashboard') {
-      setSearchWalletAddressValue(searchParams.get('address'))
+    if (pathname === "/wallet_dashboard") {
+      setSearchWalletAddressValue(searchParams.get("address"));
     }
-  }, [searchParams.get('address')])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams.get("address")]);
   useEffect(() => {
     dispatch(FetchLocalStorageData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -80,7 +98,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         height="20"
         alignItems="center"
         bg={useColorModeValue("#FFFFFF", "#191919")}
-        borderBottom={useColorModeValue("2px solid #E8E8E8","2px solid #202020")}
+        borderBottom={useColorModeValue(
+          "2px solid #E8E8E8",
+          "2px solid #202020"
+        )}
         justifyContent={{ base: "space-between", md: "space-between" }}
         {...rest}
       >
@@ -92,7 +113,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           bg={useColorModeValue("#E8E8E8", "#000000")}
         >
           <InputGroup w="100%">
-            <InputLeftElement pointerEvents='none'>
+            <InputLeftElement pointerEvents="none">
               <Image
                 src="/images/search_icon.svg"
                 w="20px"
@@ -105,13 +126,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               border="none"
               _selected={{
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
               _focusVisible={{
                 outline: "none",
-                border: "none"
+                border: "none",
               }}
-              value={searchWalletAddressValue}
+              value={searchWalletAddressValue ?? ''}
               bgColor={"transparent"}
               color={useColorModeValue("#16171B", "#A8ADBD")}
               fontSize="12px"
@@ -120,130 +141,135 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               letterSpacing="1.2px"
               w="100%"
               placeholder="Search Wallet Address"
-              onKeyDown={(e) => { handleSearchByWalletAddress(e) }}
-              onChange={(e) => { handleSearchByWalletAddress(e) }}
-
+              onKeyDown={(e) => {
+                handleSearchByWalletAddress(e);
+              }}
+              onChange={(e) => {
+                handleSearchByWalletAddress(e);
+              }}
             ></Input>
           </InputGroup>
         </Box>
 
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-        >
+        <Box display={"flex"} alignItems={"center"}>
           <div className="controller-row">
             <label className="switch">
-              <input id="toggler" type="checkbox" checked={colorMode !== "light"} onChange={(e) => {
-                toggleColorMode();
-              }} />
+              <input
+                id="toggler"
+                type="checkbox"
+                checked={colorMode !== "light"}
+                onChange={(e) => {
+                  toggleColorMode();
+                }}
+              />
               <span className="slider round"></span>
             </label>
           </div>
 
-          {
-            (preLoadedData?.data === null || preLoadedData?.data === undefined)
-              ?
-              (
-                <>
-                  <Box
-                    ml="20px"
-                    pl="20px"
-                    borderLeft={"1px solid #333333"}
-                    alignContent={"center"}
+          {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
+            <>
+              <Box
+                ml="20px"
+                pl="20px"
+                borderLeft={"1px solid #333333"}
+                alignContent={"center"}
+              >
+                <Box
+                  cursor={"pointer"}
+                  onClick={onLoginModalOpen}
+                  bgColor={colorMode === "light" ? "#202020" : "#FFF"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  borderRadius={"2px"}
+                  p="15px 20px"
+                  minW="150px"
+                >
+                  <Text
+                    fontSize={"14px"}
+                    fontWeight={"600"}
+                    lineHeight={"10px"}
+                    color={colorMode === "light" ? "#FAFAFB" : "#000"}
                   >
-
-                    <Box
-                      cursor={"pointer"}
-                      onClick={onLoginModalOpen}
-                      bgColor={colorMode === 'light' ? "#202020" : "#FFF"}
-                      display={"flex"}
-                      alignItems={"center"}
-                      justifyContent={"center"}
-                      borderRadius={"2px"}
-                      p="15px 20px"
-                      minW="150px"
-                    >
-                      <Text
-                        fontSize={"14px"}
-                        fontWeight={"600"}
-                        lineHeight={"10px"}
-                        color={colorMode === 'light' ? "#FAFAFB" : "#000"}
-                      >
-                        Connect Wallet
-                      </Text>
-                    </Box>
-                  </Box>
-                </>
-              )
-              :
-              (
-                <>
-                  <Box
-                    display={"flex"}
-                    alignItems={"center"}
-                    ml="20px"
-                    pl="20px"
-                    borderLeft={"1px solid #333333"}
-                    w="100%"
-                    minW="270px"
+                    Connect Wallet
+                  </Text>
+                </Box>
+              </Box>
+            </>
+          ) : (
+            <>
+              <Box
+                display={"flex"}
+                alignItems={"center"}
+                ml="20px"
+                pl="20px"
+                borderLeft={"1px solid #333333"}
+                w="100%"
+                minW="270px"
+              >
+                <Image
+                  src="/images/profile_img.png"
+                  w="36px"
+                  h="36px"
+                  borderRadius={"50%"}
+                  alt="search_icon"
+                />
+                <Box
+                  display={"flex"}
+                  flexDirection={"column"}
+                  ml="10px"
+                  mr="20px"
+                  minW="150px"
+                >
+                  <Text
+                    _light={{ color: "#000000" }}
+                    _dark={{ color: "#FFFFFF" }}
+                    fontSize="14px"
+                    fontWeight="600"
+                    lineHeight="20px"
                   >
-                    <Image
-                      src="/images/profile_img.png"
-                      w="36px"
-                      h="36px"
-                      borderRadius={"50%"}
-                      alt="search_icon"
-                    />
-                    <Box
-                      display={"flex"}
-                      flexDirection={"column"}
-                      ml="10px"
-                      mr="20px"
-                      minW="150px"
-                    >
-                      <Text
-                        _light={{ color: "#000000" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        fontSize="14px"
-                        fontWeight="600"
-                        lineHeight="20px"
-                      >
-                        Cameron Williamson
-                      </Text>
-                      <Text
-                        _light={{ color: "#16171B" }}
-                        _dark={{ color: "#A8ADBD" }}
-                        fontSize="12px"
-                        fontWeight="400"
-                        lineHeight="20px"
-                      >
+                    Cameron Williamson
+                  </Text>
+                  <Text
+                    _light={{ color: "#16171B" }}
+                    _dark={{ color: "#A8ADBD" }}
+                    fontSize="12px"
+                    fontWeight="400"
+                    lineHeight="20px"
+                  >
+                    {!isEmpty(LoggedInData?.data)
+                      ? LoggedInData?.data?.user?._id
+                          .split("")
+                          .join("")
+                          .substring(0, 6) +
+                        "..." +
+                        LoggedInData?.data?.user?._id.slice(-5)
+                      : preLoadedData?.data?.token?.user?._id
+                          .split("")
+                          .join("")
+                          .substring(0, 6) +
+                        "..." +
+                        preLoadedData?.data?.token?.user?._id.slice(-5)}
+                  </Text>
+                </Box>
 
-                        {
-                          !isEmpty(LoggedInData?.data) ?
-                            LoggedInData?.data?.user?._id.split("").join("").substring(0, 6) + "..." + LoggedInData?.data?.user?._id.slice(-5)
-                            :
-                            preLoadedData?.data?.token?.user?._id.split("").join("").substring(0, 6) + "..." + preLoadedData?.data?.token?.user?._id.slice(-5)
-
-                        }
-                      </Text>
-                    </Box>
-
-                    <Image
-                      src={colorMode === 'light' ? "/icons/logout_icon_light.svg" : "/icons/logout_white.svg"}
-                      w="20px"
-                      h="20px"
-                      cursor={"pointer"}
-                      borderRadius={"50%"}
-                      alt="search_icon"
-                      onClick={() => dispatch(LogoutReducer())}
-                    />
-                  </Box>
-                </>
-              )
-          }
-
+                <Image
+                  src={
+                    colorMode === "light"
+                      ? "/icons/logout_icon_light.svg"
+                      : "/icons/logout_white.svg"
+                  }
+                  w="20px"
+                  h="20px"
+                  cursor={"pointer"}
+                  borderRadius={"50%"}
+                  alt="search_icon"
+                  onClick={() => dispatch(LogoutReducer())}
+                />
+              </Box>
+            </>
+          )}
         </Box>
-
       </Flex>
 
       <Flex
@@ -257,54 +283,59 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         alignItems="center"
         bgColor={colorMode === "light" ? "#F0F0F5" : "#272727"}
         borderBottom={"1px"}
-        borderColor={colorMode === 'light' ? "#E1E1E1" : "#333"}
+        borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
-
-        <Box
-          display={"flex"}
-          gap={"20px"}
-          alignItems={"center"}
-        >
+        <Box display={"flex"} gap={"20px"} alignItems={"center"}>
           <Box
             cursor={"pointer"}
             onClick={onMobileSidebarOpen}
-          // onClick={() => {
-          //   MobileSidebarHandler(!isMobileSidebarCollapsed);
-          // }}
+            // onClick={() => {
+            //   MobileSidebarHandler(!isMobileSidebarCollapsed);
+            // }}
           >
             <Image
-              src={colorMode === 'light' ? "/icons/sidebar_icon_dark.svg" : "/icons/sidebar_icon_light.svg"}
+              src={
+                colorMode === "light"
+                  ? "/icons/sidebar_icon_dark.svg"
+                  : "/icons/sidebar_icon_light.svg"
+              }
               w={"18px"}
               h={"18px"}
-            >
-            </Image>
+              alt="logo"
+            ></Image>
           </Box>
 
           <Box>
             <Image
-              src={colorMode === "light" ? "/icons/light_betgyfi_sm_icon.svg" : "/icons/dark_betgyfi_sm_logo.svg"}
+              src={
+                colorMode === "light"
+                  ? "/icons/light_betgyfi_sm_icon.svg"
+                  : "/icons/dark_betgyfi_sm_logo.svg"
+              }
               h={25}
               cursor={"pointer"}
               onClick={() => {
-                router.push('/');
+                router.push("/");
               }}
+              alt="logo"
             ></Image>
           </Box>
         </Box>
 
-        <Box
-          cursor={"pointer"}
-          onClick={onMobileSearchToggle}
-        >
+        <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
           <Image
-            src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+            src={
+              colorMode === "light"
+                ? "/icons/search_icon_light.svg"
+                : "/icons/search_icon_dark.svg"
+            }
             h={"20px"}
             w={"20px"}
+            alt="logo"
           ></Image>
         </Box>
-
       </Flex>
 
       <Collapse
@@ -322,9 +353,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           padding={"8px 19px"}
         >
           <InputGroup w="100%">
-            <InputLeftElement pointerEvents='none'>
+            <InputLeftElement pointerEvents="none">
               <Image
-                src={colorMode === "light" ? "/icons/search_icon_light.svg" : "/icons/search_icon_dark.svg"}
+                src={
+                  colorMode === "light"
+                    ? "/icons/search_icon_light.svg"
+                    : "/icons/search_icon_dark.svg"
+                }
                 w="14px"
                 h="14px"
                 alt="search_icon"
@@ -342,8 +377,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               letterSpacing="1.2px"
               w="100%"
               placeholder="Search Wallet Address"
-              value={searchWalletAddressValue}
-              onChange={(e) => { handleSearchByWalletAddress(e) }}
+              value={searchWalletAddressValue ?? ''}
+              onChange={(e) => {
+                handleSearchByWalletAddress(e);
+              }}
             ></Input>
             <Box
               alignContent={"center"}
@@ -380,10 +417,13 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         onLoginModalClose={onLoginModalClose}
       />
 
-      <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
+      <LoginPage
+        isOpen={isLoginModalOpen}
+        onOpen={onLoginModalOpen}
+        onClose={onLoginModalClose}
+      />
     </>
   );
 };
 
 export default Navbar;
-
