@@ -38,8 +38,15 @@ const Text = defineStyleConfig({
       fontSize: "14px",
       fontWeight: "400",
       lineHeight: "20px",
-      letterSpacing: "1.2px",
+      letterSpacing: "1.4px",
+      textTransform: "capitalize",
       color: colorMode === "light" ? "rgba(22, 23, 27, 0.80)" : "#A8ADBD",
+    }),
+    h5: ({ colorMode }) => ({
+      fontSize: "12px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     h6: ({ colorMode }) => ({
       fontSize: "12px",
@@ -47,10 +54,24 @@ const Text = defineStyleConfig({
       lineHeight: "20px",
       color: colorMode === "light" ? "#16171B" : "#A8ADBD",
     }),
-    h5: ({ colorMode }) => ({
-      fontSize: "12px",
-      fontWeight: "400",
+    h7: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "600",
       lineHeight: "20px",
+      color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+    }),
+    h8: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "400",
+      fontFamily: "Inter",
+      lineHeight: "20px",
+      letterSpacing: "1.4px",
+      color: colorMode === "light" ? "#8F8F8F" : "#A8ADBD",
+    }),
+    h9: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "400",
+      lineHeight: "10px",
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     noDataText: ({ colorMode }) => ({
@@ -60,6 +81,12 @@ const Text = defineStyleConfig({
       letterSpacing: "1px",
       opacity: 0.6,
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+    }),
+    NAtext: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      color: colorMode === "light" ? "#090909" : "#FFFFFF",
     }),
     smallTableHeader: ({ colorMode }) => ({
       fontSize: "18px",
@@ -83,6 +110,14 @@ const Text = defineStyleConfig({
       fontFamily: "Inter",
       letterSpacing: "1.4px",
       color: colorMode === "light" ? "#16171B" : "#FFF",
+    }),
+    TopWalletsText: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "400",
+      lineHeight: "20px",
+      fontFamily: "Inter",
+      letterSpacing: "1.4px",
+      color: colorMode === "light" ? "#191919" : "#FFF",
     }),
     bigHeading: ({ colorMode }) => ({
       fontSize: "36px",

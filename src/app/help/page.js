@@ -10,7 +10,7 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import AccordionContent from "../components/pages/help/helper";
+import { AccordionContent } from "../components/pages/help/helper";
 
 const Help = () => {
   const { colorMode } = useColorMode();

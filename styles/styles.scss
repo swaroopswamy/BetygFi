@@ -79,7 +79,7 @@ body {
     min-height: 99px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .graph_inner_text_big {
@@ -106,9 +106,7 @@ body {
 .child {
     height: 100%;
     margin-bottom: -50px;
-    /* maximum width of scrollbar */
     padding-bottom: 50px;
-    /* maximum width of scrollbar */
     overflow-y: hidden;
     overflow-x: scroll;
     white-space: nowrap;

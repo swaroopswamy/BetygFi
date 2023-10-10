@@ -42,6 +42,11 @@ export function Providers({ children }) {
         display: "flex",
         flexDirection: "column",
       },
+      flexColumnSpaceBetween: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      },
       center: {
         display: "flex",
         justifyContent: "center",

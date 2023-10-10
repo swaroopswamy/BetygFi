@@ -102,7 +102,7 @@ const AssetAllocationBox = () => {
           <Text variant={"smallTableHeader"}>Assets Allocation</Text>
           <TooltipComp label="Assets allocation chart shows the value distribution of an individual wallet among different assets i.e., Token, Cryptocurrencies." />
         </Box>
-        <Box mt={"20px"}>
+        <Box>
           {assetAllocationData?.isLoading && (
             <Box p={"30px"} layerStyle={"flexAlignCenterJustifyCenter"}>
               <SkeletonCircle size={250}></SkeletonCircle>

@@ -556,6 +556,7 @@ const MobileSidebar = ({
                           color: "white",
                         }}
                         src={"icons/community_sm_logo.svg"}
+                        alt="logo"
                       />
                       <Text>Communities</Text>
                     </Box>

@@ -1,4 +1,4 @@
-import { Box, Image, Text, Tr, Th, Td, useColorMode } from "@chakra-ui/react";
+import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
