@@ -80,128 +80,126 @@ const WalletTable = () => {
           <Tbody>
             {TableData.whales.map((item, i) => {
               return (
-                <>
-                  <Tr>
-                    <Td p="0" colSpan={2} borderBottom="none">
-                      <Accordion
-                        _light={{
-                          borderColor: "#DFDFDF",
-                        }}
-                        _dark={{
-                          borderColor: "#DFDFDF",
-                        }}
-                        borderBottom="none"
-                        allowMultiple
-                      >
-                        <AccordionItem>
-                          <h2>
-                            <AccordionButton
-                              _expanded={{
-                                mt: "10px",
-                              }}
-                            >
-                              <Box w="100%" layerStyle={"flexCenter"}>
-                                <Image
-                                  w={"20px"}
-                                  h={"20px"}
-                                  style={{ borderRadius: "50%" }}
-                                  src={`/icons/dummy1.svg`}
-                                  alt=""
-                                ></Image>
-                                <Text variant={"h7"} ml="12px">
-                                  {item?.id.split("").join("").substring(0, 6) +
-                                    "..." +
-                                    item?.id.slice(-5)}
-                                </Text>
-                              </Box>
-                              <AccordionIcon />
-                            </AccordionButton>
-                          </h2>
-                          <AccordionPanel pb={4}>
+                <Tr key={i}>
+                  <Td p="0" colSpan={2} borderBottom="none">
+                    <Accordion
+                      _light={{
+                        borderColor: "#DFDFDF",
+                      }}
+                      _dark={{
+                        borderColor: "#DFDFDF",
+                      }}
+                      borderBottom="none"
+                      allowMultiple
+                    >
+                      <AccordionItem>
+                        <h2>
+                          <AccordionButton
+                            _expanded={{
+                              mt: "10px",
+                            }}
+                          >
+                            <Box w="100%" layerStyle={"flexCenter"}>
+                              <Image
+                                w={"20px"}
+                                h={"20px"}
+                                style={{ borderRadius: "50%" }}
+                                src={`/icons/dummy1.svg`}
+                                alt=""
+                              ></Image>
+                              <Text variant={"h7"} ml="12px">
+                                {item?.id.split("").join("").substring(0, 6) +
+                                  "..." +
+                                  item?.id.slice(-5)}
+                              </Text>
+                            </Box>
+                            <AccordionIcon />
+                          </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                          <Box layerStyle={"flexColumn"}>
                             <Box layerStyle={"flexColumn"}>
-                              <Box layerStyle={"flexColumn"}>
-                                <Text variant={"h8"} textAlign={"left"}>
-                                  Total Tokens
-                                </Text>
-                                <Box mt="10px" display={"inline-block"}>
-                                  {item.stats.top_coins.map((item, i) => {
-                                    if (i < 3) {
-                                      return (
-                                        <Box
-                                          display={"inline-flex"}
-                                          key={i}
-                                          padding={"7px 9px"}
-                                          pr={"2px"}
-                                          mt={"10px"}
-                                          _light={{
-                                            borderColor: "#E8E8E8",
-                                            background: "#F5F5F7",
-                                          }}
-                                          _dark={{
-                                            borderColor: "#E8E8E8",
-                                            background: "#202020",
-                                          }}
-                                          borderRadius={"2px"}
-                                          mr={"5px"}
+                              <Text variant={"h8"} textAlign={"left"}>
+                                Total Tokens
+                              </Text>
+                              <Box mt="10px" display={"inline-block"}>
+                                {item.stats.top_coins.map((item, i) => {
+                                  if (i < 3) {
+                                    return (
+                                      <Box
+                                        display={"inline-flex"}
+                                        key={i}
+                                        padding={"7px 9px"}
+                                        pr={"2px"}
+                                        mt={"10px"}
+                                        _light={{
+                                          borderColor: "#E8E8E8",
+                                          background: "#F5F5F7",
+                                        }}
+                                        _dark={{
+                                          borderColor: "#E8E8E8",
+                                          background: "#202020",
+                                        }}
+                                        borderRadius={"2px"}
+                                        mr={"5px"}
+                                        layerStyle={"center"}
+                                        gap={"3px"}
+                                      >
+                                        <Image
+                                          w={"14px"}
+                                          h={"14px"}
+                                          style={{ borderRadius: "50%" }}
+                                          src={item.logo_url}
+                                          alt=""
+                                        ></Image>
+                                        <Text
+                                          variant={"h9"}
+                                          ml={"2px"}
+                                          mt={"1px"}
                                           layerStyle={"center"}
-                                          gap={"3px"}
                                         >
-                                          <Image
-                                            w={"14px"}
-                                            h={"14px"}
-                                            style={{ borderRadius: "50%" }}
-                                            src={item.logo_url}
-                                            alt=""
-                                          ></Image>
-                                          <Text
-                                            variant={"h9"}
-                                            ml={"2px"}
-                                            mt={"1px"}
-                                            layerStyle={"center"}
-                                          >
-                                            ${" "}
-                                            {millify(item.usd_value, {
-                                              precision: 2,
-                                              locales: "en-US",
-                                            })}
-                                          </Text>
-                                        </Box>
-                                      );
-                                    }
-                                  })}
-                                </Box>
-                              </Box>
-                              <Box mt="10px" layerStyle={"flexColumn"}>
-                                <Text variant={"h8"} textAlign={"left"}>
-                                  Total Protocols
-                                </Text>
-                                <Text
-                                  mt="10px"
-                                  variant={"NAtext"}
-                                  textAlign={"left"}
-                                >
-                                  -NA-
-                                </Text>
-                              </Box>
-                              <Box mt="10px" layerStyle={"flexColumn"}>
-                                <Text variant={"h8"} textAlign={"left"}>
-                                  Total NFT collections
-                                </Text>
-                                <Text
-                                  mt="10px"
-                                  variant={"NAtext"}
-                                  textAlign={"left"}
-                                >
-                                  -NA-
-                                </Text>
+                                          ${" "}
+                                          {millify(item.usd_value, {
+                                            precision: 2,
+                                            locales: "en-US",
+                                          })}
+                                        </Text>
+                                      </Box>
+                                    );
+                                  }
+                                })}
                               </Box>
                             </Box>
-                          </AccordionPanel>
-                        </AccordionItem>
-                      </Accordion>
-                    </Td>
-                  </Tr>
-                </>
+                            <Box mt="10px" layerStyle={"flexColumn"}>
+                              <Text variant={"h8"} textAlign={"left"}>
+                                Total Protocols
+                              </Text>
+                              <Text
+                                mt="10px"
+                                variant={"NAtext"}
+                                textAlign={"left"}
+                              >
+                                -NA-
+                              </Text>
+                            </Box>
+                            <Box mt="10px" layerStyle={"flexColumn"}>
+                              <Text variant={"h8"} textAlign={"left"}>
+                                Total NFT collections
+                              </Text>
+                              <Text
+                                mt="10px"
+                                variant={"NAtext"}
+                                textAlign={"left"}
+                              >
+                                -NA-
+                              </Text>
+                            </Box>
+                          </Box>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </Accordion>
+                  </Td>
+                </Tr>
               );
             })}
           </Tbody>

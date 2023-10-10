@@ -1,5 +1,9 @@
 
 "use client"
+import Governance from "./governance";
+import BarChart from "./BarChart";
+//import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
+
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, useColorModeValue, useColorMode, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
