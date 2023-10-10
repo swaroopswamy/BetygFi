@@ -10,7 +10,7 @@ const Banner = () => {
     );
     return (
         <>
-            <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} py={"10px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
+            <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} p={"10px 20px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
                 <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
                     <Box p={"15px"}>
                         <Avatar
