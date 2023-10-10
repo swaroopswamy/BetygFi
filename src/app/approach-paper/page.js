@@ -112,52 +112,54 @@ const Approach = () => {
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.1 Technical Risk</Text>
-                {/* <Text padding={"10px 0px 0px 20px"} variant={"content"}> */}
-                <ul >
-                  <li><Text variant={"content"}> Time on Mainnet</Text></li>
-                  <li><Text variant={"content"}> Number of Critical Vulnerabilities</Text> </li>
-                  <li><Text variant={"content"}> Public Audit </Text></li>
-                  <li><Text variant={"content"}> Recent Audit</Text> </li>
-                  <li><Text variant={"content"}> Open Source </Text></li>
-                  <li><Text variant={"content"}> Byte Source code verified</Text> </li>
-                  <li> <Text variant={"content"}>Number of Engineers working </Text></li>
-                  <li><Text variant={"content"}> Number of code commits</Text> </li>
-                  <li> <Text variant={"content"}>Bounty Program</Text> </li>
-                </ul>
-                {/* </Text> */}
+                <Box padding={"10px 0px 0px 45px"}>
+                  <ul >
+                    <li><Text variant={"content"}> Time on Mainnet</Text></li>
+                    <li><Text variant={"content"}> Number of Critical Vulnerabilities</Text> </li>
+                    <li><Text variant={"content"}> Public Audit </Text></li>
+                    <li><Text variant={"content"}> Recent Audit</Text> </li>
+                    <li><Text variant={"content"}> Open Source </Text></li>
+                    <li><Text variant={"content"}> Byte Source code verified</Text> </li>
+                    <li> <Text variant={"content"}>Number of Engineers working </Text></li>
+                    <li><Text variant={"content"}> Number of code commits</Text> </li>
+                    <li> <Text variant={"content"}>Bounty Program</Text> </li>
+                  </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.2 Centralization Risk</Text>
-                <ul >
-                  <li>
-                    {" "}
-                    <Text variant={"content"}> Protocol Administration </Text>
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}>
-                      Private Key Model and arrangement
-                    </Text>{" "}
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}>Oracles </Text>
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}>
-                      Governance Token Concentration
-                    </Text>
-                  </li>
-                </ul>
+                <Box padding={"10px 0px 0px 45px"}>
+                  <ul >
+                    <li>
+                      {" "}
+                      <Text variant={"content"}> Protocol Administration </Text>
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>
+                        Private Key Model and arrangement
+                      </Text>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>Oracles </Text>
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>
+                        Governance Token Concentration
+                      </Text>
+                    </li>
+                  </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>
                   2.3 Financial/Market Risk
                 </Text>
-                <Box padding={"10px 0px 0px 40px"}>
+                <Box padding={"10px 0px 0px 45px"}>
                   <ul>
                     <li>
                       {" "}
@@ -195,27 +197,29 @@ const Approach = () => {
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.4 Userbase Quality</Text>
-                <ul >
-                  <li>
-                    {" "}
-                    <Text variant={"content"}> Repayment </Text>
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}> Active Loans</Text>{" "}
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}>Asset Quality</Text>{" "}
-                  </li>
-                  <li>
-                    {" "}
-                    <Text variant={"content"}>
+                <Box padding={"10px 0px 0px 45px"}>
+                  <ul >
+                    <li>
                       {" "}
-                      Asset Liquidation Threshold
-                    </Text>
-                  </li>
-                </ul>
+                      <Text variant={"content"}> Repayment </Text>
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}> Active Loans</Text>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>Asset Quality</Text>{" "}
+                    </li>
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>
+                        {" "}
+                        Asset Liquidation Threshold
+                      </Text>
+                    </li>
+                  </ul>
+                </Box>
               </Box>
             </Box>
 
@@ -240,17 +244,32 @@ const Approach = () => {
                 <Text variant={"contentHeading6"}>
                   3.1 Unsupervised Learning
                 </Text>
-                <ul >
-                  • Implement clustering algorithms (e.g., K-means, DBSCAN) to
-                  identify patterns and group DeFi protocols based on their
-                  inherent risk characteristics. <br />• Analyze the resulting
-                  clusters to derive insights into the risk profiles of
-                  different DeFi protocols.
-                </ul>
+                <Box padding={"10px 0px 0px 45px"}>
+                  <ul >
+                    <li>
+                      {" "}
+                      <Text variant={"content"}>
+                        Implement clustering algorithms (e.g., K-means, DBSCAN) to
+                        identify patterns and group DeFi protocols based on their
+                        inherent risk characteristics.
+                        </Text>{" "}
+                        </li>
+                        <li>
+                          {""}
+                        <Text>
+                        Analyze the resulting
+                        clusters to derive insights into the risk profiles of
+                        different DeFi protocols.
+                      </Text>
+                      {""}
+                    </li>
+                  </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>3.2 Supervised Learning</Text>
+                <Box  padding={"10px 0px 0px 45px"}>
                 <ul
                   paddingTop={"10px"}
                   variant={"content"}
@@ -282,6 +301,7 @@ const Approach = () => {
                     </Text>{" "}
                   </li>
                 </ul>
+                </Box>
               </Box>
             </Box>
 
@@ -531,6 +551,7 @@ const Approach = () => {
 
               <Box padding={"29px 0px 0px 15px"}>
                 <Text variant={"contentHeading6"}>2.1 Technical Risk</Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li><Text variant={"content"}> Time on Mainnet</Text></li>
                   <li><Text variant={"content"}> Number of Critical Vulnerabilities</Text> </li>
@@ -542,10 +563,12 @@ const Approach = () => {
                   <li><Text variant={"content"}> Number of code commits</Text> </li>
                   <li> <Text variant={"content"}>Bounty Program</Text> </li>
                 </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
                 <Text variant={"contentHeading6"}>2.2 Centralization Risk</Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li>
                     {" "}
@@ -568,48 +591,52 @@ const Approach = () => {
                     </Text>
                   </li>
                 </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
                 <Text variant={"contentHeading6"}>
                   2.3 Financial/Market Risk
                 </Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>Collateralization Ratio</Text>
-                    </li>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>
-                        30-day Exponential Moving Average (EMA)
-                      </Text>
-                    </li>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>Liquidity 30-day EMA</Text>
-                    </li>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>
-                        Volume Weighted Average Price (VWAP)
-                      </Text>
-                    </li>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>
-                        Relative Strength Index (RSI)
-                      </Text>
-                    </li>
-                    <li>
-                      {" "}
-                      <Text variant={"content"}>Asset Breakdown</Text>
-                    </li>
-                  </ul>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>Collateralization Ratio</Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      30-day Exponential Moving Average (EMA)
+                    </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>Liquidity 30-day EMA</Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      Volume Weighted Average Price (VWAP)
+                    </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      Relative Strength Index (RSI)
+                    </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>Asset Breakdown</Text>
+                  </li>
+                </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
                 <Text variant={"contentHeading6"}>2.4 Userbase Quality</Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li>
                     {" "}
@@ -631,6 +658,7 @@ const Approach = () => {
                     </Text>
                   </li>
                 </ul>
+                </Box>
               </Box>
             </Box>
 
@@ -655,17 +683,32 @@ const Approach = () => {
                 <Text variant={"contentHeading6"}>
                   3.1 Unsupervised Learning
                 </Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul >
-                  • Implement clustering algorithms (e.g., K-means, DBSCAN) to
-                  identify patterns and group DeFi protocols based on their
-                  inherent risk characteristics. <br />• Analyze the resulting
-                  clusters to derive insights into the risk profiles of
-                  different DeFi protocols.
+                <li>
+                      {" "}
+                      <Text variant={"content"}>
+                        Implement clustering algorithms (e.g., K-means, DBSCAN) to
+                        identify patterns and group DeFi protocols based on their
+                        inherent risk characteristics.
+                        </Text>{" "}
+                        </li>
+                        <li>
+                          {""}
+                        <Text>
+                        Analyze the resulting
+                        clusters to derive insights into the risk profiles of
+                        different DeFi protocols.
+                      </Text>
+                      {""}
+                    </li>
                 </ul>
+                </Box>
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
                 <Text variant={"contentHeading6"}>3.2 Supervised Learning</Text>
+                <Box padding={"10px 0px 0px 45px"}>
                 <ul
                   paddingTop={"10px"}
                   variant={"content"}
@@ -697,6 +740,7 @@ const Approach = () => {
                     </Text>{" "}
                   </li>
                 </ul>
+                </Box>
               </Box>
             </Box>
 
