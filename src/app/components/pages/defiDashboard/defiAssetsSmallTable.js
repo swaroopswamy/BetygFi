@@ -19,7 +19,6 @@ import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashbo
 import LastUpdate from "/src/app/components/lastUpdate";
 import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import TooltipComp from "/src/app/components/tooltipComp";
-import Image from "next/image";
 
 let USDollar = new Intl.NumberFormat("en-US", {
   style: "currency",
