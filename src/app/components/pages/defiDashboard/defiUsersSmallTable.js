@@ -43,6 +43,7 @@ function DefiUsersSmallTable() {
 
   useEffect(() => {
     getDefiUsersTableDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected]);
 
   return (
