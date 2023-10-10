@@ -66,8 +66,8 @@ const DefiDashboardPage = () => {
 
     return (
         <>
-            <Box bgColor={useColorModeValue("#F0F0F5", "#191919")} display={"flex"} flexDir={"column"} w={"100%"} p={"20px"} gap={"10px"}>
-                <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"}
+            <Box bgColor={useColorModeValue("#FFFFFF", "#202020")} display={"flex"} flexDir={"column"} w={"100%"}>
+                <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} p={"10px"}
                     onClick={() => router.push(`/`)}
                 >
                     <ChevronLeftIcon
