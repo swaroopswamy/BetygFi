@@ -81,6 +81,7 @@ const Rankings = () => {
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, categorySelected, tablePage, searchByName]);
 
   return (

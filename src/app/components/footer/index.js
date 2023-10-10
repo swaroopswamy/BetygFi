@@ -1,16 +1,24 @@
 "use client";
-import { Box, Flex, Text, useColorMode, useColorModeValue, Image, Icon, useDisclosure, Slide } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  useColorMode,
+  useColorModeValue,
+  Image,
+  Icon,
+  useDisclosure,
+  Slide,
+} from "@chakra-ui/react";
 import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
-
 const Footer = ({ ...rest }) => {
   const { isOpen, onToggle } = useDisclosure();
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [scrollValue, setScrollValue] = useState(0);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +30,6 @@ const Footer = ({ ...rest }) => {
         setIsScrolledDown(false);
         setScrollValue(window.scrollY);
       }
-
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -40,13 +47,12 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
-      // marginLeft={"11px"}
+        // marginLeft={"11px"}
       >
         <Box
           ml={{ base: 0, md: 0 }}
           alignItems="flex-start"
           display={"flex"}
-
           w={"100%"}
           h={"100%"}
         >
@@ -104,7 +110,6 @@ const Footer = ({ ...rest }) => {
               fontWeight={manrope.style.fontWeight}
               color={useColorModeValue("#16171B", "#FFFFFF")}
               paddingLeft={"10px"}
-
             >
               &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
@@ -122,16 +127,8 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
       >
-        <Box
-          width={"100%"}
-          display={"flex"}
-          justifyContent={"space-evenly"}
-        >
-          <FooterMobileLink
-            name={"Home"}
-            id={"home"}
-            link={"/"}
-          />
+        <Box width={"100%"} display={"flex"} justifyContent={"space-evenly"}>
+          <FooterMobileLink name={"Home"} id={"home"} link={"/"} />
           <FooterMobileLink
             name={"Approach Paper"}
             id={"approachpaper"}
@@ -142,14 +139,9 @@ const Footer = ({ ...rest }) => {
             id={"wallet"}
             link={"/top-wallets"}
           />
-          <FooterMobileLink
-            name={"Community"}
-            id={"community"}
-            link={""}
-          />
+          <FooterMobileLink name={"Community"} id={"community"} link={""} />
         </Box>
       </Box>
-
     </>
   );
 };
@@ -185,23 +177,23 @@ const FooterMobileLink = ({ name, id, link }) => {
             left: 0,
             width: "100%",
             height: "5px",
-            bgColor: colorMode === 'light' ? "#202020" : "#FFFFFF",
+            bgColor: colorMode === "light" ? "#202020" : "#FFFFFF",
           }
         }
       >
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
           <Image
             width={{ base: "25px", sm: "30px" }}
             height={{ base: "25px", sm: "30px" }}
-            src={pathname === link ? (colorMode === 'light' ? `/icons/${id}_footer_logo_bold_dark.svg` : `/icons/${id}_footer_logo_bold_light.svg`)
-              : `/icons/${id}_footer_logo.svg`}
+            src={
+              pathname === link
+                ? colorMode === "light"
+                  ? `/icons/${id}_footer_logo_bold_dark.svg`
+                  : `/icons/${id}_footer_logo_bold_light.svg`
+                : `/icons/${id}_footer_logo.svg`
+            }
+            alt="footer_logo"
           />
-
-
         </Box>
         <Text
           fontSize={{ base: "12px", sm: "14px" }}
@@ -214,11 +206,17 @@ const FooterMobileLink = ({ name, id, link }) => {
         </Text>
       </Box>
     </>
-  )
-}
+  );
+};
 
 const HomeIconONE = (props) => {
   <Icon width="32" height="32" viewBox="0 0 32 32" fill="none" {...props}>
-    <path d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-  </Icon>
-}
+    <path
+      d="M6 11.9999L16 4.22217L26 11.9999V24.2222C26 24.8115 25.7659 25.3768 25.3491 25.7935C24.9324 26.2103 24.3671 26.4444 23.7778 26.4444H8.22222C7.63285 26.4444 7.06762 26.2103 6.65087 25.7935C6.23413 25.3768 6 24.8115 6 24.2222V11.9999Z"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </Icon>;
+};
