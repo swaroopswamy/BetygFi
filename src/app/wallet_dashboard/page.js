@@ -114,6 +114,7 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
       }, 5000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletBalanceData]);
 
   return (
