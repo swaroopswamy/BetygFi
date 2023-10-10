@@ -106,7 +106,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           </Box>
 
             {/* Bottom Half */}
-            <Box layerStyle={"flexColumn"} w={"100%"} mb={"15px"}>
+            <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
               {bottomMenu.map((link, i) => (
                 <NavItem
                     key={i}
@@ -119,7 +119,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </NavItem>
               ))}
 
-              <hr style={{ marginBottom: "15px 0px" }} />
+              <hr style={{ margin: "15px 0px" }} />
 
               <Box
                 display={"flex"}
