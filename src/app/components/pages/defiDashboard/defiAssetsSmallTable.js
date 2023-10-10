@@ -33,21 +33,27 @@ function DefiAssetsSmallTable() {
   const defi = searchParam.get("defi");
   const id = searchParam.get("id");
 
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
   const defiAssetsTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
   );
 
   const getDefiAssetsTableDataHandler = () => {
     const payload = {
-      defi: defi,
+        defi: defi,
+        blockchain: blockchainSelected,
+        page: 1,
+        limit: 20
     };
     dispatch(fetchDefiAssetCompositionTableData(payload));
-  };
+};
 
   useEffect(() => {
     getDefiAssetsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [blockchainSelected]);
 
   return (
     <Box

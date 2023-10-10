@@ -24,6 +24,9 @@ function AssetComposition() {
     const defi = searchParam.get("defi");
     const id = searchParam.get("id");
 
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
@@ -31,6 +34,9 @@ function AssetComposition() {
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
+            blockchain: blockchainSelected,
+            page: 1,
+            limit: 20
         };
         dispatch(fetchDefiAssetCompositionTableData(payload));
     };
@@ -38,10 +44,10 @@ function AssetComposition() {
     useEffect(() => {
         getDefiAssetsTableDataHandler();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [blockchainSelected]);
 
     return (
-        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} mb={"30px"} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
+        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
             <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
                 onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >
