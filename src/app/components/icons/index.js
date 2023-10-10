@@ -16,9 +16,9 @@ export const SearchBoxIcon = createIcon({
 export const BetygFiSmLogo= ({ ...rest }) => {
   return (
     <Icon viewBox={`0 0 16 16`} color={useColorModeValue("#6F7383", "#676767")} {...rest}>
-      <line x1="3.13426" y1="4.9893" x2="0.658369" y2="10.6485" stroke='currentColor' stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="3.13426" y1="4.9893" x2="0.658369" y2="10.6485" stroke='currentColor' strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M3.88689 10.9885L7.6944 2.24786C7.98558 1.57941 8.75912 1.26812 9.43215 1.54855V1.54855C10.1207 1.83546 10.4407 2.63087 10.1426 3.31468L7.6476 9.03851C7.39559 9.61664 7.65865 10.2897 8.23589 10.5437V10.5437C8.79987 10.7919 9.45912 10.5492 9.72749 9.99454L10.4794 8.44041"
-        stroke='currentColor' fillOpacity={'0'} stroke-linecap="round" stroke-linejoin="round"/>
+        stroke='currentColor' fillOpacity={'0'} strokeLinecap="round" strokeLinejoin="round"/>
     </Icon>
   )
 };

@@ -598,7 +598,6 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 }
 
 function TrendGraphTypeButton({
-  key,
   name,
   value,
   graphTypeSelected,
@@ -611,7 +610,6 @@ function TrendGraphTypeButton({
   return (
     <>
       <Box
-        key={key}
         position={"relative"}
         padding={"7px 8px"}
         border={"1px"}

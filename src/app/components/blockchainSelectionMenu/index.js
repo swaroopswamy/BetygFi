@@ -24,6 +24,7 @@ const BlockchainSelectionMenu = () => {
     const blockchainListData = useSelector(
       (state) => state?.appData?.BlockchainListData
     );
+    
     const BlockchainTypeHandler = (type) => {
       dispatch(blockchainTypeChangedReducer(type));
     };

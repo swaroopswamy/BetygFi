@@ -188,24 +188,22 @@ const GenericTable = ({
             (tableData?.data?.data?.length > 0 ? (
               tableData?.data?.data.map((item, rowIndex) => {
                 return (
-                  <>
-                    <Tr key={rowIndex}>
-                      <Td p={0} colSpan={3}>
-                        <SingleAccordionComp
-                          display={"flex"}
-                          minH={"50px"}
-                          w={"100%"}
-                          borderRadius={"0px"}
-                          ButtonComp={() => {
-                            return <ButtonComp item={item} />;
-                          }}
-                          PanelComp={() => {
-                            return <PanelComp item={item} />;
-                          }}
-                        />
-                      </Td>
-                    </Tr>
-                  </>
+                  <Tr key={rowIndex}>
+                    <Td p={0} colSpan={3}>
+                      <SingleAccordionComp
+                        display={"flex"}
+                        minH={"50px"}
+                        w={"100%"}
+                        borderRadius={"0px"}
+                        ButtonComp={() => {
+                          return <ButtonComp item={item} />;
+                        }}
+                        PanelComp={() => {
+                          return <PanelComp item={item} />;
+                        }}
+                      />
+                    </Td>
+                  </Tr>
                 );
               })
             ) : (
