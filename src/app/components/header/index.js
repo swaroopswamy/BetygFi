@@ -83,11 +83,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     if (pathname === "/wallet_dashboard") {
       setSearchWalletAddressValue(searchParams.get("address"));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get("address")]);
   useEffect(() => {
     dispatch(FetchLocalStorageData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -134,11 +132,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               }}
               value={searchWalletAddressValue ?? ''}
               bgColor={"transparent"}
-              color={useColorModeValue("#16171B", "#A8ADBD")}
-              fontSize="12px"
-              fontWeight="400"
-              lineHeight="20px"
-              letterSpacing="1.2px"
+              variant={"h6"}
               w="100%"
               placeholder="Search Wallet Address"
               onKeyDown={(e) => {
@@ -151,7 +145,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           </InputGroup>
         </Box>
 
-        <Box display={"flex"} alignItems={"center"}>
+        <Box layerStyle={"flexCenter"}>
           <div className="controller-row">
             <label className="switch">
               <input
@@ -178,19 +172,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   cursor={"pointer"}
                   onClick={onLoginModalOpen}
                   bgColor={colorMode === "light" ? "#202020" : "#FFF"}
-                  display={"flex"}
-                  alignItems={"center"}
-                  justifyContent={"center"}
+                  layerStyle={"center"}
                   borderRadius={"2px"}
                   p="15px 20px"
                   minW="150px"
                 >
-                  <Text
-                    fontSize={"14px"}
-                    fontWeight={"600"}
-                    lineHeight={"10px"}
-                    color={colorMode === "light" ? "#FAFAFB" : "#000"}
-                  >
+                  <Text variant={"ConectWalletText"}>
                     Connect Wallet
                   </Text>
                 </Box>
@@ -199,8 +186,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           ) : (
             <>
               <Box
-                display={"flex"}
-                alignItems={"center"}
+                layerStyle={"flexCenter"}
                 ml="20px"
                 pl="20px"
                 borderLeft={"1px solid #333333"}
@@ -215,41 +201,28 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   alt="search_icon"
                 />
                 <Box
-                  display={"flex"}
-                  flexDirection={"column"}
+                  layerStyle={"flexColumn"}
                   ml="10px"
                   mr="20px"
                   minW="150px"
                 >
-                  <Text
-                    _light={{ color: "#000000" }}
-                    _dark={{ color: "#FFFFFF" }}
-                    fontSize="14px"
-                    fontWeight="600"
-                    lineHeight="20px"
-                  >
+                  <Text variant={"TopWalletsText"}>
                     Cameron Williamson
                   </Text>
-                  <Text
-                    _light={{ color: "#16171B" }}
-                    _dark={{ color: "#A8ADBD" }}
-                    fontSize="12px"
-                    fontWeight="400"
-                    lineHeight="20px"
-                  >
+                  <Text variant={"h6"}>
                     {!isEmpty(LoggedInData?.data)
                       ? LoggedInData?.data?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        LoggedInData?.data?.user?._id.slice(-5)
+                        .split("")
+                        .join("")
+                        .substring(0, 6) +
+                      "..." +
+                      LoggedInData?.data?.user?._id.slice(-5)
                       : preLoadedData?.data?.token?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        preLoadedData?.data?.token?.user?._id.slice(-5)}
+                        .split("")
+                        .join("")
+                        .substring(0, 6) +
+                      "..." +
+                      preLoadedData?.data?.token?.user?._id.slice(-5)}
                   </Text>
                 </Box>
 
@@ -287,13 +260,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         justifyContent={{ base: "space-between", md: "flex-end" }}
         {...rest}
       >
-        <Box display={"flex"} gap={"20px"} alignItems={"center"}>
+        <Box gap={"20px"} layerStyle={"flexCenter"}>
           <Box
             cursor={"pointer"}
             onClick={onMobileSidebarOpen}
-            // onClick={() => {
-            //   MobileSidebarHandler(!isMobileSidebarCollapsed);
-            // }}
           >
             <Image
               src={
@@ -346,7 +316,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         <Box
           px={{ base: 4, md: 4 }}
           w={"100%"}
-          display={"flex"}
+          layerStyle={"flexCenter"}
           bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
           border={"1px"}
           borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
@@ -371,10 +341,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               borderRadius="0px"
               borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
               bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-              fontSize="12px"
-              fontWeight="400"
-              lineHeight="20px"
-              letterSpacing="1.2px"
+              variant={"h6"}
               w="100%"
               placeholder="Search Wallet Address"
               value={searchWalletAddressValue ?? ''}
@@ -383,8 +350,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               }}
             ></Input>
             <Box
-              alignContent={"center"}
-              justifyContent={"center"}
+              layerStyle={"center"}
               cursor={"pointer"}
               w={"70px"}
               p={"14px 10px"}
@@ -395,12 +361,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 handleMobileSearchByWalletAddress();
               }}
             >
-              <Text
-                fontSize={{ base: "12px", sm: "14px" }}
-                fontWeight={"500"}
-                lineHeight={"10px"}
-                textAlign={"center"}
-              >
+              <Text variant={"SearchText"}>
                 Search
               </Text>
             </Box>

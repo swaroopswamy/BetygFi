@@ -52,6 +52,7 @@ const Text = defineStyleConfig({
       fontSize: "12px",
       fontWeight: "400",
       lineHeight: "20px",
+      letterSpacing: "1.2px",
       color: colorMode === "light" ? "#16171B" : "#A8ADBD",
     }),
     h7: ({ colorMode }) => ({
@@ -246,6 +247,20 @@ const Text = defineStyleConfig({
       fontFamily: "Inter",
       textAlign: "center",
       color: colorMode === "light" ? "#191919" : "#FFFFFF",
+    }),
+    ConectWalletText: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "600",
+      lineHeight: "10px",
+      fontFamily: "Inter",
+      color: colorMode === "light" ? "#FAFAFB" : "#000",
+    }),
+    SearchText: ({ colorMode }) => ({
+      fontSize: "14px",
+      fontWeight: "500",
+      lineHeight: "10px",
+      fontFamily: "Inter",
+      textAlign: "center",
     }),
   },
   defaultProps: {

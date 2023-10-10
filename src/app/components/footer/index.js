@@ -47,69 +47,24 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
-        // marginLeft={"11px"}
       >
         <Box
           ml={{ base: 0, md: 0 }}
-          alignItems="flex-start"
-          display={"flex"}
+          layerStyle={"flexCenterFlexStart"}
           w={"100%"}
           h={"100%"}
         >
-          {/* <Box
-            ml={{ base: 0, md: 0 }}
-            mr={{ base: 2, md: 4 }}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems="flex-start"
-            borderRight={"1px solid #1E1E1E"}
-          >
-            <Text
-              mr={{ base: 2, md: 4 }}
-              fontSize={"10px"}
-              lineHeight={"20px"}
-              letterSpacing={"10%"}
-              fontWeight={manrope.style.fontWeight}
-              color={useColorModeValue("#16171B","#FFFFFF")}
-            >
-              Approach Paper
-            </Text>
-            <Text
-              mr={{ base: 2, md: 4 }}
-              fontSize={"10px"}
-              lineHeight={"20px"}
-              letterSpacing={"10%"}
-              fontWeight={manrope.style.fontWeight}
-              color={useColorModeValue("#16171B","#FFFFFF")}
-            >
-              APIs
-            </Text>
-            <Text
-              mr={{ base: 2, md: 4 }}
-              fontSize={"10px"}
-              lineHeight={"20px"}
-              letterSpacing={"10%"}
-              fontWeight={manrope.style.fontWeight}
-              color={useColorModeValue("#16171B","#FFFFFF")}
-            >
-              Contact
-            </Text>
-          </Box> */}
           <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems="flex-start"
+            layerStyle={"FlexCenterflexStart"}
           >
             <Text
               mr={{ base: 2, md: 4 }}
-              fontSize={"14px"}
-              lineHeight={"20px"}
-              letterSpacing={"10%"}
+              variant={"smallTableBodyMobile"}
               fontWeight={manrope.style.fontWeight}
-              color={useColorModeValue("#16171B", "#FFFFFF")}
               paddingLeft={"10px"}
+              opacity={"0.6"}
             >
               &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
@@ -118,8 +73,8 @@ const Footer = ({ ...rest }) => {
       </Box>
 
       <Box
-        opacity={!isScrolledDown ? 1 : 0} // Adjust opacity based on visibility
-        transition="opacity 0.1 s ease-in-out" // Add a fade transition
+        opacity={!isScrolledDown ? 1 : 0} 
+        transition="opacity 0.1 s ease-in-out"
         position={"fixed"}
         bottom="0"
         width="100%"
@@ -127,7 +82,7 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
       >
-        <Box width={"100%"} display={"flex"} justifyContent={"space-evenly"}>
+        <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
           <FooterMobileLink name={"Home"} id={"home"} link={"/"} />
           <FooterMobileLink
             name={"Approach Paper"}
@@ -156,11 +111,8 @@ const FooterMobileLink = ({ name, id, link }) => {
   return (
     <>
       <Box
-        display={"flex"}
-        flexDir={"column"}
+        layerStyle={"FlexColumnCenter"}
         padding={"10px 10px"}
-        justifyContent={"center"}
-        justifyItems={"center"}
         position="relative"
         className="test"
         gap={"10px"}
@@ -181,7 +133,7 @@ const FooterMobileLink = ({ name, id, link }) => {
           }
         }
       >
-        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+        <Box layerStyle={"center"}>
           <Image
             width={{ base: "25px", sm: "30px" }}
             height={{ base: "25px", sm: "30px" }}

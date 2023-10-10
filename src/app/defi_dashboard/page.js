@@ -80,7 +80,7 @@ const DefiDashboardPage = () => {
                         borderRadius={"50%"}
                         border={useColorModeValue("1px solid #E1E1E1", "1px solid #333333")}
                     />
-                    <Text variant={"h6"} letterSpacing={"1.2px"}>
+                    <Text variant={"h6"}>
                         Home/Defi Dashboard
                     </Text>
                 </Box>
