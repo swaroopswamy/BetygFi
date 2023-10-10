@@ -43,7 +43,7 @@ function DefiUsersSmallTable() {
 
   useEffect(() => {
     getDefiUsersTableDataHandler();
-  }, [blockchainSelected, getDefiUsersTableDataHandler]);
+  }, [blockchainSelected]);
 
   return (
     <Box
