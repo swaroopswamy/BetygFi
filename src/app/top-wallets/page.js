@@ -29,90 +29,35 @@ const WalletDashboardPage = () => {
     <>
       <Box
         bgColor={useColorModeValue("#F5F5F7", "#131313")}
-        display={"flex"}
-        justifyContent={"space-between"}
-        flexDirection={"column"}
-      >
+        layerStyle={"flexColumnSpaceBetween"}>
         <Box
-          display={"flex"}
-          justifyContent={"space-between"}
+          layerStyle={"flexSpaceBetween"}
           padding={"38px 30px 0px 30px"}
-          bgColor={useColorModeValue("#FFFFFF", "#131313")}
-        >
-          <Box
-            display={"flex"}
-            alignItems={"space-between"}
-            flexDirection={"column"}
-          >
-            <Text
-              fontSize={"24px"}
-              fontWeight={600}
-              lineHeight={"20px"}
-              color={useColorModeValue("#191919", "#FFF")}
-              letterSpacing={"2.4px"}
-              textTransform={"capitalize"}
-            >
+          bgColor={useColorModeValue("#FFFFFF", "#131313")}>
+          <Box layerStyle={"flexColumnSpaceBetween"}>
+            <Text variant={"contentHeading"}>
               Top Wallets
             </Text>
 
-            <Box display={"flex"} alignItems={"center"} mt={"13px"}>
+            <Box layerStyle={"flexCenter"} mt={"13px"}>
               <Text
-                fontSize={"14px"}
-                fontWeight={"400"}
-                lineHeight={"21px"}
-                color={useColorModeValue("#191919", "#FFF")}
-                paddingBottom={"30px"}
-              >
+                variant={"TopWalletsText"}
+                paddingBottom={"30px"}>
                 BetygFi have filtered and identified a comprehensive collection
                 of significant wallet addresses, enabling you to effortlessly
                 monitor and analyze critical on-chain events and transactions.
               </Text>
             </Box>
-
-            {/*   <Box
-                            display={"flex"}
-                            alignItems={"center"}
-                            mt={"26px"}
-                        >
-                            <Text
-                                fontSize={"10px"}
-                                fontWeight={"400"}
-                                lineHeight={"15px"}
-                                color={useColorModeValue("#191919", "#FFF")}
-                                letterSpacing={"1.2px"}
-                            >
-                                Select the blockchains you'd like to analyze
-                            </Text>
-                        </Box>
-
-                        <Box
-                            display={"flex"}
-                            justifyContent={"space-between"}
-                            alignItems={"center"}
-                            mt={"18px"}
-                        >
-                            <SelectionBox
-                                blockchainSelected={blockchainSelected}
-                                colorMode={colorMode}
-                                BlockchainTypeHandler={BlockchainTypeHandler}
-                            />
-
-                        </Box>
-                */}
           </Box>
         </Box>
 
         <Box
-          display={"flex"}
-          justifyContent={"space-between"}
+          layerStyle={"flexColumnSpaceBetween"}
           padding={{ base: "15px", md: "10px 30px 50px 30px" }}
-          flexDirection={"column"}
-          bgColor={useColorModeValue("#F0F0F5", "#191919")}
-        >
+          bgColor={useColorModeValue("#F0F0F5", "#191919")}>
           <Box
             pt={{ base: "0", md: "20px" }}
-            bgColor={useColorModeValue("#F0F0F5", "#191919")}
-          >
+            bgColor={useColorModeValue("#F0F0F5", "#191919")}>
             <WalletTable />
           </Box>
         </Box>

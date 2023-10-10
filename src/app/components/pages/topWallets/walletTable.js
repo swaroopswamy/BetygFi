@@ -26,20 +26,14 @@ const WalletTable = () => {
   return (
     <>
       <Box
-        //border={"2px"}
         borderRadius={"6px"}
         _light={{ borderColor: "#FFFFFF" }}
         _dark={{ borderColor: "#202020" }}
-        overflow={"auto"}
-        // maxHeight='500px'
-      >
+        overflow={"auto"}>
         <Box
-          display={"flex"}
-          justifyContent={"space-between"}
-          alignItems={"center"}
+          layerStyle={"flexCenterSpaceBetween"}
           padding={{ base: "0px", md: "8px 30px 8px 30px" }}
-          background={useColorModeValue("#FFFFFF", "#202020")}
-        >
+          background={useColorModeValue("#FFFFFF", "#202020")}>
           <Box>
             <Text
               color={useColorModeValue("#16171B", "#FFFFFF")}
@@ -49,13 +43,11 @@ const WalletTable = () => {
               fontSize={{ base: "14px", md: "18px" }}
               fontWeight={600}
               lineHeight={"20px"}
-              textTransform={"capitalize"}
-            >
+              textTransform={"capitalize"}>
               Top Value Holders
             </Text>
           </Box>
         </Box>
-        {/* <Box  overflowY={"auto"} > */}
         <Table
           variant="unstyled"
           display={{ base: "table", md: "none" }}
@@ -73,49 +65,15 @@ const WalletTable = () => {
               position="sticky"
               top={0}
             >
-              {/*   <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
-                                textAlign={"left"}
-                            >
-                            </Th> */}
-              <Th
-                _light={{
-                  color: "#16171B",
-                  opacity: "0.8",
-                }}
-                _dark={{ color: "#A8ADBD" }}
-                fontSize={"14px"}
-                fontFamily={"Inter"}
-                fontWeight={400}
-                lineHeight={"20px"}
-                letterSpacing={"1.4px"}
-                textTransform={"capitalize"}
-                textAlign={"left"}
-              >
-                Wallet Address
+              <Th>
+                <Text variant={"tableHead"}>
+                  Wallet Address
+                </Text>
               </Th>
-              <Th
-                _light={{
-                  color: "#16171B",
-                  opacity: "0.8",
-                }}
-                _dark={{ color: "#A8ADBD" }}
-                fontSize={"14px"}
-                fontFamily={"Inter"}
-                fontWeight={400}
-                lineHeight={"20px"}
-                letterSpacing={"1.4px"}
-                textTransform={"capitalize"}
-                textAlign={"right"}
-                //width={"11%"}
-              >
-                Net Worth
+              <Th>
+                <Text variant={"tableHead"}>
+                  Net Worth
+                </Text>
               </Th>
             </Tr>
           </Thead>
@@ -124,14 +82,6 @@ const WalletTable = () => {
             {TableData.whales.map((item, i) => {
               return (
                 <>
-                  {/*   <TableRow
-                                        key={i}
-                                        user={item.id}
-                                        netWorth={item.usd_value}
-                                        totalTokens={item.stats.top_coins}
-                                        totalProtocols={"-"}
-                                        totalNFT={""}
-                                    /> */}
                   <Tr>
                     <Td p="0" colSpan={2} borderBottom="none">
                       <Accordion
@@ -153,9 +103,7 @@ const WalletTable = () => {
                             >
                               <Box
                                 w="100%"
-                                display={"flex"}
-                                alignItems={"center"}
-                              >
+                                layerStyle={"flexCenter"}>
                                 <Image
                                   w={"20px"}
                                   h={"20px"}
@@ -164,18 +112,8 @@ const WalletTable = () => {
                                   alt=""
                                 ></Image>
                                 <Text
-                                  _light={{
-                                    color: "#16171B",
-                                  }}
-                                  _dark={{
-                                    color: "#FFFFFF",
-                                  }}
-                                  fontSize={"14px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"600"}
-                                  lineHeight={"20px"}
-                                  ml="12px"
-                                >
+                                  variant={"h7"}
+                                  ml="12px">
                                   {item?.id.split("").join("").substring(0, 6) +
                                     "..." +
                                     item?.id.slice(-5)}
@@ -185,21 +123,11 @@ const WalletTable = () => {
                             </AccordionButton>
                           </h2>
                           <AccordionPanel pb={4}>
-                            <Box display={"flex"} flexDirection={"column"}>
-                              <Box display={"flex"} flexDirection={"column"}>
+                            <Box layerStyle={"flexColumn"}>
+                              <Box layerStyle={"flexColumn"}>
                                 <Text
-                                  _light={{
-                                    color: "#8F8F8F",
-                                  }}
-                                  _dark={{
-                                    color: "#A8ADBD",
-                                  }}
-                                  fontSize={"12px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"400"}
-                                  lineHeight={"20px"}
-                                  textAlign={"left"}
-                                >
+                                  variant={"h8"}
+                                  textAlign={"left"}>
                                   Total Tokens
                                 </Text>
                                 <Flex mt="10px">
@@ -210,7 +138,6 @@ const WalletTable = () => {
                                           key={i}
                                           padding={"7px 9px"}
                                           pr={"2px"}
-                                          //border={"1px"}
                                           minw="170px"
                                           _light={{
                                             borderColor: "#E8E8E8",
@@ -218,15 +145,12 @@ const WalletTable = () => {
                                           }}
                                           _dark={{
                                             borderColor: "#E8E8E8",
-                                            background: "#F5F5F7",
+                                            background: "#202020",
                                           }}
                                           borderRadius={"2px"}
                                           mr={"5px"}
-                                          display={"flex"}
-                                          justifyContent={"center"}
-                                          gap={"3px"}
-                                          alignItems={"center"}
-                                        >
+                                          layerStyle={"center"}
+                                          gap={"3px"}>
                                           <Image
                                             w={"14px"}
                                             h={"14px"}
@@ -235,16 +159,10 @@ const WalletTable = () => {
                                             alt=""
                                           ></Image>
                                           <Text
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#16171B" }}
-                                            fontSize={"14px"}
-                                            fontStyle={"normal"}
-                                            fontWeight={"400"}
-                                            lineHeight={"10px"}
+                                            variant={"h9"}
                                             ml={"2px"}
                                             mt={"1px"}
-                                            display={"flex"}
-                                            alignItems={"center"}
+                                            layerStyle={"center"}
                                             w="70px"
                                           >
                                             ${" "}
@@ -261,73 +179,30 @@ const WalletTable = () => {
                               </Box>
                               <Box
                                 mt="10px"
-                                display={"flex"}
-                                flexDirection={"column"}
-                              >
+                                layerStyle={"flexColumn"}>
                                 <Text
-                                  _light={{
-                                    color: "#8F8F8F",
-                                  }}
-                                  _dark={{
-                                    color: "#A8ADBD",
-                                  }}
-                                  fontSize={"12px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"400"}
-                                  lineHeight={"20px"}
-                                  textAlign={"left"}
-                                >
+                                  variant={"h8"}
+                                  textAlign={"left"}>
                                   Total Protocols
                                 </Text>
                                 <Text
                                   mt="10px"
-                                  _light={{
-                                    color: "#090909",
-                                  }}
-                                  _dark={{
-                                    color: "#FFFFFFF",
-                                  }}
-                                  fontSize={"14px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"400"}
-                                  lineHeight={"20px"}
-                                  textAlign={"left"}
-                                >
+                                  variant={"NAtext"}
+                                  textAlign={"left"}>
                                   -NA-
                                 </Text>
                               </Box>
                               <Box
                                 mt="10px"
-                                display={"flex"}
-                                flexDirection={"column"}
-                              >
+                                layerStyle={"flexColumn"}>
                                 <Text
-                                  _light={{
-                                    color: "#8F8F8F",
-                                  }}
-                                  _dark={{
-                                    color: "#A8ADBD",
-                                  }}
-                                  fontSize={"12px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"400"}
-                                  lineHeight={"20px"}
-                                  textAlign={"left"}
-                                >
+                                  variant={"h8"}
+                                  textAlign={"left"}>
                                   Total NFT collections
                                 </Text>
                                 <Text
                                   mt="10px"
-                                  _light={{
-                                    color: "#090909",
-                                  }}
-                                  _dark={{
-                                    color: "#FFFFFFF",
-                                  }}
-                                  fontSize={"14px"}
-                                  fontStyle={"normal"}
-                                  fontWeight={"400"}
-                                  lineHeight={"20px"}
+                                  variant={"NAtext"}
                                   textAlign={"left"}
                                 >
                                   -NA-
@@ -361,89 +236,21 @@ const WalletTable = () => {
               flex-shrink={"0"}
               borderRadius={"6px"}
             >
-              {/*   <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
-                                textAlign={"left"}
-                            >
-                            </Th> */}
-              <Th
-                _light={{
-                  color: "#16171B",
-                  opacity: "0.8",
-                }}
-                _dark={{ color: "#A8ADBD" }}
-                fontSize={"14px"}
-                fontFamily={"Inter"}
-                fontWeight={400}
-                lineHeight={"20px"}
-                letterSpacing={"1.4px"}
-                textTransform={"capitalize"}
-                textAlign={"left"}
-              >
-                Wallet Address
+              <Th>
+                <Text variant={"tableHead"} textAlign={"left"}>
+                  Wallet Address
+                </Text>
               </Th>
-              {/* <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
-                                textAlign={"left"}
-                                width={"11%"}
-                            >
-                                Net Worth</Th> */}
-              <Th
-                _light={{
-                  color: "#16171B",
-                  opacity: "0.8",
-                }}
-                _dark={{ color: "#A8ADBD" }}
-                fontSize={"14px"}
-                fontFamily={"Inter"}
-                fontWeight={400}
-                lineHeight={"20px"}
-                letterSpacing={"1.4px"}
-                textTransform={"capitalize"}
-                textAlign={"left"}
-                width={"50%"}
-              >
-                Total Tokens
+              <Th width={"50%"}>
+                <Text variant={"tableHead"} textAlign={"left"}>
+                  Total Tokens
+                </Text>
               </Th>
-              <Th
-                _light={{
-                  color: "#16171B",
-                  opacity: "0.8",
-                }}
-                _dark={{ color: "#A8ADBD" }}
-                fontSize={"14px"}
-                fontFamily={"Inter"}
-                fontWeight={400}
-                lineHeight={"20px"}
-                letterSpacing={"1.4px"}
-                textTransform={"capitalize"}
-                textAlign={"left"}
-              >
-                Total Protocols
+              <Th>
+                <Text variant={"tableHead"} textAlign={"left"}>
+                  Total Protocols
+                </Text>
               </Th>
-              {/* <Th
-                                color={useColorModeValue("#434347", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                                letterSpacing={"1px"}
-                                textTransform={"uppercase"}
-                                textAlign={"left"}
-                            >
-                                Total NFT Collections</Th> */}
             </Tr>
           </Thead>
 
@@ -465,8 +272,6 @@ const WalletTable = () => {
           </Tbody>
         </Table>
       </Box>
-      {/*   <PageButtons /> */}
-      {/* </Box> */}
     </>
   );
 };
@@ -476,10 +281,8 @@ export default WalletTable;
 function TableRow({
   key,
   user,
-  netWorth,
   totalTokens,
   totalProtocols,
-  totalNFT,
 }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
@@ -494,8 +297,8 @@ function TableRow({
             ? "#F5F5F7"
             : "#191919"
           : colorMode === "light"
-          ? "#FFFFFF"
-          : "#202020"
+            ? "#FFFFFF"
+            : "#202020"
       }
       onClick={() => {
         setClick(!clicked);
@@ -505,29 +308,10 @@ function TableRow({
       borderColor={useColorModeValue("#DFDFDF", "#313131")}
       borderRadius={"2px"}
     >
-      {/*   <Td>
-            <Flex>
-                <Box>
-                    <Image
-                        w={"20px"}
-                        h={"20px"}
-                        src={`/icons/dummy1.png`}
-                        alt=""
-                    ></Image>
-                </Box>
-            </Flex>
-        </Td>
- */}
       <Td>
         <Flex>
           <Box>
-            <Text
-              color={useColorModeValue("#16171B", "#FFFFFF")}
-              fontSize={"14px"}
-              fontStyle={"normal"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-            >
+            <Text variant={"h7"}>
               {user?.split("").join("").substring(0, 8) +
                 "....." +
                 user?.slice(-5)}
@@ -536,25 +320,6 @@ function TableRow({
         </Flex>
       </Td>
 
-      {/* <Td>
-            <Flex>
-                <Box>
-                    <Text
-                        color={useColorModeValue("#16171B", "#FFFFFF")}
-                        fontSize={"14px"}
-                        fontStyle={"normal"}
-                        fontWeight={"400"}
-                        lineHeight={"20px"}
-                    >
-                        ${" "}{millify(netWorth, {
-                            precision: 2,
-                            locales: "en-US"
-                        })}
-                    </Text>
-                </Box>
-            </Flex>
-        </Td>
- */}
       <Td>
         <Flex>
           {totalTokens.map((item, i) => {
@@ -563,7 +328,6 @@ function TableRow({
                 <Box
                   key={i}
                   padding={"7px 9px"}
-                  //border={"1px"}
                   minw="150px"
                   _light={{
                     borderColor: "#E8E8E8",
@@ -575,11 +339,8 @@ function TableRow({
                   }}
                   borderRadius={"2px"}
                   mr={"5px"}
-                  display={"flex"}
-                  justifyContent={"center"}
-                  gap={"3px"}
-                  alignItems={"center"}
-                >
+                  layerStyle={"center"}
+                  gap={"3px"}>
                   <Image
                     w={"20px"}
                     h={"20px"}
@@ -588,15 +349,9 @@ function TableRow({
                     alt=""
                   ></Image>
                   <Text
-                    _light={{ color: "#16171B" }}
-                    _dark={{ color: "#FFFFFF" }}
-                    fontSize={"14px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"10px"}
+                    variant={"h9"}
                     ml={"10px"}
-                    mt={"1px"}
-                  >
+                    mt={"1px"}>
                     ${" "}
                     {millify(item.usd_value, {
                       precision: 2,
@@ -613,34 +368,12 @@ function TableRow({
       <Td>
         <Flex>
           <Box>
-            <Text
-              color={useColorModeValue("#16171B", "#FFFFFF")}
-              fontSize={"14px"}
-              fontStyle={"normal"}
-              fontWeight={"600"}
-              lineHeight={"20px"}
-            >
+            <Text variant={"h7"}>
               {totalProtocols}
             </Text>
           </Box>
         </Flex>
       </Td>
-
-      {/* <Td>
-            <Flex>
-                <Box>
-                    <Text
-                        color={useColorModeValue("#16171B", "#FFFFFF")}
-                        fontSize={"14px"}
-                        fontStyle={"normal"}
-                        fontWeight={"600"}
-                        lineHeight={"20px"}
-                    >
-                        {totalNFT}
-                    </Text>
-                </Box>
-            </Flex>
-        </Td> */}
     </Tr>
   );
 }
