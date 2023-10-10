@@ -17,6 +17,7 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
+  Button,
 } from "@chakra-ui/react";
 import dynamic from 'next/dynamic'
 // const Accordion = dynamic(import('@chakra-ui/react').then(mod => mod.Accordion), { ssr: false }) // disable ssr
@@ -25,6 +26,8 @@ import TableData from "../../../../../util/whales.json";
 import millify from "millify";
 import { useRouter } from "next/navigation";
 const WalletTable = () => {
+  const router = useRouter();
+
   return (
     <>
       <Box
@@ -196,6 +199,15 @@ const WalletTable = () => {
                                 -NA-
                               </Text>
                             </Box>
+                          </Box>
+                          <Box layerStyle={"center"}>
+                            <Button variant='link'
+                              onClick={() => {
+                                router.push(`/wallet_dashboard?address=${item?.id}`);
+                              }}
+                            >
+                              Open Dashboard
+                            </Button>
                           </Box>
                         </AccordionPanel>
                       </AccordionItem>

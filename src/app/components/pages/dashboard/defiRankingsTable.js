@@ -490,12 +490,12 @@ const PanelComp = ({ item }) => {
       </Box>
 
       <Box layerStyle={"center"}>
-        <Button variant='defi'
+        <Button variant='link'
           onClick={() => {
             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
           }}
         >
-          Open
+          Open Dashboard
         </Button>
       </Box>
     </Box>

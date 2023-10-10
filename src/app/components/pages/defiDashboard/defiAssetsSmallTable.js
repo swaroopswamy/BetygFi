@@ -110,7 +110,7 @@ function DefiAssetsSmallTable() {
                     variant={"h3"}
                     fontWeight={"600"}
                     letterSpacing={"1.4px"}
-                    color={item?.item?.value > 0 ? "#245F00" : "#EF1E1E"}
+                    color={item?.item?.value > 0 ? useColorModeValue("#245F00", "#60C000") : useColorModeValue("#EF1E1E", "#FF3535")}
                   >
                     {item?.item?.value > 0 ? "+ " : "- "}
                     {USDollar.format(item?.item?.value)}

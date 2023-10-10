@@ -82,7 +82,7 @@ function DefiUsersSmallTable() {
             return <Box></Box>;
           }}
           SkeletonRowsColumnsDesktop={{
-            numColumns: 3,
+            numColumns: 1,
             numRows: 5,
           }}
           SkeletonRowsColumnsMobile={{
