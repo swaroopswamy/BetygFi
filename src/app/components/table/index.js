@@ -16,11 +16,13 @@ import {
   useColorModeValue,
   Spinner,
   useColorMode,
+  Icon,
 } from "@chakra-ui/react";
 import React from "react";
 import TooltipComp from "/src/app/components/tooltipComp";
 import SkeletonTable from "/src/app/components/skeleton";
 import { SingleAccordionComp } from "/src/app/components/accordion";
+import { HiSortDescending } from "react-icons/hi"
 
 const GenericTable = ({
   tableHeader,
@@ -63,15 +65,10 @@ const GenericTable = ({
                       {item.label}
                     </Text>
                     {item.isSortingEnabled && (
-                      <Image
-                        mt={"2px"}
-                        src={
-                          colorMode === "light"
-                            ? "/images/Arrowdown(light).svg"
-                            : "/images/Arrowdown(dark).svg"
-                        }
+                      <Icon
+                        as={HiSortDescending}
+                        boxSize={"16px"}
                         alt="Sort"
-                        ml="2"
                       />
                     )}
                     {item.isTooltip && (
