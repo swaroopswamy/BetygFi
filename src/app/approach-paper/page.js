@@ -112,25 +112,45 @@ const Approach = () => {
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.1 Technical Risk</Text>
-                <Text padding={"10px 0px 0px 20px"} variant={"content"}>
-                  • Time on Mainnet <br />
-                  • Number of Critical Vulnerabilities <br />
-                  • Public Audit <br />
-                  • Recent Audit <br />
-                  • Open Source <br />
-                  • Byte Source code verified <br />
-                  • Number of Engineers working <br />
-                  • Number of code commits <br />• Bounty Program
-                </Text>
+                {/* <Text padding={"10px 0px 0px 20px"} variant={"content"}> */}
+                <ul >
+                  <li> Time on Mainnet</li>
+                  <li> Number of Critical Vulnerabilities </li>
+                  <li> Public Audit </li>
+                  <li> Recent Audit </li>
+                  <li> Open Source </li>
+                  <li> Byte Source code verified </li>
+                  <li> Number of Engineers working </li>
+                  <li> Number of code commits </li>
+                  <li> Bounty Program </li>
+                </ul>
+                {/* </Text> */}
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.2 Centralization Risk</Text>
-                <Text padding={"10px 0px 0px 20px"} variant={"content"}>
-                  • Protocol Administration <br />
-                  • Private Key Model and arrangement <br />
-                  • Oracles <br />• Governance Token Concentration
-                </Text>
+                <ul >
+                  <li>
+                    {" "}
+                    <Text variant={"content"}> Protocol Administration </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      Private Key Model and arrangement
+                    </Text>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>Oracles </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      Governance Token Concentration
+                    </Text>
+                  </li>
+                </ul>
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
@@ -171,16 +191,31 @@ const Approach = () => {
                     </li>
                   </ul>
                 </Box>
-
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>2.4 Userbase Quality</Text>
-                <Text padding={"10px 0px 0px 20px"} variant={"content"}>
-                  • Repayment <br />
-                  • Active Loans <br />
-                  • Asset Quality <br />• Asset Liquidation Threshold{" "}
-                </Text>
+                <ul >
+                  <li>
+                    {" "}
+                    <Text variant={"content"}> Repayment </Text>
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}> Active Loans</Text>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>Asset Quality</Text>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      {" "}
+                      Asset Liquidation Threshold
+                    </Text>
+                  </li>
+                </ul>
               </Box>
             </Box>
 
@@ -205,35 +240,48 @@ const Approach = () => {
                 <Text variant={"contentHeading6"}>
                   3.1 Unsupervised Learning
                 </Text>
-                <Text
-                  paddingTop={"10px"}
-                  variant={"content"}
-                  paddingLeft={"50px"}
-                >
+                <ul >
                   • Implement clustering algorithms (e.g., K-means, DBSCAN) to
                   identify patterns and group DeFi protocols based on their
                   inherent risk characteristics. <br />• Analyze the resulting
                   clusters to derive insights into the risk profiles of
                   different DeFi protocols.
-                </Text>
+                </ul>
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
                 <Text variant={"contentHeading6"}>3.2 Supervised Learning</Text>
-                <Text
+                <ul
                   paddingTop={"10px"}
                   variant={"content"}
                   paddingLeft={"50px"}
                 >
-                  • Train classification models (e.g., Random Forest, Support
-                  Vector Machine, Neural Networks) on a labeled dataset, where
-                  each DeFi protocol is assigned a risk score based on expert
-                  opinion or historical performance. <br />
-                  • Evaluate the performance of the classifiers using metrics
-                  such as accuracy, precision, recall, and F1 score. <br />
-                  • Optimize the best-performing model using techniques such as
-                  hyperparameter tuning and feature selection. <br />
-                </Text>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      {" "}
+                      Train classification models (e.g., Random Forest, Support
+                      Vector Machine, Neural Networks) on a labeled dataset,
+                      where each DeFi protocol is assigned a risk score based on
+                      expert opinion or historical performance.
+                    </Text>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      {" "}
+                      Evaluate the performance of the classifiers using metrics
+                      such as accuracy, precision, recall, and F1 score.
+                    </Text>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Text variant={"content"}>
+                      Optimize the best-performing model using techniques such
+                      as hyperparameter tuning and feature selection.
+                    </Text>{" "}
+                  </li>
+                </ul>
               </Box>
             </Box>
 
