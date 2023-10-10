@@ -1,17 +1,12 @@
 
 "use client"
-import Governance from "./governance";
-import BarChart from "./BarChart";
-//import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
-
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, useColorModeValue, useColorMode, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
-import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 import { Router } from "next/router";
 
 import Banner from "/src/app/components/pages/defiDashboard/banner";

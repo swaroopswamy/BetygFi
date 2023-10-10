@@ -141,7 +141,7 @@ const Banner = () => {
                     <Box h={"80%"} w={"100%"} display={"flex"} justifyContent={"left"} alignItems={"end"}>
                         <Box layerStyle={"center"} gap={"10px"} px={"15px"}>
                             <Text variant={'h3'} color={useColorModeValue("#000000", "#A8ADBD")}> Token </Text>
-                            <Image
+                            <Avatar
                                 w={"16px"}
                                 h={"16px"}
                                 borderRadius={"50%"}

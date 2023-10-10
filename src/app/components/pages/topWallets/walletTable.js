@@ -242,16 +242,14 @@ const WalletTable = () => {
           <Tbody>
             {TableData.whales.map((item, i) => {
               return (
-                <>
-                  <TableRow
-                    key={i}
-                    user={item.id}
-                    netWorth={item.usd_value}
-                    totalTokens={item.stats.top_coins}
-                    totalProtocols={"-"}
-                    totalNFT={""}
-                  />
-                </>
+                <TableRow
+                  key={i}
+                  user={item.id}
+                  netWorth={item.usd_value}
+                  totalTokens={item.stats.top_coins}
+                  totalProtocols={"-"}
+                  totalNFT={""}
+                />
               );
             })}
           </Tbody>
@@ -263,13 +261,12 @@ const WalletTable = () => {
 
 export default WalletTable;
 
-function TableRow({ key, user, totalTokens, totalProtocols }) {
+function TableRow({ user, totalTokens, totalProtocols }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
   const router = useRouter();
   return (
     <Tr
-      key={key}
       cursor={"pointer"}
       bgColor={
         clicked
