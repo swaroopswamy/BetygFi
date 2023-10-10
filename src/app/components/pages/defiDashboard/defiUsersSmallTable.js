@@ -65,7 +65,7 @@ function DefiUsersSmallTable() {
                 > View More </Button> */}
       </Box>
 
-      <Box h={"70%"} overflow={"hidden"}>
+      <Box h={"70%"} overflow={"auto"}>
         <GenericTable
           tableHeader={DefiUsersSmallTableHeader}
           tableData={defiUsersTableData}
@@ -171,11 +171,11 @@ const TableHeaderRowMobile = () => {
           <Text variant={"smallTableHeaderMobile"}>User Address</Text>
         </Box>
       </Th>
-      <Th>
+      {/* <Th>
         <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
           <Text variant={"smallTableHeaderMobile"}>Share</Text>
         </Box>
-      </Th>
+      </Th> */}
     </Tr>
   );
 };

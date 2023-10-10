@@ -12,13 +12,14 @@ import {
   useColorModeValue,
   Image,
   useColorMode,
+  Accordion,
   AccordionItem,
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
 } from "@chakra-ui/react";
 import dynamic from 'next/dynamic'
-const Accordion = dynamic(import('@chakra-ui/react').then(mod => mod.Accordion), { ssr: false }) // disable ssr
+// const Accordion = dynamic(import('@chakra-ui/react').then(mod => mod.Accordion), { ssr: false }) // disable ssr
 import { useState } from "react";
 import TableData from "../../../../../util/whales.json";
 import millify from "millify";
