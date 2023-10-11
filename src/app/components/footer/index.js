@@ -4,7 +4,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  Image,
+  Icon,
   useDisclosure,
 } from "@chakra-ui/react";
 import { RiHomeLine } from "react-icons/ri";

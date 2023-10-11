@@ -18,8 +18,8 @@ const Legal = () => {
     <>
       <Box
         display={{ base: "none", md: "block" }}
-        maxW={"100%"}
-        padding={"0px"}>
+        width={"100%"}
+        >
         <Box
           width={"100%"}
           height={"175px"}
@@ -33,7 +33,8 @@ const Legal = () => {
               <Image src={useColorModeValue("/images/bg-logo.png", "/images/bg-logo-dark.png")} alt="" width={"153.027px"} height={"150px"} flexShrink={0}></Image>
             </Box>
           </Box>
-          <Tabs onChange={(index) => setTabIndex(index)}>
+        </Box>
+        <Tabs onChange={(index) => setTabIndex(index)}>
             <TabList
               paddingLeft={{ base: "0px", md: "74px" }}
               w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
@@ -91,7 +92,6 @@ const Legal = () => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-        </Box>
       </Box>
 
       {/* Mobile Optimization Part */}

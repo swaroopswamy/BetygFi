@@ -6,9 +6,9 @@ const Privacy = () => {
         <>
             <Box
                 display={{ base: "none", md: "block" }}
-                width={"80%"}
+                width={"100%"}
                 background={useColorModeValue("#F0F0F5", "#191919")}
-                padding={"35px 0px 70px 72px"}>
+                padding={"35px 150px 70px 72px"}>
                 <Text variant={"content"} paddingTop={"20px"}>
                     This is a common question, and the first thing to make clear is that we do not focus on personal individuals in our wallet labels.
                     <br />
