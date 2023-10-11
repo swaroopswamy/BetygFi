@@ -47,7 +47,7 @@ const InteractionWithKnownEntitiesBox = () => {
         px={"20px"}
       >
         <Box layerStyle={"flexCenter"} pt="15px">
-          <Text variant={"smallTableHeader"} mr="0.5em">
+          <Text variant={"smallTableHeader"}>
             Interaction with Known Entities
           </Text>
           <TooltipComp label="Interaction with Known Entities shows transactions of an individual wallet with the entities i.e., exchanges." />

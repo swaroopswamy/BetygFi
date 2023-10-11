@@ -47,15 +47,11 @@ const InflowTokensBox = () => {
         px={"20px"}
       >
         <Box layerStyle={"flexCenter"} pt="15px">
-          <Text variant={"smallTableHeader"} mr="0.5em">
-            Inflow Tokens (30 Days)
-          </Text>
+          <Text variant={"smallTableHeader"}>Inflow Tokens (30 Days)</Text>
           <TooltipComp label="Inflow shows the number of tokens received by the wallet." />
         </Box>
       </Box>
-      <Box
-        overflow={inflowTokensData?.isSuccess ? "auto" : "hidden"}
-      >
+      <Box overflow={inflowTokensData?.isSuccess ? "auto" : "hidden"}>
         <GenericTable
           tableHeader={InflowTokensTableHeader}
           tableData={inflowTokensData}

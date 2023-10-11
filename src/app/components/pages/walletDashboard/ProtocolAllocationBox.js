@@ -43,9 +43,7 @@ const ProtocolAllocationBox = () => {
         px={"20px"}
       >
         <Box layerStyle={"flexCenter"} pt="15px">
-          <Text variant={"smallTableHeader"} mr="0.5em">
-            Protocol Allocation
-          </Text>
+          <Text variant={"smallTableHeader"}>Protocol Allocation</Text>
           <TooltipComp label="Protocol allocation list shows how the assets of an individual wallet are distributed between DeFi’s in value and percentage terms." />
         </Box>
       </Box>

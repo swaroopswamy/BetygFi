@@ -4,7 +4,6 @@ import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from "./Web3Provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import { Inter } from "next/font/google";
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
