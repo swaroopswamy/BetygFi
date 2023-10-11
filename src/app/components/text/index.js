@@ -279,7 +279,7 @@ const Text = defineStyleConfig({
       fontSize: "13px",
       fontWeight: "400",
       lineHeight: "10px",
-      color: colorMode === "light" ? "#191919" : "#FFFFFF",
+      color: "#191919" ,
     }),
   },
   defaultProps: {
