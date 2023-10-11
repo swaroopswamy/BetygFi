@@ -31,7 +31,7 @@ const DashboardTabList = ({ tabIndex }) => {
           }
         >
           <Text
-            fontSize={{ base: "10px", md: "14px" }}
+            fontSize={{ base: "12px", md: "14px" }}
             fontWeight={tabIndex === 0 ? "600" : "400"}
             color={
               tabIndex === 0
@@ -86,7 +86,7 @@ const DashboardTabList = ({ tabIndex }) => {
           }
         >
           <Text
-            fontSize={{ base: "10px", md: "14px" }}
+            fontSize={{ base: "12px", md: "14px" }}
             color={
               tabIndex === 1
                 ? colorMode === "light"
@@ -141,7 +141,7 @@ const DashboardTabList = ({ tabIndex }) => {
           }
         >
           <Text
-            fontSize={{ base: "10px", md: "14px" }}
+            fontSize={{ base: "12px", md: "14px" }}
             color={
               tabIndex === 2
                 ? colorMode === "light"
