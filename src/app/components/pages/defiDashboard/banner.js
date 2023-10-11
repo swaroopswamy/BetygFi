@@ -8,6 +8,7 @@ const Banner = () => {
     const defiData = useSelector(
         (state) => state?.defiDashboardData?.DefiData?.data
     );
+    
     return (
         <>
             <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} p={"10px 20px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
@@ -57,7 +58,9 @@ const Banner = () => {
                                 {defiData?.chains?.length ?? 0} chains
                             </Text>
                             <Box layerStyle={"center"} >
-                                <BlockchainSelectionMenu />
+                                <BlockchainSelectionMenu
+                                    chains={defiData?.chains}
+                                />
                             </Box>
                         </Box>
                     </Box>
@@ -135,7 +138,9 @@ const Banner = () => {
                     </Box>
                     
                     <Box display={"flex"} justifyContent={"left"} overflow={"auto"} px={{base: "0px", md: "15px"}}>
-                        <BlockchainSelectionMenu />
+                        <BlockchainSelectionMenu
+                            chains={defiData?.chains}
+                        />
                     </Box>
 
                     <Box h={"80%"} w={"100%"} display={"flex"} justifyContent={"left"} alignItems={"end"}>
