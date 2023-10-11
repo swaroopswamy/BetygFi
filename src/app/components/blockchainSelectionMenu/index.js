@@ -1,5 +1,5 @@
 "use client";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 // const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
 import {
   Box,
@@ -33,15 +33,14 @@ const BlockchainSelectionMenu = ({ chains }) => {
     (state) => state?.dashboardTableData?.blockchainType
   );
 
-  let blockchains = {data: []};
+  let blockchains = { data: [] };
   if (chains) {
     blockchainListData?.data?.map((item) => {
       if (chains?.includes(item.name)) {
         blockchains.data.push(item);
       }
-    })
-  }
-  else {
+    });
+  } else {
     blockchains = blockchainListData;
   }
 
@@ -87,7 +86,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
           );
         })}
 
-        {blockchains?.data?.length > 4 &&
+        {blockchains?.data?.length > 4 && (
           <Menu closeOnSelect={false} suppressHydrationWarning={true}>
             <MenuButton
               bg={"#D9D9D9"}
@@ -99,12 +98,12 @@ const BlockchainSelectionMenu = ({ chains }) => {
               ml="-10px"
               _focus={{ boxShadow: "outline" }}
               color="#000"
-              textStyle="extraSmall"
               suppressHydrationWarning={true}
             >
-              +
-              {blockchainListData?.isSuccess &&
-                blockchains?.data?.length - 4}
+              <Text variant={"extraSmall"}>
+                +
+                {blockchainListData?.isSuccess && blockchains?.data?.length - 4}
+              </Text>
             </MenuButton>
             <MenuList
               boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
@@ -158,7 +157,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
                 })}
             </MenuList>
           </Menu>
-        }
+        )}
       </Box>
 
       <Box
