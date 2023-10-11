@@ -63,7 +63,7 @@ const TVLBox = () => {
                         />
                         <TVLRow
                             name={"User Count"}
-                            value={defiData?.isSuccess && defiData?.data?.userCount !== null  ? USDollar.format(defiData?.data?.userCount) : "-"}
+                            value={defiData?.isSuccess && defiData?.data?.userCount !== null && defiData?.data?.userCount !== 0  ? USDollar.format(defiData?.data?.userCount) : "-"}
                         />
                     </Box>
                 </Box>
