@@ -55,7 +55,7 @@ const Banner = () => {
                     <Box h={"80%"} display={"flex"} justifyContent={"center"} alignItems={"end"}>
                         <Box layerStyle={"center"} gap={"15px"} px={"15px"} borderRight={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")}>
                             <Text variant={'h3'} color={useColorModeValue("#3A3A3A", "#A8ADBD")}>
-                                {defiData?.chains?.length ?? 0} chains
+                                {defiData?.chains?.length ?? 0} {defiData?.chains?.length > 1 ? "chains" : "chain"}
                             </Text>
                             <Box layerStyle={"center"} >
                                 <BlockchainSelectionMenu
