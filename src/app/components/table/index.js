@@ -22,7 +22,7 @@ import React from "react";
 import TooltipComp from "/src/app/components/tooltipComp";
 import SkeletonTable from "/src/app/components/skeleton";
 import { SingleAccordionComp } from "/src/app/components/accordion";
-import { HiSortDescending } from "react-icons/hi"
+import { HiSortDescending } from "react-icons/hi";
 
 const GenericTable = ({
   tableHeader,
@@ -65,11 +65,7 @@ const GenericTable = ({
                       {item.label}
                     </Text>
                     {item.isSortingEnabled && (
-                      <Icon
-                        as={HiSortDescending}
-                        boxSize={"16px"}
-                        alt="Sort"
-                      />
+                      <Icon as={HiSortDescending} boxSize={"16px"} alt="Sort" />
                     )}
                     {item.isTooltip && (
                       <TooltipComp label={item?.tooltipLabel} />
@@ -81,7 +77,7 @@ const GenericTable = ({
           </Tr>
         </Thead>
 
-        <Tbody border={"0px"}>
+        <Tbody border={"0px"} bgColor={useColorModeValue("#FFF", "#202020")}>
           {(tableData?.isError || tableData === null) && (
             <>
               <Tr>
@@ -163,20 +159,19 @@ const GenericTable = ({
           <TableHeaderRowMobile />
         </Thead>
 
-        <Tbody>
-          {(tableData?.isError ||
-            tableData === null) && (
-              <Tr>
-                <Td
-                  p="20px"
-                  textAlign={"center"}
-                  height={"245px"}
-                  colSpan={SkeletonRowsColumnsDesktop?.numColumns}
-                >
-                  <Text variant={"noDataText"}>No data available</Text>
-                </Td>
-              </Tr>
-            )}
+        <Tbody bgColor={useColorModeValue("#FFF", "#202020")}>
+          {(tableData?.isError || tableData === null) && (
+            <Tr>
+              <Td
+                p="20px"
+                textAlign={"center"}
+                height={"245px"}
+                colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+              >
+                <Text variant={"noDataText"}>No data available</Text>
+              </Td>
+            </Tr>
+          )}
           {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsMobile.numColumns}
