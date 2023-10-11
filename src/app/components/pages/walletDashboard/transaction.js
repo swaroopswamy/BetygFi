@@ -471,7 +471,6 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               ml="6px"
             >
               {Number(item?.value).toFixed(2)}
-              {" ETH"}
             </Text>
           </Box>
         </Td>
