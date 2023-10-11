@@ -10,9 +10,9 @@ import {
   useDisclosure,
   Slide,
 } from "@chakra-ui/react";
-import { RiHomeLine } from 'react-icons/ri';
-import { TiDocumentText } from 'react-icons/ti';
-import { BiWalletAlt } from 'react-icons/bi';
+import { RiHomeLine } from "react-icons/ri";
+import { TiDocumentText } from "react-icons/ti";
+import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
@@ -51,30 +51,24 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
-        // marginLeft={"11px"}
       >
         <Box
           ml={{ base: 0, md: 0 }}
-          alignItems="flex-start"
-          display={"flex"}
+          layerStyle={"flexCenterFlexStart"}
           w={"100%"}
           h={"100%"}
         >
           <Box
             ml={{ base: 0, md: 0 }}
             mr={{ base: 2, md: 4 }}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems="flex-start"
+            layerStyle={"FlexCenterflexStart"}
           >
             <Text
               mr={{ base: 2, md: 4 }}
-              fontSize={"14px"}
-              lineHeight={"20px"}
-              letterSpacing={"10%"}
+              variant={"smallTableBodyMobile"}
               fontWeight={manrope.style.fontWeight}
-              color={useColorModeValue("#16171B", "#FFFFFF")}
               paddingLeft={"10px"}
+              opacity={"0.6"}
             >
               &#169; 2023 Solvendo. All Rights Reserved.
             </Text>
@@ -83,8 +77,8 @@ const Footer = ({ ...rest }) => {
       </Box>
 
       <Box
-        opacity={!isScrolledDown ? 1 : 0} // Adjust opacity based on visibility
-        transition="opacity 0.1 s ease-in-out" // Add a fade transition
+        opacity={!isScrolledDown ? 1 : 0}
+        transition="opacity 0.1 s ease-in-out"
         position={"fixed"}
         bottom="0"
         width="100%"
@@ -92,11 +86,8 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
       >
-        <Box width={"100%"} display={"flex"} justifyContent={"space-evenly"} justifyItems={"stretch"}>
-          <FooterMobileLink
-            name={"Home"}
-            NavIcon={RiHomeLine}
-            link={"/"} />
+        <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
+          <FooterMobileLink name={"Home"} NavIcon={RiHomeLine} link={"/"} />
           <FooterMobileLink
             name={"Approach Paper"}
             NavIcon={TiDocumentText}
@@ -127,7 +118,9 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
 
   return (
     <>
-      <Box layerStyle={"flexColumn"} justifyContent={"center"} w={"100%"}
+      <Box
+        layerStyle={"FlexColumnCenter"}
+        padding={"10px 10px"}
         position="relative"
         gap={"10px"}
         cursor={"pointer"}
@@ -151,10 +144,15 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
           <Icon
             as={NavIcon}
             boxSize={"28px"}
-            color={pathname === link ?
-                    (colorMode === "light" ? "#202020" : "#FFFFFF") :
-                    (colorMode === "light" ? "#6F7383" : "#676767")
-                  }
+            color={
+              pathname === link
+                ? colorMode === "light"
+                  ? "#202020"
+                  : "#FFFFFF"
+                : colorMode === "light"
+                ? "#6F7383"
+                : "#676767"
+            }
           />
         </Box>
         <Text
@@ -170,4 +168,3 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
     </>
   );
 };
-

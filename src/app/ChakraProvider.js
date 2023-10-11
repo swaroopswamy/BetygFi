@@ -76,6 +76,17 @@ export function Providers({ children }) {
         alignItems: "center",
         justifyContent: "flex-start",
       },
+      FlexCenterflexStart: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+      },
+      FlexColumnCenter: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        justifyItems: "center",
+      },
     },
   });
 

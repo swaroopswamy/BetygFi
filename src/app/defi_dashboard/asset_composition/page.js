@@ -65,7 +65,6 @@ function AssetComposition() {
                 />
                 <Text
                     variant={"h6"}
-                    letterSpacing={"1.2px"}
                 >
                     Home/DeFi Dashboard/DeFi Asset Composition
                 </Text>
