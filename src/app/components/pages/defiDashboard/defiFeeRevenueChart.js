@@ -24,9 +24,7 @@ function DefiFeeRevenueChart() {
   const searchParam = useSearchParams();
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
-  const Definitions =
-    "DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution.";
-
+  
   const defi = searchParam.get("defi");
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
@@ -119,9 +117,9 @@ function DefiFeeRevenueChart() {
         <Box layerStyle={"spaceBetween"} p={"20px"} >
           <Box layerStyle={"flexCenter"} gap={"5px"}>
             <Text variant={"smallTableHeader"}>
-              DeFi Borrow/Supply/TVL
+              DeFi Fee and Revenue
             </Text>
-            <TooltipComp label="DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
+            <TooltipComp label="DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution." />
           </Box>
 
 

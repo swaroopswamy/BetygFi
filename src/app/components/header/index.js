@@ -83,9 +83,11 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     if (pathname === "/wallet_dashboard") {
       setSearchWalletAddressValue(searchParams.get("address"));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get("address")]);
   useEffect(() => {
     dispatch(FetchLocalStorageData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -134,7 +136,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 outline: "none",
                 border: "none",
               }}
-              value={searchWalletAddressValue ?? ''}
+              value={searchWalletAddressValue ?? ""}
               bgColor={"transparent"}
               variant={"h6"}
               w="100%"
@@ -181,9 +183,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   p="15px 20px"
                   minW="150px"
                 >
-                  <Text variant={"ConectWalletText"}>
-                    Connect Wallet
-                  </Text>
+                  <Text variant={"ConectWalletText"}>Connect Wallet</Text>
                 </Box>
               </Box>
             </>
@@ -204,29 +204,22 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   borderRadius={"50%"}
                   alt="search_icon"
                 />
-                <Box
-                  layerStyle={"flexColumn"}
-                  ml="10px"
-                  mr="20px"
-                  minW="150px"
-                >
-                  <Text variant={"TopWalletsText"}>
-                    Cameron Williamson
-                  </Text>
+                <Box layerStyle={"flexColumn"} ml="10px" mr="20px" minW="150px">
+                  <Text variant={"TopWalletsText"}>No Name</Text>
                   <Text variant={"h6"}>
                     {!isEmpty(LoggedInData?.data)
                       ? LoggedInData?.data?.user?._id
-                        .split("")
-                        .join("")
-                        .substring(0, 6) +
-                      "..." +
-                      LoggedInData?.data?.user?._id.slice(-5)
+                          .split("")
+                          .join("")
+                          .substring(0, 6) +
+                        "..." +
+                        LoggedInData?.data?.user?._id.slice(-5)
                       : preLoadedData?.data?.token?.user?._id
-                        .split("")
-                        .join("")
-                        .substring(0, 6) +
-                      "..." +
-                      preLoadedData?.data?.token?.user?._id.slice(-5)}
+                          .split("")
+                          .join("")
+                          .substring(0, 6) +
+                        "..." +
+                        preLoadedData?.data?.token?.user?._id.slice(-5)}
                   </Text>
                 </Box>
 
@@ -265,10 +258,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         {...rest}
       >
         <Box gap={"20px"} layerStyle={"flexCenter"}>
-          <Box
-            cursor={"pointer"}
-            onClick={onMobileSidebarOpen}
-          >
+          <Box cursor={"pointer"} onClick={onMobileSidebarOpen}>
             <Image
               src={
                 colorMode === "light"
@@ -348,7 +338,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               variant={"h6"}
               w="100%"
               placeholder="Search Wallet Address"
-              value={searchWalletAddressValue ?? ''}
+              value={searchWalletAddressValue ?? ""}
               onChange={(e) => {
                 handleSearchByWalletAddress(e);
               }}
@@ -365,9 +355,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 handleMobileSearchByWalletAddress();
               }}
             >
-              <Text variant={"SearchText"}>
-                Search
-              </Text>
+              <Text variant={"SearchText"}>Search</Text>
             </Box>
           </InputGroup>
         </Box>

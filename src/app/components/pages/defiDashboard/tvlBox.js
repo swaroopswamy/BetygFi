@@ -6,7 +6,6 @@ import millify from "millify";
 import LastUpdate from "/src/app/components/lastUpdate";
 
 let USDollar = new Intl.NumberFormat('en-US', {
-    style: 'currency',
     currency: 'USD',
 });
 
@@ -62,13 +61,10 @@ const TVLBox = () => {
                             name={"Token Price"}
                             value={defiData?.isSuccess && defiData?.data?.price !== null  ? "$" + defiData?.data?.price?.toFixed(2) : "-"}
                         />
-                        {/* <TVLRow
-                            name={"Fully Diluted"}
-                            value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
-                                precision: 2,
-                                locales: "en-US"
-                            })) : "-"}
-                        /> */}
+                        <TVLRow
+                            name={"User Count"}
+                            value={defiData?.isSuccess && defiData?.data?.userCount !== null && defiData?.data?.userCount !== 0  ? USDollar.format(defiData?.data?.userCount) : "-"}
+                        />
                     </Box>
                 </Box>
                 

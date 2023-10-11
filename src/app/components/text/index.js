@@ -274,6 +274,13 @@ const Text = defineStyleConfig({
       fontFamily: "Inter",
       textAlign: "center",
     }),
+    extraSmall: ({ colorMode }) => ({
+      fontFamily: "Inter",
+      fontSize: "13px",
+      fontWeight: "400",
+      lineHeight: "10px",
+      color: "#191919" ,
+    }),
   },
   defaultProps: {
     variant: "base",

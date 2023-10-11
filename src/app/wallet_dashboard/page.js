@@ -144,14 +144,14 @@ const WalletDashboardPage = () => {
               <Box display={"flex"} flexDirection={"column"}>
                 <BlockchainSelectionMenuBlocks />
               </Box>
-              <TabPanels>
-                <TabPanel p="0px">
+              <TabPanels bgColor={useColorModeValue("#F0F0F5","#191919")}>
+                <TabPanel p="0px" bgColor={useColorModeValue("#F0F0F5","#191919")}>
                   <TransactionPanelComponent />
                 </TabPanel>
-                <TabPanel p="0px">
+                <TabPanel p="0px"  bgColor={useColorModeValue("#F0F0F5","#191919")}>
                   <PortfolioPanelComponent />
                 </TabPanel>
-                <TabPanel p="0px">
+                <TabPanel p="0px"  bgColor={useColorModeValue("#F0F0F5","#191919")}>
                   <WalletAnalyticsPanel />
                 </TabPanel>
               </TabPanels>

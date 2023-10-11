@@ -61,26 +61,29 @@ const TransactionPanelComponent = () => {
     <>
       <Box
         w={"100%"}
-        mt="25px"
+        pt="25px"
         borderRadius={"6px"}
-        bgColor={useColorModeValue("#FFF", "#202020")}
+        bgColor={useColorModeValue("#F0F0F5", "#191919")}
         px={"2px"}
         overflow={"auto"}
         mb="20px"
       >
         <Flex
-          padding={"25px"}
+          py={{base:'20px',md:"25px"}}
+          px={{base:'10px',md:"25px"}}
+          
+          mx={{base:"10px",md:"none  "}}
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
-          display={{ base: "none", md: "block" }}
-          w={{ base: "100%", md: "100%" }}
+          display={"block"}
+
         >
           <Text variant={"h2"} textTransform={"capitalize"}>
             Wallet Transaction
           </Text>
         </Flex>
 
-        <Box overflow={"auto"}>
+        <Box overflow={"auto"} px={{base:"10px",md:"none  "}}>
           <GenericTable
             tableHeader={tableHeader}
             tableData={walletTransactionsData}
@@ -471,7 +474,6 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               ml="6px"
             >
               {Number(item?.value).toFixed(2)}
-              {" ETH"}
             </Text>
           </Box>
         </Td>

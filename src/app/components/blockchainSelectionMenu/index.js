@@ -1,5 +1,5 @@
 "use client";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 // const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
 import {
   Box,
@@ -19,7 +19,7 @@ import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import React, { useEffect } from "react";
 
-const BlockchainSelectionMenu = () => {
+const BlockchainSelectionMenu = ({ chains }) => {
   const dispatch = useDispatch();
   const { colorMode } = useColorMode();
 
@@ -33,6 +33,17 @@ const BlockchainSelectionMenu = () => {
     (state) => state?.dashboardTableData?.blockchainType
   );
 
+  let blockchains = { data: [] };
+  if (chains) {
+    blockchainListData?.data?.map((item) => {
+      if (chains?.includes(item.name)) {
+        blockchains.data.push(item);
+      }
+    });
+  } else {
+    blockchains = blockchainListData;
+  }
+
   useEffect(() => {
     dispatch(fetchBlockchainListData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -41,7 +52,7 @@ const BlockchainSelectionMenu = () => {
   return (
     <>
       <Box className="center" display={{ base: "none", md: "flex" }}>
-        {blockchainListData?.data?.map((item, i) => {
+        {blockchains?.data?.map((item, i) => {
           if (i >= 4) return;
           return (
             <Tooltip key={i} label={item.name}>
@@ -75,75 +86,78 @@ const BlockchainSelectionMenu = () => {
           );
         })}
 
-        <Menu closeOnSelect={false} suppressHydrationWarning={true}>
-          <MenuButton
-            bg={"#D9D9D9"}
-            borderRadius="50%"
-            w="24px"
-            h="24px"
-            transition="all 0.2s"
-            border="0px"
-            ml="-10px"
-            _focus={{ boxShadow: "outline" }}
-            color="#000"
-            textStyle="h4"
-            suppressHydrationWarning={true}
-          >
-            +
-            {blockchainListData?.isSuccess &&
-              blockchainListData?.data?.length - 4}
-          </MenuButton>
-          <MenuList
-            boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
-            bgColor={useColorModeValue("#FFF", "#191919")}
-          >
-            {blockchainListData?.isSuccess &&
-              blockchainListData?.data?.map((item, i) => {
-                return (
-                  <MenuItem
-                    key={i}
-                    bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-                    _hover={{
-                      bg: colorMode === "light" ? "#F5F5F7" : "#202020",
-                    }}
-                  >
-                    <Checkbox
-                      colorScheme="green"
-                      value={item.name}
-                      checked={blockchainSelected.includes(item.id)}
-                      onChange={(e) => {
-                        BlockchainTypeHandler(item.id);
+        {blockchains?.data?.length > 4 && (
+          <Menu closeOnSelect={false} suppressHydrationWarning={true}>
+            <MenuButton
+              bg={"#D9D9D9"}
+              borderRadius="50%"
+              w="24px"
+              h="24px"
+              transition="all 0.2s"
+              border="0px"
+              ml="-10px"
+              _focus={{ boxShadow: "outline" }}
+              color="#000"
+              suppressHydrationWarning={true}
+            >
+              <Text variant={"extraSmall"}>
+                +
+                {blockchainListData?.isSuccess && blockchains?.data?.length - 4}
+              </Text>
+            </MenuButton>
+            <MenuList
+              boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
+              bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+            >
+              {blockchainListData?.isSuccess &&
+                blockchains?.data?.map((item, i) => {
+                  if (i < 4) return;
+                  return (
+                    <MenuItem
+                      key={i}
+                      bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+                      _hover={{
+                        bg: colorMode === "light" ? "#F5F5F7" : "#202020",
                       }}
                     >
-                      <Box
-                        display={"flex"}
-                        cursor={"pointer"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
+                      <Checkbox
+                        colorScheme="green"
+                        value={item.name}
+                        checked={blockchainSelected.includes(item.id)}
+                        onChange={(e) => {
+                          BlockchainTypeHandler(item.id);
+                        }}
                       >
-                        <Image
-                          width={24}
-                          height={24}
-                          src={item.logoUrl}
-                          alt={`${item.id}_icon`}
-                          style={{ marginRight: "20px", marginLeft: "14px" }}
-                        ></Image>
-                        <Text
-                          fontSize={"12px"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          color={colorMode === "light" ? "#16171B" : "#FFF"}
+                        <Box
+                          display={"flex"}
+                          cursor={"pointer"}
+                          alignItems={"center"}
+                          justifyContent={"center"}
                         >
-                          {item.name}
-                        </Text>
-                      </Box>
-                    </Checkbox>
-                  </MenuItem>
-                );
-              })}
-          </MenuList>
-        </Menu>
+                          <Image
+                            width={24}
+                            height={24}
+                            src={item.logoUrl}
+                            alt={`${item.id}_icon`}
+                            style={{ marginRight: "20px", marginLeft: "14px" }}
+                          ></Image>
+                          <Text
+                            fontSize={"12px"}
+                            fontWeight={"400"}
+                            lineHeight={"20px"}
+                            letterSpacing={"1px"}
+                            color={colorMode === "light" ? "#16171B" : "#FFF"}
+                          >
+                            {item.name}
+                          </Text>
+                        </Box>
+                      </Checkbox>
+                    </MenuItem>
+                  );
+                })}
+            </MenuList>
+          </Menu>
+        )}
       </Box>
 
       <Box
@@ -153,7 +167,7 @@ const BlockchainSelectionMenu = () => {
         pl={"18px"}
         gap={"7px"}
       >
-        {blockchainListData?.data?.map((item, i) => (
+        {blockchains?.data?.map((item, i) => (
           <Box
             className="center"
             key={i}

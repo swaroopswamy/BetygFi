@@ -7,9 +7,9 @@ import {
   Image,
   useDisclosure,
 } from "@chakra-ui/react";
-import { RiHomeLine } from 'react-icons/ri';
-import { TiDocumentText } from 'react-icons/ti';
-import { BiWalletAlt } from 'react-icons/bi';
+import { RiHomeLine } from "react-icons/ri";
+import { TiDocumentText } from "react-icons/ti";
+import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
@@ -74,7 +74,7 @@ const Footer = ({ ...rest }) => {
       </Box>
 
       <Box
-        opacity={!isScrolledDown ? 1 : 0} 
+        opacity={!isScrolledDown ? 1 : 0}
         transition="opacity 0.1 s ease-in-out"
         position={"fixed"}
         bottom="0"
@@ -84,7 +84,7 @@ const Footer = ({ ...rest }) => {
         height={"85px"}
       >
         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
-          <FooterMobileLink name={"Home"} id={"home"} link={"/"} />
+          <FooterMobileLink name={"Home"} NavIcon={RiHomeLine} link={"/"} />
           <FooterMobileLink
             name={"Approach Paper"}
             NavIcon={TiDocumentText}
@@ -138,17 +138,18 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
         }
       >
         <Box layerStyle={"center"}>
-          <Image
-            width={{ base: "25px", sm: "30px" }}
-            height={{ base: "25px", sm: "30px" }}
-            src={
+          <Icon
+            as={NavIcon}
+            boxSize={"28px"}
+            color={
               pathname === link
                 ? colorMode === "light"
-                  ? `/icons/${id}_footer_logo_bold_dark.svg`
-                  : `/icons/${id}_footer_logo_bold_light.svg`
-                : `/icons/${id}_footer_logo.svg`
+                  ? "#202020"
+                  : "#FFFFFF"
+                : colorMode === "light"
+                ? "#6F7383"
+                : "#676767"
             }
-            alt="footer_logo"
           />
         </Box>
         <Text
@@ -164,4 +165,3 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
     </>
   );
 };
-
