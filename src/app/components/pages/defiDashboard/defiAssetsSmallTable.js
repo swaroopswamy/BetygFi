@@ -33,21 +33,27 @@ function DefiAssetsSmallTable() {
   const defi = searchParam.get("defi");
   const id = searchParam.get("id");
 
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
   const defiAssetsTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
   );
 
   const getDefiAssetsTableDataHandler = () => {
     const payload = {
-      defi: defi,
+        defi: defi,
+        blockchain: blockchainSelected,
+        page: 1,
+        limit: 20
     };
     dispatch(fetchDefiAssetCompositionTableData(payload));
-  };
+};
 
   useEffect(() => {
     getDefiAssetsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [blockchainSelected]);
 
   return (
     <Box
@@ -104,7 +110,7 @@ function DefiAssetsSmallTable() {
                     variant={"h3"}
                     fontWeight={"600"}
                     letterSpacing={"1.4px"}
-                    color={item?.item?.value > 0 ? "#245F00" : "#EF1E1E"}
+                    color={item?.item?.value > 0 ? useColorModeValue("#245F00", "#60C000") : useColorModeValue("#EF1E1E", "#FF3535")}
                   >
                     {item?.item?.value > 0 ? "+ " : "- "}
                     {USDollar.format(item?.item?.value)}

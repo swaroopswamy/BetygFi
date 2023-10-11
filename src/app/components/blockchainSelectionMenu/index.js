@@ -1,4 +1,6 @@
 "use client";
+import dynamic from 'next/dynamic'
+// const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
 import {
   Box,
   Checkbox,
@@ -97,7 +99,6 @@ const BlockchainSelectionMenu = () => {
           >
             {blockchainListData?.isSuccess &&
               blockchainListData?.data?.map((item, i) => {
-                if (i >= 4) return;
                 return (
                   <MenuItem
                     key={i}

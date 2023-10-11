@@ -490,6 +490,7 @@ const MobileSidebar = ({
                         newTab={link.newTab}
                         isActive={pathname === link.path}
                         height={"50px"}
+                        mr={"0px"}
                       >
                         <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
                       </NavItem>
