@@ -66,7 +66,7 @@ function DefiTVLChart() {
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          USDollar.format(series[0][dataPointIndex]) + " USD" +
+          millify(series[0][dataPointIndex], {precision: 2, locales: "en-US"}) + " USD" +
           '</div>' +
           "</div>"
         );
