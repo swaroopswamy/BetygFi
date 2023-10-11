@@ -4,6 +4,7 @@ import LayoutProvider from "./layout/LayoutProvider";
 import { Web3Provider } from "./Web3Provider";
 import Script from "next/script";
 import "/styles/styles.scss";
+import { Inter } from "next/font/google";
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
@@ -14,6 +15,12 @@ export default function RootLayout({ children }) {
     <>
       <html lang="en">
         <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+            rel="stylesheet"
+          />
           {/* Hotjar Tracking Code for https://betygfi.com/
            */}
           <Script id="hotjar-analytics">
