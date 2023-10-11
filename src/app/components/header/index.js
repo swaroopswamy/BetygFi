@@ -83,9 +83,11 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     if (pathname === "/wallet_dashboard") {
       setSearchWalletAddressValue(searchParams.get("address"));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams.get("address")]);
   useEffect(() => {
     dispatch(FetchLocalStorageData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
