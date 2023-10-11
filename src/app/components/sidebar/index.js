@@ -547,7 +547,7 @@ const MobileSidebar = ({
                     </Flex>
 
                     <Collapse in={isCommunitiesOpen} animateOpacity={"true"}>
-                      <Box layerStyle={"flexColumn"} pl={"20px"}>
+                      <Box layerStyle={"flexColumn"}>
                         {linkItemsDown.map((link, i) => (
                           <NavItem
                             key={i}
@@ -556,6 +556,8 @@ const MobileSidebar = ({
                             newTab={link.newTab}
                             isActive={pathname === link.path}
                             height={"40px"}
+                            pl={"20px"}
+                            mr={"0px"}
                           >
                             <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
                           </NavItem>
@@ -571,6 +573,7 @@ const MobileSidebar = ({
                           newTab={link.newTab}
                           isActive={pathname === link.path}
                           height={"50px"}
+                          mr={"0px"}
                         >
                           <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
                         </NavItem>

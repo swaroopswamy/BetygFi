@@ -352,7 +352,7 @@ const PanelComp = ({ item }) => {
           w={"40%"}
         >
           <Text variant="tableHead"> Category </Text>
-          <TooltipComp label="Category outlines the type of the services the DeFi provides" />
+          {/* <TooltipComp label="Category outlines the type of the services the DeFi provides" /> */}
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
@@ -373,7 +373,7 @@ const PanelComp = ({ item }) => {
           w={"40%"}
         >
           <Text variant="tableHead"> Price </Text>
-          <TooltipComp label="Market price of the DeFi token" />
+          {/* <TooltipComp label="Market price of the DeFi token" /> */}
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
@@ -397,7 +397,7 @@ const PanelComp = ({ item }) => {
           w={"40%"}
         >
           <Text variant="tableHead"> TVL </Text>
-          <TooltipComp label="Total value locked (TVL) is the real-time value of the assets that the DeFi holds" />
+          {/* <TooltipComp label="Total value locked (TVL) is the real-time value of the assets that the DeFi holds" /> */}
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
@@ -421,7 +421,7 @@ const PanelComp = ({ item }) => {
           w={"40%"}
         >
           <Text variant="tableHead"> MCap </Text>
-          <TooltipComp label="Market capitalization of the DeFi is the total value of tokens of the DeFi" />
+          {/* <TooltipComp label="Market capitalization of the DeFi is the total value of tokens of the DeFi" /> */}
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
@@ -447,7 +447,7 @@ const PanelComp = ({ item }) => {
           w={"40%"}
         >
           <Text variant="tableHead"> MCap/TVL </Text>
-          <TooltipComp label="The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (Market Value of the DeFi) and the total value of assets of the DeFi" />
+          {/* <TooltipComp label="The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (Market Value of the DeFi) and the total value of assets of the DeFi" /> */}
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
