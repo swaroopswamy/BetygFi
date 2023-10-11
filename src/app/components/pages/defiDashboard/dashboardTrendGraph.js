@@ -136,7 +136,7 @@ function DashboardTrendGraph() {
         flexDirection={"column"}
         alignContent={"center"}
         // height={"400px"}
-        width={{ base: "100%", md: "100%", bigSize: "70%" }}
+        width={{ base: "100%", lg: "70%" }}
         bgColor={useColorModeValue("#FFFFFF", "#202020")}
         border={"1px"}
         borderColor={useColorModeValue("#FFFFFF", "#272727")}
@@ -598,7 +598,6 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 }
 
 function TrendGraphTypeButton({
-  key,
   name,
   value,
   graphTypeSelected,
@@ -611,7 +610,6 @@ function TrendGraphTypeButton({
   return (
     <>
       <Box
-        key={key}
         position={"relative"}
         padding={"7px 8px"}
         border={"1px"}

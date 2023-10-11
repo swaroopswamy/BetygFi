@@ -9,6 +9,7 @@ import {
   useColorMode,
   Collapse,
   useDisclosure,
+  Button,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,6 +46,7 @@ const Rankings = () => {
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
+
   const categorySelected = useSelector(
     (state) => state?.dashboardTableData?.categorySelected
   );
@@ -359,6 +361,8 @@ const ButtonComp = ({ item }) => {
 };
 
 const PanelComp = ({ item }) => {
+  const router = useRouter();
+
   return (
     <Box
       display={"flex"}
@@ -483,6 +487,16 @@ const PanelComp = ({ item }) => {
             ? (item.mcap / item.tvl).toFixed(2)
             : "NA"}
         </Text>
+      </Box>
+
+      <Box layerStyle={"center"}>
+        <Button variant='link'
+          onClick={() => {
+            router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
+          }}
+        >
+          Open Dashboard
+        </Button>
       </Box>
     </Box>
   );

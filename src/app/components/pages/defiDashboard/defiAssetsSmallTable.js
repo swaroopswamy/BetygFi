@@ -19,7 +19,6 @@ import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashbo
 import LastUpdate from "/src/app/components/lastUpdate";
 import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import TooltipComp from "/src/app/components/tooltipComp";
-import Image from "next/image";
 
 let USDollar = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -34,6 +33,9 @@ function DefiAssetsSmallTable() {
   const defi = searchParam.get("defi");
   const id = searchParam.get("id");
 
+  const blockchainSelected = useSelector(
+    (state) => state?.dashboardTableData?.blockchainType
+  );
   const defiAssetsTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
   );
@@ -41,6 +43,9 @@ function DefiAssetsSmallTable() {
   const getDefiAssetsTableDataHandler = () => {
     const payload = {
       defi: defi,
+      blockchain: blockchainSelected,
+      page: 1,
+      limit: 20,
     };
     dispatch(fetchDefiAssetCompositionTableData(payload));
   };
@@ -48,8 +53,8 @@ function DefiAssetsSmallTable() {
   useEffect(() => {
     getDefiAssetsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [blockchainSelected]);
+  const { colorMode } = useColorMode();
   return (
     <Box
       w={{ base: "100%", lg: "50%" }}
@@ -105,7 +110,15 @@ function DefiAssetsSmallTable() {
                     variant={"h3"}
                     fontWeight={"600"}
                     letterSpacing={"1.4px"}
-                    color={item?.item?.value > 0 ? "#245F00" : "#EF1E1E"}
+                    color={
+                      item?.item?.value > 0
+                        ? colorMode === "light"
+                          ? "#245F00"
+                          : "#60C000"
+                        : colorMode === "light"
+                        ? "#EF1E1E"
+                        : "#FF3535"
+                    }
                   >
                     {item?.item?.value > 0 ? "+ " : "- "}
                     {USDollar.format(item?.item?.value)}

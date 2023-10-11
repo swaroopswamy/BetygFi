@@ -1,15 +1,16 @@
 "use client";
 import {
   Box,
-  Flex,
   Text,
   useColorMode,
   useColorModeValue,
   Image,
-  Icon,
   useDisclosure,
-  Slide,
 } from "@chakra-ui/react";
+import { RiHomeLine } from 'react-icons/ri';
+import { TiDocumentText } from 'react-icons/ti';
+import { BiWalletAlt } from 'react-icons/bi';
+import { FaPeopleGroup } from "react-icons/fa6";
 import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
@@ -86,15 +87,19 @@ const Footer = ({ ...rest }) => {
           <FooterMobileLink name={"Home"} id={"home"} link={"/"} />
           <FooterMobileLink
             name={"Approach Paper"}
-            id={"approachpaper"}
+            NavIcon={TiDocumentText}
             link={"/approach-paper"}
           />
           <FooterMobileLink
             name={"Top Wallets"}
-            id={"wallet"}
+            NavIcon={BiWalletAlt}
             link={"/top-wallets"}
           />
-          <FooterMobileLink name={"Community"} id={"community"} link={""} />
+          <FooterMobileLink
+            name={"Community"}
+            NavIcon={FaPeopleGroup}
+            link={""}
+          />
         </Box>
       </Box>
     </>
@@ -103,7 +108,7 @@ const Footer = ({ ...rest }) => {
 
 export default Footer;
 
-const FooterMobileLink = ({ name, id, link }) => {
+const FooterMobileLink = ({ name, NavIcon, link }) => {
   const { colorMode } = useColorMode();
   const router = useRouter();
   const pathname = usePathname();
@@ -114,7 +119,6 @@ const FooterMobileLink = ({ name, id, link }) => {
         layerStyle={"FlexColumnCenter"}
         padding={"10px 10px"}
         position="relative"
-        className="test"
         gap={"10px"}
         cursor={"pointer"}
         onClick={() => {
@@ -125,10 +129,10 @@ const FooterMobileLink = ({ name, id, link }) => {
           pathname === link && {
             position: "absolute",
             content: '""',
-            top: "72px",
+            bottom: 0,
             left: 0,
             width: "100%",
-            height: "5px",
+            height: "3px",
             bgColor: colorMode === "light" ? "#202020" : "#FFFFFF",
           }
         }
@@ -148,9 +152,9 @@ const FooterMobileLink = ({ name, id, link }) => {
           />
         </Box>
         <Text
-          fontSize={{ base: "12px", sm: "14px" }}
-          fontWeight={pathname === link ? "600" : "400"}
+          fontSize={{ sm: "12px", midSize: "14px" }}
           lineHeight={"20px"}
+          fontWeight={pathname === link ? "600" : "400"}
           textTransform={"capitalize"}
           textAlign={"center"}
         >

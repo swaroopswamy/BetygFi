@@ -53,14 +53,14 @@ const TVLBox = () => {
                     <Box display={"flex"} flexDirection={"column"} justifyContent={"space-between"} py={"10px"} gap={"5px"}>
                         <TVLRow
                             name={"Market Cap"}
-                            value={defiData?.isSuccess ? "$" + (millify(defiData?.data?.mcap, {
+                            value={defiData?.isSuccess && defiData?.data?.mcap !== null ? "$" + (millify(defiData?.data?.mcap, {
                                 precision: 2,
                                 locales: "en-US"
                             })) : "-"}
                         />
                         <TVLRow
                             name={"Token Price"}
-                            value={defiData?.isSuccess ? "$" + defiData?.data?.price?.toFixed(2) : "-"}
+                            value={defiData?.isSuccess && defiData?.data?.price !== null  ? "$" + defiData?.data?.price?.toFixed(2) : "-"}
                         />
                         {/* <TVLRow
                             name={"Fully Diluted"}

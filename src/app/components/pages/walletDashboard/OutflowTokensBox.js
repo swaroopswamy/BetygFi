@@ -49,7 +49,7 @@ const OutflowTokensBox = () => {
         px={"20px"}
       >
         <Box layerStyle={"flexCenter"} pt="15px">
-          <Text variant={"smallTableHeader"} mr="0.5em">
+          <Text variant={"smallTableHeader"} >
             Outflow Tokens (30 Days)
           </Text>
           <TooltipComp label="Outflow shows the number of tokens sent by the wallet." />

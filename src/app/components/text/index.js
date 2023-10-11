@@ -9,6 +9,7 @@ const Text = defineStyleConfig({
   variants: {
     base: {},
     h1: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: { base: "18px", md: "24px" },
       fontWeight: "600",
       lineHeight: "20px",
@@ -16,18 +17,21 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "#191919" : "#FFFFFF",
     }),
     h2: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "18px",
       fontWeight: "600",
       lineHeight: { base: "10px", md: "20px" },
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     h3: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "14px",
       fontWeight: "400",
       lineHeight: "20px",
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     h4: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "16px",
       fontWeight: "400",
       lineHeight: "10px",
@@ -43,12 +47,14 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "rgba(22, 23, 27, 0.80)" : "#A8ADBD",
     }),
     h5: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "12px",
       fontWeight: "400",
       lineHeight: "20px",
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     h6: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "12px",
       fontWeight: "400",
       lineHeight: "20px",
@@ -56,6 +62,7 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "#16171B" : "#A8ADBD",
     }),
     h7: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "14px",
       fontWeight: "600",
       lineHeight: "20px",
@@ -70,26 +77,30 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "#8F8F8F" : "#A8ADBD",
     }),
     h9: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "14px",
       fontWeight: "400",
       lineHeight: "10px",
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     noDataText: ({ colorMode }) => ({
-      fontSize: "20px",
+      fontSize: "17px",
       fontWeight: "400",
+      fontFamily: "Inter",
       lineHeight: "20px",
       letterSpacing: "1px",
       opacity: 0.6,
       color: colorMode === "light" ? "#16171B" : "#FFFFFF",
     }),
     NAtext: ({ colorMode }) => ({
-      fontSize: "14px",
+      fontSize: "12px",
+      fontFamily: "Inter",
       fontWeight: "400",
       lineHeight: "20px",
       color: colorMode === "light" ? "#090909" : "#FFFFFF",
     }),
     smallTableHeader: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: "18px",
       fontWeight: "600",
       lineHeight: "20px",
@@ -193,6 +204,7 @@ const Text = defineStyleConfig({
       color: colorMode === "light" ? "#191919" : "#FFFFFF",
     }),
     TabText: ({ colorMode }) => ({
+      fontFamily: "Inter",
       fontSize: { base: "10px", md: "14px" },
       fontWeight: { base: "700", md: "600" },
       lineHeight: "10px",

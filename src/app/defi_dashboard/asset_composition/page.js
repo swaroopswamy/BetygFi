@@ -8,9 +8,9 @@ import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/data
 import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import { Text, Td, Tr, Th, Flex, Box, useColorModeValue, Image, useColorMode, Avatar } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import SearchBox from "@/app/components/searchBox";
 import GenericTable from "@/app/components/table";
 import { DefiAssetsBigTableHeader } from "/src/app/components/pages/defiDashboard/helper";
+import PageButtons from "/src/app/components/pageButtons";
 
 let USDollar = new Intl.NumberFormat('en-US', {
     currency: 'USD',
@@ -21,9 +21,18 @@ function AssetComposition() {
     const searchParam = useSearchParams();
     const dispatch = useDispatch();
 
+    const [tablePage, setTablePage] = useState(1);
+
+    const pageChangeHandler = (page) => {
+        tablePage >= 1 && setTablePage(page);
+    };
+
     const defi = searchParam.get("defi");
     const id = searchParam.get("id");
 
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
@@ -31,6 +40,9 @@ function AssetComposition() {
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
+            blockchain: blockchainSelected,
+            page: tablePage,
+            limit: 20
         };
         dispatch(fetchDefiAssetCompositionTableData(payload));
     };
@@ -38,10 +50,10 @@ function AssetComposition() {
     useEffect(() => {
         getDefiAssetsTableDataHandler();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [blockchainSelected, tablePage]);
 
     return (
-        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} mb={"30px"} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
+        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
             <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
                 onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >
@@ -125,6 +137,14 @@ function AssetComposition() {
                     }}
                 />
 
+            </Box>
+
+            <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
+                <PageButtons
+                    page={tablePage}
+                    totalPages={3}
+                    pageChangeHandler={pageChangeHandler}
+                />
             </Box>
         </Box>
     )

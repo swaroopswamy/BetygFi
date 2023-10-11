@@ -10,6 +10,7 @@ import {
   Flex,
   Image,
   Link,
+  useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -104,6 +105,7 @@ const TransactionPanelComponent = () => {
 };
 
 const TableRow = ({ item, rowIndex }) => {
+  const { colorMode } = useColorMode();
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
@@ -212,9 +214,17 @@ const TableRow = ({ item, rowIndex }) => {
           <Box layerStyle={"flexCenter"}>
             <Text
               fontSize={"14px"}
-              fontWeight={"400"}
+              fontWeight={"600"}
               ml="4px"
-              color={item?.usdValue >= 0 ? "#60C000" : "#FF3535"}
+              color={
+                item?.usdValue >= 0
+                  ? colorMode === "light"
+                    ? "#245F00"
+                    : "#60C000"
+                  : colorMode === "light"
+                  ? "#EF1E1E"
+                  : "#FF3535"
+              }
             >
               {item?.usdValue >= 0 ? "+" : "-"}
               {item?.usdValue} USD
@@ -258,6 +268,7 @@ const TableHeaderRowMobile = () => {
 };
 
 const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
+  const { colorMode } = useColorMode();
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
   );
@@ -318,7 +329,15 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
           letterSpacing={"1px"}
           mb="10px"
           mr={"20px"}
-          color={item?.usdValue >= 0 ? "#60C000" : "#FF3535"}
+          color={
+            item?.usdValue >= 0
+              ? colorMode === "light"
+                ? "#245F00"
+                : "#60C000"
+              : colorMode === "light"
+              ? "#EF1E1E"
+              : "#FF3535"
+          }
         >
           {item?.usdValue >= 0 ? "+" : "-"}
           {item?.usdValue} USD

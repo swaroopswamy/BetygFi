@@ -1,17 +1,12 @@
 
 "use client"
-import Governance from "./governance";
-import BarChart from "./BarChart";
-//import PerformanceMultiLineChart from "../wallet_dashboard/PerformanceMultiLineChart";
-
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, useColorModeValue, useColorMode, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
-import { fetchDefiUsersTableData, fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import { getDefiHotContractsTableData } from "@/services/defiDashboardService";
 import { Router } from "next/router";
 
 import Banner from "/src/app/components/pages/defiDashboard/banner";
@@ -70,8 +65,8 @@ const DefiDashboardPage = () => {
 
     return (
         <>
-            <Box bgColor={useColorModeValue("#F0F0F5", "#191919")} display={"flex"} flexDir={"column"} w={"100%"} p={"20px"} gap={"10px"}>
-                <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"}
+            <Box bgColor={{base: useColorModeValue("#FFFFFF", "#202020"), md: useColorModeValue("#F0F0F5", "#191919")}} display={"flex"} flexDir={"column"} w={"100%"}>
+                <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} p={"10px 20px"}
                     onClick={() => router.push(`/`)}
                 >
                     <ChevronLeftIcon

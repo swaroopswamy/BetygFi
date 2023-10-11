@@ -1,6 +1,6 @@
 import Dashboard from "./dashboard/page";
 import Script from 'next/script';
-
+import "/styles/styles.scss";
 
 export default function Home() {
 

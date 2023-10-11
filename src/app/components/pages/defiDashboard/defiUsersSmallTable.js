@@ -21,20 +21,22 @@ import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlic
 function DefiUsersSmallTable() {
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const defi = searchParam.get("defi");
+
   const blockchainSelected = useSelector(
-    (state) => state?.walletDashboardTableData?.blockchainType
+    (state) => state?.dashboardTableData?.blockchainType
   );
+
   const defiUsersTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiUsersTableData
   );
 
   const getDefiUsersTableDataHandler = () => {
+    let blockchains = blockchainSelected.map(item => item.toLowerCase());
     const payload = {
       defi: defi,
-      blockchain: [blockchainSelected],
+      blockchain: blockchains,
     };
     dispatch(fetchDefiUsersTableData(payload));
   };
@@ -63,7 +65,7 @@ function DefiUsersSmallTable() {
                 > View More </Button> */}
       </Box>
 
-      <Box h={"70%"} overflow={"hidden"}>
+      <Box h={"70%"} overflow={"auto"}>
         <GenericTable
           tableHeader={DefiUsersSmallTableHeader}
           tableData={defiUsersTableData}
@@ -80,7 +82,7 @@ function DefiUsersSmallTable() {
             return <Box></Box>;
           }}
           SkeletonRowsColumnsDesktop={{
-            numColumns: 3,
+            numColumns: 1,
             numRows: 5,
           }}
           SkeletonRowsColumnsMobile={{
@@ -169,11 +171,11 @@ const TableHeaderRowMobile = () => {
           <Text variant={"smallTableHeaderMobile"}>User Address</Text>
         </Box>
       </Th>
-      <Th>
+      {/* <Th>
         <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
           <Text variant={"smallTableHeaderMobile"}>Share</Text>
         </Box>
-      </Th>
+      </Th> */}
     </Tr>
   );
 };
