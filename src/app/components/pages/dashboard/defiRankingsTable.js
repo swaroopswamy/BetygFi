@@ -10,6 +10,7 @@ import {
   Collapse,
   useDisclosure,
   Button,
+  Avatar,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -176,49 +177,16 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={1}>
         <Box layerStyle={"flexCenter"} w={"120px"} gap={"10px"}>
-          {!isEmpty(item.logo) ? (
-            <>
-              <Image
-                width={24}
-                height={24}
-                style={{ borderRadius: "50%" }}
-                alt="logo"
-                src={item?.logo}
-              ></Image>
-            </>
-          ) : (
-            <>
-              <Box
-                width={"24px"}
-                height={"24px"}
-                alignItems={"center"}
-                justifyContent={"center"}
-                display={"flex"}
-                borderRadius={"50%"}
-                bgColor={"#676DFF"}
-              >
-                <Text color={"#FFF"} fontSize={"14px"} fontWeight={600}>
-                  {item.name.charAt(0)}
-                </Text>
-              </Box>
-            </>
-          )}
-          <Box layerStyle="center">
-            <Text variant={"h3"}>{item.name}</Text>
-            {/* {item.name === "AAVE V2" && (
-              <Image
-                width={18}
-                height={18}
-                alt="logo"
-                style={{ marginLeft: "10px" }}
-                src={
-                  colorMode === "light"
-                    ? "/images/wallet_analytics_white.svg"
-                    : "/images/wallet_analytics_black.svg"
-                }
-              ></Image>
-            )} */}
-          </Box>
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
+            <Box layerStyle="center">
+              <Text variant={"h3"}>{item.name}</Text>
+            </Box>
         </Box>
       </Td>
       <Td key={2}>
@@ -319,13 +287,13 @@ const ButtonComp = ({ item }) => {
         </Text>
 
         <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
-          <Image
-            width={24}
-            height={24}
-            style={{ borderRadius: "50%" }}
-            alt="logo"
-            src={item?.logo}
-          ></Image>
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>
       </Box>

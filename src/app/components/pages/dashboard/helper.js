@@ -62,7 +62,7 @@ export const tableHeader = [
     numRows: 4,
   };
   export const DefiRankingTableMobile = {
-    numColumns: 2,
+    numColumns: 3,
     numRows: 4,
   };
   
