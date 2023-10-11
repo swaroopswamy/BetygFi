@@ -69,7 +69,7 @@ function DefiAssetsSmallTable() {
           <TooltipComp label="Asset composition matrix shows the compositions of the assets of the DeFi in percentage terms and the individual value of the subclass of the assets of the DeFi." />
         </Box>
 
-        {defiAssetsTableData?.isSuccess && (
+        {defiAssetsTableData?.data?.data?.length > 4 && (
           <Button
             variant={"viewMore"}
             onClick={() => {

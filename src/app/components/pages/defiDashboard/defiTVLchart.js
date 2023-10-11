@@ -111,16 +111,18 @@ function DefiTVLChart() {
   };
 
   const series = [{
-    data: [{
-      x: 'Borrow',
-      y: 1511121239
-    },/*  {
+    data: [
+    // {
+    //   x: 'Borrow',
+    //   y: 1511121239
+    // },
+    /*  {
       x: 'Supply',
       y: 158930,000,000
-    }, */ {
+    }, */ 
+    {
       x: 'TVL',
       y: defiData?.tvl !== undefined ? defiData?.tvl : 0
-
     }]
   }]
 
@@ -150,6 +152,13 @@ function DefiTVLChart() {
             </Box>
 
           <Box>
+            {defiData?.tvl === null || defiData?.tvl === 0 && (
+              <>
+                <Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
+                  <Text variant={"noDataText"}>No data available</Text>
+                </Box>
+              </>
+            )}
             {
               defiData?.tvl > 0 && (
                 <>
