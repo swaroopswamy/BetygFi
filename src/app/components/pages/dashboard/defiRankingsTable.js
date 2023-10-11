@@ -194,7 +194,7 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={3}>
         <Text variant={"h3"}>
-          {Math.trunc(item.tvl).toLocaleString("en-US", {
+          {item.price?.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
@@ -377,7 +377,7 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {Math.trunc(item.price).toLocaleString("en-US", {
+          {item.price?.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
