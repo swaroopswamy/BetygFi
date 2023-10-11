@@ -99,7 +99,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
               ml="-10px"
               _focus={{ boxShadow: "outline" }}
               color="#000"
-              textStyle="h4"
+              textStyle="extraSmall"
               suppressHydrationWarning={true}
             >
               +
@@ -108,7 +108,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
             </MenuButton>
             <MenuList
               boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
-              bgColor={useColorModeValue("#FFF", "#191919")}
+              bgColor={colorMode === "light" ? "#FFF" : "#191919"}
             >
               {blockchainListData?.isSuccess &&
                 blockchains?.data?.map((item, i) => {
