@@ -112,10 +112,10 @@ function DefiTVLChart() {
 
   const series = [{
     data: [
-    // {
-    //   x: 'Borrow',
-    //   y: 1511121239
-    // },
+    {
+      x: 'Borrow',
+      y: 1511121239
+    },
     /*  {
       x: 'Supply',
       y: 158930,000,000
