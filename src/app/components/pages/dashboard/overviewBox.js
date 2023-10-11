@@ -31,7 +31,7 @@ const OverviewBox = () => {
                         </Text>
                         <TooltipComp label="Total Market Cap tracked by Solvendo" mr="7px" />
                         <Text variant={"h1"}>
-                            {overviewData?.tvl === undefined ?
+                            {overviewData?.tvl !== undefined ?
                                 <>
                                     ${""}{millify(overviewData?.tvl, {
                                         precision: 2,
@@ -67,7 +67,7 @@ const OverviewBox = () => {
                                 </Text>
                                 <TooltipComp label="Total Market Cap tracked by Solvendo" mr="7px" />
                                 <Text variant={"h1"}>
-                                    {overviewData?.tvl ?
+                                    {overviewData?.tvl !== undefined ?
                                         <>
                                             ${""}{millify(overviewData?.tvl, {
                                                 precision: 2,
