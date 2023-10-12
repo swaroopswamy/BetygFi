@@ -11,6 +11,7 @@ import {
   Image,
   Link,
   useColorMode,
+  Avatar,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -175,42 +176,46 @@ const TableRow = ({ item, rowIndex }) => {
 
         <Td>
           <Box layerStyle={"flexCenter"}>
-            <Image
+            <Avatar
               width={"18px"}
               height={"18px"}
-              alt="logo"
+              name={item?.tokenSymbol ?? "logo"}
               src={item?.tokenUrl}
               style={{ borderRadius: "50%" }}
-            ></Image>
+            ></Avatar>
+
+            <Text variant={"h3"} ml="6px">
+              {Number(item?.value).toFixed(2)}
+            </Text>
 
             <Text variant={"h3"} letterSpacing={"1px"} ml="6px">
               {item?.tokenSymbol}
             </Text>
-            <Text variant={"h3"} ml="6px">
-              {Number(item?.value).toFixed(2)}
-              {" ETH"}
-            </Text>
           </Box>
         </Td>
 
         <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
-              {item?.from.split("").join("").substring(0, 6) +
-                "..." +
-                item?.from.slice(-5)}
-            </Text>
-          </Box>
+          <Tooltip label={item?.to}>
+            <Box layerStyle={"flexCenter"}>
+              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
+                {item?.to.split("").join("").substring(0, 6) +
+                  "..." +
+                  item?.to.slice(-5)}
+              </Text>
+            </Box>
+          </Tooltip>
         </Td>
 
         <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
-              {item?.to.split("").join("").substring(0, 6) +
-                "..." +
-                item?.to.slice(-5)}
-            </Text>
-          </Box>
+          <Tooltip label={item?.from}>
+            <Box layerStyle={"flexCenter"}>
+              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
+                {item?.from.split("").join("").substring(0, 6) +
+                  "..." +
+                  item?.from.slice(-5)}
+              </Text>
+            </Box>
+          </Tooltip>
         </Td>
 
         <Td>
