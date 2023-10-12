@@ -8,6 +8,8 @@ pipeline {
                     def configFileContent = readFile('.env').trim()
                     env.CONFIG_CONTENT = configFileContent
               sh """
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@3.110.55.24 cp -r /tmp/deploy.sh opt/deploy.sh
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@3.110.55.24 chmod 777 opt/deploy.sh
               sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@3.110.55.24  rm -rf /root/betygfi-nodejs-apis
               
               sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@3.110.55.24 '/bin/bash /opt/deploy.sh ${params.branch} \"\$configFileContent\" '
