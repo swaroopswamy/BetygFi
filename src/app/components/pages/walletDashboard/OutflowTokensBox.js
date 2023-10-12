@@ -1,4 +1,4 @@
-import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Image, Text, Tr, Th, Td, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
@@ -90,8 +90,8 @@ const TableRowDesktop = ({ item, i }) => {
 
       <Td>
         <Box layerStyle={"flexCenter"}>
-          <Text variant={"h3"}>
-            {item?.value > 0 ? "-" : "+"}USD {USDollar.format(item?.value)}
+          <Text variant={"h3"} color={useColorModeValue('#EF1E1E', '#FF3535')}>
+            - USD {USDollar.format(item?.value)}
           </Text>
         </Box>
       </Td>
@@ -140,7 +140,7 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
         </Box>
 
         <Text variant={"smallTableHeaderMobile"} textAlign={"left"}>
-          {item?.value > 0 ? "-" : "+"}USD {USDollar.format(item?.value)}
+          - USD {USDollar.format(item?.value)}
         </Text>
       </Box>
     </Box>
