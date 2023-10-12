@@ -33,16 +33,10 @@ const BlockchainSelectionMenu = ({ chains }) => {
     (state) => state?.dashboardTableData?.blockchainType
   );
 
-  let blockchains = { data: [] };
-  if (chains) {
-    blockchainListData?.data?.map((item) => {
-      if (chains?.includes(item.name)) {
-        blockchains.data.push(item);
-      }
-    });
-  } else {
-    blockchains = blockchainListData;
-  }
+  let blockchains = {
+    data: chains ? chains : blockchainListData.data,
+    isSuccess: blockchainListData.isSuccess
+  };
 
   useEffect(() => {
     dispatch(fetchBlockchainListData());

@@ -59,6 +59,7 @@ const Banner = () => {
                             </Text>
                             <Box layerStyle={"center"} >
                                 <BlockchainSelectionMenu
+                                    chains={defiData?.chains}
                                 />
                             </Box>
                         </Box>
@@ -138,6 +139,7 @@ const Banner = () => {
                     
                     <Box display={"flex"} justifyContent={"left"} overflow={"auto"} px={{base: "0px", md: "15px"}}>
                         <BlockchainSelectionMenu
+                            chains={defiData?.chains}
                         />
                     </Box>
 
