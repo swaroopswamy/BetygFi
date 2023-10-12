@@ -139,7 +139,7 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
           </Text>
         </Box>
 
-        <Text variant={"smallTableHeaderMobile"} textAlign={"left"}>
+        <Text variant={"smallTableHeaderMobile"} textAlign={"left"} color={useColorModeValue('#EF1E1E', '#FF3535')}>
           - USD {USDollar.format(item?.value)}
         </Text>
       </Box>

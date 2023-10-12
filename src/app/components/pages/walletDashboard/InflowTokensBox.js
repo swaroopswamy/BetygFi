@@ -1,4 +1,4 @@
-import { Box, Image, Text, Tr, Th, Td, useColorModeValue } from "@chakra-ui/react";
+import { Box, Image, Text, Tr, Th, Td, useColorModeValue, Avatar } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
@@ -73,13 +73,13 @@ const TableRowDesktop = ({ item, i }) => {
     <Tr height={"40px"} key={i}>
       <Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
         <Box layerStyle={"flexCenter"}>
-          <Image
+          <Avatar
             width={5}
             height={5}
-            alt="logo"
+            name={item?.symbol ?? "logo"}
             style={{ borderRadius: "50%" }}
             src={item?.logoUrl}
-          ></Image>
+          ></Avatar>
           <Text ml="6px" variant={"h3"}>
             {item?.symbol}
           </Text>
@@ -137,7 +137,7 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
           </Text>
         </Box>
 
-        <Text variant={"smallTableHeaderMobile"} textAlign={"left"}>
+        <Text variant={"smallTableHeaderMobile"} textAlign={"left"} color={useColorModeValue('#245F00', '#60C000')}>
           + USD {USDollar.format(item?.value)}
         </Text>
       </Box>
