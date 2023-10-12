@@ -10,7 +10,7 @@ pipeline {
         steps{
               sh """
               sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@13.126.210.16 rm -rf /root/betygfi-nodejs-apis
-              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@13.126.210.16 /bin/bash /tmp/deploy.sh
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@13.126.210.16 /bin/bash /opt/deploy.sh
 """
        
     }}}}
