@@ -27,64 +27,6 @@ import OverviewColumnChart from "/src/app/components/pages/dashboard/overviewCol
 import OverviewBox from "/src/app/components/pages/dashboard/overviewBox";
 
 const Dashboard = () => {
-  const [tablePage, setTablePage] = useState(1);
-  const [searchByName, setSearchByName] = useState('');
-  const dispatch = useDispatch();
-
-  const categorySelected = useSelector(
-    (state) => state?.dashboardTableData?.categorySelected
-  );
-  const blockchainSelected = useSelector(
-    (state) => state?.dashboardTableData?.blockchainType
-  );
-
-  const getScoreGraphDataHandler = () => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-    };
-    dispatch(fetchScoreGraphData(payload));
-  };
-  const getDefiRankingsTableDataHandler = () => {
-    if (!isEmpty(searchByName)) {
-      const payload = {
-        name: searchByName,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    } else {
-      const payload = {
-        blockchain: blockchainSelected,
-        category: categorySelected,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    }
-  };
-  const getOverviewDataHandler = () => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-    };
-    dispatch(fetchOverviewData(payload));
-  };
-
-  useEffect(() => {
-    getDefiRankingsTableDataHandler();
-    getOverviewDataHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected, tablePage]);
-
-  useEffect(() => {
-    getScoreGraphDataHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected]);
-
-  useEffect(() => {
-    getDefiRankingsTableDataHandler(searchByName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchByName])
-
   return (
     <>
       <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
