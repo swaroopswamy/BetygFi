@@ -55,6 +55,7 @@ const GovernanceTable = ({}) => {
         borderRadius={"6px"}
         bg={useColorModeValue("#FFFFFF", "#202020")}
         borderColor={useColorModeValue("#F0F0F5", "#272727")}
+        mb={{base: "50px", md: "none"}}
       >
         <Box layerStyle={"spaceBetween"} p={"20px"}>
           <Box layerStyle={"center"} gap={"5px"}>

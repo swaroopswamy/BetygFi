@@ -54,7 +54,7 @@ function AssetComposition() {
     }, [blockchainSelected, tablePage]);
 
     return (
-        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
+        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} pb={{base: "120px", md: "none"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
             <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
                 onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >

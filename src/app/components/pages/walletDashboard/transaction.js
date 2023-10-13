@@ -98,11 +98,13 @@ const TransactionPanelComponent = () => {
           />
         </Box>
 
-        <PageButtons
-          tablePage={tablePage}
-          pageChangeHandler={pageChangeHandler}
-          totalPages={walletTransactionsData?.data?.totalPages}
-        />
+        <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
+          <PageButtons
+            tablePage={tablePage}
+            pageChangeHandler={pageChangeHandler}
+            totalPages={walletTransactionsData?.data?.totalPages}
+          />
+        </Box>
       </Box>
     </>
   );
