@@ -36,6 +36,8 @@ import Navbar from "../components/header";
 import Footer from "../components/footer";
 import SidebarContent from "../components/sidebar";
 import useScreenSize from "@/hooks/useScreenSize";
+import Prefooter from "../components/prefooter";
+import "/styles/styles.scss";
 
 export default function LayoutProvider({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -43,43 +45,62 @@ export default function LayoutProvider({ children }) {
   const isSidebarCollapsed = useSelector(
     (state) => state?.appData?.isSidebarCollapsed
   );
+  const isMobileSidebarCollapsed = useSelector(
+    (state) => state?.appData?.isMobileSidebarCollapsed
+  );
   return (
     <>
       <Box
         width="100%"
-        minH="100vh" bg={useColorModeValue("#F0F0F5", "#191919")}
+        minH="100vh" 
+        bg={useColorModeValue("#F0F0F5", "#191919")}
         display={"flex"}
-
       >
         <SidebarContent
           onClose={() => onClose}
-        /*  display={{ base: "none", md: "block" }} */
+          w={isMobileSidebarCollapsed ? "null" : "80%"}
+          h={"100%"}
         />
-        {/* <Drawer
-          autoFocus={false}
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          returnFocusOnClose={false}
-          onOverlayClick={onClose}
-          size="full"
-        >
-          <DrawerContent>
-            <SidebarContent onClose={onClose} />
-          </DrawerContent>
-        </Drawer> */}
+        
         <Box
-          display={"flex"}
+          display={{ base: "none", md: isMobileSidebarCollapsed ? "flex" : "none" }}
           flexDirection={"column"}
+          className="margin-conditions"
+          id="main-body"
+          aria-expanded={isSidebarCollapsed ? "false" : "true"}
+          // ml={"225px"}
+          //ml={isSidebarCollapsed ? 20 : 225}
+          // ml={screenSize?.width < 1450 ?
+          //   0 :
+          //   (isSidebarCollapsed ? 20 : 225)
+          // }
           w="100%"
-          ml={screenSize?.width < 1450 ? 
-            0 : 
-            (isSidebarCollapsed ? 20 : 225) 
-          }
+          overflowX={"hidden"}
         >
           <Navbar onOpenMenu={onOpen} />
-          <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")}>
+          <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
             {children}
+            {/* <Prefooter /> */}
+            <Footer />
+          </Box>
+        </Box>
+
+        <Box
+          display={{base:"flex",md:"none"}}
+          flexDirection={"column"}
+          overflowX={"hidden"}
+          // ml={"225px"}
+          mt={"60px"}
+          /* ml={screenSize?.width < 1450 ?
+            0 :
+            (isSidebarCollapsed ? 20 : 225)
+          } */
+          w="100%"
+        >
+          <Navbar onOpenMenu={onOpen} />
+          <Box p="0" bgColor={useColorModeValue("#FFF", "#131313")} w="100%">
+            {children}
+            {/* <Prefooter /> */}
             <Footer />
           </Box>
         </Box>

@@ -1,5 +1,10 @@
-<svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.4 4.6C9.38234 4.6 11.8 3.79411 11.8 2.8C11.8 1.80589 9.38234 1 6.4 1C3.41766 1 1 1.80589 1 2.8C1 3.79411 3.41766 4.6 6.4 4.6Z" stroke="#676767" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.8 7C11.8 7.996 9.4 8.8 6.4 8.8C3.4 8.8 1 7.996 1 7" stroke="#676767" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1 2.80005V11.2C1 12.196 3.4 13 6.4 13C9.4 13 11.8 12.196 11.8 11.2V2.80005" stroke="#676767" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 427319237">
+<path id="Ellipse 67" d="M11.8115 3.73846C11.8115 5.52707 10.3618 6.97693 8.57349 6.97693C6.78522 6.97693 5.33545 5.52707 5.33545 3.73846C5.33545 1.94984 6.78522 0.499985 8.57349 0.499985C10.3618 0.499985 11.8115 1.94984 11.8115 3.73846Z" stroke="#6F7383"/>
+<path id="Ellipse 69" d="M13.0156 6.36123C14.1973 6.36123 15.1552 5.40319 15.1552 4.22139C15.1552 3.03958 14.1973 2.08154 13.0156 2.08154" stroke="#6F7383" stroke-linecap="round"/>
+<path id="Ellipse 71" d="M4.1958 6.36123C3.01413 6.36123 2.0562 5.40319 2.0562 4.22139C2.0562 3.03958 3.01413 2.08154 4.1958 2.08154" stroke="#6F7383" stroke-linecap="round"/>
+<path id="Ellipse 68" d="M13.9135 12.5001C13.9135 9.55049 11.5227 7.15918 8.57345 7.15918C6.6183 7.15918 4.90856 8.21003 3.9781 9.7778C3.50502 10.5749 3.2334 11.5057 3.2334 12.4999" stroke="#6F7383" stroke-linecap="round"/>
+<path id="Ellipse 70" d="M16.0722 9.44181C16.0722 7.75352 14.7037 6.38477 13.0156 6.38477" stroke="#6F7383" stroke-linecap="round"/>
+<path id="Ellipse 72" d="M1.00002 9.44184C1.00002 7.75355 2.36849 6.3848 4.05659 6.3848" stroke="#6F7383" stroke-linecap="round"/>
+</g>
 </svg>

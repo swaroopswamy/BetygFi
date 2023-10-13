@@ -37,7 +37,6 @@ const DashboardDataSlice = createSlice({
       isError: false,
       isSuccess: false,
     },
-
     blockchainType: [],
     categorySelected: [],
 

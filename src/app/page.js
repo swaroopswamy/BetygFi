@@ -1,13 +1,13 @@
 import Dashboard from "./dashboard/page";
 import Script from 'next/script';
-
+import "/styles/styles.scss";
 
 export default function Home() {
 
-  
+
   return (
     <>
-      <main style={{ marginBottom: "42px"}}>
+      <main>
 
         {/* <!-- Google tag (gtag.js) -->  */}
 
@@ -24,8 +24,6 @@ export default function Home() {
           gtag('config', 'G-Q0B2YDZPET');
         `}
         </Script>
-
-
 
         <Dashboard />
       </main>

@@ -12,6 +12,7 @@ const AppDataSlice = createSlice({
   name: "AppData",
   initialState: {
     isSidebarCollapsed: false,
+    isMobileSidebarCollapsed: true,
     BlockchainListData: {
       data: null,
       isLoading: false,
@@ -47,9 +48,17 @@ const AppDataSlice = createSlice({
       else {
         state.isSidebarCollapsed = false;
       }
+    },
+    mobileSidebarCollapsedReducer: (state, action) => {
+      if (action.payload === true) {
+        state.isMobileSidebarCollapsed = true;
+      }
+      else {
+        state.isMobileSidebarCollapsed = false;
+      }
     }
   },
 });
 
-export const { sidebarCollapsedReducer } = AppDataSlice.actions;
+export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer } = AppDataSlice.actions;
 export default AppDataSlice.reducer;

@@ -1,104 +1,165 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Text, Icon, Td, Tr, Flex, Box, useColorModeValue, Image, Spacer, Button, useColorMode } from "@chakra-ui/react";
-import GenericBigTableComponent from "../GenericBigTable";
-import BackIconWhite from '../../../../public/icons/backIconWhite.svg';
-import BackIconBlack from '../../../../public/icons/backIconBlack.svg';
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import { Text, Td, Tr, Th, Flex, Box, useColorModeValue, Image, useColorMode, Avatar } from "@chakra-ui/react";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import GenericTable from "@/app/components/table";
+import { DefiAssetsBigTableHeader } from "/src/app/components/pages/defiDashboard/helper";
+import PageButtons from "/src/app/components/pageButtons";
 
-function Assetcomposition() {
+let USDollar = new Intl.NumberFormat('en-US', {
+    currency: 'USD',
+});
+
+function AssetComposition() {
     const router = useRouter();
-    const { colorMode } = useColorMode();
-    const tableName = "DeFi Asset Composition";
-    const thread = ["Asset Name", "Price", "Amount", "Value", "Share"];
-    const tableData = [
-        ["/images/Ethereumlogo.svg", "AAVE V2 ", "USD 65.930000", "USD 356,456,560", "USD 65.930000", "60%"],
-        ["/images/Tronlogo.svg", "AAVE V3 ", "USD 65.930000", "USD 1,434,771,959", "USD 65.930000", "56%"],
-        ["/images/Binancelogo.svg", "Compound", "USD 35.700000", "USD 1,284,778,438", "USD 35.700000", "45%"],
-        ["/images/Arbitrumlogo.svg", "JustLend", "USD 0.023387", "USD 3,740,295,842", "USD 0.023387", "40%"],
-        ["/images/Polygonmaticlogo.svg", "Venus", "USD 5.100000", "USD 802,259,792", "USD 5.100000", "25%"],
-        ["/images/Ethereumlogo.svg", "Morpho Aave", "USD 0.001782", "USD 315,485,747", "USD 0.001782", "20%"],
-        ["/images/Tronlogo.svg", "Compound V3", "USD 35.700000", "USD 563,991,620", "USD 35.700000", "16%"],
-        ["/images/Binancelogo.svg", "Radiant V2", "USD 0.313472", "USD 259,911,221", "USD 0.313472", "14%"],
-        ["/images/Arbitrumlogo.svg", "FluidTokens", "NA", "USD 234,308", "NA", "12%"],
-        ["/images/Polygonmaticlogo.svg", "Trader Joe Lend", "USD 0.379546", "USD 7,562,768", "USD 0.379546", "10%"],
-    ];
+    const searchParam = useSearchParams();
+    const dispatch = useDispatch();
+
+    const [tablePage, setTablePage] = useState(1);
+
+    const pageChangeHandler = (page) => {
+        tablePage >= 1 && setTablePage(page);
+    };
+
+    const defi = searchParam.get("defi");
+    const id = searchParam.get("id");
+
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
+    const defiAssetsTableData = useSelector(
+        (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
+    );
+    console.log("asset", defiAssetsTableData?.data?.totalPages);
+
+    const getDefiAssetsTableDataHandler = () => {
+        const payload = {
+            defi: defi,
+            blockchain: blockchainSelected,
+            page: tablePage,
+            limit: 10
+        };
+        dispatch(fetchDefiAssetCompositionTableData(payload));
+    };
+
+    useEffect(() => {
+        getDefiAssetsTableDataHandler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [blockchainSelected, tablePage]);
 
     return (
-        <Box
-            padding={"20px 30px"}
-            bgColor={useColorModeValue("#F0F0F5", "#191919")}
-            borderColor={useColorModeValue("#F0F0F5", "#191919")}
-            textTransform={"capitalize"}
-        >
-            <Flex
-                cursor={"pointer"}
-                ml={"5px"}
-                mb={"20px"}
-                align={"center"}
-                onClick={() => {
-                    router.push(`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`)
-                }}
+        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
+            <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
+                onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >
-                <Icon
-                    w="24px"
-                    h="24px"
-                    as={colorMode === "light" ? BackIconWhite : BackIconBlack}
-                    mr="6px"
+                <ChevronLeftIcon
+                    w={"24px"}
+                    h={"24px"}
+                    borderRadius={"50%"}
+                    border={useColorModeValue("1px solid #E1E1E1", "1px solid #333333")}
                 />
                 <Text
-                    fontSize={"10px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    letterSpacing={"1px"}
-                    textTransform={"uppercase"}
-                    ml={"5px"}
-                >BACK</Text>
-            </Flex>
-            <GenericBigTableComponent
-                tableName={tableName}
-                thread={thread}
-                tableData={tableData}
-                RowComponent={RowComponent}
-            />
+                    variant={"h6"}
+                >
+                    Home/DeFi Dashboard/DeFi Asset Composition
+                </Text>
+            </Box>
+
+            <Box layerStyle={"flexColumn"} borderRadius={"6px"} bg={useColorModeValue('#FFFFFF', '#202020')}>
+                <Box layerStyle={"spaceBetween"} minH={"70px"} p={"10px 20px"}>
+                    <Text variant={"h2"}> DeFi Asset Composition </Text>
+    
+                    {/* <Box layerStyle={"center"}>
+                        <SelectionBox />
+
+                        <SearchBox
+                            placeholder={"Search"}
+                            w={"200px"}
+                        />
+                    </Box> */}
+                </Box>
+
+                <GenericTable
+                    tableHeader={DefiAssetsBigTableHeader}
+                    tableData={defiAssetsTableData}
+                    TableRow={TableRow}
+                    TableHeaderRowMobile={TableHeaderRowMobile}
+                    ButtonComp={(item) => {
+                        return (
+                            <Box layerStyle={"spaceBetween"} w={"80%"}>
+                                <Box layerStyle={"flexCenter"} gap={"10px"}>
+                                    <Avatar
+                                        name={item?.item?.assetName}
+                                        src={item?.item?.logoUrl}
+                                        height={"24px"}
+                                        width={"24px"}
+                                    />
+                                    <Text variant={"h3"}> {item?.item?.assetName} </Text>
+                                </Box>
+                                <Box layerStyle={"center"}>
+                                    <Text variant={"h3"}>
+                                        {item?.item?.share + "%"}
+                                    </Text>
+                                </Box>
+                            </Box>
+                        )
+                    }}
+                    PanelComp={(item) => {
+                        return (
+                            <Box layerStyle={"flexColumn"} gap={"10px"}>
+                                <Box display={"flex"} gap={"20px"}>
+                                    <Text variant={"h3"} color={"#8F8F8F"}> Price </Text>
+                                    <Text variant={"h3"}> {item?.item?.price ? "USD " + USDollar.format(item?.item?.price) : '-'} </Text>
+                                </Box>
+                                <Box display={"flex"} gap={"20px"}>
+                                    <Text variant={"h3"} color={"#8F8F8F"}> Amount </Text>
+                                    <Text variant={"h3"}> {item?.item?.amount ? "USD " + USDollar.format(item?.item?.amount) : '-'} </Text>
+                                </Box>
+                                <Box display={"flex"} gap={"20px"}>
+                                    <Text variant={"h3"} color={"#8F8F8F"}> Value </Text>
+                                    <Text variant={"h3"}> {item?.item?.value ? "USD " + USDollar.format(item?.item?.value) : '-'} </Text>
+                                </Box>
+                            </Box>
+                        )
+                    }}
+                    SkeletonRowsColumnsDesktop={{
+                        numColumns: 5,
+                        numRows: 10
+                    }}
+                    SkeletonRowsColumnsMobile={{
+                        numColumns: 2,
+                        numRows: 5
+                    }}
+                />
+
+            </Box>
+
+            <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
+                <PageButtons
+                    page={tablePage}
+                    totalPages={defiAssetsTableData?.data?.totalPages}
+                    pageChangeHandler={pageChangeHandler}
+                />
+            </Box>
         </Box>
     )
 };
-export default Assetcomposition;
+export default AssetComposition;
 
-function RowComponent({ tableData }) {
-    return (
-        <>
-            {tableData.map((item, i) => {
-                return (
-                    <>
-                        <TableRow
-                            key={i}
-                            asset={{ name: item[1], src: item[0] }}
-                            price={item[2]}
-                            amount={item[3]}
-                            value={item[4]}
-                            share={item[5]}
-                        />
-                    </>
-                )
-            })}
-
-        </>
-    );
-}
-
-function TableRow({ key, asset, price, amount, value, share }) {
+function TableRow({ item, i}) {
     const [clicked, setClick] = useState(false);
     const { colorMode } = useColorMode();
-    const router = useRouter();
 
     return (
         <>
             <Tr
-                key={key}
+                key={i}
                 cursor={"pointer"}
                 bgColor={clicked ?
                     (colorMode === "light" ? '#F5F5F7' : '#191919') :
@@ -114,15 +175,14 @@ function TableRow({ key, asset, price, amount, value, share }) {
                         <Box
                             alignItems={"center"}
                             display={"flex"}
-                            gap={"10px"}
+                            gap={"15px"}
                         >
-                            <Image
+                            <Avatar
+                                name={item?.assetName}
+                                src={item?.logoUrl}
                                 height={"24px"}
                                 width={"24px"}
-                                src={asset.src}
-                                alt="logo"
-                            >
-                            </Image>
+                            />
                             <Text
                                 _dark={{
                                     color: "#FFFFFF"
@@ -135,7 +195,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {asset.name}
+                                {item?.assetName}
                             </Text>
                         </Box>
                     </Flex>
@@ -156,7 +216,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {price}
+                                {item?.price ? "USD " + USDollar.format(item?.price) : '-'}
                             </Text>
                         </Box>
                     </Flex>
@@ -177,7 +237,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {amount}
+                                {item?.amount ? "USD " + USDollar.format(item?.amount) : '-'}
                             </Text>
                         </Box>
                     </Flex>
@@ -198,7 +258,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {value}
+                                {item?.value ? "USD " + USDollar.format(item?.value) : '-'}
                             </Text>
                         </Box>
                     </Flex>
@@ -219,7 +279,7 @@ function TableRow({ key, asset, price, amount, value, share }) {
                                 fontWeight={"400"}
                                 lineHeight={"20px"}
                             >
-                                {share}
+                                {item?.share ? item?.share + "%" : '-'}
                             </Text>
                         </Box>
                     </Flex>
@@ -229,3 +289,128 @@ function TableRow({ key, asset, price, amount, value, share }) {
         </>
     );
 }
+
+function SelectionBox () {
+    const { colorMode } = useColorMode();
+    const dispatch = useDispatch();
+    const blockchainListData = useSelector((state) => state?.appData?.BlockchainListData);
+
+    const blockchainSelected = useSelector(
+        (state) => state?.walletDashboardTableData?.blockchainType
+    );
+    const BlockchainTypeHandler = (type) => {
+        dispatch(blockchainTypeChangedReducer(type));
+    };
+    
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return <>
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+        >
+            <Box
+                w={"100%"}
+                display={"flex"}
+                alignItems={"center"}
+            >
+                <Box
+                    position={"relative"}
+                    cursor={"pointer"}
+                    fontSize={"14px"}
+                    fontWeight={blockchainSelected.length === 0 ? "700" : "400"}
+                    letterSpacing={"1px"}
+                    lineHeight={"20px"}
+                    color={useColorModeValue("#3A3A3A", "#FFFFFF")}
+                    _after={
+                        blockchainSelected.length === 0 && {
+                            position: "absolute",
+                            content: '""',
+                            bottom: "-14px",
+                            left: 0,
+                            width: "100%",
+                            height: "1px",
+                            bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+
+                        }
+                    }
+                    onClick={() => {
+                        BlockchainTypeHandler("All");
+                    }}
+                    mr={"18px"}
+                    //textTransform={"lowercase"}
+                >
+                    All
+                </Box>
+                {blockchainListData.isSuccess && blockchainListData.data.map((item, i) => {
+                    if (i >= 4) return;
+                    return (
+                        <Box
+                            position={"relative"}
+                            cursor={"pointer"}
+                            key={i}
+                            _after={
+                                blockchainSelected.includes(item.name) && {
+                                    position: "absolute",
+                                    content: '""',
+                                    bottom: "-14px",
+                                    left: 0,
+                                    width: "100%",
+                                    height: "1px",
+                                    bgColor: colorMode === 'light' ? "#191919" : "#FFFFFF",
+                                }
+                            }
+                            onClick={() => {
+                                BlockchainTypeHandler(item.name);
+                            }}
+                            mr={"10px"}
+                            display={"flex"}
+                            alignItems={"center"}
+                        >
+                            <Image
+                                w={"20px"}
+                                h={"20px"}
+                                mr={"11px"}
+                                src={item.logoUrl}
+                                alt=""
+                            ></Image>
+                            <Text
+                                fontSize={"14px"}
+                                fontWeight={blockchainSelected.includes(item.name) ? "700" : "400"}
+                                lineHeight={"21.826px"}
+                                letterSpacing={"1.4px"}
+                                color={colorMode === 'light' ?
+                                    blockchainSelected.includes(item.name) ? "#191919" : "#191919"
+                                    :
+                                    blockchainSelected.includes(item.name) ? "#FFFFFF" : "#FFFFFF"
+                                }
+                            >
+                                {item.name}
+                            </Text>
+                        </Box>
+                    );
+                })}
+            </Box>
+        </Box>
+    </>
+}
+
+const TableHeaderRowMobile = () => {
+    return (
+        <Tr>
+            <Th>
+                <Box layerStyle={"flexCenter"}>
+                <Text variant={"smallTableHeaderMobile"}>Asset Name</Text>
+                </Box>
+            </Th>
+            <Th>
+                <Box layerStyle={"flexCenter"} >
+                <Text variant={"smallTableHeaderMobile"}>Share</Text>
+                </Box>
+            </Th>
+        </Tr>
+    );
+};
