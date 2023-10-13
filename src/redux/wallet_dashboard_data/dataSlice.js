@@ -1,4 +1,4 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
+import { getDefiRankingsTableData } from "@/services/dashboardService";
 import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 

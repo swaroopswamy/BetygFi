@@ -16,7 +16,7 @@ const OverviewBox = () => {
 
     return (
         <>
-            <Box w="50%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"space-between"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
+            <Box w="50%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
                 <Box layerStyle='spaceBetween'>
                     <Text variant={"h2"}>
                         Overview
@@ -47,7 +47,12 @@ const OverviewBox = () => {
                     </Box>
                 </Box>
 
-                <OverviewAreaChart />
+                {/* <OverviewAreaChart /> */}
+                <Box bg={"#00000014"} p="30px" mt={"30px"}>
+                    <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} opacity={0.6}>
+                        For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
+                    </Text>
+                </Box>
             </Box>
 
             <SingleAccordionComp display={{base: "flex", lg: "none"}} minH={"50px"}
@@ -82,7 +87,12 @@ const OverviewBox = () => {
                     )}}
                 PanelComp={() => {
                     return (
-                        <OverviewAreaChart />
+                        // <OverviewAreaChart />
+                        <Box bg={"#00000014"} p="30px" mt={"30px"} minH={"100px"}>
+                            <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} lineHeight={"20px"} opacity={0.6}>
+                                For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
+                            </Text>
+                        </Box>
                     )}}
             />
         </>
