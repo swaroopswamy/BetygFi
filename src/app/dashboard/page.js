@@ -5,20 +5,13 @@ import {
   Box,
   Button,
   Text,
-  useColorMode,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
 import { categories } from "../../../util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
   categoryChangedReducer,
-  fetchDefiRankingTableData,
-  fetchOverviewData,
-  fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
-import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
