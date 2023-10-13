@@ -88,7 +88,7 @@ const TableRowDesktop = ({ item, i }) => {
 
       <Td>
         <Box layerStyle={"flexCenter"}>
-          <Text variant={"h3"} color={useColorModeValue('#245F00', '#60C000')}>
+          <Text variant={"h3"} _dark={{ color: "#245F00" }} _light={{ color: "#60C000" }}>
             + USD {USDollar.format(item?.value)}
           </Text>
         </Box>
