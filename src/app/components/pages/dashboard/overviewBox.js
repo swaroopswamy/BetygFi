@@ -17,16 +17,19 @@ const OverviewBox = () => {
     return (
         <>
             <Box w="50%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"space-between"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
-                <Box layerStyle='spaceBetween' gap={"10px"}>
+                <Box layerStyle='spaceBetween'>
                     <Text variant={"h2"}>
                         Overview
                     </Text>
 
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"h3"}>
-                            Total Market Cap
-                        </Text>
-                        <TooltipComp label="Total Market Cap tracked by Solvendo" mr="7px" />
+                    <Box layerStyle={"flexCenter"} gap={"10px"}>
+                        <Box layerStyle={"center"}>
+                            <Text variant={"h3"}>
+                                Total Market Cap
+                            </Text>
+                            <TooltipComp label="Total Market Cap tracked by Solvendo" />
+                        </Box>
+
                         <Text variant={"h1"}>
                             {overviewData?.tvl !== undefined ?
                                 <>
