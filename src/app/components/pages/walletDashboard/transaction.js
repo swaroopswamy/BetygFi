@@ -53,6 +53,7 @@ const TransactionPanelComponent = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, tablePage, searchParam.get("address")]);
 
+
   useEffect(() => {
     fetchWalletTransactionsDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +101,7 @@ const TransactionPanelComponent = () => {
 
         <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
           <PageButtons
-            tablePage={tablePage}
+            page={tablePage}
             pageChangeHandler={pageChangeHandler}
             totalPages={walletTransactionsData?.data?.totalPages}
           />
