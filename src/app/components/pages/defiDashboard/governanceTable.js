@@ -46,7 +46,7 @@ const GovernanceTable = ({}) => {
   useEffect(() => {
     getDefiGovernanceTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tablePage]);
 
   return (
     <>
