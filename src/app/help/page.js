@@ -10,7 +10,7 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { AccordionContent } from "../components/pages/help/helper";
+import { AccordionContent, BetygFi, WalletsAndDeFiDashboard } from "../components/pages/help/helper";
 
 const Help = () => {
   const { colorMode } = useColorMode();
@@ -36,10 +36,10 @@ const Help = () => {
             </Box>
           </Box>
         </Box>
-        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
-          FAQs
-        </Text>
 
+        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+          General
+        </Text>
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
           {AccordionContent.map((item, i) => {
             return (
@@ -81,7 +81,116 @@ const Help = () => {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel padding={"10px 50px 20px 20px"}>
-                      <Text variant={"content"}>{item.content}</Text>
+                      <Text variant={"content"}>{item.content}<br />{item.content2}
+                      </Text>
+                    </AccordionPanel>
+                  </>
+                )}
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
+
+        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        BetygFi
+        </Text>
+        <Accordion allowToggle padding={"10px 80px 80px 60px"}>
+          {BetygFi.map((item, i) => {
+            return (
+              <AccordionItem key={i}>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <AccordionButton>
+                        <Box
+                          flex="1"
+                          textAlign="left"
+                          padding={"10px 0px 10px 0px"}
+                        >
+                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                        </Box>
+                        {isExpanded ? (
+                          <Image
+                            src={
+                              colorMode === "light"
+                                ? "/images/ellipse-light-up.png"
+                                : "/images/ellipse-dark-up.png"
+                            }
+                            w={"24px"}
+                            h={"24px"}
+                            alt=""
+                          />
+                        ) : (
+                          <Image
+                            src={
+                              colorMode === "light"
+                                ? "/images/ellipse-light-down.png"
+                                : "/images/ellipse-dark-down.png"
+                            }
+                            w={"24px"}
+                            h={"24px"}
+                            alt=""
+                          />
+                        )}
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel padding={"10px 50px 20px 20px"}>
+                      <Text variant={"content"}>{item.content}<br />{item.content2}
+                      </Text>
+                    </AccordionPanel>
+                  </>
+                )}
+              </AccordionItem>
+            );
+          })}
+        </Accordion>
+
+        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        Wallets and DeFi Dashboard
+        </Text>
+        <Accordion allowToggle padding={"10px 80px 80px 60px"}>
+          {WalletsAndDeFiDashboard.map((item, i) => {
+            return (
+              <AccordionItem key={i}>
+                {({ isExpanded }) => (
+                  <>
+                    <h2>
+                      <AccordionButton>
+                        <Box
+                          flex="1"
+                          textAlign="left"
+                          padding={"10px 0px 10px 0px"}
+                        >
+                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                        </Box>
+                        {isExpanded ? (
+                          <Image
+                            src={
+                              colorMode === "light"
+                                ? "/images/ellipse-light-up.png"
+                                : "/images/ellipse-dark-up.png"
+                            }
+                            w={"24px"}
+                            h={"24px"}
+                            alt=""
+                          />
+                        ) : (
+                          <Image
+                            src={
+                              colorMode === "light"
+                                ? "/images/ellipse-light-down.png"
+                                : "/images/ellipse-dark-down.png"
+                            }
+                            w={"24px"}
+                            h={"24px"}
+                            alt=""
+                          />
+                        )}
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel padding={"10px 50px 20px 20px"}>
+                      <Text variant={"content"}>{item.content}<br />{item.content2}
+                      </Text>
                     </AccordionPanel>
                   </>
                 )}

@@ -1,14 +1,11 @@
 "use client";
 import {
   Box,
-  Flex,
   Text,
   useColorMode,
   useColorModeValue,
-  Image,
   Icon,
   useDisclosure,
-  Slide,
 } from "@chakra-ui/react";
 import { RiHomeLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
