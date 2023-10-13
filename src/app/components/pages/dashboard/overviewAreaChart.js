@@ -1,8 +1,9 @@
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-
 import dynamic from "next/dynamic";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+import CustomChart from "/src/app/components/graph";
+
 const OverviewAreaChart = () => {
   const options = {
     chart: {
@@ -82,7 +83,9 @@ const OverviewAreaChart = () => {
   ];
   return (
     <>
-      <ApexCharts options={options} series={series} type="area" height={205} />
+      <Box w={"100%"}>
+        <CustomChart options={options} series={series} type="area" height={205} />
+      </Box>
     </>
   );
 };

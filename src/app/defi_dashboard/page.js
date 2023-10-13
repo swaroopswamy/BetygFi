@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
 import { fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
-
 import Banner from "/src/app/components/pages/defiDashboard/banner";
 import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";

@@ -1,13 +1,36 @@
 import { Box, useColorMode, useColorModeValue, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { useSelector } from "react-redux";
+import { fetchScoreGraphData } from "@/redux/dashboard_data/dataSlice";  
+import { useDispatch, useSelector } from "react-redux";
 import { SingleAccordionComp } from "../../accordion";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {
     const { colorMode } = useColorMode();
+    const dispatch = useDispatch();
+
     const graphData = useSelector((state) => state.dashboardTableData.ScoreGraphData);
+
+    const categorySelected = useSelector(
+        (state) => state?.dashboardTableData?.categorySelected
+    );
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
+
+    const getScoreGraphDataHandler = () => {
+        const payload = {
+            blockchain: blockchainSelected,
+            category: categorySelected,
+        };
+        dispatch(fetchScoreGraphData(payload));
+    };
+
+    useEffect(() => {
+        getScoreGraphDataHandler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [blockchainSelected, categorySelected]);    
 
     const labels = ["Worst", "Below Average", "Above Average", "Best"];
     const colors = ["#FF7272", "#FF9F6A", "#FFD976", "#9ADA8A"];
@@ -103,7 +126,6 @@ const OverviewColumnChart = () => {
             tooltip: {
                 enabled: false,
                 offsetX: 0,
-
             },
             axisBorder: {
                 show: false,
