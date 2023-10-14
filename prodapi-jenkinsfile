@@ -5,7 +5,7 @@ pipeline {
         steps{
               sh """
               sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69  rm -rf /root/betygfi-nodejs-apis
-              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69 cp -r /tmp/deploy.sh /opt/deploy.ssh
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69 cp -r /tmp/deploy.sh /opt/deploy.sh
               sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69 chmod 777 /opt/deploy.sh
                  """
                  
