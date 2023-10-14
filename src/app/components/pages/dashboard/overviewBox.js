@@ -3,16 +3,40 @@ import {
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
 import TooltipComp from "/src/app/components/tooltipComp"
 import { SingleAccordionComp } from "/src/app/components/accordion";
 import OverviewAreaChart from "/src/app/components/pages/dashboard/overviewAreaChart";
+import { useEffect } from "react";
+import { fetchOverviewData } from "@/redux/dashboard_data/dataSlice";
 
 const OverviewBox = () => {
+    const dispatch = useDispatch();
+
     const overviewData = useSelector(
         (state) => state?.dashboardTableData?.OverviewData?.data
     );
+
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
+    
+    const categorySelected = useSelector(
+        (state) => state?.dashboardTableData?.categorySelected
+    );
+
+    const getOverviewDataHandler = () => {
+        const payload = {
+          blockchain: blockchainSelected,
+          category: categorySelected,
+        };
+        dispatch(fetchOverviewData(payload));
+    }
+    
+    useEffect(() => {
+        getOverviewDataHandler();
+    }, [blockchainSelected, categorySelected]);
 
     return (
         <>
