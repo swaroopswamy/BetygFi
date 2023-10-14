@@ -39,7 +39,7 @@ const WalletDashboardPage = () => {
               Top Wallets
             </Text>
 
-            <Box layerStyle={"flexCenter"} mt={"13px"}>
+            <Box display={{base: "none", md: "block"}} layerStyle={"flexCenter"} mt={"13px"}>
               <Text
                 variant={"TopWalletsText"}
                 paddingBottom={"30px"}>
