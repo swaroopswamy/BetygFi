@@ -49,14 +49,10 @@ const OverviewColumnChart = () => {
             theme: colorMode,
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
               return (
-                '<div class="donut_tooltip">' +
-                '<div class="donut_tooltip_text">' +
-                series[0][dataPointIndex] + " DeFi" +
-                "</div>" +
-                '<div class="donut_tooltip_body_text">' +
-                `<span style="display: inline-block; border-radius: 50%; height: 14px; width: 14px; background-color: ${colors[dataPointIndex]};"></span>` + 
-                labels[dataPointIndex] +
-                '</div>' +
+                '<div class="column_tooltip">' +
+                    '<div class="column_tooltip_text">' +
+                    `<span style="display: inline-block; border-radius: 50%; height: 14px; width: 14px; background-color: ${colors[dataPointIndex]};"></span>` + " " + series[0][dataPointIndex] + " DeFi" +
+                    "</div>" +
                 "</div>"
               );
             }
