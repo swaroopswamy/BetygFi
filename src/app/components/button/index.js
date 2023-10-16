@@ -41,6 +41,16 @@ const Button = defineStyleConfig({
             border: "0px",
             borderRadius: "1px",
             color: colorMode === 'light' ? '#16171B' : '#FFFFFF'
+        }),
+        menu: ({ colorMode }) => ({
+            height: "30px",
+            fontSize: "14px",
+            bg: colorMode === 'light' ? '#F0F0F5' : '#191919',
+            border: "1px",
+            borderRadius: "1px",
+            borderColor: colorMode === 'light' ? '#E8E8E8' :'#333333',
+            color: colorMode === 'light' ? '#16171B' : '#FFFFFF',
+            p: "2px 12px"
         })
     },
     defaultProps: {
