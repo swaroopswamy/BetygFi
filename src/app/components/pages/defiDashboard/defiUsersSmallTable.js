@@ -33,10 +33,9 @@ function DefiUsersSmallTable() {
   );
 
   const getDefiUsersTableDataHandler = () => {
-    let blockchains = blockchainSelected.map(item => item.toLowerCase());
     const payload = {
       defi: defi,
-      blockchain: blockchains,
+      blockchain: blockchainSelected,
     };
     dispatch(fetchDefiUsersTableData(payload));
   };
