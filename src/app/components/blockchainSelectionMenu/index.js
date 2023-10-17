@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 // const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
 import {
+  Avatar,
   Box,
   Checkbox,
   Menu,
@@ -68,13 +69,13 @@ const BlockchainSelectionMenu = ({ chains }) => {
                   BlockchainTypeHandler(item.id);
                 }}
               >
-                <Image
+                <Avatar
                   style={{ borderRadius: "50%" }}
                   width={24}
                   height={24}
                   src={item?.logoUrl}
-                  alt={`${item.id}_icon`}
-                ></Image>
+                  alt={item.id ?? "Coin"}
+                ></Avatar>
               </Box>
             </Tooltip>
           );
@@ -128,13 +129,13 @@ const BlockchainSelectionMenu = ({ chains }) => {
                           alignItems={"center"}
                           justifyContent={"center"}
                         >
-                          <Image
+                          <Avatar
                             width={24}
                             height={24}
                             src={item.logoUrl}
-                            alt={`${item.id}_icon`}
+                            alt={item.id ?? "Coin"}
                             style={{ marginRight: "20px", marginLeft: "14px" }}
-                          ></Image>
+                          ></Avatar>
                           <Text
                             fontSize={"12px"}
                             fontWeight={"400"}
