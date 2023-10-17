@@ -11,7 +11,7 @@ const PrivacyPanelComponent = () => {
                     width={"100%"}
                     background={useColorModeValue("#F0F0F5", "#191919")}
                     padding={"35px 150px 70px 72px"}>
-                    <Text variant={"contentHeading5"}>1. INTRODUCTION</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"}>1. INTRODUCTION</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Welcome to BetygFi (referred to as “the Platform” or “we” or “our” or “us”). This Privacy Policy governs your visit to the Platform, it explains how we process your personal digital data which includes collection, safeguarding, disclosure and use of information that results from your use of BetygFi.
                         <br />
@@ -22,7 +22,7 @@ const PrivacyPanelComponent = () => {
                         Our Terms and Conditions (“Terms”) govern the use of our Service. The Privacy Policy is part and parcel of the Terms and is part of your agreement with us (“agreement”).
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>2. DEFINITIONS</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>2. DEFINITIONS</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Personal Data means information about a living individual who can be identified from such information.
                         <br />
@@ -36,7 +36,7 @@ const PrivacyPanelComponent = () => {
                         Service(s) means all the services provided by BetygFi.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>3. PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>3. PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         While using BetygFi we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”). Personally identifiable information may include, but is not limited to:
                     </Text>
@@ -57,7 +57,7 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>4. USAGE DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>4. USAGE DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We also use your Personal Data to fulfill the requirements of applicable laws/regulations and/or court orders/regulatory directives received by us. We may also collect information that your browser sends whenever you visit our Service or when you access Service by or through any device (“Usage Data”).
                         <br />
@@ -68,7 +68,7 @@ const PrivacyPanelComponent = () => {
                         When you access BetygFi and/or its Service with a device, this Usage Data may include information such as the type of device you use, your device unique ID, the IP address of your device, your device operating system, the type of Internet browser you use, unique device identifiers and other diagnostic data.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>5. TRACKING COOKIES DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>5. TRACKING COOKIES DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi may use cookies and similar tracking technologies to track the activity on our Service and we hold certain information.
                         <br />
@@ -79,7 +79,7 @@ const PrivacyPanelComponent = () => {
                         You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>6. USE OF PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>6. USE OF PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi makes use of Personal Data, Technical Data or other related data to provide its services viz. the following (the list below is indicative and not exhaustive):
                     </Text>
@@ -136,12 +136,12 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>7. INTELLECTUAL PROPERTY</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>7. INTELLECTUAL PROPERTY</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         This Agreement does not transfer to You any intellectual property owned by BetygFi. All rights, titles, and interests will remain the exclusive property of BetygFi and its licensors. All trademarks, Service marks, graphics, logos, visual interfaces, graphics, design, compilation, information, computer code (including source code and object code), products, software, Services, and all other elements used in connection with BetygFi, work product produced by BetygFi, information collected/analyzed by BetygFi, are property/trademarks/ registered trademarks of BetygFi and/or its licensors and/or its assigns. The said Services are protected by relevant copyright, trade, patent, and trademark laws, international conventions, and all other relevant intellectual property and proprietary rights, and applicable laws. Your use of BetygFi and its Services grants You no right or license to reproduce or otherwise use any of the trademarks of BetygFi. You agree not to sell, license, distribute, copy, modify, publicly perform or display, transmit, publish, edit, adapt, create derivative works from, or otherwise make unauthorized use of the Materials. BetygFi reserves all rights not expressly granted in this Agreement.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>8. HYPERLINKING TO OUR CONTENT</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>8. HYPERLINKING TO OUR CONTENT</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Our Service may contain links to third-party web sites or Services that are not owned or controlled by the Company.
                         <br />
@@ -152,7 +152,7 @@ const PrivacyPanelComponent = () => {
                         We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or Services that You visit.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>9. PROHIBITED ACTIVITIES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>9. PROHIBITED ACTIVITIES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi is not responsible for any damages resulting from use of this Platform by anyone. You will not use the Platform for illegal purposes. You will:
                     </Text>
@@ -218,12 +218,12 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>10. EXTERNAL PROCESSING</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>10. EXTERNAL PROCESSING</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may provide your Personal Data to our affiliates or other trusted businesses or persons or service providers engaged by us, or to institutions that we partner with to assist us with providing you with products/services to better serve your needs and interests, based on your instructions and in compliance with our Privacy Policy and any other appropriate confidentiality and security measures.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>11. RETENTION OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>11. RETENTION OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
                         <br />
@@ -237,7 +237,7 @@ const PrivacyPanelComponent = () => {
                         We will retain Usage Data for internal analysis purposes. Usage Data is retained for when this data is used to strengthen security of our Service or to improve the functionality of our Service, or we are legally obligated to retain this data for longer time periods.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>12. TRANSFER OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>12. TRANSFER OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Your information may be transferred to - and maintained on - computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
                         <br />
@@ -248,7 +248,7 @@ const PrivacyPanelComponent = () => {
                         BetygFi will take all the steps reasonably necessary to ensure that your Personal Data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>13. DISCLOSURE OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>13. DISCLOSURE OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may disclose personal information that we collect, or you provide:
                     </Text>
@@ -305,7 +305,7 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>14. ERASURE AND MODIFICATION OF YOUR PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>14. ERASURE AND MODIFICATION OF YOUR PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         You shall have the right to correction, completion, updating and erasure of your personal data for the processing of which you have previously given consent. With this we will no longer provide your Personal Data for external processing as mentioned above. However, we may retain your Personal Data as long as the purpose for its usage exists, after which the same is disposed of by us except for any record retention required as per applicable law.
                         <br />
@@ -313,17 +313,17 @@ const PrivacyPanelComponent = () => {
                         Further, in the event of the pendency of any legal/regulatory proceeding or receipt of any legal and/or regulatory direction to that effect, we may be required by the law of the land to retain your Personal Data for longer periods.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>15. SECURITY OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>15. SECURITY OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         The security of all your data is important to us and we shall make best in industry efforts to keep all your data secure. But remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect all your Data including your Personal Data, however we cannot guarantee its absolute security.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>16. SERVICE PROVIDERS</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>16. SERVICE PROVIDERS</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi may employ third party companies and individuals (“Service Providers”) to facilitate our Service, provide Service on our behalf, perform Service-related services or assist us in analyzing how our Service is used. These third parties have access to your Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>17. REASONABLE SECURITY PRACTICES AND PROCEDURES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>17. REASONABLE SECURITY PRACTICES AND PROCEDURES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi takes various steps and measures to protect the security of your Personal Data from misuse, loss, unauthorized access, modification or disclosure. We use latest secure server layers encryption and access control on our systems.
                         <br />
@@ -331,7 +331,7 @@ const PrivacyPanelComponent = () => {
                         Our safety and security processes are audited by a third party cyber security audit agency from time to time.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>18. LINKS TO OTHER SITES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>18. LINKS TO OTHER SITES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
                         <br />
@@ -339,7 +339,7 @@ const PrivacyPanelComponent = () => {
                         We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>19. CHANGES TO THIS PRIVACY POLICY</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>19. CHANGES TO THIS PRIVACY POLICY</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
                         <br />
@@ -357,7 +357,7 @@ const PrivacyPanelComponent = () => {
                     display={{ base: "block", md: "none" }}
                     background={useColorModeValue("#F0F0F5", "#191919")}
                     padding={"22px 15px 95px 15px"}>
-                    <Text variant={"contentHeading5"}>1. INTRODUCTION</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"}>1. INTRODUCTION</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Welcome to BetygFi (referred to as “the Platform” or “we” or “our” or “us”). This Privacy Policy governs your visit to the Platform, it explains how we process your personal digital data which includes collection, safeguarding, disclosure and use of information that results from your use of BetygFi.
                         <br />
@@ -368,7 +368,7 @@ const PrivacyPanelComponent = () => {
                         Our Terms and Conditions (“Terms”) govern the use of our Service. The Privacy Policy is part and parcel of the Terms and is part of your agreement with us (“agreement”).
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>2. DEFINITIONS</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>2. DEFINITIONS</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Personal Data means information about a living individual who can be identified from such information.
                         <br />
@@ -382,7 +382,7 @@ const PrivacyPanelComponent = () => {
                         Service(s) means all the services provided by BetygFi.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>3. PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"}fontWeight={"600"} paddingTop={"30px"}>3. PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         While using BetygFi we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you (“Personal Data”). Personally identifiable information may include, but is not limited to:
                     </Text>
@@ -403,7 +403,7 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>4. USAGE DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>4. USAGE DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We also use your Personal Data to fulfill the requirements of applicable laws/regulations and/or court orders/regulatory directives received by us. We may also collect information that your browser sends whenever you visit our Service or when you access Service by or through any device (“Usage Data”).
                         <br />
@@ -414,7 +414,7 @@ const PrivacyPanelComponent = () => {
                         When you access BetygFi and/or its Service with a device, this Usage Data may include information such as the type of device you use, your device unique ID, the IP address of your device, your device operating system, the type of Internet browser you use, unique device identifiers and other diagnostic data.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>5. TRACKING COOKIES DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>5. TRACKING COOKIES DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi may use cookies and similar tracking technologies to track the activity on our Service and we hold certain information.
                         <br />
@@ -425,7 +425,7 @@ const PrivacyPanelComponent = () => {
                         You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>6. USE OF PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>6. USE OF PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi makes use of Personal Data, Technical Data or other related data to provide its services viz. the following (the list below is indicative and not exhaustive):
                     </Text>
@@ -482,12 +482,12 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>7. INTELLECTUAL PROPERTY</Text>
+                    <Text variant={"contentHeading3"}fontWeight={"600"} paddingTop={"30px"}>7. INTELLECTUAL PROPERTY</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         This Agreement does not transfer to You any intellectual property owned by BetygFi. All rights, titles, and interests will remain the exclusive property of BetygFi and its licensors. All trademarks, Service marks, graphics, logos, visual interfaces, graphics, design, compilation, information, computer code (including source code and object code), products, software, Services, and all other elements used in connection with BetygFi, work product produced by BetygFi, information collected/analyzed by BetygFi, are property/trademarks/ registered trademarks of BetygFi and/or its licensors and/or its assigns. The said Services are protected by relevant copyright, trade, patent, and trademark laws, international conventions, and all other relevant intellectual property and proprietary rights, and applicable laws. Your use of BetygFi and its Services grants You no right or license to reproduce or otherwise use any of the trademarks of BetygFi. You agree not to sell, license, distribute, copy, modify, publicly perform or display, transmit, publish, edit, adapt, create derivative works from, or otherwise make unauthorized use of the Materials. BetygFi reserves all rights not expressly granted in this Agreement.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>8. HYPERLINKING TO OUR CONTENT</Text>
+                    <Text variant={"contentHeading3"}fontWeight={"600"} paddingTop={"30px"}>8. HYPERLINKING TO OUR CONTENT</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Our Service may contain links to third-party web sites or Services that are not owned or controlled by the Company.
                         <br />
@@ -498,7 +498,7 @@ const PrivacyPanelComponent = () => {
                         We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or Services that You visit.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>9. PROHIBITED ACTIVITIES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>9. PROHIBITED ACTIVITIES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi is not responsible for any damages resulting from use of this Platform by anyone. You will not use the Platform for illegal purposes. You will:
                     </Text>
@@ -564,12 +564,12 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>10. EXTERNAL PROCESSING</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>10. EXTERNAL PROCESSING</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may provide your Personal Data to our affiliates or other trusted businesses or persons or service providers engaged by us, or to institutions that we partner with to assist us with providing you with products/services to better serve your needs and interests, based on your instructions and in compliance with our Privacy Policy and any other appropriate confidentiality and security measures.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>11. RETENTION OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>11. RETENTION OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
                         <br />
@@ -583,7 +583,7 @@ const PrivacyPanelComponent = () => {
                         We will retain Usage Data for internal analysis purposes. Usage Data is retained for when this data is used to strengthen security of our Service or to improve the functionality of our Service, or we are legally obligated to retain this data for longer time periods.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>12. TRANSFER OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>12. TRANSFER OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Your information may be transferred to - and maintained on - computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
                         <br />
@@ -594,7 +594,7 @@ const PrivacyPanelComponent = () => {
                         BetygFi will take all the steps reasonably necessary to ensure that your Personal Data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of your data and other personal information.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>13. DISCLOSURE OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>13. DISCLOSURE OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may disclose personal information that we collect, or you provide:
                     </Text>
@@ -651,7 +651,7 @@ const PrivacyPanelComponent = () => {
                         </ul>
                     </Box>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>14. ERASURE AND MODIFICATION OF YOUR PERSONAL DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>14. ERASURE AND MODIFICATION OF YOUR PERSONAL DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         You shall have the right to correction, completion, updating and erasure of your personal data for the processing of which you have previously given consent. With this we will no longer provide your Personal Data for external processing as mentioned above. However, we may retain your Personal Data as long as the purpose for its usage exists, after which the same is disposed of by us except for any record retention required as per applicable law.
                         <br />
@@ -659,17 +659,17 @@ const PrivacyPanelComponent = () => {
                         Further, in the event of the pendency of any legal/regulatory proceeding or receipt of any legal and/or regulatory direction to that effect, we may be required by the law of the land to retain your Personal Data for longer periods.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>15. SECURITY OF DATA</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>15. SECURITY OF DATA</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         The security of all your data is important to us and we shall make best in industry efforts to keep all your data secure. But remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect all your Data including your Personal Data, however we cannot guarantee its absolute security.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>16. SERVICE PROVIDERS</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>16. SERVICE PROVIDERS</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi may employ third party companies and individuals (“Service Providers”) to facilitate our Service, provide Service on our behalf, perform Service-related services or assist us in analyzing how our Service is used. These third parties have access to your Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>17. REASONABLE SECURITY PRACTICES AND PROCEDURES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>17. REASONABLE SECURITY PRACTICES AND PROCEDURES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         BetygFi takes various steps and measures to protect the security of your Personal Data from misuse, loss, unauthorized access, modification or disclosure. We use latest secure server layers encryption and access control on our systems.
                         <br />
@@ -677,7 +677,7 @@ const PrivacyPanelComponent = () => {
                         Our safety and security processes are audited by a third party cyber security audit agency from time to time.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>18. LINKS TO OTHER SITES</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>18. LINKS TO OTHER SITES</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         Our Service may contain links to other sites that are not operated by us. If you click a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
                         <br />
@@ -685,7 +685,7 @@ const PrivacyPanelComponent = () => {
                         We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
                     </Text>
 
-                    <Text variant={"contentHeading5"} paddingTop={"30px"}>19. CHANGES TO THIS PRIVACY POLICY</Text>
+                    <Text variant={"contentHeading3"} fontWeight={"600"} paddingTop={"30px"}>19. CHANGES TO THIS PRIVACY POLICY</Text>
                     <Text variant={"content"} paddingTop={"20px"} paddingLeft={"20px"}>
                         We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
                         <br />

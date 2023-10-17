@@ -149,14 +149,20 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
         <Text
-          variant={"smallTableBodyMobile"}
+          variant={"h6"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}
           textAlign={"left"}
           color={"#8F8F8F"}
         >
           Share
         </Text>
 
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"} ml={"20px"}>
+        <Text variant={"h6"}
+          textAlign={"left"}
+          ml={"20px"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           {item?.percentage}%
         </Text>
       </Box>

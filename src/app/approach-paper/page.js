@@ -46,15 +46,15 @@ const Approach = () => {
             background={useColorModeValue("#E8E8E8", "#222")}
             display={{ base: "none", md: "block" }}
           >
-            <Box layerStyle={"flexSpaceBetween"}>
+            <Box layerStyle={"flexSpaceBetween"} h={"175px"}>
               <Box padding={"90px 0px 0px 50px"}>
-                <Text variant={"bigHeading2"}>Approach Paper</Text>
+                <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}}>Approach Paper</Text>
               </Box>
-              <Box paddingRight={"100px"}>
+              <Box paddingRight={"205px"} py={"15px"}>
                 <Image
                   src={useColorModeValue(
-                    "/images/bg-logo.png",
-                    "/images/bg-logo-dark.png"
+                    "/images/bg-logo.svg",
+                    "/images/bg-logo-dark.svg"
                   )}
                   alt=""
                 ></Image>
@@ -66,7 +66,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>1. Abstract:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>1. Abstract:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 Decentralized Finance (DeFi) has gained significant traction in
                 recent years. We believe that, in the future Decentralized
@@ -94,7 +94,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>
                 2. Data Collection and Processing
               </Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
@@ -111,7 +111,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>2.1 Technical Risk</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.1 Technical Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                   <ul >
                     <li><Text variant={"content"}> Time on Mainnet</Text></li>
@@ -128,7 +128,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>2.2 Centralization Risk</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.2 Centralization Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                   <ul >
                     <li>
@@ -156,9 +156,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  2.3 Financial/Market Risk
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.3 Financial/Market Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                   <ul>
                     <li>
@@ -196,7 +194,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>2.4 Userbase Quality</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.4 Userbase Quality</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                   <ul >
                     <li>
@@ -227,7 +225,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>
                 3. Model Training Methodology
               </Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
@@ -241,9 +239,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  3.1 Unsupervised Learning
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>3.1 Unsupervised Learning</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                   <ul >
                     <li>
@@ -268,7 +264,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>3.2 Supervised Learning</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>3.2 Supervised Learning</Text>
                 <Box  padding={"10px 0px 0px 45px"}>
                 <ul
                   paddingTop={"10px"}
@@ -309,7 +305,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>4. Model Evaluation:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>4. Model Evaluation:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 After training and optimizing the model, we evaluate the model's
                 performance on a test dataset. We use a myriad of approaches
@@ -324,7 +320,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>5. Scoring:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>5. Scoring:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 We truly believe that all the advances in machine learning
                 including natural language processing (NLP) through foundation
@@ -347,7 +343,7 @@ const Approach = () => {
               padding={"29px 0px 0px 50px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>6. Future:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>6. Future:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 The model’s evolution will be reflected in the accuracy,
                 predictive performance and therefore usefulness of the score. We
@@ -361,9 +357,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  6.1 Feature Set Expansion:
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.1 Feature Set Expansion:</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 40px"}>
                   Additional features will continuously be included to enable a
                   comprehensive view of the risks associated with DeFi
@@ -374,9 +368,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  6.2 Real-Time Risk Assessment:
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.2 Real-Time Risk Assessment:</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 40px"}>
                   It is our continuous pursuit to make our ETL process real
                   time; to enable us to integrate real time data into the model,
@@ -387,9 +379,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  6.3 Better Machine Learning Techniques:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.3 Better Machine Learning Techniques:{" "}</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 40px"}>
                   We continue to explore advancements in machine learning. The
                   space is fast evolving and is at the moment witnessing a gold
@@ -404,9 +394,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  6.4 Explainable Results:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.4 Explainable Results:{" "}</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 40px"}>
                   Notwithstanding all of the benefits of machine learning, we
                   anticipate black box models will face significant challenges,
@@ -425,9 +413,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 70px"}>
-                <Text variant={"contentHeading6"}>
-                  6.5 Cross-Chain and Layer-2 Protocols:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.5 Cross-Chain and Layer-2 Protocols:{" "}</Text>
                 <Text variant={"content"} padding={"10px 0px 80px 40px"}>
                   As the DeFi ecosystem continues to evolve, we expect more
                   cross-chain and layer-2 protocols to emerge. Incorporating
@@ -486,15 +472,15 @@ const Approach = () => {
             display={{ base: "block", md: "none" }}
           >
             <Box layerStyle={"spaceBetween"}>
-              <Text variant={"bigHeading2"} ml={"20px"}>
+              <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}} ml={"20px"}>
                 Approach Paper
               </Text>
               <Image
                 h={40}
                 w={40}
                 src={useColorModeValue(
-                  "/images/bg-logo.png",
-                  "/images/bg-logo-dark.png"
+                  "/images/bg-logo.svg",
+                  "/images/bg-logo-dark.svg"
                 )}
                 alt=""
               ></Image>
@@ -505,7 +491,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>1. Abstract:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>1. Abstract:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 Decentralized Finance (DeFi) has gained significant traction in
                 recent years. We believe that, in the future Decentralized
@@ -533,7 +519,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>
                 2. Data Collection and Processing
               </Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
@@ -550,7 +536,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>2.1 Technical Risk</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.1 Technical Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li><Text variant={"content"}> Time on Mainnet</Text></li>
@@ -567,7 +553,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>2.2 Centralization Risk</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.2 Centralization Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li>
@@ -595,9 +581,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  2.3 Financial/Market Risk
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.3 Financial/Market Risk</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul>
                   <li>
@@ -635,7 +619,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>2.4 Userbase Quality</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>2.4 Userbase Quality</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                   <li>
@@ -666,7 +650,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>
                 3. Model Training Methodology
               </Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
@@ -680,9 +664,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  3.1 Unsupervised Learning
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>3.1 Unsupervised Learning</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul >
                 <li>
@@ -707,7 +689,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>3.2 Supervised Learning</Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>3.2 Supervised Learning</Text>
                 <Box padding={"10px 0px 0px 45px"}>
                 <ul
                   paddingTop={"10px"}
@@ -748,7 +730,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>4. Model Evaluation:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>4. Model Evaluation:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 After training and optimizing the model, we evaluate the model's
                 performance on a test dataset. We use a myriad of approaches
@@ -763,7 +745,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>5. Scoring:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>5. Scoring:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 We truly believe that all the advances in machine learning
                 including natural language processing (NLP) through foundation
@@ -786,7 +768,7 @@ const Approach = () => {
               padding={"29px 0px 0px 20px"}
               color={useColorModeValue("#191919", "#FFFFFF")}
             >
-              <Text variant={"contentHeading5"}>6. Future:</Text>
+              <Text variant={"contentHeading3"} fontWeight={"600"}>6. Future:</Text>
               <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                 The model’s evolution will be reflected in the accuracy,
                 predictive performance and therefore usefulness of the score. We
@@ -800,9 +782,7 @@ const Approach = () => {
               </Text>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  6.1 Feature Set Expansion:
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.1 Feature Set Expansion:</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 20px"}>
                   Additional features will continuously be included to enable a
                   comprehensive view of the risks associated with DeFi
@@ -813,9 +793,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  6.2 Real-Time Risk Assessment:
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.2 Real-Time Risk Assessment:</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 20px"}>
                   It is our continuous pursuit to make our ETL process real
                   time; to enable us to integrate real time data into the model,
@@ -826,9 +804,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  6.3 Better Machine Learning Techniques:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.3 Better Machine Learning Techniques:{" "}</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 20px"}>
                   We continue to explore advancements in machine learning. The
                   space is fast evolving and is at the moment witnessing a gold
@@ -843,9 +819,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  6.4 Explainable Results:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.4 Explainable Results:{" "}</Text>
                 <Text variant={"content"} padding={"10px 0px 10px 20px"}>
                   Notwithstanding all of the benefits of machine learning, we
                   anticipate black box models will face significant challenges,
@@ -864,9 +838,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 0px 15px"}>
-                <Text variant={"contentHeading6"}>
-                  6.5 Cross-Chain and Layer-2 Protocols:{" "}
-                </Text>
+                <Text variant={"contentHeading3"} fontWeight={"700"}>6.5 Cross-Chain and Layer-2 Protocols:{" "}</Text>
 
                 <Text variant={"content"} padding={"10px 0px 80px 20px"}>
                   As the DeFi ecosystem continues to evolve, we expect more

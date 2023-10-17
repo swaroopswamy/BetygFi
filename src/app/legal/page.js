@@ -28,7 +28,7 @@ const Legal = () => {
           background={useColorModeValue("#E8E8E8", "#131313")}>
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"50px 0px 44px 74px"} >
-              <Text variant={"bigHeading2"}>Legal</Text>
+              <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}}>Legal</Text>
             </Box>
             <Box p={"9px 205px 16px 0px"}>
               <Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")} alt=" " width={"153.027px"} height={"150px"} flexShrink={0}></Image>

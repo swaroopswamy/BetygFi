@@ -18,7 +18,7 @@ const About = () => {
       >
         <Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
           <Box layerStyle={"flexCenterSpaceBetween"}>
-            <Text variant={"bigHeading"} pl={"2em"}>
+            <Text variant={"bigHeading"} pl={"2em"} color={"#FFF"}>
               We BetygFi
             </Text>
             <Box>
@@ -59,7 +59,7 @@ const About = () => {
             </Box>
           </Box>
 
-          <Text variant={"contentHeading"}>About BetygFi</Text>
+          <Text variant={"contentHeading"} lineHeight={"20px"}>About BetygFi</Text>
 
           <Text variant={"content"} mt={5} paddingBottom={19}>
             We believe that BetygFi represents the beginnings of the future of
@@ -100,7 +100,7 @@ const About = () => {
         <Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"51px 0px 78px 20px"}>
-              <Text variant={"bigHeading"}>We BetygFi</Text>
+              <Text variant={"bigHeading"} color={"#FFF"}>We BetygFi</Text>
             </Box>
             <Box padding={"37px 10px 38px 20px"}>
               <Image
@@ -133,6 +133,7 @@ const About = () => {
         </Box>
         <Text
           variant={"contentHeading"}
+          lineHeight={"20px"}
           p={"25px 0px 15px 12px"}>
           About BetygFi
         </Text>

@@ -62,7 +62,9 @@ const Footer = ({ ...rest }) => {
           >
             <Text
               mr={{ base: 2, md: 4 }}
-              variant={"smallTableBodyMobile"}
+              variant={"h6"}
+              _light={{color:"#16171B"}}
+              _dark={{color:"#FFFFFF"}}
               fontWeight={manrope.style.fontWeight}
               paddingLeft={"10px"}
               opacity={"0.6"}

@@ -87,7 +87,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <hr style={{margin: "5px 2px 5px 15px"}} />
 
               <Box display={"flex"} w="100%" px={"20px"}>
-                <Text variant={"h5"} opacity="0.6" letterSpacing={"1.2px"}> BetygFi Communities </Text>
+                <Text variant={"h5"} 
+                opacity="0.6" 
+                letterSpacing={"1.2px"}
+                _light={{color:"#16171B"}}
+                _dark={{color:"#FFFFFF"}}> BetygFi Communities </Text>
               </Box>
 
               <Box layerStyle={"flexColumn"}>

@@ -23,13 +23,13 @@ const Help = () => {
         >
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"90px 0px 80px 60px"}>
-              <Text variant={"bigHeading2"}>Help</Text>
+              <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}}>Help</Text>
             </Box>
-            <Box paddingRight={"100px"}>
+            <Box paddingRight={"205px"} paddingTop={"30px"}>
               <Image
                 src={useColorModeValue(
-                  "/images/bg-logo.png",
-                  "/images/bg-logo-dark.png"
+                  "/images/bg-logo.svg",
+                  "/images/bg-logo-dark.svg"
                 )}
                 alt=""
               ></Image>
@@ -37,7 +37,7 @@ const Help = () => {
           </Box>
         </Box>
 
-        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        <Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
           General
         </Text>
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
@@ -53,7 +53,7 @@ const Help = () => {
                           textAlign="left"
                           padding={"10px 0px 10px 0px"}
                         >
-                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                          <Text variant={"contentHeading"} lineHeight={"20px"}>{item.heading}</Text>
                         </Box>
                         {isExpanded ? (
                           <Image
@@ -111,7 +111,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        <Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
           BetygFi
         </Text>
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
@@ -127,7 +127,7 @@ const Help = () => {
                           textAlign="left"
                           padding={"10px 0px 10px 0px"}
                         >
-                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                          <Text variant={"contentHeading"} lineHeight={"20px"}>{item.heading}</Text>
                         </Box>
                         {isExpanded ? (
                           <Image
@@ -165,7 +165,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        <Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
           Wallets and DeFi Dashboard
         </Text>
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
@@ -181,7 +181,7 @@ const Help = () => {
                           textAlign="left"
                           padding={"10px 0px 10px 0px"}
                         >
-                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                          <Text variant={"contentHeading"} lineHeight={"20px"}>{item.heading}</Text>
                         </Box>
                         {isExpanded ? (
                           <Image
@@ -254,7 +254,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"10px 0px 10px 75px"}>
+        <Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
           DeFi
         </Text>
         <Accordion allowToggle padding={"10px 80px 80px 60px"}>
@@ -270,7 +270,7 @@ const Help = () => {
                           textAlign="left"
                           padding={"10px 0px 10px 0px"}
                         >
-                          <Text variant={"contentHeading"}>{item.heading}</Text>
+                          <Text variant={"contentHeading"} lineHeight={"20px"}>{item.heading}</Text>
                         </Box>
                         {isExpanded ? (
                           <Image
@@ -358,8 +358,8 @@ const Help = () => {
             <Box p={"6px 8px 28px 0px"}>
               <Image
                 src={useColorModeValue(
-                  "/images/bg-logo.png",
-                  "/images/bg-logo-dark.png"
+                  "/images/bg-logo.svg",
+                  "/images/bg-logo-dark.svg"
                 )}
                 alt=""
                 width={"102.019px"}
@@ -371,7 +371,7 @@ const Help = () => {
           </Box>
         </Box>
 
-        <Text variant={"contentHeading3"} padding={"24px 0px 3px 15px"}>
+        <Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
           General
         </Text>
         <Accordion allowToggle>
@@ -443,7 +443,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"24px 0px 3px 15px"}>
+        <Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
           BetygFi
         </Text>
         <Accordion allowToggle>
@@ -494,7 +494,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"24px 0px 3px 15px"}>
+        <Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
           Wallets and DeFi Dashboard
         </Text>
         <Accordion allowToggle>
@@ -581,7 +581,7 @@ const Help = () => {
           })}
         </Accordion>
 
-        <Text variant={"contentHeading3"} padding={"24px 0px 3px 15px"}>
+        <Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
           DeFi
         </Text>
         <Accordion allowToggle paddingBottom={"100px"}>

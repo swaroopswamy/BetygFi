@@ -138,7 +138,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               }}
               value={searchWalletAddressValue ?? ""}
               bgColor={"transparent"}
-              variant={"h6"}
+              variant={"h5"}
+              letterSpacing={"1.2px"}
+              _light={{color:"#16171B"}}
+              _dark={{color:"#A8ADBD"}}
               w="100%"
               placeholder="Search Wallet Address"
               onKeyDown={(e) => {
@@ -183,7 +186,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   p="15px 20px"
                   minW="150px"
                 >
-                  <Text variant={"ConectWalletText"}>Connect Wallet</Text>
+                  <Text variant={"SearchText"} 
+                  fontWeight={"600"}
+                  _light={{color:"#FAFAFB"}}
+                  _dark={{color:"#191919"}}>
+                    Connect Wallet
+                    </Text>
                 </Box>
               </Box>
             </>
@@ -206,7 +214,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 />
                 <Box layerStyle={"flexColumn"} ml="10px" mr="20px" minW="150px">
                   <Text variant={"TopWalletsText"}>No Name</Text>
-                  <Text variant={"h6"}>
+                  <Text variant={"h5"}
+                   letterSpacing={"1.2px"}
+                   _light={{color:"#16171B"}}
+                   _dark={{color:"#A8ADBD"}}>
                     {!isEmpty(LoggedInData?.data)
                       ? LoggedInData?.data?.user?._id
                           .split("")
@@ -335,7 +346,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               borderRadius="0px"
               borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
               bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-              variant={"h6"}
+              variant={"h5"}
+              letterSpacing={"1.2px"}
+              _light={{color:"#16171B"}}
+              _dark={{color:"#A8ADBD"}}
               w="100%"
               placeholder="Search Wallet Address"
               value={searchWalletAddressValue ?? ""}
@@ -355,7 +369,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 handleMobileSearchByWalletAddress();
               }}
             >
-              <Text variant={"SearchText"}>Search</Text>
+              <Text variant={"SearchText"} fontWeight={"500"}>Search</Text>
             </Box>
           </InputGroup>
         </Box>

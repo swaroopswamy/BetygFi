@@ -10,6 +10,7 @@ import {
   Flex,
   Image,
   Link,
+  colorMode,
   useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -136,7 +137,11 @@ const TableRow = ({ item, rowIndex }) => {
                   "......" +
                   walletAddress?.slice(-5)}
               </Text>
-              <Text opacity={"0.6000000238418579"} variant={"h5"} ml="6px">
+              <Text 
+              opacity={"0.6000000238418579"} 
+              variant={"h5"} ml="6px"
+              _light={{color:"#16171B"}}
+              _dark={{color:"#FFFFFF"}}>
                 {moment.unix(item?.timeStamp).format("Do MMM YYYY")}
               </Text>
             </Box>
