@@ -71,8 +71,8 @@ const BlockchainSelectionMenu = ({ chains }) => {
               >
                 <Avatar
                   style={{ borderRadius: "50%" }}
-                  width={24}
-                  height={24}
+                  width={"24px"}
+                  height={"24px"}
                   src={item?.logoUrl}
                   alt={item.id ?? "Coin"}
                 ></Avatar>
@@ -130,8 +130,8 @@ const BlockchainSelectionMenu = ({ chains }) => {
                           justifyContent={"center"}
                         >
                           <Avatar
-                            width={24}
-                            height={24}
+                            width={"24px"}
+                            height={"24px"}
                             src={item.logoUrl}
                             alt={item.id ?? "Coin"}
                             style={{ marginRight: "20px", marginLeft: "14px" }}
