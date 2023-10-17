@@ -440,6 +440,7 @@ function Graph({ series }) {
         axisBorder: {
           show: i !== 0 && true,
           color: item?.color,
+          offsetX: i !== 0 && "50px"
         },
         axisTicks: {
           show: false,
