@@ -46,7 +46,9 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                <Image src="/images/SelectBox.svg" alt=""></Image>
+                                {/* <DynamicIcon
+                                    name={colorMode === "light" ? "green_tick" : "unticked"}
+                                /> */}
                                 <Text
                                     variant={"ThemeText"}
                                     ml={"15px"}
@@ -90,7 +92,7 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                     <DynamicIcon
+                                <DynamicIcon
                                     name={colorMode === "dark" ? "green_tick" : "unticked"}
                                 />
                                 <Text
@@ -331,10 +333,10 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
-                                    <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "light" ? "green_tick" : "unticked"}
-                                />
+                                <Box ml={"21px"}>
+                                    <DynamicIcon
+                                        name={colorMode === "light" ? "green_tick" : "unticked"}
+                                    />
                                 </Box>
                                 <Box ml={"10px"}>
                                     <Text variant={"ThemeText"}>
@@ -355,9 +357,9 @@ const Settings = () => {
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
                                 <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
-                                />
+                                    <DynamicIcon
+                                        name={colorMode === "dark" ? "green_tick" : "unticked"}
+                                    />
                                 </Box>
                                 <Box ml={"10px"}>
                                     <Text layerStyle={"ThemeText"}>

@@ -1,7 +1,7 @@
-import { RiHomeLine, RiTwitterXLine, RiBugLine } from 'react-icons/ri';
+import { RiHomeLine, RiBugLine } from 'react-icons/ri';
 import { TiDocumentText } from 'react-icons/ti';
 import { BiWalletAlt, BiBulb } from 'react-icons/bi';
-import { SlSocialReddit, SlSettings } from 'react-icons/sl';
+import { SlSocialReddit, SlSettings, SlShield } from 'react-icons/sl';
 import { RxDiscordLogo } from 'react-icons/rx';
 import { BetygFiSmLogo } from '../icons';
 
@@ -41,13 +41,17 @@ export const linkItemsDown = [
     },
     {
         name: "Twitter",
-        icon: RiTwitterXLine,
+        icon: "",
         path: "https://twitter.com/betygFi",
         newTab: true,
     },
 ];
 
 export const bottomMenu = [
+    {    name: "Help",
+        icon: "",
+        path: "/help"
+    },
     {    name: "Settings",
         icon: SlSettings,
         path: "/settings"
@@ -57,6 +61,10 @@ export const bottomMenu = [
         icon: BiBulb,
         newTab: true,
         path: "https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform",
+    },
+    {    name: "Legal",
+        icon: SlShield,
+        path: "/legal"
     },
     {
         name: "Report Bug",

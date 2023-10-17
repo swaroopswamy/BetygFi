@@ -58,7 +58,6 @@ const WalletDashboardPage = () => {
       },
     };
     dispatch(fetchWalletBalanceData(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, searchParam.get("address")]);
 
   const fetchAssetAllocationForAddressHandler = useCallback(() => {
@@ -66,7 +65,6 @@ const WalletDashboardPage = () => {
       address: searchParam.get("address"),
     };
     dispatch(fetchAssetAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, searchParam.get("address")]);
 
   const fetchProtocolAllocationForAddressHandler = useCallback(() => {
@@ -74,7 +72,6 @@ const WalletDashboardPage = () => {
       address: searchParam.get("address"),
     };
     dispatch(fetchProtocolAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, searchParam.get("address")]);
 
   const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
@@ -82,7 +79,6 @@ const WalletDashboardPage = () => {
       address: searchParam.get("address"),
     };
     dispatch(fetchBlockchainAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, searchParam.get("address")]);
 
   const fetchInflowOutflowTokensForAddressHandler = useCallback(() => {
@@ -90,7 +86,6 @@ const WalletDashboardPage = () => {
       address: searchParam.get("address"),
     };
     dispatch(fetchInflowOutflowTokensForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, searchParam.get("address")]);
 
   useEffect(() => {
@@ -100,12 +95,10 @@ const WalletDashboardPage = () => {
     fetchProtocolAllocationForAddressHandler();
     fetchBlockchainAllocationForAddressHandler();
     fetchInflowOutflowTokensForAddressHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchWalletBalanceDataHandler]);
 
   useEffect(() => {
     dispatch(fetchBlockchainListData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -114,7 +107,6 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
       }, 5000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletBalanceData]);
 
   return (
