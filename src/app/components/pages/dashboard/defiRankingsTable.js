@@ -26,6 +26,7 @@ import {
   DefiRankingTableMobile,
 } from "/src/app/components/pages/dashboard/helper";
 import PageButtonsWide from "/src/app/components/pageButtonsWide";
+import PageButtons from "/src/app/components/pageButtons";
 import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
@@ -145,7 +146,7 @@ const Rankings = () => {
       </Box>
 
 
-      <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
+      {/* <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
         <PageButtonsWide
           page={tablePage}
           totalPages={tableData?.data?.totalPages}
@@ -153,7 +154,13 @@ const Rankings = () => {
           time={3}
           w={"100%"}
         />
-      </Box>
+      </Box> */}
+
+      <PageButtons
+        page={tablePage}
+        totalPages={tableData?.data?.totalPages}
+        pageChangeHandler={pageChangeHandler}
+      />
 
     </Box>
   );
