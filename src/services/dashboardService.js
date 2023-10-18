@@ -34,9 +34,21 @@ export const getOverviewData = async (payload) => {
   }
 };
 
+export const getOverviewGraphData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.post(
+      `protocols/graph/data`, payload
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
 
 export default {
   getDefiRankingsTableData,
   getProtocolScoresData,
-  getOverviewData
+  getOverviewData,
+  getOverviewGraphData
 };

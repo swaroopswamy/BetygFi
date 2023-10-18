@@ -1,10 +1,40 @@
-import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import CustomChart from "/src/app/components/graph";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 
 const OverviewAreaChart = () => {
+  const dispatch = useDispatch();
+
+  const overviewGraphData = useSelector(
+      (state) => state?.dashboardTableData?.OverviewGraphData
+  );
+
+  console.log("ov", overviewGraphData);
+
+  const blockchainSelected = useSelector(
+      (state) => state?.dashboardTableData?.blockchainType
+  );
+  
+  const categorySelected = useSelector(
+      (state) => state?.dashboardTableData?.categorySelected
+  );
+
+  const getOverviewGraphDataHandler = () => {
+      const payload = {
+        category: categorySelected,
+        startDate: "",
+        endDate: ""
+      };
+      dispatch(fetchOverviewGraphData(payload));
+  }
+  
+  useEffect(() => {
+      getOverviewGraphDataHandler();
+  }, [categorySelected]); 
+
   const options = {
     chart: {
       toolbar: {

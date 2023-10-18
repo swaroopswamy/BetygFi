@@ -1,4 +1,4 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
+import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData, getOverviewGraphData } from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -11,8 +11,14 @@ export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payl
   const response = await getOverviewData(payload);
   return response.data;
 })
+
 export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload) => {
   const response = await getProtocolScoresData(payload);
+  return response.data;
+})
+
+export const fetchOverviewGraphData = createAsyncThunk('getOverviewGraphData', async (payload) => {
+  const response = await getOverviewGraphData(payload);
   return response.data;
 })
 
@@ -37,9 +43,14 @@ const DashboardDataSlice = createSlice({
       isError: false,
       isSuccess: false,
     },
+    OverviewGraphData: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
     blockchainType: [],
     categorySelected: [],
-
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDefiRankingTableData.fulfilled, (state, action) => {
@@ -83,6 +94,18 @@ const DashboardDataSlice = createSlice({
     builder.addCase(fetchOverviewData.rejected, (state, action) => {
       state.OverviewData.isLoading = false;
       state.OverviewData.isError = true;
+    });
+    builder.addCase(fetchOverviewGraphData.fulfilled, (state, action) => {
+      state.OverviewGraphData.data = action.payload;
+      state.OverviewGraphData.isLoading = false;
+      state.OverviewGraphData.isSuccess = true;
+    });
+    builder.addCase(fetchOverviewGraphData.pending, (state, action) => {
+      state.OverviewGraphData.isLoading = true;
+    });
+    builder.addCase(fetchOverviewGraphData.rejected, (state, action) => {
+      state.OverviewGraphData.isLoading = false;
+      state.OverviewGraphData.isError = true;
     });
   },
   reducers: {
