@@ -24,6 +24,7 @@ const nextConfig = {
   },
   optimizeFonts: false,
   distDir: "out",
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;
