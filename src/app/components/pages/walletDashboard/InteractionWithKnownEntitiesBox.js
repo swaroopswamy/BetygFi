@@ -145,8 +145,13 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box layerStyle={"flexCenter"}>
-        <Text variant={"smallTableBodyMobile"}>Value</Text>
-        <Text variant={"smallTableBodyMobile"} ml={"20px"}>
+        <Text variant={"h6"} _
+          light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>Value</Text>
+        <Text variant={"h6"}
+          ml={"20px"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           USD {USDollar.format(item?.value)}
         </Text>
       </Box>

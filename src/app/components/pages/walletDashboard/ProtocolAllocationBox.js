@@ -131,11 +131,18 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"}>
+        <Text variant={"h6"}
+          textAlign={"left"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           Value
         </Text>
 
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"} ml={"20px"}>
+        <Text variant={"h6"}
+          textAlign={"left"}
+          ml={"20px"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           USD {USDollar.format(item?.value)}
         </Text>
       </Box>

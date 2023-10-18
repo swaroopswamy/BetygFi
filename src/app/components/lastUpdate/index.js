@@ -6,7 +6,9 @@ const LastUpdate = ({ time, ...rest }) => {
             <Text color={"#A8ADBD"} fontSize={"12px"} fontWeight={400} lineHeight={"20px"}>
                 Last Update
             </Text>
-            <Text variant={"h6"}>
+            <Text variant={"h5"}
+             _light={{color:"#16171B"}}
+             _dark={{color:"#A8ADBD"}}>
                 {time} mins ago
             </Text>
         </Box>

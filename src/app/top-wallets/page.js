@@ -35,7 +35,7 @@ const WalletDashboardPage = () => {
           padding={"38px 30px 0px 30px"}
           bgColor={useColorModeValue("#FFFFFF", "#131313")}>
           <Box layerStyle={"flexColumnSpaceBetween"}>
-            <Text variant={"contentHeading"}>
+            <Text variant={"contentHeading"} lineHeight={"20px"}>
               Top Wallets
             </Text>
 

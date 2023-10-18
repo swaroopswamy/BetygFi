@@ -10,6 +10,7 @@ import {
   Flex,
   Image,
   Link,
+  colorMode,
   useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,10 +70,10 @@ const TransactionPanelComponent = () => {
         mb="20px"
       >
         <Flex
-          py={{base:'20px',md:"25px"}}
-          px={{base:'10px',md:"25px"}}
-          
-          mx={{base:"10px",md:"none  "}}
+          py={{ base: '20px', md: "25px" }}
+          px={{ base: '10px', md: "25px" }}
+
+          mx={{ base: "10px", md: "none  " }}
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={"block"}
@@ -83,7 +84,7 @@ const TransactionPanelComponent = () => {
           </Text>
         </Flex>
 
-        <Box overflow={"auto"} px={{base:"10px",md:"none  "}}>
+        <Box overflow={"auto"} px={{ base: "10px", md: "none  " }}>
           <GenericTable
             tableHeader={tableHeader}
             tableData={walletTransactionsData}
@@ -136,7 +137,11 @@ const TableRow = ({ item, rowIndex }) => {
                   "......" +
                   walletAddress?.slice(-5)}
               </Text>
-              <Text opacity={"0.6000000238418579"} variant={"h5"} ml="6px">
+              <Text 
+              opacity={"0.6000000238418579"} 
+              variant={"h5"} ml="6px"
+              _light={{color:"#16171B"}}
+              _dark={{color:"#FFFFFF"}}>
                 {moment.unix(item?.timeStamp).format("Do MMM YYYY")}
               </Text>
             </Box>
@@ -195,21 +200,31 @@ const TableRow = ({ item, rowIndex }) => {
 
         <Td>
           <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
-              {item?.from.split("").join("").substring(0, 6) +
-                "..." +
-                item?.from.slice(-5)}
-            </Text>
+            <Tooltip
+              label={item.from}
+              //whiteSpace={"nowrap"}
+            >
+              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
+                {item?.from.split("").join("").substring(0, 6) +
+                  "..." +
+                  item?.from.slice(-5)}
+              </Text>
+            </Tooltip>
           </Box>
         </Td>
 
         <Td>
           <Box layerStyle={"flexCenter"}>
-            <Text variant={"h3"} letterSpacing={"1px"} w="95px">
-              {item?.to.split("").join("").substring(0, 6) +
-                "..." +
-                item?.to.slice(-5)}
-            </Text>
+            <Tooltip
+              label={item.to}
+              //whiteSpace={"nowrap"}
+            >
+              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
+                {item?.to.split("").join("").substring(0, 6) +
+                  "..." +
+                  item?.to.slice(-5)}
+              </Text>
+            </Tooltip>
           </Box>
         </Td>
 
@@ -225,8 +240,8 @@ const TableRow = ({ item, rowIndex }) => {
                     ? "#245F00"
                     : "#60C000"
                   : colorMode === "light"
-                  ? "#EF1E1E"
-                  : "#FF3535"
+                    ? "#EF1E1E"
+                    : "#FF3535"
               }
             >
               {item?.usdValue >= 0 ? "+" : "-"}
@@ -338,8 +353,8 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
                 ? "#245F00"
                 : "#60C000"
               : colorMode === "light"
-              ? "#EF1E1E"
-              : "#FF3535"
+                ? "#EF1E1E"
+                : "#FF3535"
           }
         >
           {item?.usdValue >= 0 ? "+" : "-"}

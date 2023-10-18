@@ -19,7 +19,8 @@ const Settings = () => {
                 width={"100%"}
                 background={useColorModeValue("#F0F0F5", "#191919")}>
                 <Text
-                    variant={"contentHeading3"}
+                    variant={"contentHeading"}
+                    lineHeight={"46px"}
                     p={"30px 0px 10px 33px"}>
                     Settings
                 </Text>
@@ -34,7 +35,7 @@ const Settings = () => {
                     <Box
                         ml={"25px"}
                         pt={"20px"}>
-                        <Text variant={"contentHeading4"}>Theme</Text>
+                        <Text variant={"contentHeading3"} fontWeight={"400"}>Theme</Text>
                     </Box>
                     <Box
                         layerStyle={"flexCenterSpaceEvenly"}
@@ -46,9 +47,14 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                <Image src="/images/SelectBox.svg" alt=""></Image>
+                                {/* <DynamicIcon
+                                    name={colorMode === "light" ? "green_tick" : "unticked"}
+                                /> */}
                                 <Text
-                                    variant={"ThemeText"}
+                                    variant={" h6"}
+                                    textTransform={"uppercase"}
+                                    _light={{ color: "#191919" }}
+                                    _dark={{ color: "#FFF" }}
                                     ml={"15px"}
                                     mt={"2px"}>
                                     System Default
@@ -72,7 +78,10 @@ const Settings = () => {
                                 />
                                 <Text
                                     color={useColorModeValue("#191919", "#FFFFFF")}
-                                    variant={"ThemeText"}
+                                    variant={" h6"}
+                                    textTransform={"uppercase"}
+                                    _light={{ color: "#191919" }}
+                                    _dark={{ color: "#FFF" }}
                                     ml={"15px"}
                                     mt={"2px"}>
                                     Light THEME
@@ -90,12 +99,15 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"10px"}>
-                                     <DynamicIcon
+                                <DynamicIcon
                                     name={colorMode === "dark" ? "green_tick" : "unticked"}
                                 />
                                 <Text
                                     color={useColorModeValue("#191919", "#FFFFFF")}
-                                    layerStyle={"ThemeText"}
+                                    layerStyle={" h6"}
+                                    textTransform={"uppercase"}
+                                    _light={{ color: "#191919" }}
+                                    _dark={{ color: "#FFF" }}
                                     ml={"15px"}
                                     mt={"2px"}>
                                     DARK THEME
@@ -115,7 +127,8 @@ const Settings = () => {
                     mt={"40px"}
                     mr={"20px"}>
                     <Text
-                        variant={"contentHeading4"}
+                        variant={"contentHeading3"}
+                        fontWeight={"400"}
                         ml={5}
                         pt={5}>
                         Account Settings
@@ -147,7 +160,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Verify
                             </Text>
                         </Button>
@@ -182,7 +197,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Add Email
                             </Text>
                         </Button>
@@ -217,7 +234,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Add Twitter
                             </Text>
                         </Button>
@@ -231,7 +250,8 @@ const Settings = () => {
                             <>
                                 <Box layerStyle={"flexSpaceBetween"}
                                     p={"50px 35px 90px 50px"}>
-                                    <Text variant={"contentHeading4"}>
+                                    <Text variant={"contentHeading3"}
+                                        fontWeight={"400"}>
                                         Login to BetygFi
                                     </Text>
                                     {/* <Text
@@ -248,7 +268,9 @@ const Settings = () => {
                                         ml={"60px"}
                                         variant={"outline"}
                                         border={"1px"}>
-                                        <Text variant={"SettingsButtonText2"}>
+                                        <Text variant={"SettingsButtonText"}
+                                            _light={{ color: "#191919" }}
+                                            _dark={{ color: "#FFFFFF" }}>
                                             Login
                                         </Text>
                                     </Button>
@@ -260,7 +282,8 @@ const Settings = () => {
                             <>
                                 <Box layerStyle={"flexSpaceBetween"}
                                     p={"50px 35px 90px 50px"}>
-                                    <Text variant={"contentHeading4"}>
+                                    <Text variant={"contentHeading3"}
+                                        fontWeight={"400"}>
                                         Logout of BetygFi
                                     </Text>
                                     <Text
@@ -276,7 +299,9 @@ const Settings = () => {
                                         variant={"outline"}
                                         border={"1px"}
                                         onClick={() => dispatch(LogoutReducer())}>
-                                        <Text variant={"SettingsButtonText2"}>
+                                        <Text variant={"SettingsButtonText"}
+                                            _light={{ color: "#191919" }}
+                                            _dark={{ color: "#FFFFFF" }}>
                                             Logout
                                         </Text>
                                     </Button>
@@ -305,7 +330,7 @@ const Settings = () => {
                     boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
                     mx={"15px"}>
                     <Box p={"15px 0px 15px 21px"}>
-                        <Text variant={"contentHeading4"}>Theme</Text>
+                        <Text variant={"contentHeading3"} fontWeight={"400"}>Theme</Text>
                     </Box>
                     <Box layerStyle={"flexColumn"}>
                         <Box
@@ -314,7 +339,10 @@ const Settings = () => {
                             <Box layerStyle={"flexCenterFlexStart"}>
                                 <Image src="/images/SelectBox.svg" alt="" ml={"21px"}></Image>
                                 <Box ml={"10px"}>
-                                    <Text variant={"ThemeText"}>
+                                    <Text variant={" h6"}
+                                        textTransform={"uppercase"}
+                                        _light={{ color: "#191919" }}
+                                        _dark={{ color: "#FFF" }}>
                                         System Default
                                     </Text>
                                 </Box>
@@ -331,13 +359,16 @@ const Settings = () => {
                             <Box
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
-                                    <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "light" ? "green_tick" : "unticked"}
-                                />
+                                <Box ml={"21px"}>
+                                    <DynamicIcon
+                                        name={colorMode === "light" ? "green_tick" : "unticked"}
+                                    />
                                 </Box>
                                 <Box ml={"10px"}>
-                                    <Text variant={"ThemeText"}>
+                                    <Text variant={" h6"}
+                                        textTransform={"uppercase"}
+                                        _light={{ color: "#191919" }}
+                                        _dark={{ color: "#FFF" }}>
                                         Light THEME
                                     </Text>
                                 </Box>
@@ -355,12 +386,15 @@ const Settings = () => {
                                 layerStyle={"flexCenterFlexStart"}
                                 mt={"34px"}>
                                 <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
-                                />
+                                    <DynamicIcon
+                                        name={colorMode === "dark" ? "green_tick" : "unticked"}
+                                    />
                                 </Box>
                                 <Box ml={"10px"}>
-                                    <Text layerStyle={"ThemeText"}>
+                                    <Text layerStyle={" h6"}
+                                        textTransform={"uppercase"}
+                                        _light={{ color: "#191919" }}
+                                        _dark={{ color: "#FFF" }}>
                                         DARK THEME
                                     </Text>
                                 </Box>
@@ -379,7 +413,8 @@ const Settings = () => {
                     mx={"15px"}
                     mt={"30px"}>
                     <Box p={"15px 0px 20px 21px"}>
-                        <Text variant={"contentHeading4"}>
+                        <Text variant={"contentHeading3"}
+                            fontWeight={"400"}>
                             Account Settings
                         </Text>
                     </Box>
@@ -408,7 +443,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Verify
                             </Text>
                         </Button>
@@ -442,7 +479,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Add Email
                             </Text>
                         </Button>
@@ -476,7 +515,9 @@ const Settings = () => {
                             height={"28px"}
                             flexShrink={"0"}
                             background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
+                            <Text variant={"SettingsButtonText"}
+                                _light={{ color: "#FFFFFF" }}
+                                _dark={{ color: "#191919" }}>
                                 Add Twitter
                             </Text>
                         </Button>
@@ -490,7 +531,7 @@ const Settings = () => {
                             <>
                                 <Box layerStyle={"flexColumn"}
                                     p={"30px 15px 90px 15px"}>
-                                    <Text variant={"contentHeading4"}>
+                                    <Text variant={"contentHeading3"} fontWeight={"400"}>
                                         Login to BetygFi
                                     </Text>
                                     {/* <Box
@@ -508,7 +549,9 @@ const Settings = () => {
                                         onClick={onLoginModalOpen}
                                         mt={"15px"}
                                         border={"1px"}>
-                                        <Text variant={"SettingsButtonText2"}>
+                                        <Text variant={"SettingsButtonText"}
+                                            _light={{ color: "#191919" }}
+                                            _dark={{ color: "#FFFFFF" }}>
                                             Login
                                         </Text>
                                     </Button>
@@ -520,7 +563,7 @@ const Settings = () => {
                             <>
                                 <Box layerStyle={"flexColumn"}
                                     p={"30px 15px 90px 15px"}>
-                                    <Text variant={"contentHeading4"}>
+                                    <Text variant={"contentHeading3"} fontWeight={"400"}>
                                         Logout of BetygFi
                                     </Text>
                                     <Box
@@ -537,7 +580,9 @@ const Settings = () => {
                                         mt={"15px"}
                                         border={"1px"}
                                         onClick={() => dispatch(LogoutReducer())}>
-                                        <Text variant={"SettingsButtonText2"}>
+                                        <Text variant={"SettingsButtonText"}
+                                            _light={{ color: "#191919" }}
+                                            _dark={{ color: "#FFFFFF" }}>
                                             Logout
                                         </Text>
                                     </Button>
