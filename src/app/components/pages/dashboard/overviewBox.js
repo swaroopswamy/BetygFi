@@ -36,10 +36,11 @@ const OverviewBox = () => {
 
     const getOverviewGraphDataHandler = () => {
         const payload = {
-          category: categorySelected,
-          startDate: "",
-          endDate: ""
-        };
+        category: ["Prediction Market", "Lending", "Yield"],
+        startDate: "1689071955",
+        endDate: "12312312313",
+        type: "weekly"
+    };
         dispatch(fetchOverviewGraphData(payload));
     }
     

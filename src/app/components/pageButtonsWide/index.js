@@ -5,8 +5,6 @@ import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, Chevro
 const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, setTableLimit, time, ...rest }) => {
   const { colorMode } = useColorMode();
 
-  console.log("lim", tableLimit);
-
   if (totalPages === 0) {
     return;
   }

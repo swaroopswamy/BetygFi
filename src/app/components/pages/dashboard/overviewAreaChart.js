@@ -1,13 +1,20 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import CustomChart from "/src/app/components/graph";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
+import millify from "millify";
 
 const OverviewAreaChart = () => {
+  const { colorMode } = useColorMode();
+
   const overviewGraphData = useSelector(
       (state) => state?.dashboardTableData?.OverviewGraphData
+  );
+
+  const categorySelected = useSelector(
+    (state) => state?.dashboardTableData?.categorySelected
   );
 
   const options = {
@@ -18,6 +25,10 @@ const OverviewAreaChart = () => {
       zoom: {
         enabled: false,
       },
+      stacked: false,
+      animations: {
+        enabled: false
+      }
     },
     colors: ["#29A88E", "#DE50CF", "#ACC94C", "#FF5C00"],
     grid: {
@@ -30,7 +41,25 @@ const OverviewAreaChart = () => {
       enabled: false,
     },
     tooltip: {
-      enabled: false
+      enabled: true,
+      theme: colorMode,
+      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+        let val = millify(series[seriesIndex][dataPointIndex], {
+          precision: 2,
+          locales: "en-US"
+        })
+        return (
+          '<div class="donut_tooltip">' +
+          '<div class="donut_tooltip_text">' +
+            w.config.series[seriesIndex].name +
+          "</div>" +
+          '<div class="donut_tooltip_text">' +
+            val +
+          " USD" +
+          "</div>" +
+          "</div>"
+        );
+      }
     },
     fill: {
       type: "gradient",
@@ -44,18 +73,22 @@ const OverviewAreaChart = () => {
     stroke: {
       show: true,
       curve: "smooth",
-      width: 1,
+      width: [2, 2],
     },
     xaxis: {
-      categories: ["May", "2021", "May", "2021", "May", "2021"],
+      type: "datetime",
       labels: {
         show: true,
         style: {
           colors: useColorModeValue("#16171B", "#FFF"),
           fontSize: "11px",
-          fontWeight: 400,
+          fontWeight: 300,
         },
       },
+      axisTicks: {
+        show: false,
+      },
+      max: new Date("2023-10-07").getTime(),
     },
     yaxis: {
       labels: {
@@ -66,29 +99,27 @@ const OverviewAreaChart = () => {
           fontWeight: 400,
         },
         formatter: (value) => {
-          return `$${value}B`;
+          return millify(value, {
+            precision: 2,
+            locales: "en-US"
+        });
         },
       },
     },
   };
-  const series = [
-    {
-      name: "Prediction Markets",
-      data: [1, 4, 5, 3, 2],
-    },
-    {
-      name: "Derivatives",
-      data: [5, 3, 1, 4, 1],
-    },
-    {
-      name: "Insurance",
-      data: [5, 2, 3, 1, 4],
-    },
-    {
-      name: "Yield",
-      data: [1, 5, 3, 5, 3],
-    },
-  ];
+
+  const series = [];
+  
+  overviewGraphData?.isSuccess && overviewGraphData?.data?.graphData.map((category, i) => {
+    if (categorySelected.includes(category?.name) || categorySelected.length === 0) {
+      let categorySeries = {
+        name: category?.name,
+        data: category?.graphData.slice(0, -2),
+      }
+      series.push(categorySeries);
+    }
+  })
+
   return (
     <>
       <Box w={"100%"}>
@@ -99,3 +130,4 @@ const OverviewAreaChart = () => {
 };
 
 export default OverviewAreaChart;
+
