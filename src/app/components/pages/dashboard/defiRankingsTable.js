@@ -11,6 +11,7 @@ import {
   useDisclosure,
   Button,
   Avatar,
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -187,7 +188,7 @@ const TableRow = ({ item, rowIndex }) => {
         </Text>
       </Td>
       <Td key={1}>
-        <Box layerStyle={"flexCenter"} w={"120px"} gap={"10px"}>
+        <Box display={"flex"} alignItems={"center"} width={"200px"} gap={"10px"}>
             <Avatar
               width={"24px"}
               height={"24px"}
@@ -195,8 +196,17 @@ const TableRow = ({ item, rowIndex }) => {
               name={item?.name}
               src={item?.logo}
             ></Avatar>
-            <Box layerStyle="center">
-              <Text variant={"h3"}>{item.name}</Text>
+
+            <Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
+              <Text variant={"h3"}>{item?.name}</Text>
+
+              <Box layerStyle={"center"}>
+                <Tooltip label="chains" as={ChainsTooltip} chains={item?.chains}>
+                  <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
+                    {item?.chains?.length} Chains
+                  </Text>
+                </Tooltip>
+              </Box>
             </Box>
         </Box>
       </Td>
@@ -480,3 +490,30 @@ const PanelComp = ({ item }) => {
     </Box>
   );
 };
+
+const ChainsTooltip = ({ chains }) => {
+  return (
+    <Box layerStyle={"flexColumn"} minW={"140px"} p={"10px 20px"} bgColor={useColorModeValue("#FFFFFF", "#202020")}
+      boxShadow={useColorModeValue("0px 5px 4px 0px rgba(0, 0, 0, 0.10)", "0px 5px 4px 0px rgba(200, 200, 200, 0.10)")}
+      borderColor={useColorModeValue("#F0F0F5", "#333333")}
+      borderRadius={"8px"}
+      gap={"15px"}
+    >
+      {chains?.map((chain, i) => {
+        return (
+            <Box layerStyle={"flexCenter"} key={i} gap={"10px"}>
+              <Avatar
+                width={"24px"}
+                height={"24px"}
+                name={chain?.name}
+                src={chain?.logoUrl}
+              ></Avatar>
+
+              <Text variant={"h4"} fontSize={"14px"}> {chain?.name} </Text>
+            </Box>
+          )
+        })}
+
+    </Box>
+  )
+}

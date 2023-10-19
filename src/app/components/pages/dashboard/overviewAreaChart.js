@@ -10,8 +10,6 @@ const OverviewAreaChart = () => {
       (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
-  console.log("ov", overviewGraphData);
-
   const options = {
     chart: {
       toolbar: {
