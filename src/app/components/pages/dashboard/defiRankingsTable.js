@@ -36,6 +36,8 @@ import { useRouter } from "next/navigation";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
+  const [tableLimit, setTableLimit] = useState(20);
+
   const [searchByName, setSearchByName] = useState("");
   const {
     isOpen: isMobileRankingsSearchOpen,
@@ -57,7 +59,7 @@ const Rankings = () => {
   );
 
   const pageChangeHandler = (page) => {
-    tablePage >= 1 && setTablePage(page);
+    setTablePage(page);
   };
 
   const searchByNameHandler = (name) => {
@@ -66,26 +68,30 @@ const Rankings = () => {
   };
 
   const getDefiRankingsTableDataHandler = () => {
-    if (!isEmpty(searchByName)) {
-      const payload = {
-        name: searchByName,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    } else {
-      const payload = {
-        blockchain: blockchainSelected,
-        category: categorySelected,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    }
+    setTimeout(() => {
+      if (!isEmpty(searchByName)) {
+        const payload = {
+          name: searchByName,
+          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
+          limit: tableLimit
+        };
+        dispatch(fetchDefiRankingTableData(payload));
+      } else {
+        const payload = {
+          blockchain: blockchainSelected,
+          category: categorySelected,
+          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
+          limit: tableLimit
+        };
+        dispatch(fetchDefiRankingTableData(payload));
+      }
+    }, 1000);
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected, tablePage, searchByName]);
+  }, [blockchainSelected, categorySelected, tablePage, searchByName, tableLimit]);
 
   return (
     <Box
@@ -147,21 +153,23 @@ const Rankings = () => {
       </Box>
 
 
-      {/* <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
+      <Box display={"flex"} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
         <PageButtonsWide
           page={tablePage}
           totalPages={tableData?.data?.totalPages}
           pageChangeHandler={pageChangeHandler}
+          tableLimit={tableLimit}
+          setTableLimit={setTableLimit}
           time={3}
           w={"100%"}
         />
-      </Box> */}
+      </Box>
 
-      <PageButtons
+      {/* <PageButtons
         page={tablePage}
         totalPages={tableData?.data?.totalPages}
         pageChangeHandler={pageChangeHandler}
-      />
+      /> */}
 
     </Box>
   );
