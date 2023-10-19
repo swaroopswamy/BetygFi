@@ -299,15 +299,14 @@ const ButtonComp = ({ item }) => {
       w="100%"
       justifyContent={"space-between"}
       alignItems={"center"}
-      ml={"20px"}
     >
-      <Box display={"flex"} w={"50%"} justifyContent={"start"}>
+      <Box display={"flex"} w={"50%"} justifyContent={"start"} mx={"20px"} >
         <Text variant={"h3"}>
           {" "}
           {item?.Rank === undefined ? "-" : item?.Rank}{" "}
         </Text>
 
-        <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
+        <Box layerStyle={"center"} gap={"10px"} ml={"30px"}>
             <Avatar
               width={"24px"}
               height={"24px"}
@@ -315,7 +314,13 @@ const ButtonComp = ({ item }) => {
               name={item?.name}
               src={item?.logo}
             ></Avatar>
-          <Text variant={"h3"}> {item?.name} </Text>
+
+            <Box layerStyle={"flexColumn"} justifyContent={"start"} minW={"100px"} textAlign={"left"}>
+              <Text variant={"h3"}> {item?.name} </Text>
+              <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
+                {item?.chains?.length} Chains
+              </Text>
+            </Box>
         </Box>
       </Box>
 
