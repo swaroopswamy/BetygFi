@@ -9,7 +9,7 @@ import TooltipComp from "/src/app/components/tooltipComp"
 import { SingleAccordionComp } from "/src/app/components/accordion";
 import OverviewAreaChart from "/src/app/components/pages/dashboard/overviewAreaChart";
 import { useEffect } from "react";
-import { fetchOverviewData } from "@/redux/dashboard_data/dataSlice";
+import { fetchOverviewData, fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 
 const OverviewBox = () => {
     const dispatch = useDispatch();
@@ -33,10 +33,23 @@ const OverviewBox = () => {
         };
         dispatch(fetchOverviewData(payload));
     }
+
+    const getOverviewGraphDataHandler = () => {
+        const payload = {
+          category: categorySelected,
+          startDate: "",
+          endDate: ""
+        };
+        dispatch(fetchOverviewGraphData(payload));
+    }
     
     useEffect(() => {
         getOverviewDataHandler();
     }, [blockchainSelected, categorySelected]);
+
+    useEffect(() => {
+        getOverviewGraphDataHandler();
+    }, [categorySelected]); 
 
     return (
         <>
