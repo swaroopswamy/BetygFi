@@ -25,8 +25,10 @@ export const axiosInstance = axios.create({
   headers: {
     post: {
       "Content-Type": "application/json",
+      'Cache-Control': 'max-age=3600'
     },
     Accept: "application/json",
+    
   },
   withCredentials: false, // to send cookie
 });

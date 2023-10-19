@@ -5,6 +5,7 @@ require("dotenv").config();
 const webpack = require("webpack");
 const nextConfig = {
   output: "export",
+  reactStrictMode:false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -24,6 +25,7 @@ const nextConfig = {
   },
   optimizeFonts: false,
   distDir: "out",
+
 };
 
 module.exports = nextConfig;

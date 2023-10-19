@@ -41,7 +41,7 @@ const TransactionPanelComponent = () => {
   const pageChangeHandler = (page) => {
     tablePage >= 1 && setTablePage(page);
   };
-  const fetchWalletTransactionsDataHandler = useCallback(() => {
+ /*  const fetchWalletTransactionsDataHandler = useCallback(() => {
     const data = {
       address: searchParam.get("address"),
       payload: {
@@ -53,12 +53,12 @@ const TransactionPanelComponent = () => {
     dispatch(fetchWalletTransactionsData(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, tablePage, searchParam.get("address")]);
+ */
 
-
-  useEffect(() => {
+/*   useEffect(() => {
     fetchWalletTransactionsDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchWalletTransactionsDataHandler]);
+  }, [fetchWalletTransactionsDataHandler]); */
 
   return (
     <>

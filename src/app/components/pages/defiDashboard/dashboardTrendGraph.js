@@ -23,7 +23,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useState } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from "./exampleTrendGraphData.json";
@@ -93,7 +93,7 @@ function DashboardTrendGraph() {
   //     setSeries(mapdata);
   // }
 
-  const SeriesHandler = () => {
+  const SeriesHandler = useMemo(() => {
     let mapdata = [];
     if (!graphData) {
       return;
@@ -118,7 +118,7 @@ function DashboardTrendGraph() {
       }
     });
     setSeries(mapdata);
-  };
+  },[]);
 
   useEffect(() => {
     SeriesHandler();
