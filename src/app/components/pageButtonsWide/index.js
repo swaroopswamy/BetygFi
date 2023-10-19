@@ -102,7 +102,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 
       </Box>
 
-      <Box display={{base: "flex", md: "none"}} flexDir={"column"} gap={"10px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
+      <Box display={{base: "flex", md: "none"}} flexDir={"column"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} w={"100%"}>
           <LastUpdate time={time} />
 
