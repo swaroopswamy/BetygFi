@@ -23,8 +23,9 @@ export default function RootLayout({ children }) {
           />
           {/* Hotjar Tracking Code for https://betygfi.com/
            */}
-          <Script id="hotjar-analytics">
-            {`(function(h,o,t,j,a,r){
+        </Head>
+        <Script id="hotjar-analytics">
+          {`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:3667973,hjsv:6}; 
             a=o.getElementsByTagName('head')[0]; 
@@ -34,21 +35,20 @@ export default function RootLayout({ children }) {
             })
             (window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             `}
-          </Script>
-          <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
-            strategy="afterInteractive"
-          ></Script>
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`
+        </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
+          strategy="afterInteractive"
+        ></Script>
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-Q0B2YDZPET');
         `}
-          </Script>
-        </Head>
+        </Script>
         <body>
           <ReduxProvider>
             <Web3Provider>
