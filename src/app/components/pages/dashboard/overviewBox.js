@@ -1,35 +1,59 @@
 import {
-    Accordion,
-    AccordionButton,
-    AccordionItem,
-    AccordionPanel,
     Box,
     Text,
     useColorModeValue,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
 import TooltipComp from "/src/app/components/tooltipComp"
 import { SingleAccordionComp } from "/src/app/components/accordion";
+import OverviewAreaChart from "/src/app/components/pages/dashboard/overviewAreaChart";
+import { useEffect } from "react";
+import { fetchOverviewData } from "@/redux/dashboard_data/dataSlice";
 
 const OverviewBox = () => {
+    const dispatch = useDispatch();
+
     const overviewData = useSelector(
         (state) => state?.dashboardTableData?.OverviewData?.data
     );
 
+    const blockchainSelected = useSelector(
+        (state) => state?.dashboardTableData?.blockchainType
+    );
+    
+    const categorySelected = useSelector(
+        (state) => state?.dashboardTableData?.categorySelected
+    );
+
+    const getOverviewDataHandler = () => {
+        const payload = {
+          blockchain: blockchainSelected,
+          category: categorySelected,
+        };
+        dispatch(fetchOverviewData(payload));
+    }
+    
+    useEffect(() => {
+        getOverviewDataHandler();
+    }, [blockchainSelected, categorySelected]);
+
     return (
         <>
-            <Box w="50%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
-                <Box layerStyle='spaceBetween' gap={"10px"}>
+            <Box w="60%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
+                <Box layerStyle='spaceBetween'>
                     <Text variant={"h2"}>
                         Overview
                     </Text>
 
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"h3"}>
-                            Total Market Cap
-                        </Text>
-                        <TooltipComp label="Total Market Cap tracked by Solvendo" mr="7px" />
+                    <Box layerStyle={"flexCenter"} gap={"10px"}>
+                        <Box layerStyle={"center"}>
+                            <Text variant={"h3"}>
+                                Total Market Cap
+                            </Text>
+                            <TooltipComp label="Total Market Cap tracked by Solvendo" />
+                        </Box>
+
                         <Text variant={"h1"}>
                             {overviewData?.tvl !== undefined ?
                                 <>
@@ -46,11 +70,13 @@ const OverviewBox = () => {
                         </Text>
                     </Box>
                 </Box>
-                <Box bg={"#00000014"} p="30px" mt={"30px"}>
+
+                <OverviewAreaChart />
+                {/* <Box bg={"#00000014"} p="30px" mt={"30px"}>
                     <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} opacity={0.6}>
                         For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
                     </Text>
-                </Box>
+                </Box> */}
             </Box>
 
             <SingleAccordionComp display={{base: "flex", lg: "none"}} minH={"50px"}
@@ -85,11 +111,12 @@ const OverviewBox = () => {
                     )}}
                 PanelComp={() => {
                     return (
-                        <Box bg={"#00000014"} p="30px" mt={"30px"} minH={"100px"}>
-                            <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} lineHeight={"20px"} opacity={0.6}>
-                                For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
-                            </Text>
-                        </Box>
+                        <OverviewAreaChart />
+                        // <Box bg={"#00000014"} p="30px" mt={"30px"} minH={"100px"}>
+                        //     <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} lineHeight={"20px"} opacity={0.6}>
+                        //         For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
+                        //     </Text>
+                        // </Box>
                     )}}
             />
         </>

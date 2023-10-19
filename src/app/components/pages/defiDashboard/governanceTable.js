@@ -1,6 +1,5 @@
 "use client";
 import {
-  Avatar,
   Box,
   Flex,
   Td,
@@ -13,29 +12,33 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import categoriesFile from "./categories.json";
 import { fetchDefiGovernanceTableData } from "/src/redux/defi_dashboard_data/dataSlice";
-import TooltipComp from "/src/app/components/tooltipComp";
 import GenericTable from "/src/app/components/table";
-import { GovernanceTableHeader } from "/src/app/components//pages/defiDashboard/helper";
-
-const axios = require("axios");
+import { GovernanceTableHeader } from "/src/app/components/pages/defiDashboard/helper";
+import PageButtons from "/src/app/components/pageButtons";
 
 const GovernanceTable = ({}) => {
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const [tablePage, setTablePage] = useState(1);
+
   const defi = searchParam.get("defi");
-  const id = searchParam.get("id");
 
   const defiGovernanceTableData = useSelector(
     (state) => state?.defiDashboardData?.DefiGovernanceTableData
   );
 
+  const pageChangeHandler = (page) => {
+    tablePage >= 1 && setTablePage(page);
+  };
+
   const getDefiGovernanceTableDataHandler = () => {
     const payload = {
       defi: defi,
+      page: tablePage,
+      limit: 10
     };
     dispatch(fetchDefiGovernanceTableData(payload));
   };
@@ -43,7 +46,7 @@ const GovernanceTable = ({}) => {
   useEffect(() => {
     getDefiGovernanceTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tablePage]);
 
   return (
     <>
@@ -52,7 +55,7 @@ const GovernanceTable = ({}) => {
         borderRadius={"6px"}
         bg={useColorModeValue("#FFFFFF", "#202020")}
         borderColor={useColorModeValue("#F0F0F5", "#272727")}
-        pb={"20px"}
+        mb={{base: "50px", md: "none"}}
       >
         <Box layerStyle={"spaceBetween"} p={"20px"}>
           <Box layerStyle={"center"} gap={"5px"}>
@@ -145,7 +148,14 @@ const GovernanceTable = ({}) => {
           />
         </Box>
 
-        {/* <LastUpdate p={"10px"} time={"3"} /> */}
+        <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
+            <PageButtons
+                page={tablePage}
+                totalPages={defiGovernanceTableData?.data?.totalPages}
+                pageChangeHandler={pageChangeHandler}
+            />
+        </Box>
+
       </Box>
     </>
   );

@@ -33,10 +33,9 @@ function DefiUsersSmallTable() {
   );
 
   const getDefiUsersTableDataHandler = () => {
-    let blockchains = blockchainSelected.map(item => item.toLowerCase());
     const payload = {
       defi: defi,
-      blockchain: blockchains,
+      blockchain: blockchainSelected,
     };
     dispatch(fetchDefiUsersTableData(payload));
   };
@@ -74,7 +73,11 @@ function DefiUsersSmallTable() {
           ButtonComp={(item) => {
             return (
               <Box layerStyle={"flexCenter"}>
-                <Text variant={"h3"}> {item?.item?.user} </Text>
+                <Text variant={"h3"}> 
+                  {item?.item?.user?.split("").join("").substring(0, 8) +
+                  "..." +
+                  item?.item?.user?.slice(-5)}
+                </Text>
               </Box>
             );
           }}
@@ -140,6 +143,9 @@ const TableRow = ({ item, i }) => {
               lineHeight={"20px"}
             >
               {item?.user}
+              {/* {item?.user?.split("").join("").substring(0, 8) +
+                "..." +
+                item?.user?.slice(-5)} */}
             </Text>
             <Text
               _dark={{

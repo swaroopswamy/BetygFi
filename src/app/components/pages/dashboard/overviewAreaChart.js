@@ -1,9 +1,40 @@
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-
 import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
+import CustomChart from "/src/app/components/graph";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
+
 const OverviewAreaChart = () => {
+  const dispatch = useDispatch();
+
+  const overviewGraphData = useSelector(
+      (state) => state?.dashboardTableData?.OverviewGraphData
+  );
+
+  console.log("ov", overviewGraphData);
+
+  const blockchainSelected = useSelector(
+      (state) => state?.dashboardTableData?.blockchainType
+  );
+  
+  const categorySelected = useSelector(
+      (state) => state?.dashboardTableData?.categorySelected
+  );
+
+  const getOverviewGraphDataHandler = () => {
+      const payload = {
+        category: categorySelected,
+        startDate: "",
+        endDate: ""
+      };
+      dispatch(fetchOverviewGraphData(payload));
+  }
+  
+  useEffect(() => {
+      getOverviewGraphDataHandler();
+  }, [categorySelected]); 
+
   const options = {
     chart: {
       toolbar: {
@@ -23,12 +54,15 @@ const OverviewAreaChart = () => {
     dataLabels: {
       enabled: false,
     },
+    tooltip: {
+      enabled: false
+    },
     fill: {
       type: "gradient",
       gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.9,
+        shadeIntensity: 0.7,
+        opacityFrom: 0.5,
+        opacityTo: 0.1,
         stops: [0, 90, 100],
       },
     },
@@ -64,25 +98,27 @@ const OverviewAreaChart = () => {
   };
   const series = [
     {
-      name: "Series 1",
+      name: "Prediction Markets",
       data: [1, 4, 5, 3, 2],
     },
     {
-      name: "Series 2",
+      name: "Derivatives",
       data: [5, 3, 1, 4, 1],
     },
     {
-      name: "Series 3",
+      name: "Insurance",
       data: [5, 2, 3, 1, 4],
     },
     {
-      name: "Series 4",
+      name: "Yield",
       data: [1, 5, 3, 5, 3],
     },
   ];
   return (
     <>
-      <ApexCharts options={options} series={series} type="area" height={205} />
+      <Box w={"100%"}>
+        <CustomChart options={options} series={series} type="area" height={205} />
+      </Box>
     </>
   );
 };

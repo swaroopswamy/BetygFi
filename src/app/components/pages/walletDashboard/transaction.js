@@ -12,6 +12,7 @@ import {
   Link,
   colorMode,
   useColorMode,
+  Avatar,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -52,6 +53,7 @@ const TransactionPanelComponent = () => {
     dispatch(fetchWalletTransactionsData(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, tablePage, searchParam.get("address")]);
+
 
   useEffect(() => {
     fetchWalletTransactionsDataHandler();
@@ -98,11 +100,13 @@ const TransactionPanelComponent = () => {
           />
         </Box>
 
-        <PageButtons
-          tablePage={tablePage}
-          pageChangeHandler={pageChangeHandler}
-          totalPages={walletTransactionsData?.data?.totalPages}
-        />
+        <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
+          <PageButtons
+            page={tablePage}
+            pageChangeHandler={pageChangeHandler}
+            totalPages={walletTransactionsData?.data?.totalPages}
+          />
+        </Box>
       </Box>
     </>
   );
@@ -180,52 +184,46 @@ const TableRow = ({ item, rowIndex }) => {
 
         <Td>
           <Box layerStyle={"flexCenter"}>
-            <Image
+            <Avatar
               width={"18px"}
               height={"18px"}
-              alt="logo"
+              name={item?.tokenSymbol ?? "logo"}
               src={item?.tokenUrl}
               style={{ borderRadius: "50%" }}
-            ></Image>
+            ></Avatar>
+
+            <Text variant={"h3"} ml="6px">
+              {Number(item?.value).toFixed(2)}
+            </Text>
 
             <Text variant={"h3"} letterSpacing={"1px"} ml="6px">
               {item?.tokenSymbol}
             </Text>
-            <Text variant={"h3"} ml="6px">
-              {Number(item?.value).toFixed(2)}
-              {" ETH"}
-            </Text>
           </Box>
         </Td>
 
         <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Tooltip
-              label={item.from}
-              //whiteSpace={"nowrap"}
-            >
-              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
-                {item?.from.split("").join("").substring(0, 6) +
-                  "..." +
-                  item?.from.slice(-5)}
-              </Text>
-            </Tooltip>
-          </Box>
-        </Td>
-
-        <Td>
-          <Box layerStyle={"flexCenter"}>
-            <Tooltip
-              label={item.to}
-              //whiteSpace={"nowrap"}
-            >
+          <Tooltip label={item?.to}>
+            <Box layerStyle={"flexCenter"}>
               <Text variant={"h3"} letterSpacing={"1px"} w="95px">
                 {item?.to.split("").join("").substring(0, 6) +
                   "..." +
                   item?.to.slice(-5)}
               </Text>
-            </Tooltip>
-          </Box>
+            </Box>
+          </Tooltip>
+        </Td>
+
+        <Td>
+          <Tooltip label={item?.from}>
+            <Box layerStyle={"flexCenter"}>
+              <Text variant={"h3"} letterSpacing={"1px"} w="95px">
+                {item?.from.split("").join("").substring(0, 6) +
+                  "..." +
+                  item?.from.slice(-5)}
+              </Text>
+            </Box>
+          </Tooltip>
         </Td>
 
         <Td>

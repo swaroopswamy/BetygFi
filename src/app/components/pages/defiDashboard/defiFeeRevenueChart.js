@@ -134,7 +134,7 @@ function DefiFeeRevenueChart() {
         <Box >
           {DefiFeeRevenueData?.isError && (
             <>
-              <Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
+              <Box layerStyle='center' p="20px" text textAlign={"center"} height={"245px"}>
                 <Text variant={"noDataText"}>No data available</Text>
               </Box>
             </>

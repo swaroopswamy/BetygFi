@@ -57,7 +57,7 @@ export const getDefiFeeRevenueData = async (payload) => {
 export const getDefiGovernanceTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.get(
-      `protocols/${payload.defi}/governance`
+      `protocols/${payload.defi}/governance?page=${payload.page}&limit=${payload.limit}`
     );
     return data;
   } catch (err) {

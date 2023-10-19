@@ -36,13 +36,14 @@ function AssetComposition() {
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
+    console.log("asset", defiAssetsTableData?.data?.totalPages);
 
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
             blockchain: blockchainSelected,
             page: tablePage,
-            limit: 20
+            limit: 10
         };
         dispatch(fetchDefiAssetCompositionTableData(payload));
     };
@@ -53,7 +54,7 @@ function AssetComposition() {
     }, [blockchainSelected, tablePage]);
 
     return (
-        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
+        <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} pb={{base: "120px", md: "none"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
             <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} my={"20px"}
                 onClick={() => router.push(`/defi_dashboard?defi=${defi}&id=${id}`)}
             >
@@ -145,7 +146,7 @@ function AssetComposition() {
             <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
                 <PageButtons
                     page={tablePage}
-                    totalPages={3}
+                    totalPages={defiAssetsTableData?.data?.totalPages}
                     pageChangeHandler={pageChangeHandler}
                 />
             </Box>

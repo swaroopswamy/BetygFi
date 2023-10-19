@@ -20,13 +20,12 @@ import "/styles/styles.scss";
 
 import GenericTable from "/src/app/components/table";
 import SearchBox from "/src/app/components/searchBox";
-import TooltipComp from "/src/app/components/tooltipComp";
 import {
   tableHeader,
   DefiRankingTableDesktop,
   DefiRankingTableMobile,
 } from "/src/app/components/pages/dashboard/helper";
-import PageButtons from "/src/app/components/pageButtons";
+import PageButtonsWide from "/src/app/components/pageButtonsWide";
 import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
@@ -42,7 +41,6 @@ const Rankings = () => {
   } = useDisclosure();
 
   const dispatch = useDispatch();
-  const { colorMode } = useColorMode();
 
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
@@ -146,11 +144,17 @@ const Rankings = () => {
         />
       </Box>
 
-      <PageButtons
-        page={tablePage}
-        totalPages={tableData?.data?.totalPages}
-        pageChangeHandler={pageChangeHandler}
-      />
+
+      <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
+        <PageButtonsWide
+          page={tablePage}
+          totalPages={tableData?.data?.totalPages}
+          pageChangeHandler={pageChangeHandler}
+          time={3}
+          w={"100%"}
+        />
+      </Box>
+
     </Box>
   );
 };
@@ -194,7 +198,7 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={3}>
         <Text variant={"h3"}>
-          {Math.trunc(item.tvl).toLocaleString("en-US", {
+          {item.price?.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}
@@ -377,7 +381,7 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {Math.trunc(item.price).toLocaleString("en-US", {
+          {item.price?.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
           })}

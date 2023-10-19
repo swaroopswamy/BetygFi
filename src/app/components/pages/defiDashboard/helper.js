@@ -4,7 +4,7 @@ export const DefiUsersSmallTableHeader = [
         label: " User Address",
         isTooltip: true,
         isSortingEnabled: false,
-        tooltipLabel: null,
+        tooltipLabel: "Wallet Address of the User",
     },
     // {
     //     value: "share",

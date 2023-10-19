@@ -7,7 +7,7 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
     <>
       {totalPages !== 0 && (
         <Box
-          display={{ base: "none", md: "flex" }}
+          display={"flex"}
           _dark={{
             bg: "#202020",
           }}

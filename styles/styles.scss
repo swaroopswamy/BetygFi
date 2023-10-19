@@ -8,6 +8,23 @@ body {
     background: red;
 }
 
+.column_tooltip {
+    display: flex;
+    flex-direction: column;
+    opacity: 100%;
+    border: 1px;
+    border-radius: 8px;
+    padding: 10px !important;
+}
+
+.column_tooltip_text {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 5px !important;
+}
+
 .donut_tooltip {
     display: flex;
     flex-direction: column;
@@ -56,10 +73,10 @@ body {
 }
 
 .svg_select_points_l,.svg_select_points_r {
-    width: 20px;
+    width: 10px;
     y: 0;
     border-radius: 50%;
-    height: 37px;
+    height: 55px;
 }
 
 .svg_select_points {

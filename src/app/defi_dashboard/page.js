@@ -1,14 +1,10 @@
-
 "use client"
-import React, { useCallback, useEffect, useState } from "react";
-import { Box, useColorModeValue, useColorMode, Text } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Box, useColorModeValue, Text } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter, useSearchParams } from "next/navigation";
 import DefiInflowOutflowSmallTableComponent from '/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable';
-import { fetchDefiData, fetchDefiHotContractsTableData, fetchDefiAssetCompositionTableData } from "../../redux/defi_dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import { Router } from "next/router";
-
+import { fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
 import Banner from "/src/app/components/pages/defiDashboard/banner";
 import TVLBox from "/src/app/components/pages/defiDashboard/tvlBox";
 import TrendGraph from "/src/app/components/pages/defiDashboard/dashboardTrendGraph";
@@ -21,48 +17,24 @@ import DefiHotContractsSmallTable from "../components/pages/defiDashboard/DefiHo
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
 const DefiDashboardPage = () => {
-    const searchParam = useSearchParams();
-    const pathname = usePathname();
-    const { colorMode } = useColorMode();
-    const dispatch = useDispatch();
     const router = useRouter();
+    const dispatch = useDispatch();
+    const searchParam = useSearchParams();
 
-    const defi = searchParam.get("defi");
-    const id = searchParam.get("id");
     
+    const id = searchParam.get("id");
+
     const getDefiDataHandler = () => {
         const payload = {
             id: id,
         };
         dispatch(fetchDefiData(payload));
     }
-    
-    const getDefiHotContractsDataHandler = () => {
-        const payload = {
-            defi: defi,
-            blockchain: "",
-        };
-        dispatch(fetchDefiHotContractsTableData(payload));
-    };
-    const getDefiAssetCompositionDataHandler = () => {
-        const payload = {
-            defi: defi,
-        };
-        dispatch(fetchDefiAssetCompositionTableData(payload));
-    };
 
     useEffect(() => {
         getDefiDataHandler();
-        getDefiHotContractsDataHandler();
-        getDefiAssetCompositionDataHandler();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    useEffect(() => {
-        dispatch(fetchBlockchainListData());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <>
             <Box bgColor={{base: useColorModeValue("#FFFFFF", "#202020"), md: useColorModeValue("#F0F0F5", "#191919")}} display={"flex"} flexDir={"column"} w={"100%"}>

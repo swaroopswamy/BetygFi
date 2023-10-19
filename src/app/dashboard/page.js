@@ -5,20 +5,13 @@ import {
   Box,
   Button,
   Text,
-  useColorMode,
   useColorModeValue,
-  useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
 import { categories } from "../../../util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
   categoryChangedReducer,
-  fetchDefiRankingTableData,
-  fetchOverviewData,
-  fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
-import isEmpty from "is-empty";
 import '/styles/styles.scss';
 
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
@@ -27,64 +20,6 @@ import OverviewColumnChart from "/src/app/components/pages/dashboard/overviewCol
 import OverviewBox from "/src/app/components/pages/dashboard/overviewBox";
 
 const Dashboard = () => {
-  const [tablePage, setTablePage] = useState(1);
-  const [searchByName, setSearchByName] = useState('');
-  const dispatch = useDispatch();
-
-  const categorySelected = useSelector(
-    (state) => state?.dashboardTableData?.categorySelected
-  );
-  const blockchainSelected = useSelector(
-    (state) => state?.dashboardTableData?.blockchainType
-  );
-
-  const getScoreGraphDataHandler = () => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-    };
-    dispatch(fetchScoreGraphData(payload));
-  };
-  const getDefiRankingsTableDataHandler = () => {
-    if (!isEmpty(searchByName)) {
-      const payload = {
-        name: searchByName,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    } else {
-      const payload = {
-        blockchain: blockchainSelected,
-        category: categorySelected,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    }
-  };
-  const getOverviewDataHandler = () => {
-    const payload = {
-      blockchain: blockchainSelected,
-      category: categorySelected,
-    };
-    dispatch(fetchOverviewData(payload));
-  };
-
-  useEffect(() => {
-    getDefiRankingsTableDataHandler();
-    getOverviewDataHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected, tablePage]);
-
-  useEffect(() => {
-    getScoreGraphDataHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected]);
-
-  useEffect(() => {
-    getDefiRankingsTableDataHandler(searchByName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchByName])
-
   return (
     <>
       <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
@@ -97,11 +32,11 @@ const Dashboard = () => {
           <Text variant='h1' px={"18px"}> DeFi Markets </Text>
         </Box>
 
-        <Box display={{base: "flex", md: "none"}} pt={"15px"} overflow={"auto"}>
+        <Box display={{base: "flex", md: "none"}} py={"15px"} overflow={"auto"}>
           <BlockchainSelectionMenu />
         </Box>
 
-        <Box px={{base: "18px", md: "30px"}} py={"15px"} w={{base: "100%", md: "80%"}}>
+        <Box display={{base: "none", md: "block"}} px={{base: "18px", md: "30px"}} py={"15px"} w={{base: "100%", md: "80%"}}>
           <Text textStyle='body'>
               Filter your DeFi exploration by focusing on both the blockchain technology it utilises and its specific industry application. This way, you'll uncover the projects best suited to your interests, whether in Prediction Markets, Lending and Borrowing, or Insurance.
           </Text>

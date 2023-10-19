@@ -33,6 +33,16 @@ const axios = require("axios");
 import "/styles/styles.scss";
 import CustomChart from "/src/app/components/graph";
 
+function getEveryNth(arr, nth) {
+  const result = [];
+
+  for (let index = 0; index < arr.length; index += nth) {
+    result.push(arr[index]);
+  }
+
+  return result;
+}
+
 function DashboardTrendGraph() {
   const { colorMode } = useColorMode();
   const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
@@ -246,7 +256,7 @@ function SelectorGraph({ tvlData }) {
       name: "tvl",
       type: "area",
       color: "#3A3D46",
-      data: tvlData ? tvlData[0].data : null,
+      data: tvlData ? getEveryNth(tvlData[0].data, 10) : null,
     },
   ];
 
@@ -285,6 +295,9 @@ function SelectorGraph({ tvlData }) {
           max: new Date("14 Aug 2023").getTime(),
         },
       },
+      animations: {
+        enabled: false
+      }
     },
     fill: {
       colors: ["#3A3D46"],
@@ -296,6 +309,7 @@ function SelectorGraph({ tvlData }) {
     },
     colors: ["#000"],
     xaxis: {
+      type: "datetime",
       labels: {
         show: false,
       },
@@ -347,7 +361,7 @@ function SelectorGraph({ tvlData }) {
 
   return (
     <>
-      <Box marginTop={"-30px"} marginBottom={"-48px"}>
+      <Box marginTop={"-30px"} marginBottom={"-30px"}>
         <CustomChart
           options={options}
           series={tvl}
@@ -369,6 +383,9 @@ function Graph({ series }) {
       },
       id: "trendgraph",
       stacked: false,
+      animations: {
+        enabled: false
+      }
     },
     stroke: {
       width: [2, 2],
@@ -402,6 +419,7 @@ function Graph({ series }) {
       return {
         opposite: i !== 0 && true,
         seriesName: item?.name,
+        tickAmount: 5,
         labels: {
           show: true,
           style: {
@@ -422,6 +440,7 @@ function Graph({ series }) {
         axisBorder: {
           show: i !== 0 && true,
           color: item?.color,
+          offsetX: i !== 0 && "50px"
         },
         axisTicks: {
           show: false,
