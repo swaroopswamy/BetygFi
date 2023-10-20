@@ -27,4 +27,4 @@ const nextConfig = {
   images: { unoptimized: true },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig;
