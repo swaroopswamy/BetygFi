@@ -12,16 +12,12 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableContainer,
   Flex,
-  Spacer,
   Skeleton,
   useColorMode,
-  isLoaded,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +25,10 @@ import {
   defiArrayChangedReducer,
   fetchWalletBalanceData,
 } from "@/redux/wallet_dashboard_data/dataSlice";
-import DefiTable from "./DefiTable";
+import dynamic from 'next/dynamic';
+
+const DefiTable = dynamic(() => import("./DefiTable"));
+
 
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();

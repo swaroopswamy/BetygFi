@@ -2,36 +2,19 @@
 import {
   Box,
   Image,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
   Text,
   useColorModeValue,
   useColorMode,
-  Flex,
-  Tooltip,
-  TableContainer,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  Button,
-  Select,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { useEffect, useMemo } from "react";
 import { useState } from "react";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import graphData2 from "./exampleTrendGraphData.json";
 import { useSelector } from "react-redux";
 import millify from "millify";
 const axios = require("axios");
 import "/styles/styles.scss";
-import CustomChart from "/src/app/components/graph";
+const CustomChart = dynamic(() => import("/src/app/components/graph"));
 
 function getEveryNth(arr, nth) {
   const result = [];
@@ -118,7 +101,7 @@ function DashboardTrendGraph() {
       }
     });
     setSeries(mapdata);
-  },[]);
+  }, []);
 
   useEffect(() => {
     SeriesHandler();
@@ -296,8 +279,8 @@ function SelectorGraph({ tvlData }) {
         },
       },
       animations: {
-        enabled: false
-      }
+        enabled: false,
+      },
     },
     fill: {
       colors: ["#3A3D46"],
@@ -384,8 +367,8 @@ function Graph({ series }) {
       id: "trendgraph",
       stacked: false,
       animations: {
-        enabled: false
-      }
+        enabled: false,
+      },
     },
     stroke: {
       width: [2, 2],
@@ -440,7 +423,7 @@ function Graph({ series }) {
         axisBorder: {
           show: i !== 0 && true,
           color: item?.color,
-          offsetX: i !== 0 && "50px"
+          offsetX: i !== 0 && "50px",
         },
         axisTicks: {
           show: false,

@@ -1,4 +1,13 @@
-import { Box, Image, Text, Tr, Th, Td, useColorModeValue, Avatar } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  Tr,
+  Th,
+  Td,
+  useColorModeValue,
+  Avatar,
+} from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
 import {
@@ -6,8 +15,10 @@ import {
   InflowTokensDesktop,
   InflowTokensMobile,
 } from "./helper";
-import TooltipComp from "../../tooltipComp";
-import GenericTable from "../../table/index";
+import dynamic from "next/dynamic";
+
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const GenericTable = dynamic(() => import("../../table/index"));
 
 const InflowTokensBox = () => {
   const inflowOutflowTokensData = useSelector(
@@ -88,7 +99,11 @@ const TableRowDesktop = ({ item, i }) => {
 
       <Td>
         <Box layerStyle={"flexCenter"}>
-          <Text variant={"h3"} _dark={{ color: "#245F00" }} _light={{ color: "#60C000" }}>
+          <Text
+            variant={"h3"}
+            _dark={{ color: "#245F00" }}
+            _light={{ color: "#60C000" }}
+          >
             + USD {USDollar.format(item?.value)}
           </Text>
         </Box>
@@ -137,7 +152,11 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
           </Text>
         </Box>
 
-        <Text variant={"smallTableHeaderMobile"} textAlign={"left"} color={useColorModeValue('#245F00', '#60C000')}>
+        <Text
+          variant={"smallTableHeaderMobile"}
+          textAlign={"left"}
+          color={useColorModeValue("#245F00", "#60C000")}
+        >
           + USD {USDollar.format(item?.value)}
         </Text>
       </Box>
@@ -158,11 +177,13 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
           Share
         </Text>
 
-        <Text variant={"h6"}
+        <Text
+          variant={"h6"}
           textAlign={"left"}
           ml={"20px"}
           _light={{ color: "#16171B" }}
-          _dark={{ color: "#FFFFFF" }}>
+          _dark={{ color: "#FFFFFF" }}
+        >
           {item?.percentage}%
         </Text>
       </Box>

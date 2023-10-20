@@ -7,15 +7,17 @@ import {
   Td,
   useColorMode,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
-import GenericTable from "../../table/index";
+
 import {
   KnownEntitiesTableHeader,
   KnownEntitiesDesktop,
   KnownEntitiesMobile,
 } from "./helper";
-import TooltipComp from "../../tooltipComp";
+import dynamic from 'next/dynamic';
+
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const GenericTable = dynamic(() => import("../../table/index"));
 
 const InteractionWithKnownEntitiesBox = () => {
   return (

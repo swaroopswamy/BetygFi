@@ -1,7 +1,7 @@
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import CustomChart from "/src/app/components/graph";
+const CustomChart = dynamic(() => import("/src/app/components/graph"));
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 
@@ -9,31 +9,31 @@ const OverviewAreaChart = () => {
   const dispatch = useDispatch();
 
   const overviewGraphData = useSelector(
-      (state) => state?.dashboardTableData?.OverviewGraphData
+    (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
   console.log("ov", overviewGraphData);
 
   const blockchainSelected = useSelector(
-      (state) => state?.dashboardTableData?.blockchainType
+    (state) => state?.dashboardTableData?.blockchainType
   );
-  
+
   const categorySelected = useSelector(
-      (state) => state?.dashboardTableData?.categorySelected
+    (state) => state?.dashboardTableData?.categorySelected
   );
 
   const getOverviewGraphDataHandler = () => {
-      const payload = {
-        category: categorySelected,
-        startDate: "",
-        endDate: ""
-      };
-      dispatch(fetchOverviewGraphData(payload));
-  }
-  
+    const payload = {
+      category: categorySelected,
+      startDate: "",
+      endDate: "",
+    };
+    dispatch(fetchOverviewGraphData(payload));
+  };
+
   useEffect(() => {
-      getOverviewGraphDataHandler();
-  }, [categorySelected]); 
+    getOverviewGraphDataHandler();
+  }, [categorySelected]);
 
   const options = {
     chart: {
@@ -55,7 +55,7 @@ const OverviewAreaChart = () => {
       enabled: false,
     },
     tooltip: {
-      enabled: false
+      enabled: false,
     },
     fill: {
       type: "gradient",
@@ -117,7 +117,12 @@ const OverviewAreaChart = () => {
   return (
     <>
       <Box w={"100%"}>
-        <CustomChart options={options} series={series} type="area" height={205} />
+        <CustomChart
+          options={options}
+          series={series}
+          type="area"
+          height={205}
+        />
       </Box>
     </>
   );

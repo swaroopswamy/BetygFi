@@ -1,8 +1,6 @@
 "use client";
 import { Box, useColorMode } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
-import { USDollar } from "../../../../../util/globalHelper";
 import dynamic from "next/dynamic";
 
 const BlockchainAllocationBox = dynamic(() =>

@@ -10,7 +10,6 @@ import {
   Flex,
   Image,
   Link,
-  colorMode,
   useColorMode,
   Avatar,
 } from "@chakra-ui/react";
@@ -18,15 +17,17 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
-import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useEffect, useState, useCallback } from "react";
 import {
   tableHeader,
   TransactionTableDesktop,
   TransactionTableMobile,
 } from "@/app/components/pages/walletDashboard/helper";
-import GenericTable from "@/app/components/table/index";
-import PageButtons from "../../pageButtons";
+import dynamic from 'next/dynamic';
+
+const GenericTable = dynamic(() => import("@/app/components/table/index"));
+const PageButtons = dynamic(() => import("../../pageButtons"));
+
 
 const TransactionPanelComponent = () => {
   const searchParam = useSearchParams();

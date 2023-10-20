@@ -15,7 +15,9 @@ import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
 import SortWhiteIcon from "../../../../../public/icons/sort_white.svg";
 import SortBlackIcon from "../../../../../public/icons/sort_black.svg";
-import GenericTable from "../../table";
+import dynamic from "next/dynamic";
+
+const GenericTable = dynamic(() => import("../../table"));
 import {
   portfolioTableHeader,
   PortfolioTableDesktop,

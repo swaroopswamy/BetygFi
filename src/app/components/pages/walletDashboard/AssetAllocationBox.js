@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Box, SkeletonCircle, Text, useColorMode } from "@chakra-ui/react";
 import isEmpty from "is-empty";
-import TooltipComp from "../../tooltipComp";
-import CustomChart from "../../graph";
-
+import dynamic from "next/dynamic";
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const CustomChart = dynamic(() => import("../../graph"));
 const AssetAllocationBox = () => {
   const { colorMode } = useColorMode();
   const assetAllocationData = useSelector(

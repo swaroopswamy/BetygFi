@@ -14,19 +14,21 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
 import isEmpty from "is-empty";
 import "/styles/styles.scss";
+import dynamic from "next/dynamic";
+const GenericTable = dynamic(() => import("/src/app/components/table"));
+const SearchBox = dynamic(() => import("/src/app/components/searchBox"));
+const PageButtonsWide = dynamic(() =>
+  import("/src/app/components/pageButtonsWide")
+);
+import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
-import GenericTable from "/src/app/components/table";
-import SearchBox from "/src/app/components/searchBox";
 import {
   tableHeader,
   DefiRankingTableDesktop,
   DefiRankingTableMobile,
 } from "/src/app/components/pages/dashboard/helper";
-import PageButtonsWide from "/src/app/components/pageButtonsWide";
-import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
@@ -144,7 +146,6 @@ const Rankings = () => {
         />
       </Box>
 
-
       <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
         <PageButtonsWide
           page={tablePage}
@@ -154,7 +155,6 @@ const Rankings = () => {
           w={"100%"}
         />
       </Box>
-
     </Box>
   );
 };
@@ -181,16 +181,16 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={1}>
         <Box layerStyle={"flexCenter"} w={"120px"} gap={"10px"}>
-            <Avatar
-              width={"24px"}
-              height={"24px"}
-              style={{ borderRadius: "50%" }}
-              name={item?.name}
-              src={item?.logo}
-            ></Avatar>
-            <Box layerStyle="center">
-              <Text variant={"h3"}>{item.name}</Text>
-            </Box>
+          <Avatar
+            width={"24px"}
+            height={"24px"}
+            style={{ borderRadius: "50%" }}
+            name={item?.name}
+            src={item?.logo}
+          ></Avatar>
+          <Box layerStyle="center">
+            <Text variant={"h3"}>{item.name}</Text>
+          </Box>
         </Box>
       </Td>
       <Td key={2}>
@@ -291,13 +291,13 @@ const ButtonComp = ({ item }) => {
         </Text>
 
         <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
-            <Avatar
-              width={"24px"}
-              height={"24px"}
-              style={{ borderRadius: "50%" }}
-              name={item?.name}
-              src={item?.logo}
-            ></Avatar>
+          <Avatar
+            width={"24px"}
+            height={"24px"}
+            style={{ borderRadius: "50%" }}
+            name={item?.name}
+            src={item?.logo}
+          ></Avatar>
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>
       </Box>
@@ -462,7 +462,8 @@ const PanelComp = ({ item }) => {
       </Box>
 
       <Box layerStyle={"center"}>
-        <Button variant='link'
+        <Button
+          variant="link"
           onClick={() => {
             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
           }}

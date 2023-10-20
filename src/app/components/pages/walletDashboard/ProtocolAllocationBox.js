@@ -6,8 +6,11 @@ import {
   ProtocolAllocationsDesktop,
   ProtocolAllocationsMobile,
 } from "./helper";
-import TooltipComp from "../../tooltipComp";
-import GenericTable from "../../table/index";
+import dynamic from 'next/dynamic';
+
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const GenericTable = dynamic(() => import("../../table/index"));
+
 
 const ProtocolAllocationBox = () => {
   const protocolAllocationData = useSelector(

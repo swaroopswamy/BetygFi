@@ -19,9 +19,12 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import React from "react";
-import TooltipComp from "/src/app/components/tooltipComp";
-import SkeletonTable from "/src/app/components/skeleton";
+import dynamic from "next/dynamic";
+
+const TooltipComp = dynamic(() => import("/src/app/components/tooltipComp"));
+const SkeletonTable = dynamic(() => import("/src/app/components/skeleton"));
 import { SingleAccordionComp } from "/src/app/components/accordion";
+
 import { HiSortDescending } from "react-icons/hi";
 
 const GenericTable = ({
@@ -36,7 +39,6 @@ const GenericTable = ({
   isQueryInPendingState = false,
   bigTable = false,
 }) => {
-  const { colorMode } = useColorMode();
   return (
     <>
       <Table
@@ -92,12 +94,12 @@ const GenericTable = ({
               </Tr>
             </>
           )}
-          {/* {tableData?.isLoading && (
+          {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsDesktop?.numColumns}
               numRows={SkeletonRowsColumnsDesktop?.numRows}
             />
-          )} */}
+          )}
           {isQueryInPendingState && (
             <Tr>
               <Td
@@ -172,12 +174,12 @@ const GenericTable = ({
               </Td>
             </Tr>
           )}
-          {/* {tableData?.isLoading && (
+          {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsMobile.numColumns}
               numRows={SkeletonRowsColumnsMobile.numRows}
             />
-          )} */}
+          )}
 
           {tableData?.isSuccess &&
             (tableData?.data?.data?.length > 0 ? (
