@@ -8,6 +8,7 @@ import {
   fetchOverviewData,
 } from "@/redux/dashboard_data/dataSlice";
 import "/styles/styles.scss";
+import { useEffect } from "react";
 const BlockchainSelectionMenu = dynamic(() =>
   import("/src/app/components/blockchainSelectionMenu")
 );
