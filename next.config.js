@@ -16,18 +16,6 @@ const nextConfig = {
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       })
     );
-    config.module.rules.push({
-      test: /\.js?/,
-      include: "/src",
-      use: {
-        loader: "babel-loader",
-        options: {
-          presets: [["es2015", { modules: false }]],
-        },
-      },
-      exclude: "/node_modules/"
-    });
-
     return config;
   },
   distDir: "out",
