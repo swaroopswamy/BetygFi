@@ -82,7 +82,7 @@ const DashboardDefiSelection = ( {...rest} ) => {
         {...rest}
       >
         <Button 
-          variant={'defi'}
+          variant={{base: 'defiMobile', md: 'defi'}}
           isActive={categorySelected.length === 0} 
           onClick={() => categoryChangedHandler('All')}
           borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}
@@ -90,7 +90,7 @@ const DashboardDefiSelection = ( {...rest} ) => {
         {categories.map((category, i) => (
           <Button
             key={i} 
-            variant={'defi'}
+            variant={{base: 'defiMobile', md: 'defi'}}
             isActive={categorySelected.includes(category)}
             onClick={() => categoryChangedHandler(category)}
             borderRight={useColorModeValue("1px solid rgba(0, 0, 0, 0.1)", "1px solid rgba(255, 255, 255, 0.1)")}

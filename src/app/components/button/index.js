@@ -21,6 +21,14 @@ const Button = defineStyleConfig({
                 color: colorMode === 'light' ? "#FFFFFF" : '#000000'
             }
         }),
+        defiMobile: ({ colorMode }) => ({
+            bg: colorMode === 'light' ? "#F0F0F5" : '#202020',
+            color: colorMode === 'light' ? "#000000" : '#FFFFFF',
+            _active: {
+                bg: colorMode === 'light' ? "#202020" : '#FFFFFF',
+                color: colorMode === 'light' ? "#FFFFFF" : '#000000'
+            }
+        }),
         link: ({ colorMode }) => ({
             bg: colorMode === 'light' ? "#F0F0F5" : '#333333',
             color: colorMode === 'light' ? "#000000" : '#FFFFFF',
