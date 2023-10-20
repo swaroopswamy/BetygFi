@@ -8,7 +8,7 @@ import {
   Box,
   useColorModeValue,
   Icon,
-  Image,
+  Image as ChakraImage
 } from "@chakra-ui/react";
 
 import { useSelector } from "react-redux";
@@ -23,6 +23,7 @@ import {
   PortfolioTableDesktop,
   PortfolioTableMobile,
 } from "./helper";
+import Image from "next/image";
 
 const DefiTable = () => {
   const walletBalanceData = useSelector(
@@ -227,14 +228,14 @@ const TableHeaderRowMobile = () => {
           >
             Price(USD)
           </Text>
-          <Image
+          <ChakraImage
             ml="3px"
             mt="5px"
             w="10px"
             h="10px"
             as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
             alt=""
-          ></Image>
+          ></ChakraImage>
         </Box>
       </Th>
     </Tr>

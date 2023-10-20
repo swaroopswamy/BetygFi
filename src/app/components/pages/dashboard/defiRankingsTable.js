@@ -33,6 +33,7 @@ import {
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
@@ -291,13 +292,24 @@ const ButtonComp = ({ item }) => {
         </Text>
 
         <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
-          <Avatar
-            width={"24px"}
-            height={"24px"}
-            style={{ borderRadius: "50%" }}
-            name={item?.name}
-            src={item?.logo}
-          ></Avatar>
+          {!item?.logo ? (
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
+          ) : (
+            <Image
+              width={24}
+              height={24}
+              style={{ borderRadius: "50%" }}
+              src={item?.logo}
+              alt="logo"
+              loading="eager"
+            ></Image>
+          )}
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>
       </Box>

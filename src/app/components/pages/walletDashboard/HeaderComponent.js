@@ -1,4 +1,4 @@
-import { Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Image as ChakraImage, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
 const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
@@ -9,7 +9,7 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
     >
       <Box layerStyle={"flexCenter"}>
         <Box mr={"22px"}>
-          <Image
+          <ChakraImage
             w={{ base: "35px", md: "47px" }}
             h={{ base: "35px", md: "47px" }}
             borderRadius={"50%"}
