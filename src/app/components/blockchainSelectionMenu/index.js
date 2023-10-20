@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import React, { useEffect } from "react";
-
+import CustomNextImage from '../customImage/index'
 const BlockchainSelectionMenu = ({ chains }) => {
   const dispatch = useDispatch();
   const { colorMode } = useColorMode();
@@ -52,7 +52,9 @@ const BlockchainSelectionMenu = ({ chains }) => {
           return (
             <Tooltip key={i} label={item.name}>
               <Box
-                className="center"
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
                 cursor={"pointer"}
                 bg={"#D9D9D9"}
                 border={
@@ -69,13 +71,24 @@ const BlockchainSelectionMenu = ({ chains }) => {
                   BlockchainTypeHandler(item.id);
                 }}
               >
-                <Avatar
-                  style={{ borderRadius: "50%" }}
-                  width={"24px"}
-                  height={"24px"}
-                  src={item?.logoUrl}
-                  alt={item.id ?? "Coin"}
-                ></Avatar>
+                {!item?.logoUrl ? (
+                  <Avatar
+                    borderRadius={"50%"}
+                    width={"24px"}
+                    height={"24px"}
+                    src={item?.logoUrl}
+                    alt={item.id ?? "Coin"}
+                  ></Avatar>
+                ) : (
+                  <CustomNextImage
+                    width={4}
+                    height={4}
+                    borderRadius={"50%"}
+                    src={item?.logoUrl}
+                    alt={item.id ?? "Coin"}
+                    loading="eager"
+                  ></CustomNextImage>
+                )}
               </Box>
             </Tooltip>
           );
@@ -129,13 +142,30 @@ const BlockchainSelectionMenu = ({ chains }) => {
                           alignItems={"center"}
                           justifyContent={"center"}
                         >
-                          <Avatar
-                            width={"24px"}
-                            height={"24px"}
-                            src={item.logoUrl}
-                            alt={item.id ?? "Coin"}
-                            style={{ marginRight: "20px", marginLeft: "14px" }}
-                          ></Avatar>
+                         
+                          {!item?.logoUrl ? (
+                            <Avatar
+                              borderRadius={"50%"}
+                              width={"24px"}
+                              height={"24px"}
+                              src={item?.logoUrl}
+                              alt={item.id ?? "Coin"}
+                              mr="20px"
+                              ml="14px"
+                            ></Avatar>
+                          ) : (
+                            <CustomNextImage
+                              width={3}
+                              height={3}
+                              objectFit={"contain"}
+                              borderRadius={"50%"}
+                              src={item?.logoUrl}
+                              alt={item.id ?? "Coin"}
+                              loading="eager"
+                              mr="20px"
+                              ml="14px"
+                            ></CustomNextImage>
+                          )}
                           <Text
                             fontSize={"12px"}
                             fontWeight={"400"}

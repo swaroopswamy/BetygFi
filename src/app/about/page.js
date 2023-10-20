@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  Text,
-  Image,
-  useColorModeValue,
-} from "@chakra-ui/react";
-
+import { Box, Text, Image, useColorModeValue } from "@chakra-ui/react";
+import CustomNextImage from "../components/customImage/index";
 const About = () => {
   return (
     <>
@@ -22,27 +17,29 @@ const About = () => {
               We BetygFi
             </Text>
             <Box>
-              <Image
+              <CustomNextImage
                 src="/images/solvendo-bg-logo.svg"
                 alt="icon"
                 paddingRight={"100px"}
-              ></Image>
+                width={300}
+                height={300}
+              ></CustomNextImage>
             </Box>
           </Box>
         </Box>
         <Box px={"3em"} pt={"1em"}>
           <Box display={"flex"}>
             <Box layerStyle={"flexCenter"} w="200px">
-              <Image
+              <CustomNextImage
                 src={useColorModeValue(
                   "/images/solvendo-logo.svg",
                   "/images/solvendo-logo(black).svg"
                 )}
-                width={"161px"}
-                height={"127px"}
+                width={161}
+                height={127}
                 alt=""
                 mt={"1em"}
-              ></Image>
+              ></CustomNextImage>
             </Box>
             <Box flex="1">
               <Text
@@ -59,7 +56,9 @@ const About = () => {
             </Box>
           </Box>
 
-          <Text variant={"contentHeading"} lineHeight={"20px"}>About BetygFi</Text>
+          <Text variant={"contentHeading"} lineHeight={"20px"}>
+            About BetygFi
+          </Text>
 
           <Text variant={"content"} mt={5} paddingBottom={19}>
             We believe that BetygFi represents the beginnings of the future of
@@ -100,27 +99,30 @@ const About = () => {
         <Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"51px 0px 78px 20px"}>
-              <Text variant={"bigHeading"} color={"#FFF"}>We BetygFi</Text>
+              <Text variant={"bigHeading"} color={"#FFF"}>
+                We BetygFi
+              </Text>
             </Box>
             <Box padding={"37px 10px 38px 20px"}>
-              <Image
+              <CustomNextImage
                 src="/images/solvendo-bg-logo.svg"
-                width={"123.284px"}
-                height={"100px"}
-                flexShrink={0}
+                width={123}
+                height={100}
                 alt="icon"
-              ></Image>
+              ></CustomNextImage>
             </Box>
           </Box>
         </Box>
         <Box p={"10px 90px 0px 110px"}>
-          <Image
+          <CustomNextImage
             src={useColorModeValue(
               "/images/solvendo-logo.svg",
               "/images/solvendo-logo(black).svg"
             )}
-            alt=""
-          ></Image>
+            width={123}
+            height={100}
+            alt="icon"
+          ></CustomNextImage>
         </Box>
         <Box p={"0px 15px 10px 15px"}>
           <Text variant={"content"}>
@@ -134,13 +136,11 @@ const About = () => {
         <Text
           variant={"contentHeading"}
           lineHeight={"20px"}
-          p={"25px 0px 15px 12px"}>
+          p={"25px 0px 15px 12px"}
+        >
           About BetygFi
         </Text>
-        <Text
-          variant={"content"}
-          p={"0px 15px 55px 15px"}
-        >
+        <Text variant={"content"} p={"0px 15px 55px 15px"}>
           We believe that BetygFi represents the beginnings of the future of
           finance. With BetygFi, Solvendo is building the future of financial
           data and analytics using large language models.

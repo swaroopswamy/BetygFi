@@ -34,6 +34,7 @@ import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import CustomNextImage from "../../customImage";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
@@ -182,13 +183,25 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={1}>
         <Box layerStyle={"flexCenter"} w={"120px"} gap={"10px"}>
-          <Avatar
-            width={"24px"}
-            height={"24px"}
-            style={{ borderRadius: "50%" }}
-            name={item?.name}
-            src={item?.logo}
-          ></Avatar>
+          {!item?.logo ? (
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
+          ) : (
+            <CustomNextImage
+              width={7}
+              height={7}
+              objectFit={"contain"}
+              borderRadius={"50%"}
+              src={item?.logo}
+              alt="logo"
+              loading="eager"
+            ></CustomNextImage>
+          )}
           <Box layerStyle="center">
             <Text variant={"h3"}>{item.name}</Text>
           </Box>
@@ -215,19 +228,23 @@ const TableRow = ({ item, rowIndex }) => {
       </Td>
       <Td key={5}>
         <Text variant={"h3"}>
-          {!isEmpty(item.mcap)
-            ? `${Math.trunc(item.mcap).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}`
-            : "NA"}
+          {!isEmpty(item.mcap) ? (
+            `${Math.trunc(item.mcap).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}`
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Td>
       <Td key={6}>
         <Text variant={"h3"}>
-          {!isEmpty(item.mcap) && item.tvl !== 0
-            ? (item.mcap / item.tvl).toFixed(2)
-            : "NA"}
+          {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+            (item.mcap / item.tvl).toFixed(2)
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Td>
       <Td key={7}>
@@ -296,19 +313,19 @@ const ButtonComp = ({ item }) => {
             <Avatar
               width={"24px"}
               height={"24px"}
-              style={{ borderRadius: "50%" }}
+              borderRadius={"50%"}
               name={item?.name}
               src={item?.logo}
             ></Avatar>
           ) : (
-            <Image
-              width={24}
-              height={24}
-              style={{ borderRadius: "50%" }}
+            <CustomNextImage
+              width={7}
+              height={7}
+              borderRadius={"50%"}
               src={item?.logo}
               alt="logo"
               loading="eager"
-            ></Image>
+            ></CustomNextImage>
           )}
           <Text variant={"h3"}> {item?.name} </Text>
         </Box>
@@ -441,12 +458,14 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {!isEmpty(item.mcap)
-            ? `${Math.trunc(item.mcap).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}`
-            : "NA"}
+          {!isEmpty(item.mcap) ? (
+            `${Math.trunc(item.mcap).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}`
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Box>
 
@@ -467,9 +486,11 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {!isEmpty(item.mcap) && item.tvl !== 0
-            ? (item.mcap / item.tvl).toFixed(2)
-            : "NA"}
+          {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+            (item.mcap / item.tvl).toFixed(2)
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Box>
 

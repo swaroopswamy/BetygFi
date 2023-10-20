@@ -67,7 +67,7 @@ const OverviewBox = () => {
                   })}
                 </>
               ) : (
-                "NA"
+                <>NA</>
               )}
             </Text>
           </Box>
@@ -105,7 +105,7 @@ const OverviewBox = () => {
                       })}
                     </>
                   ) : (
-                    "NA"
+                    <>NA</>
                   )}
                 </Text>
               </Box>
