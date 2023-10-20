@@ -159,7 +159,7 @@ function TableRow({ item, i }) {
   const router = useRouter();
 
   return (
-    <>
+    <React.Fragment>
       <Tr
         key={i}
         cursor={"pointer"}
@@ -192,7 +192,7 @@ function TableRow({ item, i }) {
           </Box>
         </Td>
       </Tr>
-    </>
+    </React.Fragment>
   );
 }
 

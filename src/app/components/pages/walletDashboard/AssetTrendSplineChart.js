@@ -74,7 +74,7 @@ const AssetTrendSplineChart = () => {
     },
   ];
   return (
-    <>
+    <React.Fragment>
       {!walletBalanceData?.isSuccess && (
         <Skeleton>
           <Box
@@ -95,7 +95,7 @@ const AssetTrendSplineChart = () => {
           height={250}
         />
       )}
-    </>
+    </React.Fragment>
   );
 };
 

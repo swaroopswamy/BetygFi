@@ -40,7 +40,7 @@ const GenericTable = ({
   bigTable = false,
 }) => {
   return (
-    <>
+    <React.Fragment>
       <Table
         variant="simple"
         key={1}
@@ -81,7 +81,7 @@ const GenericTable = ({
 
         <Tbody border={"0px"} bgColor={useColorModeValue("#FFF", "#202020")}>
           {(tableData?.isError || tableData === null) && (
-            <>
+            <React.Fragment>
               <Tr>
                 <Td
                   p="20px"
@@ -92,7 +92,7 @@ const GenericTable = ({
                   <Text variant={"noDataText"}>No data available</Text>
                 </Td>
               </Tr>
-            </>
+            </React.Fragment>
           )}
           {tableData?.isLoading && (
             <SkeletonTable
@@ -217,7 +217,7 @@ const GenericTable = ({
             ))}
         </Tbody>
       </Table>
-    </>
+    </React.Fragment>
   );
 };
 

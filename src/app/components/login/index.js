@@ -65,7 +65,7 @@ const LoginPage = ({ isOpen, onClose }) => {
   };
   const { colorMode } = useColorMode();
   return (
-    <>
+    <React.Fragment>
       <Modal
         isOpen={isOpen}
         onClose={onClose}
@@ -86,7 +86,7 @@ const LoginPage = ({ isOpen, onClose }) => {
             paddingBottom={"0px"}
           >
             {browserWalletProcessSelected === true ? (
-              <>
+              <React.Fragment>
                 <Text
                   mb="52px"
                   fontSize={"12px"}
@@ -104,9 +104,9 @@ const LoginPage = ({ isOpen, onClose }) => {
                   <TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} />
                   Back
                 </Text>
-              </>
+              </React.Fragment>
             ) : (
-              <>
+              <React.Fragment>
                 <Text
                   fontSize={"12px"}
                   fontWeight={400}
@@ -148,7 +148,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                 >
                   Wallet Login
                 </Text>
-              </>
+              </React.Fragment>
             )}
           </ModalHeader>
           <ModalCloseButton />
@@ -165,7 +165,7 @@ const LoginPage = ({ isOpen, onClose }) => {
             {browserWalletProcessSelected === true ? (
               <OtherBrowserWalletProcess onClose={onClose} />
             ) : (
-              <>
+              <React.Fragment>
                 <Box display={"flex"} flexDirection={"column"}>
                   {walletArray.map((item, i) => {
                     return (
@@ -272,12 +272,12 @@ const LoginPage = ({ isOpen, onClose }) => {
                     ></Box>
                   </Box>
                 </Box>
-              </>
+              </React.Fragment>
             )}
           </ModalBody>
         </ModalContent>
       </Modal>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -381,7 +381,7 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Box>
         <Stepper index={activeStep} orientation="vertical" gap="0">
           {steps.map((step, index) => (
@@ -454,7 +454,7 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
           ))}
         </Stepper>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

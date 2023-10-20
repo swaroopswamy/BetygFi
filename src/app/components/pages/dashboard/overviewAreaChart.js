@@ -12,8 +12,6 @@ const OverviewAreaChart = () => {
     (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
-  console.log("ov", overviewGraphData);
-
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
   );
@@ -115,7 +113,7 @@ const OverviewAreaChart = () => {
     },
   ];
   return (
-    <>
+    <React.Fragment>
       <Box w={"100%"}>
         <CustomChart
           options={options}
@@ -124,7 +122,7 @@ const OverviewAreaChart = () => {
           height={205}
         />
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

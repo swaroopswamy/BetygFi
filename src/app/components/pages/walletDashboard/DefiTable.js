@@ -29,7 +29,7 @@ const DefiTable = () => {
     (state) => state?.walletDashboardTableData?.walletBalanceData
   );
   return (
-    <>
+    <React.Fragment>
       <Box display={"flex"} overflow={"auto"}>
         <GenericTable
           tableHeader={portfolioTableHeader}
@@ -43,7 +43,7 @@ const DefiTable = () => {
           isQueryInPendingState={walletBalanceData.data?.isQueryInPendingState}
         />
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -66,7 +66,7 @@ const TableRowDesktop = ({ item, i }) => {
       <Td>
         <Box display={"flex"} alignItems={"center"}>
           {!isEmpty(item?.logoUrl) ? (
-            <>
+            <React.Fragment>
               <Image
                 width={5}
                 height={5}
@@ -74,9 +74,9 @@ const TableRowDesktop = ({ item, i }) => {
                 alt="logo"
                 src={item?.logoUrl}
               ></Image>
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment>
               <Box
                 width={"20px"}
                 height={"20px"}
@@ -95,7 +95,7 @@ const TableRowDesktop = ({ item, i }) => {
                   {item.symbol.charAt(0)}
                 </Text>
               </Box>
-            </>
+            </React.Fragment>
           )}
           <Text
             _light={{
@@ -252,7 +252,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
       >
         <Box display={"flex"} alignItems={"center"}>
           {!isEmpty(item?.logoUrl) ? (
-            <>
+            <React.Fragment>
               <Image
                 width={5}
                 height={5}
@@ -260,9 +260,9 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
                 alt="logo"
                 src={item?.logoUrl}
               ></Image>
-            </>
+            </React.Fragment>
           ) : (
-            <>
+            <React.Fragment>
               <Box
                 width={"20px"}
                 height={"20px"}
@@ -281,7 +281,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
                   {item.symbol.charAt(0)}
                 </Text>
               </Box>
-            </>
+            </React.Fragment>
           )}
           <Text
             _light={{

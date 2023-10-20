@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
@@ -37,7 +38,7 @@ const OverviewBox = () => {
   }, [blockchainSelected, categorySelected]);
 
   return (
-    <>
+    <React.Fragment>
       <Box
         w="60%"
         display={{ base: "none", lg: "flex" }}
@@ -58,15 +59,15 @@ const OverviewBox = () => {
 
             <Text variant={"h1"}>
               {overviewData?.tvl !== undefined ? (
-                <>
+                <React.Fragment>
                   ${""}
                   {millify(overviewData?.tvl, {
                     precision: 2,
                     locales: "en-US",
                   })}
-                </>
+                </React.Fragment>
               ) : (
-                <>NA</>
+                <React.Fragment>NA</React.Fragment>
               )}
             </Text>
           </Box>
@@ -96,15 +97,15 @@ const OverviewBox = () => {
                 />
                 <Text variant={"h1"}>
                   {overviewData?.tvl !== undefined ? (
-                    <>
+                    <React.Fragment>
                       ${""}
                       {millify(overviewData?.tvl, {
                         precision: 2,
                         locales: "en-US",
                       })}
-                    </>
+                    </React.Fragment>
                   ) : (
-                    <>NA</>
+                    <React.Fragment>NA</React.Fragment>
                   )}
                 </Text>
               </Box>
@@ -122,7 +123,7 @@ const OverviewBox = () => {
           );
         }}
       />
-    </>
+    </React.Fragment>
   );
 };
 

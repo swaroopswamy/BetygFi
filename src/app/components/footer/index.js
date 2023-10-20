@@ -11,10 +11,8 @@ import { RiHomeLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 const Footer = ({ ...rest }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -37,7 +35,7 @@ const Footer = ({ ...rest }) => {
   });
 
   return (
-    <>
+    <React.Fragment>
       <Box
         position={"relative"}
         bottom="0"
@@ -63,9 +61,8 @@ const Footer = ({ ...rest }) => {
             <Text
               mr={{ base: 2, md: 4 }}
               variant={"h6"}
-              _light={{color:"#16171B"}}
-              _dark={{color:"#FFFFFF"}}
-              fontWeight={manrope.style.fontWeight}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#FFFFFF" }}
               paddingLeft={"10px"}
               opacity={"0.6"}
             >
@@ -104,7 +101,7 @@ const Footer = ({ ...rest }) => {
           />
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -116,7 +113,7 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
   const pathname = usePathname();
 
   return (
-    <>
+    <React.Fragment>
       <Box
         layerStyle={"FlexColumnCenter"}
         padding={"10px 10px"}
@@ -164,6 +161,6 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
           {name}
         </Text>
       </Box>
-    </>
+    </React.Fragment>
   );
 };

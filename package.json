@@ -53,6 +53,7 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.15",
     "@next/bundle-analyzer": "^13.5.6",
     "cross-env": "^7.0.3"
   }

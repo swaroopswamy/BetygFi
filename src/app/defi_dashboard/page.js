@@ -37,7 +37,7 @@ const DefiDashboardPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
-        <>
+        <React.Fragment>
             <Box bgColor={{base: useColorModeValue("#FFFFFF", "#202020"), md: useColorModeValue("#F0F0F5", "#191919")}} display={"flex"} flexDir={"column"} w={"100%"}>
                 <Box layerStyle={"flexCenter"} cursor={"pointer"} gap={"10px"} p={"10px 20px"}
                     onClick={() => router.push(`/`)}
@@ -83,7 +83,7 @@ const DefiDashboardPage = () => {
                     <GovernanceTable />
                 </Box>
             </Box>
-        </>
+        </React.Fragment>
     );
 };
 

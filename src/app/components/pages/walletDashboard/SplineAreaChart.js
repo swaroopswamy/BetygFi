@@ -70,9 +70,9 @@ const SplineAreaChart = () => {
         },
     ];
     return (
-        <>
+        <React.Fragment>
             <CustomChart options={options} series={series} type="area" height={80} />
-        </>
+        </React.Fragment>
     );
 };
 

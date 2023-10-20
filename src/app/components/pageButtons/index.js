@@ -1,10 +1,10 @@
 import { Text, Box, useColorModeValue, Image, Button, useColorMode } from "@chakra-ui/react";
-
+import React from "react";
 const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
   const { colorMode } = useColorMode();
 
   return (
-    <>
+    <React.Fragment>
       {totalPages !== 0 && (
         <Box
           display={"flex"}
@@ -74,7 +74,7 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
           </Box>
         </Box>
       )}
-    </>
+    </React.Fragment>
   );
 };
 export default PageButtons;

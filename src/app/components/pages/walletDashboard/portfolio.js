@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Image,
@@ -25,10 +26,9 @@ import {
   defiArrayChangedReducer,
   fetchWalletBalanceData,
 } from "@/redux/wallet_dashboard_data/dataSlice";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const DefiTable = dynamic(() => import("./DefiTable"));
-
 
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
@@ -56,7 +56,7 @@ const PortfolioPanelComponent = () => {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <Box display={"flex"} flexDirection={"column"} px={{ base: 4 }}>
         <Box
           mt="25px"
@@ -185,7 +185,7 @@ const PortfolioPanelComponent = () => {
           />
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -193,7 +193,7 @@ export default PortfolioPanelComponent;
 
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
   return (
-    <>
+    <React.Fragment>
       <Accordion
         defaultIndex={[0]}
         allowMultiple
@@ -221,7 +221,6 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 </Box>
               </Box>
 
-           
               <Box
                 borderRadius="50%"
                 border={useColorModeValue(
@@ -278,7 +277,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
 
               <Tbody>
                 {(tableData?.isError || !tableData?.data?.defiBalance) && (
-                  <>
+                  <React.Fragment>
                     <Tr>
                       <Td colSpan={"8"}>
                         <Text
@@ -299,15 +298,15 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                         </Text>
                       </Td>
                     </Tr>
-                  </>
+                  </React.Fragment>
                 )}
 
                 {tableData?.isLoading && (
-                  <>
+                  <React.Fragment>
                     <SkeletonRow />
                     <SkeletonRow />
                     <SkeletonRow />
-                  </>
+                  </React.Fragment>
                 )}
 
                 {tableData?.isSuccess &&
@@ -411,129 +410,128 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
               tableData?.data?.defiBalance &&
               tableData?.data?.defiBalance?.map((item, i) => {
                 return (
-                  <>
+                  <Box
+                    key={i}
+                    display={{ base: "flex", md: "none" }}
+                    flexDirection={"column"}
+                    p={2}
+                  >
                     <Box
-                      display={{ base: "flex", md: "none" }}
+                      display={"flex"}
+                      alignItems={"start"}
                       flexDirection={"column"}
-                      p={2}
+                      mb={"15px"}
                     >
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
                       >
+                        Token
+                      </Text>
+                      <Flex>
+                        <Image
+                          width={"24px"}
+                          height={"24px"}
+                          src={item?.tokenLogoUrl}
+                          alt=""
+                        ></Image>
                         <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
-                          _dark={{
-                            color: "#ADADAD",
-                          }}
-                        >
-                          Token
-                        </Text>
-                        <Flex>
-                          <Image
-                            width={"24px"}
-                            height={"24px"}
-                            src={item?.tokenLogoUrl}
-                            alt=""
-                          ></Image>
-                          <Text
-                            _light={{
-                              color: "#16171B",
-                            }}
-                            _dark={{
-                              color: "#FFFFFF",
-                            }}
-                            fontSize={"14px"}
-                            fontStyle={"normal"}
-                            fontWeight={"600"}
-                            lineHeight={"11px"}
-                            mt={"10px"}
-                            ml={"10px"}
-                          >
-                            {item?.token}
-                          </Text>
-                        </Flex>
-                      </Box>
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
-                      >
-                        <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
-                          _dark={{
-                            color: "#ADADAD",
-                          }}
-                        >
-                          Balance
-                        </Text>
-                        <Text
-                          _dark={{
-                            color: "#FFF",
-                          }}
                           _light={{
                             color: "#16171B",
                           }}
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                        ></Text>
-                      </Box>
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
-                      >
-                        <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
                           _dark={{
-                            color: "#ADADAD",
+                            color: "#FFFFFF",
                           }}
+                          fontSize={"14px"}
+                          fontStyle={"normal"}
+                          fontWeight={"600"}
+                          lineHeight={"11px"}
+                          mt={"10px"}
+                          ml={"10px"}
                         >
-                          % Share
+                          {item?.token}
                         </Text>
-                        <Text
-                          _dark={{
-                            color: "#FFF",
-                          }}
-                          _light={{
-                            color: "#16171B",
-                          }}
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                        ></Text>
-                      </Box>
+                      </Flex>
                     </Box>
-                  </>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
+                      >
+                        Balance
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF",
+                        }}
+                        _light={{
+                          color: "#16171B",
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      ></Text>
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
+                      >
+                        % Share
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF",
+                        }}
+                        _light={{
+                          color: "#16171B",
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      ></Text>
+                    </Box>
+                  </Box>
                 );
               })}
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
-    </>
+    </React.Fragment>
   );
 };
 

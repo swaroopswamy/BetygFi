@@ -85,7 +85,7 @@ const AssetAllocationBox = () => {
     : [];
 
   return (
-    <>
+    <React.Fragment>
       <Box
         w={{ base: "90%", bigSize: "50%", md: "90%" }}
         layerStyle={"flexColumn"}
@@ -115,18 +115,18 @@ const AssetAllocationBox = () => {
                 <Text variant={"noDataText"}>No Data Available</Text>
               </Box>
             ) : (
-              <>
+              <React.Fragment>
                 <CustomChart
                   options={options}
                   series={series}
                   type="pie"
                   height={300}
                 />
-              </>
+              </React.Fragment>
             ))}
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

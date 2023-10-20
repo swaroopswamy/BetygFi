@@ -32,7 +32,7 @@ const WalletAnalyticsPanel = () => {
 
 
   return (
-    <>
+    <React.Fragment>
       <Box
         layerStyle={"flexAlignCenterJustifyCenter"}
         flexDir={{ base: "column", bigSize: "row" }}
@@ -113,7 +113,7 @@ const WalletAnalyticsPanel = () => {
       >
         <PerformanceMultiLineChartBox />
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

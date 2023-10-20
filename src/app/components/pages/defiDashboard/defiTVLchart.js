@@ -127,7 +127,7 @@ function DefiTVLChart() {
   }]
 
   return (
-    <>
+    <React.Fragment>
       <Box
         w={{ base: "100%", lg: "50%" }}
         height={"370px"}
@@ -153,28 +153,28 @@ function DefiTVLChart() {
 
           <Box>
             {defiData?.tvl === null || defiData?.tvl === 0 && (
-              <>
+              <React.Fragment>
                 <Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
                   <Text variant={"noDataText"}>No data available</Text>
                 </Box>
-              </>
+              </React.Fragment>
             )}
             {
               defiData?.tvl > 0 && (
-                <>
+                <React.Fragment>
                   <Chart
                     options={options}
                     series={series}
                     type={options.chart.type}
                     height={"280px"}
                   />
-                </>
+                </React.Fragment>
               )
             }
 
           </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 

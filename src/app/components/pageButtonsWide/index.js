@@ -1,12 +1,12 @@
 import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import LastUpdate from "../lastUpdate";
 import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-
+import React from "react";
 const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, time, ...rest }) => {
   const { colorMode } = useColorMode();
 
   return (
-    <>
+    <React.Fragment>
       {totalPages !== 0 && (
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
           <LastUpdate
@@ -70,7 +70,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, time, ...res
 
         </Box>
       )}
-    </>
+    </React.Fragment>
   );
 };
 

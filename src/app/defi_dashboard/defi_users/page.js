@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Icon,
   Text,
@@ -204,7 +205,7 @@ export default DefiUsers;
 
 function RowComponent({ tableData }) {
   return (
-    <>
+    <React.Fragment>
       {tableData.map((item, i) => {
         return (
           <TableRow
@@ -218,7 +219,7 @@ function RowComponent({ tableData }) {
           />
         );
       })}
-    </>
+    </React.Fragment>
   );
 }
 
@@ -228,7 +229,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
   const router = useRouter();
 
   return (
-    <>
+    <React.Fragment>
       <Tr
         key={key}
         cursor={"pointer"}
@@ -354,6 +355,6 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
           </Flex>
         </Td>
       </Tr>
-    </>
+    </React.Fragment>
   );
 }

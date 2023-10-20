@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Box,
   Flex,
@@ -45,7 +46,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
   );
 
   return (
-    <>
+    <React.Fragment>
       <Box
         bg={useColorModeValue("#FFFFFF", "#191919")}
         borderRight="1px"
@@ -269,7 +270,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           </Flex>
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -401,7 +402,7 @@ const MobileSidebar = ({
   const pathname = usePathname();
 
   return (
-    <>
+    <React.Fragment>
       <Drawer
         isOpen={isOpen}
         placement={"left"}
@@ -617,7 +618,7 @@ const MobileSidebar = ({
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -627,9 +628,9 @@ const DirectionArrowIcon = createIcon({
   displayName: "DirectionArrow",
   viewBox: "0 0 13 13",
   path: (
-    <>
+    <React.Fragment>
       <path fill="currentColor" d="M5.8 8.6l2.4-2.4-2.4-2.4" />
       <path fill="currentColor" d="M5.8 8.6l2.4-2.4-2.4-2.4v4.8z" />
-    </>
+    </React.Fragment>
   ),
 });

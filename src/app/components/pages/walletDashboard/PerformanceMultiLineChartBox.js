@@ -85,7 +85,7 @@ const PerformanceMultiLineChartBox = () => {
     },
   ];
   return (
-    <>
+    <React.Fragment>
       <Box
         my="20px"
         w={{ base: "90%", md: "100%" }}
@@ -138,7 +138,7 @@ const PerformanceMultiLineChartBox = () => {
             ></Box>
           </Skeleton>
         ) : (
-          <>
+          <React.Fragment>
             <Box
               _dark={{
                 color: "#FFF",
@@ -158,11 +158,11 @@ const PerformanceMultiLineChartBox = () => {
             >
               No Data Available
             </Box>
-          </>
+          </React.Fragment>
         )}
         {/* {walletBalanceData?.isSuccess && <ApexCharts options={options} series={series} type="line" height={250} />} */}
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

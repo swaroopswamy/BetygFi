@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Table,
   Text,
@@ -28,7 +29,7 @@ const WalletTable = () => {
   const router = useRouter();
 
   return (
-    <>
+    <React.Fragment>
       <Box
         borderRadius={"6px"}
         _light={{ borderColor: "#FFFFFF" }}
@@ -282,7 +283,7 @@ const WalletTable = () => {
           </Tbody>
         </Table>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 

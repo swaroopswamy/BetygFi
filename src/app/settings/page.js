@@ -27,7 +27,7 @@ const Settings = () => {
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
 
   return (
-    <>
+    <React.Fragment>
       <Box
         display={{ base: "none", md: "block" }}
         width={"100%"}
@@ -279,7 +279,7 @@ const Settings = () => {
         </Box>
 
         {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
-          <>
+          <React.Fragment>
             <Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
               <Text variant={"contentHeading3"} fontWeight={"400"}>
                 Login to BetygFi
@@ -308,9 +308,9 @@ const Settings = () => {
                 </Text>
               </Button>
             </Box>
-          </>
+          </React.Fragment>
         ) : (
-          <>
+          <React.Fragment>
             <Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
               <Text variant={"contentHeading3"} fontWeight={"400"}>
                 Logout of BetygFi
@@ -336,7 +336,7 @@ const Settings = () => {
                 </Text>
               </Button>
             </Box>
-          </>
+          </React.Fragment>
         )}
       </Box>
       {/* Mobile Optimization Part */}
@@ -591,7 +591,7 @@ const Settings = () => {
         </Box>
 
         {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
-          <>
+          <React.Fragment>
             <Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
               <Text variant={"contentHeading3"} fontWeight={"400"}>
                 Login to BetygFi
@@ -621,9 +621,9 @@ const Settings = () => {
                 </Text>
               </Button>
             </Box>
-          </>
+          </React.Fragment>
         ) : (
-          <>
+          <React.Fragment>
             <Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
               <Text variant={"contentHeading3"} fontWeight={"400"}>
                 Logout of BetygFi
@@ -651,7 +651,7 @@ const Settings = () => {
                 </Text>
               </Button>
             </Box>
-          </>
+          </React.Fragment>
         )}
       </Box>
       <LoginPage
@@ -659,7 +659,7 @@ const Settings = () => {
         onOpen={onLoginModalOpen}
         onClose={onLoginModalClose}
       />
-    </>
+    </React.Fragment>
   );
 };
 

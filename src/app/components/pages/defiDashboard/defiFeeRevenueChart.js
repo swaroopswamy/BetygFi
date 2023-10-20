@@ -105,7 +105,7 @@ function DefiFeeRevenueChart() {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Box
         w={{ base: "100%", lg: "50%" }}
         layerStyle={"flexColumn"}
@@ -133,11 +133,11 @@ function DefiFeeRevenueChart() {
 
         <Box >
           {DefiFeeRevenueData?.isError && (
-            <>
+            <React.Fragment>
               <Box layerStyle='center' p="20px" text textAlign={"center"} height={"245px"}>
                 <Text variant={"noDataText"}>No data available</Text>
               </Box>
-            </>
+            </React.Fragment>
           )}
           {DefiFeeRevenueData?.isSuccess && (
             <Chart
@@ -155,7 +155,7 @@ function DefiFeeRevenueChart() {
 
         <LastUpdate p={"15px"} time={"3"} />
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 

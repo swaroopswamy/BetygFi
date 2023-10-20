@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Text,
   useColorModeValue,
@@ -62,7 +63,7 @@ const TransactionPanelComponent = () => {
   }, [fetchWalletTransactionsDataHandler]); */
 
   return (
-    <>
+    <React.Fragment>
       <Box
         w={"100%"}
         pt="25px"
@@ -109,7 +110,7 @@ const TransactionPanelComponent = () => {
           />
         </Box>
       </Box>
-    </>
+    </React.Fragment>
   );
 };
 
@@ -119,12 +120,12 @@ const TableRow = ({ item, rowIndex }) => {
     (state) => state?.walletDashboardTableData?.walletAddress
   );
   return (
-    <>
+    <React.Fragment>
       <Tr key={rowIndex}>
         <Td>
           <Box layerStyle={"flexCenter"} gap={"10px"}>
             <Tooltip label={item?.blockchain}>
-              <>
+              <React.Fragment>
                 <Image
                   w={"18px"}
                   h={"18px"}
@@ -133,7 +134,7 @@ const TableRow = ({ item, rowIndex }) => {
                   alt={`${item?.blockchain}_icon`}
                   style={{ borderRadius: "50%" }}
                 ></Image>
-              </>
+              </React.Fragment>
             </Tooltip>
 
             <Box w={"100%"}>
@@ -249,13 +250,13 @@ const TableRow = ({ item, rowIndex }) => {
           </Box>
         </Td>
       </Tr>
-    </>
+    </React.Fragment>
   );
 };
 
 const TableHeaderRowMobile = () => {
   return (
-    <>
+    <React.Fragment>
       <Tr>
         <Th colSpan={2}>
           <Box layerStyle={"spaceBetween"}>
@@ -280,7 +281,7 @@ const TableHeaderRowMobile = () => {
           </Box>
         </Th>
       </Tr>
-    </>
+    </React.Fragment>
   );
 };
 

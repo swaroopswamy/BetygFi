@@ -123,7 +123,7 @@ function DashboardTrendGraph() {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <Box
         display={"flex"}
         flexDirection={"column"}
@@ -225,7 +225,7 @@ function DashboardTrendGraph() {
 
         <SelectorGraph tvlData={tvlData} />
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -343,7 +343,7 @@ function SelectorGraph({ tvlData }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       <Box marginTop={"-30px"} marginBottom={"-30px"}>
         <CustomChart
           options={options}
@@ -353,7 +353,7 @@ function SelectorGraph({ tvlData }) {
           width={"100%"}
         />
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -456,7 +456,7 @@ function Graph({ series }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       <CustomChart
         options={options}
         series={series}
@@ -483,13 +483,13 @@ function Graph({ series }) {
             >
                 No Data Available
             </Box> */}
-    </>
+    </React.Fragment>
   );
 }
 
 function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
   return (
-    <>
+    <React.Fragment>
       <Box
         position={"relative"}
         padding={"7px 8px"}
@@ -595,7 +595,7 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
           ETH
         </Text>
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 
@@ -610,7 +610,7 @@ function TrendGraphTypeButton({
     (state) => state?.defiDashboardData?.DefiData?.data
   );
   return (
-    <>
+    <React.Fragment>
       <Box
         position={"relative"}
         padding={"7px 8px"}
@@ -648,6 +648,6 @@ function TrendGraphTypeButton({
           {value === "price" ? `${defiData?.symbol} price` : name}
         </Text>
       </Box>
-    </>
+    </React.Fragment>
   );
 }

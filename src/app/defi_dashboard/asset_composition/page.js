@@ -161,7 +161,7 @@ function TableRow({ item, i}) {
     const { colorMode } = useColorMode();
 
     return (
-        <>
+        <React.Fragment>
             <Tr
                 key={i}
                 cursor={"pointer"}
@@ -290,7 +290,7 @@ function TableRow({ item, i}) {
                 </Td>
 
             </Tr>
-        </>
+        </React.Fragment>
     );
 }
 
@@ -311,7 +311,7 @@ function SelectionBox () {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <>
+    return <React.Fragment>
         <Box
             display={"flex"}
             flexDirection={"column"}
@@ -399,7 +399,7 @@ function SelectionBox () {
                 })}
             </Box>
         </Box>
-    </>
+    </React.Fragment>
 }
 
 const TableHeaderRowMobile = () => {
