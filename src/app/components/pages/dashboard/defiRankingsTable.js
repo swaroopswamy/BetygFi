@@ -13,7 +13,7 @@ import {
   Avatar,
   Tooltip,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import isEmpty from "is-empty";
@@ -67,8 +67,12 @@ const Rankings = () => {
     setTablePage(1);
   };
 
+  const timerRef = useRef(null);
+
   const getDefiRankingsTableDataHandler = () => {
-    setTimeout(() => {
+    if (timerRef.current)
+      clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
       if (!isEmpty(searchByName)) {
         const payload = {
           name: searchByName,

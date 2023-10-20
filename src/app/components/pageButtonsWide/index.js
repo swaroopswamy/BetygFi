@@ -17,63 +17,11 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
         />
 
         <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} gap={"8px"}>
-          <RoundButton opacity={"0.4"}
-            onClick={() => {
-              pageChangeHandler(1);
-            }}
-          >
-            <ArrowLeftIcon
-              boxSize={"12px"}
-            />
-          </RoundButton>
-
-          <RoundButton opacity={"0.4"}
-            onClick={() => {
-              pageChangeHandler(page - 1);
-            }}
-          >
-            <ChevronLeftIcon />
-          </RoundButton>
-
-          <Box layerStyle={"center"} gap={"8px"}>
-            <Input
-              p={"8px 15px"}
-              borderRadius={"0px"}
-              borderColor={colorMode === 'light' ? "#E8E8E8" : "#454853"}
-              background={colorMode === 'light' ? "#F0F0F5" : "#191919"}
-              width={"65px"}
-              height={"30px"}
-              type="number"
-              onChange={(e) => {
-                const value = e.target.value;
-                pageChangeHandler(value);
-              }}
-              value={page}
-              textAlign={"center"}
-            ></Input>
-
-            <Text variant={"h3"}>
-              of {totalPages} pages
-            </Text>
-          </Box>
-
-          <RoundButton opacity={"1"}
-            onClick={() => {
-              pageChangeHandler(page + 1);
-            }}
-          >
-            <ChevronRightIcon />
-          </RoundButton>
-
-          <RoundButton opacity={"1"}
-            onClick={() => {
-              pageChangeHandler(totalPages);
-            }}
-          >
-            <ArrowRightIcon
-              boxSize={"12px"}
-            />
-          </RoundButton>
+          <Buttons
+            page={page}
+            pageChangeHandler={pageChangeHandler}
+            totalPages={totalPages}
+          />
         </Box>
 
         <Box layerStyle={"center"} gap={"8px"}>
@@ -100,7 +48,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 
       </Box>
 
-      <Box display={{base: "flex", md: "none"}} flexDir={"column"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
+      <Box display={{base: "flex", md: "none"}} flexDir={"column"} my={"10px"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} w={"100%"}>
           <LastUpdate time={time} />
 
@@ -123,64 +71,12 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
           </Menu>
         </Box>
 
-        <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} gap={"8px"} w={"100%"}>
-          <RoundButton opacity={"0.4"}
-            onClick={() => {
-              pageChangeHandler(1);
-            }}
-          >
-            <ArrowLeftIcon
-              boxSize={"12px"}
+        <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} gap={"8px"} w={"80%"}>
+            <Buttons
+              page={page}
+              pageChangeHandler={pageChangeHandler}
+              totalPages={totalPages}
             />
-          </RoundButton>
-
-          <RoundButton opacity={"0.4"}
-            onClick={() => {
-              pageChangeHandler(page - 1);
-            }}
-          >
-            <ChevronLeftIcon />
-          </RoundButton>
-
-          <Box layerStyle={"center"} gap={"8px"}>
-            <Input
-              p={"8px 15px"}
-              borderRadius={"0px"}
-              borderColor={colorMode === 'light' ? "#E8E8E8" : "#454853"}
-              background={colorMode === 'light' ? "#F0F0F5" : "#191919"}
-              width={"65px"}
-              height={"30px"}
-              type="number"
-              onChange={(e) => {
-                const value = e.target.value;
-                pageChangeHandler(value);
-              }}
-              value={page}
-              textAlign={"center"}
-            ></Input>
-
-            <Text variant={"h3"}>
-              of {totalPages} pages
-            </Text>
-          </Box>
-
-          <RoundButton opacity={"1"}
-            onClick={() => {
-              pageChangeHandler(page + 1);
-            }}
-          >
-            <ChevronRightIcon />
-          </RoundButton>
-
-          <RoundButton opacity={"1"}
-            onClick={() => {
-              pageChangeHandler(totalPages);
-            }}
-          >
-            <ArrowRightIcon
-              boxSize={"12px"}
-            />
-          </RoundButton>
         </Box>
       </Box>
     </>
@@ -188,6 +84,84 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 };
 
 export default PageButtonsWide;
+
+const Buttons = ({ page, pageChangeHandler, totalPages }) => {
+  const { colorMode } = useColorMode();
+
+  return (
+    <>
+      <RoundButton opacity={"0.4"}
+        cursor={page > 1 ? "pointer" : "not-allowed"}
+        onClick={() => {
+          pageChangeHandler(1);
+        }}
+      >
+        <ArrowLeftIcon
+          boxSize={"12px"}
+        />
+      </RoundButton>
+
+      <RoundButton opacity={"0.4"}
+        cursor={page > 1 ? "pointer" : "not-allowed"}
+        onClick={() => {
+          pageChangeHandler(page - 1);
+        }}
+      >
+        <ChevronLeftIcon />
+      </RoundButton>
+
+      <Box layerStyle={"center"} gap={"8px"}>
+        <Input
+          p={"8px 15px"}
+          borderRadius={"0px"}
+          borderColor={colorMode === 'light' ? "#E8E8E8" : "#454853"}
+          background={colorMode === 'light' ? "#F0F0F5" : "#191919"}
+          width={"65px"}
+          height={"30px"}
+          type="number"
+          onChange={(e) => {
+            let value = e.target.value;
+            if (value < 0) {
+              console.log("search", value);
+              value = 1; 
+            }
+            if (value > totalPages) {
+              console.log("search", value);
+              value = totalPages;
+            }
+            pageChangeHandler(value);
+          }}
+          value={page}
+          textAlign={"center"}
+        ></Input>
+
+        <Text variant={"h3"}>
+          of {totalPages} pages
+        </Text>
+      </Box>
+
+      <RoundButton opacity={"1"}
+        cursor={page < totalPages ? "pointer" : "not-allowed"}
+        onClick={() => {
+          pageChangeHandler(page + 1);
+        }}
+      >
+        <ChevronRightIcon />
+      </RoundButton>
+
+      <RoundButton opacity={"1"}
+        cursor={page < totalPages ? "pointer" : "not-allowed"}
+        onClick={() => {
+          pageChangeHandler(totalPages);
+        }}
+      >
+        <ArrowRightIcon
+          boxSize={"12px"}
+        />
+      </RoundButton>
+    </>
+  )
+}
 
 const RoundButton = ( {children, ...rest} ) => {
   const { colorMode } = useColorMode();
