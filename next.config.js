@@ -8,7 +8,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const webpack = require("webpack");
 
 const nextConfig = {
-  output: "standalone",
+  output: "export",
   reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
