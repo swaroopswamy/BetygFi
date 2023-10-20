@@ -1,7 +1,6 @@
 import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import CustomChart from "/src/app/components/graph";
-import ApexCharts from "apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 import millify from "millify";

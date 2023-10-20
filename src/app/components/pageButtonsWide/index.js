@@ -96,11 +96,9 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
           onChange={(e) => {
             let value = e.target.value;
             if (value < 0) {
-              console.log("search", value);
               value = 1; 
             }
             if (value > totalPages) {
-              console.log("search", value);
               value = totalPages;
             }
             pageChangeHandler(value);

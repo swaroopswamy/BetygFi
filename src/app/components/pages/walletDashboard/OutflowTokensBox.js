@@ -70,7 +70,6 @@ const OutflowTokensBox = () => {
 };
 
 const TableRowDesktop = ({ item, i }) => {
-  console.log(item);
   return (
     <Tr height={"40px"} key={i}>
       <Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>

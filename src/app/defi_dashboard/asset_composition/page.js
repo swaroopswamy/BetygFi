@@ -36,8 +36,7 @@ function AssetComposition() {
     const defiAssetsTableData = useSelector(
         (state) => state?.defiDashboardData?.DefiAssetCompositionTableData
     );
-    console.log("asset", defiAssetsTableData?.data?.totalPages);
-
+    
     const getDefiAssetsTableDataHandler = () => {
         const payload = {
             defi: defi,
