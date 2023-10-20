@@ -54,8 +54,8 @@ const OverviewBox = () => {
 
     return (
         <>
-            <Box w="60%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={{ base: "10px", md: "25px 20px" }}>
-                <Box layerStyle='spaceBetween'>
+            <Box w="60%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} >
+                <Box layerStyle='spaceBetween' p={{ base: "10px", md: "25px 20px" }}>
                     <Text variant={"h2"}>
                         Overview
                     </Text>

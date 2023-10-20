@@ -1,7 +1,7 @@
 import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useRef, useState } from "react";
 import CustomChart from "/src/app/components/graph";
+import ApexCharts from "apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 import millify from "millify";
@@ -25,6 +25,7 @@ const OverviewAreaChart = () => {
       zoom: {
         enabled: false,
       },
+      id: 'overview',
       stacked: false,
       animations: {
         enabled: false
@@ -88,7 +89,6 @@ const OverviewAreaChart = () => {
       axisTicks: {
         show: false,
       },
-      max: new Date("2023-10-07").getTime(),
     },
     yaxis: {
       labels: {
@@ -108,8 +108,8 @@ const OverviewAreaChart = () => {
     },
   };
 
-  const series = [];
-  
+  let series = [];
+
   overviewGraphData?.isSuccess && overviewGraphData?.data?.graphData.map((category, i) => {
     if (categorySelected.includes(category?.name) || categorySelected.length === 0) {
       let categorySeries = {
@@ -118,12 +118,18 @@ const OverviewAreaChart = () => {
       }
       series.push(categorySeries);
     }
-  })
+  });
 
   return (
     <>
-      <Box w={"100%"}>
-        <CustomChart options={options} series={series} type="area" height={205} />
+      <Box width={"100%"}>
+        <Box px={{ base: "10px", md: "20px" }}>
+          <CustomChart options={options} series={series} type="area" height={205} />
+        </Box>
+
+        {/* <Box>
+          <SelectorGraph series={series} />
+        </Box> */}
       </Box>
     </>
   );
@@ -131,3 +137,109 @@ const OverviewAreaChart = () => {
 
 export default OverviewAreaChart;
 
+const SelectorGraph = ({ series }) => {
+  const { colorMode } = useColorMode;
+
+  const overviewGraphData = useSelector(
+    (state) => state?.dashboardTableData?.OverviewGraphData
+  );
+
+  // let series = [{
+  //   name: overviewGraphData?.data?.graphData[3].name,
+  //   data: overviewGraphData?.data?.graphData[3].graphData
+  // }]
+
+  const options = {
+    chart: {
+      toolbar: {
+        show: false,
+      },
+      stacked: false,
+      type: "area",
+      brush: {
+        enabled: true,
+        target: "overview",
+        autoScaleYaxis: true,
+      },
+      selection: {
+        enabled: true,
+        fill: {
+          color: "#00E0FF",
+          opacity: 0.15,
+        },
+        stroke: {
+          width: 0,
+          dashArray: 0,
+          color: colorMode === "light" ? "#313131" : "#FFF",
+        },
+      },
+      animations: {
+        enabled: false
+      }
+    },
+    fill: {
+      colors: ["#3A3D46"],
+      type: "solid",
+      opacity: "0.25",
+    },
+    stroke: {
+      show: false,
+    },
+    colors: ["#000"],
+    xaxis: {
+      type: "datetime",
+      labels: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      axisBorder: {
+        show: false,
+      },
+    },
+    yaxis: {
+      labels: {
+        show: false,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    legend: {
+      show: false,
+    },
+    tooltip: {
+      enabled: false,
+    },
+    grid: {
+      borderColor: colorMode === "light" ? "#191919" : "#36363A",
+      xaxis: {
+        lines: {
+          show: false,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
+  };
+
+  return (
+    <>
+      {overviewGraphData?.isSuccess &&
+        <Box my={"-30px"} >
+          <CustomChart
+            options={options}
+            series={series}
+            type={options.chart.type}
+            height={"100px"}
+            width={"100%"}
+          />
+        </Box>
+      }
+    </>
+  );
+}

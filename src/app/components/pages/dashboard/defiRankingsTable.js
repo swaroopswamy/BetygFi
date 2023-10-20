@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import isEmpty from "is-empty";
 import "/styles/styles.scss";
-
 import GenericTable from "/src/app/components/table";
 import SearchBox from "/src/app/components/searchBox";
 import {
@@ -29,7 +28,6 @@ import {
 import PageButtonsWide from "/src/app/components/pageButtonsWide";
 import PageButtons from "/src/app/components/pageButtons";
 import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
-
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
@@ -37,6 +35,8 @@ import { useRouter } from "next/navigation";
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
   const [tableLimit, setTableLimit] = useState(20);
+
+  const timerRef = useRef(null);
 
   const [searchByName, setSearchByName] = useState("");
   const {
@@ -67,7 +67,6 @@ const Rankings = () => {
     setTablePage(1);
   };
 
-  const timerRef = useRef(null);
 
   const getDefiRankingsTableDataHandler = () => {
     if (timerRef.current)
