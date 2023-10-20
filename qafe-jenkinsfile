@@ -30,7 +30,7 @@ pipeline{
             steps{
              echo "job is deploying" 
               sh """
-              cd out/standalone;
+              cd out;
               rm -rf /tmp/build.tar.gz 
               tar -czvf /tmp/build.tar.gz .
               chmod 777 /tmp/build.tar.gz
