@@ -42,9 +42,9 @@ const WalletAnalyticsPanel = () => {
         w="100%"
         my="20px"
       >
-        <BlockchainAllocationBox />
+       {/*  <BlockchainAllocationBox />
 
-        <AssetAllocationBox />
+        <AssetAllocationBox /> */}
       </Box>
 
       <Box
