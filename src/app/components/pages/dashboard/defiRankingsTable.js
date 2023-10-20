@@ -306,7 +306,7 @@ const ButtonComp = ({ item }) => {
       justifyContent={"space-between"}
       alignItems={"center"}
     >
-      <Box display={"flex"} w={"50%"} justifyContent={"start"} mx={"20px"} >
+      <Box display={"flex"} w={"50%"} justifyContent={"start"} alignItems={"center"} mx={"20px"} >
         <Text variant={"h3"}>
           {" "}
           {item?.Rank === undefined ? "-" : item?.Rank}{" "}
