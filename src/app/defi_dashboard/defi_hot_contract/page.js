@@ -19,7 +19,8 @@ import {
 } from "@chakra-ui/react";
 import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
 import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
-import GenericBigTableComponent from "/src/app/components/pages/defiDashboard/GenericBigTable";
+import dynamic from "next/dynamic";
+const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages/defiDashboard/GenericBigTable'));
 
 function Defi_Hot_Contracts() {
   const [tabIndex, setTabIndex] = useState(0);

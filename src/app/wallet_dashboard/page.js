@@ -1,4 +1,5 @@
-"use client";
+'use client'
+import dynamic from "next/dynamic";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Box,
@@ -8,11 +9,10 @@ import {
   useColorModeValue,
   useColorMode,
 } from "@chakra-ui/react";
-import SplineAreaChart from "../components/pages/walletDashboard/SplineAreaChart";
 import { useDispatch, useSelector } from "react-redux";
-import PortfolioPanelComponent from "../components/pages/walletDashboard/portfolio.js";
-import WalletAnalyticsPanel from "../components/pages/walletDashboard/wallet_analytics";
-import TransactionPanelComponent from "../components/pages/walletDashboard/transaction";
+const PortfolioPanelComponent = dynamic(() => import("../components/pages/walletDashboard/portfolio.js"));
+const WalletAnalyticsPanel = dynamic(() => import("../components/pages/walletDashboard/wallet_analytics"));
+const TransactionPanelComponent = dynamic(() => import("../components/pages/walletDashboard/transaction"));
 import {
   blockchainTypeChangedReducer,
   fetchAssetAllocationForAddress,
@@ -25,14 +25,14 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
-import Breadcrumb from "@/app/components/breadcrumb";
-import HeaderComponent from "@/app/components/pages/walletDashboard/HeaderComponent";
-import DashboardTabList from "../components/pages/walletDashboard/DashboardTabList";
-import BlockchainSelectionMenuBlocks from "@/app/components/blockchainSelectionMenuBlocks";
-import useSWR from "swr";
+const Breadcrumb = dynamic(() => import("@/app/components/breadcrumb"));
+const HeaderComponent = dynamic(() => import("@/app/components/pages/walletDashboard/HeaderComponent"));
+const DashboardTabList = dynamic(() => import("../components/pages/walletDashboard/DashboardTabList"));
+const BlockchainSelectionMenuBlocks = dynamic(() => import("@/app/components/blockchainSelectionMenuBlocks"));
 
 function WalletDashboardPage() {
-  const useEffectWork = useRef(0);
+  console.log('renderingg')
+  const didLogRef = useRef(false);
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);
@@ -85,6 +85,19 @@ function WalletDashboardPage() {
     };
     dispatch(fetchInflowOutflowTokensForAddress(data));
   };
+
+  useEffect(() => {
+    dispatch(fetchBlockchainListData());
+    dispatch(walletAddressChangedReducer(searchParam.get("address")));
+  }, [searchParam.get("address")]);
+
+  /* 
+  const {
+    data: data2,
+    error: error2,
+  } = useSWR("api/fetchWalletBalanceDataHandler?query=${blockchainSelected}", fetchWalletBalanceDataHandler);
+  */
+
   /*   useEffect(() => {
     Promise.all([
       dispatch(fetchBlockchainListData()),
@@ -98,47 +111,30 @@ function WalletDashboardPage() {
   }, [fetchWalletBalanceDataHandler]); */
 
   useEffect(() => {
-    Promise.all([
-      dispatch(fetchBlockchainListData()),
-      dispatch(walletAddressChangedReducer(searchParam.get("address"))),
-      fetchWalletBalanceDataHandler(),
-      fetchAssetAllocationForAddressHandler(),
-      fetchProtocolAllocationForAddressHandler(),
-      fetchBlockchainAllocationForAddressHandler(),
-      fetchInflowOutflowTokensForAddressHandler(),
-      fetchWalletBalanceDataHandler(),
-    ]);
-    return () => {
-      console.log("cleanup");
-    };
-  }, []);
+    if (didLogRef.current === false) {
+      didLogRef.current = true;
+      fetchWalletBalanceDataHandler();
+      fetchAssetAllocationForAddressHandler();
+      fetchProtocolAllocationForAddressHandler();
+      fetchBlockchainAllocationForAddressHandler();
+      fetchInflowOutflowTokensForAddressHandler();
+      fetchWalletBalanceDataHandler();
+    }
+  }, [blockchainSelected, searchParam.get("address")]); 
 
-  /*   useEffect(() => {
-    dispatch(fetchBlockchainListData());
-    dispatch(walletAddressChangedReducer(searchParam.get("address")));
-  }, []); */
-
-  /*  const { data: data1, error: error1 } = useSWR(
+  /* const { data: data1, error: error1 } = useSWR(
     ["getBlockchainListData", blockchainSelected, searchParam.get("address")],
     fetchBlockchainListData()
-  );
-  const { data: data2, error: error2 } = useSWR(
-    [
-      " fetchWalletBalanceDataHandler",
-      blockchainSelected,
-      searchParam.get("address"),
-    ],
-    fetchWalletBalanceDataHandler
   ); */
 
-  /*   useEffect(() => {
+/*   useEffect(() => {
     if (walletBalanceData?.isQueryInPendingState) {
       setTimeout(() => {
         fetchWalletBalanceDataHandler();
       }, 5000);
     }
-  }, [walletBalanceData]); */
-
+  }, [walletBalanceData]);
+ */
   return (
     <>
       <Box

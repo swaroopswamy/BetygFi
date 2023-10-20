@@ -1,11 +1,10 @@
 /**
  * @type {import('next').NextConfig}
  */
-require("dotenv").config();
 const webpack = require("webpack");
 const nextConfig = {
   output: "export",
-  reactStrictMode:false,
+  reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -17,15 +16,22 @@ const nextConfig = {
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       })
     );
+    config.module.rules.push({
+      test: /\.js?/,
+      include: "/src",
+      use: {
+        loader: "babel-loader",
+        options: {
+          presets: [["es2015", { modules: false }]],
+        },
+      },
+      exclude: "/node_modules/"
+    });
 
     return config;
   },
-  images: {
-    unoptimized: true,
-  },
-  optimizeFonts: false,
   distDir: "out",
-
+  images: { unoptimized: true }
 };
 
 module.exports = nextConfig;

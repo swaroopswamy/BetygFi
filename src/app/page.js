@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
+import dynamic from "next/dynamic";
 import { Box, Button, Text, useColorModeValue } from "@chakra-ui/react";
 import { categories } from "../../util/constant";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,12 +8,18 @@ import {
   fetchOverviewData,
 } from "@/redux/dashboard_data/dataSlice";
 import "/styles/styles.scss";
-
-import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
-import Rankings from "/src/app/components/pages/dashboard/defiRankingsTable";
-import OverviewColumnChart from "/src/app/components/pages/dashboard/overviewColumnChart";
-import OverviewBox from "/src/app/components/pages/dashboard/overviewBox";
-import useSWR from "swr";
+const BlockchainSelectionMenu = dynamic(() =>
+  import("/src/app/components/blockchainSelectionMenu")
+);
+const Rankings = dynamic(() =>
+  import("/src/app/components/pages/dashboard/defiRankingsTable")
+);
+const OverviewColumnChart = dynamic(() =>
+  import("/src/app/components/pages/dashboard/overviewColumnChart")
+);
+const OverviewBox = dynamic(() =>
+  import("/src/app/components/pages/dashboard/overviewBox")
+);
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,10 +40,9 @@ const Dashboard = () => {
     dispatch(fetchOverviewData(payload));
   };
 
-  /*     useEffect(() => {
-        getOverviewDataHandler();
-    }, [blockchainSelected, categorySelected]); */
-  const { data, error } = useSWR("/overview", getOverviewDataHandler);
+  useEffect(() => {
+    getOverviewDataHandler();
+  }, [blockchainSelected, categorySelected]);
 
   return (
     <>
@@ -141,10 +145,12 @@ const DashboardDefiSelection = ({ ...rest }) => {
           variant={"defi"}
           isActive={categorySelected.length === 0}
           onClick={() => categoryChangedHandler("All")}
-          borderRight={useColorModeValue(
-            "1px solid rgba(0, 0, 0, 0.1)",
-            "1px solid rgba(255, 255, 255, 0.1)"
-          )}
+          _light={{
+            borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+          }}
+          _dark={{
+            borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+          }}
         >
           {" "}
           All{" "}
@@ -155,10 +161,12 @@ const DashboardDefiSelection = ({ ...rest }) => {
             variant={"defi"}
             isActive={categorySelected.includes(category)}
             onClick={() => categoryChangedHandler(category)}
-            borderRight={useColorModeValue(
-              "1px solid rgba(0, 0, 0, 0.1)",
-              "1px solid rgba(255, 255, 255, 0.1)"
-            )}
+            _light={{
+              borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+            }}
+            _dark={{
+              borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+            }}
           >
             {" "}
             {category}{" "}
