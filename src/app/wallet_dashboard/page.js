@@ -98,11 +98,6 @@ function WalletDashboardPage() {
     dispatch(fetchInflowOutflowTokensForAddress(data));
   };
 
-  useEffect(() => {
-    dispatch(fetchBlockchainListData());
-    dispatch(walletAddressChangedReducer(searchParam.get("address")));
-  }, [searchParam.get("address")]);
-
   /* 
   const {
     data: data2,
@@ -123,8 +118,7 @@ function WalletDashboardPage() {
   }, [fetchWalletBalanceDataHandler]); */
 
   useEffect(() => {
-    if (didLogRef.current === false) {
-      didLogRef.current = true;
+    if (blockchainSelected.length > 0) {
       fetchWalletBalanceDataHandler();
       fetchAssetAllocationForAddressHandler();
       fetchProtocolAllocationForAddressHandler();
@@ -134,6 +128,12 @@ function WalletDashboardPage() {
     }
   }, [blockchainSelected, searchParam.get("address")]);
 
+  useEffect(() => {
+    if (blockchainSelected.length > 0) {
+      dispatch(fetchBlockchainListData());
+      dispatch(walletAddressChangedReducer(searchParam.get("address")));
+    }
+  }, []);
   /* const { data: data1, error: error1 } = useSWR(
     ["getBlockchainListData", blockchainSelected, searchParam.get("address")],
     fetchBlockchainListData()

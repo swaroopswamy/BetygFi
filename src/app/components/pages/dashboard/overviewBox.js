@@ -67,7 +67,7 @@ const OverviewBox = () => {
                   })}
                 </React.Fragment>
               ) : (
-                <React.Fragment>NA</React.Fragment>
+                "NA"
               )}
             </Text>
           </Box>
@@ -97,15 +97,15 @@ const OverviewBox = () => {
                 />
                 <Text variant={"h1"}>
                   {overviewData?.tvl !== undefined ? (
-                    <React.Fragment>
+                    <>
                       ${""}
                       {millify(overviewData?.tvl, {
                         precision: 2,
                         locales: "en-US",
                       })}
-                    </React.Fragment>
+                    </>
                   ) : (
-                    <React.Fragment>NA</React.Fragment>
+                    "NA"
                   )}
                 </Text>
               </Box>
