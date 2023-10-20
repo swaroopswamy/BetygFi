@@ -1,17 +1,12 @@
 "use client";
 import React from "react";
-import {
-  Box,
-  useColorModeValue,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import Navbar from "../components/header";
-import Footer from "../components/footer";
-import SidebarContent from "../components/sidebar";
-import useScreenSize from "@/hooks/useScreenSize";
-import Prefooter from "../components/prefooter";
+
 import "/styles/styles.scss";
+import SidebarContent from "./components/sidebar";
+import Footer from "./components/footer";
+import Navbar from "./components/header";
 
 export default function LayoutProvider({ children }) {
   console.log("coming here");

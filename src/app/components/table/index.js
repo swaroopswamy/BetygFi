@@ -92,12 +92,12 @@ const GenericTable = ({
               </Tr>
             </>
           )}
-          {tableData?.isLoading && (
+          {/* {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsDesktop?.numColumns}
               numRows={SkeletonRowsColumnsDesktop?.numRows}
             />
-          )}
+          )} */}
           {isQueryInPendingState && (
             <Tr>
               <Td
@@ -172,12 +172,12 @@ const GenericTable = ({
               </Td>
             </Tr>
           )}
-          {tableData?.isLoading && (
+          {/* {tableData?.isLoading && (
             <SkeletonTable
               numColumns={SkeletonRowsColumnsMobile.numColumns}
               numRows={SkeletonRowsColumnsMobile.numRows}
             />
-          )}
+          )} */}
 
           {tableData?.isSuccess &&
             (tableData?.data?.data?.length > 0 ? (

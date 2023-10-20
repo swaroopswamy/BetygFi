@@ -1,11 +1,11 @@
 import { ReduxProvider } from "@/redux/provider";
 import { Providers } from "./ChakraProvider";
-import LayoutProvider from "./layout/LayoutProvider";
+
 import { Web3Provider } from "./Web3Provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import Head from "next/head";
 import React from "react";
+import LayoutProvider from "./LayoutProvider";
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
