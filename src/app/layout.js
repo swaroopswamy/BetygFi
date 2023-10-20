@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
           />
           {/* Hotjar Tracking Code for https://betygfi.com/
            */}
-          <Script id="hotjar-analytics">
+          <Script rel="preconnect" id="hotjar-analytics">
             {`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:3667973,hjsv:6}; 
@@ -37,6 +37,7 @@ export default function RootLayout({ children }) {
             `}
           </Script>
           <Script
+            rel="preconnect"
             src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
             strategy="afterInteractive"
           ></Script>
