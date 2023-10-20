@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
@@ -11,7 +10,7 @@ const Banner = () => {
     );
     
     return (
-        <React.Fragment>
+        <>
             <Box display={{ base: "none", lg: "flex" }} justifyContent={"space-between"} w={"100%"} p={"10px 20px"} borderBottom={useColorModeValue("1px solid #BFBFBF", "1px solid #2F2F2F")} bgColor={useColorModeValue("#F0F0F5", "#191919")} >
                 <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
                     <Box p={"15px"}>
@@ -170,7 +169,7 @@ const Banner = () => {
                     <ScoreBox score={defiData?.safety_score} />
                 </Box>
             </Box>
-        </React.Fragment>
+        </>
     )
 }
 

@@ -49,7 +49,7 @@ const GovernanceTable = ({}) => {
   }, [tablePage]);
 
   return (
-    <React.Fragment>
+    <>
       <Box
         w={"100%"}
         borderRadius={"6px"}
@@ -157,7 +157,7 @@ const GovernanceTable = ({}) => {
         </Box>
 
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 

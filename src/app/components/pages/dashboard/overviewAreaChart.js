@@ -113,16 +113,9 @@ const OverviewAreaChart = () => {
     },
   ];
   return (
-    <React.Fragment>
-      <Box w={"100%"}>
-        <CustomChart
-          options={options}
-          series={series}
-          type="area"
-          height={205}
-        />
-      </Box>
-    </React.Fragment>
+    <Box w={"100%"}>
+      <CustomChart options={options} series={series} type="area" height={205} />
+    </Box>
   );
 };
 

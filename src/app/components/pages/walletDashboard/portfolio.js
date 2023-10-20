@@ -56,7 +56,7 @@ const PortfolioPanelComponent = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Box display={"flex"} flexDirection={"column"} px={{ base: 4 }}>
         <Box
           mt="25px"
@@ -185,7 +185,7 @@ const PortfolioPanelComponent = () => {
           />
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -193,7 +193,7 @@ export default PortfolioPanelComponent;
 
 const PorfolioAccordion = ({ name, value, thread, tableData }) => {
   return (
-    <React.Fragment>
+    <>
       <Accordion
         defaultIndex={[0]}
         allowMultiple
@@ -277,7 +277,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
 
               <Tbody>
                 {(tableData?.isError || !tableData?.data?.defiBalance) && (
-                  <React.Fragment>
+                  <>
                     <Tr>
                       <Td colSpan={"8"}>
                         <Text
@@ -298,15 +298,15 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                         </Text>
                       </Td>
                     </Tr>
-                  </React.Fragment>
+                  </>
                 )}
 
                 {tableData?.isLoading && (
-                  <React.Fragment>
+                  <>
                     <SkeletonRow />
                     <SkeletonRow />
                     <SkeletonRow />
-                  </React.Fragment>
+                  </>
                 )}
 
                 {tableData?.isSuccess &&
@@ -531,7 +531,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
-    </React.Fragment>
+    </>
   );
 };
 

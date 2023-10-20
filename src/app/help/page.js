@@ -16,7 +16,7 @@ import { General, BetygFi, WalletsAndDeFiDashboard, DeFi, AccordionPoints } from
 const Help = () => {
   const { colorMode } = useColorMode();
   return (
-    <React.Fragment>
+    <>
       <Box display={{ base: "none", md: "block" }} padding={"0px"} maxW="100%">
         <Box
           style={{ mixBlendMode: "luminosity" }}
@@ -46,7 +46,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box
@@ -105,7 +105,7 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -120,7 +120,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box
@@ -159,7 +159,7 @@ const Help = () => {
                       <Text variant={"content"}>{item.content}
                       </Text>
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -174,7 +174,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box
@@ -248,7 +248,7 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -263,7 +263,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box
@@ -332,7 +332,7 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -380,7 +380,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
@@ -437,7 +437,7 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -452,7 +452,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
@@ -488,7 +488,7 @@ const Help = () => {
                     <AccordionPanel padding={"10px 50px 20px 20px"}>
                       <Text variant={"content"}>{item.content}</Text>
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -503,7 +503,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
@@ -575,7 +575,7 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
@@ -590,7 +590,7 @@ const Help = () => {
             return (
               <AccordionItem key={i}>
                 {({ isExpanded }) => (
-                  <React.Fragment>
+                  <>
                     <h2>
                       <AccordionButton>
                         <Box flex="1" textAlign="left">
@@ -657,14 +657,14 @@ const Help = () => {
                           <Text variant={"content"}>{item.content}</Text>
                         )}
                     </AccordionPanel>
-                  </React.Fragment>
+                  </>
                 )}
               </AccordionItem>
             );
           })}
         </Accordion>
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 export default Help;

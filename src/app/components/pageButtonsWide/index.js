@@ -6,7 +6,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, time, ...res
   const { colorMode } = useColorMode();
 
   return (
-    <React.Fragment>
+    <>
       {totalPages !== 0 && (
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
           <LastUpdate
@@ -70,7 +70,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, time, ...res
 
         </Box>
       )}
-    </React.Fragment>
+    </>
   );
 };
 

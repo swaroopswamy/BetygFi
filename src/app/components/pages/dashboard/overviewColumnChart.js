@@ -162,7 +162,7 @@ const OverviewColumnChart = () => {
 
 
     return (
-        <React.Fragment>
+        <>
             <Box w={"40%"} display={{base: "none", lg: "block"}} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={"25px 20px"} >
                 <Text variant='h2'> Score Distribution </Text>
                 <ApexCharts options={options} series={series} type="bar" height={205} />
@@ -184,7 +184,7 @@ const OverviewColumnChart = () => {
                     )
                 }}
             />
-        </React.Fragment>
+        </>
     );
 }
 export default OverviewColumnChart;

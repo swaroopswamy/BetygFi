@@ -160,7 +160,7 @@ export default TVL_Ranking;
 
 function RowComponent({ tableData }) {
   return (
-    <React.Fragment>
+    <>
       {tableData.map((item, i) => {
         return (
           <TableRow
@@ -176,7 +176,7 @@ function RowComponent({ tableData }) {
           />
         );
       })}
-    </React.Fragment>
+    </>
   );
 }
 
@@ -192,7 +192,7 @@ function TableRow({
   const { colorMode } = useColorMode();
   const router = useRouter();
   return (
-    <React.Fragment>
+    <>
       <Tr
         key={key}
         cursor={"pointer"}
@@ -312,6 +312,6 @@ function TableRow({
           </Flex>
         </Td>
       </Tr>
-    </React.Fragment>
+    </>
   );
 }

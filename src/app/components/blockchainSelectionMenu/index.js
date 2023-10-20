@@ -45,7 +45,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Box className="center" display={{ base: "none", md: "flex" }}>
         {blockchains?.data?.map((item, i) => {
           if (i >= 4) return;
@@ -188,7 +188,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
           </Box>
         ))}
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 

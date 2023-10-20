@@ -9,7 +9,7 @@ import {
 
 const About = () => {
   return (
-    <React.Fragment>
+    <>
       <Box
         display={{ base: "none", md: "block" }}
         maxWidth={"100%"}
@@ -167,7 +167,7 @@ const About = () => {
           <br /> <br />
         </Text>
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 

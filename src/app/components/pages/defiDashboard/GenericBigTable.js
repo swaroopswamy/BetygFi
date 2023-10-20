@@ -46,7 +46,7 @@ const GenericBigTableComponent = ({
   };
 
   return (
-    <React.Fragment>
+    <>
       <Box
         border={"2px"}
         borderColor={useColorModeValue("#FFFFFF", "#202020")}
@@ -127,7 +127,7 @@ const GenericBigTableComponent = ({
 
         <PageButtons />
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -135,7 +135,7 @@ export default GenericBigTableComponent;
 
 function ThreadItem({ key, name }) {
   return (
-    <React.Fragment>
+    <>
       <Th
         key={key}
         _light={{
@@ -166,7 +166,7 @@ function ThreadItem({ key, name }) {
           />
         </Flex>
       </Th>
-    </React.Fragment>
+    </>
   );
 }
 
@@ -189,7 +189,7 @@ function SelectionBox({ colorMode }) {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Box display={"flex"} flexDirection={"column"}>
         <Box w={"100%"} display={"flex"} alignItems={"center"}>
           <Box
@@ -277,6 +277,6 @@ function SelectionBox({ colorMode }) {
             })}
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   );
 }

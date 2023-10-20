@@ -148,7 +148,7 @@ export default Defi_Hot_Contracts;
 
 function RowComponent({ tableData }) {
   return (
-    <React.Fragment>
+    <>
       {tableData.map((item, i) => {
         return (
           <TableRow
@@ -163,7 +163,7 @@ function RowComponent({ tableData }) {
           />
         );
       })}
-    </React.Fragment>
+    </>
   );
 }
 
@@ -172,7 +172,7 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
   const { colorMode } = useColorMode();
   const router = useRouter();
   return (
-    <React.Fragment>
+    <>
       <Tr
         key={key}
         cursor={"pointer"}
@@ -284,6 +284,6 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
           </Flex>
         </Td>
       </Tr>
-    </React.Fragment>
+    </>
   );
 }

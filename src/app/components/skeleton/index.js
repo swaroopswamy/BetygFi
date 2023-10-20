@@ -12,7 +12,7 @@ const SkeletonTable = ({ numColumns, numRows }) => {
     </Tr>
   ));
 
-  return <React.Fragment>{skeletonRows}</React.Fragment>;
+  return <>{skeletonRows}</>;
 };
 
 export default SkeletonTable;

@@ -234,7 +234,7 @@ const TableRow = ({ item, rowIndex }) => {
           {item?.safety_score === undefined ? (
             "-"
           ) : (
-            <React.Fragment>
+            <>
               <Box
                 w="12px"
                 h="9px"
@@ -251,7 +251,7 @@ const TableRow = ({ item, rowIndex }) => {
                 }
               ></Box>
               <Text variant={"h3"}>{item?.safety_score?.toFixed(0)}</Text>
-            </React.Fragment>
+            </>
           )}
         </Box>
       </Td>

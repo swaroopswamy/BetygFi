@@ -148,7 +148,7 @@ function WalletDashboardPage() {
   }, [walletBalanceData]);
  */
   return (
-    <React.Fragment>
+    <>
       <Box
         bgColor={useColorModeValue("#FFFFFF", "#131313")}
         layerStyle={"flexColumn"}
@@ -198,7 +198,7 @@ function WalletDashboardPage() {
           </Tabs>
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   );
 }
 

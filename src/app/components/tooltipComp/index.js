@@ -5,7 +5,7 @@ import { InfoIcon } from "@chakra-ui/icons";
 
 const TooltipComp = ({ label }) => {
     return (
-        <React.Fragment>
+        <>
             <Tooltip label={label} >
                 <InfoIcon
                     width={"12px"}
@@ -15,7 +15,7 @@ const TooltipComp = ({ label }) => {
                     ml={"5px"}
                 ></InfoIcon>
             </Tooltip>
-        </React.Fragment>
+        </>
     )
 }
 

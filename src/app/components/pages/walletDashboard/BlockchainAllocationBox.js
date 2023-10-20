@@ -171,7 +171,7 @@ const BlockchainAllocationBox = () => {
   });
 
   return (
-    <React.Fragment>
+    <>
       <Box
         w={{ base: "90%", bigSize: "50%", md: "90%" }}
         layerStyle={"flexColumn"}
@@ -215,7 +215,7 @@ const BlockchainAllocationBox = () => {
             ))}
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 

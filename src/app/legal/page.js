@@ -15,7 +15,7 @@ const Legal = () => {
 
 
   return (
-    <React.Fragment>
+    <>
       <Box
         display={{ base: "none", md: "block" }}
         width={"100%"}
@@ -188,7 +188,7 @@ const Legal = () => {
           </TabPanels>
         </Tabs>
       </Box>
-    </React.Fragment>
+    </>
   );
 }
 

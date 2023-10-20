@@ -4,7 +4,7 @@ import React from "react";
 
 const TermsPanelComponent = () => {
     return (
-        <React.Fragment>
+        <>
             <Box>
                 <Box
                     display={{ base: "none", md: "block" }}
@@ -328,7 +328,7 @@ const TermsPanelComponent = () => {
                         </Text>
                 </Box>
             </Box>
-        </React.Fragment>
+        </>
     );
 }
 

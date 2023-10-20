@@ -5,7 +5,7 @@ const Prefooter = () => {
     const { colorMode } = useColorMode();
 
     return (
-        <React.Fragment>
+        <>
             <Box
                 display={"flex"}
                 justifyContent={"center"}
@@ -29,7 +29,7 @@ const Prefooter = () => {
                     </Text>
                 </Box>
             </Box>
-        </React.Fragment>
+        </>
     )
 }
 

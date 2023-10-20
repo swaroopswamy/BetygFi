@@ -29,7 +29,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
     //   };
 
     return (
-        <React.Fragment>
+        <>
             <Box
                 border={"2px"}
                 borderColor={useColorModeValue('#FFFFFF', '#202020')}
@@ -142,7 +142,7 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
                 </Table>
             </Box>
 
-        </React.Fragment>
+        </>
     )
 };
 
@@ -174,7 +174,7 @@ function ThreadItem({ key, name }) {
 
 
     return (
-        <React.Fragment>
+        <>
             <Th
                 key={key}
                 _light={{
@@ -211,7 +211,7 @@ src={useColorModeValue(
               /> */}
                 </Flex>
             </Th>
-        </React.Fragment>
+        </>
     )
 }
 
@@ -228,7 +228,7 @@ src={useColorModeValue(
 //         dispatch(fetchBlockchainListData());
 //     }, []);
 
-//     return <React.Fragment>
+//     return <>
 //         <Box
 //             display={"flex"}
 //             flexDirection={"column"}
@@ -317,7 +317,7 @@ src={useColorModeValue(
 //                 })}
 //             </Box>
 //         </Box>
-//     </React.Fragment>
+//     </>
 // }
 
 

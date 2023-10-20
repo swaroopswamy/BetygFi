@@ -92,7 +92,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Flex
         px={{ base: 4, md: 4 }}
         display={{ base: "none", md: "flex" }}
@@ -171,7 +171,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
           </div>
 
           {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
-            <React.Fragment>
+            <>
               <Box
                 ml="20px"
                 pl="20px"
@@ -195,9 +195,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     </Text>
                 </Box>
               </Box>
-            </React.Fragment>
+            </>
           ) : (
-            <React.Fragment>
+            <>
               <Box
                 layerStyle={"flexCenter"}
                 ml="20px"
@@ -249,7 +249,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   onClick={() => dispatch(LogoutReducer())}
                 />
               </Box>
-            </React.Fragment>
+            </>
           )}
         </Box>
       </Flex>
@@ -390,7 +390,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
         onOpen={onLoginModalOpen}
         onClose={onLoginModalClose}
       />
-    </React.Fragment>
+    </>
   );
 };
 

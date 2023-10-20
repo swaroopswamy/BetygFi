@@ -35,7 +35,7 @@ const Footer = ({ ...rest }) => {
   });
 
   return (
-    <React.Fragment>
+    <>
       <Box
         position={"relative"}
         bottom="0"
@@ -101,7 +101,7 @@ const Footer = ({ ...rest }) => {
           />
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   );
 };
 
@@ -113,7 +113,7 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
   const pathname = usePathname();
 
   return (
-    <React.Fragment>
+    <>
       <Box
         layerStyle={"FlexColumnCenter"}
         padding={"10px 10px"}
@@ -161,6 +161,6 @@ const FooterMobileLink = ({ name, NavIcon, link }) => {
           {name}
         </Text>
       </Box>
-    </React.Fragment>
+    </>
   );
 };

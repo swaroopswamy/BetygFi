@@ -38,7 +38,7 @@ const OverviewBox = () => {
   }, [blockchainSelected, categorySelected]);
 
   return (
-    <React.Fragment>
+    <>
       <Box
         w="60%"
         display={{ base: "none", lg: "flex" }}
@@ -59,13 +59,13 @@ const OverviewBox = () => {
 
             <Text variant={"h1"}>
               {overviewData?.tvl !== undefined ? (
-                <React.Fragment>
+                <>
                   ${""}
                   {millify(overviewData?.tvl, {
                     precision: 2,
                     locales: "en-US",
                   })}
-                </React.Fragment>
+                </>
               ) : (
                 "NA"
               )}
@@ -123,7 +123,7 @@ const OverviewBox = () => {
           );
         }}
       />
-    </React.Fragment>
+    </>
   );
 };
 

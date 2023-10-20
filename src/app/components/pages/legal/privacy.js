@@ -4,7 +4,7 @@ import React from "react";
 
 const PrivacyPanelComponent = () => {
     return (
-        <React.Fragment>
+        <>
             <Box>
                 <Box
                     display={{ base: "none", md: "block" }}
@@ -697,7 +697,7 @@ const PrivacyPanelComponent = () => {
                     </Text>
                 </Box>
             </Box>
-        </React.Fragment>
+        </>
     );
 }
 
