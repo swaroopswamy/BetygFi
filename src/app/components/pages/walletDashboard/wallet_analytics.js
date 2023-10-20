@@ -1,29 +1,37 @@
 "use client";
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  useColorMode,
-  Tooltip,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
-import BlockchainAllocationBox from "/src/app/components/pages/walletDashboard/BlockchainAllocationBox";
-import AssetAllocationBox from "/src/app/components/pages/walletDashboard/AssetAllocationBox";
-import ProtocolAllocationBox from "/src/app/components/pages/walletDashboard/ProtocolAllocationBox";
-import InteractionWithKnownEntitiesBox from "/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox";
-import InflowTokensBox from "/src/app/components/pages/walletDashboard/InflowTokensBox";
-import OutflowTokensBox from "/src/app/components/pages/walletDashboard/OutflowTokensBox";
-import PerformanceMultiLineChartBox from "/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox";
+import dynamic from "next/dynamic";
 
+const BlockchainAllocationBox = dynamic(() =>
+  import("/src/app/components/pages/walletDashboard/BlockchainAllocationBox")
+);
+const AssetAllocationBox = dynamic(() =>
+  import("/src/app/components/pages/walletDashboard/AssetAllocationBox")
+);
+const ProtocolAllocationBox = dynamic(() =>
+  import("/src/app/components/pages/walletDashboard/ProtocolAllocationBox")
+);
+const InteractionWithKnownEntitiesBox = dynamic(() =>
+  import(
+    "/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox"
+  )
+);
+const InflowTokensBox = dynamic(() =>
+  import("/src/app/components/pages/walletDashboard/InflowTokensBox")
+);
+const OutflowTokensBox = dynamic(() =>
+  import("/src/app/components/pages/walletDashboard/OutflowTokensBox")
+);
+const PerformanceMultiLineChartBox = dynamic(() =>
+  import(
+    "/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox"
+  )
+);
 const WalletAnalyticsPanel = () => {
-  const { colorMode } = useColorMode();
-  const inflowOutflowTokensData = useSelector(
-    (state) => state?.walletDashboardTableData?.inflowOutflowTokensForAddress
-  );
+
 
   return (
     <>

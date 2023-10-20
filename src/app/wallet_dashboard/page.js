@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import dynamic from "next/dynamic";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -10,9 +10,15 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-const PortfolioPanelComponent = dynamic(() => import("../components/pages/walletDashboard/portfolio.js"));
-const WalletAnalyticsPanel = dynamic(() => import("../components/pages/walletDashboard/wallet_analytics"));
-const TransactionPanelComponent = dynamic(() => import("../components/pages/walletDashboard/transaction"));
+const PortfolioPanelComponent = dynamic(() =>
+  import("../components/pages/walletDashboard/portfolio.js")
+);
+const WalletAnalyticsPanel = dynamic(() =>
+  import("../components/pages/walletDashboard/wallet_analytics")
+);
+const TransactionPanelComponent = dynamic(() =>
+  import("../components/pages/walletDashboard/transaction")
+);
 import {
   blockchainTypeChangedReducer,
   fetchAssetAllocationForAddress,
@@ -26,12 +32,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const Breadcrumb = dynamic(() => import("@/app/components/breadcrumb"));
-const HeaderComponent = dynamic(() => import("@/app/components/pages/walletDashboard/HeaderComponent"));
-const DashboardTabList = dynamic(() => import("../components/pages/walletDashboard/DashboardTabList"));
-const BlockchainSelectionMenuBlocks = dynamic(() => import("@/app/components/blockchainSelectionMenuBlocks"));
+const HeaderComponent = dynamic(() =>
+  import("@/app/components/pages/walletDashboard/HeaderComponent")
+);
+const DashboardTabList = dynamic(() =>
+  import("../components/pages/walletDashboard/DashboardTabList")
+);
+const BlockchainSelectionMenuBlocks = dynamic(() =>
+  import("@/app/components/blockchainSelectionMenuBlocks")
+);
 
 function WalletDashboardPage() {
-  console.log('renderingg')
+  console.log("renderingg");
   const didLogRef = useRef(false);
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
@@ -120,14 +132,14 @@ function WalletDashboardPage() {
       fetchInflowOutflowTokensForAddressHandler();
       fetchWalletBalanceDataHandler();
     }
-  }, [blockchainSelected, searchParam.get("address")]); 
+  }, [blockchainSelected, searchParam.get("address")]);
 
   /* const { data: data1, error: error1 } = useSWR(
     ["getBlockchainListData", blockchainSelected, searchParam.get("address")],
     fetchBlockchainListData()
   ); */
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     if (walletBalanceData?.isQueryInPendingState) {
       setTimeout(() => {
         fetchWalletBalanceDataHandler();
