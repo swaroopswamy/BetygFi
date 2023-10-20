@@ -1,4 +1,4 @@
-import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue } from "@chakra-ui/react";
 import LastUpdate from "../lastUpdate";
 import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
@@ -27,23 +27,10 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
         <Box layerStyle={"center"} gap={"8px"}>
           <Text variant={"h3"}> Show </Text>
 
-          <Menu>
-            <MenuButton as={Button} variant={"menu"}>
-                <Box layerStyle={"spaceBetween"} >
-                  {tableLimit} / Page
-                  <ChevronDownIcon />
-                </Box>
-            </MenuButton>
-            <MenuList
-              boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
-              bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-              width={"100px"}
-            >
-              <PageMenuItem onClick={() => {setTableLimit(10)}}> 10 / Page </PageMenuItem>
-              <PageMenuItem onClick={() => {setTableLimit(20)}}> 20 / Page </PageMenuItem>
-              <PageMenuItem onClick={() => {setTableLimit(30)}}> 30 / Page </PageMenuItem>
-            </MenuList>
-          </Menu>
+          <TableLimitMenu
+            tableLimit={tableLimit}
+            setTableLimit={setTableLimit}
+          />
         </Box>
 
       </Box>
@@ -52,23 +39,10 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} w={"100%"}>
           <LastUpdate time={time} />
 
-          <Menu width={"100px"}>
-            <MenuButton as={Button} variant={"menu"}>
-              <Box layerStyle={"spaceBetween"} >
-                {tableLimit} / Page
-                <ChevronDownIcon />
-              </Box>
-            </MenuButton>
-            <MenuList
-              boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
-              bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-              width={"100px"}
-            >
-              <PageMenuItem onClick={() => { setTableLimit(10) }}> 10 / Page </PageMenuItem>
-              <PageMenuItem onClick={() => { setTableLimit(20) }}> 20 / Page </PageMenuItem>
-              <PageMenuItem onClick={() => { setTableLimit(30) }}> 30 / Page </PageMenuItem>
-            </MenuList>
-          </Menu>
+          <TableLimitMenu
+            tableLimit={tableLimit}
+            setTableLimit={setTableLimit}
+          />
         </Box>
 
         <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} gap={"8px"} w={"80%"}>
@@ -163,6 +137,28 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
   )
 }
 
+const TableLimitMenu = ({ tableLimit, setTableLimit}) => {
+  return (
+    <Menu>
+      <MenuButton as={Button} variant={"menu"}>
+        <Box layerStyle={"spaceBetween"} >
+          {tableLimit} / Page
+          <ChevronDownIcon />
+        </Box>
+      </MenuButton>
+      <MenuList
+        boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
+        bgColor={useColorModeValue("#FFF", "#191919")}
+        minWidth={"50px"}
+      >
+        <PageMenuItem onClick={() => { setTableLimit(10) }}> 10 / Page </PageMenuItem>
+        <PageMenuItem onClick={() => { setTableLimit(20) }}> 20 / Page </PageMenuItem>
+        <PageMenuItem onClick={() => { setTableLimit(30) }}> 30 / Page </PageMenuItem>
+      </MenuList>
+    </Menu>
+  )
+}
+
 const RoundButton = ( {children, ...rest} ) => {
   const { colorMode } = useColorMode();
 
@@ -191,6 +187,7 @@ const PageMenuItem = ({ children, ...rest }) => {
       _hover={{
         bg: colorMode === "light" ? "#F5F5F7" : "#202020",
       }}
+      minW={"100px"}
       {...rest}
     >
         <Text variant={"h3"} color={colorMode === 'light' ? '#191919' : '#FFFFFF'}>

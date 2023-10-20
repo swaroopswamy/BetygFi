@@ -169,12 +169,6 @@ const Rankings = () => {
         />
       </Box>
 
-      {/* <PageButtons
-        page={tablePage}
-        totalPages={tableData?.data?.totalPages}
-        pageChangeHandler={pageChangeHandler}
-      /> */}
-
     </Box>
   );
 };
@@ -194,13 +188,13 @@ const TableRow = ({ item, rowIndex }) => {
       }}
       border={"0px"}
     >
-      <Td key={0}>
+      <Td key={0} textAlign={"center"}>
         <Text variant={"h3"}>
           {item?.Rank === undefined ? "-" : item?.Rank}
         </Text>
       </Td>
       <Td key={1}>
-        <Box display={"flex"} alignItems={"center"} width={"200px"} gap={"10px"}>
+        <Box display={"flex"} alignItems={"center"} width={"120px"} gap={"10px"}>
             <Avatar
               width={"24px"}
               height={"24px"}
@@ -212,7 +206,7 @@ const TableRow = ({ item, rowIndex }) => {
             <Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
               <Text variant={"h3"}>{item?.name}</Text>
 
-              <Box layerStyle={"center"}>
+              <Box layerStyle={"center"} flexShrink={"0"}>
                 <Tooltip label="chains" as={ChainsTooltip} chains={item?.chains}>
                   <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
                     {item?.chains?.length} Chains
