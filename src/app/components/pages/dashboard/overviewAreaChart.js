@@ -130,7 +130,7 @@ const OverviewAreaChart = () => {
           <CustomChart options={options} series={series} type="area" height={205} />
         </Box>
 
-        <Box display={{base: "none", lg: "block"}}>
+        <Box display={{base: "none", lg: "block"}} w={"100%"}>
           <SelectorGraph series={series} />
         </Box>
       </Box>
@@ -244,7 +244,7 @@ const SelectorGraph = ({ series }) => {
   return (
     <>
       {overviewGraphData?.isSuccess &&
-        <Box my={"-30px"} >
+        <Box my={"-30px"} marginLeft={"-18px"} marginRight={"-3px"}>
           <CustomChart
             options={options}
             series={greySeries}
