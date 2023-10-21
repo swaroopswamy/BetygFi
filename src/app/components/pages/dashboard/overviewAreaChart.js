@@ -91,6 +91,7 @@ const OverviewAreaChart = () => {
       },
     },
     yaxis: {
+      tickAmount: 5,
       labels: {
         show: true,
         style: {
@@ -146,10 +147,17 @@ const SelectorGraph = ({ series }) => {
     (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
-  const greySeries = structuredClone(series);
-  greySeries.map((category, i) => {
-    category.color = "#3A3D46"
-  })
+  // const greySeries = structuredClone(series);
+  // greySeries.map((category, i) => {
+  //   category.color = "#3A3D46"
+  // })
+
+  let greySeries = [];
+
+  if (series.length > 0) {
+    greySeries.push(structuredClone(series[0]));
+    greySeries[0].color = "#3A3D46";
+  }
 
   const options = {
     chart: {
@@ -239,7 +247,7 @@ const SelectorGraph = ({ series }) => {
         <Box my={"-30px"} >
           <CustomChart
             options={options}
-            series={[greySeries[0]]}
+            series={greySeries}
             type={options.chart.type}
             height={"100px"}
             width={"100%"}
