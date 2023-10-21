@@ -1,0 +1,16 @@
+pipeline {
+    environment {
+    authregistry = "devopsolvendo/betygfinodeapi"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
+    agent {label 'master'}
+    stages{
+    stage('Deploy Container'){
+        steps{
+              sh """
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69 rm -rf /root/betygfi-nodejs-apis
+              sshpass -p Solvendo@123 ssh -o StrictHostKeyChecking=no root@15.206.18.69 /bin/bash /tmp/deploy.sh
+"""
+       
+    }}}}
