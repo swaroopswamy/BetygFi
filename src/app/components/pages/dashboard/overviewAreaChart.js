@@ -126,9 +126,9 @@ const OverviewAreaChart = () => {
           <CustomChart options={options} series={series} type="area" height={205} />
         </Box>
 
-        {/* <Box>
+        <Box>
           <SelectorGraph series={series} />
-        </Box> */}
+        </Box>
       </Box>
     </>
   );
@@ -165,6 +165,10 @@ const SelectorGraph = ({ series }) => {
         fill: {
           color: "#00E0FF",
           opacity: 0.15,
+        },
+        xaxis: {
+          min: new Date("19 Aug 2023").getTime(),
+          max: new Date("25 Aug 2023").getTime(),
         },
         stroke: {
           width: 0,
