@@ -1,6 +1,7 @@
 import {
     Box,
     Text,
+    useColorMode,
     useColorModeValue,
     useMediaQuery,
 } from "@chakra-ui/react";
@@ -15,6 +16,7 @@ import { fetchOverviewData, fetchOverviewGraphData } from "@/redux/dashboard_dat
 const OverviewBox = () => {
     const dispatch = useDispatch();
     const [isLg] = useMediaQuery('(min-width: 960px)');
+    const { colorMode } = useColorMode();
 
     const overviewData = useSelector(
         (state) => state?.dashboardTableData?.OverviewData?.data
@@ -58,7 +60,7 @@ const OverviewBox = () => {
         <>
         {isLg ?
             (
-                <Box w="60%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} >
+                <Box w="60%" display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"start"} borderRadius={"4px"} bgColor={colorMode === 'light' ? "#FFFFFF" : "#202020"} >
                     <Box layerStyle='spaceBetween' p={{ base: "10px", md: "25px 20px" }}>
                         <Text variant={"h2"}>
                             Overview
