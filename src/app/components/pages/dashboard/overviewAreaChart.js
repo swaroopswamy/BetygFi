@@ -4,6 +4,7 @@ import CustomChart from "/src/app/components/graph";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
 import millify from "millify";
+import { categories } from "../../../../../util/constant";
 
 const OverviewAreaChart = () => {
   const { colorMode } = useColorMode();
@@ -51,7 +52,7 @@ const OverviewAreaChart = () => {
         return (
           '<div class="donut_tooltip">' +
           '<div class="donut_tooltip_text">' +
-            w.config.series[seriesIndex].name +
+          `<span style="display: flex; border-radius: 50%; height: 14px; width: 14px; background-color: ${w.config.series[seriesIndex].color};"></span>` + " " + w.config.series[seriesIndex].name +
           "</div>" +
           '<div class="donut_tooltip_text">' +
             val +
@@ -107,6 +108,7 @@ const OverviewAreaChart = () => {
     },
   };
 
+  let colors = ["#29A88E", "#DE50CF", "#ACC94C", "#FF5C00"];
   let series = [];
 
   overviewGraphData?.isSuccess && overviewGraphData?.data?.graphData.map((category, i) => {
@@ -114,6 +116,7 @@ const OverviewAreaChart = () => {
       let categorySeries = {
         name: category?.name,
         data: category?.graphData.slice(0, -2),
+        color: colors[i%4]
       }
       series.push(categorySeries);
     }
@@ -126,7 +129,7 @@ const OverviewAreaChart = () => {
           <CustomChart options={options} series={series} type="area" height={205} />
         </Box>
 
-        <Box>
+        <Box display={{base: "none", lg: "block"}}>
           <SelectorGraph series={series} />
         </Box>
       </Box>
@@ -143,10 +146,10 @@ const SelectorGraph = ({ series }) => {
     (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
-  // let series = [{
-  //   name: overviewGraphData?.data?.graphData[3].name,
-  //   data: overviewGraphData?.data?.graphData[3].graphData
-  // }]
+  const greySeries = structuredClone(series);
+  greySeries.map((category, i) => {
+    category.color = "#3A3D46"
+  })
 
   const options = {
     chart: {
@@ -236,7 +239,7 @@ const SelectorGraph = ({ series }) => {
         <Box my={"-30px"} >
           <CustomChart
             options={options}
-            series={series}
+            series={[greySeries[0]]}
             type={options.chart.type}
             height={"100px"}
             width={"100%"}

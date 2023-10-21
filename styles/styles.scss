@@ -89,6 +89,9 @@ body {
     font-weight: 600;
     line-height: 20px;
     padding: 5px !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .donut_tooltip_body_text {
