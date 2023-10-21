@@ -10,7 +10,6 @@ const webpack = require("webpack");
 
 
 const nextConfig = {
-  output: "export",
   reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
@@ -26,7 +25,7 @@ const nextConfig = {
     return config;
   },
   distDir: "out",
-  images: { unoptimized: true },
+ 
 };
 
 module.exports = nextConfig;

@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import React, { useEffect } from "react";
-import CustomNextImage from '../customImage/index'
+import CustomNextImage from "../customImage/index";
 const BlockchainSelectionMenu = ({ chains }) => {
   const dispatch = useDispatch();
   const { colorMode } = useColorMode();
@@ -71,24 +71,14 @@ const BlockchainSelectionMenu = ({ chains }) => {
                   BlockchainTypeHandler(item.id);
                 }}
               >
-                {!item?.logoUrl ? (
-                  <Avatar
-                    borderRadius={"50%"}
-                    width={"24px"}
-                    height={"24px"}
-                    src={item?.logoUrl}
-                    alt={item.id ?? "Coin"}
-                  ></Avatar>
-                ) : (
-                  <CustomNextImage
-                    width={4}
-                    height={4}
-                    borderRadius={"50%"}
-                    src={item?.logoUrl}
-                    alt={item.id ?? "Coin"}
-                    loading="eager"
-                  ></CustomNextImage>
-                )}
+                {" "}
+                <Avatar
+                  borderRadius={"50%"}
+                  width={"24px"}
+                  height={"24px"}
+                  src={item?.logoUrl}
+                  alt={item.id ?? "Coin"}
+                ></Avatar>
               </Box>
             </Tooltip>
           );
@@ -142,30 +132,16 @@ const BlockchainSelectionMenu = ({ chains }) => {
                           alignItems={"center"}
                           justifyContent={"center"}
                         >
-                         
-                          {!item?.logoUrl ? (
-                            <Avatar
-                              borderRadius={"50%"}
-                              width={"24px"}
-                              height={"24px"}
-                              src={item?.logoUrl}
-                              alt={item.id ?? "Coin"}
-                              mr="20px"
-                              ml="14px"
-                            ></Avatar>
-                          ) : (
-                            <CustomNextImage
-                              width={3}
-                              height={3}
-                              objectFit={"contain"}
-                              borderRadius={"50%"}
-                              src={item?.logoUrl}
-                              alt={item.id ?? "Coin"}
-                              loading="eager"
-                              mr="20px"
-                              ml="14px"
-                            ></CustomNextImage>
-                          )}
+                          <Avatar
+                            borderRadius={"50%"}
+                            width={"24px"}
+                            height={"24px"}
+                            src={item?.logoUrl}
+                            alt={item.id ?? "Coin"}
+                            mr="20px"
+                            ml="14px"
+                          ></Avatar>
+
                           <Text
                             fontSize={"12px"}
                             fontWeight={"400"}
