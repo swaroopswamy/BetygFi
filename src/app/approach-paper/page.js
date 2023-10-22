@@ -321,9 +321,10 @@ const Approach = () => {
                   stakeholders, and academia to advance research on blockchain
                   systemic risk assessment methodologies.
                 </Text>
-
-                {activeFootnote !== null && (
-                  <Box id={`footnote${activeFootnote}`} paddingY={"10px"}>
+                <Box>
+                 <Text variant={"contentHeading5"} marginTop={"20px"}>Footnotes</Text>
+                
+                  <Box id={`footnote1`} fontSize={"10px"} variant={'footnoteTex'}  marginTop={"5px"}>
                     [1] It is our approach to identify the problem and solve for
                     it agnostic of intent; for the consequences of actions
                     notwithstanding intent are the same. It is debatable and the
@@ -332,37 +333,19 @@ const Approach = () => {
                     negligence or both. It is, however, not a matter of debate
                     that their actions had serious consequences on retail
                     investors and the community. “Never attribute to malice what
-                    can be sufficiently explained by ignorance.”{" "}
-                    {activeFootnote}.{" "}
-                    <Box color="#0000FF">
-                      {" "}
-                      <a
-                        href={`#footnote${activeFootnote}`}
-                        onClick={() => setActiveFootnote(null)}
-                      >
-                        (Tap to close)
-                      </a>
-                    </Box>
+                    can be sufficiently explained by ignorance.”                    
                   </Box>
-                )}
-
-                {activeFootnote !== null && activeFootnote === 2 && (
-                  <Box id="footnote2" paddingY={"10px"}>
-                    [2] Please see the IMF-FSB Synthesis Paper:{" "}
+                  <Box id="footnote2" fontSize={"10px"} variant={'footnoteTex'}  marginTop={"5px"}>
+                    [2] Please see the IMF-FSB Synthesis Paper:
                     <Link
+                    target="_blank"
                       color="#0000FF"
                       href="https://www.fsb.org/wp-content/uploads/R070923-1.pdf"
                     >
                       https://www.fsb.org/wp-content/uploads/R070923-1.pdf
-                    </Link>{" "}
-                    <Box color="#0000FF">
-                      {" "}
-                      <a href="#top" onClick={() => setActiveFootnote(null)}>
-                        (Tap to close)
-                      </a>
-                    </Box>
-                  </Box>
-                )}
+                    </Link>
+                  </Box>               
+                </Box>
               </Box>
               {showScrollButton === true && (
                 <Box
@@ -445,31 +428,6 @@ const Approach = () => {
                 these bad actors.
                 <br />
                 <br />
-                {activeFootnote !== null && (
-                  <Box id={`footnote${activeFootnote}`} paddingY={"10px"}>
-                    [1] It is our approach to identify the problem and solve for
-                    it agnostic of intent; for the consequences of actions
-                    notwithstanding intent are the same. It is debatable and the
-                    subject matter of judicial review as to whether actors that
-                    inhabit the crypto and blockchain space acted out of malice,
-                    negligence or both. It is, however, not a matter of debate
-                    that their actions had serious consequences on retail
-                    investors and the community. “Never attribute to malice what
-                    can be sufficiently explained by ignorance.”{" "}
-                    {activeFootnote}.{" "}
-                    <Box color="#0000FF">
-                      {" "}
-                      <a
-                        href={`#footnote${activeFootnote}`}
-                        onClick={() => setActiveFootnote(null)}
-                      >
-                        (Tap to close)
-                      </a>
-                    </Box>
-                  </Box>
-                )}
-                <br />
-                <br />
                 The blockchain ecosystem has evolved into a dynamic and complex
                 market segment, with a myriad of actors and constituents
                 interwoven in intricate relationships. As regulatory oversight
@@ -507,25 +465,6 @@ const Approach = () => {
                 frameworks, clear tax treatments, and robust supervisory
                 oversight.
                 <Footnote number={2} onClick={showFootnote} />
-                <br />
-                <br />
-                {activeFootnote !== null && activeFootnote === 2 && (
-                  <Box id="footnote2" paddingY={"10px"}>
-                    [2] Please see the IMF-FSB Synthesis Paper:{" "}
-                    <Link
-                      color="#0000FF"
-                      href="https://www.fsb.org/wp-content/uploads/R070923-1.pdf"
-                    >
-                      https://www.fsb.org/wp-content/uploads/R070923-1.pdf
-                    </Link>{" "}
-                    <Box color="#0000FF">
-                      {" "}
-                      <a href="#top" onClick={() => setActiveFootnote(null)}>
-                        (Tap to close)
-                      </a>
-                    </Box>
-                  </Box>
-                )}
                 <br />
                 <br />
                 Notwithstanding the negative sentiment as recognized by the
@@ -656,7 +595,7 @@ const Approach = () => {
                 </Text>
               </Box>
 
-              <Box padding={"29px 0px 120px 15px"}>
+              <Box padding={"29px 0px 20px 15px"}>
                 <Text variant={"contentHeading5"}>Conclusion </Text>
                 <Text padding={"10px 0px 0px 5px"}>
                   {" "}
@@ -708,7 +647,31 @@ const Approach = () => {
                   </sup>
                 </Text>
               </Box>
-
+              <Box marginBottom={"30px"}>
+                 <Text variant={"contentHeading5"} marginTop={"20px"}>Footnotes</Text>
+                
+                  <Box id={`footnote1`} fontSize={"10px"} variant={'footnoteTex'} marginTop={"5px"}>
+                    [1] It is our approach to identify the problem and solve for
+                    it agnostic of intent; for the consequences of actions
+                    notwithstanding intent are the same. It is debatable and the
+                    subject matter of judicial review as to whether actors that
+                    inhabit the crypto and blockchain space acted out of malice,
+                    negligence or both. It is, however, not a matter of debate
+                    that their actions had serious consequences on retail
+                    investors and the community. “Never attribute to malice what
+                    can be sufficiently explained by ignorance.”                    
+                  </Box>
+                  <Box id="footnote2" fontSize={"10px"} variant={'footnoteTex'} marginTop={"5px"}>
+                    [2] Please see the IMF-FSB Synthesis Paper:
+                    <Link
+                    target="_blank"
+                      color="#0000FF"
+                      href="https://www.fsb.org/wp-content/uploads/R070923-1.pdf"
+                    >
+                      https://www.fsb.org/wp-content/uploads/R070923-1.pdf
+                    </Link>
+                  </Box>               
+                </Box>        
               {showScrollButton === true && (
                 <Box
                   _dark={{ bgcolor: "#FFFFFF" }}
