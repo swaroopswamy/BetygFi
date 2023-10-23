@@ -12,10 +12,24 @@ import {
   h2,
   br,
   Flex,
+  Link,
   Button,
+  Sup,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
+
+const Footnote = ({ number, onClick }) => (
+  <sup>
+    <a
+      href={`#footnote${number}`}
+      onClick={() => onClick(number)}
+      style={{ color: "#0000FF" }}
+    >
+      [{number}]
+    </a>
+  </sup>
+);
 
 const Approach = () => {
   const handleScrollToTop = () => {
@@ -37,6 +51,12 @@ const Approach = () => {
       window.removeEventListener("scroll", handleScrollButtonVisibility);
     };
   }, []);
+
+  const [activeFootnote, setActiveFootnote] = useState(null);
+
+  const showFootnote = (number) => {
+    setActiveFootnote(number);
+  };
 
   return (
     <>
@@ -80,9 +100,10 @@ const Approach = () => {
                 accessing data is technically challenging and understanding
                 on-chain data is difficult. Bad actors have leveraged this
                 information asymmetry, hence actors using blockchain have become
-                synonymous with malicious conduct.1 Retail investors and the
-                community have lost huge amounts of capital because of these bad
-                actors.
+                synonymous with malicious conduct.
+                <Footnote number={1} onClick={showFootnote} /> Retail investors
+                and the community have lost huge amounts of capital because of
+                these bad actors.
                 <br />
                 <br />
                 The blockchain ecosystem has evolved into a dynamic and complex
@@ -120,7 +141,8 @@ const Approach = () => {
                 threats. The document emphasizes the need for a comprehensive
                 regulatory response, advocating for strengthened monetary policy
                 frameworks, clear tax treatments, and robust supervisory
-                oversight. 2
+                oversight.
+                <Footnote number={2} onClick={showFootnote} />
                 <br />
                 <br />
                 Notwithstanding the negative sentiment as recognized by the
@@ -252,7 +274,7 @@ const Approach = () => {
               </Box>
 
               <Box padding={"29px 0px 20px 50px"}>
-                <Text variant={"contentHeading5"} >Conclusion </Text>
+                <Text variant={"contentHeading5"}>Conclusion </Text>
                 <Text padding={"10px 0px 0px 5px"}>
                   {" "}
                   The integration of a proprietary ML model, relationship
@@ -297,8 +319,33 @@ const Approach = () => {
                 <Text padding={"10px 0px 0px 30px"} variant={"content"}>
                   Foster collaboration between regulators, industry
                   stakeholders, and academia to advance research on blockchain
-                  systemic risk assessment methodologies.{" "}
+                  systemic risk assessment methodologies.
                 </Text>
+                <Box>
+                 <Text variant={"contentHeading5"} marginTop={"20px"}>Footnotes</Text>
+                
+                  <Box id={`footnote1`} fontSize={"10px"} variant={'footnoteTex'}  marginTop={"5px"}>
+                    [1] It is our approach to identify the problem and solve for
+                    it agnostic of intent; for the consequences of actions
+                    notwithstanding intent are the same. It is debatable and the
+                    subject matter of judicial review as to whether actors that
+                    inhabit the crypto and blockchain space acted out of malice,
+                    negligence or both. It is, however, not a matter of debate
+                    that their actions had serious consequences on retail
+                    investors and the community. “Never attribute to malice what
+                    can be sufficiently explained by ignorance.”                    
+                  </Box>
+                  <Box id="footnote2" fontSize={"10px"} variant={'footnoteTex'}  marginTop={"5px"}>
+                    [2] Please see the IMF-FSB Synthesis Paper:
+                    <Link
+                    target="_blank"
+                      color="#0000FF"
+                      href="https://www.fsb.org/wp-content/uploads/R070923-1.pdf"
+                    >
+                      https://www.fsb.org/wp-content/uploads/R070923-1.pdf
+                    </Link>
+                  </Box>               
+                </Box>
               </Box>
               {showScrollButton === true && (
                 <Box
@@ -375,9 +422,10 @@ const Approach = () => {
                 accessing data is technically challenging and understanding
                 on-chain data is difficult. Bad actors have leveraged this
                 information asymmetry, hence actors using blockchain have become
-                synonymous with malicious conduct.1 Retail investors and the
-                community have lost huge amounts of capital because of these bad
-                actors.
+                synonymous with malicious conduct.
+                <Footnote number={1} onClick={showFootnote} /> Retail investors
+                and the community have lost huge amounts of capital because of
+                these bad actors.
                 <br />
                 <br />
                 The blockchain ecosystem has evolved into a dynamic and complex
@@ -415,7 +463,8 @@ const Approach = () => {
                 threats. The document emphasizes the need for a comprehensive
                 regulatory response, advocating for strengthened monetary policy
                 frameworks, clear tax treatments, and robust supervisory
-                oversight. 2
+                oversight.
+                <Footnote number={2} onClick={showFootnote} />
                 <br />
                 <br />
                 Notwithstanding the negative sentiment as recognized by the
@@ -546,8 +595,8 @@ const Approach = () => {
                 </Text>
               </Box>
 
-              <Box padding={"29px 0px 120px 15px"}>
-              <Text variant={"contentHeading5"}>Conclusion </Text>
+              <Box padding={"29px 0px 20px 15px"}>
+                <Text variant={"contentHeading5"}>Conclusion </Text>
                 <Text padding={"10px 0px 0px 5px"}>
                   {" "}
                   The integration of a proprietary ML model, relationship
@@ -592,9 +641,37 @@ const Approach = () => {
                 <Text padding={"10px 0px 0px 20px"} variant={"content"}>
                   Foster collaboration between regulators, industry
                   stakeholders, and academia to advance research on blockchain
-                  systemic risk assessment methodologies.{" "}
+                  systemic risk assessment methodologies.{""}
+                  <sup>
+                    <a href="#footnote1">1</a>
+                  </sup>
                 </Text>
               </Box>
+              <Box marginBottom={"30px"}>
+                 <Text variant={"contentHeading5"} marginTop={"20px"}>Footnotes</Text>
+                
+                  <Box id={`footnote1`} fontSize={"10px"} variant={'footnoteTex'} marginTop={"5px"}>
+                    [1] It is our approach to identify the problem and solve for
+                    it agnostic of intent; for the consequences of actions
+                    notwithstanding intent are the same. It is debatable and the
+                    subject matter of judicial review as to whether actors that
+                    inhabit the crypto and blockchain space acted out of malice,
+                    negligence or both. It is, however, not a matter of debate
+                    that their actions had serious consequences on retail
+                    investors and the community. “Never attribute to malice what
+                    can be sufficiently explained by ignorance.”                    
+                  </Box>
+                  <Box id="footnote2" fontSize={"10px"} variant={'footnoteTex'} marginTop={"5px"}>
+                    [2] Please see the IMF-FSB Synthesis Paper:
+                    <Link
+                    target="_blank"
+                      color="#0000FF"
+                      href="https://www.fsb.org/wp-content/uploads/R070923-1.pdf"
+                    >
+                      https://www.fsb.org/wp-content/uploads/R070923-1.pdf
+                    </Link>
+                  </Box>               
+                </Box>        
               {showScrollButton === true && (
                 <Box
                   _dark={{ bgcolor: "#FFFFFF" }}
