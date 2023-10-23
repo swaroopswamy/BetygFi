@@ -94,6 +94,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
               _focus={{ boxShadow: "outline" }}
               color="#000"
               suppressHydrationWarning={true}
+              zIndex={"10"}
             >
               <Text variant={"extraSmall"}>
                 +
