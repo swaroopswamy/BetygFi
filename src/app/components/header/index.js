@@ -30,6 +30,13 @@ import {
   sidebarCollapsedReducer,
 } from "../../../redux/app_data/dataSlice";
 import { MobileSidebar } from "../sidebar/index";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from "wagmi";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
@@ -56,6 +63,16 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
+  const {
+    address: ConnectedWalletAddress,
+    connector,
+    isConnected,
+  } = useAccount();
+  const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
+  const { data: ensName } = useEnsName({ ConnectedWalletAddress });
+  const { disconnect } = useDisconnect();
+
+  console.log(ConnectedWalletAddress, isConnected, "wagmi data");
   const isMobileSidebarCollapsed = useSelector(
     (state) => state?.appData?.isMobileSidebarCollapsed
   );
@@ -141,8 +158,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               bgColor={"transparent"}
               variant={"h5"}
               letterSpacing={"1.2px"}
-              _light={{color:"#16171B"}}
-              _dark={{color:"#A8ADBD"}}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#A8ADBD" }}
               w="100%"
               placeholder="Search Wallet Address"
               onKeyDown={(e) => {
@@ -170,7 +187,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             </label>
           </div>
 
-          {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
+          {!isConnected ? (
             <>
               <Box
                 ml="20px"
@@ -187,12 +204,14 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   p="15px 20px"
                   minW="150px"
                 >
-                  <Text variant={"SearchText"} 
-                  fontWeight={"600"}
-                  _light={{color:"#FAFAFB"}}
-                  _dark={{color:"#191919"}}>
+                  <Text
+                    variant={"SearchText"}
+                    fontWeight={"600"}
+                    _light={{ color: "#FAFAFB" }}
+                    _dark={{ color: "#191919" }}
+                  >
                     Connect Wallet
-                    </Text>
+                  </Text>
                 </Box>
               </Box>
             </>
@@ -207,18 +226,22 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 minW="270px"
               >
                 <Image
-                  src="/images/profile_img.png"
+                  src={ensAvatar ?? "/images/profile_img.png"}
                   w="36px"
                   h="36px"
                   borderRadius={"50%"}
                   alt="search_icon"
                 />
                 <Box layerStyle={"flexColumn"} ml="10px" mr="20px" minW="150px">
-                  <Text variant={"TopWalletsText"}>No Name</Text>
-                  <Text variant={"h5"}
-                   letterSpacing={"1.2px"}
-                   _light={{color:"#16171B"}}
-                   _dark={{color:"#A8ADBD"}}>
+                  <Text variant={"TopWalletsText"}>
+                    {ensName ? ensName : "No name"}
+                  </Text>
+                  <Text
+                    variant={"h5"}
+                    letterSpacing={"1.2px"}
+                    _light={{ color: "#16171B" }}
+                    _dark={{ color: "#A8ADBD" }}
+                  >
                     {!isEmpty(LoggedInData?.data)
                       ? LoggedInData?.data?.user?._id
                           .split("")
@@ -246,7 +269,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   cursor={"pointer"}
                   borderRadius={"50%"}
                   alt="search_icon"
-                  onClick={() => dispatch(LogoutReducer())}
+                  onClick={() => {
+                    dispatch(LogoutReducer());
+                    disconnect();
+                  }}
                 />
               </Box>
             </>
@@ -349,8 +375,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
               variant={"h5"}
               letterSpacing={"1.2px"}
-              _light={{color:"#16171B"}}
-              _dark={{color:"#A8ADBD"}}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#A8ADBD" }}
               w="100%"
               placeholder="Search Wallet Address"
               value={searchWalletAddressValue ?? ""}
@@ -370,7 +396,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 handleMobileSearchByWalletAddress();
               }}
             >
-              <Text variant={"SearchText"} fontWeight={"500"}>Search</Text>
+              <Text variant={"SearchText"} fontWeight={"500"}>
+                Search
+              </Text>
             </Box>
           </InputGroup>
         </Box>

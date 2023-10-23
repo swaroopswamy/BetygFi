@@ -24,7 +24,6 @@ import {
   useSteps,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useWeb3 } from "@3rdweb/hooks";
 import isEmpty from "is-empty";
 import { useDispatch, useSelector } from "react-redux";
 import { TriangleDownIcon } from "@chakra-ui/icons";
@@ -34,10 +33,22 @@ import {
   loadToken,
   saveToken,
 } from "@/redux/auth_data/authSlice";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from "wagmi";
 import { ethers } from "ethers";
 
 const LoginPage = ({ isOpen, onClose }) => {
   const walletArray = [
+    {
+      name: "Metamask",
+      icon: "metamask_logo.png",
+      key: 1,
+    },
     /*  {
              name: "Binance",
              icon: "binance_logo.png"
@@ -46,11 +57,7 @@ const LoginPage = ({ isOpen, onClose }) => {
              name: "Coinbase wallet",
              icon: "coinbase_logo.png"
          }, */
-    {
-      name: "Metamask",
-      icon: "metamask_logo.png",
-      key: 1,
-    },
+
     /* {
             name: "Other Browser wallet",
             icon: "coinbase_logo.png"
@@ -283,7 +290,11 @@ const LoginPage = ({ isOpen, onClose }) => {
 
 const OtherBrowserWalletProcess = ({ onClose }) => {
   const dispatch = useDispatch();
-  const { connectWallet, address, error } = useWeb3();
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect();
+  console.log(connectors, "connectors");
+  const { address, connector, isConnected } = useAccount();
+  //const { connectWallet, address, error } = useWeb3();
   const UserData = useSelector((state) => state.authData.UserData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
   const { colorMode } = useColorMode();
@@ -309,14 +320,26 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     }
   };
 
-  const handleConnectWallet = () => {
-    connectWallet("injected");
+  const handleConnectWallet = async (connector) => {
+
+    try {
+      if (!window.ethereum)
+        throw new Error("No crypto wallet found. Please install it.");
+
+      await window.ethereum.send("eth_requestAccounts");
+      console.log("clicked here");
+      connect({ connector });
+    } catch (err) {
+      // setError(err.message);
+      console.log(err, "Error");
+    }
   };
   const handleVerifyWallet = () => {
     dispatch(VerifyPublicAddressData(address));
   };
 
   const handleSign = async () => {
+    console.log("herte");
     if (UserData.data?.nonce) {
       const sig = await signMessage({
         message: `I am signing my one-time nonce: ${UserData.data.nonce}`,
@@ -331,6 +354,7 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     }
   };
   useEffect(() => {
+    console.log(address, isConnected, pendingConnector, error);
     if (!isEmpty(address)) {
       handleNext();
     }
@@ -355,12 +379,12 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
 
   const steps = [
     {
-      title: isCompleteStep(0) ? "Wallet Connected" : "Connect Wallet",
-      description: isCompleteStep(0)
+      title: isConnected ? "Wallet Connected" : "Connect Wallet",
+      description: isConnected
         ? `Address: ${address}`
         : "Tell which address you want to use",
       buttonText: "Connect",
-      buttonFunction: handleConnectWallet,
+      buttonFunction: () => handleConnectWallet(connectors[0]),
       isError: error,
     },
     {
@@ -382,6 +406,9 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
 
   return (
     <>
+      {/*   <button onClick={() => handleConnectWallet(connectors[0])}>
+        Metamask
+      </button> */}
       <Box>
         <Stepper index={activeStep} orientation="vertical" gap="0">
           {steps.map((step, index) => (

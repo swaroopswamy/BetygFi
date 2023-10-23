@@ -24,6 +24,7 @@ const nextConfig = {
     return config;
   },
   distDir: "out",
+  images: { unoptimized: true }
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

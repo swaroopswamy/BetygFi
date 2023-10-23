@@ -55,7 +55,6 @@ const Dashboard = () => {
         gap={"20px"}
       >
         <Text variant="h1" px={"30px"}>
-          {" "}
           DeFi Markets{" "}
         </Text>
         <BlockchainSelectionMenu />
@@ -63,8 +62,7 @@ const Dashboard = () => {
 
       <Box display={{ base: "flex", md: "none" }} pt={"30px"}>
         <Text variant="h1" px={"18px"}>
-          {" "}
-          DeFi Markets{" "}
+          DeFi Markets
         </Text>
       </Box>
 
@@ -78,7 +76,7 @@ const Dashboard = () => {
         py={"15px"}
         w={{ base: "100%", md: "80%" }}
       >
-        <Text textStyle="body">
+        <Text variant ="body">
           Filter your DeFi exploration by focusing on both the blockchain
           technology it utilises and its specific industry application. This
           way, you'll uncover the projects best suited to your interests,
