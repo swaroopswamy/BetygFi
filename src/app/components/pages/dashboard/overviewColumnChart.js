@@ -163,9 +163,12 @@ const OverviewColumnChart = () => {
 
     return (
         <>
-            <Box w={"40%"} display={{base: "none", lg: "block"}} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={"25px 20px"} >
+            <Box w={"40%"} display={{base: "none", lg: "flex"}} flexDir={"column"} justifyContent={"space-between"} borderRadius={"4px"} bgColor={useColorModeValue("#FFFFFF", "#202020")} p={"25px 20px"} >
                 <Text variant='h2'> Score Distribution </Text>
-                <ApexCharts options={options} series={series} type="bar" height={205} />
+
+                <Box height={"100%"} p={"20px"}>
+                    <ApexCharts options={options} series={series} type="bar" height={"100%"} />
+                </Box>
             </Box>
 
             <SingleAccordionComp display={{base: "flex", lg: "none"}} minH="50px"

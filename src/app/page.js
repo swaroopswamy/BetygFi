@@ -76,7 +76,7 @@ const Dashboard = () => {
         py={"15px"}
         w={{ base: "100%", md: "80%" }}
       >
-        <Text variant ="body">
+        <Text variant="body">
           Filter your DeFi exploration by focusing on both the blockchain
           technology it utilises and its specific industry application. This
           way, you'll uncover the projects best suited to your interests,
@@ -127,16 +127,32 @@ const DashboardDefiSelection = ({ ...rest }) => {
   };
 
   return (
-      <Box
-        display={"flex"}
-        h={"40px"}
-        px={{ base: "18px", md: "30px" }}
-        {...rest}
+    <Box
+      display={"flex"}
+      h={"40px"}
+      px={{ base: "18px", md: "30px" }}
+      {...rest}
+    >
+      <Button
+        variant={{ base: "defiMobile", md: "defi" }}
+        isActive={categorySelected.length === 0}
+        onClick={() => categoryChangedHandler("All")}
+        _light={{
+          borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+        }}
+        _dark={{
+          borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+        }}
       >
+        {" "}
+        All{" "}
+      </Button>
+      {categories.map((category, i) => (
         <Button
-          variant={"defi"}
-          isActive={categorySelected.length === 0}
-          onClick={() => categoryChangedHandler("All")}
+          key={i}
+          variant={{ base: "defiMobile", md: "defi" }}
+          isActive={categorySelected.includes(category)}
+          onClick={() => categoryChangedHandler(category)}
           _light={{
             borderRight: "1px solid rgba(0, 0, 0, 0.1)",
           }}
@@ -145,25 +161,9 @@ const DashboardDefiSelection = ({ ...rest }) => {
           }}
         >
           {" "}
-          All{" "}
+          {category}{" "}
         </Button>
-        {categories.map((category, i) => (
-          <Button
-            key={i}
-            variant={"defi"}
-            isActive={categorySelected.includes(category)}
-            onClick={() => categoryChangedHandler(category)}
-            _light={{
-              borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-            }}
-            _dark={{
-              borderRight: "1px solid rgba(255, 255, 255, 0.1)",
-            }}
-          >
-            {" "}
-            {category}{" "}
-          </Button>
-        ))}
-      </Box>
+      ))}
+    </Box>
   );
 };

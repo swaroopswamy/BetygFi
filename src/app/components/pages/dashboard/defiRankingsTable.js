@@ -11,8 +11,9 @@ import {
   useDisclosure,
   Button,
   Avatar,
+  Tooltip,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "is-empty";
 import "/styles/styles.scss";
@@ -29,7 +30,7 @@ import {
   DefiRankingTableDesktop,
   DefiRankingTableMobile,
 } from "/src/app/components/pages/dashboard/helper";
-
+import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
@@ -37,6 +38,10 @@ import { useRouter } from "next/navigation";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
+  const [tableLimit, setTableLimit] = useState(20);
+
+  const timerRef = useRef(null);
+
   const [searchByName, setSearchByName] = useState("");
   const {
     isOpen: isMobileRankingsSearchOpen,
@@ -58,7 +63,7 @@ const Rankings = () => {
   );
 
   const pageChangeHandler = (page) => {
-    tablePage >= 1 && setTablePage(page);
+    setTablePage(page);
   };
 
   const searchByNameHandler = (name) => {
@@ -66,27 +71,34 @@ const Rankings = () => {
     setTablePage(1);
   };
 
+
   const getDefiRankingsTableDataHandler = () => {
-    if (!isEmpty(searchByName)) {
-      const payload = {
-        name: searchByName,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    } else {
-      const payload = {
-        blockchain: blockchainSelected,
-        category: categorySelected,
-        page: tablePage,
-      };
-      dispatch(fetchDefiRankingTableData(payload));
-    }
+    if (timerRef.current)
+      clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      if (!isEmpty(searchByName)) {
+        const payload = {
+          name: searchByName,
+          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
+          limit: tableLimit
+        };
+        dispatch(fetchDefiRankingTableData(payload));
+      } else {
+        const payload = {
+          blockchain: blockchainSelected,
+          category: categorySelected,
+          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
+          limit: tableLimit
+        };
+        dispatch(fetchDefiRankingTableData(payload));
+      }
+    }, 1000);
   };
 
   useEffect(() => {
     getDefiRankingsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected, tablePage, searchByName]);
+  }, [blockchainSelected, categorySelected, tablePage, searchByName, tableLimit]);
 
   return (
     <Box
@@ -147,11 +159,14 @@ const Rankings = () => {
         />
       </Box>
 
-      <Box display={"flex"} minH={"60px"} p={"5px 20px"}>
+
+      <Box display={"flex"} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
         <PageButtonsWide
           page={tablePage}
           totalPages={tableData?.data?.totalPages}
           pageChangeHandler={pageChangeHandler}
+          tableLimit={tableLimit}
+          setTableLimit={setTableLimit}
           time={3}
           w={"100%"}
         />
@@ -175,24 +190,32 @@ const TableRow = ({ item, rowIndex }) => {
       }}
       border={"0px"}
     >
-      <Td key={0}>
+      <Td key={0} textAlign={"center"}>
         <Text variant={"h3"}>
           {item?.Rank === undefined ? "-" : item?.Rank}
         </Text>
       </Td>
       <Td key={1}>
-        <Box layerStyle={"flexCenter"} w={"120px"} gap={"10px"}>
-          <Avatar
-            width={"24px"}
-            height={"24px"}
-            style={{ borderRadius: "50%" }}
-            name={item?.name}
-            src={item?.logo}
-          ></Avatar>
+        <Box display={"flex"} alignItems={"center"} width={"120px"} gap={"10px"}>
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
 
-          <Box layerStyle="center">
-            <Text variant={"h3"}>{item.name}</Text>
-          </Box>
+            <Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
+              <Text variant={"h3"}>{item?.name}</Text>
+
+              <Box layerStyle={"center"} flexShrink={"0"}>
+                <Tooltip label="chains" as={ChainsTooltip} chains={item?.chains}>
+                  <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
+                    {item?.chains?.length} Chains
+                  </Text>
+                </Tooltip>
+              </Box>
+            </Box>
         </Box>
       </Td>
       <Td key={2}>
@@ -288,24 +311,28 @@ const ButtonComp = ({ item }) => {
       w="100%"
       justifyContent={"space-between"}
       alignItems={"center"}
-      ml={"20px"}
     >
-      <Box display={"flex"} w={"50%"} justifyContent={"start"}>
+      <Box display={"flex"} w={"50%"} justifyContent={"start"} alignItems={"center"} mx={"20px"} >
         <Text variant={"h3"}>
           {" "}
           {item?.Rank === undefined ? "-" : item?.Rank}{" "}
         </Text>
 
-        <Box layerStyle={"center"} gap={"10px"} ml={"50px"}>
-          <Avatar
-            width={"24px"}
-            height={"24px"}
-            borderRadius={"50%"}
-            name={item?.name}
-            src={item?.logo}
-          ></Avatar>
+        <Box layerStyle={"center"} gap={"10px"} ml={"30px"}>
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              style={{ borderRadius: "50%" }}
+              name={item?.name}
+              src={item?.logo}
+            ></Avatar>
 
-          <Text variant={"h3"}> {item?.name} </Text>
+            <Box layerStyle={"flexColumn"} justifyContent={"start"} minW={"100px"} textAlign={"left"}>
+              <Text variant={"h3"}> {item?.name} </Text>
+              <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
+                {item?.chains?.length} Chains
+              </Text>
+            </Box>
         </Box>
       </Box>
 
@@ -485,3 +512,30 @@ const PanelComp = ({ item }) => {
     </Box>
   );
 };
+
+const ChainsTooltip = ({ chains }) => {
+  return (
+    <Box layerStyle={"flexColumn"} minW={"140px"} p={"10px 20px"} bgColor={useColorModeValue("#FFFFFF", "#202020")}
+      boxShadow={useColorModeValue("0px 5px 4px 0px rgba(0, 0, 0, 0.10)", "0px 5px 4px 0px rgba(200, 200, 200, 0.10)")}
+      borderColor={useColorModeValue("#F0F0F5", "#333333")}
+      borderRadius={"8px"}
+      gap={"15px"}
+    >
+      {chains?.map((chain, i) => {
+        return (
+            <Box layerStyle={"flexCenter"} key={i} gap={"10px"}>
+              <Avatar
+                width={"24px"}
+                height={"24px"}
+                name={chain?.name}
+                src={chain?.logoUrl}
+              ></Avatar>
+
+              <Text variant={"h4"} fontSize={"14px"}> {chain?.name} </Text>
+            </Box>
+          )
+        })}
+
+    </Box>
+  )
+}
