@@ -35,7 +35,7 @@ export const getDefiHotContractsTableData = async (payload) => {
 export const getDefiAssetCompositionTableData = async (payload) => {
   try {
     const { data } = await axiosInstance.get(
-      `protocols/aavev3/compositionData`
+      `protocols/${payload.defi}/asset-composition?blockchain=${payload.blockchain}&page=${payload.page}&limit=${payload.limit}`
     );
     return data;
   } catch (err) {
@@ -43,14 +43,27 @@ export const getDefiAssetCompositionTableData = async (payload) => {
   }
 };
 
-
-export const getGovernanceTableData = async (payload) => {
+export const getDefiFeeRevenueData = async (payload) => {
   try {
-    const { data } = await axiosInstance.post(
-      `protocols`, payload
+    const { data } = await axiosInstance.get(
+      `protocols/${payload.defi}/fees-revenue?blockchain=${payload.blockchain}`
     );
     return data;
   } catch (err) {
     return rejectWithValue(err);
   }
 };
+
+export const getDefiGovernanceTableData = async (payload) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `protocols/${payload.defi}/governance?page=${payload.page}&limit=${payload.limit}`
+    );
+    return data;
+  } catch (err) {
+    return rejectWithValue(err);
+  }
+};
+
+
+

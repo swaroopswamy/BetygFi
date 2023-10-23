@@ -1,5 +1,5 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData } from "@/services/dashboardService";
-import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
+import { getDefiRankingsTableData } from "@/services/dashboardService";
+import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -35,6 +35,11 @@ export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAl
 export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress', async (payload) => {
   const response = await getBlockchainAllocationForAddress(payload);
   return response.data;
+})
+
+export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', async (payload) => {
+  const response = await getInflowOutflowTokensForAddress(payload);
+  return response;
 })
 
 
@@ -78,6 +83,12 @@ const WalletDashboardDataSlice = createSlice({
       isSuccess: false,
     },
     blockchainAllocationForAddress: {
+      data: null,
+      isLoading: false,
+      isError: false,
+      isSuccess: false,
+    },
+    inflowOutflowTokensForAddress: {
       data: null,
       isLoading: false,
       isError: false,
@@ -214,6 +225,24 @@ const WalletDashboardDataSlice = createSlice({
       state.blockchainAllocationForAddress.isSuccess = false;
       state.blockchainAllocationForAddress.isError = true;
       state.blockchainAllocationForAddress.data = action.payload;
+    });
+    builder.addCase(fetchInflowOutflowTokensForAddress.fulfilled, (state, action) => {
+      state.inflowOutflowTokensForAddress.data = action.payload;
+      state.inflowOutflowTokensForAddress.isLoading = false;
+      state.inflowOutflowTokensForAddress.isSuccess = true;
+      state.inflowOutflowTokensForAddress.isError = false;
+    });
+    builder.addCase(fetchInflowOutflowTokensForAddress.pending, (state, action) => {
+      state.inflowOutflowTokensForAddress.isLoading = true;
+      state.inflowOutflowTokensForAddress.isError = false;
+      state.inflowOutflowTokensForAddress.isSuccess = false;
+      state.inflowOutflowTokensForAddress.data = action.payload;
+    });
+    builder.addCase(fetchInflowOutflowTokensForAddress.rejected, (state, action) => {
+      state.inflowOutflowTokensForAddress.isLoading = false;
+      state.inflowOutflowTokensForAddress.isSuccess = false;
+      state.inflowOutflowTokensForAddress.isError = true;
+      state.inflowOutflowTokensForAddress.data = action.payload;
     });
   },
   reducers: {

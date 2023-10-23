@@ -1,7 +1,9 @@
 <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="9.5" y1="8.5" x2="3.5" y2="8.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="9.5" y1="11.5" x2="3.5" y2="11.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="9.5" y1="14.5" x2="3.5" y2="14.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="1" y="4" width="11" height="13" rx="2" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 4V3C4 1.89543 4.89543 1 6 1H13C14.1046 1 15 1.89543 15 3V11C15 12.1046 14.1046 13 13 13H12" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="Group 427319172">
+<line id="Line 252" x1="9.5" y1="8.5" x2="3.5" y2="8.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+<line id="Line 253" x1="9.5" y1="11.5" x2="3.5" y2="11.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+<line id="Line 254" x1="9.5" y1="14.5" x2="3.5" y2="14.5" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+<rect id="Rectangle 34624097" x="1" y="4" width="11" height="13" rx="2" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Rectangle 34624098" d="M4 4V3C4 1.89543 4.89543 1 6 1H13C14.1046 1 15 1.89543 15 3V11C15 12.1046 14.1046 13 13 13H12" stroke="#6F7383" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
 </svg>

@@ -1,8 +1,8 @@
 /**
  * @type {import('next').NextConfig}
  */
-require('dotenv').config()
-const webpack = require('webpack');
+require("dotenv").config();
+const webpack = require("webpack");
 const nextConfig = {
   output: "export",
   webpack(config) {
@@ -13,17 +13,18 @@ const nextConfig = {
     });
     config.plugins.push(
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-      }
-      )
+        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+      })
     );
 
     return config;
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
+  optimizeFonts: false,
   distDir: "out",
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;
