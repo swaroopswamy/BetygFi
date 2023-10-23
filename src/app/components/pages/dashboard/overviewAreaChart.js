@@ -142,15 +142,11 @@ export default OverviewAreaChart;
 
 const SelectorGraph = ({ series }) => {
   const { colorMode } = useColorMode;
+  const selection = useRef({min: new Date("19 Aug 2023").getTime(), max: new Date("25 Aug 2023").getTime()});
 
   const overviewGraphData = useSelector(
     (state) => state?.dashboardTableData?.OverviewGraphData
   );
-
-  // const greySeries = structuredClone(series);
-  // greySeries.map((category, i) => {
-  //   category.color = "#3A3D46"
-  // })
 
   let greySeries = [];
 
@@ -178,8 +174,8 @@ const SelectorGraph = ({ series }) => {
           opacity: 0.15,
         },
         xaxis: {
-          min: new Date("19 Aug 2023").getTime(),
-          max: new Date("25 Aug 2023").getTime(),
+          min: selection.current.min,
+          max: selection.current.max,
         },
         stroke: {
           width: 0,
@@ -189,6 +185,11 @@ const SelectorGraph = ({ series }) => {
       },
       animations: {
         enabled: false
+      },
+      events: {
+        brushScrolled: function(chartContext, config) {
+          selection.current = config.xaxis;
+        },
       }
     },
     fill: {
