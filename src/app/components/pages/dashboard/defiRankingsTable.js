@@ -352,7 +352,7 @@ const ButtonComp = ({ item }) => {
         ></Box>
         <Text variant={"h3"}>
           {" "}
-          {item?.Rank === undefined ? "-" : item?.Rank}{" "}
+          {item?.safety_score?.toFixed(0) === undefined ? "-" : item?.safety_score?.toFixed(0)}{" "}
         </Text>
       </Box>
     </Box>
