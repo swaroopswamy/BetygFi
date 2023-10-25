@@ -3,7 +3,7 @@ import { getBlockchainListData } from "@/services/appService";
 
 
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async () => {
-  console.log('called api')
+
   const response = await getBlockchainListData();
   return response.data;
 })

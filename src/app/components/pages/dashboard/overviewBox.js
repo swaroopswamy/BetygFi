@@ -31,7 +31,7 @@ const OverviewBox = () => {
 
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
-  );  
+  );
   const categorySelected = useSelector(
     (state) => state?.dashboardTableData?.categorySelected
   );
@@ -81,20 +81,16 @@ const OverviewBox = () => {
                 <Text variant={"h3"}>Total Market Cap</Text>
                 <TooltipComp label="Total Market Cap tracked by Solvendo" />
               </Box>
-
-              <Text variant={"h1"}>
-                {overviewData?.tvl !== undefined ? (
-                  <>
-                    ${""}
-                    {millify(overviewData?.tvl, {
-                      precision: 2,
-                      locales: "en-US",
-                    })}
-                  </>
-                ) : (
-                  <>NA</>
-                )}
-              </Text>
+              {overviewData?.tvl !== undefined ? (
+                <Text variant={"h1"} suppressHydrationWarning>
+                  {millify(overviewData?.tvl, {
+                    precision: 2,
+                    locales: "en-US",
+                  })}
+                </Text>
+              ) : (
+                <Text variant={"h1"}>NA</Text>
+              )}
             </Box>
           </Box>
 
@@ -125,19 +121,16 @@ const OverviewBox = () => {
                     label="Total Market Cap tracked by Solvendo"
                     mr="7px"
                   />
-                  <Text variant={"h1"}>
-                    {overviewData?.tvl !== undefined ? (
-                      <>
-                        ${""}
-                        {millify(overviewData?.tvl, {
-                          precision: 2,
-                          locales: "en-US",
-                        })}
-                      </>
-                    ) : (
-                      <>NA</>
-                    )}
-                  </Text>
+                  {overviewData?.tvl !== undefined ? (
+                    <Text variant={"h1"} suppressHydrationWarning>
+                      {millify(overviewData?.tvl, {
+                        precision: 2,
+                        locales: "en-US",
+                      })}
+                    </Text>
+                  ) : (
+                    <Text variant={"h1"}>NA</Text>
+                  )}
                 </Box>
               </Box>
             );
