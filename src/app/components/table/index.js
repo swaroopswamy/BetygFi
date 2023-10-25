@@ -52,7 +52,12 @@ const GenericTable = ({
           minW={bigTable ? "1200px" : "unset"}
         >
           <Thead
-            bgColor={useColorModeValue("#F5F5F7", "#191919")}
+            _light={{
+              bgColor: "#F5F5F7",
+            }}
+            _dark={{
+              bgColor: "#191919",
+            }}
             position="sticky"
             top={0}
             zIndex={"99"}
@@ -86,7 +91,15 @@ const GenericTable = ({
             </Tr>
           </Thead>
 
-          <Tbody border={"0px"} bgColor={useColorModeValue("#FFF", "#202020")}>
+          <Tbody
+            border={"0px"}
+            _light={{
+              bgColor: "#FFF",
+            }}
+            _dark={{
+              bgColor: "#202020",
+            }}
+          >
             {(tableData?.isError || tableData === null) && (
               <>
                 <Tr>
@@ -164,11 +177,25 @@ const GenericTable = ({
         </Table>
       ) : (
         <Table variant={"unstyled"} display={{ base: "table", md: "none" }}>
-          <Thead bgColor={useColorModeValue("#F5F5F7", "#191919")}>
+          <Thead
+            _light={{
+              bgColor: "#F5F5F7",
+            }}
+            _dark={{
+              bgColor: "#191919",
+            }}
+          >
             <TableHeaderRowMobile />
           </Thead>
 
-          <Tbody bgColor={useColorModeValue("#FFF", "#202020")}>
+          <Tbody
+            _light={{
+              bgColor: "#FFF",
+            }}
+            _dark={{
+              bgColor: "#202020",
+            }}
+          >
             {(tableData?.isError || tableData === null) && (
               <Tr>
                 <Td

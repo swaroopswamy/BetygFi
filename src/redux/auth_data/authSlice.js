@@ -2,18 +2,21 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginMetamask, verifyPublicAddress } from "../../services/authService";
 import { useEffect } from "react";
 
+export const VerifyPublicAddressData = createAsyncThunk(
+  "verifyPublicAddressData",
+  async (payload) => {
+    const response = await verifyPublicAddress(payload);
+    return response.data;
+  }
+);
 
-
-export const VerifyPublicAddressData = createAsyncThunk('verifyPublicAddressData', async (payload) => {
-  const response = await verifyPublicAddress(payload);
-  return response.data;
-});
-
-export const LoginMetamask = createAsyncThunk('LoginMetamask', async (payload) => {
-  const response = await loginMetamask(payload);
-  return response.data;
-})
-
+export const LoginMetamask = createAsyncThunk(
+  "LoginMetamask",
+  async (payload) => {
+    const response = await loginMetamask(payload);
+    return response.data;
+  }
+);
 
 export const saveToken = (state) => {
   try {
@@ -40,8 +43,6 @@ export const loadToken = () => {
   }
 };
 
-
-
 const AuthDataSlice = createSlice({
   name: "authData",
   initialState: {
@@ -59,7 +60,7 @@ const AuthDataSlice = createSlice({
     },
     preLoadedData: {
       data: null,
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(VerifyPublicAddressData.fulfilled, (state, action) => {
@@ -67,7 +68,6 @@ const AuthDataSlice = createSlice({
       state.UserData.isLoading = false;
       state.UserData.isSuccess = true;
       state.UserData.isError = false;
-
     });
     builder.addCase(VerifyPublicAddressData.pending, (state, action) => {
       state.UserData.isLoading = true;
@@ -111,7 +111,7 @@ const AuthDataSlice = createSlice({
     },
     FetchLocalStorageData: (state, action) => {
       state.preLoadedData.data = loadToken();
-    }
+    },
   },
 });
 
