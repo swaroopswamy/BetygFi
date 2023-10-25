@@ -97,44 +97,20 @@ function WalletDashboardPage() {
     dispatch(fetchInflowOutflowTokensForAddress(data));
   };
 
-  /* 
-  const {
-    data: data2,
-    error: error2,
-  } = useSWR("api/fetchWalletBalanceDataHandler?query=${blockchainSelected}", fetchWalletBalanceDataHandler);
-  */
-
-  /*   useEffect(() => {
+  useEffect(() => {
     Promise.all([
-      dispatch(fetchBlockchainListData()),
-      dispatch(walletAddressChangedReducer(searchParam.get("address"))),
       fetchWalletBalanceDataHandler(),
       fetchAssetAllocationForAddressHandler(),
       fetchProtocolAllocationForAddressHandler(),
       fetchBlockchainAllocationForAddressHandler(),
-      fetchInflowOutflowTokensForAddressHandler()
-    ])
-  }, [fetchWalletBalanceDataHandler]); */
-
-  useEffect(() => {
-    if (blockchainSelected.length > 0) {
-      fetchWalletBalanceDataHandler();
-      fetchAssetAllocationForAddressHandler();
-      fetchProtocolAllocationForAddressHandler();
-      fetchBlockchainAllocationForAddressHandler();
-      fetchInflowOutflowTokensForAddressHandler();
-      fetchWalletBalanceDataHandler();
-    }
+      fetchInflowOutflowTokensForAddressHandler(),
+    ]);
   }, [blockchainSelected, searchParam.get("address")]);
 
   useEffect(() => {
     dispatch(fetchBlockchainListData());
     dispatch(walletAddressChangedReducer(searchParam.get("address")));
   }, []);
-  /* const { data: data1, error: error1 } = useSWR(
-    ["getBlockchainListData", blockchainSelected, searchParam.get("address")],
-    fetchBlockchainListData()
-  ); */
 
   useEffect(() => {
     if (walletBalanceData?.isQueryInPendingState) {
