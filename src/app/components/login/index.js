@@ -39,6 +39,7 @@ import {
   useDisconnect,
   useEnsAvatar,
   useEnsName,
+  useSignMessage,
 } from "wagmi";
 import { ethers } from "ethers";
 
@@ -75,7 +76,10 @@ const LoginPage = ({ isOpen, onClose }) => {
     <>
       <Modal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => {
+          onClose();
+          setBrowserWalletProcessSelected(false);
+        }}
         borderRadius={"6px"}
         boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
         mx={{ base: "14px", md: "0px" }}
@@ -170,7 +174,12 @@ const LoginPage = ({ isOpen, onClose }) => {
             }}
           >
             {browserWalletProcessSelected === true ? (
-              <OtherBrowserWalletProcess onClose={onClose} />
+              <OtherBrowserWalletProcess
+                onClose={onClose}
+                setBrowserWalletProcessSelected={
+                  setBrowserWalletProcessSelected
+                }
+              />
             ) : (
               <>
                 <Box display={"flex"} flexDirection={"column"}>
@@ -288,16 +297,22 @@ const LoginPage = ({ isOpen, onClose }) => {
   );
 };
 
-const OtherBrowserWalletProcess = ({ onClose }) => {
+const OtherBrowserWalletProcess = ({
+  onClose,
+  setBrowserWalletProcessSelected,
+}) => {
   const dispatch = useDispatch();
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect();
-  console.log(connectors, "connectors");
   const { address, connector, isConnected } = useAccount();
-  //const { connectWallet, address, error } = useWeb3();
   const UserData = useSelector((state) => state.authData.UserData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
   const { colorMode } = useColorMode();
+
+  const { activeStep, isCompleteStep, setActiveStep } = useSteps({
+    index: 0,
+    count: 2,
+  });
   const signMessage = async ({ message }) => {
     try {
       if (!window.ethereum)
@@ -321,13 +336,11 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
   };
 
   const handleConnectWallet = async (connector) => {
-
     try {
       if (!window.ethereum)
         throw new Error("No crypto wallet found. Please install it.");
 
       await window.ethereum.send("eth_requestAccounts");
-      console.log("clicked here");
       connect({ connector });
     } catch (err) {
       // setError(err.message);
@@ -339,7 +352,7 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
   };
 
   const handleSign = async () => {
-    console.log("herte");
+
     if (UserData.data?.nonce) {
       const sig = await signMessage({
         message: `I am signing my one-time nonce: ${UserData.data.nonce}`,
@@ -354,9 +367,11 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     }
   };
   useEffect(() => {
-    console.log(address, isConnected, pendingConnector, error);
+
     if (!isEmpty(address)) {
       handleNext();
+    } else {
+      setActiveStep(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
@@ -368,20 +383,21 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
   }, [UserData]);
   useEffect(() => {
     if (!isEmpty(LoggedInData.data?.token)) {
+      setBrowserWalletProcessSelected(false);
       onClose();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [LoggedInData]);
-  const { activeStep, isCompleteStep, setActiveStep } = useSteps({
-    index: 0,
-    count: 2,
-  });
 
   const steps = [
     {
       title: isConnected ? "Wallet Connected" : "Connect Wallet",
       description: isConnected
-        ? `Address: ${address}`
+        ? `Address: ${
+            address.split("").join("").substring(0, 6) +
+            "..." +
+            address.slice(-5)
+          }`
         : "Tell which address you want to use",
       buttonText: "Connect",
       buttonFunction: () => handleConnectWallet(connectors[0]),

@@ -71,15 +71,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
   const { data: ensName } = useEnsName({ ConnectedWalletAddress });
   const { disconnect } = useDisconnect();
-
-  console.log(ConnectedWalletAddress, isConnected, "wagmi data");
-  const isMobileSidebarCollapsed = useSelector(
-    (state) => state?.appData?.isMobileSidebarCollapsed
-  );
-  const MobileSidebarHandler = (value) => {
-    dispatch(mobileSidebarCollapsedReducer(value));
-  };
-
   const handleSearchByWalletAddress = (e) => {
     if (e.key === "Enter") {
       if (!isEmpty(e.target.value)) {
@@ -107,7 +98,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     dispatch(FetchLocalStorageData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <>
       <Flex
@@ -187,7 +177,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             </label>
           </div>
 
-          {!isConnected ? (
+          {!isConnected && LoggedInData?.data === null ? (
             <>
               <Box
                 ml="20px"
@@ -242,19 +232,12 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                     _light={{ color: "#16171B" }}
                     _dark={{ color: "#A8ADBD" }}
                   >
-                    {!isEmpty(LoggedInData?.data)
-                      ? LoggedInData?.data?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        LoggedInData?.data?.user?._id.slice(-5)
-                      : preLoadedData?.data?.token?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        preLoadedData?.data?.token?.user?._id.slice(-5)}
+                    {LoggedInData?.data?.user?._id
+                      .split("")
+                      .join("")
+                      .substring(0, 6) +
+                      "..." +
+                      LoggedInData?.data?.user?._id.slice(-5)}
                   </Text>
                 </Box>
 
@@ -270,8 +253,8 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   borderRadius={"50%"}
                   alt="search_icon"
                   onClick={() => {
-                    dispatch(LogoutReducer());
                     disconnect();
+                    dispatch(LogoutReducer());
                   }}
                 />
               </Box>

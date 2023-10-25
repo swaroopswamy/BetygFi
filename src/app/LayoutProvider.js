@@ -9,7 +9,6 @@ import Footer from "./components/footer";
 import Navbar from "./components/header";
 
 export default function LayoutProvider({ children }) {
-  console.log("coming here");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isSidebarCollapsed = useSelector(
     (state) => state?.appData?.isSidebarCollapsed

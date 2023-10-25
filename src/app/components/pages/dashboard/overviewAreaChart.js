@@ -9,6 +9,7 @@ import { categories } from "../../../../../util/constant";
 
 const OverviewAreaChart = () => {
   const { colorMode } = useColorMode();
+  const dispatch = useDispatch();
 
   const overviewGraphData = useSelector(
     (state) => state?.dashboardTableData?.OverviewGraphData

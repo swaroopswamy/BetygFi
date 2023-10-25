@@ -31,6 +31,9 @@ const OverviewBox = () => {
 
   const blockchainSelected = useSelector(
     (state) => state?.dashboardTableData?.blockchainType
+  );  
+  const categorySelected = useSelector(
+    (state) => state?.dashboardTableData?.categorySelected
   );
 
   const getOverviewDataHandler = () => {

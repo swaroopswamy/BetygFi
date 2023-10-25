@@ -43,7 +43,6 @@ const BlockchainSelectionMenuBlocks = dynamic(() =>
 );
 
 function WalletDashboardPage() {
-  console.log("renderingg");
   const didLogRef = useRef(false);
   const searchParam = useSearchParams();
   const dispatch = useDispatch();

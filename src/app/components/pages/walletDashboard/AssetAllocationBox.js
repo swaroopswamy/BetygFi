@@ -56,7 +56,6 @@ const AssetAllocationBox = () => {
       custom: function ({ series, seriesIndex, dataPointIndex, w }) {
         let data = w?.config?.series[seriesIndex];
         let label = w?.config?.labels[seriesIndex];
-        console.log(label, data);
         return (
           '<div class="graph_box">' +
           '<div class="inner_box">' +

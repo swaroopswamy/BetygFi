@@ -23,7 +23,6 @@ const SearchBox = dynamic(() => import("/src/app/components/searchBox"));
 const PageButtonsWide = dynamic(() =>
   import("/src/app/components/pageButtonsWide")
 );
-import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 
 import {
   tableHeader,

@@ -106,6 +106,7 @@ const AuthDataSlice = createSlice({
     LogoutReducer: (state, action) => {
       state.LoggedInData.data = null;
       state.preLoadedData.data = null;
+      state.UserData.data = null;
       localStorage.clear();
     },
     FetchLocalStorageData: (state, action) => {
