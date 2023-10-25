@@ -10,7 +10,7 @@ import { Text, Td, Tr, Th, Flex, Box, useColorModeValue, Image, useColorMode, Av
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import GenericTable from "@/app/components/table";
 import { DefiAssetsBigTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import PageButtons from "/src/app/components/pageButtons";
+import PageButtonsWide from "/src/app/components/pageButtonsWide";
 
 let USDollar = new Intl.NumberFormat('en-US', {
     currency: 'USD',
@@ -22,6 +22,7 @@ function AssetComposition() {
     const dispatch = useDispatch();
 
     const [tablePage, setTablePage] = useState(1);
+    const [tableLimit, setTableLimit] = useState(10);
 
     const pageChangeHandler = (page) => {
         tablePage >= 1 && setTablePage(page);
@@ -42,7 +43,7 @@ function AssetComposition() {
             defi: defi,
             blockchain: blockchainSelected,
             page: tablePage,
-            limit: 10
+            limit: tableLimit
         };
         dispatch(fetchDefiAssetCompositionTableData(payload));
     };
@@ -50,7 +51,7 @@ function AssetComposition() {
     useEffect(() => {
         getDefiAssetsTableDataHandler();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [blockchainSelected, tablePage]);
+    }, [blockchainSelected, tablePage, tableLimit]);
 
     return (
         <Box display={"flexColumn"} padding={{base: "20px 15px", md: "20px 30px"}} pb={{base: "120px", md: "none"}} bgColor={useColorModeValue("#F0F0F5", "#191919")} borderColor={useColorModeValue("#F0F0F5", "#191919")}>
@@ -139,11 +140,15 @@ function AssetComposition() {
 
             </Box>
 
-            <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
-                <PageButtons
+            <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+                <PageButtonsWide
                     page={tablePage}
                     totalPages={defiAssetsTableData?.data?.totalPages}
                     pageChangeHandler={pageChangeHandler}
+                    tableLimit={tableLimit}
+                    setTableLimit={setTableLimit}
+                    time={3}
+                    w={"100%"}
                 />
             </Box>
         </Box>

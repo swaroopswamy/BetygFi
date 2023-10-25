@@ -15,7 +15,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { fetchDefiGovernanceTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import GenericTable from "/src/app/components/table";
 import { GovernanceTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import PageButtons from "/src/app/components/pageButtons";
+import PageButtonsWide from "/src/app/components/pageButtonsWide";
 
 const GovernanceTable = ({}) => {
   const searchParam = useSearchParams();
@@ -23,6 +23,7 @@ const GovernanceTable = ({}) => {
   const router = useRouter();
 
   const [tablePage, setTablePage] = useState(1);
+  const [tableLimit, setTableLimit] = useState(10);
 
   const defi = searchParam.get("defi");
 
@@ -38,7 +39,7 @@ const GovernanceTable = ({}) => {
     const payload = {
       defi: defi,
       page: tablePage,
-      limit: 10
+      limit: tableLimit
     };
     dispatch(fetchDefiGovernanceTableData(payload));
   };
@@ -46,7 +47,7 @@ const GovernanceTable = ({}) => {
   useEffect(() => {
     getDefiGovernanceTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tablePage]);
+  }, [tablePage, tableLimit]);
 
   return (
     <>
@@ -148,11 +149,16 @@ const GovernanceTable = ({}) => {
           />
         </Box>
 
-        <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
-            <PageButtons
-                page={tablePage}
-                totalPages={defiGovernanceTableData?.data?.totalPages}
-                pageChangeHandler={pageChangeHandler}
+        <Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+
+            <PageButtonsWide
+              page={tablePage}
+              totalPages={defiGovernanceTableData?.data?.totalPages}
+              pageChangeHandler={pageChangeHandler}
+              tableLimit={tableLimit}
+              setTableLimit={setTableLimit}
+              time={3}
+              w={"100%"}
             />
         </Box>
 

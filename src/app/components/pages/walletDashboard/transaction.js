@@ -25,12 +25,14 @@ import {
   TransactionTableMobile,
 } from "@/app/components/pages/walletDashboard/helper";
 import GenericTable from "@/app/components/table/index";
-import PageButtons from "../../pageButtons";
+import PageButtonsWide from "@/app/components/pageButtonsWide";
 
 const TransactionPanelComponent = () => {
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
   const [tablePage, setTablePage] = useState(1);
+  const [tableLimit, setTableLimit] = useState(10);
+
   const walletTransactionsData = useSelector(
     (state) => state?.walletDashboardTableData?.walletTransactionsData
   );
@@ -45,13 +47,13 @@ const TransactionPanelComponent = () => {
       address: searchParam.get("address"),
       payload: {
         blockchain: blockchainSelected,
-        limit: 20,
+        limit: tableLimit,
         page: tablePage,
       },
     };
     dispatch(fetchWalletTransactionsData(data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, tablePage, searchParam.get("address")]);
+  }, [blockchainSelected, tablePage, searchParam.get("address"), tableLimit]);
 
 
   useEffect(() => {
@@ -99,12 +101,18 @@ const TransactionPanelComponent = () => {
           />
         </Box>
 
-        <Box display={"flex"} alignItems={"center"} justifyContent={"right"} bgColor={useColorModeValue('#FFFFFF', '#202020')}>
-          <PageButtons
+        <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+
+          <PageButtonsWide
             page={tablePage}
-            pageChangeHandler={pageChangeHandler}
             totalPages={walletTransactionsData?.data?.totalPages}
+            pageChangeHandler={pageChangeHandler}
+            tableLimit={tableLimit}
+            setTableLimit={setTableLimit}
+            time={3}
+            w={"100%"}
           />
+
         </Box>
       </Box>
     </>
