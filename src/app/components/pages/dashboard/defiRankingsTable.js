@@ -256,12 +256,10 @@ const TableRow = ({ item, rowIndex }) => {
       <Td key={5}>
         {!isEmpty(item.mcap) ? (
           <Text variant={"h3"}>
-            `$
             {Math.trunc(item.mcap).toLocaleString("en-US", {
               style: "currency",
               currency: "USD",
             })}
-            `
           </Text>
         ) : (
           <Text variant={"h3"}>NA</Text>

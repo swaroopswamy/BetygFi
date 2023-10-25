@@ -216,7 +216,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 minW="270px"
               >
                 <Image
-                  src={ensAvatar ?? "/images/profile_img.png"}
+                  src={"/images/profile_img.png"}
                   w="36px"
                   h="36px"
                   borderRadius={"50%"}
