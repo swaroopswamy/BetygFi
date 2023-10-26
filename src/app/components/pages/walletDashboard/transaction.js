@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Text,
   useColorModeValue,
@@ -12,12 +13,16 @@ import {
   Link,
   useColorMode,
   Avatar,
+  Table,
+  Tbody,
+  Thead,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
-import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 import { useEffect, useState, useCallback } from "react";
 import {
   tableHeader,
@@ -55,7 +60,6 @@ const TransactionPanelComponent = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchainSelected, tablePage, searchParam.get("address"), tableLimit]);
 
-
   useEffect(() => {
     fetchWalletTransactionsDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,21 +77,19 @@ const TransactionPanelComponent = () => {
         mb="20px"
       >
         <Flex
-          py={{base:'20px',md:"25px"}}
-          px={{base:'10px',md:"25px"}}
-          
-          mx={{base:"10px",md:"none  "}}
+          py={{ base: "20px", md: "25px" }}
+          px={{ base: "10px", md: "25px" }}
+          mx={{ base: "10px", md: "none  " }}
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={"block"}
-
         >
           <Text variant={"h2"} textTransform={"capitalize"}>
             Wallet Transaction
           </Text>
         </Flex>
 
-        <Box overflow={"auto"} px={{base:"10px",md:"none  "}}>
+        <Box overflow={"auto"} px={{ base: "10px", md: "none  " }}>
           <GenericTable
             tableHeader={tableHeader}
             tableData={walletTransactionsData}
@@ -148,7 +150,13 @@ const TableRow = ({ item, rowIndex }) => {
                   "......" +
                   walletAddress?.slice(-5)}
               </Text>
-              <Text opacity={"0.6000000238418579"} variant={"h5"} ml="6px">
+              <Text
+                opacity={"0.6000000238418579"}
+                variant={"h5"}
+                ml="6px"
+                _light={{ color: "#16171B" }}
+                _dark={{ color: "#FFFFFF" }}
+              >
                 {moment.unix(item?.timeStamp).format("Do MMM YYYY")}
               </Text>
             </Box>
@@ -318,9 +326,8 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
             fontWeight={"400"}
             letterSpacing={"1px"}
             ml="6px"
-            w="95px"
           >
-            {walletAddress?.split("").join("").substring(0, 8) +
+            {walletAddress?.split("").join("").substring(0, 6) +
               "..." +
               walletAddress?.slice(-5)}
           </Text>
@@ -336,6 +343,7 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
             fontWeight={"400"}
             letterSpacing={"1px"}
             ml="6px"
+            textAlign={"left"}
           >
             {moment.unix(item?.timeStamp).format("Do MMM YYYY")}
           </Text>
@@ -370,9 +378,9 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
     (state) => state?.walletDashboardTableData?.walletAddress
   );
   return (
-    <Box>
-      <Tr>
-        <Td justifyContent={"space-between"} alignItems={"center"}>
+    <>
+      <Box display={"flex"} mt={"20px"} >
+        <Box display={"flex"} flexDirection={"column"} gap={4} w={"40%"}>
           <Text
             _light={{
               color: "#434347",
@@ -389,51 +397,6 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
           >
             Method
           </Text>
-        </Td>
-
-        <Td>
-          <Box display={"flex"} alignItems={"center"}>
-            <Link
-              fontSize={"14px"}
-              fontWeight={"400"}
-              fontStyle={"normal"}
-              letterSpacing={"1px"}
-              ml="4px"
-              display={"flex"}
-              alignItems={"center"}
-              _dark={{
-                color: "#FFF",
-              }}
-              _light={{
-                color: "#16171B",
-              }}
-              isExternal
-              href={item?.blockExplorerUrl}
-            >
-              {item?.hash.substring(0, 0)}
-              <ExternalLinkIcon mx="4px" />
-              <Text
-                color={"#16171B"}
-                fontSize={"14px"}
-                fontWeight={500}
-                lineHeight={"20px"}
-                _dark={{
-                  color: "#FFF",
-                }}
-                _light={{
-                  color: "#16171B",
-                }}
-                textTransform={"capitalize"}
-              >
-                {item?.functionName?.split("(")[0]}
-              </Text>
-            </Link>
-          </Box>
-        </Td>
-      </Tr>
-
-      <Tr>
-        <Td display={"flex"} alignItems={"center"}>
           <Text
             _light={{
               color: "#434347",
@@ -450,9 +413,73 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
           >
             Amount / Token
           </Text>
-        </Td>
-
-        <Td>
+          <Text
+            _light={{
+              color: "#434347",
+            }}
+            _dark={{
+              color: "#A8ADBD",
+            }}
+            fontSize={"14px"}
+            fontWeight={400}
+            letterSpacing={"1.4px"}
+            lineHeight={"20px"}
+            textTransform={"capitalize"}
+          >
+            From
+          </Text>
+          <Text
+            _light={{
+              color: "#434347",
+            }}
+            _dark={{
+              color: "#A8ADBD",
+            }}
+            fontSize={"14px"}
+            fontWeight={400}
+            letterSpacing={"1.4px"}
+            lineHeight={"20px"}
+            textTransform={"capitalize"}
+          >
+            To
+          </Text>
+        </Box>
+        <Box display={"flex"} flexDirection={"column"} gap={4} w={"60%"}>
+          <Link
+            fontSize={"14px"}
+            fontWeight={"400"}
+            fontStyle={"normal"}
+            letterSpacing={"1px"}
+            ml="4px"
+            display={"flex"}
+            alignItems={"center"}
+            _dark={{
+              color: "#FFF",
+            }}
+            _light={{
+              color: "#16171B",
+            }}
+            isExternal
+            href={item?.blockExplorerUrl}
+          >
+            {item?.hash.substring(0, 0)}
+            <ExternalLinkIcon mx="4px" />
+            <Text
+              color={"#16171B"}
+              fontSize={"14px"}
+              fontWeight={500}
+              lineHeight={"20px"}
+              _dark={{
+                color: "#FFF",
+              }}
+              _light={{
+                color: "#16171B",
+              }}
+              textTransform={"capitalize"}
+            >
+              {item?.functionName?.split("(")[0]}
+            </Text>
+          </Link>
           <Box display={"flex"} alignItems={"center"}>
             <Image
               width={5}
@@ -492,28 +519,6 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               {Number(item?.value).toFixed(2)}
             </Text>
           </Box>
-        </Td>
-      </Tr>
-
-      <Tr>
-        <Td>
-          <Text
-            _light={{
-              color: "#434347",
-            }}
-            _dark={{
-              color: "#A8ADBD",
-            }}
-            fontSize={"14px"}
-            fontWeight={400}
-            letterSpacing={"1.4px"}
-            lineHeight={"20px"}
-            textTransform={"capitalize"}
-          >
-            From
-          </Text>
-        </Td>
-        <Td>
           <Box display={"flex"} alignItems={"center"}>
             <Link
               fontSize={"14px"}
@@ -543,27 +548,6 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               </Text>
             </Link>
           </Box>
-        </Td>
-      </Tr>
-
-      <Tr>
-        <Td
-          _light={{
-            color: "#434347",
-          }}
-          _dark={{
-            color: "#A8ADBD",
-          }}
-          fontSize={"14px"}
-          fontWeight={400}
-          letterSpacing={"1.4px"}
-          lineHeight={"20px"}
-          textTransform={"capitalize"}
-        >
-          To
-        </Td>
-
-        <Td>
           <Box display={"flex"} alignItems={"center"}>
             <Link
               fontSize={"14px"}
@@ -593,9 +577,9 @@ const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
               </Text>
             </Link>
           </Box>
-        </Td>
-      </Tr>
-    </Box>
+        </Box>
+      </Box>
+    </>
   );
 };
 export default TransactionPanelComponent;

@@ -15,18 +15,20 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
 import isEmpty from "is-empty";
 import "/styles/styles.scss";
-import GenericTable from "/src/app/components/table";
-import SearchBox from "/src/app/components/searchBox";
+import dynamic from "next/dynamic";
+const GenericTable = dynamic(() => import("/src/app/components/table"));
+const SearchBox = dynamic(() => import("/src/app/components/searchBox"));
+const PageButtonsWide = dynamic(() =>
+  import("/src/app/components/pageButtonsWide")
+);
+
 import {
   tableHeader,
   DefiRankingTableDesktop,
   DefiRankingTableMobile,
 } from "/src/app/components/pages/dashboard/helper";
-import PageButtonsWide from "/src/app/components/pageButtonsWide";
-import PageButtons from "/src/app/components/pageButtons";
 import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 import { Search2Icon } from "@chakra-ui/icons";
@@ -67,24 +69,28 @@ const Rankings = () => {
     setTablePage(1);
   };
 
-
   const getDefiRankingsTableDataHandler = () => {
-    if (timerRef.current)
-      clearTimeout(timerRef.current);
+    if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       if (!isEmpty(searchByName)) {
         const payload = {
           name: searchByName,
-          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
-          limit: tableLimit
+          page:
+            tablePage >= 1 &&
+            tablePage <= tableData?.data?.totalPages &&
+            tablePage,
+          limit: tableLimit,
         };
         dispatch(fetchDefiRankingTableData(payload));
       } else {
         const payload = {
           blockchain: blockchainSelected,
           category: categorySelected,
-          page: tablePage >= 1 && tablePage <= tableData?.data?.totalPages && tablePage,
-          limit: tableLimit
+          page:
+            tablePage >= 1 &&
+            tablePage <= tableData?.data?.totalPages &&
+            tablePage,
+          limit: tableLimit,
         };
         dispatch(fetchDefiRankingTableData(payload));
       }
@@ -94,7 +100,13 @@ const Rankings = () => {
   useEffect(() => {
     getDefiRankingsTableDataHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, categorySelected, tablePage, searchByName, tableLimit]);
+  }, [
+    blockchainSelected,
+    categorySelected,
+    tablePage,
+    searchByName,
+    tableLimit,
+  ]);
 
   return (
     <Box
@@ -155,8 +167,7 @@ const Rankings = () => {
         />
       </Box>
 
-
-      <Box display={"flex"} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+      <Box display={"flex"} minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
         <PageButtonsWide
           page={tablePage}
           totalPages={tableData?.data?.totalPages}
@@ -167,7 +178,6 @@ const Rankings = () => {
           w={"100%"}
         />
       </Box>
-
     </Box>
   );
 };
@@ -193,26 +203,35 @@ const TableRow = ({ item, rowIndex }) => {
         </Text>
       </Td>
       <Td key={1}>
-        <Box display={"flex"} alignItems={"center"} width={"120px"} gap={"10px"}>
-            <Avatar
-              width={"24px"}
-              height={"24px"}
-              style={{ borderRadius: "50%" }}
-              name={item?.name}
-              src={item?.logo}
-            ></Avatar>
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          width={"120px"}
+          gap={"10px"}
+        >
+          <Avatar
+            width={"24px"}
+            height={"24px"}
+            style={{ borderRadius: "50%" }}
+            name={item?.name}
+            src={item?.logo}
+          ></Avatar>
 
-            <Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
-              <Text variant={"h3"}>{item?.name}</Text>
+          <Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
+            <Text variant={"h3"}>{item?.name}</Text>
 
-              <Box layerStyle={"center"} flexShrink={"0"}>
-                <Tooltip label="chains" as={ChainsTooltip} chains={item?.chains}>
-                  <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
-                    {item?.chains?.length} Chains
-                  </Text>
-                </Tooltip>
-              </Box>
+            <Box layerStyle={"center"} flexShrink={"0"}>
+              <Tooltip label="chains" as={ChainsTooltip} chains={item?.chains}>
+                <Text
+                  fontSize={"12px"}
+                  color={useColorModeValue("#000000", "#FFFFFF")}
+                  opacity={"0.5"}
+                >
+                  {item?.chains?.length} Chains
+                </Text>
+              </Tooltip>
             </Box>
+          </Box>
         </Box>
       </Td>
       <Td key={2}>
@@ -235,21 +254,23 @@ const TableRow = ({ item, rowIndex }) => {
         </Text>
       </Td>
       <Td key={5}>
-        <Text variant={"h3"}>
-          {!isEmpty(item.mcap)
-            ? `${Math.trunc(item.mcap).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}`
-            : "NA"}
-        </Text>
+        {!isEmpty(item.mcap) ? (
+          <Text variant={"h3"}>
+            {Math.trunc(item.mcap).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </Text>
+        ) : (
+          <Text variant={"h3"}>NA</Text>
+        )}
       </Td>
       <Td key={6}>
-        <Text variant={"h3"}>
-          {!isEmpty(item.mcap) && item.tvl !== 0
-            ? (item.mcap / item.tvl).toFixed(2)
-            : "NA"}
-        </Text>
+        {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+          <Text variant={"h3"}>{(item.mcap / item.tvl).toFixed(2)}</Text>
+        ) : (
+          <Text variant={"h3"}>NA</Text>
+        )}
       </Td>
       <Td key={7}>
         <Box layerStyle={"center"} h="100%" gap={"5px"}>
@@ -305,27 +326,42 @@ const ButtonComp = ({ item }) => {
       justifyContent={"space-between"}
       alignItems={"center"}
     >
-      <Box display={"flex"} w={"50%"} justifyContent={"start"} alignItems={"center"} mx={"20px"} >
+      <Box
+        display={"flex"}
+        w={"50%"}
+        justifyContent={"start"}
+        alignItems={"center"}
+        mx={"20px"}
+      >
         <Text variant={"h3"}>
           {" "}
           {item?.Rank === undefined ? "-" : item?.Rank}{" "}
         </Text>
 
         <Box layerStyle={"center"} gap={"10px"} ml={"30px"}>
-            <Avatar
-              width={"24px"}
-              height={"24px"}
-              style={{ borderRadius: "50%" }}
-              name={item?.name}
-              src={item?.logo}
-            ></Avatar>
+          <Avatar
+            width={"24px"}
+            height={"24px"}
+            style={{ borderRadius: "50%" }}
+            name={item?.name}
+            src={item?.logo}
+          ></Avatar>
 
-            <Box layerStyle={"flexColumn"} justifyContent={"start"} minW={"100px"} textAlign={"left"}>
-              <Text variant={"h3"}> {item?.name} </Text>
-              <Text fontSize={"12px"} color={useColorModeValue("#000000", "#FFFFFF")} opacity={"0.5"}>
-                {item?.chains?.length} Chains
-              </Text>
-            </Box>
+          <Box
+            layerStyle={"flexColumn"}
+            justifyContent={"start"}
+            minW={"100px"}
+            textAlign={"left"}
+          >
+            <Text variant={"h3"}> {item?.name} </Text>
+            <Text
+              fontSize={"12px"}
+              color={useColorModeValue("#000000", "#FFFFFF")}
+              opacity={"0.5"}
+            >
+              {item?.chains?.length} Chains
+            </Text>
+          </Box>
         </Box>
       </Box>
 
@@ -456,12 +492,14 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {!isEmpty(item.mcap)
-            ? `${Math.trunc(item.mcap).toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-              })}`
-            : "NA"}
+          {!isEmpty(item.mcap) ? (
+            `${Math.trunc(item.mcap).toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}`
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Box>
 
@@ -482,14 +520,17 @@ const PanelComp = ({ item }) => {
         </Box>
 
         <Text variant={"h3"} textAlign={"left"}>
-          {!isEmpty(item.mcap) && item.tvl !== 0
-            ? (item.mcap / item.tvl).toFixed(2)
-            : "NA"}
+          {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+            (item.mcap / item.tvl).toFixed(2)
+          ) : (
+            <>NA</>
+          )}
         </Text>
       </Box>
 
       <Box layerStyle={"center"}>
-        <Button variant='link'
+        <Button
+          variant="link"
           onClick={() => {
             router.push(`/defi_dashboard?defi=${item?.slug}&id=${item._id}`);
           }}
@@ -503,27 +544,36 @@ const PanelComp = ({ item }) => {
 
 const ChainsTooltip = ({ chains }) => {
   return (
-    <Box layerStyle={"flexColumn"} minW={"140px"} p={"10px 20px"} bgColor={useColorModeValue("#FFFFFF", "#202020")}
-      boxShadow={useColorModeValue("0px 5px 4px 0px rgba(0, 0, 0, 0.10)", "0px 5px 4px 0px rgba(200, 200, 200, 0.10)")}
+    <Box
+      layerStyle={"flexColumn"}
+      minW={"140px"}
+      p={"10px 20px"}
+      bgColor={useColorModeValue("#FFFFFF", "#202020")}
+      boxShadow={useColorModeValue(
+        "0px 5px 4px 0px rgba(0, 0, 0, 0.10)",
+        "0px 5px 4px 0px rgba(200, 200, 200, 0.10)"
+      )}
       borderColor={useColorModeValue("#F0F0F5", "#333333")}
       borderRadius={"8px"}
       gap={"15px"}
     >
       {chains?.map((chain, i) => {
         return (
-            <Box layerStyle={"flexCenter"} key={i} gap={"10px"}>
-              <Avatar
-                width={"24px"}
-                height={"24px"}
-                name={chain?.name}
-                src={chain?.logoUrl}
-              ></Avatar>
+          <Box layerStyle={"flexCenter"} key={i} gap={"10px"}>
+            <Avatar
+              width={"24px"}
+              height={"24px"}
+              name={chain?.name}
+              src={chain?.logoUrl}
+            ></Avatar>
 
-              <Text variant={"h4"} fontSize={"14px"}> {chain?.name} </Text>
-            </Box>
-          )
-        })}
-
+            <Text variant={"h4"} fontSize={"14px"}>
+              {" "}
+              {chain?.name}{" "}
+            </Text>
+          </Box>
+        );
+      })}
     </Box>
-  )
-}
+  );
+};

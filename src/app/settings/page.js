@@ -1,554 +1,666 @@
-"use client"
-import { Box, useColorMode, useColorModeValue, Text, Image, Button, toggleColorMode, colorMode, useDisclosure, color } from "@chakra-ui/react";
+"use client";
+import {
+  Box,
+  useColorMode,
+  useColorModeValue,
+  Text,
+  Image,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
-import LoginPage from "../components/login";
+import dynamic from "next/dynamic";
+
+const LoginPage = dynamic(() => import("../components/login"));
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
-import DynamicIcon from '../components/icons/index_new'
+import DynamicIcon from "../components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
 
 const Settings = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
-    const dispatch = useDispatch();
-    const { isOpen: isLoginModalOpen, onOpen: onLoginModalOpen, onClose: onLoginModalClose } = useDisclosure();
-    const preLoadedData = useSelector((state) => state.authData.preLoadedData);
+  const { colorMode, toggleColorMode } = useColorMode();
+  const dispatch = useDispatch();
+  const {
+    isOpen: isLoginModalOpen,
+    onOpen: onLoginModalOpen,
+    onClose: onLoginModalClose,
+  } = useDisclosure();
+  const preLoadedData = useSelector((state) => state.authData.preLoadedData);
 
-    return (
-        <>
-            <Box
-                display={{ base: "none", md: "block" }}
-                width={"100%"}
-                background={useColorModeValue("#F0F0F5", "#191919")}>
-                <Text
-                    variant={"contentHeading3"}
-                    p={"30px 0px 10px 33px"}>
-                    Settings
-                </Text>
-                <Box
-                    height={"275px"}
-                    flexShrink={"0"}
-                    borderRadius={"6px"}
-                    background={useColorModeValue("#FFFFFF", "#202020")}
-                    boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-                    ml={"33px"}
-                    mr={"20px"}>
-                    <Box
-                        ml={"25px"}
-                        pt={"20px"}>
-                        <Text variant={"contentHeading4"}>Theme</Text>
-                    </Box>
-                    <Box
-                        layerStyle={"flexCenterSpaceEvenly"}
-                        mt={"10px"}>
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
-                            <Image src="/images/SystemDefault.svg" w="183px" h="133px" alt=""></Image>
-                            <Box
-                                layerStyle={"flexCenterFlexStart"}
-                                mt={"10px"}>
-                                <Image src="/images/SelectBox.svg" alt=""></Image>
-                                <Text
-                                    variant={"ThemeText"}
-                                    ml={"15px"}
-                                    mt={"2px"}>
-                                    System Default
-                                </Text>
-                            </Box>
-                        </Box>
-
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}
-                            onClick={() => {
-                                toggleColorMode();
-                            }}>
-
-                            <Image src=" /images/LightTheme.svg" w="183px" h="133px" alt=""></Image>
-                            <Box
-                                layerStyle={"flexCenterFlexStart"}
-                                mt={"10px"}>
-                                <DynamicIcon
+  return (
+    <>
+      <Box
+        display={{ base: "none", md: "block" }}
+        width={"100%"}
+        background={useColorModeValue("#F0F0F5", "#191919")}
+      >
+        <Text
+          variant={"contentHeading"}
+          lineHeight={"46px"}
+          p={"30px 0px 10px 33px"}
+        >
+          Settings
+        </Text>
+        <Box
+          height={"275px"}
+          flexShrink={"0"}
+          borderRadius={"6px"}
+          background={useColorModeValue("#FFFFFF", "#202020")}
+          boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+          ml={"33px"}
+          mr={"20px"}
+        >
+          <Box ml={"25px"} pt={"20px"}>
+            <Text variant={"contentHeading3"} fontWeight={"400"}>
+              Theme
+            </Text>
+          </Box>
+          <Box layerStyle={"flexCenterSpaceEvenly"} mt={"10px"}>
+            <Box layerStyle={"flexColumn"} cursor={"pointer"}>
+              <Image
+                src="/images/SystemDefault.svg"
+                w="183px"
+                h="133px"
+                alt=""
+              ></Image>
+              <Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
+                {/* <DynamicIcon
                                     name={colorMode === "light" ? "green_tick" : "unticked"}
-                                />
-                                <Text
-                                    color={useColorModeValue("#191919", "#FFFFFF")}
-                                    variant={"ThemeText"}
-                                    ml={"15px"}
-                                    mt={"2px"}>
-                                    Light THEME
-                                </Text>
-                            </Box>
-                        </Box>
+                                /> */}
+                <Text
+                  variant={" h6"}
+                  textTransform={"uppercase"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFF" }}
+                  ml={"15px"}
+                  mt={"2px"}
+                >
+                  System Default
+                </Text>
+              </Box>
+            </Box>
 
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}
-                            onClick={() => {
-                                toggleColorMode();
-                            }}>
-                            <Image src="/images/DarkTheme.svg" w="183px" h="133px" alt=""></Image>
-                            <Box
-                                layerStyle={"flexCenterFlexStart"}
-                                mt={"10px"}>
-                                     <DynamicIcon
-                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
-                                />
-                                <Text
-                                    color={useColorModeValue("#191919", "#FFFFFF")}
-                                    layerStyle={"ThemeText"}
-                                    ml={"15px"}
-                                    mt={"2px"}>
-                                    DARK THEME
-                                </Text>
-                            </Box>
-                        </Box>
-                    </Box>
-                </Box>
+            <Box
+              layerStyle={"flexColumn"}
+              cursor={"pointer"}
+              onClick={() => {
+                toggleColorMode();
+              }}
+            >
+              <Image
+                src=" /images/LightTheme.svg"
+                w="183px"
+                h="133px"
+                alt=""
+              ></Image>
+              <Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
+                <DynamicIcon
+                  name={colorMode === "light" ? "green_tick" : "unticked"}
+                />
+                <Text
+                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  variant={" h6"}
+                  textTransform={"uppercase"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFF" }}
+                  ml={"15px"}
+                  mt={"2px"}
+                >
+                  Light THEME
+                </Text>
+              </Box>
+            </Box>
 
-                <Box
-                    height={"350px"}
-                    flexShrink={"0"}
-                    borderRadius={"6px"}
-                    background={useColorModeValue("#FFFFFF", "#202020")}
-                    boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-                    ml={"33px"}
-                    mt={"40px"}
-                    mr={"20px"}>
-                    <Text
-                        variant={"contentHeading4"}
-                        ml={5}
-                        pt={5}>
-                        Account Settings
-                    </Text>
-                    <Box
-                        layerStyle={"flexSpaceBetween"}
-                        ml={"150px"}
-                        mt={"30px"}
-                        mr={"50px"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenterFlexStart"}>
-                            <Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
-                            <Box layerStyle={"flexColumn"} pb={"15px"}>
-                                <Text
-                                    variant={"SettingsText1"}
-                                    ml={"15px"}>
-                                    Web 3
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}
-                                >
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Verify
-                            </Text>
-                        </Button>
-                    </Box>
+            <Box
+              layerStyle={"flexColumn"}
+              cursor={"pointer"}
+              onClick={() => {
+                toggleColorMode();
+              }}
+            >
+              <Image
+                src="/images/DarkTheme.svg"
+                w="183px"
+                h="133px"
+                alt=""
+              ></Image>
+              <Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
+                <DynamicIcon
+                  name={colorMode === "dark" ? "green_tick" : "unticked"}
+                />
+                <Text
+                  color={useColorModeValue("#191919", "#FFFFFF")}
+                  layerStyle={" h6"}
+                  textTransform={"uppercase"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFF" }}
+                  ml={"15px"}
+                  mt={"2px"}
+                >
+                  DARK THEME
+                </Text>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
 
-                    <Box
-                        layerStyle={"flexSpaceBetween"}
-                        ml={"150px"}
-                        mt={"20px"}
-                        mr={"50px"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenter"}>
-                            <Image src="/images/Google.svg" mb={"20px"} ml={"7px"} alt=""></Image>
-                            <Box
-                                flexDirection={"column"}
-                                mb={"17px"}
-                                ml={"5px"}>
-                                <Text
-                                    variant={"SettingsText1"}
-                                    ml={"15px"}>
-                                    Email
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}>
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Add Email
-                            </Text>
-                        </Button>
-                    </Box>
+        <Box
+          height={"350px"}
+          flexShrink={"0"}
+          borderRadius={"6px"}
+          background={useColorModeValue("#FFFFFF", "#202020")}
+          boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+          ml={"33px"}
+          mt={"40px"}
+          mr={"20px"}
+        >
+          <Text variant={"contentHeading3"} fontWeight={"400"} ml={5} pt={5}>
+            Account Settings
+          </Text>
+          <Box
+            layerStyle={"flexSpaceBetween"}
+            ml={"150px"}
+            mt={"30px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenterFlexStart"}>
+              <Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
+              <Box layerStyle={"flexColumn"} pb={"15px"}>
+                <Text variant={"SettingsText1"} ml={"15px"}>
+                  Web 3
+                </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Verify
+              </Text>
+            </Button>
+          </Box>
 
-                    <Box
-                        layerStyle={"flexSpaceBetween"}
-                        ml={"150px"}
-                        mt={"20px"}
-                        mr={"50px"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenterFlexStart"}>
-                            <Image src="/images/Twitter.svg" mb={"20px"} ml={"7px"} alt=""></Image>
-                            <Box
-                                layerStyle={"flexColumn"}
-                                mb={"17px"}
-                                ml={"5px"}>
-                                <Text
-                                    variant={" SettingsText1"}
-                                    ml={"15px"}>
-                                    Twitter
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}>
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Add Twitter
-                            </Text>
-                        </Button>
-                    </Box>
-                </Box>
+          <Box
+            layerStyle={"flexSpaceBetween"}
+            ml={"150px"}
+            mt={"20px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenter"}>
+              <Image
+                src="/images/Google.svg"
+                mb={"20px"}
+                ml={"7px"}
+                alt=""
+              ></Image>
+              <Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
+                <Text variant={"SettingsText1"} ml={"15px"}>
+                  Email
+                </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Add Email
+              </Text>
+            </Button>
+          </Box>
 
-                {
-                    (preLoadedData?.data === null || preLoadedData?.data === undefined)
-                        ?
-                        (
-                            <>
-                                <Box layerStyle={"flexSpaceBetween"}
-                                    p={"50px 35px 90px 50px"}>
-                                    <Text variant={"contentHeading4"}>
-                                        Login to BetygFi
-                                    </Text>
-                                    {/* <Text
+          <Box
+            layerStyle={"flexSpaceBetween"}
+            ml={"150px"}
+            mt={"20px"}
+            mr={"50px"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenterFlexStart"}>
+              <Image
+                src="/images/Twitter.svg"
+                mb={"20px"}
+                ml={"7px"}
+                alt=""
+              ></Image>
+              <Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
+                <Text variant={" SettingsText1"} ml={"15px"}>
+                  Twitter
+                </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Add Twitter
+              </Text>
+            </Button>
+          </Box>
+        </Box>
+
+        {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
+          <>
+            <Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
+              <Text variant={"contentHeading3"} fontWeight={"400"}>
+                Login to BetygFi
+              </Text>
+              {/* <Text
                                         variant={"SettingsText3"}
                                         ml={"50px"}
                                         mt={"3px"}>
                                         After logging out, the verification information for the current address will be deleted from your browser.
                                     </Text> */}
-                                    <Button
-                                        width={"116px"}
-                                        height={"28px"}
-                                        cursor={"pointer"}
-                                        onClick={onLoginModalOpen}
-                                        ml={"60px"}
-                                        variant={"outline"}
-                                        border={"1px"}>
-                                        <Text variant={"SettingsButtonText2"}>
-                                            Login
-                                        </Text>
-                                    </Button>
-                                </Box>
-                            </>
-                        )
-                        :
-                        (
-                            <>
-                                <Box layerStyle={"flexSpaceBetween"}
-                                    p={"50px 35px 90px 50px"}>
-                                    <Text variant={"contentHeading4"}>
-                                        Logout of BetygFi
-                                    </Text>
-                                    <Text
-                                        variant={"SettingsText3"}
-                                        ml={"50px"}
-                                        mt={"3px"}>
-                                        After logging out, the verification information for the current address will be deleted from your browser.
-                                    </Text>
-                                    <Button
-                                        width={"116px"}
-                                        height={"28px"}
-                                        ml={"60px"}
-                                        variant={"outline"}
-                                        border={"1px"}
-                                        onClick={() => dispatch(LogoutReducer())}>
-                                        <Text variant={"SettingsButtonText2"}>
-                                            Logout
-                                        </Text>
-                                    </Button>
-                                </Box>
-                            </>
-                        )
-                }
+              <Button
+                width={"116px"}
+                height={"28px"}
+                cursor={"pointer"}
+                onClick={onLoginModalOpen}
+                ml={"60px"}
+                variant={"outline"}
+                border={"1px"}
+              >
+                <Text
+                  variant={"SettingsButtonText"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFFFFF" }}
+                >
+                  Login
+                </Text>
+              </Button>
             </Box>
-            {/* Mobile Optimization Part */}
+          </>
+        ) : (
+          <>
+            <Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
+              <Text variant={"contentHeading3"} fontWeight={"400"}>
+                Logout of BetygFi
+              </Text>
+              <Text variant={"SettingsText3"} ml={"50px"} mt={"3px"}>
+                After logging out, the verification information for the current
+                address will be deleted from your browser.
+              </Text>
+              <Button
+                width={"116px"}
+                height={"28px"}
+                ml={"60px"}
+                variant={"outline"}
+                border={"1px"}
+                onClick={() => dispatch(LogoutReducer())}
+              >
+                <Text
+                  variant={"SettingsButtonText"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFFFFF" }}
+                >
+                  Logout
+                </Text>
+              </Button>
+            </Box>
+          </>
+        )}
+      </Box>
+      {/* Mobile Optimization Part */}
+
+      <Box
+        display={{ base: "block", md: "none" }}
+        width={"100%"}
+        background={useColorModeValue("#F0F0F5", "#191919")}
+      >
+        <Text variant={"contentHeading2"} p={"54px 0px 29px 15px"}>
+          Settings
+        </Text>
+
+        <Box
+          height={"650px"}
+          flexShrink={"0"}
+          borderRadius={"6px"}
+          background={useColorModeValue("#FFFFFF", "#202020")}
+          boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+          mx={"15px"}
+        >
+          <Box p={"15px 0px 15px 21px"}>
+            <Text variant={"contentHeading3"} fontWeight={"400"}>
+              Theme
+            </Text>
+          </Box>
+          <Box layerStyle={"flexColumn"}>
+            <Box layerStyle={"flexColumn"} cursor={"pointer"}>
+              <Box layerStyle={"flexCenterFlexStart"}>
+                <Image src="/images/SelectBox.svg" alt="" ml={"21px"}></Image>
+                <Box ml={"10px"}>
+                  <Text
+                    variant={" h6"}
+                    textTransform={"uppercase"}
+                    _light={{ color: "#191919" }}
+                    _dark={{ color: "#FFF" }}
+                  >
+                    System Default
+                  </Text>
+                </Box>
+              </Box>
+              <Image
+                src="/images/SystemDefault.svg"
+                w="183px"
+                h="133px"
+                alt=""
+                mt={"12px"}
+                ml={"21px"}
+              ></Image>
+            </Box>
 
             <Box
-                display={{ base: "block", md: "none" }}
-                width={"100%"}
-                background={useColorModeValue("#F0F0F5", "#191919")}>
-                <Text
-                    variant={"contentHeading2"}
-                    p={"54px 0px 29px 15px"}>
-                    Settings
+              layerStyle={"flexColumn"}
+              cursor={"pointer"}
+              onClick={() => {
+                toggleColorMode();
+              }}
+            >
+              <Box layerStyle={"flexCenterFlexStart"} mt={"34px"}>
+                <Box ml={"21px"}>
+                  <DynamicIcon
+                    name={colorMode === "light" ? "green_tick" : "unticked"}
+                  />
+                </Box>
+                <Box ml={"10px"}>
+                  <Text
+                    variant={" h6"}
+                    textTransform={"uppercase"}
+                    _light={{ color: "#191919" }}
+                    _dark={{ color: "#FFF" }}
+                  >
+                    Light THEME
+                  </Text>
+                </Box>
+              </Box>
+              <Image
+                src="/images/LightTheme.svg"
+                w="183px"
+                h="133px"
+                alt=""
+                mt={"12px"}
+                ml={"21px"}
+              ></Image>
+            </Box>
+
+            <Box
+              layerStyle={"flexColumn"}
+              cursor={"pointer"}
+              onClick={() => {
+                toggleColorMode();
+              }}
+            >
+              <Box layerStyle={"flexCenterFlexStart"} mt={"34px"}>
+                <Box ml={"21px"}>
+                  <DynamicIcon
+                    name={colorMode === "dark" ? "green_tick" : "unticked"}
+                  />
+                </Box>
+                <Box ml={"10px"}>
+                  <Text
+                    layerStyle={" h6"}
+                    textTransform={"uppercase"}
+                    _light={{ color: "#191919" }}
+                    _dark={{ color: "#FFF" }}
+                  >
+                    DARK THEME
+                  </Text>
+                </Box>
+              </Box>
+              <Image
+                src="/images/DarkTheme.svg"
+                w="183px"
+                h="133px"
+                alt=""
+                mt={"12px"}
+                ml={"21px"}
+              ></Image>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box
+          height={"330px"}
+          flexShrink={"0"}
+          borderRadius={"6px"}
+          background={useColorModeValue("#FFFFFF", "#202020")}
+          boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+          mx={"15px"}
+          mt={"30px"}
+        >
+          <Box p={"15px 0px 20px 21px"}>
+            <Text variant={"contentHeading3"} fontWeight={"400"}>
+              Account Settings
+            </Text>
+          </Box>
+          <Box
+            mx={"23px"}
+            layerStyle={"flexSpaceBetween"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenterFlexStart"}>
+              <Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
+              <Box layerStyle={"flexColumn"} pb={"15px"}>
+                <Text variant={"SettingsText1"} ml={"15px"}>
+                  Web 3
                 </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Verify
+              </Text>
+            </Button>
+          </Box>
 
-                <Box
-                    height={"650px"}
-                    flexShrink={"0"}
-                    borderRadius={"6px"}
-                    background={useColorModeValue("#FFFFFF", "#202020")}
-                    boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-                    mx={"15px"}>
-                    <Box p={"15px 0px 15px 21px"}>
-                        <Text variant={"contentHeading4"}>Theme</Text>
-                    </Box>
-                    <Box layerStyle={"flexColumn"}>
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}>
-                            <Box layerStyle={"flexCenterFlexStart"}>
-                                <Image src="/images/SelectBox.svg" alt="" ml={"21px"}></Image>
-                                <Box ml={"10px"}>
-                                    <Text variant={"ThemeText"}>
-                                        System Default
-                                    </Text>
-                                </Box>
-                            </Box>
-                            <Image src="/images/SystemDefault.svg" w="183px" h="133px" alt="" mt={"12px"} ml={"21px"}></Image>
-                        </Box>
+          <Box
+            layerStyle={"flexSpaceBetween"}
+            mx={"23px"}
+            mt={"21px"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenter"}>
+              <Image
+                src="/images/Google.svg"
+                mb={"20px"}
+                ml={"7px"}
+                alt=""
+              ></Image>
+              <Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
+                <Text variant={"SettingsText1"} ml={"15px"}>
+                  Email
+                </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Add Email
+              </Text>
+            </Button>
+          </Box>
 
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}
-                            onClick={() => {
-                                toggleColorMode();
-                            }}>
-                            <Box
-                                layerStyle={"flexCenterFlexStart"}
-                                mt={"34px"}>
-                                    <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "light" ? "green_tick" : "unticked"}
-                                />
-                                </Box>
-                                <Box ml={"10px"}>
-                                    <Text variant={"ThemeText"}>
-                                        Light THEME
-                                    </Text>
-                                </Box>
-                            </Box>
-                            <Image src="/images/LightTheme.svg" w="183px" h="133px" alt="" mt={"12px"} ml={"21px"}></Image>
-                        </Box>
+          <Box
+            layerStyle={"flexSpaceBetween"}
+            mx={"23px"}
+            mt={"21px"}
+            borderBottom={useColorModeValue(
+              "1px solid #191919",
+              "1px solid #FFFFFF"
+            )}
+          >
+            <Box layerStyle={"flexCenterFlexStart"}>
+              <Image
+                src="/images/Twitter.svg"
+                mb={"20px"}
+                ml={"7px"}
+                alt=""
+              ></Image>
+              <Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
+                <Text variant={" SettingsText1"} ml={"15px"}>
+                  Twitter
+                </Text>
+                <Text variant={"SettingsText2"} ml={"15px"}>
+                  Not Added
+                </Text>
+              </Box>
+            </Box>
+            <Button
+              width={"116px"}
+              height={"28px"}
+              flexShrink={"0"}
+              background={useColorModeValue("#202020", "#FFFFFF")}
+            >
+              <Text
+                variant={"SettingsButtonText"}
+                _light={{ color: "#FFFFFF" }}
+                _dark={{ color: "#191919" }}
+              >
+                Add Twitter
+              </Text>
+            </Button>
+          </Box>
+        </Box>
 
-                        <Box
-                            layerStyle={"flexColumn"}
-                            cursor={"pointer"}
-                            onClick={() => {
-                                toggleColorMode();
-                            }}>
-                            <Box
-                                layerStyle={"flexCenterFlexStart"}
-                                mt={"34px"}>
-                                <Box ml={"21px"}>
-                                 <DynamicIcon 
-                                    name={colorMode === "dark" ? "green_tick" : "unticked"}
-                                />
-                                </Box>
-                                <Box ml={"10px"}>
-                                    <Text layerStyle={"ThemeText"}>
-                                        DARK THEME
-                                    </Text>
-                                </Box>
-                            </Box>
-                            <Image src="/images/DarkTheme.svg" w="183px" h="133px" alt="" mt={"12px"} ml={"21px"}></Image>
-                        </Box>
-                    </Box>
-                </Box>
-
-                <Box
-                    height={"330px"}
-                    flexShrink={"0"}
-                    borderRadius={"6px"}
-                    background={useColorModeValue("#FFFFFF", "#202020")}
-                    boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-                    mx={"15px"}
-                    mt={"30px"}>
-                    <Box p={"15px 0px 20px 21px"}>
-                        <Text variant={"contentHeading4"}>
-                            Account Settings
-                        </Text>
-                    </Box>
-                    <Box
-                        mx={"23px"}
-                        layerStyle={"flexSpaceBetween"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenterFlexStart"}>
-                            <Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
-                            <Box layerStyle={"flexColumn"} pb={"15px"}>
-                                <Text
-                                    variant={"SettingsText1"}
-                                    ml={"15px"}>
-                                    Web 3
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}
-                                >
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Verify
-                            </Text>
-                        </Button>
-                    </Box>
-
-                    <Box
-                        layerStyle={"flexSpaceBetween"}
-                        mx={"23px"}
-                        mt={"21px"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenter"}>
-                            <Image src="/images/Google.svg" mb={"20px"} ml={"7px"} alt=""></Image>
-                            <Box
-                                flexDirection={"column"}
-                                mb={"17px"}
-                                ml={"5px"}>
-                                <Text
-                                    variant={"SettingsText1"}
-                                    ml={"15px"}>
-                                    Email
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}>
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Add Email
-                            </Text>
-                        </Button>
-                    </Box>
-
-                    <Box
-                        layerStyle={"flexSpaceBetween"}
-                        mx={"23px"}
-                        mt={"21px"}
-                        borderBottom={useColorModeValue("1px solid #191919", "1px solid #FFFFFF")}>
-                        <Box layerStyle={"flexCenterFlexStart"}>
-                            <Image src="/images/Twitter.svg" mb={"20px"} ml={"7px"} alt=""></Image>
-                            <Box
-                                layerStyle={"flexColumn"}
-                                mb={"17px"}
-                                ml={"5px"}>
-                                <Text
-                                    variant={" SettingsText1"}
-                                    ml={"15px"}>
-                                    Twitter
-                                </Text>
-                                <Text
-                                    variant={"SettingsText2"}
-                                    ml={"15px"}>
-                                    Not Added
-                                </Text>
-                            </Box>
-                        </Box>
-                        <Button
-                            width={"116px"}
-                            height={"28px"}
-                            flexShrink={"0"}
-                            background={useColorModeValue("#202020", "#FFFFFF")}>
-                            <Text variant={"SettingsButtonText"}>
-                                Add Twitter
-                            </Text>
-                        </Button>
-                    </Box>
-                </Box>
-
-                {
-                    (preLoadedData?.data === null || preLoadedData?.data === undefined)
-                        ?
-                        (
-                            <>
-                                <Box layerStyle={"flexColumn"}
-                                    p={"30px 15px 90px 15px"}>
-                                    <Text variant={"contentHeading4"}>
-                                        Login to BetygFi
-                                    </Text>
-                                    {/* <Box
+        {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
+          <>
+            <Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
+              <Text variant={"contentHeading3"} fontWeight={"400"}>
+                Login to BetygFi
+              </Text>
+              {/* <Box
                                         mr={"15px"}
                                         mt={"15px"}>
                                         <Text variant={"SettingsText3"}>
                                             After logging out, the verification information for the current address will be deleted from your browser.
                                         </Text>
                                     </Box> */}
-                                    <Button
-                                        width={"100%"}
-                                        height={"28px"}
-                                        variant={"outline"}
-                                        cursor={"pointer"}
-                                        onClick={onLoginModalOpen}
-                                        mt={"15px"}
-                                        border={"1px"}>
-                                        <Text variant={"SettingsButtonText2"}>
-                                            Login
-                                        </Text>
-                                    </Button>
-                                </Box>
-                            </>
-                        )
-                        :
-                        (
-                            <>
-                                <Box layerStyle={"flexColumn"}
-                                    p={"30px 15px 90px 15px"}>
-                                    <Text variant={"contentHeading4"}>
-                                        Logout of BetygFi
-                                    </Text>
-                                    <Box
-                                        mr={"15px"}
-                                        mt={"15px"}>
-                                        <Text variant={"SettingsText3"}>
-                                            After logging out, the verification information for the current address will be deleted from your browser.
-                                        </Text>
-                                    </Box>
-                                    <Button
-                                        width={"100%"}
-                                        height={"28px"}
-                                        variant={"outline"}
-                                        mt={"15px"}
-                                        border={"1px"}
-                                        onClick={() => dispatch(LogoutReducer())}>
-                                        <Text variant={"SettingsButtonText2"}>
-                                            Logout
-                                        </Text>
-                                    </Button>
-                                </Box>
-                            </>
-                        )
-                }
+              <Button
+                width={"100%"}
+                height={"28px"}
+                variant={"outline"}
+                cursor={"pointer"}
+                onClick={onLoginModalOpen}
+                mt={"15px"}
+                border={"1px"}
+              >
+                <Text
+                  variant={"SettingsButtonText"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFFFFF" }}
+                >
+                  Login
+                </Text>
+              </Button>
             </Box>
-            <LoginPage isOpen={isLoginModalOpen} onOpen={onLoginModalOpen} onClose={onLoginModalClose} />
-        </>
-    )
+          </>
+        ) : (
+          <>
+            <Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
+              <Text variant={"contentHeading3"} fontWeight={"400"}>
+                Logout of BetygFi
+              </Text>
+              <Box mr={"15px"} mt={"15px"}>
+                <Text variant={"SettingsText3"}>
+                  After logging out, the verification information for the
+                  current address will be deleted from your browser.
+                </Text>
+              </Box>
+              <Button
+                width={"100%"}
+                height={"28px"}
+                variant={"outline"}
+                mt={"15px"}
+                border={"1px"}
+                onClick={() => dispatch(LogoutReducer())}
+              >
+                <Text
+                  variant={"SettingsButtonText"}
+                  _light={{ color: "#191919" }}
+                  _dark={{ color: "#FFFFFF" }}
+                >
+                  Logout
+                </Text>
+              </Button>
+            </Box>
+          </>
+        )}
+      </Box>
+      <LoginPage
+        isOpen={isLoginModalOpen}
+        onOpen={onLoginModalOpen}
+        onClose={onLoginModalClose}
+      />
+    </>
+  );
 };
 
 export default Settings;

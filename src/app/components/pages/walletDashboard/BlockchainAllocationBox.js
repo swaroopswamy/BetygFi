@@ -2,8 +2,11 @@ import { useColorMode, Skeleton, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
-import TooltipComp from "@/app/components/tooltipComp";
-import CustomChart from "@/app/components/graph";
+import dynamic from "next/dynamic";
+
+const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
+const CustomChart = dynamic(() => import("@/app/components/graph"));
+
 const BlockchainAllocationBox = () => {
   const { colorMode } = useColorMode();
   const blockchainAllocationData = useSelector(

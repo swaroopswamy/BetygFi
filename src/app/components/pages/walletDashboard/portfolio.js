@@ -1,3 +1,4 @@
+"use client";
 import {
   Box,
   Image,
@@ -12,16 +13,12 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableContainer,
   Flex,
-  Spacer,
   Skeleton,
   useColorMode,
-  isLoaded,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,7 +26,9 @@ import {
   defiArrayChangedReducer,
   fetchWalletBalanceData,
 } from "@/redux/wallet_dashboard_data/dataSlice";
-import DefiTable from "./DefiTable";
+import dynamic from "next/dynamic";
+
+const DefiTable = dynamic(() => import("./DefiTable"));
 
 const PortfolioPanelComponent = () => {
   const { colorMode } = useColorMode();
@@ -162,17 +161,6 @@ const PortfolioPanelComponent = () => {
                 );
               })}
             </Box>
-
-            {/*  <Input
-              borderColor={useColorModeValue("#E8E8E8", "#333")}
-              bgColor={useColorModeValue("#F5F5F7", "#191919")}
-              color={useColorModeValue("#16171B", "#A8ADBD")}
-              fontSize={"10px"}
-              fontWeight={400}
-              w="207px"
-              placeholder="Search Assets"
-              //onChange={(e) => { searchAssetByNameHandler(e.target.value) }} 
-            /> */}
           </Box>
 
           <DefiTable />
@@ -183,495 +171,6 @@ const PortfolioPanelComponent = () => {
             DeFi Positions
           </Text>
         </Box>
-
-        {/* <Box
-          flex-shrink={"0"}
-          filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
-          paddingTop={"20px"}
-        >
-          <Accordion defaultIndex={[0]} allowMultiple background={useColorModeValue("#FFF", "#202020")}>
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex='1' textAlign='left'>
-                    <Flex>
-                      <Image src="/images/uniswap.svg" alt=""
-                        width={"30px"}
-                        height={"30px"}
-                        flexShrink={"0"}
-                        borderRadius={"150px"}
-                      ></Image>
-                      <Text
-                        color={useColorModeValue("#16171B", "#FFFFFF")}
-                        ml={"10px"}
-                        mt={"5px"}
-                      >
-                        Uniswap V3
-                      </Text>
-                      <Spacer />
-                      <Text
-                        color={useColorModeValue("#202020", "#FFFFFF")}
-                        mt={"5px"}
-                        paddingRight={"10px"}
-                      >
-                        $24,344,743.06
-                      </Text>
-                      <Box
-                        display={"flex"}
-                        flexDirection={"column"}
-                        justifyContent={"center"}
-                        flexShrink={"0"}
-                        mr={"30px"}
-                      >
-                        <Text
-                          color={useColorModeValue("#3A3A3A", "#FFFFFF")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          mt={"5px"}
-                        >
-                          Claimable: $884,938.19
-                        </Text>
-                      </Box>
-                      <Box mt={"4px"}>
-                        <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
-                          width={"24px"}
-                          height={"24px"}
-                          flex-shrink={"0"}
-                        ></Image>
-                      </Box>
-                    </Flex>
-                  </Box>
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4} paddingInlineStart={"1"} paddingInlineEnd={"1"}>
-                <TableContainer>
-                  <Table variant='simple'>
-                    <Thead>
-                      <Tr
-                        bg={useColorModeValue("#F5F5F7", "#191919")}
-                        width={"100%"}
-                        flex-shrink={"0"}
-                      >
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Pool</Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Liquidity Range</Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Fees Earned</Th>
-                        <Th
-                          color={useColorModeValue("#434347", "#A8ADBD")}
-                          fontSize={"10px"}
-                          fontStyle={"normal"}
-                          fontWeight={"400"}
-                          lineHeight={"20px"}
-                          letterSpacing={"1px"}
-                          textTransform={"uppercase"}
-                          textAlign={"left"}
-                        >
-                          Value(USD)</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                    <SkeletonRow isLoaded={isLoaded} />
-                      <Tr>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/weth.svg" alt=""></Image>
-                            <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"11px"}
-                                fontStyle={"normal"}
-                                fontWeight={"600"}
-                                lineHeight={"11px"}
-                                ml={"10px"}
-                                mt={"1px"}
-                              >
-                                24,278,200.00 BIT  +  6,330.63 WETH (0.3%)
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                                ml={"10px"}
-                                mt={"5px"}
-                              >
-                                $23,459,193.41
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                [2.95428e-39, 3.38492e+38]
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                BIT/WETH
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                826,329.68 BIT
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $398,335.53
-                              </Text>
-                            </Box>
-
-                            <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                262.03 WETH
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $486,579.60
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            $24,344,108.54
-                          </Text>
-                        </Td>
-                      </Tr>
-
-                      <Tr>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/weth.svg" alt=""></Image>
-                            <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"11px"}
-                                fontStyle={"normal"}
-                                fontWeight={"600"}
-                                lineHeight={"11px"}
-                                ml={"10px"}
-                                mt={"1px"}
-                              >
-                                24,278,200.00 BIT  +  6,330.63 WETH (0.3%)
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                                ml={"10px"}
-                                mt={"5px"}
-                              >
-                                $23,459,193.41
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                [2.95428e-39, 3.38492e+38]
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                BIT/WETH
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                826,329.68 BIT
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $398,335.53
-                              </Text>
-                            </Box>
-
-                            <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                262.03 WETH
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $486,579.60
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            $24,344,108.54
-                          </Text>
-                        </Td>
-                      </Tr>
-                      <Tr>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/weth.svg" alt=""></Image>
-                            <Image src="/images/BIT.svg" ml={"-15px"} alt=""></Image>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"11px"}
-                                fontStyle={"normal"}
-                                fontWeight={"600"}
-                                lineHeight={"11px"}
-                                ml={"10px"}
-                                mt={"1px"}
-                              >
-                                24,278,200.00 BIT  +  6,330.63 WETH (0.3%)
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                                ml={"10px"}
-                                mt={"5px"}
-                              >
-                                $23,459,193.41
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Box>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                [2.95428e-39, 3.38492e+38]
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                BIT/WETH
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Flex>
-                            <Image src="/images/BIT.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                826,329.68 BIT
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $398,335.53
-                              </Text>
-                            </Box>
-
-                            <Image src="/images/weth.svg" width={"15px"} height={"15px"} flex-shrink={"0"} borderRadius={"150px"} mt={"2px"} ml={"15px"} alt=""></Image>
-                            <Box
-                              ml={"5px"}>
-                              <Text
-                                color={useColorModeValue("#16171B", "#FFFFFF")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"20px"}
-                              >
-                                262.03 WETH
-                              </Text>
-                              <Text
-                                color={useColorModeValue("#000", "#A8ADBD")}
-                                fontSize={"10px"}
-                                fontStyle={"normal"}
-                                fontWeight={"400"}
-                                lineHeight={"12px"}
-                                opacity={"0.5"}
-                              >
-                                $486,579.60
-                              </Text>
-                            </Box>
-                          </Flex>
-                        </Td>
-                        <Td>
-                          <Text
-                            color={useColorModeValue("#16171B", "#FFFFFF")}
-                            fontSize={"10px"}
-                            fontStyle={"normal"}
-                            fontWeight={"400"}
-                            lineHeight={"20px"}
-                          >
-                            $24,344,108.54
-                          </Text>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                    <Tfoot>
-                    </Tfoot>
-                  </Table>
-                </TableContainer>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </Box> */}
 
         <Box
           flex-shrink={"0"}
@@ -685,19 +184,6 @@ const PortfolioPanelComponent = () => {
             tableData={walletBalanceData}
           />
         </Box>
-
-        {/* <Box
-          flex-shrink={"0"}
-          filter={"drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))"}
-          paddingTop={"20px"}
-          paddingBottom={"25px"}
-        >
-          <PorfolioAccordion 
-            name={"Fantom"}
-            value={"$15,664,793.04"}
-            thread={["Pool", "Unlock Time", "Value (USD)"]}
-          />
-        </Box> */}
       </Box>
     </>
   );
@@ -719,46 +205,8 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
           <h2>
             <AccordionButton>
               <Box as="span" flex="1" textAlign="left">
-                {/* <Flex>
-                  <Image src="/images/Fantom.svg" alt=""
-                    width={"30px"}
-                    height={"30px"}
-                    flexShrink={"0"}
-                    borderRadius={"150px"}
-                  ></Image>
-                  <Text
-                    color={useColorModeValue("#202020", "#FFFFFF")}
-                    fontSize={"15px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    ml={"10px"}
-                    mt={"5px"}
-                  >
-                    {name}
-                  </Text>
-                  <Spacer />
-                  <Text
-                    color={useColorModeValue("#202020", "#FFFFFF")}
-                    fontSize={"15px"}
-                    fontStyle={"normal"}
-                    fontWeight={"400"}
-                    lineHeight={"20px"}
-                    mt={"25px"}
-                    paddingRight={"20px"}
-                  >
-                    {value}
-                  </Text>
-                </Flex> */}
-
                 <Box as="span" flex="1" textAlign="left">
                   <Flex>
-                    {/* <Image src="/images/Fantom.svg" alt=""
-                  width={"30px"}
-                  height={"30px"}
-                  flexShrink={"0"}
-                  borderRadius={"150px"}
-                ></Image> */}
                     <Text
                       color={useColorModeValue("#202020", "#FFFFFF")}
                       fontSize={"14px"}
@@ -773,13 +221,6 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                 </Box>
               </Box>
 
-              {/* <Box>
-                <Image src={useColorModeValue("/images/Icon.svg", "/images/Icon(black).svg")} alt=""
-                  width={"24px"}
-                  height={"24px"}
-                  flex-shrink={"0"}
-                ></Image>
-              </Box> */}
               <Box
                 borderRadius="50%"
                 border={useColorModeValue(
@@ -969,123 +410,122 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
               tableData?.data?.defiBalance &&
               tableData?.data?.defiBalance?.map((item, i) => {
                 return (
-                  <>
+                  <Box
+                    key={i}
+                    display={{ base: "flex", md: "none" }}
+                    flexDirection={"column"}
+                    p={2}
+                  >
                     <Box
-                      display={{ base: "flex", md: "none" }}
+                      display={"flex"}
+                      alignItems={"start"}
                       flexDirection={"column"}
-                      p={2}
+                      mb={"15px"}
                     >
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
                       >
+                        Token
+                      </Text>
+                      <Flex>
+                        <Image
+                          width={"24px"}
+                          height={"24px"}
+                          src={item?.tokenLogoUrl}
+                          alt=""
+                        ></Image>
                         <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
-                          _dark={{
-                            color: "#ADADAD",
-                          }}
-                        >
-                          Token
-                        </Text>
-                        <Flex>
-                          <Image
-                            width={"24px"}
-                            height={"24px"}
-                            src={item?.tokenLogoUrl}
-                            alt=""
-                          ></Image>
-                          <Text
-                            _light={{
-                              color: "#16171B",
-                            }}
-                            _dark={{
-                              color: "#FFFFFF",
-                            }}
-                            fontSize={"14px"}
-                            fontStyle={"normal"}
-                            fontWeight={"600"}
-                            lineHeight={"11px"}
-                            mt={"10px"}
-                            ml={"10px"}
-                          >
-                            {item?.token}
-                          </Text>
-                        </Flex>
-                      </Box>
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
-                      >
-                        <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
-                          _dark={{
-                            color: "#ADADAD",
-                          }}
-                        >
-                          Balance
-                        </Text>
-                        <Text
-                          _dark={{
-                            color: "#FFF",
-                          }}
                           _light={{
                             color: "#16171B",
                           }}
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                        ></Text>
-                      </Box>
-                      <Box
-                        display={"flex"}
-                        alignItems={"start"}
-                        flexDirection={"column"}
-                        mb={"15px"}
-                      >
-                        <Text
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                          mr={"20px"}
-                          _light={{
-                            color: "#8F8F8F",
-                          }}
                           _dark={{
-                            color: "#ADADAD",
+                            color: "#FFFFFF",
                           }}
+                          fontSize={"14px"}
+                          fontStyle={"normal"}
+                          fontWeight={"600"}
+                          lineHeight={"11px"}
+                          mt={"10px"}
+                          ml={"10px"}
                         >
-                          % Share
+                          {item?.token}
                         </Text>
-                        <Text
-                          _dark={{
-                            color: "#FFF",
-                          }}
-                          _light={{
-                            color: "#16171B",
-                          }}
-                          fontSize={"14px"}
-                          fontWeight={"400"}
-                          letterSpacing={"1px"}
-                        ></Text>
-                      </Box>
+                      </Flex>
                     </Box>
-                  </>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
+                      >
+                        Balance
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF",
+                        }}
+                        _light={{
+                          color: "#16171B",
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      ></Text>
+                    </Box>
+                    <Box
+                      display={"flex"}
+                      alignItems={"start"}
+                      flexDirection={"column"}
+                      mb={"15px"}
+                    >
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                        mr={"20px"}
+                        _light={{
+                          color: "#8F8F8F",
+                        }}
+                        _dark={{
+                          color: "#ADADAD",
+                        }}
+                      >
+                        % Share
+                      </Text>
+                      <Text
+                        _dark={{
+                          color: "#FFF",
+                        }}
+                        _light={{
+                          color: "#16171B",
+                        }}
+                        fontSize={"14px"}
+                        fontWeight={"400"}
+                        letterSpacing={"1px"}
+                      ></Text>
+                    </Box>
+                  </Box>
                 );
               })}
           </AccordionPanel>

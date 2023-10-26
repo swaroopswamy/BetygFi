@@ -1,5 +1,5 @@
 import { Text, Box, useColorModeValue, Image, Button, useColorMode } from "@chakra-ui/react";
-
+import React from "react";
 const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
   const { colorMode } = useColorMode();
 

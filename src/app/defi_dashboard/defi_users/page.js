@@ -1,11 +1,7 @@
 "use client";
+import React from "react";
 import {
-  Grid,
   Icon,
-  GridItem,
-  Input,
-  Table,
-  TableCaption,
   Text,
   Td,
   Tr,
@@ -14,16 +10,13 @@ import {
   useColorModeValue,
   Image,
   useColorMode,
-  colorMode,
 } from "@chakra-ui/react";
-import { blockchains } from "../../../../util/constant";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
 import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
-import GenericBigTableComponent from "/src/app/components/pages/defiDashboard/GenericBigTable";
+import dynamic from "next/dynamic";
+const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages/defiDashboard/GenericBigTable'));
 
 function DefiUsers() {
   const router = useRouter();

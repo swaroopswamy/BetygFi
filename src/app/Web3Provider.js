@@ -1,22 +1,31 @@
-"use client"
-import React from "react";
-import { ThirdwebWeb3Provider } from "@3rdweb/hooks";
-import "regenerator-runtime/runtime";
+"use client";
 
 
-export const supportedChainIds = [1, 3, 4, 5, 42, 1337, 43114];
+import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi'
 
-export const connectors = {
-    injected: {},
-};
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { publicProvider } from 'wagmi/providers/public'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
-export function Web3Provider({ children }) {
-    return (
-        <ThirdwebWeb3Provider
-            supportedChainIds={supportedChainIds}
-            connectors={connectors}
-        >
-            {children}
-        </ThirdwebWeb3Provider>
-    )
+// Configure chains & providers with the Alchemy provider.
+// Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+  [mainnet],
+  [alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), publicProvider()],
+)
+
+// Set up wagmi config
+const config = createConfig({
+  autoConnect: true,
+  connectors: [
+    new MetaMaskConnector({ chains }),
+  ],
+  publicClient,
+  webSocketPublicClient,
+})
+
+
+
+export const WagmiProvider = ({ children }) => {
+  return <WagmiConfig config={config}>{children}</WagmiConfig>;
 };

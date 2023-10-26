@@ -6,8 +6,11 @@ import {
   ProtocolAllocationsDesktop,
   ProtocolAllocationsMobile,
 } from "./helper";
-import TooltipComp from "../../tooltipComp";
-import GenericTable from "../../table/index";
+import dynamic from 'next/dynamic';
+
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const GenericTable = dynamic(() => import("../../table/index"));
+
 
 const ProtocolAllocationBox = () => {
   const protocolAllocationData = useSelector(
@@ -131,11 +134,18 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"}>
+        <Text variant={"h6"}
+          textAlign={"left"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           Value
         </Text>
 
-        <Text variant={"smallTableBodyMobile"} textAlign={"left"} ml={"20px"}>
+        <Text variant={"h6"}
+          textAlign={"left"}
+          ml={"20px"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           USD {USDollar.format(item?.value)}
         </Text>
       </Box>

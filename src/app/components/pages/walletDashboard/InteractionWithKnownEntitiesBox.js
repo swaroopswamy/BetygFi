@@ -7,15 +7,17 @@ import {
   Td,
   useColorMode,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
-import GenericTable from "../../table/index";
+
 import {
   KnownEntitiesTableHeader,
   KnownEntitiesDesktop,
   KnownEntitiesMobile,
 } from "./helper";
-import TooltipComp from "../../tooltipComp";
+import dynamic from 'next/dynamic';
+
+const TooltipComp = dynamic(() => import("../../tooltipComp"));
+const GenericTable = dynamic(() => import("../../table/index"));
 
 const InteractionWithKnownEntitiesBox = () => {
   return (
@@ -145,8 +147,13 @@ const TableBodyRowMobilePanelComp = ({ item, i }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box layerStyle={"flexCenter"}>
-        <Text variant={"smallTableBodyMobile"}>Value</Text>
-        <Text variant={"smallTableBodyMobile"} ml={"20px"}>
+        <Text variant={"h6"} _
+          light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>Value</Text>
+        <Text variant={"h6"}
+          ml={"20px"}
+          _light={{ color: "#16171B" }}
+          _dark={{ color: "#FFFFFF" }}>
           USD {USDollar.format(item?.value)}
         </Text>
       </Box>

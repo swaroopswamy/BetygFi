@@ -1,10 +1,15 @@
 /**
  * @type {import('next').NextConfig}
  */
-require("dotenv").config();
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 const webpack = require("webpack");
+
 const nextConfig = {
   output: "export",
+  reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -16,15 +21,10 @@ const nextConfig = {
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       })
     );
-
     return config;
   },
-  images: {
-    unoptimized: true,
-  },
-  optimizeFonts: false,
   distDir: "out",
-  reactStrictMode: false,
+  images: { unoptimized: true }
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

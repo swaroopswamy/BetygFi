@@ -1,7 +1,7 @@
 import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue } from "@chakra-ui/react";
 import LastUpdate from "../lastUpdate";
 import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-
+import React from "react";
 const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, setTableLimit, time, ...rest }) => {
   const { colorMode } = useColorMode();
 

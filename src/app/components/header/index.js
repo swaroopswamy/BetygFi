@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Box,
   Flex,
@@ -29,6 +30,13 @@ import {
   sidebarCollapsedReducer,
 } from "../../../redux/app_data/dataSlice";
 import { MobileSidebar } from "../sidebar/index";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from "wagmi";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
@@ -55,13 +63,14 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
   const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
-  const isMobileSidebarCollapsed = useSelector(
-    (state) => state?.appData?.isMobileSidebarCollapsed
-  );
-  const MobileSidebarHandler = (value) => {
-    dispatch(mobileSidebarCollapsedReducer(value));
-  };
-
+  const {
+    address: ConnectedWalletAddress,
+    connector,
+    isConnected,
+  } = useAccount();
+  const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
+  const { data: ensName } = useEnsName({ ConnectedWalletAddress });
+  const { disconnect } = useDisconnect();
   const handleSearchByWalletAddress = (e) => {
     if (e.key === "Enter") {
       if (!isEmpty(e.target.value)) {
@@ -89,7 +98,6 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     dispatch(FetchLocalStorageData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <>
       <Flex
@@ -138,7 +146,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               }}
               value={searchWalletAddressValue ?? ""}
               bgColor={"transparent"}
-              variant={"h6"}
+              variant={"h5"}
+              letterSpacing={"1.2px"}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#A8ADBD" }}
               w="100%"
               placeholder="Search Wallet Address"
               onKeyDown={(e) => {
@@ -166,7 +177,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
             </label>
           </div>
 
-          {preLoadedData?.data === null || preLoadedData?.data === undefined ? (
+          {!isConnected && LoggedInData?.data === null ? (
             <>
               <Box
                 ml="20px"
@@ -183,7 +194,14 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   p="15px 20px"
                   minW="150px"
                 >
-                  <Text variant={"ConectWalletText"}>Connect Wallet</Text>
+                  <Text
+                    variant={"SearchText"}
+                    fontWeight={"600"}
+                    _light={{ color: "#FAFAFB" }}
+                    _dark={{ color: "#191919" }}
+                  >
+                    Connect Wallet
+                  </Text>
                 </Box>
               </Box>
             </>
@@ -198,28 +216,28 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 minW="270px"
               >
                 <Image
-                  src="/images/profile_img.png"
+                  src={"/images/profile_img.png"}
                   w="36px"
                   h="36px"
                   borderRadius={"50%"}
                   alt="search_icon"
                 />
                 <Box layerStyle={"flexColumn"} ml="10px" mr="20px" minW="150px">
-                  <Text variant={"TopWalletsText"}>No Name</Text>
-                  <Text variant={"h6"}>
-                    {!isEmpty(LoggedInData?.data)
-                      ? LoggedInData?.data?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        LoggedInData?.data?.user?._id.slice(-5)
-                      : preLoadedData?.data?.token?.user?._id
-                          .split("")
-                          .join("")
-                          .substring(0, 6) +
-                        "..." +
-                        preLoadedData?.data?.token?.user?._id.slice(-5)}
+                  <Text variant={"TopWalletsText"}>
+                    {ensName ? ensName : "No name"}
+                  </Text>
+                  <Text
+                    variant={"h5"}
+                    letterSpacing={"1.2px"}
+                    _light={{ color: "#16171B" }}
+                    _dark={{ color: "#A8ADBD" }}
+                  >
+                    {LoggedInData?.data?.user?._id
+                      .split("")
+                      .join("")
+                      .substring(0, 6) +
+                      "..." +
+                      LoggedInData?.data?.user?._id.slice(-5)}
                   </Text>
                 </Box>
 
@@ -234,7 +252,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                   cursor={"pointer"}
                   borderRadius={"50%"}
                   alt="search_icon"
-                  onClick={() => dispatch(LogoutReducer())}
+                  onClick={() => {
+                    disconnect();
+                    dispatch(LogoutReducer());
+                  }}
                 />
               </Box>
             </>
@@ -335,7 +356,10 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
               borderRadius="0px"
               borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
               bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-              variant={"h6"}
+              variant={"h5"}
+              letterSpacing={"1.2px"}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#A8ADBD" }}
               w="100%"
               placeholder="Search Wallet Address"
               value={searchWalletAddressValue ?? ""}
@@ -355,7 +379,9 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 handleMobileSearchByWalletAddress();
               }}
             >
-              <Text variant={"SearchText"}>Search</Text>
+              <Text variant={"SearchText"} fontWeight={"500"}>
+                Search
+              </Text>
             </Box>
           </InputGroup>
         </Box>

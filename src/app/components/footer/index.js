@@ -11,10 +11,8 @@ import { RiHomeLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
-import { Manrope } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-const manrope = Manrope({ weight: ["400"], subsets: ["latin"] });
 
 const Footer = ({ ...rest }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -62,8 +60,9 @@ const Footer = ({ ...rest }) => {
           >
             <Text
               mr={{ base: 2, md: 4 }}
-              variant={"smallTableBodyMobile"}
-              fontWeight={manrope.style.fontWeight}
+              variant={"h6"}
+              _light={{ color: "#16171B" }}
+              _dark={{ color: "#FFFFFF" }}
               paddingLeft={"10px"}
               opacity={"0.6"}
             >

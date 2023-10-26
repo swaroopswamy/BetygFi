@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Table,
   Text,
@@ -20,7 +21,6 @@ import {
   Button,
 } from "@chakra-ui/react";
 import dynamic from 'next/dynamic'
-// const Accordion = dynamic(import('@chakra-ui/react').then(mod => mod.Accordion), { ssr: false }) // disable ssr
 import { useState } from "react";
 import TableData from "../../../../../util/whales.json";
 import millify from "millify";
@@ -112,7 +112,7 @@ const WalletTable = () => {
                                 src={`/icons/dummy1.svg`}
                                 alt=""
                               ></Image>
-                              <Text variant={"h7"} ml="12px">
+                              <Text variant={"h3"} ml="12px">
                                 {item?.id.split("").join("").substring(0, 6) +
                                   "..." +
                                   item?.id.slice(-5)}
@@ -124,7 +124,10 @@ const WalletTable = () => {
                         <AccordionPanel pb={4}>
                           <Box layerStyle={"flexColumn"}>
                             <Box layerStyle={"flexColumn"}>
-                              <Text variant={"h8"} textAlign={"left"}>
+                              <Text variant={"h6"} 
+                              textAlign={"left"}
+                              _light={{color:"#8F8F8F"}}
+                              _dark={{color:"#A8ADBD"}}>
                                 Total Tokens
                               </Text>
                               <Box mt="10px" display={"inline-block"}>
@@ -158,7 +161,8 @@ const WalletTable = () => {
                                           alt=""
                                         ></Image>
                                         <Text
-                                          variant={"h9"}
+                                          variant={"h3"}
+                                          lineHeight={"10px"}
                                           ml={"2px"}
                                           mt={"1px"}
                                           layerStyle={"center"}
@@ -176,24 +180,34 @@ const WalletTable = () => {
                               </Box>
                             </Box>
                             <Box mt="10px" layerStyle={"flexColumn"}>
-                              <Text variant={"h8"} textAlign={"left"}>
+                              <Text variant={"h6"} 
+                              textAlign={"left"}
+                              _light={{color:"#8F8F8F"}}
+                              _dark={{color:"#A8ADBD"}}>
                                 Total Protocols
                               </Text>
                               <Text
                                 mt="10px"
-                                variant={"NAtext"}
+                                variant={"h5"}
+                                _light={{color:"#090909"}}
+                                _dark={{color:"#FFFFFF"}}
                                 textAlign={"left"}
                               >
                                 -NA-
                               </Text>
                             </Box>
                             <Box mt="10px" layerStyle={"flexColumn"}>
-                              <Text variant={"h8"} textAlign={"left"}>
+                              <Text variant={"h6"} 
+                              textAlign={"left"}
+                              _light={{color:"#8F8F8F"}}
+                              _dark={{color:"#A8ADBD"}}>
                                 Total NFT collections
                               </Text>
                               <Text
                                 mt="10px"
-                                variant={"NAtext"}
+                                variant={"h5"}
+                                _light={{color:"#090909"}}
+                                _dark={{color:"#FFFFFF"}}
                                 textAlign={"left"}
                               >
                                 -NA-
@@ -302,7 +316,8 @@ function TableRow({ user, totalTokens, totalProtocols }) {
       <Td>
         <Flex>
           <Box>
-            <Text variant={"h7"}>
+            <Text variant={"h3"}
+            fontWeight={600}>
               {user?.split("").join("").substring(0, 8) +
                 "....." +
                 user?.slice(-5)}
@@ -340,7 +355,7 @@ function TableRow({ user, totalTokens, totalProtocols }) {
                     src={item.logo_url}
                     alt=""
                   ></Image>
-                  <Text variant={"h9"} ml={"10px"} mt={"1px"}>
+                  <Text variant={"h3"} ml={"10px"} mt={"1px"} lineHeight={"10px"}>
                     ${" "}
                     {millify(item.usd_value, {
                       precision: 2,
@@ -357,7 +372,7 @@ function TableRow({ user, totalTokens, totalProtocols }) {
       <Td>
         <Flex>
           <Box>
-            <Text variant={"h7"}>{totalProtocols}</Text>
+            <Text variant={"h3"}>{totalProtocols}</Text>
           </Box>
         </Flex>
       </Td>

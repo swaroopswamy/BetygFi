@@ -24,7 +24,6 @@ import {
   useSteps,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useWeb3 } from "@3rdweb/hooks";
 import isEmpty from "is-empty";
 import { useDispatch, useSelector } from "react-redux";
 import { TriangleDownIcon } from "@chakra-ui/icons";
@@ -34,10 +33,23 @@ import {
   loadToken,
   saveToken,
 } from "@/redux/auth_data/authSlice";
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useSignMessage,
+} from "wagmi";
 import { ethers } from "ethers";
 
 const LoginPage = ({ isOpen, onClose }) => {
   const walletArray = [
+    {
+      name: "Metamask",
+      icon: "metamask_logo.png",
+      key: 1,
+    },
     /*  {
              name: "Binance",
              icon: "binance_logo.png"
@@ -46,11 +58,7 @@ const LoginPage = ({ isOpen, onClose }) => {
              name: "Coinbase wallet",
              icon: "coinbase_logo.png"
          }, */
-    {
-      name: "Metamask",
-      icon: "metamask_logo.png",
-      key: 1,
-    },
+
     /* {
             name: "Other Browser wallet",
             icon: "coinbase_logo.png"
@@ -68,7 +76,10 @@ const LoginPage = ({ isOpen, onClose }) => {
     <>
       <Modal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => {
+          onClose();
+          setBrowserWalletProcessSelected(false);
+        }}
         borderRadius={"6px"}
         boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
         mx={{ base: "14px", md: "0px" }}
@@ -163,7 +174,12 @@ const LoginPage = ({ isOpen, onClose }) => {
             }}
           >
             {browserWalletProcessSelected === true ? (
-              <OtherBrowserWalletProcess onClose={onClose} />
+              <OtherBrowserWalletProcess
+                onClose={onClose}
+                setBrowserWalletProcessSelected={
+                  setBrowserWalletProcessSelected
+                }
+              />
             ) : (
               <>
                 <Box display={"flex"} flexDirection={"column"}>
@@ -281,12 +297,22 @@ const LoginPage = ({ isOpen, onClose }) => {
   );
 };
 
-const OtherBrowserWalletProcess = ({ onClose }) => {
+const OtherBrowserWalletProcess = ({
+  onClose,
+  setBrowserWalletProcessSelected,
+}) => {
   const dispatch = useDispatch();
-  const { connectWallet, address, error } = useWeb3();
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect();
+  const { address, connector, isConnected } = useAccount();
   const UserData = useSelector((state) => state.authData.UserData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
   const { colorMode } = useColorMode();
+
+  const { activeStep, isCompleteStep, setActiveStep } = useSteps({
+    index: 0,
+    count: 2,
+  });
   const signMessage = async ({ message }) => {
     try {
       if (!window.ethereum)
@@ -309,14 +335,24 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     }
   };
 
-  const handleConnectWallet = () => {
-    connectWallet("injected");
+  const handleConnectWallet = async (connector) => {
+    try {
+      if (!window.ethereum)
+        throw new Error("No crypto wallet found. Please install it.");
+
+      await window.ethereum.send("eth_requestAccounts");
+      connect({ connector });
+    } catch (err) {
+      // setError(err.message);
+      console.log(err, "Error");
+    }
   };
   const handleVerifyWallet = () => {
     dispatch(VerifyPublicAddressData(address));
   };
 
   const handleSign = async () => {
+
     if (UserData.data?.nonce) {
       const sig = await signMessage({
         message: `I am signing my one-time nonce: ${UserData.data.nonce}`,
@@ -331,8 +367,11 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
     }
   };
   useEffect(() => {
+
     if (!isEmpty(address)) {
       handleNext();
+    } else {
+      setActiveStep(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
@@ -344,23 +383,24 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
   }, [UserData]);
   useEffect(() => {
     if (!isEmpty(LoggedInData.data?.token)) {
+      setBrowserWalletProcessSelected(false);
       onClose();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [LoggedInData]);
-  const { activeStep, isCompleteStep, setActiveStep } = useSteps({
-    index: 0,
-    count: 2,
-  });
 
   const steps = [
     {
-      title: isCompleteStep(0) ? "Wallet Connected" : "Connect Wallet",
-      description: isCompleteStep(0)
-        ? `Address: ${address}`
+      title: isConnected ? "Wallet Connected" : "Connect Wallet",
+      description: isConnected
+        ? `Address: ${
+            address.split("").join("").substring(0, 6) +
+            "..." +
+            address.slice(-5)
+          }`
         : "Tell which address you want to use",
       buttonText: "Connect",
-      buttonFunction: handleConnectWallet,
+      buttonFunction: () => handleConnectWallet(connectors[0]),
       isError: error,
     },
     {
@@ -382,6 +422,9 @@ const OtherBrowserWalletProcess = ({ onClose }) => {
 
   return (
     <>
+      {/*   <button onClick={() => handleConnectWallet(connectors[0])}>
+        Metamask
+      </button> */}
       <Box>
         <Stepper index={activeStep} orientation="vertical" gap="0">
           {steps.map((step, index) => (

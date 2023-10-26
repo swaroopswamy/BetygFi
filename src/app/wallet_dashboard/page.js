@@ -1,5 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Box,
   TabPanel,
@@ -8,11 +9,16 @@ import {
   useColorModeValue,
   useColorMode,
 } from "@chakra-ui/react";
-import SplineAreaChart from "../components/pages/walletDashboard/SplineAreaChart";
 import { useDispatch, useSelector } from "react-redux";
-import PortfolioPanelComponent from "../components/pages/walletDashboard/portfolio.js";
-import WalletAnalyticsPanel from "../components/pages/walletDashboard/wallet_analytics";
-import TransactionPanelComponent from "../components/pages/walletDashboard/transaction";
+const PortfolioPanelComponent = dynamic(() =>
+  import("../components/pages/walletDashboard/portfolio.js")
+);
+const WalletAnalyticsPanel = dynamic(() =>
+  import("../components/pages/walletDashboard/wallet_analytics")
+);
+const TransactionPanelComponent = dynamic(() =>
+  import("../components/pages/walletDashboard/transaction")
+);
 import {
   blockchainTypeChangedReducer,
   fetchAssetAllocationForAddress,
@@ -25,12 +31,19 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
-import Breadcrumb from "@/app/components/breadcrumb";
-import HeaderComponent from "@/app/components/pages/walletDashboard/HeaderComponent";
-import DashboardTabList from "../components/pages/walletDashboard/DashboardTabList";
-import BlockchainSelectionMenuBlocks from "@/app/components/blockchainSelectionMenuBlocks";
+const Breadcrumb = dynamic(() => import("@/app/components/breadcrumb"));
+const HeaderComponent = dynamic(() =>
+  import("@/app/components/pages/walletDashboard/HeaderComponent")
+);
+const DashboardTabList = dynamic(() =>
+  import("../components/pages/walletDashboard/DashboardTabList")
+);
+const BlockchainSelectionMenuBlocks = dynamic(() =>
+  import("@/app/components/blockchainSelectionMenuBlocks")
+);
 
-const WalletDashboardPage = () => {
+function WalletDashboardPage() {
+  const didLogRef = useRef(false);
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);
@@ -46,11 +59,7 @@ const WalletDashboardPage = () => {
     (state) => state?.walletDashboardTableData?.walletBalanceData?.data
   );
 
-  const walletTransactionsData = useSelector(
-    (state) => state?.walletDashboardTableData?.walletTransactionsData
-  );
-
-  const fetchWalletBalanceDataHandler = useCallback(() => {
+  const fetchWalletBalanceDataHandler = () => {
     const data = {
       address: searchParam.get("address"),
       payload: {
@@ -58,54 +67,49 @@ const WalletDashboardPage = () => {
       },
     };
     dispatch(fetchWalletBalanceData(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, searchParam.get("address")]);
+  };
 
-  const fetchAssetAllocationForAddressHandler = useCallback(() => {
+  const fetchAssetAllocationForAddressHandler = () => {
     const data = {
       address: searchParam.get("address"),
     };
     dispatch(fetchAssetAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, searchParam.get("address")]);
+  };
 
-  const fetchProtocolAllocationForAddressHandler = useCallback(() => {
+  const fetchProtocolAllocationForAddressHandler = () => {
     const data = {
       address: searchParam.get("address"),
     };
     dispatch(fetchProtocolAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, searchParam.get("address")]);
+  };
 
-  const fetchBlockchainAllocationForAddressHandler = useCallback(() => {
+  const fetchBlockchainAllocationForAddressHandler = () => {
     const data = {
       address: searchParam.get("address"),
     };
     dispatch(fetchBlockchainAllocationForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blockchainSelected, searchParam.get("address")]);
+  };
 
-  const fetchInflowOutflowTokensForAddressHandler = useCallback(() => {
+  const fetchInflowOutflowTokensForAddressHandler = () => {
     const data = {
       address: searchParam.get("address"),
     };
     dispatch(fetchInflowOutflowTokensForAddress(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  };
+
+  useEffect(() => {
+    Promise.all([
+      fetchWalletBalanceDataHandler(),
+      fetchAssetAllocationForAddressHandler(),
+      fetchProtocolAllocationForAddressHandler(),
+      fetchBlockchainAllocationForAddressHandler(),
+      fetchInflowOutflowTokensForAddressHandler(),
+    ]);
   }, [blockchainSelected, searchParam.get("address")]);
 
   useEffect(() => {
-    dispatch(walletAddressChangedReducer(searchParam.get("address")));
-    fetchWalletBalanceDataHandler();
-    fetchAssetAllocationForAddressHandler();
-    fetchProtocolAllocationForAddressHandler();
-    fetchBlockchainAllocationForAddressHandler();
-    fetchInflowOutflowTokensForAddressHandler();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchWalletBalanceDataHandler]);
-
-  useEffect(() => {
     dispatch(fetchBlockchainListData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(walletAddressChangedReducer(searchParam.get("address")));
   }, []);
 
   useEffect(() => {
@@ -114,7 +118,6 @@ const WalletDashboardPage = () => {
         fetchWalletBalanceDataHandler();
       }, 5000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletBalanceData]);
 
   return (
@@ -144,14 +147,23 @@ const WalletDashboardPage = () => {
               <Box display={"flex"} flexDirection={"column"}>
                 <BlockchainSelectionMenuBlocks />
               </Box>
-              <TabPanels bgColor={useColorModeValue("#F0F0F5","#191919")}>
-                <TabPanel p="0px" bgColor={useColorModeValue("#F0F0F5","#191919")}>
+              <TabPanels bgColor={useColorModeValue("#F0F0F5", "#191919")}>
+                <TabPanel
+                  p="0px"
+                  bgColor={useColorModeValue("#F0F0F5", "#191919")}
+                >
                   <TransactionPanelComponent />
                 </TabPanel>
-                <TabPanel p="0px"  bgColor={useColorModeValue("#F0F0F5","#191919")}>
+                <TabPanel
+                  p="0px"
+                  bgColor={useColorModeValue("#F0F0F5", "#191919")}
+                >
                   <PortfolioPanelComponent />
                 </TabPanel>
-                <TabPanel p="0px"  bgColor={useColorModeValue("#F0F0F5","#191919")}>
+                <TabPanel
+                  p="0px"
+                  bgColor={useColorModeValue("#F0F0F5", "#191919")}
+                >
                   <WalletAnalyticsPanel />
                 </TabPanel>
               </TabPanels>
@@ -161,6 +173,6 @@ const WalletDashboardPage = () => {
       </Box>
     </>
   );
-};
+}
 
 export default WalletDashboardPage;
