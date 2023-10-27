@@ -47,7 +47,7 @@ const Approach = () => {
     if (rendition.current) {
       const themes = rendition.current.themes;
       console.log("h", themes);
-      themes.override('color', colorMode === 'light' ? "#000000" : "#FFFFFF");
+      themes.override('color', colorMode === 'light' ? "#000000" : "rgba(255, 255, 255, 0.8)");
       themes.override('background', colorMode === 'light' ? "#FFFFFF" : "#191919");
       
       rendition.current.themes.register('custom', {
@@ -178,8 +178,16 @@ const Approach = () => {
 
 
           <Box mx={"10px"} w={"20%"} display={"flex"} gap={"10px"}>
-            <Text fontSize={"24px"}> - </Text>
-            <Slider aria-label='slider-ex-2' min={1} max={2} step={0.1}
+            <Text fontSize={"24px"} cursor={"pointer"} onClick={() => {
+              let s = scale;
+              if (s > 1) {
+                s = s - 0.1;
+                setScale(s);
+              }
+            }}>
+              - 
+            </Text>
+            <Slider aria-label='slider-ex-2' value={scale} min={1} max={1.5} step={0.05}
               onChange={(e) => {
                 setScale(e);
               }}
@@ -189,7 +197,15 @@ const Approach = () => {
               </SliderTrack>
               <SliderThumb />
             </Slider>
-            <Text fontSize={"24px"}> + </Text>
+            <Text fontSize={"24px"} cursor={"pointer"} onClick={() => {
+              let s = scale;
+              if (s < 1.5) {
+                s = s + 0.1;
+                setScale(s);
+              }
+            }}>
+            + 
+            </Text>
           </Box>
 
         </Box>
