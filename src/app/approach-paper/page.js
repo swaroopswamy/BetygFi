@@ -30,6 +30,9 @@ const ReactReader = dynamic(
 );
 import { ReactReaderStyle } from "react-reader";
 
+let lightReaderTheme = {};
+let darkReaderTheme = {};
+
 
 const Approach = () => {
   const { colorMode } = useColorMode();
@@ -40,6 +43,7 @@ const Approach = () => {
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
+
     if (rendition.current) {
       const themes = rendition.current.themes;
       console.log("h", themes);
@@ -89,7 +93,7 @@ const Approach = () => {
       setTotalPages(displayed.total);
       setPage(displayed.page);
   })}
-
+  
   return (
     <Box display={"flex"} h={"150vh"} justifyContent={"center"} p={"25px 35px"} paddingRight={{base: "none", md: "200px"}} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
       <Box display={"flex"} flexDir={"column"} w={"100%"} h={"95%"}  boxShadow={useColorModeValue("0px", "0px 0px 4px 0px #FFF")}>
@@ -98,7 +102,52 @@ const Approach = () => {
           showToc={false}
           location={location}
           locationChanged={changePage}
-          readerStyles={colorMode === 'light' ? lightReaderTheme : darkReaderTheme}
+          readerStyles={colorMode === 'light' ? 
+            {
+              ...ReactReaderStyle,
+              readerArea: {
+                ...ReactReaderStyle.readerArea,
+                transition: undefined,
+              }
+            }
+            : 
+            {
+              ...ReactReaderStyle,
+              arrow: {
+                ...ReactReaderStyle.arrow,
+                color: 'white',
+              },
+              arrowHover: {
+                ...ReactReaderStyle.arrowHover,
+                color: '#ccc',
+              },
+              readerArea: {
+                ...ReactReaderStyle.readerArea,
+                backgroundColor: '#191919',
+                transition: "undefined",
+              },
+              titleArea: {
+                ...ReactReaderStyle.titleArea,
+                color: '#ccc',
+              },
+              tocArea: {
+                ...ReactReaderStyle.tocArea,
+                background: '#111',
+              },
+              tocButtonExpanded: {
+                ...ReactReaderStyle.tocButtonExpanded,
+                background: '#222',
+              },
+              tocButtonBar: {
+                ...ReactReaderStyle.tocButtonBar,
+                background: '#fff',
+              },
+              tocButton: {
+                ...ReactReaderStyle.tocButton,
+                color: 'white',
+              },
+            }
+          }
           getRendition={(_rendition) => {
             rendition.current = _rendition;
           }}
@@ -152,48 +201,3 @@ const Approach = () => {
 };
 
 export default Approach;
-
-const lightReaderTheme = {
-  ...ReactReaderStyle,
-  readerArea: {
-    ...ReactReaderStyle.readerArea,
-    transition: undefined,
-  },
-}
-
-const darkReaderTheme = {
-  ...ReactReaderStyle,
-  arrow: {
-    ...ReactReaderStyle.arrow,
-    color: 'white',
-  },
-  arrowHover: {
-    ...ReactReaderStyle.arrowHover,
-    color: '#ccc',
-  },
-  readerArea: {
-    ...ReactReaderStyle.readerArea,
-    backgroundColor: '#191919',
-    transition: "undefined",
-  },
-  titleArea: {
-    ...ReactReaderStyle.titleArea,
-    color: '#ccc',
-  },
-  tocArea: {
-    ...ReactReaderStyle.tocArea,
-    background: '#111',
-  },
-  tocButtonExpanded: {
-    ...ReactReaderStyle.tocButtonExpanded,
-    background: '#222',
-  },
-  tocButtonBar: {
-    ...ReactReaderStyle.tocButtonBar,
-    background: '#fff',
-  },
-  tocButton: {
-    ...ReactReaderStyle.tocButton,
-    color: 'white',
-  },
-}
