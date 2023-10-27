@@ -81,6 +81,7 @@ const Footer = ({ ...rest }) => {
         display={{ base: "flex", md: "none" }}
         bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
+        zIndex={"99"}
       >
         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
           <FooterMobileLink name={"Home"} NavIcon={RiHomeLine} link={"/"} />
