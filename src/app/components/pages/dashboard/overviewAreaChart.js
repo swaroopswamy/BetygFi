@@ -1,16 +1,14 @@
 import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import CustomChart from "/src/app/components/graph";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOverviewGraphData } from "@/redux/dashboard_data/dataSlice";
+import { useSelector } from "react-redux";
 import millify from "millify";
-import { categories } from "../../../../../util/constant";
 
 const OverviewAreaChart = () => {
   const { colorMode } = useColorMode();
 
   const overviewGraphData = useSelector(
-      (state) => state?.dashboardTableData?.OverviewGraphData
+    (state) => state?.dashboardTableData?.OverviewGraphData
   );
 
   const categorySelected = useSelector(
@@ -55,7 +53,7 @@ const OverviewAreaChart = () => {
           `<span style="display: flex; border-radius: 50%; height: 14px; width: 14px; background-color: ${w.config.series[seriesIndex].color};"></span>` + " " + w.config.series[seriesIndex].name +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-            val +
+          val +
           " USD" +
           "</div>" +
           "</div>"
@@ -103,7 +101,7 @@ const OverviewAreaChart = () => {
           return millify(value, {
             precision: 2,
             locales: "en-US"
-        });
+          });
         },
       },
     },
@@ -117,7 +115,7 @@ const OverviewAreaChart = () => {
       let categorySeries = {
         name: category?.name,
         data: category?.graphData.slice(0, -2),
-        color: colors[i%4]
+        color: colors[i % 4]
       }
       series.push(categorySeries);
     }
@@ -130,7 +128,7 @@ const OverviewAreaChart = () => {
           <CustomChart options={options} series={series} type="area" height={205} />
         </Box>
 
-        <Box display={{base: "none", lg: "block"}} w={"100%"}>
+        <Box display={{ base: "none", lg: "block" }} w={"100%"}>
           <SelectorGraph series={series} />
         </Box>
       </Box>
@@ -142,7 +140,7 @@ export default OverviewAreaChart;
 
 const SelectorGraph = ({ series }) => {
   const { colorMode } = useColorMode;
-  const selection = useRef({min: new Date("19 Aug 2023").getTime(), max: new Date("25 Aug 2023").getTime()});
+  const selection = useRef({ min: new Date("19 Aug 2023").getTime(), max: new Date("25 Aug 2023").getTime() });
 
   const overviewGraphData = useSelector(
     (state) => state?.dashboardTableData?.OverviewGraphData
@@ -187,7 +185,7 @@ const SelectorGraph = ({ series }) => {
         enabled: false
       },
       events: {
-        brushScrolled: function(chartContext, config) {
+        brushScrolled: function (chartContext, config) {
           selection.current = config.xaxis;
         },
       }

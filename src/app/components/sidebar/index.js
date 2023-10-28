@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
   Box,
   Flex,
@@ -14,7 +13,6 @@ import {
   Collapse,
   useDisclosure,
   createIcon,
-  Button,
   Icon,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -29,7 +27,6 @@ import { FaPeopleGroup } from "react-icons/fa6";
 const DynamicIcon = dynamic(() => import("../icons/index_new"), {
   loading: () => <span>Loading...</span>,
 });
-
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode } = useColorMode();

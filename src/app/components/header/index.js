@@ -1,5 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  useAccount,
+  useDisconnect,
+  useEnsName,
+} from "wagmi";
 import {
   Box,
   Flex,
@@ -13,30 +19,13 @@ import {
   Image,
   Collapse,
 } from "@chakra-ui/react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import isEmpty from "is-empty";
 import LoginPage from "../login";
 import "./index.css";
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { useEffect, useState } from "react";
-import isEmpty from "is-empty";
-import {
-  FetchLocalStorageData,
-  LogoutReducer,
-} from "@/redux/auth_data/authSlice";
-import { color } from "framer-motion";
-import {
-  mobileSidebarCollapsedReducer,
-  sidebarCollapsedReducer,
-} from "../../../redux/app_data/dataSlice";
+import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "../sidebar/index";
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from "wagmi";
 
 const Navbar = ({ onOpenMenu, ...rest }) => {
   const searchParams = useSearchParams();
@@ -60,15 +49,14 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     searchParams.get("address")
   );
 
-  const preLoadedData = useSelector((state) => state.authData.preLoadedData);
+  // const preLoadedData = useSelector((state) => state.authData.preLoadedData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
   const {
     address: ConnectedWalletAddress,
-    connector,
     isConnected,
   } = useAccount();
-  const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
+  // const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
   const { data: ensName } = useEnsName({ ConnectedWalletAddress });
   const { disconnect } = useDisconnect();
   const handleSearchByWalletAddress = (e) => {
@@ -98,6 +86,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
     dispatch(FetchLocalStorageData());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <Flex

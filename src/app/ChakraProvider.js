@@ -1,12 +1,10 @@
-// app/providers.tsx
 "use client";
-import React from "react";
 import { CacheProvider } from "@chakra-ui/next-js";
-import { ChakraProvider, useColorModeValue } from "@chakra-ui/react";
-import { extendTheme } from "@chakra-ui/react";
-import Button from "/src/app/components/button";
-import Text from "/src/app/components/text";
-import { colors } from "../../util/constant";
+import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import { colors } from "@util/constant";
+import Button from "@/app/components/button";
+import Text from "@/app/components/text";
+
 export function Providers({ children }) {
   const breakpoints = {
     base: "0px",

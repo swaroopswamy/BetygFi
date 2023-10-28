@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { categories } from "../../../util/constant";
+import { categories } from "@util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import "/styles/styles.scss";

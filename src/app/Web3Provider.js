@@ -1,8 +1,6 @@
 "use client";
 
-
 import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi'
-
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -23,8 +21,6 @@ const config = createConfig({
   publicClient,
   webSocketPublicClient,
 })
-
-
 
 export const WagmiProvider = ({ children }) => {
   return <WagmiConfig config={config}>{children}</WagmiConfig>;

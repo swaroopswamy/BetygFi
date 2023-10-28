@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { fetchScoreGraphData } from "@/redux/dashboard_data/dataSlice";  
 import { useDispatch, useSelector } from "react-redux";
 import { SingleAccordionComp } from "../../accordion";
+
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const OverviewColumnChart = () => {

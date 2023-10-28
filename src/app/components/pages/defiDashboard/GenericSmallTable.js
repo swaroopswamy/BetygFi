@@ -1,29 +1,24 @@
 "use client";
 import React from "react";
 import {
-    Grid, GridItem, Input, Table, TableCaption, Text, Tbody, Td, Tfoot, Th, Thead,
-    Tr, Flex, Box, useColorModeValue, Icon, Tooltip,
-    Image, Spacer, Button, useColorMode, colorMode
+    Table, Text, Tbody, Th, Thead, Tr, Flex, Box, useColorModeValue, Tooltip, Image
 } from "@chakra-ui/react";
-// import { blockchains } from "../../../util/constant";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-//import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+// import { useRouter } from "next/navigation";
+// import { useDispatch, useSelector } from "react-redux";
+// import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 
 const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent ,Tablepath, Definitions}) => {
-    const { colorMode } = useColorMode();
-    const dispatch = useDispatch();
-    const router = useRouter();
+    // const { colorMode } = useColorMode();
+    // const dispatch = useDispatch();
+    // const router = useRouter();
     //const history = useHistory();
 
-    const blockchainSelected = useSelector(
-        (state) => state?.walletDashboardTableData?.blockchainType
-    );
-    const BlockchainTypeHandler = (type) => {
-        dispatch(blockchainTypeChangedReducer(type));
-    };
+    // const blockchainSelected = useSelector(
+    //     (state) => state?.walletDashboardTableData?.blockchainType
+    // );
+    // const BlockchainTypeHandler = (type) => {
+    //     dispatch(blockchainTypeChangedReducer(type));
+    // };
     // const handleNavigate = () => {
     //     history.push('/BigTable');
     //   };
@@ -149,8 +144,6 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 export default GenericSmallTableComponent;
 
 function ThreadItem({ key, name }) {
-
-   
 
 //     const [sortKey, setSortKey] = useState(null);
 //   const [sortOrder, setSortOrder] = useState("asc");

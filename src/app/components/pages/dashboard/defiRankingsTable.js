@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Text,
   Td,
@@ -13,26 +14,25 @@ import {
   Avatar,
   Tooltip,
 } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Search2Icon } from "@chakra-ui/icons";
+import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
-import "/styles/styles.scss";
 import dynamic from "next/dynamic";
-const GenericTable = dynamic(() => import("/src/app/components/table"));
-const SearchBox = dynamic(() => import("/src/app/components/searchBox"));
+
+const GenericTable = dynamic(() => import("@/app/components/table"));
+const SearchBox = dynamic(() => import("@/app/components/searchBox"));
 const PageButtonsWide = dynamic(() =>
-  import("/src/app/components/pageButtonsWide")
+  import("@/app/components/pageButtonsWide")
 );
 
 import {
   tableHeader,
   DefiRankingTableDesktop,
   DefiRankingTableMobile,
-} from "/src/app/components/pages/dashboard/helper";
-import { MobileSearchBox } from "/src/app/components/mobileSearchBox";
+} from "@/app/components/pages/dashboard/helper";
+import { MobileSearchBox } from "@/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
-import { Search2Icon } from "@chakra-ui/icons";
-import { useRouter } from "next/navigation";
 
 const Rankings = () => {
   const [tablePage, setTablePage] = useState(1);
