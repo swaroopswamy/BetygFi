@@ -13,11 +13,6 @@ import {
   Link,
   useColorMode,
   Avatar,
-  Table,
-  Tbody,
-  Thead,
-  Grid,
-  GridItem,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -31,6 +26,7 @@ import {
 } from "@/app/components/pages/walletDashboard/helper";
 import GenericTable from "@/app/components/table/index";
 import PageButtonsWide from "@/app/components/pageButtonsWide";
+import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 
 const TransactionPanelComponent = () => {
   const searchParam = useSearchParams();
@@ -79,7 +75,7 @@ const TransactionPanelComponent = () => {
         <Flex
           py={{ base: "20px", md: "25px" }}
           px={{ base: "10px", md: "25px" }}
-          mx={{ base: "10px", md: "none  " }}
+          mx={{ base: "10px", md: "0px" }}
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={"block"}
@@ -89,7 +85,7 @@ const TransactionPanelComponent = () => {
           </Text>
         </Flex>
 
-        <Box overflow={"auto"} px={{ base: "10px", md: "none  " }}>
+        <Box overflow={"auto"} px={{ base: "10px", md: "0px" }}>
           <GenericTable
             tableHeader={tableHeader}
             tableData={walletTransactionsData}
