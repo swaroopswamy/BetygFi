@@ -1,6 +1,4 @@
 // components/Icon.js
-import React from "react";
-
 const Icon = ({ name, width, height, color, }) => {
   const icons = {
     x_dark: (

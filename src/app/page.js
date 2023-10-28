@@ -1,25 +1,24 @@
 "use client";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button, Text, useColorModeValue } from "@chakra-ui/react";
-import { categories } from "../../util/constant";
 import { useDispatch, useSelector } from "react-redux";
+import { categories } from "@util/constant";
 import {
   categoryChangedReducer,
   fetchOverviewData,
 } from "@/redux/dashboard_data/dataSlice";
-import "/styles/styles.scss";
-import { useEffect } from "react";
 const BlockchainSelectionMenu = dynamic(() =>
-  import("/src/app/components/blockchainSelectionMenu")
+  import("@/app/components/blockchainSelectionMenu")
 );
 const Rankings = dynamic(() =>
-  import("/src/app/components/pages/dashboard/defiRankingsTable")
+  import("@/app/components/pages/dashboard/defiRankingsTable")
 );
 const OverviewColumnChart = dynamic(() =>
-  import("/src/app/components/pages/dashboard/overviewColumnChart")
+  import("@/app/components/pages/dashboard/overviewColumnChart")
 );
 const OverviewBox = dynamic(() =>
-  import("/src/app/components/pages/dashboard/overviewBox")
+  import("@/app/components/pages/dashboard/overviewBox")
 );
 
 const Dashboard = () => {

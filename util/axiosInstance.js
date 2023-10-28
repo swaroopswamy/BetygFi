@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Router } from "next/router";
+
 const isServer = () => {
   return window === "undefined";
 };
@@ -9,16 +10,11 @@ let context = {};
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 
-
-export const setAccessToken = () => {
+export const setAccessToken = (_accessToken) => {
   accessToken = _accessToken;
 };
 
 export const getAccessToken = () => accessToken;
-
-export const setContext = () => {
-  context = _context;
-};
 
 export const axiosInstance = axios.create({
   baseURL: baseURL,
@@ -28,7 +24,6 @@ export const axiosInstance = axios.create({
       'Cache-Control': 'max-age=3600'
     },
     Accept: "application/json",
-    
   },
   withCredentials: false, // to send cookie
 });

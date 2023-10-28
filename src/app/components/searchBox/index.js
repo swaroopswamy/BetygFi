@@ -1,4 +1,4 @@
-import { Flex, Box, Input, useColorModeValue, InputLeftElement, InputGroup, Icon } from "@chakra-ui/react";
+import { Flex, Box, Input, useColorModeValue, InputLeftElement, InputGroup } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
 const SearchBox = ({ ...rest }) => {

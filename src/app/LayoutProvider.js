@@ -1,15 +1,13 @@
 "use client";
-import React from "react";
 import { Box, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-
 import "/styles/styles.scss";
-import SidebarContent from "./components/sidebar";
-import Footer from "./components/footer";
-import Navbar from "./components/header";
+import SidebarContent from "@/app/components/sidebar";
+import Footer from "@/app/components/footer";
+import Navbar from "@/app/components/header";
 
 export default function LayoutProvider({ children }) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen, onClose } = useDisclosure();
   const isSidebarCollapsed = useSelector(
     (state) => state?.appData?.isSidebarCollapsed
   );
