@@ -48,6 +48,7 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
+        zIndex={"100"}
       >
         <Box
           ml={{ base: 0, md: 0 }}
