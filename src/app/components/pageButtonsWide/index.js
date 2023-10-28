@@ -1,9 +1,10 @@
-import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue } from "@chakra-ui/react";
-import LastUpdate from "../lastUpdate";
-import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import React from "react";
+import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue } from "@chakra-ui/react";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import LastUpdate from "../lastUpdate";
+
 const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, setTableLimit, time, ...rest }) => {
-  const { colorMode } = useColorMode();
+  // const { colorMode } = useColorMode();
 
   if (totalPages === 0) {
     return;
@@ -11,7 +12,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 
   return (
     <>
-      <Box display={{base: "none", md: "flex"}} justifyContent={"space-between"} alignItems={"center"} {...rest}>
+      <Box display={{ base: "none", md: "flex" }} justifyContent={"space-between"} alignItems={"center"} {...rest}>
         <LastUpdate
           time={time}
         />
@@ -35,7 +36,7 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 
       </Box>
 
-      <Box display={{base: "flex", md: "none"}} flexDir={"column"} my={"10px"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
+      <Box display={{ base: "flex", md: "none" }} flexDir={"column"} my={"10px"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} w={"100%"}>
           <LastUpdate time={time} />
 
@@ -46,11 +47,11 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
         </Box>
 
         <Box display={"flex"} justifyContent={"space-evenly"} alignItems={"center"} gap={"8px"} w={"80%"}>
-            <Buttons
-              page={page}
-              pageChangeHandler={pageChangeHandler}
-              totalPages={totalPages}
-            />
+          <Buttons
+            page={page}
+            pageChangeHandler={pageChangeHandler}
+            totalPages={totalPages}
+          />
         </Box>
       </Box>
     </>
@@ -96,7 +97,7 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
           onChange={(e) => {
             let value = e.target.value;
             if (value < 0) {
-              value = 1; 
+              value = 1;
             }
             if (value > totalPages) {
               value = totalPages;
@@ -135,7 +136,7 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
   )
 }
 
-const TableLimitMenu = ({ tableLimit, setTableLimit}) => {
+const TableLimitMenu = ({ tableLimit, setTableLimit }) => {
   return (
     <Menu>
       <MenuButton as={Button} variant={"menu"}>
@@ -157,19 +158,19 @@ const TableLimitMenu = ({ tableLimit, setTableLimit}) => {
   )
 }
 
-const RoundButton = ( {children, ...rest} ) => {
+const RoundButton = ({ children, ...rest }) => {
   const { colorMode } = useColorMode();
 
   return (
     <Box
-        layerStyle={"center"}
-        bg={colorMode === 'light' ? '#FFFFFF' : '#191919'}
-        minW={"32px"}
-        minH={"32px"}
-        borderRadius={"50%"}
-        border={colorMode === 'light' ? "1px solid rgba(241, 241, 241, 1)" : "1px solid rgba(51, 51, 51, 1)"}
-        cursor={"pointer"}
-        {...rest}
+      layerStyle={"center"}
+      bg={colorMode === 'light' ? '#FFFFFF' : '#191919'}
+      minW={"32px"}
+      minH={"32px"}
+      borderRadius={"50%"}
+      border={colorMode === 'light' ? "1px solid rgba(241, 241, 241, 1)" : "1px solid rgba(51, 51, 51, 1)"}
+      cursor={"pointer"}
+      {...rest}
     >
       {children}
     </Box>
@@ -188,9 +189,9 @@ const PageMenuItem = ({ children, ...rest }) => {
       minW={"100px"}
       {...rest}
     >
-        <Text variant={"h3"} color={colorMode === 'light' ? '#191919' : '#FFFFFF'}>
-          {children}
-        </Text>
-      </MenuItem>
+      <Text variant={"h3"} color={colorMode === 'light' ? '#191919' : '#FFFFFF'}>
+        {children}
+      </Text>
+    </MenuItem>
   )
 }

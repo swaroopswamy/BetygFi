@@ -1,5 +1,4 @@
-import React from "react";
-import { axiosInstance } from "../../util/axiosInstance";
+import { axiosInstance } from "@util/axiosInstance";
 
 export const getDefiRankingsTableData = async (payload) => {
   try {

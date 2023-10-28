@@ -1,5 +1,4 @@
-import React from "react";
-import { axiosInstance } from "../../util/axiosInstance";
+import { axiosInstance } from "@util/axiosInstance";
 
 export const verifyPublicAddress = async (address) => {
     try {
@@ -9,11 +8,11 @@ export const verifyPublicAddress = async (address) => {
         return rejectWithValue(err);
     }
 }
-export const loginMetamask = async (payload) =>{
-    try{
-        const { data } = await axiosInstance.post(`auth/login-metamask`,payload);
+export const loginMetamask = async (payload) => {
+    try {
+        const { data } = await axiosInstance.post(`auth/login-metamask`, payload);
         return data;
-    }catch(err){
+    } catch (err) {
         return rejectWithValue(err);
     }
 }

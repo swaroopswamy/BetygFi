@@ -1,11 +1,6 @@
+import React from "react";
 import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
   Box,
-  Flex,
-  Image,
   Table,
   Tbody,
   Text,
@@ -13,13 +8,10 @@ import {
   Thead,
   Tr,
   Td,
-  useColorModeValue,
   Spinner,
-  useColorMode,
   Icon,
   useMediaQuery,
 } from "@chakra-ui/react";
-import React from "react";
 import dynamic from "next/dynamic";
 
 const TooltipComp = dynamic(() => import("/src/app/components/tooltipComp"));

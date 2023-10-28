@@ -1,5 +1,5 @@
 import { createIcon, Icon } from "@chakra-ui/icon";
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 export const TooltipIcon = createIcon({
   displayName: "TooltipIcon",

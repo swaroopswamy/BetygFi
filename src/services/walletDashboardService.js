@@ -1,5 +1,4 @@
-import React from "react";
-import { axiosInstance } from "../../util/axiosInstance";
+import { axiosInstance } from "@util/axiosInstance";
 
 export const getWalletBalanceData = async (payloadData) => {
   try {
@@ -15,7 +14,7 @@ export const getWalletBalanceData = async (payloadData) => {
 export const getWalletTransactionsData = async (payloadData) => {
   try {
     const { data } = await axiosInstance.post(
-      `wallet/transactions/${payloadData.address}/get`,payloadData.payload
+      `wallet/transactions/${payloadData.address}/get`, payloadData.payload
     );
     return data;
   } catch (err) {
@@ -26,11 +25,9 @@ export const getWalletTransactionsData = async (payloadData) => {
 export const getWalletTransactionsForAddressSummary = async (payloadData) => {
   try {
     const { data } = await axiosInstance.post(
-      `wallet/address/${payloadData.address}/address`,payloadData.payload
+      `wallet/address/${payloadData.address}/address`, payloadData.payload
     );
- 
     return data;
-    
   } catch (err) {
     return rejectWithValue(err);
   }

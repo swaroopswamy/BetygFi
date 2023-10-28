@@ -1,4 +1,4 @@
-import { axiosInstance } from "../../util/axiosInstance";
+import { axiosInstance } from "@util/axiosInstance";
 
 export const getBlockchainListData = async () => {
     try {

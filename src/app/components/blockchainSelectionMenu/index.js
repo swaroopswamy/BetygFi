@@ -1,6 +1,5 @@
 "use client";
-import dynamic from "next/dynamic";
-// const MenuList = dynamic(import('@chakra-ui/react').then(mod => mod.MenuList), { ssr: false }) // disable ssr
+import React, { useEffect } from "react";
 import {
   Avatar,
   Box,
@@ -12,13 +11,11 @@ import {
   Text,
   Tooltip,
   useColorMode,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import React, { useEffect } from "react";
 
 const BlockchainSelectionMenu = ({ chains }) => {
   const dispatch = useDispatch();

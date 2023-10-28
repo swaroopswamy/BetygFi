@@ -1,22 +1,31 @@
+import React from "react";
 import { ReduxProvider } from "@/redux/provider";
-import { Providers } from "./ChakraProvider";
-
-import { WagmiProvider } from "./Web3Provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import React from "react";
-import LayoutProvider from "./LayoutProvider";
+import { Providers } from "@/app/ChakraProvider";
+import { WagmiProvider } from "@/app/Web3Provider";
+import LayoutProvider from "@/app/LayoutProvider";
+
 export const metadata = {
   title: "BetygFi : Elevate your game",
   description: "Elevate your game",
 };
+
+// export const dynamicParams = true
+export const dynamic = 'auto'
+// export const dynamic = "force-static";
+export const revalidate = false
+export const fetchCache = 'auto'
+export const runtime = 'nodejs'
+export const preferredRegion = 'auto'
+export const maxDuration = 5
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
           rel="stylesheet"
@@ -45,7 +54,6 @@ export default function RootLayout({ children }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-
           gtag('config', 'G-Q0B2YDZPET');
         `}
         </Script>

@@ -1,4 +1,5 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Text,
@@ -11,7 +12,6 @@ import { RiHomeLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
-import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 
 const Footer = ({ ...rest }) => {
