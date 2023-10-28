@@ -29,7 +29,7 @@ const Approach = () => {
   // const [page, setPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(null);
   const [scale, setScale] = useState(1);
-  const [isBase] = useMediaQuery("(max-width: 768px)");
+  const [isBigScreen] = useMediaQuery("(min-width: 1100px)");
 
   useEffect(() => {
     if (rendition.current) {
@@ -99,8 +99,8 @@ const Approach = () => {
       display={"flex"}
       h={"150vh"}
       justifyContent={"center"}
-      p={"25px 35px"}
-      paddingRight={{ base: "none", md: "200px" }}
+      p={{ base: "25px 10px", md: isBigScreen ? "25px 35px" : "25px 35px" }}
+      paddingRight={{ base: "none", md: isBigScreen ? "200px" : "35px" }}
       bgColor={useColorModeValue("#F0F0F5", "#191919")}
     >
       <Box
@@ -140,7 +140,7 @@ const Approach = () => {
                   ...ReactReaderStyle.readerArea,
                   backgroundColor: "#191919",
                   transition: "undefined",
-                  padding:"0px",
+                  padding: "0px",
                 },
                 titleArea: {
                   ...ReactReaderStyle.titleArea,
