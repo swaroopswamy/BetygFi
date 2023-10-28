@@ -1,5 +1,5 @@
 import { axiosInstance } from "@util/axiosInstance";
-import { cacheHandler, checkIfCacheAvailable } from "../../util/cacheHelper";
+import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 
 export const getBlockchainListData = async () => {
     try {
