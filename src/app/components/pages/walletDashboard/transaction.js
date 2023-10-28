@@ -75,7 +75,7 @@ const TransactionPanelComponent = () => {
         <Flex
           py={{ base: "20px", md: "25px" }}
           px={{ base: "10px", md: "25px" }}
-          mx={{ base: "10px", md: "none  " }}
+          mx={{ base: "10px", md: "0px" }}
           borderRadius={"6px"}
           bgColor={useColorModeValue("#FFF", "#202020")}
           display={"block"}
@@ -85,7 +85,7 @@ const TransactionPanelComponent = () => {
           </Text>
         </Flex>
 
-        <Box overflow={"auto"} px={{ base: "10px", md: "none  " }}>
+        <Box overflow={"auto"} px={{ base: "10px", md: "0px" }}>
           <GenericTable
             tableHeader={tableHeader}
             tableData={walletTransactionsData}

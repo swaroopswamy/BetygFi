@@ -57,7 +57,13 @@ const Approach = () => {
           "font-family": "Inter, sans-serif",
           "font-weight": "400",
           "font-size": `${scale * 14}px`,
-          color: "#FF0000 !imporant",
+          "color": "#FF0000 !imporant",
+          "padding" : "0px !important",
+          "padding-left": "0px !important",
+          "padding-right":" 0px !important",
+          "margin-left": "-10px !important",
+          "margin-right":"-10px !important",
+          
         },
         text_1: {
           "font-family": "Inter, sans-serif",
