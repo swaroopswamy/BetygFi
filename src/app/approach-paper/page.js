@@ -8,6 +8,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
@@ -28,6 +29,7 @@ const Approach = () => {
   // const [page, setPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(null);
   const [scale, setScale] = useState(1);
+  const [isBase] = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     if (rendition.current) {
@@ -57,13 +59,12 @@ const Approach = () => {
           "font-family": "Inter, sans-serif",
           "font-weight": "400",
           "font-size": `${scale * 14}px`,
-          "color": "#FF0000 !imporant",
-          "padding" : "0px !important",
+          color: "#FF0000 !imporant",
+          padding: "0px !important",
           "padding-left": "0px !important",
-          "padding-right":" 0px !important",
+          "padding-right": " 0px !important",
           "margin-left": "-10px !important",
-          "margin-right":"-10px !important",
-          
+          "margin-right": "-10px !important",
         },
         text_1: {
           "font-family": "Inter, sans-serif",
@@ -114,6 +115,8 @@ const Approach = () => {
           showToc={false}
           location={location}
           locationChanged={changePage}
+          showPrevButton={false}
+          showNextButton={false}
           readerStyles={
             colorMode === "light"
               ? {
@@ -137,6 +140,7 @@ const Approach = () => {
                   ...ReactReaderStyle.readerArea,
                   backgroundColor: "#191919",
                   transition: "undefined",
+                  padding:"0px",
                 },
                 titleArea: {
                   ...ReactReaderStyle.titleArea,
@@ -195,7 +199,12 @@ const Approach = () => {
             </Slider>
           </Box> */}
 
-          <Box mx={"10px"} w={{ base:"70%",md:"20%" }} display={"flex"} gap={"10px"}>
+          <Box
+            mx={"10px"}
+            w={{ base: "70%", md: "20%" }}
+            display={"flex"}
+            gap={"10px"}
+          >
             <Text
               fontSize={"24px"}
               cursor={"pointer"}
