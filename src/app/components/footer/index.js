@@ -46,7 +46,7 @@ const Footer = ({ ...rest }) => {
         bg={useColorModeValue("#F0F0F5", "#191919")}
         pt={"14px"}
         px={{ base: "10px", md: "10px" }}
-        zIndex={"100"}
+      
       >
         <Box
           ml={{ base: 0, md: 0 }}
@@ -82,6 +82,7 @@ const Footer = ({ ...rest }) => {
         display={{ base: "flex", md: "none" }}
         bg={useColorModeValue("#F0F0F5", "#272727")}
         height={"85px"}
+        zIndex={"100"}
       >
         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
           <FooterMobileLink name={"Home"} NavIcon={RiHomeLine} link={"/"} />
