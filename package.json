@@ -31,6 +31,7 @@
     "ethers": "^5.7.2",
     "framer-motion": "^10.12.23",
     "is-empty": "^1.2.0",
+    "memory-cache": "^0.2.0",
     "millify": "^6.1.0",
     "moment": "^2.29.4",
     "next": "^13.5.6",
