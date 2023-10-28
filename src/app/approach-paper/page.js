@@ -55,6 +55,11 @@ const Approach = () => {
           "font-weight": "400",
           "font-size": `${scale * 14}px`,
         },
+
+        li: {
+          "font-size": `${scale * 14}px`,
+        },
+
         body: {
           "font-family": "Inter, sans-serif",
           "font-weight": "400",
@@ -65,6 +70,9 @@ const Approach = () => {
           "padding-right": " 0px !important",
           "margin-left": "-10px !important",
           "margin-right": "-10px !important",
+        },
+        h2: {
+          "font-size": `${scale * 14}px !important`,
         },
         text_1: {
           "font-family": "Inter, sans-serif",
