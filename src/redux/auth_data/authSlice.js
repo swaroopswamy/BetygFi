@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginMetamask, verifyPublicAddress } from "../../services/authService";
-import { useEffect } from "react";
 
 export const VerifyPublicAddressData = createAsyncThunk(
   "verifyPublicAddressData",
@@ -26,7 +25,7 @@ export const saveToken = (state) => {
     const serializedState = JSON.stringify(accountState);
     localStorage.setItem("state", serializedState);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -103,13 +102,13 @@ const AuthDataSlice = createSlice({
     });
   },
   reducers: {
-    LogoutReducer: (state, action) => {
+    LogoutReducer: (state, /* action */) => {
       state.LoggedInData.data = null;
       state.preLoadedData.data = null;
       state.UserData.data = null;
       localStorage.clear();
     },
-    FetchLocalStorageData: (state, action) => {
+    FetchLocalStorageData: (state, /* action */) => {
       state.preLoadedData.data = loadToken();
     },
   },

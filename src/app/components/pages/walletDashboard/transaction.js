@@ -99,7 +99,8 @@ const TransactionPanelComponent = () => {
           />
         </Box>
 
-        <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+        <Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')} 
+          minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
 
           <PageButtonsWide
             page={tablePage}
@@ -245,8 +246,8 @@ const TableRow = ({ item, rowIndex }) => {
                     ? "#245F00"
                     : "#60C000"
                   : colorMode === "light"
-                  ? "#EF1E1E"
-                  : "#FF3535"
+                    ? "#EF1E1E"
+                    : "#FF3535"
               }
             >
               {item?.usdValue >= 0 ? "+" : "-"}
@@ -290,7 +291,7 @@ const TableHeaderRowMobile = () => {
   );
 };
 
-const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
+const TableBodyRowMobileButtonComp = ({ item }) => {
   const { colorMode } = useColorMode();
   const walletAddress = useSelector(
     (state) => state?.walletDashboardTableData?.walletAddress
@@ -358,8 +359,8 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
                 ? "#245F00"
                 : "#60C000"
               : colorMode === "light"
-              ? "#EF1E1E"
-              : "#FF3535"
+                ? "#EF1E1E"
+                : "#FF3535"
           }
         >
           {item?.usdValue >= 0 ? "+" : "-"}
@@ -369,10 +370,10 @@ const TableBodyRowMobileButtonComp = ({ item, rowIndex }) => {
     </Box>
   );
 };
-const TableBodyRowMobilePanelComp = ({ item, rowIndex }) => {
-  const walletAddress = useSelector(
-    (state) => state?.walletDashboardTableData?.walletAddress
-  );
+const TableBodyRowMobilePanelComp = ({ item }) => {
+  // const walletAddress = useSelector(
+  //   (state) => state?.walletDashboardTableData?.walletAddress
+  // );
   return (
     <>
       <Box display={"flex"} mt={"20px"} >

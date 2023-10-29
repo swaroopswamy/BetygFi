@@ -1,14 +1,14 @@
 "use client";
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
 
-const BlockchainAllocationBox = dynamic(() =>
-  import("/src/app/components/pages/walletDashboard/BlockchainAllocationBox")
-);
-const AssetAllocationBox = dynamic(() =>
-  import("/src/app/components/pages/walletDashboard/AssetAllocationBox")
-);
+// const BlockchainAllocationBox = dynamic(() =>
+//   import("/src/app/components/pages/walletDashboard/BlockchainAllocationBox")
+// );
+// const AssetAllocationBox = dynamic(() =>
+//   import("/src/app/components/pages/walletDashboard/AssetAllocationBox")
+// );
 const ProtocolAllocationBox = dynamic(() =>
   import("/src/app/components/pages/walletDashboard/ProtocolAllocationBox")
 );
@@ -40,7 +40,7 @@ const WalletAnalyticsPanel = () => {
         w="100%"
         my="20px"
       >
-       {/*  <BlockchainAllocationBox />
+        {/*  <BlockchainAllocationBox />
 
         <AssetAllocationBox /> */}
       </Box>

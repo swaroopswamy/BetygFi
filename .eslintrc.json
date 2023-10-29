@@ -1,7 +1,78 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "react/no-unescaped-entities": 0,
-    "@next/next/no-page-custom-font": "off"
-  }
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "next/core-web-vitals",
+        "plugin:react/recommended"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "allowImportExportEverywhere": false,
+        "codeFrame": true,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "local",
+                "args": "after-used",
+                "ignoreRestSiblings": false
+            }
+        ],
+        "no-console": [
+            "error",
+            {
+                "allow": [
+                    "warn",
+                    "error",
+                    "info"
+                ]
+            }
+        ],
+        "indent": [
+            "error",
+            2,
+            { "SwitchCase": 1 }
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error"
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.{js,jsx}"
+            ],
+            "rules": {
+                "react/prop-types": "off", //will turn this on if we required
+                "react/no-direct-mutation-state": "off",
+                "react/no-unknown-property": "off"
+            }
+        }
+    ]
 }

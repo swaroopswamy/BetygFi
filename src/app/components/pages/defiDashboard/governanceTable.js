@@ -11,16 +11,15 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { fetchDefiGovernanceTableData } from "/src/redux/defi_dashboard_data/dataSlice";
 import GenericTable from "/src/app/components/table";
 import { GovernanceTableHeader } from "/src/app/components/pages/defiDashboard/helper";
 import PageButtonsWide from "/src/app/components/pageButtonsWide";
 
-const GovernanceTable = ({}) => {
+const GovernanceTable = () => {
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const [tablePage, setTablePage] = useState(1);
   const [tableLimit, setTableLimit] = useState(10);
@@ -56,7 +55,7 @@ const GovernanceTable = ({}) => {
         borderRadius={"6px"}
         bg={useColorModeValue("#FFFFFF", "#202020")}
         borderColor={useColorModeValue("#F0F0F5", "#272727")}
-        mb={{base: "50px", md: "none"}}
+        mb={{ base: "50px", md: "none" }}
       >
         <Box layerStyle={"spaceBetween"} p={"20px"}>
           <Box layerStyle={"center"} gap={"5px"}>
@@ -149,17 +148,18 @@ const GovernanceTable = ({}) => {
           />
         </Box>
 
-        <Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')} minH={"60px"} p={{base: "10px", md: "5px 20px"}}>
+        <Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')} 
+          minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
 
-            <PageButtonsWide
-              page={tablePage}
-              totalPages={defiGovernanceTableData?.data?.totalPages}
-              pageChangeHandler={pageChangeHandler}
-              tableLimit={tableLimit}
-              setTableLimit={setTableLimit}
-              time={3}
-              w={"100%"}
-            />
+          <PageButtonsWide
+            page={tablePage}
+            totalPages={defiGovernanceTableData?.data?.totalPages}
+            pageChangeHandler={pageChangeHandler}
+            tableLimit={tableLimit}
+            setTableLimit={setTableLimit}
+            time={3}
+            w={"100%"}
+          />
         </Box>
 
       </Box>
@@ -200,8 +200,8 @@ const TableRow = ({ item, i }) => {
             ? "#F5F5F7"
             : "#191919"
           : colorMode === "light"
-          ? "#FFFFFF"
-          : "#202020"
+            ? "#FFFFFF"
+            : "#202020"
       }
       onClick={() => {
         setClick(!clicked);

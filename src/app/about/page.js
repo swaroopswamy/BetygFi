@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Text, Image, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import CustomNextImage from "../components/customImage/index";
 const About = () => {
   return (

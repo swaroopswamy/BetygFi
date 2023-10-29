@@ -7,7 +7,7 @@ export const getDefiRankingsTableData = async (payload) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -18,7 +18,7 @@ export const getProtocolScoresData = async (payload) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -29,7 +29,7 @@ export const getOverviewData = async (payload) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -40,7 +40,7 @@ export const getOverviewGraphData = async (payload) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 

@@ -1,13 +1,9 @@
 "use client";
 import {
-  Grid,
-  GridItem,
   Input,
   Table,
-  TableCaption,
   Text,
   Tbody,
-  Td,
   Tfoot,
   Th,
   Thead,
@@ -15,16 +11,10 @@ import {
   Flex,
   Box,
   useColorModeValue,
-  Icon,
-  Tooltip,
   Image,
-  Spacer,
-  Button,
   useColorMode,
-  colorMode,
 } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -37,13 +27,11 @@ const GenericBigTableComponent = ({
   RowComponent,
 }) => {
   const { colorMode } = useColorMode();
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const [searchByName, setSearchByName] = useState("");
+  // const [searchByName, setSearchByName] = useState("");
 
-  const searchAssetByNameHandler = (name) => {
-    setSearchByName(name);
-  };
+  // const searchAssetByNameHandler = (name) => {
+  //   setSearchByName(name);
+  // };
 
   return (
     <>
@@ -88,8 +76,9 @@ const GenericBigTableComponent = ({
               textTransform={"capitalize"}
               w="207px"
               placeholder="Search"
+              // eslint-disable-next-line no-unused-vars
               onChange={(e) => {
-                searchAssetByNameHandler(e.target.value);
+                // searchAssetByNameHandler(e.target.value);
               }}
             />
           </Box>
@@ -265,8 +254,8 @@ function SelectionBox({ colorMode }) {
                           ? "#191919"
                           : "#191919"
                         : blockchainSelected.includes(item.name)
-                        ? "#FFFFFF"
-                        : "#FFFFFF"
+                          ? "#FFFFFF"
+                          : "#FFFFFF"
                     }
                     //textTransform="uppercase"
                   >

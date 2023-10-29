@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import React from "react";
 import { useSelector } from "react-redux";
 import { Box, SkeletonCircle, Text, useColorMode } from "@chakra-ui/react";
 import isEmpty from "is-empty";
 import dynamic from "next/dynamic";
+
 const TooltipComp = dynamic(() => import("../../tooltipComp"));
 const CustomChart = dynamic(() => import("../../graph"));
 const AssetAllocationBox = () => {
@@ -53,7 +55,7 @@ const AssetAllocationBox = () => {
     tooltip: {
       enabled: true,
       theme: colorMode,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ seriesIndex, w }) {
         let data = w?.config?.series[seriesIndex];
         let label = w?.config?.labels[seriesIndex];
         return (
@@ -74,7 +76,7 @@ const AssetAllocationBox = () => {
     },
     labels:
       assetAllocationData.isSuccess &&
-      Object.keys(assetAllocationData?.data).map((item, i) => {
+      Object.keys(assetAllocationData?.data).map((item) => {
         return `${item}`;
       }),
   };

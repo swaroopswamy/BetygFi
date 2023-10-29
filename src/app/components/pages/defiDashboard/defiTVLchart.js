@@ -1,19 +1,16 @@
-"use client"
-import { Box, Image, Tab, TabList, TabPanel, TabPanels, TableCaption, Text, useColorModeValue, useColorMode, Flex, Tooltip, TableContainer, Table, Thead, Tr, Th, Tbody, Td, Spacer, Button } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
+/* eslint-disable max-len */
+"use client";
 import React from "react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Box, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import millify from "millify";
+
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import TooltipComp from "/src/app/components/tooltipComp";
 
-let USDollar = new Intl.NumberFormat('en-US');
-
 function DefiTVLChart() {
   const { colorMode } = useColorMode();
-  const router = useRouter();
   const defiData = useSelector(
     (state) => state?.defiDashboardData?.DefiData?.data
   );
@@ -59,14 +56,14 @@ function DefiTVLChart() {
     },
     tooltip: {
       theme: colorMode,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ series, dataPointIndex, w }) {
         return (
           '<div class="donut_tooltip">' +
           '<div class="donut_tooltip_text">' +
           w.globals.labels[dataPointIndex] +
           "</div>" +
           '<div class="donut_tooltip_text">' +
-          millify(series[0][dataPointIndex], {precision: 2, locales: "en-US"}) + " USD" +
+          millify(series[0][dataPointIndex], { precision: 2, locales: "en-US" }) + " USD" +
           '</div>' +
           "</div>"
         );
@@ -82,7 +79,7 @@ function DefiTVLChart() {
           fontFamily: "Inter",
           fontWeight: 400,
         },
-        formatter: function (value, opts) {
+        formatter: function (value) {
           return millify(value, {
             precision: 2,
             locales: "en-US"
@@ -112,19 +109,19 @@ function DefiTVLChart() {
 
   const series = [{
     data: [
-    {
-      x: 'Borrow',
-      y: 1511121239
-    },
-    /*  {
+      {
+        x: 'Borrow',
+        y: 1511121239
+      },
+      /*  {
       x: 'Supply',
       y: 158930,000,000
     }, */ 
-    {
-      x: 'TVL',
-      y: defiData?.tvl !== undefined ? defiData?.tvl : 0
-    }]
-  }]
+      {
+        x: 'TVL',
+        y: defiData?.tvl !== undefined ? defiData?.tvl : 0
+      }]
+  }];
 
   return (
     <>
@@ -134,45 +131,45 @@ function DefiTVLChart() {
         borderRadius={"6px"}
         bgColor={useColorModeValue('#FFFFFF', "#202020")}
       >
-          <Box layerStyle={"spaceBetween"} p={"20px"} >
-              <Box layerStyle={"flexCenter"} gap={"5px"}>
-                <Text variant={"smallTableHeader"}>
+        <Box layerStyle={"spaceBetween"} p={"20px"} >
+          <Box layerStyle={"flexCenter"} gap={"5px"}>
+            <Text variant={"smallTableHeader"}>
                     DeFi Borrow/Supply/TVL
-                </Text>
-                <TooltipComp label="DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
-              </Box>
+            </Text>
+            <TooltipComp label="DeFi borrow is the total amount of assets that the DeFi has lent to its users. DeFi supply is the total amount of assets users have lent to the DeFi. Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
+          </Box>
                 
 
-              {/* <Button
+          {/* <Button
                   variant={'viewMore'}
                   // onClick={() => {
                   //     router.push("/defi_dashboard/defi_users");
                   // }}
               > View More </Button> */}
-            </Box>
+        </Box>
 
-          <Box>
-            {defiData?.tvl === null || defiData?.tvl === 0 && (
+        <Box>
+          {defiData?.tvl === null || defiData?.tvl === 0 && (
+            <>
+              <Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
+                <Text variant={"noDataText"}>No data available</Text>
+              </Box>
+            </>
+          )}
+          {
+            defiData?.tvl > 0 && (
               <>
-                <Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
-                  <Text variant={"noDataText"}>No data available</Text>
-                </Box>
+                <Chart
+                  options={options}
+                  series={series}
+                  type={options.chart.type}
+                  height={"280px"}
+                />
               </>
-            )}
-            {
-              defiData?.tvl > 0 && (
-                <>
-                  <Chart
-                    options={options}
-                    series={series}
-                    type={options.chart.type}
-                    height={"280px"}
-                  />
-                </>
-              )
-            }
+            )
+          }
 
-          </Box>
+        </Box>
       </Box>
     </>
   );

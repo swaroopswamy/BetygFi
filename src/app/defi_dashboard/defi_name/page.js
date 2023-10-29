@@ -170,7 +170,6 @@ function RowComponent({ tableData }) {
 function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
-  const router = useRouter();
   return (
     <>
       <Tr
@@ -182,8 +181,8 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
               ? "#F5F5F7"
               : "#191919"
             : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+              ? "#FFFFFF"
+              : "#202020"
         }
         onClick={() => {
           setClick(!clicked);

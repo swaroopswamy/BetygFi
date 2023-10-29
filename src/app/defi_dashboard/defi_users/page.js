@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{ useState } from "react";
 import {
   Icon,
   Text,
@@ -11,7 +11,6 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
 import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
@@ -20,7 +19,7 @@ const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages
 
 function DefiUsers() {
   const router = useRouter();
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   const tableName = "DeFi Users";
   const thread = ["Users", "Deposited", "Borrowed", "Assets", "Share"];
   const tableData = [
@@ -226,7 +225,6 @@ function RowComponent({ tableData }) {
 function TableRow({ key, users, deposited, borrowed, assets, share }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
-  const router = useRouter();
 
   return (
     <>
@@ -239,8 +237,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
               ? "#F5F5F7"
               : "#191919"
             : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+              ? "#FFFFFF"
+              : "#202020"
         }
         onClick={() => {
           setClick(!clicked);

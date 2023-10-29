@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { useColorMode, Skeleton, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -63,7 +64,7 @@ const BlockchainAllocationBox = () => {
     },
     tooltip: {
       theme: colorMode,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ seriesIndex, dataPointIndex, w }) {
         let xAxisName = w?.config?.series[seriesIndex].data;
         if (xAxisName[dataPointIndex]["y"] > 0) {
           return (
@@ -87,18 +88,6 @@ const BlockchainAllocationBox = () => {
     },
   };
 
-  const series = [
-    {
-      data: Object.keys(blockchainAllocationData?.data || {})?.map(
-        (item, i) => {
-          return {
-            x: item,
-            y: blockchainAllocationData?.data[item],
-          };
-        }
-      ),
-    },
-  ];
 
   let toScaleSeries = [
     {
@@ -127,7 +116,7 @@ const BlockchainAllocationBox = () => {
   let bucketSums = [0, 0, 0, 0];
   let scale = [60, 20, 15, 5];
 
-  Object.keys(blockchainAllocationData?.data || {})?.map((item, i) => {
+  Object.keys(blockchainAllocationData?.data || {})?.map((item) => {
     let val = Number(blockchainAllocationData?.data[item]);
     if (val >= 20.0) {
       bucketSums[0] += val;
@@ -161,10 +150,10 @@ const BlockchainAllocationBox = () => {
   let finalSeries = [];
   toScaleSeries.map((item, i) => {
     if (item.data.length !== 0) {
-      item.data.map((obj, j) => {
+      item.data.map((obj) => {
         obj.x = obj.x + " " + obj.y.toFixed(2) + "%";
         obj.y = (obj.y * scale[i]) / bucketSums[i];
-        obj.y = obj.y;
+        // obj.y = obj.y;
       });
       finalSeries.push(item);
     }

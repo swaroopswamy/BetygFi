@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Box, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import "/styles/styles.scss";

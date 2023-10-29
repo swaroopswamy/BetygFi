@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Image,
@@ -6,9 +7,9 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+
 const BlockchainSelectionMenuBlocks = () => {
   const dispatch = useDispatch();
   const { colorMode } = useColorMode();
@@ -115,8 +116,8 @@ const BlockchainSelectionMenuBlocks = () => {
                     ? "#191919"
                     : "#191919"
                   : blockchainSelected.includes(item.id)
-                  ? "#FFFFFF"
-                  : "#FFFFFF"
+                    ? "#FFFFFF"
+                    : "#FFFFFF"
               }
               textTransform={"capitalize"}
               mr={{ base: "18px", md: "18px" }}

@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import {
   Box,
   Flex,
@@ -28,7 +29,7 @@ const DynamicIcon = dynamic(() => import("../icons/index_new"), {
   loading: () => <span>Loading...</span>,
 });
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ ...rest }) => {
   const { colorMode } = useColorMode();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -60,12 +61,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} p={"20px"}
                 onClick={() => router.push("/")}
               >
-                  <Image
-                    width={180}
-                    height={80}
-                    alt="logo"
-                    src={colorMode === 'dark' ? "/icons/dark_betgyfi_sm_logo.svg" : "/icons/light_betgyfi_sm_icon.svg"}
-                  />
+                <Image
+                  width={180}
+                  height={80}
+                  alt="logo"
+                  src={colorMode === 'dark' ? "/icons/dark_betgyfi_sm_logo.svg" : "/icons/light_betgyfi_sm_icon.svg"}
+                />
               </Box>
 
               <Box layerStyle={"flexColumn"}>
@@ -82,14 +83,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 ))}
               </Box>
 
-              <hr style={{margin: "5px 2px 5px 15px"}} />
+              <hr style={{ margin: "5px 2px 5px 15px" }} />
 
               <Box display={"flex"} w="100%" px={"20px"}>
                 <Text variant={"h5"} 
-                opacity="0.6" 
-                letterSpacing={"1.2px"}
-                _light={{color:"#16171B"}}
-                _dark={{color:"#FFFFFF"}}> BetygFi Communities </Text>
+                  opacity="0.6" 
+                  letterSpacing={"1.2px"}
+                  _light={{ color:"#16171B" }}
+                  _dark={{ color:"#FFFFFF" }}> BetygFi Communities </Text>
               </Box>
 
               <Box layerStyle={"flexColumn"}>
@@ -105,20 +106,20 @@ const SidebarContent = ({ onClose, ...rest }) => {
                   </NavItem>
                 ))}
               </Box>
-          </Box>
+            </Box>
 
             {/* Bottom Half */}
             <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
               {bottomMenu.map((link, i) => (
                 <NavItem
-                    key={i}
-                    NavIcon={link.icon}
-                    path={link.path}
-                    newTab={link.newTab}
-                    isActive={pathname === link.path}
-                  >
-                    <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
-                  </NavItem>
+                  key={i}
+                  NavIcon={link.icon}
+                  path={link.path}
+                  newTab={link.newTab}
+                  isActive={pathname === link.path}
+                >
+                  <Text fontSize={"12px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                </NavItem>
               ))}
 
               <hr style={{ margin: "15px 0px" }} />
@@ -164,50 +165,24 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
         {isSidebarCollapsed && (
           <Box layerStyle={"spaceBetween"} flexDir={"column"} width={"70px"}>
-              <Box layerStyle={"flexColumn"} w={"100%"}>
+            <Box layerStyle={"flexColumn"} w={"100%"}>
 
-                <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} py={"20px"} mr={"-13px"}
+              <Box layerStyle={"center"} alignItems="center" cursor={"pointer"} py={"20px"} mr={"-13px"}
+                onClick={() => router.push("/")}
+              >
+                <Image
+                  width={35}
+                  height={35}
+                  alt="logo"
+                  src={colorMode === 'light' ? "/icons/company_sidebar_sm_logo_dark.svg" 
+                    : "/icons/company_sidebar_sm_logo_light.svg"}
+                  cursor={"pointer"}
                   onClick={() => router.push("/")}
-                >
-                  <Image
-                    width={35}
-                    height={35}
-                    alt="logo"
-                    src={colorMode === 'light' ? "/icons/company_sidebar_sm_logo_dark.svg" : "/icons/company_sidebar_sm_logo_light.svg"}
-                    cursor={"pointer"}
-                    onClick={() => router.push("/")}
-                  />
-                </Box>
-
-                <Box layerStyle={"flexColumn"} mt={"20px"}>
-                  {linkItemsUp.map((link, i) => (
-                    <CollapsedNavItem
-                      key={i}
-                      NavIcon={link.icon}
-                      path={link.path}
-                      newTab={link.newTab}
-                      isActive={pathname === link.path}
-                    ></CollapsedNavItem>
-                  ))}
-                </Box>
-
-                <hr style={{margin: "15px -13px"}} />
-
-                <Box layerStyle={"flexColumn"}>
-                  {linkItemsDown.map((link, i) => (
-                    <CollapsedNavItem
-                      key={i}
-                      NavIcon={link.icon}
-                      path={link.path}
-                      newTab={link.newTab}
-                      isActive={pathname === link.path}
-                    ></CollapsedNavItem>
-                  ))}
-                </Box>
+                />
               </Box>
 
-              <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                {bottomMenu.map((link, i) => (
+              <Box layerStyle={"flexColumn"} mt={"20px"}>
+                {linkItemsUp.map((link, i) => (
                   <CollapsedNavItem
                     key={i}
                     NavIcon={link.icon}
@@ -216,30 +191,57 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     isActive={pathname === link.path}
                   ></CollapsedNavItem>
                 ))}
+              </Box>
 
-                <hr style={{ margin: "25px -13px" }} />
+              <hr style={{ margin: "15px -13px" }} />
 
+              <Box layerStyle={"flexColumn"}>
+                {linkItemsDown.map((link, i) => (
+                  <CollapsedNavItem
+                    key={i}
+                    NavIcon={link.icon}
+                    path={link.path}
+                    newTab={link.newTab}
+                    isActive={pathname === link.path}
+                  ></CollapsedNavItem>
+                ))}
+              </Box>
+            </Box>
+
+            <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
+              {bottomMenu.map((link, i) => (
+                <CollapsedNavItem
+                  key={i}
+                  NavIcon={link.icon}
+                  path={link.path}
+                  newTab={link.newTab}
+                  isActive={pathname === link.path}
+                ></CollapsedNavItem>
+              ))}
+
+              <hr style={{ margin: "25px -13px" }} />
+
+              <Box
+                display={"flex"}
+                justifyContent={"center"}
+                w={"100%"}
+              >
                 <Box
                   display={"flex"}
-                  justifyContent={"center"}
-                  w={"100%"}
+                  justifyContent="center"
+                  alignItems={"center"}
+                  height={"45px"}
+                  mr={"-13px"}
                 >
-                  <Box
-                    display={"flex"}
-                    justifyContent="center"
-                    alignItems={"center"}
-                    height={"45px"}
-                    mr={"-13px"}
-                  >
-                    <Image
-                      width={22}
-                      height={22}
-                      alt="logo"
-                      src={"/icons/company_sm_logo.svg"}
-                    />
-                  </Box>
+                  <Image
+                    width={22}
+                    height={22}
+                    alt="logo"
+                    src={"/icons/company_sm_logo.svg"}
+                  />
                 </Box>
               </Box>
+            </Box>
           </Box>
         )}
 
@@ -274,7 +276,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 export default SidebarContent;
 
 
-const CollapsedNavItem = ({ NavIcon, path, newTab, isActive }) => {
+const CollapsedNavItem = ({ NavIcon, path, newTab }) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -386,11 +388,8 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
 
 const MobileSidebar = ({
   isOpen,
-  onOpen,
   onClose,
-  isLoginModalOpen,
   onLoginModalOpen,
-  onLoginModalClose,
 }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } =
@@ -473,7 +472,7 @@ const MobileSidebar = ({
                             id="toggler"
                             type="checkbox"
                             checked={colorMode !== "light"}
-                            onChange={(e) => {
+                            onChange={() => {
                               toggleColorMode();
                             }}
                           />
@@ -569,16 +568,16 @@ const MobileSidebar = ({
 
                     {bottomMenu.map((link, i) => (
                       <NavItem
-                          key={i}
-                          NavIcon={link.icon}
-                          path={link.path}
-                          newTab={link.newTab}
-                          isActive={pathname === link.path}
-                          height={"50px"}
-                          mr={"0px"}
-                        >
-                          <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
-                        </NavItem>
+                        key={i}
+                        NavIcon={link.icon}
+                        path={link.path}
+                        newTab={link.newTab}
+                        isActive={pathname === link.path}
+                        height={"50px"}
+                        mr={"0px"}
+                      >
+                        <Text fontSize={"14px"} lineHeight={"20px"} letterSpacing={"1.4px"}>{link.name}</Text>
+                      </NavItem>
                     ))}
                   </Box>
                 </Box>

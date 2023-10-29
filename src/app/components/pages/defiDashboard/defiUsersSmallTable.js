@@ -1,13 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Text,
   Box,
   useColorModeValue,
-  Button,
   useColorMode,
   Tr,
   Th,
@@ -117,8 +115,8 @@ const TableRow = ({ item, i }) => {
               ? "#F5F5F7"
               : "#191919"
             : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+              ? "#FFFFFF"
+              : "#202020"
         }
         onClick={() => {
           setClick(!clicked);

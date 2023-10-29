@@ -7,13 +7,12 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect, useMemo } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import graphData2 from "./exampleTrendGraphData.json";
 import { useSelector } from "react-redux";
 import millify from "millify";
+
 const axios = require("axios");
-import "/styles/styles.scss";
 const CustomChart = dynamic(() => import("/src/app/components/graph"));
 
 function getEveryNth(arr, nth) {
@@ -29,7 +28,7 @@ function getEveryNth(arr, nth) {
 function DashboardTrendGraph() {
   const { colorMode } = useColorMode();
   const [graphTypeSelected, setGraphTypeSelected] = useState(["tvl"]);
-  const [currencySelected, setCurrencyType] = useState("USD");
+  // const [currencySelected, setCurrencyType] = useState("USD");
   const [series, setSeries] = useState([]);
 
   const [graphData, setGraphData] = useState(null);
@@ -45,9 +44,9 @@ function DashboardTrendGraph() {
              { name: "Median APY", value: "median_apy" } */
   ];
 
-  const CurrencyTypeHandler = (type) => {
-    setCurrencyType(type);
-  };
+  // const CurrencyTypeHandler = (type) => {
+  //   setCurrencyType(type);
+  // };
 
   const GraphTypeHandler = (type) => {
     const arr = graphTypeSelected.slice();
@@ -110,15 +109,15 @@ function DashboardTrendGraph() {
 
  
   useEffect(() => {
-    let response = axios
+    axios
       .get(
         "https://api.coingecko.com/api/v3/coins/aave/market_chart/range?vs_currency=usd&from=0&to=1693552768123"
       )
       .then(function (response) {
         setGraphData(response.data);
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(function (/* error */) {
+        // console.log(error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -317,7 +316,7 @@ function SelectorGraph({ tvlData }) {
     },
     tooltip: {
       enabled: false,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ series }) {
         // console.log(Math.max(...series[0]))
         return (
           '<div class="selection_box_tooltip">' +
@@ -359,7 +358,6 @@ function SelectorGraph({ tvlData }) {
 }
 
 function Graph({ series }) {
-  const { colorMode } = useColorMode;
   const options = {
     chart: {
       toolbar: {
@@ -411,7 +409,7 @@ function Graph({ series }) {
             fontSize: "11px",
             fontWeight: 300,
           },
-          formatter: function (val, index) {
+          formatter: function (val) {
             return (
               "$" +
               millify(val, {
@@ -488,117 +486,117 @@ function Graph({ series }) {
   );
 }
 
-function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
-  return (
-    <>
-      <Box
-        position={"relative"}
-        padding={"7px 8px"}
-        border={"1px"}
-        borderRadius={"2px"}
-        borderColor={useColorModeValue("#E0E0E0", "#333")}
-        display={"flex"}
-        alignItems={"center"}
-        cursor={"pointer"}
-        onClick={() => {
-          CurrencyTypeHandler("USD");
-        }}
-        _after={
-          currencySelected === "USD" && {
-            bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-          }
-        }
-        bgColor={
-          currencySelected === "USD"
-            ? colorMode === "light"
-              ? "#F5F5F7"
-              : "#191919"
-            : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
-        }
-      >
-        <Text
-          fontSize={"10px"}
-          lineHeight={"10px"}
-          fontWeight={currencySelected === "USD" ? 600 : 400}
-        >
-          USD
-        </Text>
-      </Box>
-      <Box
-        position={"relative"}
-        padding={"7px 8px"}
-        border={"1px"}
-        borderRadius={"2px"}
-        borderColor={useColorModeValue("#E0E0E0", "#333")}
-        display={"flex"}
-        alignItems={"center"}
-        cursor={"pointer"}
-        onClick={() => {
-          CurrencyTypeHandler("BTC");
-        }}
-        _after={
-          currencySelected === "BTC" && {
-            bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-          }
-        }
-        bgColor={
-          currencySelected === "BTC"
-            ? colorMode === "light"
-              ? "#F5F5F7"
-              : "#191919"
-            : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
-        }
-      >
-        <Text
-          fontSize={"10px"}
-          lineHeight={"10px"}
-          fontWeight={currencySelected === "BTC" ? 600 : 400}
-        >
-          BTC
-        </Text>
-      </Box>
-      <Box
-        position={"relative"}
-        padding={"7px 8px"}
-        border={"1px"}
-        borderRadius={"2px"}
-        borderColor={useColorModeValue("#E0E0E0", "#333")}
-        display={"flex"}
-        alignItems={"center"}
-        cursor={"pointer"}
-        onClick={() => {
-          CurrencyTypeHandler("ETH");
-        }}
-        _after={
-          currencySelected === "ETH" && {
-            bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-          }
-        }
-        bgColor={
-          currencySelected === "ETH"
-            ? colorMode === "light"
-              ? "#F5F5F7"
-              : "#191919"
-            : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
-        }
-      >
-        <Text
-          fontSize={"10px"}
-          lineHeight={"10px"}
-          fontWeight={currencySelected === "ETH" ? 600 : 400}
-        >
-          ETH
-        </Text>
-      </Box>
-    </>
-  );
-}
+// function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
+//   return (
+//     <>
+//       <Box
+//         position={"relative"}
+//         padding={"7px 8px"}
+//         border={"1px"}
+//         borderRadius={"2px"}
+//         borderColor={useColorModeValue("#E0E0E0", "#333")}
+//         display={"flex"}
+//         alignItems={"center"}
+//         cursor={"pointer"}
+//         onClick={() => {
+//           CurrencyTypeHandler("USD");
+//         }}
+//         _after={
+//           currencySelected === "USD" && {
+//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
+//           }
+//         }
+//         bgColor={
+//           currencySelected === "USD"
+//             ? colorMode === "light"
+//               ? "#F5F5F7"
+//               : "#191919"
+//             : colorMode === "light"
+//               ? "#FFFFFF"
+//               : "#202020"
+//         }
+//       >
+//         <Text
+//           fontSize={"10px"}
+//           lineHeight={"10px"}
+//           fontWeight={currencySelected === "USD" ? 600 : 400}
+//         >
+//           USD
+//         </Text>
+//       </Box>
+//       <Box
+//         position={"relative"}
+//         padding={"7px 8px"}
+//         border={"1px"}
+//         borderRadius={"2px"}
+//         borderColor={useColorModeValue("#E0E0E0", "#333")}
+//         display={"flex"}
+//         alignItems={"center"}
+//         cursor={"pointer"}
+//         onClick={() => {
+//           CurrencyTypeHandler("BTC");
+//         }}
+//         _after={
+//           currencySelected === "BTC" && {
+//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
+//           }
+//         }
+//         bgColor={
+//           currencySelected === "BTC"
+//             ? colorMode === "light"
+//               ? "#F5F5F7"
+//               : "#191919"
+//             : colorMode === "light"
+//               ? "#FFFFFF"
+//               : "#202020"
+//         }
+//       >
+//         <Text
+//           fontSize={"10px"}
+//           lineHeight={"10px"}
+//           fontWeight={currencySelected === "BTC" ? 600 : 400}
+//         >
+//           BTC
+//         </Text>
+//       </Box>
+//       <Box
+//         position={"relative"}
+//         padding={"7px 8px"}
+//         border={"1px"}
+//         borderRadius={"2px"}
+//         borderColor={useColorModeValue("#E0E0E0", "#333")}
+//         display={"flex"}
+//         alignItems={"center"}
+//         cursor={"pointer"}
+//         onClick={() => {
+//           CurrencyTypeHandler("ETH");
+//         }}
+//         _after={
+//           currencySelected === "ETH" && {
+//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
+//           }
+//         }
+//         bgColor={
+//           currencySelected === "ETH"
+//             ? colorMode === "light"
+//               ? "#F5F5F7"
+//               : "#191919"
+//             : colorMode === "light"
+//               ? "#FFFFFF"
+//               : "#202020"
+//         }
+//       >
+//         <Text
+//           fontSize={"10px"}
+//           lineHeight={"10px"}
+//           fontWeight={currencySelected === "ETH" ? 600 : 400}
+//         >
+//           ETH
+//         </Text>
+//       </Box>
+//     </>
+//   );
+// }
 
 function TrendGraphTypeButton({
   name,
@@ -636,8 +634,8 @@ function TrendGraphTypeButton({
               ? "#F5F5F7"
               : "#191919"
             : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+              ? "#FFFFFF"
+              : "#202020"
         }
       >
         <Text

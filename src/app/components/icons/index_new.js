@@ -1,5 +1,7 @@
+/* eslint-disable max-len */
 // components/Icon.js
-const Icon = ({ name, width, height, color, }) => {
+import React from "react";
+const Icon = ({ name }) => {
   const icons = {
     x_dark: (
       <svg
@@ -60,7 +62,8 @@ const Icon = ({ name, width, height, color, }) => {
     green_tick: (
       <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="12.8359" cy="12" rx="12" ry="12" transform="rotate(-180 12.8359 12)" fill="#55A406" />
-        <path d="M18.3359 8.75L11.4609 15.625L8.33594 12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M18.3359 8.75L11.4609 15.625L8.33594 12.5" stroke="white" stroke-width="2" 
+          stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     ),
     unticked: (

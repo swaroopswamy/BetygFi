@@ -2,7 +2,6 @@
 import {
   Box,
   Image,
-  Input,
   Text,
   useColorModeValue,
   Accordion,
@@ -84,8 +83,8 @@ const PortfolioPanelComponent = () => {
                       ? "#202020"
                       : "#FFF"
                     : colorMode === "light"
-                    ? "#FFF"
-                    : "#202020"
+                      ? "#FFF"
+                      : "#202020"
                 }
                 onClick={() => {
                   DefiArrayHandler("All");
@@ -109,8 +108,8 @@ const PortfolioPanelComponent = () => {
                         ? "#FFF"
                         : "#191919"
                       : colorMode === "light"
-                      ? "#191919"
-                      : "#FFFFFF"
+                        ? "#191919"
+                        : "#FFFFFF"
                   }
                 >
                   All
@@ -128,8 +127,8 @@ const PortfolioPanelComponent = () => {
                           ? "#202020"
                           : "#FFF"
                         : colorMode === "light"
-                        ? "#FFFFFF"
-                        : "#202020"
+                          ? "#FFFFFF"
+                          : "#202020"
                     }
                     onClick={() => {
                       DefiArrayHandler(item);
@@ -151,8 +150,8 @@ const PortfolioPanelComponent = () => {
                             ? "#FFF"
                             : "#191919"
                           : colorMode === "light"
-                          ? "#191919"
-                          : "#FFFFFF"
+                            ? "#191919"
+                            : "#FFFFFF"
                       }
                     >
                       {item}
@@ -191,7 +190,7 @@ const PortfolioPanelComponent = () => {
 
 export default PortfolioPanelComponent;
 
-const PorfolioAccordion = ({ name, value, thread, tableData }) => {
+const PorfolioAccordion = ({ thread, tableData }) => {
   return (
     <>
       <Accordion
@@ -393,7 +392,7 @@ const PorfolioAccordion = ({ name, value, thread, tableData }) => {
                               fontWeight={"400"}
                               lineHeight={"20px"}
                             >
-                              {(item?.value).toLocaleString("en-US", {
+                              {(item?.value)?.toLocaleString("en-US", {
                                 style: "currency",
                                 currency: "USD",
                               })}

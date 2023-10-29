@@ -8,51 +8,41 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  useMediaQuery,
 } from "@chakra-ui/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+
 const ReactReader = dynamic(
   () => import("react-reader").then((res) => res.ReactReader),
   { ssr: false }
 );
 import { ReactReaderStyle } from "react-reader";
 
-let lightReaderTheme = {};
-let darkReaderTheme = {};
-
 const Approach = () => {
   const { colorMode } = useColorMode();
   const rendition = useRef(null);
   const [location, setLocation] = useState(0);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(null);
+  // const [page, setPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(null);
   const [scale, setScale] = useState(1);
-  const [isBigScreen] = useMediaQuery("(min-width: 1100px)");
+  // const [isBigScreen] = useMediaQuery("(min-width: 1100px)");
 
   useEffect(() => {
     if (rendition.current) {
       const themes = rendition.current.themes;
-      themes.override(
-        "color",
-        colorMode === "light" ? "#000000" : "rgba(255, 255, 255, 0.8)"
-      );
-      themes.override(
-        "background",
-        colorMode === "light" ? "#FFFFFF" : "#191919"
-      );
+      themes.override('color', colorMode === 'light' ? "#000000" : "rgba(255, 255, 255, 0.8)");
+      themes.override('background', colorMode === 'light' ? "#FFFFFF" : "#191919");
 
-      rendition.current.themes.register("custom", {
-        ".block_": {
-          "font-family": "Inter, sans-serif",
-          "font-weight": "600",
-          "font-size": `${scale * 24}px`,
-          color: `${colorMode === "light" ? "#090909" : "#FFFFFF"}`,
+      rendition.current.themes.register('custom', {
+        h1: {
+          'font-family': 'Inter, sans-serif',
+          'font-weight': '400',
+          'font-size': `${scale * 24}px`,
         },
         p: {
-          "font-family": "Inter, sans-serif",
-          "font-weight": "400",
-          "font-size": `${scale * 14}px`,
+          'font-family': 'Inter, sans-serif',
+          'font-weight': '400',
+          'font-size': `${scale * 14}px`,
         },
 
         li: {
@@ -60,116 +50,94 @@ const Approach = () => {
         },
 
         body: {
-          "font-family": "Inter, sans-serif",
-          "font-weight": "400",
-          "font-size": `${scale * 14}px`,
-          color: "#FF0000 !imporant",
-          padding: "0px !important",
-          "padding-left": "0px !important",
-          "padding-right": " 0px !important",
-          "margin-left": "-10px !important",
-          "margin-right": "-10px !important",
-        },
-        h2: {
-          "font-size": `${scale * 14}px !important`,
+          'font-family': 'Inter, sans-serif',
+          'font-weight': '400',
+          'font-size': `${scale * 14}px`,
+          'color': "#FF0000 !imporant"
         },
         text_1: {
-          "font-family": "Inter, sans-serif",
-          "font-weight": "400",
-          "font-size": `${scale * 14}px`,
-          color: "#FF0000",
-        },
+          'font-family': 'Inter, sans-serif',
+          'font-weight': '400',
+          'font-size': `${scale * 14}px`,
+          'color': "#FF0000"
+        }
       });
-      rendition.current.themes.select("custom");
+      rendition.current.themes.select('custom');
     }
   });
 
   const changePage = (epubcfi) => {
     setLocation(epubcfi);
     if (rendition.current) {
-      const { displayed, href } = rendition.current.location.start;
-      setTotalPages(displayed.total);
-      setPage(displayed.page);
+      // const { displayed, href } = rendition.current.location.start;
+      // setTotalPages(displayed.total);
+      // setPage(displayed.page);
     }
   };
 
   if (rendition.current) {
-    rendition.current.on("rendered", () => {
-      const { displayed, href } = rendition.current.location.start;
-      setTotalPages(displayed.total);
-      setPage(displayed.page);
+    rendition.current.on('rendered', () => {
+      // const { displayed, href } = rendition.current.location.start;
+      // setTotalPages(displayed.total);
+      // setPage(displayed.page);
     });
   }
 
   return (
-    <Box
-      display={"flex"}
-      h={"150vh"}
-      justifyContent={"center"}
-      p={{ base: "25px 10px", md: isBigScreen ? "25px 35px" : "25px 35px" }}
-      paddingRight={{ base: "none", md: isBigScreen ? "200px" : "35px" }}
-      bgColor={useColorModeValue("#F0F0F5", "#191919")}
-    >
-      <Box
-        display={"flex"}
-        flexDir={"column"}
-        w={"100%"}
-        h={"95%"}
-        boxShadow={useColorModeValue("0px", "0px 0px 4px 0px #FFF")}
-      >
+    <Box display={"flex"} h={"150vh"} justifyContent={"center"} p={"25px 35px"}
+      paddingRight={{ base: "none", md: "200px" }} bgColor={useColorModeValue("#F0F0F5", "#191919")}>
+      <Box display={"flex"} flexDir={"column"} w={"100%"} h={"95%"}
+        boxShadow={useColorModeValue("0px", "0px 0px 4px 0px #FFF")}>
         <ReactReader
           url="/text/paper4.epub"
           showToc={false}
           location={location}
           locationChanged={changePage}
-          showPrevButton={false}
-          showNextButton={false}
-          readerStyles={
-            colorMode === "light"
-              ? {
-                  ...ReactReaderStyle,
-                  readerArea: {
-                    ...ReactReaderStyle.readerArea,
-                    transition: undefined,
-                  },
-                }
-              : {
-                  ...ReactReaderStyle,
-                  arrow: {
-                    ...ReactReaderStyle.arrow,
-                    color: "white",
-                  },
-                  arrowHover: {
-                    ...ReactReaderStyle.arrowHover,
-                    color: "#ccc",
-                  },
-                  readerArea: {
-                    ...ReactReaderStyle.readerArea,
-                    backgroundColor: "#191919",
-                    transition: "undefined",
-                    padding: "0px",
-                  },
-                  titleArea: {
-                    ...ReactReaderStyle.titleArea,
-                    color: "#ccc",
-                  },
-                  tocArea: {
-                    ...ReactReaderStyle.tocArea,
-                    background: "#111",
-                  },
-                  tocButtonExpanded: {
-                    ...ReactReaderStyle.tocButtonExpanded,
-                    background: "#222",
-                  },
-                  tocButtonBar: {
-                    ...ReactReaderStyle.tocButtonBar,
-                    background: "#fff",
-                  },
-                  tocButton: {
-                    ...ReactReaderStyle.tocButton,
-                    color: "white",
-                  },
-                }
+          readerStyles={colorMode === 'light' ?
+            {
+              ...ReactReaderStyle,
+              readerArea: {
+                ...ReactReaderStyle.readerArea,
+                transition: undefined,
+              }
+            }
+            :
+            {
+              ...ReactReaderStyle,
+              arrow: {
+                ...ReactReaderStyle.arrow,
+                color: 'white',
+              },
+              arrowHover: {
+                ...ReactReaderStyle.arrowHover,
+                color: '#ccc',
+              },
+              readerArea: {
+                ...ReactReaderStyle.readerArea,
+                backgroundColor: '#191919',
+                transition: "undefined",
+              },
+              titleArea: {
+                ...ReactReaderStyle.titleArea,
+                color: '#ccc',
+              },
+              tocArea: {
+                ...ReactReaderStyle.tocArea,
+                background: '#111',
+              },
+              tocButtonExpanded: {
+                ...ReactReaderStyle.tocButtonExpanded,
+                background: '#222',
+              },
+              tocButtonBar: {
+                ...ReactReaderStyle.tocButtonBar,
+                background: '#fff',
+              },
+              tocButton: {
+                ...ReactReaderStyle.tocButton,
+                color: 'white',
+              },
+            }
           }
           getRendition={(_rendition) => {
             rendition.current = _rendition;
@@ -177,14 +145,8 @@ const Approach = () => {
           epubOptions={{ spread: "none" }}
         />
 
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          minH={"30px"}
-          bg={useColorModeValue("#C6C6C6", "#333333")}
-          px={"20px"}
-        >
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"} minH={"30px"}
+          bg={useColorModeValue("#C6C6C6", "#333333")} px={"20px"}>
           {/* <Box layerStyle={"center"} mx={"20px"}>
             <Text variant="h3">
               {page}/{totalPages}
@@ -206,23 +168,15 @@ const Approach = () => {
             </Slider>
           </Box> */}
 
-          <Box
-            mx={"10px"}
-            w={{ base: "70%", md: "20%" }}
-            display={"flex"}
-            gap={"10px"}
-          >
-            <Text
-              fontSize={"24px"}
-              cursor={"pointer"}
-              onClick={() => {
-                let s = scale;
-                if (s > 1) {
-                  s = s - 0.1;
-                  setScale(s);
-                }
-              }}
-            >
+
+          <Box mx={"10px"} w={"20%"} display={"flex"} gap={"10px"}>
+            <Text fontSize={"24px"} cursor={"pointer"} onClick={() => {
+              let s = scale;
+              if (s > 1) {
+                s = s - 0.1;
+                setScale(s);
+              }
+            }}>
               -
             </Text>
             <Slider
@@ -240,17 +194,13 @@ const Approach = () => {
               </SliderTrack>
               <SliderThumb />
             </Slider>
-            <Text
-              fontSize={"24px"}
-              cursor={"pointer"}
-              onClick={() => {
-                let s = scale;
-                if (s < 1.5) {
-                  s = s + 0.1;
-                  setScale(s);
-                }
-              }}
-            >
+            <Text fontSize={"24px"} cursor={"pointer"} onClick={() => {
+              let s = scale;
+              if (s < 1.5) {
+                s = s + 0.1;
+                setScale(s);
+              }
+            }}>
               +
             </Text>
           </Box>

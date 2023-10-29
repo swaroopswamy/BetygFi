@@ -1,23 +1,21 @@
+/* eslint-disable max-len */
 "use client";
+import React, { useEffect } from "react";
 import {
   Box,
-  Image,
   Text,
   useColorModeValue,
   useColorMode,
-  Flex,
-  Tooltip,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import "/styles/styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDefiFeeRevenueData } from "../../../../redux/defi_dashboard_data/dataSlice";
 import LastUpdate from "/src/app/components/lastUpdate";
 import TooltipComp from "/src/app/components/tooltipComp";
 
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 let USDollar = new Intl.NumberFormat("en-US");
 
 function DefiFeeRevenueChart() {
@@ -61,7 +59,7 @@ function DefiFeeRevenueChart() {
     },
     tooltip: {
       theme: colorMode,
-      custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+      custom: function ({ series, seriesIndex, w }) {
         return (
           '<div class="donut_tooltip">' +
           '<div class="donut_tooltip_text">' +

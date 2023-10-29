@@ -27,7 +27,7 @@ import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataS
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "../sidebar/index";
 
-const Navbar = ({ onOpenMenu, ...rest }) => {
+const Navbar = ({ ...rest }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -158,7 +158,7 @@ const Navbar = ({ onOpenMenu, ...rest }) => {
                 id="toggler"
                 type="checkbox"
                 checked={colorMode !== "light"}
-                onChange={(e) => {
+                onChange={() => {
                   toggleColorMode();
                 }}
               />

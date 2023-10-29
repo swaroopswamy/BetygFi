@@ -1,26 +1,27 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData, getOverviewGraphData } from "@/services/dashboardService";
+import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData, 
+  getOverviewGraphData } from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
   const response = await getDefiRankingsTableData(payload);
   return response.data;
-})
+});
 
 export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payload) => {
   const response = await getOverviewData(payload);
   return response.data;
-})
+});
 
 export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload) => {
   const response = await getProtocolScoresData(payload);
   return response.data;
-})
+});
 
 export const fetchOverviewGraphData = createAsyncThunk('getOverviewGraphData', async (payload) => {
   const response = await getOverviewGraphData(payload);
   return response.data;
-})
+});
 
 const DashboardDataSlice = createSlice({
   name: "dashboardData",
@@ -76,10 +77,10 @@ const DashboardDataSlice = createSlice({
       state.ScoreGraphData.isLoading = false;
       state.ScoreGraphData.isSuccess = true;
     });
-    builder.addCase(fetchScoreGraphData.pending, (state, action) => {
+    builder.addCase(fetchScoreGraphData.pending, (state) => {
       state.ScoreGraphData.isLoading = true;
     });
-    builder.addCase(fetchScoreGraphData.rejected, (state, action) => {
+    builder.addCase(fetchScoreGraphData.rejected, (state) => {
       state.ScoreGraphData.isLoading = false;
       state.ScoreGraphData.isError = true;
     });
@@ -88,10 +89,10 @@ const DashboardDataSlice = createSlice({
       state.OverviewData.isLoading = false;
       state.OverviewData.isSuccess = true;
     });
-    builder.addCase(fetchOverviewData.pending, (state, action) => {
+    builder.addCase(fetchOverviewData.pending, (state) => {
       state.OverviewData.isLoading = true;
     });
-    builder.addCase(fetchOverviewData.rejected, (state, action) => {
+    builder.addCase(fetchOverviewData.rejected, (state) => {
       state.OverviewData.isLoading = false;
       state.OverviewData.isError = true;
     });
@@ -100,10 +101,10 @@ const DashboardDataSlice = createSlice({
       state.OverviewGraphData.isLoading = false;
       state.OverviewGraphData.isSuccess = true;
     });
-    builder.addCase(fetchOverviewGraphData.pending, (state, action) => {
+    builder.addCase(fetchOverviewGraphData.pending, (state) => {
       state.OverviewGraphData.isLoading = true;
     });
-    builder.addCase(fetchOverviewGraphData.rejected, (state, action) => {
+    builder.addCase(fetchOverviewGraphData.rejected, (state) => {
       state.OverviewGraphData.isLoading = false;
       state.OverviewGraphData.isError = true;
     });

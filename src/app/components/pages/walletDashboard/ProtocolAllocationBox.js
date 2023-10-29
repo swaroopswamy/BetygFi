@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+import React from "react";
 import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "../../../../../util/globalHelper";
@@ -105,7 +107,7 @@ const TableHeaderRowMobile = () => {
   );
 };
 
-const TableBodyRowMobileButtonComp = ({ item, i }) => {
+const TableBodyRowMobileButtonComp = ({ item }) => {
   return (
     <Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
       <Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
@@ -130,7 +132,7 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
     </Box>
   );
 };
-const TableBodyRowMobilePanelComp = ({ item, i }) => {
+const TableBodyRowMobilePanelComp = ({ item }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>

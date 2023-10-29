@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getBlockchainListData } from "@/services/appService";
 
-
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async () => {
-
   const response = await getBlockchainListData();
   return response.data;
-})
+});
 
 
 const AppDataSlice = createSlice({

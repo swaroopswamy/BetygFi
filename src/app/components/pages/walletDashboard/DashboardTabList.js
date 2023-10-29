@@ -26,8 +26,8 @@ const DashboardTabList = ({ tabIndex }) => {
                 ? "#202020"
                 : "#FFFFFF"
               : colorMode === "light"
-              ? "#F0F0F5"
-              : "#202020"
+                ? "#F0F0F5"
+                : "#202020"
           }
         >
           <Text
@@ -39,8 +39,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "#FFFFFF"
                   : "#000000"
                 : colorMode === "light"
-                ? "#000000"
-                : "#FFFFFF"
+                  ? "#000000"
+                  : "#FFFFFF"
             }
             mr={{ base: "10px", md: "44px" }}
             lineHeight={"10px"}
@@ -57,8 +57,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "/images/transactions_black.svg"
                   : "/images/transactions_white.svg"
                 : colorMode === "light"
-                ? "/images/transactions_white.svg"
-                : "/images/transactions_black.svg"
+                  ? "/images/transactions_white.svg"
+                  : "/images/transactions_black.svg"
             }
           ></Image>
         </Box>
@@ -81,8 +81,8 @@ const DashboardTabList = ({ tabIndex }) => {
                 ? "#202020"
                 : "#FFFFFF"
               : colorMode === "light"
-              ? "#F0F0F5"
-              : "#202020"
+                ? "#F0F0F5"
+                : "#202020"
           }
         >
           <Text
@@ -93,8 +93,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "#FFFFFF"
                   : "#202020"
                 : colorMode === "light"
-                ? "#202020"
-                : "#FFFFFF"
+                  ? "#202020"
+                  : "#FFFFFF"
             }
             fontWeight={tabIndex === 1 ? "700" : "400"}
             mr={{ base: "10px", md: "44px" }}
@@ -112,8 +112,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "/images/portfolio_black.svg"
                   : "/images/portfolio_white.svg"
                 : colorMode === "light"
-                ? "/images/portfolio_white.svg"
-                : "/images/portfolio_black.svg"
+                  ? "/images/portfolio_white.svg"
+                  : "/images/portfolio_black.svg"
             }
           ></Image>
         </Box>
@@ -136,8 +136,8 @@ const DashboardTabList = ({ tabIndex }) => {
                 ? "#202020"
                 : "#FFFFFF"
               : colorMode === "light"
-              ? "#F0F0F5"
-              : "#202020"
+                ? "#F0F0F5"
+                : "#202020"
           }
         >
           <Text
@@ -148,8 +148,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "#FFFFFF"
                   : "#202020"
                 : colorMode === "light"
-                ? "#202020"
-                : "#FFFFFF"
+                  ? "#202020"
+                  : "#FFFFFF"
             }
             fontWeight={tabIndex === 2 ? "700" : "400"}
             mr={{ base: "10px", md: "44px" }}
@@ -167,8 +167,8 @@ const DashboardTabList = ({ tabIndex }) => {
                   ? "/images/wallet_analytics_black.svg"
                   : "/images/wallet_analytics_white.svg"
                 : colorMode === "light"
-                ? "/images/wallet_analytics_white.svg"
-                : "/images/wallet_analytics_black.svg"
+                  ? "/images/wallet_analytics_white.svg"
+                  : "/images/wallet_analytics_black.svg"
             }
           ></Image>
         </Box>

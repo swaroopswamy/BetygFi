@@ -30,16 +30,10 @@ import { TriangleDownIcon } from "@chakra-ui/icons";
 import {
   LoginMetamask,
   VerifyPublicAddressData,
-  loadToken,
-  saveToken,
 } from "@/redux/auth_data/authSlice";
 import {
   useAccount,
   useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-  useSignMessage,
 } from "wagmi";
 import { ethers } from "ethers";
 
@@ -68,7 +62,7 @@ const LoginPage = ({ isOpen, onClose }) => {
   const [browserWalletProcessSelected, setBrowserWalletProcessSelected] =
     useState(false);
 
-  const handleProcessSelector = (item) => {
+  const handleProcessSelector = () => {
     setBrowserWalletProcessSelected(true);
   };
   const { colorMode } = useColorMode();
@@ -183,7 +177,7 @@ const LoginPage = ({ isOpen, onClose }) => {
             ) : (
               <>
                 <Box display={"flex"} flexDirection={"column"}>
-                  {walletArray.map((item, i) => {
+                  {walletArray.map((item) => {
                     return (
                       <Box
                         display={"flex"}
@@ -302,14 +296,15 @@ const OtherBrowserWalletProcess = ({
   setBrowserWalletProcessSelected,
 }) => {
   const dispatch = useDispatch();
-  const { connect, connectors, error, isLoading, pendingConnector } =
+  const { connect, connectors, error } =
     useConnect();
-  const { address, connector, isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
   const UserData = useSelector((state) => state.authData.UserData);
   const LoggedInData = useSelector((state) => state.authData.LoggedInData);
   const { colorMode } = useColorMode();
 
-  const { activeStep, isCompleteStep, setActiveStep } = useSteps({
+  // eslint-disable-next-line no-unused-vars
+  const { activeStep, setActiveStep } = useSteps({
     index: 0,
     count: 2,
   });
@@ -331,7 +326,7 @@ const OtherBrowserWalletProcess = ({
       };
     } catch (err) {
       // setError(err.message);
-      console.log(err, "Error");
+      // console.log(err, "Error");
     }
   };
 
@@ -344,7 +339,7 @@ const OtherBrowserWalletProcess = ({
       connect({ connector });
     } catch (err) {
       // setError(err.message);
-      console.log(err, "Error");
+      // console.log(err, "Error");
     }
   };
   const handleVerifyWallet = () => {
@@ -394,10 +389,10 @@ const OtherBrowserWalletProcess = ({
       title: isConnected ? "Wallet Connected" : "Connect Wallet",
       description: isConnected
         ? `Address: ${
-            address.split("").join("").substring(0, 6) +
+          address.split("").join("").substring(0, 6) +
             "..." +
             address.slice(-5)
-          }`
+        }`
         : "Tell which address you want to use",
       buttonText: "Connect",
       buttonFunction: () => handleConnectWallet(connectors[0]),
@@ -416,9 +411,9 @@ const OtherBrowserWalletProcess = ({
     setActiveStep((prevStep) => prevStep + 1);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevStep) => prevStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep((prevStep) => prevStep - 1);
+  // };
 
   return (
     <>
@@ -438,8 +433,8 @@ const OtherBrowserWalletProcess = ({
                     ? "#E7E7E7"
                     : "transparent"
                   : activeStep === index
-                  ? "#202020"
-                  : "transparent"
+                    ? "#202020"
+                    : "transparent"
               }
               padding={"16px 22px 16px 13px"}
               opacity={activeStep !== index ? "0.4" : "1"}

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Image,
@@ -134,7 +135,7 @@ const TableHeaderRowMobile = () => {
   );
 };
 
-const TableBodyRowMobileButtonComp = ({ item, i }) => {
+const TableBodyRowMobileButtonComp = ({ item }) => {
   return (
     <Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
       <Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
@@ -163,7 +164,7 @@ const TableBodyRowMobileButtonComp = ({ item, i }) => {
     </Box>
   );
 };
-const TableBodyRowMobilePanelComp = ({ item, i }) => {
+const TableBodyRowMobilePanelComp = ({ item }) => {
   return (
     <Box layerStyle={"flexColumn"} my={"10px"}>
       <Box display={"flex"}>
