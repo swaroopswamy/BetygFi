@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const General = [
   {
     heading: "How long does it take to update the data on the BetygFi Dashboard?",

@@ -11,7 +11,7 @@ import {
   Image,
   useColorMode,
 } from "@chakra-ui/react";
-import { General, BetygFi, WalletsAndDeFiDashboard, DeFi, AccordionPoints } from "../components/pages/help/helper";
+import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "../components/pages/help/helper";
 
 const Help = () => {
   const { colorMode } = useColorMode();
@@ -24,7 +24,7 @@ const Help = () => {
         >
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"90px 0px 80px 60px"}>
-              <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}}>Help</Text>
+              <Text variant={"bigHeading"} _light={{ color:"#000" }} _dark={{ color:"#FFF" }}>Help</Text>
             </Box>
             <Box paddingRight={"205px"} paddingTop={"30px"}>
               <Image

@@ -7,7 +7,7 @@ export const getWalletBalanceData = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -18,7 +18,7 @@ export const getWalletTransactionsData = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -29,7 +29,7 @@ export const getWalletTransactionsForAddressSummary = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -40,7 +40,7 @@ export const getAssetAllocationForAddress = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -51,7 +51,7 @@ export const getProtocolAllocationForAddress = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -62,7 +62,7 @@ export const getBlockchainAllocationForAddress = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 
@@ -73,7 +73,7 @@ export const getInflowOutflowTokensForAddress = async (payloadData) => {
     );
     return data;
   } catch (err) {
-    return rejectWithValue(err);
+    // return rejectWithValue(err);
   }
 };
 

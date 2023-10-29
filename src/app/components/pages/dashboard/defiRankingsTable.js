@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -7,7 +8,6 @@ import {
   Tr,
   Box,
   useColorModeValue,
-  useColorMode,
   Collapse,
   useDisclosure,
   Button,
@@ -185,7 +185,6 @@ const Rankings = () => {
 export default Rankings;
 
 const TableRow = ({ item, rowIndex }) => {
-  const { colorMode } = useColorMode();
   const router = useRouter();
 
   return (
@@ -287,10 +286,10 @@ const TableRow = ({ item, rowIndex }) => {
                   item.safety_score >= 75
                     ? "#9ADA8A"
                     : item.safety_score < 75 && item.safety_score >= 50
-                    ? "#FFD976"
-                    : item.safety_score < 50 && item.safety_score >= 25
-                    ? "#FFB287"
-                    : "#FF7373"
+                      ? "#FFD976"
+                      : item.safety_score < 50 && item.safety_score >= 25
+                        ? "#FFB287"
+                        : "#FF7373"
                 }
               ></Box>
               <Text variant={"h3"}>{item?.safety_score?.toFixed(0)}</Text>
@@ -380,10 +379,10 @@ const ButtonComp = ({ item }) => {
             item.safety_score >= 75
               ? "#9ADA8A"
               : item.safety_score < 75 && item.safety_score >= 50
-              ? "#FFD976"
-              : item.safety_score < 50 && item.safety_score >= 25
-              ? "#FFB287"
-              : "#FF7373"
+                ? "#FFD976"
+                : item.safety_score < 50 && item.safety_score >= 25
+                  ? "#FFB287"
+                  : "#FF7373"
           }
         ></Box>
         <Text variant={"h3"}>

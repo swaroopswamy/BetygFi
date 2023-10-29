@@ -117,7 +117,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
                         colorScheme="green"
                         value={item.name}
                         checked={blockchainSelected.includes(item.id)}
-                        onChange={(e) => {
+                        onChange={() => {
                           BlockchainTypeHandler(item.id);
                         }}
                       >

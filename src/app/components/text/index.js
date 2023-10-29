@@ -37,13 +37,13 @@ const Text = defineStyleConfig({
       lineHeight: "10px",
       color: colorMode === "light" ? "#191919" : "#FFFFFF",
     }),
-    h5: ({ colorMode }) => ({
+    h5: () => ({
       fontFamily: "Inter",
       fontSize: "12px",
       fontWeight: "400",
       lineHeight: "20px",
     }),
-    h6: ({ colorMode }) => ({
+    h6: () => ({
       fontSize: "14px",
       fontWeight: "400",
       fontFamily: "Inter",
@@ -84,7 +84,7 @@ const Text = defineStyleConfig({
       textTransform: "capitalize",
       color: colorMode === "light" ? "#16171B" : "#A8ADBD",
     }),
-    bigHeading: ({ colorMode }) => ({
+    bigHeading: () => ({
       fontSize: "36px",
       fontWeight: "400",
       lineHeight: "46px",
@@ -133,7 +133,7 @@ const Text = defineStyleConfig({
       fontFamily: "Inter",
       color: colorMode === "light" ? "#191919" : "#FFFFFF",
     }),
-    TabText: ({ colorMode }) => ({
+    TabText: () => ({
       fontFamily: "Inter",
       fontSize: { base: "10px", md: "14px" },
       fontWeight: { base: "700", md: "600" },
@@ -165,20 +165,20 @@ const Text = defineStyleConfig({
       opacity: "0.5",
       color: colorMode === "light" ? "#191919" : "#FFF",
     }),
-    SettingsButtonText: ({ colorMode }) => ({
+    SettingsButtonText: () => ({
       fontSize: "12px",
       fontWeight: "700",
       lineHeight: "12px",
       fontFamily: "Inter",
       textAlign: "center",
     }),
-    SearchText: ({ colorMode }) => ({
+    SearchText: () => ({
       fontSize: "14px",
       lineHeight: "10px",
       fontFamily: "Inter",
       textAlign: "center",
     }),
-    extraSmall: ({ colorMode }) => ({
+    extraSmall: () => ({
       fontFamily: "Inter",
       fontSize: "13px",
       fontWeight: "400",

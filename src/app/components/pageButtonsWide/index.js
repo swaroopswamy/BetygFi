@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue } from "@chakra-ui/react";
+import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, 
+  Button, useColorModeValue } from "@chakra-ui/react";
 import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import LastUpdate from "../lastUpdate";
 
@@ -36,7 +37,8 @@ const PageButtonsWide = ({ page, totalPages = 0, pageChangeHandler, tableLimit, 
 
       </Box>
 
-      <Box display={{ base: "flex", md: "none" }} flexDir={"column"} my={"10px"} gap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
+      <Box display={{ base: "flex", md: "none" }} flexDir={"column"} my={"10px"} g
+        ap={"30px"} justifyContent={"space-between"} alignItems={"center"} {...rest}>
         <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} w={"100%"}>
           <LastUpdate time={time} />
 
@@ -133,8 +135,8 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
         />
       </RoundButton>
     </>
-  )
-}
+  );
+};
 
 const TableLimitMenu = ({ tableLimit, setTableLimit }) => {
   return (
@@ -150,13 +152,13 @@ const TableLimitMenu = ({ tableLimit, setTableLimit }) => {
         bgColor={useColorModeValue("#FFF", "#191919")}
         minWidth={"50px"}
       >
-        <PageMenuItem onClick={() => { setTableLimit(10) }}> 10 / Page </PageMenuItem>
-        <PageMenuItem onClick={() => { setTableLimit(20) }}> 20 / Page </PageMenuItem>
-        <PageMenuItem onClick={() => { setTableLimit(30) }}> 30 / Page </PageMenuItem>
+        <PageMenuItem onClick={() => { setTableLimit(10); }}> 10 / Page </PageMenuItem>
+        <PageMenuItem onClick={() => { setTableLimit(20); }}> 20 / Page </PageMenuItem>
+        <PageMenuItem onClick={() => { setTableLimit(30); }}> 30 / Page </PageMenuItem>
       </MenuList>
     </Menu>
-  )
-}
+  );
+};
 
 const RoundButton = ({ children, ...rest }) => {
   const { colorMode } = useColorMode();
@@ -174,8 +176,8 @@ const RoundButton = ({ children, ...rest }) => {
     >
       {children}
     </Box>
-  )
-}
+  );
+};
 
 const PageMenuItem = ({ children, ...rest }) => {
   const { colorMode } = useColorMode();
@@ -193,5 +195,5 @@ const PageMenuItem = ({ children, ...rest }) => {
         {children}
       </Text>
     </MenuItem>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
+/* eslint-disable max-len */
 "use client";
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -116,8 +116,8 @@ function DefiAssetsSmallTable() {
                           ? "#245F00"
                           : "#60C000"
                         : colorMode === "light"
-                        ? "#EF1E1E"
-                        : "#FF3535"
+                          ? "#EF1E1E"
+                          : "#FF3535"
                     }
                   >
                     {item?.item?.value > 0 ? "+ " : "- "}
@@ -156,7 +156,6 @@ function DefiAssetsSmallTable() {
 export default DefiAssetsSmallTable;
 
 function TableRow({ item, i }) {
-  const router = useRouter();
 
   return (
     <>

@@ -1,13 +1,12 @@
 "use client";
 import dynamic from "next/dynamic";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   TabPanel,
   TabPanels,
   Tabs,
   useColorModeValue,
-  useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 const PortfolioPanelComponent = dynamic(() =>
@@ -20,7 +19,6 @@ const TransactionPanelComponent = dynamic(() =>
   import("../components/pages/walletDashboard/transaction")
 );
 import {
-  blockchainTypeChangedReducer,
   fetchAssetAllocationForAddress,
   fetchBlockchainAllocationForAddress,
   fetchProtocolAllocationForAddress,
@@ -28,7 +26,7 @@ import {
   fetchWalletBalanceData,
   walletAddressChangedReducer,
 } from "@/redux/wallet_dashboard_data/dataSlice";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
 const Breadcrumb = dynamic(() => import("@/app/components/breadcrumb"));
@@ -43,7 +41,7 @@ const BlockchainSelectionMenuBlocks = dynamic(() =>
 );
 
 function WalletDashboardPage() {
-  const didLogRef = useRef(false);
+  // const didLogRef = useRef(false);
   const searchParam = useSearchParams();
   const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);

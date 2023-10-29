@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   Text,
@@ -20,11 +20,10 @@ import {
   AccordionPanel,
   Button,
 } from "@chakra-ui/react";
-import dynamic from 'next/dynamic'
-import { useState } from "react";
 import TableData from "../../../../../util/whales.json";
 import millify from "millify";
 import { useRouter } from "next/navigation";
+
 const WalletTable = () => {
   const router = useRouter();
 
@@ -124,10 +123,10 @@ const WalletTable = () => {
                         <AccordionPanel pb={4}>
                           <Box layerStyle={"flexColumn"}>
                             <Box layerStyle={"flexColumn"}>
-                              <Text variant={"h6"} 
-                              textAlign={"left"}
-                              _light={{color:"#8F8F8F"}}
-                              _dark={{color:"#A8ADBD"}}>
+                              <Text variant={"h6"}
+                                textAlign={"left"}
+                                _light={{ color: "#8F8F8F" }}
+                                _dark={{ color: "#A8ADBD" }}>
                                 Total Tokens
                               </Text>
                               <Box mt="10px" display={"inline-block"}>
@@ -180,34 +179,34 @@ const WalletTable = () => {
                               </Box>
                             </Box>
                             <Box mt="10px" layerStyle={"flexColumn"}>
-                              <Text variant={"h6"} 
-                              textAlign={"left"}
-                              _light={{color:"#8F8F8F"}}
-                              _dark={{color:"#A8ADBD"}}>
+                              <Text variant={"h6"}
+                                textAlign={"left"}
+                                _light={{ color: "#8F8F8F" }}
+                                _dark={{ color: "#A8ADBD" }}>
                                 Total Protocols
                               </Text>
                               <Text
                                 mt="10px"
                                 variant={"h5"}
-                                _light={{color:"#090909"}}
-                                _dark={{color:"#FFFFFF"}}
+                                _light={{ color: "#090909" }}
+                                _dark={{ color: "#FFFFFF" }}
                                 textAlign={"left"}
                               >
                                 -NA-
                               </Text>
                             </Box>
                             <Box mt="10px" layerStyle={"flexColumn"}>
-                              <Text variant={"h6"} 
-                              textAlign={"left"}
-                              _light={{color:"#8F8F8F"}}
-                              _dark={{color:"#A8ADBD"}}>
+                              <Text variant={"h6"}
+                                textAlign={"left"}
+                                _light={{ color: "#8F8F8F" }}
+                                _dark={{ color: "#A8ADBD" }}>
                                 Total NFT collections
                               </Text>
                               <Text
                                 mt="10px"
                                 variant={"h5"}
-                                _light={{color:"#090909"}}
-                                _dark={{color:"#FFFFFF"}}
+                                _light={{ color: "#090909" }}
+                                _dark={{ color: "#FFFFFF" }}
                                 textAlign={"left"}
                               >
                                 -NA-
@@ -302,8 +301,8 @@ function TableRow({ user, totalTokens, totalProtocols }) {
             ? "#F5F5F7"
             : "#191919"
           : colorMode === "light"
-          ? "#FFFFFF"
-          : "#202020"
+            ? "#FFFFFF"
+            : "#202020"
       }
       onClick={() => {
         setClick(!clicked);
@@ -317,7 +316,7 @@ function TableRow({ user, totalTokens, totalProtocols }) {
         <Flex>
           <Box>
             <Text variant={"h3"}
-            fontWeight={600}>
+              fontWeight={600}>
               {user?.split("").join("").substring(0, 8) +
                 "....." +
                 user?.slice(-5)}

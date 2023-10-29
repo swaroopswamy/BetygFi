@@ -1,35 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getDefiAssetCompositionTableData, getDefiFeeRevenueData, getDefiGovernanceTableData } from "../../services/defiDashboardService";
+import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, getDefiAssetCompositionTableData,
+  getDefiFeeRevenueData, getDefiGovernanceTableData } from "../../services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
   const response = await getDefiData(payload);
   return response.data;
-})
+});
 
 export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload) => {
   const response = await getDefiUsersTableData(payload);
   return response.data;
-})
+});
 
 export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContractsTableData', async (payload) => {
   const response = await getDefiHotContractsTableData(payload);
   return response.data;
-})
+});
 
-export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData', async (payload) => {
-  const response = await getDefiAssetCompositionTableData(payload);
-  return response.data;
-})
+export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData',
+  async (payload) => {
+    const response = await getDefiAssetCompositionTableData(payload);
+    return response.data;
+  });
 
 export const fetchDefiFeeRevenueData = createAsyncThunk('getDefiFeeRevenueData', async (payload) => {
   const response = await getDefiFeeRevenueData(payload);
   return response.data;
-})
+});
 
 export const fetchDefiGovernanceTableData = createAsyncThunk('getDefiGovernanceTableData', async (payload) => {
   const response = await getDefiGovernanceTableData(payload);
   return response.data;
-}) 
+}); 
 
 
 const DefiDashboardDataSlice = createSlice({
@@ -184,5 +186,5 @@ const DefiDashboardDataSlice = createSlice({
   }
 });
 
-export const { } = DefiDashboardDataSlice.actions;
+// export const { } = DefiDashboardDataSlice.actions;
 export default DefiDashboardDataSlice.reducer;

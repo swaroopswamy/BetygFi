@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import CustomChart from "/src/app/components/graph";
@@ -46,7 +47,7 @@ const OverviewAreaChart = () => {
         let val = millify(series[seriesIndex][dataPointIndex], {
           precision: 2,
           locales: "en-US"
-        })
+        });
         return (
           '<div class="donut_tooltip">' +
           '<div class="donut_tooltip_text">' +
@@ -116,7 +117,7 @@ const OverviewAreaChart = () => {
         name: category?.name,
         data: category?.graphData.slice(0, -2),
         color: colors[i % 4]
-      }
+      };
       series.push(categorySeries);
     }
   });
@@ -255,4 +256,4 @@ const SelectorGraph = ({ series }) => {
       }
     </>
   );
-}
+};

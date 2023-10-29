@@ -1,4 +1,5 @@
-import { Avatar, Box, Image, Text, useColorModeValue } from "@chakra-ui/react";
+import React from "react";
+import { Avatar, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";

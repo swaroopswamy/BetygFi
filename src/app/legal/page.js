@@ -1,18 +1,13 @@
-"use client"
-import { Box, Image, useColorModeValue, Text, Tab, TabList, TabPanels, Tabs, TabPanel, useColorMode } from "@chakra-ui/react";
+"use client";
+import { Box, Image, useColorModeValue, Text, Tab, TabList, TabPanels, 
+  Tabs, TabPanel, useColorMode } from "@chakra-ui/react";
 import TermsPanelComponent from "../components/pages/legal/terms";
 import PrivacyPanelComponent from "../components/pages/legal/privacy";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 
 const Legal = () => {
-  const searchParam = useSearchParams();
   const { colorMode } = useColorMode();
-  const router = useRouter();
-  const dispatch = useDispatch();
   const [tabIndex, setTabIndex] = useState(0);
-
 
   return (
     <>
@@ -28,10 +23,11 @@ const Legal = () => {
           background={useColorModeValue("#E8E8E8", "#131313")}>
           <Box layerStyle={"flexSpaceBetween"}>
             <Box padding={"50px 0px 44px 74px"} >
-              <Text variant={"bigHeading"} _light={{color:"#000"}} _dark={{color:"#FFF"}}>Legal</Text>
+              <Text variant={"bigHeading"} _light={{ color:"#000" }} _dark={{ color:"#FFF" }}>Legal</Text>
             </Box>
             <Box p={"9px 205px 16px 0px"}>
-              <Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")} alt=" " width={"153.027px"} height={"150px"} flexShrink={0}></Image>
+              <Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")} 
+                alt=" " width={"153.027px"} height={"150px"} flexShrink={0}></Image>
             </Box>
           </Box>
         </Box>
@@ -92,10 +88,10 @@ const Legal = () => {
           </TabList>
           <TabPanels>
             <TabPanel p="0px">
-                <TermsPanelComponent/>
+              <TermsPanelComponent/>
             </TabPanel>
             <TabPanel p="0px">
-                <PrivacyPanelComponent/>
+              <PrivacyPanelComponent/>
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -117,7 +113,8 @@ const Legal = () => {
               <Text variant={"contentHeading2"}>Legal</Text>
             </Box>
             <Box p={"6px 8px 28px 0px"}>
-              <Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")} alt=" " width={"102.018px"} height={"100px"} flexShrink={0}></Image>
+              <Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")} 
+                alt=" " width={"102.018px"} height={"100px"} flexShrink={0}></Image>
             </Box>
           </Box>
         </Box>
@@ -180,17 +177,17 @@ const Legal = () => {
           </TabList>
           <TabPanels>
             <TabPanel p="0px">
-                <TermsPanelComponent/>
+              <TermsPanelComponent/>
             </TabPanel>
             <TabPanel p="0px">
-                <PrivacyPanelComponent/>
+              <PrivacyPanelComponent/>
             </TabPanel>
           </TabPanels>
         </Tabs>
       </Box>
     </>
   );
-}
+};
 
 export default Legal;
 

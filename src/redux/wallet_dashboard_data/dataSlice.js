@@ -1,46 +1,53 @@
 import { getDefiRankingsTableData } from "@/services/dashboardService";
-import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData, getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
+import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, 
+  getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData, 
+  getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
 export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
   const response = await getDefiRankingsTableData(payload);
   return response.data;
-})
+});
 
 
 export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload) => {
   const response = await getWalletBalanceData(payload);
   return response;
-})
+});
 export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload) => {
   const response = await getWalletTransactionsData(payload);
   return response;
-})
+});
 
-export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary', async (payload) => {
-  const response = await getWalletTransactionsForAddressSummary(payload);
-  return response.data;
-})
+export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary', 
+  async (payload) => {
+    const response = await getWalletTransactionsForAddressSummary(payload);
+    return response.data;
+  });
 
-export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress', async (payload) => {
-  const response = await getAssetAllocationForAddress(payload);
-  return response.data;
-})
-export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress', async (payload) => {
-  const response = await getProtocolAllocationForAddress(payload);
-  return response.data;
-})
+export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress', 
+  async (payload) => {
+    const response = await getAssetAllocationForAddress(payload);
+    return response.data;
+  });
+export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress', 
+  async (payload) => {
+    const response = await getProtocolAllocationForAddress(payload);
+    return response.data;
+  });
 
-export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress', async (payload) => {
-  const response = await getBlockchainAllocationForAddress(payload);
-  return response.data;
-})
+export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress', 
+  async (payload) => {
+    const response = await getBlockchainAllocationForAddress(payload);
+    return response.data;
+  });
 
-export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', async (payload) => {
-  const response = await getInflowOutflowTokensForAddress(payload);
-  return response;
-})
+export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', 
+  async (payload) => {
+    const response = await getInflowOutflowTokensForAddress(payload);
+    return response;
+  });
 
 
 const WalletDashboardDataSlice = createSlice({
@@ -274,5 +281,6 @@ const WalletDashboardDataSlice = createSlice({
   },
 });
 
-export const { blockchainTypeChangedReducer, defiArrayChangedReducer, walletAddressChangedReducer } = WalletDashboardDataSlice.actions;
+export const { blockchainTypeChangedReducer, defiArrayChangedReducer, walletAddressChangedReducer } = 
+WalletDashboardDataSlice.actions;
 export default WalletDashboardDataSlice.reducer;

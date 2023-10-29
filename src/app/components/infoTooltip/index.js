@@ -1,6 +1,6 @@
+import React from "react";
 import { Tooltip, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
-import React from "react";
 
 function GenericInfoTooltip({ label }) {
   return (

@@ -176,8 +176,8 @@ function Defi_Hot_Contracts() {
                       ? "#000000"
                       : "#FFFFFF"
                     : colorMode === "light"
-                    ? "#000000"
-                    : "#FFFFFF"
+                      ? "#000000"
+                      : "#FFFFFF"
                 }
                 //textTransform={"uppercase"}
                 letterSpacing={"1px"}
@@ -203,8 +203,8 @@ function Defi_Hot_Contracts() {
                       ? "#000000"
                       : "#FFFFFF"
                     : colorMode === "light"
-                    ? "#000000"
-                    : "#FFFFFF"
+                      ? "#000000"
+                      : "#FFFFFF"
                 }
                 fontWeight={tabIndex === 1 ? "700" : "400"}
                 //textTransform={"uppercase"}
@@ -277,7 +277,6 @@ function RowComponent({ tableData }) {
 function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
   const [clicked, setClick] = useState(false);
   const { colorMode } = useColorMode();
-  const router = useRouter();
   return (
     <>
       <Tr
@@ -289,8 +288,8 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
               ? "#F5F5F7"
               : "#191919"
             : colorMode === "light"
-            ? "#FFFFFF"
-            : "#202020"
+              ? "#FFFFFF"
+              : "#202020"
         }
         onClick={() => {
           setClick(!clicked);

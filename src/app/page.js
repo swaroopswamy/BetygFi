@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button, Text, useColorModeValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";

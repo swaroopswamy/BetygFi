@@ -1,23 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
+import React, { useEffect, useState } from "react";
 import {
   Box,
-  Container,
   Image,
   useColorModeValue,
   Text,
-  Heading,
-  useColorMode,
-  div,
-  h1,
-  h2,
-  br,
-  Flex,
   Link,
   Button,
-  Sup,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
 
 const Footnote = ({ number, onClick }) => (
   <sup>
@@ -35,7 +27,6 @@ const Approach = () => {
   const handleScrollToTop = () => {
     window !== undefined && window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const { colorMode } = useColorMode();
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
@@ -52,10 +43,10 @@ const Approach = () => {
     };
   }, []);
 
-  const [activeFootnote, setActiveFootnote] = useState(null);
+  // const [activeFootnote, setActiveFootnote] = useState(null);
 
-  const showFootnote = (number) => {
-    setActiveFootnote(number);
+  const showFootnote = (/* number */) => {
+    // setActiveFootnote(number);
   };
 
   return (

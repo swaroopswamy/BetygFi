@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+import React from "react";
 import { createIcon, Icon } from "@chakra-ui/icon";
 import { useColorModeValue } from "@chakra-ui/react";
 
@@ -20,5 +22,5 @@ export const BetygFiSmLogo= ({ ...rest }) => {
       <path d="M3.88689 10.9885L7.6944 2.24786C7.98558 1.57941 8.75912 1.26812 9.43215 1.54855V1.54855C10.1207 1.83546 10.4407 2.63087 10.1426 3.31468L7.6476 9.03851C7.39559 9.61664 7.65865 10.2897 8.23589 10.5437V10.5437C8.79987 10.7919 9.45912 10.5492 9.72749 9.99454L10.4794 8.44041"
         stroke='currentColor' fillOpacity={'0'} strokeLinecap="round" strokeLinejoin="round"/>
     </Icon>
-  )
+  );
 };
