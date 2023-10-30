@@ -8,6 +8,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  // useMediaQuery,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
