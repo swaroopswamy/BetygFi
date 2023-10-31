@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable max-len */
 import React from "react";
 import { useSelector } from "react-redux";
@@ -8,58 +9,58 @@ import dynamic from "next/dynamic";
 const TooltipComp = dynamic(() => import("../../tooltipComp"));
 const CustomChart = dynamic(() => import("../../graph"));
 const AssetAllocationBox = () => {
-  const { colorMode } = useColorMode();
-  const assetAllocationData = useSelector(
-    (state) => state?.walletDashboardTableData?.assetAllocationForAddress
-  );
+	const { colorMode } = useColorMode();
+	const assetAllocationData = useSelector(
+		(state) => state?.walletDashboardTableData?.assetAllocationForAddress
+	);
 
-  const options = {
-    chart: {
-      toolbar: {
-        show: false,
-      },
-      zoom: {
-        enabled: false,
-      },
-      fontFamily: "Inter",
-    },
-    plotOptions: {
-      pie: {
-        expandOnClick: true,
-      },
-    },
-    grid: {
-      show: false,
-    },
-    stroke: {
-      width: 0,
-    },
-    legend: {
-      show: true,
-      fontSize: "14px",
-      labels: {
-        colors: colorMode === "light" ? "#000000" : "FFFFFF",
-      },
-      formatter: function (seriesName, opts) {
-        return [
-          seriesName,
-          " ",
-          opts.w.globals.series[opts.seriesIndex].toFixed(2),
-          "%",
-        ];
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    tooltip: {
-      enabled: true,
-      theme: colorMode,
-      custom: function ({ seriesIndex, w }) {
-        let data = w?.config?.series[seriesIndex];
-        let label = w?.config?.labels[seriesIndex];
-        return (
-          '<div class="graph_box">' +
+	const options = {
+		chart: {
+			toolbar: {
+				show: false,
+			},
+			zoom: {
+				enabled: false,
+			},
+			fontFamily: "Inter",
+		},
+		plotOptions: {
+			pie: {
+				expandOnClick: true,
+			},
+		},
+		grid: {
+			show: false,
+		},
+		stroke: {
+			width: 0,
+		},
+		legend: {
+			show: true,
+			fontSize: "14px",
+			labels: {
+				colors: colorMode === "light" ? "#000000" : "FFFFFF",
+			},
+			formatter: function (seriesName, opts) {
+				return [
+					seriesName,
+					" ",
+					opts.w.globals.series[opts.seriesIndex].toFixed(2),
+					"%",
+				];
+			},
+		},
+		dataLabels: {
+			enabled: false,
+		},
+		tooltip: {
+			enabled: true,
+			theme: colorMode,
+			custom: function ({ seriesIndex, w }) {
+				let data = w?.config?.series[seriesIndex];
+				let label = w?.config?.labels[seriesIndex];
+				return (
+					'<div class="graph_box">' +
           '<div class="inner_box">' +
           '<div class="graph_inner_text_big" >' +
           label +
@@ -71,64 +72,64 @@ const AssetAllocationBox = () => {
           "</div>" +
           "</div>" +
           "</div>"
-        );
-      },
-    },
-    labels:
+				);
+			},
+		},
+		labels:
       assetAllocationData.isSuccess &&
       Object.keys(assetAllocationData?.data).map((item) => {
-        return `${item}`;
+      	return `${item}`;
       }),
-  };
+	};
 
-  let series = assetAllocationData.isSuccess
-    ? Object.values(assetAllocationData?.data).map(Number)
-    : [];
+	let series = assetAllocationData.isSuccess
+		? Object.values(assetAllocationData?.data).map(Number)
+		: [];
 
-  return (
-    <>
-      <Box
-        w={{ base: "90%", bigSize: "50%", md: "90%" }}
-        layerStyle={"flexColumn"}
-        borderRadius={"6px"}
-        _dark={{
-          bg: "#202020",
-        }}
-        _light={{
-          bg: "#FFFFFF",
-        }}
-        height={"380px"}
-      >
-        <Box layerStyle={"flexCenter"} p="22px 25px">
-          <Text variant={"smallTableHeader"}>Assets Allocation</Text>
-          <TooltipComp label="Assets allocation chart shows the value distribution of an individual wallet among different assets i.e., Token, Cryptocurrencies." />
-        </Box>
-        <Box>
-          {assetAllocationData?.isLoading && (
-            <Box p={"30px"} layerStyle={"flexAlignCenterJustifyCenter"}>
-              <SkeletonCircle size={250}></SkeletonCircle>
-            </Box>
-          )}
+	return (
+		<>
+			<Box
+				w={{ base: "90%", bigSize: "50%", md: "90%" }}
+				layerStyle={"flexColumn"}
+				borderRadius={"6px"}
+				_dark={{
+					bg: "#202020",
+				}}
+				_light={{
+					bg: "#FFFFFF",
+				}}
+				height={"380px"}
+			>
+				<Box layerStyle={"flexCenter"} p="22px 25px">
+					<Text variant={"smallTableHeader"}>Assets Allocation</Text>
+					<TooltipComp label="Assets allocation chart shows the value distribution of an individual wallet among different assets i.e., Token, Cryptocurrencies." />
+				</Box>
+				<Box>
+					{assetAllocationData?.isLoading && (
+						<Box p={"30px"} layerStyle={"flexAlignCenterJustifyCenter"}>
+							<SkeletonCircle size={250}></SkeletonCircle>
+						</Box>
+					)}
 
-          {assetAllocationData?.isSuccess &&
+					{assetAllocationData?.isSuccess &&
             (isEmpty(assetAllocationData?.data) ? (
-              <Box layerStyle={"flexAlignCenterJustifyCenter"} height={"245px"}>
-                <Text variant={"noDataText"}>No Data Available</Text>
-              </Box>
+            	<Box layerStyle={"flexAlignCenterJustifyCenter"} height={"245px"}>
+            		<Text variant={"noDataText"}>No Data Available</Text>
+            	</Box>
             ) : (
-              <>
-                <CustomChart
-                  options={options}
-                  series={series}
-                  type="pie"
-                  height={300}
-                />
-              </>
+            	<>
+            		<CustomChart
+            			options={options}
+            			series={series}
+            			type="pie"
+            			height={300}
+            		/>
+            	</>
             ))}
-        </Box>
-      </Box>
-    </>
-  );
+				</Box>
+			</Box>
+		</>
+	);
 };
 
 export default AssetAllocationBox;

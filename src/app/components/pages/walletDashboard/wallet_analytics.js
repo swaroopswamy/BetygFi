@@ -10,64 +10,64 @@ import dynamic from "next/dynamic";
 //   import("/src/app/components/pages/walletDashboard/AssetAllocationBox")
 // );
 const ProtocolAllocationBox = dynamic(() =>
-  import("/src/app/components/pages/walletDashboard/ProtocolAllocationBox")
+	import("/src/app/components/pages/walletDashboard/ProtocolAllocationBox")
 );
 const InteractionWithKnownEntitiesBox = dynamic(() =>
-  import(
-    "/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox"
-  )
+	import(
+		"/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox"
+	)
 );
 const InflowTokensBox = dynamic(() =>
-  import("/src/app/components/pages/walletDashboard/InflowTokensBox")
+	import("/src/app/components/pages/walletDashboard/InflowTokensBox")
 );
 const OutflowTokensBox = dynamic(() =>
-  import("/src/app/components/pages/walletDashboard/OutflowTokensBox")
+	import("/src/app/components/pages/walletDashboard/OutflowTokensBox")
 );
 const PerformanceMultiLineChartBox = dynamic(() =>
-  import(
-    "/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox"
-  )
+	import(
+		"/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox"
+	)
 );
 const WalletAnalyticsPanel = () => {
 
 
-  return (
-    <>
-      <Box
-        layerStyle={"flexAlignCenterJustifyCenter"}
-        flexDir={{ base: "column", bigSize: "row" }}
-        gap={"20px"}
-        w="100%"
-        my="20px"
-      >
-        {/*  <BlockchainAllocationBox />
+	return (
+		<>
+			<Box
+				layerStyle={"flexAlignCenterJustifyCenter"}
+				flexDir={{ base: "column", bigSize: "row" }}
+				gap={"20px"}
+				w="100%"
+				my="20px"
+			>
+				{/*  <BlockchainAllocationBox />
 
         <AssetAllocationBox /> */}
-      </Box>
+			</Box>
 
-      <Box
-        layerStyle={"flexAlignCenterJustifyCenter"}
-        flexDir={{ base: "column", bigSize: "row" }}
-        gap={"20px"}
-        w="100%"
-        my="20px"
-      >
-        <ProtocolAllocationBox />
-        <InteractionWithKnownEntitiesBox />
-      </Box>
+			<Box
+				layerStyle={"flexAlignCenterJustifyCenter"}
+				flexDir={{ base: "column", bigSize: "row" }}
+				gap={"20px"}
+				w="100%"
+				my="20px"
+			>
+				<ProtocolAllocationBox />
+				<InteractionWithKnownEntitiesBox />
+			</Box>
 
-      <Box
-        layerStyle={"flexAlignCenterJustifyCenter"}
-        flexDir={{ base: "column", bigSize: "row" }}
-        gap={"20px"}
-        w="100%"
-        my="20px"
-      >
-        <InflowTokensBox />
+			<Box
+				layerStyle={"flexAlignCenterJustifyCenter"}
+				flexDir={{ base: "column", bigSize: "row" }}
+				gap={"20px"}
+				w="100%"
+				my="20px"
+			>
+				<InflowTokensBox />
 
-        <OutflowTokensBox />
-      </Box>
-      {/* <Box
+				<OutflowTokensBox />
+			</Box>
+			{/* <Box
         my="10px"
         w='100%'
         display={"flex"}
@@ -102,19 +102,19 @@ const WalletAnalyticsPanel = () => {
         </Box>
       </Box> */}
 
-      <Box
-        display={"flex"}
-        flexDir={{ base: "column", md: "row" }}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={"20px"}
-        w="100%"
-        mt="20px"
-      >
-        <PerformanceMultiLineChartBox />
-      </Box>
-    </>
-  );
+			<Box
+				display={"flex"}
+				flexDir={{ base: "column", md: "row" }}
+				justifyContent={"center"}
+				alignItems={"center"}
+				gap={"20px"}
+				w="100%"
+				mt="20px"
+			>
+				<PerformanceMultiLineChartBox />
+			</Box>
+		</>
+	);
 };
 
 export default WalletAnalyticsPanel;

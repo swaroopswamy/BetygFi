@@ -6,13 +6,13 @@ import WalletDashboardTableDataSlice from "./wallet_dashboard_data/dataSlice";
 import DefiDashboardDataSlice from "./defi_dashboard_data/dataSlice";
 
 const store = configureStore({
-  reducer: {
-    authData:AuthDataSlice,
-    dashboardTableData: DashboardTableDataSlice,
-    walletDashboardTableData: WalletDashboardTableDataSlice,
-    appData: AppDataSlice,
-    defiDashboardData: DefiDashboardDataSlice
-  },
+	reducer: {
+		authData:AuthDataSlice,
+		dashboardTableData: DashboardTableDataSlice,
+		walletDashboardTableData: WalletDashboardTableDataSlice,
+		appData: AppDataSlice,
+		defiDashboardData: DefiDashboardDataSlice
+	},
 });
 export default store;
 
