@@ -8,20 +8,20 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
-  [alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), publicProvider()],
+	[mainnet],
+	[alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), publicProvider()],
 );
 
 // Set up wagmi config
 const config = createConfig({
-  autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-  ],
-  publicClient,
-  webSocketPublicClient,
+	autoConnect: true,
+	connectors: [
+		new MetaMaskConnector({ chains }),
+	],
+	publicClient,
+	webSocketPublicClient,
 });
 
 export const WagmiProvider = ({ children }) => {
-  return <WagmiConfig config={config}>{children}</WagmiConfig>;
+	return <WagmiConfig config={config}>{children}</WagmiConfig>;
 };
