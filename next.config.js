@@ -8,21 +8,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const webpack = require("webpack");
 
 const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: '/:all*(svg|jpg|png)',
-        locale: false,
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=9999999999, must-revalidate',
-          }
-        ],
-      },
-    ];
-  },
-  reactStrictMode: true,
+  output: "export",
+  reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
@@ -36,18 +23,8 @@ const nextConfig = {
     );
     return config;
   },
-  future: {
-    webpack5: true
-  },
-  images: {
-    domains: [
-      "s2.coinmarketcap.com",
-      "assets.coingecko.com",
-    ],
-    minimumCacheTTL: 3600, // 1hour
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
+  distDir: "out",
+  images: { unoptimized: true }
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
