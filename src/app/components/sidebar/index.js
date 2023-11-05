@@ -3,7 +3,7 @@ import React from "react";
 import {
 	Box,
 	Flex,
-	Link,
+	// Link,
 	Text,
 	useColorMode,
 	useColorModeValue,
@@ -16,6 +16,7 @@ import {
 	createIcon,
 	Icon,
 } from "@chakra-ui/react";
+import Link from 'next/link';
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
