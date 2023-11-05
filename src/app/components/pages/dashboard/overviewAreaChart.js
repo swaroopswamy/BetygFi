@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useRef } from "react";
-import CustomChart from "/src/app/components/graph";
+import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
 

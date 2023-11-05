@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AuthDataSlice from './auth_data/authSlice';
-import DashboardTableDataSlice from "./dashboard_data/dataSlice";
-import AppDataSlice from "./app_data/dataSlice";
-import WalletDashboardTableDataSlice from "./wallet_dashboard_data/dataSlice";
-import DefiDashboardDataSlice from "./defi_dashboard_data/dataSlice";
+import AuthDataSlice from '@/redux/auth_data/authSlice';
+import DashboardTableDataSlice from "@/redux/dashboard_data/dataSlice";
+import AppDataSlice from "@/redux/app_data/dataSlice";
+import WalletDashboardTableDataSlice from "@/redux/wallet_dashboard_data/dataSlice";
+import DefiDashboardDataSlice from "@/redux/defi_dashboard_data/dataSlice";
 
 const store = configureStore({
 	reducer: {

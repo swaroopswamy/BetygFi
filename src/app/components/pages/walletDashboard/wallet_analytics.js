@@ -4,33 +4,32 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 // const BlockchainAllocationBox = dynamic(() =>
-//   import("/src/app/components/pages/walletDashboard/BlockchainAllocationBox")
+//   import("@/app/components/pages/walletDashboard/BlockchainAllocationBox")
 // );
 // const AssetAllocationBox = dynamic(() =>
-//   import("/src/app/components/pages/walletDashboard/AssetAllocationBox")
+//   import("@/app/components/pages/walletDashboard/AssetAllocationBox")
 // );
 const ProtocolAllocationBox = dynamic(() =>
-	import("/src/app/components/pages/walletDashboard/ProtocolAllocationBox")
+	import("@/app/components/pages/walletDashboard/ProtocolAllocationBox")
 );
 const InteractionWithKnownEntitiesBox = dynamic(() =>
 	import(
-		"/src/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox"
+		"@/app/components/pages/walletDashboard/InteractionWithKnownEntitiesBox"
 	)
 );
 const InflowTokensBox = dynamic(() =>
-	import("/src/app/components/pages/walletDashboard/InflowTokensBox")
+	import("@/app/components/pages/walletDashboard/InflowTokensBox")
 );
 const OutflowTokensBox = dynamic(() =>
-	import("/src/app/components/pages/walletDashboard/OutflowTokensBox")
+	import("@/app/components/pages/walletDashboard/OutflowTokensBox")
 );
 const PerformanceMultiLineChartBox = dynamic(() =>
 	import(
-		"/src/app/components/pages/walletDashboard/PerformanceMultiLineChartBox"
+		"@/app/components/pages/walletDashboard/PerformanceMultiLineChartBox"
 	)
 );
+
 const WalletAnalyticsPanel = () => {
-
-
 	return (
 		<>
 			<Box

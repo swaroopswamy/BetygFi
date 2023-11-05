@@ -10,16 +10,16 @@ import {
 	Avatar,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { USDollar } from "../../../../../util/globalHelper";
+import { USDollar } from "@util/globalHelper";
 import {
 	InflowTokensTableHeader,
 	InflowTokensDesktop,
 	InflowTokensMobile,
-} from "./helper";
+} from "@/app/components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 
-const TooltipComp = dynamic(() => import("../../tooltipComp"));
-const GenericTable = dynamic(() => import("../../table/index"));
+const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
+const GenericTable = dynamic(() => import("@/app/components/table"));
 
 const InflowTokensBox = () => {
 	const inflowOutflowTokensData = useSelector(

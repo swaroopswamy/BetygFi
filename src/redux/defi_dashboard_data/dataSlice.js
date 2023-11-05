@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, 
 	getDefiAssetCompositionTableData, getDefiFeeRevenueData, 
-	getDefiGovernanceTableData, getDefiTvlBorrowData } from "../../services/defiDashboardService";
+	getDefiGovernanceTableData, getDefiTvlBorrowData } from "@/services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
 	const response = await getDefiData(payload);

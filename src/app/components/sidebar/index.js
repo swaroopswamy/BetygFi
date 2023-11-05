@@ -22,10 +22,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
-import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
+import { linkItemsDown, linkItemsUp, bottomMenu } from "@/app/components/sidebar/helper";
 import { FaPeopleGroup } from "react-icons/fa6";
 
-const DynamicIcon = dynamic(() => import("../icons/index_new"), {
+const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), {
 	loading: () => <span>Loading...</span>,
 });
 

@@ -12,10 +12,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "next/navigation";
-import { fetchDefiGovernanceTableData } from "/src/redux/defi_dashboard_data/dataSlice";
-import GenericTable from "/src/app/components/table";
-import { GovernanceTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import PageButtonsWide from "/src/app/components/pageButtonsWide";
+import { fetchDefiGovernanceTableData } from "@/redux/defi_dashboard_data/dataSlice";
+import GenericTable from "@/app/components/table";
+import { GovernanceTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import PageButtonsWide from "@/app/components/pageButtonsWide";
 
 const GovernanceTable = () => {
 	const searchParam = useSearchParams();

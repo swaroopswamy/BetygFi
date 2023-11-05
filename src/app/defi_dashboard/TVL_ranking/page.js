@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const GenericBigTableComponent = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/GenericBigTable")
+	import("@/app/components/pages/defiDashboard/GenericBigTable")
 );
 import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
 import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
