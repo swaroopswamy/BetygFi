@@ -11,7 +11,7 @@ import {
 	Image,
 	useColorMode,
 } from "@chakra-ui/react";
-import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "../components/pages/help/helper";
+import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "@/app/components/pages/help/helper";
 
 const Help = () => {
 	const { colorMode } = useColorMode();

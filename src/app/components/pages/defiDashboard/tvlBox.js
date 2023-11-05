@@ -3,7 +3,7 @@ import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
-import LastUpdate from "/src/app/components/lastUpdate";
+import LastUpdate from "@/app/components/lastUpdate";
 
 let USDollar = new Intl.NumberFormat('en-US', {
 	currency: 'USD',

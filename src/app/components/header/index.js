@@ -21,11 +21,11 @@ import {
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import isEmpty from "is-empty";
-import LoginPage from "../login";
+import LoginPage from "@/app/components/login";
 import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
-import { MobileSidebar } from "../sidebar/index";
+import { MobileSidebar } from "@/app/components/sidebar";
 
 const Navbar = ({ ...rest }) => {
 	const searchParams = useSearchParams();

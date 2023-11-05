@@ -10,16 +10,16 @@ import {
 	fetchOverviewData,
 } from "@/redux/dashboard_data/dataSlice";
 const BlockchainSelectionMenu = dynamic(() =>
-	import("@/app/components/blockchainSelectionMenu")
+	import("@/app/components/blockchainSelectionMenu"), { ssr: false }
 );
 const Rankings = dynamic(() =>
-	import("@/app/components/pages/dashboard/defiRankingsTable")
+	import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false }
 );
 const OverviewColumnChart = dynamic(() =>
-	import("@/app/components/pages/dashboard/overviewColumnChart")
+	import("@/app/components/pages/dashboard/overviewColumnChart"), { ssr: false }
 );
 const OverviewBox = dynamic(() =>
-	import("@/app/components/pages/dashboard/overviewBox")
+	import("@/app/components/pages/dashboard/overviewBox"), { ssr: false }
 );
 
 const Dashboard = () => {

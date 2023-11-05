@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Text, Box, useColorModeValue, useColorMode, Tr, Th, Td } from "@chakra-ui/react";
-import GenericTable from "/src/app/components/table";
-import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import LastUpdate from "/src/app/components/lastUpdate";
-import TooltipComp from "/src/app/components/tooltipComp";
+import GenericTable from "@/app/components/table";
+import { DefiUsersSmallTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import LastUpdate from "@/app/components/lastUpdate";
+import TooltipComp from "@/app/components/tooltipComp";
 
 function DefiHotContractsSmallTable() {
 

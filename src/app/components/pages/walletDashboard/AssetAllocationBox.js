@@ -6,8 +6,9 @@ import { Box, SkeletonCircle, Text, useColorMode } from "@chakra-ui/react";
 import isEmpty from "is-empty";
 import dynamic from "next/dynamic";
 
-const TooltipComp = dynamic(() => import("../../tooltipComp"));
-const CustomChart = dynamic(() => import("../../graph"));
+const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
+const CustomChart = dynamic(() => import("@/app/components/graph"));
+
 const AssetAllocationBox = () => {
 	const { colorMode } = useColorMode();
 	const assetAllocationData = useSelector(

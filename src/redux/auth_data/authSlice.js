@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginMetamask, verifyPublicAddress } from "../../services/authService";
+import { loginMetamask, verifyPublicAddress } from "@/services/authService";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",

@@ -2,17 +2,16 @@
 import React from "react";
 import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { USDollar } from "../../../../../util/globalHelper";
+import { USDollar } from "@util/globalHelper";
 import {
 	ProtocolAllocationsTableHeader,
 	ProtocolAllocationsDesktop,
 	ProtocolAllocationsMobile,
-} from "./helper";
+} from "@/app/components/pages/walletDashboard/helper";
 import dynamic from 'next/dynamic';
 
-const TooltipComp = dynamic(() => import("../../tooltipComp"));
-const GenericTable = dynamic(() => import("../../table/index"));
-
+const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
+const GenericTable = dynamic(() => import("@/app/components/table"));
 
 const ProtocolAllocationBox = () => {
 	const protocolAllocationData = useSelector(

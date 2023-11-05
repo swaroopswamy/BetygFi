@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 // import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData } from "@/redux/defi_dashboard_data/dataSlice";
 import {
 	Text,
 	Td,
@@ -19,8 +19,8 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import GenericTable from "@/app/components/table";
-import { DefiAssetsBigTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import PageButtonsWide from "/src/app/components/pageButtonsWide";
+import { DefiAssetsBigTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import PageButtonsWide from "@/app/components/pageButtonsWide";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",

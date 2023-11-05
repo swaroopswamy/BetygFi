@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import TooltipComp from "/src/app/components/tooltipComp";
+import TooltipComp from "@/app/components/tooltipComp";
 import { fetchDefiTvlBorrowData } from "@/redux/defi_dashboard_data/dataSlice";
 
 

@@ -14,11 +14,11 @@ import {
 	Td,
 	Avatar,
 } from "@chakra-ui/react";
-import GenericTable from "/src/app/components/table";
-import { DefiAssetsSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import LastUpdate from "/src/app/components/lastUpdate";
-import { fetchDefiAssetCompositionTableData } from "/src/redux/defi_dashboard_data/dataSlice";
-import TooltipComp from "/src/app/components/tooltipComp";
+import GenericTable from "@/app/components/table";
+import { DefiAssetsSmallTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import LastUpdate from "@/app/components/lastUpdate";
+import { fetchDefiAssetCompositionTableData } from "@/redux/defi_dashboard_data/dataSlice";
+import TooltipComp from "@/app/components/tooltipComp";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	style: "currency",

@@ -3,36 +3,36 @@ import { Box, useColorModeValue, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
+import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
 const Banner = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/banner")
+	import("@/app/components/pages/defiDashboard/banner")
 );
 const TVLBox = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/tvlBox")
+	import("@/app/components/pages/defiDashboard/tvlBox")
 );
 const TrendGraph = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/dashboardTrendGraph")
+	import("@/app/components/pages/defiDashboard/dashboardTrendGraph")
 );
 const DefiUsersSmallTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiUsersSmallTable")
+	import("@/app/components/pages/defiDashboard/defiUsersSmallTable")
 );
 const DefiTVLChart = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiTVLchart")
+	import("@/app/components/pages/defiDashboard/defiTVLchart")
 );
 const DefiAssetsSmallTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiAssetsSmallTable")
+	import("@/app/components/pages/defiDashboard/defiAssetsSmallTable")
 );
 const DefiFeeRevenueChart = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiFeeRevenueChart")
+	import("@/app/components/pages/defiDashboard/defiFeeRevenueChart")
 );
 const GovernanceTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/governanceTable")
+	import("@/app/components/pages/defiDashboard/governanceTable")
 );
 const DefiHotContractsSmallTable = dynamic(() =>
-	import("../components/pages/defiDashboard/DefiHotContractsSmallTable")
+	import("@/app/components/pages/defiDashboard/DefiHotContractsSmallTable")
 );
 const DefiInflowOutflowSmallTableComponent = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
+	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
 );
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";

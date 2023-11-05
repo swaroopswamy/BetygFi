@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { categoryChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import "/styles/styles.scss";
 
-import BlockchainSelectionMenu from "/src/app/components/blockchainSelectionMenu";
-import Rankings from "/src/app/components/pages/dashboard/defiRankingsTable";
-import OverviewColumnChart from "/src/app/components/pages/dashboard/overviewColumnChart";
-import OverviewBox from "/src/app/components/pages/dashboard/overviewBox";
+import BlockchainSelectionMenu from "@/app/components/blockchainSelectionMenu";
+import Rankings from "@/app/components/pages/dashboard/defiRankingsTable";
+import OverviewColumnChart from "@/app/components/pages/dashboard/overviewColumnChart";
+import OverviewBox from "@/app/components/pages/dashboard/overviewBox";
 
 const Dashboard = () => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");

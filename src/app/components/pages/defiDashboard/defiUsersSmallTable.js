@@ -11,10 +11,10 @@ import {
 	Th,
 	Td,
 } from "@chakra-ui/react";
-import GenericTable from "/src/app/components/table";
-import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import LastUpdate from "/src/app/components/lastUpdate";
-import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import GenericTable from "@/app/components/table";
+import { DefiUsersSmallTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import LastUpdate from "@/app/components/lastUpdate";
+import { fetchDefiUsersTableData } from "@/redux/defi_dashboard_data/dataSlice";
 
 function DefiUsersSmallTable() {
 	const searchParam = useSearchParams();
