@@ -84,7 +84,6 @@ export function Providers({ children }) {
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "center",
-				justifyItems: "center",
 			},
 		},
 	});

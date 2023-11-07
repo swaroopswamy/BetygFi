@@ -59,8 +59,7 @@ export const bottomMenu = [
 	{
 		name: "Suggest Feature",
 		icon: BiBulb,
-		newTab: true,
-		path: "https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform",
+		flag:"suggestfeature",
 	},
 	{    name: "Legal",
 		icon: SlShield,
@@ -69,7 +68,6 @@ export const bottomMenu = [
 	{
 		name: "Report Bug",
 		icon: RiBugLine,
-		newTab: true,
-		path: "https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform",
+		flag:"reportbug",
 	},
 ];
