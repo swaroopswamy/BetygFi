@@ -24,7 +24,7 @@ import dynamic from "next/dynamic";
 import "/styles/styles.scss";
 import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
 import { FaPeopleGroup } from "react-icons/fa6";
-import SuggestFeatureModal from "./suggestfeature";
+import ReportBugModal from "./report";
 
 const DynamicIcon = dynamic(() => import("../icons/index_new"), {
     loading: () => <span>Loading...</span>,
@@ -43,16 +43,16 @@ const SidebarContent = ({ ...rest }) => {
     const isSidebarCollapsed = useSelector(
         (state) => state?.appData?.isSidebarCollapsed
     );
-    const {
+/*     const {
         isOpen: isSuggestFeatureModalOpen,
         onOpen: onSuggestFeatureModalOpen,
         onClose: onSuggestFeatureModalClose,
-    } = useDisclosure();
-   /*  const {
+    } = useDisclosure(); */
+    const {
         isOpen: isReportBugModalOpen,
         onOpen: onReportBugModalOpen,
         onClose: onReportBugModalClose,
-    } = useDisclosure(); */
+    } = useDisclosure();
 
     return (
         <>
@@ -146,19 +146,19 @@ const SidebarContent = ({ ...rest }) => {
 
                         {/* Bottom Half */}
                         <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-							<button onClick={onSuggestFeatureModalOpen}>
-								SuggestFeatureModalOpen
-							</button>
-							{/* <button onClick={onReportBugModalOpen}>
-								ReportBugModalOpen
-							</button> */}
+                           {/*  <button onClick={onSuggestFeatureModalOpen}>
+                                SuggestFeatureModalOpen
+                            </button> */}
+                            <button onClick={onReportBugModalOpen}>
+                                ReportBugModalOpen
+                            </button>
                             {bottomMenu.map((link, i) => {
                                 if (link?.flag === "suggestfeature") {
                                     return (
                                         <NavItem
                                             key={i}
                                             NavIcon={link.icon}
-                                            onClick={onSuggestFeatureModalOpen}
+                                            //onClick={onSuggestFeatureModalOpen}
                                             isActive={pathname === link.path}
                                         >
                                             <Text
@@ -375,11 +375,16 @@ const SidebarContent = ({ ...rest }) => {
                     </Flex>
                 </Box>
             </Box>
-            <SuggestFeatureModal
+            {/* <SuggestFeatureModal
                 isOpen={isSuggestFeatureModalOpen}
                 onClose={onSuggestFeatureModalClose}
                 onOpen={onSuggestFeatureModalOpen}
-            ></SuggestFeatureModal>
+            ></SuggestFeatureModal> */}
+            <ReportBugModal
+                isOpen={isReportBugModalOpen}
+                onClose={onReportBugModalClose}
+                onOpen={onReportBugModalOpen}
+            ></ReportBugModal>
         </>
     );
 };
@@ -694,7 +699,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                            "light"
+                                                                "light"
                                                                 ? "#FFFFFF"
                                                                 : "#191919",
                                                     }}
@@ -713,7 +718,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                            "light"
+                                                                "light"
                                                                 ? "white"
                                                                 : "dark",
                                                     }}
