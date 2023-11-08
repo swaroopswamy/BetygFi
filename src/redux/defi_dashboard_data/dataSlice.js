@@ -1,41 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, 
-	getDefiAssetCompositionTableData, getDefiFeeRevenueData, 
-	getDefiGovernanceTableData, getDefiTvlBorrowData } from "../../services/defiDashboardService";
+import {
+	getDefiUsersTableData, getDefiData, getDefiHotContractsTableData,
+	getDefiAssetCompositionTableData, getDefiFeeRevenueData,
+	getDefiGovernanceTableData, getDefiTvlBorrowData
+} from "../../services/defiDashboardService";
 
-export const fetchDefiData = createAsyncThunk('getDefiData', async (payload) => {
-	const response = await getDefiData(payload);
+export const fetchDefiData = createAsyncThunk('getDefiData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload) => {
-	const response = await getDefiUsersTableData(payload);
+export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiUsersTableData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContractsTableData', async (payload) => {
-	const response = await getDefiHotContractsTableData(payload);
+export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContractsTableData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiHotContractsTableData(payload, rejectWithValue);
 	return response.data;
 });
 
 export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData',
-	async (payload) => {
-		const response = await getDefiAssetCompositionTableData(payload);
+	async (payload, { rejectWithValue }) => {
+		const response = await getDefiAssetCompositionTableData(payload, rejectWithValue);
 		return response.data;
 	});
 
-export const fetchDefiFeeRevenueData = createAsyncThunk('getDefiFeeRevenueData', async (payload) => {
-	const response = await getDefiFeeRevenueData(payload);
+export const fetchDefiFeeRevenueData = createAsyncThunk('getDefiFeeRevenueData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiFeeRevenueData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchDefiGovernanceTableData = createAsyncThunk('getDefiGovernanceTableData', async (payload) => {
-	const response = await getDefiGovernanceTableData(payload);
+export const fetchDefiGovernanceTableData = createAsyncThunk('getDefiGovernanceTableData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiGovernanceTableData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchDefiTvlBorrowData = createAsyncThunk('getDefiTvlBorrowData', async (payload) => {
-	const response = await getDefiTvlBorrowData(payload);
+export const fetchDefiTvlBorrowData = createAsyncThunk('getDefiTvlBorrowData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiTvlBorrowData(payload, rejectWithValue);
 	return response.data;
 });
 

@@ -3,8 +3,8 @@ import { loginMetamask, verifyPublicAddress } from "../../services/authService";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",
-	async (payload) => {
-		const response = await verifyPublicAddress(payload);
+	async (payload, { rejectWithValue }) => {
+		const response = await verifyPublicAddress(payload,rejectWithValue );
 		return response.data;
 	}
 );
