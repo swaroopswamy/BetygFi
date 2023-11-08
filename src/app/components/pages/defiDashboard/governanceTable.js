@@ -64,7 +64,7 @@ const GovernanceTable = () => {
 							variant={"h4"}
 							color={useColorModeValue("#434347", "#A8ADBD")}
 						>
-              | Proposals
+							| Proposals
 						</Text>
 					</Box>
 				</Box>
@@ -116,21 +116,21 @@ const GovernanceTable = () => {
 									<Box display={"flex"} gap={"20px"}>
 										<Text variant={"h3"} color={"#8F8F8F"}>
 											{" "}
-                      Start{" "}
+											Start{" "}
 										</Text>
 										<Text variant={"h3"}> {item?.item?.Start} </Text>
 									</Box>
 									<Box display={"flex"} gap={"20px"}>
 										<Text variant={"h3"} color={"#8F8F8F"}>
 											{" "}
-                      End{" "}
+											End{" "}
 										</Text>
 										<Text variant={"h3"}> {item?.item?.End} </Text>
 									</Box>
 									<Box display={"flex"} gap={"20px"}>
 										<Text variant={"h3"} color={"#8F8F8F"}>
 											{" "}
-                      Votes{" "}
+											Votes{" "}
 										</Text>
 										<Text variant={"h3"}> {item?.item?.Votes} </Text>
 									</Box>
@@ -148,7 +148,7 @@ const GovernanceTable = () => {
 					/>
 				</Box>
 
-				<Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')} 
+				<Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')}
 					minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
 
 					<PageButtonsWide
@@ -189,7 +189,10 @@ const TableHeaderRowMobile = () => {
 const TableRow = ({ item, i }) => {
 	const [clicked, setClick] = useState(false);
 	const { colorMode } = useColorMode();
-
+	const openInNewTab = (discussion) => {
+		const newTab = window.open(discussion, '_blank');
+		newTab.focus();
+	};
 	return (
 		<Tr
 			key={i}
@@ -205,6 +208,7 @@ const TableRow = ({ item, i }) => {
 			}
 			onClick={() => {
 				setClick(!clicked);
+				openInNewTab(item?.Discussion);
 			}}
 			borderBottom={"1px"}
 			borderColor={useColorModeValue("#DFDFDF", "#313131")}
