@@ -10,8 +10,8 @@ import {
     useColorMode,
     Box,
     Button,
+    Image,
 } from "@chakra-ui/react";
-import { Image } from "@chakra-ui/next-js";
 
 
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
@@ -25,43 +25,63 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                 />
                 <ModalContent>
                     {state === "success" ? (<>
-                        <Box layerStyle={"FlexColumnCenter"}>
-                            <Box layerStyle={"flexAlignCenterJustifyCenter"}>
+                        <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
+                            <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
                                 <Image
                                     src={"/icons/check_filled_green.svg"}
+                                    mr={'10px'}
                                 ></Image>
                                 <Text variant={"h0"}>
                                     Success!
                                 </Text>
                             </Box>
-                            <Text variant={"h3"}>
-                                Your bug report request has been successfully submitted. Thank you for your contribution.
+                            <Text variant={"h3"} mb="55px" textAlign={"center"}>
+                                Your bug report request has been successfully submitted.<br /> Thank you for your contribution.
                             </Text>
-                            <Button
-                                variant={"submitModal"}
+                            <Box
+                                w={"100%"}
+                                display={"flex"}
+                                justifyContent={"center"}
                             >
-                                OK
-                            </Button>
+                                <Button
+                                    variant={"submitModal"}
+                                    w="140px"
+                                    onClick={onClose}
+                                >
+                                    OK
+                                </Button>
+                            </Box>
+
                         </Box>
                     </>) : state === "failure" ? (<>
-                        <Box layerStyle={"FlexColumnCenter"}>
-                            <Box layerStyle={"flexAlignCenterJustifyCenter"}>
+                        <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
+                            <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
                                 <Image
                                     src={"/icons/danger_filled_red.svg"}
+                                    mr={'10px'}
                                 ></Image>
                                 <Text variant={"h0"}>
                                     Failed!
                                 </Text>
                             </Box>
-                            <Text variant={"h3"}>
-                                Sorry, it seems like some internal server issue.
+                            <Text variant={"h3"} mb="55px" textAlign={"center"}>
+                                Sorry, it seems like some internal server issue.<br />
                                 Please try again.
                             </Text>
-                            <Button
-                                variant={"submitModal"}
+                            <Box
+                                w={"100%"}
+                                display={"flex"}
+                                justifyContent={"center"}
                             >
-                                Try Again
-                            </Button>
+                                <Button
+                                    variant={"submitModal"}
+                                    w="140px"
+                                    onClick={onClose}
+                                >
+                                    OK
+                                </Button>
+                            </Box>
+
                         </Box>
                     </>) : (<>
                         <ModalHeader
@@ -74,8 +94,8 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                             p={"35px"}
                             pb={"40px"}
                             bgRepeat={"no-repeat"}
-                            bgPos={"right"}
-                            bgImage={colorMode !== 'light' ? '/icons/dark_design_modal.svg' : '/icons/light_design_modal.svg'}
+                            backgroundPosition={"top 0px right 30px"}
+                            bgImage={colorMode !== 'light' ? '/icons/design_triangle.svg' : '/icons/light_design_modal.svg'}
                         >
                             <Text variant={"customModalHeader"}>{headerTitle}</Text>
                         </ModalHeader>

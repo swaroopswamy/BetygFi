@@ -1,15 +1,15 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Box, Button,  } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 const CustomInput = dynamic(() => import('../customInput'));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
 const CustomDropdown = dynamic(() => import("@/app/components/dropdown/index"));
 const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
     const items = ["Option 1", "Option 2", "Option 3"];
     const handleDropdownSelect = () => {
-       /*  console.log(`Selected: ${selectedItem}`); */
+        /*  console.log(`Selected: ${selectedItem}`); */
     };
- /*    const colorMode = useColorMode(); */
+    /*    const colorMode = useColorMode(); */
     return (
         <CustomModal
             isOpen={isOpen}
@@ -69,7 +69,7 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
                         </Box>
                         <Box w={"100%"} layerStyle={"center"}>
                             <Button
-                                variant={"submitModal"}  
+                                variant={"submitModal"}
                             >
                                 Submit
                             </Button>

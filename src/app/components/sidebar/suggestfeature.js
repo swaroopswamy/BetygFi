@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { Box, Button, } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 const CustomInput = dynamic(() => import('../customInput'));
 const CustomUpload = dynamic(() => import('../customUpload'));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
@@ -10,7 +10,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={onClose}
-            state={"success"}
+            state={"failure"}
             headerTitle={"Suggest a Feature"}
             BodyComponent={() => {
                 return (
