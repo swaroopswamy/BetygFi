@@ -1,7 +1,7 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 
-export const getBlockchainListData = async () => {
+export const getBlockchainListData = async (rejectWithValue) => {
 	try {
 		const url = `protocols/blockchains`;
 		if (checkIfCacheAvailable(url)) {
@@ -11,7 +11,7 @@ export const getBlockchainListData = async () => {
 			return cacheHandler(url, data, 4, false);
 		}
 	} catch (err) {
-		// return rejectWithValue(err);
+		return rejectWithValue(err);
 	}
 };
 

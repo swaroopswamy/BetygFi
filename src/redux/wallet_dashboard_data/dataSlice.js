@@ -1,51 +1,53 @@
 import { getDefiRankingsTableData } from "@/services/dashboardService";
-import { getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress, 
-	getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData, 
-	getWalletTransactionsForAddressSummary } from "@/services/walletDashboardService";
+import {
+	getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress,
+	getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData,
+	getWalletTransactionsForAddressSummary
+} from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
-	const response = await getDefiRankingsTableData(payload);
+export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiRankingsTableData(payload, rejectWithValue);
 	return response.data;
 });
 
 
-export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload) => {
-	const response = await getWalletBalanceData(payload);
+export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload, { rejectWithValue }) => {
+	const response = await getWalletBalanceData(payload, rejectWithValue);
 	return response;
 });
-export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload) => {
-	const response = await getWalletTransactionsData(payload);
+export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload, { rejectWithValue }) => {
+	const response = await getWalletTransactionsData(payload, rejectWithValue);
 	return response;
 });
 
-export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary', 
-	async (payload) => {
-		const response = await getWalletTransactionsForAddressSummary(payload);
+export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary',
+	async (payload, { rejectWithValue }) => {
+		const response = await getWalletTransactionsForAddressSummary(payload, rejectWithValue);
 		return response.data;
 	});
 
-export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress', 
-	async (payload) => {
-		const response = await getAssetAllocationForAddress(payload);
+export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress',
+	async (payload, { rejectWithValue }) => {
+		const response = await getAssetAllocationForAddress(payload, rejectWithValue);
 		return response.data;
 	});
-export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress', 
-	async (payload) => {
-		const response = await getProtocolAllocationForAddress(payload);
-		return response.data;
-	});
-
-export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress', 
-	async (payload) => {
-		const response = await getBlockchainAllocationForAddress(payload);
+export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress',
+	async (payload, { rejectWithValue }) => {
+		const response = await getProtocolAllocationForAddress(payload, rejectWithValue);
 		return response.data;
 	});
 
-export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', 
-	async (payload) => {
-		const response = await getInflowOutflowTokensForAddress(payload);
+export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress',
+	async (payload, { rejectWithValue }) => {
+		const response = await getBlockchainAllocationForAddress(payload, rejectWithValue);
+		return response.data;
+	});
+
+export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress',
+	async (payload, { rejectWithValue }) => {
+		const response = await getInflowOutflowTokensForAddress(payload, rejectWithValue);
 		return response;
 	});
 
@@ -281,6 +283,6 @@ const WalletDashboardDataSlice = createSlice({
 	},
 });
 
-export const { blockchainTypeChangedReducer, defiArrayChangedReducer, walletAddressChangedReducer } = 
-WalletDashboardDataSlice.actions;
+export const { blockchainTypeChangedReducer, defiArrayChangedReducer, walletAddressChangedReducer } =
+	WalletDashboardDataSlice.actions;
 export default WalletDashboardDataSlice.reducer;
