@@ -7,9 +7,11 @@ import {
     ModalBody,
     ModalCloseButton,
     Text,
+    useColorMode,
 } from "@chakra-ui/react";
 
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent }) => {
+    const colorMode = useColorMode();
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -27,6 +29,9 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent }) => {
                         }}
                         p={"35px"}
                         pb={"40px"}
+                        bgRepeat={"no-repeat"}
+                        bgPos={"right"}
+                        bgImage={colorMode !=='light' ? '/icons/dark_design_modal.svg' : '/icons/light_design_modal.svg'}
                     >
                         <Text variant={"customModalHeader"}>{headerTitle}</Text>
                     </ModalHeader>

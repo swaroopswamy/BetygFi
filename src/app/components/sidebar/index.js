@@ -25,6 +25,7 @@ import "/styles/styles.scss";
 import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
 import { FaPeopleGroup } from "react-icons/fa6";
 import ReportBugModal from "./report";
+import SuggestFeatureModal from "./suggestfeature";
 
 const DynamicIcon = dynamic(() => import("../icons/index_new"), {
     loading: () => <span>Loading...</span>,
@@ -43,11 +44,11 @@ const SidebarContent = ({ ...rest }) => {
     const isSidebarCollapsed = useSelector(
         (state) => state?.appData?.isSidebarCollapsed
     );
-/*     const {
+    const {
         isOpen: isSuggestFeatureModalOpen,
         onOpen: onSuggestFeatureModalOpen,
         onClose: onSuggestFeatureModalClose,
-    } = useDisclosure(); */
+    } = useDisclosure();
     const {
         isOpen: isReportBugModalOpen,
         onOpen: onReportBugModalOpen,
@@ -146,9 +147,9 @@ const SidebarContent = ({ ...rest }) => {
 
                         {/* Bottom Half */}
                         <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                           {/*  <button onClick={onSuggestFeatureModalOpen}>
+                            <button onClick={onSuggestFeatureModalOpen}>
                                 SuggestFeatureModalOpen
-                            </button> */}
+                            </button>
                             <button onClick={onReportBugModalOpen}>
                                 ReportBugModalOpen
                             </button>
@@ -158,7 +159,7 @@ const SidebarContent = ({ ...rest }) => {
                                         <NavItem
                                             key={i}
                                             NavIcon={link.icon}
-                                            //onClick={onSuggestFeatureModalOpen}
+                                            onClick={onSuggestFeatureModalOpen}
                                             isActive={pathname === link.path}
                                         >
                                             <Text
@@ -175,9 +176,9 @@ const SidebarContent = ({ ...rest }) => {
                                         <NavItem
                                             key={i}
                                             NavIcon={link.icon}
-                                            /* onClick={() =>
+                                            onClick={() =>
                                                 onReportBugModalOpen()
-                                            } */
+                                            }
                                             isActive={pathname === link.path}
                                         >
                                             <Text
@@ -375,11 +376,11 @@ const SidebarContent = ({ ...rest }) => {
                     </Flex>
                 </Box>
             </Box>
-            {/* <SuggestFeatureModal
+            <SuggestFeatureModal
                 isOpen={isSuggestFeatureModalOpen}
                 onClose={onSuggestFeatureModalClose}
                 onOpen={onSuggestFeatureModalOpen}
-            ></SuggestFeatureModal> */}
+            ></SuggestFeatureModal>
             <ReportBugModal
                 isOpen={isReportBugModalOpen}
                 onClose={onReportBugModalClose}

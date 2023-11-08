@@ -1,10 +1,10 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { Box, Button,  } from "@chakra-ui/react";
-import CustomInput from "../customInput";
+const CustomInput = dynamic(() => import('../customInput'));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
 const CustomDropdown = dynamic(() => import("@/app/components/dropdown/index"));
-const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
+const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
     const items = ["Option 1", "Option 2", "Option 3"];
     const handleDropdownSelect = () => {
        /*  console.log(`Selected: ${selectedItem}`); */
@@ -15,7 +15,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={onClose}
-            headerTitle={"Suggest a Feature"}
+            headerTitle={"Report Bug"}
             BodyComponent={() => {
                 return (
                     <Box layerStyle={"FlexColumnCenter"}>
@@ -81,4 +81,4 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
     );
 };
 
-export default SuggestFeatureModal;
+export default ReportBugModal;

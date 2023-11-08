@@ -197,6 +197,24 @@ const Text = defineStyleConfig({
             color: colorMode === "light" ? "#FFF" : "#525252",
             fontSize: "12px",
         }),
+        boldHeader: (colorMode) => ({
+            fontFamily: "Inter",
+            fontWeight: "700",
+            color: colorMode !== "light" ? "#161616" : "#FFF",
+            fontSize: "14px",
+        }),
+        secondaryContent: (colorMode) => ({
+            fontFamily: "Inter",
+            fontWeight: "400",
+            color: colorMode !== "light" ? "#525252" : "#FFF",
+            fontSize: "12px",
+        }),
+        linkPrimary: () => ({
+            fontFamily: "Inter",
+            fontWeight: "400",
+            color:"#117CCA",
+            fontSize: "14px",
+        }),
     },
     defaultProps: {
         variant: "base",
