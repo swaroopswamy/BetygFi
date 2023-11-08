@@ -42,7 +42,9 @@ const Dashboard = () => {
 	};
 
 	useEffect(() => {
+		if (typeof window !== "undefined") {
 		getOverviewDataHandler();
+		}
 	}, [blockchainSelected, categorySelected]);
 
 	return (

@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
 	Text,
 	useColorModeValue,
@@ -10,15 +9,16 @@ import {
 	Td,
 	Flex,
 	Image,
-	Link,
+	// Link,
 	useColorMode,
 	Avatar,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
 	tableHeader,
 	TransactionTableDesktop,

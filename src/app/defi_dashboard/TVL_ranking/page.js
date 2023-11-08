@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
 	Text,
 	Icon,
@@ -11,7 +10,7 @@ import {
 	Image,
 	useColorMode,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const GenericBigTableComponent = dynamic(() =>

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AuthDataSlice from '@/redux/auth_data/authSlice';
+import AuthDataSlice from "@/redux/auth_data/authSlice";
 import DashboardTableDataSlice from "@/redux/dashboard_data/dataSlice";
 import AppDataSlice from "@/redux/app_data/dataSlice";
 import WalletDashboardTableDataSlice from "@/redux/wallet_dashboard_data/dataSlice";

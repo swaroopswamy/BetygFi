@@ -6,10 +6,11 @@ import {
 	Image,
 	useColorModeValue,
 	Text,
-	Link,
+	// Link,
 	Button,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+import Link from "next/link";
 
 const Footnote = ({ number, onClick }) => (
 	<sup>
