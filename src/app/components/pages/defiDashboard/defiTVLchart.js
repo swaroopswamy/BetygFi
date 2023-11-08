@@ -2,7 +2,6 @@
 import { Box, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
-import { } from "react";
 import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";

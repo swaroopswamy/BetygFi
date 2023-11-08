@@ -7,7 +7,7 @@ import {
 	OutflowTokensDesktop,
 	OutflowTokensMobile,
 } from "@/app/components/pages/walletDashboard/helper";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
 const GenericTable = dynamic(() => import("@/app/components/table"));
