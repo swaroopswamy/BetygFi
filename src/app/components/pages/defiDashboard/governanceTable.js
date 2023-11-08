@@ -138,7 +138,7 @@ const GovernanceTable = () => {
 							);
 						}}
 						SkeletonRowsColumnsDesktop={{
-							numColumns: 7,
+							numColumns: 5,
 							numRows: 5,
 						}}
 						SkeletonRowsColumnsMobile={{

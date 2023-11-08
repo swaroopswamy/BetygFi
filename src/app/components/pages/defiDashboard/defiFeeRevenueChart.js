@@ -22,7 +22,7 @@ function DefiFeeRevenueChart() {
 	const searchParam = useSearchParams();
 	const { colorMode } = useColorMode();
 	const dispatch = useDispatch();
-  
+
 	const defi = searchParam.get("defi");
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
@@ -62,14 +62,14 @@ function DefiFeeRevenueChart() {
 			custom: function ({ series, seriesIndex, w }) {
 				return (
 					'<div class="donut_tooltip">' +
-          '<div class="donut_tooltip_text">' +
-          w.globals.labels[seriesIndex] +
-          "</div>" +
-          '<div class="donut_tooltip_text">' +
-          USDollar.format(series[seriesIndex]) +
-          " USD" +
-          "</div>" +
-          "</div>"
+					'<div class="donut_tooltip_text">' +
+					w.globals.labels[seriesIndex] +
+					"</div>" +
+					'<div class="donut_tooltip_text">' +
+					USDollar.format(series[seriesIndex]) +
+					" USD" +
+					"</div>" +
+					"</div>"
 				);
 			},
 		},
@@ -115,7 +115,7 @@ function DefiFeeRevenueChart() {
 				<Box layerStyle={"spaceBetween"} p={"20px"} >
 					<Box layerStyle={"flexCenter"} gap={"5px"}>
 						<Text variant={"smallTableHeader"}>
-              DeFi Fee and Revenue
+							DeFi Fee and Revenue
 						</Text>
 						<TooltipComp label="DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution." />
 					</Box>
@@ -141,8 +141,8 @@ function DefiFeeRevenueChart() {
 						<Chart
 							options={options}
 							series={[
-								DefiFeeRevenueData.data.totalFees,
-								DefiFeeRevenueData.data.totalRevenue,
+								DefiFeeRevenueData?.data?.totalFees,
+								DefiFeeRevenueData?.data?.totalRevenue,
 							]}
 							type={options.chart.type}
 							height={"250px"}
