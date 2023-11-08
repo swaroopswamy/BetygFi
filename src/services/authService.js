@@ -1,11 +1,11 @@
 import { axiosInstance } from "@util/axiosInstance";
 
-export const verifyPublicAddress = async (address) => {
+export const verifyPublicAddress = async (address, rejectWithValue) => {
 	try {
 		const { data } = await axiosInstance.get(`auth/get-nonce?public_address=${address}`);
 		return data;
 	} catch (err) {
-		// return rejectWithValue(err);
+		return rejectWithValue(err);
 	}
 };
 export const loginMetamask = async (payload) => {

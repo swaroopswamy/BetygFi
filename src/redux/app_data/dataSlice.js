@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getBlockchainListData } from "@/services/appService";
 
-export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async () => {
-	const response = await getBlockchainListData();
+export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload,{ rejectWithValue }) => {
+	const response = await getBlockchainListData(rejectWithValue);
 	return response.data;
 });
 
