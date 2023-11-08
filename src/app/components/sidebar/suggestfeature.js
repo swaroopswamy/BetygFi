@@ -10,6 +10,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={onClose}
+            state={"success"}
             headerTitle={"Suggest a Feature"}
             BodyComponent={() => {
                 return (

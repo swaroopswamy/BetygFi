@@ -8,6 +8,12 @@ const Text = defineStyleConfig({
     },
     variants: {
         base: {},
+        h0: ({ colorMode }) => ({
+            fontFamily: "Inter",
+            fontSize: "28px" ,
+            fontWeight: "400",
+            color: colorMode === "light" ? "#161616" : "#FFFFFF",
+        }),
         h1: ({ colorMode }) => ({
             fontFamily: "Inter",
             fontSize: { base: "18px", md: "24px" },
