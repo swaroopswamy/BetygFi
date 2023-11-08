@@ -28,7 +28,7 @@ const DashboardTabList = dynamic(() => import("@/app/components/pages/walletDash
 const BlockchainSelectionMenuBlocks = dynamic(() => import("@/app/components/blockchainSelectionMenuBlocks"));
 
 export default function WalletDashboardPage(context) {
-	const searchParam = context?.searchParams?.address;
+	const searchParamAddress = context?.searchParams?.address;
 	const dispatch = useDispatch();
 	const [tabIndex, setTabIndex] = useState(0);
 
@@ -43,69 +43,69 @@ export default function WalletDashboardPage(context) {
 		(state) => state?.walletDashboardTableData?.walletBalanceData?.data
 	);
 
-	const fetchWalletBalanceDataHandler = (blockchainSelected, searchParam) => {
+	const fetchWalletBalanceDataHandler = (blockchainSelected, searchParamAddress) => {
 		const data = {
 			payload: {
 				blockchain: blockchainSelected,
 			},
 		};
-		if (searchParam && searchParam!=='') {
-			data.address = searchParam;
+		if (searchParamAddress && searchParamAddress!=='') {
+			data.address = searchParamAddress;
 		}
 		dispatch(fetchWalletBalanceData(data));
 	};
 
 	const fetchAssetAllocationForAddressHandler = () => {
 		const data = {
-			address: searchParam,
+			address: searchParamAddress,
 		};
 		dispatch(fetchAssetAllocationForAddress(data));
 	};
 
 	const fetchProtocolAllocationForAddressHandler = () => {
 		const data = {
-			address: searchParam,
+			address: searchParamAddress,
 		};
 		dispatch(fetchProtocolAllocationForAddress(data));
 	};
 
 	const fetchBlockchainAllocationForAddressHandler = () => {
 		const data = {
-			address: searchParam,
+			address: searchParamAddress,
 		};
 		dispatch(fetchBlockchainAllocationForAddress(data));
 	};
 
 	const fetchInflowOutflowTokensForAddressHandler = () => {
 		const data = {
-			address: searchParam,
+			address: searchParamAddress,
 		};
 		dispatch(fetchInflowOutflowTokensForAddress(data));
 	};
 
 	useEffect(() => {
 		// Promise.all([
-		fetchWalletBalanceDataHandler(blockchainSelected, searchParam);
-		if (searchParam && searchParam!=='') {
+		fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress);
+		if (searchParamAddress && searchParamAddress!=='') {
 			fetchAssetAllocationForAddressHandler();
 			fetchProtocolAllocationForAddressHandler();
 			fetchBlockchainAllocationForAddressHandler();
 			fetchInflowOutflowTokensForAddressHandler();
 		}
 		// ]);
-	}, [blockchainSelected, searchParam]);
+	}, [blockchainSelected, searchParamAddress]);
 
 	useEffect(() => {
 		dispatch(fetchBlockchainListData());
-		if (searchParam && searchParam!=='') {
-			dispatch(walletAddressChangedReducer(searchParam));
+		if (searchParamAddress && searchParamAddress!=='') {
+			dispatch(walletAddressChangedReducer(searchParamAddress));
 		}
 	}, []);
 
 	useEffect(() => {
 		if (walletBalanceData?.isQueryInPendingState) {
 			setTimeout(() => {
-				fetchWalletBalanceDataHandler(blockchainSelected, searchParam);
+				fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress);
 			}, 5000);
 		}
 	}, [walletBalanceData]);
@@ -142,7 +142,9 @@ export default function WalletDashboardPage(context) {
 									p="0px"
 									bgColor={useColorModeValue("#F0F0F5", "#191919")}
 								>
-									<TransactionPanelComponent />
+									<TransactionPanelComponent 
+									searchParamAddress={searchParamAddress}
+									/>
 								</TabPanel>
 								<TabPanel
 									p="0px"

@@ -17,7 +17,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState, useCallback } from "react";
 import {
 	tableHeader,
@@ -28,8 +28,8 @@ import GenericTable from "@/app/components/table/index";
 import PageButtonsWide from "@/app/components/pageButtonsWide";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 
-const TransactionPanelComponent = () => {
-	const searchParam = useSearchParams();
+const TransactionPanelComponent = ({ searchParamAddress }) => {
+	// const searchParam = useSearchParams();
 	const dispatch = useDispatch();
 	const [tablePage, setTablePage] = useState(1);
 	const [tableLimit, setTableLimit] = useState(10);
@@ -45,16 +45,19 @@ const TransactionPanelComponent = () => {
 	};
 	const fetchWalletTransactionsDataHandler = useCallback(() => {
 		const data = {
-			address: searchParam.get("address"),
+			// address: searchParam.get("address"),
 			payload: {
 				blockchain: blockchainSelected,
 				limit: tableLimit,
 				page: tablePage,
 			},
 		};
+		if (searchParamAddress && searchParamAddress !== '') {
+			data.address = searchParamAddress;
+		}
 		dispatch(fetchWalletTransactionsData(data));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [blockchainSelected, tablePage, searchParam.get("address"), tableLimit]);
+	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit]);
 
 	useEffect(() => {
 		fetchWalletTransactionsDataHandler();
@@ -81,7 +84,7 @@ const TransactionPanelComponent = () => {
 					display={"block"}
 				>
 					<Text variant={"h2"} textTransform={"capitalize"}>
-            Wallet Transaction
+						Wallet Transaction
 					</Text>
 				</Flex>
 
@@ -99,7 +102,7 @@ const TransactionPanelComponent = () => {
 					/>
 				</Box>
 
-				<Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')} 
+				<Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')}
 					minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
 
 					<PageButtonsWide
@@ -144,8 +147,8 @@ const TableRow = ({ item, rowIndex }) => {
 						<Box w={"100%"}>
 							<Text variant={"h3"} ml="6px">
 								{walletAddress?.split("").join("").substring(0, 8) +
-                  "......" +
-                  walletAddress?.slice(-5)}
+									"......" +
+									walletAddress?.slice(-5)}
 							</Text>
 							<Text
 								opacity={"0.6000000238418579"}
@@ -215,8 +218,8 @@ const TableRow = ({ item, rowIndex }) => {
 						<Box layerStyle={"flexCenter"}>
 							<Text variant={"h3"} letterSpacing={"1px"} w="95px">
 								{item?.to.split("").join("").substring(0, 6) +
-                  "..." +
-                  item?.to.slice(-5)}
+									"..." +
+									item?.to.slice(-5)}
 							</Text>
 						</Box>
 					</Tooltip>
@@ -227,8 +230,8 @@ const TableRow = ({ item, rowIndex }) => {
 						<Box layerStyle={"flexCenter"}>
 							<Text variant={"h3"} letterSpacing={"1px"} w="95px">
 								{item?.from.split("").join("").substring(0, 6) +
-                  "..." +
-                  item?.from.slice(-5)}
+									"..." +
+									item?.from.slice(-5)}
 							</Text>
 						</Box>
 					</Tooltip>
@@ -273,7 +276,7 @@ const TableHeaderRowMobile = () => {
 							variant={"h3"}
 							textTransform={"capitalize"}
 						>
-              Address And Date
+							Address And Date
 						</Text>
 						<Text
 							_light={{
@@ -282,7 +285,7 @@ const TableHeaderRowMobile = () => {
 							variant={"h3"}
 							textTransform={"capitalize"}
 						>
-              USD Value
+							USD Value
 						</Text>
 					</Box>
 				</Th>
@@ -325,8 +328,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						ml="6px"
 					>
 						{walletAddress?.split("").join("").substring(0, 6) +
-              "..." +
-              walletAddress?.slice(-5)}
+							"..." +
+							walletAddress?.slice(-5)}
 					</Text>
 					<Text
 						opacity={"0.6000000238418579"}
@@ -392,7 +395,7 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 						alignItems={"center"}
 						textTransform={"capitalize"}
 					>
-            Method
+						Method
 					</Text>
 					<Text
 						_light={{
@@ -408,7 +411,7 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 						mr="6px"
 						textTransform={"capitalize"}
 					>
-            Amount / Token
+						Amount / Token
 					</Text>
 					<Text
 						_light={{
@@ -423,7 +426,7 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 						lineHeight={"20px"}
 						textTransform={"capitalize"}
 					>
-            From
+						From
 					</Text>
 					<Text
 						_light={{
@@ -438,7 +441,7 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 						lineHeight={"20px"}
 						textTransform={"capitalize"}
 					>
-            To
+						To
 					</Text>
 				</Box>
 				<Box display={"flex"} flexDirection={"column"} gap={4} w={"60%"}>
@@ -540,8 +543,8 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 								w="95px"
 							>
 								{item?.from.split("").join("").substring(0, 6) +
-                  "..." +
-                  item?.from.slice(-5)}
+									"..." +
+									item?.from.slice(-5)}
 							</Text>
 						</Link>
 					</Box>
@@ -569,8 +572,8 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 								w="95px"
 							>
 								{item?.to.split("").join("").substring(0, 6) +
-                  "..." +
-                  item?.to.slice(-5)}
+									"..." +
+									item?.to.slice(-5)}
 							</Text>
 						</Link>
 					</Box>
