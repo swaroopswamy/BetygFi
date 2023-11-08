@@ -2,7 +2,7 @@
 import { Box, useColorModeValue, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
 const Banner = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/banner")
@@ -37,24 +37,25 @@ const DefiInflowOutflowSmallTableComponent = dynamic(() =>
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";
 
-const DefiDashboardPage = () => {
+const DefiDashboardPage = (context) => {
+	const searchParamId = context?.searchParams?.id;
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const searchParam = useSearchParams();
-
-	const id = searchParam.get("id");
 
 	const getDefiDataHandler = () => {
-		const payload = {
-			id: id,
-		};
-		dispatch(fetchDefiData(payload));
+		if (searchParamId && searchParamId !== '') {
+			const payload = {
+				id: searchParamId,
+			};
+			dispatch(fetchDefiData(payload));
+		}
 	};
 
 	useEffect(() => {
 		getDefiDataHandler();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	return (
 		<>
 			<Box
@@ -85,7 +86,7 @@ const DefiDashboardPage = () => {
 						_light={{ color: "#16171B" }}
 						_dark={{ color: "#A8ADBD" }}
 					>
-            Home/Defi Dashboard
+						Home/Defi Dashboard
 					</Text>
 				</Box>
 				<Banner />
