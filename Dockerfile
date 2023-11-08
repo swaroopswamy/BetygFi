@@ -5,7 +5,7 @@ FROM devopsolvendo/solvendo-baseimage:2
 RUN useradd -r nginx
 
 # Set the working directory to root
-WORKDIR /usr/share/nginx/html/
+WORKDIR /home/workspace/M_playground/frontend
 
 # Remove any existing content in the Nginx HTML directory
 RUN rm -rf /usr/share/nginx/html/*
