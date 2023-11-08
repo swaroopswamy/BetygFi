@@ -1,25 +1,27 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData, 
-	getOverviewGraphData } from "@/services/dashboardService";
+import {
+	getDefiRankingsTableData, getOverviewData, getProtocolScoresData,
+	getOverviewGraphData
+} from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload) => {
-	const response = await getDefiRankingsTableData(payload);
+export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload, { rejectWithValue }) => {
+	const response = await getDefiRankingsTableData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payload) => {
-	const response = await getOverviewData(payload);
+export const fetchOverviewData = createAsyncThunk('getOverviewData', async (payload, { rejectWithValue }) => {
+	const response = await getOverviewData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload) => {
-	const response = await getProtocolScoresData(payload);
+export const fetchScoreGraphData = createAsyncThunk('fetchScoreGraphData', async (payload, { rejectWithValue }) => {
+	const response = await getProtocolScoresData(payload, rejectWithValue);
 	return response.data;
 });
 
-export const fetchOverviewGraphData = createAsyncThunk('getOverviewGraphData', async (payload) => {
-	const response = await getOverviewGraphData(payload);
+export const fetchOverviewGraphData = createAsyncThunk('getOverviewGraphData', async (payload, { rejectWithValue }) => {
+	const response = await getOverviewGraphData(payload, rejectWithValue);
 	return response.data;
 });
 
