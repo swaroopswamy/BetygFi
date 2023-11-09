@@ -201,6 +201,8 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             fontWeight: "400",
             color: colorMode === "light" ? "#FFF" : "#525252",
+            lineHeight: "16px",
+            letterSpacing: "0.32px",
             fontSize: "12px",
         }),
         boldHeader: (colorMode) => ({

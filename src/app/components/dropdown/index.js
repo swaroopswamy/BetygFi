@@ -24,7 +24,7 @@ const flavorOptions = [
     },
 ];
 
-const CustomDropdown = ({ name ,placeholder }) => {
+const CustomDropdown = ({ name, placeholder }) => {
     const colorMode = useColorMode();
     const customComponents = {
         Option: ({ children, ...props }) => (
@@ -36,6 +36,7 @@ const CustomDropdown = ({ name ,placeholder }) => {
                 fontFamily={"Inter"}
                 fontSize={"14px"}
                 padding={"10px 0px"}
+                border={"none"}
                 borderBottom={"1px solid #8D8D8D"}
             >
                 {children}
@@ -43,28 +44,30 @@ const CustomDropdown = ({ name ,placeholder }) => {
         ),
     };
     const chakraStyles = {
-        valueContainer: (provided, ) => ({
+        valueContainer: (provided,) => ({
             ...provided,
             bgColor: "transparent",
             color: colorMode === "light" ? "#161616" : "#FFFFFF",
             fontWeight: "400",
             fontFamily: "Inter",
             fontSize: "14px",
-            padding: "10px 0px",
+            padding: "15px 16px",
         }),
-        indicatorsContainer: (provided, ) => ({
-            ...provided,
-        }),
-       /*  menu: (provided, state) => ({
+        indicatorsContainer: (provided,) => ({
             ...provided,
             border: "none",
-            borderBottom: "1px solid #8D8D8D",
-        }), */
-        container: (provided, ) => ({
-            ...provided,
-            border: "none",
-            borderBottom: "1px solid #8D8D8D",
         }),
+        /*  menu: (provided, state) => ({
+             ...provided,
+             border: "none",
+             borderBottom: "1px solid #8D8D8D",
+         }), */
+        container:
+            (provided,) => ({
+                ...provided,
+                border: "transparent",
+                borderBottom: "1px solid #8D8D8D",
+            }),
     };
     return (
         <Box>
