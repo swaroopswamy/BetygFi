@@ -5,7 +5,7 @@ FROM devopsolvendo/solvendo-baseimage:2
 RUN useradd -r nginx
 
 # Set the working directory to root
-WORKDIR /home/workspace/M_playground/frontend
+WORKDIR /home
 
 # Remove any existing content in the Nginx HTML directory
 RUN rm -rf /usr/share/nginx/html/*
@@ -13,8 +13,10 @@ RUN rm -rf /usr/share/nginx/html/*
 # Create a "document" folder inside the Nginx HTML directory
 RUN mkdir /usr/share/nginx/html/Document
 
+COPY Approachpaper.pdf /usr/share/nginx/html/Document/
+
 # Copy the contents of the Next.js 'out' directory to the Nginx HTML directory
-COPY ./out/ .
+COPY ./out/* /usr/share/nginx/html/
 
 # Change the ownership of the copied files to the "nginx" user
 RUN chown -R nginx:nginx /usr/share/nginx/html/*
@@ -28,5 +30,4 @@ EXPOSE 80
 # Command to start Nginx
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-# Copy the PDF file from the /tmp folder to the "document" folder
-COPY Approachpaper.pdf /usr/share/nginx/html/Document/
+
