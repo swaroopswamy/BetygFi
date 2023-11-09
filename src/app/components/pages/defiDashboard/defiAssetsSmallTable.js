@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
 	Text,
 	Box,
@@ -25,13 +25,9 @@ let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",
 });
 
-function DefiAssetsSmallTable() {
-	const searchParam = useSearchParams();
+function DefiAssetsSmallTable({ searchParamDefi, searchParamId }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
-
-	const defi = searchParam.get("defi");
-	const id = searchParam.get("id");
 
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
@@ -42,11 +38,13 @@ function DefiAssetsSmallTable() {
 
 	const getDefiAssetsTableDataHandler = () => {
 		const payload = {
-			defi: defi,
 			blockchain: blockchainSelected,
 			page: 1,
 			limit: 20,
 		};
+		if (searchParamDefi && searchParamDefi !== '') {
+			payload.defi = searchParamDefi;
+		}
 		dispatch(fetchDefiAssetCompositionTableData(payload));
 	};
 
@@ -54,7 +52,9 @@ function DefiAssetsSmallTable() {
 		getDefiAssetsTableDataHandler();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected]);
+
 	const { colorMode } = useColorMode();
+
 	return (
 		<Box
 			w={{ base: "100%", lg: "50%" }}
@@ -73,13 +73,15 @@ function DefiAssetsSmallTable() {
 					<Button
 						variant={"viewMore"}
 						onClick={() => {
-							router.push(
-								`/defi_dashboard/asset_composition?defi=${defi}&id=${id}`
-							);
+							if (searchParamDefi && searchParamDefi !== '' && searchParamId && searchParamId !== '') {
+								router.push(
+									`/defi_dashboard/asset_composition?defi=${searchParamDefi}&id=${searchParamId}`
+								);
+							}
 						}}
 					>
 						{" "}
-            View More{" "}
+						View More{" "}
 					</Button>
 				)}
 			</Box>
@@ -132,7 +134,7 @@ function DefiAssetsSmallTable() {
 							<Box display={"flex"} minH={"50px"} gap={"20px"}>
 								<Text variant={"h3"} color={"#8F8F8F"}>
 									{" "}
-                  Share{" "}
+									Share{" "}
 								</Text>
 								<Text variant={"h3"}> {item?.item?.share}% </Text>
 							</Box>

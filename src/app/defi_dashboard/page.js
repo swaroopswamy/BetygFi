@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
+
 const Banner = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/banner")
 );
@@ -39,6 +40,8 @@ import dynamic from "next/dynamic";
 
 const DefiDashboardPage = (context) => {
 	const searchParamId = context?.searchParams?.id;
+	const searchParamDefi = context?.searchParams?.defi;
+	
 	const router = useRouter();
 	const dispatch = useDispatch();
 
@@ -125,8 +128,13 @@ const DefiDashboardPage = (context) => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiAssetsSmallTable />
-					<DefiFeeRevenueChart />
+					<DefiAssetsSmallTable 
+					searchParamDefi={searchParamDefi}
+					searchParamId={searchParamId}
+					/>
+					<DefiFeeRevenueChart 
+					searchParamDefi={searchParamDefi}
+					/>
 				</Box>
 
 				<Box

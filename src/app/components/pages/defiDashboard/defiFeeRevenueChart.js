@@ -7,7 +7,6 @@ import {
 	useColorModeValue,
 	useColorMode,
 } from "@chakra-ui/react";
-import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,12 +17,10 @@ import TooltipComp from "@/app/components/tooltipComp";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 let USDollar = new Intl.NumberFormat("en-US");
 
-function DefiFeeRevenueChart() {
-	const searchParam = useSearchParams();
+function DefiFeeRevenueChart({ searchParamDefi }) {
 	const { colorMode } = useColorMode();
 	const dispatch = useDispatch();
-  
-	const defi = searchParam.get("defi");
+
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
 	);
@@ -33,9 +30,11 @@ function DefiFeeRevenueChart() {
 
 	const getFeeRevenueDataHandler = () => {
 		const payload = {
-			defi: defi,
 			blockchain: blockchainSelected,
 		};
+		if (searchParamDefi && searchParamDefi !== '') {
+			payload.defi = searchParamDefi;
+		}
 		dispatch(fetchDefiFeeRevenueData(payload));
 	};
 
@@ -62,14 +61,14 @@ function DefiFeeRevenueChart() {
 			custom: function ({ series, seriesIndex, w }) {
 				return (
 					'<div class="donut_tooltip">' +
-          '<div class="donut_tooltip_text">' +
-          w.globals.labels[seriesIndex] +
-          "</div>" +
-          '<div class="donut_tooltip_text">' +
-          USDollar.format(series[seriesIndex]) +
-          " USD" +
-          "</div>" +
-          "</div>"
+					'<div class="donut_tooltip_text">' +
+					w.globals.labels[seriesIndex] +
+					"</div>" +
+					'<div class="donut_tooltip_text">' +
+					USDollar.format(series[seriesIndex]) +
+					" USD" +
+					"</div>" +
+					"</div>"
 				);
 			},
 		},
@@ -115,7 +114,7 @@ function DefiFeeRevenueChart() {
 				<Box layerStyle={"spaceBetween"} p={"20px"} >
 					<Box layerStyle={"flexCenter"} gap={"5px"}>
 						<Text variant={"smallTableHeader"}>
-              DeFi Fee and Revenue
+							DeFi Fee and Revenue
 						</Text>
 						<TooltipComp label="DeFi fee is the amount of value DeFi has collected by providing services and revenue reflects the earnings or profits of the DeFi available for distribution." />
 					</Box>

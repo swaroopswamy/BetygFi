@@ -17,6 +17,7 @@ import dynamic from "next/dynamic";
 
 const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@/app/components/skeleton"));
+
 import { SingleAccordionComp } from "@/app/components/accordion";
 
 import { HiSortDescending } from "react-icons/hi";
