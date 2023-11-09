@@ -41,7 +41,7 @@ import dynamic from "next/dynamic";
 const DefiDashboardPage = (context) => {
 	const searchParamId = context?.searchParams?.id;
 	const searchParamDefi = context?.searchParams?.defi;
-	
+
 	const router = useRouter();
 	const dispatch = useDispatch();
 
@@ -128,12 +128,12 @@ const DefiDashboardPage = (context) => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiAssetsSmallTable 
-					searchParamDefi={searchParamDefi}
-					searchParamId={searchParamId}
+					<DefiAssetsSmallTable
+						searchParamDefi={searchParamDefi}
+						searchParamId={searchParamId}
 					/>
-					<DefiFeeRevenueChart 
-					searchParamDefi={searchParamDefi}
+					<DefiFeeRevenueChart
+						searchParamDefi={searchParamDefi}
 					/>
 				</Box>
 
@@ -148,7 +148,9 @@ const DefiDashboardPage = (context) => {
 				</Box>
 
 				<Box>
-					<GovernanceTable />
+					<GovernanceTable
+						searchParamDefi={searchParamDefi}
+					/>
 				</Box>
 			</Box>
 		</>

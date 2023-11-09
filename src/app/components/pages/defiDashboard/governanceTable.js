@@ -11,20 +11,16 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "next/navigation";
 import { fetchDefiGovernanceTableData } from "@/redux/defi_dashboard_data/dataSlice";
 import GenericTable from "@/app/components/table";
 import { GovernanceTableHeader } from "@/app/components/pages/defiDashboard/helper";
 import PageButtonsWide from "@/app/components/pageButtonsWide";
 
-const GovernanceTable = () => {
-	const searchParam = useSearchParams();
+const GovernanceTable = ({ searchParamDefi }) => {
 	const dispatch = useDispatch();
 
 	const [tablePage, setTablePage] = useState(1);
 	const [tableLimit, setTableLimit] = useState(10);
-
-	const defi = searchParam.get("defi");
 
 	const defiGovernanceTableData = useSelector(
 		(state) => state?.defiDashboardData?.DefiGovernanceTableData
@@ -36,10 +32,12 @@ const GovernanceTable = () => {
 
 	const getDefiGovernanceTableDataHandler = () => {
 		const payload = {
-			defi: defi,
 			page: tablePage,
 			limit: tableLimit
 		};
+		if(searchParamDefi && searchParamDefi!==''){
+			payload.defi = searchParamDefi;
+		}
 		dispatch(fetchDefiGovernanceTableData(payload));
 	};
 
