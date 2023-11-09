@@ -16,7 +16,7 @@ RUN mkdir /usr/share/nginx/html/Document
 COPY Approachpaper.pdf /usr/share/nginx/html/Document/
 
 # Copy the contents of the Next.js 'out' directory to the Nginx HTML directory
-COPY ./out/* /usr/share/nginx/html/
+COPY ./out/ /usr/share/nginx/html/
 
 # Change the ownership of the copied files to the "nginx" user
 RUN chown -R nginx:nginx /usr/share/nginx/html/*
