@@ -53,6 +53,9 @@ const Rankings = () => {
 	const categorySelected = useSelector(
 		(state) => state?.dashboardTableData?.categorySelected
 	);
+	const scoreSelected = useSelector(
+		(state) => state?.dashboardTableData?.scoreSelected
+	);
 
 	const tableData = useSelector(
 		(state) => state?.dashboardTableData.DefiRankingsTableData
@@ -85,6 +88,7 @@ const Rankings = () => {
 						tablePage <= tableData?.data?.totalPages &&
 						tablePage,
 					limit: tableLimit,
+					score_dist: scoreSelected
 				};
 				dispatch(fetchDefiRankingTableData(payload));
 			} else {
@@ -96,6 +100,7 @@ const Rankings = () => {
 						tablePage <= tableData?.data?.totalPages &&
 						tablePage,
 					limit: tableLimit,
+					score_dist: scoreSelected
 				};
 				dispatch(fetchDefiRankingTableData(payload));
 			}
@@ -111,6 +116,7 @@ const Rankings = () => {
 		tablePage,
 		searchByName,
 		tableLimit,
+		scoreSelected
 	]);
 
 	return (

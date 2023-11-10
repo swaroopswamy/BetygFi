@@ -104,10 +104,12 @@ const OverviewAreaChart = () => {
 					fontWeight: 400,
 				},
 				formatter: (value) => {
-					return millify(value, {
-						precision: 2,
-						locales: "en-US"
-					});
+					return (
+						`$${millify(value, {
+							precision: 2,
+							locales: "en-US"
+						})}`
+					);
 				},
 			},
 		},

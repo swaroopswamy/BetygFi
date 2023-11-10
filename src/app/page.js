@@ -34,6 +34,7 @@ const Dashboard = () => {
 		(state) => state?.dashboardTableData?.categorySelected
 	);
 
+
 	const getOverviewDataHandler = () => {
 		const payload = {
 			blockchain: blockchainSelected,

@@ -1,5 +1,7 @@
-import { getDefiRankingsTableData, getOverviewData, getProtocolScoresData, 
-	getOverviewGraphData } from "@/services/dashboardService";
+import {
+	getDefiRankingsTableData, getOverviewData, getProtocolScoresData,
+	getOverviewGraphData
+} from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -52,6 +54,7 @@ const DashboardDataSlice = createSlice({
 		},
 		blockchainType: [],
 		categorySelected: [],
+		scoreSelected: "",
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchDefiRankingTableData.fulfilled, (state, action) => {
@@ -111,6 +114,7 @@ const DashboardDataSlice = createSlice({
 	},
 	reducers: {
 		blockchainTypeChangedReducer: (state, action) => {
+			state.scoreSelected = '';
 			if (action.payload === "All") {
 				state.blockchainType = [];
 			}
@@ -122,6 +126,7 @@ const DashboardDataSlice = createSlice({
 			}
 		},
 		categoryChangedReducer: (state, action) => {
+			state.scoreSelected = '';
 			if (action.payload === "All") {
 				state.categorySelected = [];
 			}
@@ -132,8 +137,15 @@ const DashboardDataSlice = createSlice({
 				state.categorySelected.push(action.payload);
 			}
 		},
+		scoreChangedReducer: (state, action) => {
+			if (state.scoreSelected === action.payload) {
+				state.scoreSelected = '';
+			} else {
+				state.scoreSelected = action.payload;
+			}
+		},
 	},
 });
 
-export const { blockchainTypeChangedReducer, categoryChangedReducer } = DashboardDataSlice.actions;
+export const { blockchainTypeChangedReducer, categoryChangedReducer, scoreChangedReducer } = DashboardDataSlice.actions;
 export default DashboardDataSlice.reducer;

@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
+import { scoreChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/globalHelper";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 const boxData = [
 	{ bgColor: "#0E6027", label: "Extreme", index: 3 },
 	{ bgColor: "#00799F", label: "High", index: 2 },
@@ -9,7 +11,11 @@ const boxData = [
 	{ bgColor: "#FF0000", label: "Low", index: 0 },
 ];
 
-const ScoreBox = ({ data, totalDefis, scoreTotalData }) => {
+const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
+	const scoreSelected = useSelector(
+		(state) => state?.dashboardTableData?.scoreSelected
+	);
+
 	return (
 		<>
 			<Tooltip label={`View All ${data.label} DeFis`}>
@@ -25,16 +31,21 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData }) => {
 					display={"flex"}
 					flexDirection={"column"}
 					cursor={"pointer"}
-					borde
+
 					transition="transform 0.3s"
 					_hover={{
 						transform: 'scale(1.1)',
 						zIndex: 1,
-						dropShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
+						boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
 					}}
 					_notHovered={{
+						transform: 'scale(1.0)',
 						zIndex: 0,
 					}}
+					transform={scoreSelected === data.label ? "scale(1.1)" : "scale(1)"}
+					zIndex={scoreSelected === data.label ? 1 : 0}
+					boxShadow={scoreSelected === data.label ? "0px 4px 4px rgba(0, 0, 0, 0.25)" : "none"}
+					onClick={() => ScoreSelectHandler(data.label)}
 					p={"7px 10px"}
 					alignItems={"start"}
 					w={`${calculatePercentage(scoreTotalData[data.index].value, totalDefis)}%`}
@@ -51,6 +62,10 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData }) => {
 
 };
 const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
+	const dispatch = useDispatch();
+	const ScoreSelectHandler = (selected) => {
+		dispatch(scoreChangedReducer(selected));
+	};
 	return (
 		scoreTotalData && (
 			<Box
@@ -68,7 +83,7 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
 							color: "#FFFFFF"
 						}}
 					>
-                        Score distribution
+						Score distribution
 					</Text>
 				</Box>
 				<Box
@@ -81,7 +96,7 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
 					{boxData.map((data, i) => {
 
 						return (
-							<ScoreBox key={i} data={data} totalDefis={totalDefis} scoreTotalData={scoreTotalData} />
+							<ScoreBox key={i} data={data} totalDefis={totalDefis} scoreTotalData={scoreTotalData} ScoreSelectHandler={ScoreSelectHandler} />
 						);
 					})}
 				</Box>
