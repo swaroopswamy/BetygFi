@@ -150,7 +150,7 @@ const Text = defineStyleConfig({
 			color: colorMode === "light" ? "#191919" : "#FFF",
 		}),
 		SettingsText2: ({ colorMode }) => ({
-			fontsize: "11px",
+			fontSize: "11px",
 			fontFamily: "Inter",
 			fontWeight: "400",
 			lineHeight: "20px",
@@ -158,7 +158,7 @@ const Text = defineStyleConfig({
 			color: colorMode === "light" ? "#191919" : "#FFF",
 		}),
 		SettingsText3: ({ colorMode }) => ({
-			fontsize: "12px",
+			fontSize: "12px",
 			fontFamily: "Inter",
 			fontWeight: "400",
 			lineHeight: "10px",
@@ -184,6 +184,13 @@ const Text = defineStyleConfig({
 			fontWeight: "400",
 			lineHeight: "10px",
 			color: "#191919",
+		}),
+		h1new: ({ colorMode }) => ({
+			fontSize: "28px",
+			fontFamily: "Inter",
+			fontWeight: "400",
+			lineHeight: "36px",
+			color: colorMode === "light" ? "#161616" : "#FFF",
 		}),
 	},
 	defaultProps: {

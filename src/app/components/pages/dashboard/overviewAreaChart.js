@@ -1,18 +1,22 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable max-len */
-import { Box, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import { Box, Select, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import React, { useRef, useState } from "react";
 import CustomChart from "/src/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import CurrencyButtons from "../../currencyButtons";
 
 const OverviewAreaChart = () => {
 	const { colorMode } = useColorMode();
-
+	const [currencySelected, setCurrencyType] = useState("USD");
 	const overviewGraphData = useSelector(
 		(state) => state?.dashboardTableData?.OverviewGraphData
 	);
 
+	const CurrencyTypeHandler = (type) => {
+		setCurrencyType(type);
+	};
 	const categorySelected = useSelector(
 		(state) => state?.dashboardTableData?.categorySelected
 	);
@@ -36,7 +40,7 @@ const OverviewAreaChart = () => {
 			show: true,
 		},
 		legend: {
-			show: false,
+			show: true,
 		},
 		dataLabels: {
 			enabled: false,
@@ -51,26 +55,26 @@ const OverviewAreaChart = () => {
 				});
 				return (
 					'<div class="donut_tooltip">' +
-          '<div class="donut_tooltip_text">' +
-          `<span style="display: flex; border-radius: 50%; height: 14px; width: 14px; background-color: ${w.config.series[seriesIndex].color};"></span>` + " " + w.config.series[seriesIndex].name +
-          "</div>" +
-          '<div class="donut_tooltip_text">' +
-          val +
-          " USD" +
-          "</div>" +
-          "</div>"
+					'<div class="donut_tooltip_text">' +
+					`<span style="display: flex; border-radius: 50%; height: 14px; width: 14px; background-color: ${w.config.series[seriesIndex].color};"></span>` + " " + w.config.series[seriesIndex].name +
+					"</div>" +
+					'<div class="donut_tooltip_text">' +
+					val +
+					" USD" +
+					"</div>" +
+					"</div>"
 				);
 			}
 		},
-		fill: {
-			type: "gradient",
-			gradient: {
-				shadeIntensity: 0.7,
-				opacityFrom: 0.5,
-				opacityTo: 0.1,
-				stops: [0, 90, 100],
-			},
-		},
+		/* 	fill: {
+				type: "gradient",
+				gradient: {
+					shadeIntensity: 0.7,
+					opacityFrom: 0.5,
+					opacityTo: 0.1,
+					stops: [0, 90, 100],
+				},
+			}, */
 		stroke: {
 			show: true,
 			curve: "smooth",
@@ -87,7 +91,7 @@ const OverviewAreaChart = () => {
 				},
 			},
 			axisTicks: {
-				show: false,
+				show: true,
 			},
 		},
 		yaxis: {
@@ -126,13 +130,42 @@ const OverviewAreaChart = () => {
 	return (
 		<>
 			<Box width={"100%"}>
-				<Box px={{ base: "10px", md: "20px" }}>
-					<CustomChart options={options} series={series} type="area" height={205} />
+				<Box px={{ base: "10px", md: "20px" }} display={"flex"} flexDirection={"column"} >
+					<Box
+						justifyContent={"flex-end"}
+						display={"flex"}
+						alignItems={"center"}
+						ml={"auto"}
+					>
+						<CurrencyButtons
+							currencySelected={currencySelected}
+							CurrencyTypeHandler={CurrencyTypeHandler}
+							colorMode={colorMode}
+						/>
+						<Select
+							ml={"10px"}
+							fontSize={"10px"}
+							fontWeight={"600"}
+							height={"24px"}
+							border={"1px"}
+							borderRadius={"2px"}
+							borderColor={useColorModeValue("#E0E0E0", "#333")}
+							padding={"0"}
+							mt={"-2px"}
+						>
+							<option value='Daily'>Daily</option>
+							<option value='Monthly'>Monthly</option>
+							<option value='Yearly'>Yearly</option>
+						</Select>
+					</Box>
+
+					<CustomChart className="overview-chart" options={options} series={series} type="line" height={205} />
 				</Box>
 
 				<Box display={{ base: "none", lg: "block" }} w={"100%"}>
 					<SelectorGraph series={series} />
 				</Box>
+				<Box id="legend-container" mt="20px"></Box>
 			</Box>
 		</>
 	);
@@ -245,16 +278,17 @@ const SelectorGraph = ({ series }) => {
 	return (
 		<>
 			{overviewGraphData?.isSuccess &&
-        <Box my={"-30px"} marginLeft={"-18px"} marginRight={"-3px"}>
-        	<CustomChart
-        		options={options}
-        		series={greySeries}
-        		type={options.chart.type}
-        		height={"100px"}
-        		width={"100%"}
-        	/>
-        </Box>
+				<Box px={"20px"}>
+					<CustomChart
+						options={options}
+						series={greySeries}
+						type={options.chart.type}
+						height={"100px"}
+						width={"100%"}
+					/>
+				</Box>
 			}
 		</>
 	);
 };
+
