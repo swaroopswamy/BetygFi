@@ -16,7 +16,11 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
-import SearchBox from "../searchBox";
+import dynamic from 'next/dynamic';
+const SearchBox = dynamic(() =>
+	import("@/app/components/searchBox")
+);
+
 
 const BlockchainSelectionMenuNew = () => {
 

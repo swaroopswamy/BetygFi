@@ -31,7 +31,9 @@ import {
 } from "@/app/components/pages/dashboard/helper";
 import { MobileSearchBox } from "@/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
-import ScoreDistribuition from "./scoreDistribuition";
+const ScoreDistribuition = dynamic(() =>
+	import("@/app/components/pages/dashboard/scoreDistribuition")
+);
 
 const Rankings = () => {
 	const [tablePage, setTablePage] = useState(1);
