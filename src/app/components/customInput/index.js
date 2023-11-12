@@ -1,19 +1,23 @@
-import { Box, Input, Text, Textarea, useColorMode } from "@chakra-ui/react";
+import { Box, Input, Text, Textarea } from "@chakra-ui/react";
 import React from "react";
-
-const CustomInput = ({ name, placeholder, onChange,  type }) => {
-    const colorMode = useColorMode();
+const CustomInput = ({ name, label, placeholder, handleChange, type, value }) => {
     return (
         <>
             <Box>
                 <Text variant="dropdownName" mb="8px">
-                    {name}
+                    {label}
                 </Text>
                 {type === "textarea" ? (
                     <Textarea
+                        _placeholder={{
+                            color: "#161616"
+                        }}
+                        key={name}
+                        name={name}
                         type={type}
+                        defaultValue={value || ""}
                         placeholder={placeholder}
-                        onChange={onChange}
+                        onBlur={handleChange}
                         border="none"
                         borderBottom={"1px solid #8D8D8D"}
                         borderRadius={"0px"}
@@ -23,14 +27,20 @@ const CustomInput = ({ name, placeholder, onChange,  type }) => {
                         }}
                         fontFamily={"Inter"}
                         fontWeight="400"
-                        color={colorMode === "light" ? "#FFF" : "#A8A8A8"}
+                        color={"#161616"}
                         fontSize="12px"
                     />
                 ) : (
                     <Input
+                        _placeholder={{
+                            color: "#161616"
+                        }}
+                        key={name}
+                        name={name}
                         type={type}
+                        defaultValue={value || ""}
                         placeholder={placeholder}
-                        onChange={onChange}
+                        onBlur={handleChange}
                         border="none"
                         borderBottom={"1px solid #8D8D8D"}
                         borderRadius={"0px"}
@@ -40,7 +50,7 @@ const CustomInput = ({ name, placeholder, onChange,  type }) => {
                         }}
                         fontFamily={"Inter"}
                         fontWeight="400"
-                        color={colorMode === "light" ? "#FFF" : "#A8A8A8"}
+                        color={"#161616"}
                         fontSize="12px"
                     />
                 )}

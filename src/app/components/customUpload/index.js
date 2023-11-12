@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-const CustomUpload = () => {
+const CustomUpload = ({ name, value, handleChange }) => {
     return (
         <>
             <Box layerStyle={"flexColumn"}>
@@ -20,9 +20,9 @@ const CustomUpload = () => {
                     zIndex={"10"}
                 >
                     <Text variant="linkPrimary">
-                        Drag and drop files here or click to upload
+                        {value === null ? "Drag and drop files here or click to upload" : value.name}
                     </Text>
-                    <input type="file" style={{ width: "100%", height: "100%", opacity: 0, position: "absolute", top: 0, left: 0, cursor: "pointer" }}></input>
+                    <input type="file" name={name} onChange={handleChange} style={{ width: "100%", height: "100%", opacity: 0, position: "absolute", top: 0, left: 0, cursor: "pointer" }}></input>
                 </Box>
 
             </Box>

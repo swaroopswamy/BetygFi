@@ -1,41 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button } from "@chakra-ui/react";
-const CustomInput = dynamic(() => import('../customInput'));
-const CustomUpload = dynamic(() => import('../customUpload'));
+import { useDispatch, useSelector } from "react-redux";
+import { postSuggestFeature } from "@/redux/app_data/dataSlice";
+const CustomInput = dynamic(() => import('@/app/components/customInput'));
+const CustomUpload = dynamic(() => import('@/app/components/customUpload'));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
 const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
+
+    const dispatch = useDispatch();
+    const [formData, setFormData] = useState({
+        userId: 123,
+        featureName: "",
+        description: "",
+        file: null,
+        emailId: ""
+    });
+    const statusSuggestFeature = useSelector(
+        (state) => state?.appData?.reportBug
+    );
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === "file") {
+            const selectedFile = e.target.files[0];
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: { selectedFile },
+            }));
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
+        }
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(postSuggestFeature(formData));
+    };
     return (
         <CustomModal
             isOpen={isOpen}
             onOpen={onOpen}
-            onClose={onClose}
-            state={"failure"}
+            onClose={() => {
+                onClose();
+                setFormData({
+                    userId: 123,
+                    featureName: "",
+                    description: "",
+                    file: null,
+                    emailId: ""
+                });
+            }}
+            state={statusSuggestFeature.status}
             headerTitle={"Suggest a Feature"}
             BodyComponent={() => {
                 return (
                     <Box layerStyle={"FlexColumnCenter"}>
                         <Box mb="30px">
                             <CustomInput
-                                name="Name of the Feature*"
+                                value={formData.featureName}
+                                name="featureName"
+                                label="Name of the Feature*"
                                 type={"text"}
+                                handleChange={handleChange}
                                 placeholder={"Enter the name of the feature"}
                             ></CustomInput>
                         </Box>
                         <Box mb="30px">
                             <CustomInput
-                                name="Tell us more about the feature*"
+                                handleChange={handleChange}
+                                value={formData.description}
+                                name="description"
+                                label="Tell us more about the feature*"
                                 type={"textarea"}
                                 placeholder={"Tell us more about the feature*"}
                             ></CustomInput>
                         </Box>
 
                         <Box mb="30px">
-                            <CustomUpload></CustomUpload>
+                            <CustomUpload
+                                handleChange={handleChange}
+                                name="file"
+                                value={formData.file}
+                            ></CustomUpload>
                         </Box>
                         <Box mb="30px">
                             <CustomInput
-                                name="Your Contact (Email or Social handle)"
+                                handleChange={handleChange}
+                                value={formData.emailId}
+                                name="emailId"
+                                label="Your Contact (Email or Social handle)"
                                 type={"text"}
                                 placeholder={
                                     "Enter the details to contact you for reward"
@@ -44,6 +99,8 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
                         </Box>
                         <Box w={"100%"} layerStyle={"center"}>
                             <Button
+                                as="submit"
+                                onClick={handleSubmit}
                                 variant={"submitModal"}
                             >
                                 Submit

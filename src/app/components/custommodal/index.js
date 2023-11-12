@@ -12,8 +12,6 @@ import {
     Button,
     Image,
 } from "@chakra-ui/react";
-
-
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
     const colorMode = useColorMode();
     return (
@@ -28,6 +26,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
                                 <Image
+                                    alt="success"
                                     src={"/icons/check_filled_green.svg"}
                                     mr={'10px'}
                                 ></Image>
@@ -57,6 +56,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
                                 <Image
+                                    alt="danger"
                                     src={"/icons/danger_filled_red.svg"}
                                     mr={'10px'}
                                 ></Image>
@@ -100,7 +100,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                             <Text variant={"customModalHeader"}>{headerTitle}</Text>
                         </ModalHeader>
                         <ModalCloseButton />
-                        <ModalBody p={{ md: "20px 35px 36px" }}>
+                        <ModalBody p={{ md: "20px 35px 36px" }} bg={"#F4F4F4"}>
                             <BodyComponent></BodyComponent>
                         </ModalBody>
                     </>)}

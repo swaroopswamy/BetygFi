@@ -1,10 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getBlockchainListData } from "@/services/appService";
+import { getBlockchainListData, postReportBugData, postSuggestFeatureData } from "@/services/appService";
 
-export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload,{ rejectWithValue }) => {
+export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload, { rejectWithValue }) => {
 	const response = await getBlockchainListData(rejectWithValue);
 	return response.data;
 });
+
+export const postReportBug = createAsyncThunk('postReportBug', async (payload, { rejectWithValue }) => {
+	const response = await postReportBugData(payload, rejectWithValue);
+	return response.data;
+});
+
+export const postSuggestFeature = createAsyncThunk('postSuggestFeature', async (payload, { rejectWithValue }) => {
+	const response = await postSuggestFeatureData(payload, rejectWithValue);
+	return response.data;
+});
+
+
 
 
 const AppDataSlice = createSlice({
@@ -17,6 +29,14 @@ const AppDataSlice = createSlice({
 			isLoading: false,
 			isError: false,
 			isSuccess: false,
+		},
+		reportBug: {
+			status: "idle",
+			error: null
+		},
+		suggestFeature: {
+			status: "idle",
+			error: null
 		}
 	},
 	extraReducers: (builder) => {
@@ -38,6 +58,20 @@ const AppDataSlice = createSlice({
 			state.BlockchainListData.isError = true;
 			state.BlockchainListData.isSuccess = false;
 		});
+		builder.addCase(postReportBug.fulfilled, (state) => {
+			state.reportBug.status = 'success';
+		});
+		builder.addCase(postReportBug.rejected, (state, action) => {
+			state.reportBug.error = action.payload;
+			state.reportBug.status = 'failure';
+		});
+		builder.addCase(postSuggestFeature.fulfilled, (state) => {
+			state.suggestFeature.status = 'success';
+		});
+		builder.addCase(postSuggestFeature.rejected, (state, action) => {
+			state.suggestFeature.error = action.payload;
+			state.suggestFeature.status = 'failure';
+		});
 	},
 	reducers: {
 		sidebarCollapsedReducer: (state, action) => {
@@ -55,9 +89,17 @@ const AppDataSlice = createSlice({
 			else {
 				state.isMobileSidebarCollapsed = false;
 			}
+		},
+		resetReportBug: (state) => {
+			state.reportBug.status = "idle";
+			state.reportBug.error = null;
+		},
+		resetSuggestFeature: (state) => {
+			state.suggestFeature.status = "idle";
+			state.suggestFeature.error = null;
 		}
 	},
 });
 
-export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer } = AppDataSlice.actions;
+export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer, resetReportBug, resetSuggestFeature } = AppDataSlice.actions;
 export default AppDataSlice.reducer;
