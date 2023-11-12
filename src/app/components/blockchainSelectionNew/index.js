@@ -143,7 +143,7 @@ const BlockchainSelectionMenuNew = () => {
 
 
 				{blockchains?.data?.length > 6 && (
-					<Menu closeOnSelect={false} suppressHydrationWarning={true}>
+					<Menu closeOnSelect={false} suppressHydrationWarning={true} isLazy matchWidth>
 						{({ isOpen }) => (
 							<>
 								<MenuButton
@@ -178,12 +178,12 @@ const BlockchainSelectionMenuNew = () => {
 
 								</MenuButton>
 								<MenuList
+									zIndex={"10"}
 									boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
 									bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-									w={{ base: "90%", md: "228px" }}
 								>
-									<Box px={"10px"}>
-										<SearchBox placeholder="Search" onChange={(e) => blockchainSearchHandler(e)} ></SearchBox>
+									<Box px={"10px"} >
+										<SearchBox placeholder="Search" onChange={(e) => blockchainSearchHandler(e)} width={"100%"} ></SearchBox>
 									</Box>
 									{blockchainListData?.isSuccess &&
 										tempBlockchain?.map((item, i) => {

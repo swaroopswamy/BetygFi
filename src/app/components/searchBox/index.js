@@ -2,11 +2,11 @@ import React from "react";
 import { Flex, Box, Input, useColorModeValue, InputLeftElement, InputGroup } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
-const SearchBox = ({ ...rest }) => {
+const SearchBox = ({ width, ...rest }) => {
 
 	return (
 		<Flex alignItems={"center"}>
-			<Box>
+			<Box w={width}>
 				<InputGroup>
 					<InputLeftElement>
 						<Search2Icon
