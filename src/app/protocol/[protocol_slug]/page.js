@@ -6,49 +6,50 @@ import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
 
 const Banner = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/banner")
+	import("@/components/pages/defiDashboard/banner")
 );
 const TVLBox = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/tvlBox")
+	import("@/components/pages/defiDashboard/tvlBox")
 );
 const TrendGraph = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/dashboardTrendGraph")
+	import("@/components/pages/defiDashboard/dashboardTrendGraph")
 );
 const DefiUsersSmallTable = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/defiUsersSmallTable")
+	import("@/components/pages/defiDashboard/defiUsersSmallTable")
 );
 const DefiTVLChart = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/defiTVLchart")
+	import("@/components/pages/defiDashboard/defiTVLchart")
 );
 const DefiAssetsSmallTable = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/defiAssetsSmallTable")
+	import("@/components/pages/defiDashboard/defiAssetsSmallTable")
 );
 const DefiFeeRevenueChart = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/defiFeeRevenueChart")
+	import("@/components/pages/defiDashboard/defiFeeRevenueChart")
 );
 const GovernanceTable = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/governanceTable")
+	import("@/components/pages/defiDashboard/governanceTable")
 );
 const DefiHotContractsSmallTable = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/DefiHotContractsSmallTable")
+	import("@/components/pages/defiDashboard/DefiHotContractsSmallTable")
 );
 const DefiInflowOutflowSmallTableComponent = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
+	import("@/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
 );
+
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";
 
-const DefiDashboardPage = (context) => {
-	const searchParamId = context?.searchParams?.id;
-	const searchParamDefi = context?.searchParams?.defi;
+const DefiDashboardPage = ({ params }) => {
+	const searchParamProtocolSlug = params?.protocol_slug;
+	const searchParamDefi = params?.defi;
 
 	const router = useRouter();
 	const dispatch = useDispatch();
 
 	const getDefiDataHandler = () => {
-		if (searchParamId && searchParamId !== '') {
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
 			const payload = {
-				id: searchParamId,
+				id: searchParamProtocolSlug,
 			};
 			dispatch(fetchDefiData(payload));
 		}
@@ -130,7 +131,7 @@ const DefiDashboardPage = (context) => {
 				>
 					<DefiAssetsSmallTable
 						searchParamDefi={searchParamDefi}
-						searchParamId={searchParamId}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 					<DefiFeeRevenueChart
 						searchParamDefi={searchParamDefi}

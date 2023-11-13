@@ -18,9 +18,9 @@ import {
 	Avatar,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import GenericTable from "@/app/components/table";
-import { DefiAssetsBigTableHeader } from "@/app/components/pages/defiDashboard/helper";
-import PageButtonsWide from "@/app/components/pageButtonsWide";
+import GenericTable from "@/components/table";
+import { DefiAssetsBigTableHeader } from "@/components/pages/defiDashboard/helper";
+import PageButtonsWide from "@/components/pageButtonsWide";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",
