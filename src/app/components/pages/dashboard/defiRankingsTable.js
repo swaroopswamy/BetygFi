@@ -197,7 +197,8 @@ const TableRow = ({ item, rowIndex }) => {
 			cursor={"pointer"}
 			onClick={() => {
 				router.push(
-					`/defi_dashboard?defi=${item?.slug}&id=${item._id}`
+					`/protocol/${item?.slug}`
+					// `/defi_dashboard?defi=${item?.slug}&id=${item._id}`
 				);
 			}}
 			border={"0px"}
@@ -557,7 +558,8 @@ const PanelComp = ({ item }) => {
 					variant="link"
 					onClick={() => {
 						router.push(
-							`/defi_dashboard?defi=${item?.slug}&id=${item._id}`
+							`/protocol/${item?.slug}`
+							// `/defi_dashboard?defi=${item?.slug}&id=${item._id}`
 						);
 					}}
 				>

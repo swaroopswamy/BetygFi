@@ -19,7 +19,7 @@ export const linkItemsUp = [
 	{
 		name: "Top Wallets",
 		icon: BiWalletAlt,
-		path: "/top-wallets",
+		path: "/wallet",
 	},
 	{   name: "About",
 		icon: BetygFiSmLogo,

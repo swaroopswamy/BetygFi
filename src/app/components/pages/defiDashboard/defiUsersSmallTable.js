@@ -120,7 +120,7 @@ const TableRow = ({ item, i }) => {
 				}
 				onClick={() => {
 					setClick(!clicked);
-					router.push(`/wallet_dashboard?address=${item.user}`);
+					router.push(`/wallet/${item.user}`);
 				}}
 				borderBottom={"1px"}
 				borderColor={useColorModeValue("#DFDFDF", "#313131")}

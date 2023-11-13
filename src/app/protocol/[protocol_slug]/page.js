@@ -6,34 +6,34 @@ import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
 
 const Banner = dynamic(() =>
-	import("@/components/pages/defiDashboard/banner")
+	import("@/app/components/pages/defiDashboard/banner")
 );
 const TVLBox = dynamic(() =>
-	import("@/components/pages/defiDashboard/tvlBox")
+	import("@/app/components/pages/defiDashboard/tvlBox")
 );
 const TrendGraph = dynamic(() =>
-	import("@/components/pages/defiDashboard/dashboardTrendGraph")
+	import("@/app/components/pages/defiDashboard/dashboardTrendGraph")
 );
 const DefiUsersSmallTable = dynamic(() =>
-	import("@/components/pages/defiDashboard/defiUsersSmallTable")
+	import("@/app/components/pages/defiDashboard/defiUsersSmallTable")
 );
 const DefiTVLChart = dynamic(() =>
-	import("@/components/pages/defiDashboard/defiTVLchart")
+	import("@/app/components/pages/defiDashboard/defiTVLchart")
 );
 const DefiAssetsSmallTable = dynamic(() =>
-	import("@/components/pages/defiDashboard/defiAssetsSmallTable")
+	import("@/app/components/pages/defiDashboard/defiAssetsSmallTable")
 );
 const DefiFeeRevenueChart = dynamic(() =>
-	import("@/components/pages/defiDashboard/defiFeeRevenueChart")
+	import("@/app/components/pages/defiDashboard/defiFeeRevenueChart")
 );
 const GovernanceTable = dynamic(() =>
-	import("@/components/pages/defiDashboard/governanceTable")
+	import("@/app/components/pages/defiDashboard/governanceTable")
 );
 const DefiHotContractsSmallTable = dynamic(() =>
-	import("@/components/pages/defiDashboard/DefiHotContractsSmallTable")
+	import("@/app/components/pages/defiDashboard/DefiHotContractsSmallTable")
 );
 const DefiInflowOutflowSmallTableComponent = dynamic(() =>
-	import("@/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
+	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
 );
 
 import { ChevronLeftIcon } from "@chakra-ui/icons";

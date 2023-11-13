@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 const WalletTable = dynamic(() =>
-	import("@/components/pages/topWallets/walletTable")
+	import("@/app/components/pages/topWallets/walletTable")
 );
 const WalletDashboardPage = () => {
 	return (

@@ -75,7 +75,7 @@ function DefiAssetsSmallTable({ searchParamDefi, searchParamId }) {
 						onClick={() => {
 							if (searchParamDefi && searchParamDefi !== '' && searchParamId && searchParamId !== '') {
 								router.push(
-									`/defi_dashboard/asset_composition?defi=${searchParamDefi}&id=${searchParamId}`
+									`/protocol/asset_composition?defi=${searchParamDefi}&id=${searchParamId}`
 								);
 							}
 						}}

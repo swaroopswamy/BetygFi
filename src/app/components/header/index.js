@@ -63,7 +63,7 @@ const Navbar = ({ ...rest }) => {
 		if (e.key === "Enter") {
 			if (!isEmpty(e.target.value)) {
 				dispatch(walletAddressChangedReducer(e.target.value));
-				router.push(`/wallet_dashboard?address=${e.target.value}`);
+				router.push(`/wallet/${e.target.value}`);
 				setSearchWalletAddressValue(e.target.value);
 			}
 		}
@@ -72,7 +72,7 @@ const Navbar = ({ ...rest }) => {
 
 	const handleMobileSearchByWalletAddress = () => {
 		dispatch(walletAddressChangedReducer(searchWalletAddressValue));
-		router.push(`/wallet_dashboard?address=${searchWalletAddressValue}`);
+		router.push(`/wallet/${searchWalletAddressValue}`);
 		setSearchWalletAddressValue(searchWalletAddressValue);
 	};
 
