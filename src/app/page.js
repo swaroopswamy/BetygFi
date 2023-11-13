@@ -11,7 +11,7 @@ import {
 	fetchOverviewData,
 	fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
-import BlockchainSelectionMenuNew from "./components/blockchainSelectionNew";
+import BlockchainSelectionMenuNew from "@/app/components/blockchainSelectionNew";
 
 const Rankings = dynamic(() =>
 	import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false }
