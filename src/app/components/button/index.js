@@ -19,7 +19,8 @@ const Button = defineStyleConfig({
 			_active: {
 				bg: colorMode === 'light' ? "#202020" : '#FFFFFF',
 				color: colorMode === 'light' ? "#FFFFFF" : '#000000'
-			}
+			},
+
 		}),
 		defiMobile: ({ colorMode }) => ({
 			bg: colorMode === 'light' ? "#F0F0F5" : '#202020',
@@ -27,7 +28,7 @@ const Button = defineStyleConfig({
 			_active: {
 				bg: colorMode === 'light' ? "#202020" : '#FFFFFF',
 				color: colorMode === 'light' ? "#FFFFFF" : '#000000'
-			}
+			},
 		}),
 		link: ({ colorMode }) => ({
 			bg: colorMode === 'light' ? "#F0F0F5" : '#333333',
@@ -38,7 +39,7 @@ const Button = defineStyleConfig({
 			bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
 			border: "1px",
 			p: "0",
-			borderColor: colorMode === 'light' ? '#E8E8E8' :'#333333',
+			borderColor: colorMode === 'light' ? '#E8E8E8' : '#333333',
 			fontWeight: "500",
 			color: colorMode === 'light' ? "#000000" : '#FFFFFF'
 		}),
@@ -56,7 +57,7 @@ const Button = defineStyleConfig({
 			bg: colorMode === 'light' ? '#F0F0F5' : '#191919',
 			border: "1px",
 			borderRadius: "1px",
-			borderColor: colorMode === 'light' ? '#E8E8E8' :'#333333',
+			borderColor: colorMode === 'light' ? '#E8E8E8' : '#333333',
 			color: colorMode === 'light' ? '#16171B' : '#FFFFFF',
 			p: "2px 12px"
 		})

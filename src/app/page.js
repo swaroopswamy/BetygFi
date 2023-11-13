@@ -2,27 +2,27 @@
 "use client";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Box, Button, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "@util/constant";
+import { fetchBlockchainListData } from '../redux/app_data/dataSlice';
 import {
 	categoryChangedReducer,
 	fetchOverviewData,
+	fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
-const BlockchainSelectionMenu = dynamic(() =>
-	import("@/app/components/blockchainSelectionMenu"), { ssr: false }
-);
+import BlockchainSelectionMenuNew from "./components/blockchainSelectionNew";
+
 const Rankings = dynamic(() =>
 	import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false }
-);
-const OverviewColumnChart = dynamic(() =>
-	import("@/app/components/pages/dashboard/overviewColumnChart"), { ssr: false }
 );
 const OverviewBox = dynamic(() =>
 	import("@/app/components/pages/dashboard/overviewBox"), { ssr: false }
 );
 
 const Dashboard = () => {
+	const [isMd] = useMediaQuery("(min-width: 768px)");
+
 	const dispatch = useDispatch();
 
 	const blockchainSelected = useSelector(
@@ -33,6 +33,7 @@ const Dashboard = () => {
 		(state) => state?.dashboardTableData?.categorySelected
 	);
 
+
 	const getOverviewDataHandler = () => {
 		const payload = {
 			blockchain: blockchainSelected,
@@ -41,56 +42,71 @@ const Dashboard = () => {
 		dispatch(fetchOverviewData(payload));
 	};
 
+	const getScoreGraphDataHandler = () => {
+		const payload = {
+			blockchain: blockchainSelected,
+			category: categorySelected,
+		};
+		dispatch(fetchScoreGraphData(payload));
+	};
+
+
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-		getOverviewDataHandler();
-		}
+		Promise.all([
+			getOverviewDataHandler(),
+			getScoreGraphDataHandler(),
+		]);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, categorySelected]);
+
+	useEffect(() => {
+		dispatch(fetchBlockchainListData());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
+			{
+				isMd ? (
+					<>
+						<Box
+							display={{ base: "none", md: "flex" }}
+							alignItems={"center"}
+							w={"100%"}
+							pt={"28px"}
+							gap={"20px"}
+							px={"28px"}
+						>
+							<Text variant="h1new" >
+								DeFi Markets{" "}
+							</Text>
+						</Box>
+					</>
+				) : (
+					<>
+						<Box display={{ base: "flex", md: "none" }} pt={"30px"}>
+							<Text variant="h1" px={"18px"}>
+								DeFi Markets
+							</Text>
+						</Box>
+					</>
+				)
+			}
+
+
+
 			<Box
-				display={{ base: "none", md: "flex" }}
-				alignItems={"center"}
-				w={"100%"}
-				pt={"30px"}
-				gap={"20px"}
+				px={{ md: "28px" }}
+				mb={{ base: "14px", md: "28px" }}
 			>
-				<Text variant="h1" px={"30px"}>
-          DeFi Markets{" "}
-				</Text>
-				<BlockchainSelectionMenu />
+
+				<BlockchainSelectionMenuNew />
 			</Box>
 
-			<Box display={{ base: "flex", md: "none" }} pt={"30px"}>
-				<Text variant="h1" px={"18px"}>
-          DeFi Markets
-				</Text>
-			</Box>
-
-			<Box display={{ base: "flex", md: "none" }} py={"15px"} overflow={"auto"}>
-				<BlockchainSelectionMenu />
-			</Box>
 
 			<Box
-				display={{ base: "none", md: "block" }}
-				px={{ base: "18px", md: "30px" }}
-				py={"15px"}
-				w={{ base: "100%", md: "80%" }}
-			>
-				<Text variant="body">
-          Filter your DeFi exploration by focusing on both the blockchain
-          technology it utilises and its specific industry application. This
-          way, you'll uncover the projects best suited to your interests,
-          whether in Prediction Markets, Lending and Borrowing, or Insurance.
-				</Text>
-			</Box>
 
-			<Box display={"flex"} overflow={"auto"}>
-				<DashboardDefiSelection />
-			</Box>
-
-			<Box
 				display={"flex"}
 				flexDir={"column"}
 				bg={useColorModeValue("#F0F0F5", "#191919")}
@@ -102,12 +118,35 @@ const Dashboard = () => {
 			>
 				<Box
 					display={"flex"}
+					flexDirection={"column"}
+					mt={{ base: "36px", md: "28px" }}
+				>
+					<Text
+						variant={"content"}
+						_light={{
+							color: "#525252"
+						}}
+						_dark={{
+							color: "#FFFFFF"
+						}}
+						mb="12px"
+					>
+						Filter by DeFi Category
+					</Text>
+					<Box display={"flex"} overflow={"auto"}
+						className="hidescrollbar"
+					>
+						<DashboardDefiSelection />
+					</Box>
+				</Box>
+				<Box
+					display={"flex"}
 					flexDir={{ base: "column", lg: "row" }}
 					py={"30px"}
 					gap={"15px"}
 				>
 					<OverviewBox />
-					<OverviewColumnChart />
+					{/* <OverviewColumnChart /> */}
 				</Box>
 
 				<Rankings />
@@ -127,45 +166,101 @@ const DashboardDefiSelection = ({ ...rest }) => {
 	const categoryChangedHandler = (category) => {
 		dispatch(categoryChangedReducer(category));
 	};
-
+	const [isMd] = useMediaQuery("(min-width: 768px)");
 	return (
-		<Box
-			display={"flex"}
-			h={"40px"}
-			px={{ base: "18px", md: "30px" }}
-			{...rest}
-		>
-			<Button
-				variant={{ base: "defiMobile", md: "defi" }}
-				isActive={categorySelected.length === 0}
-				onClick={() => categoryChangedHandler("All")}
-				_light={{
-					borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-				}}
-				_dark={{
-					borderRight: "1px solid rgba(255, 255, 255, 0.1)",
-				}}
-			>
-				{" "}
-        All{" "}
-			</Button>
-			{categories.map((category, i) => (
-				<Button
-					key={i}
-					variant={{ base: "defiMobile", md: "defi" }}
-					isActive={categorySelected.includes(category)}
-					onClick={() => categoryChangedHandler(category)}
-					_light={{
-						borderRight: "1px solid rgba(0, 0, 0, 0.1)",
-					}}
-					_dark={{
-						borderRight: "1px solid rgba(255, 255, 255, 0.1)",
-					}}
+
+		isMd ? (
+			<>
+
+				<Box
+					display={{ base: "none", md: "flex" }}
+					h={"40px"}
+					px={{ base: "18px", md: "0px" }}
+					{...rest}
 				>
-					{" "}
-					{category}{" "}
-				</Button>
-			))}
-		</Box>
+					<Button
+						variant={{ base: "defiMobile", md: "defi" }}
+						isActive={categorySelected.length === 0}
+						onClick={() => categoryChangedHandler("All")}
+						_light={{
+							border: "1px solid rgba(0, 0, 0, 0.1)",
+						}}
+						_dark={{
+							border: "1px solid rgba(255, 255, 255, 0.1)",
+						}}
+						mr="7px"
+						fontSize={"14px"}
+						borderRadius={"30px"}
+					>
+						{" "}
+						All{" "}
+					</Button>
+					{categories.map((category, i) => (
+						<Button
+							mr="7px"
+							key={i}
+							borderRadius={"30px"}
+							fontSize={"14px"}
+							variant={{ base: "defiMobile", md: "defi" }}
+							isActive={categorySelected.includes(category)}
+							onClick={() => categoryChangedHandler(category)}
+							_light={{
+								border: "1px solid rgba(0, 0, 0, 0.1)",
+							}}
+							_dark={{
+								border: "1px solid rgba(255, 255, 255, 0.1)",
+							}}
+						>
+							{" "}
+							{category}{" "}
+						</Button>
+					))}
+				</Box>
+			</>
+		) : (
+
+			<>
+				<Box
+					display={{ base: "flex", md: "none" }}
+					h={"40px"}
+					px={{ base: "0px", md: "30px" }}
+					{...rest}
+				>
+					<Button
+						variant={{ base: "defiMobile", md: "defi" }}
+						isActive={categorySelected.length === 0}
+						onClick={() => categoryChangedHandler("All")}
+						_light={{
+							borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+						}}
+						_dark={{
+							borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+						}}
+					>
+						{" "}
+						All{" "}
+					</Button>
+					{categories.map((category, i) => (
+						<Button
+							key={i}
+							variant={{ base: "defiMobile", md: "defi" }}
+							isActive={categorySelected.includes(category)}
+							onClick={() => categoryChangedHandler(category)}
+							_light={{
+								borderRight: "1px solid rgba(0, 0, 0, 0.1)",
+							}}
+							_dark={{
+								borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+							}}
+						>
+							{" "}
+							{category}{" "}
+						</Button>
+					))}
+				</Box>
+			</>
+		)
+
+
 	);
 };
