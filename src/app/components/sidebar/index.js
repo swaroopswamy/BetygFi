@@ -25,9 +25,7 @@ import "/styles/styles.scss";
 import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
 import { FaPeopleGroup } from "react-icons/fa6";
 
-const DynamicIcon = dynamic(() => import("../icons/index_new"), {
-	loading: () => <span>Loading...</span>,
-});
+const DynamicIcon = dynamic(() => import("../icons/index_new"), { ssr: false });
 
 const SidebarContent = ({ ...rest }) => {
 	const { colorMode } = useColorMode();
@@ -90,11 +88,11 @@ const SidebarContent = ({ ...rest }) => {
 							<hr style={{ margin: "5px 2px 5px 15px" }} />
 
 							<Box display={"flex"} w="100%" px={"20px"}>
-								<Text variant={"h5"} 
-									opacity="0.6" 
+								<Text variant={"h5"}
+									opacity="0.6"
 									letterSpacing={"1.2px"}
-									_light={{ color:"#16171B" }}
-									_dark={{ color:"#FFFFFF" }}> BetygFi Communities </Text>
+									_light={{ color: "#16171B" }}
+									_dark={{ color: "#FFFFFF" }}> BetygFi Communities </Text>
 							</Box>
 
 							<Box layerStyle={"flexColumn"}>
@@ -163,7 +161,7 @@ const SidebarContent = ({ ...rest }) => {
 											color: "#16171B",
 										}}
 									>
-                    Powered by Solvendo
+										Powered by Solvendo
 									</Text>
 								</Box>
 							</Box>
@@ -182,7 +180,7 @@ const SidebarContent = ({ ...rest }) => {
 									width={35}
 									height={35}
 									alt="logo"
-									src={colorMode === 'light' ? "/icons/company_sidebar_sm_logo_dark.svg" 
+									src={colorMode === 'light' ? "/icons/company_sidebar_sm_logo_dark.svg"
 										: "/icons/company_sidebar_sm_logo_light.svg"}
 									cursor={"pointer"}
 									onClick={() => router.push("/")}
@@ -310,7 +308,7 @@ const CollapsedNavItem = ({ NavIcon, path, newTab }) => {
 				}}
 				mr={"-13px"}
 			>
-				<Icon 
+				<Icon
 					as={NavIcon}
 					boxSize={22}
 					color={colorMode === "light" ? "#6F7383" : "#676767"}
@@ -349,7 +347,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
 					mr={"-13px"}
 					{...rest}
 				>
-					<Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"}/>
+					<Icon as={NavIcon} boxSize={18} color={colorMode === "light" ? "#FFFFFF" : "#191919"} />
 					{children}
 				</Box>
 			</Link>
@@ -380,7 +378,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
 				mr={"-13px"}
 				{...rest}
 			>
-				<Icon 
+				<Icon
 					as={NavIcon}
 					boxSize={18}
 					color={colorMode === "light" ? "#6F7383" : "#676767"}
@@ -401,7 +399,7 @@ const MobileSidebar = ({
 }) => {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } =
-    useDisclosure();
+		useDisclosure();
 	const router = useRouter();
 	const pathname = usePathname();
 
@@ -534,7 +532,7 @@ const MobileSidebar = ({
 												alignContent={"center"}
 												gap={"10px"}
 											>
-												<Icon 
+												<Icon
 													as={FaPeopleGroup}
 													boxSize={18}
 													color={colorMode === "light" ? "#6F7383" : "#676767"}
@@ -570,9 +568,9 @@ const MobileSidebar = ({
 														pl={"20px"}
 														mr={"0px"}
 													>
-														<Text 
-															fontSize={"12px"} 
-															lineHeight={"20px"} 
+														<Text
+															fontSize={"12px"}
+															lineHeight={"20px"}
 															letterSpacing={"1.4px"}>
 															{link.name}
 														</Text>
@@ -591,9 +589,9 @@ const MobileSidebar = ({
 												height={"50px"}
 												mr={"0px"}
 											>
-												<Text 
-													fontSize={"14px"} 
-													lineHeight={"20px"} 
+												<Text
+													fontSize={"14px"}
+													lineHeight={"20px"}
 													letterSpacing={"1.4px"}>
 													{link.name}
 												</Text>
@@ -625,7 +623,7 @@ const MobileSidebar = ({
 											lineHeight={"10px"}
 											color={colorMode === "light" ? "#FAFAFB" : "#000"}
 										>
-                      Connect Wallet
+											Connect Wallet
 										</Text>
 									</Box>
 								</Box>
