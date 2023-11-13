@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { Box, Button, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { categories } from "@util/constant";
-import { fetchBlockchainListData } from '../redux/app_data/dataSlice';
+import { fetchBlockchainListData } from '@/redux/app_data/dataSlice';
 import {
 	categoryChangedReducer,
 	fetchOverviewData,
