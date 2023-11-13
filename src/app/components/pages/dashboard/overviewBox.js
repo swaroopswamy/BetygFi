@@ -60,7 +60,7 @@ const OverviewBox = () => {
 		<>
 			{isLg ? (
 				<Box
-					w="60%"
+					w="100%"
 					display={{ base: "none", lg: "flex" }}
 					flexDir={"column"}
 					justifyContent={"start"}
