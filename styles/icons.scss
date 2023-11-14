@@ -118,3 +118,17 @@
         background-image: url('/icons/dropdown_black.svg');
     }
 }
+
+.dropdown_white {
+    &::before {
+        background-image: url('/icons/dropdown_white.svg');
+    }
+}
+
+.dropdown_white_open {
+    &::before {
+        transition: transform 0.3s ease;
+        transform: rotate(180deg);
+        background-image: url('/icons/dropdown_white.svg');
+    }
+}
