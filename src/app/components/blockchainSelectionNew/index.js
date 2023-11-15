@@ -16,14 +16,10 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
-import dynamic from 'next/dynamic';
-const SearchBox = dynamic(() =>
-	import("@/app/components/searchBox")
-);
-
+import dynamic from "next/dynamic";
+const SearchBox = dynamic(() => import("@/app/components/searchBox"));
 
 const BlockchainSelectionMenuNew = () => {
-
 	const dispatch = useDispatch();
 	const { colorMode } = useColorMode();
 
@@ -32,7 +28,7 @@ const BlockchainSelectionMenuNew = () => {
 	const [searchableBlockchains, setSearchableBlockchains] = useState([]);
 	const blockchainSearchHandler = (e) => {
 		const value = e.target.value;
-		if (searchableBlockchains && value !== '') {
+		if (searchableBlockchains && value !== "") {
 			let tempBlockchainArray = searchableBlockchains.filter((item) => {
 				return item.name.toLowerCase().includes(value);
 			});
@@ -53,23 +49,25 @@ const BlockchainSelectionMenuNew = () => {
 
 	let blockchains = {
 		data: blockchainListData.data,
-		isSuccess: blockchainListData.isSuccess
+		isSuccess: blockchainListData.isSuccess,
 	};
 	useEffect(() => {
 		setSearchableBlockchains(blockchainListData?.data?.slice(5));
 		setTempBlockchain(blockchainListData?.data?.slice(5));
-
 	}, [blockchainListData]);
-
 
 	return (
 		<>
-			<Box display={"flex"} alignItems={{ base: "start", md: "center" }} flexDirection={{ base: "column", md: "row" }}
+			<Box
+				display={"flex"}
+				alignItems={{ base: "start", md: "center" }}
+				flexDirection={{ base: "column", md: "row" }}
 				justifyContent={{ md: "space-between" }}
 				w="100%"
 			>
 				<Box
-					display={"flex"} alignItems={"center"}
+					display={"flex"}
+					alignItems={"center"}
 					p={{ base: "10px 14px" }}
 				>
 					<Box
@@ -80,10 +78,16 @@ const BlockchainSelectionMenuNew = () => {
 							BlockchainTypeHandler("All");
 						}}
 						_light={{
-							bg: blockchainSelected.length === 0 ? "#D9D9D9" : "#FFF"
+							bg:
+                                blockchainSelected.length === 0
+                                	? "#D9D9D9"
+                                	: "#FFF",
 						}}
 						_dark={{
-							bg: blockchainSelected.length === 0 ? "#FFFFFF" : "#989898"
+							bg:
+                                blockchainSelected.length === 0
+                                	? "#FFFFFF"
+                                	: "#989898",
 						}}
 						border={
 							blockchainSelected.length === 0
@@ -94,10 +98,12 @@ const BlockchainSelectionMenuNew = () => {
 						<Text
 							variant={"content"}
 							_dark={{
-								color: blockchainSelected.length === 0 && "#161616"
+								color:
+                                    blockchainSelected.length === 0 &&
+                                    "#161616",
 							}}
 						>
-							All
+                            All
 						</Text>
 					</Box>
 					{blockchains?.data?.map((item, i) => {
@@ -109,17 +115,23 @@ const BlockchainSelectionMenuNew = () => {
 									justifyContent={"center"}
 									cursor={"pointer"}
 									_light={{
-										bg: blockchainSelected.includes(item.id) ? "#D9D9D9" : "#FFF"
+										bg: blockchainSelected.includes(item.id)
+											? "#D9D9D9"
+											: "#FFF",
 									}}
 									_dark={{
-										bg: blockchainSelected.includes(item.id) ? "#FFFFFF" : "#989898"
+										bg: blockchainSelected.includes(item.id)
+											? "#FFFFFF"
+											: "#989898",
 									}}
 									border={
 										blockchainSelected.includes(item.id)
 											? "2px solid #245F00"
 											: "1px solid rgba(0, 0, 0, 0.10)"
 									}
-									dropShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+									dropShadow={
+										"0px 4px 4px rgba(0, 0, 0, 0.25)"
+									}
 									borderRadius="50%"
 									w="32px"
 									h="32px"
@@ -141,9 +153,13 @@ const BlockchainSelectionMenuNew = () => {
 					})}
 				</Box>
 
-
 				{blockchains?.data?.length > 6 && (
-					<Menu closeOnSelect={false} suppressHydrationWarning={true} isLazy matchWidth>
+					<Menu
+						closeOnSelect={false}
+						suppressHydrationWarning={true}
+						isLazy
+						matchWidth
+					>
 						{({ isOpen }) => (
 							<>
 								<MenuButton
@@ -151,7 +167,6 @@ const BlockchainSelectionMenuNew = () => {
 									borderRadius="8px"
 									p="12px 16px"
 									transition="all 0.2s"
-									border="1px solid #1C1C1C"
 									_focus={{ boxShadow: "outline" }}
 									color="#000"
 									_focusVisible={{ outline: "none" }}
@@ -159,87 +174,156 @@ const BlockchainSelectionMenuNew = () => {
 									zIndex={"10"}
 									w={{ base: "90%", md: "228px" }}
 									m={{ base: "0px 14px" }}
-
-									background={isOpen ? "rgba(28, 28, 28, 0.05)" : "transparent"}
-
+									_light={{
+										background: isOpen
+											? "rgba(28, 28, 28, 0.05)"
+											: "transparent",
+										border: "1px solid #1C1C1C",
+									}}
+									_dark={{
+										background: "#191919",
+										border: "1px solid #FFF",
+									}}
 								>
 									<Box
 										display={"flex"}
 										alignItems={"center"}
 										flexDirection={"row"}
-
 										justifyContent={"space-between"}
 									>
-										<Text variant={"extraSmall"}>
-											More DeFi Markets
+										<Text
+											variant={"extraSmall"}
+											_dark={{
+												color: "white",
+											}}
+										>
+                                            More DeFi Markets
 										</Text>
-										<i className={`icon ${isOpen ? 'dropdown_black_open' : 'dropdown_black'}`} />
+										<i
+											className={`icon ${
+												colorMode === "light"
+													? isOpen
+														? "dropdown_black_open"
+														: "dropdown_black"
+													: isOpen
+														? "dropdown_white_open"
+														: "dropdown_white"
+											}`}
+										/>
 									</Box>
-
 								</MenuButton>
 								<MenuList
 									zIndex={"10"}
-									boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
-									bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+									boxShadow={
+										"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"
+									}
+									bgColor={
+										colorMode === "light"
+											? "#FFF"
+											: "#191919"
+									}
 								>
-									<Box px={"10px"} >
-										<SearchBox placeholder="Search" onChange={(e) => blockchainSearchHandler(e)} width={"100%"} ></SearchBox>
+									<Box px={"10px"}>
+										<SearchBox
+											placeholder="Search"
+											onChange={(e) =>
+												blockchainSearchHandler(e)
+											}
+											width={"100%"}
+										></SearchBox>
 									</Box>
 									{blockchainListData?.isSuccess &&
-										tempBlockchain?.map((item, i) => {
-											return (
-												<MenuItem
-													key={i}
-													bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-													_hover={{
-														bg: colorMode === "light" ? "#F5F5F7" : "#202020",
-													}}
-												>
-													<Checkbox
-														colorScheme="green"
-														value={item.name}
-														checked={blockchainSelected.includes(item.id)}
-														onChange={() => {
-															BlockchainTypeHandler(item.id);
-														}}
-													>
-														<Box
-															display={"flex"}
-															cursor={"pointer"}
-															alignItems={"center"}
-															justifyContent={"center"}
-														>
-															<Avatar
-																width={"24px"}
-																height={"24px"}
-																src={item.logoUrl}
-																alt={item.id ?? "Coin"}
-																style={{ marginRight: "20px", marginLeft: "14px" }}
-															></Avatar>
-															<Text
-																fontSize={"12px"}
-																fontWeight={"400"}
-																lineHeight={"20px"}
-																letterSpacing={"1px"}
-																color={colorMode === "light" ? "#16171B" : "#FFF"}
-															>
-																{item.name}
-															</Text>
-														</Box>
-													</Checkbox>
-												</MenuItem>
-											);
-										})}
+                                        tempBlockchain?.map((item, i) => {
+                                        	return (
+                                        		<MenuItem
+                                        			key={i}
+                                        			bgColor={
+                                        				colorMode === "light"
+                                        					? "#FFF"
+                                        					: "#191919"
+                                        			}
+                                        			_hover={{
+                                        				bg:
+                                                            colorMode ===
+                                                            "light"
+                                                            	? "#F5F5F7"
+                                                            	: "#202020",
+                                        			}}
+                                        		>
+                                        			<Checkbox
+                                        				colorScheme="green"
+                                        				value={item.name}
+                                        				checked={blockchainSelected.includes(
+                                        					item.id
+                                        				)}
+                                        				onChange={() => {
+                                        					BlockchainTypeHandler(
+                                        						item.id
+                                        					);
+                                        				}}
+                                        			>
+                                        				<Box
+                                        					display={"flex"}
+                                        					cursor={"pointer"}
+                                        					alignItems={
+                                        						"center"
+                                        					}
+                                        					justifyContent={
+                                        						"center"
+                                        					}
+                                        				>
+                                        					<Avatar
+                                        						width={"24px"}
+                                        						height={"24px"}
+                                        						src={
+                                        							item.logoUrl
+                                        						}
+                                        						alt={
+                                        							item.id ??
+                                                                    "Coin"
+                                        						}
+                                        						style={{
+                                        							marginRight:
+                                                                        "20px",
+                                        							marginLeft:
+                                                                        "14px",
+                                        						}}
+                                        					></Avatar>
+                                        					<Text
+                                        						fontSize={
+                                        							"12px"
+                                        						}
+                                        						fontWeight={
+                                        							"400"
+                                        						}
+                                        						lineHeight={
+                                        							"20px"
+                                        						}
+                                        						letterSpacing={
+                                        							"1px"
+                                        						}
+                                        						color={
+                                        							colorMode ===
+                                                                    "light"
+                                        								? "#16171B"
+                                        								: "#FFF"
+                                        						}
+                                        					>
+                                        						{item.name}
+                                        					</Text>
+                                        				</Box>
+                                        			</Checkbox>
+                                        		</MenuItem>
+                                        	);
+                                        })}
 								</MenuList>
 							</>
 						)}
-
 					</Menu>
 				)}
-
 			</Box>
 		</>
 	);
 };
 
-export default BlockchainSelectionMenuNew; 
+export default BlockchainSelectionMenuNew;
