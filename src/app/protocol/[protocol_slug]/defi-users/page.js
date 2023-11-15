@@ -12,8 +12,8 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
-import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
+import BackIconWhite from "/public/icons/backIconWhite.svg";
+import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
 const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
 

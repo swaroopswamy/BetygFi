@@ -15,8 +15,8 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
 
-import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
-import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
+import BackIconWhite from "/public/icons/backIconWhite.svg";
+import BackIconBlack from "/public/icons/backIconBlack.svg";
 
 function Defi_Hot_Contracts() {
 	const router = useRouter();
