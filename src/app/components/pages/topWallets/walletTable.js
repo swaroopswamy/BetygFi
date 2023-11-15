@@ -216,7 +216,7 @@ const WalletTable = () => {
 													<Box layerStyle={"center"}>
 														<Button variant='link'
 															onClick={() => {
-																router.push(`/wallet/${item?.id}`);
+																router.push(`/top-wallets/${item?.id}`);
 															}}
 														>
                               Open Dashboard
@@ -306,7 +306,7 @@ function TableRow({ user, totalTokens, totalProtocols }) {
 			}
 			onClick={() => {
 				setClick(!clicked);
-				router.push(`/wallet/${user}`);
+				router.push(`/top-wallets/${user}`);
 			}}
 			borderBottom={"1px"}
 			borderColor={useColorModeValue("#DFDFDF", "#313131")}

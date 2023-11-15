@@ -117,7 +117,7 @@ const TableRow = ({ item, i }) => {
 				}
 				onClick={() => {
 					setClick(!clicked);
-					router.push(`/wallet/${item.user}`);
+					router.push(`/top-wallets/${item.user}`);
 				}}
 				borderBottom={"1px"}
 				borderColor={useColorModeValue("#DFDFDF", "#313131")}
