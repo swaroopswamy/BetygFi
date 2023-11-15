@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import dynamic from "next/dynamic";
 
 const Banner = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/banner")
@@ -36,12 +38,8 @@ const DefiInflowOutflowSmallTableComponent = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
 );
 
-import { ChevronLeftIcon } from "@chakra-ui/icons";
-import dynamic from "next/dynamic";
-
 const DefiDashboardPage = ({ params }) => {
 	const searchParamProtocolSlug = params?.protocol_slug;
-	const searchParamDefi = params?.defi;
 
 	const router = useRouter();
 	const dispatch = useDispatch();
@@ -119,8 +117,12 @@ const DefiDashboardPage = ({ params }) => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiUsersSmallTable />
-					<DefiTVLChart />
+					<DefiUsersSmallTable
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
+					<DefiTVLChart
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
 				</Box>
 
 				<Box
@@ -130,11 +132,10 @@ const DefiDashboardPage = ({ params }) => {
 					gap={"20px"}
 				>
 					<DefiAssetsSmallTable
-						searchParamDefi={searchParamDefi}
 						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 					<DefiFeeRevenueChart
-						searchParamDefi={searchParamDefi}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 				</Box>
 
@@ -150,7 +151,7 @@ const DefiDashboardPage = ({ params }) => {
 
 				<Box>
 					<GovernanceTable
-						searchParamDefi={searchParamDefi}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 				</Box>
 			</Box>

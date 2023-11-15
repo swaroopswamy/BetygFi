@@ -25,7 +25,7 @@ let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",
 });
 
-function DefiAssetsSmallTable({ searchParamDefi, searchParamId }) {
+function DefiAssetsSmallTable({ searchParamProtocolSlug }) {
 	const dispatch = useDispatch();
 	const router = useRouter();
 
@@ -42,8 +42,8 @@ function DefiAssetsSmallTable({ searchParamDefi, searchParamId }) {
 			page: 1,
 			limit: 20,
 		};
-		if (searchParamDefi && searchParamDefi !== '') {
-			payload.defi = searchParamDefi;
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+			payload.defi = searchParamProtocolSlug;
 		}
 		dispatch(fetchDefiAssetCompositionTableData(payload));
 	};
@@ -73,9 +73,9 @@ function DefiAssetsSmallTable({ searchParamDefi, searchParamId }) {
 					<Button
 						variant={"viewMore"}
 						onClick={() => {
-							if (searchParamDefi && searchParamDefi !== '' && searchParamId && searchParamId !== '') {
+							if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
 								router.push(
-									`/protocol/asset_composition?defi=${searchParamDefi}&id=${searchParamId}`
+									`/protocol/${searchParamProtocolSlug}/asset-composition`
 								);
 							}
 						}}
