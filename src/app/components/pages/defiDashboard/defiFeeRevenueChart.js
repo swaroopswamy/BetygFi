@@ -17,7 +17,7 @@ import TooltipComp from "@/app/components/tooltipComp";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 let USDollar = new Intl.NumberFormat("en-US");
 
-function DefiFeeRevenueChart({ searchParamDefi }) {
+function DefiFeeRevenueChart({ searchParamProtocolSlug }) {
 	const { colorMode } = useColorMode();
 	const dispatch = useDispatch();
 
@@ -32,8 +32,8 @@ function DefiFeeRevenueChart({ searchParamDefi }) {
 		const payload = {
 			blockchain: blockchainSelected,
 		};
-		if (searchParamDefi && searchParamDefi !== '') {
-			payload.defi = searchParamDefi;
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+			payload.defi = searchParamProtocolSlug;
 		}
 		dispatch(fetchDefiFeeRevenueData(payload));
 	};

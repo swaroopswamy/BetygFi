@@ -17,7 +17,6 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-// import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState, useCallback } from "react";
 import {
 	tableHeader,
@@ -29,7 +28,6 @@ import PageButtonsWide from "@/app/components/pageButtonsWide";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 
 const TransactionPanelComponent = ({ searchParamAddress }) => {
-	// const searchParam = useSearchParams();
 	const dispatch = useDispatch();
 	const [tablePage, setTablePage] = useState(1);
 	const [tableLimit, setTableLimit] = useState(10);
@@ -45,7 +43,6 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 	};
 	const fetchWalletTransactionsDataHandler = useCallback(() => {
 		const data = {
-			// address: searchParam.get("address"),
 			payload: {
 				blockchain: blockchainSelected,
 				limit: tableLimit,

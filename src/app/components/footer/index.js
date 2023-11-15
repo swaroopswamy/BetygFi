@@ -96,7 +96,7 @@ const Footer = ({ ...rest }) => {
 					<FooterMobileLink
 						name={"Top Wallets"}
 						NavIcon={BiWalletAlt}
-						link={"/top-wallets"}
+						link={"/wallet"}
 					/>
 					<FooterMobileLink
 						name={"Community"}

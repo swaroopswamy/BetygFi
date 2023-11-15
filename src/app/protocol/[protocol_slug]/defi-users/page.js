@@ -168,7 +168,8 @@ function DefiUsers() {
 				align={"center"}
 				onClick={() => {
 					router.push(
-						`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
+						`/protocol/aave-v2`
+						// `/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
 					);
 				}}
 			>

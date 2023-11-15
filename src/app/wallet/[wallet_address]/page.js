@@ -27,8 +27,8 @@ const HeaderComponent = dynamic(() => import("@/app/components/pages/walletDashb
 const DashboardTabList = dynamic(() => import("@/app/components/pages/walletDashboard/DashboardTabList"));
 const BlockchainSelectionMenuBlocks = dynamic(() => import("@/app/components/blockchainSelectionMenuBlocks"));
 
-export default function WalletDashboardPage(context) {
-	const searchParamAddress = context?.searchParams?.address;
+export default function WalletDashboardPage({ params }) {
+	const searchParamAddress = params?.wallet_address;
 	const dispatch = useDispatch();
 	const [tabIndex, setTabIndex] = useState(0);
 
@@ -49,7 +49,7 @@ export default function WalletDashboardPage(context) {
 				blockchain: blockchainSelected,
 			},
 		};
-		if (searchParamAddress && searchParamAddress!=='') {
+		if (searchParamAddress && searchParamAddress !== '') {
 			data.address = searchParamAddress;
 		}
 		dispatch(fetchWalletBalanceData(data));
@@ -86,7 +86,7 @@ export default function WalletDashboardPage(context) {
 	useEffect(() => {
 		// Promise.all([
 		fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress);
-		if (searchParamAddress && searchParamAddress!=='') {
+		if (searchParamAddress && searchParamAddress !== '') {
 			fetchAssetAllocationForAddressHandler();
 			fetchProtocolAllocationForAddressHandler();
 			fetchBlockchainAllocationForAddressHandler();
@@ -97,7 +97,7 @@ export default function WalletDashboardPage(context) {
 
 	useEffect(() => {
 		dispatch(fetchBlockchainListData());
-		if (searchParamAddress && searchParamAddress!=='') {
+		if (searchParamAddress && searchParamAddress !== '') {
 			dispatch(walletAddressChangedReducer(searchParamAddress));
 		}
 	}, []);
@@ -118,7 +118,7 @@ export default function WalletDashboardPage(context) {
 				w="100%"
 			>
 				<Breadcrumb
-					link="/top-wallets"
+					link="/wallet"
 					text="Top Wallets/"
 					additionalText={walletBalanceData?.name}
 				/>
@@ -142,8 +142,8 @@ export default function WalletDashboardPage(context) {
 									p="0px"
 									bgColor={useColorModeValue("#F0F0F5", "#191919")}
 								>
-									<TransactionPanelComponent 
-									searchParamAddress={searchParamAddress}
+									<TransactionPanelComponent
+										searchParamAddress={searchParamAddress}
 									/>
 								</TabPanel>
 								<TabPanel

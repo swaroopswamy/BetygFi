@@ -1,115 +1,103 @@
 "use client";
 import {
-	Text,
+	Box,
 	Icon,
+	useColorModeValue,
+	Text,
 	Td,
 	Tr,
 	Flex,
-	Box,
-	useColorModeValue,
 	Image,
 	useColorMode,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/GenericBigTable")
-);
+const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
+
 import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
 import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
 
-function TVL_Ranking() {
+function Defi_Hot_Contracts() {
 	const router = useRouter();
 	const { colorMode } = useColorMode();
-	const tableName = "DeFi Category by TVL Rankings";
+	const tableName = "DeFi Name";
 	const thread = [
-		"DeFi Category",
-		"Available Blockchains",
-		"Available DeFi ",
-		"TVL",
-		"7 Days",
+		"Blockchain | Asset Name",
+		"Inflow (7 Days)",
+		"Outflow (7 Days)",
+		"Net Value flow ",
 	];
 	const tableData = [
 		[
 			"AAVE V2 ",
-			"406",
-			"3457",
-			"USD 65.930000",
+			"+USD 65.930000",
+			"-USD 356,456,560",
+			"-USD 65.930000",
 			"/icons/aave_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"AAVE V3 ",
-			"567",
-			"8765",
-			"USD 65.930000",
+			"+USD 65.930000",
+			"-USD 1,434,771,959",
+			"+USD 65.930000",
 			"/icons/aave_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Compound",
-			"234",
-			"76346",
-			"USD 35.700000",
+			"+USD 35.700000",
+			"-USD 1,284,778,438",
+			"-USD 35.700000",
 			"/icons/compound_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"JustLend",
-			"5634",
-			"567",
-			"USD 0.023387",
+			"+USD 0.023387",
+			"-USD 3,740,295,842",
+			"-USD 0.023387",
 			"/icons/justlend_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Venus",
-			"12",
-			"2376",
-			"USD 5.100000",
+			"+USD 5.100000",
+			"-USD 802,259,792",
+			"+USD 5.100000",
 			"/icons/venus_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Morpho Aave",
-			"345",
-			"8456",
-			"USD 0.001782",
+			"+USD 0.001782",
+			"-USD 315,485,747",
+			"+USD 0.001782",
 			"/icons/morphoaave_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Compound V3",
-			"876",
-			"8734",
-			"USD 35.700000",
+			"+USD 35.700000",
+			"-USD 563,991,620",
+			"+USD 35.700000",
 			"/icons/compoundv3.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Radiant V2",
-			"3456",
-			"436",
 			"USD 0.313472",
+			"-USD 259,911,221",
+			"-USD 0.313472",
 			"/icons/radiantv2_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"FluidTokens",
-			"123",
-			"864",
-			"USD 45.90988",
+			"NA",
+			"-USD 234,308",
+			"-USD 45.90988",
 			"/icons/fluidtoken_logo.svg",
-			"/icons/line_graph.svg",
 		],
 		[
 			"Trader Joe Lend",
-			"876",
-			"963",
-			"USD 45.90988",
+			"+USD 45.90988",
+			"-USD 7,562,768",
+			"-USD 45.90988",
 			"/icons/traderjoelend_logo.svg",
-			"/icons/line_graph.svg",
 		],
 	];
 
@@ -125,7 +113,7 @@ function TVL_Ranking() {
 				mb={"20px"}
 				align={"center"}
 				onClick={() => {
-					router.push(`/defi_dashboard/`);
+					router.push(`/protocol/`);
 				}}
 			>
 				<Icon
@@ -155,7 +143,7 @@ function TVL_Ranking() {
 		</Box>
 	);
 }
-export default TVL_Ranking;
+export default Defi_Hot_Contracts;
 
 function RowComponent({ tableData }) {
 	return (
@@ -164,14 +152,13 @@ function RowComponent({ tableData }) {
 				return (
 					<TableRow
 						key={i}
-						DeFi={{
-							Category: item[0],
+						Asset={{
+							name: item[0],
 							src: item[4],
 						}}
-						AvailableBlockchains={item[1]}
-						AvailableDeFi={item[2]}
-						TVL={item[3]}
-						Days={{ src: item[5] }}
+						Inflow={item[1]}
+						Outflow={item[2]}
+						NetValueflow={item[3]}
 					/>
 				);
 			})}
@@ -179,13 +166,7 @@ function RowComponent({ tableData }) {
 	);
 }
 
-function TableRow({
-	key,
-	DeFi,
-	AvailableBlockchains,
-	AvailableDeFi,
-	TVL,
-}) {
+function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
 	const [clicked, setClick] = useState(false);
 	const { colorMode } = useColorMode();
 	return (
@@ -215,8 +196,8 @@ function TableRow({
 							<Image
 								height={"24px"}
 								width={"24px"}
-								src={DeFi.src}
-								alt="defi_logo"
+								src={Asset?.src}
+								alt="logo"
 								// url={"/icons/Ethereum_sm_icon.svg"}
 								//  src="/icons/aave_logo.svg"
 							></Image>
@@ -232,7 +213,7 @@ function TableRow({
 								fontWeight={"400"}
 								lineHeight={"20px"}
 							>
-								{DeFi.Category}
+								{Asset.name}
 							</Text>
 						</Box>
 					</Flex>
@@ -253,7 +234,7 @@ function TableRow({
 								fontWeight={"400"}
 								lineHeight={"20px"}
 							>
-								{AvailableBlockchains}
+								{Inflow}
 							</Text>
 						</Box>
 					</Flex>
@@ -274,7 +255,7 @@ function TableRow({
 								fontWeight={"400"}
 								lineHeight={"20px"}
 							>
-								{AvailableDeFi}
+								{Outflow}
 							</Text>
 						</Box>
 					</Flex>
@@ -295,16 +276,8 @@ function TableRow({
 								fontWeight={"400"}
 								lineHeight={"20px"}
 							>
-								{TVL}
+								{NetValueflow}
 							</Text>
-						</Box>
-					</Flex>
-				</Td>
-
-				<Td>
-					<Flex>
-						<Box width={"87px"} height={"23px"}>
-							<Image alt="line_graph" src={"/icons/line_graph.svg"}></Image>
 						</Box>
 					</Flex>
 				</Td>

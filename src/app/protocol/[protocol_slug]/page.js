@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import dynamic from "next/dynamic";
 
 const Banner = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/banner")
@@ -35,20 +37,17 @@ const DefiHotContractsSmallTable = dynamic(() =>
 const DefiInflowOutflowSmallTableComponent = dynamic(() =>
 	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
 );
-import { ChevronLeftIcon } from "@chakra-ui/icons";
-import dynamic from "next/dynamic";
 
-const DefiDashboardPage = (context) => {
-	const searchParamId = context?.searchParams?.id;
-	const searchParamDefi = context?.searchParams?.defi;
+const DefiDashboardPage = ({ params }) => {
+	const searchParamProtocolSlug = params?.protocol_slug;
 
 	const router = useRouter();
 	const dispatch = useDispatch();
 
 	const getDefiDataHandler = () => {
-		if (searchParamId && searchParamId !== '') {
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
 			const payload = {
-				id: searchParamId,
+				id: searchParamProtocolSlug,
 			};
 			dispatch(fetchDefiData(payload));
 		}
@@ -118,8 +117,12 @@ const DefiDashboardPage = (context) => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiUsersSmallTable />
-					<DefiTVLChart />
+					<DefiUsersSmallTable
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
+					<DefiTVLChart
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
 				</Box>
 
 				<Box
@@ -129,11 +132,10 @@ const DefiDashboardPage = (context) => {
 					gap={"20px"}
 				>
 					<DefiAssetsSmallTable
-						searchParamDefi={searchParamDefi}
-						searchParamId={searchParamId}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 					<DefiFeeRevenueChart
-						searchParamDefi={searchParamDefi}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 				</Box>
 
@@ -149,7 +151,7 @@ const DefiDashboardPage = (context) => {
 
 				<Box>
 					<GovernanceTable
-						searchParamDefi={searchParamDefi}
+						searchParamProtocolSlug={searchParamProtocolSlug}
 					/>
 				</Box>
 			</Box>

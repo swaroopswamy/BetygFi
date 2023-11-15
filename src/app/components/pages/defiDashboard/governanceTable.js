@@ -16,7 +16,7 @@ import GenericTable from "@/app/components/table";
 import { GovernanceTableHeader } from "@/app/components/pages/defiDashboard/helper";
 import PageButtonsWide from "@/app/components/pageButtonsWide";
 
-const GovernanceTable = ({ searchParamDefi }) => {
+const GovernanceTable = ({ searchParamProtocolSlug }) => {
 	const dispatch = useDispatch();
 
 	const [tablePage, setTablePage] = useState(1);
@@ -35,8 +35,8 @@ const GovernanceTable = ({ searchParamDefi }) => {
 			page: tablePage,
 			limit: tableLimit
 		};
-		if(searchParamDefi && searchParamDefi!==''){
-			payload.defi = searchParamDefi;
+		if(searchParamProtocolSlug && searchParamProtocolSlug!==''){
+			payload.defi = searchParamProtocolSlug;
 		}
 		dispatch(fetchDefiGovernanceTableData(payload));
 	};

@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 // import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 // import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -26,9 +26,9 @@ let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",
 });
 
-function AssetComposition() {
+function AssetComposition({ params }) {
+	const searchParamProtocolSlug = params?.protocol_slug;
 	const router = useRouter();
-	const searchParam = useSearchParams();
 	const dispatch = useDispatch();
 
 	const [tablePage, setTablePage] = useState(1);
@@ -37,9 +37,6 @@ function AssetComposition() {
 	const pageChangeHandler = (page) => {
 		tablePage >= 1 && setTablePage(page);
 	};
-
-	const defi = searchParam.get("defi");
-	const id = searchParam.get("id");
 
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
@@ -50,11 +47,13 @@ function AssetComposition() {
 
 	const getDefiAssetsTableDataHandler = () => {
 		const payload = {
-			defi: defi,
 			blockchain: blockchainSelected,
 			page: tablePage,
 			limit: tableLimit,
 		};
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+			payload.defi = searchParamProtocolSlug;
+		}
 		dispatch(fetchDefiAssetCompositionTableData(payload));
 	};
 
@@ -77,7 +76,8 @@ function AssetComposition() {
 				gap={"10px"}
 				my={"20px"}
 				onClick={() =>
-					router.push(`/defi_dashboard?defi=${defi}&id=${id}`)
+					router.push(`/protocol/${searchParamProtocolSlug}`)
+					// router.push(`/defi_dashboard?defi=${defi}&id=${id}`)
 				}
 			>
 				<ChevronLeftIcon
@@ -95,7 +95,7 @@ function AssetComposition() {
 					_light={{ color: "#16171B" }}
 					_dark={{ color: "#A8ADBD" }}
 				>
-                    Home/DeFi Dashboard/DeFi Asset Composition
+					Home/DeFi Dashboard/DeFi Asset Composition
 				</Text>
 			</Box>
 
@@ -151,41 +151,41 @@ function AssetComposition() {
 								<Box display={"flex"} gap={"20px"}>
 									<Text variant={"h3"} color={"#8F8F8F"}>
 										{" "}
-                                        Price{" "}
+										Price{" "}
 									</Text>
 									<Text variant={"h3"}>
 										{" "}
 										{item?.item?.price
 											? "USD " +
-                                              USDollar.format(item?.item?.price)
+											USDollar.format(item?.item?.price)
 											: "-"}{" "}
 									</Text>
 								</Box>
 								<Box display={"flex"} gap={"20px"}>
 									<Text variant={"h3"} color={"#8F8F8F"}>
 										{" "}
-                                        Amount{" "}
+										Amount{" "}
 									</Text>
 									<Text variant={"h3"}>
 										{" "}
 										{item?.item?.amount
 											? "USD " +
-                                              USDollar.format(
-                                              	item?.item?.amount
-                                              )
+											USDollar.format(
+												item?.item?.amount
+											)
 											: "-"}{" "}
 									</Text>
 								</Box>
 								<Box display={"flex"} gap={"20px"}>
 									<Text variant={"h3"} color={"#8F8F8F"}>
 										{" "}
-                                        Value{" "}
+										Value{" "}
 									</Text>
 									<Text variant={"h3"}>
 										{" "}
 										{item?.item?.value
 											? "USD " +
-                                              USDollar.format(item?.item?.value)
+											USDollar.format(item?.item?.value)
 											: "-"}{" "}
 									</Text>
 								</Box>
