@@ -118,7 +118,7 @@ export default function WalletDashboardPage({ params }) {
 				w="100%"
 			>
 				<Breadcrumb
-					link="/wallet"
+					link="/top-wallets"
 					text="Top Wallets/"
 					additionalText={walletBalanceData?.name}
 				/>
