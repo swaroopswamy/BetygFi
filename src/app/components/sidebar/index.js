@@ -49,6 +49,7 @@ const SidebarContent = ({ ...rest }) => {
         onOpen: onSuggestFeatureModalOpen,
         onClose: onSuggestFeatureModalClose,
     } = useDisclosure();
+
     const {
         isOpen: isReportBugModalOpen,
         onOpen: onReportBugModalOpen,
@@ -147,69 +148,63 @@ const SidebarContent = ({ ...rest }) => {
 
                         {/* Bottom Half */}
                         <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                            <button onClick={onSuggestFeatureModalOpen}>
+                            {/* <button onClick={onSuggestFeatureModalOpen}>
                                 SuggestFeatureModalOpen
                             </button>
                             <button onClick={onReportBugModalOpen}>
                                 ReportBugModalOpen
-                            </button>
+                            </button> */}
                             {bottomMenu.map((link, i) => {
-                                if (link?.flag === "suggestfeature") {
-                                    return (
-                                        <NavItem
-                                            key={i}
-                                            NavIcon={link.icon}
-                                            onClick={onSuggestFeatureModalOpen}
-                                            isActive={pathname === link.path}
+                                if (i > 2) return;
+                                return (
+                                    <NavItem
+                                        key={i}
+                                        NavIcon={link.icon}
+                                        path={link.path}
+                                        newTab={link.newTab}
+                                        isActive={pathname === link.path}
+                                    >
+                                        <Text
+                                            fontSize={"14px"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
                                         >
-                                            <Text
-                                                fontSize={"14px"}
-                                                lineHeight={"20px"}
-                                                letterSpacing={"1.4px"}
-                                            >
-                                                {link.name}
-                                            </Text>
-                                        </NavItem>
-                                    );
-                                } else if (link?.flag === "reportbug") {
-                                    return (
-                                        <NavItem
-                                            key={i}
-                                            NavIcon={link.icon}
-                                            onClick={() =>
-                                                onReportBugModalOpen()
-                                            }
-                                            isActive={pathname === link.path}
-                                        >
-                                            <Text
-                                                fontSize={"14px"}
-                                                lineHeight={"20px"}
-                                                letterSpacing={"1.4px"}
-                                            >
-                                                {link.name}
-                                            </Text>
-                                        </NavItem>
-                                    );
-                                } else {
-                                    return (
-                                        <NavItem
-                                            key={i}
-                                            NavIcon={link.icon}
-                                            path={link.path}
-                                            newTab={link.newTab}
-                                            isActive={pathname === link.path}
-                                        >
-                                            <Text
-                                                fontSize={"14px"}
-                                                lineHeight={"20px"}
-                                                letterSpacing={"1.4px"}
-                                            >
-                                                {link.name}
-                                            </Text>
-                                        </NavItem>
-                                    );
-                                }
+                                            {link.name}
+                                        </Text>
+                                    </NavItem>
+                                );
                             })}
+                            <NavItem
+                                NavIcon={bottomMenu[3].icon}
+                                path={bottomMenu[3].path}
+                                newTab={bottomMenu[3].newTab}
+                                isActive={pathname === bottomMenu[3].path}
+                                onClick={onSuggestFeatureModalOpen}
+                            >
+                                <Text
+                                    fontSize={"14px"}
+                                    lineHeight={"20px"}
+                                    letterSpacing={"1.4px"}
+                                >
+                                    {bottomMenu[3].name}
+                                </Text>
+                            </NavItem>
+
+                            <NavItem
+                                NavIcon={bottomMenu[4].icon}
+                                path={bottomMenu[4].path}
+                                newTab={bottomMenu[4].newTab}
+                                isActive={pathname === bottomMenu[4].path}
+                                onClick={onReportBugModalOpen}
+                            >
+                                <Text
+                                    fontSize={"14px"}
+                                    lineHeight={"20px"}
+                                    letterSpacing={"1.4px"}
+                                >
+                                    {bottomMenu[4].name}
+                                </Text>
+                            </NavItem>
 
                             <hr style={{ margin: "15px 0px" }} />
 
@@ -376,6 +371,7 @@ const SidebarContent = ({ ...rest }) => {
                     </Flex>
                 </Box>
             </Box>
+
             <SuggestFeatureModal
                 isOpen={isSuggestFeatureModalOpen}
                 onClose={onSuggestFeatureModalClose}
@@ -437,11 +433,11 @@ const NavItem = ({
     path,
     newTab,
     isActive,
-    onClick,
     children,
     ...rest
 }) => {
     const { colorMode } = useColorMode();
+
     if (isActive) {
         return (
             <Link
@@ -449,7 +445,6 @@ const NavItem = ({
                 target={newTab ? "_blank" : null}
                 style={{ textDecoration: "none" }}
                 _focus={{ boxShadow: "none" }}
-                onClick={onClick}
             >
                 <Box
                     display={"flex"}

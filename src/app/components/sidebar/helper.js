@@ -56,18 +56,16 @@ export const bottomMenu = [
 		icon: SlSettings,
 		path: "/settings"
 	},
-	{
-		name: "Suggest Feature",
-		icon: BiBulb,
-		flag:"suggestfeature",
-	},
 	{    name: "Legal",
 		icon: SlShield,
 		path: "/legal"
 	},
 	{
+		name: "Suggest Feature",
+		icon: BiBulb,
+	},
+	{
 		name: "Report Bug",
 		icon: RiBugLine,
-		flag:"reportbug",
 	},
 ];
