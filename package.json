@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f .env.dev next dev",
     "build:dev": "env-cmd -f .env.dev next build",
+    "start:dev": "NODE_ENV=production env-cmd -f .env.dev node_modules/next/dist/bin/next start -p 7000",
     "start:qa": "env-cmd -f .env.qa next start",
     "build:qa": "env-cmd -f .env.qa next build",
     "build:prod": "env-cmd -f .env.prod next build",
