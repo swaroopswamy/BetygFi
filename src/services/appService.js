@@ -33,7 +33,11 @@ export const postReportBugData = async (payload, rejectWithValue) => {
 export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 	try {
 		const { data } = await axiosInstance.post(
-			`user/suggestFeature`, payload
+			`user/suggestFeature`, payload, {
+			headers: {
+				'Content-Type': 'multipart/form-data', // Override Content-Type for this request
+			},
+		}
 		);
 		return data;
 	} catch (err) {

@@ -20,7 +20,7 @@ const CustomUpload = ({ name, value, handleChange }) => {
                     zIndex={"10"}
                 >
                     <Text variant="linkPrimary">
-                        {value === null ? "Drag and drop files here or click to upload" : value.name}
+                        {value === null || value === undefined ? "Drag and drop files here or click to upload" : value.name}
                     </Text>
                     <input type="file" name={name} onChange={handleChange} style={{ width: "100%", height: "100%", opacity: 0, position: "absolute", top: 0, left: 0, cursor: "pointer" }}></input>
                 </Box>

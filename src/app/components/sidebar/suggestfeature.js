@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Box, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { postSuggestFeature } from "@/redux/app_data/dataSlice";
+import { resetSuggestFeature } from "@/redux/app_data/dataSlice";
 const CustomInput = dynamic(() => import('@/app/components/customInput'));
 const CustomUpload = dynamic(() => import('@/app/components/customUpload'));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
@@ -13,19 +14,19 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
         userId: 123,
         featureName: "",
         description: "",
-        file: null,
+        image: null,
         emailId: ""
     });
     const statusSuggestFeature = useSelector(
-        (state) => state?.appData?.reportBug
+        (state) => state?.appData?.suggestFeature
     );
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === "file") {
+        if (name === "image") {
             const selectedFile = e.target.files[0];
             setFormData((prevData) => ({
                 ...prevData,
-                [name]: { selectedFile },
+                [name]: selectedFile,
             }));
         } else {
             setFormData((prevData) => ({
@@ -40,6 +41,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
     };
     return (
         <CustomModal
+            state={statusSuggestFeature.status}
             isOpen={isOpen}
             onOpen={onOpen}
             onClose={() => {
@@ -51,8 +53,8 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
                     file: null,
                     emailId: ""
                 });
+                dispatch(resetSuggestFeature());
             }}
-            state={statusSuggestFeature.status}
             headerTitle={"Suggest a Feature"}
             BodyComponent={() => {
                 return (
@@ -81,7 +83,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
                         <Box mb="30px">
                             <CustomUpload
                                 handleChange={handleChange}
-                                name="file"
+                                name="image"
                                 value={formData.file}
                             ></CustomUpload>
                         </Box>
