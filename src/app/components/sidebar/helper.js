@@ -56,20 +56,16 @@ export const bottomMenu = [
 		icon: SlSettings,
 		path: "/settings"
 	},
-	{
-		name: "Suggest Feature",
-		icon: BiBulb,
-		newTab: true,
-		path: "https://docs.google.com/forms/d/e/1FAIpQLSfxE_1k10L62cK87MuZfqik3D1nWruLu4MhIpzfOwIC7rhaQQ/viewform",
-	},
 	{    name: "Legal",
 		icon: SlShield,
 		path: "/legal"
 	},
 	{
+		name: "Suggest Feature",
+		icon: BiBulb,
+	},
+	{
 		name: "Report Bug",
 		icon: RiBugLine,
-		newTab: true,
-		path: "https://docs.google.com/forms/d/e/1FAIpQLSeFhdugB6onlsQizRby95DA68y_nz_jJ-OwiSndZmin7KGMLw/viewform",
 	},
 ];

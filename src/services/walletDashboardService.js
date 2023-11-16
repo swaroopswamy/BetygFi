@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { axiosInstance } from "@util/axiosInstance";
 
 export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
