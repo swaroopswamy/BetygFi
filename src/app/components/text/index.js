@@ -10,7 +10,7 @@ const Text = defineStyleConfig({
         base: {},
         h0: ({ colorMode }) => ({
             fontFamily: "Inter",
-            fontSize: "28px" ,
+            fontSize: "28px",
             fontWeight: "400",
             color: colorMode === "light" ? "#161616" : "#FFFFFF",
         }),
@@ -220,8 +220,15 @@ const Text = defineStyleConfig({
         linkPrimary: () => ({
             fontFamily: "Inter",
             fontWeight: "400",
-            color:"#117CCA",
+            color: "#117CCA",
             fontSize: "14px",
+        }),
+        h1new: ({ colorMode }) => ({
+            fontSize: "28px",
+            fontFamily: "Inter",
+            fontWeight: "400",
+            lineHeight: "36px",
+            color: colorMode === "light" ? "#161616" : "#FFF",
         }),
     },
     defaultProps: {

@@ -27,9 +27,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import ReportBugModal from "./report";
 import SuggestFeatureModal from "./suggestfeature";
 
-const DynamicIcon = dynamic(() => import("../icons/index_new"), {
-    loading: () => <span>Loading...</span>,
-});
+const DynamicIcon = dynamic(() => import("../icons/index_new"), { ssr: false });
 
 const SidebarContent = ({ ...rest }) => {
     const { colorMode } = useColorMode();
@@ -148,12 +146,6 @@ const SidebarContent = ({ ...rest }) => {
 
                         {/* Bottom Half */}
                         <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                            {/* <button onClick={onSuggestFeatureModalOpen}>
-                                SuggestFeatureModalOpen
-                            </button>
-                            <button onClick={onReportBugModalOpen}>
-                                ReportBugModalOpen
-                            </button> */}
                             {bottomMenu.map((link, i) => {
                                 if (i > 2) return;
                                 return (
@@ -248,102 +240,104 @@ const SidebarContent = ({ ...rest }) => {
                                     </Text>
                                 </Box>
                             </Box>
-                        </Box>
-                    </Box>
+                        </Box >
+                    </Box >
                 )}
 
-                {isSidebarCollapsed && (
-                    <Box
-                        layerStyle={"spaceBetween"}
-                        flexDir={"column"}
-                        width={"70px"}
-                    >
-                        <Box layerStyle={"flexColumn"} w={"100%"}>
-                            <Box
-                                layerStyle={"center"}
-                                alignItems="center"
-                                cursor={"pointer"}
-                                py={"20px"}
-                                mr={"-13px"}
-                                onClick={() => router.push("/")}
-                            >
-                                <Image
-                                    width={35}
-                                    height={35}
-                                    alt="logo"
-                                    src={
-                                        colorMode === "light"
-                                            ? "/icons/company_sidebar_sm_logo_dark.svg"
-                                            : "/icons/company_sidebar_sm_logo_light.svg"
-                                    }
-                                    cursor={"pointer"}
-                                    onClick={() => router.push("/")}
-                                />
-                            </Box>
-
-                            <Box layerStyle={"flexColumn"} mt={"20px"}>
-                                {linkItemsUp.map((link, i) => (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        isActive={pathname === link.path}
-                                    ></CollapsedNavItem>
-                                ))}
-                            </Box>
-
-                            <hr style={{ margin: "15px -13px" }} />
-
-                            <Box layerStyle={"flexColumn"}>
-                                {linkItemsDown.map((link, i) => (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        isActive={pathname === link.path}
-                                    ></CollapsedNavItem>
-                                ))}
-                            </Box>
-                        </Box>
-
-                        <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                            {bottomMenu.map((link, i) => (
-                                <CollapsedNavItem
-                                    key={i}
-                                    NavIcon={link.icon}
-                                    path={link.path}
-                                    newTab={link.newTab}
-                                    isActive={pathname === link.path}
-                                ></CollapsedNavItem>
-                            ))}
-
-                            <hr style={{ margin: "25px -13px" }} />
-
-                            <Box
-                                display={"flex"}
-                                justifyContent={"center"}
-                                w={"100%"}
-                            >
+                {
+                    isSidebarCollapsed && (
+                        <Box
+                            layerStyle={"spaceBetween"}
+                            flexDir={"column"}
+                            width={"70px"}
+                        >
+                            <Box layerStyle={"flexColumn"} w={"100%"}>
                                 <Box
-                                    display={"flex"}
-                                    justifyContent="center"
-                                    alignItems={"center"}
-                                    height={"45px"}
+                                    layerStyle={"center"}
+                                    alignItems="center"
+                                    cursor={"pointer"}
+                                    py={"20px"}
                                     mr={"-13px"}
+                                    onClick={() => router.push("/")}
                                 >
                                     <Image
-                                        width={22}
-                                        height={22}
+                                        width={35}
+                                        height={35}
                                         alt="logo"
-                                        src={"/icons/company_sm_logo.svg"}
+                                        src={
+                                            colorMode === "light"
+                                                ? "/icons/company_sidebar_sm_logo_dark.svg"
+                                                : "/icons/company_sidebar_sm_logo_light.svg"
+                                        }
+                                        cursor={"pointer"}
+                                        onClick={() => router.push("/")}
                                     />
+                                </Box>
+
+                                <Box layerStyle={"flexColumn"} mt={"20px"}>
+                                    {linkItemsUp.map((link, i) => (
+                                        <CollapsedNavItem
+                                            key={i}
+                                            NavIcon={link.icon}
+                                            path={link.path}
+                                            newTab={link.newTab}
+                                            isActive={pathname === link.path}
+                                        ></CollapsedNavItem>
+                                    ))}
+                                </Box>
+
+                                <hr style={{ margin: "15px -13px" }} />
+
+                                <Box layerStyle={"flexColumn"}>
+                                    {linkItemsDown.map((link, i) => (
+                                        <CollapsedNavItem
+                                            key={i}
+                                            NavIcon={link.icon}
+                                            path={link.path}
+                                            newTab={link.newTab}
+                                            isActive={pathname === link.path}
+                                        ></CollapsedNavItem>
+                                    ))}
+                                </Box>
+                            </Box>
+
+                            <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
+                                {bottomMenu.map((link, i) => (
+                                    <CollapsedNavItem
+                                        key={i}
+                                        NavIcon={link.icon}
+                                        path={link.path}
+                                        newTab={link.newTab}
+                                        isActive={pathname === link.path}
+                                    ></CollapsedNavItem>
+                                ))}
+
+                                <hr style={{ margin: "25px -13px" }} />
+
+                                <Box
+                                    display={"flex"}
+                                    justifyContent={"center"}
+                                    w={"100%"}
+                                >
+                                    <Box
+                                        display={"flex"}
+                                        justifyContent="center"
+                                        alignItems={"center"}
+                                        height={"45px"}
+                                        mr={"-13px"}
+                                    >
+                                        <Image
+                                            width={22}
+                                            height={22}
+                                            alt="logo"
+                                            src={"/icons/company_sm_logo.svg"}
+                                        />
+                                    </Box>
                                 </Box>
                             </Box>
                         </Box>
-                    </Box>
-                )}
+                    )
+                }
 
                 <Box display={"flex"}>
                     <Flex
@@ -370,7 +364,7 @@ const SidebarContent = ({ ...rest }) => {
                         />
                     </Flex>
                 </Box>
-            </Box>
+            </Box >
 
             <SuggestFeatureModal
                 isOpen={isSuggestFeatureModalOpen}
@@ -606,7 +600,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     }
                                                 />
                                             </Box>
-                                        </Box>
+                                        </Box >
 
                                         <Box>
                                             <div className="controller-row">
@@ -626,7 +620,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 </label>
                                             </div>
                                         </Box>
-                                    </Box>
+                                    </Box >
 
                                     <Box layerStyle={"flexColumn"}>
                                         {linkItemsUp.map((link, i) => (
@@ -784,7 +778,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                             </NavItem>
                                         ))}
                                     </Box>
-                                </Box>
+                                </Box >
 
                                 <Box
                                     display={"flex"}
@@ -821,11 +815,11 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                         </Text>
                                     </Box>
                                 </Box>
-                            </Box>
-                        </Box>
-                    </DrawerBody>
-                </DrawerContent>
-            </Drawer>
+                            </Box >
+                        </Box >
+                    </DrawerBody >
+                </DrawerContent >
+            </Drawer >
         </>
     );
 };

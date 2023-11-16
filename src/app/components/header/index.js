@@ -107,7 +107,7 @@ const Navbar = ({ ...rest }) => {
 					height={"45px"}
 					flexShrink={0}
 					borderRadius={"20px"}
-					bg={useColorModeValue("#E8E8E8", "#000000")}
+					bg={useColorModeValue("#F4F4F4", "#000000")}
 					ml={"10px"}
 					display={"flex"}
 					alignItems={"center"}
@@ -120,11 +120,16 @@ const Navbar = ({ ...rest }) => {
 								w="20px"
 								h="20px"
 								alt="search_icon"
+								borderLeftRadius={"20px"}
+								borderRightRadius={"20px"}	
 							/>
 						</InputLeftElement>
 						<Input
 							type="text"
 							border="none"
+							borderLeftRadius={"20px"}
+							borderRightRadius={"20px"}	
+						
 							_selected={{
 								outline: "none",
 								border: "none",
@@ -140,7 +145,7 @@ const Navbar = ({ ...rest }) => {
 							_light={{ color: "#16171B" }}
 							_dark={{ color: "#A8ADBD" }}
 							w="100%"
-							placeholder="Search Wallet Address"
+							placeholder="Search by Coin, DeFi name, NFT, Wallet and more"
 							onKeyDown={(e) => {
 								handleSearchByWalletAddress(e);
 							}}
@@ -261,7 +266,7 @@ const Navbar = ({ ...rest }) => {
 				width={"full"}
 				height="60px"
 				alignItems="center"
-				bgColor={colorMode === "light" ? "#F0F0F5" : "#272727"}
+				bgColor={colorMode === "light" ? "#F0F0F5" : "#000000"}
 				borderBottom={"1px"}
 				borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
 				justifyContent={{ base: "space-between", md: "flex-end" }}

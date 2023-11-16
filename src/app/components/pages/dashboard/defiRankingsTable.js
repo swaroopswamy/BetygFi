@@ -15,13 +15,11 @@ import {
 	Tooltip,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import dynamic from "next/dynamic";
 
 const GenericTable = dynamic(() => import("@/app/components/table"));
-const SearchBox = dynamic(() => import("@/app/components/searchBox"));
 const PageButtonsWide = dynamic(() =>
 	import("@/app/components/pageButtonsWide")
 );
@@ -33,17 +31,19 @@ import {
 } from "@/app/components/pages/dashboard/helper";
 import { MobileSearchBox } from "@/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
+const ScoreDistribuition = dynamic(() =>
+	import("@/app/components/pages/dashboard/scoreDistribuition")
+);
 
 const Rankings = () => {
 	const [tablePage, setTablePage] = useState(1);
 	const [tableLimit, setTableLimit] = useState(20);
-
+	const [totalDefis, setTotalDefis] = useState(0);
 	const timerRef = useRef(null);
 
 	const [searchByName, setSearchByName] = useState("");
 	const {
 		isOpen: isMobileRankingsSearchOpen,
-		onToggle: onMobileRankingsSearchToggle,
 	} = useDisclosure();
 
 	const dispatch = useDispatch();
@@ -55,10 +55,20 @@ const Rankings = () => {
 	const categorySelected = useSelector(
 		(state) => state?.dashboardTableData?.categorySelected
 	);
+	const scoreSelected = useSelector(
+		(state) => state?.dashboardTableData?.scoreSelected
+	);
 
 	const tableData = useSelector(
 		(state) => state?.dashboardTableData.DefiRankingsTableData
 	);
+	const scoreTotalData = useSelector((state) => state.dashboardTableData.ScoreGraphData?.data?.safety_score);
+
+	useEffect(() => {
+		if (scoreTotalData) {
+			setTotalDefis(scoreTotalData[0]?.value + scoreTotalData[1]?.value + scoreTotalData[2].value + scoreTotalData[3].value);
+		}
+	}, [scoreTotalData]);
 
 	const pageChangeHandler = (page) => {
 		setTablePage(page);
@@ -76,10 +86,11 @@ const Rankings = () => {
 				const payload = {
 					name: searchByName,
 					page:
-                        tablePage >= 1 &&
-                        tablePage <= tableData?.data?.totalPages &&
-                        tablePage,
+						tablePage >= 1 &&
+						tablePage <= tableData?.data?.totalPages &&
+						tablePage,
 					limit: tableLimit,
+					score_dist: scoreSelected
 				};
 				dispatch(fetchDefiRankingTableData(payload));
 			} else {
@@ -87,10 +98,11 @@ const Rankings = () => {
 					blockchain: blockchainSelected,
 					category: categorySelected,
 					page:
-                        tablePage >= 1 &&
-                        tablePage <= tableData?.data?.totalPages &&
-                        tablePage,
+						tablePage >= 1 &&
+						tablePage <= tableData?.data?.totalPages &&
+						tablePage,
 					limit: tableLimit,
+					score_dist: scoreSelected
 				};
 				dispatch(fetchDefiRankingTableData(payload));
 			}
@@ -106,6 +118,7 @@ const Rankings = () => {
 		tablePage,
 		searchByName,
 		tableLimit,
+		scoreSelected
 	]);
 
 	return (
@@ -114,35 +127,34 @@ const Rankings = () => {
 			bg={useColorModeValue("#FFFFFF", "#202020")}
 			borderRadius={"6px"}
 			mb={{ base: "100px", md: "20px" }}
+
 		>
-			<Box layerStyle={"spaceBetween"} p={"20px"} h={"75px"}>
-				<Text variant={"h2"}>DeFi Rankings</Text>
+			<Box layerStyle={"spaceBetween"} flexDirection={{ base: "column", md: "row", lg: "row" }} p={"10px 20px"} >
 
 				<Box
-					display={{ base: "none", md: "flex" }}
-					justifyContent={"center"}
-					alignItems={"center"}
+					display={"flex"}
+					flexDirection={{ base: "row", md: "column", lg: "column" }}
+					alignItems={"start"}
+					justifyContent={{ base: "space-between", md: "space-between", lg: "space-between" }}
+					w={{ base: "100%", md: "unset", lg: "unset" }}
+					pt={{ base: "19px", md: "0px", lg: "0px" }}
+					mb={{ base: "15px", md: "0px", lg: "0px" }}
 				>
-					<SearchBox
-						placeholder={"Search DeFi"}
-						onChange={(e) => {
-							searchByNameHandler(e.target.value);
+					<Text variant={"h2"} fontWeight={"700"} lineHeight={"26px"}>DeFi Rankings</Text>
+					<Text variant={"content"} fontWeight={"500"}
+						_light={{
+							color: "#161616"
 						}}
-					/>
+						_dark={{
+							color: "#FFFFFF"
+						}}
+						lineHeight={"26px"}
+					>
+						Total DeFis - {totalDefis}
+					</Text>
 				</Box>
+				<ScoreDistribuition totalDefis={totalDefis} scoreTotalData={scoreTotalData} />
 
-				<Box
-					display={{ base: "flex", md: "none" }}
-					justifyContent={"center"}
-					alignItems={"center"}
-					cursor={"pointer"}
-					onClick={onMobileRankingsSearchToggle}
-				>
-					<Search2Icon
-						boxSize={"16px"}
-						color={useColorModeValue("#16171B", "#FFFFFF")}
-					/>
-				</Box>
 			</Box>
 
 			<Collapse in={isMobileRankingsSearchOpen} animateOpacity={"true"}>
@@ -222,7 +234,7 @@ const TableRow = ({ item, rowIndex }) => {
 						src={item?.logo}
 					></Avatar>
 
-					<Box display={"flex"} alignItems={"stretch"} gap={"8px"}>
+					<Box display={"flex"} alignItems={"start"} flexDirection={"column"} gap={"4px"}>
 						<Text variant={"h3"}>{item?.name}</Text>
 
 						<Box layerStyle={"center"} flexShrink={"0"}>
@@ -286,32 +298,39 @@ const TableRow = ({ item, rowIndex }) => {
 					<Text variant={"h3"}>NA</Text>
 				)}
 			</Td>
-			<Td key={7}>
-				<Box layerStyle={"center"} h="100%" gap={"5px"}>
+			<Td key={7} justifyContent={"center"}>
+				<Box layerStyle={"center"} justifyContent={"start"} h="100%" >
 					{item?.safety_score === undefined ? (
 						"-"
 					) : (
 						<>
 							<Box
-								w="12px"
-								h="9px"
+								layerStyle={"flexCenter"}
+								justifyContent={"center"}
+								w="88px"
+								h="33px"
 								borderRadius={"30px"}
 								mr={"4px"}
 								bgColor={
 									item.safety_score >= 75
-										? "#9ADA8A"
+										? "#0E6027"
 										: item.safety_score < 75 &&
-                                          item.safety_score >= 50
-											? "#FFD976"
+											item.safety_score >= 50
+											? "#00799F"
 											: item.safety_score < 50 &&
-                                          item.safety_score >= 25
-												? "#FFB287"
-												: "#FF7373"
+												item.safety_score >= 25
+												? "#B87A00"
+												: "#FF0000"
 								}
-							></Box>
-							<Text variant={"h3"}>
-								{item?.safety_score?.toFixed(0)}
-							</Text>
+							>
+								<Text variant={"h3"}
+									color={"#FFFFFF"}
+									fontWeight={"700"}
+								>
+									{item?.safety_score?.toFixed(0)}
+								</Text>
+							</Box>
+
 						</>
 					)}
 				</Box>
@@ -390,26 +409,32 @@ const ButtonComp = ({ item }) => {
 				gap={"5px"}
 			>
 				<Box
-					w="12px"
-					h="9px"
-					borderRadius={"30px"}
+					layerStyle={"flexCenter"}
+					justifyContent={"center"}
+					w="45px"
+					h="28px"
+					borderRadius={"4px"}
 					mr={"4px"}
 					bgColor={
 						item.safety_score >= 75
-							? "#9ADA8A"
-							: item.safety_score < 75 && item.safety_score >= 50
-								? "#FFD976"
-								: item.safety_score < 50 && item.safety_score >= 25
-									? "#FFB287"
-									: "#FF7373"
+							? "#0E6027"
+							: item.safety_score < 75 &&
+								item.safety_score >= 50
+								? "#00799F"
+								: item.safety_score < 50 &&
+									item.safety_score >= 25
+									? "#B87A00"
+									: "#FF0000"
 					}
-				></Box>
-				<Text variant={"h3"}>
-					{" "}
-					{item?.safety_score?.toFixed(0) === undefined
-						? "-"
-						: item?.safety_score?.toFixed(0)}{" "}
-				</Text>
+				>
+					<Text variant={"h3"}
+						color={"#FFFFFF"}
+						fontWeight={"700"}
+					>
+						{item?.safety_score?.toFixed(0)}
+					</Text>
+				</Box>
+
 			</Box>
 		</Box>
 	);
@@ -512,7 +537,7 @@ const PanelComp = ({ item }) => {
 				</Box>
 				{!isEmpty(item.mcap) ? (
 					<Text variant={"h3"} textAlign={"left"}>
-                        $
+						$
 						{Math.trunc(item.mcap).toLocaleString("en-US", {
 							style: "currency",
 							currency: "USD",
@@ -520,7 +545,7 @@ const PanelComp = ({ item }) => {
 					</Text>
 				) : (
 					<Text variant={"h3"} textAlign={"left"}>
-                        NA
+						NA
 					</Text>
 				)}
 			</Box>
@@ -547,7 +572,7 @@ const PanelComp = ({ item }) => {
 					</Text>
 				) : (
 					<Text variant={"h3"} textAlign={"left"}>
-                        NA{" "}
+						NA{" "}
 					</Text>
 				)}
 			</Box>
@@ -561,7 +586,7 @@ const PanelComp = ({ item }) => {
 						);
 					}}
 				>
-                    Open Dashboard
+					Open Dashboard
 				</Button>
 			</Box>
 		</Box>
