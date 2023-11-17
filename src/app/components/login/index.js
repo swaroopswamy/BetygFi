@@ -127,7 +127,7 @@ const LoginPage = ({ isOpen, onClose }) => {
 									position={"absolute"}
 									bgImage={
 										colorMode === "light"
-											? "../../../../public/images/login_modal_bg_dark.png"
+											? "/public/images/login_modal_bg_dark.png"
 											: "/public/images/login_modal_bg_dark.png"
 									}
 									width={"100%"}

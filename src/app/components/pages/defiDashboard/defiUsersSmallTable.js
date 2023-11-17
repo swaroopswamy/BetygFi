@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
 	Text,
 	Box,
@@ -11,16 +11,13 @@ import {
 	Th,
 	Td,
 } from "@chakra-ui/react";
-import GenericTable from "/src/app/components/table";
-import { DefiUsersSmallTableHeader } from "/src/app/components/pages/defiDashboard/helper";
-import LastUpdate from "/src/app/components/lastUpdate";
-import { fetchDefiUsersTableData } from "/src/redux/defi_dashboard_data/dataSlice";
+import GenericTable from "@/app/components/table";
+import { DefiUsersSmallTableHeader } from "@/app/components/pages/defiDashboard/helper";
+import LastUpdate from "@/app/components/lastUpdate";
+import { fetchDefiUsersTableData } from "@/redux/defi_dashboard_data/dataSlice";
 
-function DefiUsersSmallTable() {
-	const searchParam = useSearchParams();
+function DefiUsersSmallTable({ searchParamProtocolSlug }) {
 	const dispatch = useDispatch();
-
-	const defi = searchParam.get("defi");
 
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
@@ -32,7 +29,7 @@ function DefiUsersSmallTable() {
 
 	const getDefiUsersTableDataHandler = () => {
 		const payload = {
-			defi: defi,
+			defi: searchParamProtocolSlug,
 			blockchain: blockchainSelected,
 		};
 		dispatch(fetchDefiUsersTableData(payload));
@@ -71,10 +68,10 @@ function DefiUsersSmallTable() {
 					ButtonComp={(item) => {
 						return (
 							<Box layerStyle={"flexCenter"}>
-								<Text variant={"h3"}> 
+								<Text variant={"h3"}>
 									{item?.item?.user?.split("").join("").substring(0, 8) +
-                  "..." +
-                  item?.item?.user?.slice(-5)}
+										"..." +
+										item?.item?.user?.slice(-5)}
 								</Text>
 							</Box>
 						);
@@ -120,7 +117,7 @@ const TableRow = ({ item, i }) => {
 				}
 				onClick={() => {
 					setClick(!clicked);
-					router.push(`/wallet_dashboard?address=${item.user}`);
+					router.push(`/top-wallets/${item.user}`);
 				}}
 				borderBottom={"1px"}
 				borderColor={useColorModeValue("#DFDFDF", "#313131")}

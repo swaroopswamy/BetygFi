@@ -1,0 +1,25 @@
+# robots.txt for https://www.betygfi.com/
+User-agent: *
+Allow: /
+Allow: /legal
+Allow: /help
+Allow: /protocol/
+Allow: /top-wallets/
+Allow: /coin/
+Allow: /approach-paper/
+Disallow: /http/
+Disallow: /cgi-bin/
+Disallow: /https/
+Disallow: /admin/
+Disallow: /test/
+Disallow: /forgot/
+Disallow: /reset/
+Disallow: /profile/
+Disallow: /auth/
+Disallow: /event/
+Disallow: /events/
+Disallow: /api/
+Disallow: /searchbox/%QUERY
+
+
+Sitemap: https://www.betygfi.com/sitemap.xml

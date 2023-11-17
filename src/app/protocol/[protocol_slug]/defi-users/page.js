@@ -12,10 +12,10 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
-import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
+import BackIconWhite from "/public/icons/backIconWhite.svg";
+import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
 
 function DefiUsers() {
 	const router = useRouter();
@@ -168,7 +168,8 @@ function DefiUsers() {
 				align={"center"}
 				onClick={() => {
 					router.push(
-						`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
+						`/protocol/aave-v2`
+						// `/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
 					);
 				}}
 			>

@@ -16,18 +16,19 @@ import {
     createIcon,
     Icon,
 } from "@chakra-ui/react";
+// import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
-import { linkItemsDown, linkItemsUp, bottomMenu } from "./helper";
+import { linkItemsDown, linkItemsUp, bottomMenu } from "@/app/components/sidebar/helper";
 import { FaPeopleGroup } from "react-icons/fa6";
 import ReportBugModal from "./report";
 import SuggestFeatureModal from "./suggestfeature";
 
-const DynamicIcon = dynamic(() => import("../icons/index_new"), { ssr: false });
+const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), { ssr: false });
 
 const SidebarContent = ({ ...rest }) => {
     const { colorMode } = useColorMode();

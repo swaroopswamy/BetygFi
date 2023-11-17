@@ -8,7 +8,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 
-const CustomChart = dynamic(() => import("../../graph"));
+const CustomChart = dynamic(() => import("@/app/components/graph"));
 
 const AssetTrendSplineChart = () => {
 	const { colorMode } = useColorMode();

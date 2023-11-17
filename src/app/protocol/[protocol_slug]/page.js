@@ -2,59 +2,62 @@
 import { Box, useColorModeValue, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useRouter, useSearchParams } from "next/navigation";
-import { fetchDefiData } from "../../redux/defi_dashboard_data/dataSlice";
-const Banner = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/banner")
-);
-const TVLBox = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/tvlBox")
-);
-const TrendGraph = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/dashboardTrendGraph")
-);
-const DefiUsersSmallTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiUsersSmallTable")
-);
-const DefiTVLChart = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiTVLchart")
-);
-const DefiAssetsSmallTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiAssetsSmallTable")
-);
-const DefiFeeRevenueChart = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/defiFeeRevenueChart")
-);
-const GovernanceTable = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/governanceTable")
-);
-const DefiHotContractsSmallTable = dynamic(() =>
-	import("../components/pages/defiDashboard/DefiHotContractsSmallTable")
-);
-const DefiInflowOutflowSmallTableComponent = dynamic(() =>
-	import("/src/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
-);
+import { useRouter } from "next/navigation";
+import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";
 
-const DefiDashboardPage = () => {
+const Banner = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/banner")
+);
+const TVLBox = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/tvlBox")
+);
+const TrendGraph = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/dashboardTrendGraph")
+);
+const DefiUsersSmallTable = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/defiUsersSmallTable")
+);
+const DefiTVLChart = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/defiTVLchart")
+);
+const DefiAssetsSmallTable = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/defiAssetsSmallTable")
+);
+const DefiFeeRevenueChart = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/defiFeeRevenueChart")
+);
+const GovernanceTable = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/governanceTable")
+);
+const DefiHotContractsSmallTable = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/DefiHotContractsSmallTable")
+);
+const DefiInflowOutflowSmallTableComponent = dynamic(() =>
+	import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
+);
+
+const DefiDashboardPage = ({ params }) => {
+	const searchParamProtocolSlug = params?.protocol_slug;
+
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const searchParam = useSearchParams();
-
-	const id = searchParam.get("id");
 
 	const getDefiDataHandler = () => {
-		const payload = {
-			id: id,
-		};
-		dispatch(fetchDefiData(payload));
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+			const payload = {
+				id: searchParamProtocolSlug,
+			};
+			dispatch(fetchDefiData(payload));
+		}
 	};
 
 	useEffect(() => {
 		getDefiDataHandler();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
 	return (
 		<>
 			<Box
@@ -85,7 +88,7 @@ const DefiDashboardPage = () => {
 						_light={{ color: "#16171B" }}
 						_dark={{ color: "#A8ADBD" }}
 					>
-            Home/Defi Dashboard
+						Home/Defi Dashboard
 					</Text>
 				</Box>
 				<Banner />
@@ -114,8 +117,12 @@ const DefiDashboardPage = () => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiUsersSmallTable />
-					<DefiTVLChart />
+					<DefiUsersSmallTable
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
+					<DefiTVLChart
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
 				</Box>
 
 				<Box
@@ -124,8 +131,12 @@ const DefiDashboardPage = () => {
 					justifyContent={"space-between"}
 					gap={"20px"}
 				>
-					<DefiAssetsSmallTable />
-					<DefiFeeRevenueChart />
+					<DefiAssetsSmallTable
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
+					<DefiFeeRevenueChart
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
 				</Box>
 
 				<Box
@@ -139,7 +150,9 @@ const DefiDashboardPage = () => {
 				</Box>
 
 				<Box>
-					<GovernanceTable />
+					<GovernanceTable
+						searchParamProtocolSlug={searchParamProtocolSlug}
+					/>
 				</Box>
 			</Box>
 		</>

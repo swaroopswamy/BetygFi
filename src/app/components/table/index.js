@@ -15,9 +15,10 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
-const TooltipComp = dynamic(() => import("/src/app/components/tooltipComp"));
-const SkeletonTable = dynamic(() => import("/src/app/components/skeleton"));
-import { SingleAccordionComp } from "/src/app/components/accordion";
+const TooltipComp = dynamic(() => import("@/app/components/tooltipComp"));
+const SkeletonTable = dynamic(() => import("@/app/components/skeleton"));
+
+import { SingleAccordionComp } from "@/app/components/accordion";
 
 import { HiSortDescending } from "react-icons/hi";
 

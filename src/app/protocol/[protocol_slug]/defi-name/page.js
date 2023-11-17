@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import {
 	Box,
 	Icon,
@@ -11,13 +10,13 @@ import {
 	Image,
 	useColorMode,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
 
-import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
-import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
+import BackIconWhite from "/public/icons/backIconWhite.svg";
+import BackIconBlack from "/public/icons/backIconBlack.svg";
 
 function Defi_Hot_Contracts() {
 	const router = useRouter();
@@ -114,7 +113,7 @@ function Defi_Hot_Contracts() {
 				mb={"20px"}
 				align={"center"}
 				onClick={() => {
-					router.push(`/defi_dashboard/`);
+					router.push(`/protocol/`);
 				}}
 			>
 				<Icon

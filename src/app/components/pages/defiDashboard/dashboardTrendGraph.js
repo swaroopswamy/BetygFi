@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import millify from "millify";
 
 const axios = require("axios");
-const CustomChart = dynamic(() => import("/src/app/components/graph"));
+const CustomChart = dynamic(() => import("@/app/components/graph"));
 
 function getEveryNth(arr, nth) {
 	const result = [];

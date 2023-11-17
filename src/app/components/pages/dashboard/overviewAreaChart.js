@@ -2,10 +2,10 @@
 /* eslint-disable max-len */
 import { Box, Select, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import CustomChart from "/src/app/components/graph";
+import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
-import CurrencyButtons from "../../currencyButtons";
+import CurrencyButtons from "@/app/components/currencyButtons";
 
 const OverviewAreaChart = () => {
 	const { colorMode } = useColorMode();

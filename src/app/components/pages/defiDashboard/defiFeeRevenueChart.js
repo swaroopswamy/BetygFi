@@ -7,23 +7,20 @@ import {
 	useColorModeValue,
 	useColorMode,
 } from "@chakra-ui/react";
-import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDefiFeeRevenueData } from "../../../../redux/defi_dashboard_data/dataSlice";
-import LastUpdate from "/src/app/components/lastUpdate";
-import TooltipComp from "/src/app/components/tooltipComp";
+import { fetchDefiFeeRevenueData } from "@/redux/defi_dashboard_data/dataSlice";
+import LastUpdate from "@/app/components/lastUpdate";
+import TooltipComp from "@/app/components/tooltipComp";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 let USDollar = new Intl.NumberFormat("en-US");
 
-function DefiFeeRevenueChart() {
-	const searchParam = useSearchParams();
+function DefiFeeRevenueChart({ searchParamProtocolSlug }) {
 	const { colorMode } = useColorMode();
 	const dispatch = useDispatch();
 
-	const defi = searchParam.get("defi");
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
 	);
@@ -33,9 +30,11 @@ function DefiFeeRevenueChart() {
 
 	const getFeeRevenueDataHandler = () => {
 		const payload = {
-			defi: defi,
 			blockchain: blockchainSelected,
 		};
+		if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+			payload.defi = searchParamProtocolSlug;
+		}
 		dispatch(fetchDefiFeeRevenueData(payload));
 	};
 

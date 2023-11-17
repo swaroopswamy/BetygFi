@@ -2,21 +2,17 @@
 import { Box, Text, useColorModeValue, useColorMode } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
-import { } from "react";
-import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import TooltipComp from "/src/app/components/tooltipComp";
+import TooltipComp from "@/app/components/tooltipComp";
 import { fetchDefiTvlBorrowData } from "@/redux/defi_dashboard_data/dataSlice";
 
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function DefiTVLChart() {
+function DefiTVLChart({ searchParamProtocolSlug }) {
 	const { colorMode } = useColorMode();
-	const searchParam = useSearchParams();
 	const dispatch = useDispatch();
-  
-	const defi = searchParam.get("defi");
+
 	const blockchainSelected = useSelector(
 		(state) => state?.dashboardTableData?.blockchainType
 	);
@@ -24,10 +20,10 @@ function DefiTVLChart() {
 	const defiTvlBorrowData = useSelector(
 		(state) => state?.defiDashboardData?.DefiTvlBorrowData
 	);
-  
+
 	const getTvlBorrowDataHandler = () => {
 		const payload = {
-			defi: defi,
+			defi: searchParamProtocolSlug,
 			blockchain: blockchainSelected,
 		};
 		dispatch(fetchDefiTvlBorrowData(payload));
@@ -82,13 +78,13 @@ function DefiTVLChart() {
 			custom: function ({ series, dataPointIndex, w }) {
 				return (
 					'<div class="donut_tooltip">' +
-          '<div class="donut_tooltip_text">' +
-          w.globals.labels[dataPointIndex] +
-          "</div>" +
-          '<div class="donut_tooltip_text">' +
-          millify(series[0][dataPointIndex], { precision: 2, locales: "en-US" }) + " USD" +
-          '</div>' +
-          "</div>"
+					'<div class="donut_tooltip_text">' +
+					w.globals.labels[dataPointIndex] +
+					"</div>" +
+					'<div class="donut_tooltip_text">' +
+					millify(series[0][dataPointIndex], { precision: 2, locales: "en-US" }) + " USD" +
+					'</div>' +
+					"</div>"
 				);
 			}
 		},
@@ -137,9 +133,9 @@ function DefiTVLChart() {
 				y: defiTvlBorrowData?.data?.totalBorrowed
 			},
 			/*  {
-      x: 'Supply',
-      y: 158930,000,000
-    }, */ 
+	  x: 'Supply',
+	  y: 158930,000,000
+	}, */
 			{
 				x: 'TVL',
 				y: defiTvlBorrowData?.data?.totalTvl
@@ -157,14 +153,13 @@ function DefiTVLChart() {
 				<Box layerStyle={"spaceBetween"} p={"20px"} >
 					<Box layerStyle={"flexCenter"} gap={"5px"}>
 						<Text variant={"smallTableHeader"}>
-                    DeFi Borrow/Supply/TVL
+							DeFi Borrow/Supply/TVL
 						</Text>
 						<TooltipComp label="DeFi borrow is the total amount of assets 
                         that the DeFi has lent to its users. 
                         DeFi supply is the total amount of assets users have lent to the DeFi. 
                         Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
 					</Box>
-                
 
 					{/* <Button
                   variant={'viewMore'}
@@ -194,7 +189,6 @@ function DefiTVLChart() {
 							</>
 						)
 					}
-
 				</Box>
 			</Box>
 		</>

@@ -28,7 +28,7 @@ import {
 } from "@/redux/wallet_dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
 
-const DefiTable = dynamic(() => import("./DefiTable"));
+const DefiTable = dynamic(() => import("@/app/components/pages/walletDashboard/DefiTable"));
 
 const PortfolioPanelComponent = () => {
 	const { colorMode } = useColorMode();

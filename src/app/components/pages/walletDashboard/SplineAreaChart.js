@@ -1,6 +1,6 @@
 import React from "react";
 import { useColorMode } from "@chakra-ui/react";
-import CustomChart from '../../graph/index';
+import CustomChart from "@/app/components/graph";
 
 const SplineAreaChart = () => {
 	const { colorMode } = useColorMode();

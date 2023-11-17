@@ -1,9 +1,9 @@
-import { RiHomeLine, RiBugLine } from 'react-icons/ri';
-import { TiDocumentText } from 'react-icons/ti';
-import { BiWalletAlt, BiBulb } from 'react-icons/bi';
-import { SlSocialReddit, SlSettings, SlShield } from 'react-icons/sl';
-import { RxDiscordLogo } from 'react-icons/rx';
-import { BetygFiSmLogo } from '../icons';
+import { RiHomeLine, RiBugLine } from "react-icons/ri";
+import { TiDocumentText } from "react-icons/ti";
+import { BiWalletAlt, BiBulb } from "react-icons/bi";
+import { SlSocialReddit, SlSettings, SlShield } from "react-icons/sl";
+import { RxDiscordLogo } from "react-icons/rx";
+import { BetygFiSmLogo } from "@/app/components/icons";
 
 export const linkItemsUp = [
 	{

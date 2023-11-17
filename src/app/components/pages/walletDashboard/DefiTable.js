@@ -6,23 +6,23 @@ import {
 	Th,
 	Tr,
 	Box,
-	useColorModeValue,
+	// useColorModeValue,
 	Icon,
 	Image as ChakraImage
 } from "@chakra-ui/react";
 
 import { useSelector } from "react-redux";
 import isEmpty from "is-empty";
-import SortWhiteIcon from "../../../../../public/icons/sort_white.svg";
-import SortBlackIcon from "../../../../../public/icons/sort_black.svg";
+// import SortWhiteIcon from "../../../../../public/icons/sort_white.svg";
+// import SortBlackIcon from "../../../../../public/icons/sort_black.svg";
 import dynamic from "next/dynamic";
 
-const GenericTable = dynamic(() => import("../../table"));
+const GenericTable = dynamic(() => import("@/app/components/table"));
 import {
 	portfolioTableHeader,
 	PortfolioTableDesktop,
 	PortfolioTableMobile,
-} from "./helper";
+} from "@/app/components/pages/walletDashboard/helper";
 import Image from "next/image";
 
 const DefiTable = () => {
@@ -202,7 +202,7 @@ const TableHeaderRowMobile = () => {
 						mt="5px"
 						w="10px"
 						h="10px"
-						as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+						// as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
 					></Icon>
 				</Box>
 			</Th>
@@ -233,7 +233,7 @@ const TableHeaderRowMobile = () => {
 						mt="5px"
 						w="10px"
 						h="10px"
-						as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
+						// as={useColorModeValue(SortBlackIcon, SortWhiteIcon)}
 						alt=""
 					></ChakraImage>
 				</Box>

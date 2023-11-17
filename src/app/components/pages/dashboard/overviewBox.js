@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import { Box, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
-import TooltipComp from "/src/app/components/tooltipComp";
-import { SingleAccordionComp } from "/src/app/components/accordion";
-import OverviewAreaChart from "/src/app/components/pages/dashboard/overviewAreaChart";
+import TooltipComp from "@/app/components/tooltipComp";
+import { SingleAccordionComp } from "@/app/components/accordion";
+import OverviewAreaChart from "@/app/components/pages/dashboard/overviewAreaChart";
 import {
 	fetchOverviewData,
 	fetchOverviewGraphData,

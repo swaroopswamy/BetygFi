@@ -17,10 +17,10 @@ import {
 	TabPanel,
 	useColorMode,
 } from "@chakra-ui/react";
-import BackIconWhite from "../../../../public/icons/backIconWhite.svg";
-import BackIconBlack from "../../../../public/icons/backIconBlack.svg";
+import BackIconWhite from "/public/icons/backIconWhite.svg";
+import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('/src/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
 
 function Defi_Hot_Contracts() {
 	const [tabIndex, setTabIndex] = useState(0);
@@ -127,7 +127,8 @@ function Defi_Hot_Contracts() {
 				align={"center"}
 				onClick={() => {
 					router.push(
-						`/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
+						`/protocol/aave-v2`
+						// `/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
 					);
 				}}
 			>

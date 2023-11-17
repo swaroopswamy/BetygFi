@@ -1,8 +1,8 @@
 "use client";
 import { Box, Image, useColorModeValue, Text, Tab, TabList, TabPanels, 
 	Tabs, TabPanel, useColorMode } from "@chakra-ui/react";
-import TermsPanelComponent from "../components/pages/legal/terms";
-import PrivacyPanelComponent from "../components/pages/legal/privacy";
+import TermsPanelComponent from "@/app/components/pages/legal/terms";
+import PrivacyPanelComponent from "@/app/components/pages/legal/privacy";
 import React, { useState } from "react";
 
 const Legal = () => {

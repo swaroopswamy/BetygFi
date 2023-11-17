@@ -21,14 +21,15 @@ import {
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import isEmpty from "is-empty";
-import LoginPage from "../login";
+import LoginPage from "@/app/components/login";
 import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
-import { MobileSidebar } from "../sidebar/index";
+import { MobileSidebar } from "@/app/components/sidebar";
 
 const Navbar = ({ ...rest }) => {
 	const searchParams = useSearchParams();
+	const searchParamAddress = searchParams.get("address");
 	const router = useRouter();
 	const pathname = usePathname();
 	const {
@@ -42,12 +43,10 @@ const Navbar = ({ ...rest }) => {
 		onClose: onLoginModalClose,
 	} = useDisclosure();
 	const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } =
-    useDisclosure();
+		useDisclosure();
 	const dispatch = useDispatch();
 	const { colorMode, toggleColorMode } = useColorMode();
-	const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(
-		searchParams.get("address")
-	);
+	const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
 
 	// const preLoadedData = useSelector((state) => state.authData.preLoadedData);
 	const LoggedInData = useSelector((state) => state.authData.LoggedInData);
@@ -63,7 +62,7 @@ const Navbar = ({ ...rest }) => {
 		if (e.key === "Enter") {
 			if (!isEmpty(e.target.value)) {
 				dispatch(walletAddressChangedReducer(e.target.value));
-				router.push(`/wallet_dashboard?address=${e.target.value}`);
+				router.push(`/top-wallets/${e.target.value}`);
 				setSearchWalletAddressValue(e.target.value);
 			}
 		}
@@ -72,16 +71,18 @@ const Navbar = ({ ...rest }) => {
 
 	const handleMobileSearchByWalletAddress = () => {
 		dispatch(walletAddressChangedReducer(searchWalletAddressValue));
-		router.push(`/wallet_dashboard?address=${searchWalletAddressValue}`);
+		router.push(`/top-wallets/${searchWalletAddressValue}`);
 		setSearchWalletAddressValue(searchWalletAddressValue);
 	};
 
 	useEffect(() => {
-		if (pathname === "/wallet_dashboard") {
-			setSearchWalletAddressValue(searchParams.get("address"));
+		const splittedPathName = pathname.split("/");
+		if (splittedPathName.length == 3 && splittedPathName.includes("wallet")) {
+			setSearchWalletAddressValue(searchParamAddress);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchParams.get("address")]);
+	}, [searchParamAddress]);
+
 	useEffect(() => {
 		dispatch(FetchLocalStorageData());
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,15 +122,15 @@ const Navbar = ({ ...rest }) => {
 								h="20px"
 								alt="search_icon"
 								borderLeftRadius={"20px"}
-								borderRightRadius={"20px"}	
+								borderRightRadius={"20px"}
 							/>
 						</InputLeftElement>
 						<Input
 							type="text"
 							border="none"
 							borderLeftRadius={"20px"}
-							borderRightRadius={"20px"}	
-						
+							borderRightRadius={"20px"}
+
 							_selected={{
 								outline: "none",
 								border: "none",
@@ -194,7 +195,7 @@ const Navbar = ({ ...rest }) => {
 										_light={{ color: "#FAFAFB" }}
 										_dark={{ color: "#191919" }}
 									>
-                    Connect Wallet
+										Connect Wallet
 									</Text>
 								</Box>
 							</Box>
@@ -230,8 +231,8 @@ const Navbar = ({ ...rest }) => {
 											.split("")
 											.join("")
 											.substring(0, 6) +
-                      "..." +
-                      LoggedInData?.data?.user?._id.slice(-5)}
+											"..." +
+											LoggedInData?.data?.user?._id.slice(-5)}
 									</Text>
 								</Box>
 
@@ -374,7 +375,7 @@ const Navbar = ({ ...rest }) => {
 							}}
 						>
 							<Text variant={"SearchText"} fontWeight={"500"}>
-                Search
+								Search
 							</Text>
 						</Box>
 					</InputGroup>
