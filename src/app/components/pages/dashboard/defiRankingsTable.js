@@ -19,16 +19,12 @@ import { useRouter } from "next/navigation";
 import isEmpty from "is-empty";
 import dynamic from "next/dynamic";
 
-const GenericTable = dynamic(() => import("@/app/components/table"));
+const GenericTable = dynamic(() => import("@/app/components/tablev2"));
 const PageButtonsWide = dynamic(() =>
 	import("@/app/components/pageButtonsWide")
 );
 
-import {
-	tableHeader,
-	DefiRankingTableDesktop,
-	DefiRankingTableMobile,
-} from "@/app/components/pages/dashboard/helper";
+import { tableHeader } from "@/app/components/pages/dashboard/helper";
 import { MobileSearchBox } from "@/app/components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 const ScoreDistribuition = dynamic(() =>
@@ -174,8 +170,14 @@ const Rankings = () => {
 					TableHeaderRowMobile={TableHeaderRowMobile}
 					ButtonComp={ButtonComp}
 					PanelComp={PanelComp}
-					SkeletonRowsColumnsDesktop={DefiRankingTableDesktop}
-					SkeletonRowsColumnsMobile={DefiRankingTableMobile}
+					SkeletonRowsColumnsDesktop={{
+						numRows: tableLimit,
+						numColumns: 8
+					}}
+					SkeletonRowsColumnsMobile={{
+						numRows: tableLimit,
+						numColumns: 3
+					}}
 				/>
 			</Box>
 
