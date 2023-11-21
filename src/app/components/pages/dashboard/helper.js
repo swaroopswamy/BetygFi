@@ -1,69 +1,61 @@
 /* eslint-disable max-len */
 export const tableHeader = [
 	{
-		value: "rank",
-		label: "Rank",
+		accessor: "rank",
+		Header: "Rank",
 		isTooltip: true,
 		isSortingEnabled: false,
 		tooltipLabel: "Rank of DeFi out of all the available DeFi's tracked by BetygFi based on the score",
+		onMobile: true
 	},
 	{
-		value: "name",
-		label: "Name",
+		accessor: "name",
+		Header: "Name",
 		isTooltip: false,
 		isSortingEnabled: false,
 		tooltipLabel: null,
+		onMobile: true
 	},
 	{
-		value: "category",
-		label: "Category",
+		accessor: "category",
+		Header: "Category",
 		isTooltip: true,
 		isSortingEnabled: false,
 		tooltipLabel: "Category outlines the type of the services the DeFi provides",
 	},
 	{
-		value: "price",
-		label: "Price",
+		accessor: "price",
+		Header: "Price",
 		isTooltip: true,
 		isSortingEnabled: false,
 		tooltipLabel: "Market price of the DeFi token",
 	},
 	{
-		value: "tvl",
-		label: "TVL",
+		accessor: "tvl",
+		Header: "TVL",
 		isTooltip: true,
 		isSortingEnabled: false,
-		tooltipLabel: "Total value locked (TVL) is the real-time value of the assets that the DeFi holds",
+		tooltipLabel: "Total accessor locked (TVL) is the real-time accessor of the assets that the DeFi holds",
 	},
 	{
-		value: "mcap",
-		label: "MCap",
+		accessor: "mcap",
+		Header: "MCap",
 		isTooltip: true,
 		isSortingEnabled: false,
-		tooltipLabel: "Market capitalization of the DeFi is the total value of tokens of the DeFi",
+		tooltipLabel: "Market capitalization of the DeFi is the total accessor of tokens of the DeFi",
 	},
 	{
-		value: "mcaptvl",
-		label: "MCap/TVL",
+		Header: "MCap/TVL",
 		isTooltip: true,
 		isSortingEnabled: false,
-		tooltipLabel: "The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (Market Value of the DeFi) and the total value of assets of the DeFi",
+		tooltipLabel: "The MCAP/TVL Ratio show the difference between the total accessor of the token issued by the DeFi (Market Value of the DeFi) and the total accessor of assets of the DeFi",
 	},
 	{
-		value: "score",
-		label: "Score",
+		accessor: "score",
+		Header: "Score",
 		isTooltip: true,
 		isSortingEnabled: false,
 		tooltipLabel: "Solvendo score comprises of DeFi's technical, centralization, financial/market, and userbase quality risks",
+		onMobile: true
 	},
 ];
-
-export const DefiRankingTableDesktop = {
-	numColumns: 8,
-	numRows: 4,
-};
-export const DefiRankingTableMobile = {
-	numColumns: 3,
-	numRows: 4,
-};
-  
