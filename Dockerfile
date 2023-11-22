@@ -5,8 +5,9 @@ FROM node:16
 WORKDIR /opt
  
 # Clone your GitLab repository with the specified branch
-COPY /home/workspace/testing_job/
-WORKDIR /testing_job/
+COPY /home/workspace/testing_job/ /testing_job/
+
+WORKDIR /testing_job
 RUN npm install -f
 RUN npm run build:dev
  
