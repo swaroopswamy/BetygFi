@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env.dev next dev",
-    "build:dev": "env-cmd -f .env.dev next build",
     "start:dev": "NODE_ENV=production env-cmd -f .env.dev node_modules/next/dist/bin/next start -p 7000",
-    "start:qa": "env-cmd -f .env.qa next start",
+    "start:qa": "NODE_ENV=production env-cmd -f .env.qa node_modules/next/dist/bin/next start -p 7000",
+    "start:prod": "NODE_ENV=production env-cmd -f .env.prod node_modules/next/dist/bin/next start -p 7000",
+    "build:dev": "env-cmd -f .env.dev next build",
     "build:qa": "env-cmd -f .env.qa next build",
     "build:prod": "env-cmd -f .env.prod next build",
-    "start:prod": "NODE_ENV=production env-cmd -f .env.prod node_modules/next/dist/bin/next start -p 7000",
-    "build:test": "env-cmd -f .env.test next build",
     "analyze:dev": "cross-env ANALYZE=true next build",
     "eslint": "eslint ./src",
     "prepare": "husky install"
