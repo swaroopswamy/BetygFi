@@ -5,8 +5,8 @@ FROM node:16
 WORKDIR /opt
  
 # Clone your GitLab repository with the specified branch
-COPY betygfi-nextjs /opt/
-WORKDIR /opt/betygfi-nextjs
+COPY /home/workspace/testing_job/
+WORKDIR /testing_job/
 RUN npm install -f
 RUN npm run build:dev
  
