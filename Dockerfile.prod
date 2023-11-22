@@ -10,7 +10,7 @@ COPY . /opt/betygfi-nextjs
 WORKDIR /opt/betygfi-nextjs
 
 RUN npm install -f
-RUN npm run build:dev
+RUN npm run build:prod
  
 # Start your Node.js application
-ENTRYPOINT ["npm", "run", "start:dev"]
+ENTRYPOINT ["npm", "run", "start:prod"]
