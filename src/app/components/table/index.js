@@ -41,7 +41,7 @@ const GenericTable = ({
 				<Table
 					variant="simple"
 					key={1}
-					w={{ base: "100%", md: "100%" }}
+					w={"100%"}
 					display={{ base: "none", md: "table" }}
 					minW={bigTable ? "1200px" : "unset"}
 				>
