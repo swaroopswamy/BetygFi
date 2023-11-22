@@ -3,11 +3,12 @@ FROM node:16
  
 # Set the working directory inside the container
 WORKDIR /opt
- 
+RUN mkdir /opt/betygfi-nextjs
 # Clone your GitLab repository with the specified branch
-COPY /home/workspace/testing_job/betygfi-nextjs /opt/
+COPY . /opt/betygfi-nextjs
 
 WORKDIR /opt/betygfi-nextjs
+
 RUN npm install -f
 RUN npm run build:dev
  
