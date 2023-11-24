@@ -1,7 +1,6 @@
 "use client";
 import {
 	Box,
-	Button,
 	Image,
 	Modal,
 	ModalBody,
@@ -9,58 +8,27 @@ import {
 	ModalContent,
 	ModalHeader,
 	ModalOverlay,
-	Step,
-	StepDescription,
-	StepIcon,
-	StepIndicator,
-	StepNumber,
-	StepSeparator,
-	StepStatus,
-	StepTitle,
-	Stepper,
 	Text,
 	useColorMode,
 	useColorModeValue,
-	useSteps,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import isEmpty from "is-empty";
-import { useDispatch, useSelector } from "react-redux";
-import { TriangleDownIcon } from "@chakra-ui/icons";
-import {
-	LoginMetamask,
-	VerifyPublicAddressData,
-} from "@/redux/auth_data/authSlice";
-import {
-	useAccount,
-	useConnect,
-} from "wagmi";
-import { ethers } from "ethers";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { signIn } from "next-auth/react";
+import Link from "next/link";
+const OtherBrowserWalletProcess = dynamic(() => import("@/app/components/login/otherBrowserWalletProcess"));
 
 const LoginPage = ({ isOpen, onClose }) => {
 	const walletArray = [
 		{
 			name: "Metamask",
-			icon: "metamask_logo.png",
+			icon: "metamask_icon.png",
 			key: 1,
 		},
-		/*  {
-             name: "Binance",
-             icon: "binance_logo.png"
-         },
-         {
-             name: "Coinbase wallet",
-             icon: "coinbase_logo.png"
-         }, */
-
-		/* {
-            name: "Other Browser wallet",
-            icon: "coinbase_logo.png"
-        }, */
 	];
 
 	const [browserWalletProcessSelected, setBrowserWalletProcessSelected] =
-    useState(false);
+		useState(false);
 
 	const handleProcessSelector = () => {
 		setBrowserWalletProcessSelected(true);
@@ -77,6 +45,7 @@ const LoginPage = ({ isOpen, onClose }) => {
 				borderRadius={"6px"}
 				boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
 				mx={{ base: "14px", md: "0px" }}
+				minW={{ md: "501px" }}
 			>
 				<ModalOverlay
 					bg="blackAlpha.300"
@@ -87,6 +56,9 @@ const LoginPage = ({ isOpen, onClose }) => {
 						bg={useColorModeValue("#F5F5F7", "#202020")}
 						position={"relative"}
 						display={"flex"}
+						bgRepeat={"no-repeat"}
+						bgPos={"right 5px"}
+						bgImage={"/icons/design_modal.svg"}
 						flexDirection={"column"}
 						paddingBottom={"0px"}
 					>
@@ -106,8 +78,8 @@ const LoginPage = ({ isOpen, onClose }) => {
 										setBrowserWalletProcessSelected(false);
 									}}
 								>
-									<TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} />
-                  Back
+									{/* 									<TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} /> */}
+									Back
 								</Text>
 							</>
 						) : (
@@ -120,21 +92,9 @@ const LoginPage = ({ isOpen, onClose }) => {
 									_dark={{ color: "#FFF" }}
 									_light={{ color: "#202020" }}
 								>
-                  Login
+									BetygFi Community
 								</Text>
 
-								<Box
-									position={"absolute"}
-									bgImage={
-										colorMode === "light"
-											? "/public/images/login_modal_bg_dark.png"
-											: "/public/images/login_modal_bg_dark.png"
-									}
-									width={"100%"}
-									height={"100%"}
-									top={0}
-									left={0}
-								></Box>
 								<Text
 									fontSize={"24px"}
 									fontWeight={400}
@@ -150,8 +110,9 @@ const LoginPage = ({ isOpen, onClose }) => {
 									textTransform={"capitalize"}
 									mt="26px"
 									mb="26px"
+									w={"fit-content"}
 								>
-                  Wallet Login
+									Join the Conversation
 								</Text>
 							</>
 						)}
@@ -204,7 +165,7 @@ const LoginPage = ({ isOpen, onClose }) => {
 														width={"36px"}
 														height={"36px"}
 														alt="Other Browser wallet"
-														src={`/images/${item.icon}`}
+														src={`/icons/${item.icon}`}
 													></Image>
 													<Text
 														fontSize={"15px"}
@@ -218,12 +179,9 @@ const LoginPage = ({ isOpen, onClose }) => {
 													</Text>
 												</Box>
 
-												<Box
-													width={"24px"}
-													height={"24px"}
-													_dark={{ bgImage: "/images/next_icon_light.png" }}
-													_light={{ bgImage: "/images/next_icon_dark.png" }}
-												></Box>
+												<i
+													className={`icon ${colorMode === "light" ? "next_icon_light" : "next_icon_dark"}`}
+												></i>
 											</Box>
 										);
 									})}
@@ -238,30 +196,34 @@ const LoginPage = ({ isOpen, onClose }) => {
 										mb="15px"
 										mt="15px"
 									>
-                    OR
+										OR
 									</Text>
 									<Box
 										display={"flex"}
-										cursor={"pointer"}
 										justifyContent={"space-between"}
 										alignItems={"center"}
-										padding={"15px 18px 15px 9px"}
-										_dark={{ bgColor: "#202020" }}
-										_light={{ bgColor: "#E7E7E7" }}
-										opacity={0.5}
-										borderRadius={"4px"}
-										mx={"9px"}
+										//onClick={() => handleProcessSelector(item.name)}
+										onClick={() => signIn('google')}
+										mx={"24px"}
+										my={"15px"}
+										cursor={"pointer"}
+										position={"relative"}
+										_after={{
+											position: "absolute",
+											bottom: "-15px",
+											left: 0,
+											width: "100%",
+											height: "1px",
+											bgColor: "#EDEDED",
+											content: '""',
+										}}
 									>
 										<Box display={"flex"} alignItems={"center"}>
 											<Image
-												width={"24px"}
-												height={"24px"}
-												alt="Login via social handles"
-												src={
-													colorMode === "light"
-														? "/images/user_light.png"
-														: "/images/user_dark.png"
-												}
+												width={"36px"}
+												height={"36px"}
+												alt="Other Browser wallet"
+												src={`/icons/devicon_google.svg`}
 											></Image>
 											<Text
 												fontSize={"15px"}
@@ -271,15 +233,26 @@ const LoginPage = ({ isOpen, onClose }) => {
 												_light={{ color: "#202020" }}
 												ml="9px"
 											>
-                        Login via social handles
+												Join with Google
 											</Text>
 										</Box>
-										<Box
-											width={"24px"}
-											height={"24px"}
-											_dark={{ bgImage: "/images/next_icon_dark.png" }}
-											_light={{ bgImage: "/images/next_icon_light.png" }}
-										></Box>
+
+										<i
+											className={`icon ${colorMode === "light" ? "next_icon_light" : "next_icon_dark"}`}
+										></i>
+									</Box>
+									<Box
+										mt="12px"
+										display={"flex"}
+									>
+										<Text variant={"greySmallText"}>
+											By continuing with the login process you are agreeging to
+										</Text>
+										<Link href={`${process.env.NEXT_PUBLIC_BETYGFI_URL}/legal`} target="_blank">
+											<Text variant={"greySmallText"} _light={{ color: "#191919" }} _dark={{ color: "#FFF" }} textDecoration={"underline"} ml="5px">
+												Terms & Conditions
+											</Text>
+										</Link>
 									</Box>
 								</Box>
 							</>
@@ -291,209 +264,6 @@ const LoginPage = ({ isOpen, onClose }) => {
 	);
 };
 
-const OtherBrowserWalletProcess = ({
-	onClose,
-	setBrowserWalletProcessSelected,
-}) => {
-	const dispatch = useDispatch();
-	const { connect, connectors, error } =
-    useConnect();
-	const { address, isConnected } = useAccount();
-	const UserData = useSelector((state) => state.authData.UserData);
-	const LoggedInData = useSelector((state) => state.authData.LoggedInData);
-	const { colorMode } = useColorMode();
 
-	// eslint-disable-next-line no-unused-vars
-	const { activeStep, setActiveStep } = useSteps({
-		index: 0,
-		count: 2,
-	});
-	const signMessage = async ({ message }) => {
-		try {
-			if (!window.ethereum)
-				throw new Error("No crypto wallet found. Please install it.");
-
-			await window.ethereum.send("eth_requestAccounts");
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			const signer = provider.getSigner();
-			const signature = await signer.signMessage(message);
-			const address = await signer.getAddress();
-
-			return {
-				message,
-				signature,
-				address,
-			};
-		} catch (err) {
-			// setError(err.message);
-			// console.log(err, "Error");
-		}
-	};
-
-	const handleConnectWallet = async (connector) => {
-		try {
-			if (!window.ethereum)
-				throw new Error("No crypto wallet found. Please install it.");
-
-			await window.ethereum.send("eth_requestAccounts");
-			connect({ connector });
-		} catch (err) {
-			// setError(err.message);
-			// console.log(err, "Error");
-		}
-	};
-	const handleVerifyWallet = () => {
-		dispatch(VerifyPublicAddressData(address));
-	};
-
-	const handleSign = async () => {
-
-		if (UserData.data?.nonce) {
-			const sig = await signMessage({
-				message: `I am signing my one-time nonce: ${UserData.data.nonce}`,
-			});
-			if (sig) {
-				const payload = {
-					public_address: sig.address,
-					signature: sig.signature,
-				};
-				dispatch(LoginMetamask(payload));
-			}
-		}
-	};
-	useEffect(() => {
-
-		if (!isEmpty(address)) {
-			handleNext();
-		} else {
-			setActiveStep(0);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [address]);
-	useEffect(() => {
-		if (!isEmpty(UserData.data?.nonce)) {
-			handleSign();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [UserData]);
-	useEffect(() => {
-		if (!isEmpty(LoggedInData.data?.token)) {
-			setBrowserWalletProcessSelected(false);
-			onClose();
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [LoggedInData]);
-
-	const steps = [
-		{
-			title: isConnected ? "Wallet Connected" : "Connect Wallet",
-			description: isConnected
-				? `Address: ${
-					address.split("").join("").substring(0, 6) +
-            "..." +
-            address.slice(-5)
-				}`
-				: "Tell which address you want to use",
-			buttonText: "Connect",
-			buttonFunction: () => handleConnectWallet(connectors[0]),
-			isError: error,
-		},
-		{
-			title: "Verify Address",
-			description: "Tell which address you want to use",
-			buttonText: "Verify",
-			buttonFunction: handleVerifyWallet,
-			isError: error,
-		},
-	];
-
-	const handleNext = () => {
-		setActiveStep((prevStep) => prevStep + 1);
-	};
-
-	// const handleBack = () => {
-	//   setActiveStep((prevStep) => prevStep - 1);
-	// };
-
-	return (
-		<>
-			{/*   <button onClick={() => handleConnectWallet(connectors[0])}>
-        Metamask
-      </button> */}
-			<Box>
-				<Stepper index={activeStep} orientation="vertical" gap="0">
-					{steps.map((step, index) => (
-						<Step
-							key={index}
-							width={"100%"}
-							activeStep={activeStep}
-							bgColor={
-								colorMode === "light"
-									? activeStep === index
-										? "#E7E7E7"
-										: "transparent"
-									: activeStep === index
-										? "#202020"
-										: "transparent"
-							}
-							padding={"16px 22px 16px 13px"}
-							opacity={activeStep !== index ? "0.4" : "1"}
-							borderRadius={"4px"}
-						>
-							<StepIndicator
-								borderColor={activeStep === index && "#71D268!important"}
-							>
-								<StepStatus
-									complete={<StepIcon bgColor={"#71D268!important"} />}
-									incomplete={<StepNumber borderColor={"#71D268!important"} />}
-									active={<StepNumber borderColor={"#71D268!important"} />}
-								/>
-							</StepIndicator>
-
-							<Box
-								w="100%"
-								display={"flex"}
-								justifyContent={"space-between"}
-								alignItems={"flex-start"}
-							>
-								<Box display={"flex"} flexDirection={"column"}>
-									<StepTitle>{step.title}</StepTitle>
-									<StepDescription>{step.description}</StepDescription>
-								</Box>
-								{activeStep === index && (
-									<Button
-										onClick={step.buttonFunction}
-										fontSize={"14px"}
-										fontWeight={600}
-										lineHeight={"20px"}
-										_dark={{ color: "#000", bgColor: "#FFFFFF" }}
-										_light={{ color: "#FFF", bgColor: "#202020" }}
-										padding={"11px"}
-										width={"101px"}
-										borderRadius={"4px"}
-										disabled={!isEmpty(step.isError)}
-									>
-										{!isEmpty(step.isError) ? "Pending" : step.buttonText}
-									</Button>
-								)}
-							</Box>
-
-							<StepSeparator
-								bgColor={"#71D268"}
-								maxHeight={
-									"calc(100% - var(--stepper-indicator-size) - 0px)!important"
-								}
-								top={"calc(var(--stepper-indicator-size) + 16px)!important"}
-								left={
-									"calc(var(--stepper-indicator-size) / 2 - -13px)!important"
-								}
-							/>
-						</Step>
-					))}
-				</Stepper>
-			</Box>
-		</>
-	);
-};
 
 export default LoginPage;

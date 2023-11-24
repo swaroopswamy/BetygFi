@@ -1,15 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, useColorModeValue, useDisclosure, useMediaQuery } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "/styles/styles.scss";
 import SidebarContent from "@/app/components/sidebar";
 import Footer from "@/app/components/footer";
 import Navbar from "@/app/components/header";
+import { useSession } from "next-auth/react";
+import { StoreLoggedInUserDataGoogle, socialLoginGoogle } from "@/redux/auth_data/authSlice";
 
 export default function LayoutProvider({ children }) {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
-
+	const dispatch = useDispatch();
 	const { onOpen, onClose } = useDisclosure();
 	const isSidebarCollapsed = useSelector(
 		(state) => state?.appData?.isSidebarCollapsed
@@ -17,6 +20,33 @@ export default function LayoutProvider({ children }) {
 	const isMobileSidebarCollapsed = useSelector(
 		(state) => state?.appData?.isMobileSidebarCollapsed
 	);
+	const { data: AuthSession, update } = useSession();
+	const GoogleVerifiedData = useSelector(
+		(state) => state.authData.GoogleVerifiedData
+	);
+	/* 	const LoggedInData = useSelector((state) => state.authData.LoggedInData);
+	 */
+	useEffect(() => {
+		if (AuthSession?.id_token) {
+			if (!localStorage.getItem("verifiedState")) {
+				const payload = {
+					token: AuthSession?.id_token,
+				};
+				dispatch(socialLoginGoogle(payload));
+			}
+		} else {
+			if (AuthSession?.user?.name) {
+				update();
+			}
+		}
+	}, [AuthSession]);
+
+	useEffect(() => {
+		if (GoogleVerifiedData.isSuccess) {
+			dispatch(StoreLoggedInUserDataGoogle());
+		}
+	}, [GoogleVerifiedData]);
+
 	return (
 		<Box
 			width="100%"
