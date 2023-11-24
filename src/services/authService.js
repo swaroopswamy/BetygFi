@@ -1,5 +1,6 @@
 import { axiosInstance } from "@util/axiosInstance";
 
+
 export const verifyPublicAddress = async (address, rejectWithValue) => {
 	try {
 		const { data } = await axiosInstance.get(`auth/get-nonce?public_address=${address}`);
@@ -17,7 +18,17 @@ export const loginMetamask = async (payload) => {
 	}
 };
 
+export const socialLoginGoogleAPI = async (payload) => {
+	try {
+		const { data } = await axiosInstance.post(`auth/social-login?access_token=${payload?.token}`);
+		return data;
+	} catch (err) {
+		return (err);
+	}
+};
+
 export default {
 	verifyPublicAddress,
 	loginMetamask,
+	socialLoginGoogleAPI
 };

@@ -132,3 +132,61 @@
         background-image: url('/icons/dropdown_white.svg');
     }
 }
+
+
+.moon {
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/moon.svg');
+    }
+}
+
+.sun {
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/sun.svg');
+    }
+}
+
+.next_icon_light {
+    width: "24px";
+    height: "24px";
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/next_icon_light.svg');
+    }
+}
+
+.next_icon_dark {
+    width: "24px";
+    height: "24px";
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/next_icon_dark.svg');
+    }
+}
+
+
+.log_in_white {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/log_in_white.svg');
+    }
+}
+
+.log_in_black {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/log_in_black.svg');
+    }
+}

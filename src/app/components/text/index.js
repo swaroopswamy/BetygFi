@@ -230,6 +230,13 @@ const Text = defineStyleConfig({
             lineHeight: "36px",
             color: colorMode === "light" ? "#161616" : "#FFF",
         }),
+        greySmallText: ({ colorMode }) => ({
+			fontSize: "10px",
+			fontFamily: "Inter",
+			fontWeight: "400",
+			letterSpacing: "0.5px",
+			color: colorMode === "light" ? "rgba(25, 25, 25, 0.60)" : "#FFF",
+		}),
     },
     defaultProps: {
         variant: "base",
