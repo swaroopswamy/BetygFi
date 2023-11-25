@@ -15,6 +15,11 @@ import {
     useDisclosure,
     createIcon,
     Icon,
+    AccordionButton,
+    Accordion,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
 } from "@chakra-ui/react";
 // import Link from "next/link";
 import Image from "next/image";
@@ -23,12 +28,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
-import { linkItemsDown, linkItemsUp, bottomMenu } from "@/app/components/sidebar/helper";
+import {
+    linkItemsDown,
+    bottomMenu,
+    dashboards,
+    pages,
+    communities,
+    legal,
+} from "@/app/components/sidebar/helper";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "./report";
 import SuggestFeatureModal from "./suggestfeature";
 
-const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), { ssr: false });
+const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), {
+    ssr: false,
+});
 
 const SidebarContent = ({ ...rest }) => {
     const { colorMode } = useColorMode();
@@ -43,6 +58,7 @@ const SidebarContent = ({ ...rest }) => {
     const isSidebarCollapsed = useSelector(
         (state) => state?.appData?.isSidebarCollapsed
     );
+
     const {
         isOpen: isSuggestFeatureModalOpen,
         onOpen: onSuggestFeatureModalOpen,
@@ -68,242 +84,349 @@ const SidebarContent = ({ ...rest }) => {
                 {...rest}
             >
                 {!isSidebarCollapsed && (
-                    <Box layerStyle={"spaceBetween"} flexDir={"column"}>
-                        <Box layerStyle={"flexColumn"} gap={"15px"}>
+                    <Box display={"flex"} flexDir={"column"} gap={"20px"}>
+                        <Box
+                            layerStyle={"center"}
+                            alignItems="center"
+                            cursor={"pointer"}
+                            p={"20px"}
+                            onClick={() => router.push("/")}
+                        >
+                            <Image
+                                width={180}
+                                height={80}
+                                alt="logo"
+                                src={
+                                    colorMode === "dark"
+                                        ? "/icons/dark_betgyfi_sm_logo.svg"
+                                        : "/icons/light_betgyfi_sm_icon.svg"
+                                }
+                            />
+                        </Box>
+
+                        <Box layerStyle={"flexColumn"} w={"100%"}>
+                            <Text
+                                fontSize={"14px"}
+                                lineHeight={"20px"}
+                                color={
+                                    colorMode === "light"
+                                        ? "#757575"
+                                        : "#A5A5A5"
+                                }
+                                pl={"20px"}
+                                mb={"10px"}
+                            >
+                                Dashboards
+                            </Text>
+                            {dashboards.map((link, i) => (
+                                <NavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    isActive={pathname === link.path}
+                                >
+                                    <Text fontSize={"14px"} lineHeight={"20px"}>
+                                        {link.name}
+                                    </Text>
+                                </NavItem>
+                            ))}
+                        </Box>
+
+                        <Box layerStyle={"flexColumn"} w={"100%"}>
+                            <Text
+                                fontSize={"14px"}
+                                lineHeight={"20px"}
+                                color={
+                                    colorMode === "light"
+                                        ? "#757575"
+                                        : "#A5A5A5"
+                                }
+                                pl={"20px"}
+                                mb={"10px"}
+                            >
+                                Pages
+                            </Text>
+                            {pages.map((link, i) => (
+                                <NavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    isActive={pathname === link.path}
+                                >
+                                    <Text fontSize={"14px"} lineHeight={"20px"}>
+                                        {link.name}
+                                    </Text>
+                                </NavItem>
+                            ))}
+
+                            <Accordion
+                                allowMultiple
+                                flexDir={"column"}
+                                borderColor={
+                                    colorMode === "light"
+                                        ? "rgba(25,25,25, 0.1)"
+                                        : "#494949"
+                                }
+                                mr={"-13px"}
+                            >
+                                <AccordionItem w={"100%"} border={0}>
+                                    <AccordionButton
+                                        display={"flex"}
+                                        alignItems="center"
+                                        justifyContent={"space-between"}
+                                        height={"38px"}
+                                        padding={"9px 20px"}
+                                    >
+                                        <Box display={"flex"} gap={"10px"}>
+                                            <Icon
+                                                as={FaPeopleGroup}
+                                                boxSize={18}
+                                                color={
+                                                    colorMode === "light"
+                                                        ? "#161616"
+                                                        : "#FFFFFF"
+                                                }
+                                            />
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                            >
+                                                Our Communities
+                                            </Text>
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                    <AccordionPanel w={"100%"} p={0}>
+                                        <Box
+                                            layerStyle={"flexColumn"}
+                                            pl={"15px"}
+                                        >
+                                            {communities.map((link, i) => (
+                                                <NavItem
+                                                    key={i}
+                                                    NavIcon={link.icon}
+                                                    path={link.path}
+                                                    newTab={link.newTab}
+                                                    isActive={
+                                                        pathname === link.path
+                                                    }
+                                                >
+                                                    <Text
+                                                        fontSize={"14px"}
+                                                        lineHeight={"20px"}
+                                                    >
+                                                        {link.name}
+                                                    </Text>
+                                                </NavItem>
+                                            ))}
+                                        </Box>
+                                    </AccordionPanel>
+                                </AccordionItem>
+                            </Accordion>
+                        </Box>
+
+                        <Box layerStyle={"flexColumn"} w={"100%"}>
+                            <Text
+                                fontSize={"14px"}
+                                lineHeight={"20px"}
+                                color={
+                                    colorMode === "light"
+                                        ? "#757575"
+                                        : "#A5A5A5"
+                                }
+                                pl={"20px"}
+                                mb={"10px"}
+                            >
+                                Other
+                            </Text>
+                            <Accordion
+                                allowMultiple
+                                flexDir={"column"}
+                                borderColor={
+                                    colorMode === "light"
+                                        ? "rgba(25,25,25, 0.1)"
+                                        : "#494949"
+                                }
+                                mr={"-13px"}
+                            >
+                                <AccordionItem w={"100%"} border={0}>
+                                    <AccordionButton
+                                        display={"flex"}
+                                        alignItems="center"
+                                        justifyContent={"space-between"}
+                                        height={"38px"}
+                                        padding={"9px 20px"}
+                                    >
+                                        <Box display={"flex"} gap={"10px"}>
+                                            <Icon
+                                                as={SlSettings}
+                                                boxSize={18}
+                                                color={
+                                                    colorMode === "light"
+                                                        ? "#161616"
+                                                        : "#FFFFFF"
+                                                }
+                                            />
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                            >
+                                                Settings and More
+                                            </Text>
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                    <AccordionPanel w={"100%"} p={0}>
+                                        <Box
+                                            layerStyle={"flexColumn"}
+                                            pl={"15px"}
+                                        >
+                                            {bottomMenu.map((link, i) => {
+                                                if (i > 1) return;
+                                                return (
+                                                    <NavItem
+                                                        key={i}
+                                                        NavIcon={link.icon}
+                                                        path={link.path}
+                                                        newTab={link.newTab}
+                                                        isActive={
+                                                            pathname ===
+                                                            link.path
+                                                        }
+                                                    >
+                                                        <Text
+                                                            fontSize={"14px"}
+                                                            lineHeight={"20px"}
+                                                            letterSpacing={
+                                                                "1.4px"
+                                                            }
+                                                        >
+                                                            {link.name}
+                                                        </Text>
+                                                    </NavItem>
+                                                );
+                                            })}
+
+                                            <Box
+                                                display={"flex"}
+                                                alignItems="center"
+                                                height={"38px"}
+                                                padding={"9px 20px"}
+                                                gap={"10px"}
+                                                onClick={
+                                                    onSuggestFeatureModalOpen
+                                                }
+                                                cursor={"pointer"}
+                                            >
+                                                <Icon
+                                                    as={bottomMenu[2].icon}
+                                                    boxSize={18}
+                                                    color={
+                                                        colorMode === "light"
+                                                            ? "#161616"
+                                                            : "#FFFFFF"
+                                                    }
+                                                />
+                                                <Text
+                                                    fontSize={"14px"}
+                                                    lineHeight={"20px"}
+                                                    letterSpacing={"1.4px"}
+                                                >
+                                                    {bottomMenu[2].name}
+                                                </Text>
+                                            </Box>
+
+                                            <Box
+                                                display={"flex"}
+                                                alignItems="center"
+                                                height={"38px"}
+                                                padding={"9px 20px"}
+                                                gap={"10px"}
+                                                onClick={onReportBugModalOpen}
+                                                cursor={"pointer"}
+                                            >
+                                                <Icon
+                                                    as={bottomMenu[3].icon}
+                                                    boxSize={18}
+                                                    color={
+                                                        colorMode === "light"
+                                                            ? "#161616"
+                                                            : "#FFFFFF"
+                                                    }
+                                                />
+                                                <Text
+                                                    fontSize={"14px"}
+                                                    lineHeight={"20px"}
+                                                    letterSpacing={"1.4px"}
+                                                >
+                                                    {bottomMenu[3].name}
+                                                </Text>
+                                            </Box>
+                                        </Box>
+                                    </AccordionPanel>
+                                </AccordionItem>
+                            </Accordion>
+                            <NavItem
+                                NavIcon={legal.icon}
+                                path={legal.path}
+                                newTab={legal.newTab}
+                                isActive={pathname === legal.path}
+                            >
+                                <Text fontSize={"14px"} lineHeight={"20px"}>
+                                    Legal
+                                </Text>
+                            </NavItem>
+                        </Box>
+                    </Box>
+                )}
+
+                {isSidebarCollapsed && (
+                    <Box
+                        layerStyle={"spaceBetween"}
+                        flexDir={"column"}
+                        width={"70px"}
+                    >
+                        <Box layerStyle={"flexColumn"} w={"100%"}>
                             <Box
                                 layerStyle={"center"}
                                 alignItems="center"
                                 cursor={"pointer"}
-                                p={"20px"}
+                                py={"20px"}
+                                mr={"-13px"}
                                 onClick={() => router.push("/")}
                             >
                                 <Image
-                                    width={180}
-                                    height={80}
+                                    width={35}
+                                    height={35}
                                     alt="logo"
                                     src={
-                                        colorMode === "dark"
-                                            ? "/icons/dark_betgyfi_sm_logo.svg"
-                                            : "/icons/light_betgyfi_sm_icon.svg"
+                                        colorMode === "light"
+                                            ? "/icons/company_sidebar_sm_logo_dark.svg"
+                                            : "/icons/company_sidebar_sm_logo_light.svg"
                                     }
+                                    cursor={"pointer"}
+                                    onClick={() => router.push("/")}
                                 />
                             </Box>
 
-                            <Box layerStyle={"flexColumn"}>
-                                {linkItemsUp.map((link, i) => (
-                                    <NavItem
+                            <Box layerStyle={"flexColumn"} mt={"20px"}>
+                                {dashboards.map((link, i) => (
+                                    <CollapsedNavItem
                                         key={i}
                                         NavIcon={link.icon}
                                         path={link.path}
                                         newTab={link.newTab}
                                         isActive={pathname === link.path}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                        >
-                                            {link.name}
-                                        </Text>
-                                    </NavItem>
+                                    ></CollapsedNavItem>
                                 ))}
                             </Box>
 
-                            <hr style={{ margin: "5px 2px 5px 15px" }} />
-
-                            <Box display={"flex"} w="100%" px={"20px"}>
-                                <Text
-                                    variant={"h5"}
-                                    opacity="0.6"
-                                    letterSpacing={"1.2px"}
-                                    _light={{ color: "#16171B" }}
-                                    _dark={{ color: "#FFFFFF" }}
-                                >
-                                    {" "}
-                                    BetygFi Communities{" "}
-                                </Text>
-                            </Box>
+                            <hr style={{ margin: "15px -13px" }} />
 
                             <Box layerStyle={"flexColumn"}>
-                                {linkItemsDown.map((link, i) => (
-                                    <NavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        isActive={pathname === link.path}
-                                    >
-                                        <Text
-                                            fontSize={"12px"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                        >
-                                            {link.name}
-                                        </Text>
-                                    </NavItem>
-                                ))}
-                            </Box>
-                        </Box>
-
-                        {/* Bottom Half */}
-                        <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                            {bottomMenu.map((link, i) => {
-                                if (i > 2) return;
-                                return (
-                                    <NavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        isActive={pathname === link.path}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            lineHeight={"20px"}
-                                            letterSpacing={"1.4px"}
-                                        >
-                                            {link.name}
-                                        </Text>
-                                    </NavItem>
-                                );
-                            })}
-                            <NavItem
-                                NavIcon={bottomMenu[3].icon}
-                                path={bottomMenu[3].path}
-                                newTab={bottomMenu[3].newTab}
-                                isActive={pathname === bottomMenu[3].path}
-                                onClick={onSuggestFeatureModalOpen}
-                            >
-                                <Text
-                                    fontSize={"14px"}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1.4px"}
-                                >
-                                    {bottomMenu[3].name}
-                                </Text>
-                            </NavItem>
-
-                            <NavItem
-                                NavIcon={bottomMenu[4].icon}
-                                path={bottomMenu[4].path}
-                                newTab={bottomMenu[4].newTab}
-                                isActive={pathname === bottomMenu[4].path}
-                                onClick={onReportBugModalOpen}
-                            >
-                                <Text
-                                    fontSize={"14px"}
-                                    lineHeight={"20px"}
-                                    letterSpacing={"1.4px"}
-                                >
-                                    {bottomMenu[4].name}
-                                </Text>
-                            </NavItem>
-
-                            <hr style={{ margin: "15px 0px" }} />
-
-                            <Box
-                                display={"flex"}
-                                alignItems={"center"}
-                                justifyContent={"center"}
-                                flexDirection={"column"}
-                                w={"100%"}
-                            >
-                                <Box
-                                    display={"flex"}
-                                    alignItems={"center"}
-                                    w={"100%"}
-                                    pl={6}
-                                >
-                                    <Image
-                                        width={15}
-                                        height={15}
-                                        alt="logo"
-                                        src={"/icons/company_sm_logo.svg"}
-                                        style={{ marginRight: "10px" }}
-                                    />
-                                    <Text
-                                        //as={"capital"}
-                                        //opacity={"0.5"}
-                                        fontSize={"11px"}
-                                        fontStyle={"normal"}
-                                        fontWeight={400}
-                                        letterSpacing={"1.1px"}
-                                        lineHeight={"20px"}
-                                        textTransform={"capitalize"}
-                                        _dark={{
-                                            color: "#FFF",
-                                        }}
-                                        _light={{
-                                            color: "#16171B",
-                                        }}
-                                    >
-                                        Powered by Solvendo
-                                    </Text>
-                                </Box>
-                            </Box>
-                        </Box >
-                    </Box >
-                )}
-
-                {
-                    isSidebarCollapsed && (
-                        <Box
-                            layerStyle={"spaceBetween"}
-                            flexDir={"column"}
-                            width={"70px"}
-                        >
-                            <Box layerStyle={"flexColumn"} w={"100%"}>
-                                <Box
-                                    layerStyle={"center"}
-                                    alignItems="center"
-                                    cursor={"pointer"}
-                                    py={"20px"}
-                                    mr={"-13px"}
-                                    onClick={() => router.push("/")}
-                                >
-                                    <Image
-                                        width={35}
-                                        height={35}
-                                        alt="logo"
-                                        src={
-                                            colorMode === "light"
-                                                ? "/icons/company_sidebar_sm_logo_dark.svg"
-                                                : "/icons/company_sidebar_sm_logo_light.svg"
-                                        }
-                                        cursor={"pointer"}
-                                        onClick={() => router.push("/")}
-                                    />
-                                </Box>
-
-                                <Box layerStyle={"flexColumn"} mt={"20px"}>
-                                    {linkItemsUp.map((link, i) => (
-                                        <CollapsedNavItem
-                                            key={i}
-                                            NavIcon={link.icon}
-                                            path={link.path}
-                                            newTab={link.newTab}
-                                            isActive={pathname === link.path}
-                                        ></CollapsedNavItem>
-                                    ))}
-                                </Box>
-
-                                <hr style={{ margin: "15px -13px" }} />
-
-                                <Box layerStyle={"flexColumn"}>
-                                    {linkItemsDown.map((link, i) => (
-                                        <CollapsedNavItem
-                                            key={i}
-                                            NavIcon={link.icon}
-                                            path={link.path}
-                                            newTab={link.newTab}
-                                            isActive={pathname === link.path}
-                                        ></CollapsedNavItem>
-                                    ))}
-                                </Box>
-                            </Box>
-
-                            <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                                {bottomMenu.map((link, i) => (
+                                {pages.map((link, i) => (
                                     <CollapsedNavItem
                                         key={i}
                                         NavIcon={link.icon}
@@ -313,32 +436,116 @@ const SidebarContent = ({ ...rest }) => {
                                     ></CollapsedNavItem>
                                 ))}
 
-                                <hr style={{ margin: "25px -13px" }} />
-
-                                <Box
-                                    display={"flex"}
-                                    justifyContent={"center"}
-                                    w={"100%"}
-                                >
-                                    <Box
-                                        display={"flex"}
-                                        justifyContent="center"
-                                        alignItems={"center"}
-                                        height={"45px"}
-                                        mr={"-13px"}
-                                    >
-                                        <Image
-                                            width={22}
-                                            height={22}
-                                            alt="logo"
-                                            src={"/icons/company_sm_logo.svg"}
-                                        />
-                                    </Box>
-                                </Box>
+                                {communities.map((link, i) => (
+                                    <CollapsedNavItem
+                                        key={i}
+                                        NavIcon={link.icon}
+                                        path={link.path}
+                                        newTab={link.newTab}
+                                        isActive={pathname === link.path}
+                                    ></CollapsedNavItem>
+                                ))}
                             </Box>
                         </Box>
-                    )
-                }
+
+                        <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
+                            {bottomMenu.map((link, i) => {
+                                if (i > 1) return;
+                                return (
+                                    <CollapsedNavItem
+                                        key={i}
+                                        NavIcon={link.icon}
+                                        path={link.path}
+                                        newTab={link.newTab}
+                                        isActive={pathname === link.path}
+                                    ></CollapsedNavItem>
+                                );
+                            })}
+
+                            <Box
+                                display={"flex"}
+                                justifyContent="center"
+                                alignItems={"center"}
+                                height={"45px"}
+                                padding={"9px 20px"}
+                                role="group"
+                                cursor="pointer"
+                                gap={"10px"}
+                                _hover={{
+                                    bg:
+                                        colorMode === "light"
+                                            ? "#202020"
+                                            : "#FFFFFF",
+                                    color:
+                                        colorMode === "light"
+                                            ? "#FFFFFF"
+                                            : "#191919",
+                                    fontWeight: "600",
+                                }}
+                                mr={"-13px"}
+                                onClick={onSuggestFeatureModalOpen}
+                            >
+                                <Icon
+                                    as={bottomMenu[2].icon}
+                                    boxSize={22}
+                                    color={
+                                        colorMode === "light"
+                                            ? "#161616"
+                                            : "#FFFFFF"
+                                    }
+                                    _groupHover={{
+                                        color:
+                                            colorMode === "light"
+                                                ? "#FFFFFF"
+                                                : "#191919",
+                                    }}
+                                    alt="logo"
+                                />
+                            </Box>
+
+                            <Box
+                                display={"flex"}
+                                justifyContent="center"
+                                alignItems={"center"}
+                                height={"45px"}
+                                padding={"9px 20px"}
+                                role="group"
+                                cursor="pointer"
+                                gap={"10px"}
+                                _hover={{
+                                    bg:
+                                        colorMode === "light"
+                                            ? "#202020"
+                                            : "#FFFFFF",
+                                    color:
+                                        colorMode === "light"
+                                            ? "#FFFFFF"
+                                            : "#191919",
+                                    fontWeight: "600",
+                                }}
+                                mr={"-13px"}
+                                onClick={onReportBugModalOpen}
+                            >
+                                <Icon
+                                    as={bottomMenu[3].icon}
+                                    boxSize={22}
+                                    color={
+                                        colorMode === "light"
+                                            ? "#161616"
+                                            : "#FFFFFF"
+                                    }
+                                    _groupHover={{
+                                        color:
+                                            colorMode === "light"
+                                                ? "#FFFFFF"
+                                                : "#191919",
+                                    }}
+                                    alt="logo"
+                                />
+                            </Box>
+                        </Box>
+                    </Box>
+                )}
 
                 <Box display={"flex"}>
                     <Flex
@@ -365,18 +572,18 @@ const SidebarContent = ({ ...rest }) => {
                         />
                     </Flex>
                 </Box>
-            </Box >
 
-            <SuggestFeatureModal
-                isOpen={isSuggestFeatureModalOpen}
-                onClose={onSuggestFeatureModalClose}
-                onOpen={onSuggestFeatureModalOpen}
-            ></SuggestFeatureModal>
-            <ReportBugModal
-                isOpen={isReportBugModalOpen}
-                onClose={onReportBugModalClose}
-                onOpen={onReportBugModalOpen}
-            ></ReportBugModal>
+                <SuggestFeatureModal
+                    isOpen={isSuggestFeatureModalOpen}
+                    onClose={onSuggestFeatureModalClose}
+                    onOpen={onSuggestFeatureModalOpen}
+                ></SuggestFeatureModal>
+                <ReportBugModal
+                    isOpen={isReportBugModalOpen}
+                    onClose={onReportBugModalClose}
+                    onOpen={onReportBugModalOpen}
+                ></ReportBugModal>
+            </Box>
         </>
     );
 };
@@ -412,7 +619,7 @@ const CollapsedNavItem = ({ NavIcon, path, newTab }) => {
                 <Icon
                     as={NavIcon}
                     boxSize={22}
-                    color={colorMode === "light" ? "#6F7383" : "#676767"}
+                    color={colorMode === "light" ? "#161616" : "#FFFFFF"}
                     _groupHover={{
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
                     }}
@@ -423,16 +630,41 @@ const CollapsedNavItem = ({ NavIcon, path, newTab }) => {
     );
 };
 
-const NavItem = ({
-    NavIcon,
-    path,
-    newTab,
-    isActive,
-    children,
-    ...rest
-}) => {
+const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
     const { colorMode } = useColorMode();
 
+    if (isActive) {
+        return (
+            <Link
+                href={path}
+                target={newTab ? "_blank" : null}
+                style={{ textDecoration: "none" }}
+                _focus={{ boxShadow: "none" }}
+            >
+                <Box
+                    display={"flex"}
+                    alignItems="center"
+                    justifyContent={"left"}
+                    height={"38px"}
+                    padding={"9px 20px"}
+                    role="group"
+                    cursor="pointer"
+                    gap={"10px"}
+                    bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
+                    color={colorMode === "light" ? "#FFFFFF" : "#191919"}
+                    mr={"-13px"}
+                    {...rest}
+                >
+                    <Icon
+                        as={NavIcon}
+                        boxSize={18}
+                        color={colorMode === "light" ? "#FFFFFF" : "#191919"}
+                    />
+                    {children}
+                </Box>
+            </Link>
+        );
+    }
     if (isActive) {
         return (
             <Link
@@ -487,13 +719,14 @@ const NavItem = ({
                     color: colorMode === "light" ? "#FFFFFF" : "#191919",
                     fontWeight: "600",
                 }}
+                color={"text.primary"}
                 mr={"-13px"}
                 {...rest}
             >
                 <Icon
                     as={NavIcon}
                     boxSize={18}
-                    color={colorMode === "light" ? "#6F7383" : "#676767"}
+                    color={colorMode === "light" ? "#161616" : "#FFFFFF"}
                     _groupHover={{
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
                     }}
@@ -601,7 +834,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     }
                                                 />
                                             </Box>
-                                        </Box >
+                                        </Box>
 
                                         <Box>
                                             <div className="controller-row">
@@ -621,10 +854,32 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 </label>
                                             </div>
                                         </Box>
-                                    </Box >
+                                    </Box>
 
                                     <Box layerStyle={"flexColumn"}>
-                                        {linkItemsUp.map((link, i) => (
+                                        {dashboards.map((link, i) => (
+                                            <NavItem
+                                                key={i}
+                                                NavIcon={link.icon}
+                                                path={link.path}
+                                                newTab={link.newTab}
+                                                isActive={
+                                                    pathname === link.path
+                                                }
+                                                height={"50px"}
+                                                mr={"0px"}
+                                            >
+                                                <Text
+                                                    fontSize={"14px"}
+                                                    lineHeight={"20px"}
+                                                    letterSpacing={"1.4px"}
+                                                >
+                                                    {link.name}
+                                                </Text>
+                                            </NavItem>
+                                        ))}
+
+                                        {pages.map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -684,13 +939,13 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     boxSize={18}
                                                     color={
                                                         colorMode === "light"
-                                                            ? "#6F7383"
-                                                            : "#676767"
+                                                            ? "#161616"
+                                                            : "#FFFFFF"
                                                     }
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                                "light"
+                                                            "light"
                                                                 ? "#FFFFFF"
                                                                 : "#191919",
                                                     }}
@@ -709,7 +964,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                                "light"
+                                                            "light"
                                                                 ? "white"
                                                                 : "dark",
                                                     }}
@@ -718,6 +973,44 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                             </Box>
                                         </Flex>
 
+                                        <Collapse
+                                            in={isCommunitiesOpen}
+                                            animateOpacity={"true"}
+                                        >
+                                            <Box layerStyle={"flexColumn"}>
+                                                {linkItemsDown.map(
+                                                    (link, i) => (
+                                                        <NavItem
+                                                            key={i}
+                                                            NavIcon={link.icon}
+                                                            path={link.path}
+                                                            newTab={link.newTab}
+                                                            isActive={
+                                                                pathname ===
+                                                                link.path
+                                                            }
+                                                            height={"40px"}
+                                                            pl={"20px"}
+                                                            mr={"0px"}
+                                                        >
+                                                            <Text
+                                                                fontSize={
+                                                                    "12px"
+                                                                }
+                                                                lineHeight={
+                                                                    "20px"
+                                                                }
+                                                                letterSpacing={
+                                                                    "1.4px"
+                                                                }
+                                                            >
+                                                                {link.name}
+                                                            </Text>
+                                                        </NavItem>
+                                                    )
+                                                )}
+                                            </Box>
+                                        </Collapse>
                                         <Collapse
                                             in={isCommunitiesOpen}
                                             animateOpacity={"true"}
@@ -778,8 +1071,25 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 </Text>
                                             </NavItem>
                                         ))}
+
+                                        <NavItem
+                                            NavIcon={legal.icon}
+                                            path={legal.path}
+                                            newTab={legal.newTab}
+                                            isActive={pathname === legal.path}
+                                            height={"50px"}
+                                            mr={"0px"}
+                                        >
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                                letterSpacing={"1.4px"}
+                                            >
+                                                Legal
+                                            </Text>
+                                        </NavItem>
                                     </Box>
-                                </Box >
+                                </Box>
 
                                 <Box
                                     display={"flex"}
@@ -816,11 +1126,11 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                         </Text>
                                     </Box>
                                 </Box>
-                            </Box >
-                        </Box >
-                    </DrawerBody >
-                </DrawerContent >
-            </Drawer >
+                            </Box>
+                        </Box>
+                    </DrawerBody>
+                </DrawerContent>
+            </Drawer>
         </>
     );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { scoreChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import { scoreChangedReducer } from "@/redux/coin_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/globalHelper";
 import React from "react";
@@ -13,7 +13,7 @@ const boxData = [
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
 	const scoreSelected = useSelector(
-		(state) => state?.dashboardTableData?.scoreSelected
+		(state) => state?.coinData?.scoreSelected
 	);
 
 	return (
@@ -67,6 +67,7 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
 	const ScoreSelectHandler = (selected) => {
 		dispatch(scoreChangedReducer(selected));
 	};
+	
 	return (
 		scoreTotalData && (
 			<Box
