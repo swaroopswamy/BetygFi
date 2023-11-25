@@ -10,7 +10,7 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { BreadCrumb } from "../components/breadcrumb2";
+// import { BreadCrumb } from "../components/breadcrumb2";
 import CoinRankingsTable from "../components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -40,12 +40,12 @@ const CoinDashboardPage = () => {
             p={"20px 30px"}
             gap={"20px"}
         >
-            <BreadCrumb
+            {/* <BreadCrumb
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
-            ></BreadCrumb>
+            ></BreadCrumb> */}
 
-            <Text fontSize={"32px"} color={"text.primary"}>
+            <Text fontSize={"32px"} color={"text.primary"} my={"20px"}>
                 Coin Listing
             </Text>
 

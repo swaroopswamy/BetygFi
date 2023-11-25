@@ -199,10 +199,7 @@ const SidebarContent = ({ ...rest }) => {
                                         <AccordionIcon />
                                     </AccordionButton>
                                     <AccordionPanel w={"100%"} p={0}>
-                                        <Box
-                                            layerStyle={"flexColumn"}
-                                            pl={"15px"}
-                                        >
+                                        <Box layerStyle={"flexColumn"}>
                                             {communities.map((link, i) => (
                                                 <NavItem
                                                     key={i}
