@@ -1,0 +1,318 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable max-len */
+"use client";
+import { Box, useColorMode, useColorModeValue, Text } from "@chakra-ui/react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import CustomChart from "@/app/components/graph";
+import { useSelector } from "react-redux";
+import millify from "millify";
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+const CoinPriceChart = () => {
+    const { colorMode } = useColorMode();
+
+    const CoinPriceData = useSelector(
+        (state) => state?.coinData?.CoinPriceData
+    );
+
+    const series = useMemo(
+        () => [
+            {
+                data: CoinPriceData?.data?.data,
+            },
+        ],
+        [CoinPriceData]
+    );
+
+    const options = {
+        chart: {
+            toolbar: {
+                show: false,
+            },
+            zoom: {
+                enabled: false,
+            },
+            id: "coinOverview",
+            animations: {
+                enabled: false,
+            },
+        },
+        colors: ["#544FC5", "#00E272"],
+        grid: {
+            show: true,
+        },
+        legend: {
+            show: false,
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        tooltip: {
+            enabled: true,
+            theme: colorMode,
+            custom: function ({ series, seriesIndex, dataPointIndex }) {
+                let val = millify(series[seriesIndex][dataPointIndex], {
+                    precision: 2,
+                    locales: "en-US",
+                });
+                let name = CoinPriceData?.isSuccess
+                    ? CoinPriceData?.data?.name
+                    : "Coin";
+                return (
+                    '<div class="donut_tooltip">' +
+                    '<div class="donut_tooltip_text">' +
+                    name +
+                    "</div>" +
+                    '<div class="donut_tooltip_text">' +
+                    val +
+                    " USD" +
+                    "</div>" +
+                    "</div>"
+                );
+            },
+        },
+        stroke: {
+            show: true,
+            curve: "smooth",
+            width: [2, 2],
+        },
+        xaxis: {
+            type: "datetime",
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
+            },
+            axisTicks: {
+                show: true,
+            },
+        },
+        yaxis: {
+            tickAmount: 5,
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 400,
+                },
+                formatter: (value) => {
+                    return `$${millify(value, {
+                        precision: 2,
+                        locales: "en-US",
+                    })}`;
+                },
+            },
+        },
+    };
+
+    return (
+        <>
+            <Box
+                display={"flex"}
+                flexDir={"column"}
+                bgColor={"background.secondary"}
+            >
+                <Box p={"20px"}>
+                    <Text
+                        fontSize={"20px"}
+                        fontWeight={"500"}
+                        lineHeight={"22px"}
+                    >
+                        {CoinPriceData?.data?.name} Price Chart
+                    </Text>
+                </Box>
+
+                <Box
+                    px={{ base: "10px", md: "20px" }}
+                    display={"flex"}
+                    flexDirection={"column"}
+                >
+                    <CustomChart
+                        className="overview-chart"
+                        options={options}
+                        series={series}
+                        type="line"
+                        height={205}
+                    />
+                </Box>
+
+                <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+                    <SelectorGraph />
+                </Box>
+            </Box>
+        </>
+    );
+};
+
+export default CoinPriceChart;
+
+const SelectorGraph = () => {
+    const { colorMode } = useColorMode;
+
+    const CoinPriceData = useSelector(
+        (state) => state?.coinData?.CoinPriceData
+    );
+
+    const series = useMemo(
+        () => [
+            {
+                data: CoinPriceData?.data?.data,
+            },
+        ],
+        [CoinPriceData]
+    );
+
+    const [retrig, setRetrig] = useState(false);
+
+    const selection = useRef({
+        min: new Date("19 Aug 2022").getTime(),
+        max: new Date("25 Oct 2023").getTime(),
+    });
+
+    useEffect(() => {
+        if (CoinPriceData?.isSuccess) {
+            let oneMonthAgo = new Date(
+                Date.parse(series[0].data.slice(-1)[0][0])
+            );
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            oneMonthAgo.setHours(0, 0, 0, 0);
+            selection.current = {
+                min: Date.parse(oneMonthAgo),
+                max: Date.parse(series[0].data.slice(-1)[0][0]),
+            };
+            setRetrig(!retrig);
+        }
+    }, [series]);
+
+    let options = {
+        chart: {
+            id: "selection",
+            toolbar: {
+                show: false,
+            },
+            stacked: false,
+            type: "line",
+            brush: {
+                enabled: true,
+                target: "coinOverview",
+                autoScaleYaxis: true,
+            },
+            selection: {
+                enabled: true,
+                fill: {
+                    color: "#667AFF4D",
+                    opacity: 0.3,
+                },
+                xaxis: {
+                    min: selection.current.min,
+                    max: selection.current.max,
+                },
+                stroke: {
+                    width: 1,
+                    color: ["#544FC5", "#00E272"],
+                },
+            },
+            animations: {
+                enabled: false,
+            },
+            events: {
+                // brushScrolled: function (chartContext, config) {
+                //     // setSelStateHandler(config.xaxis);
+                //     selection.current = config.xaxis;
+                //     console.log(
+                //         "update selection by scroll",
+                //         selection.current
+                //     );
+                // },
+            },
+        },
+        stroke: {
+            show: true,
+        },
+        colors: ["#544FC5", "#00E272"],
+        xaxis: {
+            type: "datetime",
+            labels: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
+            axisBorder: {
+                show: false,
+            },
+        },
+        yaxis: {
+            labels: {
+                show: false,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        legend: {
+            show: false,
+        },
+        tooltip: {
+            enabled: false,
+        },
+        grid: {
+            borderColor: colorMode === "light" ? "#191919" : "#36363A",
+            xaxis: {
+                lines: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                lines: {
+                    show: false,
+                },
+            },
+        },
+    };
+
+    return (
+        <>
+            <Box
+                px={"20px"}
+                layerStyle={"flexColumn"}
+                justifyContent={"center"}
+            >
+                <Chart
+                    options={options}
+                    series={series}
+                    type={options.chart.type}
+                    height={"100px"}
+                    width={"100%"}
+                />
+            </Box>
+        </>
+    );
+};
+
+// const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
+//     return (
+//         <Box display={"flex"}>
+//             {periods.map((period, i) => {
+//                 return (
+//                     <Button
+//                         key={i}
+//                         variant="graphButton"
+//                         onClick={() => {
+//                             periodSelectionHandler(period);
+//                         }}
+//                         isActive={period === currPeriod}
+//                     >
+//                         {period}
+//                     </Button>
+//                 );
+//             })}
+//         </Box>
+//     );
+// };

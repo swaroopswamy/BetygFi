@@ -68,6 +68,45 @@ const Button = defineStyleConfig({
             borderRadius: "2px",
             color: colorMode === "light" ? "#FAFAFB" : "#191919",
         }),
+        coin: ({ colorMode }) => ({
+            bg: colorMode === "light" ? "#F4F4F4" : "#191919",
+            border: "1px",
+            borderColor:
+                colorMode === "light" ? "#C6C6C6" : "rgba(255, 255, 255, 0.60)",
+            height: "32px",
+            p: "8px 16px",
+            borderRadius: "32px",
+            fontSize: "14px",
+            color: colorMode === "light" ? "#161616" : "#FFFFFF",
+            _active: {
+                bg: colorMode === "light" ? "#191919" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+            },
+        }),
+        graphButton: ({ colorMode }) => ({
+            border: "1px",
+            borderRadius: "2px",
+            fontSize: "14px",
+            lineHeight: "10px",
+            color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+            p: "0px",
+            height: "26px",
+            opacity: "0.5",
+            borderColor:
+                colorMode === "light" ? "#C6C6C6" : "rgba(255, 255, 255, 0.60)",
+            _active: {
+                border: "1px",
+                borderRadius: "2px",
+                bg: colorMode === "light" ? "#191919" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+                borderColor:
+                    colorMode === "light"
+                        ? "#C6C6C6"
+                        : "rgba(255, 255, 255, 0.60)",
+                fontWeight: "600",
+                opacity: "1",
+            },
+        }),
     },
     defaultProps: {
         variant: "base",

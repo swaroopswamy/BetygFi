@@ -5,13 +5,13 @@ import React, { useEffect, useState } from "react";
 import {
 	Avatar,
 	Box,
+	Button,
 	Checkbox,
 	Menu,
 	MenuButton,
 	MenuItem,
 	MenuList,
 	Text,
-	Tooltip,
 	useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const BlockchainSelectionMenuNew = () => {
 	const [tempBlockchain, setTempBlockchain] = useState([]);
 
 	const [searchableBlockchains, setSearchableBlockchains] = useState([]);
+
 	const blockchainSearchHandler = (e) => {
 		const value = e.target.value;
 		if (searchableBlockchains && value !== "") {
@@ -64,91 +65,23 @@ const BlockchainSelectionMenuNew = () => {
 				flexDirection={{ base: "column", md: "row" }}
 				justifyContent={{ md: "space-between" }}
 				w="100%"
+				gap={"20px"}
 			>
-				<Box
-					display={"flex"}
-					alignItems={"center"}
-					p={{ base: "10px 14px" }}
-				>
-					<Box
-						borderRadius={"20px"}
-						p={"2px 20px"}
-						cursor={"pointer"}
-						onClick={() => {
-							BlockchainTypeHandler("All");
-						}}
-						_light={{
-							bg:
-                                blockchainSelected.length === 0
-                                	? "#D9D9D9"
-                                	: "#FFF",
-						}}
-						_dark={{
-							bg:
-                                blockchainSelected.length === 0
-                                	? "#FFFFFF"
-                                	: "#989898",
-						}}
-						border={
-							blockchainSelected.length === 0
-								? "2px solid #245F00"
-								: "1px solid rgba(0, 0, 0, 0.10)"
-						}
-					>
-						<Text
-							variant={"content"}
-							_dark={{
-								color:
-                                    blockchainSelected.length === 0 &&
-                                    "#161616",
-							}}
-						>
-                            All
-						</Text>
-					</Box>
-					{blockchains?.data?.map((item, i) => {
-						if (i >= 5) return;
+				<Box display={"flex"} alignItems={"center"} gap={"10px"} overflowX={"auto"}>
+					<Button variant='coin' isActive={blockchainSelected.length === 0}>
+						All
+					</Button>
+					{blockchains?.data?.map((coin, i) => {
+						if (i > 4) return;
 						return (
-							<Tooltip key={i} label={item.name}>
-								<Box
-									layerStyle={"flexCenter"}
-									justifyContent={"center"}
-									cursor={"pointer"}
-									_light={{
-										bg: blockchainSelected.includes(item.id)
-											? "#D9D9D9"
-											: "#FFF",
-									}}
-									_dark={{
-										bg: blockchainSelected.includes(item.id)
-											? "#FFFFFF"
-											: "#989898",
-									}}
-									border={
-										blockchainSelected.includes(item.id)
-											? "2px solid #245F00"
-											: "1px solid rgba(0, 0, 0, 0.10)"
-									}
-									dropShadow={
-										"0px 4px 4px rgba(0, 0, 0, 0.25)"
-									}
-									borderRadius="50%"
-									w="32px"
-									h="32px"
-									ml={"15px"}
-									onClick={() => {
-										BlockchainTypeHandler(item.id);
-									}}
-								>
-									<Avatar
-										style={{ borderRadius: "50%" }}
-										width={"21px"}
-										height={"21px"}
-										src={item?.logoUrl}
-										name={item.id ?? "Coin"}
-									></Avatar>
-								</Box>
-							</Tooltip>
+							<Button variant='coin' key={i} layerStyle={"center"}
+								isActive={blockchainSelected.includes(coin.id)}
+								onClick={() => {
+									BlockchainTypeHandler(coin.id);
+								}}
+							>
+								{coin.name}
+							</Button>
 						);
 					})}
 				</Box>
@@ -197,7 +130,7 @@ const BlockchainSelectionMenuNew = () => {
 												color: "white",
 											}}
 										>
-                                            More DeFi Markets
+                                            More Chains
 										</Text>
 										<i
 											className={`icon ${
