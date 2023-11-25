@@ -89,49 +89,72 @@ const DevelopmentInfo = () => {
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
                     label={"Stars"}
-                    value={CoinDevelopmentData?.stars.toLocaleString("en-US")}
+                    value={
+                        CoinDevelopmentData?.stars
+                            ? CoinDevelopmentData?.stars.toLocaleString("en-US")
+                            : "-"
+                    }
                     tooltip={"Hi"}
                 />
                 <DashboardCell
                     label={"Watchers"}
-                    value={CoinDevelopmentData?.watchers.toLocaleString(
-                        "en-US"
-                    )}
+                    value={
+                        CoinDevelopmentData?.watchers
+                            ? CoinDevelopmentData?.watchers.toLocaleString(
+                                  "en-US"
+                              )
+                            : "-"
+                    }
                     tooltip={"Hi"}
                 />
             </Box>
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
                     label={"Forks"}
-                    value={CoinDevelopmentData?.forks.toLocaleString("en-US")}
+                    value={
+                        CoinDevelopmentData?.forks
+                            ? CoinDevelopmentData?.forks.toLocaleString("en-US")
+                            : "-"
+                    }
                     tooltip={"Hi"}
                 />
                 <DashboardCell
                     label={"Contributors"}
-                    value={CoinDevelopmentData?.contributors.toLocaleString(
-                        "en-US"
-                    )}
+                    value={
+                        CoinDevelopmentData?.contributors
+                            ? CoinDevelopmentData?.contributors.toLocaleString(
+                                  "en-US"
+                              )
+                            : "-"
+                    }
                     tooltip={"Hi"}
                 />
             </Box>
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
                     label={"Merged Pull Requests"}
-                    value={CoinDevelopmentData?.merged_prs.toLocaleString(
-                        "en-US"
-                    )}
+                    value={
+                        CoinDevelopmentData?.merged_prs
+                            ? CoinDevelopmentData?.merged_prs.toLocaleString(
+                                  "en-US"
+                              )
+                            : "-"
+                    }
                     tooltip={"Hi"}
                 />
                 <DashboardCell
                     label={"Closed Issues/Total Issues"}
                     value={
-                        CoinDevelopmentData?.closed_issues.toLocaleString(
-                            "en-US"
-                        ) +
-                        " / " +
-                        CoinDevelopmentData?.total_issues.toLocaleString(
-                            "en-US"
-                        )
+                        CoinDevelopmentData?.closed_issues &&
+                        CoinDevelopmentData?.total_issues
+                            ? CoinDevelopmentData?.closed_issues.toLocaleString(
+                                  "en-US"
+                              ) +
+                              " / " +
+                              CoinDevelopmentData?.total_issues.toLocaleString(
+                                  "en-US"
+                              )
+                            : "-"
                     }
                     tooltip={"Hi"}
                 />
@@ -206,13 +229,15 @@ const DevelopmentChart = () => {
     };
 
     return (
-        <Box display={"block"} w={"100%"}>
-            <CustomChart
-                options={options}
-                type="bar"
-                series={series}
-                height={"300px"}
-            />
-        </Box>
+        CoinDevelopmentData && (
+            <Box display={"block"} w={"100%"}>
+                <CustomChart
+                    options={options}
+                    type="bar"
+                    series={series}
+                    height={"300px"}
+                />
+            </Box>
+        )
     );
 };

@@ -174,18 +174,13 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             bgColor={"background.secondary"}
         >
-            <Td key={0} textAlign={"center"}>
+            <Td key={0} textAlign={"center"} p={0}>
                 <Text variant={"h3"}>
                     {item?.rank === undefined ? "-" : item?.rank}
                 </Text>
             </Td>
-            <Td key={1}>
-                <Box
-                    display={"flex"}
-                    alignItems={"center"}
-                    width={"120px"}
-                    gap={"10px"}
-                >
+            <Td key={1} p={"15px"}>
+                <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <Avatar
                         width={"24px"}
                         height={"24px"}
@@ -214,66 +209,84 @@ const TableRow = ({ item, rowIndex }) => {
                     </Box>
                 </Box>
             </Td>
-            <Td key={2}>
-                <Text variant={"h3"}>
-                    {item?.price === undefined
-                        ? "-"
-                        : item?.price.toLocaleString("en-US", {
-                              style: "currency",
-                              currency: "USD",
-                          })}
-                </Text>
+            <Td key={2} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text variant={"h3"}>
+                        {item?.price === undefined
+                            ? "-"
+                            : item?.price.toLocaleString("en-US", {
+                                  style: "currency",
+                                  currency: "USD",
+                              })}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={3}>
-                <Text
-                    variant={"h3"}
-                    color={item?.change_1hr > 0 ? "text.green" : "text.red"}
-                    fontWeight={"600"}
-                >
-                    {item?.change_1hr === undefined
-                        ? "-"
-                        : item?.change_1hr.toFixed(3) + "%"}
-                </Text>
+            <Td key={3} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text
+                        variant={"h3"}
+                        color={item?.change_1hr > 0 ? "text.green" : "text.red"}
+                        fontWeight={"600"}
+                    >
+                        {item?.change_1hr === undefined
+                            ? "-"
+                            : item?.change_1hr.toFixed(3) + "%"}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={4}>
-                <Text
-                    variant={"h3"}
-                    color={item?.change_24hr > 0 ? "text.green" : "text.red"}
-                    fontWeight={"600"}
-                >
-                    {item?.change_24hr === undefined
-                        ? "-"
-                        : item?.change_24hr.toFixed(3) + "%"}
-                </Text>
+            <Td key={4} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text
+                        variant={"h3"}
+                        color={
+                            item?.change_24hr > 0 ? "text.green" : "text.red"
+                        }
+                        fontWeight={"600"}
+                    >
+                        {item?.change_24hr === undefined
+                            ? "-"
+                            : item?.change_24hr.toFixed(3) + "%"}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={5}>
-                <Text
-                    variant={"h3"}
-                    color={item?.change_7d > 0 ? "text.green" : "text.red"}
-                    fontWeight={"600"}
-                >
-                    {item?.change_7d === undefined
-                        ? "-"
-                        : item?.change_7d.toFixed(3) + "%"}
-                </Text>
+            <Td key={5} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text
+                        variant={"h3"}
+                        color={item?.change_7d > 0 ? "text.green" : "text.red"}
+                        fontWeight={"600"}
+                    >
+                        {item?.change_7d === undefined
+                            ? "-"
+                            : item?.change_7d.toFixed(3) + "%"}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={6}>
-                {item?.volume_24hr === undefined
-                    ? "-"
-                    : item?.volume_24hr.toLocaleString("en-US", {
-                          style: "currency",
-                          currency: "USD",
-                      })}
+            <Td key={6} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text variant={"h3"}>
+                        {item?.volume_24hr === undefined
+                            ? "-"
+                            : item?.volume_24hr.toLocaleString("en-US", {
+                                  style: "currency",
+                                  currency: "USD",
+                              })}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={7}>
-                {item?.mcap === undefined
-                    ? "-"
-                    : item?.mcap.toLocaleString("en-US", {
-                          style: "currency",
-                          currency: "USD",
-                      })}
+            <Td key={7} p={0}>
+                <Box layerStyle={"center"}>
+                    <Text variant={"h3"}>
+                        {item?.mcap === undefined
+                            ? "-"
+                            : item?.mcap.toLocaleString("en-US", {
+                                  style: "currency",
+                                  currency: "USD",
+                              })}
+                    </Text>
+                </Box>
             </Td>
-            <Td key={8} justifyContent={"center"}>
+            <Td key={8} justifyContent={"center"} p={0}>
                 <Box layerStyle={"center"} justifyContent={"start"} h="100%">
                     {item?.score === undefined ? (
                         "-"

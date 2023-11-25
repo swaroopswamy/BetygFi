@@ -1,7 +1,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable max-len */
 "use client";
-import { Box, useColorMode, useColorModeValue, Text } from "@chakra-ui/react";
+import {
+    Box,
+    useColorMode,
+    useColorModeValue,
+    Text,
+    Button,
+} from "@chakra-ui/react";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
@@ -10,8 +16,17 @@ import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
+const periods = ["7d", "14d", "30d", "1yr", "Max"];
+
 const CoinPriceChart = () => {
     const { colorMode } = useColorMode();
+
+    const [period, setPeriod] = useState("30d");
+
+    const periodSelectionHandler = (val) => {
+        if (val === period) setPeriod("30d");
+        else setPeriod(val);
+    };
 
     const CoinPriceData = useSelector(
         (state) => state?.coinData?.CoinPriceData
@@ -128,6 +143,13 @@ const CoinPriceChart = () => {
                     </Text>
                 </Box>
 
+                <Box display={"flex"} justifyContent={"right"} px={"20px"}>
+                    <PeriodSelection
+                        currPeriod={period}
+                        periodSelectionHandler={periodSelectionHandler}
+                    />
+                </Box>
+
                 <Box
                     px={{ base: "10px", md: "20px" }}
                     display={"flex"}
@@ -143,7 +165,7 @@ const CoinPriceChart = () => {
                 </Box>
 
                 <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph />
+                    <SelectorGraph period={period} />
                 </Box>
             </Box>
         </>
@@ -152,7 +174,7 @@ const CoinPriceChart = () => {
 
 export default CoinPriceChart;
 
-const SelectorGraph = () => {
+const SelectorGraph = ({ period }) => {
     const { colorMode } = useColorMode;
 
     const CoinPriceData = useSelector(
@@ -175,22 +197,7 @@ const SelectorGraph = () => {
         max: new Date("25 Oct 2023").getTime(),
     });
 
-    useEffect(() => {
-        if (CoinPriceData?.isSuccess) {
-            let oneMonthAgo = new Date(
-                Date.parse(series[0].data.slice(-1)[0][0])
-            );
-            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-            oneMonthAgo.setHours(0, 0, 0, 0);
-            selection.current = {
-                min: Date.parse(oneMonthAgo),
-                max: Date.parse(series[0].data.slice(-1)[0][0]),
-            };
-            setRetrig(!retrig);
-        }
-    }, [series]);
-
-    let options = {
+    let [options, setOptions] = useState({
         chart: {
             id: "selection",
             toolbar: {
@@ -275,7 +282,90 @@ const SelectorGraph = () => {
                 },
             },
         },
+    });
+
+    useEffect(() => {
+        if (CoinPriceData?.isSuccess) {
+            let oneMonthAgo = new Date(
+                Date.parse(series[0].data.slice(-1)[0][0])
+            );
+            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+            oneMonthAgo.setHours(0, 0, 0, 0);
+            selection.current = {
+                min: Date.parse(oneMonthAgo),
+                max: Date.parse(series[0].data.slice(-1)[0][0]),
+            };
+            setRetrig(!retrig);
+        }
+    }, [series]);
+
+    const setSelectionHandler = (value) => {
+        let newOptions = {
+            ...options,
+            chart: {
+                ...options.chart,
+                selection: {
+                    ...options.chart.selection,
+                    xaxis: value,
+                },
+            },
+        };
+        setOptions(newOptions);
     };
+
+    useEffect(() => {
+        if (CoinPriceData?.isSuccess) {
+            if (period === "7d") {
+                let minDate = new Date(
+                    Date.parse(series[0].data.slice(-1)[0][0])
+                );
+                minDate.setDate(minDate.getDate() - 7);
+                minDate.setHours(0, 0, 0, 0);
+                setSelectionHandler({
+                    min: Date.parse(minDate),
+                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                });
+            }
+            if (period === "14d") {
+                let minDate = new Date(
+                    Date.parse(series[0].data.slice(-1)[0][0])
+                );
+                minDate.setDate(minDate.getDate() - 14);
+                minDate.setHours(0, 0, 0, 0);
+                setSelectionHandler({
+                    min: Date.parse(minDate),
+                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                });
+            }
+            if (period === "30d") {
+                let minDate = new Date(
+                    Date.parse(series[0].data.slice(-1)[0][0])
+                );
+                minDate.setMonth(minDate.getMonth() - 1);
+                minDate.setHours(0, 0, 0, 0);
+                setSelectionHandler({
+                    min: Date.parse(minDate),
+                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                });
+            }
+            if (period === "1yr") {
+                let minDate = new Date(
+                    Date.parse(series[0].data.slice(-1)[0][0])
+                );
+                minDate.setDate(minDate.getDate() - 365);
+                minDate.setHours(0, 0, 0, 0);
+                setSelectionHandler({
+                    min: Date.parse(minDate),
+                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                });
+            }
+            if (period === "Max")
+                setSelectionHandler({
+                    min: Date.parse(series[0].data.slice(0)[0][0]),
+                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                });
+        }
+    }, [period, CoinPriceData]);
 
     return (
         <>
@@ -296,23 +386,23 @@ const SelectorGraph = () => {
     );
 };
 
-// const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
-//     return (
-//         <Box display={"flex"}>
-//             {periods.map((period, i) => {
-//                 return (
-//                     <Button
-//                         key={i}
-//                         variant="graphButton"
-//                         onClick={() => {
-//                             periodSelectionHandler(period);
-//                         }}
-//                         isActive={period === currPeriod}
-//                     >
-//                         {period}
-//                     </Button>
-//                 );
-//             })}
-//         </Box>
-//     );
-// };
+const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
+    return (
+        <Box display={"flex"}>
+            {periods.map((period, i) => {
+                return (
+                    <Button
+                        key={i}
+                        variant="graphButton"
+                        onClick={() => {
+                            periodSelectionHandler(period);
+                        }}
+                        isActive={period === currPeriod}
+                    >
+                        {period}
+                    </Button>
+                );
+            })}
+        </Box>
+    );
+};

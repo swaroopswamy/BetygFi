@@ -8,6 +8,7 @@ import { GoDatabase } from "react-icons/go";
 import { IoIosTrendingUp } from "react-icons/io";
 import { GrHelpBook } from "react-icons/gr";
 import { RiTwitterXFill } from "react-icons/ri";
+import { SiHiveBlockchain } from "react-icons/si";
 
 export const linkItemsUp = [
     {
@@ -82,6 +83,11 @@ export const dashboards = [
         icon: BiWalletAlt,
         path: "/top-wallets",
     },
+    {
+        name: "BetygFi Studio",
+        icon: SiHiveBlockchain,
+        path: `${process.env.NEXT_PUBLIC_STUDIO_URL}`,
+    },
 ];
 
 export const pages = [
@@ -94,6 +100,12 @@ export const pages = [
 ];
 
 export const communities = [
+    {
+        name: "BetygFi",
+        icon: BetygFiSmLogo,
+        path: `${process.env.NEXT_PUBLIC_COMMUNITY_URL}`,
+        newTab: true,
+    },
     {
         name: "Reddit",
         icon: SlSocialReddit,
