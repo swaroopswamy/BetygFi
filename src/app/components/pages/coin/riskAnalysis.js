@@ -250,6 +250,14 @@ const RiskChart = () => {
             axisTicks: {
                 show: true,
             },
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
+            },
         },
         yaxis: {
             axisBorder: {
@@ -260,6 +268,11 @@ const RiskChart = () => {
             },
             labels: {
                 show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
             },
         },
         tooltip: {

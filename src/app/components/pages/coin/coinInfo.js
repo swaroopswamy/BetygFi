@@ -134,7 +134,7 @@ const CoinInfo = () => {
                             variant={"h5"}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
                         >
-                            12 Nov 2023
+                            {new Date().toDateString()}
                         </Text>
                     </Box>
                 </Box>
@@ -161,7 +161,9 @@ const CoinInfo = () => {
                         if (i > 2) return;
                         return (
                             <Link key={i} href={link}>
-                                {link}
+                                <Text fontSize={"14px"} color={"text.primary"}>
+                                    {link}
+                                </Text>
                             </Link>
                         );
                     })}
@@ -190,7 +192,15 @@ const CoinInfo = () => {
                             if (i > 2) return;
                             return (
                                 <Link key={i} href={link}>
-                                    {link}
+                                    <Text
+                                        fontSize={"14px"}
+                                        color={"text.primary"}
+                                    >
+                                        {link
+                                            .split("")
+                                            .join("")
+                                            .substring(0, 40) + "......"}
+                                    </Text>
                                 </Link>
                             );
                         })}

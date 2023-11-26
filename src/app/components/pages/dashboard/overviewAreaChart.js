@@ -1,10 +1,11 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable max-len */
 import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import { categoryIds } from "@util/constant";
 
 const periods = ["7d", "14d", "30d", "Max"];
 
@@ -45,6 +46,9 @@ const OverviewAreaChart = () => {
         },
         legend: {
             show: true,
+            labels: {
+                colors: useColorModeValue("#16171B", "#FFF"),
+            },
         },
         dataLabels: {
             enabled: false,
@@ -120,22 +124,30 @@ const OverviewAreaChart = () => {
     };
 
     let colors = ["#29A88E", "#DE50CF", "#ACC94C", "#FF5C00"];
-    let series = [];
+    let [series, setSeries] = useState([]);
 
-    overviewGraphData?.isSuccess &&
-        overviewGraphData?.data?.graphData.map((category, i) => {
-            if (
-                categorySelected.includes(category?.name) ||
-                categorySelected.length === 0
-            ) {
-                let categorySeries = {
-                    name: category?.name,
-                    data: category?.graphData.slice(0, -2),
-                    color: colors[i % 4],
-                };
-                series.push(categorySeries);
-            }
-        });
+    let toUpdate = [];
+
+    useEffect(() => {
+        overviewGraphData?.isSuccess &&
+            overviewGraphData?.data?.graphData.map((category, i) => {
+                if (
+                    categorySelected.includes(category?.name) ||
+                    (categorySelected.length === 0 &&
+                        categoryIds.includes(category?.name))
+                ) {
+                    let categorySeries = {
+                        name: category?.name,
+                        data: category?.graphData,
+                        color: colors[i % 4],
+                    };
+                    toUpdate.push(categorySeries);
+                }
+                setSeries(toUpdate);
+            });
+    }, [categorySelected, overviewGraphData]);
+
+    useEffect(() => periodSelectionHandler(period), [colorMode]);
 
     return (
         <>
@@ -179,10 +191,6 @@ export default OverviewAreaChart;
 
 const SelectorGraph = ({ series, period }) => {
     const { colorMode } = useColorMode;
-    const selection = useRef({
-        min: new Date("19 Aug 2023").getTime(),
-        max: new Date("25 Aug 2023").getTime(),
-    });
 
     const overviewGraphData = useSelector(
         (state) => state?.dashboardTableData?.OverviewGraphData
@@ -190,9 +198,10 @@ const SelectorGraph = ({ series, period }) => {
 
     let greySeries = [];
 
-    if (series.length > 0) {
-        greySeries.push(structuredClone(series[0]));
-        greySeries[0].color = "#3A3D46";
+    for (let i = 0; i < series.length; i++) {
+        let grey = structuredClone(series[i]);
+        grey.color = "#3A3D46";
+        greySeries.push(grey);
     }
 
     const [options, setOptions] = useState({
@@ -213,10 +222,6 @@ const SelectorGraph = ({ series, period }) => {
                     color: "#00E0FF",
                     opacity: 0.15,
                 },
-                xaxis: {
-                    min: selection.current.min,
-                    max: selection.current.max,
-                },
                 stroke: {
                     width: 0,
                     dashArray: 0,
@@ -225,11 +230,6 @@ const SelectorGraph = ({ series, period }) => {
             },
             animations: {
                 enabled: false,
-            },
-            events: {
-                brushScrolled: function (chartContext, config) {
-                    selection.current = config.xaxis;
-                },
             },
         },
         fill: {
@@ -298,54 +298,56 @@ const SelectorGraph = ({ series, period }) => {
 
     useEffect(() => {
         if (series.length > 0) {
+            let mostRecentSeries = findMostRecentSeries(series);
             if (period === "7d") {
                 let minDate = new Date(
-                    Date.parse(series[0].data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
                 );
                 minDate.setDate(minDate.getDate() - 7);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(series[0].data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
                 });
             }
             if (period === "14d") {
                 let minDate = new Date(
-                    Date.parse(series[0].data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
                 );
                 minDate.setDate(minDate.getDate() - 14);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(series[0].data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
                 });
             }
             if (period === "30d") {
+                // console.log("hit");
                 let minDate = new Date(
-                    Date.parse(series[0].data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
                 );
                 minDate.setMonth(minDate.getMonth() - 1);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(series[0].data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
                 });
             }
             if (period === "1yr") {
                 let minDate = new Date(
-                    Date.parse(series[0].data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
                 );
                 minDate.setDate(minDate.getDate() - 365);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(series[0].data.slice(-1)[0][0]),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0][0]),
                 });
             }
             if (period === "Max")
                 setSelectionHandler({
-                    min: Date.parse(series[0].data.slice(0)[0].x),
-                    max: Date.parse(series[0].data.slice(-1)[0].x),
+                    min: Date.parse(mostRecentSeries.data.slice(0)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
                 });
         }
     }, [period, series]);
@@ -387,3 +389,16 @@ const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
         </Box>
     );
 };
+
+function findMostRecentSeries(series) {
+    let mostRecentDate = 0;
+    let mostRecentIndex = 0;
+    for (let i = 0; i < series.length; i++) {
+        let currLastDate = Date.parse(series[i].data.slice(-1)[0].x);
+        if (currLastDate >= mostRecentDate) {
+            mostRecentDate = currLastDate;
+            mostRecentIndex = i;
+        }
+    }
+    return series[mostRecentIndex];
+}

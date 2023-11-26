@@ -19,6 +19,16 @@ export const categories = [
     { name: "Launchpad", id: "Launchpad" },
 ];
 
+export const categoryIds = [
+    "Prediction Market",
+    "Derivatives",
+    "Insurance",
+    "Yield",
+    "CDP",
+    "Lending",
+    "Launchpad",
+];
+
 export const colors = {
     // Define colors for both light and dark themes
 

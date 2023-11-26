@@ -7,8 +7,8 @@ import { BetygFiSmLogo } from "@/app/components/icons";
 import { GoDatabase } from "react-icons/go";
 import { IoIosTrendingUp } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
-import { SiHiveBlockchain } from "react-icons/si";
 import { MdOutlineHelp } from "react-icons/md";
+import { AiOutlineCodeSandbox } from "react-icons/ai";
 
 export const bottomMenu = [
     { name: "Help", icon: MdOutlineHelp, path: "/help" },
@@ -45,7 +45,7 @@ export const dashboards = [
     },
     {
         name: "BetygFi Studio",
-        icon: SiHiveBlockchain,
+        icon: AiOutlineCodeSandbox,
         path: `${process.env.NEXT_PUBLIC_STUDIO_URL}`,
         newTab: true,
     },
