@@ -8,7 +8,7 @@ import {
     Text,
     Button,
 } from "@chakra-ui/react";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
@@ -40,6 +40,8 @@ const CoinPriceChart = () => {
         ],
         [CoinPriceData]
     );
+
+    useEffect(() => periodSelectionHandler(period), [colorMode]);
 
     const options = {
         chart: {
@@ -143,7 +145,11 @@ const CoinPriceChart = () => {
                     </Text>
                 </Box>
 
-                <Box display={"flex"} justifyContent={"right"} px={"20px"}>
+                <Box
+                    display={{ base: "none", lg: "flex" }}
+                    justifyContent={"right"}
+                    px={"20px"}
+                >
                     <PeriodSelection
                         currPeriod={period}
                         periodSelectionHandler={periodSelectionHandler}
@@ -190,13 +196,6 @@ const SelectorGraph = ({ period }) => {
         [CoinPriceData]
     );
 
-    const [retrig, setRetrig] = useState(false);
-
-    const selection = useRef({
-        min: new Date("19 Aug 2022").getTime(),
-        max: new Date("25 Oct 2023").getTime(),
-    });
-
     let [options, setOptions] = useState({
         chart: {
             id: "selection",
@@ -216,10 +215,6 @@ const SelectorGraph = ({ period }) => {
                     color: "#667AFF4D",
                     opacity: 0.3,
                 },
-                xaxis: {
-                    min: selection.current.min,
-                    max: selection.current.max,
-                },
                 stroke: {
                     width: 1,
                     color: ["#544FC5", "#00E272"],
@@ -227,16 +222,6 @@ const SelectorGraph = ({ period }) => {
             },
             animations: {
                 enabled: false,
-            },
-            events: {
-                // brushScrolled: function (chartContext, config) {
-                //     // setSelStateHandler(config.xaxis);
-                //     selection.current = config.xaxis;
-                //     console.log(
-                //         "update selection by scroll",
-                //         selection.current
-                //     );
-                // },
             },
         },
         stroke: {
@@ -283,21 +268,6 @@ const SelectorGraph = ({ period }) => {
             },
         },
     });
-
-    useEffect(() => {
-        if (CoinPriceData?.isSuccess) {
-            let oneMonthAgo = new Date(
-                Date.parse(series[0].data.slice(-1)[0][0])
-            );
-            oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-            oneMonthAgo.setHours(0, 0, 0, 0);
-            selection.current = {
-                min: Date.parse(oneMonthAgo),
-                max: Date.parse(series[0].data.slice(-1)[0][0]),
-            };
-            setRetrig(!retrig);
-        }
-    }, [series]);
 
     const setSelectionHandler = (value) => {
         let newOptions = {

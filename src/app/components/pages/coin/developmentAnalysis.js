@@ -1,4 +1,4 @@
-import { Box, Text, useMediaQuery } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import CustomChart from "../../graph";
@@ -211,6 +211,14 @@ const DevelopmentChart = () => {
             axisTicks: {
                 show: true,
             },
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
+            },
         },
         yaxis: {
             axisBorder: {
@@ -221,6 +229,11 @@ const DevelopmentChart = () => {
             },
             labels: {
                 show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
             },
         },
         tooltip: {
