@@ -5,6 +5,8 @@ import "/styles/styles.scss";
 import { Providers } from "@/app/ChakraProvider";
 import { WagmiProvider } from "@/app/Web3Provider";
 import LayoutProvider from "@/app/LayoutProvider";
+import SessionProvider from "@/app/SessionProvider";
+import { getServerSession } from "next-auth";
 
 export const metadata = {
 	title: "BetygFi : Elevate your game",
@@ -20,7 +22,8 @@ export const runtime = 'nodejs';
 export const preferredRegion = 'auto';
 export const maxDuration = 5;
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const session = await getServerSession();
 	return (
 		<html lang="en">
 			<head>
@@ -61,9 +64,11 @@ export default function RootLayout({ children }) {
 			<body>
 				<ReduxProvider>
 					<WagmiProvider>
-						<Providers>
-							<LayoutProvider>{children}</LayoutProvider>
-						</Providers>
+						<SessionProvider session={session}>
+							<Providers>
+								<LayoutProvider>{children}</LayoutProvider>
+							</Providers>
+						</SessionProvider>
 					</WagmiProvider>
 				</ReduxProvider>
 			</body>

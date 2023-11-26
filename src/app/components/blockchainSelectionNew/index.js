@@ -145,7 +145,7 @@ const BlockchainSelectionMenuNew = () => {
 										width={"21px"}
 										height={"21px"}
 										src={item?.logoUrl}
-										alt={item.id ?? "Coin"}
+										name={item.id ?? "Coin"}
 									></Avatar>
 								</Box>
 							</Tooltip>
@@ -278,7 +278,7 @@ const BlockchainSelectionMenuNew = () => {
                                         						src={
                                         							item.logoUrl
                                         						}
-                                        						alt={
+                                        						name={
                                         							item.id ??
                                                                     "Coin"
                                         						}

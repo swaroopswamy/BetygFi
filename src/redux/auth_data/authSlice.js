@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginMetamask, verifyPublicAddress } from "@/services/authService";
+import { loginMetamask, socialLoginGoogleAPI, verifyPublicAddress } from "@/services/authService";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",
 	async (payload, { rejectWithValue }) => {
-		const response = await verifyPublicAddress(payload,rejectWithValue );
+		const response = await verifyPublicAddress(payload, rejectWithValue);
 		return response.data;
 	}
 );
 
-export const LoginMetamask = createAsyncThunk(
+export const LoginGetToken = createAsyncThunk(
 	"LoginMetamask",
 	async (payload) => {
 		const response = await loginMetamask(payload);
@@ -17,26 +17,40 @@ export const LoginMetamask = createAsyncThunk(
 	}
 );
 
-export const saveToken = (state) => {
+export const socialLoginGoogle = createAsyncThunk(
+	"socialLoginGoogle",
+	async (payload, { rejectWithValue }) => {
+		const response = await socialLoginGoogleAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
+
+
+
+/* export const saveToken = (state, token) => {
 	try {
 		const accountState = {
-			token: state,
+			state: {
+				token: token,
+				public_address: public_address
+			},
+
 		};
 		const serializedState = JSON.stringify(accountState);
-		localStorage.setItem("state", serializedState);
+		localStorage.setItem("verifiedState", serializedState);
 	} catch (err) {
 		// console.log(err);
 	}
-};
+}; */
 
 export const loadToken = () => {
 	try {
-		const serializedState = localStorage.getItem("state");
+		const serializedState = localStorage.getItem("verifiedState");
 
 		if (serializedState === null) {
 			return undefined;
 		}
-		return JSON.parse(serializedState);
+		return JSON.parse(serializedState?.state?.state);
 	} catch (err) {
 		return undefined;
 	}
@@ -45,74 +59,115 @@ export const loadToken = () => {
 const AuthDataSlice = createSlice({
 	name: "authData",
 	initialState: {
-		UserData: {
-			data: null,
-			isLoading: false,
-			isError: false,
-			isSuccess: false,
-		},
 		LoggedInData: {
+			data: loadToken() ?? null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		verifiedPublicAddressData: {
 			data: null,
 			isLoading: false,
 			isError: false,
 			isSuccess: false,
 		},
-		preLoadedData: {
+		GoogleVerifiedData: {
 			data: null,
-		},
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(VerifyPublicAddressData.fulfilled, (state, action) => {
-			state.UserData.data = action.payload;
-			state.UserData.isLoading = false;
-			state.UserData.isSuccess = true;
-			state.UserData.isError = false;
+			state.verifiedPublicAddressData.data = action.payload;
+			state.verifiedPublicAddressData.isLoading = false;
+			state.verifiedPublicAddressData.isSuccess = true;
+			state.verifiedPublicAddressData.isError = false;
 		});
 		builder.addCase(VerifyPublicAddressData.pending, (state, action) => {
-			state.UserData.isLoading = true;
-			state.UserData.isError = false;
-			state.UserData.isSuccess = false;
-			state.UserData.data = action.payload;
+			state.verifiedPublicAddressData.isLoading = true;
+			state.verifiedPublicAddressData.isError = false;
+			state.verifiedPublicAddressData.isSuccess = false;
+			state.verifiedPublicAddressData.data = action.payload;
 		});
 		builder.addCase(VerifyPublicAddressData.rejected, (state, action) => {
-			state.UserData.isLoading = false;
-			state.UserData.isSuccess = false;
-			state.UserData.isError = true;
-			state.UserData.data = action.payload;
+			state.verifiedPublicAddressData.isLoading = false;
+			state.verifiedPublicAddressData.isSuccess = false;
+			state.verifiedPublicAddressData.isError = true;
+			state.verifiedPublicAddressData.data = action.payload;
 		});
-		builder.addCase(LoginMetamask.fulfilled, (state, action) => {
+		builder.addCase(LoginGetToken.fulfilled, (state, action) => {
 			state.LoggedInData.data = action.payload;
-			state.preLoadedData.data = action.payload;
 			state.LoggedInData.isLoading = false;
 			state.LoggedInData.isSuccess = true;
 			state.LoggedInData.isError = false;
-			saveToken(action.payload);
 		});
-		builder.addCase(LoginMetamask.pending, (state, action) => {
+		builder.addCase(LoginGetToken.pending, (state, action) => {
 			state.LoggedInData.isLoading = true;
 			state.LoggedInData.isError = false;
 			state.LoggedInData.isSuccess = false;
 			state.LoggedInData.data = action.payload;
+
 		});
-		builder.addCase(LoginMetamask.rejected, (state, action) => {
+		builder.addCase(LoginGetToken.rejected, (state, action) => {
 			state.LoggedInData.isLoading = false;
 			state.LoggedInData.isSuccess = false;
 			state.LoggedInData.isError = true;
 			state.LoggedInData.data = action.payload;
 		});
+		builder.addCase(socialLoginGoogle.fulfilled, (state, action) => {
+			state.GoogleVerifiedData.data = action.payload;
+			state.GoogleVerifiedData.isLoading = false;
+			state.GoogleVerifiedData.isSuccess = true;
+			state.GoogleVerifiedData.isError = false;
+		});
+		builder.addCase(socialLoginGoogle.pending, (state, action) => {
+			state.GoogleVerifiedData.isLoading = true;
+			state.GoogleVerifiedData.isError = false;
+			state.GoogleVerifiedData.isSuccess = false;
+			state.GoogleVerifiedData.data = action.payload;
+
+		});
+		builder.addCase(socialLoginGoogle.rejected, (state, action) => {
+			state.GoogleVerifiedData.isLoading = false;
+			state.GoogleVerifiedData.isSuccess = false;
+			state.GoogleVerifiedData.isError = true;
+			state.GoogleVerifiedData.data = action.payload;
+		});
 	},
 	reducers: {
 		LogoutReducer: (state, /* action */) => {
 			state.LoggedInData.data = null;
-			state.preLoadedData.data = null;
-			state.UserData.data = null;
+			state.verifiedPublicAddressData.data = null;
 			localStorage.clear();
 		},
 		FetchLocalStorageData: (state, /* action */) => {
-			state.preLoadedData.data = loadToken();
+			state.verifiedPublicAddressData.data = loadToken();
 		},
+		StoreLoggedInUserData: (state,/*  action */) => {
+			const accountState = {
+				state: {
+					token: state.LoggedInData.data.token,
+					public_address: state.verifiedPublicAddressData.data?.public_address
+				},
+
+			};
+			const serializedState = JSON.stringify(accountState);
+			localStorage.setItem("verifiedState", serializedState);
+		},
+		StoreLoggedInUserDataGoogle: (state, /* action */) => {
+			const accountState = {
+				state: {
+					token: state.GoogleVerifiedData.data?.token,
+				},
+
+			};
+			const serializedState = JSON.stringify(accountState);
+			localStorage.setItem("verifiedState", serializedState);
+		}
 	},
 });
 
-export const { LogoutReducer, FetchLocalStorageData } = AuthDataSlice.actions;
+export const { LogoutReducer, FetchLocalStorageData, StoreLoggedInUserData, StoreLoggedInUserDataGoogle } = AuthDataSlice.actions;
 export default AuthDataSlice.reducer;

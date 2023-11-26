@@ -1,12 +1,12 @@
 import axios from "axios";
-import { Router } from "next/router";
+//import { Router } from "next/navigation";
 
-const isServer = () => {
+/* const isServer = () => {
   return window === "undefined";
-};
+}; */
 
 let accessToken = "";
-let context = {};
+//let context = {}; 
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -33,13 +33,13 @@ axiosInstance.interceptors.request.use((config) => {
         config.headers.Authorization = `Bearer ${accessToken}`
     } */
 
-  if (isServer() && context?.req?.cookies) {
+ /*  if (isServer() && context?.req?.cookies) {
     config.headers.Cookie = `gid=${context.req.cookies.gid};`;
-  }
+  } */
   return config;
 });
 
-axiosInstance.interceptors.response.use(
+/* axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -54,9 +54,9 @@ axiosInstance.interceptors.response.use(
     }
     return Promise.reject(error);
   }
-);
+); */
 
-let fetchingToken = false;
+/* let fetchingToken = false;
 
 let subscribers = [];
 
@@ -67,9 +67,9 @@ const onAccessTokenFetched = (token) => {
 
 const addSubscriber = (callback) => {
   subscribers.push(callback);
-};
+}; */
 
-const refreshToken = async (oError) => {
+/* const refreshToken = async (oError) => {
   try {
     const { response } = oError;
 
@@ -110,3 +110,4 @@ const refreshToken = async (oError) => {
     fetchingToken = false;
   }
 };
+ */

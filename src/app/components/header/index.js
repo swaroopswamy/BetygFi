@@ -1,10 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import {
-	useAccount,
 	useDisconnect,
-	useEnsName,
 } from "wagmi";
 import {
 	Box,
@@ -29,6 +27,8 @@ import { MobileSidebar } from "@/app/components/sidebar";
 import { COLOR_MODE_COOKIE_NAME, getDomainForCookie } from "@util/utility";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 
+import { signOut, useSession } from "next-auth/react";
+import CustomAvatar from "@/app/components/avatar";
 
 const Navbar = ({ ...rest }) => {
 	const searchParams = useSearchParams();
@@ -51,15 +51,6 @@ const Navbar = ({ ...rest }) => {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
 
-	// const preLoadedData = useSelector((state) => state.authData.preLoadedData);
-	const LoggedInData = useSelector((state) => state.authData.LoggedInData);
-
-	const {
-		address: ConnectedWalletAddress,
-		isConnected,
-	} = useAccount();
-	// const { data: ensAvatar } = useEnsAvatar({ ConnectedWalletAddress });
-	const { data: ensName } = useEnsName({ ConnectedWalletAddress });
 	const { disconnect } = useDisconnect();
 	const handleSearchByWalletAddress = (e) => {
 		if (e.key === "Enter") {
@@ -112,6 +103,7 @@ const Navbar = ({ ...rest }) => {
 		toggleColorMode();
 	};
 
+	const { data: AuthSession } = useSession();
 	return (
 		<>
 			<Flex
@@ -182,21 +174,15 @@ const Navbar = ({ ...rest }) => {
 				</Box>
 
 				<Box layerStyle={"flexCenter"}>
-					<div className="controller-row">
-						<label className="switch">
-							<input
-								id="toggler"
-								type="checkbox"
-								checked={colorMode !== "light"}
-								onChange={() => {
-									toggleColorModeGlobally();
-								}}
-							/>
-							<span className="slider round"></span>
-						</label>
-					</div>
+					<i
+						className={`icon ${colorMode === "light" ? "moon" : "sun"
+							}`}
+						onClick={() => {
+							toggleColorModeGlobally();
+						}}
+					/>
 
-					{!isConnected && LoggedInData?.data === null ? (
+					{!AuthSession ? (
 						<>
 							<Box
 								ml="20px"
@@ -207,7 +193,11 @@ const Navbar = ({ ...rest }) => {
 								<Box
 									cursor={"pointer"}
 									onClick={onLoginModalOpen}
-									bgColor={colorMode === "light" ? "#202020" : "#FFF"}
+									bgColor={
+										colorMode === "light"
+											? "#282828"
+											: "#FFF"
+									}
 									layerStyle={"center"}
 									borderRadius={"2px"}
 									p="15px 20px"
@@ -228,52 +218,63 @@ const Navbar = ({ ...rest }) => {
 						<>
 							<Box
 								layerStyle={"flexCenter"}
+								justifyContent={"end"}
 								ml="20px"
 								pl="20px"
 								borderLeft={"1px solid #333333"}
 								w="100%"
-								minW="270px"
 							>
-								<Image
-									src={"/images/profile_img.png"}
-									w="36px"
-									h="36px"
-									borderRadius={"50%"}
-									alt="search_icon"
-								/>
-								<Box layerStyle={"flexColumn"} ml="10px" mr="20px" minW="150px">
-									<Text variant={"TopWalletsText"}>
-										{ensName ? ensName : "No name"}
-									</Text>
-									<Text
-										variant={"h5"}
-										letterSpacing={"1.2px"}
-										_light={{ color: "#16171B" }}
-										_dark={{ color: "#A8ADBD" }}
-									>
-										{LoggedInData?.data?.user?._id
-											.split("")
-											.join("")
-											.substring(0, 6) +
-											"..." +
-											LoggedInData?.data?.user?._id.slice(-5)}
-									</Text>
-								</Box>
+								{typeof window !== "undefined" && (
+									<CustomAvatar
+										src={AuthSession?.user?.image}
+										name={AuthSession?.user?.name ?? "U"}
+									/>
+								)}
 
-								<Image
-									src={
-										colorMode === "light"
-											? "/icons/logout_icon_light.svg"
-											: "/icons/logout_white.svg"
-									}
-									w="20px"
-									h="20px"
-									cursor={"pointer"}
-									borderRadius={"50%"}
-									alt="search_icon"
+								<Box
+									layerStyle={"flexColumn"}
+									ml="10px"
+									mr="20px"
+									minW="90px"
+								>
+									<Text
+										variant={"TopWalletsText"}
+										w="80px"
+										whiteSpace={"nowrap"}
+										overflow={"hidden"}
+										textOverflow={"ellipsis"}
+									>
+										{AuthSession?.user?.name
+											? AuthSession?.user?.name
+											: "No name"}
+									</Text>
+									{AuthSession?.user?.public_address && (
+										<Text
+											variant={"h5"}
+											letterSpacing={"1.2px"}
+											_light={{ color: "#16171B" }}
+											_dark={{ color: "#A8ADBD" }}
+										>
+											{AuthSession?.user?.public_address
+												?.split("")
+												?.join("")
+												?.substring(0, 6) +
+												"..." +
+												AuthSession?.user?.public_address?.slice(
+													-5
+												)}
+										</Text>
+									)}
+								</Box>
+								<i
+									className={`icon ${colorMode === "light"
+										? "log_in_black"
+										: "log_in_white"
+										}`}
 									onClick={() => {
 										disconnect();
 										dispatch(LogoutReducer());
+										signOut();
 									}}
 								/>
 							</Box>
