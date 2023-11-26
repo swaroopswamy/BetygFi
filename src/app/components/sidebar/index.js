@@ -29,7 +29,6 @@ import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import "/styles/styles.scss";
 import {
-    linkItemsDown,
     bottomMenu,
     dashboards,
     pages,
@@ -975,75 +974,31 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                             animateOpacity={"true"}
                                         >
                                             <Box layerStyle={"flexColumn"}>
-                                                {linkItemsDown.map(
-                                                    (link, i) => (
-                                                        <NavItem
-                                                            key={i}
-                                                            NavIcon={link.icon}
-                                                            path={link.path}
-                                                            newTab={link.newTab}
-                                                            isActive={
-                                                                pathname ===
-                                                                link.path
+                                                {communities.map((link, i) => (
+                                                    <NavItem
+                                                        key={i}
+                                                        NavIcon={link.icon}
+                                                        path={link.path}
+                                                        newTab={link.newTab}
+                                                        isActive={
+                                                            pathname ===
+                                                            link.path
+                                                        }
+                                                        height={"40px"}
+                                                        pl={"20px"}
+                                                        mr={"0px"}
+                                                    >
+                                                        <Text
+                                                            fontSize={"12px"}
+                                                            lineHeight={"20px"}
+                                                            letterSpacing={
+                                                                "1.4px"
                                                             }
-                                                            height={"40px"}
-                                                            pl={"20px"}
-                                                            mr={"0px"}
                                                         >
-                                                            <Text
-                                                                fontSize={
-                                                                    "12px"
-                                                                }
-                                                                lineHeight={
-                                                                    "20px"
-                                                                }
-                                                                letterSpacing={
-                                                                    "1.4px"
-                                                                }
-                                                            >
-                                                                {link.name}
-                                                            </Text>
-                                                        </NavItem>
-                                                    )
-                                                )}
-                                            </Box>
-                                        </Collapse>
-                                        <Collapse
-                                            in={isCommunitiesOpen}
-                                            animateOpacity={"true"}
-                                        >
-                                            <Box layerStyle={"flexColumn"}>
-                                                {linkItemsDown.map(
-                                                    (link, i) => (
-                                                        <NavItem
-                                                            key={i}
-                                                            NavIcon={link.icon}
-                                                            path={link.path}
-                                                            newTab={link.newTab}
-                                                            isActive={
-                                                                pathname ===
-                                                                link.path
-                                                            }
-                                                            height={"40px"}
-                                                            pl={"20px"}
-                                                            mr={"0px"}
-                                                        >
-                                                            <Text
-                                                                fontSize={
-                                                                    "12px"
-                                                                }
-                                                                lineHeight={
-                                                                    "20px"
-                                                                }
-                                                                letterSpacing={
-                                                                    "1.4px"
-                                                                }
-                                                            >
-                                                                {link.name}
-                                                            </Text>
-                                                        </NavItem>
-                                                    )
-                                                )}
+                                                            {link.name}
+                                                        </Text>
+                                                    </NavItem>
+                                                ))}
                                             </Box>
                                         </Collapse>
 

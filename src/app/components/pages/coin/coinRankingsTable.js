@@ -89,6 +89,7 @@ const CoinRankingsTable = () => {
                 flexDirection={{ base: "column", md: "row", lg: "row" }}
                 p={"10px 20px"}
                 bgColor={"background.secondary"}
+                gap={"10px"}
             >
                 <Box
                     display={"flex"}
@@ -169,7 +170,7 @@ const TableRow = ({ item, rowIndex }) => {
             key={rowIndex}
             cursor={"pointer"}
             onClick={() => {
-                router.push(`/coin/${item?.slug}`);
+                if (item?.slug) router.push(`/coin/${item?.slug}`);
             }}
             border={"0px"}
             bgColor={"background.secondary"}
@@ -214,7 +215,7 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.price === undefined
                             ? "-"
-                            : item?.price.toLocaleString("en-US", {
+                            : item?.price?.toLocaleString("en-US", {
                                   style: "currency",
                                   currency: "USD",
                               })}
@@ -267,7 +268,7 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.volume_24hr === undefined
                             ? "-"
-                            : item?.volume_24hr.toLocaleString("en-US", {
+                            : item?.volume_24hr?.toLocaleString("en-US", {
                                   style: "currency",
                                   currency: "USD",
                               })}
@@ -279,7 +280,7 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.mcap === undefined
                             ? "-"
-                            : item?.mcap.toLocaleString("en-US", {
+                            : item?.mcap?.toLocaleString("en-US", {
                                   style: "currency",
                                   currency: "USD",
                               })}
@@ -447,10 +448,12 @@ const PanelComp = ({ item }) => {
                 </Box>
 
                 <Text variant={"h3"}>
-                    {item?.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    })}
+                    {item?.price === undefined
+                        ? "-"
+                        : item?.price?.toLocaleString("en-US", {
+                              style: "currency",
+                              currency: "USD",
+                          })}
                 </Text>
             </Box>
 
@@ -475,7 +478,9 @@ const PanelComp = ({ item }) => {
                     color={item?.change_1hr > 0 ? "text.green" : "text.red"}
                     fontWeight={"600"}
                 >
-                    {item?.change_1hr.toFixed(3)}%
+                    {item?.change_1hr === undefined
+                        ? "-"
+                        : item?.change_1hr.toFixed(3) + "%"}
                 </Text>
             </Box>
 
@@ -500,7 +505,9 @@ const PanelComp = ({ item }) => {
                     color={item?.change_24hr > 0 ? "text.green" : "text.red"}
                     fontWeight={"600"}
                 >
-                    {item?.change_24hr.toFixed(3)}%
+                    {item?.change_24hr === undefined
+                        ? "-"
+                        : item?.change_24hr.toFixed(3) + "%"}
                 </Text>
             </Box>
 
@@ -524,7 +531,9 @@ const PanelComp = ({ item }) => {
                     color={item?.change_7d > 0 ? "text.green" : "text.red"}
                     fontWeight={"600"}
                 >
-                    {item?.change_7d.toFixed(3)}%
+                    {item?.change_1hr === undefined
+                        ? "-"
+                        : item?.change_7d.toFixed(3) + "%"}
                 </Text>
             </Box>
 
@@ -545,10 +554,12 @@ const PanelComp = ({ item }) => {
                 </Box>
 
                 <Text variant={"h3"}>
-                    {item?.volume_24hr.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    })}
+                    {item?.volume_24hr === undefined
+                        ? "-"
+                        : item?.volume_24hr?.toLocaleString("en-US", {
+                              style: "currency",
+                              currency: "USD",
+                          })}
                 </Text>
             </Box>
 
@@ -569,10 +580,12 @@ const PanelComp = ({ item }) => {
                 </Box>
 
                 <Text variant={"h3"}>
-                    {item?.mcap.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    })}
+                    {item?.mcap === undefined
+                        ? "-"
+                        : item?.mcap?.toLocaleString("en-US", {
+                              style: "currency",
+                              currency: "USD",
+                          })}
                 </Text>
             </Box>
 
@@ -580,7 +593,7 @@ const PanelComp = ({ item }) => {
                 <Button
                     variant="link"
                     onClick={() => {
-                        router.push(`/coin/${item?.slug}`);
+                        if (item?.slug) router.push(`/coin/${item?.slug}`);
                     }}
                 >
                     Open Details

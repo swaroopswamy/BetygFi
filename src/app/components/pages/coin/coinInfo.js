@@ -53,30 +53,40 @@ const CoinInfo = () => {
                             <DashboardCell
                                 label={"Daily Volatility"}
                                 value={
-                                    100 *
-                                        CoinDashboardData?.daily_vol?.toFixed(
-                                            3
-                                        ) +
-                                    "%"
+                                    CoinDashboardData?.daily_vol
+                                        ? 100 *
+                                              CoinDashboardData?.daily_vol?.toFixed(
+                                                  3
+                                              ) +
+                                          "%"
+                                        : "-"
                                 }
                                 tooltip={"Hi"}
                             />
                             <DashboardCell
                                 label={"Beta"}
-                                value={CoinDashboardData?.beta?.toFixed(3)}
+                                value={
+                                    CoinDashboardData?.beta
+                                        ? CoinDashboardData?.beta.toFixed(3)
+                                        : "-"
+                                }
                                 tooltip={"Hi"}
                             />
                         </Box>
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
                                 label={"Volume"}
-                                value={CoinDashboardData?.volume?.toLocaleString(
-                                    "en-US",
-                                    {
-                                        style: "currency",
-                                        currency: "USD",
-                                    }
-                                )}
+                                value={
+                                    CoinDashboardData?.volume
+                                        ? CoinDashboardData?.volume.toLocaleString(
+                                              "en-US",
+                                              {
+                                                  style: "currency",
+                                                  currency: "USD",
+                                              }
+                                          )
+                                        : "-"
+                                }
                                 tooltip={"Hi"}
                             />
                             <DashboardCell
@@ -88,16 +98,24 @@ const CoinInfo = () => {
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
                                 label={"Liquidity Ratio"}
-                                value={CoinDashboardData?.liquid_ratio?.toFixed(
-                                    3
-                                )}
+                                value={
+                                    CoinDashboardData?.liquid_ratio
+                                        ? CoinDashboardData?.liquid_ratio?.toFixed(
+                                              3
+                                          )
+                                        : "-"
+                                }
                                 tooltip={"Hi"}
                             />
                             <DashboardCell
                                 label={"Liquidity Volatility"}
-                                value={CoinDashboardData?.liquid_vol?.toFixed(
-                                    3
-                                )}
+                                value={
+                                    CoinDashboardData?.liquid_vol
+                                        ? CoinDashboardData?.liquid_vol?.toFixed(
+                                              3
+                                          )
+                                        : "-"
+                                }
                                 tooltip={"Hi"}
                             />
                         </Box>
