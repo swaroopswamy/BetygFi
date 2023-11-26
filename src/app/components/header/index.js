@@ -26,6 +26,9 @@ import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "@/app/components/sidebar";
+import { COLOR_MODE_COOKIE_NAME, getDomainForCookie } from "@util/utility";
+import { createCookies, getCookieByName } from "@util/cookieHelper";
+
 
 const Navbar = ({ ...rest }) => {
 	const searchParams = useSearchParams();
@@ -85,8 +88,29 @@ const Navbar = ({ ...rest }) => {
 
 	useEffect(() => {
 		dispatch(FetchLocalStorageData());
+		updateColorMode();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	const normalizeColorMode = (colorMode) => colorMode === 'light' ? 'dark' : 'light';
+
+	const updateColorMode = () => {
+		const colorCookie = getCookieByName(COLOR_MODE_COOKIE_NAME);
+		if (colorCookie === 'light') {
+			if (colorMode === 'dark') {
+				toggleColorMode();
+			}
+		} else if (colorCookie === 'dark') {
+			if (colorMode === 'light') {
+				toggleColorMode();
+			}
+		}
+	};
+
+	const toggleColorModeGlobally = () => {
+		createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode), getDomainForCookie());
+		toggleColorMode();
+	};
 
 	return (
 		<>
@@ -165,7 +189,7 @@ const Navbar = ({ ...rest }) => {
 								type="checkbox"
 								checked={colorMode !== "light"}
 								onChange={() => {
-									toggleColorMode();
+									toggleColorModeGlobally();
 								}}
 							/>
 							<span className="slider round"></span>
