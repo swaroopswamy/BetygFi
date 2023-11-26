@@ -13,6 +13,7 @@ import {
     Th,
     Thead,
     Tr,
+    useColorMode,
     useMediaQuery,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
@@ -22,6 +23,7 @@ const SkeletonTable = dynamic(() => import("/src/app/components/skeleton"));
 import { SingleAccordionComp } from "/src/app/components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import isEmpty from "is-empty";
+import { colors } from "@util/constant";
 
 const GenericTable = ({
     tableHeader,
@@ -36,6 +38,7 @@ const GenericTable = ({
     bigTable = false,
 }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const { colorMode } = useColorMode();
 
     const data = useMemo(
         () =>
@@ -274,6 +277,7 @@ const GenericTable = ({
                                                 minH={"50px"}
                                                 w={"100%"}
                                                 borderRadius={"0px"}
+                                                bgColor={"background.secondary"}
                                                 ButtonComp={() => {
                                                     return (
                                                         <ButtonComp

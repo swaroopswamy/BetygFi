@@ -6,7 +6,7 @@ import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
 
-const periods = ["7d", "14d", "30d", "1yr", "Max"];
+const periods = ["7d", "14d", "30d", "Max"];
 
 const OverviewAreaChart = () => {
     const { colorMode } = useColorMode();
