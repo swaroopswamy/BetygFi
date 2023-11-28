@@ -2,13 +2,13 @@
 "use client";
 import React, { useEffect } from "react";
 import { Box, useColorModeValue, useDisclosure, useMediaQuery } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "/styles/styles.scss";
 import SidebarContent from "@/app/components/sidebar";
 import Footer from "@/app/components/footer";
 import Navbar from "@/app/components/header";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { StoreLoggedInUserDataGoogle, socialLoginGoogle } from "@/redux/auth_data/authSlice";
+//import { StoreLoggedInUserDataGoogle, socialLoginGoogle } from "@/redux/auth_data/authSlice";
 import { AUTH_COOKIE_NAME } from "@util/utility";
 import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "is-empty";
@@ -16,7 +16,7 @@ import { useDisconnect } from "wagmi";
 
 export default function LayoutProvider({ children }) {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
-	const dispatch = useDispatch();
+	//const dispatch = useDispatch();
 	const { onOpen, onClose } = useDisclosure();
 	const isSidebarCollapsed = useSelector(
 		(state) => state?.appData?.isSidebarCollapsed
@@ -25,29 +25,29 @@ export default function LayoutProvider({ children }) {
 		(state) => state?.appData?.isMobileSidebarCollapsed
 	);
 	const { disconnect } = useDisconnect();
-	const { data: AuthSession, status, update } = useSession();
+	const { status, update } = useSession();
 
-	const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
-
-	useEffect(() => {
-		if (AuthSession?.id_token) {
-			if (!getCookieByName(AUTH_COOKIE_NAME)) {
-				const payload = {
-					token: AuthSession?.id_token
-				};
-				dispatch(socialLoginGoogle(payload));
+	/* const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
+	
+		useEffect(() => {
+			if (AuthSession?.id_token) {
+				if (!getCookieByName(AUTH_COOKIE_NAME)) {
+					const payload = {
+						token: AuthSession?.id_token
+					};
+					dispatch(socialLoginGoogle(payload));
+				}
+			} else {
+				if (AuthSession?.user?.name) { update(); }
 			}
-		} else {
-			if (AuthSession?.user?.name) { update(); }
-		}
-	}, [AuthSession]);
-
-
-	useEffect(() => {
-		if (GoogleVerifiedData.isSuccess) {
-			dispatch(StoreLoggedInUserDataGoogle());
-		}
-	}, [GoogleVerifiedData]);
+		}, [AuthSession]);
+	
+	
+		useEffect(() => {
+			if (GoogleVerifiedData.isSuccess) {
+				dispatch(StoreLoggedInUserDataGoogle());
+			}
+		}, [GoogleVerifiedData]); */
 
 	useEffect(() => {
 		const visibilityHandler = async () => {
@@ -68,18 +68,17 @@ export default function LayoutProvider({ children }) {
 					// if not authenticated and no cookie is present means no user
 					// if cookie is present means user logged in from somewhere else
 					if (cookie !== undefined) {
-						const cookie = JSON.parse(getCookieByName(AUTH_COOKIE_NAME));
+						const cookie = getCookieByName(AUTH_COOKIE_NAME);
 						if (status !== "authenticated") {
-							if (cookie?.state?.isWeb3) {
-								const verifiedState = {
-									token: cookie?.state?.token,
-									public_address: cookie?.state?.public_address,
-									isWeb3: true
-								};
-								signIn('web3', verifiedState);
-							} else {
-								signIn('google');
-							}
+							const verifiedState = {
+								token: cookie?.state?.token,
+								public_address: cookie?.state?.public_address,
+								isWeb3: true
+							};
+							signIn('web3', verifiedState);
+							/* else {
+							   signIn('google');
+						   } */
 						}
 					}
 
@@ -94,23 +93,24 @@ export default function LayoutProvider({ children }) {
 	useEffect(() => {
 		const cookie = getCookieByName(AUTH_COOKIE_NAME);
 		if (cookie !== undefined) {
-			const cookie = JSON.parse(getCookieByName(AUTH_COOKIE_NAME));
+			const cookie = getCookieByName(AUTH_COOKIE_NAME);
 			if (status !== "authenticated") {
-				if (cookie?.state?.isWeb3) {
-					const verifiedState = {
-						token: cookie?.state?.token,
-						public_address: cookie?.state?.public_address,
-						isWeb3: true
-					};
-					signIn('web3', verifiedState);
-				} else {
-					signIn('google');
-				}
+				const verifiedState = {
+					token: cookie?.state?.token,
+					public_address: cookie?.state?.public_address,
+					isWeb3: true
+				};
+				signIn('web3', verifiedState);
+				/* else {
+				   signIn('google');
+			   } */
+			}
+		} else {
+			if (status === "authenticated") {
+				signOut({ callbackUrl: process.env.NEXTAUTH_URL });
 			}
 		}
 	}, []);
-
-
 	return (
 		<Box
 			width="100%"

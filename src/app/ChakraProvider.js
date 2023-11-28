@@ -21,8 +21,7 @@ export function Providers({ children }) {
     // Naming convention diplayAlignItemsJustifyContent
     // For ex flexCenterCenter ==  display= flex alignItems = center justifyContent = center
     const theme = extendTheme({
-        initialColorMode:
-            localStorage.getItem("chakra-ui-color-mode") || "dark",
+        initialColorMode: localStorage.getItem("chakra-ui-color-mode") || "system",
         useSystemColorMode: true,
         breakpoints,
         colors,
