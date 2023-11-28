@@ -1,14 +1,20 @@
+import { getCookieByName } from "./cookieHelper";
+
+
+export const AUTH_COOKIE_NAME = "betygfi-auth";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 
-export const getMainDomain = () => {
-    if (typeof window !== "undefined") {
-        const host = window.location.hostname;
-        const splittedHost = host.split(".");
-        splittedHost.shift();
-        return splittedHost.join(".");
+export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const getAuthenticatedUserToken = () => {
+    const authCookie = getCookieByName(AUTH_COOKIE_NAME);
+    if (authCookie) {
+        const parsedCookie = JSON.parse(authCookie);
+        return parsedCookie?.state?.token;
     } else {
-        return "betygfi.com";
+        return undefined;
     }
 };
 
-export const getDomainForCookie = () => '.' + getMainDomain();
+
+/* export const getDomainForCookie = () => '.' + getMainDomain(); */
