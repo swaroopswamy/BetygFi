@@ -1,4 +1,4 @@
-import { loginMetamask, socialLoginGoogleAPI } from "@/services/authService";
+import { loginMetamask, socialLoginGoogleAPI, verifyPublicAddress } from "@/services/authService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createCookies, deleteCookieByName, getCookieByName } from "@util/cookieHelper";
 import { getDomainForCookie } from "@util/functions";
@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",
 	async (payload, { rejectWithValue }) => {
-		const response = await VerifyPublicAddressData(payload, rejectWithValue);
+		const response = await verifyPublicAddress(payload, rejectWithValue);
 		return response.data;
 	}
 );
