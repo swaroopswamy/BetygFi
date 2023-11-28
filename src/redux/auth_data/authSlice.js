@@ -1,10 +1,14 @@
+import { loginMetamask, socialLoginGoogleAPI } from "@/services/authService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginMetamask, socialLoginGoogleAPI, verifyPublicAddress } from "@/services/authService";
+import { createCookies, deleteCookieByName, getCookieByName } from "@util/cookieHelper";
+import { getDomainForCookie } from "@util/functions";
+import { AUTH_COOKIE_NAME } from "@util/utility";
+import { signOut } from "next-auth/react";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",
 	async (payload, { rejectWithValue }) => {
-		const response = await verifyPublicAddress(payload, rejectWithValue);
+		const response = await VerifyPublicAddressData(payload, rejectWithValue);
 		return response.data;
 	}
 );
@@ -27,25 +31,10 @@ export const socialLoginGoogle = createAsyncThunk(
 
 
 
-/* export const saveToken = (state, token) => {
-	try {
-		const accountState = {
-			state: {
-				token: token,
-				public_address: public_address
-			},
-
-		};
-		const serializedState = JSON.stringify(accountState);
-		localStorage.setItem("verifiedState", serializedState);
-	} catch (err) {
-		// console.log(err);
-	}
-}; */
 
 export const loadToken = () => {
 	try {
-		const serializedState = localStorage.getItem("verifiedState");
+		const serializedState = getCookieByName(AUTH_COOKIE_NAME);
 
 		if (serializedState === null) {
 			return undefined;
@@ -55,6 +44,7 @@ export const loadToken = () => {
 		return undefined;
 	}
 };
+
 
 const AuthDataSlice = createSlice({
 	name: "authData",
@@ -73,9 +63,8 @@ const AuthDataSlice = createSlice({
 		},
 		GoogleVerifiedData: {
 			data: null,
-			isLoading: false,
-			isError: false,
-			isSuccess: false,
+			isError: null,
+			isSuccess: null,
 		}
 	},
 	extraReducers: (builder) => {
@@ -118,19 +107,11 @@ const AuthDataSlice = createSlice({
 		});
 		builder.addCase(socialLoginGoogle.fulfilled, (state, action) => {
 			state.GoogleVerifiedData.data = action.payload;
-			state.GoogleVerifiedData.isLoading = false;
 			state.GoogleVerifiedData.isSuccess = true;
 			state.GoogleVerifiedData.isError = false;
 		});
-		builder.addCase(socialLoginGoogle.pending, (state, action) => {
-			state.GoogleVerifiedData.isLoading = true;
-			state.GoogleVerifiedData.isError = false;
-			state.GoogleVerifiedData.isSuccess = false;
-			state.GoogleVerifiedData.data = action.payload;
-
-		});
 		builder.addCase(socialLoginGoogle.rejected, (state, action) => {
-			state.GoogleVerifiedData.isLoading = false;
+			signOut();
 			state.GoogleVerifiedData.isSuccess = false;
 			state.GoogleVerifiedData.isError = true;
 			state.GoogleVerifiedData.data = action.payload;
@@ -141,6 +122,7 @@ const AuthDataSlice = createSlice({
 			state.LoggedInData.data = null;
 			state.verifiedPublicAddressData.data = null;
 			localStorage.clear();
+			deleteCookieByName(AUTH_COOKIE_NAME, getDomainForCookie());
 		},
 		FetchLocalStorageData: (state, /* action */) => {
 			state.verifiedPublicAddressData.data = loadToken();
@@ -149,22 +131,24 @@ const AuthDataSlice = createSlice({
 			const accountState = {
 				state: {
 					token: state.LoggedInData.data.token,
-					public_address: state.verifiedPublicAddressData.data?.public_address
+					public_address: state.verifiedPublicAddressData.data?.public_address,
+					isWeb3: true
 				},
-
 			};
 			const serializedState = JSON.stringify(accountState);
-			localStorage.setItem("verifiedState", serializedState);
+			createCookies(AUTH_COOKIE_NAME, serializedState, getDomainForCookie());
+			// localStorage.setItem("verifiedState", serializedState);
 		},
-		StoreLoggedInUserDataGoogle: (state, /* action */) => {
+		StoreLoggedInUserDataGoogle: (state,/*  action */) => {
 			const accountState = {
 				state: {
 					token: state.GoogleVerifiedData.data?.token,
+					isWeb3: false
 				},
-
 			};
 			const serializedState = JSON.stringify(accountState);
-			localStorage.setItem("verifiedState", serializedState);
+			createCookies(AUTH_COOKIE_NAME, serializedState, getDomainForCookie());
+			// localStorage.setItem("verifiedState", serializedState);
 		}
 	},
 });

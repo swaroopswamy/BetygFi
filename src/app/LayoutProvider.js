@@ -7,8 +7,12 @@ import "/styles/styles.scss";
 import SidebarContent from "@/app/components/sidebar";
 import Footer from "@/app/components/footer";
 import Navbar from "@/app/components/header";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { StoreLoggedInUserDataGoogle, socialLoginGoogle } from "@/redux/auth_data/authSlice";
+import { AUTH_COOKIE_NAME } from "@util/utility";
+import { getCookieByName } from "@util/cookieHelper";
+import isEmpty from "is-empty";
+import { useDisconnect } from "wagmi";
 
 export default function LayoutProvider({ children }) {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -20,32 +24,92 @@ export default function LayoutProvider({ children }) {
 	const isMobileSidebarCollapsed = useSelector(
 		(state) => state?.appData?.isMobileSidebarCollapsed
 	);
-	const { data: AuthSession, update } = useSession();
-	const GoogleVerifiedData = useSelector(
-		(state) => state.authData.GoogleVerifiedData
-	);
-	/* 	const LoggedInData = useSelector((state) => state.authData.LoggedInData);
-	 */
+	const { disconnect } = useDisconnect();
+	const { data: AuthSession, status, update } = useSession();
+
+	const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
+
 	useEffect(() => {
 		if (AuthSession?.id_token) {
-			if (!localStorage.getItem("verifiedState")) {
+			if (!getCookieByName(AUTH_COOKIE_NAME)) {
 				const payload = {
-					token: AuthSession?.id_token,
+					token: AuthSession?.id_token
 				};
 				dispatch(socialLoginGoogle(payload));
 			}
 		} else {
-			if (AuthSession?.user?.name) {
-				update();
-			}
+			if (AuthSession?.user?.name) { update(); }
 		}
 	}, [AuthSession]);
+
 
 	useEffect(() => {
 		if (GoogleVerifiedData.isSuccess) {
 			dispatch(StoreLoggedInUserDataGoogle());
 		}
 	}, [GoogleVerifiedData]);
+
+	useEffect(() => {
+		const visibilityHandler = async () => {
+
+			if (document.visibilityState === "visible") {
+				const cookie = getCookieByName(AUTH_COOKIE_NAME);
+
+				// checking autheticated or not
+				if (status === "authenticated") {
+					// someone logsout from other microservice
+					if (isEmpty(cookie)) {
+						disconnect();
+						signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+					} else {
+						// no work required here
+					}
+				} else {
+					// if not authenticated and no cookie is present means no user
+					// if cookie is present means user logged in from somewhere else
+					if (cookie !== undefined) {
+						const cookie = JSON.parse(getCookieByName(AUTH_COOKIE_NAME));
+						if (status !== "authenticated") {
+							if (cookie?.state?.isWeb3) {
+								const verifiedState = {
+									token: cookie?.state?.token,
+									public_address: cookie?.state?.public_address,
+									isWeb3: true
+								};
+								signIn('web3', verifiedState);
+							} else {
+								signIn('google');
+							}
+						}
+					}
+
+				}
+			}
+		};
+		window.addEventListener("visibilitychange", visibilityHandler, false);
+
+		return () => window.removeEventListener("visibilitychange", visibilityHandler, false);
+	}, [update]);
+
+	useEffect(() => {
+		const cookie = getCookieByName(AUTH_COOKIE_NAME);
+		if (cookie !== undefined) {
+			const cookie = JSON.parse(getCookieByName(AUTH_COOKIE_NAME));
+			if (status !== "authenticated") {
+				if (cookie?.state?.isWeb3) {
+					const verifiedState = {
+						token: cookie?.state?.token,
+						public_address: cookie?.state?.public_address,
+						isWeb3: true
+					};
+					signIn('web3', verifiedState);
+				} else {
+					signIn('google');
+				}
+			}
+		}
+	}, []);
+
 
 	return (
 		<Box
