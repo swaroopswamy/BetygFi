@@ -64,7 +64,7 @@ const CoinDataSlice = createSlice({
     initialState: {
         CoinRankingsTableData: {
             data: null,
-            isLoading: false,
+            isLoading: true,
             isError: false,
             isSuccess: false,
         },

@@ -146,19 +146,6 @@ const GenericTable = ({
 
                     {/* Apply the table body props */}
                     <Tbody {...getTableBodyProps()}>
-                        {tableData?.isSuccess &&
-                            tableData?.data != undefined &&
-                            rows.map((row, i) => {
-                                // Prepare the row for display
-                                prepareRow(row);
-                                return (
-                                    <TableRow
-                                        item={row.original}
-                                        rowIndex={i}
-                                    />
-                                );
-                            })}
-
                         {tableData?.isLoading && (
                             <SkeletonTable
                                 numColumns={
@@ -169,7 +156,8 @@ const GenericTable = ({
                         )}
 
                         {(tableData?.isError ||
-                            tableData?.data == undefined) && (
+                            (tableData?.isSuccess &&
+                                tableData?.data == undefined)) && (
                             <Tr>
                                 <Td
                                     p="20px"
@@ -185,6 +173,20 @@ const GenericTable = ({
                                 </Td>
                             </Tr>
                         )}
+
+                        {tableData?.isSuccess &&
+                            tableData?.data != undefined &&
+                            tableData?.data != null &&
+                            rows.map((row, i) => {
+                                // Prepare the row for display
+                                prepareRow(row);
+                                return (
+                                    <TableRow
+                                        item={row.original}
+                                        rowIndex={i}
+                                    />
+                                );
+                            })}
                     </Tbody>
                 </Table>
             ) : (
@@ -269,7 +271,35 @@ const GenericTable = ({
 
                     {/* Apply the table body props */}
                     <Tbody {...getTableBodyProps()}>
+                        {tableData?.isLoading && (
+                            <SkeletonTable
+                                numColumns={
+                                    SkeletonRowsColumnsMobile.numColumns
+                                }
+                                numRows={SkeletonRowsColumnsMobile.numRows}
+                            />
+                        )}
+
+                        {(tableData?.isError || tableData === null) && (
+                            <Tr>
+                                <Td
+                                    p="20px"
+                                    textAlign={"center"}
+                                    height={"245px"}
+                                    colSpan={
+                                        SkeletonRowsColumnsMobile?.numColumns
+                                    }
+                                >
+                                    <Text variant={"noDataText"}>
+                                        No data available
+                                    </Text>
+                                </Td>
+                            </Tr>
+                        )}
+
                         {tableData?.isSuccess &&
+                            tableData?.data != undefined &&
+                            tableData?.data != null &&
                             rows.map((row, i) => {
                                 // Prepare the row for display
                                 prepareRow(row);
@@ -301,32 +331,6 @@ const GenericTable = ({
                                     </Tr>
                                 );
                             })}
-
-                        {tableData?.isLoading && (
-                            <SkeletonTable
-                                numColumns={
-                                    SkeletonRowsColumnsMobile.numColumns
-                                }
-                                numRows={SkeletonRowsColumnsMobile.numRows}
-                            />
-                        )}
-
-                        {(tableData?.isError || tableData === null) && (
-                            <Tr>
-                                <Td
-                                    p="20px"
-                                    textAlign={"center"}
-                                    height={"245px"}
-                                    colSpan={
-                                        SkeletonRowsColumnsMobile?.numColumns
-                                    }
-                                >
-                                    <Text variant={"noDataText"}>
-                                        No data available
-                                    </Text>
-                                </Td>
-                            </Tr>
-                        )}
                     </Tbody>
                 </Table>
             )}
