@@ -20,7 +20,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
 
     return (
         <>
-            <Tooltip label={`View All ${data.label} DeFis`}>
+            <Tooltip label={`View all ${data.label} risk coins`}>
                 <Box
                     key={data.index}
                     minW={{
