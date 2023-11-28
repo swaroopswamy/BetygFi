@@ -13,6 +13,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CustomChart from "../../graph";
 import { SingleAccordionComp } from "../../accordion";
+import TooltipComp from "../../tooltipComp";
 
 const RiskAnalysis = () => {
     const [isLg] = useMediaQuery("(min-width: 960px)");
@@ -24,10 +25,21 @@ const RiskAnalysis = () => {
             borderRadius={"6px"}
             p={"20px"}
         >
-            <Box layerStyle={"flexColumn"} gap={"20px"} minW={"40%"}>
-                <Text fontSize={"20px"} fontWeight={"500"} lineHeight={"22px"}>
-                    Financial Risk Analysis
-                </Text>
+            <Box layerStyle={"flexColumn"} gap={"20px"} minW={"50%"}>
+                <Box display={"flex"} alignItems={"center"}>
+                    <Text
+                        fontSize={"20px"}
+                        fontWeight={"500"}
+                        lineHeight={"22px"}
+                    >
+                        Financial Risk Analysis
+                    </Text>
+                    <TooltipComp
+                        label={
+                            "Financial risk analysis in the context of cryptocurrency involves assessing the various financial risks associated with holding or trading cryptocurrencies, including market volatility, regulatory risks, and cybersecurity threats. "
+                        }
+                    />
+                </Box>
 
                 <RiskTable />
             </Box>
@@ -56,13 +68,16 @@ const RiskAnalysis = () => {
                         justifyContent={"center"}
                         p={"20px 15px"}
                     >
-                        <RiskChart />
+                        <Box layerStyle={"center"}>
+                            <RiskChart />
+                        </Box>
                         <Box layerStyle={"center"}>
                             <RiskTable />
                         </Box>
                     </Box>
                 );
             }}
+            bgColor={"background.secondary"}
         />
     );
 };
@@ -199,6 +214,8 @@ const RiskTable = () => {
 };
 
 const RiskChart = () => {
+    const [isLg] = useMediaQuery("(min-width: 960px)");
+
     const CoinDashboardData = useSelector(
         (state) => state?.coinData?.CoinDashboardData?.data
     );
@@ -218,6 +235,8 @@ const RiskChart = () => {
         },
     ];
 
+    const columnWidth = isLg ? 7 : 5;
+
     var options = {
         series: series,
         chart: {
@@ -231,7 +250,7 @@ const RiskChart = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: 5,
+                columnWidth: columnWidth,
                 dataLabels: {
                     position: "top",
                 },
@@ -281,7 +300,7 @@ const RiskChart = () => {
     };
 
     return (
-        <Box layerStyle={"center"} w={"100%"}>
+        <Box display={"block"} w={{ base: "100%", lg: "60%" }}>
             <CustomChart
                 options={options}
                 type="bar"

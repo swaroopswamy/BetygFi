@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button } from "@chakra-ui/react";
 import { categories } from "@util/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { postReportBug, resetReportBug } from "@/redux/app_data/dataSlice";
-const CustomInput = dynamic(() => import('@/app/components/customInput'));
+import {
+    fetchBlockchainListData,
+    postReportBug,
+    resetReportBug,
+} from "@/redux/app_data/dataSlice";
+const CustomInput = dynamic(() => import("@/app/components/customInput"));
 const CustomModal = dynamic(() => import("@/app/components/custommodal/index"));
 const CustomDropdown = dynamic(() => import("@/app/components/dropdown/index"));
 const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
@@ -16,30 +20,28 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
         defiCategory: "",
         bugReportUrl: "",
         description: "",
-        emailId: ""
+        emailId: "",
     });
     const categoriesOptions = categories.map((category) => {
-        return ({ label: category, name: category });
+        return { label: category.name, name: category.name };
     });
     const blockchainListData = useSelector(
         (state) => state?.appData?.BlockchainListData
     );
-    const statusReportBug = useSelector(
-        (state) => state?.appData?.reportBug
-    );
+    const statusReportBug = useSelector((state) => state?.appData?.reportBug);
     const blockchainOptions = blockchainListData?.data?.map((blockchain) => {
-        return ({ label: blockchain?.name, name: blockchain?.id });
+        return { label: blockchain?.name, name: blockchain?.id };
     });
     const handleBlockchainSelect = (value) => {
         setFormData((prev) => ({
             ...prev,
-            blockchain: value
+            blockchain: value,
         }));
     };
     const handleCategorySelect = (value) => {
         setFormData((prev) => ({
             ...prev,
-            category: value
+            category: value,
         }));
     };
 
@@ -54,6 +56,12 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
         e.preventDefault();
         dispatch(postReportBug(formData));
     };
+
+    useEffect(() => {
+        dispatch(fetchBlockchainListData());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <CustomModal
             state={statusReportBug.status}
@@ -68,7 +76,7 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
                     defiCategory: "",
                     bugReportUrl: "",
                     description: "",
-                    emailId: ""
+                    emailId: "",
                 });
                 dispatch(resetReportBug());
             }}

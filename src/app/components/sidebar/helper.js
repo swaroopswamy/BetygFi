@@ -9,6 +9,7 @@ import { IoIosTrendingUp } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
 import { MdOutlineHelp } from "react-icons/md";
 import { AiOutlineCodeSandbox } from "react-icons/ai";
+import { VscCommentDiscussion } from "react-icons/vsc";
 
 export const bottomMenu = [
     { name: "Help", icon: MdOutlineHelp, path: "/help" },
@@ -34,7 +35,7 @@ export const dashboards = [
         path: "/coin",
     },
     {
-        name: "Defi Market Analytics",
+        name: "DeFi Market Analytics",
         icon: IoIosTrendingUp,
         path: "/protocol",
     },
@@ -63,7 +64,7 @@ export const pages = [
 export const communities = [
     {
         name: "BetygFi",
-        icon: BetygFiSmLogo,
+        icon: VscCommentDiscussion,
         path: `${process.env.NEXT_PUBLIC_COMMUNITY_URL}`,
         newTab: true,
     },

@@ -32,7 +32,7 @@ const ScoreDistribution = dynamic(() =>
 const CoinRankingsTable = () => {
     const dispatch = useDispatch();
     const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(10);
+    const [tableLimit, setTableLimit] = useState(20);
     const [totalDefis, setTotalDefis] = useState(0);
 
     const tableData = useSelector(
@@ -152,7 +152,6 @@ const CoinRankingsTable = () => {
                     pageChangeHandler={pageChangeHandler}
                     tableLimit={tableLimit}
                     setTableLimit={setTableLimit}
-                    time={new Date().toDateString()}
                     w={"100%"}
                 />
             </Box>

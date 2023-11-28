@@ -63,7 +63,7 @@ export default function CoinDashboardPage({ params }) {
             pb={{ base: "100px", lg: "20px" }}
         >
             <BreadCrumb
-                text={"Coin Ranking/Coin Listing/" + CoinDashboardData?.name}
+                text={"Coin Ranking/" + CoinDashboardData?.name}
                 link={"/coin"}
             ></BreadCrumb>
 

@@ -147,7 +147,7 @@ const OverviewAreaChart = () => {
             });
     }, [categorySelected, overviewGraphData]);
 
-    useEffect(() => periodSelectionHandler(period), [colorMode]);
+    useEffect(() => setPeriod(period), [colorMode]);
 
     return (
         <>

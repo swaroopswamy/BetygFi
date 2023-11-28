@@ -23,11 +23,6 @@ const Rankings = dynamic(
     () => import("@/app/components/pages/dashboard/defiRankingsTable"),
     { ssr: false }
 );
-const OverviewBox = dynamic(
-    () => import("@/app/components/pages/dashboard/overviewBox"),
-    { ssr: false }
-);
-
 const Dashboard = () => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
@@ -135,11 +130,10 @@ const Dashboard = () => {
                 <Box
                     display={"flex"}
                     flexDir={{ base: "column", lg: "row" }}
-                    py={"30px"}
+                    py={"15px"}
                     gap={"15px"}
                 >
-                    <OverviewBox />
-                    {/* <OverviewColumnChart /> */}
+                    {/* <OverviewBox /> */}
                 </Box>
 
                 <Rankings />

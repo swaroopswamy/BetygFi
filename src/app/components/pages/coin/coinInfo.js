@@ -1,8 +1,24 @@
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+    Box,
+    Menu,
+    MenuItem,
+    MenuButton,
+    MenuList,
+    Text,
+    useColorModeValue,
+    Button,
+    useColorMode,
+    Avatar,
+    Icon,
+    useToast,
+} from "@chakra-ui/react";
 import { Link } from "@chakra-ui/next-js";
 import ScoreMeter from "@/app/components/pages/coin/scoreMeter";
 import React from "react";
 import { useSelector } from "react-redux";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { MdContentCopy } from "react-icons/md";
+import TooltipComp from "../../tooltipComp";
 
 const CoinInfo = () => {
     const CoinDashboardData = useSelector(
@@ -51,7 +67,7 @@ const CoinInfo = () => {
                     >
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
-                                label={"Daily Volatility"}
+                                name={"Daily Volatility"}
                                 value={
                                     CoinDashboardData?.daily_vol
                                         ? 100 *
@@ -61,21 +77,25 @@ const CoinInfo = () => {
                                           "%"
                                         : "-"
                                 }
-                                tooltip={"Hi"}
+                                tooltip={
+                                    "Daily volatility measures the degree of price fluctuation in a financial asset or market over a single trading day, indicating the potential for rapid price changes and risk"
+                                }
                             />
                             <DashboardCell
-                                label={"Beta"}
+                                name={"Beta"}
                                 value={
                                     CoinDashboardData?.beta
                                         ? CoinDashboardData?.beta.toFixed(3)
                                         : "-"
                                 }
-                                tooltip={"Hi"}
+                                tooltip={
+                                    "Beta in the context of cryptocurrency assesses how a particular cryptocurrency's price movements correlate with the overall cryptocurrency market. "
+                                }
                             />
                         </Box>
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
-                                label={"Volume"}
+                                name={"Volume"}
                                 value={
                                     CoinDashboardData?.volume
                                         ? CoinDashboardData?.volume.toLocaleString(
@@ -87,17 +107,25 @@ const CoinInfo = () => {
                                           )
                                         : "-"
                                 }
-                                tooltip={"Hi"}
                             />
                             <DashboardCell
-                                label={"Volume Volatility"}
-                                value={CoinDashboardData?.volume_vol}
-                                tooltip={"Hi"}
+                                name={"Volume Volatility"}
+                                value={
+                                    CoinDashboardData?.volume_vol
+                                        ? 100 *
+                                          CoinDashboardData?.volume_vol?.toFixed(
+                                              4
+                                          )
+                                        : "-"
+                                }
+                                tooltip={
+                                    "Volume volatility for a cryptocurrency refers to the variability in the trading volume of that specific cryptocurrency."
+                                }
                             />
                         </Box>
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
-                                label={"Liquidity Ratio"}
+                                name={"Liquidity Ratio"}
                                 value={
                                     CoinDashboardData?.liquid_ratio
                                         ? CoinDashboardData?.liquid_ratio?.toFixed(
@@ -105,10 +133,12 @@ const CoinInfo = () => {
                                           )
                                         : "-"
                                 }
-                                tooltip={"Hi"}
+                                tooltip={
+                                    "Liquidity ratio in cryptocurrency evaluates the ability of a crypto project or token to meet its short-term financial obligations by comparing its liquid assets, like readily tradable coins, to its current liabilities. "
+                                }
                             />
                             <DashboardCell
-                                label={"Liquidity Volatility"}
+                                name={"Liquidity Volatility"}
                                 value={
                                     CoinDashboardData?.liquid_vol
                                         ? CoinDashboardData?.liquid_vol?.toFixed(
@@ -116,7 +146,9 @@ const CoinInfo = () => {
                                           )
                                         : "-"
                                 }
-                                tooltip={"Hi"}
+                                tooltip={
+                                    "Liquidity volatility in cryptocurrency measures the variability in how easily a cryptocurrency can be bought or sold in the market without causing significant price changes. "
+                                }
                             />
                         </Box>
                     </Box>
@@ -134,7 +166,9 @@ const CoinInfo = () => {
                             variant={"h5"}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
                         >
-                            {new Date().toDateString()}
+                            {new Date(
+                                CoinDashboardData?.timeStamp
+                            ).toDateString() ?? "-"}
                         </Text>
                     </Box>
                 </Box>
@@ -211,11 +245,13 @@ const CoinInfo = () => {
                     <Text fontSize={"12px"} color={"text.secondary"}>
                         Smart Contracts
                     </Text>
-                    <Text fontSize={"14px"} color={"text.primary"}>
-                        {CoinDashboardData?.smart_contracts
-                            .slice(0, 3)
-                            .join(", ")}
-                    </Text>
+                    <Box display={"flex"}>
+                        {CoinDashboardData?.smart_contracts?.length > 0 ? (
+                            <SmartContractsMenu />
+                        ) : (
+                            "-"
+                        )}
+                    </Box>
                 </Box>
             </Box>
         </Box>
@@ -224,15 +260,149 @@ const CoinInfo = () => {
 
 export default CoinInfo;
 
-const DashboardCell = ({ label, value }) => {
+const DashboardCell = ({ name, value, tooltip }) => {
     return (
         <Box layerStyle={"flexColumn"} w={"50%"}>
-            <Text fontSize={"12px"} color={"text.secondary"}>
-                {label}
-            </Text>
+            <Box display={"flex"} alignItems={"center"}>
+                <Text fontSize={"12px"} color={"text.secondary"}>
+                    {name}
+                </Text>
+                {tooltip && <TooltipComp label={tooltip} />}
+            </Box>
+
             <Text fontSize={"14px"} color={"text.primary"}>
                 {value}
             </Text>
         </Box>
+    );
+};
+
+const SmartContractsMenu = () => {
+    const { colorMode } = useColorMode();
+
+    const CoinDashboardData = useSelector(
+        (state) => state?.coinData?.CoinDashboardData?.data
+    );
+
+    return (
+        <Menu>
+            <MenuButton as={Button} variant={"menu"}>
+                <Box layerStyle={"spaceBetween"}>
+                    <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+                        <Avatar
+                            src={CoinDashboardData?.smart_contracts[0].logoUrl}
+                            height={"15px"}
+                            width={"15px"}
+                            name={
+                                CoinDashboardData?.smart_contracts[0]?.platform
+                                    .name
+                            }
+                        />
+                        <Text
+                            variant={"h3"}
+                            color={
+                                colorMode === "light" ? "#191919" : "#FFFFFF"
+                            }
+                        >
+                            {
+                                CoinDashboardData?.smart_contracts[0]?.platform
+                                    .name
+                            }
+                        </Text>
+                    </Box>
+                    <ChevronDownIcon />
+                </Box>
+            </MenuButton>
+            <MenuList
+                boxShadow={"0px 5px 4px 0px rgba(0, 0, 0, 0.10)"}
+                bgColor={useColorModeValue("#FFF", "#191919")}
+                maxH={"300px"}
+                overflowY={"auto"}
+                className="hidescrollbar"
+            >
+                {CoinDashboardData?.smart_contracts.map((contract, i) => {
+                    return (
+                        <PageMenuItem
+                            key={i}
+                            name={contract?.platform?.name}
+                            logoUrl={contract?.logoUrl}
+                            address={contract?.contract_address}
+                        ></PageMenuItem>
+                    );
+                })}
+            </MenuList>
+        </Menu>
+    );
+};
+
+const PageMenuItem = ({ i, name, logoUrl, address }) => {
+    const { colorMode } = useColorMode();
+    const toast = useToast();
+
+    return (
+        <MenuItem
+            bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+            _hover={{
+                bg: colorMode === "light" ? "#F5F5F7" : "#202020",
+            }}
+            key={i}
+            onClick={() => {
+                navigator.clipboard.writeText(address);
+
+                toast({
+                    title: "Address Copied to Clipboard",
+                    status: "success",
+                    duration: 2000,
+                    isClosable: true,
+                    position: "top-right",
+                    containerStyle: {
+                        fontSize: "12px",
+                    },
+                });
+            }}
+        >
+            <Box
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                gap={"10px"}
+                w={"100%"}
+            >
+                <Box display={"flex"} alignItems={"center"} gap={"10px"}>
+                    <Avatar
+                        src={logoUrl}
+                        height={"15px"}
+                        width={"15px"}
+                        name={"contract_icon"}
+                    />
+                    <Box layerStyle={"flexColumn"}>
+                        <Text
+                            variant={"h3"}
+                            color={
+                                colorMode === "light" ? "#191919" : "#FFFFFF"
+                            }
+                        >
+                            {name ?? "-"}
+                        </Text>
+                        <Text
+                            variant={"h5"}
+                            color={
+                                colorMode === "light" ? "#191919" : "#FFFFFF"
+                            }
+                        >
+                            {address?.split("").join("").substring(0, 6) +
+                                "......" +
+                                address?.slice(-5) ?? "-"}
+                        </Text>
+                    </Box>
+                </Box>
+
+                <Icon
+                    as={MdContentCopy}
+                    boxSize={"20px"}
+                    color={useColorModeValue("#161616", "white")}
+                />
+            </Box>
+        </MenuItem>
     );
 };

@@ -6,7 +6,7 @@ export const tableHeader = [
         isTooltip: false,
         isSortingEnabled: false,
         tooltipLabel:
-            "Rank of DeFi out of all the available DeFi's tracked by BetygFi based on the score",
+            "Rank of Coin out of all the available Coins tracked by BetygFi based on the score",
         onMobile: true,
     },
     {
@@ -22,39 +22,31 @@ export const tableHeader = [
         Header: "Price",
         isTooltip: false,
         isSortingEnabled: false,
-        tooltipLabel: "Market price of the DeFi token",
+        tooltipLabel: "Market price of the token",
     },
     {
         accessor: "change_1hr",
         Header: "1hr",
         isTooltip: false,
         isSortingEnabled: false,
-        tooltipLabel:
-            "Category outlines the type of the services the DeFi provides",
     },
     {
         accessor: "change_24hr",
         Header: "24hr",
         isTooltip: false,
         isSortingEnabled: false,
-        tooltipLabel:
-            "Category outlines the type of the services the DeFi provides",
     },
     {
         accessor: "change_7d",
         Header: "7d",
         isTooltip: false,
         isSortingEnabled: false,
-        tooltipLabel:
-            "Category outlines the type of the services the DeFi provides",
     },
     {
         accessor: "volume_24hr",
         Header: "24hr Volume",
         isTooltip: false,
         isSortingEnabled: false,
-        tooltipLabel:
-            "Category outlines the type of the services the DeFi provides",
     },
     {
         accessor: "mcap",
@@ -62,7 +54,7 @@ export const tableHeader = [
         isTooltip: false,
         isSortingEnabled: false,
         tooltipLabel:
-            "Market capitalization of the DeFi is the total value of tokens of the DeFi",
+            "Market cap of token refers to the total market value of a cryptocurrency’s circulating supply.",
     },
     {
         accessor: "score",
@@ -70,7 +62,7 @@ export const tableHeader = [
         isTooltip: false,
         isSortingEnabled: false,
         tooltipLabel:
-            "Solvendo score comprises of DeFi's technical, centralization, financial/market, and userbase quality risks",
+            "Solvendo score comprises of Coins' technical, centralization, financial/market, and userbase quality risks",
         onMobile: true,
     },
 ];

@@ -20,6 +20,7 @@ import {
     AccordionIcon,
     AccordionItem,
     AccordionPanel,
+    Tooltip,
 } from "@chakra-ui/react";
 // import Link from "next/link";
 import Image from "next/image";
@@ -35,7 +36,7 @@ import {
     communities,
     legal,
 } from "@/app/components/sidebar/helper";
-import { FaPeopleGroup } from "react-icons/fa6";
+import { BsPeople } from "react-icons/bs";
 import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "./report";
 import SuggestFeatureModal from "./suggestfeature";
@@ -76,7 +77,7 @@ const SidebarContent = ({ ...rest }) => {
                 bg={useColorModeValue("#FFFFFF", "#191919")}
                 borderRight="1px"
                 borderRightColor={useColorModeValue("#E1E1E1", "#333333")}
-                minWidth={isSidebarCollapsed ? "50px" : "210px"}
+                minWidth={isSidebarCollapsed ? "50px" : "220px"}
                 className="sidebar-styles"
                 zIndex={"999"}
                 display={{ base: "none", md: "flex" }}
@@ -180,7 +181,7 @@ const SidebarContent = ({ ...rest }) => {
                                     >
                                         <Box display={"flex"} gap={"10px"}>
                                             <Icon
-                                                as={FaPeopleGroup}
+                                                as={BsPeople}
                                                 boxSize={18}
                                                 color={
                                                     colorMode === "light"
@@ -414,6 +415,7 @@ const SidebarContent = ({ ...rest }) => {
                                         NavIcon={link.icon}
                                         path={link.path}
                                         newTab={link.newTab}
+                                        name={link.name}
                                         isActive={pathname === link.path}
                                     ></CollapsedNavItem>
                                 ))}
@@ -428,6 +430,7 @@ const SidebarContent = ({ ...rest }) => {
                                         NavIcon={link.icon}
                                         path={link.path}
                                         newTab={link.newTab}
+                                        name={link.name}
                                         isActive={pathname === link.path}
                                     ></CollapsedNavItem>
                                 ))}
@@ -438,6 +441,7 @@ const SidebarContent = ({ ...rest }) => {
                                         NavIcon={link.icon}
                                         path={link.path}
                                         newTab={link.newTab}
+                                        name={link.name}
                                         isActive={pathname === link.path}
                                     ></CollapsedNavItem>
                                 ))}
@@ -453,6 +457,7 @@ const SidebarContent = ({ ...rest }) => {
                                         NavIcon={link.icon}
                                         path={link.path}
                                         newTab={link.newTab}
+                                        name={link.name}
                                         isActive={pathname === link.path}
                                     ></CollapsedNavItem>
                                 );
@@ -586,43 +591,46 @@ const SidebarContent = ({ ...rest }) => {
 
 export default SidebarContent;
 
-const CollapsedNavItem = ({ NavIcon, path, newTab }) => {
+const CollapsedNavItem = ({ NavIcon, path, newTab, name }) => {
     const { colorMode } = useColorMode();
 
     return (
-        <Link
-            href={path}
-            target={newTab ? "_blank" : null}
-            style={{ textDecoration: "none" }}
-            _focus={{ boxShadow: "none" }}
-        >
-            <Box
-                display={"flex"}
-                justifyContent="center"
-                alignItems={"center"}
-                height={"45px"}
-                padding={"9px 20px"}
-                role="group"
-                cursor="pointer"
-                gap={"10px"}
-                _hover={{
-                    bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                    color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                    fontWeight: "600",
-                }}
-                mr={"-13px"}
+        <Tooltip label={name}>
+            <Link
+                href={path}
+                target={newTab ? "_blank" : null}
+                style={{ textDecoration: "none" }}
+                _focus={{ boxShadow: "none" }}
             >
-                <Icon
-                    as={NavIcon}
-                    boxSize={22}
-                    color={colorMode === "light" ? "#161616" : "#FFFFFF"}
-                    _groupHover={{
+                <Box
+                    display={"flex"}
+                    justifyContent="center"
+                    alignItems={"center"}
+                    height={"45px"}
+                    padding={"9px 20px"}
+                    role="group"
+                    cursor="pointer"
+                    gap={"10px"}
+                    _hover={{
+                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        fontWeight: "600",
                     }}
-                    alt="logo"
-                />
-            </Box>
-        </Link>
+                    mr={"-13px"}
+                >
+                    <Icon
+                        as={NavIcon}
+                        boxSize={22}
+                        color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                        _groupHover={{
+                            color:
+                                colorMode === "light" ? "#FFFFFF" : "#191919",
+                        }}
+                        alt="logo"
+                    />
+                </Box>
+            </Link>
+        </Tooltip>
     );
 };
 
@@ -931,7 +939,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 gap={"10px"}
                                             >
                                                 <Icon
-                                                    as={FaPeopleGroup}
+                                                    as={BsPeople}
                                                     boxSize={18}
                                                     color={
                                                         colorMode === "light"
