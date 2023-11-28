@@ -41,7 +41,7 @@ const PageButtonsWide = ({
                 alignItems={"center"}
                 {...rest}
             >
-                <LastUpdate time={time} />
+                {time ? <LastUpdate time={time} /> : <Box minW={"100px"} />}
 
                 <Box
                     display={"flex"}
@@ -81,7 +81,7 @@ const PageButtonsWide = ({
                     alignItems={"center"}
                     w={"100%"}
                 >
-                    <LastUpdate time={time} />
+                    {time ? <LastUpdate time={time} /> : <Box minW={"100px"} />}
 
                     <TableLimitMenu
                         tableLimit={tableLimit}
@@ -115,7 +115,6 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
     return (
         <>
             <RoundButton
-                opacity={"0.4"}
                 cursor={page > 1 ? "pointer" : "not-allowed"}
                 disabled={page === 1}
                 onClick={() => {
@@ -126,7 +125,6 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
             </RoundButton>
 
             <RoundButton
-                opacity={"0.4"}
                 cursor={page > 1 ? "pointer" : "not-allowed"}
                 disabled={page === 1}
                 onClick={() => {
@@ -246,6 +244,9 @@ const RoundButton = ({ children, ...rest }) => {
                     : "1px solid rgba(51, 51, 51, 1)"
             }
             cursor={"pointer"}
+            _disabled={{
+                opacity: 0.4,
+            }}
             {...rest}
         >
             {children}

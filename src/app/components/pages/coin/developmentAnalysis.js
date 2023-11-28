@@ -1,11 +1,24 @@
-import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import {
+    Box,
+    Icon,
+    Text,
+    useColorMode,
+    useColorModeValue,
+    useMediaQuery,
+} from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
 import CustomChart from "../../graph";
 import { SingleAccordionComp } from "../../accordion";
+import { FaGithub } from "react-icons/fa";
+import TooltipComp from "../../tooltipComp";
 
 const DevelopmentAnalysis = () => {
+    const { colorMode } = useColorMode();
     const [isLg] = useMediaQuery("(min-width: 960px)");
+    const CoinDevelopmentData = useSelector(
+        (state) => state?.coinData?.CoinDevelopmentData?.data
+    );
 
     return isLg ? (
         <Box
@@ -15,9 +28,49 @@ const DevelopmentAnalysis = () => {
             p={"20px"}
         >
             <Box layerStyle={"flexColumn"} gap={"20px"} minW={"40%"}>
-                <Text fontSize={"20px"} fontWeight={"500"} lineHeight={"22px"}>
-                    Development Analysis
-                </Text>
+                <Box display={"flex"} alignItems={"center"}>
+                    <Text
+                        fontSize={"20px"}
+                        fontWeight={"500"}
+                        lineHeight={"22px"}
+                    >
+                        Development Analysis
+                    </Text>
+                    <TooltipComp
+                        name={
+                            "Development analysis in the crypto space evaluates the progress and potential of a cryptocurrency project or blockchain platform. It considers factors such as the project's team, technology, adoption, and community support when assessing its development trajectory. "
+                        }
+                    />
+                </Box>
+
+                <Box
+                    as="a"
+                    display={"flex"}
+                    alignItems={"center"}
+                    gap={"10px"}
+                    cursor={"pointer"}
+                    target={CoinDevelopmentData?.github_link}
+                    href={CoinDevelopmentData?.github_link}
+                    rel="noopener noreferrer"
+                >
+                    <Icon
+                        as={FaGithub}
+                        boxSize={"20px"}
+                        color={colorMode === "light" ? "black" : "white"}
+                    ></Icon>
+
+                    <Text
+                        fontSize={"14px"}
+                        fontWeight={"500"}
+                        lineHeight={"18px"}
+                        color={"#117CCA"}
+                    >
+                        {CoinDevelopmentData?.github_link
+                            .split("/")
+                            .slice(-2)
+                            .join("/") ?? "-"}
+                    </Text>
+                </Box>
 
                 <DevelopmentInfo />
             </Box>
@@ -28,7 +81,12 @@ const DevelopmentAnalysis = () => {
         <SingleAccordionComp
             ButtonComp={() => {
                 return (
-                    <Box py={"10px"}>
+                    <Box
+                        display={"flex"}
+                        justifyContent={"start"}
+                        py={"10px"}
+                        gap={"20px"}
+                    >
                         <Text
                             fontSize={"20px"}
                             fontWeight={"500"}
@@ -36,6 +94,23 @@ const DevelopmentAnalysis = () => {
                         >
                             Development Analysis
                         </Text>
+                        <Box
+                            display={"flex"}
+                            alignItems={"center"}
+                            gap={"10px"}
+                            as="a"
+                            target={CoinDevelopmentData?.github_link}
+                            href={CoinDevelopmentData?.github_link}
+                            rel="noopener noreferrer"
+                        >
+                            <Icon
+                                as={FaGithub}
+                                boxSize={"20px"}
+                                color={
+                                    colorMode === "light" ? "black" : "white"
+                                }
+                            ></Icon>
+                        </Box>
                     </Box>
                 );
             }}
@@ -53,18 +128,22 @@ const DevelopmentAnalysis = () => {
                     </Box>
                 );
             }}
+            bgColor={"background.secondary"}
         />
     );
 };
 
 export default DevelopmentAnalysis;
 
-const DashboardCell = ({ label, value }) => {
+const DashboardCell = ({ name, value, tooltip }) => {
     return (
         <Box layerStyle={"flexColumn"} w={"50%"}>
-            <Text fontSize={"12px"} color={"text.secondary"}>
-                {label}
-            </Text>
+            <Box display={"flex"} alignItems={"center"}>
+                <Text fontSize={"12px"} color={"text.secondary"}>
+                    {name}
+                </Text>
+                {tooltip && <TooltipComp label={tooltip} />}
+            </Box>
             <Text fontSize={"14px"} color={"text.primary"}>
                 {value}
             </Text>
@@ -88,16 +167,18 @@ const DevelopmentInfo = () => {
         >
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
-                    label={"Stars"}
+                    name={"Stars"}
                     value={
                         CoinDevelopmentData?.stars
                             ? CoinDevelopmentData?.stars.toLocaleString("en-US")
                             : "-"
                     }
-                    tooltip={"Hi"}
+                    tooltip={
+                        "The number of users who have marked the repository as a favourite, indicating its popularity. "
+                    }
                 />
                 <DashboardCell
-                    label={"Watchers"}
+                    name={"Watchers"}
                     value={
                         CoinDevelopmentData?.watchers
                             ? CoinDevelopmentData?.watchers.toLocaleString(
@@ -105,21 +186,25 @@ const DevelopmentInfo = () => {
                               )
                             : "-"
                     }
-                    tooltip={"Hi"}
+                    tooltip={
+                        "The number of users who are actively monitoring the repository for updates. "
+                    }
                 />
             </Box>
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
-                    label={"Forks"}
+                    name={"Forks"}
                     value={
                         CoinDevelopmentData?.forks
                             ? CoinDevelopmentData?.forks.toLocaleString("en-US")
                             : "-"
                     }
-                    tooltip={"Hi"}
+                    tooltip={
+                        "The count of copies of the repository made by other users, which may be used for proposing changes or as a starting point for a new project. "
+                    }
                 />
                 <DashboardCell
-                    label={"Contributors"}
+                    name={"Contributors"}
                     value={
                         CoinDevelopmentData?.contributors
                             ? CoinDevelopmentData?.contributors.toLocaleString(
@@ -127,12 +212,11 @@ const DevelopmentInfo = () => {
                               )
                             : "-"
                     }
-                    tooltip={"Hi"}
                 />
             </Box>
             <Box display={"flex"} justifyContent={"space-between"}>
                 <DashboardCell
-                    label={"Merged Pull Requests"}
+                    name={"Merged Pull Requests"}
                     value={
                         CoinDevelopmentData?.merged_prs
                             ? CoinDevelopmentData?.merged_prs.toLocaleString(
@@ -140,10 +224,12 @@ const DevelopmentInfo = () => {
                               )
                             : "-"
                     }
-                    tooltip={"Hi"}
+                    tooltip={
+                        "The number of proposed code changes that have been successfully integrated into the project. "
+                    }
                 />
                 <DashboardCell
-                    label={"Closed Issues/Total Issues"}
+                    name={"Closed Issues/Total Issues"}
                     value={
                         CoinDevelopmentData?.closed_issues &&
                         CoinDevelopmentData?.total_issues
@@ -156,7 +242,9 @@ const DevelopmentInfo = () => {
                               )
                             : "-"
                     }
-                    tooltip={"Hi"}
+                    tooltip={
+                        "The fraction of reported problems or enhancement requests that have been resolved to the total number reported."
+                    }
                 />
             </Box>
         </Box>
@@ -176,7 +264,7 @@ const DevelopmentChart = () => {
         },
     ];
 
-    const columnWidth = isLg ? 10 : 5;
+    const columnWidth = isLg ? 8 : 5;
 
     var options = {
         series: series,

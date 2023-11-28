@@ -4,11 +4,13 @@ import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/globalHelper";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import TooltipComp from "../../tooltipComp";
+
 const boxData = [
-    { bgColor: "#0E6027", label: "Extreme", index: 3 },
-    { bgColor: "#00799F", label: "High", index: 2 },
-    { bgColor: "#B87A00", label: "Moderate", index: 1 },
-    { bgColor: "#FF0000", label: "Low", index: 0 },
+    { bgColor: "#0E6027", label: "Low", key: "Extreme", index: 3 },
+    { bgColor: "#00799F", label: "Moderate", key: "High", index: 2 },
+    { bgColor: "#B87A00", label: "High", key: "Moderate", index: 1 },
+    { bgColor: "#FF0000", label: "Extreme", key: "Low", index: 0 },
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
@@ -55,15 +57,15 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                         zIndex: 0,
                     }}
                     transform={
-                        scoreSelected === data.label ? "scale(1.1)" : "scale(1)"
+                        scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
                     }
-                    zIndex={scoreSelected === data.label ? 1 : 0}
+                    zIndex={scoreSelected === data.key ? 1 : 0}
                     boxShadow={
-                        scoreSelected === data.label
+                        scoreSelected === data.key
                             ? "0px 4px 4px rgba(0, 0, 0, 0.25)"
                             : "none"
                     }
-                    onClick={() => ScoreSelectHandler(data.label)}
+                    onClick={() => ScoreSelectHandler(data.key)}
                     p={"7px 10px"}
                     alignItems={"start"}
                     w={`${calculatePercentage(
@@ -121,8 +123,11 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                             color: "#FFFFFF",
                         }}
                     >
-                        Score distribution
+                        Risk Score distribution
                     </Text>
+                    <TooltipComp
+                        label={"Risk classification based on Solvendo score"}
+                    />
                 </Box>
                 <Box
                     w={{ base: "100%", md: "400px", lg: "500px" }}

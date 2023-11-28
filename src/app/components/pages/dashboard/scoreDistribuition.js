@@ -4,11 +4,12 @@ import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/globalHelper";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 const boxData = [
-    { bgColor: "#0E6027", label: "Extreme", index: 3 },
-    { bgColor: "#00799F", label: "High", index: 2 },
-    { bgColor: "#B87A00", label: "Moderate", index: 1 },
-    { bgColor: "#FF0000", label: "Low", index: 0 },
+    { bgColor: "#0E6027", label: "Low", key: "Extreme", index: 3 },
+    { bgColor: "#00799F", label: "Moderate", key: "High", index: 2 },
+    { bgColor: "#B87A00", label: "High", key: "Moderate", index: 1 },
+    { bgColor: "#FF0000", label: "Extreme", key: "Low", index: 0 },
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
@@ -21,9 +22,16 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
             <Tooltip label={`View All ${data.label} DeFis`}>
                 <Box
                     key={data.index}
-                    minW={
-                        data.index === 0 || data.index === 1 ? "90px" : "70px"
-                    }
+                    minW={{
+                        base:
+                            data.index === 0 || data.index === 1
+                                ? "70px"
+                                : "60px",
+                        md:
+                            data.index === 0 || data.index === 1
+                                ? "90px"
+                                : "80px",
+                    }}
                     position={"relative"}
                     borderTopLeftRadius={data.index === 3 ? "14px" : "0px"}
                     borderBottomLeftRadius={data.index === 3 ? "14px" : "0px"}
@@ -48,15 +56,15 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                         zIndex: 0,
                     }}
                     transform={
-                        scoreSelected === data.label ? "scale(1.1)" : "scale(1)"
+                        scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
                     }
-                    zIndex={scoreSelected === data.label ? 1 : 0}
+                    zIndex={scoreSelected === data.key ? 1 : 0}
                     boxShadow={
-                        scoreSelected === data.label
+                        scoreSelected === data.key
                             ? "0px 4px 4px rgba(0, 0, 0, 0.25)"
                             : "none"
                     }
-                    onClick={() => ScoreSelectHandler(data.label)}
+                    onClick={() => ScoreSelectHandler(data.key)}
                     p={"7px 10px"}
                     alignItems={"start"}
                     w={`${calculatePercentage(
@@ -64,10 +72,21 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                         totalDefis
                     )}%`}
                 >
-                    <Text variant={"content"} fontWeight={700} color={"#FFF"}>
+                    <Text
+                        fontSize={{ base: "12px", md: "14px" }}
+                        lineHeight={"18px"}
+                        letterSpacing={"0.18px"}
+                        color={"#FFF"}
+                    >
                         {data.label}
                     </Text>
-                    <Text variant={"content"} fontWeight={700} color={"#FFF"}>
+                    <Text
+                        fontSize={{ base: "12px", md: "14px" }}
+                        lineHeight={"18px"}
+                        letterSpacing={"0.18px"}
+                        fontWeight={700}
+                        color={"#FFF"}
+                    >
                         {scoreTotalData[data.index].value ?? "-"}
                     </Text>
                 </Box>
@@ -88,7 +107,6 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                 flexDirection={"column"}
                 alignItems={"start"}
                 w={{ base: "100%", md: "unset" }}
-                overflowX={"auto"}
             >
                 <Box layerStyle={"flexCenter"} mb={{ base: "20px", md: "0px" }}>
                     <Text
@@ -101,7 +119,7 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                             color: "#FFFFFF",
                         }}
                     >
-                        Score distribution
+                        Risk Score distribution
                     </Text>
                 </Box>
                 <Box

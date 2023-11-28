@@ -41,7 +41,7 @@ const CoinPriceChart = () => {
         [CoinPriceData]
     );
 
-    useEffect(() => periodSelectionHandler(period), [colorMode]);
+    useEffect(() => setPeriod(period), [colorMode]);
 
     const options = {
         chart: {
@@ -59,6 +59,7 @@ const CoinPriceChart = () => {
         colors: ["#544FC5", "#00E272"],
         grid: {
             show: true,
+            borderColor: "#C6C6C6",
         },
         legend: {
             show: false,
@@ -284,7 +285,7 @@ const SelectorGraph = ({ period }) => {
     };
 
     useEffect(() => {
-        if (CoinPriceData?.isSuccess) {
+        if (CoinPriceData?.isSuccess && CoinPriceData?.data != undefined) {
             if (period === "7d") {
                 let minDate = new Date(
                     Date.parse(series[0].data.slice(-1)[0][0])

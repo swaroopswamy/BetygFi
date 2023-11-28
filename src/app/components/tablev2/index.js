@@ -42,7 +42,9 @@ const GenericTable = ({
 
     const data = useMemo(
         () =>
-            tableData?.isSuccess ? tableData?.data?.data : Array(30).fill({}),
+            tableData?.isSuccess && tableData?.data != undefined
+                ? tableData?.data?.data
+                : Array(30).fill({}),
         [tableData]
     );
 
@@ -145,6 +147,7 @@ const GenericTable = ({
                     {/* Apply the table body props */}
                     <Tbody {...getTableBodyProps()}>
                         {tableData?.isSuccess &&
+                            tableData?.data != undefined &&
                             rows.map((row, i) => {
                                 // Prepare the row for display
                                 prepareRow(row);
@@ -165,7 +168,8 @@ const GenericTable = ({
                             />
                         )}
 
-                        {(tableData?.isError || tableData === null) && (
+                        {(tableData?.isError ||
+                            tableData?.data == undefined) && (
                             <Tr>
                                 <Td
                                     p="20px"
