@@ -290,7 +290,7 @@ const TableRow = ({ item, rowIndex }) => {
                     {item.price?.toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
-                    })}
+                    }) ?? "-"}
                 </Text>
             </Td>
             <Td key={4}>
@@ -298,7 +298,7 @@ const TableRow = ({ item, rowIndex }) => {
                     {Math.trunc(item.tvl).toLocaleString("en-US", {
                         style: "currency",
                         currency: "USD",
-                    })}
+                    }) ?? "-"}
                 </Text>
             </Td>
             <Td key={5}>

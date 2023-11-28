@@ -83,7 +83,7 @@ const GenericTable = ({
                                 }}
                                 position="sticky"
                                 top={0}
-                                zIndex={"99"}
+                                zIndex={"1"}
                             >
                                 {
                                     // Loop over the headers in each row
