@@ -16,5 +16,3 @@ export const getAuthenticatedUserToken = () => {
     }
 };
 
-
-/* export const getDomainForCookie = () => '.' + getMainDomain(); */

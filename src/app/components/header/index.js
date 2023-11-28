@@ -24,11 +24,11 @@ import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { FetchLocalStorageData, LogoutReducer } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "@/app/components/sidebar";
-import { COLOR_MODE_COOKIE_NAME, getDomainForCookie } from "@util/utility";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
-
+import { getDomainForCookie, getPublicAddress } from '@util/functions';
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@/app/components/avatar";
+import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 
 const Navbar = ({ ...rest }) => {
 	const searchParams = useSearchParams();
@@ -227,7 +227,6 @@ const Navbar = ({ ...rest }) => {
 								{typeof window !== "undefined" && (
 									<CustomAvatar
 										src={AuthSession?.user?.image}
-										name={AuthSession?.user?.name ?? "U"}
 									/>
 								)}
 
@@ -235,18 +234,18 @@ const Navbar = ({ ...rest }) => {
 									layerStyle={"flexColumn"}
 									ml="10px"
 									mr="20px"
-									minW="90px"
+									minW="130px"
 								>
 									<Text
 										variant={"TopWalletsText"}
-										w="80px"
+										w="120px"
 										whiteSpace={"nowrap"}
 										overflow={"hidden"}
 										textOverflow={"ellipsis"}
 									>
 										{AuthSession?.user?.name
 											? AuthSession?.user?.name
-											: "No name"}
+											: getPublicAddress() || 'No Name'}
 									</Text>
 									{AuthSession?.user?.public_address && (
 										<Text
