@@ -166,9 +166,9 @@ const CoinInfo = () => {
                             variant={"h5"}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
                         >
-                            {new Date(
-                                CoinDashboardData?.timeStamp
-                            ).toDateString() ?? "-"}
+                            {CoinDashboardData?.timeStamp
+                                ? getDate(CoinDashboardData?.timeStamp)
+                                : "-"}
                         </Text>
                     </Box>
                 </Box>
@@ -406,3 +406,9 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
         </MenuItem>
     );
 };
+
+function getDate(timeStamp) {
+    let d = new Date(0);
+    d.setUTCSeconds(timeStamp);
+    return d.toDateString();
+}

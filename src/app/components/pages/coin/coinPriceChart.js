@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useMemo, useState } from "react";
 import CustomChart from "@/app/components/graph";
 import { useSelector } from "react-redux";
-import millify from "millify";
 import dynamic from "next/dynamic";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -41,7 +40,9 @@ const CoinPriceChart = () => {
         [CoinPriceData]
     );
 
-    useEffect(() => setPeriod(period), [colorMode]);
+    useEffect(() => {
+        setPeriod(period);
+    }, [colorMode]);
 
     const options = {
         chart: {
@@ -71,10 +72,7 @@ const CoinPriceChart = () => {
             enabled: true,
             theme: colorMode,
             custom: function ({ series, seriesIndex, dataPointIndex }) {
-                let val = millify(series[seriesIndex][dataPointIndex], {
-                    precision: 2,
-                    locales: "en-US",
-                });
+                let val = series[seriesIndex][dataPointIndex].toFixed(5);
                 let name = CoinPriceData?.isSuccess
                     ? CoinPriceData?.data?.name
                     : "Coin";
@@ -120,10 +118,7 @@ const CoinPriceChart = () => {
                     fontWeight: 400,
                 },
                 formatter: (value) => {
-                    return `$${millify(value, {
-                        precision: 2,
-                        locales: "en-US",
-                    })}`;
+                    return value.toFixed(5) + " USD";
                 },
             },
         },
@@ -172,7 +167,7 @@ const CoinPriceChart = () => {
                 </Box>
 
                 <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph period={period} />
+                    <SelectorGraph period={period} colorMode={colorMode} />
                 </Box>
             </Box>
         </>
@@ -181,9 +176,7 @@ const CoinPriceChart = () => {
 
 export default CoinPriceChart;
 
-const SelectorGraph = ({ period }) => {
-    const { colorMode } = useColorMode;
-
+const SelectorGraph = ({ period, colorMode }) => {
     const CoinPriceData = useSelector(
         (state) => state?.coinData?.CoinPriceData
     );
@@ -280,6 +273,10 @@ const SelectorGraph = ({ period }) => {
                     xaxis: value,
                 },
             },
+            grid: {
+                ...options.grid,
+                borderColor: colorMode === "light" ? "#191919" : "#36363A",
+            },
         };
         setOptions(newOptions);
     };
@@ -330,13 +327,14 @@ const SelectorGraph = ({ period }) => {
                     max: Date.parse(series[0].data.slice(-1)[0][0]),
                 });
             }
-            if (period === "Max")
+            if (period === "Max") {
                 setSelectionHandler({
                     min: Date.parse(series[0].data.slice(0)[0][0]),
                     max: Date.parse(series[0].data.slice(-1)[0][0]),
                 });
+            }
         }
-    }, [period, CoinPriceData]);
+    }, [period, CoinPriceData, colorMode]);
 
     return (
         <>
