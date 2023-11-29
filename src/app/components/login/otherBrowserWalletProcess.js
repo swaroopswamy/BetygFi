@@ -94,12 +94,17 @@ const OtherBrowserWalletProcess = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [verifiedPublicAddressData]);
+
     useEffect(() => {
         if (!isEmpty(LoggedInData.data?.token)) {
             setBrowserWalletProcessSelected(false);
             onClose();
-            dispatch(StoreLoggedInUserData());
-            signIn("web3",LoggedInData?.data);
+            setTimeout(() => {
+                dispatch(StoreLoggedInUserData());
+                setTimeout(() => {
+                    signIn("web3",LoggedInData?.data);
+                }, 100);
+            }, 100);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [LoggedInData]);

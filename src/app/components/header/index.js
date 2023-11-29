@@ -26,7 +26,7 @@ import {
 } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "@/app/components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
-import { getDomainForCookie, getPublicAddress } from "@util/functions";
+import { getPublicAddress } from "@util/functions";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
@@ -107,8 +107,7 @@ const Navbar = ({ ...rest }) => {
     const toggleColorModeGlobally = () => {
         createCookies(
             COLOR_MODE_COOKIE_NAME,
-            normalizeColorMode(colorMode),
-            getDomainForCookie()
+            normalizeColorMode(colorMode)
         );
         toggleColorMode();
     };
