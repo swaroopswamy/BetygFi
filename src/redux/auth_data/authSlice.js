@@ -1,7 +1,6 @@
 import { loginMetamask, socialLoginGoogleAPI, verifyPublicAddress } from "@/services/authService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createCookies, deleteCookieByName, getCookieByName } from "@util/cookieHelper";
-import { getDomainForCookie } from "@util/functions";
 import { AUTH_COOKIE_NAME } from "@util/utility";
 import { signOut } from "next-auth/react";
 
@@ -39,7 +38,7 @@ export const loadToken = () => {
 		if (serializedState === null) {
 			return undefined;
 		}
-		return JSON.parse(serializedState?.state?.state);
+		return JSON.parse(serializedState)?.state;
 	} catch (err) {
 		return undefined;
 	}
@@ -122,7 +121,7 @@ const AuthDataSlice = createSlice({
 			state.LoggedInData.data = null;
 			state.verifiedPublicAddressData.data = null;
 			localStorage.clear();
-			deleteCookieByName(AUTH_COOKIE_NAME, getDomainForCookie());
+			deleteCookieByName(AUTH_COOKIE_NAME);
 		},
 		FetchLocalStorageData: (state, /* action */) => {
 			state.verifiedPublicAddressData.data = loadToken();
@@ -136,7 +135,7 @@ const AuthDataSlice = createSlice({
 				},
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState, getDomainForCookie());
+			createCookies(AUTH_COOKIE_NAME, serializedState);
 			// localStorage.setItem("verifiedState", serializedState);
 		},
 		StoreLoggedInUserDataGoogle: (state,/*  action */) => {
@@ -147,7 +146,7 @@ const AuthDataSlice = createSlice({
 				},
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState, getDomainForCookie());
+			createCookies(AUTH_COOKIE_NAME, serializedState);
 			// localStorage.setItem("verifiedState", serializedState);
 		}
 	},

@@ -93,7 +93,6 @@ export default function LayoutProvider({ children }) {
 	useEffect(() => {
 		const cookie = getCookieByName(AUTH_COOKIE_NAME);
 		if (cookie !== undefined) {
-			const cookie = getCookieByName(AUTH_COOKIE_NAME);
 			if (status !== "authenticated") {
 				const verifiedState = {
 					token: cookie?.state?.token,
