@@ -184,9 +184,8 @@ const Navbar = ({ ...rest }) => {
 
                 <Box layerStyle={"flexCenter"}>
                     <i
-                        className={`icon ${
-                            colorMode === "light" ? "moon" : "sun"
-                        }`}
+                        className={`icon ${colorMode === "light" ? "moon" : "sun"
+                            }`}
                         onClick={() => {
                             toggleColorModeGlobally();
                         }}
@@ -276,15 +275,17 @@ const Navbar = ({ ...rest }) => {
                                     )}
                                 </Box>
                                 <i
-                                    className={`icon ${
-                                        colorMode === "light"
+                                    className={`icon ${colorMode === "light"
                                             ? "log_in_black"
                                             : "log_in_white"
-                                    }`}
+                                        }`}
                                     onClick={() => {
-                                        disconnect();
-                                        dispatch(LogoutReducer());
-                                        signOut();
+                                        Promise.all([
+                                            disconnect(),
+                                            dispatch(LogoutReducer()),
+                                            signOut()
+                                        ]);
+
                                     }}
                                 />
                             </Box>
