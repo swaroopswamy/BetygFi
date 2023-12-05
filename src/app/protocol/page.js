@@ -18,6 +18,7 @@ import {
     fetchScoreGraphData,
 } from "@/redux/dashboard_data/dataSlice";
 import BlockchainSelectionMenuNew from "@/app/components/blockchainSelectionNew";
+import OverviewBox from "../components/pages/dashboard/overviewBox";
 
 const Rankings = dynamic(
     () => import("@/app/components/pages/dashboard/defiRankingsTable"),
@@ -133,7 +134,7 @@ const Dashboard = () => {
                     py={"15px"}
                     gap={"15px"}
                 >
-                    {/* <OverviewBox /> */}
+                    <OverviewBox />
                 </Box>
 
                 <Rankings />
