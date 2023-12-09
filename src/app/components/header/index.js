@@ -30,6 +30,7 @@ import { getPublicAddress } from "@util/functions";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
+import SearchBoxV2 from "../searchBoxV2";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();
@@ -46,12 +47,10 @@ const Navbar = ({ ...rest }) => {
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
-    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } =
-        useDisclosure();
+    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const dispatch = useDispatch();
     const { colorMode, toggleColorMode } = useColorMode();
-    const [searchWalletAddressValue, setSearchWalletAddressValue] =
-        useState(searchParamAddress);
+    const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
 
     const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
@@ -139,47 +138,10 @@ const Navbar = ({ ...rest }) => {
                     alignItems={"center"}
                     justifyContent={"center"}
                 >
-                    <InputGroup w="100%" alignItems={"center"}>
-                        <InputLeftElement pointerEvents="none">
-                            <Image
-                                src="/images/search_icon.svg"
-                                w="20px"
-                                h="20px"
-                                alt="search_icon"
-                                borderLeftRadius={"20px"}
-                                borderRightRadius={"20px"}
-                            />
-                        </InputLeftElement>
-                        <Input
-                            type="text"
-                            border="none"
-                            borderLeftRadius={"20px"}
-                            borderRightRadius={"20px"}
-                            _selected={{
-                                outline: "none",
-                                border: "none",
-                            }}
-                            _focusVisible={{
-                                outline: "none",
-                                border: "none",
-                            }}
-                            value={searchWalletAddressValue ?? ""}
-                            bgColor={"transparent"}
-                            variant={"h5"}
-                            letterSpacing={"1.2px"}
-                            _light={{ color: "#16171B" }}
-                            _dark={{ color: "#A8ADBD" }}
-                            w="100%"
-                            // placeholder="Search by Coin, DeFi name, NFT, Wallet and more"
-                            placeholder="Search by Wallet Address" // till 29th release only
-                            onKeyDown={(e) => {
-                                handleSearchByWalletAddress(e);
-                            }}
-                            onChange={(e) => {
-                                handleSearchByWalletAddress(e);
-                            }}
-                        ></Input>
-                    </InputGroup>
+                    <SearchBoxV2
+                        searchWalletAddressValue={searchWalletAddressValue}
+                        handleSearchByWalletAddress={handleSearchByWalletAddress}
+                    />
                 </Box>
 
                 <Box layerStyle={"flexCenter"}>
@@ -276,8 +238,8 @@ const Navbar = ({ ...rest }) => {
                                 </Box>
                                 <i
                                     className={`icon ${colorMode === "light"
-                                            ? "log_in_black"
-                                            : "log_in_white"
+                                        ? "log_in_black"
+                                        : "log_in_white"
                                         }`}
                                     onClick={() => {
                                         Promise.all([
