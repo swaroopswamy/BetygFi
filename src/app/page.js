@@ -134,11 +134,11 @@ const HomePage = () => {
 					gap={"15px"}
 				>
 					{/* <OverviewBox /> */}
-				</Box>
+				</Box >
 
 				<Rankings />
-			</Box>
-		</Box>
+			</Box >
+		</Box >
 	);
 };
 
