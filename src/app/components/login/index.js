@@ -1,6 +1,7 @@
 "use client";
 import {
     Box,
+    Icon,
     Image,
     Modal,
     ModalBody,
@@ -14,9 +15,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-/* import { signIn } from "next-auth/react"; */
+ import { signIn } from "next-auth/react"; 
 import Link from "next/link";
-/* import { FcGoogle } from "react-icons/fc"; */
+ import { FcGoogle } from "react-icons/fc"; 
 
 const OtherBrowserWalletProcess = dynamic(() =>
     import("@/app/components/login/otherBrowserWalletProcess")
@@ -161,7 +162,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 my={"15px"}
                                                 cursor={"pointer"}
                                                 position={"relative"}
-                                                /* _after={{
+                                                _after={{
                                                     position: "absolute",
                                                     bottom: "-15px",
                                                     left: 0,
@@ -169,7 +170,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                     height: "1px",
                                                     bgColor: "#EDEDED",
                                                     content: '""',
-                                                }} */
+                                                }}
                                             >
                                                 <Box
                                                     display={"flex"}
@@ -207,7 +208,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                             </Box>
                                         );
                                     })}
-                                    {/* <Text
+                                     <Text
                                         fontSize={"15px"}
                                         fontWeight={400}
                                         lineHeight={"20px"}
@@ -224,8 +225,10 @@ const LoginPage = ({ isOpen, onClose }) => {
                                         display={"flex"}
                                         justifyContent={"space-between"}
                                         alignItems={"center"}
-                                        //onClick={() => handleProcessSelector(item.name)}
-                                        onClick={() => signIn("google")}
+                                        onClick={() => {
+											localStorage.setItem('googleAuthInitiated', true);
+											signIn('google');
+										}}
                                         mx={"24px"}
                                         my={"15px"}
                                         cursor={"pointer"}
@@ -268,7 +271,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                     : "next_icon_dark"
                                             }`}
                                         ></i>
-                                    </Box> */}
+                                    </Box> 
                                     <Box mt="12px" display={"flex"}>
                                         <Text variant={"greySmallText"}>
                                             By continuing with the login process

@@ -1,8 +1,8 @@
-import { loginMetamask, socialLoginGoogleAPI, verifyPublicAddress } from "@/services/authService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createCookies, deleteCookieByName, getCookieByName } from "@util/cookieHelper";
+import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@/services/authService";
 import { AUTH_COOKIE_NAME } from "@util/utility";
-import { signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import { createCookies, deleteCookieByName } from "@util/cookieHelper";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",
@@ -27,29 +27,20 @@ export const socialLoginGoogle = createAsyncThunk(
 		return response.data;
 	}
 );
-
-
-
-
-export const loadToken = () => {
-	try {
-		const serializedState = getCookieByName(AUTH_COOKIE_NAME);
-
-		if (serializedState === null) {
-			return undefined;
-		}
-		return JSON.parse(serializedState)?.state;
-	} catch (err) {
-		return undefined;
+export const verifyJWTtokenFromCookie = createAsyncThunk(
+	"verifyJWTtokenFromCookie",
+	async (payload, { rejectWithValue }) => {
+		const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
+		return response.data;
 	}
-};
+);
 
 
 const AuthDataSlice = createSlice({
 	name: "authData",
 	initialState: {
 		LoggedInData: {
-			data: loadToken() ?? null,
+			data: null,
 			isLoading: false,
 			isError: false,
 			isSuccess: false,
@@ -64,6 +55,11 @@ const AuthDataSlice = createSlice({
 			data: null,
 			isError: null,
 			isSuccess: null,
+		},
+		ValidatedUserData: {
+			data: null,
+			isError: null,
+			isSuccess: null,
 		}
 	},
 	extraReducers: (builder) => {
@@ -72,6 +68,7 @@ const AuthDataSlice = createSlice({
 			state.verifiedPublicAddressData.isLoading = false;
 			state.verifiedPublicAddressData.isSuccess = true;
 			state.verifiedPublicAddressData.isError = false;
+
 		});
 		builder.addCase(VerifyPublicAddressData.pending, (state, action) => {
 			state.verifiedPublicAddressData.isLoading = true;
@@ -108,24 +105,47 @@ const AuthDataSlice = createSlice({
 			state.GoogleVerifiedData.data = action.payload;
 			state.GoogleVerifiedData.isSuccess = true;
 			state.GoogleVerifiedData.isError = false;
+
 		});
 		builder.addCase(socialLoginGoogle.rejected, (state, action) => {
-			signOut();
 			state.GoogleVerifiedData.isSuccess = false;
 			state.GoogleVerifiedData.isError = true;
 			state.GoogleVerifiedData.data = action.payload;
 		});
+		builder.addCase(verifyJWTtokenFromCookie.fulfilled, (state, action) => {
+			state.ValidatedUserData.data = action.payload;
+			state.ValidatedUserData.isSuccess = true;
+			state.ValidatedUserData.isError = false;
+		});
+		builder.addCase(verifyJWTtokenFromCookie.rejected, (state, action) => {
+			state.ValidatedUserData.isSuccess = false;
+			state.ValidatedUserData.isError = true;
+			state.ValidatedUserData.data = action.payload;
+		});
 	},
 	reducers: {
 		LogoutReducer: (state, /* action */) => {
-			state.LoggedInData.data = null;
-			state.verifiedPublicAddressData.data = null;
+			state.LoggedInData = {
+				data: null,
+				isLoading: false,
+				isError: false,
+				isSuccess: false,
+			};
+			state.verifiedPublicAddressData = {
+				data: null,
+				isError: false,
+				isSuccess: false,
+			};
+			state.ValidatedUserData = {
+				data: null,
+				isError: false,
+				isSuccess: false,
+			};
+
 			localStorage.clear();
 			deleteCookieByName(AUTH_COOKIE_NAME);
 		},
-		FetchLocalStorageData: (state, /* action */) => {
-			state.verifiedPublicAddressData.data = loadToken();
-		},
+
 		StoreLoggedInUserData: (state,/*  action */) => {
 			const accountState = {
 				state: {
@@ -134,9 +154,15 @@ const AuthDataSlice = createSlice({
 					isWeb3: true
 				},
 			};
+			const user = {
+				name: state.verifiedPublicAddressData.data?.public_address,
+			};
 			const serializedState = JSON.stringify(accountState);
 			createCookies(AUTH_COOKIE_NAME, serializedState);
-			// localStorage.setItem("verifiedState", serializedState);
+			setTimeout(() => {
+				signIn("credentials", user);
+			}, 100);
+
 		},
 		StoreLoggedInUserDataGoogle: (state,/*  action */) => {
 			const accountState = {
@@ -148,9 +174,24 @@ const AuthDataSlice = createSlice({
 			const serializedState = JSON.stringify(accountState);
 			createCookies(AUTH_COOKIE_NAME, serializedState);
 			// localStorage.setItem("verifiedState", serializedState);
+		},
+		LogInFromCookie: (state, /* action */) => {
+			const user = {
+				email: state.ValidatedUserData?.data?.email,
+				name: state.ValidatedUserData?.data?.public_address ? state.ValidatedUserData?.data?.public_address : state.ValidatedUserData?.data?.user_name,
+				image: state.ValidatedUserData?.data?.profile_url,
+			};
+			setTimeout(() => {
+				signIn("credentials", user);
+			}, 100);
+		},
+		ResetValidatedUserData: (state) => {
+			state.ValidatedUserData.data = null;
+			state.ValidatedUserData.isSuccess = null;
+			state.ValidatedUserData.isError = null;
 		}
 	},
 });
 
-export const { LogoutReducer, FetchLocalStorageData, StoreLoggedInUserData, StoreLoggedInUserDataGoogle } = AuthDataSlice.actions;
+export const { LogoutReducer, StoreLoggedInUserData, StoreLoggedInUserDataGoogle, LogInFromCookie, ResetValidatedUserData } = AuthDataSlice.actions;
 export default AuthDataSlice.reducer;

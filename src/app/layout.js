@@ -62,15 +62,15 @@ export default async function RootLayout({ children }) {
 				</Script>
 			</head>
 			<body>
+			<SessionProvider session={session}>
 				<ReduxProvider>
 					<WagmiProvider>
-						<SessionProvider session={session}>
-							<Providers>
+						<Providers>
 								<LayoutProvider>{children}</LayoutProvider>
 							</Providers>
-						</SessionProvider>
 					</WagmiProvider>
 				</ReduxProvider>
+			</SessionProvider>
 			</body>
 		</html>
 	);

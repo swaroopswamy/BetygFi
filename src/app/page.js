@@ -18,13 +18,12 @@ import { categories } from "@util/constant";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import OverviewBox from "../components/pages/dashboard/overviewBox";
 
 const Rankings = dynamic(
 	() => import("@/app/components/pages/dashboard/defiRankingsTable"),
 	{ ssr: false }
 );
-const Dashboard = () => {
+const HomePage = () => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 
 	const dispatch = useDispatch();
@@ -134,16 +133,16 @@ const Dashboard = () => {
 					py={"15px"}
 					gap={"15px"}
 				>
-					<OverviewBox />
-				</Box>
+					{/* <OverviewBox /> */}
+				</Box >
 
 				<Rankings />
-			</Box>
-		</Box>
+			</Box >
+		</Box >
 	);
 };
 
-export default Dashboard;
+export default HomePage;
 
 const DashboardDefiSelection = ({ ...rest }) => {
 	const dispatch = useDispatch();
