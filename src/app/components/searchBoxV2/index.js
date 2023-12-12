@@ -107,7 +107,12 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress }) 
         return (
             <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
                 {overlay}
-                <ModalContent borderRadius={"4px"} background={colorMode == "light" ? "#F4F4F4" : "#282828"} minW={"60%"}>
+                <ModalContent
+                    borderRadius={"4px"}
+                    background={colorMode == "light" ? "#F4F4F4" : "#282828"}
+                    minW={"64%"}
+                    containerProps={{ justifyContent: 'flex-start', paddingLeft: '15.3rem' }}
+                >
                     <Box m={"23px 29px 22px 20px"}>
                         {
                             searchList.map((searchItem, index, searchArray) => (

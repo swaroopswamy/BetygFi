@@ -30,6 +30,7 @@ import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 import SearchBoxV2 from "../searchBoxV2";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();
@@ -49,9 +50,9 @@ const Navbar = ({ ...rest }) => {
     const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const dispatch = useDispatch();
     const { colorMode, toggleColorMode } = useColorMode();
-    const [searchWalletAddressValue, setSearchWalletAddressValue] =
-        useState(searchParamAddress);
-
+    const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
+    const [searchValue, setSearchValue] = useState(searchParamAddress);
+    const debouncedValue = useDebounce(searchValue, 500);
     const { data: AuthSession } = useSession();
 
     const { disconnect } = useDisconnect();
@@ -63,8 +64,14 @@ const Navbar = ({ ...rest }) => {
                 setSearchWalletAddressValue(e.target.value);
             }
         }
-        setSearchWalletAddressValue(e.target.value);
+        const value = e.target.value;
+        setSearchValue(value);
+        setSearchWalletAddressValue(value);
     };
+
+    useEffect(() => {
+        // api for search v2
+    }, [debouncedValue]);
 
     const handleMobileSearchByWalletAddress = () => {
         dispatch(walletAddressChangedReducer(searchWalletAddressValue));
