@@ -21,12 +21,11 @@ import LoginPage from "@/app/components/login";
 import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import {
-    FetchLocalStorageData,
     LogoutReducer,
 } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "@/app/components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
-import { getPublicAddress } from "@util/functions";
+import { PublicAddressStringFormatter } from "@util/functions";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
@@ -52,7 +51,9 @@ const Navbar = ({ ...rest }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const [searchWalletAddressValue, setSearchWalletAddressValue] =
         useState(searchParamAddress);
-
+    
+    const { data: AuthSession } = useSession();
+    
     const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
         if (e.key === "Enter") {
@@ -83,7 +84,6 @@ const Navbar = ({ ...rest }) => {
     }, [searchParamAddress]);
 
     useEffect(() => {
-        dispatch(FetchLocalStorageData());
         updateColorMode();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -105,14 +105,10 @@ const Navbar = ({ ...rest }) => {
     };
 
     const toggleColorModeGlobally = () => {
-        createCookies(
-            COLOR_MODE_COOKIE_NAME,
-            normalizeColorMode(colorMode)
-        );
+        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode));
         toggleColorMode();
     };
 
-    const { data: AuthSession } = useSession();
     return (
         <>
             <Flex
@@ -235,9 +231,10 @@ const Navbar = ({ ...rest }) => {
                             >
                                 {typeof window !== "undefined" && (
                                     <CustomAvatar
-                                        src={AuthSession?.user?.image}
+                                        src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
                                     />
                                 )}
+
 
                                 <Box
                                     layerStyle={"flexColumn"}
@@ -253,8 +250,7 @@ const Navbar = ({ ...rest }) => {
                                         textOverflow={"ellipsis"}
                                     >
                                         {AuthSession?.user?.name
-                                            ? AuthSession?.user?.name
-                                            : getPublicAddress() || "No Name"}
+                                            ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
                                     </Text>
                                     {AuthSession?.user?.public_address && (
                                         <Text
@@ -280,12 +276,13 @@ const Navbar = ({ ...rest }) => {
                                             : "log_in_white"
                                         }`}
                                     onClick={() => {
-                                        Promise.all([
-                                            disconnect(),
-                                            dispatch(LogoutReducer()),
-                                            signOut()
-                                        ]);
-
+                                        disconnect();
+                                        setTimeout(() => {
+                                            dispatch(LogoutReducer());
+                                            setTimeout(() => {
+                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                            }, 200);
+                                        }, 100);
                                     }}
                                 />
                             </Box>

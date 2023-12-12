@@ -1,4 +1,3 @@
-/* eslint-disable valid-typeof */
 import { getCookieByName } from "./cookieHelper";
 import { AUTH_COOKIE_NAME } from "./utility";
 
@@ -27,15 +26,14 @@ export function PublicAddressStringFormatter(name) {
 export const getPublicAddress = () => {
     const authCookie = getCookieByName(AUTH_COOKIE_NAME);
     if (authCookie) {
-        const parsedCookie = JSON.parse(authCookie);
-        return PublicAddressStringFormatter(parsedCookie?.state?.public_address);
+        return PublicAddressStringFormatter(authCookie?.state?.public_address);
     } else {
         return undefined;
     }
 };
 
 export function getTokenFromLocal() {
-    if (typeof window !== undefined) {
+    if (typeof window !== "undefined") {
         if (localStorage.getItem("verifiedState")) {
             const state = JSON.parse(localStorage.getItem("verifiedState"));
             return state?.state?.token;

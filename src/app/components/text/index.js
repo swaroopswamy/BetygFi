@@ -243,6 +243,13 @@ const Text = defineStyleConfig({
             lineHeight: "18px",
             letterSpacing: "0.16px",
         }),
+        toastText: ({ colorMode }) => ({
+			fontSize: "14px",
+			fontWeight: "400",
+			lineHeight: "26px",
+			fontFamily: "Inter",
+			color: colorMode === "light" ? "#FFFFFF" : "#191919",
+		}),
     },
     defaultProps: {
         variant: "base",

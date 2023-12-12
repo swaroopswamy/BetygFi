@@ -1,4 +1,4 @@
-import { Box, Button, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useColorMode, useSteps } from "@chakra-ui/react";
+import { Box, Button, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useColorMode, useSteps, useToast } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import isEmpty from "is-empty";
 import React, { useEffect } from "react";
@@ -9,7 +9,7 @@ import {
     StoreLoggedInUserData,
     VerifyPublicAddressData,
 } from "@/redux/auth_data/authSlice";
-import { signIn } from "next-auth/react";
+import CustomToast from "../toast";
 
 
 
@@ -24,6 +24,7 @@ const OtherBrowserWalletProcess = ({
     const LoggedInData = useSelector((state) => state.authData.LoggedInData);
     const { colorMode } = useColorMode();
 
+    const toast = useToast();
     // eslint-disable-next-line no-unused-vars
     const { activeStep, setActiveStep } = useSteps({
         index: 0,
@@ -31,8 +32,19 @@ const OtherBrowserWalletProcess = ({
     });
     const signMessage = async ({ message }) => {
         try {
-            if (!window.ethereum)
+            if (!window.ethereum) {
+                toast({
+                    position: "bottom",
+                    render: () => (
+                        <CustomToast
+                            isSuccessful={false}
+                            content={"No crypto wallet found. Please install it."}
+                        />
+                    ),
+                });
                 throw new Error("No crypto wallet found. Please install it.");
+
+            }
 
             await window.ethereum.send("eth_requestAccounts");
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -52,8 +64,19 @@ const OtherBrowserWalletProcess = ({
 
     const handleConnectWallet = async (connector) => {
         try {
-            if (!window.ethereum)
+            if (!window.ethereum) {
+                toast({
+                    position: "bottom",
+                    render: () => (
+                        <CustomToast
+                            isSuccessful={false}
+                            content={"No crypto wallet found. Please install it."}
+                        />
+                    ),
+                });
                 throw new Error("No crypto wallet found. Please install it.");
+
+            }
 
             await window.ethereum.send("eth_requestAccounts");
             connect({ connector });
@@ -94,21 +117,17 @@ const OtherBrowserWalletProcess = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [verifiedPublicAddressData]);
-
     useEffect(() => {
         if (!isEmpty(LoggedInData.data?.token)) {
             setBrowserWalletProcessSelected(false);
             onClose();
             setTimeout(() => {
                 dispatch(StoreLoggedInUserData());
-                setTimeout(() => {
-                    signIn("web3",LoggedInData?.data);
-                }, 100);
             }, 100);
+
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [LoggedInData]);
-
     const steps = [
         {
             title: isConnected ? "Wallet Connected" : "Connect Wallet",

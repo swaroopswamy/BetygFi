@@ -190,3 +190,15 @@
         background-image: url('/icons/log_in_black.svg');
     }
 }
+
+.green_check_circle {
+    &::before {
+        background-image: url('/icons/green_check_circle.svg');
+    }
+}
+
+.red_check_circle {
+    &::before {
+        background-image: url('/icons/red_check_circle.svg');
+    }
+}

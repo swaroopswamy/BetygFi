@@ -16,27 +16,26 @@ export const authOptions = {
                 },
             },
             scope: ['openid', 'profile', 'offline_access'],
-
-            idToken: true
         }),
         CredentialsProvider({
-            id: "web3",
-            name: "web3",
-            async authorize(credentials, ) {
-                if (credentials?.token) return credentials;
+            id: "credentials",
+            name: "credentials",
+            async authorize(credentials) {
+                if (credentials) return credentials;
                 else return null;
             }
-
         })
         // Add other providers as needed
     ],
 
     callbacks: {
-        jwt({ token, account }) {
+        jwt({ token , account }) {
+            // Persist the OAuth access_token to the token right after signin
             if (account) {
                 token.id_token = account.id_token;
                 token.provider = account.provider;
             }
+
             return token;
         },
         session({ session, token }) {
