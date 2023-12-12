@@ -28,6 +28,7 @@ export function Providers({ children }) {
         return "system";
     };
 
+
     const theme = extendTheme({
         initialColorMode: getColorModeFromStorage(),
         useSystemColorMode: true,

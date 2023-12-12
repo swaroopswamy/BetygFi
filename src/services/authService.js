@@ -1,5 +1,13 @@
 import { axiosInstance } from "@util/axiosInstance";
 
+const getAxiosHeaders = (token) => {
+	return {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+};
+
 export const verifyPublicAddress = async (address, { rejectWithValue }) => {
 	try {
 		const { data } = await axiosInstance.get(`auth/get-nonce?public_address=${address}`);
@@ -27,8 +35,19 @@ export const socialLoginGoogleAPI = async (payload, { rejectWithValue }) => {
 	}
 };
 
+export const verifyJWTtokenFromCookieAPI = async (payload, { rejectWithValue }) => {
+	try {
+		const { data } = await axiosInstance.get(`user/profile`, getAxiosHeaders(payload.token));
+		return data;
+	} catch (err) {
+
+		return rejectWithValue(err);
+	}
+};
+
 export default {
 	verifyPublicAddress,
 	loginMetamask,
-	socialLoginGoogleAPI
+	socialLoginGoogleAPI,
+	verifyJWTtokenFromCookieAPI
 };
