@@ -1,4 +1,4 @@
-import { Box, Input, InputGroup, InputLeftElement, Modal, ModalContent, ModalOverlay, useColorMode, useDisclosure, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement, useColorMode, useOutsideClick } from '@chakra-ui/react';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import SearchItemGroup from './SearchItemGroup';
@@ -18,7 +18,7 @@ const SEARCH_LIST = [
     },
 ];
 
-const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, clearValueMobileSearch, handleSearchInputChange, searchValue, searchListData }) => {
+const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddressV2, clearValueMobileSearch, handleSearchInputChange, searchValue, searchListData }) => {
     const initialRef = useRef(null);
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
@@ -28,17 +28,17 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
     });
     const { colorMode } = useColorMode();
 
-    const [isMd] = useMediaQuery("(min-width: 768px)");
+    // const [isMd] = useMediaQuery("(min-width: 768px)");
 
-    const SearchOverlay = () => (
-        <ModalOverlay
-            mt={'105px'}
-            // mt={{ base: '150px', md: '78px' }}
-            bg='blackAlpha.300'
-            // backdropFilter='auto'
-            backdropFilter='blur(10px) hue-rotate(90deg)'
-        />
-    );
+    // const SearchOverlay = () => (
+    //     <ModalOverlay
+    //         mt={'105px'}
+    //         // mt={{ base: '150px', md: '78px' }}
+    //         bg='blackAlpha.300'
+    //         // backdropFilter='auto'
+    //         backdropFilter='blur(10px) hue-rotate(90deg)'
+    //     />
+    // );
 
     const searchSuggestionOpenState = (isToOpen) => {
         if (isToOpen) {
@@ -58,15 +58,13 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
         }
     }, [searchListData]);
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const [overlay, setOverlay] = useState(<SearchOverlay />);
+    // const { isOpen, onOpen, onClose } = useDisclosure();
+    // const [overlay, setOverlay] = useState(<SearchOverlay />);
 
-    const onSearchInputClick = () => {
-        setOverlay(<SearchOverlay />);
-        onOpen();
-        var textbox = document.getElementById("searchInputDesktop");
-        textbox.focus();
-    };
+    // const onSearchInputClick = () => {
+    //     setOverlay(<SearchOverlay />);
+    //     onOpen();
+    // };
 
     const searchDataContent = () => {
         return (
@@ -86,32 +84,32 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
             </>
         );
     };
-    const renderSearchModal = () => {
-        return (
-            (
-                <Modal
-                    initialFocusRef={initialRef}
-                    finalFocusRef={initialRef}
-                    isOpen={isOpen} onClose={onClose} size={"xl"}>
-                    {overlay}
-                    <ModalContent
-                        borderRadius={"4px"}
-                        background={colorMode == "light" ? "#F4F4F4" : "#282828"}
-                        minW={{ base: "0%", md: "63.5%" }}
-                        containerProps={isMd ? { justifyContent: 'flex-start', paddingLeft: '15.9rem' } : { paddingTop: '4.3rem' }}
-                    >
-                        {searchDataContent()}
-                    </ModalContent>
-                </Modal>
-            )
-        );
-    };
+    // const renderSearchModal = () => {
+    //     return (
+    //         (
+    //             <Modal
+    //                 initialFocusRef={initialRef}
+    //                 finalFocusRef={initialRef}
+    //                 isOpen={isOpen} onClose={onClose} size={"xl"}>
+    //                 {overlay}
+    //                 <ModalContent
+    //                     borderRadius={"4px"}
+    //                     background={colorMode == "light" ? "#F4F4F4" : "#282828"}
+    //                     minW={{ base: "0%", md: "63.5%" }}
+    //                     containerProps={isMd ? { justifyContent: 'flex-start', paddingLeft: '15.9rem' } : { paddingTop: '4.3rem' }}
+    //                 >
+    //                     {searchDataContent()}
+    //                 </ModalContent>
+    //             </Modal>
+    //         )
+    //     );
+    // };
 
     const renderSearchExpander = () => {
         return (
             <>
                 {
-                    searchValue?.length > 2 && openSearchSuggestion &&
+                    openSearchSuggestion &&
                     <Box
                         borderRadius={"4px"}
                         zIndex={"9999"}
@@ -127,7 +125,7 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
         );
     };
 
-    const renderInputGroup = () => {
+    const renderMDInputGroup = () => {
         return (
             <InputGroup ref={ref} w="100%" zIndex={"99999999"} alignItems={"center"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
@@ -164,15 +162,8 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#A8ADBD" }}
                                 w="100%"
-                                // onClick={() => onSearchInputClick()}
                                 placeholder="Search by Coin, DeFi name, NFT, Wallet and more"
-                                // onKeyDown={(e) => {
-                                //     handleSearchByWalletAddress(e);
-                                // }}
-                                onChange={(e) => {
-                                    handleSearchInputChange(e.target.value);
-                                    // handleSearchByWalletAddress(e);
-                                }}
+                                onChange={(e) => { handleSearchInputChange(e.target.value); }}
                             />
                         </Box>
                     </Box>
@@ -182,32 +173,9 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
         );
     };
 
-    return (
-        isMd ?
-            <>
-                {renderInputGroup()}
-                {
-                    openSearchSuggestion &&
-                    <Box
-                        style={{
-                            position: "fixed",
-                            zIndex: 9999999,
-                            top: "80px",
-                            right: 0,
-                            bottom: 0,
-                            left: 0,
-                            height: "100%",
-                            width: "100%",
-                            overflow: "hidden",
-                            backgroundColor: "blackAlpha.700",
-                            backdropFilter: 'blur(10px) hue-rotate(180deg)'
-                        }}
-                    >
-                    </Box>
-                }
-            </>
-            :
-            <InputGroup w="100%">
+    const renderSMInputGroup = () => {
+        return (
+            <InputGroup ref={ref} w="100%" zIndex={"99999999"}>
                 <InputLeftElement pointerEvents="none">
                     <Image
                         src={
@@ -240,16 +208,16 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
                     placeholder="Search by Coin, DeFi name, NFT, Wallet and more"
                     value={searchWalletAddressValue ?? ""}
                     fontSize={"10px"}
-                    onClick={() => onSearchInputClick()}
+                    // onClick={() => onSearchInputClick()}
                     onChange={(e) => {
-                        handleSearchByWalletAddress(e);
+                        handleSearchByWalletAddressV2(e);
                     }}
                 />
                 <Box
                     layerStyle={"center"}
                     cursor={"pointer"}
-                    w={"70px"} //todo
-                    p={"14px 10px"} //todo
+                    // w={"70px"} //todo
+                    // p={"14px 10px"} //todo
                     bgColor={
                         colorMode === "light" ? "#F0F0F5" : "#191919"
                     }
@@ -269,8 +237,35 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddress, cl
                         alt="logo"
                     />
                 </Box>
-                {renderSearchModal()}
+                {renderSearchExpander()}
             </InputGroup>
+        );
+    };
+
+    return (
+        <>
+            {renderMDInputGroup()}
+            {/* {isMd ? renderMDInputGroup() : renderSMInputGroup()} */}
+            {
+                openSearchSuggestion &&
+                <Box
+                    style={{
+                        position: "fixed",
+                        zIndex: 9999999,
+                        top: "80px",
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        height: "100%",
+                        width: "100%",
+                        overflow: "hidden",
+                        backgroundColor: "blackAlpha.700",
+                        backdropFilter: 'blur(10px) hue-rotate(180deg)'
+                    }}
+                >
+                </Box>
+            }
+        </>
     );
 };
 

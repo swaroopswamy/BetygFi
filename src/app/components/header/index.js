@@ -11,6 +11,9 @@ import {
     Text,
     Image,
     Collapse,
+    InputGroup,
+    InputLeftElement,
+    Input,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import LoginPage from "@/app/components/login";
@@ -28,6 +31,7 @@ import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 import SearchBoxV2 from "../searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getSearchV2List } from "@/redux/app_data/dataSlice";
+import isEmpty from "is-empty";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();
@@ -54,21 +58,25 @@ const Navbar = ({ ...rest }) => {
     const debouncedValue = useDebounce(searchValue, 500);
     const { data: AuthSession } = useSession();
 
-    const clearValueMobileSearch = () => {
-        setSearchValue("");
-        setSearchWalletAddressValue("");
-        onMobileSearchToggle();
-    };
+    // const clearValueMobileSearch = () => {
+    //     setSearchValue("");
+    //     setSearchWalletAddressValue("");
+    //     onMobileSearchToggle();
+    // };
 
     const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
         if (e.key === "Enter") {
-            // if (!isEmpty(e.target.value)) {
-            //     dispatch(walletAddressChangedReducer(e.target.value));
-            //     router.push(`/top-wallets/${e.target.value}`);
-            //     setSearchWalletAddressValue(e.target.value);
-            // }
+            if (!isEmpty(e.target.value)) {
+                dispatch(walletAddressChangedReducer(e.target.value));
+                router.push(`/wallet_dashboard?address=${e.target.value}`);
+                setSearchWalletAddressValue(e.target.value);
+            }
         }
+        setSearchWalletAddressValue(e.target.value);
+    };
+
+    const handleSearchByWalletAddressV2 = (e) => {
         const value = e.target.value;
         setSearchValue(value);
         setSearchWalletAddressValue(value);
@@ -163,7 +171,7 @@ const Navbar = ({ ...rest }) => {
                 >
                     <SearchBoxV2
                         searchWalletAddressValue={searchWalletAddressValue}
-                        handleSearchByWalletAddress={handleSearchByWalletAddress}
+                        handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
                         handleSearchInputChange={handleSearchInputChange}
                         searchValue={searchValue}
                         searchListData={searchListData?.data?.data?.data}
@@ -338,7 +346,7 @@ const Navbar = ({ ...rest }) => {
                 </Box>
             </Flex>
 
-            <Collapse
+            {/* <Collapse
                 in={isMobileSearchOpen}
                 style={{ position: "fixed", width: "100%", zIndex: "80" }}
                 animateOpacity={"true"}
@@ -357,7 +365,68 @@ const Navbar = ({ ...rest }) => {
                         handleSearchByWalletAddress={handleSearchByWalletAddress}
                         clearValueMobileSearch={clearValueMobileSearch}
                         handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
-                    />
+                        handleSearchInputChange={handleSearchInputChange}
+                        searchValue={searchValue}
+                        searchListData={searchListData?.data?.data?.data}
+                    /> 
+                </Box>
+            </Collapse> */}
+            <Collapse
+                in={isMobileSearchOpen}
+                style={{ position: "fixed", width: "100%", zIndex: "80" }}
+                animateOpacity={"true"}
+            >
+                <Box
+                    px={{ base: 4, md: 4 }}
+                    w={"100%"}
+                    layerStyle={"flexCenter"}
+                    bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+                    border={"1px"}
+                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    padding={"8px 19px"}
+                >
+                    <InputGroup w="100%">
+                        <InputLeftElement pointerEvents="none">
+                            <Image
+                                src={
+                                    colorMode === "light"
+                                        ? "/icons/search_icon_light.svg"
+                                        : "/icons/search_icon_dark.svg"
+                                }
+                                w="14px"
+                                h="14px"
+                                alt="search_icon"
+                            />
+                        </InputLeftElement>
+                        <Input
+                            type="text"
+                            border="1px"
+                            borderRadius="0px"
+                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+                            variant={"h6"}
+                            w="100%"
+                            placeholder="Search Wallet Address"
+                            value={searchWalletAddressValue ?? ""}
+                            onChange={(e) => {
+                                handleSearchByWalletAddress(e);
+                            }}
+                        ></Input>
+                        <Box
+                            layerStyle={"center"}
+                            cursor={"pointer"}
+                            w={"70px"}
+                            p={"14px 10px"}
+                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+                            border="1px"
+                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                            onClick={() => {
+                                handleMobileSearchByWalletAddress();
+                            }}
+                        >
+                            <Text variant={"SearchText"}>Search</Text>
+                        </Box>
+                    </InputGroup>
                 </Box>
             </Collapse>
             <MobileSidebar
