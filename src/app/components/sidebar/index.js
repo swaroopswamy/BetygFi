@@ -40,6 +40,11 @@ import { BsPeople } from "react-icons/bs";
 import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "./report";
 import SuggestFeatureModal from "./suggestfeature";
+import { signOut, useSession } from "next-auth/react";
+import { LogoutReducer } from "@/redux/auth_data/authSlice";
+import CustomAvatar from "../avatar";
+import { useDisconnect } from "wagmi";
+import { PublicAddressStringFormatter } from "@util/functions";
 
 const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), {
     ssr: false,
@@ -747,6 +752,9 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
         useDisclosure();
     const router = useRouter();
     const pathname = usePathname();
+    const { data: AuthSession } = useSession();
+    const { disconnect } = useDisconnect();
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -949,7 +957,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                            "light"
+                                                                "light"
                                                                 ? "#FFFFFF"
                                                                 : "#191919",
                                                     }}
@@ -968,7 +976,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     _groupHover={{
                                                         color:
                                                             colorMode ===
-                                                            "light"
+                                                                "light"
                                                                 ? "white"
                                                                 : "dark",
                                                     }}
@@ -1055,36 +1063,102 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                     display={"flex"}
                                     justifyContent={"center"}
                                     padding={"10px"}
-                                    mb={"20px"}
+                                    mb={"40px"}
                                 >
-                                    <Box
-                                        cursor={"pointer"}
-                                        onClick={onLoginModalOpen}
-                                        bgColor={
-                                            colorMode === "light"
-                                                ? "#202020"
-                                                : "#FFF"
-                                        }
-                                        display={"flex"}
-                                        alignItems={"center"}
-                                        justifyContent={"center"}
-                                        borderRadius={"2px"}
-                                        p={"15px 20px"}
-                                        width={"80%"}
-                                    >
-                                        <Text
-                                            fontSize={"14px"}
-                                            fontWeight={"600"}
-                                            lineHeight={"10px"}
-                                            color={
-                                                colorMode === "light"
-                                                    ? "#FAFAFB"
-                                                    : "#000"
-                                            }
-                                        >
-                                            Connect Wallet
-                                        </Text>
-                                    </Box>
+                                    {!AuthSession ? (
+                                        <>
+                                            <Box
+                                                alignContent={"center"}
+                                            >
+                                                <Box
+                                                    cursor={"pointer"}
+                                                    onClick={onLoginModalOpen}
+                                                    bgColor={
+                                                        colorMode === "light"
+                                                            ? "#282828"
+                                                            : "#FFF"
+                                                    }
+                                                    layerStyle={"center"}
+                                                    borderRadius={"2px"}
+                                                    p="15px 20px"
+                                                    minW="150px"
+                                                >
+                                                    <Text
+                                                        variant={"SearchText"}
+                                                        fontWeight={"600"}
+                                                        _light={{ color: "#FAFAFB" }}
+                                                        _dark={{ color: "#191919" }}
+                                                    >
+                                                        Connect Wallet
+                                                    </Text>
+                                                </Box>
+                                            </Box>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Box
+                                                layerStyle={"flexCenter"}
+                                                justifyContent={"center"}
+                                                w="100%"
+                                            >
+                                                {typeof window !== "undefined" && (
+                                                    <CustomAvatar
+                                                        src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                                    />
+                                                )}
+
+                                                <Box
+                                                    layerStyle={"flexColumn"}
+                                                    ml="10px"
+                                                    mr="20px"
+                                                    minW="150px"
+                                                >
+                                                    <Text
+                                                        variant={"TopWalletsText"}
+                                                        w="140px"
+                                                        whiteSpace={"nowrap"}
+                                                        overflow={"hidden"}
+                                                        textOverflow={"ellipsis"}
+                                                    >
+                                                        {AuthSession?.user?.name
+                                                            ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                                    </Text>
+                                                    {AuthSession?.user?.public_address && (
+                                                        <Text
+                                                            variant={"h5"}
+                                                            letterSpacing={"1.2px"}
+                                                            _light={{ color: "#16171B" }}
+                                                            _dark={{ color: "#A8ADBD" }}
+                                                        >
+                                                            {AuthSession?.user?.public_address
+                                                                ?.split("")
+                                                                ?.join("")
+                                                                ?.substring(0, 6) +
+                                                                "..." +
+                                                                AuthSession?.user?.public_address?.slice(
+                                                                    -5
+                                                                )}
+                                                        </Text>
+                                                    )}
+                                                </Box>
+                                                <i
+                                                    className={`icon ${colorMode === "light"
+                                                        ? "log_in_black"
+                                                        : "log_in_white"
+                                                        }`}
+                                                    onClick={() => {
+                                                        disconnect();
+                                                        setTimeout(() => {
+                                                            dispatch(LogoutReducer());
+                                                            setTimeout(() => {
+                                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                                            }, 200);
+                                                        }, 100);
+                                                    }}
+                                                />
+                                            </Box>
+                                        </>
+                                    )}
                                 </Box>
                             </Box>
                         </Box>
