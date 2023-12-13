@@ -39,10 +39,10 @@ function DashboardTrendGraph() {
 		{ name: "TVL", value: "tvl" },
 		{ name: "MCap", value: "mcap" },
 		{ name: "Price", value: "price" },
-		/*      { name: "Users", value: "users" },
-             { name: "FDV", value: "fdv" },
-             { name: "Borrowed", value: "borrowed" },
-             { name: "Median APY", value: "median_apy" } */
+		// { name: "Users", value: "users" },
+		// { name: "FDV", value: "fdv" },
+		// { name: "Borrowed", value: "borrowed" },
+		// { name: "Median APY", value: "median_apy" }
 	];
 
 	// const CurrencyTypeHandler = (type) => {
@@ -108,7 +108,7 @@ function DashboardTrendGraph() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [graphTypeSelected, graphData]);
 
- 
+
 	useEffect(() => {
 		axios
 			.get(
@@ -138,7 +138,7 @@ function DashboardTrendGraph() {
 			>
 				<Box padding={"20px 0 0 20px"}>
 					<Text fontSize={"18px"} fontWeight={600} lineHeight={"20px"}>
-            Trend Graph
+						Trend Graph
 					</Text>
 				</Box>
 
@@ -177,7 +177,7 @@ function DashboardTrendGraph() {
 									"/icons/direction-arrow.svg",
 									"/icons/direction-icon-dark.svg"
 								)}
-							></Image>
+							/>
 						</Box>
 					</Box>
 
@@ -321,10 +321,10 @@ function SelectorGraph({ tvlData }) {
 				// console.log(Math.max(...series[0]))
 				return (
 					'<div class="selection_box_tooltip">' +
-          "<span>" +
-          Math.max(series[0]) +
-          "</span>" +
-          "</div>"
+					"<span>" +
+					Math.max(series[0]) +
+					"</span>" +
+					"</div>"
 				);
 			},
 		},
@@ -413,10 +413,10 @@ function Graph({ series }) {
 					formatter: function (val) {
 						return (
 							"$" +
-              millify(val, {
-              	precision: 2,
-              	locales: "en-US",
-              })
+							millify(val, {
+								precision: 2,
+								locales: "en-US",
+							})
 						);
 					},
 				},

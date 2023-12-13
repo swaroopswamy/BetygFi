@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDisconnect } from "wagmi";
 import {
     Box,
@@ -9,14 +9,13 @@ import {
     useColorModeValue,
     useColorMode,
     Text,
-    Input,
-    InputGroup,
-    InputLeftElement,
     Image,
     Collapse,
+    InputGroup,
+    InputLeftElement,
+    Input,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import isEmpty from "is-empty";
 import LoginPage from "@/app/components/login";
 import "./index.css";
 import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
@@ -31,6 +30,8 @@ import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 import SearchBoxV2 from "../searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
+import { getSearchV2List } from "@/redux/app_data/dataSlice";
+import isEmpty from "is-empty";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();
@@ -47,36 +48,62 @@ const Navbar = ({ ...rest }) => {
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
+
+    const searchListData = useSelector((state) => state.appData.searchV2Data);
     const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const dispatch = useDispatch();
     const { colorMode, toggleColorMode } = useColorMode();
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
-    const [searchValue, setSearchValue] = useState(searchParamAddress);
+    const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 500);
     const { data: AuthSession } = useSession();
+
+    // const clearValueMobileSearch = () => {
+    //     setSearchValue("");
+    //     setSearchWalletAddressValue("");
+    //     onMobileSearchToggle();
+    // };
 
     const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
         if (e.key === "Enter") {
             if (!isEmpty(e.target.value)) {
                 dispatch(walletAddressChangedReducer(e.target.value));
-                router.push(`/top-wallets/${e.target.value}`);
+                router.push(`/wallet_dashboard?address=${e.target.value}`);
                 setSearchWalletAddressValue(e.target.value);
             }
         }
+        setSearchWalletAddressValue(e.target.value);
+    };
+
+    const handleSearchByWalletAddressV2 = (e) => {
         const value = e.target.value;
         setSearchValue(value);
         setSearchWalletAddressValue(value);
     };
 
     useEffect(() => {
-        // api for search v2
+        if (searchValue?.length > 0) {
+            const payload = {
+                searchValue: searchValue
+            };
+            dispatch(getSearchV2List(payload));
+            // } else {
+            //     const payload = {
+            //         searchValue: "ethereum"
+            //     };
+            //     dispatch(getSearchV2List(payload));
+        }
     }, [debouncedValue]);
 
     const handleMobileSearchByWalletAddress = () => {
         dispatch(walletAddressChangedReducer(searchWalletAddressValue));
         router.push(`/top-wallets/${searchWalletAddressValue}`);
         setSearchWalletAddressValue(searchWalletAddressValue);
+    };
+
+    const handleSearchInputChange = (value) => {
+        setSearchValue(value);
     };
 
     useEffect(() => {
@@ -144,7 +171,10 @@ const Navbar = ({ ...rest }) => {
                 >
                     <SearchBoxV2
                         searchWalletAddressValue={searchWalletAddressValue}
-                        handleSearchByWalletAddress={handleSearchByWalletAddress}
+                        handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
+                        handleSearchInputChange={handleSearchInputChange}
+                        searchValue={searchValue}
+                        searchListData={searchListData?.data?.data?.data}
                     />
                 </Box>
 
@@ -260,7 +290,6 @@ const Navbar = ({ ...rest }) => {
                     )}
                 </Box>
             </Flex>
-
             <Flex
                 position={"fixed"}
                 top={"0"}
@@ -303,17 +332,13 @@ const Navbar = ({ ...rest }) => {
                                 router.push("/");
                             }}
                             alt="logo"
-                        ></Image>
+                        />
                     </Box>
                 </Box>
 
                 <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
                     <Image
-                        src={
-                            colorMode === "light"
-                                ? "/icons/search_icon_light.svg"
-                                : "/icons/search_icon_dark.svg"
-                        }
+                        src={`/icons/search_icon_${colorMode}.svg`}
                         h={"20px"}
                         w={"20px"}
                         alt="logo"
@@ -321,6 +346,31 @@ const Navbar = ({ ...rest }) => {
                 </Box>
             </Flex>
 
+            {/* <Collapse
+                in={isMobileSearchOpen}
+                style={{ position: "fixed", width: "100%", zIndex: "80" }}
+                animateOpacity={"true"}
+            >
+                <Box
+                    // px={{ base: 4, md: 4 }}
+                    w={"100%"}
+                    layerStyle={"flexCenter"}
+                    bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+                    border={"1px"}
+                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                // padding={"8px 19px"}
+                >
+                    <SearchBoxV2
+                        searchWalletAddressValue={searchWalletAddressValue}
+                        handleSearchByWalletAddress={handleSearchByWalletAddress}
+                        clearValueMobileSearch={clearValueMobileSearch}
+                        handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
+                        handleSearchInputChange={handleSearchInputChange}
+                        searchValue={searchValue}
+                        searchListData={searchListData?.data?.data?.data}
+                    /> 
+                </Box>
+            </Collapse> */}
             <Collapse
                 in={isMobileSearchOpen}
                 style={{ position: "fixed", width: "100%", zIndex: "80" }}
@@ -352,16 +402,9 @@ const Navbar = ({ ...rest }) => {
                             type="text"
                             border="1px"
                             borderRadius="0px"
-                            borderColor={
-                                colorMode === "light" ? "#E1E1E1" : "#333"
-                            }
-                            bgColor={
-                                colorMode === "light" ? "#F0F0F5" : "#191919"
-                            }
-                            variant={"h5"}
-                            letterSpacing={"1.2px"}
-                            _light={{ color: "#16171B" }}
-                            _dark={{ color: "#A8ADBD" }}
+                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
+                            variant={"h6"}
                             w="100%"
                             placeholder="Search Wallet Address"
                             value={searchWalletAddressValue ?? ""}
@@ -374,25 +417,18 @@ const Navbar = ({ ...rest }) => {
                             cursor={"pointer"}
                             w={"70px"}
                             p={"14px 10px"}
-                            bgColor={
-                                colorMode === "light" ? "#F0F0F5" : "#191919"
-                            }
+                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
                             border="1px"
-                            borderColor={
-                                colorMode === "light" ? "#E1E1E1" : "#333"
-                            }
+                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
                             onClick={() => {
                                 handleMobileSearchByWalletAddress();
                             }}
                         >
-                            <Text variant={"SearchText"} fontWeight={"500"}>
-                                Search
-                            </Text>
+                            <Text variant={"SearchText"}>Search</Text>
                         </Box>
                     </InputGroup>
                 </Box>
             </Collapse>
-
             <MobileSidebar
                 isOpen={isMobileSidebarOpen}
                 onOpen={onMobileSidebarOpen}
@@ -401,7 +437,6 @@ const Navbar = ({ ...rest }) => {
                 onLoginModalOpen={onLoginModalOpen}
                 onLoginModalClose={onLoginModalClose}
             />
-
             <LoginPage
                 isOpen={isLoginModalOpen}
                 onOpen={onLoginModalOpen}

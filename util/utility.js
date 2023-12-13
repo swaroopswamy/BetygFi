@@ -26,3 +26,5 @@ export const reloadSession = () => {
         document.dispatchEvent(event);
     }
 };
+
+export const groupListByKey = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
