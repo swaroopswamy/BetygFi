@@ -27,7 +27,7 @@ const TVLBox = () => {
 							lineHeight={"20px"}
 							letterSpacing={"2.4px"}
 							textTransform={"uppercase"}>
-                            ${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
+							${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
 								precision: 2,
 								locales: "en-US"
 							})) :
@@ -43,15 +43,15 @@ const TVLBox = () => {
 							lineHeight={"10px"}
 							pt={"10px"}
 						>
-                            Total Value Locked
+							Total Value Locked
 						</Text>
 					</Box>
 
 					<hr />
 
-					<Box display={"flex"} 
-						flexDirection={"column"} 
-						justifyContent={"space-between"} 
+					<Box display={"flex"}
+						flexDirection={"column"}
+						justifyContent={"space-between"}
 						py={"10px"} gap={"5px"}>
 						<TVLRow
 							name={"Market Cap"}
@@ -64,12 +64,12 @@ const TVLBox = () => {
 						<TVLRow
 							name={"Token Price"}
 							value={defiData?.isSuccess && defiData?.data?.price !== null ?
-								"$" + defiData?.data?.price?.toFixed(2) : "-"}
+								(defiData?.data?.price?.toFixed(2) && ("$" + defiData?.data?.price?.toFixed(2))) : "-"}
 						/>
 						<TVLRow
 							name={"User Count"}
 							value={defiData?.isSuccess && defiData?.data?.userCount !== null &&
-                                defiData?.data?.userCount !== 0 ? USDollar.format(defiData?.data?.userCount) : "-"}
+								defiData?.data?.userCount !== 0 ? USDollar.format(defiData?.data?.userCount) : "-"}
 						/>
 					</Box>
 				</Box>

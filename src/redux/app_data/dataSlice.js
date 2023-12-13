@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getBlockchainListData, postReportBugData, postSuggestFeatureData } from "@/services/appService";
+import { getSearchV2Data } from "@/services/walletDashboardService";
 
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload, { rejectWithValue }) => {
 	const response = await getBlockchainListData(rejectWithValue);
@@ -16,7 +17,11 @@ export const postSuggestFeature = createAsyncThunk('postSuggestFeature', async (
 	return response.data;
 });
 
-
+export const getSearchV2List = createAsyncThunk('getSearchV2List',
+	async (payload, { rejectWithValue }) => {
+		const response = await getSearchV2Data(payload, rejectWithValue);
+		return response;
+	});
 
 
 const AppDataSlice = createSlice({
@@ -35,6 +40,10 @@ const AppDataSlice = createSlice({
 			error: null
 		},
 		suggestFeature: {
+			status: "idle",
+			error: null
+		},
+		searchV2Data: {
 			status: "idle",
 			error: null
 		}
@@ -71,6 +80,14 @@ const AppDataSlice = createSlice({
 		builder.addCase(postSuggestFeature.rejected, (state, action) => {
 			state.suggestFeature.error = action.payload;
 			state.suggestFeature.status = 'failure';
+		});
+		builder.addCase(getSearchV2List.fulfilled, (state, action) => {
+			state.searchV2Data.data = action.payload;
+			state.searchV2Data.status = 'success';
+		});
+		builder.addCase(getSearchV2List.rejected, (state, action) => {
+			state.searchV2Data.error = action.payload;
+			state.searchV2Data.status = 'failure';
 		});
 	},
 	reducers: {

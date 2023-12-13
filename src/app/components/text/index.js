@@ -252,29 +252,29 @@ const Text = defineStyleConfig({
             lineHeight: "16px",
             letterSpacing: "0.32px",
         }),
-        modalTableHeader: ({ colorMode }) => ({
+        modalTableHeader: ({ colorMode, fontSize }) => ({
             color: colorMode === "light" ? "#757575" : "#A5A5A5",
             fontFeatureSettings: "'cv11' on, 'cv01' on, 'ss01' on",
             fontFamily: "Inter",
-            fontSize: "16px",
+            fontSize: fontSize || "16px",
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "20px",
         }),
-        modalTableData: ({ colorMode }) => ({
+        modalTableData: ({ colorMode, fontSize }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFeatureSettings: "'cv11' on, 'cv01' on, 'ss01' on",
             fontFamily: "Inter",
-            fontSize: "16px",
+            fontSize: fontSize || "16px",
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "20px",
         }),
-        modalTableDataShort: ({ colorMode }) => ({
+        modalTableDataShort: ({ colorMode, fontSize }) => ({
             color: colorMode === "light" ? "#757575" : "#A5A5A5",
             fontFeatureSettings: "'cv11' on, 'cv01' on, 'ss01' on",
             fontFamily: "Inter",
-            fontSize: "12px",
+            fontSize: fontSize || "12px",
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "20px",

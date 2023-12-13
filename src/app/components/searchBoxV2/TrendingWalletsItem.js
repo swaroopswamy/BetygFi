@@ -1,22 +1,33 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 
-const TrendingWalletsItem = ({ walletSearchList, searchItem, onNavigateArrowClick }) => {
+const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData }) => {
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     const renderWalletHeader = () => {
         return (
             <Box w={"100%"} mt={"14px"} display={"flex"} flexDirection={"row"}>
-                <Text w={"72%"} variant={"modalTableHeader"}>
+                <Text w={"72%"} fontSize={"14px"} variant={"modalTableHeader"}>
                     {""}
                 </Text>
-                <Text w={"21%"} display={"flex"} justifyContent={"right"} alignItems={"center"} variant={"modalTableHeader"}>
+                <Text w={isMd ? "21%" : "28%"} fontSize={"14px"} display={"flex"} justifyContent={"right"} alignItems={"center"} variant={"modalTableHeader"}>
                     Net Worth
                 </Text>
-                <Box w={"7%"} display={"flex"} justifyContent={"right"} alignItems={"center"} >
-                    {""}
-                </Box>
+                {
+                    isMd &&
+                    <Box w={"7%"} display={"flex"} justifyContent={"right"} alignItems={"center"} >
+                        {""}
+                    </Box>
+                }
             </Box>
         );
+    };
+    const calculateNetWorth = (wallet) => {
+        if (wallet?.balanceArray?.length > 0) {
+            return wallet.balanceArray.map(bal => bal.balance).reduce((partialSum, a) => partialSum + a, 0) || "0";
+        } else {
+            return "0";
+        }
     };
 
     const WalletItemData = ({ walletItem, index }) => {
@@ -32,40 +43,43 @@ const TrendingWalletsItem = ({ walletSearchList, searchItem, onNavigateArrowClic
                         />
                     </Box>
                     <Box display={"flex"} justifyContent={"center"} alignItems={"start"} flexDir={"column"}>
-                        <Text variant={"modalTableData"}>
-                            {walletItem.name}
+                        <Text fontSize={"14px"} variant={"modalTableData"}>
+                            {walletItem?.name || 'No Name'}
                         </Text>
-                        <Text variant={"modalTableDataShort"}>
+                        <Text fontSize={"11px"} variant={"modalTableDataShort"}>
                             {walletItem.address?.split("").join("").substring(0, 8) +
                                 "....." +
                                 walletItem.address?.slice(-5)}
                         </Text>
                     </Box>
                 </Box>
-                <Box w={"21%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
-                    <Text ml={"10px"} variant={"modalTableData"}>
-                        {walletItem.networth}
+                <Box w={isMd ? "21%" : "28%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
+                    <Text fontSize={"14px"} ml={"10px"} variant={"modalTableData"}>
+                        {calculateNetWorth(walletItem)}
                     </Text>
                 </Box>
-                <Box w={"7%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
-                    <Box
-                        onClick={() => onNavigateArrowClick(searchItem.slug, walletItem.address)}
-                        cursor={"pointer"}
-                        width={"16px"}
-                        height={"16px"}
-                        flexShrink={"0"}
-                        mr={'7px'}
-                        fill="rgba(255, 255, 255, 0.00)"
-                        backgroundBlendMode="multiply"
-                    >
-                        <Image
-                            alt="right-arrow"
-                            src={"/icons/right-arrow.svg"}
-                            width={"24"}
-                            height={"24"}
-                        />
+                {
+                    isMd &&
+                    <Box w={"7%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
+                        <Box
+                            onClick={() => onNavigateArrowClick(searchItem.slug, walletItem.address)}
+                            cursor={"pointer"}
+                            width={"16px"}
+                            height={"16px"}
+                            flexShrink={"0"}
+                            mr={'7px'}
+                            fill="rgba(255, 255, 255, 0.00)"
+                            backgroundBlendMode="multiply"
+                        >
+                            <Image
+                                alt="right-arrow"
+                                src={"/icons/right-arrow.svg"}
+                                width={"24"}
+                                height={"24"}
+                            />
+                        </Box>
                     </Box>
-                </Box>
+                }
             </Box>
         );
     };
@@ -74,7 +88,7 @@ const TrendingWalletsItem = ({ walletSearchList, searchItem, onNavigateArrowClic
         <>
             {renderWalletHeader()}
             {
-                walletSearchList.map((walletItem, index) => (
+                groupedSearchData?.length > 0 && groupedSearchData.map((walletItem, index) => (
                     <WalletItemData
                         walletItem={walletItem}
                         index={index}
