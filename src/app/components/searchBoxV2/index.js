@@ -18,8 +18,8 @@ const SEARCH_LIST = [
     },
 ];
 
-const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddressV2, clearValueMobileSearch, handleSearchInputChange, searchValue, searchListData }) => {
-    const initialRef = useRef(null);
+const SearchBoxV2 = ({ /* searchWalletAddressValue, handleSearchByWalletAddressV2, clearValueMobileSearch, */ handleSearchInputChange, searchValue, searchListData }) => {
+   /*  const initialRef = useRef(null); */
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
     useOutsideClick({
@@ -173,7 +173,7 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddressV2, 
         );
     };
 
-    const renderSMInputGroup = () => {
+    /* const renderSMInputGroup = () => {
         return (
             <InputGroup ref={ref} w="100%" zIndex={"99999999"}>
                 <InputLeftElement pointerEvents="none">
@@ -240,7 +240,7 @@ const SearchBoxV2 = ({ searchWalletAddressValue, handleSearchByWalletAddressV2, 
                 {renderSearchExpander()}
             </InputGroup>
         );
-    };
+    }; */
 
     return (
         <>
