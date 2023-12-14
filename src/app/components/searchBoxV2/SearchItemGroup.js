@@ -1,7 +1,7 @@
 /* eslint-disable no-prototype-builtins */
 import { Divider, Text, useColorMode } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TrendingDefisItem from './TrendingDefisItem';
 import TrendingCoinsItem from './TrendingCoinsItem';
 import TrendingWalletsItem from './TrendingWalletsItem';
@@ -12,39 +12,46 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
     const { colorMode } = useColorMode();
     const [searchToPopulate, setSearchToPopulate] = useState([]);
     const [groupedSearchData, setGroupedSearchData] = useState({});
+    const prevSearchListRef = useRef(searchListData);
+
     useEffect(() => {
-        if (searchListData?.length > 0) {
-            const groupedData = groupListByKey(searchListData, 'type');
-            setGroupedSearchData(groupedData);
-            if (groupedData.coin !== undefined) {
-                let searchToPopulate_ = [];
-                if (searchToPopulate.length > 0) {
-                    searchToPopulate_ = [...searchToPopulate];
+        if (JSON.stringify(prevSearchListRef.current) !== JSON.stringify(searchListData)) {
+            setSearchToPopulate([]);
+        } else {
+            if (searchListData?.length > 0) {
+                const groupedData = groupListByKey(searchListData, 'type');
+                setGroupedSearchData(groupedData);
+                if (groupedData.coin !== undefined) {
+                    let searchToPopulate_ = [];
+                    if (searchToPopulate.length > 0) {
+                        searchToPopulate_ = [...searchToPopulate];
+                    }
+                    searchToPopulate_.push("coin");
+                    setSearchToPopulate(searchToPopulate_);
                 }
-                searchToPopulate_.push("coin");
-                setSearchToPopulate(searchToPopulate_);
-            }
-            if (groupedData.defi !== undefined) {
-                let searchToPopulate_ = [];
-                if (searchToPopulate.length > 0) {
-                    searchToPopulate_ = [...searchToPopulate];
+                if (groupedData.defi !== undefined) {
+                    let searchToPopulate_ = [];
+                    if (searchToPopulate.length > 0) {
+                        searchToPopulate_ = [...searchToPopulate];
+                    }
+                    searchToPopulate_.push("defi");
+                    setSearchToPopulate(searchToPopulate_);
                 }
-                searchToPopulate_.push("defi");
-                setSearchToPopulate(searchToPopulate_);
-            }
-            if (
-                searchListData.length > 0 &&
-                groupedData.undefined !== undefined
-            ) {
-                groupedData.wallet = groupedData.undefined;
-                let searchToPopulate_ = [];
-                if (searchToPopulate.length > 0) {
-                    searchToPopulate_ = [...searchToPopulate];
+                if (
+                    searchListData.length > 0 &&
+                    groupedData.undefined !== undefined
+                ) {
+                    groupedData.wallet = groupedData.undefined;
+                    let searchToPopulate_ = [];
+                    if (searchToPopulate.length > 0) {
+                        searchToPopulate_ = [...searchToPopulate];
+                    }
+                    searchToPopulate_.push("wallet");
+                    setSearchToPopulate(searchToPopulate_);
                 }
-                searchToPopulate_.push("wallet");
-                setSearchToPopulate(searchToPopulate_);
             }
         }
+        prevSearchListRef.current = searchListData;
     }, [searchListData]);
 
     const onNavigateArrowClick = (slug, itemSlug) => {

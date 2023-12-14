@@ -1,7 +1,10 @@
+"use client";
 import { Box, Input, InputGroup, InputLeftElement, useColorMode, useOutsideClick } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import SearchItemGroup from './SearchItemGroup';
+
+const SearchItemGroup = dynamic(() => import("./SearchItemGroup"), { ssr: false });
 
 const SEARCH_LIST = [
     {
@@ -19,7 +22,7 @@ const SEARCH_LIST = [
 ];
 
 const SearchBoxV2 = ({ /* searchWalletAddressValue, handleSearchByWalletAddressV2, clearValueMobileSearch, */ handleSearchInputChange, searchValue, searchListData }) => {
-   /*  const initialRef = useRef(null); */
+    /*  const initialRef = useRef(null); */
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
     useOutsideClick({
@@ -27,6 +30,12 @@ const SearchBoxV2 = ({ /* searchWalletAddressValue, handleSearchByWalletAddressV
         handler: () => searchSuggestionOpenState(false),
     });
     const { colorMode } = useColorMode();
+
+    useEffect(() => {
+        if (searchValue?.length == 0) {
+            searchSuggestionOpenState(false);
+        }
+    }, [searchValue]);
 
     // const [isMd] = useMediaQuery("(min-width: 768px)");
 
@@ -117,6 +126,18 @@ const SearchBoxV2 = ({ /* searchWalletAddressValue, handleSearchByWalletAddressV
                         position={"absolute"}
                         top={"45px"}
                         background={colorMode === "light" ? "#F4F4F4" : "#282828"}
+
+                        overflowX="auto"
+                        maxW="100vw"
+                        h="80vh"
+                        whiteSpace="nowrap"
+                        sx={
+                            {
+                                '::-webkit-scrollbar': {
+                                    display: 'none'
+                                }
+                            }
+                        }
                     >
                         {searchDataContent()}
                     </Box>
