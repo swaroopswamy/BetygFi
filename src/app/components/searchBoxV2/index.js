@@ -21,19 +21,26 @@ const SEARCH_LIST = [
     },
 ];
 
-const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, clearValueMobileSearch }) => {
+const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
-
+    const [searchList, setSearchList] = useState([]);
     useOutsideClick({
         ref: ref,
         handler: () => searchSuggestionOpenState(false),
     });
     const { colorMode } = useColorMode();
 
+
+    const handleSearchInputClick = () => {
+        setSearchList(searchListTrendingData);
+        setOpenSearchSuggestion(true);
+    };
+
     useEffect(() => {
         if (searchValue?.length == 0) {
             searchSuggestionOpenState(false);
+            setSearchList(searchListTrendingData);
         }
     }, [searchValue]);
 
@@ -52,10 +59,12 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
     useEffect(() => {
         if (searchListData?.length > 0) {
             searchSuggestionOpenState(true);
+            setSearchList(searchListData);
         } else {
             searchSuggestionOpenState(false);
+            setSearchList(searchListTrendingData);
         }
-    }, [searchListData]);
+    }, [searchListData, searchListTrendingData]);
 
     const searchDataContent = () => {
         return (
@@ -65,7 +74,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
                         SEARCH_LIST.map((searchItem, index) => (
                             <SearchItemGroup
                                 searchItem={searchItem}
-                                searchListData={searchListData}
+                                searchListData={searchList}
                                 key={index}
                                 closeSearchInput={searchSuggestionOpenState}
                             />
@@ -106,7 +115,6 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
                             </Box>
                             :
                             <Box
-                                border={"1px solid red"}
                                 borderRadius={"4px"}
                                 zIndex={"999"}
                                 width={"100%"}
@@ -170,8 +178,9 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#A8ADBD" }}
                                 w="100%"
-                                placeholder="Search by Coin, DeFi name, NFT, Wallet and more"
+                                placeholder="Search by Coin, DeFi name, Wallet and more"
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
+                                onClick={() => { handleSearchInputClick(); }}
                             />
                         </Box>
                     </Box>
@@ -183,14 +192,14 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
 
     const renderSMInputGroup = () => {
         return (
-            <InputGroup ref={ref} w="100%" zIndex={"99999999"}>
+            <InputGroup ref={ref} w="100%" zIndex={"99999"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
                     <Box display={"flex"} flexDir={"row"}>
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
-                                width={14}
-                                height={14}
+                                width={18}
+                                height={18}
                                 alt="search_icon"
                             />
                         </InputLeftElement>
@@ -205,28 +214,32 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
                                 letterSpacing={"1.2px"}
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#A5A5A5" }}
-                                placeholder="Search by Coin, DeFi, NFT, Wallet and more"
+                                placeholder="Search by Coin, DeFi, Wallet and more"
                                 value={searchValue}
-                                fontSize={"11px"}
+                                fontSize={"12px"}
+                                onClick={() => { handleSearchInputClick(); }}
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                             />
                         </Box>
-                        <Box
-                            layerStyle={"center"}
-                            cursor={"pointer"}
-                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-                            border="1px"
-                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                            onClick={() => { clearValueMobileSearch(); }}
-                        >
-                            <Image
-                                src={`/icons/cross-${colorMode}.svg`}
-                                height={24}
-                                width={24}
+                        {
+                            searchValue?.length > 0 &&
+                            <Box
+                                layerStyle={"center"}
                                 cursor={"pointer"}
-                                alt="logo"
-                            />
-                        </Box>
+                                bgColor={colorMode === "light" ? "#FFFFFF" : "#191919"}
+                                width={"35px"}
+                                borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                                onClick={() => { clearValueMobileSearch(); }}
+                            >
+                                <Image
+                                    src={`/icons/cross-${colorMode}.svg`}
+                                    height={24}
+                                    width={24}
+                                    cursor={"pointer"}
+                                    alt="logo"
+                                />
+                            </Box>
+                        }
                     </Box>
                     {renderSearchExpander()}
                 </Box>
@@ -242,7 +255,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, cle
                 <Box
                     style={{
                         position: "fixed",
-                        zIndex: 9999999,
+                        zIndex: 9999,
                         top: "80px",
                         right: 0,
                         bottom: 0,

@@ -27,7 +27,7 @@ import CustomAvatar from "@/app/components/avatar";
 import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 import SearchBoxV2 from "../searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
-import { getSearchV2List } from "@/redux/app_data/dataSlice";
+import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
 import isEmpty from "is-empty";
 
 const Navbar = ({ ...rest }) => {
@@ -49,12 +49,13 @@ const Navbar = ({ ...rest }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
+    const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
     const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const dispatch = useDispatch();
     const { colorMode, toggleColorMode } = useColorMode();
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
-    const debouncedValue = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 300);
     const { data: AuthSession } = useSession();
 
     const clearValueMobileSearch = () => {
@@ -112,6 +113,7 @@ const Navbar = ({ ...rest }) => {
 
     useEffect(() => {
         updateColorMode();
+        dispatch(getSearchV2TrendingList());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -166,6 +168,7 @@ const Navbar = ({ ...rest }) => {
                         searchValue={searchValue}
                         clearValueMobileSearch={clearValueMobileSearch}
                         searchListData={searchListData?.data?.data?.data}
+                        searchListTrendingData={searchListTrendingData?.data?.data?.data}
                     />
                 </Box>
 
@@ -333,7 +336,7 @@ const Navbar = ({ ...rest }) => {
                         </Box>
                     </Box>
                     {
-                        !isMobileSearchOpen &&
+                        // !isMobileSearchOpen &&
                         <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
@@ -344,23 +347,27 @@ const Navbar = ({ ...rest }) => {
                         </Box>
                     }
                 </Flex>
-                <Box
-                    w={"100%"}
-                    layerStyle={"flexCenter"}
-                    bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
-                    border={"1px"}
-                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                >
-                    <SearchBoxV2
-                        searchWalletAddressValue={searchWalletAddressValue}
-                        handleSearchByWalletAddress={handleSearchByWalletAddress}
-                        clearValueMobileSearch={clearValueMobileSearch}
-                        handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
-                        handleSearchInputChange={handleSearchInputChange}
-                        searchValue={searchValue}
-                        searchListData={searchListData?.data?.data?.data}
-                    />
-                </Box>
+                {
+                    isMobileSearchOpen &&
+                    <Box
+                        w={"100%"}
+                        layerStyle={"flexCenter"}
+                        bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
+                        border={"1px"}
+                        borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    >
+                        <SearchBoxV2
+                            searchWalletAddressValue={searchWalletAddressValue}
+                            handleSearchByWalletAddress={handleSearchByWalletAddress}
+                            clearValueMobileSearch={clearValueMobileSearch}
+                            handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
+                            handleSearchInputChange={handleSearchInputChange}
+                            searchValue={searchValue}
+                            searchListData={searchListData?.data?.data?.data}
+                            searchListTrendingData={searchListTrendingData?.data?.data?.data}
+                        />
+                    </Box>
+                }
             </>
         );
     };

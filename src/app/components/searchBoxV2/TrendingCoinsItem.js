@@ -23,7 +23,7 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
     const CoinItemData = ({ coinItem, index }) => {
         return (
             <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
-                <Box border={"1px solid red"} w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
+                <Box w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Avatar
                         width={"24px"}
                         height={"24px"}
@@ -31,19 +31,21 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                         src={coinItem?.logo}
                     ></Avatar>
                     <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                        <Text ml={"10px"} fontSize={"14px"} variant={"modalTableData"}>
-                            {coinItem.name}
-                        </Text>
-                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                            <Text ml={"2px"} fontSize={"11px"} variant={"modalTableDataShort"}>
-                                {coinItem.symbol}
+                        <Box wordBreak={"break-all"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                            <Text ml={"10px"} wordBreak={"break-all"} fontSize={"14px"} variant={"modalTableData"}>
+                                {coinItem.name || "N/A"}
+                            </Text>
+                        </Box>
+                        <Box display={"flex"} wordBreak={"break-all"} justifyContent={"center"} alignItems={"center"}>
+                            <Text ml={"2px"} wordBreak={"break-all"} fontSize={"11px"} variant={"modalTableDataShort"}>
+                                {coinItem.symbol || ""}
                             </Text>
                         </Box>
                     </Box>
                 </Box>
                 <Box w={isMd ? "21%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                     <Text ml={"10px"} fontSize={"14px"} variant={"modalTableData"}>
-                        {coinItem.price}
+                        {coinItem.price || "N/A"}
                     </Text>
                 </Box>
                 {

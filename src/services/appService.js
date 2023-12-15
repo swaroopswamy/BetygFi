@@ -45,6 +45,26 @@ export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 	}
 };
 
+export const getSearchV2Data = async (payloadData, rejectWithValue) => {
+	try {
+		const { data } = await axiosInstance.get(
+			`/protocols/searchv2?name=${payloadData.searchValue}`
+		);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};
+
+export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
+	try {
+		const { data } = await axiosInstance.get(`/protocols/trendingSearch`);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};
+
 export default {
 	getBlockchainListData,
 	postReportBugData
