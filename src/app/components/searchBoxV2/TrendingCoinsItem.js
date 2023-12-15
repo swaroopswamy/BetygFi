@@ -22,8 +22,8 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
 
     const CoinItemData = ({ coinItem, index }) => {
         return (
-            <Box display={"flex"} flexDirection={"row"} key={index}>
-                <Box w={"72%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
+            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
+                <Box border={"1px solid red"} w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Avatar
                         width={"24px"}
                         height={"24px"}
@@ -41,7 +41,7 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                         </Box>
                     </Box>
                 </Box>
-                <Box w={isMd ? "21%" : "28%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
+                <Box w={isMd ? "21%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                     <Text ml={"10px"} fontSize={"14px"} variant={"modalTableData"}>
                         {coinItem.price}
                     </Text>
