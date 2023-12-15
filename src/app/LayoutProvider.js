@@ -17,14 +17,15 @@ import { signOut, useSession } from "next-auth/react";
 import {
     LogInFromCookie,
     StoreLoggedInUserDataGoogle,
-	ResetValidatedUserData,
+    ResetValidatedUserData,
     socialLoginGoogle,
     verifyJWTtokenFromCookie,
+    LogoutReducer,
 } from "@/redux/auth_data/authSlice";
 import { AUTH_COOKIE_NAME } from "@util/utility";
 import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "is-empty";
-import { useDisconnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "./components/toast";
 
 export default function LayoutProvider({ children }) {
@@ -161,7 +162,7 @@ export default function LayoutProvider({ children }) {
                 (AuthSession?.user?.name !==
                     ValidatedUserData?.data?.user_name &&
                     AuthSession?.user?.name !==
-                        ValidatedUserData?.data?.public_address)
+                    ValidatedUserData?.data?.public_address)
             ) {
                 dispatch(LogInFromCookie());
             }
@@ -181,6 +182,26 @@ export default function LayoutProvider({ children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
+    const { connector: activeConnector } = useAccount();
+    useEffect(() => {
+        const handleConnectorUpdate = ({ account }) => {
+            if (account) {
+                disconnect();
+                setTimeout(() => {
+                    dispatch(LogoutReducer());
+                    setTimeout(() => {
+                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    }, 200);
+                }, 100);
+            }
+        };
+
+        if (activeConnector) {
+            activeConnector.on("change", handleConnectorUpdate);
+        }
+
+        return () => activeConnector?.off("change", handleConnectorUpdate);
+    }, [activeConnector]);
     return (
         <Box
             width="100%"
