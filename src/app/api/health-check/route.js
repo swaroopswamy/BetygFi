@@ -7,6 +7,22 @@ export const GET = async () => {
         return betygfiHealth.status;
     };
 
+    const checkLimitlessDB = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/limitlessdb`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const limitLessDBHealth = await res.json();
+        return limitLessDBHealth.status;
+    };
+
     const healthCheckBetygfi = await checkBetygfi();
-    return NextResponse.json(healthCheckBetygfi ? 'ok' : 'not-ok');
+    const healthCheckLimitless = await checkLimitlessDB();
+
+    if (healthCheckBetygfi) {
+        return NextResponse.json(healthCheckLimitless ? 'ok' : 'not-ok');
+    } else {
+        return NextResponse.json("not-ok");
+    }
 };
