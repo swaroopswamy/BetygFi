@@ -10,10 +10,7 @@ import {
     useColorMode,
     Text,
     Image,
-    Collapse,
-    InputGroup,
-    InputLeftElement,
-    Input,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import LoginPage from "@/app/components/login";
@@ -49,6 +46,8 @@ const Navbar = ({ ...rest }) => {
         onClose: onLoginModalClose,
     } = useDisclosure();
 
+    const [isMd] = useMediaQuery("(min-width: 768px)");
+
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const dispatch = useDispatch();
@@ -58,11 +57,10 @@ const Navbar = ({ ...rest }) => {
     const debouncedValue = useDebounce(searchValue, 500);
     const { data: AuthSession } = useSession();
 
-    // const clearValueMobileSearch = () => {
-    //     setSearchValue("");
-    //     setSearchWalletAddressValue("");
-    //     onMobileSearchToggle();
-    // };
+    const clearValueMobileSearch = () => {
+        setSearchValue("");
+        setSearchWalletAddressValue("");
+    };
 
     const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
@@ -88,11 +86,6 @@ const Navbar = ({ ...rest }) => {
                 searchValue: searchValue
             };
             dispatch(getSearchV2List(payload));
-            // } else {
-            //     const payload = {
-            //         searchValue: "ethereum"
-            //     };
-            //     dispatch(getSearchV2List(payload));
         }
     }, [debouncedValue]);
 
@@ -143,18 +136,15 @@ const Navbar = ({ ...rest }) => {
         toggleColorMode();
     };
 
-    return (
-        <>
+    const MdHeader = () => {
+        return (
             <Flex
                 px={{ base: 4, md: 4 }}
                 display={{ base: "none", md: "flex" }}
                 height="20"
                 alignItems="center"
                 bg={useColorModeValue("#FFFFFF", "#191919")}
-                borderBottom={useColorModeValue(
-                    "2px solid #E8E8E8",
-                    "2px solid #202020"
-                )}
+                borderBottom={useColorModeValue("2px solid #E8E8E8", "2px solid #202020")}
                 justifyContent={{ base: "space-between", md: "space-between" }}
                 {...rest}
             >
@@ -174,6 +164,7 @@ const Navbar = ({ ...rest }) => {
                         handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
                         handleSearchInputChange={handleSearchInputChange}
                         searchValue={searchValue}
+                        clearValueMobileSearch={clearValueMobileSearch}
                         searchListData={searchListData?.data?.data?.data}
                     />
                 </Box>
@@ -290,75 +281,75 @@ const Navbar = ({ ...rest }) => {
                     )}
                 </Box>
             </Flex>
-            <Flex
-                position={"fixed"}
-                top={"0"}
-                zIndex={"90"}
-                px={{ base: 4, md: 4 }}
-                display={{ base: "flex", md: "none" }}
-                width={"full"}
-                height="60px"
-                alignItems="center"
-                bgColor={colorMode === "light" ? "#F0F0F5" : "#000000"}
-                borderBottom={"1px"}
-                borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                justifyContent={{ base: "space-between", md: "flex-end" }}
-                {...rest}
-            >
-                <Box gap={"20px"} layerStyle={"flexCenter"}>
-                    <Box cursor={"pointer"} onClick={onMobileSidebarOpen}>
-                        <Image
-                            src={
-                                colorMode === "light"
-                                    ? "/icons/sidebar_icon_dark.svg"
-                                    : "/icons/sidebar_icon_light.svg"
-                            }
-                            w={"18px"}
-                            h={"18px"}
-                            alt="logo"
-                        ></Image>
+        );
+    };
+
+    const SMHeader = () => {
+        return (
+            <>
+                <Flex
+                    position={"fixed"}
+                    top={"0"}
+                    zIndex={"90"}
+                    px={{ base: 4, md: 4 }}
+                    display={{ base: "flex", md: "none" }}
+                    width={"full"}
+                    height="60px"
+                    alignItems="center"
+                    bgColor={colorMode === "light" ? "#F0F0F5" : "#000000"}
+                    borderBottom={"1px"}
+                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                    justifyContent={{ base: "space-between", md: "flex-end" }}
+                    {...rest}
+                >
+                    <Box gap={"20px"} layerStyle={"flexCenter"}>
+                        <Box cursor={"pointer"} onClick={onMobileSidebarOpen}>
+                            <Image
+                                src={
+                                    colorMode === "light"
+                                        ? "/icons/sidebar_icon_dark.svg"
+                                        : "/icons/sidebar_icon_light.svg"
+                                }
+                                w={"18px"}
+                                h={"18px"}
+                                alt="logo"
+                            ></Image>
+                        </Box>
+
+                        <Box>
+                            <Image
+                                src={
+                                    colorMode === "light"
+                                        ? "/icons/light_betgyfi_sm_icon.svg"
+                                        : "/icons/dark_betgyfi_sm_logo.svg"
+                                }
+                                h={25}
+                                cursor={"pointer"}
+                                onClick={() => {
+                                    router.push("/");
+                                }}
+                                alt="logo"
+                            />
+                        </Box>
                     </Box>
-
-                    <Box>
-                        <Image
-                            src={
-                                colorMode === "light"
-                                    ? "/icons/light_betgyfi_sm_icon.svg"
-                                    : "/icons/dark_betgyfi_sm_logo.svg"
-                            }
-                            h={25}
-                            cursor={"pointer"}
-                            onClick={() => {
-                                router.push("/");
-                            }}
-                            alt="logo"
-                        />
-                    </Box>
-                </Box>
-
-                <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
-                    <Image
-                        src={`/icons/search_icon_${colorMode}.svg`}
-                        h={"20px"}
-                        w={"20px"}
-                        alt="logo"
-                    ></Image>
-                </Box>
-            </Flex>
-
-            {/* <Collapse
-                in={isMobileSearchOpen}
-                style={{ position: "fixed", width: "100%", zIndex: "80" }}
-                animateOpacity={"true"}
-            >
+                    {
+                        !isMobileSearchOpen &&
+                        <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
+                            <Image
+                                src={`/icons/search_icon_${colorMode}.svg`}
+                                h={"20px"}
+                                w={"20px"}
+                                alt="logo"
+                            ></Image>
+                        </Box>
+                    }
+                </Flex>
                 <Box
-                    // px={{ base: 4, md: 4 }}
                     w={"100%"}
                     layerStyle={"flexCenter"}
                     bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
                     border={"1px"}
                     borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                // padding={"8px 19px"}
                 >
                     <SearchBoxV2
                         searchWalletAddressValue={searchWalletAddressValue}
@@ -368,67 +359,15 @@ const Navbar = ({ ...rest }) => {
                         handleSearchInputChange={handleSearchInputChange}
                         searchValue={searchValue}
                         searchListData={searchListData?.data?.data?.data}
-                    /> 
+                    />
                 </Box>
-            </Collapse> */}
-            <Collapse
-                in={isMobileSearchOpen}
-                style={{ position: "fixed", width: "100%", zIndex: "80" }}
-                animateOpacity={"true"}
-            >
-                <Box
-                    px={{ base: 4, md: 4 }}
-                    w={"100%"}
-                    layerStyle={"flexCenter"}
-                    bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
-                    border={"1px"}
-                    borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                    padding={"8px 19px"}
-                >
-                    <InputGroup w="100%">
-                        <InputLeftElement pointerEvents="none">
-                            <Image
-                                src={
-                                    colorMode === "light"
-                                        ? "/icons/search_icon_light.svg"
-                                        : "/icons/search_icon_dark.svg"
-                                }
-                                w="14px"
-                                h="14px"
-                                alt="search_icon"
-                            />
-                        </InputLeftElement>
-                        <Input
-                            type="text"
-                            border="1px"
-                            borderRadius="0px"
-                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-                            variant={"h6"}
-                            w="100%"
-                            placeholder="Search Wallet Address"
-                            value={searchWalletAddressValue ?? ""}
-                            onChange={(e) => {
-                                handleSearchByWalletAddress(e);
-                            }}
-                        ></Input>
-                        <Box
-                            layerStyle={"center"}
-                            cursor={"pointer"}
-                            w={"70px"}
-                            p={"14px 10px"}
-                            bgColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
-                            border="1px"
-                            borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                            onClick={() => {
-                                handleMobileSearchByWalletAddress();
-                            }}
-                        >
-                            <Text variant={"SearchText"}>Search</Text>
-                        </Box>
-                    </InputGroup>
-                </Box>
-            </Collapse>
+            </>
+        );
+    };
+
+    return (
+        <>
+            {isMd ? MdHeader() : SMHeader()}
             <MobileSidebar
                 isOpen={isMobileSidebarOpen}
                 onOpen={onMobileSidebarOpen}
