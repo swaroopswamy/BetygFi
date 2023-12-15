@@ -1,21 +1,28 @@
 import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
 
-export const GET = () => {
-    const headersInstance = headers();
-    const authorization = headersInstance.get('authorization');
-    const authorizationList = ['betygfi-server'];
-    if (authorization) {
-        const splittedAuthorization = authorization.split(" ")[1];
-        if (authorizationList.includes(splittedAuthorization)) {
-            // return NextResponse.json({ message: 'OK' }, { status: 200 })
-            return NextResponse.json('OK');
-        } else {
-            // return NextResponse.json({ message: 'Not Authorized' }, { status: 403 })
-            return NextResponse.json('Not Authorized Machine');
-        }
+export const GET = async () => {
+    const checkBetygfi = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/betygfi`);
+        const betygfiHealth = await res.json();
+        return betygfiHealth.status;
+    };
+
+    const checkLimitlessDB = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/limitlessdb`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const limitLessDBHealth = await res.json();
+        return limitLessDBHealth.status;
+    };
+
+    const healthCheckBetygfi = await checkBetygfi();
+    const healthCheckLimitless = await checkLimitlessDB();
+
+    if (healthCheckBetygfi) {
+        return NextResponse.json(healthCheckLimitless ? 'ok' : 'not-ok');
     } else {
-        // return NextResponse.json({ message: 'Not Authorized' }, { status: 403 })
-        return NextResponse.json('Not Authorized');
+        return NextResponse.json("not-ok");
     }
 };
