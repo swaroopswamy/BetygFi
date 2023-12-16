@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const OverviewColumnChart = dynamic(() => import("@/app/components/pages/dashboard/overviewColumnChart"), { ssr: false });
+// const OverviewColumnChart = dynamic(() => import("@/app/components/pages/dashboard/overviewColumnChart"), { ssr: false });
 const OverviewBox = dynamic(() => import("@/app/components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false });
 
@@ -134,7 +134,7 @@ const HomePage = () => {
 					gap={"15px"}
 				>
 					<OverviewBox />
-					<OverviewColumnChart />
+					{/* <OverviewColumnChart /> */}
 				</Box>
 				<Rankings />
 			</Box >
