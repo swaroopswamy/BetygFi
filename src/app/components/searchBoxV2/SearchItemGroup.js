@@ -25,38 +25,40 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
     }, [searchListData]);
 
     const updateSearchToPopulate = () => {
-        const groupedData = groupListByKey(searchListData, 'type');
-        setGroupedSearchData(groupedData);
-        let searchToPopulate_ = [];
-        if (groupedData.coin !== undefined) {
-            if (searchToPopulate.length > 0) {
-                searchToPopulate_ = [...searchToPopulate];
-            } else {
-                searchToPopulate_ = searchToPopulate;
+        if (searchListData?.length > 0) {
+            const groupedData = groupListByKey(searchListData, 'type');
+            setGroupedSearchData(groupedData);
+            let searchToPopulate_ = [];
+            if (groupedData.coin !== undefined) {
+                if (searchToPopulate.length > 0) {
+                    searchToPopulate_ = [...searchToPopulate];
+                } else {
+                    searchToPopulate_ = searchToPopulate;
+                }
+                searchToPopulate_.push("coin");
             }
-            searchToPopulate_.push("coin");
-        }
-        if (groupedData.defi !== undefined) {
-            if (searchToPopulate.length > 0) {
-                searchToPopulate_ = [...searchToPopulate];
-            } else {
-                searchToPopulate_ = searchToPopulate;
+            if (groupedData.defi !== undefined) {
+                if (searchToPopulate.length > 0) {
+                    searchToPopulate_ = [...searchToPopulate];
+                } else {
+                    searchToPopulate_ = searchToPopulate;
+                }
+                searchToPopulate_.push("defi");
             }
-            searchToPopulate_.push("defi");
-        }
-        if (
-            searchListData.length > 0 &&
-            groupedData.undefined !== undefined
-        ) {
-            groupedData.wallet = groupedData.undefined;
-            if (searchToPopulate.length > 0) {
-                searchToPopulate_ = [...searchToPopulate];
-            } else {
-                searchToPopulate_ = searchToPopulate;
+            if (
+                searchListData.length > 0 &&
+                groupedData.undefined !== undefined
+            ) {
+                groupedData.wallet = groupedData.undefined;
+                if (searchToPopulate.length > 0) {
+                    searchToPopulate_ = [...searchToPopulate];
+                } else {
+                    searchToPopulate_ = searchToPopulate;
+                }
+                searchToPopulate_.push("wallet");
             }
-            searchToPopulate_.push("wallet");
+            setSearchToPopulate(searchToPopulate_);
         }
-        setSearchToPopulate(searchToPopulate_);
     };
 
     const onNavigateArrowClick = (slug, itemSlug) => {
