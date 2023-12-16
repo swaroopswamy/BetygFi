@@ -1,7 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import React, { useEffect } from "react";
-import dynamic from "next/dynamic";
+import BlockchainSelectionMenuNew from "@/app/components/blockchainSelectionNew";
+import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import {
+    categoryChangedReducer,
+    fetchOverviewData,
+    fetchScoreGraphData,
+} from "@/redux/dashboard_data/dataSlice";
 import {
     Box,
     Button,
@@ -9,21 +14,15 @@ import {
     useColorModeValue,
     useMediaQuery,
 } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
 import { categories } from "@util/constant";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import {
-    categoryChangedReducer,
-    fetchOverviewData,
-    fetchScoreGraphData,
-} from "@/redux/dashboard_data/dataSlice";
-import BlockchainSelectionMenuNew from "@/app/components/blockchainSelectionNew";
-import OverviewBox from "../components/pages/dashboard/overviewBox";
+import dynamic from "next/dynamic";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const Rankings = dynamic(
-    () => import("@/app/components/pages/dashboard/defiRankingsTable"),
-    { ssr: false }
-);
+const OverviewColumnChart = dynamic(() => import("./components/pages/dashboard/overviewColumnChart"), { ssr: false });
+const OverviewBox = dynamic(() => import("./components/pages/dashboard/overviewBox"), { ssr: false });
+const Rankings = dynamic(() => import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false });
+
 const Dashboard = () => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
@@ -135,11 +134,11 @@ const Dashboard = () => {
                     gap={"15px"}
                 >
                     <OverviewBox />
+                    <OverviewColumnChart />
                 </Box>
-
                 <Rankings />
-            </Box>
-        </Box>
+            </Box >
+        </Box >
     );
 };
 
