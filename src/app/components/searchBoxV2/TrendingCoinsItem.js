@@ -1,4 +1,5 @@
 import { Avatar, Box, Text, useMediaQuery } from '@chakra-ui/react';
+import { formatMCAPSearchTableString } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 
@@ -23,7 +24,7 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
     const CoinItemData = ({ coinItem, index }) => {
         return (
             <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
-                <Box w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
+                <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, coinItem.slug)} w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Avatar
                         width={"24px"}
                         height={"24px"}
@@ -45,7 +46,7 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                 </Box>
                 <Box w={isMd ? "21%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                     <Text ml={"10px"} fontSize={"14px"} variant={"modalTableData"}>
-                        {coinItem.price || "N/A"}
+                        {formatMCAPSearchTableString("mcap", coinItem.mcap)}
                     </Text>
                 </Box>
                 {

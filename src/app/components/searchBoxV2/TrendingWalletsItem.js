@@ -1,4 +1,5 @@
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
+import { getToFixedValue } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 
@@ -22,9 +23,11 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
             </Box>
         );
     };
+
     const calculateNetWorth = (wallet) => {
         if (wallet?.balanceArray?.length > 0) {
-            return wallet.balanceArray.map(bal => bal.balance).reduce((partialSum, a) => partialSum + a, 0) || "0";
+            const calculatedWorth = wallet.balanceArray.map(bal => bal.balance).reduce((partialSum, a) => partialSum + a, 0);
+            return getToFixedValue(calculatedWorth) || "0";
         } else {
             return "0";
         }
@@ -33,7 +36,7 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
     const WalletItemData = ({ walletItem, index }) => {
         return (
             <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, walletItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
-                <Box w={"72%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
+                <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, walletItem.slug)} w={"72%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Box mr={"10px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
                         <Image
                             alt="wallet"

@@ -28,3 +28,60 @@ export const reloadSession = () => {
 };
 
 export const groupListByKey = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
+
+export const convertToInternationalCurrencySystem = labelValue => {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e+9
+        ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + "B"
+        // Six Zeroes for Millions 
+        : Math.abs(Number(labelValue)) >= 1.0e+6
+            ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + "M"
+            // Three Zeroes for Thousands
+            : Math.abs(Number(labelValue)) >= 1.0e+3
+                ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + "K"
+                : Math.abs(Number(getToFixedValue(labelValue)));
+};
+
+export const getToFixedValue = (value, fixedUpto = 2) => {
+    if (value) {
+        if (value < 1) {
+            const stringifiedValue = '' + value;
+            const splittedValue = stringifiedValue.split("");
+            const indexOfPeriod = splittedValue.indexOf(".");
+            let uptoIndex = 0;
+            for (let i = 0; i < splittedValue.length; i++) {
+                if (i <= indexOfPeriod) {
+                    continue;
+                }
+                const int = parseInt(splittedValue[i]);
+                if (int < 1) {
+                    continue;
+                } else {
+                    uptoIndex = i;
+                    break;
+                }
+            }
+            return parseFloat(splittedValue.slice(0, uptoIndex + fixedUpto).join(""));
+        } else {
+            return Number.parseFloat(value).toFixed(fixedUpto);
+        }
+    } else {
+        return value;
+    }
+};
+
+export const formatMCAPSearchTableString = (key, value) => {
+    if (key == "tvl") {
+        if (value) {
+            return convertToInternationalCurrencySystem(value);
+        } else {
+            return "N/A";
+        }
+    } else if (key == "mcap") {
+        if (value) {
+            return convertToInternationalCurrencySystem(value);
+        } else {
+            return "N/A";
+        }
+    }
+};

@@ -1,4 +1,5 @@
 import { Avatar, Box, Text, useMediaQuery } from '@chakra-ui/react';
+import { formatMCAPSearchTableString, getToFixedValue } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 
@@ -39,7 +40,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
         return (
             <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
                 display={"flex"} flexDirection={"row"} key={index}>
-                <Box w={isMd ? "30%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
+                <Box onClick={() => onNavigateArrowClick(searchItem.slug, defiItem.slug)} cursor={"pointer"} w={isMd ? "30%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Avatar
                         width={"24px"}
                         height={"24px"}
@@ -54,14 +55,14 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                 </Box>
                 <Box w={isMd ? "21%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                     <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                        {defiItem.price || "N/A"}
+                        {getToFixedValue(defiItem.price) || "N/A"}
                     </Text>
                 </Box>
                 {
                     isMd &&
                     <Box w={"21%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                         <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                            {defiItem.tvl || "N/A"}
+                            {formatMCAPSearchTableString("tvl", defiItem.tvl)}
                         </Text>
                     </Box>
                 }
@@ -69,7 +70,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                     isMd &&
                     <Box w={"21%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                         <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                            {defiItem.mcap || "N/A"}
+                            {formatMCAPSearchTableString("mcap", defiItem.mcap)}
                         </Text>
                     </Box>
                 }
