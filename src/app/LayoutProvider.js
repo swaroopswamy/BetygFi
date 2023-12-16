@@ -179,6 +179,13 @@ export default function LayoutProvider({ children }) {
             setTimeout(() => {
                 dispatch(ResetValidatedUserData());
             }, 200);
+            disconnect();
+            setTimeout(() => {
+                dispatch(LogoutReducer());
+                setTimeout(() => {
+                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                }, 200);
+            }, 100);
         }
     }, [dispatch, ValidatedUserData]);
 
