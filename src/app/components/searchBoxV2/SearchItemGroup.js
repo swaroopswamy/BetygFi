@@ -50,6 +50,7 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
                 groupedData.undefined !== undefined
             ) {
                 groupedData.wallet = groupedData.undefined;
+                delete groupedData.undefined;
                 if (searchToPopulate.length > 0) {
                     searchToPopulate_ = [...searchToPopulate];
                 } else {
@@ -79,7 +80,7 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
             {
                 searchItem.slug === "trending-defis" ?
                     (
-                        searchToPopulate.includes("defi") &&
+                        searchToPopulate.includes("defi") && groupedSearchData?.defi?.length > 0 &&
                         <>
                             <Text variant={"modalHeader"} colorMode={colorMode}>
                                 {searchItem.title}
@@ -95,7 +96,7 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
                     :
                     searchItem.slug === "trending-coins" ?
                         (
-                            searchToPopulate.includes("coin") &&
+                            searchToPopulate.includes("coin") && groupedSearchData?.coin?.length > 0 &&
                             <>
                                 <Text variant={"modalHeader"} colorMode={colorMode}>
                                     {searchItem.title}
@@ -110,7 +111,7 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
                         )
                         :
                         (
-                            searchToPopulate.includes("wallet") &&
+                            searchToPopulate.includes("wallet") && groupedSearchData?.wallet?.length > 0 &&
                             <>
                                 <Text variant={"modalHeader"} colorMode={colorMode}>
                                     {searchItem.title}
