@@ -183,6 +183,26 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onClick={() => { handleSearchInputClick(); }}
                             />
                         </Box>
+                        {
+                            searchValue?.length > 0 &&
+                            <Box
+                                layerStyle={"center"}
+                                cursor={"pointer"}
+                                bgColor={colorMode === "light" ? "#F4F4F4" : "#191919"}
+                                width={"35px"}
+                                marginRight={"15px"}
+                                borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
+                                onClick={() => { clearValueMobileSearch(); }}
+                            >
+                                <Image
+                                    src={`/icons/cross-${colorMode}.svg`}
+                                    height={24}
+                                    width={24}
+                                    cursor={"pointer"}
+                                    alt="logo"
+                                />
+                            </Box>
+                        }
                     </Box>
                     {renderSearchExpander()}
                 </Box>
