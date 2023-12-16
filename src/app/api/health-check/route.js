@@ -1,5 +1,3 @@
-import { NextResponse } from 'next/server';
-
 export const GET = async () => {
     const checkBetygfi = async () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/betygfi`);
@@ -21,8 +19,8 @@ export const GET = async () => {
     const healthCheckLimitless = await checkLimitlessDB();
 
     if (healthCheckBetygfi) {
-        return NextResponse.json(healthCheckLimitless ? 'ok' : 'not-ok');
+        return new Response(healthCheckLimitless ? 'ok' : 'not-ok');
     } else {
-        return NextResponse.json("not-ok");
+        return new Response("not-ok");
     }
 };
