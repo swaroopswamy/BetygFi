@@ -46,9 +46,7 @@ import CustomAvatar from "../avatar";
 import { useDisconnect } from "wagmi";
 import { PublicAddressStringFormatter } from "@util/functions";
 
-const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), {
-    ssr: false,
-});
+const DynamicIcon = dynamic(() => import("@/app/components/icons/index_new"), { ssr: false });
 
 const SidebarContent = ({ ...rest }) => {
     const { colorMode } = useColorMode();

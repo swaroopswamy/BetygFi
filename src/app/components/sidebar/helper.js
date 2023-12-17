@@ -30,14 +30,14 @@ export const bottomMenu = [
 
 export const dashboards = [
     {
-        name: "Coin Ranking",
-        icon: GoDatabase,
-        path: "/coin",
-    },
-    {
         name: "DeFi Market Analytics",
         icon: IoIosTrendingUp,
         path: "/protocol",
+    },
+    {
+        name: "Coin Ranking",
+        icon: GoDatabase,
+        path: "/coin",
     },
     {
         name: "Top Wallets",
