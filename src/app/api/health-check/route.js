@@ -27,8 +27,8 @@ export const GET = async () => {
     const healthCheckLimitless = await checkLimitlessDB();
 
     if (healthCheckBetygfi) {
-        return new Response(healthCheckLimitless ? 'ok' : 'not-ok');
+        return new Response(healthCheckLimitless ? 'OK' : 'NOTOK');
     } else {
-        return new Response("not-ok");
+        return new Response("NOTOK");
     }
 };
