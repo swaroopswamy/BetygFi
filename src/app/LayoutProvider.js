@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
@@ -27,9 +28,11 @@ import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "is-empty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "./components/toast";
+import { usePathname } from "next/navigation";
 
 export default function LayoutProvider({ children }) {
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const pathname = usePathname();
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
     const isSidebarCollapsed = useSelector(
@@ -210,73 +213,78 @@ export default function LayoutProvider({ children }) {
         return () => activeConnector?.off("change", handleConnectorUpdate);
     }, [activeConnector]);
     return (
-        <Box
-            width="100%"
-            minH="100vh"
-            bg={useColorModeValue("#F0F0F5", "#191919")}
-            display={"flex"}
-        >
-            <SidebarContent
-                onClose={() => onClose}
-                w={isMobileSidebarCollapsed ? "null" : "80%"}
-                h={"100%"}
-            />
-            {isMd ? (
-                <>
-                    <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
-                        }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                        w="100%"
-                        overflowX={"hidden"}
-                    >
-                        <Navbar onOpenMenu={onOpen} />
+        pathname === "/health" ?
+            <>
+                {children}
+            </>
+            :
+            <Box
+                width="100%"
+                minH="100vh"
+                bg={useColorModeValue("#F0F0F5", "#191919")}
+                display={"flex"}
+            >
+                <SidebarContent
+                    onClose={() => onClose}
+                    w={isMobileSidebarCollapsed ? "null" : "80%"}
+                    h={"100%"}
+                />
+                {isMd ? (
+                    <>
                         <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
+                            display={{
+                                base: "none",
+                                md: isMobileSidebarCollapsed ? "flex" : "none",
                             }}
-                            _dark={{
-                                bgColor: "#131313",
-                            }}
+                            flexDirection={"column"}
+                            className="margin-conditions"
+                            id="main-body"
+                            aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                            w="100%"
+                            overflowX={"hidden"}
+                        >
+                            <Navbar onOpenMenu={onOpen} />
+                            <Box
+                                p="0"
+                                _light={{
+                                    bgColor: "#FFF",
+                                }}
+                                _dark={{
+                                    bgColor: "#131313",
+                                }}
+                                w="100%"
+                            >
+                                {children}
+                                <Footer />
+                            </Box>
+                        </Box>
+                    </>
+                ) : (
+                    <>
+                        <Box
+                            display={{ base: "flex", md: "none" }}
+                            flexDirection={"column"}
+                            overflowX={"hidden"}
+                            mt={"60px"}
                             w="100%"
                         >
-                            {children}
-                            <Footer />
+                            <Navbar onOpenMenu={onOpen} />
+                            <Box
+                                p="0"
+                                _light={{
+                                    bgColor: "#FFF",
+                                }}
+                                _dark={{
+                                    bgColor: "#282828",
+                                }}
+                                w="100%"
+                            >
+                                {children}
+                                <Footer />
+                            </Box>
                         </Box>
-                    </Box>
-                </>
-            ) : (
-                <>
-                    <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
-                        w="100%"
-                    >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#282828",
-                            }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
-                    </Box>
-                </>
-            )}
-        </Box>
+                    </>
+                )}
+            </Box>
     );
 }
