@@ -1,48 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, useColorModeValue, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { fetchDefiData } from "@/redux/defi_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData, fetchDefiData, fetchDefiFeeRevenueData, fetchDefiGovernanceTableData, fetchDefiGraphData, fetchDefiTvlBorrowData, fetchDefiUsersTableData, } from "@/redux/defi_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";
+import GovernanceTable from "@components/pages/defiDashboard/governanceTable";
+import DashboardTrendGraph from "@components/pages/defiDashboard/dashboardTrendGraph";
 
-const Banner = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/banner")
-);
-const TVLBox = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/tvlBox")
-);
-const TrendGraph = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/dashboardTrendGraph")
-);
-const DefiUsersSmallTable = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/defiUsersSmallTable")
-);
-const DefiTVLChart = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/defiTVLchart")
-);
-const DefiAssetsSmallTable = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/defiAssetsSmallTable")
-);
-const DefiFeeRevenueChart = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/defiFeeRevenueChart")
-);
-const GovernanceTable = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/governanceTable")
-);
-const DefiHotContractsSmallTable = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/DefiHotContractsSmallTable")
-);
-const DefiInflowOutflowSmallTableComponent = dynamic(() =>
-    import("@/app/components/pages/defiDashboard/DefiInflowOutflowSmallTable")
-);
+const Banner = dynamic(() => import("@components/pages/defiDashboard/banner"));
+const TVLBox = dynamic(() => import("@components/pages/defiDashboard/tvlBox"));
+const DefiUsersSmallTable = dynamic(() => import("@components/pages/defiDashboard/defiUsersSmallTable"));
+const DefiTVLChart = dynamic(() => import("@components/pages/defiDashboard/defiTVLchart"));
+const DefiAssetsSmallTable = dynamic(() => import("@components/pages/defiDashboard/defiAssetsSmallTable"));
+const DefiFeeRevenueChart = dynamic(() => import("@components/pages/defiDashboard/defiFeeRevenueChart"));
+/* const GovernanceTable = dynamic(() => import("@components/pages/defiDashboard/governanceTable")); */
+const DefiHotContractsSmallTable = dynamic(() => import("@components/pages/defiDashboard/DefiHotContractsSmallTable"));
+const DefiInflowOutflowSmallTableComponent = dynamic(() => import("@components/pages/defiDashboard/DefiInflowOutflowSmallTable"));
 
 const DefiDashboardPage = ({ params }) => {
     const searchParamProtocolSlug = params?.protocol_slug;
 
     const router = useRouter();
     const dispatch = useDispatch();
+
+    const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
+
 
     const getDefiDataHandler = () => {
         if (searchParamProtocolSlug && searchParamProtocolSlug !== "") {
@@ -53,10 +38,86 @@ const DefiDashboardPage = ({ params }) => {
         }
     };
 
+    const getDefiUsersTableDataHandler = () => {
+        const payload = {
+            defi: searchParamProtocolSlug,
+            blockchain: blockchainSelected,
+        };
+        dispatch(fetchDefiUsersTableData(payload));
+    };
+
+    const getTvlBorrowDataHandler = () => {
+        const payload = {
+            defi: searchParamProtocolSlug,
+            blockchain: blockchainSelected,
+        };
+        dispatch(fetchDefiTvlBorrowData(payload));
+    };
+    const getDefiAssetsTableDataHandler = () => {
+        const payload = {
+            blockchain: blockchainSelected,
+            page: 1,
+            limit: 20,
+        };
+        if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+            payload.defi = searchParamProtocolSlug;
+        }
+        dispatch(fetchDefiAssetCompositionTableData(payload));
+    };
+
+    const getFeeRevenueDataHandler = () => {
+        const payload = {
+            blockchain: blockchainSelected,
+        };
+        if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+            payload.defi = searchParamProtocolSlug;
+        }
+        dispatch(fetchDefiFeeRevenueData(payload));
+    };
+
+    const [tablePage, setTablePage] = useState(1);
+    const [tableLimit, setTableLimit] = useState(10);
+
+    const pageChangeHandler = (page) => {
+        tablePage >= 1 && setTablePage(page);
+    };
+    const getDefiGovernanceTableDataHandler = () => {
+        const payload = {
+            page: tablePage,
+            limit: tableLimit
+        };
+        if (searchParamProtocolSlug && searchParamProtocolSlug !== '') {
+            payload.defi = searchParamProtocolSlug;
+        }
+        dispatch(fetchDefiGovernanceTableData(payload));
+    };
+
+
+    useEffect(() => {
+        getDefiGovernanceTableDataHandler();
+    }, [tablePage, tableLimit]);
+
     useEffect(() => {
         getDefiDataHandler();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        Promise.all([
+            getDefiUsersTableDataHandler(),
+            getTvlBorrowDataHandler(),
+            getDefiAssetsTableDataHandler(),
+            getFeeRevenueDataHandler(),
+            getDefiGraphDataHandler(),
+        ]);
+    }, [blockchainSelected]);
+
+    const getDefiGraphDataHandler = () => {
+        const payload = {
+            defi: searchParamProtocolSlug,
+            blockchain: blockchainSelected,
+        };
+        dispatch(fetchDefiGraphData(payload));
+    };
 
     return (
         <>
@@ -111,7 +172,10 @@ const DefiDashboardPage = ({ params }) => {
                     gap={"20px"}
                 >
                     <TVLBox />
-                    <TrendGraph />
+                    {/*   <TrendGraph /> */}
+                    <DashboardTrendGraph
+                        searchParamProtocolSlug={searchParamProtocolSlug}
+                    />
                 </Box>
 
                 <Box
@@ -154,6 +218,11 @@ const DefiDashboardPage = ({ params }) => {
 
                 <Box>
                     <GovernanceTable
+                        setTablePage={setTablePage}
+                        tablePage={tablePage}
+                        tableLimit={tableLimit}
+                        setTableLimit={setTableLimit}
+                        pageChangeHandler={pageChangeHandler}
                         searchParamProtocolSlug={searchParamProtocolSlug}
                     />
                 </Box>

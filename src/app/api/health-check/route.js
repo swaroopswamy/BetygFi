@@ -1,7 +1,7 @@
 export const GET = async () => {
     const checkBetygfi = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/betygfi`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/betygfi`, { cache: 'no-store' });
             const betygfiHealth = await res.json();
             return betygfiHealth.status;
         } catch (err) {
@@ -11,11 +11,7 @@ export const GET = async () => {
 
     const checkLimitlessDB = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/limitlessdb`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/limitlessdb`, { cache: 'no-store' });
             const limitLessDBHealth = await res.json();
             return limitLessDBHealth.status;
         } catch (err) {

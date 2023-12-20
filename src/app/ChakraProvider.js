@@ -3,8 +3,8 @@ import React from "react";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 import { colors } from "@util/constant";
-import Button from "@/app/components/button";
-import Text from "@/app/components/text";
+import Button from "@components/button";
+import Text from "@components/text";
 
 export function Providers({ children }) {
     const breakpoints = {

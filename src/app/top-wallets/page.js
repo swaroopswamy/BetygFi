@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 const WalletTable = dynamic(() =>
-	import("@/app/components/pages/topWallets/walletTable")
+	import("@components/pages/topWallets/walletTable")
 );
 const WalletDashboardPage = () => {
 	return (
@@ -22,7 +22,7 @@ const WalletDashboardPage = () => {
 			>
 				<Box layerStyle={"flexColumnSpaceBetween"}>
 					<Text variant={"contentHeading"} lineHeight={"20px"}>
-            Top Wallets
+						Top Wallets
 					</Text>
 
 					<Box
@@ -31,9 +31,9 @@ const WalletDashboardPage = () => {
 						mt={"13px"}
 					>
 						<Text variant={"TopWalletsText"} paddingBottom={"30px"}>
-              BetygFi have filtered and identified a comprehensive collection of
-              significant wallet addresses, enabling you to effortlessly monitor
-              and analyze critical on-chain events and transactions.
+							BetygFi have filtered and identified a comprehensive collection of
+							significant wallet addresses, enabling you to effortlessly monitor
+							and analyze critical on-chain events and transactions.
 						</Text>
 					</Box>
 				</Box>

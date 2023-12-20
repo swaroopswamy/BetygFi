@@ -20,7 +20,7 @@ import {
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@components/pages/defiDashboard/GenericBigTable'));
 
 function Defi_Hot_Contracts() {
 	const [tabIndex, setTabIndex] = useState(0);
@@ -147,7 +147,7 @@ function Defi_Hot_Contracts() {
 					//textTransform={"uppercase"}
 					ml={"5px"}
 				>
-          BACK
+					BACK
 				</Text>
 			</Flex>
 
@@ -183,7 +183,7 @@ function Defi_Hot_Contracts() {
 								//textTransform={"uppercase"}
 								letterSpacing={"1px"}
 							>
-                DeFi Hot Contract
+								DeFi Hot Contract
 							</Text>
 						</Box>
 					</Tab>
@@ -211,7 +211,7 @@ function Defi_Hot_Contracts() {
 								//textTransform={"uppercase"}
 								letterSpacing={"1px"}
 							>
-                DeFi Functions/Methods
+								DeFi Functions/Methods
 							</Text>
 						</Box>
 					</Tab>

@@ -12,9 +12,9 @@ import {
 import React from "react";
 import dynamic from "next/dynamic";
 
-const LoginPage = dynamic(() => import("@/app/components/login"));
+const LoginPage = dynamic(() => import("@components/login"));
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
-import DynamicIcon from "@/app/components/icons/index_new";
+import DynamicIcon from "@components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
 
 const Settings = () => {
@@ -39,7 +39,7 @@ const Settings = () => {
 					lineHeight={"46px"}
 					p={"30px 0px 10px 33px"}
 				>
-          Settings
+					Settings
 				</Text>
 				<Box
 					height={"275px"}
@@ -52,7 +52,7 @@ const Settings = () => {
 				>
 					<Box ml={"25px"} pt={"20px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
-              Theme
+							Theme
 						</Text>
 					</Box>
 					<Box layerStyle={"flexCenterSpaceEvenly"} mt={"10px"}>
@@ -75,7 +75,7 @@ const Settings = () => {
 									ml={"15px"}
 									mt={"2px"}
 								>
-                  System Default
+									System Default
 								</Text>
 							</Box>
 						</Box>
@@ -106,7 +106,7 @@ const Settings = () => {
 									ml={"15px"}
 									mt={"2px"}
 								>
-                  Light THEME
+									Light THEME
 								</Text>
 							</Box>
 						</Box>
@@ -137,7 +137,7 @@ const Settings = () => {
 									ml={"15px"}
 									mt={"2px"}
 								>
-                  DARK THEME
+									DARK THEME
 								</Text>
 							</Box>
 						</Box>
@@ -155,7 +155,7 @@ const Settings = () => {
 					mr={"20px"}
 				>
 					<Text variant={"contentHeading3"} fontWeight={"400"} ml={5} pt={5}>
-            Account Settings
+						Account Settings
 					</Text>
 					<Box
 						layerStyle={"flexSpaceBetween"}
@@ -171,10 +171,10 @@ const Settings = () => {
 							<Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
-                  Web 3
+									Web 3
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -189,7 +189,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Verify
+								Verify
 							</Text>
 						</Button>
 					</Box>
@@ -213,10 +213,10 @@ const Settings = () => {
 							></Image>
 							<Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
-                  Email
+									Email
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -231,7 +231,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Add Email
+								Add Email
 							</Text>
 						</Button>
 					</Box>
@@ -255,10 +255,10 @@ const Settings = () => {
 							></Image>
 							<Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
 								<Text variant={" SettingsText1"} ml={"15px"}>
-                  Twitter
+									Twitter
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -273,7 +273,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Add Twitter
+								Add Twitter
 							</Text>
 						</Button>
 					</Box>
@@ -283,7 +283,7 @@ const Settings = () => {
 					<>
 						<Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
 							<Text variant={"contentHeading3"} fontWeight={"400"}>
-                Login to BetygFi
+								Login to BetygFi
 							</Text>
 							{/* <Text
                                         variant={"SettingsText3"}
@@ -305,7 +305,7 @@ const Settings = () => {
 									_light={{ color: "#191919" }}
 									_dark={{ color: "#FFFFFF" }}
 								>
-                  Login
+									Login
 								</Text>
 							</Button>
 						</Box>
@@ -314,11 +314,11 @@ const Settings = () => {
 					<>
 						<Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
 							<Text variant={"contentHeading3"} fontWeight={"400"}>
-                Logout of BetygFi
+								Logout of BetygFi
 							</Text>
 							<Text variant={"SettingsText3"} ml={"50px"} mt={"3px"}>
-                After logging out, the verification information for the current
-                address will be deleted from your browser.
+								After logging out, the verification information for the current
+								address will be deleted from your browser.
 							</Text>
 							<Button
 								width={"116px"}
@@ -333,7 +333,7 @@ const Settings = () => {
 									_light={{ color: "#191919" }}
 									_dark={{ color: "#FFFFFF" }}
 								>
-                  Logout
+									Logout
 								</Text>
 							</Button>
 						</Box>
@@ -348,7 +348,7 @@ const Settings = () => {
 				background={useColorModeValue("#F0F0F5", "#191919")}
 			>
 				<Text variant={"contentHeading2"} p={"54px 0px 29px 15px"}>
-          Settings
+					Settings
 				</Text>
 
 				<Box
@@ -361,7 +361,7 @@ const Settings = () => {
 				>
 					<Box p={"15px 0px 15px 21px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
-              Theme
+							Theme
 						</Text>
 					</Box>
 					<Box layerStyle={"flexColumn"}>
@@ -375,7 +375,7 @@ const Settings = () => {
 										_light={{ color: "#191919" }}
 										_dark={{ color: "#FFF" }}
 									>
-                    System Default
+										System Default
 									</Text>
 								</Box>
 							</Box>
@@ -409,7 +409,7 @@ const Settings = () => {
 										_light={{ color: "#191919" }}
 										_dark={{ color: "#FFF" }}
 									>
-                    Light THEME
+										Light THEME
 									</Text>
 								</Box>
 							</Box>
@@ -443,7 +443,7 @@ const Settings = () => {
 										_light={{ color: "#191919" }}
 										_dark={{ color: "#FFF" }}
 									>
-                    DARK THEME
+										DARK THEME
 									</Text>
 								</Box>
 							</Box>
@@ -470,7 +470,7 @@ const Settings = () => {
 				>
 					<Box p={"15px 0px 20px 21px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
-              Account Settings
+							Account Settings
 						</Text>
 					</Box>
 					<Box
@@ -485,10 +485,10 @@ const Settings = () => {
 							<Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
-                  Web 3
+									Web 3
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -503,7 +503,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Verify
+								Verify
 							</Text>
 						</Button>
 					</Box>
@@ -526,10 +526,10 @@ const Settings = () => {
 							></Image>
 							<Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
-                  Email
+									Email
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -544,7 +544,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Add Email
+								Add Email
 							</Text>
 						</Button>
 					</Box>
@@ -567,10 +567,10 @@ const Settings = () => {
 							></Image>
 							<Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
 								<Text variant={" SettingsText1"} ml={"15px"}>
-                  Twitter
+									Twitter
 								</Text>
 								<Text variant={"SettingsText2"} ml={"15px"}>
-                  Not Added
+									Not Added
 								</Text>
 							</Box>
 						</Box>
@@ -585,7 +585,7 @@ const Settings = () => {
 								_light={{ color: "#FFFFFF" }}
 								_dark={{ color: "#191919" }}
 							>
-                Add Twitter
+								Add Twitter
 							</Text>
 						</Button>
 					</Box>
@@ -595,7 +595,7 @@ const Settings = () => {
 					<>
 						<Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
 							<Text variant={"contentHeading3"} fontWeight={"400"}>
-                Login to BetygFi
+								Login to BetygFi
 							</Text>
 							{/* <Box
                                         mr={"15px"}
@@ -618,7 +618,7 @@ const Settings = () => {
 									_light={{ color: "#191919" }}
 									_dark={{ color: "#FFFFFF" }}
 								>
-                  Login
+									Login
 								</Text>
 							</Button>
 						</Box>
@@ -627,12 +627,12 @@ const Settings = () => {
 					<>
 						<Box layerStyle={"flexColumn"} p={"30px 15px 90px 15px"}>
 							<Text variant={"contentHeading3"} fontWeight={"400"}>
-                Logout of BetygFi
+								Logout of BetygFi
 							</Text>
 							<Box mr={"15px"} mt={"15px"}>
 								<Text variant={"SettingsText3"}>
-                  After logging out, the verification information for the
-                  current address will be deleted from your browser.
+									After logging out, the verification information for the
+									current address will be deleted from your browser.
 								</Text>
 							</Box>
 							<Button
@@ -648,7 +648,7 @@ const Settings = () => {
 									_light={{ color: "#191919" }}
 									_dark={{ color: "#FFFFFF" }}
 								>
-                  Logout
+									Logout
 								</Text>
 							</Button>
 						</Box>

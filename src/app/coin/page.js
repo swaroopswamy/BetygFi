@@ -10,13 +10,13 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-// import { BreadCrumb } from "../components/breadcrumb2";
-import CoinRankingsTable from "../components/pages/coin/coinRankingsTable";
+// import { BreadCrumb } from "@components/breadcrumb2";
+import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-import TrendingCoinPanel from "../components/trendingCoinPanel";
+import TrendingCoinPanel from "@components/trendingCoinPanel";
 import { fetchTrendingCoinsData } from "@/redux/coin_data/dataSlice";
-import { faq } from "@/app/components/pages/coin/helper";
+import { faq } from "@components/pages/coin/helper";
 
 const CoinDashboardPage = () => {
     const dispatch = useDispatch();
