@@ -1,7 +1,7 @@
 "use client";
 import { Avatar, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { BreadCrumb } from "@/app/components/breadcrumb2";
+import { BreadCrumb } from "@components/breadcrumb2";
 import { useDispatch, useSelector } from "react-redux";
 import {
     fetchCoinDashboardData,
@@ -9,11 +9,11 @@ import {
     fetchCoinPriceData,
 } from "@/redux/coin_data/dataSlice";
 // import { GoShareAndroid } from "react-icons/go";
-import CoinInfo from "@/app/components/pages/coin/coinInfo";
-import CoinPriceChart from "@/app/components/pages/coin/coinPriceChart";
-import RiskAnalysis from "@/app/components/pages/coin/riskAnalysis";
-import DevelopmentAnalysis from "@/app/components/pages/coin/developmentAnalysis";
-// import ShareModal from "@/app/components/pages/coin/shareModal";
+import CoinInfo from "@components/pages/coin/coinInfo";
+import CoinPriceChart from "@components/pages/coin/coinPriceChart";
+import RiskAnalysis from "@components/pages/coin/riskAnalysis";
+import DevelopmentAnalysis from "@components/pages/coin/developmentAnalysis";
+// import ShareModal from "@components/pages/coin/shareModal";
 
 export default function CoinDashboardPage({ params }) {
     const dispatch = useDispatch();
@@ -104,12 +104,12 @@ export default function CoinDashboardPage({ params }) {
                             {CoinDashboardData?.price === undefined
                                 ? "-"
                                 : CoinDashboardData?.price.toLocaleString(
-                                      "en-US",
-                                      {
-                                          style: "currency",
-                                          currency: "USD",
-                                      }
-                                  )}
+                                    "en-US",
+                                    {
+                                        style: "currency",
+                                        currency: "USD",
+                                    }
+                                )}
                         </Text>
                     </Box>
                 </Box>

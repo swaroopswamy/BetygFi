@@ -10,10 +10,9 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import "/styles/styles.scss";
-import SidebarContent from "@/app/components/sidebar";
-import Footer from "@/app/components/footer";
-import Navbar from "@/app/components/header";
+import SidebarContent from "@components/sidebar";
+import Footer from "@components/footer";
+import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
 import {
     LogInFromCookie,
@@ -27,7 +26,7 @@ import { AUTH_COOKIE_NAME } from "@util/utility";
 import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "is-empty";
 import { useAccount, useDisconnect } from "wagmi";
-import CustomToast from "./components/toast";
+import CustomToast from "@components/toast";
 
 export default function LayoutProvider({ children }) {
     const [isMd] = useMediaQuery("(min-width: 768px)");

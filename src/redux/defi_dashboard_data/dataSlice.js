@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDefiUsersTableData, getDefiData, getDefiHotContractsTableData, 
-	getDefiAssetCompositionTableData, getDefiFeeRevenueData, 
-	getDefiGovernanceTableData, getDefiTvlBorrowData } from "@/services/defiDashboardService";
+import {
+	getDefiUsersTableData, getDefiData, getDefiHotContractsTableData,
+	getDefiAssetCompositionTableData, getDefiFeeRevenueData,
+	getDefiGovernanceTableData, getDefiTvlBorrowData,
+	getDefiGraphData
+} from "@services/defiDashboardService";
 
 export const fetchDefiData = createAsyncThunk('getDefiData', async (payload, { rejectWithValue }) => {
 	const response = await getDefiData(payload, rejectWithValue);
@@ -39,6 +42,10 @@ export const fetchDefiTvlBorrowData = createAsyncThunk('getDefiTvlBorrowData', a
 	return response.data;
 });
 
+export const fetchDefiGraphData = createAsyncThunk("fetchDefiGraphData", async (payload, { rejectWithValue }) => {
+	const response = await getDefiGraphData(payload, rejectWithValue);
+	return response.data;
+});
 
 const DefiDashboardDataSlice = createSlice({
 	name: "DefiDashboardData",
@@ -85,6 +92,13 @@ const DefiDashboardDataSlice = createSlice({
 			isError: false,
 			isSuccess: false,
 		},
+		DefiGraphData: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		GraphType: ["tvl"],
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchDefiData.fulfilled, (state, action) => {
@@ -213,8 +227,40 @@ const DefiDashboardDataSlice = createSlice({
 			state.DefiTvlBorrowData.isLoading = false;
 			state.DefiTvlBorrowData.data = action.payload;
 		});
+		builder.addCase(fetchDefiGraphData.fulfilled, (state, action) => {
+			state.DefiGraphData.data = action.payload;
+			state.DefiGraphData.isLoading = false;
+			state.DefiGraphData.isSuccess = true;
+			state.DefiGraphData.isError = false;
+		});
+		builder.addCase(fetchDefiGraphData.pending, (state, action) => {
+			state.DefiGraphData.isLoading = true;
+			state.DefiGraphData.isError = false;
+			state.DefiGraphData.isSuccess = false;
+			state.DefiGraphData.data = action.payload;
+		});
+		builder.addCase(fetchDefiGraphData.rejected, (state, action) => {
+			state.DefiGraphData.isSuccess = false;
+			state.DefiGraphData.isError = true;
+			state.DefiGraphData.isLoading = false;
+			state.DefiGraphData.data = action.payload;
+		});
+	},
+	reducers: {
+		GraphTypeChangedReducer: (state, action) => {
+			if (state.GraphType.includes(action.payload) && action.payload !== "tvl") {
+				state.GraphType = state.GraphType.filter(
+					(item) => item !== action.payload
+				);
+			} else {
+				state.GraphType = state.GraphType.filter(
+					(item) => item !== "tvl"
+				);
+				state.GraphType.push(action.payload);
+			}
+		},
 	}
 });
 
-// export const { } = DefiDashboardDataSlice.actions;
+export const { GraphTypeChangedReducer } = DefiDashboardDataSlice.actions;
 export default DefiDashboardDataSlice.reducer;

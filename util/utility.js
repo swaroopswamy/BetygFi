@@ -1,5 +1,5 @@
-import { getCookieByName } from "./cookieHelper";
-
+import { getCookieByName } from "@util/cookieHelper";
+import groupBy from 'lodash/groupBy';
 
 export const AUTH_COOKIE_NAME = "betygfi-auth";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
@@ -27,18 +27,19 @@ export const reloadSession = () => {
     }
 };
 
-export const groupListByKey = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
+// export const groupListByKey = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
+export const groupListByKey = (list, key) => groupBy(list, (value) => value[key]);
 
 export const convertToInternationalCurrencySystem = labelValue => {
     // Nine Zeroes for Billions
     return Math.abs(Number(labelValue)) >= 1.0e+9
-        ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + "B"
+        ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + " B"
         // Six Zeroes for Millions 
         : Math.abs(Number(labelValue)) >= 1.0e+6
-            ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + "M"
+            ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + " M"
             // Three Zeroes for Thousands
             : Math.abs(Number(labelValue)) >= 1.0e+3
-                ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + "K"
+                ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + " K"
                 : Math.abs(Number(getToFixedValue(labelValue)));
 };
 

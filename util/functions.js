@@ -1,5 +1,5 @@
-import { getCookieByName } from "./cookieHelper";
-import { AUTH_COOKIE_NAME } from "./utility";
+import { getCookieByName } from "@util/cookieHelper";
+import { AUTH_COOKIE_NAME } from "@util/utility";
 
 export async function copyToClipboard(link) {
     let url = process.env.NEXT_PUBLIC_SITE_URL + "/" + link;

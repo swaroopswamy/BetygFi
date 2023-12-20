@@ -13,7 +13,7 @@ import {
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@components/pages/defiDashboard/GenericBigTable'));
 
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
@@ -131,7 +131,7 @@ function Defi_Hot_Contracts() {
 					textTransform={"uppercase"}
 					ml={"5px"}
 				>
-          BACK
+					BACK
 				</Text>
 			</Flex>
 			<GenericBigTableComponent
@@ -198,8 +198,8 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
 								width={"24px"}
 								src={Asset?.src}
 								alt="logo"
-								// url={"/icons/Ethereum_sm_icon.svg"}
-								//  src="/icons/aave_logo.svg"
+							// url={"/icons/Ethereum_sm_icon.svg"}
+							//  src="/icons/aave_logo.svg"
 							></Image>
 							<Text
 								_dark={{
