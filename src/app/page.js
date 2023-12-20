@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
-import BlockchainSelectionMenuNew from "@/app/components/blockchainSelectionNew";
+import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import {
 	categoryChangedReducer,
@@ -19,9 +18,9 @@ import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// const OverviewColumnChart = dynamic(() => import("@/app/components/pages/dashboard/overviewColumnChart"), { ssr: false });
-const OverviewBox = dynamic(() => import("@/app/components/pages/dashboard/overviewBox"), { ssr: false });
-const Rankings = dynamic(() => import("@/app/components/pages/dashboard/defiRankingsTable"), { ssr: false });
+// const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
+//const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
+const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
 
 const HomePage = () => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -133,7 +132,7 @@ const HomePage = () => {
 					py={"15px"}
 					gap={"15px"}
 				>
-					<OverviewBox />
+					{/* <OverviewBox /> */}
 					{/* <OverviewColumnChart /> */}
 				</Box>
 				<Rankings />

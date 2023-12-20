@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const GenericBigTableComponent = dynamic(() =>
-	import("@/app/components/pages/defiDashboard/GenericBigTable")
+	import("@components/pages/defiDashboard/GenericBigTable")
 );
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
@@ -143,7 +143,7 @@ function TVL_Ranking() {
 					textTransform={"uppercase"}
 					ml={"5px"}
 				>
-          BACK
+					BACK
 				</Text>
 			</Flex>
 			<GenericBigTableComponent
@@ -217,8 +217,8 @@ function TableRow({
 								width={"24px"}
 								src={DeFi.src}
 								alt="defi_logo"
-								// url={"/icons/Ethereum_sm_icon.svg"}
-								//  src="/icons/aave_logo.svg"
+							// url={"/icons/Ethereum_sm_icon.svg"}
+							//  src="/icons/aave_logo.svg"
 							></Image>
 							<Text
 								_dark={{

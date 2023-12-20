@@ -1,5 +1,5 @@
 "use client";
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import {
 	Icon,
 	Text,
@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
-const GenericBigTableComponent = dynamic(() => import('@/app/components/pages/defiDashboard/GenericBigTable'));
+const GenericBigTableComponent = dynamic(() => import('@components/pages/defiDashboard/GenericBigTable'));
 
 function DefiUsers() {
 	const router = useRouter();
@@ -188,7 +188,7 @@ function DefiUsers() {
 					textTransform={"uppercase"}
 					ml={"5px"}
 				>
-          BACK
+					BACK
 				</Text>
 			</Flex>
 			<GenericBigTableComponent

@@ -1,7 +1,7 @@
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
-import { getDomainForCookie } from './functions';
+import { getDomainForCookie } from '@util/functions';
 
-const options = () => { return ({ domain: getDomainForCookie(), path: '/' });};
+const options = () => { return ({ domain: getDomainForCookie(), path: '/' }); };
 
 export const getCookieByName = (cookieName) => {
     const rawCookie = getCookie(cookieName);

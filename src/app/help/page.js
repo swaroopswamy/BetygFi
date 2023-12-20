@@ -11,7 +11,7 @@ import {
 	Image,
 	useColorMode,
 } from "@chakra-ui/react";
-import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "@/app/components/pages/help/helper";
+import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "@components/pages/help/helper";
 
 const Help = () => {
 	const { colorMode } = useColorMode();
@@ -24,7 +24,7 @@ const Help = () => {
 				>
 					<Box layerStyle={"flexSpaceBetween"}>
 						<Box padding={"90px 0px 80px 60px"}>
-							<Text variant={"bigHeading"} _light={{ color:"#000" }} _dark={{ color:"#FFF" }}>Help</Text>
+							<Text variant={"bigHeading"} _light={{ color: "#000" }} _dark={{ color: "#FFF" }}>Help</Text>
 						</Box>
 						<Box paddingRight={"205px"} paddingTop={"30px"}>
 							<Image
@@ -39,7 +39,7 @@ const Help = () => {
 				</Box>
 
 				<Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
-          General
+					General
 				</Text>
 				<Accordion allowToggle padding={"10px 80px 80px 60px"}>
 					{General.map((item, i) => {
@@ -115,7 +115,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
-          BetygFi
+					BetygFi
 				</Text>
 				<Accordion allowToggle padding={"10px 80px 80px 60px"}>
 					{BetygFi.map((item, i) => {
@@ -171,7 +171,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
-          Wallets and DeFi Dashboard
+					Wallets and DeFi Dashboard
 				</Text>
 				<Accordion allowToggle padding={"10px 80px 80px 60px"}>
 					{WalletsAndDeFiDashboard.map((item, i) => {
@@ -262,7 +262,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"10px 0px 10px 75px"} lineHeight={"46px"}>
-          DeFi
+					DeFi
 				</Text>
 				<Accordion allowToggle padding={"10px 80px 80px 60px"}>
 					{DeFi.map((item, i) => {
@@ -381,7 +381,7 @@ const Help = () => {
 				</Box>
 
 				<Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
-          General
+					General
 				</Text>
 				<Accordion allowToggle>
 					{General.map((item, i) => {
@@ -453,7 +453,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
-          BetygFi
+					BetygFi
 				</Text>
 				<Accordion allowToggle>
 					{BetygFi.map((item, i) => {
@@ -504,7 +504,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
-          Wallets and DeFi Dashboard
+					Wallets and DeFi Dashboard
 				</Text>
 				<Accordion allowToggle>
 					{WalletsAndDeFiDashboard.map((item, i) => {
@@ -591,7 +591,7 @@ const Help = () => {
 				</Accordion>
 
 				<Text variant={"contentHeading"} padding={"24px 0px 3px 15px"} lineHeight={"46px"}>
-          DeFi
+					DeFi
 				</Text>
 				<Accordion allowToggle paddingBottom={"100px"}>
 					{DeFi.map((item, i) => {

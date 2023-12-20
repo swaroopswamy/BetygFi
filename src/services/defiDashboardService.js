@@ -77,5 +77,13 @@ export const getDefiTvlBorrowData = async (payload, rejectWithValue) => {
 	}
 };
 
-
-
+export const getDefiGraphData = async (payload, rejectWithValue) => {
+	try {
+		const { data } = await axiosInstance.get(
+			`protocols/${payload.defi}/graph-data?blockchain=${payload.blockchain}`
+		);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};
