@@ -1,13 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useMemo, } from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const SelectorGraph = ({ colorMode }) => {
-    const defiGraphData = useSelector(
-        (state) => state?.defiDashboardData?.DefiGraphData
-    );
+const SelectorGraph = ({ defiGraphData, options }) => {
 
     const series = useMemo(
         () => [
@@ -18,78 +14,78 @@ const SelectorGraph = ({ colorMode }) => {
         [defiGraphData]
     );
 
-    let [options, setOptions] = useState({
-        chart: {
-            id: "selection",
-            toolbar: {
-                show: false,
-            },
-            stacked: false,
-            type: "line",
-            brush: {
-                enabled: true,
-                target: "defi",
-                autoScaleYaxis: true,
-            },
-            selection: {
-                enabled: true,
-                fill: {
-                    color: "#667AFF4D",
-                    opacity: 0.3,
-                },
-                stroke: {
-                    width: 1,
-                    color: ["#544FC5", "#00E272"],
-                },
-            },
-            animations: {
-                enabled: false,
-            },
-        },
-        stroke: {
-            show: true,
-        },
-        colors: ["#544FC5", "#00E272"],
-        xaxis: {
-            type: "datetime",
-            labels: {
-                show: false,
-            },
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-        },
-        yaxis: {
-            labels: {
-                show: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        legend: {
-            show: false,
-        },
-        tooltip: {
-            enabled: false,
-        },
-        grid: {
-            borderColor: colorMode === "light" ? "#191919" : "#36363A",
-            xaxis: {
-                lines: {
-                    show: false,
-                },
-            },
-            yaxis: {
-                lines: {
-                    show: false,
-                },
-            },
-        },
-    });
+    // let [options, setOptions] = useState({
+    //     chart: {
+    //         id: "selection",
+    //         toolbar: {
+    //             show: false,
+    //         },
+    //         stacked: false,
+    //         type: "line",
+    //         brush: {
+    //             enabled: true,
+    //             target: "defi",
+    //             autoScaleYaxis: true,
+    //         },
+    //         selection: {
+    //             enabled: true,
+    //             fill: {
+    //                 color: "#667AFF4D",
+    //                 opacity: 0.3,
+    //             },
+    //             stroke: {
+    //                 width: 1,
+    //                 color: ["#544FC5", "#00E272"],
+    //             },
+    //         },
+    //         animations: {
+    //             enabled: false,
+    //         },
+    //     },
+    //     stroke: {
+    //         show: true,
+    //     },
+    //     colors: ["#544FC5", "#00E272"],
+    //     xaxis: {
+    //         type: "datetime",
+    //         labels: {
+    //             show: false,
+    //         },
+    //         axisTicks: {
+    //             show: false,
+    //         },
+    //         axisBorder: {
+    //             show: false,
+    //         },
+    //     },
+    //     yaxis: {
+    //         labels: {
+    //             show: false,
+    //         },
+    //     },
+    //     dataLabels: {
+    //         enabled: false,
+    //     },
+    //     legend: {
+    //         show: false,
+    //     },
+    //     tooltip: {
+    //         enabled: false,
+    //     },
+    //     grid: {
+    //         borderColor: colorMode === "light" ? "#191919" : "#36363A",
+    //         xaxis: {
+    //             lines: {
+    //                 show: false,
+    //             },
+    //         },
+    //         yaxis: {
+    //             lines: {
+    //                 show: false,
+    //             },
+    //         },
+    //     },
+    // });
 
     function getDate(timeStamp) {
         let d = new Date(0);
@@ -97,23 +93,23 @@ const SelectorGraph = ({ colorMode }) => {
         return d;
     }
 
-    const setSelectionHandler = (value) => {
-        let newOptions = {
-            ...options,
-            chart: {
-                ...options.chart,
-                selection: {
-                    ...options.chart.selection,
-                    xaxis: value,
-                },
-            },
-            grid: {
-                ...options.grid,
-                borderColor: colorMode === "light" ? "#191919" : "#36363A",
-            },
-        };
-        setOptions(newOptions);
-    };
+    // const setSelectionHandler = (value) => {
+    //     let newOptions = {
+    //         ...options,
+    //         chart: {
+    //             ...options.chart,
+    //             selection: {
+    //                 ...options.chart.selection,
+    //                 xaxis: value,
+    //             },
+    //         },
+    //         grid: {
+    //             ...options.grid,
+    //             borderColor: colorMode === "light" ? "#191919" : "#36363A",
+    //         },
+    //     };
+    //     setOptions(newOptions);
+    // };
 
     useEffect(() => {
         if (defiGraphData?.isSuccess && defiGraphData?.data != undefined) {

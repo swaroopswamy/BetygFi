@@ -22,6 +22,7 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     // const [series, setSeries] = useState([]);
     const defiGraphData = useSelector((state) => state?.defiDashboardData?.DefiGraphData);
 
+
     //const [graphData, setGraphData] = useState(null);
     // const [tvlData, setTVLData] = useState(null);
 
@@ -414,8 +415,8 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     /> */}
                 </Box>
 
-                <Box w={"100%"}>
-                    <SelectorGraph options={trendGraphSelectorOptions} />
+                <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+                    <SelectorGraph defiGraphData={defiGraphData} options={trendGraphSelectorOptions} />
                 </Box>
             </Box>
         </>
