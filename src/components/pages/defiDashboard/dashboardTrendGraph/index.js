@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import millify from "millify";
 // import SelectorGraph from "./selectorGraph";
 import Graph from "./graph";
+import SelectorGraph from "./selectorGraph";
+import { getTrendGraphFormattedDate } from "@util/utility";
 
 // const periods = ["7d", "14d", "30d", "1yr", "Max"];
 
@@ -188,7 +190,7 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
         [defiGraphData]
     );
 
-    const options = {
+    const trendGraphOptions = {
         chart: {
             toolbar: {
                 show: false,
@@ -196,21 +198,77 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
             zoom: {
                 enabled: false,
             },
-            id: "defi",
+            id: "trendgraph",
+            stacked: false,
             animations: {
                 enabled: false,
             },
+            type: 'line',
         },
-        colors: ["#544FC5", "#00E272"],
-        grid: {
+        stroke: {
             show: true,
-            borderColor: "#C6C6C6",
+            curve: "smooth",
+            width: [2, 2],
         },
-        legend: {
-            show: false,
+        fill: {
+            colors: ["#FF5C00"/* , "#C0E253", "#DE50CF", "#29A88E" */],
+            type: "gradient",
+            gradient: {
+                shadeIntensity: 0.6,
+                opacityFrom: 0.9,
+                opacityTo: 0.2,
+                stops: [0, 90, 100],
+            },
+        },
+        colors: ["#544FC5", "#00E272", "#FF5C00", /* "#C0E253", "#DE50CF", "#29A88E" */],
+        xaxis: {
+            type: "datetime",
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 300,
+                },
+                formatter: (val) => getTrendGraphFormattedDate(val * 1000),
+            },
+            axisTicks: {
+                show: true,
+            },
+        },
+        yaxis: {
+            tickAmount: 5,
+            labels: {
+                show: true,
+                style: {
+                    colors: useColorModeValue("#16171B", "#FFF"),
+                    fontSize: "11px",
+                    fontWeight: 400,
+                },
+                formatter: function (val) {
+                    return (
+                        "$" +
+                        millify(val, {
+                            precision: 2,
+                            locales: "en-US",
+                        })
+                    );
+                },
+            },
+            axisBorder: {
+                show: true,
+                color: "#FF5C00",
+                offsetX: "50px",
+            },
+            axisTicks: {
+                show: false,
+            },
         },
         dataLabels: {
             enabled: false,
+        },
+        legend: {
+            show: false,
         },
         tooltip: {
             enabled: true,
@@ -231,42 +289,89 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                 );
             },
         },
+        grid: {
+            borderColor: useColorModeValue("#191919", "#36363A"),
+            xaxis: {
+                lines: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                lines: {
+                    show: true,
+                },
+            },
+        },
+    };
+
+    const trendGraphSelectorOptions = {
+        chart: {
+            id: "selection",
+            toolbar: {
+                show: false,
+            },
+            stacked: false,
+            type: "line",
+            brush: {
+                enabled: true,
+                target: "defi",
+                autoScaleYaxis: true,
+            },
+            selection: {
+                enabled: true,
+                fill: {
+                    color: "#667AFF4D",
+                    opacity: 0.3,
+                },
+                stroke: {
+                    width: 1,
+                    color: ["#544FC5", "#00E272"],
+                },
+            },
+            animations: {
+                enabled: false,
+            },
+        },
         stroke: {
             show: true,
-            curve: "smooth",
-            width: [2, 2],
         },
+        colors: ["#544FC5", "#00E272"],
         xaxis: {
             type: "datetime",
             labels: {
-                show: true,
-                style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
-                    fontWeight: 300,
-                },
-            },
-            value: {
-
+                show: false,
             },
             axisTicks: {
-                show: true,
+                show: false,
             },
-            // formatter: (value) => {
-            //     return (value * 1000);
-            // },
+            axisBorder: {
+                show: false,
+            },
         },
         yaxis: {
-            tickAmount: 5,
             labels: {
-                show: true,
-                style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
-                    fontWeight: 400,
+                show: false,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        legend: {
+            show: false,
+        },
+        tooltip: {
+            enabled: false,
+        },
+        grid: {
+            borderColor: colorMode === "light" ? "#191919" : "#36363A",
+            xaxis: {
+                lines: {
+                    show: false,
                 },
-                formatter: (value) => {
-                    return millify(value) + " USD";
+            },
+            yaxis: {
+                lines: {
+                    show: false,
                 },
             },
         },
@@ -299,7 +404,7 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     borderBottom={"1px"}
                     borderColor={colorMode === "light" ? "#F0F0F5" : "#333"}
                 >
-                    <Graph colorMode={colorMode} options={options} searchParamProtocolSlug={searchParamProtocolSlug} series={series} />
+                    <Graph colorMode={colorMode} options={trendGraphOptions} searchParamProtocolSlug={searchParamProtocolSlug} series={series} />
                     {/* <CustomChart
                         className="overview-chart"
                         options={options}
@@ -309,10 +414,9 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     /> */}
                 </Box>
 
-                {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph
-                        tvlData={series} colorMode={colorMode} />
-                </Box> */}
+                <Box w={"100%"}>
+                    <SelectorGraph options={trendGraphSelectorOptions} />
+                </Box>
             </Box>
         </>
     );

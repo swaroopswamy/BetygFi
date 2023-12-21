@@ -1,20 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { Box } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
-import React, { useMemo, useState } from 'react';
-// import CustomChart from "@components/graph";
-import { useSelector } from 'react-redux';
+import { Box } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+import React, { useEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-// function getEveryNth(arr, nth) {
-//     const result = [];
-
-//     for (let index = 0; index < arr.length; index += nth) {
-//         result.push(arr[index]);
-//     }
-
-//     return result;
-// }
 
 const SelectorGraph = ({ colorMode }) => {
     const defiGraphData = useSelector(
@@ -30,7 +18,6 @@ const SelectorGraph = ({ colorMode }) => {
         [defiGraphData]
     );
 
-    // eslint-disable-next-line no-unused-vars
     let [options, setOptions] = useState({
         chart: {
             id: "selection",
@@ -104,33 +91,39 @@ const SelectorGraph = ({ colorMode }) => {
         },
     });
 
-    // const setSelectionHandler = (value) => {
-    //     let newOptions = {
-    //         ...options,
-    //         chart: {
-    //             ...options.chart,
-    //             selection: {
-    //                 ...options.chart.selection,
-    //                 xaxis: value,
-    //             },
-    //         },
-    //         grid: {
-    //             ...options.grid,
-    //             borderColor: colorMode === "light" ? "#191919" : "#36363A",
-    //         },
-    //     };
-    //     setOptions(newOptions);
-    // };
+    function getDate(timeStamp) {
+        let d = new Date(0);
+        d.setUTCSeconds(timeStamp);
+        return d;
+    }
 
-    // useEffect(() => {
-    //     if (defiGraphData?.isSuccess && defiGraphData?.data != undefined) {
-    //         setSelectionHandler({
-    //             min: Date.parse(getDate(series[0].data.slice(0)[0].x)),
-    //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
-    //         });
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+    const setSelectionHandler = (value) => {
+        let newOptions = {
+            ...options,
+            chart: {
+                ...options.chart,
+                selection: {
+                    ...options.chart.selection,
+                    xaxis: value,
+                },
+            },
+            grid: {
+                ...options.grid,
+                borderColor: colorMode === "light" ? "#191919" : "#36363A",
+            },
+        };
+        setOptions(newOptions);
+    };
+
+    useEffect(() => {
+        if (defiGraphData?.isSuccess && defiGraphData?.data != undefined) {
+            setSelectionHandler({
+                min: Date.parse(getDate(series[0].data.slice(0)[0].x)),
+                max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
@@ -141,7 +134,7 @@ const SelectorGraph = ({ colorMode }) => {
             >
                 <Chart
                     options={options}
-                    series={series}
+                    series={series[0].data}
                     type={options.chart.type}
                     height={"100px"}
                     width={"100%"}
@@ -151,6 +144,27 @@ const SelectorGraph = ({ colorMode }) => {
     );
 };
 
+// const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
+//     return (
+//         <Box
+//          display={"flex"}>
+//             {periods.map((period, i) => {
+//                 return (
+//                     <Button
+//                         key={i}
+//                         variant="graphButton"
+//                         onClick={() => {
+//                             periodSelectionHandler(period);
+//                         }}
+//                         isActive={period === currPeriod}
+//                     >
+//                         {period}
+//                     </Button>
+//                 );
+//             })}
+//         </Box>
+//     );
+// };
 
 
 export default SelectorGraph;
