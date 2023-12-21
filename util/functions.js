@@ -45,12 +45,17 @@ export const getDomainForCookie = () => '.' + getMainDomain();
 
 export const getMainDomain = () => {
     if (typeof window !== "undefined") {
-        const host = window.location.hostname;
-        const splittedHost = host.split(".");
-        splittedHost.shift();
-        return splittedHost.join(".");
+        if (process.env.NEXT_PUBLIC_ENV === "production") {
+            return window.location.hostname;
+        } else {
+            const host = window.location.hostname;
+            const splittedHost = host.split(".");
+            splittedHost.shift();
+            return splittedHost.join(".");
+        }
     } else {
         return "betygfi.com";
     }
 };
+
 
