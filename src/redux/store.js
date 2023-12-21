@@ -1,15 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice";
-import DashboardTableDataSlice from "./dashboard_data/dataSlice";
+import AuthDataSlice from "@/redux/auth_data/authSlice";
+import DashboardTableDataSlice from "@/redux/dashboard_data/dataSlice";
+import AppDataSlice from "@/redux/app_data/dataSlice";
+import WalletDashboardTableDataSlice from "@/redux/wallet_dashboard_data/dataSlice";
+import DefiDashboardDataSlice from "@/redux/defi_dashboard_data/dataSlice";
+import CoinDataSlice from "@/redux/coin_data/dataSlice";
 
-import WalletDashboardTableDataSlice from "./wallet_dashboard_data/dataSlice";
 
 const store = configureStore({
-  reducer: {
-    auth: authSlice,
-    dashboardTableData: DashboardTableDataSlice,
-    walletDashboardTableData: WalletDashboardTableDataSlice
-  },
+	reducer: {
+		authData:AuthDataSlice,
+		dashboardTableData: DashboardTableDataSlice,
+		walletDashboardTableData: WalletDashboardTableDataSlice,
+		appData: AppDataSlice,
+		defiDashboardData: DefiDashboardDataSlice,
+		coinData: CoinDataSlice
+	},
 });
 export default store;
 

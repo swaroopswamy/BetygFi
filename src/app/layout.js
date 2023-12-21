@@ -1,36 +1,77 @@
-
+import React from "react";
 import { ReduxProvider } from "@/redux/provider";
-import { Manrope } from "next/font/google";
-import { Providers } from "./ChakraProvider";
-import LayoutProvider from "./layout/LayoutProvider";
-import { Web3Provider } from './Web3Provider';
-
-const manrope = Manrope({
-  weight: ['400', '700'],
-  style: ['normal'],
-  subsets: ["latin"]
-});
+import Script from "next/script";
+import "/styles/styles.scss";
+import { Providers } from "@/app/ChakraProvider";
+import { WagmiProvider } from "@/app/Web3Provider";
+import LayoutProvider from "@/app/LayoutProvider";
+import SessionProvider from "@/app/SessionProvider";
+import { getServerSession } from "next-auth";
 
 export const metadata = {
-  title: "BetygFi : Elevate your game",
-  description: "Elevate your game",
-  viewport: `width=1200`
+	title: "BetygFi : Elevate your game",
+	description: "Elevate your game",
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <>
-      <html lang="en" style={{minWidth:"1200px"}}>
-        <body>
-          <ReduxProvider>
-            <Web3Provider>
-              <Providers>
-                <LayoutProvider>{children}</LayoutProvider>
-              </Providers>
-            </Web3Provider>
-          </ReduxProvider>
-        </body>
-      </html>
-    </>
-  );
+// export const dynamicParams = true
+export const dynamic = 'auto';
+// export const dynamic = "force-static";
+export const revalidate = false;
+export const fetchCache = 'auto';
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
+export const maxDuration = 5;
+
+export default async function RootLayout({ children }) {
+	const session = await getServerSession();
+	return (
+		<html lang="en">
+			<head>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
+				<link
+					href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
+					rel="stylesheet"
+				/>
+				{/* Hotjar Tracking Code for https://betygfi.com/
+         */}
+				<Script rel="preconnect" id="hotjar-analytics">
+					{`(function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:3667973,hjsv:6}; 
+            a=o.getElementsByTagName('head')[0]; 
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; 
+            a.appendChild(r);
+            })
+            (window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            `}
+				</Script>
+				<Script
+					rel="preconnect"
+					src="https://www.googletagmanager.com/gtag/js?id=G-Q0B2YDZPET"
+					strategy="afterInteractive"
+				></Script>
+				<Script id="google-analytics" strategy="afterInteractive">
+					{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-Q0B2YDZPET');
+        `}
+				</Script>
+			</head>
+			<body>
+			<SessionProvider session={session}>
+				<ReduxProvider>
+					<WagmiProvider>
+						<Providers>
+								<LayoutProvider>{children}</LayoutProvider>
+							</Providers>
+					</WagmiProvider>
+				</ReduxProvider>
+			</SessionProvider>
+			</body>
+		</html>
+	);
 }

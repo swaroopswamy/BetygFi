@@ -4,48 +4,64 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -f .env.dev next dev",
+    "start:dev": "NODE_ENV=production env-cmd -f .env.dev node_modules/next/dist/bin/next start -p 7000",
+    "start:qa": "NODE_ENV=production env-cmd -f .env.qa node_modules/next/dist/bin/next start -p 7000",
+    "start:prod": "NODE_ENV=production env-cmd -f .env.prod node_modules/next/dist/bin/next start -p 7000",
     "build:dev": "env-cmd -f .env.dev next build",
-    "start:qa": "env-cmd -f .env.qa next start",
     "build:qa": "env-cmd -f .env.qa next build",
-    "start:prod": "env-cmd -f .env.prod next start",
     "build:prod": "env-cmd -f .env.prod next build",
-    "build:test": "env-cmd -f .env.test next build"
+    "analyze:dev": "cross-env ANALYZE=true next build",
+    "eslint": "eslint ./src",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@3rdweb/hooks": "^1.9.2",
-    "@babel/core": "^7.22.9",
-    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/icon": "^3.2.0",
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/next-js": "^2.1.4",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@fontsource/open-sans": "^5.0.5",
     "@fontsource/raleway": "^5.0.5",
-    "@noshot/env": "^3.0.3",
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/webpack": "^8.0.1",
     "apexcharts": "^3.41.1",
     "axios": "^1.4.0",
-    "dotenv": "^16.3.1",
+    "chakra-react-select": "^4.7.6",
+    "cookies-next": "^4.1.0",
     "encoding": "^0.1.13",
     "env-cmd": "^10.1.0",
-    "eslint": "8.44.0",
-    "eslint-config-next": "13.4.8",
+    "eslint-config-next": "^13.5.6",
+    "ethers": "^5.7.2",
     "framer-motion": "^10.12.23",
     "is-empty": "^1.2.0",
+    "lodash": "4.17.21",
+    "memory-cache": "^0.2.0",
     "millify": "^6.1.0",
     "moment": "^2.29.4",
-    "next": "^13.4.10",
-    "pngjs": "^7.0.0",
-    "react": "18.2.0",
+    "next": "^13.5.6",
+    "next-auth": "^4.24.5",
+    "nookies": "^2.5.2",
+    "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
-    "react-dom": "18.2.0",
-    "react-dotenv": "^0.1.3",
-    "react-icons": "^4.10.1",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "react-reader": "^2.0.4",
     "react-redux": "^8.1.1",
-    "sass": "^1.63.6"
+    "react-table": "^7.8.0",
+    "sass": "^1.63.6",
+    "wagmi": "^1.4.5",
+    "webpack": "^5.89.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "@babel/eslint-parser": "^7.5.4",
+    "@next/bundle-analyzer": "^13.5.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.9.0",
+    "husky": "^8.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint"
+    }
   }
 }

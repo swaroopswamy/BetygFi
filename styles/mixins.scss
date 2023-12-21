@@ -1,0 +1,292 @@
+
+@mixin flexCenter {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+@mixin flexJustifyBetween {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+@mixin flexColumn {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+@mixin flexColumnBetween {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+ 
+
+@mixin textGradient {
+
+  background: linear-gradient(279.51deg, #134d82 24.53%, #4982b7 122.16%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+ 
+
+@mixin textGradient1 {
+
+  background: linear-gradient(90.37deg, #0975c2 -7.24%, #0f8c94 155.97%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+ 
+
+@mixin textGradient2 {
+
+  background: linear-gradient(79.81deg, #165cc7 -8.12%, #00b9c5 162.79%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+ 
+
+/*
+
+ 
+
+  breakpoint arguement choices:
+
+  phone
+
+  tablet portait
+
+  tablet landscape
+
+  normal desktop
+
+  large desktop
+
+ 
+
+  */
+
+@mixin respond($breakpoint) {
+
+  @if $breakpoint == smallphone {
+
+    @media screen and (max-width: 321px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == marginproblem {
+
+    @media screen and (width: 375.2px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == miphone {
+
+    @media screen and (min-width: 393px) and (max-width: 394px) {
+
+      @content;
+
+    }
+
+  }
+
+ 
+
+  @if $breakpoint == phone {
+
+    @media screen and (min-width: 322px) and (max-width: 480px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == smalltab {
+
+    @media screen and (min-width: 481px) and (max-width: 600px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == tab-port {
+
+    @media screen and (min-width: 601px) and (max-width: 768px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == tab-land {
+
+    @media (min-width: 769px) and (max-width: 800px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == large-tab {
+
+    @media (min-width: 801px) and (max-width: 1024px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == desktop {
+
+    @media (min-width: 1025px) and (max-width: 1300px) {
+
+      @content;
+
+    }
+
+  }
+
+  @if $breakpoint == largedesktop {
+
+    @media (min-width: 1301px) {
+
+      @content;
+
+    }
+
+  }
+
+}
+
+@mixin textGradient3 {
+
+  background: linear-gradient(90deg, #0270d2 0%, #36a0dc 100%);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+@mixin textGradient4 {
+
+  background: linear-gradient(
+
+    92.38deg,
+
+    #165cc7 -5.36%,
+
+    #00b9c5 122.01%,
+
+    rgba(255, 255, 255, 0) 122.03%
+
+  );
+
+ 
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+@mixin textGradient5 {
+
+  background: linear-gradient(90.37deg, #0975c2 -7.24%, #0f8c94 155.97%);
+
+ 
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+}
+
+ 
+
+@mixin placeholder {
+
+  ::-webkit-input-placeholder {
+
+    @content;
+
+  }
+
+  :-moz-placeholder {
+
+    @content;
+
+  }
+
+  ::-moz-placeholder {
+
+    @content;
+
+  }
+
+  :-ms-input-placeholder {
+
+    @content;
+
+  }
+
+}
+
+ 
+
+@mixin borderGradient {
+
+  @content;
+
+}
+
+ 

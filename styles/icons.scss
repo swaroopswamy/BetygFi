@@ -1,0 +1,204 @@
+.icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-upi {
+    height: 70px;
+    width: 200px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-lg {
+    height: 80px;
+    width: 80px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-70 {
+    height: 70px;
+    width: 70px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-big {
+    height: 105px;
+    width: 105px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-xl {
+    height: 130px;
+    width: 130px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-xxl {
+    height: 150px;
+    width: 150px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-small {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-64 {
+    height: 64px;
+    width: 64px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-40 {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-pay {
+    height: 55px;
+    width: 55px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon-xs {
+    height: 30px;
+    width: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.icon,
+.icon-lg,
+.icon-xl,
+.icon-small,
+.icon-xs,
+.icon-upi,
+.icon-big,
+.icon-pay,
+.icon-xxl,
+.icon-64,
+.icon-70 {
+    &:before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-position: center;
+        left: 0;
+        top: 0;
+    }
+}
+
+.dropdown_black {
+    &::before {
+        background-image: url('/icons/dropdown_black.svg');
+    }
+}
+
+.dropdown_black_open {
+    &::before {
+        transition: transform 0.3s ease;
+        transform: rotate(180deg);
+        background-image: url('/icons/dropdown_black.svg');
+    }
+}
+
+.dropdown_white {
+    &::before {
+        background-image: url('/icons/dropdown_white.svg');
+    }
+}
+
+.dropdown_white_open {
+    &::before {
+        transition: transform 0.3s ease;
+        transform: rotate(180deg);
+        background-image: url('/icons/dropdown_white.svg');
+    }
+}
+
+
+.moon {
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/moon.svg');
+    }
+}
+
+.sun {
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/sun.svg');
+    }
+}
+
+.next_icon_light {
+    width: "24px";
+    height: "24px";
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/next_icon_light.svg');
+    }
+}
+
+.next_icon_dark {
+    width: "24px";
+    height: "24px";
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/next_icon_dark.svg');
+    }
+}
+
+
+.log_in_white {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/log_in_white.svg');
+    }
+}
+
+.log_in_black {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/log_in_black.svg');
+    }
+}
+
+.green_check_circle {
+    &::before {
+        background-image: url('/icons/green_check_circle.svg');
+    }
+}
+
+.red_check_circle {
+    &::before {
+        background-image: url('/icons/red_check_circle.svg');
+    }
+}
