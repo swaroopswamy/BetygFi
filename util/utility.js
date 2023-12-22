@@ -1,10 +1,13 @@
 import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
+import moment from "moment";
 
 export const AUTH_COOKIE_NAME = "betygfi-auth";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const getTrendGraphFormattedDate = value => moment(value).format("MMM YY");
 
 export const getAuthenticatedUserToken = () => {
     const authCookie = getCookieByName(AUTH_COOKIE_NAME);
