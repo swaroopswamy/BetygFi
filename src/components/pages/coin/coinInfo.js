@@ -40,11 +40,11 @@ const CoinInfo = () => {
                 w={{ base: "100%", bigSize: "70%" }}
             >
                 <Box
-                    p={"15px"}
+                    p={"25px 15px"}
                     display={"flex"}
                     alignItems={"center"}
                     justifyContent={"center"}
-                    minW={{ base: "100%", bigSize: "40%" }}
+                    minW={{ base: "100%", bigSize: "50%" }}
                 >
                     <ScoreMeter score={[CoinDashboardData?.score]} />
                 </Box>
@@ -54,16 +54,16 @@ const CoinInfo = () => {
                     flexDir={"column"}
                     justifyContent={"space-between"}
                     w={"100%"}
-                    gap={"15px"}
-                    p={"15px"}
+                    gap={"35px"}
+                    p={"35px 10px 10px 10px"}
                 >
                     <Box
                         layerStyle={"flexColumn"}
                         justifyContent={"space-between"}
                         p={"10px"}
                         pt={"40px"}
-                        minW={{ base: "100%", bigSize: "60%" }}
-                        gap={"30px"}
+                        minW={{ base: "100%", bigSize: "50%" }}
+                        gap={"60px"}
                     >
                         <Box display={"flex"} justifyContent={"space-between"}>
                             <DashboardCell
