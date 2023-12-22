@@ -1,5 +1,6 @@
 import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
+import orderBy from 'lodash/orderBy';
 import moment from "moment";
 
 export const AUTH_COOKIE_NAME = "betygfi-auth";
@@ -89,3 +90,5 @@ export const formatMCAPSearchTableString = (key, value) => {
         }
     }
 };
+
+export const orderByKey = (list, key, orderby) => orderBy(list, [key], [orderby]);

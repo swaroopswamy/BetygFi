@@ -1,26 +1,13 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-import React from "react";
-import {
-	Box,
-	Table,
-	Tbody,
-	Text,
-	Th,
-	Thead,
-	Tr,
-	Td,
-	Spinner,
-	Icon,
-	useMediaQuery,
-} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Table, Tbody, Text, Th, Thead, Tr, Td, Spinner, Icon, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
 
 import { SingleAccordionComp } from "@components/accordion";
-
-import { HiSortDescending } from "react-icons/hi";
+import { HiSortAscending, HiSortDescending } from "react-icons/hi";
+import { orderByKey } from "@util/utility";
 
 const GenericTable = ({
 	tableHeader,
@@ -35,32 +22,45 @@ const GenericTable = ({
 	bigTable = false,
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
+
+	const [tableBodyData, setTableBodyData] = useState(tableData?.data?.data);
+	const [sortedState, setSortedState] = useState({ on: null, by: null });
+
+	useEffect(() => {
+		setTableBodyData(tableData?.data?.data);
+	}, [tableData]);
+
+	useEffect(() => {
+		setTableBodyData(orderByKey(tableBodyData, sortedState.on, sortedState.by));
+	}, [sortedState, tableBodyData]);
+
+	const onClickHeader = headerItem => {
+		setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
+	};
+
 	return (
 		<>
 			{isMd ? (
 				<Table
 					variant="simple"
-					key={1}
 					w={"100%"}
 					display={{ base: "none", md: "table" }}
 					minW={bigTable ? "1200px" : "unset"}
 				>
 					<Thead
-						_light={{
-							bgColor: "#F5F5F7",
-						}}
-						_dark={{
-							bgColor: "#191919",
-						}}
+						_light={{ bgColor: "#F5F5F7", }}
+						_dark={{ bgColor: "#191919", }}
 						position="sticky"
 						top={0}
 						zIndex={"99"}
 					>
 						<Tr>
-							{tableHeader.map((item, i) => {
-								return (
+							{
+								tableHeader.map((item, i) => (
 									<Th key={i} border={"0px"}>
 										<Box
+											onClick={() => onClickHeader(item)}
+											cursor={"pointer"}
 											display={"flex"}
 											alignItems={"center"}
 											gap={"3px"}
@@ -70,35 +70,40 @@ const GenericTable = ({
 												textTransform={"capitalize"}
 												textAlign={"left"}
 											>
-												{item.label}
+												{item.Header}
 											</Text>
-											{item.isSortingEnabled && (
-												<Icon
-													as={HiSortDescending}
-													boxSize={"16px"}
-													alt="Sort"
-												/>
-											)}
 											{item.isTooltip && (
 												<TooltipComp
 													label={item?.tooltipLabel}
 												/>
 											)}
+											{'' + item.accessor}
+											{
+												sortedState.on == item.accessor && item.accessor !== undefined &&
+												<Icon as={
+													sortedState.by === 'desc'
+														?
+														HiSortDescending
+														:
+														HiSortAscending
+												}
+													boxSize={"16px"}
+													alt="Sort"
+													ml={"3px"}
+												/>
+											}
+
 										</Box>
 									</Th>
-								);
-							})}
+								))
+							}
 						</Tr>
 					</Thead>
 
 					<Tbody
 						border={"0px"}
-						_light={{
-							bgColor: "#FFF",
-						}}
-						_dark={{
-							bgColor: "#202020",
-						}}
+						_light={{ bgColor: "#FFF", }}
+						_dark={{ bgColor: "#202020", }}
 					>
 						{(tableData?.isError || tableData === null) && (
 							<>
@@ -107,9 +112,7 @@ const GenericTable = ({
 										p="20px"
 										textAlign={"center"}
 										height={"245px"}
-										colSpan={
-											SkeletonRowsColumnsDesktop?.numColumns
-										}
+										colSpan={SkeletonRowsColumnsDesktop?.numColumns}
 									>
 										<Text variant={"noDataText"}>
 											No data available
@@ -120,9 +123,7 @@ const GenericTable = ({
 						)}
 						{tableData?.isLoading && (
 							<SkeletonTable
-								numColumns={
-									SkeletonRowsColumnsDesktop?.numColumns
-								}
+								numColumns={SkeletonRowsColumnsDesktop?.numColumns}
 								numRows={SkeletonRowsColumnsDesktop?.numRows}
 							/>
 						)}
@@ -130,9 +131,7 @@ const GenericTable = ({
 							<Tr>
 								<Td
 									minH={"212px"}
-									colSpan={
-										SkeletonRowsColumnsDesktop?.numColumns
-									}
+									colSpan={SkeletonRowsColumnsDesktop?.numColumns}
 									textAlign={"center"}
 									p="20px"
 								>
@@ -147,8 +146,7 @@ const GenericTable = ({
 											mt="44px"
 											mb="20px"
 										>
-											We are retrieving data from the
-											Blockchain.
+											We are retrieving data from the Blockchain.
 										</Text>
 										<Spinner
 											thickness="4px"
@@ -174,16 +172,14 @@ const GenericTable = ({
 							</Tr>
 						)}
 						{tableData?.isSuccess &&
-							(tableData?.data?.data?.length > 0 ? (
-								tableData?.data?.data.map((item, rowIndex) => {
-									return (
-										<TableRow
-											key={rowIndex}
-											item={item}
-											rowIndex={rowIndex}
-										/>
-									);
-								})
+							(tableBodyData?.length > 0 ? (
+								tableBodyData.map((item, rowIndex) => (
+									<TableRow
+										key={rowIndex}
+										item={item}
+										rowIndex={rowIndex}
+									/>
+								))
 							) : (
 								<Tr>
 									<Td
@@ -203,38 +199,19 @@ const GenericTable = ({
 					</Tbody>
 				</Table>
 			) : (
-				<Table
-					variant={"unstyled"}
-					display={{ base: "table", md: "none" }}
-				>
-					<Thead
-						_light={{
-							bgColor: "#F5F5F7",
-						}}
-						_dark={{
-							bgColor: "#191919",
-						}}
-					>
+				<Table variant={"unstyled"} display={{ base: "table", md: "none" }}>
+					<Thead _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} >
 						<TableHeaderRowMobile />
 					</Thead>
 
-					<Tbody
-						_light={{
-							bgColor: "#FFF",
-						}}
-						_dark={{
-							bgColor: "#202020",
-						}}
-					>
+					<Tbody _light={{ bgColor: "#FFF", }} _dark={{ bgColor: "#202020", }} >
 						{(tableData?.isError || tableData === null) && (
 							<Tr>
 								<Td
 									p="20px"
 									textAlign={"center"}
 									height={"245px"}
-									colSpan={
-										SkeletonRowsColumnsDesktop?.numColumns
-									}
+									colSpan={SkeletonRowsColumnsDesktop?.numColumns}
 								>
 									<Text variant={"noDataText"}>
 										No data available
@@ -244,43 +221,27 @@ const GenericTable = ({
 						)}
 						{tableData?.isLoading && (
 							<SkeletonTable
-								numColumns={
-									SkeletonRowsColumnsMobile.numColumns
-								}
+								numColumns={SkeletonRowsColumnsMobile.numColumns}
 								numRows={SkeletonRowsColumnsMobile.numRows}
 							/>
 						)}
 
 						{tableData?.isSuccess &&
-							(tableData?.data?.data?.length > 0 ? (
-								tableData?.data?.data.map((item, rowIndex) => {
-									return (
-										<Tr key={rowIndex}>
-											<Td p={0} colSpan={3}>
-												<SingleAccordionComp
-													display={"flex"}
-													minH={"50px"}
-													w={"100%"}
-													borderRadius={"0px"}
-													ButtonComp={() => {
-														return (
-															<ButtonComp
-																item={item}
-															/>
-														);
-													}}
-													PanelComp={() => {
-														return (
-															<PanelComp
-																item={item}
-															/>
-														);
-													}}
-												/>
-											</Td>
-										</Tr>
-									);
-								})
+							(tableBodyData?.length > 0 ? (
+								tableBodyData.map((item, rowIndex) => (
+									<Tr key={rowIndex}>
+										<Td p={0} colSpan={3}>
+											<SingleAccordionComp
+												display={"flex"}
+												minH={"50px"}
+												w={"100%"}
+												borderRadius={"0px"}
+												ButtonComp={() => <ButtonComp item={item} />}
+												PanelComp={() => <PanelComp item={item} />}
+											/>
+										</Td>
+									</Tr>
+								))
 							) : (
 								<Tr>
 									<Td

@@ -22,7 +22,7 @@ import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 
-const GenericTable = dynamic(() => import("@components/tablev2"));
+const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
 const ScoreDistribuition = dynamic(() => import("@components/pages/dashboard/scoreDistribuition"));
 
@@ -148,12 +148,8 @@ const Rankings = () => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{
-                            color: "#161616",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
+                        _light={{ color: "#161616", }}
+                        _dark={{ color: "#FFFFFF", }}
                         lineHeight={"26px"}
                     >
                         Total DeFis - {totalDefis}
@@ -220,12 +216,7 @@ const TableRow = ({ item, rowIndex }) => {
         <Tr
             key={rowIndex}
             cursor={"pointer"}
-            onClick={() => {
-                router.push(
-                    `/protocol/${item?.slug}`
-                    // `/defi_dashboard?defi=${item?.slug}&id=${item._id}`
-                );
-            }}
+            onClick={() => { router.push(`/protocol/${item?.slug}`); }}
             border={"0px"}
         >
             <Td key={0} textAlign={"center"}>

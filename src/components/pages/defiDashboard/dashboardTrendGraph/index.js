@@ -5,13 +5,13 @@ import {
     useColorModeValue,
     Text,
 } from "@chakra-ui/react";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import TrendGraph from "./trendGraph";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
 // const periods = ["7d", "14d", "30d", "1yr", "Max"];
-const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+// const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     const { colorMode } = useColorMode();
@@ -19,7 +19,6 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     // const [currencySelected, setCurrencyType] = useState("USD");
     // const [series, setSeries] = useState([]);
     const defiGraphData = useSelector((state) => state?.defiDashboardData?.DefiGraphData);
-
 
     //const [graphData, setGraphData] = useState(null);
     // const [tvlData, setTVLData] = useState(null);
@@ -218,9 +217,9 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     />
                 </Box>
 
-                <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+                {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
                     <SelectorGraph colorMode={colorMode} />
-                </Box>
+                </Box> */}
             </Box>
         </>
     );
@@ -228,132 +227,132 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
 
 export default DashboardTrendGraph;
 
-const SelectorGraph = ({ colorMode }) => {
-    const defiGraphData = useSelector(
-        (state) => state?.defiDashboardData?.DefiGraphData
-    );
+// const SelectorGraph = ({ colorMode }) => {
+//     const defiGraphData = useSelector(
+//         (state) => state?.defiDashboardData?.DefiGraphData
+//     );
 
-    const series = useMemo(() => [{
-        data: defiGraphData?.data?.data,
-    }], [defiGraphData]);
+//     const series = useMemo(() => [{
+//         data: defiGraphData?.data?.data,
+//     }], [defiGraphData]);
 
-    // eslint-disable-next-line no-unused-vars
-    let [options, setOptions] = useState({
-        chart: {
-            id: "selection",
-            toolbar: {
-                show: false,
-            },
-            stacked: false,
-            type: "line",
-            brush: {
-                enabled: true,
-                target: "defi",
-                autoScaleYaxis: true,
-            },
-            selection: {
-                enabled: true,
-                fill: {
-                    color: "#667AFF4D",
-                    opacity: 0.3,
-                },
-                stroke: {
-                    width: 1,
-                    color: ["#544FC5", "#00E272"],
-                },
-            },
-            animations: {
-                enabled: false,
-            },
-        },
-        stroke: {
-            show: true,
-        },
-        colors: ["#544FC5", "#00E272"],
-        xaxis: {
-            type: "datetime",
-            labels: {
-                show: false,
-            },
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-        },
-        yaxis: {
-            labels: {
-                show: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        legend: {
-            show: false,
-        },
-        tooltip: {
-            enabled: false,
-        },
-        grid: {
-            borderColor: colorMode === "light" ? "#191919" : "#36363A",
-            xaxis: {
-                lines: {
-                    show: false,
-                },
-            },
-            yaxis: {
-                lines: {
-                    show: false,
-                },
-            },
-        },
-    });
+//     // eslint-disable-next-line no-unused-vars
+//     let [options, setOptions] = useState({
+//         chart: {
+//             id: "selection",
+//             toolbar: {
+//                 show: false,
+//             },
+//             stacked: false,
+//             type: "line",
+//             brush: {
+//                 enabled: true,
+//                 target: "defi",
+//                 autoScaleYaxis: true,
+//             },
+//             selection: {
+//                 enabled: true,
+//                 fill: {
+//                     color: "#667AFF4D",
+//                     opacity: 0.3,
+//                 },
+//                 stroke: {
+//                     width: 1,
+//                     color: ["#544FC5", "#00E272"],
+//                 },
+//             },
+//             animations: {
+//                 enabled: false,
+//             },
+//         },
+//         stroke: {
+//             show: true,
+//         },
+//         colors: ["#544FC5", "#00E272"],
+//         xaxis: {
+//             type: "datetime",
+//             labels: {
+//                 show: false,
+//             },
+//             axisTicks: {
+//                 show: false,
+//             },
+//             axisBorder: {
+//                 show: false,
+//             },
+//         },
+//         yaxis: {
+//             labels: {
+//                 show: false,
+//             },
+//         },
+//         dataLabels: {
+//             enabled: false,
+//         },
+//         legend: {
+//             show: false,
+//         },
+//         tooltip: {
+//             enabled: false,
+//         },
+//         grid: {
+//             borderColor: colorMode === "light" ? "#191919" : "#36363A",
+//             xaxis: {
+//                 lines: {
+//                     show: false,
+//                 },
+//             },
+//             yaxis: {
+//                 lines: {
+//                     show: false,
+//                 },
+//             },
+//         },
+//     });
 
-    // const setSelectionHandler = (value) => {
-    //     let newOptions = {
-    //         ...options,
-    //         chart: {
-    //             ...options.chart,
-    //             selection: {
-    //                 ...options.chart.selection,
-    //                 xaxis: value,
-    //             },
-    //         },
-    //         grid: {
-    //             ...options.grid,
-    //             borderColor: colorMode === "light" ? "#191919" : "#36363A",
-    //         },
-    //     };
-    //     setOptions(newOptions);
-    // };
+//     // const setSelectionHandler = (value) => {
+//     //     let newOptions = {
+//     //         ...options,
+//     //         chart: {
+//     //             ...options.chart,
+//     //             selection: {
+//     //                 ...options.chart.selection,
+//     //                 xaxis: value,
+//     //             },
+//     //         },
+//     //         grid: {
+//     //             ...options.grid,
+//     //             borderColor: colorMode === "light" ? "#191919" : "#36363A",
+//     //         },
+//     //     };
+//     //     setOptions(newOptions);
+//     // };
 
-    // useEffect(() => {
-    //     if (defiGraphData?.isSuccess && defiGraphData?.data != undefined) {
-    //         setSelectionHandler({
-    //             min: Date.parse(getDate(series[0].data.slice(0)[0].x)),
-    //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
-    //         });
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+//     // useEffect(() => {
+//     //     if (defiGraphData?.isSuccess && defiGraphData?.data != undefined) {
+//     //         setSelectionHandler({
+//     //             min: Date.parse(getDate(series[0].data.slice(0)[0].x)),
+//     //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
+//     //         });
+//     //     }
+//     //     // eslint-disable-next-line react-hooks/exhaustive-deps
+//     // }, []);
 
-    return (
-        <>
-            <Box
-                px={"20px"}
-                layerStyle={"flexColumn"}
-                justifyContent={"center"}
-            >
-                <Chart
-                    options={options}
-                    series={series}
-                    type={options.chart.type}
-                    height={100}
-                    width={"100%"}
-                />
-            </Box>
-        </>
-    );
-};
+//     return (
+//         <>
+//             <Box
+//                 px={"20px"}
+//                 layerStyle={"flexColumn"}
+//                 justifyContent={"center"}
+//             >
+//                 <Chart
+//                     options={options}
+//                     series={series}
+//                     type={options.chart.type}
+//                     height={100}
+//                     width={"100%"}
+//                 />
+//             </Box>
+//         </>
+//     );
+// };
