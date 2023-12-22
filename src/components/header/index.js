@@ -28,7 +28,7 @@ import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
 import SearchBoxV2 from "@components/searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();

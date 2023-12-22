@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";

@@ -24,7 +24,7 @@ import {
 } from "@/redux/auth_data/authSlice";
 import { AUTH_COOKIE_NAME } from "@util/utility";
 import { getCookieByName } from "@util/cookieHelper";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 

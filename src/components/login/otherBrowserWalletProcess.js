@@ -1,6 +1,6 @@
 import { Box, Button, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useColorMode, useSteps, useToast } from "@chakra-ui/react";
 import { ethers } from "ethers";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount, useConnect } from "wagmi";

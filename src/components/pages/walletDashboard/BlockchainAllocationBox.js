@@ -3,7 +3,7 @@
 import { useColorMode, Skeleton, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
