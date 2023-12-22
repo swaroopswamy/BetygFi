@@ -2,12 +2,12 @@ import { Box, useColorModeValue } from "@chakra-ui/react";
 import millify from "millify";
 import React from "react";
 import CustomChart from "@components/graph";
-import moment from "moment";
+import { getTrendGraphFormattedDate } from "@util/utility";
 import { TrendGraphOptions } from "./trendGraphHelper";
 
 const TrendGraph = ({ series, colorMode, searchParamProtocolSlug }) => {
     TrendGraphOptions.xaxis.labels.style.colors = useColorModeValue("#16171B", "#FFF");
-    TrendGraphOptions.xaxis.labels.formatter = (val) => moment(val * 1000).format("MMM YY");
+    TrendGraphOptions.xaxis.labels.formatter = val => getTrendGraphFormattedDate(val * 1000);
     TrendGraphOptions.yaxis.labels.style.colors = useColorModeValue("#16171B", "#FFF");
     TrendGraphOptions.yaxis.labels.formatter = (val) => ("$" + millify(val, { precision: 2, locales: "en-US" }));
     TrendGraphOptions.tooltip.theme = colorMode;
