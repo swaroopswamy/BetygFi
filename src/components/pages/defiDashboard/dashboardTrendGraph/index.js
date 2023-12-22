@@ -7,9 +7,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import millify from "millify";
+// import millify from "millify";
 // import SelectorGraph from "./selectorGraph";
-import Graph from "./graph";
+import TrendGraph from "./trendGraph";
 import SelectorGraph from "./selectorGraph";
 import { getTrendGraphFormattedDate } from "@util/utility";
 
@@ -377,6 +377,89 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
             },
         },
     };
+    // const options = {
+    //     chart: {
+    //         toolbar: {
+    //             show: false,
+    //         },
+    //         zoom: {
+    //             enabled: false,
+    //         },
+    //         id: "defi",
+    //         animations: {
+    //             enabled: false,
+    //         },
+    //     },
+    //     colors: ["#544FC5", "#00E272"],
+    //     grid: {
+    //         show: true,
+    //         borderColor: "#C6C6C6",
+    //     },
+    //     legend: {
+    //         show: false,
+    //     },
+    //     dataLabels: {
+    //         enabled: false,
+    //     },
+    //     tooltip: {
+    //         enabled: true,
+    //         theme: colorMode,
+    //         custom: function ({ series, seriesIndex, dataPointIndex }) {
+    //             let val = millify(series[seriesIndex][dataPointIndex]);
+    //             let name = searchParamProtocolSlug;
+    //             return (
+    //                 '<div class="donut_tooltip">' +
+    //                 '<div class="donut_tooltip_text">' +
+    //                 name +
+    //                 "</div>" +
+    //                 '<div class="donut_tooltip_text">' +
+    //                 val +
+    //                 " USD" +
+    //                 "</div>" +
+    //                 "</div>"
+    //             );
+    //         },
+    //     },
+    //     stroke: {
+    //         show: true,
+    //         curve: "smooth",
+    //         width: [2, 2],
+    //     },
+    //     xaxis: {
+    //         type: "datetime",
+    //         labels: {
+    //             show: true,
+    //             style: {
+    //                 colors: useColorModeValue("#16171B", "#FFF"),
+    //                 fontSize: "11px",
+    //                 fontWeight: 300,
+    //             },
+    //         },
+    //         value: {
+
+    //         },
+    //         axisTicks: {
+    //             show: true,
+    //         },
+    //         // formatter: (value) => {
+    //         //     return (value * 1000);
+    //         // },
+    //     },
+    //     yaxis: {
+    //         tickAmount: 5,
+    //         labels: {
+    //             show: true,
+    //             style: {
+    //                 colors: useColorModeValue("#16171B", "#FFF"),
+    //                 fontSize: "11px",
+    //                 fontWeight: 400,
+    //             },
+    //             formatter: (value) => {
+    //                 return millify(value) + " USD";
+    //             },
+    //         },
+    //     },
+    // };
 
     return (
         <>
@@ -405,7 +488,11 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     borderBottom={"1px"}
                     borderColor={colorMode === "light" ? "#F0F0F5" : "#333"}
                 >
-                    <Graph colorMode={colorMode} options={trendGraphOptions} searchParamProtocolSlug={searchParamProtocolSlug} series={series} />
+                    <TrendGraph
+                        colorMode={colorMode}
+                        searchParamProtocolSlug={searchParamProtocolSlug}
+                        series={series}
+                    />
                     {/* <CustomChart
                         className="overview-chart"
                         options={options}
@@ -416,7 +503,8 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                 </Box>
 
                 <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph defiGraphData={defiGraphData} options={trendGraphSelectorOptions} />
+                    <SelectorGraph
+                        tvlData={series} colorMode={colorMode} />
                 </Box>
             </Box>
         </>
