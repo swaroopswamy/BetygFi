@@ -30,7 +30,7 @@ const PageButtonsWide = ({
     ...rest
 }) => {
     if (totalPages === 0) {
-        return;
+        return null;
     }
 
     return (
@@ -49,7 +49,7 @@ const PageButtonsWide = ({
                     alignItems={"center"}
                     gap={"8px"}
                 >
-                    <Buttons
+                    <PaginationButtons
                         page={page}
                         pageChangeHandler={pageChangeHandler}
                         totalPages={totalPages}
@@ -96,7 +96,7 @@ const PageButtonsWide = ({
                     gap={"8px"}
                     w={"80%"}
                 >
-                    <Buttons
+                    <PaginationButtons
                         page={page}
                         pageChangeHandler={pageChangeHandler}
                         totalPages={totalPages}
@@ -109,17 +109,43 @@ const PageButtonsWide = ({
 
 export default PageButtonsWide;
 
-const Buttons = ({ page, pageChangeHandler, totalPages }) => {
+const PaginationButtons = ({ page, pageChangeHandler, totalPages }) => {
     const { colorMode } = useColorMode();
+
+    const handlePaginationChange = (type, value) => {
+        if (type === "input") {
+            if (value < 0) {
+                value = 1;
+            }
+            if (value > totalPages) {
+                value = totalPages;
+            }
+            pageChangeHandler(value);
+        } else if (type === "most-left") {
+            if (page > 1) {
+                pageChangeHandler(value);
+            }
+        } else if (type === "decrement-left") {
+            if (page > 1) {
+                pageChangeHandler(value);
+            }
+        } else if (type === "increment-right") {
+            if (page < totalPages) {
+                pageChangeHandler(value);
+            }
+        } else if (type === "most-right") {
+            if (page < totalPages) {
+                pageChangeHandler(totalPages);
+            }
+        }
+    };
 
     return (
         <>
             <RoundButton
                 cursor={page > 1 ? "pointer" : "not-allowed"}
                 disabled={page === 1}
-                onClick={() => {
-                    if (page > 1) pageChangeHandler(1);
-                }}
+                onClick={() => handlePaginationChange("most-left", 1)}
             >
                 <ArrowLeftIcon boxSize={"12px"} />
             </RoundButton>
@@ -127,9 +153,7 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
             <RoundButton
                 cursor={page > 1 ? "pointer" : "not-allowed"}
                 disabled={page === 1}
-                onClick={() => {
-                    if (page > 1) pageChangeHandler(page - 1);
-                }}
+                onClick={() => handlePaginationChange("decrement-left", +page - 1)}
             >
                 <ChevronLeftIcon />
             </RoundButton>
@@ -143,20 +167,10 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
                     width={"65px"}
                     height={"30px"}
                     type="number"
-                    onChange={(e) => {
-                        let value = e.target.value;
-                        if (value < 0) {
-                            value = 1;
-                        }
-                        if (value > totalPages) {
-                            value = totalPages;
-                        }
-                        pageChangeHandler(value);
-                    }}
+                    onChange={(e) => handlePaginationChange("input", e.target.value)}
                     value={page}
                     textAlign={"center"}
-                ></Input>
-
+                />
                 <Text variant={"h3"}>of {totalPages} pages</Text>
             </Box>
 
@@ -164,9 +178,7 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
                 opacity={"1"}
                 cursor={page < totalPages ? "pointer" : "not-allowed"}
                 disabled={page === totalPages}
-                onClick={() => {
-                    if (page < totalPages) pageChangeHandler(page + 1);
-                }}
+                onClick={() => handlePaginationChange("increment-right", +page + 1)}
             >
                 <ChevronRightIcon />
             </RoundButton>
@@ -175,9 +187,7 @@ const Buttons = ({ page, pageChangeHandler, totalPages }) => {
                 opacity={"1"}
                 cursor={page < totalPages ? "pointer" : "not-allowed"}
                 disabled={page === totalPages}
-                onClick={() => {
-                    if (page < totalPages) pageChangeHandler(totalPages);
-                }}
+                onClick={() => handlePaginationChange("most-right", +totalPages)}
             >
                 <ArrowRightIcon boxSize={"12px"} />
             </RoundButton>
