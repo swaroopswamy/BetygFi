@@ -46,7 +46,10 @@ const CoinInfo = () => {
                     justifyContent={"center"}
                     minW={{ base: "100%", bigSize: "40%" }}
                 >
-                    <ScoreMeter score={[CoinDashboardData?.score]} />
+                    {
+                        CoinDashboardData?.score &&
+                        <ScoreMeter score={[CoinDashboardData?.score]} />
+                    }
                 </Box>
 
                 <Box
