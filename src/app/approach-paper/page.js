@@ -110,7 +110,7 @@ const Approach = () => {
 				boxShadow={useColorModeValue("0px", "0px 0px 4px 0px #FFF")}
 			>
 				<ReactReader
-					url="/text/paper4.epub"
+					url="/text/paper_new.epub"
 					showToc={false}
 					location={location}
 					locationChanged={changePage}
