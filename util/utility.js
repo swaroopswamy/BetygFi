@@ -80,15 +80,29 @@ export const formatMCAPSearchTableString = (key, value) => {
         if (value) {
             return convertToInternationalCurrencySystem(value);
         } else {
-            return "N/A";
+            return null;
         }
     } else if (key == "mcap") {
         if (value) {
             return convertToInternationalCurrencySystem(value);
         } else {
-            return "N/A";
+            return null;
         }
     }
 };
 
 export const orderByKey = (list, key, orderby) => orderBy(list, [key], [orderby]);
+
+export const calculateTimeDifference = (fromMilliseconds, toMilliseconds) => {
+    let now = new Date();
+    if (fromMilliseconds != null) {
+        now = new Date(fromMilliseconds);
+    }
+    const then = new Date(toMilliseconds);
+    const milliseconds = now.getTime() - then.getTime();
+
+    const seconds = Math.floor((milliseconds / 1000) % 60);
+    const minutes = Math.floor((milliseconds / 1000 / 60) % 60);
+    const hours = Math.floor((milliseconds / 1000 / 60 / 60) % 24);
+    return { hours, minutes, seconds };
+};

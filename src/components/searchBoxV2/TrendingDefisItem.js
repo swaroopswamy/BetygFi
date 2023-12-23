@@ -62,7 +62,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                     isMd &&
                     <Box w={"21%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                         <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                            {"$" + formatMCAPSearchTableString("tvl", defiItem.tvl)}
+                            {formatMCAPSearchTableString("tvl", defiItem.tvl) ? "$" + formatMCAPSearchTableString("tvl", defiItem.tvl) : "N/A"}
                         </Text>
                     </Box>
                 }
@@ -70,7 +70,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                     isMd &&
                     <Box w={"21%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                         <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                            {"$" + formatMCAPSearchTableString("mcap", defiItem.mcap)}
+                            {formatMCAPSearchTableString("mcap", defiItem.mcap) ? "$" + formatMCAPSearchTableString("mcap", defiItem.mcap) : "N/A"}
                         </Text>
                     </Box>
                 }
