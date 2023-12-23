@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box, Table, Tbody, Text, Th, Thead, Tr, Td, Spinner, Icon, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const SkeletonTable = dynamic(() => import("@components/skeleton"));
-
 import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { orderByKey } from "@util/utility";
+
+const TooltipComp = dynamic(() => import("@components/tooltipComp"));
+const SkeletonTable = dynamic(() => import("@components/skeleton"));
 
 const GenericTable = ({
 	tableHeader,
@@ -27,12 +26,18 @@ const GenericTable = ({
 	const [sortedState, setSortedState] = useState({ on: null, by: 'asc' });
 
 	useEffect(() => {
-		setTableBodyData(tableData?.data?.data);
+		if (tableData?.data?.data) {
+			setTableBodyData(tableData?.data?.data);
+		}
 	}, [tableData]);
 
 	useEffect(() => {
-		setTableBodyData(orderByKey(tableBodyData, sortedState.on, sortedState.by));
-	}, [sortedState, tableBodyData]);
+		if (sortedState.on !== null) {
+			if (tableBodyData?.length > 0) {
+				setTableBodyData(orderByKey(tableBodyData, sortedState.on, sortedState.by));
+			}
+		}
+	}, [sortedState]);
 
 	const onClickHeader = headerItem => {
 		setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
