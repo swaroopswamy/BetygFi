@@ -179,7 +179,7 @@ const TableRow = ({ item, i }) => {
 						: "#202020"
 			}
 			onClick={() => {
-				setClick(!clicked);
+				setClick(clicked);
 				openInNewTab(item?.Discussion);
 			}}
 			borderBottom={"1px"}
