@@ -15,19 +15,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-
-const GenericTable = dynamic(() => import("@components/tablev2"));
-const PageButtonsWide = dynamic(() =>
-    import("@components/pageButtonsWide")
-);
 import { tableHeader } from "@components/pages/coin/helper";
-import {
-    fetchCoinRankingsTableData,
-    fetchCoinScoresData,
-} from "@/redux/coin_data/dataSlice";
-const ScoreDistribution = dynamic(() =>
-    import("@components/pages/coin/scoreDistribution")
-);
+import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@/redux/coin_data/dataSlice";
+
+const GenericTable = dynamic(() => import("@components/table"));
+const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
+const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"));
 
 const CoinRankingsTable = () => {
     const dispatch = useDispatch();

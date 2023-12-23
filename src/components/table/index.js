@@ -24,7 +24,7 @@ const GenericTable = ({
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 
 	const [tableBodyData, setTableBodyData] = useState(tableData?.data?.data);
-	const [sortedState, setSortedState] = useState({ on: null, by: null });
+	const [sortedState, setSortedState] = useState({ on: null, by: 'asc' });
 
 	useEffect(() => {
 		setTableBodyData(tableData?.data?.data);
@@ -77,22 +77,19 @@ const GenericTable = ({
 													label={item?.tooltipLabel}
 												/>
 											)}
-											{'' + item.accessor}
 											{
-												sortedState.on == item.accessor && item.accessor !== undefined &&
-												<Icon as={
+												<Icon as={sortedState.on == item.accessor && item.accessor !== undefined &&
 													sortedState.by === 'desc'
-														?
-														HiSortDescending
-														:
-														HiSortAscending
+													?
+													HiSortDescending
+													:
+													HiSortAscending
 												}
 													boxSize={"16px"}
 													alt="Sort"
 													ml={"3px"}
 												/>
 											}
-
 										</Box>
 									</Th>
 								))
