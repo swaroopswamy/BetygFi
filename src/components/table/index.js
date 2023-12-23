@@ -77,7 +77,6 @@ const GenericTable = ({
 													label={item?.tooltipLabel}
 												/>
 											)}
-											{'' + item.accessor}
 											{
 												sortedState.on == item.accessor && item.accessor !== undefined &&
 												<Icon as={
