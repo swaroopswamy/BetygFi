@@ -46,18 +46,19 @@ const Approach = () => {
 					"font-weight": "400",
 					"font-size": `${scale * 24}px`,
 				},
+
 				"block_9": {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 24}px`,
 				},
-				
+
 				p: {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
-					"font-size": `${scale * 14}px!important`,
+					"font-size": `${scale * 14}px`,
 				},
-
+			
 				li: {
 					"font-size": `${scale * 14}px`,
 				},
@@ -80,13 +81,18 @@ const Approach = () => {
 					"font-size": `${scale * 14}px`,
 					//color: "#FF0000",
 				},
-				".block_18.text_5": {
+				"h2.block_9": {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
-					"font-size": `${scale * 14}px`,
-					//color: "#FF0000",
+					"font-size": `${scale * 14}px!important`,
+				},
+				".text_5": {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px!important`,
 				},
 				
+
 			});
 			rendition.current.themes.select("custom");
 		}
@@ -226,7 +232,7 @@ const Approach = () => {
 								}
 							}}
 						>
-                            -
+							-
 						</Text>
 						<Slider
 							aria-label="slider-ex-2"
@@ -254,7 +260,7 @@ const Approach = () => {
 								}
 							}}
 						>
-                            +
+							+
 						</Text>
 					</Box>
 				</Box>
