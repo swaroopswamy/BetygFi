@@ -37,7 +37,6 @@ export default function NotFoundPage() {
 
 	const renderMobile404 = () => (
 		<Box
-			border={"1px solid red"}
 			overflowY={"hidden"}
 			display={"flex"}
 			backgroundColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
@@ -97,9 +96,6 @@ export default function NotFoundPage() {
 			</Box>
 			<Box
 				position={"fixed"}
-				top={70}
-				left={360}
-				right={0}
 				height={"100vh"}
 				width={"100vw"}
 				backgroundRepeat={"no-repeat"}
