@@ -68,7 +68,7 @@ const BlockchainSelectionMenuBlocks = () => {
 				mr={{ base: "18px", md: "18px" }}
 				ml={{ base: "10px" }}
 			>
-        All
+				All
 			</Box>
 			{blockchains?.map((item, i) => {
 				return (
@@ -112,12 +112,17 @@ const BlockchainSelectionMenuBlocks = () => {
 							lineHeight={"20px"}
 							color={
 								colorMode === "light"
-									? blockchainSelected.includes(item.id)
-										? "#191919"
-										: "#191919"
-									: blockchainSelected.includes(item.id)
-										? "#FFFFFF"
-										: "#FFFFFF"
+									?
+									// blockchainSelected.includes(item.id)
+									// 	? "#191919"
+									// 	: 
+									"#191919"
+									:
+									// blockchainSelected.includes(item.id)
+									// 	?
+									// 	"#FFFFFF"
+									// 	:
+									"#FFFFFF"
 							}
 							textTransform={"capitalize"}
 							mr={{ base: "18px", md: "18px" }}

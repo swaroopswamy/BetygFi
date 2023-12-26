@@ -48,8 +48,7 @@ const Dashboard = () => {
     };
 
     useEffect(() => {
-        Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]);
-
+        Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]).then(result => result);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [blockchainSelected, categorySelected]);
 
@@ -104,12 +103,8 @@ const Dashboard = () => {
                 >
                     <Text
                         variant={"content"}
-                        _light={{
-                            color: "#525252",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
+                        _light={{ color: "#525252", }}
+                        _dark={{ color: "#FFFFFF", }}
                         mb="12px"
                     >
                         Filter by DeFi Category

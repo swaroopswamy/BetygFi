@@ -97,7 +97,7 @@ const Approach = () => {
 			justifyContent={"center"}
 			p={{
 				base: "25px 10px",
-				md: isBigScreen ? "25px 35px" : "25px 35px",
+				md: /* isBigScreen ? "25px 35px" : */ "25px 35px",
 			}}
 			paddingRight={{ base: "none", md: isBigScreen ? "200px" : "35px" }}
 			bgColor={useColorModeValue("#F0F0F5", "#191919")}
@@ -207,7 +207,7 @@ const Approach = () => {
 								}
 							}}
 						>
-                            -
+							-
 						</Text>
 						<Slider
 							aria-label="slider-ex-2"
@@ -235,7 +235,7 @@ const Approach = () => {
 								}
 							}}
 						>
-                            +
+							+
 						</Text>
 					</Box>
 				</Box>

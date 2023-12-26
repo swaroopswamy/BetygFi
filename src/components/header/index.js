@@ -90,11 +90,11 @@ const Navbar = ({ ...rest }) => {
         }
     }, [debouncedValue]);
 
-    const handleMobileSearchByWalletAddress = () => {
-        dispatch(walletAddressChangedReducer(searchWalletAddressValue));
-        router.push(`/top-wallets/${searchWalletAddressValue}`);
-        setSearchWalletAddressValue(searchWalletAddressValue);
-    };
+    // const handleMobileSearchByWalletAddress = () => {
+    //     dispatch(walletAddressChangedReducer(searchWalletAddressValue));
+    //     router.push(`/top-wallets/${searchWalletAddressValue}`);
+    //     setSearchWalletAddressValue(searchWalletAddressValue);
+    // };
 
     const handleSearchInputChange = (value) => {
         setSearchValue(value);
@@ -360,7 +360,7 @@ const Navbar = ({ ...rest }) => {
                             searchWalletAddressValue={searchWalletAddressValue}
                             handleSearchByWalletAddress={handleSearchByWalletAddress}
                             clearValueMobileSearch={clearValueMobileSearch}
-                            handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
+                            // handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
                             handleSearchInputChange={handleSearchInputChange}
                             searchValue={searchValue}
                             searchListData={searchListData?.data?.data?.data}
@@ -373,7 +373,7 @@ const Navbar = ({ ...rest }) => {
     };
 
     return (
-        <>
+        <Box id="betygfi-navbar">
             {isMd ? MdHeader() : SMHeader()}
             <MobileSidebar
                 isOpen={isMobileSidebarOpen}
@@ -388,7 +388,7 @@ const Navbar = ({ ...rest }) => {
                 onOpen={onLoginModalOpen}
                 onClose={onLoginModalClose}
             />
-        </>
+        </Box>
     );
 };
 

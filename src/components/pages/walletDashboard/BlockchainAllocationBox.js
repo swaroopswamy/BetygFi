@@ -117,7 +117,7 @@ const BlockchainAllocationBox = () => {
 	let bucketSums = [0, 0, 0, 0];
 	let scale = [60, 20, 15, 5];
 
-	Object.keys(blockchainAllocationData?.data || {})?.map((item) => {
+	Object.keys(blockchainAllocationData?.data || {})?.forEach((item) => {
 		let val = Number(blockchainAllocationData?.data[item]);
 		if (val >= 20.0) {
 			bucketSums[0] += val;
@@ -149,9 +149,9 @@ const BlockchainAllocationBox = () => {
 	if (otherItem.y != 0) toScaleSeries[3].data.push(otherItem);
 
 	let finalSeries = [];
-	toScaleSeries.map((item, i) => {
+	toScaleSeries.forEach((item, i) => {
 		if (item.data.length !== 0) {
-			item.data.map((obj) => {
+			item.data.forEach((obj) => {
 				obj.x = obj.x + " " + obj.y.toFixed(2) + "%";
 				obj.y = (obj.y * scale[i]) / bucketSums[i];
 				// obj.y = obj.y;

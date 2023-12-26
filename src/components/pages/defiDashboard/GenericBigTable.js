@@ -244,12 +244,16 @@ function SelectionBox({ colorMode }) {
 										letterSpacing={"1.4px"}
 										color={
 											colorMode === "light"
-												? blockchainSelected.includes(item.name)
-													? "#191919"
-													: "#191919"
-												: blockchainSelected.includes(item.name)
-													? "#FFFFFF"
-													: "#FFFFFF"
+												?
+												// blockchainSelected.includes(item.name)
+												// 	? "#191919"
+												// 	:
+												"#191919"
+												:
+												// blockchainSelected.includes(item.name)
+												// 	? "#FFFFFF"
+												// 	:
+												"#FFFFFF"
 										}
 									//textTransform="uppercase"
 									>
