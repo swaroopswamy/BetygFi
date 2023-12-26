@@ -58,7 +58,7 @@ export default function NotFoundPage() {
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
-						alt="universe"
+						alt="4"
 					/>
 					<Image
 						width={150}
@@ -70,7 +70,7 @@ export default function NotFoundPage() {
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
-						alt="universe"
+						alt="4"
 					/>
 				</Box>
 				<Text mt={"50px"} variant={"h4"}>
