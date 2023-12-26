@@ -153,9 +153,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 justifyContent={"space-between"}
                                                 alignItems={"center"}
                                                 onClick={() =>
-                                                    handleProcessSelector(
-                                                        item.name
-                                                    )
+                                                    handleProcessSelector()
                                                 }
                                                 key={item.key}
                                                 mx={"24px"}
