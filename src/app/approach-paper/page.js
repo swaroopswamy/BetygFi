@@ -55,7 +55,7 @@ const Approach = () => {
 				p: {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
-					"font-size": `${scale * 14}px`,
+					"font-size": `${scale * 14}px!important`,
 				},
 
 				li: {
@@ -72,19 +72,19 @@ const Approach = () => {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 14}px`,
-					color: "#FF0000",
+					//color: "#FF0000",
 				},
 				text_4: {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 14}px`,
-					color: "#FF0000",
+					//color: "#FF0000",
 				},
-				text_5: {
+				".block_18.text_5": {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 14}px`,
-					color: "#FF0000",
+					//color: "#FF0000",
 				},
 				
 			});
