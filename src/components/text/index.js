@@ -286,6 +286,14 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             color: colorMode === "light" ? "#FFFFFF" : "#191919",
         }),
+        bigText: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: "Inter",
+            fontSize: "32px",
+            fontStyle: "normal",
+            fontWeight: "400",
+            lineHeight: "36px",
+        })
     },
     defaultProps: {
         variant: "base",
