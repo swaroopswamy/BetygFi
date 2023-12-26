@@ -19,20 +19,10 @@ export default function NotFoundPage() {
 
 	const navigateToPageList = [
 		{
-			btnText: "Defi Dashboard",
-			btnTextMob: "Defi Dashboard",
-			btnLink: "/protocol"
+			btnText: "Home",
+			btnTextMob: "Home",
+			btnLink: "/"
 		},
-		{
-			btnText: "Coin Dashboard",
-			btnTextMob: "Coin Dashboard",
-			btnLink: "/coin"
-		},
-		{
-			btnText: "Top Wallets",
-			btnTextMob: "Top Wallets",
-			btnLink: "/top-wallets"
-		}
 	];
 
 	const renderMobile404 = () => (
