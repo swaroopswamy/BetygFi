@@ -46,6 +46,12 @@ const Approach = () => {
 					"font-weight": "400",
 					"font-size": `${scale * 24}px`,
 				},
+				"block_9": {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 24}px`,
+				},
+				
 				p: {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
@@ -68,6 +74,19 @@ const Approach = () => {
 					"font-size": `${scale * 14}px`,
 					color: "#FF0000",
 				},
+				text_4: {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px`,
+					color: "#FF0000",
+				},
+				text_5: {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px`,
+					color: "#FF0000",
+				},
+				
 			});
 			rendition.current.themes.select("custom");
 		}
