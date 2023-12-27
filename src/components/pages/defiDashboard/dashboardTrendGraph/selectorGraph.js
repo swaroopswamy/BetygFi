@@ -119,7 +119,6 @@ const SelectorGraph = ({ colorMode }) => {
     //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
     //         });
     //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, []);
 
     return (

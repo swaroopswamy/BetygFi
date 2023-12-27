@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
 	Text,
@@ -49,12 +50,10 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 			data.address = searchParamAddress;
 		}
 		dispatch(fetchWalletTransactionsData(data));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit]);
 
 	useEffect(() => {
 		fetchWalletTransactionsDataHandler();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fetchWalletTransactionsDataHandler]);
 
 	return (

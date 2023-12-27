@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, useColorMode, useColorModeValue, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
@@ -31,10 +31,8 @@ const OverviewColumnChart = () => {
 
 	useEffect(() => {
 		getScoreGraphDataHandler();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, categorySelected]);
 
-	// const labels = ["Worst", "Below Average", "Above Average", "Best"];
 	const colors = ["#FF7272", "#FF9F6A", "#FFD976", "#9ADA8A"];
 
 	const options = {

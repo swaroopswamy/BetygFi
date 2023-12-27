@@ -35,7 +35,6 @@ export const getDefiHotContractsTableData = async (payload, rejectWithValue) => 
 export const getDefiAssetCompositionTableData = async (payload, rejectWithValue) => {
 	try {
 		const { data } = await axiosInstance.get(
-			// eslint-disable-next-line max-len
 			`protocols/${payload.defi}/asset-composition?blockchain=${payload.blockchain}&page=${payload.page}&limit=${payload.limit}`
 		);
 		return data;

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button } from "@chakra-ui/react";
@@ -59,7 +60,6 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
 
     useEffect(() => {
         dispatch(fetchBlockchainListData());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

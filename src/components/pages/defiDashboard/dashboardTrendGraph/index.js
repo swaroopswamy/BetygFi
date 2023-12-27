@@ -93,7 +93,6 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     */
     /*     useEffect(() => {
             SeriesHandler();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [graphTypeSelected, graphData]);
      */
 
@@ -236,7 +235,6 @@ export default DashboardTrendGraph;
 //         data: defiGraphData?.data?.data,
 //     }], [defiGraphData]);
 
-//     // eslint-disable-next-line no-unused-vars
 //     let [options, setOptions] = useState({
 //         chart: {
 //             id: "selection",
@@ -335,7 +333,6 @@ export default DashboardTrendGraph;
 //     //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
 //     //         });
 //     //     }
-//     //     // eslint-disable-next-line react-hooks/exhaustive-deps
 //     // }, []);
 
 //     return (

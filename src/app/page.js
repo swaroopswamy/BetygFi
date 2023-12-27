@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
@@ -53,13 +54,10 @@ const HomePage = () => {
 
 	useEffect(() => {
 		Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]).then(result => result);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, categorySelected]);
 
 	useEffect(() => {
 		dispatch(fetchBlockchainListData());
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

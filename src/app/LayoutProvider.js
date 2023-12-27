@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
@@ -27,17 +26,8 @@ import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
-import useNetwork from "@hooks/useNetwork";
 
 export default function LayoutProvider({ children }) {
-    const isOnline = useNetwork();
-
-    useEffect(() => {
-        <CustomToast
-            isSuccessful={isOnline}
-            content={isOnline ? "Internet is back again" : "No Internet available"}
-        />;
-    }, [isOnline]);
 
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const dispatch = useDispatch();
@@ -141,6 +131,30 @@ export default function LayoutProvider({ children }) {
                     signOut({ callbackUrl: process.env.NEXTAUTH_URL });
             }
         }
+
+        window.addEventListener('online', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={true}
+                        content={'Internet connection is back :)'}
+                    />
+                ),
+            });
+        }, false);
+
+        window.addEventListener('offline', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={"Internet connection is down :("}
+                    />
+                ),
+            });
+        }, false);
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -221,76 +235,74 @@ export default function LayoutProvider({ children }) {
     }, [activeConnector]);
 
     return (
-        <>
-            <Box
-                width="100%"
-                minH="100vh"
-                bg={useColorModeValue("#F0F0F5", "#191919")}
-                display={"flex"}
-            >
-                <SidebarContent
-                    onClose={() => onClose}
-                    w={isMobileSidebarCollapsed ? "null" : "80%"}
-                    h={"100%"}
-                />
-                {isMd ? (
-                    <>
+        <Box
+            width="100%"
+            minH="100vh"
+            bg={useColorModeValue("#F0F0F5", "#191919")}
+            display={"flex"}
+        >
+            <SidebarContent
+                onClose={() => onClose}
+                w={isMobileSidebarCollapsed ? "null" : "80%"}
+                h={"100%"}
+            />
+            {isMd ? (
+                <>
+                    <Box
+                        display={{
+                            base: "none",
+                            md: isMobileSidebarCollapsed ? "flex" : "none",
+                        }}
+                        flexDirection={"column"}
+                        className="margin-conditions"
+                        id="main-body"
+                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                        w="100%"
+                        overflowX={"hidden"}
+                    >
+                        <Navbar onOpenMenu={onOpen} />
                         <Box
-                            display={{
-                                base: "none",
-                                md: isMobileSidebarCollapsed ? "flex" : "none",
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
                             }}
-                            flexDirection={"column"}
-                            className="margin-conditions"
-                            id="main-body"
-                            aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                            _dark={{
+                                bgColor: "#131313",
+                            }}
                             w="100%"
-                            overflowX={"hidden"}
+                            height={"100vh"}
                         >
-                            <Navbar onOpenMenu={onOpen} />
-                            <Box
-                                p="0"
-                                _light={{
-                                    bgColor: "#FFF",
-                                }}
-                                _dark={{
-                                    bgColor: "#131313",
-                                }}
-                                w="100%"
-                                height={"100vh"}
-                            >
-                                {children}
-                                <Footer />
-                            </Box>
+                            {children}
+                            <Footer />
                         </Box>
-                    </>
-                ) : (
-                    <>
+                    </Box>
+                </>
+            ) : (
+                <>
+                    <Box
+                        display={{ base: "flex", md: "none" }}
+                        flexDirection={"column"}
+                        overflowX={"hidden"}
+                        mt={"60px"}
+                        w="100%"
+                    >
+                        <Navbar onOpenMenu={onOpen} />
                         <Box
-                            display={{ base: "flex", md: "none" }}
-                            flexDirection={"column"}
-                            overflowX={"hidden"}
-                            mt={"60px"}
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
+                            }}
+                            _dark={{
+                                bgColor: "#282828",
+                            }}
                             w="100%"
                         >
-                            <Navbar onOpenMenu={onOpen} />
-                            <Box
-                                p="0"
-                                _light={{
-                                    bgColor: "#FFF",
-                                }}
-                                _dark={{
-                                    bgColor: "#282828",
-                                }}
-                                w="100%"
-                            >
-                                {children}
-                                <Footer />
-                            </Box>
+                            {children}
+                            <Footer />
                         </Box>
-                    </>
-                )}
-            </Box>
-        </>
+                    </Box>
+                </>
+            )}
+        </Box>
     );
 }

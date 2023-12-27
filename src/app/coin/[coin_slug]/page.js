@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Avatar, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -47,10 +48,11 @@ export default function CoinDashboardPage({ params }) {
     };
 
     useEffect(() => {
-        GetCoinDashboardDataHandler();
-        GetCoinPriceDataHandler();
-        GetCoinDevelopmentDataHandler();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        Promise.all([
+            GetCoinDashboardDataHandler(),
+            GetCoinPriceDataHandler(),
+            GetCoinDevelopmentDataHandler(),
+        ]).then(result => result);
     }, []);
 
     return (

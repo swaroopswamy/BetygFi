@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, Input, InputGroup, InputLeftElement, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';

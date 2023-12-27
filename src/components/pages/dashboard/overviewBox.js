@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { Box, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,12 +41,10 @@ const OverviewBox = () => {
 
     useEffect(() => {
         getOverviewDataHandler();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [blockchainSelected, categorySelected]);
 
     useEffect(() => {
         getOverviewGraphDataHandler();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categorySelected]);
 
     return (
