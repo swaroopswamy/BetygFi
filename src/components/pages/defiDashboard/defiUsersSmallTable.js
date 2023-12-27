@@ -49,31 +49,20 @@ function DefiUsersSmallTable() {
 					tableData={defiUsersTableData}
 					TableRow={TableRow}
 					TableHeaderRowMobile={TableHeaderRowMobile}
-					ButtonComp={(item) => {
-						return (
-							<Box layerStyle={"flexCenter"}>
-								<Text variant={"h3"}>
-									{item?.item?.user?.split("").join("").substring(0, 8) +
-										"..." +
-										item?.item?.user?.slice(-5)}
-								</Text>
-							</Box>
-						);
-					}}
-					PanelComp={() => {
-						return <Box></Box>;
-					}}
-					SkeletonRowsColumnsDesktop={{
-						numColumns: 1,
-						numRows: 5,
-					}}
-					SkeletonRowsColumnsMobile={{
-						numColumns: 2,
-						numRows: 5,
-					}}
+					ButtonComp={(item) => (
+						<Box layerStyle={"flexCenter"}>
+							<Text variant={"h3"}>
+								{item?.item?.user?.split("").join("").substring(0, 8) +
+									"..." +
+									item?.item?.user?.slice(-5)}
+							</Text>
+						</Box>
+					)}
+					PanelComp={() => (<Box></Box>)}
+					SkeletonRowsColumnsDesktop={{ numColumns: 1, numRows: 5 }}
+					SkeletonRowsColumnsMobile={{ numColumns: 2, numRows: 5 }}
 				/>
 			</Box>
-
 			<LastUpdate p={"10px"} time={"3"} />
 		</Box>
 	);

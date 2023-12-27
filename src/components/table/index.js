@@ -19,6 +19,7 @@ const GenericTable = ({
 	SkeletonRowsColumnsMobile,
 	isQueryInPendingState = false,
 	bigTable = false,
+	showSortingIcon
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 
@@ -40,7 +41,9 @@ const GenericTable = ({
 	}, [sortedState]);
 
 	const onClickHeader = headerItem => {
-		setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
+		if (showSortingIcon) {
+			setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
+		}
 	};
 
 	const renderMDTable = () => {
@@ -74,7 +77,7 @@ const GenericTable = ({
 											textTransform={"capitalize"}
 											textAlign={"left"}
 										>
-											{item.Header}
+											{item.Header || item.label}
 										</Text>
 										{item.isTooltip && (
 											<TooltipComp
@@ -82,6 +85,7 @@ const GenericTable = ({
 											/>
 										)}
 										{
+											showSortingIcon &&
 											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined &&
 												sortedState.by === 'desc'
 												?

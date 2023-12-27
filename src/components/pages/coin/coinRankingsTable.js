@@ -97,14 +97,9 @@ const CoinRankingsTable = () => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{
-                            color: "#161616",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
-                        lineHeight={"26px"}
-                    >
+                        _light={{ color: "#161616" }}
+                        _dark={{ color: "#FFFFFF" }}
+                        lineHeight={"26px"}>
                         Total - {totalDefis}
                     </Text>
                 </Box>
@@ -119,17 +114,12 @@ const CoinRankingsTable = () => {
                     tableHeader={tableHeader}
                     tableData={tableData}
                     TableRow={TableRow}
+                    showSortingIcon={true}
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={ButtonComp}
                     PanelComp={PanelComp}
-                    SkeletonRowsColumnsDesktop={{
-                        numRows: tableLimit,
-                        numColumns: 9,
-                    }}
-                    SkeletonRowsColumnsMobile={{
-                        numRows: tableLimit,
-                        numColumns: 3,
-                    }}
+                    SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
+                    SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
                 />
             </Box>
 

@@ -46,7 +46,7 @@ export const tableHeader = [
 export const portfolioTableHeader = [
 	{
 		accessor: "Token",
-		Header: " Token",
+		Header: "Token",
 		isTooltip: false,
 		isSortingEnabled: true,
 		tooltipLabel: null,
