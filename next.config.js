@@ -24,13 +24,9 @@ const nextConfig = {
   },
   reactStrictMode: false,
   webpack(config) {
-    // config.module.rules.push({
-    //   test: /\.svg$/i,
-    //   issuer: /\.[jt]sx?$/,
-    //   use: ["@svgr/webpack"],
-    // });
     config.plugins.push(
       new webpack.DefinePlugin({
+        // "process.env.CONFIG": JSON.stringify(require('./config.json')),
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       })
     );
