@@ -27,11 +27,18 @@ import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
+import useNetwork from "@hooks/useNetwork";
 
 export default function LayoutProvider({ children }) {
-    // if (typeof window !== "undefined") {
-    //     window.config = { ...process.env.CONFIG };
-    // }
+    const isOnline = useNetwork();
+
+    useEffect(() => {
+        <CustomToast
+            isSuccessful={isOnline}
+            content={isOnline ? "Internet is back again" : "No Internet available"}
+        />;
+    }, [isOnline]);
+
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
