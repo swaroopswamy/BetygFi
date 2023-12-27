@@ -40,10 +40,6 @@ const CoinPriceChart = () => {
         [CoinPriceData]
     );
 
-    useEffect(() => {
-        setPeriod(period);
-    }, [colorMode]);
-
     const options = {
         chart: {
             toolbar: {

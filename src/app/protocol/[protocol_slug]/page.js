@@ -108,7 +108,7 @@ const DefiDashboardPage = ({ params }) => {
             getDefiAssetsTableDataHandler(),
             getFeeRevenueDataHandler(),
             getDefiGraphDataHandler(),
-        ]);
+        ]).then(result => result);
     }, [blockchainSelected]);
 
     const getDefiGraphDataHandler = () => {

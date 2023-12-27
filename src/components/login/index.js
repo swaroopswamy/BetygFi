@@ -27,6 +27,7 @@ const LoginPage = ({ isOpen, onClose }) => {
     const walletArray = [
         {
             name: "Metamask",
+            slug: "metamask",
             icon: "metamask_icon.png",
             key: 1,
         },
@@ -35,9 +36,10 @@ const LoginPage = ({ isOpen, onClose }) => {
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] =
         useState(false);
 
-    const handleProcessSelector = () => {
-        setBrowserWalletProcessSelected(true);
+    const handleProcessSelector = (wallet) => {
+        setBrowserWalletProcessSelected(wallet === 'metamask');
     };
+
     const { colorMode } = useColorMode();
     return (
         <>

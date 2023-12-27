@@ -13,7 +13,7 @@ import {
     Image,
 } from "@chakra-ui/react";
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
-    const colorMode = useColorMode();
+    const { colorMode } = useColorMode();
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>

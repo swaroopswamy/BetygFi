@@ -172,13 +172,14 @@ function Defi_Hot_Contracts() {
 								fontSize={"16px"}
 								fontWeight={tabIndex === 0 ? "700" : "400"}
 								color={
-									tabIndex === 0
-										? colorMode === "light"
-											? "#000000"
-											: "#FFFFFF"
-										: colorMode === "light"
-											? "#000000"
-											: "#FFFFFF"
+									// tabIndex === 0
+									// ? colorMode === "light"
+									// 	? "#000000"
+									// 	: "#FFFFFF"
+									// :
+									colorMode === "light"
+										? "#000000"
+										: "#FFFFFF"
 								}
 								//textTransform={"uppercase"}
 								letterSpacing={"1px"}
@@ -199,13 +200,14 @@ function Defi_Hot_Contracts() {
 							<Text
 								fontSize={"16px"}
 								color={
-									tabIndex === 0
-										? colorMode === "light"
-											? "#000000"
-											: "#FFFFFF"
-										: colorMode === "light"
-											? "#000000"
-											: "#FFFFFF"
+									// tabIndex === 0
+									// 	? colorMode === "light"
+									// 		? "#000000"
+									// 		: "#FFFFFF"
+									// :
+									colorMode === "light"
+										? "#000000"
+										: "#FFFFFF"
 								}
 								fontWeight={tabIndex === 1 ? "700" : "400"}
 								//textTransform={"uppercase"}

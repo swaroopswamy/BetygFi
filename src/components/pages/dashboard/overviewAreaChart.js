@@ -143,8 +143,6 @@ const OverviewAreaChart = () => {
             });
     }, [categorySelected, overviewGraphData]);
 
-    useEffect(() => setPeriod(period), [colorMode]);
-
     return (
         <>
             <Box width={"100%"}>
