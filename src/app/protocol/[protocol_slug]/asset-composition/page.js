@@ -456,6 +456,8 @@ function TableRow({ item, i }) {
 //               <Image
 //                 w={"20px"}
 //                 h={"20px"}
+// unoptimized = "true";
+// priority = "true";
 //                 mr={"11px"}
 //                 src={item.logoUrl}
 //                 alt=""

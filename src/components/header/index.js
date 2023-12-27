@@ -10,7 +10,6 @@ import {
     useColorModeValue,
     useColorMode,
     Text,
-    Image,
     useMediaQuery,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
@@ -30,6 +29,7 @@ import SearchBoxV2 from "@components/searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
+import Image from "next/image";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();
@@ -306,20 +306,25 @@ const Navbar = ({ ...rest }) => {
                                         ? "/icons/sidebar_icon_dark.svg"
                                         : "/icons/sidebar_icon_light.svg"
                                 }
-                                w={"18px"}
-                                h={"18px"}
+                                unoptimized="true"
+                                priority="true"
+                                width={18}
+                                height={18}
                                 alt="logo"
-                            ></Image>
+                            />
                         </Box>
 
                         <Box>
                             <Image
+                                unoptimized="true"
+                                priority="true"
                                 src={
                                     colorMode === "light"
                                         ? "/icons/light_betgyfi_sm_icon.svg"
                                         : "/icons/dark_betgyfi_sm_logo.svg"
                                 }
-                                h={25}
+                                height={25}
+                                width={25}
                                 cursor={"pointer"}
                                 onClick={() => {
                                     router.push("/");
@@ -332,10 +337,12 @@ const Navbar = ({ ...rest }) => {
                         <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
-                                h={"20px"}
-                                w={"20px"}
+                                height={20}
+                                width={20}
                                 alt="logo"
-                            ></Image>
+                                unoptimized="true"
+                                priority="true"
+                            />
                         </Box>
                     }
                 </Flex>

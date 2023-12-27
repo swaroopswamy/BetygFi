@@ -63,26 +63,22 @@ const HomePage = () => {
 	return (
 		<Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
 			{isMd ? (
-				<>
-					<Box
-						display={{ base: "none", md: "flex" }}
-						alignItems={"center"}
-						w={"100%"}
-						pt={"28px"}
-						gap={"20px"}
-						px={"28px"}
-					>
-						<Text variant="h1new">DeFi Markets </Text>
-					</Box>
-				</>
+				<Box
+					display={{ base: "none", md: "flex" }}
+					alignItems={"center"}
+					w={"100%"}
+					pt={"28px"}
+					gap={"20px"}
+					px={"28px"}
+				>
+					<Text variant="h1new">DeFi Markets </Text>
+				</Box>
 			) : (
-				<>
-					<Box display={{ base: "flex", md: "none" }} pt={"30px"}>
-						<Text variant="h1" px={"18px"}>
-							DeFi Markets
-						</Text>
-					</Box>
-				</>
+				<Box display={{ base: "flex", md: "none" }} pt={"30px"}>
+					<Text variant="h1" px={"18px"}>
+						DeFi Markets
+					</Text>
+				</Box>
 			)}
 
 			<Box px={{ md: "28px" }} mb={{ base: "14px", md: "28px" }}>
@@ -94,11 +90,7 @@ const HomePage = () => {
 				flexDir={"column"}
 				bg={useColorModeValue("#F0F0F5", "#191919")}
 				px={{ base: "18px", md: "30px" }}
-				borderTop={useColorModeValue(
-					"1px solid rgba(0, 0, 0, 0.1)",
-					"1px solid rgba(255, 255, 255, 0.1)"
-				)}
-			>
+				borderTop={"1px solid " + useColorModeValue("rgba(0, 0, 0, 0.1)", "rgba(255, 255, 255, 0.1)")}>
 				<Box
 					display={"flex"}
 					flexDirection={"column"}
@@ -124,15 +116,15 @@ const HomePage = () => {
 						<DashboardDefiSelection />
 					</Box>
 				</Box>
-				<Box
+				{/* <Box
 					display={"flex"}
 					flexDir={{ base: "column", lg: "row" }}
 					py={"15px"}
 					gap={"15px"}
-				>
-					{/* <OverviewBox /> */}
-					{/* <OverviewColumnChart /> */}
-				</Box>
+				> */}
+				{/* <OverviewBox /> */}
+				{/* <OverviewColumnChart /> */}
+				{/* </Box> */}
 				<Rankings />
 			</Box >
 		</Box >

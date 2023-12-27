@@ -12,7 +12,6 @@ import {
 	Flex,
 	Box,
 	useColorModeValue,
-	Image,
 	useColorMode,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -20,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 import PageButtons from "@components/pageButtons";
+import Image from "next/image";
 
 const GenericBigTableComponent = ({
 	tableName,
@@ -147,6 +147,8 @@ function ThreadItem({ key, name }) {
 						)}
 						alt="Users"
 						ml="2"
+						unoptimized="true"
+						priority="true"
 					/>
 				</Flex>
 			</Th>
@@ -232,6 +234,8 @@ function SelectionBox({ colorMode }) {
 										w={"20px"}
 										h={"20px"}
 										mr={"11px"}
+										unoptimized="true"
+										priority="true"
 										src={item.logoUrl}
 										alt=""
 									></Image>

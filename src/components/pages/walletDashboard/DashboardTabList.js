@@ -1,4 +1,5 @@
-import { Box, Image, Tab, TabList, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Tab, TabList, Text, useColorMode } from "@chakra-ui/react";
+import Image from "next/image";
 import React from "react";
 
 const DashboardTabList = ({ tabIndex }) => {
@@ -45,12 +46,14 @@ const DashboardTabList = ({ tabIndex }) => {
 						mr={{ base: "10px", md: "44px" }}
 						lineHeight={"10px"}
 					>
-            Transactions
+						Transactions
 					</Text>
 					<Image
 						w="25px"
 						h="25px"
 						alt="icon"
+						unoptimized="true"
+						priority="true"
 						src={
 							tabIndex === 0
 								? colorMode === "light"
@@ -60,7 +63,7 @@ const DashboardTabList = ({ tabIndex }) => {
 									? "/images/transactions_white.svg"
 									: "/images/transactions_black.svg"
 						}
-					></Image>
+					/>
 				</Box>
 			</Tab>
 			<Tab
@@ -100,12 +103,14 @@ const DashboardTabList = ({ tabIndex }) => {
 						mr={{ base: "10px", md: "44px" }}
 						lineHeight={"10px"}
 					>
-            Portfolio
+						Portfolio
 					</Text>
 					<Image
 						w="24px"
 						h="24px"
 						alt="icon"
+						unoptimized="true"
+						priority="true"
 						src={
 							tabIndex === 1
 								? colorMode === "light"
@@ -155,12 +160,14 @@ const DashboardTabList = ({ tabIndex }) => {
 						mr={{ base: "10px", md: "44px" }}
 						lineHeight={"10px"}
 					>
-            Wallet Analytics
+						Wallet Analytics
 					</Text>
 					<Image
 						w="24px"
 						h="24px"
 						alt="icon"
+						unoptimized="true"
+						priority="true"
 						src={
 							tabIndex === 2
 								? colorMode === "light"

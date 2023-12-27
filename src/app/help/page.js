@@ -8,10 +8,11 @@ import {
 	AccordionButton,
 	AccordionPanel,
 	useColorModeValue,
-	Image,
+
 	useColorMode,
 } from "@chakra-ui/react";
 import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "@components/pages/help/helper";
+import Image from "next/image";
 
 const Help = () => {
 	const { colorMode } = useColorMode();
@@ -28,6 +29,8 @@ const Help = () => {
 						</Box>
 						<Box paddingRight={"205px"} paddingTop={"30px"}>
 							<Image
+								unoptimized="true"
+								priority="true"
 								src={useColorModeValue(
 									"/images/bg-logo.svg",
 									"/images/bg-logo-dark.svg"
@@ -60,6 +63,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -71,6 +76,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -136,6 +143,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -147,6 +156,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -192,6 +203,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -203,6 +216,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -283,6 +298,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -294,6 +311,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -370,7 +389,9 @@ const Help = () => {
 									"/images/bg-logo.svg",
 									"/images/bg-logo-dark.svg"
 								)}
-								alt=""
+								unoptimized="true"
+								priority="true"
+								alt="bg-logo"
 								width={"102.019px"}
 								height={"100px"}
 								flexShrink={0}
@@ -398,6 +419,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -409,6 +432,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -470,6 +495,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -481,6 +508,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -521,6 +550,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -532,6 +563,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
+														unoptimized="true"
+														priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -615,6 +648,8 @@ const Help = () => {
 														}
 														w={"24px"}
 														h={"24px"}
+														unoptimized="true"
+														priority="true"
 														alt=""
 													/>
 												) : (
@@ -625,6 +660,8 @@ const Help = () => {
 																: "/images/ellipse-dark-down.png"
 														}
 														w={"24px"}
+														unoptimized="true"
+														priority="true"
 														h={"24px"}
 														alt=""
 													/>

@@ -11,7 +11,6 @@ import {
     Flex,
     Box,
     useColorModeValue,
-    Image,
     useColorMode,
     Accordion,
     AccordionItem,
@@ -23,6 +22,7 @@ import {
 import TableData from "@util/whales.json";
 import millify from "millify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const WalletTable = () => {
     const router = useRouter();
@@ -227,8 +227,10 @@ const WalletTable = () => {
                                                                                         src={
                                                                                             item.logo_url
                                                                                         }
+                                                                                        unoptimized="true"
+                                                                                        priority="true"
                                                                                         alt=""
-                                                                                    ></Image>
+                                                                                    />
                                                                                     <Text
                                                                                         variant={
                                                                                             "h3"
@@ -479,6 +481,8 @@ function TableRow({ user, totalTokens, totalProtocols }) {
                                         style={{ borderRadius: "50%" }}
                                         src={item.logo_url}
                                         alt=""
+                                        unoptimized="true"
+                                        priority="true"
                                     ></Image>
                                     <Text
                                         variant={"h3"}

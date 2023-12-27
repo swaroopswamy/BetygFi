@@ -177,12 +177,14 @@ const BlockchainSelectionMenu = ({ chains }) => {
 						}}
 					>
 						<Image
+							unoptimized="true"
+							priority="true"
 							style={{ borderRadius: "50%" }}
 							width={40}
 							height={40}
 							src={item.logoUrl}
 							alt={`${item.id}_icon`}
-						></Image>
+						/>
 					</Box>
 				))}
 			</Box>

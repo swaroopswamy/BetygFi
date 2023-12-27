@@ -1,11 +1,12 @@
 "use client";
 import {
-	Box, Image, useColorModeValue, Text, Tab, TabList, TabPanels,
+	Box, useColorModeValue, Text, Tab, TabList, TabPanels,
 	Tabs, TabPanel, useColorMode
 } from "@chakra-ui/react";
 import TermsPanelComponent from "@components/pages/legal/terms";
 import PrivacyPanelComponent from "@components/pages/legal/privacy";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const Legal = () => {
 	const { colorMode } = useColorMode();
@@ -28,7 +29,9 @@ const Legal = () => {
 							<Text variant={"bigHeading"} _light={{ color: "#000" }} _dark={{ color: "#FFF" }}>Legal</Text>
 						</Box>
 						<Box p={"9px 205px 16px 0px"}>
-							<Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
+							<Image unoptimized="true"
+								priority="true"
+								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
 								alt=" " width={"153.027px"} height={"150px"} flexShrink={0}></Image>
 						</Box>
 					</Box>
@@ -115,7 +118,10 @@ const Legal = () => {
 							<Text variant={"contentHeading2"}>Legal</Text>
 						</Box>
 						<Box p={"6px 8px 28px 0px"}>
-							<Image src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
+							<Image
+								unoptimized="true"
+								priority="true"
+								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
 								alt=" " width={"102.018px"} height={"100px"} flexShrink={0}></Image>
 						</Box>
 					</Box>

@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Box,
-	Image,
 	Text,
 	Tr,
 	Th,
@@ -17,6 +16,7 @@ import {
 	InflowTokensMobile,
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));
@@ -146,8 +146,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						src={item?.logoUrl}
 						style={{ borderRadius: "50%" }}
 						alt=""
-					></Image>
-
+					/>
 					<Text variant={"smallTableHeaderMobile"} ml="12px">
 						{item?.symbol}
 					</Text>

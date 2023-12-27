@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Text, Tr, Th, Td } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "@util/globalHelper";
 import {
@@ -8,6 +8,7 @@ import {
 	ProtocolAllocationsMobile,
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));
@@ -68,7 +69,8 @@ const TableRowDesktop = ({ item, i }) => {
 		<Tr height={"40px"} key={i}>
 			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
 				<Box layerStyle={"flexCenter"}>
-					<Image width={5} height={5} alt="logo" src={item?.logoUrl}></Image>
+					<Image width={5} height={5} alt="logo" unoptimized="true"
+						priority="true" src={item?.logoUrl} />
 
 					<Text ml="6px" variant={"h3"}>
 						{item?.name}
@@ -112,12 +114,13 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
 						w={"20px"}
+						unoptimized="true"
+						priority="true"
 						h={"20px"}
 						src={item?.logoUrl}
 						style={{ borderRadius: "50%" }}
 						alt=""
-					></Image>
-
+					/>
 					<Text variant={"smallTableHeaderMobile"} ml="12px">
 						{item?.name}
 					</Text>

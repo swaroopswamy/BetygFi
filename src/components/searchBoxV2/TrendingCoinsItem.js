@@ -66,8 +66,10 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                                 alt="right-arrow"
                                 src={"/icons/right-arrow.svg"}
                                 width={"24"}
+                                unoptimized="true"
+                                priority="true"
                                 height={"24"}
-                            ></Image>
+                            />
                         </Box>
                     </Box>
                 }

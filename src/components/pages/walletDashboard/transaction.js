@@ -9,7 +9,6 @@ import {
 	Th,
 	Td,
 	Flex,
-	Image,
 	Link,
 	useColorMode,
 	Avatar,
@@ -21,6 +20,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
+import Image from "next/image";
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
 
@@ -127,10 +127,12 @@ const TableRow = ({ item, rowIndex }) => {
 									w={"18px"}
 									h={"18px"}
 									mr={"3px"}
+									unoptimized="true"
+									priority="true"
 									src={item.logoUrl}
 									alt={`${item?.blockchain}_icon`}
 									style={{ borderRadius: "50%" }}
-								></Image>
+								/>
 							</>
 						</Tooltip>
 
@@ -301,6 +303,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 					width={5}
 					height={5}
 					alt="logo"
+					unoptimized="true"
+					priority="true"
 					style={{ borderRadius: "50%" }}
 					src={item?.logoUrl}
 				/>
@@ -476,8 +480,10 @@ const TableBodyRowMobilePanelComp = ({ item }) => {
 							height={5}
 							alt="logo"
 							src={item?.tokenUrl}
+							unoptimized="true"
+							priority="true"
 							style={{ borderRadius: "50%" }}
-						></Image>
+						/>
 
 						<Text
 							_dark={{

@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import {
 	Box,
-	Image,
 	useColorModeValue,
 	Text,
 	Link,
 	Button,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+import Image from "next/image";
 
 const Footnote = ({ number, onClick }) => (
 	<sup>
@@ -421,6 +421,8 @@ const Approach = () => {
 								Approach Paper
 							</Text>
 							<Image
+								unoptimized="true"
+								priority="true"
 								h={40}
 								w={40}
 								src={useColorModeValue(
