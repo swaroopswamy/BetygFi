@@ -52,7 +52,7 @@ const HomePage = () => {
 	};
 
 	useEffect(() => {
-		Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]);
+		Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]).then(result => result);
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, categorySelected]);

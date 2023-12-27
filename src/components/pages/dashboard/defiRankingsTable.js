@@ -174,6 +174,7 @@ const Rankings = () => {
                 <GenericTable
                     tableHeader={tableHeader}
                     tableData={tableData}
+                    showSortingIcon={true}
                     TableRow={TableRow}
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={ButtonComp}
