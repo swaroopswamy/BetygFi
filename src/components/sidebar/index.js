@@ -76,6 +76,7 @@ const SidebarContent = ({ ...rest }) => {
     return (
         <>
             <Box
+                id="betygfi-sidebar"
                 bg={useColorModeValue("#FFFFFF", "#191919")}
                 borderRight="1px"
                 borderRightColor={useColorModeValue("#E1E1E1", "#333333")}

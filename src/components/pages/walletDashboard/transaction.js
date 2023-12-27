@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
 	Text,
@@ -13,19 +14,15 @@ import {
 	useColorMode,
 	Avatar,
 } from "@chakra-ui/react";
-// import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState, useCallback } from "react";
-import {
-	tableHeader,
-	TransactionTableDesktop,
-	TransactionTableMobile,
-} from "@components/pages/walletDashboard/helper";
-import GenericTable from "@components/table/index";
-import PageButtonsWide from "@components/pageButtonsWide";
+import dynamic from "next/dynamic";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
+import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
+const GenericTable = dynamic(() => import("@components/table"));
+const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
 
 const TransactionPanelComponent = ({ searchParamAddress }) => {
 	const dispatch = useDispatch();
@@ -53,12 +50,10 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 			data.address = searchParamAddress;
 		}
 		dispatch(fetchWalletTransactionsData(data));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit]);
 
 	useEffect(() => {
 		fetchWalletTransactionsDataHandler();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [fetchWalletTransactionsDataHandler]);
 
 	return (
@@ -101,7 +96,6 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 
 				<Box display={"flex"} alignItems={"center"} bgColor={useColorModeValue('#FFFFFF', '#202020')}
 					minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
-
 					<PageButtonsWide
 						page={tablePage}
 						totalPages={walletTransactionsData?.data?.totalPages}
@@ -111,7 +105,6 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 						time={3}
 						w={"100%"}
 					/>
-
 				</Box>
 			</Box>
 		</>

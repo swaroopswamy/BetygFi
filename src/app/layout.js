@@ -33,8 +33,7 @@ export default async function RootLayout({ children }) {
 					href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
 					rel="stylesheet"
 				/>
-				{/* Hotjar Tracking Code for https://betygfi.com/
-         */}
+				{/* Hotjar Tracking Code for https://betygfi.com/ */}
 				<Script rel="preconnect" id="hotjar-analytics">
 					{`(function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -62,15 +61,15 @@ export default async function RootLayout({ children }) {
 				</Script>
 			</head>
 			<body>
-			<SessionProvider session={session}>
-				<ReduxProvider>
-					<WagmiProvider>
-						<Providers>
+				<SessionProvider session={session}>
+					<ReduxProvider>
+						<WagmiProvider>
+							<Providers>
 								<LayoutProvider>{children}</LayoutProvider>
 							</Providers>
-					</WagmiProvider>
-				</ReduxProvider>
-			</SessionProvider>
+						</WagmiProvider>
+					</ReduxProvider>
+				</SessionProvider>
 			</body>
 		</html>
 	);

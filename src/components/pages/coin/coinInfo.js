@@ -12,7 +12,7 @@ import {
     Icon,
     useToast,
 } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/next-js";
+import Link from "next/link";
 import ScoreMeter from "@components/pages/coin/scoreMeter";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -46,7 +46,10 @@ const CoinInfo = () => {
                     justifyContent={"center"}
                     minW={{ base: "100%", bigSize: "50%" }}
                 >
-                    <ScoreMeter score={[CoinDashboardData?.score]} />
+                    {
+                        CoinDashboardData?.score &&
+                        <ScoreMeter score={[CoinDashboardData?.score]} />
+                    }
                 </Box>
 
                 <Box

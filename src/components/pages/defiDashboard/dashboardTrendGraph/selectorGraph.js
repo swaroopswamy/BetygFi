@@ -1,20 +1,10 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { Box } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
-import React, { useMemo, useState } from 'react';
-// import CustomChart from "@components/graph";
-import { useSelector } from 'react-redux';
+"use client";
+import { Box } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+import React, { useMemo, useState, } from "react";
+import { useSelector } from "react-redux";
+
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-
-// function getEveryNth(arr, nth) {
-//     const result = [];
-
-//     for (let index = 0; index < arr.length; index += nth) {
-//         result.push(arr[index]);
-//     }
-
-//     return result;
-// }
 
 const SelectorGraph = ({ colorMode }) => {
     const defiGraphData = useSelector(
@@ -129,7 +119,6 @@ const SelectorGraph = ({ colorMode }) => {
     //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
     //         });
     //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, []);
 
     return (
@@ -150,7 +139,5 @@ const SelectorGraph = ({ colorMode }) => {
         </>
     );
 };
-
-
 
 export default SelectorGraph;

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useSelector } from "react-redux";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 // import SortWhiteIcon from "../../../../../public/icons/sort_white.svg";
 // import SortBlackIcon from "../../../../../public/icons/sort_black.svg";
 import dynamic from "next/dynamic";

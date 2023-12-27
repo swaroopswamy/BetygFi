@@ -7,11 +7,11 @@ import {
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import millify from "millify";
-// import SelectorGraph from "./selectorGraph";
-import Graph from "./graph";
+import TrendGraph from "./trendGraph";
+// import dynamic from "next/dynamic";
 
 // const periods = ["7d", "14d", "30d", "1yr", "Max"];
+// const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     const { colorMode } = useColorMode();
@@ -93,7 +93,6 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     */
     /*     useEffect(() => {
             SeriesHandler();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [graphTypeSelected, graphData]);
      */
 
@@ -179,98 +178,9 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     //     );
     // };
 
-    const series = useMemo(
-        () => [
-            {
-                data: defiGraphData?.data?.data,
-            },
-        ],
-        [defiGraphData]
-    );
-
-    const options = {
-        chart: {
-            toolbar: {
-                show: false,
-            },
-            zoom: {
-                enabled: false,
-            },
-            id: "defi",
-            animations: {
-                enabled: false,
-            },
-        },
-        colors: ["#544FC5", "#00E272"],
-        grid: {
-            show: true,
-            borderColor: "#C6C6C6",
-        },
-        legend: {
-            show: false,
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        tooltip: {
-            enabled: true,
-            theme: colorMode,
-            custom: function ({ series, seriesIndex, dataPointIndex }) {
-                let val = millify(series[seriesIndex][dataPointIndex]);
-                let name = searchParamProtocolSlug;
-                return (
-                    '<div class="donut_tooltip">' +
-                    '<div class="donut_tooltip_text">' +
-                    name +
-                    "</div>" +
-                    '<div class="donut_tooltip_text">' +
-                    val +
-                    " USD" +
-                    "</div>" +
-                    "</div>"
-                );
-            },
-        },
-        stroke: {
-            show: true,
-            curve: "smooth",
-            width: [2, 2],
-        },
-        xaxis: {
-            type: "datetime",
-            labels: {
-                show: true,
-                style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
-                    fontWeight: 300,
-                },
-            },
-            value: {
-
-            },
-            axisTicks: {
-                show: true,
-            },
-            // formatter: (value) => {
-            //     return (value * 1000);
-            // },
-        },
-        yaxis: {
-            tickAmount: 5,
-            labels: {
-                show: true,
-                style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
-                    fontWeight: 400,
-                },
-                formatter: (value) => {
-                    return millify(value) + " USD";
-                },
-            },
-        },
-    };
+    const series = useMemo(() => [{
+        data: defiGraphData?.data?.data,
+    }], [defiGraphData]);
 
     return (
         <>
@@ -299,19 +209,15 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
                     borderBottom={"1px"}
                     borderColor={colorMode === "light" ? "#F0F0F5" : "#333"}
                 >
-                    <Graph colorMode={colorMode} options={options} searchParamProtocolSlug={searchParamProtocolSlug} series={series} />
-                    {/* <CustomChart
-                        className="overview-chart"
-                        options={options}
+                    <TrendGraph
+                        colorMode={colorMode}
+                        searchParamProtocolSlug={searchParamProtocolSlug}
                         series={series}
-                        type="line"
-                        height={205}
-                    /> */}
+                    />
                 </Box>
 
                 {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph
-                        tvlData={series} colorMode={colorMode} />
+                    <SelectorGraph colorMode={colorMode} />
                 </Box> */}
             </Box>
         </>
@@ -320,189 +226,15 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
 
 export default DashboardTrendGraph;
 
-
-
-
-// function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
-//   return (
-//     <>
-//       <Box
-//         position={"relative"}
-//         padding={"7px 8px"}
-//         border={"1px"}
-//         borderRadius={"2px"}
-//         borderColor={useColorModeValue("#E0E0E0", "#333")}
-//         display={"flex"}
-//         alignItems={"center"}
-//         cursor={"pointer"}
-//         onClick={() => {
-//           CurrencyTypeHandler("USD");
-//         }}
-//         _after={
-//           currencySelected === "USD" && {
-//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-//           }
-//         }
-//         bgColor={
-//           currencySelected === "USD"
-//             ? colorMode === "light"
-//               ? "#F5F5F7"
-//               : "#191919"
-//             : colorMode === "light"
-//               ? "#FFFFFF"
-//               : "#202020"
-//         }
-//       >
-//         <Text
-//           fontSize={"10px"}
-//           lineHeight={"10px"}
-//           fontWeight={currencySelected === "USD" ? 600 : 400}
-//         >
-//           USD
-//         </Text>
-//       </Box>
-//       <Box
-//         position={"relative"}
-//         padding={"7px 8px"}
-//         border={"1px"}
-//         borderRadius={"2px"}
-//         borderColor={useColorModeValue("#E0E0E0", "#333")}
-//         display={"flex"}
-//         alignItems={"center"}
-//         cursor={"pointer"}
-//         onClick={() => {
-//           CurrencyTypeHandler("BTC");
-//         }}
-//         _after={
-//           currencySelected === "BTC" && {
-//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-//           }
-//         }
-//         bgColor={
-//           currencySelected === "BTC"
-//             ? colorMode === "light"
-//               ? "#F5F5F7"
-//               : "#191919"
-//             : colorMode === "light"
-//               ? "#FFFFFF"
-//               : "#202020"
-//         }
-//       >
-//         <Text
-//           fontSize={"10px"}
-//           lineHeight={"10px"}
-//           fontWeight={currencySelected === "BTC" ? 600 : 400}
-//         >
-//           BTC
-//         </Text>
-//       </Box>
-//       <Box
-//         position={"relative"}
-//         padding={"7px 8px"}
-//         border={"1px"}
-//         borderRadius={"2px"}
-//         borderColor={useColorModeValue("#E0E0E0", "#333")}
-//         display={"flex"}
-//         alignItems={"center"}
-//         cursor={"pointer"}
-//         onClick={() => {
-//           CurrencyTypeHandler("ETH");
-//         }}
-//         _after={
-//           currencySelected === "ETH" && {
-//             bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-//           }
-//         }
-//         bgColor={
-//           currencySelected === "ETH"
-//             ? colorMode === "light"
-//               ? "#F5F5F7"
-//               : "#191919"
-//             : colorMode === "light"
-//               ? "#FFFFFF"
-//               : "#202020"
-//         }
-//       >
-//         <Text
-//           fontSize={"10px"}
-//           lineHeight={"10px"}
-//           fontWeight={currencySelected === "ETH" ? 600 : 400}
-//         >
-//           ETH
-//         </Text>
-//       </Box>
-//     </>
-//   );
-// }
-
-/* function TrendGraphTypeButton({
-    name,
-    value,
-    graphTypeSelected,
-    GraphTypeHandler,
-    colorMode,
-}) {
-    const defiData = useSelector(
-        (state) => state?.defiDashboardData?.DefiData?.data
-    );
-    return (
-        <>
-            <Box
-                position={"relative"}
-                padding={"7px 8px"}
-                border={"1px"}
-                borderRadius={"2px"}
-                borderColor={useColorModeValue("#E0E0E0", "#333")}
-                display={"flex"}
-                alignItems={"center"}
-                justifyContent={"center"}
-                cursor={"pointer"}
-                onClick={() => {
-                    GraphTypeHandler(value);
-                }}
-                _after={
-                    graphTypeSelected.includes(value) && {
-                        bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
-                    }
-                }
-                bgColor={
-                    graphTypeSelected.includes(value)
-                        ? colorMode === "light"
-                            ? "#F5F5F7"
-                            : "#191919"
-                        : colorMode === "light"
-                            ? "#FFFFFF"
-                            : "#202020"
-                }
-            >
-                <Text
-                    fontSize={"10px"}
-                    lineHeight={"10px"}
-                    fontWeight={graphTypeSelected.includes(value) ? 600 : 400}
-                    textTransform={"capitalize"}
-                >
-                    {value === "price" ? `${defiData?.symbol} price` : name}
-                </Text>
-            </Box>
-        </>
-    );
-} */
-
-// const SelectorGraph = ({ colorMode, tvlData }) => {
+// const SelectorGraph = ({ colorMode }) => {
 //     const defiGraphData = useSelector(
 //         (state) => state?.defiDashboardData?.DefiGraphData
 //     );
 
-//     const series = useMemo(
-//         () => [
-//             {
-//                 data: defiGraphData?.data?.data,
-//             },
-//         ],
-//         [defiGraphData]
-//     );
+//     const series = useMemo(() => [{
+//         data: defiGraphData?.data?.data,
+//     }], [defiGraphData]);
 
-//     // eslint-disable-next-line no-unused-vars
 //     let [options, setOptions] = useState({
 //         chart: {
 //             id: "selection",
@@ -601,7 +333,6 @@ export default DashboardTrendGraph;
 //     //             max: Date.parse(getDate(series[0].data.slice(-1)[0].x)),
 //     //         });
 //     //     }
-//     //     // eslint-disable-next-line react-hooks/exhaustive-deps
 //     // }, []);
 
 //     return (
@@ -615,37 +346,10 @@ export default DashboardTrendGraph;
 //                     options={options}
 //                     series={series}
 //                     type={options.chart.type}
-//                     height={"100px"}
+//                     height={100}
 //                     width={"100%"}
 //                 />
 //             </Box>
 //         </>
 //     );
 // };
-
-// const PeriodSelection = ({ currPeriod, periodSelectionHandler }) => {
-//     return (
-//         <Box display={"flex"}>
-//             {periods.map((period, i) => {
-//                 return (
-//                     <Button
-//                         key={i}
-//                         variant="graphButton"
-//                         onClick={() => {
-//                             periodSelectionHandler(period);
-//                         }}
-//                         isActive={period === currPeriod}
-//                     >
-//                         {period}
-//                     </Button>
-//                 );
-//             })}
-//         </Box>
-//     );
-// };
-
-// function getDate(timeStamp) {
-//     let d = new Date(0);
-//     d.setUTCSeconds(timeStamp);
-//     return d;
-// }

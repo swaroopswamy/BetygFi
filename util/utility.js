@@ -1,10 +1,14 @@
 import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
+import orderBy from 'lodash/orderBy';
+import moment from "moment";
 
 export const AUTH_COOKIE_NAME = "betygfi-auth";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const getTrendGraphFormattedDate = value => moment(value).format("MMM YY");
 
 export const getAuthenticatedUserToken = () => {
     const authCookie = getCookieByName(AUTH_COOKIE_NAME);
@@ -76,13 +80,29 @@ export const formatMCAPSearchTableString = (key, value) => {
         if (value) {
             return convertToInternationalCurrencySystem(value);
         } else {
-            return "N/A";
+            return null;
         }
     } else if (key == "mcap") {
         if (value) {
             return convertToInternationalCurrencySystem(value);
         } else {
-            return "N/A";
+            return null;
         }
     }
+};
+
+export const orderByKey = (list, key, orderby) => orderBy(list, [key], [orderby]);
+
+export const calculateTimeDifference = (fromMilliseconds, toMilliseconds) => {
+    let now = new Date();
+    if (fromMilliseconds != null) {
+        now = new Date(fromMilliseconds);
+    }
+    const then = new Date(toMilliseconds);
+    const milliseconds = now.getTime() - then.getTime();
+
+    const seconds = Math.floor((milliseconds / 1000) % 60);
+    const minutes = Math.floor((milliseconds / 1000 / 60) % 60);
+    const hours = Math.floor((milliseconds / 1000 / 60 / 60) % 24);
+    return { hours, minutes, seconds };
 };

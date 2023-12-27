@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, Input, InputGroup, InputLeftElement, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
@@ -188,7 +189,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                             <Box
                                 layerStyle={"center"}
                                 cursor={"pointer"}
-                                bgColor={colorMode === "light" ? "#F4F4F4" : "#191919"}
+                                bgColor={colorMode === "light" ? "#F4F4F4" : "#000000"}
                                 width={"35px"}
                                 marginRight={"15px"}
                                 borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}

@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -16,13 +16,13 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
 
-const GenericTable = dynamic(() => import("@components/tablev2"));
+const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
 const ScoreDistribuition = dynamic(() => import("@components/pages/dashboard/scoreDistribuition"));
 
@@ -107,7 +107,6 @@ const Rankings = () => {
 
     useEffect(() => {
         getDefiRankingsTableDataHandler();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         blockchainSelected,
         categorySelected,
@@ -148,12 +147,8 @@ const Rankings = () => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{
-                            color: "#161616",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
+                        _light={{ color: "#161616", }}
+                        _dark={{ color: "#FFFFFF", }}
                         lineHeight={"26px"}
                     >
                         Total DeFis - {totalDefis}
@@ -178,6 +173,7 @@ const Rankings = () => {
                 <GenericTable
                     tableHeader={tableHeader}
                     tableData={tableData}
+                    showSortingIcon={true}
                     TableRow={TableRow}
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={ButtonComp}
@@ -220,12 +216,7 @@ const TableRow = ({ item, rowIndex }) => {
         <Tr
             key={rowIndex}
             cursor={"pointer"}
-            onClick={() => {
-                router.push(
-                    `/protocol/${item?.slug}`
-                    // `/defi_dashboard?defi=${item?.slug}&id=${item._id}`
-                );
-            }}
+            onClick={() => { router.push(`/protocol/${item?.slug}`); }}
             border={"0px"}
         >
             <Td key={0} textAlign={"center"}>

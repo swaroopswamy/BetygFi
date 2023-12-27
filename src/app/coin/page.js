@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
     Box,
@@ -27,9 +28,10 @@ const CoinDashboardPage = () => {
     );
 
     useEffect(() => {
-        dispatch(fetchTrendingCoinsData());
-        dispatch(fetchBlockchainListData());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        Promise.all([
+            dispatch(fetchTrendingCoinsData()),
+            dispatch(fetchBlockchainListData()),
+        ]).then(result => result);
     }, []);
 
     return (

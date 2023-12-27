@@ -14,12 +14,8 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 					padding={"7px 8px"}
 					border={"1px"}
 					borderRadius={"2px"}
-					_light={{
-						borderColor: "#E0E0E0"
-					}}
-					_dark={{
-						borderColor: "#C6C6C6"
-					}}
+					_light={{ borderColor: "#E0E0E0" }}
+					_dark={{ borderColor: "#C6C6C6" }}
 					borderRight={i !== 2 && 'none'}
 					display={"flex"}
 					alignItems={"center"}
@@ -29,15 +25,16 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 					}}
 					_after={
 						currencySelected === currency && {
-							bgColor:
-                                colorMode === "light" ? "#F5F5F7" : "#191919",
+							bgColor: colorMode === "light" ? "#F5F5F7" : "#191919",
 						}
 					}
 					bgColor={
 						currencySelected === currency
-							? colorMode === "light"
-								? "#191919"
-								: "#191919"
+							?
+							// colorMode === "light"
+							// 	? "#191919"
+							// 	: 
+							"#191919"
 							: colorMode === "light"
 								? "#FFFFFF"
 								: "#202020"
@@ -47,10 +44,10 @@ function CurrencyButtons({ currencySelected, CurrencyTypeHandler, colorMode }) {
 						fontSize={"14px"}
 						lineHeight={"10px"}
 						_light={{
-							color: currencySelected === currency ? "#FFF" : "#16171B"
+							color: currencySelected === currency ? "#FFFFFF" : "#16171B"
 						}}
 						_dark={{
-							color: currencySelected === currency ? "#FFF" : "#FFF",
+							color: /* currencySelected === currency ? "#FFFFFF" : */ "#FFFFFF",
 							opacity: currencySelected === currency ? 1 : 0.5
 						}}
 						fontWeight={currencySelected === currency ? 600 : 400}

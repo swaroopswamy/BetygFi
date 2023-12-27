@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
@@ -24,11 +23,12 @@ import {
 } from "@/redux/auth_data/authSlice";
 import { AUTH_COOKIE_NAME } from "@util/utility";
 import { getCookieByName } from "@util/cookieHelper";
-import isEmpty from "is-empty";
+import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 
 export default function LayoutProvider({ children }) {
+
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
@@ -131,6 +131,30 @@ export default function LayoutProvider({ children }) {
                     signOut({ callbackUrl: process.env.NEXTAUTH_URL });
             }
         }
+
+        window.addEventListener('online', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={true}
+                        content={'Internet connection is back :)'}
+                    />
+                ),
+            });
+        }, false);
+
+        window.addEventListener('offline', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={"Internet connection is down :("}
+                    />
+                ),
+            });
+        }, false);
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -209,6 +233,7 @@ export default function LayoutProvider({ children }) {
 
         return () => activeConnector?.off("change", handleConnectorUpdate);
     }, [activeConnector]);
+
     return (
         <Box
             width="100%"
@@ -245,6 +270,7 @@ export default function LayoutProvider({ children }) {
                                 bgColor: "#131313",
                             }}
                             w="100%"
+                            height={"100vh"}
                         >
                             {children}
                             <Footer />

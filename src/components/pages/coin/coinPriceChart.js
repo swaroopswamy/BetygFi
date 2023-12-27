@@ -1,5 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
     Box,
@@ -39,10 +38,6 @@ const CoinPriceChart = () => {
         ],
         [CoinPriceData]
     );
-
-    useEffect(() => {
-        setPeriod(period);
-    }, [colorMode]);
 
     const options = {
         chart: {

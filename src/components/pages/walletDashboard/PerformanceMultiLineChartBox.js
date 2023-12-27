@@ -1,22 +1,15 @@
-/* eslint-disable max-len */
 import {
-	// useColorMode,
-	// useColorModeValue,
-	//Skeleton,
 	Box,
 	Text,
 } from "@chakra-ui/react";
 import React from "react";
-//import { useSelector } from "react-redux";
-// import dynamic from "next/dynamic";
 import TooltipComp from "@components/tooltipComp";
-// const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const PerformanceMultiLineChartBox = () => {
 	// const { colorMode } = useColorMode();
-/* 	const walletBalanceData = useSelector(
-		(state) => state?.walletDashboardTableData?.walletBalanceData
-	); */
+	/* 	const walletBalanceData = useSelector(
+			(state) => state?.walletDashboardTableData?.walletBalanceData
+		); */
 	// const options = {
 	//   chart: {
 	//     toolbar: {

@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable max-len */
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -15,19 +14,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-
-const GenericTable = dynamic(() => import("@components/tablev2"));
-const PageButtonsWide = dynamic(() =>
-    import("@components/pageButtonsWide")
-);
 import { tableHeader } from "@components/pages/coin/helper";
-import {
-    fetchCoinRankingsTableData,
-    fetchCoinScoresData,
-} from "@/redux/coin_data/dataSlice";
-const ScoreDistribution = dynamic(() =>
-    import("@components/pages/coin/scoreDistribution")
-);
+import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@/redux/coin_data/dataSlice";
+
+const GenericTable = dynamic(() => import("@components/table"));
+const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
+const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"));
 
 const CoinRankingsTable = () => {
     const dispatch = useDispatch();
@@ -104,14 +96,9 @@ const CoinRankingsTable = () => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{
-                            color: "#161616",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
-                        lineHeight={"26px"}
-                    >
+                        _light={{ color: "#161616" }}
+                        _dark={{ color: "#FFFFFF" }}
+                        lineHeight={"26px"}>
                         Total - {totalDefis}
                     </Text>
                 </Box>
@@ -126,17 +113,12 @@ const CoinRankingsTable = () => {
                     tableHeader={tableHeader}
                     tableData={tableData}
                     TableRow={TableRow}
+                    showSortingIcon={true}
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={ButtonComp}
                     PanelComp={PanelComp}
-                    SkeletonRowsColumnsDesktop={{
-                        numRows: tableLimit,
-                        numColumns: 9,
-                    }}
-                    SkeletonRowsColumnsMobile={{
-                        numRows: tableLimit,
-                        numColumns: 3,
-                    }}
+                    SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
+                    SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
                 />
             </Box>
 

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 "use client";
 import React from "react";
 import {
@@ -21,8 +20,6 @@ function DefiFeeRevenueChart() {
 	const DefiFeeRevenueData = useSelector(
 		(state) => state?.defiDashboardData?.DefiFeeRevenueData
 	);
-
-
 
 	const options = {
 		labels: ["Fee", "Revenue"],

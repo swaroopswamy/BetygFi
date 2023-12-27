@@ -153,7 +153,7 @@ const Text = defineStyleConfig({
             lineHeight: "20px",
             fontFamily: "Inter",
             textTransform: "capitalize",
-            color: colorMode === "light" ? "#191919" : "#FFF",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
         }),
         SettingsText2: ({ colorMode }) => ({
             fontsize: "11px",
@@ -161,7 +161,7 @@ const Text = defineStyleConfig({
             fontWeight: "400",
             lineHeight: "20px",
             opacity: "0.6",
-            color: colorMode === "light" ? "#191919" : "#FFF",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
         }),
         SettingsText3: ({ colorMode }) => ({
             fontsize: "12px",
@@ -169,7 +169,7 @@ const Text = defineStyleConfig({
             fontWeight: "400",
             lineHeight: "10px",
             opacity: "0.5",
-            color: colorMode === "light" ? "#191919" : "#FFF",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
         }),
         SettingsButtonText: () => ({
             fontSize: "12px",
@@ -191,30 +191,30 @@ const Text = defineStyleConfig({
             lineHeight: "10px",
             color: "#191919",
         }),
-        customModalHeader: (colorMode) => ({
+        customModalHeader: ({ colorMode }) => ({
             fontSize: "24px",
             fontFamily: "Inter",
             fontWeight: "400",
-            color: colorMode === "light" ? "#FFF" : "#161616",
+            color: colorMode === "light" ? "#FFFFFF" : "#161616",
         }),
-        dropdownName: (colorMode) => ({
+        dropdownName: ({ colorMode }) => ({
             fontFamily: "Inter",
             fontWeight: "400",
-            color: colorMode === "light" ? "#FFF" : "#525252",
+            color: colorMode === "light" ? "#FFFFFF" : "#525252",
             lineHeight: "16px",
             letterSpacing: "0.32px",
             fontSize: "12px",
         }),
-        boldHeader: (colorMode) => ({
+        boldHeader: ({ colorMode }) => ({
             fontFamily: "Inter",
             fontWeight: "700",
-            color: colorMode !== "light" ? "#161616" : "#FFF",
+            color: colorMode !== "light" ? "#161616" : "#FFFFFF",
             fontSize: "14px",
         }),
-        secondaryContent: (colorMode) => ({
+        secondaryContent: ({ colorMode }) => ({
             fontFamily: "Inter",
             fontWeight: "400",
-            color: colorMode !== "light" ? "#525252" : "#FFF",
+            color: colorMode !== "light" ? "#525252" : "#FFFFFF",
             fontSize: "12px",
         }),
         linkPrimary: () => ({
@@ -228,18 +228,18 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             fontWeight: "400",
             lineHeight: "36px",
-            color: colorMode === "light" ? "#161616" : "#FFF",
+            color: colorMode === "light" ? "#161616" : "#FFFFFF",
         }),
         greySmallText: ({ colorMode }) => ({
             fontSize: "10px",
             fontFamily: "Inter",
             fontWeight: "400",
             letterSpacing: "0.5px",
-            color: colorMode === "light" ? "rgba(25, 25, 25, 0.60)" : "#FFF",
+            color: colorMode === "light" ? "rgba(25, 25, 25, 0.60)" : "#FFFFFF",
         }),
         tableHead2: ({ colorMode }) => ({
             fontSize: "14px",
-            color: colorMode === "light" ? "#161616" : "#FFF",
+            color: colorMode === "light" ? "#161616" : "#FFFFFF",
             lineHeight: "18px",
             letterSpacing: "0.16px",
         }),
@@ -286,6 +286,14 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             color: colorMode === "light" ? "#FFFFFF" : "#191919",
         }),
+        bigText: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: "Inter",
+            fontSize: "32px",
+            fontStyle: "normal",
+            fontWeight: "400",
+            lineHeight: "36px",
+        })
     },
     defaultProps: {
         variant: "base",

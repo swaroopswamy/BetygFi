@@ -1,4 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
 import {
@@ -39,7 +39,6 @@ const BlockchainSelectionMenu = ({ chains }) => {
 
 	useEffect(() => {
 		dispatch(fetchBlockchainListData());
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -95,7 +94,7 @@ const BlockchainSelectionMenu = ({ chains }) => {
 							zIndex={"10"}
 						>
 							<Text variant={"extraSmall"}>
-                +
+								+
 								{blockchainListData?.isSuccess && blockchains?.data?.length - 4}
 							</Text>
 						</MenuButton>
@@ -104,51 +103,51 @@ const BlockchainSelectionMenu = ({ chains }) => {
 							bgColor={colorMode === "light" ? "#FFF" : "#191919"}
 						>
 							{blockchainListData?.isSuccess &&
-                blockchains?.data?.map((item, i) => {
-                	if (i < 4) return;
-                	return (
-                		<MenuItem
-                			key={i}
-                			bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-                			_hover={{
-                				bg: colorMode === "light" ? "#F5F5F7" : "#202020",
-                			}}
-                		>
-                			<Checkbox
-                				colorScheme="green"
-                				value={item.name}
-                				checked={blockchainSelected.includes(item.id)}
-                				onChange={() => {
-                					BlockchainTypeHandler(item.id);
-                				}}
-                			>
-                				<Box
-                					display={"flex"}
-                					cursor={"pointer"}
-                					alignItems={"center"}
-                					justifyContent={"center"}
-                				>
-                					<Avatar
-                						width={"24px"}
-                						height={"24px"}
-                						src={item.logoUrl}
-                						name={item.id ?? "Coin"}
-                						style={{ marginRight: "20px", marginLeft: "14px" }}
-                					></Avatar>
-                					<Text
-                						fontSize={"12px"}
-                						fontWeight={"400"}
-                						lineHeight={"20px"}
-                						letterSpacing={"1px"}
-                						color={colorMode === "light" ? "#16171B" : "#FFF"}
-                					>
-                						{item.name}
-                					</Text>
-                				</Box>
-                			</Checkbox>
-                		</MenuItem>
-                	);
-                })}
+								blockchains?.data?.map((item, i) => {
+									if (i < 4) return;
+									return (
+										<MenuItem
+											key={i}
+											bgColor={colorMode === "light" ? "#FFF" : "#191919"}
+											_hover={{
+												bg: colorMode === "light" ? "#F5F5F7" : "#202020",
+											}}
+										>
+											<Checkbox
+												colorScheme="green"
+												value={item.name}
+												checked={blockchainSelected.includes(item.id)}
+												onChange={() => {
+													BlockchainTypeHandler(item.id);
+												}}
+											>
+												<Box
+													display={"flex"}
+													cursor={"pointer"}
+													alignItems={"center"}
+													justifyContent={"center"}
+												>
+													<Avatar
+														width={"24px"}
+														height={"24px"}
+														src={item.logoUrl}
+														name={item.id ?? "Coin"}
+														style={{ marginRight: "20px", marginLeft: "14px" }}
+													></Avatar>
+													<Text
+														fontSize={"12px"}
+														fontWeight={"400"}
+														lineHeight={"20px"}
+														letterSpacing={"1px"}
+														color={colorMode === "light" ? "#16171B" : "#FFF"}
+													>
+														{item.name}
+													</Text>
+												</Box>
+											</Checkbox>
+										</MenuItem>
+									);
+								})}
 						</MenuList>
 					</Menu>
 				)}
