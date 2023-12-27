@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { scoreChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/globalHelper";

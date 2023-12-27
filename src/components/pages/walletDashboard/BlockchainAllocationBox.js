@@ -1,5 +1,3 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable max-len */
 import { useColorMode, Skeleton, Box, Text } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";

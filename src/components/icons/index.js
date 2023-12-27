@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from "react";
 import { createIcon, Icon } from "@chakra-ui/icon";
 import { useColorModeValue } from "@chakra-ui/react";

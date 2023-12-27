@@ -1,4 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -59,7 +59,6 @@ function AssetComposition({ params }) {
 
 	useEffect(() => {
 		getDefiAssetsTableDataHandler();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blockchainSelected, tablePage, tableLimit]);
 
 	return (
@@ -389,7 +388,6 @@ function TableRow({ item, i }) {
 
 //   useEffect(() => {
 //     dispatch(fetchBlockchainListData());
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
 //   }, []);
 
 //   return <>

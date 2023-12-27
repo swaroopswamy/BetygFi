@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useColorMode, useSteps, useToast } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import isEmpty from "lodash/isEmpty";
@@ -105,13 +106,11 @@ const OtherBrowserWalletProcess = ({
         } else {
             setActiveStep(0);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
     useEffect(() => {
         if (!isEmpty(verifiedPublicAddressData.data?.nonce)) {
             handleSign();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [verifiedPublicAddressData]);
     useEffect(() => {
         if (!isEmpty(LoggedInData.data?.token)) {
@@ -122,7 +121,6 @@ const OtherBrowserWalletProcess = ({
             }, 100);
 
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [LoggedInData]);
     const steps = [
         {

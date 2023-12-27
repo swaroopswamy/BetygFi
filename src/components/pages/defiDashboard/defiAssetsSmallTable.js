@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 "use client";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -30,8 +29,6 @@ function DefiAssetsSmallTable({ searchParamProtocolSlug }) {
 	const defiAssetsTableData = useSelector(
 		(state) => state?.defiDashboardData?.DefiAssetCompositionTableData
 	);
-
-
 
 	const { colorMode } = useColorMode();
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Box, Table, Tbody, Text, Th, Thead, Tr, Td, Spinner, Icon, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";

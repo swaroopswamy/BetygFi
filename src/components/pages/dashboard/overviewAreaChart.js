@@ -1,5 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable max-len */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CustomChart from "@components/graph";

@@ -16,10 +16,8 @@ import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { useRouter, usePathname } from "next/navigation";
 
-// eslint-disable-next-line no-unused-vars
-const Footer = ({ ...rest }) => {
-    // eslint-disable-next-line no-unused-vars
-    const { isOpen, onToggle } = useDisclosure();
+const Footer = React.memo(() => {
+    const { onToggle } = useDisclosure();
     const [isScrolledDown, setIsScrolledDown] = useState(false);
     const [scrollValue, setScrollValue] = useState(0);
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -118,9 +116,10 @@ const Footer = ({ ...rest }) => {
             }
         </>
     );
-};
+});
 
 export default Footer;
+Footer.displayName = 'Footer';
 
 const FooterMobileLink = ({ name, NavIcon, link }) => {
     const { colorMode } = useColorMode();

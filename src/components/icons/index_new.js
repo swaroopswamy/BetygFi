@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-// components/Icon.js
 import React from "react";
 const Icon = ({ name }) => {
 	const icons = {

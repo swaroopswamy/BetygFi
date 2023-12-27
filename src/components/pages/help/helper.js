@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 export const General = [
 	{
 		heading: "How long does it take to update the data on the BetygFi Dashboard?",
@@ -9,22 +8,22 @@ export const General = [
 	{
 		heading: "Why there is difference in the assets price displayed on the platform?",
 		content:
-      "The price of crypto assets can vary between platforms due to differences in liquidity, supply and demand, trading volume, and fees. Each exchange has its own user base and market conditions, leading to slight discrepancies in asset prices. BetygFi sources the price information from multiple oracles that represents the average of the prices for the given time.",
+			"The price of crypto assets can vary between platforms due to differences in liquidity, supply and demand, trading volume, and fees. Each exchange has its own user base and market conditions, leading to slight discrepancies in asset prices. BetygFi sources the price information from multiple oracles that represents the average of the prices for the given time.",
 	},
 	{
 		heading: "How many Blockchain data does BetygFi supports? ",
 		content:
-      "As of now BetygFi is supporting 16 blockchain that uses EVM under the hood.",
+			"As of now BetygFi is supporting 16 blockchain that uses EVM under the hood.",
 	},
 	{
 		heading: "How can I contact BetygFi team?",
 		content:
-      "Currently No Data Available",
+			"Currently No Data Available",
 	},
 	{
 		heading: "How can I suggest for new features on the platform?",
 		content:
-      "Currently No Data Available",
+			"Currently No Data Available",
 	},
 ];
 
@@ -32,12 +31,12 @@ export const BetygFi = [
 	{
 		heading: "Why is platform called BetygFi?",
 		content:
-      "Currently No Data Available"
+			"Currently No Data Available"
 	},
 	{
 		heading: "Will BetygFi charge money in future?",
 		content:
-      "BetygFi Analytics is free and always will be."
+			"BetygFi Analytics is free and always will be."
 	}
 ];
 
@@ -45,32 +44,32 @@ export const WalletsAndDeFiDashboard = [
 	{
 		heading: "Does DeFies get updated automatically on the platform?",
 		content:
-      "Yes, all the Defies that dashboard is ready gets updated automatically. You can submit the dashboard connect required to the team."
+			"Yes, all the Defies that dashboard is ready gets updated automatically. You can submit the dashboard connect required to the team."
 	},
 	{
 		heading: "Some DeFi data is not available, how can I update them?",
 		content:
-      "Currently No Data Available"
+			"Currently No Data Available"
 	},
 	{
 		heading: "What is a DeFi wallet?",
 		content:
-      "A DeFi wallet is a cryptocurrency wallet specifically designed to interact with Decentralized Finance (DeFi) platforms. It allows users to securely store their digital assets, manage transactions, and engage in various DeFi activities, such as trading, lending, borrowing, and yield farming."
+			"A DeFi wallet is a cryptocurrency wallet specifically designed to interact with Decentralized Finance (DeFi) platforms. It allows users to securely store their digital assets, manage transactions, and engage in various DeFi activities, such as trading, lending, borrowing, and yield farming."
 	},
 	{
 		heading: "How is a DeFi wallet different from a regular cryptocurrency wallet?",
 		content:
-      "While both DeFi wallets and regular cryptocurrency wallets store digital assets, DeFi wallets often have built-in features that facilitate seamless interaction with DeFi protocols. These features might include easy integration with decentralized exchanges, access to lending platforms, and the ability to manage decentralized applications (dApps)."
+			"While both DeFi wallets and regular cryptocurrency wallets store digital assets, DeFi wallets often have built-in features that facilitate seamless interaction with DeFi protocols. These features might include easy integration with decentralized exchanges, access to lending platforms, and the ability to manage decentralized applications (dApps)."
 	},
 	{
 		heading: "Which blockchain networks do DeFi wallets support?",
 		content:
-      "DeFi wallets typically support blockchain networks that host popular DeFi protocols, such as Ethereum and Binance Smart Chain. However, some wallets might also support other networks, depending on the protocols they integrate with."
+			"DeFi wallets typically support blockchain networks that host popular DeFi protocols, such as Ethereum and Binance Smart Chain. However, some wallets might also support other networks, depending on the protocols they integrate with."
 	},
 	{
 		heading: "How can I search any user’s DeFi wallet?",
 		content:
-      "You can search any user’s DeFi wallet by entering a user’s wallet address. BetygFi allows you to view and analyse the transactions, balances, and activities of any wallet or address on a blockchain network."
+			"You can search any user’s DeFi wallet by entering a user’s wallet address. BetygFi allows you to view and analyse the transactions, balances, and activities of any wallet or address on a blockchain network."
 	},
 	{
 		heading: "What information can I find by searching any user’s DeFi wallet?",
@@ -95,12 +94,12 @@ export const DeFi = [
 	{
 		heading: " What is DeFi?",
 		content:
-      "DeFi, short for Decentralized Finance, refers to a set of financial services and applications built on blockchain technology. Unlike traditional financial systems, DeFi operates on decentralized networks, offering open and permissionless access to various financial products, such as lending, borrowing, trading, and yield farming."
+			"DeFi, short for Decentralized Finance, refers to a set of financial services and applications built on blockchain technology. Unlike traditional financial systems, DeFi operates on decentralized networks, offering open and permissionless access to various financial products, such as lending, borrowing, trading, and yield farming."
 	},
 	{
 		heading: "How does DeFi work?",
 		content:
-      "DeFi protocols are built on blockchain platforms like Ethereum. They use smart contracts to automate and execute financial transactions without intermediaries. Users interact directly with the protocols using cryptocurrency wallets, allowing them to access services like lending, trading, and earning interest."
+			"DeFi protocols are built on blockchain platforms like Ethereum. They use smart contracts to automate and execute financial transactions without intermediaries. Users interact directly with the protocols using cryptocurrency wallets, allowing them to access services like lending, trading, and earning interest."
 	},
 	{
 		heading: " What are the risks of using DeFi?",
@@ -113,11 +112,11 @@ export const DeFi = [
 	{
 		heading: "Is DeFi regulated?",
 		content:
-      "DeFi operates in a largely decentralized and borderless manner, making it challenging to regulate. Regulatory bodies are exploring how to address DeFi within existing frameworks while also considering its unique characteristics."
+			"DeFi operates in a largely decentralized and borderless manner, making it challenging to regulate. Regulatory bodies are exploring how to address DeFi within existing frameworks while also considering its unique characteristics."
 	},
 	{
 		heading: "How is DeFi different from traditional finance?",
 		content:
-      "DeFi differs from traditional finance in its decentralized nature, accessibility, and programmability. Unlike traditional finance, DeFi operates without intermediaries, enabling direct peer-to-peer interactions and automated financial transactions through smart contracts."
+			"DeFi differs from traditional finance in its decentralized nature, accessibility, and programmability. Unlike traditional finance, DeFi operates without intermediaries, enabling direct peer-to-peer interactions and automated financial transactions through smart contracts."
 	}
 ];

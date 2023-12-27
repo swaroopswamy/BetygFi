@@ -6,8 +6,7 @@
     "extends": [
         "eslint:recommended",
         "next",
-        "next/core-web-vitals",
-        "plugin:react/recommended"
+        "next/core-web-vitals"
     ],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
@@ -20,15 +19,8 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "react-hooks"
-    ],
     "rules": {
-        "react/no-unescaped-entities": "off",
         "@next/next/no-page-custom-font": "off",
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "off",
         "no-unused-vars": [
             "error",
             {
@@ -54,9 +46,7 @@
         "semi": [
             "error",
             "always"
-        ],
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error"
+        ]
     },
     "overrides": [
         {
@@ -64,10 +54,7 @@
                 "**/*.{js,jsx}"
             ],
             "rules": {
-                "react/prop-types": "off", //will turn this on if we required
-                "react/no-direct-mutation-state": "off",
-                "import/no-anonymous-default-export":"off",
-                "react/no-unknown-property": "off"
+                "import/no-anonymous-default-export":"off"
             }
         }
     ]

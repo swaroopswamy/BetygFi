@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
 	Input,
@@ -168,7 +169,6 @@ function SelectionBox({ colorMode }) {
 
 	useEffect(() => {
 		dispatch(fetchBlockchainListData());
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

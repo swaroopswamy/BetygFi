@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,12 +91,6 @@ const Navbar = ({ ...rest }) => {
         }
     }, [debouncedValue]);
 
-    // const handleMobileSearchByWalletAddress = () => {
-    //     dispatch(walletAddressChangedReducer(searchWalletAddressValue));
-    //     router.push(`/top-wallets/${searchWalletAddressValue}`);
-    //     setSearchWalletAddressValue(searchWalletAddressValue);
-    // };
-
     const handleSearchInputChange = (value) => {
         setSearchValue(value);
     };
@@ -108,13 +103,11 @@ const Navbar = ({ ...rest }) => {
         ) {
             setSearchWalletAddressValue(searchParamAddress);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParamAddress]);
 
     useEffect(() => {
         updateColorMode();
         dispatch(getSearchV2TrendingList());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const normalizeColorMode = (colorMode) =>
@@ -336,7 +329,6 @@ const Navbar = ({ ...rest }) => {
                         </Box>
                     </Box>
                     {
-                        // !isMobileSearchOpen &&
                         <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
@@ -360,7 +352,6 @@ const Navbar = ({ ...rest }) => {
                             searchWalletAddressValue={searchWalletAddressValue}
                             handleSearchByWalletAddress={handleSearchByWalletAddress}
                             clearValueMobileSearch={clearValueMobileSearch}
-                            // handleMobileSearchByWalletAddress={handleMobileSearchByWalletAddress}
                             handleSearchInputChange={handleSearchInputChange}
                             searchValue={searchValue}
                             searchListData={searchListData?.data?.data?.data}

@@ -1,4 +1,4 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import {
 	Box,
@@ -52,7 +52,6 @@ const PortfolioPanelComponent = () => {
 
 	useEffect(() => {
 		fetchWalletBalanceDataHandler();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (

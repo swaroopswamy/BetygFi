@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 
