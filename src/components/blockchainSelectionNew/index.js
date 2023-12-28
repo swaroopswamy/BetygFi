@@ -23,13 +23,15 @@ const BlockchainSelectionMenuNew = () => {
     const { colorMode } = useColorMode();
 
     const [tempBlockchain, setTempBlockchain] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const [searchableBlockchains, setSearchableBlockchains] = useState([]);
     const blockchainSearchHandler = (e) => {
         const value = e.target.value;
+        setSearchTerm(value);
         if (searchableBlockchains && value !== "") {
             let tempBlockchainArray = searchableBlockchains.filter((item) => {
-                return item.name.toLowerCase().includes(value);
+                return item.name.toLowerCase().includes(value.toLowerCase());
             });
             setTempBlockchain(tempBlockchainArray);
         } else {
@@ -227,6 +229,7 @@ const BlockchainSelectionMenuNew = () => {
                                             onChange={(e) =>
                                                 blockchainSearchHandler(e)
                                             }
+                                            value={searchTerm}
                                             width={"100%"}
                                         ></SearchBox>
                                     </Box>
