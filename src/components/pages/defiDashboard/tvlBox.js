@@ -1,7 +1,6 @@
 "use client";
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
 import millify from "millify";
 import LastUpdate from "@components/lastUpdate";
 
@@ -9,11 +8,7 @@ let USDollar = new Intl.NumberFormat('en-US', {
 	currency: 'USD',
 });
 
-const TVLBox = () => {
-	const defiData = useSelector(
-		(state) => state?.defiDashboardData?.DefiData
-	);
-
+const TVLBox = ({ defiData }) => {
 	return (
 		<Box w={{ base: "100%", lg: "40%" }} borderRadius={"6px"} bg={useColorModeValue("#FFFFFF", "#202020")}>
 			<Box layerStyle={"flexColumn"} justifyContent={"space-between"} p={"20px"} gap={"10px"} h={"100%"}>
@@ -27,11 +22,7 @@ const TVLBox = () => {
 							lineHeight={"20px"}
 							letterSpacing={"2.4px"}
 							textTransform={"uppercase"}>
-							${" "}{defiData?.isSuccess ? (millify(defiData?.data?.tvl, {
-								precision: 2,
-								locales: "en-US"
-							})) :
-								"-"}
+							${" "}{defiData?.tvl !== null ? millify(defiData?.tvl, { precision: 2, locales: "en-US" }) : "-"}
 						</Text>
 
 						<Text
@@ -55,25 +46,20 @@ const TVLBox = () => {
 						py={"10px"} gap={"5px"}>
 						<TVLRow
 							name={"Market Cap"}
-							value={defiData?.isSuccess && defiData?.data?.mcap !== null ?
-								"$" + (millify(defiData?.data?.mcap, {
-									precision: 2,
-									locales: "en-US"
-								})) : "-"}
+							value={defiData?.mcap !== null ? "$" + (millify(defiData?.mcap, { precision: 2, locales: "en-US" })) : "-"}
 						/>
 						<TVLRow
 							name={"Token Price"}
-							value={defiData?.isSuccess && defiData?.data?.price !== null ?
-								(defiData?.data?.price?.toFixed(2) && ("$" + defiData?.data?.price?.toFixed(2))) : "-"}
+							value={defiData?.price !== null ?
+								(defiData?.price?.toFixed(2) && ("$" + defiData?.price?.toFixed(2))) : "-"}
 						/>
 						<TVLRow
 							name={"User Count"}
-							value={defiData?.isSuccess && defiData?.data?.userCount !== null &&
-								defiData?.data?.userCount !== 0 ? USDollar.format(defiData?.data?.userCount) : "-"}
+							value={defiData?.userCount !== null &&
+								defiData?.userCount !== 0 ? USDollar.format(defiData?.userCount) : "-"}
 						/>
 					</Box>
 				</Box>
-
 				<LastUpdate time={"3"} />
 			</Box>
 		</Box >

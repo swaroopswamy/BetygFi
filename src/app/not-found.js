@@ -44,18 +44,24 @@ export default function NotFoundPage() {
 			>
 				<Box display={"flex"} flexDir={"row"}>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
 						alt="4"
 					/>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={150}
 						height={150}
 						src={`/images/universe-${colorMode}.svg`}
 						alt="universe"
 					/>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
@@ -116,18 +122,24 @@ export default function NotFoundPage() {
 			>
 				<Box display={"flex"} flexDir={"row"}>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={150}
 						height={150}
 						src={`/images/404-${colorMode}-4.svg`}
 						alt="universe"
 					/>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={300}
 						height={300}
 						src={`/images/universe-${colorMode}.svg`}
 						alt="universe"
 					/>
 					<Image
+						unoptimized="true"
+						priority="true"
 						width={150}
 						height={150}
 						src={`/images/404-${colorMode}-4.svg`}

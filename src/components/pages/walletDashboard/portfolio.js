@@ -2,7 +2,6 @@
 "use client";
 import {
 	Box,
-	Image,
 	Text,
 	useColorModeValue,
 	Accordion,
@@ -27,6 +26,7 @@ import {
 	fetchWalletBalanceData,
 } from "@/redux/wallet_dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const DefiTable = dynamic(() => import("@components/pages/walletDashboard/DefiTable"));
 
@@ -316,11 +316,13 @@ const PorfolioAccordion = ({ thread, tableData }) => {
 												<Td>
 													<Flex>
 														<Image
-															width={"24px"}
-															height={"24px"}
+															width={24}
+															height={24}
 															src={item.tokenLogoUrl}
 															alt=""
-														></Image>
+															unoptimized="true"
+															priority="true"
+														/>
 														<Text
 															_light={{
 																color: "#16171B",
@@ -437,11 +439,13 @@ const PorfolioAccordion = ({ thread, tableData }) => {
 											</Text>
 											<Flex>
 												<Image
-													width={"24px"}
-													height={"24px"}
+													width={24}
+													height={24}
 													src={item?.tokenLogoUrl}
 													alt=""
-												></Image>
+													unoptimized="true"
+													priority="true"
+												/>
 												<Text
 													_light={{
 														color: "#16171B",

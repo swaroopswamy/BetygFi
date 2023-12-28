@@ -1,7 +1,8 @@
-import { Avatar, Box, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Text, useMediaQuery } from '@chakra-ui/react';
 import { formatMCAPSearchTableString, getToFixedValue } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
+import CustomAvatar from '@components/avatar';
 
 const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -41,7 +42,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
             <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
                 display={"flex"} flexDirection={"row"} key={index}>
                 <Box onClick={() => onNavigateArrowClick(searchItem.slug, defiItem.slug)} cursor={"pointer"} w={isMd ? "30%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
-                    <Avatar
+                    <CustomAvatar
                         width={"24px"}
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
@@ -91,6 +92,8 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                                 alt="right-arrow"
                                 src={"/icons/right-arrow.svg"}
                                 width={"24"}
+                                unoptimized="true"
+                                priority="true"
                                 height={"24"}
                             />
                         </Box>

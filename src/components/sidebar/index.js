@@ -22,7 +22,6 @@ import {
     AccordionPanel,
     Tooltip,
 } from "@chakra-ui/react";
-// import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +42,7 @@ import { signOut, useSession } from "next-auth/react";
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
-import { PublicAddressStringFormatter } from "@util/functions";
+import { PublicAddressStringFormatter } from "@util/utility";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
 
@@ -96,6 +95,8 @@ const SidebarContent = ({ ...rest }) => {
                             onClick={() => router.push("/")}
                         >
                             <Image
+                                unoptimized="true"
+                                priority="true"
                                 width={180}
                                 height={80}
                                 alt="logo"
@@ -401,6 +402,8 @@ const SidebarContent = ({ ...rest }) => {
                                 <Image
                                     width={35}
                                     height={35}
+                                    unoptimized="true"
+                                    priority="true"
                                     alt="logo"
                                     src={
                                         colorMode === "light"
@@ -566,6 +569,8 @@ const SidebarContent = ({ ...rest }) => {
                             width={24}
                             height={24}
                             alt="button"
+                            unoptimized="true"
+                            priority="true"
                             style={
                                 isSidebarCollapsed
                                     ? { rotate: "180deg" }
@@ -835,6 +840,8 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     width={100}
                                                     height={70}
                                                     alt="logo"
+                                                    unoptimized="true"
+                                                    priority="true"
                                                     src={
                                                         colorMode === "light"
                                                             ? "/icons/light_betgyfi_sm_icon.svg"

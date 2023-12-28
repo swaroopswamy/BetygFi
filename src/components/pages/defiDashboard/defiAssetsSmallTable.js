@@ -11,12 +11,12 @@ import {
 	Tr,
 	Th,
 	Td,
-	Avatar,
 } from "@chakra-ui/react";
 import GenericTable from "@components/table";
 import { DefiAssetsSmallTableHeader } from "@components/pages/defiDashboard/helper";
 import LastUpdate from "@components/lastUpdate";
 import TooltipComp from "@components/tooltipComp";
+import CustomAvatar from "@/components/avatar";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	style: "currency",
@@ -76,12 +76,12 @@ function DefiAssetsSmallTable({ searchParamProtocolSlug }) {
 						return (
 							<Box layerStyle={"spaceBetween"} w={"90%"}>
 								<Box layerStyle={"flexCenter"} gap={"10px"}>
-									<Avatar
+									<CustomAvatar
 										height={"24px"}
 										width={"24px"}
 										src={item?.item?.logoUrl}
 										name={item?.item?.assetName}
-									></Avatar>
+									/>
 									<Text variant={"h3"}> {item?.item?.assetName} </Text>
 								</Box>
 								<Box layerStyle={"center"}>
@@ -148,12 +148,12 @@ function TableRow({ item, i }) {
 			>
 				<Td>
 					<Box layerStyle={"flexCenter"} gap={"10px"}>
-						<Avatar
+						<CustomAvatar
 							height={"24px"}
 							width={"24px"}
 							src={item?.logoUrl}
 							name={item?.assetName}
-						></Avatar>
+						/>
 						<Text variant={"h3"}> {item?.assetName} </Text>
 					</Box>
 				</Td>

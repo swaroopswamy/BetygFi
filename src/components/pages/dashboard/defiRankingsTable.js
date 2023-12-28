@@ -11,7 +11,6 @@ import {
     Collapse,
     useDisclosure,
     Button,
-    Avatar,
     Tooltip,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +20,7 @@ import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
+import CustomAvatar from "@/components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -231,13 +231,13 @@ const TableRow = ({ item, rowIndex }) => {
                     width={"120px"}
                     gap={"10px"}
                 >
-                    <Avatar
+                    <CustomAvatar
                         width={"24px"}
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
                         src={item?.logo}
-                    ></Avatar>
+                    />
 
                     <Box
                         display={"flex"}
@@ -386,13 +386,13 @@ const ButtonComp = ({ item }) => {
                 </Text>
 
                 <Box layerStyle={"center"} gap={"10px"} ml={"30px"}>
-                    <Avatar
+                    <CustomAvatar
                         width={"24px"}
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
                         src={item?.logo}
-                    ></Avatar>
+                    />
 
                     <Box
                         layerStyle={"flexColumn"}
@@ -616,12 +616,12 @@ const ChainsTooltip = ({ chains }) => {
             {chains?.map((chain, i) => {
                 return (
                     <Box layerStyle={"flexCenter"} key={i} gap={"10px"}>
-                        <Avatar
+                        <CustomAvatar
                             width={"24px"}
                             height={"24px"}
                             name={chain?.name}
                             src={chain?.logoUrl}
-                        ></Avatar>
+                        />
 
                         <Text variant={"h4"} fontSize={"14px"}>
                             {" "}

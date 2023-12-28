@@ -4,7 +4,6 @@ import {
 	useColorMode,
 	useColorModeValue,
 	Text,
-	Image,
 	Button,
 	useDisclosure,
 } from "@chakra-ui/react";
@@ -15,6 +14,7 @@ const LoginPage = dynamic(() => import("@components/login"));
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import DynamicIcon from "@components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 
 const Settings = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -57,11 +57,13 @@ const Settings = () => {
 					<Box layerStyle={"flexCenterSpaceEvenly"} mt={"10px"}>
 						<Box layerStyle={"flexColumn"} cursor={"pointer"}>
 							<Image
+								unoptimized="true"
+								priority="true"
 								src="/images/SystemDefault.svg"
 								w="183px"
 								h="133px"
 								alt=""
-							></Image>
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								{/* <DynamicIcon
                                     name={colorMode === "light" ? "green_tick" : "unticked"}
@@ -91,7 +93,9 @@ const Settings = () => {
 								w="183px"
 								h="133px"
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								<DynamicIcon
 									name={colorMode === "light" ? "green_tick" : "unticked"}
@@ -122,7 +126,9 @@ const Settings = () => {
 								w="183px"
 								h="133px"
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								<DynamicIcon
 									name={colorMode === "dark" ? "green_tick" : "unticked"}
@@ -167,7 +173,8 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
+							<Image src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
+								priority="true" />
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
 									Web 3
@@ -205,11 +212,13 @@ const Settings = () => {
 					>
 						<Box layerStyle={"flexCenter"}>
 							<Image
+								unoptimized="true"
+								priority="true"
 								src="/images/Google.svg"
 								mb={"20px"}
 								ml={"7px"}
 								alt=""
-							></Image>
+							/>
 							<Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
 									Email
@@ -251,7 +260,9 @@ const Settings = () => {
 								mb={"20px"}
 								ml={"7px"}
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
 								<Text variant={" SettingsText1"} ml={"15px"}>
 									Twitter
@@ -366,7 +377,8 @@ const Settings = () => {
 					<Box layerStyle={"flexColumn"}>
 						<Box layerStyle={"flexColumn"} cursor={"pointer"}>
 							<Box layerStyle={"flexCenterFlexStart"}>
-								<Image src="/images/SelectBox.svg" alt="" ml={"21px"}></Image>
+								<Image src="/images/SelectBox.svg" alt="" ml={"21px"} unoptimized="true"
+									priority="true" />
 								<Box ml={"10px"}>
 									<Text
 										variant={" h6"}
@@ -385,7 +397,9 @@ const Settings = () => {
 								alt=""
 								mt={"12px"}
 								ml={"21px"}
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 						</Box>
 
 						<Box
@@ -416,10 +430,12 @@ const Settings = () => {
 								src="/images/LightTheme.svg"
 								w="183px"
 								h="133px"
+								unoptimized="true"
+								priority="true"
 								alt=""
 								mt={"12px"}
 								ml={"21px"}
-							></Image>
+							/>
 						</Box>
 
 						<Box
@@ -449,11 +465,13 @@ const Settings = () => {
 							<Image
 								src="/images/DarkTheme.svg"
 								w="183px"
+								unoptimized="true"
+								priority="true"
 								h="133px"
 								alt=""
 								mt={"12px"}
 								ml={"21px"}
-							></Image>
+							/>
 						</Box>
 					</Box>
 				</Box>
@@ -481,7 +499,8 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image src="/images/Web3.svg" mb={"20px"} alt=""></Image>
+							<Image src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
+								priority="true" />
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
 									Web 3
@@ -522,7 +541,9 @@ const Settings = () => {
 								mb={"20px"}
 								ml={"7px"}
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box flexDirection={"column"} mb={"17px"} ml={"5px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
 									Email
@@ -563,7 +584,9 @@ const Settings = () => {
 								mb={"20px"}
 								ml={"7px"}
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexColumn"} mb={"17px"} ml={"5px"}>
 								<Text variant={" SettingsText1"} ml={"15px"}>
 									Twitter

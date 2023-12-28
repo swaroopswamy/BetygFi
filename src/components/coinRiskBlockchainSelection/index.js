@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-	Avatar,
 	Box,
 	Button,
 	Checkbox,
@@ -15,6 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
+import CustomAvatar from "@components/avatar";
 const SearchBox = dynamic(() => import("@components/searchBox"));
 
 const BlockchainSelectionMenuNew = () => {
@@ -202,7 +202,7 @@ const BlockchainSelectionMenuNew = () => {
 																"center"
 															}
 														>
-															<Avatar
+															<CustomAvatar
 																width={"24px"}
 																height={"24px"}
 																src={
@@ -218,7 +218,7 @@ const BlockchainSelectionMenuNew = () => {
 																	marginLeft:
 																		"14px",
 																}}
-															></Avatar>
+															/>
 															<Text
 																fontSize={
 																	"12px"

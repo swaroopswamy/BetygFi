@@ -1,5 +1,5 @@
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
-import { getDomainForCookie } from '@util/functions';
+import { getDomainForCookie } from '@util/utility';
 
 const options = () => { return ({ domain: getDomainForCookie(), path: '/' }); };
 

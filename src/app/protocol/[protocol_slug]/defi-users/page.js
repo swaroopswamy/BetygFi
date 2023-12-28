@@ -8,13 +8,14 @@ import {
 	Flex,
 	Box,
 	useColorModeValue,
-	Image,
 	useColorMode,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
 const GenericBigTableComponent = dynamic(() => import('@components/pages/defiDashboard/GenericBigTable'));
 
 function DefiUsers() {
@@ -252,11 +253,13 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
+								unoptimized="true"
+								priority="true"
 								height={"24px"}
 								width={"24px"}
 								src={users.src}
 								alt="logo"
-							></Image>
+							/>
 							<Text
 								_dark={{
 									color: "#FFFFFF",
@@ -321,13 +324,14 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
 					<Flex>
 						<Box>
 							<Flex gap={"-10px"}>
-								{assets.map((item, i) => {
-									return (
-										<Box key={i}>
-											<Image alt={""} key={i} src={assets[i]}></Image>
-										</Box>
-									);
-								})}
+								{assets.map((item, i) => (
+									<Box key={i}>
+										<Image
+											unoptimized="true"
+											priority="true"
+											alt={""} key={i} src={assets[i]} />
+									</Box>
+								))}
 							</Flex>
 						</Box>
 					</Flex>

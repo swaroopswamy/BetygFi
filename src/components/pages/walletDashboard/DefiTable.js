@@ -6,15 +6,12 @@ import {
 	Th,
 	Tr,
 	Box,
-	// useColorModeValue,
 	Icon,
 	Image as ChakraImage
 } from "@chakra-ui/react";
 
 import { useSelector } from "react-redux";
 import isEmpty from "lodash/isEmpty";
-// import SortWhiteIcon from "../../../../../public/icons/sort_white.svg";
-// import SortBlackIcon from "../../../../../public/icons/sort_black.svg";
 import dynamic from "next/dynamic";
 
 const GenericTable = dynamic(() => import("@components/table"));
@@ -74,7 +71,9 @@ const TableRowDesktop = ({ item, i }) => {
 								style={{ borderRadius: "50%" }}
 								alt="logo"
 								src={item?.logoUrl}
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 						</>
 					) : (
 						<>
@@ -260,7 +259,9 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 								style={{ borderRadius: "50%" }}
 								alt="logo"
 								src={item?.logoUrl}
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 						</>
 					) : (
 						<>

@@ -10,12 +10,11 @@ import {
     useMediaQuery,
 } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
 import CustomChart from "@components/graph";
 import { SingleAccordionComp } from "@components/accordion";
 import TooltipComp from "@components/tooltipComp";
 
-const RiskAnalysis = () => {
+const RiskAnalysis = ({ coinDetails }) => {
     const [isLg] = useMediaQuery("(min-width: 960px)");
 
     return isLg ? (
@@ -40,11 +39,10 @@ const RiskAnalysis = () => {
                         }
                     />
                 </Box>
-
-                <RiskTable />
+                <RiskTable coinDetails={coinDetails} />
             </Box>
 
-            <RiskChart />
+            <RiskChart coinDetails={coinDetails} />
         </Box>
     ) : (
         <SingleAccordionComp
@@ -69,10 +67,10 @@ const RiskAnalysis = () => {
                         p={"20px 15px"}
                     >
                         <Box layerStyle={"center"}>
-                            <RiskChart />
+                            <RiskChart coinDetails={coinDetails} />
                         </Box>
                         <Box layerStyle={"center"}>
-                            <RiskTable />
+                            <RiskTable coinDetails={coinDetails} />
                         </Box>
                     </Box>
                 );
@@ -84,10 +82,7 @@ const RiskAnalysis = () => {
 
 export default RiskAnalysis;
 
-const RiskTable = () => {
-    const CoinDashboardData = useSelector(
-        (state) => state?.coinData?.CoinDashboardData?.data
-    );
+const RiskTable = ({ coinDetails }) => {
 
     return (
         <Table variant="unstyled" w={"80%"}>
@@ -138,7 +133,7 @@ const RiskTable = () => {
                                 lineHeight={"18px"}
                                 color={"text.primary"}
                             >
-                                $ {CoinDashboardData?.daily_value[0].toFixed(3)}
+                                $ {coinDetails?.daily_value[0].toFixed(3)}
                             </Text>
                         </Box>
                     </Th>
@@ -154,7 +149,7 @@ const RiskTable = () => {
                                 lineHeight={"18px"}
                                 color={"text.primary"}
                             >
-                                $ {CoinDashboardData?.daily_value[1].toFixed(3)}
+                                $ {coinDetails?.daily_value[1].toFixed(3)}
                             </Text>
                         </Box>
                     </Th>
@@ -182,7 +177,7 @@ const RiskTable = () => {
                                 color={"text.primary"}
                             >
                                 ${" "}
-                                {CoinDashboardData?.daily_shortfall[0].toFixed(
+                                {coinDetails?.daily_shortfall[0].toFixed(
                                     3
                                 )}
                             </Text>
@@ -201,7 +196,7 @@ const RiskTable = () => {
                                 color={"text.primary"}
                             >
                                 ${" "}
-                                {CoinDashboardData?.daily_shortfall[1].toFixed(
+                                {coinDetails?.daily_shortfall[1].toFixed(
                                     3
                                 )}
                             </Text>
@@ -213,15 +208,11 @@ const RiskTable = () => {
     );
 };
 
-const RiskChart = () => {
+const RiskChart = ({ coinDetails }) => {
     const [isLg] = useMediaQuery("(min-width: 960px)");
 
-    const CoinDashboardData = useSelector(
-        (state) => state?.coinData?.CoinDashboardData?.data
-    );
-
     const cleanedData = [];
-    CoinDashboardData?.chartData.map((dataPoint) => {
+    coinDetails?.chartData.map((dataPoint) => {
         if (dataPoint.y != 0)
             cleanedData.push({
                 x: dataPoint.x.toFixed(3).toString(),

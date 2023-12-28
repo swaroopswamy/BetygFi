@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Box,
-	Image,
 	Text,
 	Tooltip,
 	useColorMode,
@@ -9,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import Image from "next/image";
 
 const BlockchainSelectionMenuBlocks = () => {
 	const dispatch = useDispatch();
@@ -97,13 +97,15 @@ const BlockchainSelectionMenuBlocks = () => {
 					>
 						<Tooltip key={i} label={item.name}>
 							<Image
-								w={"18px"}
-								h={"18px"}
+								width={18}
+								height={18}
 								mr={"3px"}
 								style={{ borderRadius: "50%" }}
 								src={item.logoUrl}
+								unoptimized="true"
+								priority="true"
 								alt={`${item.id}_icon`}
-							></Image>
+							/>
 						</Tooltip>
 						<Text
 							fontSize={"14px"}

@@ -1,7 +1,9 @@
-import { Box, Image as ChakraImage, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import Image from "next/image";
 import React from "react";
 
 const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
+	const [isMd] = useMediaQuery("(min-width: 768px)");
 	return (
 		<Box
 			layerStyle={"flexSpaceBetween"}
@@ -9,13 +11,23 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
 		>
 			<Box layerStyle={"flexCenter"}>
 				<Box mr={"22px"}>
-					<ChakraImage
-						w={{ base: "35px", md: "47px" }}
-						h={{ base: "35px", md: "47px" }}
-						borderRadius={"50%"}
-						src="/images/basic_profile.svg"
-						alt="proifile_img"
-					/>
+					{isMd ?
+						<Image
+							width={47}
+							height={47}
+							style={{ borderRadius: "50%" }}
+							src="/images/basic_profile.svg"
+							alt="proifile_img"
+						/>
+						:
+						<Image
+							width={35}
+							height={35}
+							style={{ borderRadius: "50%" }}
+							src="/images/basic_profile.svg"
+							alt="proifile_img"
+						/>
+					}
 				</Box>
 				<Box layerStyle={"flexColumn"}>
 					{walletBalanceData?.name === undefined && (
@@ -32,7 +44,7 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
 							}}
 							letterSpacing={"2.4px"}
 						>
-              No Name
+							No Name
 						</Text>
 					)}
 					<Box layerStyle={"flexCenter"} mt={{ base: "5px", md: "13px" }}>
@@ -55,8 +67,8 @@ const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
 							paddingRight={"15px"}
 						>
 							{walletAddress?.split("").join("").substring(0, 6) +
-                "......" +
-                walletAddress?.slice(-5)}
+								"......" +
+								walletAddress?.slice(-5)}
 						</Text>
 					</Box>
 				</Box>
