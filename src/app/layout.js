@@ -7,15 +7,11 @@ import { WagmiProvider } from "@/app/Web3Provider";
 import LayoutProvider from "@/app/LayoutProvider";
 import SessionProvider from "@/app/SessionProvider";
 import { getServerSession } from "next-auth";
+import { DefiLandingPageMetas } from "@util/metaHelper";
 
-export const metadata = {
-	title: "BetygFi : Elevate your game",
-	description: "Elevate your game",
-};
+export const metadata = DefiLandingPageMetas('');
 
-// export const dynamicParams = true
 export const dynamic = 'auto';
-// export const dynamic = "force-static";
 export const revalidate = false;
 export const fetchCache = 'auto';
 export const runtime = 'nodejs';
@@ -25,7 +21,7 @@ export const maxDuration = 5;
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
 	return (
-		<html lang="en">
+		<html lang={"en"}>
 			<head>
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />

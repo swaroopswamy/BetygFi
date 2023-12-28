@@ -97,8 +97,8 @@ const BlockchainSelectionMenuBlocks = () => {
 					>
 						<Tooltip key={i} label={item.name}>
 							<Image
-								w={"18px"}
-								h={"18px"}
+								width={18}
+								height={18}
 								mr={"3px"}
 								style={{ borderRadius: "50%" }}
 								src={item.logoUrl}

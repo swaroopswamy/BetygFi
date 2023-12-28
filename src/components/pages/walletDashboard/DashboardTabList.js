@@ -49,8 +49,8 @@ const DashboardTabList = ({ tabIndex }) => {
 						Transactions
 					</Text>
 					<Image
-						w="25px"
-						h="25px"
+						width={25}
+						height={25}
 						alt="icon"
 						unoptimized="true"
 						priority="true"
@@ -106,8 +106,8 @@ const DashboardTabList = ({ tabIndex }) => {
 						Portfolio
 					</Text>
 					<Image
-						w="24px"
-						h="24px"
+						width={24}
+						height={24}
 						alt="icon"
 						unoptimized="true"
 						priority="true"
@@ -120,7 +120,7 @@ const DashboardTabList = ({ tabIndex }) => {
 									? "/images/portfolio_white.svg"
 									: "/images/portfolio_black.svg"
 						}
-					></Image>
+					/>
 				</Box>
 			</Tab>
 			<Tab
@@ -163,8 +163,8 @@ const DashboardTabList = ({ tabIndex }) => {
 						Wallet Analytics
 					</Text>
 					<Image
-						w="24px"
-						h="24px"
+						width={24}
+						height={24}
 						alt="icon"
 						unoptimized="true"
 						priority="true"
@@ -177,7 +177,7 @@ const DashboardTabList = ({ tabIndex }) => {
 									? "/images/wallet_analytics_white.svg"
 									: "/images/wallet_analytics_black.svg"
 						}
-					></Image>
+					/>
 				</Box>
 			</Tab>
 		</TabList>

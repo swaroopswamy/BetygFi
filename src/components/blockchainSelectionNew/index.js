@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-    Avatar,
     Box,
     Checkbox,
     CheckboxGroup,
@@ -16,6 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
+import CustomAvatar from "@components/avatar";
 const SearchBox = dynamic(() => import("@components/searchBox"));
 
 const BlockchainSelectionMenuNew = () => {
@@ -139,13 +139,13 @@ const BlockchainSelectionMenuNew = () => {
                                         BlockchainTypeHandler(item.id);
                                     }}
                                 >
-                                    <Avatar
+                                    <CustomAvatar
                                         style={{ borderRadius: "50%" }}
                                         width={"21px"}
                                         height={"21px"}
                                         src={item?.logoUrl}
                                         name={item.id ?? "Coin"}
-                                    ></Avatar>
+                                    />
                                 </Box>
                             </Tooltip>
                         );
@@ -274,7 +274,7 @@ const BlockchainSelectionMenuNew = () => {
                                                                     "center"
                                                                 }
                                                             >
-                                                                <Avatar
+                                                                <CustomAvatar
                                                                     width={
                                                                         "24px"
                                                                     }
@@ -294,7 +294,7 @@ const BlockchainSelectionMenuNew = () => {
                                                                         marginLeft:
                                                                             "14px",
                                                                     }}
-                                                                ></Avatar>
+                                                                />
                                                                 <Text
                                                                     fontSize={
                                                                         "12px"

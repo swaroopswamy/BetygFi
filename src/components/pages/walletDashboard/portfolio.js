@@ -316,8 +316,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
 												<Td>
 													<Flex>
 														<Image
-															width={"24px"}
-															height={"24px"}
+															width={24}
+															height={24}
 															src={item.tokenLogoUrl}
 															alt=""
 															unoptimized="true"
@@ -439,8 +439,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
 											</Text>
 											<Flex>
 												<Image
-													width={"24px"}
-													height={"24px"}
+													width={24}
+													height={24}
 													src={item?.tokenLogoUrl}
 													alt=""
 													unoptimized="true"

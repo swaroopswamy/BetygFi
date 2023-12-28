@@ -2,7 +2,6 @@
 "use client";
 import React, { useEffect } from "react";
 import {
-	Avatar,
 	Box,
 	Checkbox,
 	Menu,
@@ -17,6 +16,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import CustomAvatar from "@components/avatar";
 
 const BlockchainSelectionMenu = ({ chains }) => {
 	const dispatch = useDispatch();
@@ -66,13 +66,13 @@ const BlockchainSelectionMenu = ({ chains }) => {
 									BlockchainTypeHandler(item.id);
 								}}
 							>
-								<Avatar
+								<CustomAvatar
 									style={{ borderRadius: "50%" }}
 									width={"24px"}
 									height={"24px"}
 									src={item?.logoUrl}
 									name={item.id ?? "Coin"}
-								></Avatar>
+								/>
 							</Box>
 						</Tooltip>
 					);
@@ -127,13 +127,13 @@ const BlockchainSelectionMenu = ({ chains }) => {
 													alignItems={"center"}
 													justifyContent={"center"}
 												>
-													<Avatar
+													<CustomAvatar
 														width={"24px"}
 														height={"24px"}
 														src={item.logoUrl}
 														name={item.id ?? "Coin"}
 														style={{ marginRight: "20px", marginLeft: "14px" }}
-													></Avatar>
+													/>
 													<Text
 														fontSize={"12px"}
 														fontWeight={"400"}

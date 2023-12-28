@@ -6,7 +6,6 @@ import {
 	Th,
 	Td,
 	useColorModeValue,
-	Avatar,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "@util/globalHelper";
@@ -17,6 +16,7 @@ import {
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import CustomAvatar from "@/components/avatar";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));
@@ -85,13 +85,13 @@ const TableRowDesktop = ({ item, i }) => {
 		<Tr height={"40px"} key={i}>
 			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
 				<Box layerStyle={"flexCenter"}>
-					<Avatar
+					<CustomAvatar
 						width={5}
 						height={5}
 						name={item?.symbol ?? "logo"}
 						style={{ borderRadius: "50%" }}
 						src={item?.logoUrl}
-					></Avatar>
+					/>
 					<Text ml="6px" variant={"h3"}>
 						{item?.symbol}
 					</Text>

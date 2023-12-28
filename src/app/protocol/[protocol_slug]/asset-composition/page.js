@@ -15,12 +15,12 @@ import {
 	Box,
 	useColorModeValue,
 	useColorMode,
-	Avatar,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import GenericTable from "@components/table";
 import { DefiAssetsBigTableHeader } from "@components/pages/defiDashboard/helper";
 import PageButtonsWide from "@components/pageButtonsWide";
+import CustomAvatar from "@components/avatar";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",
@@ -125,7 +125,7 @@ function AssetComposition({ params }) {
 						return (
 							<Box layerStyle={"spaceBetween"} w={"80%"}>
 								<Box layerStyle={"flexCenter"} gap={"10px"}>
-									<Avatar
+									<CustomAvatar
 										name={item?.item?.assetName}
 										src={item?.item?.logoUrl}
 										height={"24px"}
@@ -256,7 +256,7 @@ function TableRow({ item, i }) {
 							display={"flex"}
 							gap={"15px"}
 						>
-							<Avatar
+							<CustomAvatar
 								name={item?.assetName}
 								src={item?.logoUrl}
 								height={"24px"}

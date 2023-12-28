@@ -11,7 +11,6 @@ import {
 	Flex,
 	Link,
 	useColorMode,
-	Avatar,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment/moment";
@@ -21,6 +20,8 @@ import dynamic from "next/dynamic";
 import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
 import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
 import Image from "next/image";
+import CustomAvatar from "@/components/avatar";
+
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
 
@@ -124,8 +125,8 @@ const TableRow = ({ item, rowIndex }) => {
 						<Tooltip label={item?.blockchain}>
 							<>
 								<Image
-									w={"18px"}
-									h={"18px"}
+									width={18}
+									height={18}
 									mr={"3px"}
 									unoptimized="true"
 									priority="true"
@@ -187,13 +188,13 @@ const TableRow = ({ item, rowIndex }) => {
 
 				<Td>
 					<Box layerStyle={"flexCenter"}>
-						<Avatar
+						<CustomAvatar
 							width={"18px"}
 							height={"18px"}
 							name={item?.tokenSymbol ?? "logo"}
 							src={item?.tokenUrl}
 							style={{ borderRadius: "50%" }}
-						></Avatar>
+						/>
 
 						<Text variant={"h3"} ml="6px">
 							{Number(item?.value).toFixed(2)}

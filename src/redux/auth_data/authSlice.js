@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@/services/authService";
-import { AUTH_COOKIE_NAME } from "@util/utility";
 import { signIn } from "next-auth/react";
 import { createCookies, deleteCookieByName } from "@util/cookieHelper";
+import { AUTH_COOKIE_NAME } from "@util/constant";
 
 export const VerifyPublicAddressData = createAsyncThunk(
 	"verifyPublicAddressData",

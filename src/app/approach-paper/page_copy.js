@@ -423,14 +423,14 @@ const Approach = () => {
 							<Image
 								unoptimized="true"
 								priority="true"
-								h={40}
-								w={40}
+								height={40}
+								width={40}
 								src={useColorModeValue(
 									"/images/bg-logo.png",
 									"/images/bg-logo-dark.png"
 								)}
-								alt=""
-							></Image>
+								alt="bg-logo"
+							/>
 						</Box>
 					</Box>
 					<Box width={"90%"} display={{ base: "block", md: "none" }}>

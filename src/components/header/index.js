@@ -21,15 +21,15 @@ import {
 } from "@/redux/auth_data/authSlice";
 import { MobileSidebar } from "@components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
-import { PublicAddressStringFormatter } from "@util/functions";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
-import { COLOR_MODE_COOKIE_NAME } from "@util/utility";
+import { PublicAddressStringFormatter } from "@util/utility";
 import SearchBoxV2 from "@components/searchBoxV2";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
+import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
 
 const Navbar = ({ ...rest }) => {
     const searchParams = useSearchParams();

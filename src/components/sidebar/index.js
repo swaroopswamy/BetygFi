@@ -22,7 +22,6 @@ import {
     AccordionPanel,
     Tooltip,
 } from "@chakra-ui/react";
-// import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +42,7 @@ import { signOut, useSession } from "next-auth/react";
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
-import { PublicAddressStringFormatter } from "@util/functions";
+import { PublicAddressStringFormatter } from "@util/utility";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
 

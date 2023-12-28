@@ -35,8 +35,8 @@ const Help = () => {
 									"/images/bg-logo.svg",
 									"/images/bg-logo-dark.svg"
 								)}
-								alt=""
-							></Image>
+								alt="bg-logo"
+							/>
 						</Box>
 					</Box>
 				</Box>
@@ -70,9 +70,9 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												) : (
 													<Image
@@ -83,9 +83,9 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												)}
 											</AccordionButton>
@@ -150,9 +150,9 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												) : (
 													<Image
@@ -163,9 +163,9 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												)}
 											</AccordionButton>
@@ -210,9 +210,9 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												) : (
 													<Image
@@ -223,9 +223,9 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												)}
 											</AccordionButton>
@@ -305,9 +305,9 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												) : (
 													<Image
@@ -318,9 +318,9 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
-														alt=""
+														width={24}
+														height={24}
+														alt="ellipse"
 													/>
 												)}
 											</AccordionButton>
@@ -392,11 +392,11 @@ const Help = () => {
 								unoptimized="true"
 								priority="true"
 								alt="bg-logo"
-								width={"102.019px"}
-								height={"100px"}
+								width={102}
+								height={100}
 								flexShrink={0}
 								opacity={"0.8"}
-							></Image>
+							/>
 						</Box>
 					</Box>
 				</Box>
@@ -426,8 +426,8 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												) : (
@@ -439,8 +439,8 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												)}
@@ -502,8 +502,8 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												) : (
@@ -515,8 +515,8 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												)}
@@ -557,8 +557,8 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												) : (
@@ -570,8 +570,8 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												)}
@@ -646,8 +646,8 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														w={"24px"}
-														h={"24px"}
+														width={24}
+														height={24}
 														unoptimized="true"
 														priority="true"
 														alt=""
@@ -659,10 +659,10 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														w={"24px"}
 														unoptimized="true"
 														priority="true"
-														h={"24px"}
+														width={24}
+														height={24}
 														alt=""
 													/>
 												)}

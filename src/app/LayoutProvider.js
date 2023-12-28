@@ -21,7 +21,7 @@ import {
     verifyJWTtokenFromCookie,
     LogoutReducer,
 } from "@/redux/auth_data/authSlice";
-import { AUTH_COOKIE_NAME } from "@util/utility";
+import { AUTH_COOKIE_NAME } from "@util/constant";
 import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";

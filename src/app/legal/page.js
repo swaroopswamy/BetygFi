@@ -32,7 +32,7 @@ const Legal = () => {
 							<Image unoptimized="true"
 								priority="true"
 								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
-								alt=" " width={"153.027px"} height={"150px"} flexShrink={0}></Image>
+								alt=" " width={153} height={150} flexShrink={0} />
 						</Box>
 					</Box>
 				</Box>
@@ -122,7 +122,7 @@ const Legal = () => {
 								unoptimized="true"
 								priority="true"
 								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
-								alt=" " width={"102.018px"} height={"100px"} flexShrink={0}></Image>
+								alt=" " width={102} height={100} flexShrink={0} />
 						</Box>
 					</Box>
 				</Box>

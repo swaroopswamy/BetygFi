@@ -308,8 +308,8 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
 							<Image
 								unoptimized="true"
 								priority="true"
-								height={"24px"}
-								width={"24px"}
+								height={24}
+								width={24}
 								src={blockchain?.src}
 								alt="logo"
 							/>

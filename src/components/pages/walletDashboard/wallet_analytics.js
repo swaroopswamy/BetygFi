@@ -3,12 +3,6 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
 
-// const BlockchainAllocationBox = dynamic(() =>
-//   import("@components/pages/walletDashboard/BlockchainAllocationBox")
-// );
-// const AssetAllocationBox = dynamic(() =>
-//   import("@components/pages/walletDashboard/AssetAllocationBox")
-// );
 const ProtocolAllocationBox = dynamic(() =>
 	import("@components/pages/walletDashboard/ProtocolAllocationBox")
 );

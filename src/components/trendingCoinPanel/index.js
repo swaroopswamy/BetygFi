@@ -1,8 +1,9 @@
-const { Box, Avatar, Text, Icon, useColorMode } = require("@chakra-ui/react");
+const { Box, Text, Icon, useColorMode } = require("@chakra-ui/react");
 import { GoArrowUpRight } from "react-icons/go";
 import React, { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import CustomChart from "@components/graph";
+import CustomAvatar from "@components/avatar";
 
 const TrendingCoinPanel = ({ coinData }) => {
     const router = useRouter();
@@ -85,12 +86,12 @@ const TrendingCoinPanel = ({ coinData }) => {
                 alignItems={"center"}
             >
                 <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-                    <Avatar
+                    <CustomAvatar
                         height={"50px"}
                         width={"50px"}
                         name={coinData.name}
                         src={coinData.logoUrl}
-                    ></Avatar>
+                    />
 
                     <Text fontSize={"16px"} color={"text.primary"}>
                         {" "}
