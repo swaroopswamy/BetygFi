@@ -36,10 +36,87 @@ const Settings = () => {
 				<Text
 					variant={"contentHeading"}
 					lineHeight={"46px"}
-					p={"30px 0px 10px 33px"}
+					p={"20px 0px 18px 33px"}
 				>
-					Settings
+					Profile Settings
 				</Text>
+
+				<Box
+					height={"350px"}
+					flexShrink={"0"}
+					borderRadius={"6px"}
+					background={useColorModeValue("#FFFFFF", "#202020")}
+					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
+					ml={"33px"}
+					mr={"20px"}
+					mb={"20px"}
+				>
+					<Box ml={"25px"} pt={"20px"} layerStyle={"flexCenter"} gap={"17px"}>
+						<Text variant={"contentHeading3"} fontWeight={"400"}>
+							Profile Details
+						</Text>
+						<Button
+							variant={"outline"}
+							border={"1px"}
+							width={"139.2px"}
+							height={"33.6px"}
+							flexShrink={0}
+							background={useColorModeValue("#FFFFFF", "#191919")}
+						>
+							<Text variant={"SettingsButtonText"}
+								color={useColorModeValue("#191919", "#FFFFFF")}
+							>
+								Edit Details
+							</Text>
+						</Button>
+					</Box>
+					<Box ml={"25px"} pt={"25px"} layerStyle={"flexCenter"} justifyContent={"space-between"}>
+						<Box layerStyle={"flexCenter"} gap={"17px"}>
+							<Image
+								borderRadius={"full"}
+								boxSize={"150px"}
+								src="/images/Profile_photo.svg"
+							></Image>
+							<Box >
+								<Text variant={"smallTableHeader"} lineHeight={"normal"}>
+									Cameron Williamson
+								</Text>
+								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")}>
+									@TBgjD…CYVg4
+								</Text>
+								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")}>
+									Member since: 12/11/2022
+								</Text>
+							</Box>
+						</Box>
+						<Box
+							width={"184px"}
+							height={"70px"}
+							background={"#494949"}
+							borderRadius={"10px"}
+							mr={"25px"}
+						>
+							<Box borderBottom={"dotted"} p={"12px 0px 3px"} borderColor={"#A4A8AB"} layerStyle={"flexCenter"} justifyContent={"space-around"}>
+								<Text variant={"profileText"}>
+									Profile Score
+								</Text>
+								<Image src="/icons/question_mark_lg_icon.svg"></Image>
+							</Box>
+							<Text variant={"profileText"} fontSize={"24px"} p={"5px 24px"}>
+								72
+							</Text>
+						</Box>
+					</Box>
+					<Box ml={"25px"} pt={"32px"}>
+						<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")}>
+							About Me:
+						</Text>
+						<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#191919", "#FFFFFF")} paddingTop={"10px"}>
+							I’m a crypto enthusiast—navigating the blockchain with a passion for decentralized innovation and a keen eye on the ever-evolving landscape, reshaping the future of finance one digital asset at a time.
+						</Text>
+					</Box>
+				</Box>
+
 				<Box
 					height={"275px"}
 					flexShrink={"0"}

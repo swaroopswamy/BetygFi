@@ -293,7 +293,17 @@ const Text = defineStyleConfig({
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "36px",
-        })
+        }),
+        profileText: () => ({
+            fontFamily: "Poppins",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            fontSize: "16px",
+            fontWeight: "400",
+            lineHeight: "normal",
+            color: "#FFF",
+        }),
     },
     defaultProps: {
         variant: "base",
