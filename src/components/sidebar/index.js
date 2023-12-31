@@ -56,9 +56,8 @@ const SidebarContent = ({ ...rest }) => {
         dispatch(sidebarCollapsedReducer(value));
     };
 
-    const isSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isSidebarCollapsed
-    );
+    const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
+    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     const {
         isOpen: isSuggestFeatureModalOpen,
@@ -73,197 +72,256 @@ const SidebarContent = ({ ...rest }) => {
     } = useDisclosure();
 
     return (
-        <>
-            <Box
-                id="betygfi-sidebar"
-                bg={useColorModeValue("#FFFFFF", "#191919")}
-                borderRight="1px"
-                borderRightColor={useColorModeValue("#E1E1E1", "#333333")}
-                minWidth={isSidebarCollapsed ? "50px" : "220px"}
-                className="sidebar-styles"
-                zIndex={"999"}
-                display={{ base: "none", md: "flex" }}
-                {...rest}
-            >
-                {!isSidebarCollapsed && (
-                    <Box display={"flex"} flexDir={"column"} gap={"20px"}>
-                        <Box
-                            layerStyle={"center"}
-                            alignItems="center"
-                            cursor={"pointer"}
-                            p={"20px"}
-                            onClick={() => router.push("/")}
+        <Box
+            id="betygfi-sidebar"
+            bg={useColorModeValue("#FFFFFF", "#191919")}
+            borderRight="1px"
+            borderRightColor={useColorModeValue("#E1E1E1", "#333333")}
+            minWidth={isSidebarCollapsed ? "50px" : "220px"}
+            className="sidebar-styles"
+            zIndex={"999"}
+            display={{ base: "none", md: "flex" }}
+            {...rest}
+        >
+            {!isSidebarCollapsed && (
+                <Box display={"flex"} flexDir={"column"} gap={"20px"}>
+                    <Box
+                        layerStyle={"center"}
+                        alignItems="center"
+                        cursor={"pointer"}
+                        p={"20px"}
+                        onClick={() => router.push("/")}
+                    >
+                        <Image
+                            unoptimized="true"
+                            priority="true"
+                            width={180}
+                            height={80}
+                            alt="logo"
+                            src={
+                                colorMode === "dark"
+                                    ? "/icons/dark_betgyfi_sm_logo.svg"
+                                    : "/icons/light_betgyfi_sm_icon.svg"
+                            }
+                        />
+                    </Box>
+
+                    <Box layerStyle={"flexColumn"} w={"100%"}>
+                        <Text
+                            fontSize={"14px"}
+                            lineHeight={"20px"}
+                            color={
+                                colorMode === "light"
+                                    ? "#757575"
+                                    : "#A5A5A5"
+                            }
+                            pl={"20px"}
+                            mb={"10px"}
                         >
-                            <Image
-                                unoptimized="true"
-                                priority="true"
-                                width={180}
-                                height={80}
-                                alt="logo"
-                                src={
-                                    colorMode === "dark"
-                                        ? "/icons/dark_betgyfi_sm_logo.svg"
-                                        : "/icons/light_betgyfi_sm_icon.svg"
-                                }
-                            />
-                        </Box>
-
-                        <Box layerStyle={"flexColumn"} w={"100%"}>
-                            <Text
-                                fontSize={"14px"}
-                                lineHeight={"20px"}
-                                color={
-                                    colorMode === "light"
-                                        ? "#757575"
-                                        : "#A5A5A5"
-                                }
-                                pl={"20px"}
-                                mb={"10px"}
+                            Dashboards
+                        </Text>
+                        {dashboards(appConfigState).map((link, i) => (
+                            <NavItem
+                                key={i}
+                                NavIcon={link.icon}
+                                path={link.path}
+                                newTab={link.newTab}
+                                isActive={link.activePaths.includes(pathname)}
+                            // isActive={pathname === link.path}
                             >
-                                Dashboards
-                            </Text>
-                            {dashboards.map((link, i) => (
-                                <NavItem
-                                    key={i}
-                                    NavIcon={link.icon}
-                                    path={link.path}
-                                    newTab={link.newTab}
-                                    isActive={link.activePaths.includes(pathname)}
-                                // isActive={pathname === link.path}
+                                <Text fontSize={"14px"} lineHeight={"20px"}>
+                                    {link.name}
+                                </Text>
+                            </NavItem>
+                        ))}
+                    </Box>
+
+                    <Box layerStyle={"flexColumn"} w={"100%"}>
+                        <Text
+                            fontSize={"14px"}
+                            lineHeight={"20px"}
+                            color={
+                                colorMode === "light"
+                                    ? "#757575"
+                                    : "#A5A5A5"
+                            }
+                            pl={"20px"}
+                            mb={"10px"}
+                        >
+                            Pages
+                        </Text>
+                        {pages.map((link, i) => (
+                            <NavItem
+                                key={i}
+                                NavIcon={link.icon}
+                                path={link.path}
+                                newTab={link.newTab}
+                                isActive={pathname === link.path}
+                            >
+                                <Text fontSize={"14px"} lineHeight={"20px"}>
+                                    {link.name}
+                                </Text>
+                            </NavItem>
+                        ))}
+
+                        <Accordion
+                            allowMultiple
+                            flexDir={"column"}
+                            borderColor={
+                                colorMode === "light"
+                                    ? "rgba(25,25,25, 0.1)"
+                                    : "#494949"
+                            }
+                            mr={"-13px"}
+                        >
+                            <AccordionItem w={"100%"} border={0}>
+                                <AccordionButton
+                                    display={"flex"}
+                                    alignItems="center"
+                                    justifyContent={"space-between"}
+                                    height={"38px"}
+                                    padding={"9px 20px"}
                                 >
-                                    <Text fontSize={"14px"} lineHeight={"20px"}>
-                                        {link.name}
-                                    </Text>
-                                </NavItem>
-                            ))}
-                        </Box>
-
-                        <Box layerStyle={"flexColumn"} w={"100%"}>
-                            <Text
-                                fontSize={"14px"}
-                                lineHeight={"20px"}
-                                color={
-                                    colorMode === "light"
-                                        ? "#757575"
-                                        : "#A5A5A5"
-                                }
-                                pl={"20px"}
-                                mb={"10px"}
-                            >
-                                Pages
-                            </Text>
-                            {pages.map((link, i) => (
-                                <NavItem
-                                    key={i}
-                                    NavIcon={link.icon}
-                                    path={link.path}
-                                    newTab={link.newTab}
-                                    isActive={pathname === link.path}
-                                >
-                                    <Text fontSize={"14px"} lineHeight={"20px"}>
-                                        {link.name}
-                                    </Text>
-                                </NavItem>
-                            ))}
-
-                            <Accordion
-                                allowMultiple
-                                flexDir={"column"}
-                                borderColor={
-                                    colorMode === "light"
-                                        ? "rgba(25,25,25, 0.1)"
-                                        : "#494949"
-                                }
-                                mr={"-13px"}
-                            >
-                                <AccordionItem w={"100%"} border={0}>
-                                    <AccordionButton
-                                        display={"flex"}
-                                        alignItems="center"
-                                        justifyContent={"space-between"}
-                                        height={"38px"}
-                                        padding={"9px 20px"}
-                                    >
-                                        <Box display={"flex"} gap={"10px"}>
-                                            <Icon
-                                                as={BsPeople}
-                                                boxSize={18}
-                                                color={
-                                                    colorMode === "light"
-                                                        ? "#161616"
-                                                        : "#FFFFFF"
+                                    <Box display={"flex"} gap={"10px"}>
+                                        <Icon
+                                            as={BsPeople}
+                                            boxSize={18}
+                                            color={
+                                                colorMode === "light"
+                                                    ? "#161616"
+                                                    : "#FFFFFF"
+                                            }
+                                        />
+                                        <Text
+                                            fontSize={"14px"}
+                                            lineHeight={"20px"}
+                                        >
+                                            Our Communities
+                                        </Text>
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                                <AccordionPanel w={"100%"} p={0}>
+                                    <Box layerStyle={"flexColumn"}>
+                                        {communities(appConfigState).map((link, i) => (
+                                            <NavItem
+                                                key={i}
+                                                NavIcon={link.icon}
+                                                path={link.path}
+                                                newTab={link.newTab}
+                                                isActive={
+                                                    pathname === link.path
                                                 }
-                                            />
-                                            <Text
-                                                fontSize={"14px"}
-                                                lineHeight={"20px"}
                                             >
-                                                Our Communities
-                                            </Text>
-                                        </Box>
-                                        <AccordionIcon />
-                                    </AccordionButton>
-                                    <AccordionPanel w={"100%"} p={0}>
-                                        <Box layerStyle={"flexColumn"}>
-                                            {communities.map((link, i) => (
+                                                <Text
+                                                    fontSize={"14px"}
+                                                    lineHeight={"20px"}
+                                                >
+                                                    {link.name}
+                                                </Text>
+                                            </NavItem>
+                                        ))}
+                                    </Box>
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
+                    </Box>
+
+                    <Box layerStyle={"flexColumn"} w={"100%"}>
+                        <Text
+                            fontSize={"14px"}
+                            lineHeight={"20px"}
+                            color={
+                                colorMode === "light"
+                                    ? "#757575"
+                                    : "#A5A5A5"
+                            }
+                            pl={"20px"}
+                            mb={"10px"}
+                        >
+                            Other
+                        </Text>
+                        <Accordion
+                            allowMultiple
+                            flexDir={"column"}
+                            borderColor={
+                                colorMode === "light"
+                                    ? "rgba(25,25,25, 0.1)"
+                                    : "#494949"
+                            }
+                            mr={"-13px"}
+                        >
+                            <AccordionItem w={"100%"} border={0}>
+                                <AccordionButton
+                                    display={"flex"}
+                                    alignItems="center"
+                                    justifyContent={"space-between"}
+                                    height={"38px"}
+                                    padding={"9px 20px"}
+                                >
+                                    <Box display={"flex"} gap={"10px"}>
+                                        <Icon
+                                            as={SlSettings}
+                                            boxSize={18}
+                                            color={
+                                                colorMode === "light"
+                                                    ? "#161616"
+                                                    : "#FFFFFF"
+                                            }
+                                        />
+                                        <Text
+                                            fontSize={"14px"}
+                                            lineHeight={"20px"}
+                                        >
+                                            Settings and More
+                                        </Text>
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                                <AccordionPanel w={"100%"} p={0}>
+                                    <Box
+                                        layerStyle={"flexColumn"}
+                                        pl={"15px"}
+                                    >
+                                        {bottomMenu.map((link, i) => {
+                                            if (i > 1) return;
+                                            return (
                                                 <NavItem
                                                     key={i}
                                                     NavIcon={link.icon}
                                                     path={link.path}
                                                     newTab={link.newTab}
                                                     isActive={
-                                                        pathname === link.path
+                                                        pathname ===
+                                                        link.path
                                                     }
                                                 >
                                                     <Text
                                                         fontSize={"14px"}
                                                         lineHeight={"20px"}
+                                                        letterSpacing={
+                                                            "1.4px"
+                                                        }
                                                     >
                                                         {link.name}
                                                     </Text>
                                                 </NavItem>
-                                            ))}
-                                        </Box>
-                                    </AccordionPanel>
-                                </AccordionItem>
-                            </Accordion>
-                        </Box>
+                                            );
+                                        })}
 
-                        <Box layerStyle={"flexColumn"} w={"100%"}>
-                            <Text
-                                fontSize={"14px"}
-                                lineHeight={"20px"}
-                                color={
-                                    colorMode === "light"
-                                        ? "#757575"
-                                        : "#A5A5A5"
-                                }
-                                pl={"20px"}
-                                mb={"10px"}
-                            >
-                                Other
-                            </Text>
-                            <Accordion
-                                allowMultiple
-                                flexDir={"column"}
-                                borderColor={
-                                    colorMode === "light"
-                                        ? "rgba(25,25,25, 0.1)"
-                                        : "#494949"
-                                }
-                                mr={"-13px"}
-                            >
-                                <AccordionItem w={"100%"} border={0}>
-                                    <AccordionButton
-                                        display={"flex"}
-                                        alignItems="center"
-                                        justifyContent={"space-between"}
-                                        height={"38px"}
-                                        padding={"9px 20px"}
-                                    >
-                                        <Box display={"flex"} gap={"10px"}>
+                                        <Box
+                                            display={"flex"}
+                                            alignItems="center"
+                                            height={"38px"}
+                                            padding={"9px 20px"}
+                                            gap={"10px"}
+                                            onClick={
+                                                onSuggestFeatureModalOpen
+                                            }
+                                            cursor={"pointer"}
+                                        >
                                             <Icon
-                                                as={SlSettings}
+                                                as={bottomMenu[2].icon}
                                                 boxSize={18}
                                                 color={
                                                     colorMode === "light"
@@ -274,328 +332,267 @@ const SidebarContent = ({ ...rest }) => {
                                             <Text
                                                 fontSize={"14px"}
                                                 lineHeight={"20px"}
+                                                letterSpacing={"1.4px"}
                                             >
-                                                Settings and More
+                                                {bottomMenu[2].name}
                                             </Text>
                                         </Box>
-                                        <AccordionIcon />
-                                    </AccordionButton>
-                                    <AccordionPanel w={"100%"} p={0}>
+
                                         <Box
-                                            layerStyle={"flexColumn"}
-                                            pl={"15px"}
+                                            display={"flex"}
+                                            alignItems="center"
+                                            height={"38px"}
+                                            padding={"9px 20px"}
+                                            gap={"10px"}
+                                            onClick={onReportBugModalOpen}
+                                            cursor={"pointer"}
                                         >
-                                            {bottomMenu.map((link, i) => {
-                                                if (i > 1) return;
-                                                return (
-                                                    <NavItem
-                                                        key={i}
-                                                        NavIcon={link.icon}
-                                                        path={link.path}
-                                                        newTab={link.newTab}
-                                                        isActive={
-                                                            pathname ===
-                                                            link.path
-                                                        }
-                                                    >
-                                                        <Text
-                                                            fontSize={"14px"}
-                                                            lineHeight={"20px"}
-                                                            letterSpacing={
-                                                                "1.4px"
-                                                            }
-                                                        >
-                                                            {link.name}
-                                                        </Text>
-                                                    </NavItem>
-                                                );
-                                            })}
-
-                                            <Box
-                                                display={"flex"}
-                                                alignItems="center"
-                                                height={"38px"}
-                                                padding={"9px 20px"}
-                                                gap={"10px"}
-                                                onClick={
-                                                    onSuggestFeatureModalOpen
+                                            <Icon
+                                                as={bottomMenu[3].icon}
+                                                boxSize={18}
+                                                color={
+                                                    colorMode === "light"
+                                                        ? "#161616"
+                                                        : "#FFFFFF"
                                                 }
-                                                cursor={"pointer"}
+                                            />
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                                letterSpacing={"1.4px"}
                                             >
-                                                <Icon
-                                                    as={bottomMenu[2].icon}
-                                                    boxSize={18}
-                                                    color={
-                                                        colorMode === "light"
-                                                            ? "#161616"
-                                                            : "#FFFFFF"
-                                                    }
-                                                />
-                                                <Text
-                                                    fontSize={"14px"}
-                                                    lineHeight={"20px"}
-                                                    letterSpacing={"1.4px"}
-                                                >
-                                                    {bottomMenu[2].name}
-                                                </Text>
-                                            </Box>
-
-                                            <Box
-                                                display={"flex"}
-                                                alignItems="center"
-                                                height={"38px"}
-                                                padding={"9px 20px"}
-                                                gap={"10px"}
-                                                onClick={onReportBugModalOpen}
-                                                cursor={"pointer"}
-                                            >
-                                                <Icon
-                                                    as={bottomMenu[3].icon}
-                                                    boxSize={18}
-                                                    color={
-                                                        colorMode === "light"
-                                                            ? "#161616"
-                                                            : "#FFFFFF"
-                                                    }
-                                                />
-                                                <Text
-                                                    fontSize={"14px"}
-                                                    lineHeight={"20px"}
-                                                    letterSpacing={"1.4px"}
-                                                >
-                                                    {bottomMenu[3].name}
-                                                </Text>
-                                            </Box>
+                                                {bottomMenu[3].name}
+                                            </Text>
                                         </Box>
-                                    </AccordionPanel>
-                                </AccordionItem>
-                            </Accordion>
-                            <NavItem
-                                NavIcon={legal.icon}
-                                path={legal.path}
-                                newTab={legal.newTab}
-                                isActive={pathname === legal.path}
-                            >
-                                <Text fontSize={"14px"} lineHeight={"20px"}>
-                                    Legal
-                                </Text>
-                            </NavItem>
-                        </Box>
+                                    </Box>
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
+                        <NavItem
+                            NavIcon={legal.icon}
+                            path={legal.path}
+                            newTab={legal.newTab}
+                            isActive={pathname === legal.path}
+                        >
+                            <Text fontSize={"14px"} lineHeight={"20px"}>
+                                Legal
+                            </Text>
+                        </NavItem>
                     </Box>
-                )}
-
-                {isSidebarCollapsed && (
-                    <Box
-                        layerStyle={"spaceBetween"}
-                        flexDir={"column"}
-                        width={"70px"}
-                    >
-                        <Box layerStyle={"flexColumn"} w={"100%"}>
-                            <Box
-                                layerStyle={"center"}
-                                alignItems="center"
-                                cursor={"pointer"}
-                                py={"20px"}
-                                mr={"-13px"}
-                                onClick={() => router.push("/")}
-                            >
-                                <Image
-                                    width={35}
-                                    height={35}
-                                    unoptimized="true"
-                                    priority="true"
-                                    alt="logo"
-                                    src={
-                                        colorMode === "light"
-                                            ? "/icons/company_sidebar_sm_logo_dark.svg"
-                                            : "/icons/company_sidebar_sm_logo_light.svg"
-                                    }
-                                    cursor={"pointer"}
-                                    onClick={() => router.push("/")}
-                                />
-                            </Box>
-
-                            <Box layerStyle={"flexColumn"} mt={"20px"}>
-                                {dashboards.map((link, i) => (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        name={link.name}
-                                        // isActive={pathname === link.path}
-                                        isActive={link.activePaths.includes(pathname)}
-                                    ></CollapsedNavItem>
-                                ))}
-                            </Box>
-
-                            <hr style={{ margin: "15px -13px" }} />
-
-                            <Box layerStyle={"flexColumn"}>
-                                {pages.map((link, i) => (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        name={link.name}
-                                        isActive={pathname === link.path}
-                                    ></CollapsedNavItem>
-                                ))}
-
-                                {communities.map((link, i) => (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        name={link.name}
-                                        isActive={pathname === link.path}
-                                    ></CollapsedNavItem>
-                                ))}
-                            </Box>
-                        </Box>
-
-                        <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
-                            {bottomMenu.map((link, i) => {
-                                if (i > 1) return;
-                                return (
-                                    <CollapsedNavItem
-                                        key={i}
-                                        NavIcon={link.icon}
-                                        path={link.path}
-                                        newTab={link.newTab}
-                                        name={link.name}
-                                        isActive={pathname === link.path}
-                                    ></CollapsedNavItem>
-                                );
-                            })}
-
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onSuggestFeatureModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[2].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
-                                        color:
-                                            colorMode === "light"
-                                                ? "#FFFFFF"
-                                                : "#191919",
-                                    }}
-                                    alt="logo"
-                                />
-                            </Box>
-
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onReportBugModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[3].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
-                                        color:
-                                            colorMode === "light"
-                                                ? "#FFFFFF"
-                                                : "#191919",
-                                    }}
-                                    alt="logo"
-                                />
-                            </Box>
-                        </Box>
-                    </Box>
-                )}
-
-                <Box display={"flex"}>
-                    <Flex
-                        mr={"-12px"}
-                        padding={"0px"}
-                        cursor={"pointer"}
-                        onClick={() => {
-                            SidebarHandler(!isSidebarCollapsed);
-                        }}
-                    >
-                        <Image
-                            width={24}
-                            height={24}
-                            alt="button"
-                            unoptimized="true"
-                            priority="true"
-                            style={
-                                isSidebarCollapsed
-                                    ? { rotate: "180deg" }
-                                    : { rotate: "0deg" }
-                            }
-                            src={useColorModeValue(
-                                "/icons/collapse-sidebar-light.svg",
-                                "/icons/collapse-sidebar-dark.svg"
-                            )}
-                        />
-                    </Flex>
                 </Box>
+            )}
 
-                <SuggestFeatureModal
-                    isOpen={isSuggestFeatureModalOpen}
-                    onClose={onSuggestFeatureModalClose}
-                    onOpen={onSuggestFeatureModalOpen}
-                ></SuggestFeatureModal>
-                <ReportBugModal
-                    isOpen={isReportBugModalOpen}
-                    onClose={onReportBugModalClose}
-                    onOpen={onReportBugModalOpen}
-                ></ReportBugModal>
+            {isSidebarCollapsed && (
+                <Box
+                    layerStyle={"spaceBetween"}
+                    flexDir={"column"}
+                    width={"70px"}
+                >
+                    <Box layerStyle={"flexColumn"} w={"100%"}>
+                        <Box
+                            layerStyle={"center"}
+                            alignItems="center"
+                            cursor={"pointer"}
+                            py={"20px"}
+                            mr={"-13px"}
+                            onClick={() => router.push("/")}
+                        >
+                            <Image
+                                width={35}
+                                height={35}
+                                unoptimized="true"
+                                priority="true"
+                                alt="logo"
+                                src={
+                                    colorMode === "light"
+                                        ? "/icons/company_sidebar_sm_logo_dark.svg"
+                                        : "/icons/company_sidebar_sm_logo_light.svg"
+                                }
+                                cursor={"pointer"}
+                                onClick={() => router.push("/")}
+                            />
+                        </Box>
+
+                        <Box layerStyle={"flexColumn"} mt={"20px"}>
+                            {dashboards(appConfigState).map((link, i) => (
+                                <CollapsedNavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    name={link.name}
+                                    // isActive={pathname === link.path}
+                                    isActive={link.activePaths.includes(pathname)}
+                                ></CollapsedNavItem>
+                            ))}
+                        </Box>
+
+                        <hr style={{ margin: "15px -13px" }} />
+
+                        <Box layerStyle={"flexColumn"}>
+                            {pages.map((link, i) => (
+                                <CollapsedNavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    name={link.name}
+                                    isActive={pathname === link.path}
+                                ></CollapsedNavItem>
+                            ))}
+
+                            {communities(appConfigState).map((link, i) => (
+                                <CollapsedNavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    name={link.name}
+                                    isActive={pathname === link.path}
+                                ></CollapsedNavItem>
+                            ))}
+                        </Box>
+                    </Box>
+
+                    <Box layerStyle={"flexColumn"} w={"100%"} mb={"70px"}>
+                        {bottomMenu.map((link, i) => {
+                            if (i > 1) return;
+                            return (
+                                <CollapsedNavItem
+                                    key={i}
+                                    NavIcon={link.icon}
+                                    path={link.path}
+                                    newTab={link.newTab}
+                                    name={link.name}
+                                    isActive={pathname === link.path}
+                                ></CollapsedNavItem>
+                            );
+                        })}
+
+                        <Box
+                            display={"flex"}
+                            justifyContent="center"
+                            alignItems={"center"}
+                            height={"45px"}
+                            padding={"9px 20px"}
+                            role="group"
+                            cursor="pointer"
+                            gap={"10px"}
+                            _hover={{
+                                bg:
+                                    colorMode === "light"
+                                        ? "#202020"
+                                        : "#FFFFFF",
+                                color:
+                                    colorMode === "light"
+                                        ? "#FFFFFF"
+                                        : "#191919",
+                                fontWeight: "600",
+                            }}
+                            mr={"-13px"}
+                            onClick={onSuggestFeatureModalOpen}
+                        >
+                            <Icon
+                                as={bottomMenu[2].icon}
+                                boxSize={22}
+                                color={
+                                    colorMode === "light"
+                                        ? "#161616"
+                                        : "#FFFFFF"
+                                }
+                                _groupHover={{
+                                    color:
+                                        colorMode === "light"
+                                            ? "#FFFFFF"
+                                            : "#191919",
+                                }}
+                                alt="logo"
+                            />
+                        </Box>
+
+                        <Box
+                            display={"flex"}
+                            justifyContent="center"
+                            alignItems={"center"}
+                            height={"45px"}
+                            padding={"9px 20px"}
+                            role="group"
+                            cursor="pointer"
+                            gap={"10px"}
+                            _hover={{
+                                bg:
+                                    colorMode === "light"
+                                        ? "#202020"
+                                        : "#FFFFFF",
+                                color:
+                                    colorMode === "light"
+                                        ? "#FFFFFF"
+                                        : "#191919",
+                                fontWeight: "600",
+                            }}
+                            mr={"-13px"}
+                            onClick={onReportBugModalOpen}
+                        >
+                            <Icon
+                                as={bottomMenu[3].icon}
+                                boxSize={22}
+                                color={
+                                    colorMode === "light"
+                                        ? "#161616"
+                                        : "#FFFFFF"
+                                }
+                                _groupHover={{
+                                    color:
+                                        colorMode === "light"
+                                            ? "#FFFFFF"
+                                            : "#191919",
+                                }}
+                                alt="logo"
+                            />
+                        </Box>
+                    </Box>
+                </Box>
+            )}
+
+            <Box display={"flex"}>
+                <Flex
+                    mr={"-12px"}
+                    padding={"0px"}
+                    cursor={"pointer"}
+                    onClick={() => {
+                        SidebarHandler(!isSidebarCollapsed);
+                    }}
+                >
+                    <Image
+                        width={24}
+                        height={24}
+                        alt="button"
+                        unoptimized="true"
+                        priority="true"
+                        style={
+                            isSidebarCollapsed
+                                ? { rotate: "180deg" }
+                                : { rotate: "0deg" }
+                        }
+                        src={useColorModeValue(
+                            "/icons/collapse-sidebar-light.svg",
+                            "/icons/collapse-sidebar-dark.svg"
+                        )}
+                    />
+                </Flex>
             </Box>
-        </>
+
+            <SuggestFeatureModal
+                isOpen={isSuggestFeatureModalOpen}
+                onClose={onSuggestFeatureModalClose}
+                onOpen={onSuggestFeatureModalOpen}
+            ></SuggestFeatureModal>
+            <ReportBugModal
+                isOpen={isReportBugModalOpen}
+                onClose={onReportBugModalClose}
+                onOpen={onReportBugModalOpen}
+            ></ReportBugModal>
+        </Box>
     );
 };
 
@@ -760,6 +757,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
     const { data: AuthSession } = useSession();
     const { disconnect } = useDisconnect();
     const dispatch = useDispatch();
+    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     return (
         <>
@@ -876,7 +874,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                     </Box>
 
                                     <Box layerStyle={"flexColumn"}>
-                                        {dashboards.map((link, i) => (
+                                        {dashboards(appConfigState).map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -996,7 +994,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                             animateOpacity={"true"}
                                         >
                                             <Box layerStyle={"flexColumn"}>
-                                                {communities.map((link, i) => (
+                                                {communities(appConfigState).map((link, i) => (
                                                     <NavItem
                                                         key={i}
                                                         NavIcon={link.icon}
@@ -1155,9 +1153,9 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     onClick={() => {
                                                         disconnect();
                                                         setTimeout(() => {
-                                                            dispatch(LogoutReducer());
+                                                            dispatch(LogoutReducer(appConfigState));
                                                             setTimeout(() => {
-                                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL });
                                                             }, 200);
                                                         }, 100);
                                                     }}

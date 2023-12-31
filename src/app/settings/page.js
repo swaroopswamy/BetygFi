@@ -25,6 +25,7 @@ const Settings = () => {
 		onClose: onLoginModalClose,
 	} = useDisclosure();
 	const preLoadedData = useSelector((state) => state.authData.preLoadedData);
+	const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
 	return (
 		<>
@@ -336,7 +337,7 @@ const Settings = () => {
 								ml={"60px"}
 								variant={"outline"}
 								border={"1px"}
-								onClick={() => dispatch(LogoutReducer())}
+								onClick={() => dispatch(LogoutReducer(appConfigState))}
 							>
 								<Text
 									variant={"SettingsButtonText"}
@@ -663,7 +664,7 @@ const Settings = () => {
 								variant={"outline"}
 								mt={"15px"}
 								border={"1px"}
-								onClick={() => dispatch(LogoutReducer())}
+								onClick={() => dispatch(LogoutReducer(appConfigState))}
 							>
 								<Text
 									variant={"SettingsButtonText"}

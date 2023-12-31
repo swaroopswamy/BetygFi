@@ -1,5 +1,6 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
+import { getAPI_URL } from "@util/utility";
 
 export const getDefiData = async (payload, rejectWithValue) => {
 	try {
@@ -7,7 +8,7 @@ export const getDefiData = async (payload, rejectWithValue) => {
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
 		} else {
-			const { data } = await axiosInstance.post(url, payload);
+			const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 			return cacheHandler(url, data, 4, false);
 		}
 	} catch (err) {
@@ -19,9 +20,20 @@ export const getDefiData = async (payload, rejectWithValue) => {
 	}
 };
 
+export const getDefiUsersTableData = async (payload, rejectWithValue) => {
+	try {
+		const { data } = await axiosInstance(getAPI_URL()).get(
+			`protocols/${payload.defi}/users?blockchain=${payload.blockchain}`
+		);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};
+
 export const getDefiHotContractsTableData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/hotFunctions?blockchain=${payload.blockchain}`
 		);
 		return data;
@@ -31,7 +43,7 @@ export const getDefiHotContractsTableData = async (payload, rejectWithValue) => 
 };
 export const getDefiAssetCompositionTableData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/asset-composition?blockchain=${payload.blockchain}&page=${payload.page}&limit=${payload.limit}`
 		);
 		return data;
@@ -42,7 +54,7 @@ export const getDefiAssetCompositionTableData = async (payload, rejectWithValue)
 
 export const getDefiFeeRevenueData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/fees-revenue?blockchain=${payload.blockchain}`
 		);
 		return data;
@@ -53,7 +65,7 @@ export const getDefiFeeRevenueData = async (payload, rejectWithValue) => {
 
 export const getDefiGovernanceTableData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/governance?page=${payload.page}&limit=${payload.limit}`
 		);
 		return data;
@@ -64,7 +76,7 @@ export const getDefiGovernanceTableData = async (payload, rejectWithValue) => {
 
 export const getDefiTvlBorrowData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/tvl-borrow?blockchain=${payload.blockchain}`
 		);
 		return data;
@@ -75,7 +87,7 @@ export const getDefiTvlBorrowData = async (payload, rejectWithValue) => {
 
 export const getDefiGraphData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`protocols/${payload.defi}/graph-data?blockchain=${payload.blockchain}`
 		);
 		return data;

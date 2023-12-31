@@ -1,7 +1,9 @@
 export const AUTH_COOKIE_NAME = "betygfi-auth";
+export const API_URL_COOKIE_NAME = "bet-api-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const DOMAIN = "betygfi.com";
 export const HOST = `https://${DOMAIN}/`;
+export const LOCAL_SERVER_HOST = `http://localhost:3000`;
 
 export const blockchains = [
     "Ethereum",
@@ -132,3 +134,27 @@ export const colors = {
         },
     },
 };
+
+export const walletArray = [
+    {
+        name: "Metamask",
+        slug: "metamask",
+        icon: "metamask_icon.png",
+        key: 1,
+    },
+];
+
+export const SEARCH_LIST = [
+    {
+        title: "Trending DeFi’s",
+        slug: "trending-defis",
+    },
+    {
+        title: "Trending Coin’s",
+        slug: "trending-coins",
+    },
+    {
+        title: "Trending Wallet’s",
+        slug: "trending-wallets",
+    },
+];

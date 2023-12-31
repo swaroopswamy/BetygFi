@@ -4,37 +4,25 @@ import { signIn } from "next-auth/react";
 import { createCookies, deleteCookieByName } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
 
-export const VerifyPublicAddressData = createAsyncThunk(
-	"verifyPublicAddressData",
-	async (payload, { rejectWithValue }) => {
-		const response = await verifyPublicAddress(payload, rejectWithValue);
-		return response.data;
-	}
-);
+export const VerifyPublicAddressData = createAsyncThunk("verifyPublicAddressData", async (payload, { rejectWithValue }) => {
+	const response = await verifyPublicAddress(payload, rejectWithValue);
+	return response.data;
+});
 
-export const LoginGetToken = createAsyncThunk(
-	"LoginMetamask",
-	async (payload) => {
-		const response = await loginMetamask(payload);
-		return response.data;
-	}
-);
+export const LoginGetToken = createAsyncThunk("LoginMetamask", async (payload) => {
+	const response = await loginMetamask(payload);
+	return response.data;
+});
 
-export const socialLoginGoogle = createAsyncThunk(
-	"socialLoginGoogle",
-	async (payload, { rejectWithValue }) => {
-		const response = await socialLoginGoogleAPI(payload, rejectWithValue);
-		return response.data;
-	}
-);
-export const verifyJWTtokenFromCookie = createAsyncThunk(
-	"verifyJWTtokenFromCookie",
-	async (payload, { rejectWithValue }) => {
-		const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
-		return response.data;
-	}
-);
+export const socialLoginGoogle = createAsyncThunk("socialLoginGoogle", async (payload, { rejectWithValue }) => {
+	const response = await socialLoginGoogleAPI(payload, rejectWithValue);
+	return response.data;
+});
 
+export const verifyJWTtokenFromCookie = createAsyncThunk("verifyJWTtokenFromCookie", async (payload, { rejectWithValue }) => {
+	const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
+	return response.data;
+});
 
 const AuthDataSlice = createSlice({
 	name: "authData",
@@ -124,7 +112,7 @@ const AuthDataSlice = createSlice({
 		});
 	},
 	reducers: {
-		LogoutReducer: (state, /* action */) => {
+		LogoutReducer: (state, action) => {
 			state.LoggedInData = {
 				data: null,
 				isLoading: false,
@@ -143,10 +131,9 @@ const AuthDataSlice = createSlice({
 			};
 
 			localStorage.clear();
-			deleteCookieByName(AUTH_COOKIE_NAME);
+			deleteCookieByName(AUTH_COOKIE_NAME, action.payload);
 		},
-
-		StoreLoggedInUserData: (state,/*  action */) => {
+		StoreLoggedInUserData: (state, action) => {
 			const accountState = {
 				state: {
 					token: state.LoggedInData.data.token,
@@ -158,13 +145,13 @@ const AuthDataSlice = createSlice({
 				name: state.verifiedPublicAddressData.data?.public_address,
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState);
+			createCookies(AUTH_COOKIE_NAME, serializedState, action.payload);
 			setTimeout(() => {
 				signIn("credentials", user);
 			}, 100);
 
 		},
-		StoreLoggedInUserDataGoogle: (state,/*  action */) => {
+		StoreLoggedInUserDataGoogle: (state, action) => {
 			const accountState = {
 				state: {
 					token: state.GoogleVerifiedData.data?.token,
@@ -172,8 +159,7 @@ const AuthDataSlice = createSlice({
 				},
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState);
-			// localStorage.setItem("verifiedState", serializedState);
+			createCookies(AUTH_COOKIE_NAME, serializedState, action.payload);
 		},
 		LogInFromCookie: (state, /* action */) => {
 			const user = {

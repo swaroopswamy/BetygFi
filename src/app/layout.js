@@ -1,13 +1,15 @@
 import React from "react";
+import LayoutProvider from "@/app/LayoutProvider";
 import { ReduxProvider } from "@/redux/provider";
 import Script from "next/script";
 import "/styles/styles.scss";
 import { Providers } from "@/app/ChakraProvider";
 import { WagmiProvider } from "@/app/Web3Provider";
-import LayoutProvider from "@/app/LayoutProvider";
 import SessionProvider from "@/app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
+import { getAppConfig } from "@/services/appService";
+import { LOCAL_SERVER_HOST } from "@util/constant";
 
 export const metadata = DefiLandingPageMetas('');
 
@@ -20,6 +22,12 @@ export const maxDuration = 5;
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
+
+	const appConfig = await getAppConfig(LOCAL_SERVER_HOST);
+	let modifiedConfig = { ...appConfig };
+	modifiedConfig = modifiedConfig?.values;
+	modifiedConfig.NEXTAUTH_URL = 'http://local.betygfi.com:3000';
+
 	return (
 		<html lang={"en"}>
 			<head>
@@ -61,7 +69,7 @@ export default async function RootLayout({ children }) {
 					<ReduxProvider>
 						<WagmiProvider>
 							<Providers>
-								<LayoutProvider>{children}</LayoutProvider>
+								<LayoutProvider appConfig={modifiedConfig}>{children}</LayoutProvider>
 							</Providers>
 						</WagmiProvider>
 					</ReduxProvider>

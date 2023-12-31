@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Text, Tr, Th, Td, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { USDollar } from "@util/globalHelper";
+import { USDollar } from "@util/utility";
 import {
 	OutflowTokensTableHeader,
 	OutflowTokensDesktop,

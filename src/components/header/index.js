@@ -36,6 +36,7 @@ const Navbar = ({ ...rest }) => {
     const searchParamAddress = searchParams.get("address");
     const router = useRouter();
     const pathname = usePathname();
+    const dispatch = useDispatch();
     const {
         isOpen: isMobileSidebarOpen,
         onOpen: onMobileSidebarOpen,
@@ -46,25 +47,27 @@ const Navbar = ({ ...rest }) => {
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
-
+    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const { data: AuthSession } = useSession();
+    const { disconnect } = useDisconnect();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
-    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
-    const dispatch = useDispatch();
-    const { colorMode, toggleColorMode } = useColorMode();
+    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
+
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 300);
-    const { data: AuthSession } = useSession();
+
+    const { colorMode, toggleColorMode } = useColorMode();
+    const normalizeColorMode = (colorMode) => colorMode === "light" ? "dark" : "light";
 
     const clearValueMobileSearch = () => {
         setSearchValue("");
         setSearchWalletAddressValue("");
     };
 
-    const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
         if (e.key === "Enter") {
             if (!isEmpty(e.target.value)) {
@@ -110,9 +113,6 @@ const Navbar = ({ ...rest }) => {
         dispatch(getSearchV2TrendingList());
     }, []);
 
-    const normalizeColorMode = (colorMode) =>
-        colorMode === "light" ? "dark" : "light";
-
     const updateColorMode = () => {
         const colorCookie = getCookieByName(COLOR_MODE_COOKIE_NAME);
         if (colorCookie === "light") {
@@ -127,7 +127,7 @@ const Navbar = ({ ...rest }) => {
     };
 
     const toggleColorModeGlobally = () => {
-        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode));
+        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode), appConfigState);
         toggleColorMode();
     };
 
@@ -251,9 +251,7 @@ const Navbar = ({ ...rest }) => {
                                                 ?.join("")
                                                 ?.substring(0, 6) +
                                                 "..." +
-                                                AuthSession?.user?.public_address?.slice(
-                                                    -5
-                                                )}
+                                                AuthSession?.user?.public_address?.slice(-5)}
                                         </Text>
                                     )}
                                 </Box>
@@ -265,9 +263,9 @@ const Navbar = ({ ...rest }) => {
                                     onClick={() => {
                                         disconnect();
                                         setTimeout(() => {
-                                            dispatch(LogoutReducer());
+                                            dispatch(LogoutReducer(appConfigState));
                                             setTimeout(() => {
-                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL });
                                             }, 200);
                                         }, 100);
                                     }}

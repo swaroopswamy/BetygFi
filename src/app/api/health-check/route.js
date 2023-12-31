@@ -1,7 +1,20 @@
-export const GET = async () => {
+import { LOCAL_SERVER_HOST } from "@util/constant";
+
+export async function GET() {
+    const getAppConfig = async () => {
+        try {
+            const res = await fetch(`${LOCAL_SERVER_HOST}/api/config`, { cache: 'no-store' });
+            const data = await res.json();
+            return data?.data?.config?.values?.NEXT_PUBLIC_API_URL;
+        } catch (err) {
+            return false;
+        }
+    };
+
     const checkBetygfi = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/betygfi`, { cache: 'no-store' });
+            const API_URL = await getAppConfig();
+            const res = await fetch(`${API_URL}health/betygfi`, { cache: 'no-store' });
             const betygfiHealth = await res.json();
             return betygfiHealth.status;
         } catch (err) {
@@ -11,7 +24,8 @@ export const GET = async () => {
 
     const checkLimitlessDB = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}health/limitlessdb`, { cache: 'no-store' });
+            const API_URL = await getAppConfig();
+            const res = await fetch(`${API_URL}health/limitlessdb`, { cache: 'no-store' });
             const limitLessDBHealth = await res.json();
             return limitLessDBHealth.status;
         } catch (err) {
@@ -27,4 +41,4 @@ export const GET = async () => {
     } else {
         return new Response("NOTOK");
     }
-};
+}

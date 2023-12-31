@@ -6,7 +6,7 @@ import {
 	Th,
 	Td,
 } from "@chakra-ui/react";
-import { USDollar } from "@util/globalHelper";
+import { USDollar } from "@util/utility";
 
 import {
 	KnownEntitiesTableHeader,

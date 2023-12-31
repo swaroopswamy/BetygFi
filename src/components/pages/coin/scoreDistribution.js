@@ -1,6 +1,6 @@
 import { scoreChangedReducer } from "@/redux/coin_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import { calculatePercentage } from "@util/globalHelper";
+import { calculatePercentage } from "@util/utility";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TooltipComp from "@components/tooltipComp";
@@ -67,10 +67,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     onClick={() => ScoreSelectHandler(data.key)}
                     p={"7px 10px"}
                     alignItems={"start"}
-                    w={`${calculatePercentage(
-                        scoreTotalData[data.index].value,
-                        totalDefis
-                    )}%`}
+                    w={`${calculatePercentage(scoreTotalData[data.index].value, totalDefis)}%`}
                 >
                     <Text
                         fontSize={{ base: "12px", md: "14px" }}

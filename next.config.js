@@ -26,7 +26,6 @@ const nextConfig = {
   webpack(config) {
     config.plugins.push(
       new webpack.DefinePlugin({
-        // "process.env.CONFIG": JSON.stringify(require('./config.json')),
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       })
     );

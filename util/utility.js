@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { AUTH_COOKIE_NAME, DOMAIN } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -109,11 +109,11 @@ export function PublicAddressStringFormatter(name) {
     }
 }
 
-export const getDomainForCookie = () => '.' + getMainDomain();
+export const getDomainForCookie = appConfig => '.' + getMainDomain(appConfig);
 
-export const getMainDomain = () => {
+export const getMainDomain = (appConfig) => {
     if (typeof window !== "undefined") {
-        if (process.env.NEXT_PUBLIC_ENV === "production") {
+        if (appConfig.NEXT_PUBLIC_ENV === "production") {
             return window.location.hostname;
         } else {
             const host = window.location.hostname;
@@ -125,3 +125,9 @@ export const getMainDomain = () => {
         return DOMAIN;
     }
 };
+
+export const USDollar = new Intl.NumberFormat('en-US');
+
+export const calculatePercentage = (value, totalValue) => (value / totalValue) * 100;
+
+export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);

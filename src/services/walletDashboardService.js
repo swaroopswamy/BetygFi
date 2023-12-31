@@ -1,8 +1,9 @@
 import { axiosInstance } from "@util/axiosInstance";
+import { getAPI_URL } from "@util/utility";
 
 export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`wallet/balance/${payloadData.address}`, payloadData.payload
 		);
 		return data;
@@ -13,7 +14,7 @@ export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 
 export const getWalletTransactionsData = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`wallet/transactions/${payloadData.address}/get`, payloadData.payload
 		);
 		return data;
@@ -24,7 +25,7 @@ export const getWalletTransactionsData = async (payloadData, rejectWithValue) =>
 
 export const getWalletTransactionsForAddressSummary = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`wallet/address/${payloadData.address}/address`, payloadData.payload
 		);
 		return data;
@@ -35,7 +36,7 @@ export const getWalletTransactionsForAddressSummary = async (payloadData, reject
 
 export const getAssetAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`wallet/address/${payloadData.address}/assets-allocation`
 		);
 		return data;
@@ -46,7 +47,7 @@ export const getAssetAllocationForAddress = async (payloadData, rejectWithValue)
 
 export const getProtocolAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`wallet/address/${payloadData.address}/protocol-allocation`
 		);
 		return data;
@@ -57,7 +58,7 @@ export const getProtocolAllocationForAddress = async (payloadData, rejectWithVal
 
 export const getBlockchainAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`wallet/address/${payloadData.address}/blockchain-allocation`
 		);
 		return data;
@@ -68,7 +69,7 @@ export const getBlockchainAllocationForAddress = async (payloadData, rejectWithV
 
 export const getInflowOutflowTokensForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.get(
+		const { data } = await axiosInstance(getAPI_URL()).get(
 			`/wallet/address/${payloadData.address}/inflow-outflow-token`
 		);
 		return data;

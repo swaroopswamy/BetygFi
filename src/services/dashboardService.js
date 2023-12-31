@@ -1,8 +1,9 @@
 import { axiosInstance } from "@util/axiosInstance";
+import { getAPI_URL } from "@util/utility";
 
 export const getDefiRankingsTableData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`protocols`, payload
 		);
 		return data;
@@ -13,7 +14,7 @@ export const getDefiRankingsTableData = async (payload, rejectWithValue) => {
 
 export const getProtocolScoresData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`protocols/scores`, payload
 		);
 		return data;
@@ -24,7 +25,7 @@ export const getProtocolScoresData = async (payload, rejectWithValue) => {
 
 export const getOverviewData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`protocols/overview`, payload
 		);
 		return data;
@@ -35,7 +36,7 @@ export const getOverviewData = async (payload, rejectWithValue) => {
 
 export const getOverviewGraphData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
+		const { data } = await axiosInstance(getAPI_URL()).post(
 			`protocols/graph/data`, payload
 		);
 		return data;

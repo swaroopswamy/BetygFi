@@ -21,32 +21,26 @@ import {
     verifyJWTtokenFromCookie,
     LogoutReducer,
 } from "@/redux/auth_data/authSlice";
-import { AUTH_COOKIE_NAME } from "@util/constant";
-import { getCookieByName } from "@util/cookieHelper";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
+import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
+import { appConfigData } from "@/redux/app_data/dataSlice";
 
-export default function LayoutProvider({ children }) {
-
-    const [isMd] = useMediaQuery("(min-width: 768px)");
+export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
-    const isSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isSidebarCollapsed
-    );
-    const isMobileSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isMobileSidebarCollapsed
-    );
+    const { connector: activeConnector } = useAccount();
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     const { disconnect } = useDisconnect();
-    const { data: AuthSession, status, update } = useSession();
-    const GoogleVerifiedData = useSelector(
-        (state) => state.authData.GoogleVerifiedData
-    );
-    const ValidatedUserData = useSelector(
-        (state) => state.authData.ValidatedUserData
-    );
     const toast = useToast();
+    const { data: AuthSession, status, update } = useSession();
+
+    const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
+    const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
+    const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -94,7 +88,7 @@ export default function LayoutProvider({ children }) {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
                             disconnect();
-                            signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
                             verifyJWTtokenFromCookieHandler(cookie);
@@ -121,6 +115,9 @@ export default function LayoutProvider({ children }) {
 
     //useEffect to check auth on mount
     useEffect(() => {
+        dispatch(appConfigData(appConfig));
+        createCookies(API_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_API_URL, appConfig);
+
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
         if (!isEmpty(cookie)) {
             verifyJWTtokenFromCookieHandler(cookie);
@@ -128,33 +125,10 @@ export default function LayoutProvider({ children }) {
             if (status === "authenticated") {
                 (localStorage.getItem("googleAuthInitiated") === "false" ||
                     localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }
         }
-
-        window.addEventListener('online', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={true}
-                        content={'Internet connection is back :)'}
-                    />
-                ),
-            });
-        }, false);
-
-        window.addEventListener('offline', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={false}
-                        content={"Internet connection is down :("}
-                    />
-                ),
-            });
-        }, false);
+        manageOnlineOfflineStatus();
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -174,7 +148,7 @@ export default function LayoutProvider({ children }) {
                 ),
             });
             setTimeout(() => {
-                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }, 2000);
         }
     }, [GoogleVerifiedData]);
@@ -205,23 +179,22 @@ export default function LayoutProvider({ children }) {
             }, 200);
             disconnect();
             setTimeout(() => {
-                dispatch(LogoutReducer());
+                dispatch(LogoutReducer(appConfig));
                 setTimeout(() => {
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                 }, 200);
             }, 100);
         }
     }, [dispatch, ValidatedUserData]);
 
-    const { connector: activeConnector } = useAccount();
     useEffect(() => {
         const handleConnectorUpdate = ({ account }) => {
             if (account) {
                 disconnect();
                 setTimeout(() => {
-                    dispatch(LogoutReducer());
+                    dispatch(LogoutReducer(appConfig));
                     setTimeout(() => {
-                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                     }, 200);
                 }, 100);
             }
@@ -233,6 +206,32 @@ export default function LayoutProvider({ children }) {
 
         return () => activeConnector?.off("change", handleConnectorUpdate);
     }, [activeConnector]);
+
+    const manageOnlineOfflineStatus = () => {
+        window.addEventListener('online', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={true}
+                        content={'Internet connection is back :)'}
+                    />
+                ),
+            });
+        }, false);
+
+        window.addEventListener('offline', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={"Internet connection is down :("}
+                    />
+                ),
+            });
+        }, false);
+    };
 
     return (
         <Box
@@ -247,61 +246,56 @@ export default function LayoutProvider({ children }) {
                 h={"100%"}
             />
             {isMd ? (
-                <>
+                <Box
+                    display={{
+                        base: "none",
+                        md: isMobileSidebarCollapsed ? "flex" : "none",
+                    }}
+                    flexDirection={"column"}
+                    className="margin-conditions"
+                    id="main-body"
+                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                    w="100%"
+                    overflowX={"hidden"}
+                >
+                    <Navbar onOpenMenu={onOpen} />
                     <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
                         }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                        _dark={{
+                            bgColor: "#131313",
+                        }}
                         w="100%"
-                        overflowX={"hidden"}
+                        height={"100vh"}
                     >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#131313",
-                            }}
-                            w="100%"
-                            height={"100vh"}
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
+                        {children}
+                        <Footer />
                     </Box>
-                </>
+                </Box>
             ) : (
-                <>
+                <Box
+                    display={{ base: "flex", md: "none" }}
+                    flexDirection={"column"}
+                    overflowX={"hidden"}
+                    mt={"60px"}
+                    w="100%" >
+                    <Navbar onOpenMenu={onOpen} />
                     <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
+                        }}
+                        _dark={{
+                            bgColor: "#282828",
+                        }}
                         w="100%"
                     >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#282828",
-                            }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
+                        {children}
+                        <Footer />
                     </Box>
-                </>
+                </Box>
             )}
         </Box>
     );
