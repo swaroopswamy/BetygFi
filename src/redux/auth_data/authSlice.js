@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@/services/authService";
+import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookies, deleteCookieByName } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";

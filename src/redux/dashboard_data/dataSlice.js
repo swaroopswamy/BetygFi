@@ -3,7 +3,7 @@ import {
     getOverviewData,
     getProtocolScoresData,
     getOverviewGraphData,
-} from "@/services/dashboardService";
+} from "@services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchDefiRankingTableData = createAsyncThunk(

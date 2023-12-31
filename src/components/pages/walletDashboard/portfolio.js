@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	defiArrayChangedReducer,
 	fetchWalletBalanceData,
-} from "@/redux/wallet_dashboard_data/dataSlice";
+} from "@redux/wallet_dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 

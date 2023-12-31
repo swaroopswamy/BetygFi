@@ -17,8 +17,8 @@ import {
 	fetchInflowOutflowTokensForAddress,
 	fetchWalletBalanceData,
 	walletAddressChangedReducer,
-} from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+} from "@redux/wallet_dashboard_data/dataSlice";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 
 const PortfolioPanelComponent = dynamic(() => import("@components/pages/walletDashboard/portfolio.js"));
 const WalletAnalyticsPanel = dynamic(() => import("@components/pages/walletDashboard/wallet_analytics"));

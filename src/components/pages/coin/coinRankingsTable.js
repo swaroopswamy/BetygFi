@@ -14,8 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
-import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@/redux/coin_data/dataSlice";
-import CustomAvatar from "@/components/avatar";
+import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@redux/coin_data/dataSlice";
+import CustomAvatar from "@components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));

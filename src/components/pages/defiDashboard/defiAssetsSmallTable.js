@@ -16,7 +16,7 @@ import GenericTable from "@components/table";
 import { DefiAssetsSmallTableHeader } from "@components/pages/defiDashboard/helper";
 import LastUpdate from "@components/lastUpdate";
 import TooltipComp from "@components/tooltipComp";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	style: "currency",

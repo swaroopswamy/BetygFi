@@ -25,7 +25,7 @@ import {
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
+import { sidebarCollapsedReducer } from "@redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import {
     bottomMenu,
@@ -39,7 +39,7 @@ import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "@components/sidebar/report";
 import SuggestFeatureModal from "@components/sidebar/suggestfeature";
 import { signOut, useSession } from "next-auth/react";
-import { LogoutReducer } from "@/redux/auth_data/authSlice";
+import { LogoutReducer } from "@redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
 import { PublicAddressStringFormatter } from "@util/utility";

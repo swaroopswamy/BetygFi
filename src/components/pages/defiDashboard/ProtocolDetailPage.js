@@ -4,7 +4,7 @@ import { Box, useColorModeValue, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { fetchDefiAssetCompositionTableData, fetchDefiFeeRevenueData, fetchDefiGovernanceTableData, fetchDefiGraphData, fetchDefiTvlBorrowData, fetchDefiUsersTableData, } from "@/redux/defi_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData, fetchDefiFeeRevenueData, fetchDefiGovernanceTableData, fetchDefiGraphData, fetchDefiTvlBorrowData, fetchDefiUsersTableData, } from "@redux/defi_dashboard_data/dataSlice";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import dynamic from "next/dynamic";
 import GovernanceTable from "@components/pages/defiDashboard/governanceTable";

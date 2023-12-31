@@ -1,14 +1,14 @@
 import React from "react";
-import LayoutProvider from "@/app/LayoutProvider";
-import { ReduxProvider } from "@/redux/provider";
+import LayoutProvider from "@app/LayoutProvider";
+import { ReduxProvider } from "@redux/provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import { Providers } from "@/app/ChakraProvider";
-import { WagmiProvider } from "@/app/Web3Provider";
-import SessionProvider from "@/app/SessionProvider";
+import { Providers } from "@app/ChakraProvider";
+import { WagmiProvider } from "@app/Web3Provider";
+import SessionProvider from "@app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
-import { getAppConfig } from "@/services/appService";
+import { getAppConfig } from "@services/appService";
 import { LOCAL_SERVER_HOST } from "@util/constant";
 
 export const metadata = DefiLandingPageMetas('');

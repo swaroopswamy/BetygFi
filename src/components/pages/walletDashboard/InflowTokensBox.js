@@ -16,7 +16,7 @@ import {
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));

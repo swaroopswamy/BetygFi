@@ -15,18 +15,18 @@ import {
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import LoginPage from "@components/login";
 import "./index.css";
-import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import {
     LogoutReducer,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import { MobileSidebar } from "@components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
 import { PublicAddressStringFormatter } from "@util/utility";
 import SearchBoxV2 from "@components/searchBoxV2";
-import { useDebounce } from "@/hooks/useDebounce";
-import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
+import { useDebounce } from "@hooks/useDebounce";
+import { getSearchV2List, getSearchV2TrendingList } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { COLOR_MODE_COOKIE_NAME } from "@util/constant";

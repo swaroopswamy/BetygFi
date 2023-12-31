@@ -9,7 +9,7 @@ import {
     LoginGetToken,
     StoreLoggedInUserData,
     VerifyPublicAddressData,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
 
 const OtherBrowserWalletProcess = ({

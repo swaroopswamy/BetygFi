@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-// import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchDefiAssetCompositionTableData } from "@/redux/defi_dashboard_data/dataSlice";
+// import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
+// import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData } from "@redux/defi_dashboard_data/dataSlice";
 import {
 	Text,
 	Td,

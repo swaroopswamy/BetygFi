@@ -16,8 +16,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import PageButtons from "@components/pageButtons";
 import Image from "next/image";
 

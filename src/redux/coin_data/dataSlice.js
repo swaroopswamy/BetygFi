@@ -4,7 +4,7 @@ import {
     getCoinRankingsTableData,
     getCoinScoresData,
     getTrendingCoinsData,
-} from "@/services/coinService";
+} from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchCoinRankingsTableData = createAsyncThunk(

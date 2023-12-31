@@ -1,4 +1,4 @@
-import { scoreChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import { scoreChangedReducer } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/utility";
 import React from "react";

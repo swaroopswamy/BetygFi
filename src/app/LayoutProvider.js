@@ -20,13 +20,13 @@ import {
     socialLoginGoogle,
     verifyJWTtokenFromCookie,
     LogoutReducer,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
-import { appConfigData } from "@/redux/app_data/dataSlice";
+import { appConfigData } from "@redux/app_data/dataSlice";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
