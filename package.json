@@ -12,7 +12,7 @@
     "build:qa": "next build",
     "build:prod": "next build",
     "analyze:dev": "cross-env ANALYZE=true next build",
-    "test:build": "npm run build:dev && npm run start:dev",
+    "test:build": "rm -rf .next && npm run build:dev && npm run start:dev",
     "eslint": "eslint ./src",
     "prepare": "husky install"
   },
