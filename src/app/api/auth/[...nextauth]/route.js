@@ -60,7 +60,7 @@ export const authOptions = async () => {
                 },
             },
 
-            secret: (await appConfig()).NEXTAUTH_SECRET,
+            secret: (await appConfig()).NEXTAUTH_SECRET ?? "",
 
         });
     };
