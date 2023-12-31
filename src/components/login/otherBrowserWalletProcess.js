@@ -55,7 +55,6 @@ const OtherBrowserWalletProcess = ({
             };
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
 
@@ -79,7 +78,6 @@ const OtherBrowserWalletProcess = ({
             connect({ connector });
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
     const handleVerifyWallet = () => {
