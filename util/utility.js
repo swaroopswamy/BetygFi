@@ -131,3 +131,11 @@ export const USDollar = new Intl.NumberFormat('en-US');
 export const calculatePercentage = (value, totalValue) => (value / totalValue) * 100;
 
 export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
+
+export const GET_LOCAL_SERVER_HOST = () => {
+    if (process.env.NODE_ENV === "development") {
+        return `http://local.betygfi.com:3000`;
+    } else {
+        return `http://localhost:7000`;
+    }
+};

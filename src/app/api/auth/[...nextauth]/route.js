@@ -1,12 +1,12 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
-import { LOCAL_SERVER_HOST } from "@util/constant";
+import { GET_LOCAL_SERVER_HOST } from "@util/utility";
 
 export const authOptions = async () => {
     const getAppConfig = async () => {
         try {
-            const res = await fetch(`${LOCAL_SERVER_HOST}/api/config`, { cache: 'no-store' });
+            const res = await fetch(`${GET_LOCAL_SERVER_HOST()}/api/config`, { cache: 'no-store' });
             const data = await res.json();
             return data?.data?.config?.values;
         } catch (err) {

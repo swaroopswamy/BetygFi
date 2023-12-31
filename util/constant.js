@@ -3,7 +3,6 @@ export const API_URL_COOKIE_NAME = "bet-api-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const DOMAIN = "betygfi.com";
 export const HOST = `https://${DOMAIN}/`;
-export const LOCAL_SERVER_HOST = `http://localhost:7000`;
 
 export const blockchains = [
     "Ethereum",

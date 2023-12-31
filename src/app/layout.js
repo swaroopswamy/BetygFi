@@ -9,7 +9,7 @@ import SessionProvider from "@app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
-import { LOCAL_SERVER_HOST } from "@util/constant";
+import { GET_LOCAL_SERVER_HOST } from "@util/utility";
 
 export const metadata = DefiLandingPageMetas('');
 
@@ -23,10 +23,12 @@ export const maxDuration = 5;
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
 
-	const appConfig = await getAppConfig(LOCAL_SERVER_HOST);
+	const appConfig = await getAppConfig(GET_LOCAL_SERVER_HOST());
 	let modifiedConfig = { ...appConfig };
 	modifiedConfig = modifiedConfig?.values;
-	modifiedConfig.NEXTAUTH_URL = 'http://local.betygfi.com:3000';
+	if (process.env.NODE_ENV === "development") {
+		modifiedConfig.NEXTAUTH_URL = GET_LOCAL_SERVER_HOST();
+	}
 
 	return (
 		<html lang={"en"}>
