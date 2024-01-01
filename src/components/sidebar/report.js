@@ -63,7 +63,7 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
                 render: () => (
                     <CustomToast
                         isSuccessful={false}
-                        content={'Required fields cannot be empty'}
+                        content={'Required field cannot be empty'}
                     />
                 ),
             });
