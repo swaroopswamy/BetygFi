@@ -127,12 +127,11 @@ const TableRow = ({ item, rowIndex }) => {
 								<Image
 									width={18}
 									height={18}
-									mr={"3px"}
 									unoptimized="true"
 									priority="true"
 									src={item.logoUrl}
 									alt={`${item?.blockchain}_icon`}
-									style={{ borderRadius: "50%" }}
+									style={{ borderRadius: "50%", marginRight: "3px" }}
 								/>
 							</>
 						</Tooltip>
