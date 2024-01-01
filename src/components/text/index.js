@@ -132,7 +132,7 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
         }),
-        contentHeading_MobileOptimization: ({ colorMode }) => ({
+        contentHeading4: ({ colorMode }) => ({
             fontSize: "18px",
             fontWeight: "500",
             lineHeight: "20px",
@@ -167,9 +167,8 @@ const Text = defineStyleConfig({
             fontsize: "12px",
             fontFamily: "Inter",
             fontWeight: "400",
-            lineHeight: "10px",
-            opacity: "0.5",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            lineHeight: "normal",
+            color: colorMode === "light" ? "#757575" : "#A5A5A5",
         }),
         SettingsButtonText: () => ({
             fontSize: "12px",
@@ -303,6 +302,14 @@ const Text = defineStyleConfig({
             fontWeight: "400",
             lineHeight: "normal",
             color: "#FFF",
+        }),
+        bigNumericText: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: "Inter",
+            fontSize: "34px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            lineHeight: "normal",
         }),
     },
     defaultProps: {

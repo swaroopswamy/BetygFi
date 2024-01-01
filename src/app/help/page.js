@@ -392,7 +392,7 @@ const Help = () => {
 										<h2>
 											<AccordionButton>
 												<Box flex="1" textAlign="left">
-													<Text variant={"contentHeading_MobileOptimization"}>
+													<Text variant={"contentHeading4"}>
 														{item.heading}
 													</Text>
 												</Box>
@@ -464,7 +464,7 @@ const Help = () => {
 										<h2>
 											<AccordionButton>
 												<Box flex="1" textAlign="left">
-													<Text variant={"contentHeading_MobileOptimization"}>
+													<Text variant={"contentHeading4"}>
 														{item.heading}
 													</Text>
 												</Box>
@@ -515,7 +515,7 @@ const Help = () => {
 										<h2>
 											<AccordionButton>
 												<Box flex="1" textAlign="left">
-													<Text variant={"contentHeading_MobileOptimization"}>
+													<Text variant={"contentHeading4"}>
 														{item.heading}
 													</Text>
 												</Box>
@@ -602,7 +602,7 @@ const Help = () => {
 										<h2>
 											<AccordionButton>
 												<Box flex="1" textAlign="left">
-													<Text variant={"contentHeading_MobileOptimization"}>
+													<Text variant={"contentHeading4"}>
 														{item.heading}
 													</Text>
 												</Box>
