@@ -46,12 +46,19 @@ const Approach = () => {
 					"font-weight": "400",
 					"font-size": `${scale * 24}px`,
 				},
+
+				"block_9": {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 24}px`,
+				},
+
 				p: {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 14}px`,
 				},
-
+			
 				li: {
 					"font-size": `${scale * 14}px`,
 				},
@@ -66,8 +73,26 @@ const Approach = () => {
 					"font-family": "Inter, sans-serif",
 					"font-weight": "400",
 					"font-size": `${scale * 14}px`,
-					color: "#FF0000",
+					//color: "#FF0000",
 				},
+				text_4: {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px`,
+					//color: "#FF0000",
+				},
+				"h2.block_9": {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px!important`,
+				},
+				".text_5": {
+					"font-family": "Inter, sans-serif",
+					"font-weight": "400",
+					"font-size": `${scale * 14}px!important`,
+				},
+				
+
 			});
 			rendition.current.themes.select("custom");
 		}
@@ -110,7 +135,7 @@ const Approach = () => {
 				boxShadow={useColorModeValue("0px", "0px 0px 4px 0px #FFF")}
 			>
 				<ReactReader
-					url="/text/paper4.epub"
+					url="/text/paper_new.epub"
 					showToc={false}
 					location={location}
 					locationChanged={changePage}
