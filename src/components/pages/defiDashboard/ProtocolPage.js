@@ -28,9 +28,7 @@ const ProtocolPage = () => {
 
     const dispatch = useDispatch();
 
-    const blockchainSelected = useSelector(
-        (state) => state?.dashboardTableData?.blockchainType
-    );
+    const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
 
     const categorySelected = useSelector(
         (state) => state?.dashboardTableData?.categorySelected

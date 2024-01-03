@@ -20,7 +20,7 @@ import {
 } from "@/redux/wallet_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
 
-const PortfolioPanelComponent = dynamic(() => import("@components/pages/walletDashboard/portfolio.js"));
+const PortfolioPanelComponent = dynamic(() => import("@components/pages/walletDashboard/portfolio"));
 const WalletAnalyticsPanel = dynamic(() => import("@components/pages/walletDashboard/wallet_analytics"));
 const TransactionPanelComponent = dynamic(() => import("@components/pages/walletDashboard/transaction"));
 const Breadcrumb = dynamic(() => import("@components/breadcrumb"));
@@ -32,16 +32,9 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 	const dispatch = useDispatch();
 	const [tabIndex, setTabIndex] = useState(0);
 
-	const blockchainSelected = useSelector(
-		(state) => state?.walletDashboardTableData?.blockchainType
-	);
-	const walletAddress = useSelector(
-		(state) => state?.walletDashboardTableData?.walletAddress
-	);
-
-	const walletBalanceData = useSelector(
-		(state) => state?.walletDashboardTableData?.walletBalanceData?.data
-	);
+	const blockchainSelected = useSelector((state) => state?.walletDashboardTableData?.blockchainType);
+	const walletAddress = useSelector((state) => state?.walletDashboardTableData?.walletAddress);
+	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data);
 
 	const fetchWalletBalanceDataHandler = (blockchainSelected, searchParamAddress) => {
 		const data = {
@@ -84,15 +77,13 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 	};
 
 	useEffect(() => {
-		// Promise.all([
-		fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress);
-		if (searchParamAddress && searchParamAddress !== '') {
-			fetchAssetAllocationForAddressHandler();
-			fetchProtocolAllocationForAddressHandler();
-			fetchBlockchainAllocationForAddressHandler();
-			fetchInflowOutflowTokensForAddressHandler();
-		}
-		// ]);
+		Promise.all([
+			fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress),
+			fetchAssetAllocationForAddressHandler(),
+			fetchProtocolAllocationForAddressHandler(),
+			fetchBlockchainAllocationForAddressHandler(),
+			fetchInflowOutflowTokensForAddressHandler(),
+		]).then(result => result);
 	}, [blockchainSelected, searchParamAddress]);
 
 	useEffect(() => {
@@ -111,58 +102,58 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 	}, [walletBalanceData]);
 
 	return (
-		<>
-			<Box
-				bgColor={useColorModeValue("#FFFFFF", "#131313")}
-				layerStyle={"flexColumn"}
-				w="100%"
-			>
-				<Breadcrumb
-					link="/top-wallets"
-					text="Top Wallets/"
-					additionalText={walletBalanceData?.name}
-				/>
-				<HeaderComponent
-					walletBalanceData={walletBalanceData}
-					walletAddress={walletAddress}
-				/>
+		<Box
+			bgColor={useColorModeValue("#FFFFFF", "#131313")}
+			layerStyle={"flexColumn"}
+			w="100%"
+		>
+			<Breadcrumb
+				link="/top-wallets"
+				text="Top Wallets/"
+				additionalText={walletBalanceData?.name}
+			/>
+			<HeaderComponent
+				walletBalanceData={walletBalanceData}
+				walletAddress={walletAddress}
+			/>
 
-				<Box>
-					<Tabs onChange={(index) => setTabIndex(index)}>
-						<DashboardTabList tabIndex={tabIndex} />
-						<Box
-							bgColor={useColorModeValue("#F0F0F5", "#191919")}
-							padding={{ base: "0px", md: "32px" }}
-						>
-							<Box display={"flex"} flexDirection={"column"}>
-								<BlockchainSelectionMenuBlocks />
-							</Box>
-							<TabPanels bgColor={useColorModeValue("#F0F0F5", "#191919")}>
-								<TabPanel
-									p="0px"
-									bgColor={useColorModeValue("#F0F0F5", "#191919")}
-								>
-									<TransactionPanelComponent
-										searchParamAddress={searchParamAddress}
-									/>
-								</TabPanel>
-								<TabPanel
-									p="0px"
-									bgColor={useColorModeValue("#F0F0F5", "#191919")}
-								>
-									<PortfolioPanelComponent />
-								</TabPanel>
-								<TabPanel
-									p="0px"
-									bgColor={useColorModeValue("#F0F0F5", "#191919")}
-								>
-									<WalletAnalyticsPanel />
-								</TabPanel>
-							</TabPanels>
+			<Box>
+				<Tabs onChange={(index) => setTabIndex(index)}>
+					<DashboardTabList tabIndex={tabIndex} />
+					<Box
+						bgColor={useColorModeValue("#F0F0F5", "#191919")}
+						padding={{ base: "0px", md: "32px" }}
+					>
+						<Box display={"flex"} flexDirection={"column"}>
+							<BlockchainSelectionMenuBlocks />
 						</Box>
-					</Tabs>
-				</Box>
+						<TabPanels bgColor={useColorModeValue("#F0F0F5", "#191919")}>
+							<TabPanel
+								p="0px"
+								bgColor={useColorModeValue("#F0F0F5", "#191919")}
+							>
+								<TransactionPanelComponent
+									searchParamAddress={searchParamAddress}
+								/>
+							</TabPanel>
+							<TabPanel
+								p="0px"
+								bgColor={useColorModeValue("#F0F0F5", "#191919")}
+							>
+								<PortfolioPanelComponent />
+							</TabPanel>
+							<TabPanel
+								p="0px"
+								bgColor={useColorModeValue("#F0F0F5", "#191919")}
+							>
+								<WalletAnalyticsPanel
+									walletBalanceData={walletBalanceData}
+								/>
+							</TabPanel>
+						</TabPanels>
+					</Box>
+				</Tabs>
 			</Box>
-		</>
+		</Box>
 	);
 }

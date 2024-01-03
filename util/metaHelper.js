@@ -2,12 +2,12 @@ import { DOMAIN, HOST } from "@util/constant";
 
 // const SHARED_IMAGES_DETAIL = [
 //     {
-//         url: 'https://nextjs.org/og.png',
+//         url: "https://betygfi.com/icons/light_betgyfi_sm_icon.svg",
 //         width: 800,
 //         height: 600,
 //     },
 //     {
-//         url: 'https://nextjs.org/og-alt.png',
+//         url: "https://betygfi.com/icons/light_betgyfi_sm_icon.svg",
 //         width: 1800,
 //         height: 1600,
 //         alt: 'My custom alt',
@@ -15,8 +15,7 @@ import { DOMAIN, HOST } from "@util/constant";
 // ];
 
 const SHARED_IMAGES = [
-    'https://nextjs.org/og.png',
-    'https://nextjs.org/og-alt.png',
+    "https://betygfi.com/icons/light_betgyfi_sm_icon.svg"
 ];
 
 const SHARED_OPENGRAPH_IMAGES = () => [...SHARED_IMAGES];
@@ -140,8 +139,19 @@ export const CoinDetailPageMetas = (coinData) => {
     };
 };
 
-export const TopWalletDetailPageMetas = () => {
+export const TopWalletDetailPageMetas = (walletData) => {
+    const url = `top-wallets/${walletData}`;
+    const title = `BetygFi - Wallet Dashboard: Gain Deep Insights into Wallet Digital Assets insights`;
+    const description = `BetygFi Wallet Dashboard empowers you to seamlessly monitor and analyze cryptocurrency transactions, track portfolio performance, and manage digital assets. Stay in the know with real-time updates, delve into transaction history, and benefit from personalized analytics for a comprehensive overview of your crypto journey. `;
 
+    return {
+        metadataBase: new URL(HOST),
+        title: title,
+        description: description,
+        keywords: ['Betygfi', ...SHARED_KEYWORDS.wallet],
+        openGraph: openGraphData({ url, title, description }),
+        twitter: twitterData({ url, title, description }),
+    };
 };
 
 const SHARED_KEYWORDS = {
@@ -161,6 +171,14 @@ const SHARED_KEYWORDS = {
         "Cryptocurrency Dashboard",
     ],
     wallet: [
-
+        "Cryptocurrency wallet",
+        "Wallet insights",
+        "Crypto transactions",
+        "Digital assets management",
+        "Wallet Profiler",
+        "Wallet analytics",
+        "Cryptocurrency portfolio",
+        "Transaction history",
+        "Asset tracking",
     ]
 };

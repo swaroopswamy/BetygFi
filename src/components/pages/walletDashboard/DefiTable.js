@@ -10,38 +10,36 @@ import {
 	Image as ChakraImage
 } from "@chakra-ui/react";
 
-import { useSelector } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 
 const GenericTable = dynamic(() => import("@components/table"));
+
 import {
 	portfolioTableHeader,
 	PortfolioTableDesktop,
 	PortfolioTableMobile,
 } from "@components/pages/walletDashboard/helper";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const DefiTable = () => {
-	const walletBalanceData = useSelector(
-		(state) => state?.walletDashboardTableData?.walletBalanceData
-	);
+	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
+
 	return (
-		<>
-			<Box display={"flex"} overflow={"auto"}>
-				<GenericTable
-					tableHeader={portfolioTableHeader}
-					tableData={walletBalanceData}
-					TableRow={TableRowDesktop}
-					TableHeaderRowMobile={TableHeaderRowMobile}
-					ButtonComp={TableBodyRowMobileButtonComp}
-					PanelComp={TableBodyRowMobilePanelComp}
-					SkeletonRowsColumnsDesktop={PortfolioTableDesktop}
-					SkeletonRowsColumnsMobile={PortfolioTableMobile}
-					isQueryInPendingState={walletBalanceData.data?.isQueryInPendingState}
-				/>
-			</Box>
-		</>
+		<Box display={"flex"} overflow={"auto"}>
+			<GenericTable
+				tableHeader={portfolioTableHeader}
+				tableData={walletBalanceData}
+				TableRow={TableRowDesktop}
+				TableHeaderRowMobile={TableHeaderRowMobile}
+				ButtonComp={TableBodyRowMobileButtonComp}
+				PanelComp={TableBodyRowMobilePanelComp}
+				SkeletonRowsColumnsDesktop={PortfolioTableDesktop}
+				SkeletonRowsColumnsMobile={PortfolioTableMobile}
+				isQueryInPendingState={walletBalanceData?.data?.isQueryInPendingState}
+			/>
+		</Box>
 	);
 };
 
@@ -64,38 +62,34 @@ const TableRowDesktop = ({ item, i }) => {
 			<Td>
 				<Box display={"flex"} alignItems={"center"}>
 					{!isEmpty(item?.logoUrl) ? (
-						<>
-							<Image
-								width={5}
-								height={5}
-								style={{ borderRadius: "50%" }}
-								alt="logo"
-								src={item?.logoUrl}
-								unoptimized="true"
-								priority="true"
-							/>
-						</>
+						<Image
+							width={5}
+							height={5}
+							style={{ borderRadius: "50%" }}
+							alt="logo"
+							src={item?.logoUrl}
+							unoptimized="true"
+							priority="true"
+						/>
 					) : (
-						<>
-							<Box
-								width={"20px"}
-								height={"20px"}
-								alignItems={"center"}
-								justifyContent={"center"}
-								display={"flex"}
-								borderRadius={"50%"}
-								_light={{
-									bgColor: "#676DFF",
-								}}
-								_dark={{
-									bgColor: "#ADADAD",
-								}}
-							>
-								<Text color={"#FFF"} fontSize={"12px"} fontWeight={600}>
-									{item.symbol.charAt(0)}
-								</Text>
-							</Box>
-						</>
+						<Box
+							width={"20px"}
+							height={"20px"}
+							alignItems={"center"}
+							justifyContent={"center"}
+							display={"flex"}
+							borderRadius={"50%"}
+							_light={{
+								bgColor: "#676DFF",
+							}}
+							_dark={{
+								bgColor: "#ADADAD",
+							}}
+						>
+							<Text color={"#FFF"} fontSize={"12px"} fontWeight={600}>
+								{item.symbol.charAt(0)}
+							</Text>
+						</Box>
 					)}
 					<Text
 						_light={{
@@ -252,38 +246,34 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 			>
 				<Box display={"flex"} alignItems={"center"}>
 					{!isEmpty(item?.logoUrl) ? (
-						<>
-							<Image
-								width={5}
-								height={5}
-								style={{ borderRadius: "50%" }}
-								alt="logo"
-								src={item?.logoUrl}
-								unoptimized="true"
-								priority="true"
-							/>
-						</>
+						<Image
+							width={5}
+							height={5}
+							style={{ borderRadius: "50%" }}
+							alt="logo"
+							src={item?.logoUrl}
+							unoptimized="true"
+							priority="true"
+						/>
 					) : (
-						<>
-							<Box
-								width={"20px"}
-								height={"20px"}
-								alignItems={"center"}
-								justifyContent={"center"}
-								display={"flex"}
-								borderRadius={"50%"}
-								_light={{
-									bgColor: "#676DFF",
-								}}
-								_dark={{
-									bgColor: "#ADADAD",
-								}}
-							>
-								<Text color={"#FFF"} fontSize={"12px"} fontWeight={"600"}>
-									{item.symbol.charAt(0)}
-								</Text>
-							</Box>
-						</>
+						<Box
+							width={"20px"}
+							height={"20px"}
+							alignItems={"center"}
+							justifyContent={"center"}
+							display={"flex"}
+							borderRadius={"50%"}
+							_light={{
+								bgColor: "#676DFF",
+							}}
+							_dark={{
+								bgColor: "#ADADAD",
+							}}
+						>
+							<Text color={"#FFF"} fontSize={"12px"} fontWeight={"600"}>
+								{item.symbol.charAt(0)}
+							</Text>
+						</Box>
 					)}
 					<Text
 						_light={{

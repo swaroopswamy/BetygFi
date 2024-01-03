@@ -19,6 +19,17 @@ export const getDefiData = async (payload, rejectWithValue) => {
 	}
 };
 
+export const getDefiUsersTableData = async (payload, rejectWithValue) => {
+	try {
+		const { data } = await axiosInstance.get(
+			`protocols/${payload.defi}/users?blockchain=${payload.blockchain}`
+		);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};
+
 export const getDefiHotContractsTableData = async (payload, rejectWithValue) => {
 	try {
 		const { data } = await axiosInstance.get(

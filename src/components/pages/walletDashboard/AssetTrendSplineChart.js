@@ -5,16 +5,14 @@ import {
 	Box,
 } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
+import { useSelector } from "react-redux";
 
 const CustomChart = dynamic(() => import("@components/graph"));
 
 const AssetTrendSplineChart = () => {
 	const { colorMode } = useColorMode();
-	const walletBalanceData = useSelector(
-		(state) => state?.walletDashboardTableData?.walletBalanceData
-	);
+	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
 	const options = {
 		chart: {
 			toolbar: {
