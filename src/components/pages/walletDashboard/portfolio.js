@@ -8,33 +8,26 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	defiArrayChangedReducer,
-	fetchWalletBalanceData,
-} from "@/redux/wallet_dashboard_data/dataSlice";
+import { defiArrayChangedReducer, fetchWalletBalanceData } from "@/redux/wallet_dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
 const PorfolioAccordion = dynamic(() => import("@components/pages/walletDashboard/portfolioAccordion"));
 const DefiTable = dynamic(() => import("@components/pages/walletDashboard/DefiTable"));
 
 const PortfolioPanelComponent = () => {
+	const defiArray = ["Wallet"];
 	const { colorMode } = useColorMode();
 	const dispatch = useDispatch();
 
-	const walletBalanceData = useSelector(
-		(state) => state?.walletDashboardTableData?.walletBalanceData
-	);
+	const defiSelected = useSelector((state) => state?.walletDashboardTableData?.defiArraySelected);
+	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
 
 	const fetchWalletBalanceDataHandler = () => {
 		dispatch(fetchWalletBalanceData());
 	};
 
-	const defiSelected = useSelector(
-		(state) => state?.walletDashboardTableData?.defiArraySelected
-	);
 	const DefiArrayHandler = (type) => {
 		dispatch(defiArrayChangedReducer(type));
 	};
-	const defiArray = ["Wallet"];
 
 	useEffect(() => {
 		fetchWalletBalanceDataHandler();
@@ -66,9 +59,9 @@ const PortfolioPanelComponent = () => {
 								defiSelected.length === 0
 									? colorMode === "light"
 										? "#202020"
-										: "#FFF"
+										: "#FFFFFF"
 									: colorMode === "light"
-										? "#FFF"
+										? "#FFFFFF"
 										: "#202020"
 							}
 							onClick={() => {
@@ -90,7 +83,7 @@ const PortfolioPanelComponent = () => {
 								color={
 									defiSelected.length === 0
 										? colorMode === "light"
-											? "#FFF"
+											? "#FFFFFF"
 											: "#191919"
 										: colorMode === "light"
 											? "#191919"
@@ -110,7 +103,7 @@ const PortfolioPanelComponent = () => {
 										defiSelected.includes(item)
 											? colorMode === "light"
 												? "#202020"
-												: "#FFF"
+												: "#FFFFFF"
 											: colorMode === "light"
 												? "#FFFFFF"
 												: "#202020"
@@ -131,12 +124,12 @@ const PortfolioPanelComponent = () => {
 										lineHeight={"20px"}
 										color={
 											defiSelected.includes(item)
-												? colorMode === "light"
-													? "#FFF"
-													: "#191919"
-												: colorMode === "light"
+												? (colorMode === "light"
+													? "#FFFFFF"
+													: "#191919")
+												: (colorMode === "light"
 													? "#191919"
-													: "#FFFFFF"
+													: "#FFFFFF")
 										}
 									>
 										{item}

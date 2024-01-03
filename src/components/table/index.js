@@ -112,20 +112,18 @@ const GenericTable = ({
 					_dark={{ bgColor: "#202020", }}
 				>
 					{(tableData?.isError || tableData === null) && (
-						<>
-							<Tr>
-								<Td
-									p="20px"
-									textAlign={"center"}
-									height={"245px"}
-									colSpan={SkeletonRowsColumnsDesktop?.numColumns}
-								>
-									<Text variant={"noDataText"}>
-										No data available
-									</Text>
-								</Td>
-							</Tr>
-						</>
+						<Tr>
+							<Td
+								p="20px"
+								textAlign={"center"}
+								height={"245px"}
+								colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+							>
+								<Text variant={"noDataText"}>
+									No data available
+								</Text>
+							</Td>
+						</Tr>
 					)}
 					{tableData?.isLoading && (
 						<SkeletonTable
