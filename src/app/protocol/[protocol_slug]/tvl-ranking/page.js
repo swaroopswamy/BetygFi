@@ -8,6 +8,7 @@ import {
 	Box,
 	useColorModeValue,
 	useColorMode,
+Image as ChakraImage
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -215,8 +216,8 @@ function TableRow({
 							<Image
 								unoptimized="true"
 								priority="true"
-								height={"24px"}
-								width={"24px"}
+								height={24}
+								width={24}
 								src={DeFi.src}
 								alt="defi_logo"
 							// url={"/icons/Ethereum_sm_icon.svg"}
@@ -306,7 +307,7 @@ function TableRow({
 				<Td>
 					<Flex>
 						<Box width={"87px"} height={"23px"}>
-							<Image unoptimized="true"
+							<ChakraImage unoptimized="true"
 								priority="true" alt="line_graph" src={"/icons/line_graph.svg"} />
 						</Box>
 					</Flex>

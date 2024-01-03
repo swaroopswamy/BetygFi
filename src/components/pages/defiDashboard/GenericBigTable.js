@@ -13,6 +13,7 @@ import {
 	Box,
 	useColorModeValue,
 	useColorMode,
+	Image as ChakraImage
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -139,7 +140,7 @@ function ThreadItem({ key, name }) {
 				<Flex>
 					{name}
 					{/* Add an image next to the text */}
-					<Image
+					<ChakraImage
 						mt={"2px"}
 						src={useColorModeValue(
 							"/images/Arrowdown(light).svg",
@@ -231,8 +232,8 @@ function SelectionBox({ colorMode }) {
 									alignItems={"center"}
 								>
 									<Image
-										w={"20px"}
-										h={"20px"}
+										width={20}
+										height={20}
 										mr={"11px"}
 										unoptimized="true"
 										priority="true"

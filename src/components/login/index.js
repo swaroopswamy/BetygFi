@@ -178,8 +178,8 @@ const LoginPage = ({ isOpen, onClose }) => {
                                                 <Image
                                                     unoptimized="true"
                                                     priority="true"
-                                                    width={"36px"}
-                                                    height={"36px"}
+                                                    width={36}
+                                                    height={36}
                                                     alt="Other Browser wallet"
                                                     src={`/icons/${item.icon}`}
                                                 />
