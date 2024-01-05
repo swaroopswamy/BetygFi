@@ -1,13 +1,21 @@
 import { axiosInstance } from "@util/axiosInstance";
+import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 
 export const getDefiData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
-			`protocols/${payload.id}/get`, payload
-		);
-		return data;
+		const url = `protocols/${payload.id}/get`;
+		if (checkIfCacheAvailable(url)) {
+			return checkIfCacheAvailable(url);
+		} else {
+			const { data } = await axiosInstance.post(url, payload);
+			return cacheHandler(url, data, 4, false);
+		}
 	} catch (err) {
-		return rejectWithValue(err);
+		if (rejectWithValue) {
+			return rejectWithValue(err);
+		} else {
+			return err;
+		}
 	}
 };
 

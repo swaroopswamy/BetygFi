@@ -1,14 +1,11 @@
 import React from "react";
-import { Avatar, Box, Text, useColorModeValue } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import BlockchainSelectionMenu from "@components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
+import CustomAvatar from "@/components/avatar";
 
-const Banner = () => {
+const Banner = ({ defiData }) => {
 	const router = useRouter();
-	const defiData = useSelector(
-		(state) => state?.defiDashboardData?.DefiData?.data
-	);
 
 	return (
 		<>
@@ -30,7 +27,7 @@ const Banner = () => {
 					p={{ md: "15px" }}
 				>
 					{typeof window !== "undefined" && (
-						<Avatar
+						<CustomAvatar
 							w={"50px"}
 							h={"50px"}
 							borderRadius={"50%"}
@@ -127,7 +124,7 @@ const Banner = () => {
 								Token{" "}
 							</Text>
 							{typeof window !== "undefined" && (
-								<Avatar
+								<CustomAvatar
 									w={"16px"}
 									h={"16px"}
 									borderRadius={"50%"}
@@ -170,7 +167,7 @@ const Banner = () => {
 				<Box display={"flex"} flexDir={"column"} gap={"15px"}>
 					<Box display={"flex"} w={"100%"} p={"15px"}>
 						{typeof window !== "undefined" && (
-							<Avatar
+							<CustomAvatar
 								w={"50px"}
 								h={"50px"}
 								borderRadius={"50%"}
@@ -259,7 +256,7 @@ const Banner = () => {
 								Token{" "}
 							</Text>
 							{typeof window !== "undefined" && (
-								<Avatar
+								<CustomAvatar
 									w={"16px"}
 									h={"16px"}
 									borderRadius={"50%"}

@@ -4,7 +4,6 @@ import {
 	useColorMode,
 	useColorModeValue,
 	Text,
-	Image,
 	Button,
 	useDisclosure,
 } from "@chakra-ui/react";
@@ -15,6 +14,7 @@ const LoginPage = dynamic(() => import("@components/login"));
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import DynamicIcon from "@components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 
 const Settings = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -312,11 +312,13 @@ const Settings = () => {
 					<Box layerStyle={"flexCenterSpaceEvenly"} mt={"10px"}>
 						<Box layerStyle={"flexColumn"} cursor={"pointer"}>
 							<Image
+								unoptimized="true"
+								priority="true"
 								src="/images/SystemDefault.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
-							></Image>
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								{/* <DynamicIcon
                                     name={colorMode === "light" ? "green_tick" : "unticked"}
@@ -341,10 +343,12 @@ const Settings = () => {
 						>
 							<Image
 								src=" /images/LightTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								<DynamicIcon
 									name={colorMode === "light" ? "green_tick" : "unticked"}
@@ -369,10 +373,12 @@ const Settings = () => {
 						>
 							<Image
 								src="/images/DarkTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
-							></Image>
+								unoptimized="true"
+								priority="true"
+							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								<DynamicIcon
 									name={colorMode === "dark" ? "green_tick" : "unticked"}
@@ -759,8 +765,8 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/SystemDefault.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 								m={"12px 0px 0px 21px"}
 							></Image>
@@ -791,8 +797,10 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/LightTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
+								unoptimized="true"
+								priority="true"
 								alt=""
 								m={"12px 0px 0px 21px"}
 							></Image>
@@ -823,8 +831,10 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/DarkTheme.svg"
-								w="183px"
-								h="133px"
+								unoptimized="true"
+								priority="true"
+								width={183}
+								height={133}
 								alt=""
 								m={"12px 0px 0px 21px"}
 							></Image>

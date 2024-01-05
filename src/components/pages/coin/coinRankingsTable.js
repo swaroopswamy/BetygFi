@@ -9,13 +9,13 @@ import {
     Box,
     useColorModeValue,
     Button,
-    Avatar,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
 import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@/redux/coin_data/dataSlice";
+import CustomAvatar from "@/components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -163,13 +163,13 @@ const TableRow = ({ item, rowIndex }) => {
             </Td>
             <Td key={1} p={"15px"}>
                 <Box display={"flex"} alignItems={"center"} gap={"10px"}>
-                    <Avatar
+                    <CustomAvatar
                         width={"24px"}
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
                         src={item?.logoUrl}
-                    ></Avatar>
+                    />
 
                     <Box
                         display={"flex"}
@@ -344,13 +344,13 @@ const ButtonComp = ({ item }) => {
                 </Text>
 
                 <Box layerStyle={"center"} gap={"10px"} ml={"30px"}>
-                    <Avatar
+                    <CustomAvatar
                         width={"24px"}
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
                         src={item?.logoUrl}
-                    ></Avatar>
+                    />
 
                     <Box
                         layerStyle={"flexColumn"}

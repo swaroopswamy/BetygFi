@@ -10,8 +10,9 @@ import {
     useColorMode,
     Box,
     Button,
-    Image,
+    Image as ChakraImage
 } from "@chakra-ui/react";
+
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
     const { colorMode } = useColorMode();
     return (
@@ -25,11 +26,13 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                     {state === "success" ? (<>
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
-                                <Image
+                                <ChakraImage
+                                    unoptimized="true"
+                                    priority="true"
                                     alt="success"
                                     src={"/icons/check_filled_green.svg"}
                                     mr={'10px'}
-                                ></Image>
+                                />
                                 <Text variant={"h0"}>
                                     Success!
                                 </Text>
@@ -55,11 +58,13 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                     </>) : state === "failure" ? (<>
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
-                                <Image
+                                <ChakraImage
+                                    unoptimized="true"
+                                    priority="true"
                                     alt="danger"
                                     src={"/icons/danger_filled_red.svg"}
                                     mr={'10px'}
-                                ></Image>
+                                />
                                 <Text variant={"h0"}>
                                     Failed!
                                 </Text>

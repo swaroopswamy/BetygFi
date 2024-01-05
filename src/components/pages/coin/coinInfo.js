@@ -8,23 +8,18 @@ import {
     useColorModeValue,
     Button,
     useColorMode,
-    Avatar,
     Icon,
     useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import ScoreMeter from "@components/pages/coin/scoreMeter";
 import React from "react";
-import { useSelector } from "react-redux";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MdContentCopy } from "react-icons/md";
 import TooltipComp from "@components/tooltipComp";
+import CustomAvatar from "@/components/avatar";
 
-const CoinInfo = () => {
-    const CoinDashboardData = useSelector(
-        (state) => state?.coinData?.CoinDashboardData?.data
-    );
-
+const CoinInfo = ({ coinDetails }) => {
     return (
         <Box
             display={"flex"}
@@ -47,8 +42,8 @@ const CoinInfo = () => {
                     minW={{ base: "100%", bigSize: "50%" }}
                 >
                     {
-                        CoinDashboardData?.score &&
-                        <ScoreMeter score={[CoinDashboardData?.score]} />
+                        coinDetails?.score &&
+                        <ScoreMeter score={[coinDetails?.score]} />
                     }
                 </Box>
 
@@ -72,9 +67,9 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Daily Volatility"}
                                 value={
-                                    CoinDashboardData?.daily_vol
+                                    coinDetails?.daily_vol
                                         ? 100 *
-                                        CoinDashboardData?.daily_vol?.toFixed(
+                                        coinDetails?.daily_vol?.toFixed(
                                             3
                                         ) +
                                         "%"
@@ -87,8 +82,8 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Beta"}
                                 value={
-                                    CoinDashboardData?.beta
-                                        ? CoinDashboardData?.beta.toFixed(3)
+                                    coinDetails?.beta
+                                        ? coinDetails?.beta.toFixed(3)
                                         : "-"
                                 }
                                 tooltip={
@@ -100,8 +95,8 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Volume"}
                                 value={
-                                    CoinDashboardData?.volume
-                                        ? CoinDashboardData?.volume.toLocaleString(
+                                    coinDetails?.volume
+                                        ? coinDetails?.volume.toLocaleString(
                                             "en-US",
                                             {
                                                 style: "currency",
@@ -114,9 +109,9 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Volume Volatility"}
                                 value={
-                                    CoinDashboardData?.volume_vol
+                                    coinDetails?.volume_vol
                                         ? 100 *
-                                        CoinDashboardData?.volume_vol?.toFixed(
+                                        coinDetails?.volume_vol?.toFixed(
                                             4
                                         )
                                         : "-"
@@ -130,8 +125,8 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Liquidity Ratio"}
                                 value={
-                                    CoinDashboardData?.liquid_ratio
-                                        ? CoinDashboardData?.liquid_ratio?.toFixed(
+                                    coinDetails?.liquid_ratio
+                                        ? coinDetails?.liquid_ratio?.toFixed(
                                             3
                                         )
                                         : "-"
@@ -143,8 +138,8 @@ const CoinInfo = () => {
                             <DashboardCell
                                 name={"Liquidity Volatility"}
                                 value={
-                                    CoinDashboardData?.liquid_vol
-                                        ? CoinDashboardData?.liquid_vol?.toFixed(
+                                    coinDetails?.liquid_vol
+                                        ? coinDetails?.liquid_vol?.toFixed(
                                             3
                                         )
                                         : "-"
@@ -169,8 +164,8 @@ const CoinInfo = () => {
                             variant={"h5"}
                             color={useColorModeValue("#16171B", "#A8ADBD")}
                         >
-                            {CoinDashboardData?.timeStamp
-                                ? getDate(CoinDashboardData?.timeStamp)
+                            {coinDetails?.timeStamp
+                                ? getDate(coinDetails?.timeStamp)
                                 : "-"}
                         </Text>
                     </Box>
@@ -194,7 +189,7 @@ const CoinInfo = () => {
                         Links
                     </Text>
 
-                    {CoinDashboardData?.links.map((link, i) => {
+                    {coinDetails?.links.map((link, i) => {
                         if (i > 2) return;
                         return (
                             <Link key={i} href={link}>
@@ -215,7 +210,7 @@ const CoinInfo = () => {
                         color={"text.primary"}
                         textTransform={"capitalize"}
                     >
-                        {CoinDashboardData?.category}
+                        {coinDetails?.category}
                     </Text>
                 </Box>
 
@@ -225,7 +220,7 @@ const CoinInfo = () => {
                     </Text>
 
                     <Box display={"flex"} flexDir={"column"}>
-                        {CoinDashboardData?.explorers.map((link, i) => {
+                        {coinDetails?.explorers.map((link, i) => {
                             if (i > 2) return;
                             return (
                                 <Link key={i} href={link}>
@@ -249,8 +244,8 @@ const CoinInfo = () => {
                         Smart Contracts
                     </Text>
                     <Box display={"flex"}>
-                        {CoinDashboardData?.smart_contracts?.length > 0 ? (
-                            <SmartContractsMenu />
+                        {coinDetails?.smart_contracts?.length > 0 ? (
+                            <SmartContractsMenu coinDetails={coinDetails} />
                         ) : (
                             "-"
                         )}
@@ -280,24 +275,20 @@ const DashboardCell = ({ name, value, tooltip }) => {
     );
 };
 
-const SmartContractsMenu = () => {
+const SmartContractsMenu = ({ coinDetails }) => {
     const { colorMode } = useColorMode();
-
-    const CoinDashboardData = useSelector(
-        (state) => state?.coinData?.CoinDashboardData?.data
-    );
 
     return (
         <Menu>
             <MenuButton as={Button} variant={"menu"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Box display={"flex"} alignItems={"center"} gap={"10px"}>
-                        <Avatar
-                            src={CoinDashboardData?.smart_contracts[0].logoUrl}
-                            height={"15px"}
-                            width={"15px"}
+                        <CustomAvatar
+                            src={coinDetails?.smart_contracts[0].logoUrl}
+                            height={15}
+                            width={15}
                             name={
-                                CoinDashboardData?.smart_contracts[0]?.platform
+                                coinDetails?.smart_contracts[0]?.platform
                                     .name
                             }
                         />
@@ -308,7 +299,7 @@ const SmartContractsMenu = () => {
                             }
                         >
                             {
-                                CoinDashboardData?.smart_contracts[0]?.platform
+                                coinDetails?.smart_contracts[0]?.platform
                                     .name
                             }
                         </Text>
@@ -323,16 +314,16 @@ const SmartContractsMenu = () => {
                 overflowY={"auto"}
                 className="hidescrollbar"
             >
-                {CoinDashboardData?.smart_contracts.map((contract, i) => {
-                    return (
+                {
+                coinDetails?.smart_contracts.map((contract, i) => (
                         <PageMenuItem
                             key={i}
                             name={contract?.platform?.name}
                             logoUrl={contract?.logoUrl}
                             address={contract?.contract_address}
-                        ></PageMenuItem>
-                    );
-                })}
+                        />
+                    ))
+                }
             </MenuList>
         </Menu>
     );
@@ -351,7 +342,6 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
             key={i}
             onClick={() => {
                 navigator.clipboard.writeText(address);
-
                 toast({
                     title: "Address Copied to Clipboard",
                     status: "success",
@@ -372,10 +362,10 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
                 w={"100%"}
             >
                 <Box display={"flex"} alignItems={"center"} gap={"10px"}>
-                    <Avatar
+                    <CustomAvatar
                         src={logoUrl}
-                        height={"15px"}
-                        width={"15px"}
+                        height={15}
+                        width={15}
                         name={"contract_icon"}
                     />
                     <Box layerStyle={"flexColumn"}>

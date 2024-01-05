@@ -2,7 +2,6 @@
 import {
     Box,
     Icon,
-    Image,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -18,6 +17,7 @@ import dynamic from "next/dynamic";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import Image from "next/image";
 
 const OtherBrowserWalletProcess = dynamic(() =>
     import("@components/login/otherBrowserWalletProcess")
@@ -146,152 +146,152 @@ const LoginPage = ({ isOpen, onClose }) => {
                                 }
                             />
                         ) : (
-                            <>
-                                <Box display={"flex"} flexDirection={"column"}>
-                                    {walletArray.map((item) => {
-                                        return (
-                                            <Box
-                                                display={"flex"}
-                                                justifyContent={"space-between"}
-                                                alignItems={"center"}
-                                                onClick={() =>
-                                                    handleProcessSelector()
-                                                }
-                                                key={item.key}
-                                                mx={"24px"}
-                                                my={"15px"}
-                                                cursor={"pointer"}
-                                                position={"relative"}
-                                                _after={{
-                                                    position: "absolute",
-                                                    bottom: "-15px",
-                                                    left: 0,
-                                                    width: "100%",
-                                                    height: "1px",
-                                                    bgColor: "#EDEDED",
-                                                    content: '""',
-                                                }}
-                                            >
-                                                <Box
-                                                    display={"flex"}
-                                                    alignItems={"center"}
-                                                >
-                                                    <Image
-                                                        width={"36px"}
-                                                        height={"36px"}
-                                                        alt="Other Browser wallet"
-                                                        src={`/icons/${item.icon}`}
-                                                    ></Image>
-                                                    <Text
-                                                        fontSize={"15px"}
-                                                        fontWeight={400}
-                                                        lineHeight={"20px"}
-                                                        _dark={{
-                                                            color: "#FFF",
-                                                        }}
-                                                        _light={{
-                                                            color: "#202020",
-                                                        }}
-                                                        ml="9px"
-                                                    >
-                                                        {item.name}
-                                                    </Text>
-                                                </Box>
-
-                                                <i
-                                                    className={`icon ${colorMode === "light"
-                                                        ? "next_icon_light"
-                                                        : "next_icon_dark"
-                                                        }`}
-                                                ></i>
-                                            </Box>
-                                        );
-                                    })}
-                                    <Text
-                                        fontSize={"15px"}
-                                        fontWeight={400}
-                                        lineHeight={"20px"}
-                                        _dark={{ color: "#FFF" }}
-                                        _light={{ color: "#202020" }}
-                                        width={"100%"}
-                                        textAlign={"center"}
-                                        mb="15px"
-                                        mt="15px"
-                                    >
-                                        OR
-                                    </Text>
-                                    <Box
-                                        display={"flex"}
-                                        justifyContent={"space-between"}
-                                        alignItems={"center"}
-                                        onClick={() => {
-                                            localStorage.setItem('googleAuthInitiated', true);
-                                            signIn('google');
-                                        }}
-                                        mx={"24px"}
-                                        my={"15px"}
-                                        cursor={"pointer"}
-                                        position={"relative"}
-                                        _after={{
-                                            position: "absolute",
-                                            bottom: "-15px",
-                                            left: 0,
-                                            width: "100%",
-                                            height: "1px",
-                                            bgColor: "#EDEDED",
-                                            content: '""',
-                                        }}
-                                    >
+                            <Box display={"flex"} flexDirection={"column"}>
+                                {walletArray.map((item) => {
+                                    return (
                                         <Box
                                             display={"flex"}
+                                            justifyContent={"space-between"}
                                             alignItems={"center"}
+                                            onClick={() =>
+                                                handleProcessSelector()
+                                            }
+                                            key={item.key}
+                                            mx={"24px"}
+                                            my={"15px"}
+                                            cursor={"pointer"}
+                                            position={"relative"}
+                                            _after={{
+                                                position: "absolute",
+                                                bottom: "-15px",
+                                                left: 0,
+                                                width: "100%",
+                                                height: "1px",
+                                                bgColor: "#EDEDED",
+                                                content: '""',
+                                            }}
                                         >
-                                            <Icon
-                                                as={FcGoogle}
-                                                boxSize={"36px"}
-                                                alt="Other Browser wallet"
-                                            ></Icon>
-                                            <Text
-                                                fontSize={"15px"}
-                                                fontWeight={400}
-                                                lineHeight={"20px"}
-                                                _dark={{ color: "#FFF" }}
-                                                _light={{ color: "#202020" }}
-                                                ml="9px"
+                                            <Box
+                                                display={"flex"}
+                                                alignItems={"center"}
                                             >
-                                                Join with Google
-                                            </Text>
-                                        </Box>
+                                                <Image
+                                                    unoptimized="true"
+                                                    priority="true"
+                                                    width={36}
+                                                    height={36}
+                                                    alt="Other Browser wallet"
+                                                    src={`/icons/${item.icon}`}
+                                                />
+                                                <Text
+                                                    fontSize={"15px"}
+                                                    fontWeight={400}
+                                                    lineHeight={"20px"}
+                                                    _dark={{
+                                                        color: "#FFF",
+                                                    }}
+                                                    _light={{
+                                                        color: "#202020",
+                                                    }}
+                                                    ml="9px"
+                                                >
+                                                    {item.name}
+                                                </Text>
+                                            </Box>
 
-                                        <i
-                                            className={`icon ${colorMode === "light"
-                                                ? "next_icon_light"
-                                                : "next_icon_dark"
-                                                }`}
-                                        ></i>
-                                    </Box>
-                                    <Box mt="12px" display={"flex"}>
-                                        <Text variant={"greySmallText"}>
-                                            By continuing with the login process
-                                            you are agreeging to
-                                        </Text>
-                                        <Link
-                                            href={`${process.env.NEXT_PUBLIC_BETYGFI_URL}/legal`}
-                                            target="_blank"
+                                            <i
+                                                className={`icon ${colorMode === "light"
+                                                    ? "next_icon_light"
+                                                    : "next_icon_dark"
+                                                    }`}
+                                            ></i>
+                                        </Box>
+                                    );
+                                })}
+                                <Text
+                                    fontSize={"15px"}
+                                    fontWeight={400}
+                                    lineHeight={"20px"}
+                                    _dark={{ color: "#FFF" }}
+                                    _light={{ color: "#202020" }}
+                                    width={"100%"}
+                                    textAlign={"center"}
+                                    mb="15px"
+                                    mt="15px"
+                                >
+                                    OR
+                                </Text>
+                                <Box
+                                    display={"flex"}
+                                    justifyContent={"space-between"}
+                                    alignItems={"center"}
+                                    onClick={() => {
+                                        localStorage.setItem('googleAuthInitiated', true);
+                                        signIn('google');
+                                    }}
+                                    mx={"24px"}
+                                    my={"15px"}
+                                    cursor={"pointer"}
+                                    position={"relative"}
+                                    _after={{
+                                        position: "absolute",
+                                        bottom: "-15px",
+                                        left: 0,
+                                        width: "100%",
+                                        height: "1px",
+                                        bgColor: "#EDEDED",
+                                        content: '""',
+                                    }}
+                                >
+                                    <Box
+                                        display={"flex"}
+                                        alignItems={"center"}
+                                    >
+                                        <Icon
+                                            as={FcGoogle}
+                                            boxSize={"36px"}
+                                            alt="Other Browser wallet"
+                                        />
+                                        <Text
+                                            fontSize={"15px"}
+                                            fontWeight={400}
+                                            lineHeight={"20px"}
+                                            _dark={{ color: "#FFF" }}
+                                            _light={{ color: "#202020" }}
+                                            ml="9px"
                                         >
-                                            <Text
-                                                variant={"greySmallText"}
-                                                _light={{ color: "#191919" }}
-                                                _dark={{ color: "#FFF" }}
-                                                textDecoration={"underline"}
-                                                ml="5px"
-                                            >
-                                                Terms & Conditions
-                                            </Text>
-                                        </Link>
+                                            Join with Google
+                                        </Text>
                                     </Box>
+
+                                    <i
+                                        className={`icon ${colorMode === "light"
+                                            ? "next_icon_light"
+                                            : "next_icon_dark"
+                                            }`}
+                                    ></i>
                                 </Box>
-                            </>
+                                <Box mt="12px" display={"flex"}>
+                                    <Text variant={"greySmallText"}>
+                                        By continuing with the login process
+                                        you are agreeging to
+                                    </Text>
+                                    <Link
+                                        href={`${process.env.NEXT_PUBLIC_BETYGFI_URL}/legal`}
+                                        target="_blank"
+                                    >
+                                        <Text
+                                            variant={"greySmallText"}
+                                            _light={{ color: "#191919" }}
+                                            _dark={{ color: "#FFF" }}
+                                            textDecoration={"underline"}
+                                            ml="5px"
+                                        >
+                                            Terms & Conditions
+                                        </Text>
+                                    </Link>
+                                </Box>
+                            </Box>
                         )}
                     </ModalBody>
                 </ModalContent>

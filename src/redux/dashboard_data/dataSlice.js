@@ -5,6 +5,8 @@ import {
     getOverviewGraphData,
 } from "@/services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
+import { createCookies } from "@util/cookieHelper";
 
 export const fetchDefiRankingTableData = createAsyncThunk(
     "getDefiRankingsTableData",
@@ -146,6 +148,7 @@ const DashboardDataSlice = createSlice({
                 );
                 state.blockchainType.push(action.payload);
             }
+            createCookies(BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME, JSON.stringify(state.blockchainType));
         },
         categoryChangedReducer: (state, action) => {
             state.scoreSelected = "";

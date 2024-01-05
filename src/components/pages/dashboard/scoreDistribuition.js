@@ -17,80 +17,78 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
     );
 
     return (
-        <>
-            <Tooltip label={`View all ${data.label} risk DeFis`}>
-                <Box
-                    key={data.index}
-                    minW={{
-                        base:
-                            data.index === 0 || data.index === 1
-                                ? "70px"
-                                : "60px",
-                        md:
-                            data.index === 0 || data.index === 1
-                                ? "90px"
-                                : "80px",
-                    }}
-                    position={"relative"}
-                    borderTopLeftRadius={data.index === 3 ? "14px" : "0px"}
-                    borderBottomLeftRadius={data.index === 3 ? "14px" : "0px"}
-                    borderTopRightRadius={data.index === 0 ? "14px" : "0px"}
-                    borderBottomRightRadius={data.index === 0 ? "14px" : "0px"}
-                    bgColor={
-                        scoreTotalData[data.index].value === 0
-                            ? "#8F8F8F"
-                            : data.bgColor
-                    }
-                    display={"flex"}
-                    flexDirection={"column"}
-                    cursor={"pointer"}
-                    transition="transform 0.3s"
-                    _hover={{
-                        transform: "scale(1.1)",
-                        zIndex: 1,
-                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                    }}
-                    _notHovered={{
-                        transform: "scale(1.0)",
-                        zIndex: 0,
-                    }}
-                    transform={
-                        scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
-                    }
-                    zIndex={scoreSelected === data.key ? 1 : 0}
-                    boxShadow={
-                        scoreSelected === data.key
-                            ? "0px 4px 4px rgba(0, 0, 0, 0.25)"
-                            : "none"
-                    }
-                    onClick={() => ScoreSelectHandler(data.key)}
-                    p={"7px 10px"}
-                    alignItems={"start"}
-                    w={`${calculatePercentage(
-                        scoreTotalData[data.index].value,
-                        totalDefis
-                    )}%`}
+        <Tooltip label={`View all ${data.label} risk DeFis`}>
+            <Box
+                key={data.index}
+                minW={{
+                    base:
+                        data.index === 0 || data.index === 1
+                            ? "70px"
+                            : "60px",
+                    md:
+                        data.index === 0 || data.index === 1
+                            ? "90px"
+                            : "80px",
+                }}
+                position={"relative"}
+                borderTopLeftRadius={data.index === 3 ? "14px" : "0px"}
+                borderBottomLeftRadius={data.index === 3 ? "14px" : "0px"}
+                borderTopRightRadius={data.index === 0 ? "14px" : "0px"}
+                borderBottomRightRadius={data.index === 0 ? "14px" : "0px"}
+                bgColor={
+                    scoreTotalData[data.index].value === 0
+                        ? "#8F8F8F"
+                        : data.bgColor
+                }
+                display={"flex"}
+                flexDirection={"column"}
+                cursor={"pointer"}
+                transition="transform 0.3s"
+                _hover={{
+                    transform: "scale(1.1)",
+                    zIndex: 1,
+                    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+                _notHovered={{
+                    transform: "scale(1.0)",
+                    zIndex: 0,
+                }}
+                transform={
+                    scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
+                }
+                zIndex={scoreSelected === data.key ? 1 : 0}
+                boxShadow={
+                    scoreSelected === data.key
+                        ? "0px 4px 4px rgba(0, 0, 0, 0.25)"
+                        : "none"
+                }
+                onClick={() => ScoreSelectHandler(data.key)}
+                p={"7px 10px"}
+                alignItems={"start"}
+                w={`${calculatePercentage(
+                    scoreTotalData[data.index].value,
+                    totalDefis
+                )}%`}
+            >
+                <Text
+                    fontSize={{ base: "12px", md: "14px" }}
+                    lineHeight={"18px"}
+                    letterSpacing={"0.18px"}
+                    color={"#FFF"}
                 >
-                    <Text
-                        fontSize={{ base: "12px", md: "14px" }}
-                        lineHeight={"18px"}
-                        letterSpacing={"0.18px"}
-                        color={"#FFF"}
-                    >
-                        {data.label}
-                    </Text>
-                    <Text
-                        fontSize={{ base: "12px", md: "14px" }}
-                        lineHeight={"18px"}
-                        letterSpacing={"0.18px"}
-                        fontWeight={700}
-                        color={"#FFF"}
-                    >
-                        {scoreTotalData[data.index].value ?? "-"}
-                    </Text>
-                </Box>
-            </Tooltip>
-        </>
+                    {data.label}
+                </Text>
+                <Text
+                    fontSize={{ base: "12px", md: "14px" }}
+                    lineHeight={"18px"}
+                    letterSpacing={"0.18px"}
+                    fontWeight={700}
+                    color={"#FFF"}
+                >
+                    {scoreTotalData[data.index].value ?? "-"}
+                </Text>
+            </Box>
+        </Tooltip>
     );
 };
 
@@ -111,12 +109,8 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{
-                            color: "#161616",
-                        }}
-                        _dark={{
-                            color: "#FFFFFF",
-                        }}
+                        _light={{ color: "#161616" }}
+                        _dark={{ color: "#FFFFFF" }}
                     >
                         Risk Score distribution
                     </Text>
@@ -128,8 +122,8 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                     position={"relative"}
                     mb={{ base: "24px", md: "0px", lg: "0px" }}
                 >
-                    {boxData.map((data, i) => {
-                        return (
+                    {
+                        boxData.map((data, i) => (
                             <ScoreBox
                                 key={i}
                                 data={data}
@@ -137,8 +131,8 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                                 scoreTotalData={scoreTotalData}
                                 ScoreSelectHandler={ScoreSelectHandler}
                             />
-                        );
-                    })}
+                        ))
+                    }
                 </Box>
             </Box>
         )

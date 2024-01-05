@@ -150,8 +150,10 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src="/images/search_icon.svg"
-                                width="20"
-                                height="20"
+                                width={20}
+                                height={20}
+                                unoptimized="true"
+                                priority="true"
                                 alt="search_icon"
                                 borderLeftRadius={"20px"}
                                 borderRightRadius={"20px"}
@@ -198,6 +200,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
+                                    unoptimized="true"
+                                    priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"
@@ -221,6 +225,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 src={`/icons/search_icon_${colorMode}.svg`}
                                 width={18}
                                 height={18}
+                                unoptimized="true"
+                                priority="true"
                                 alt="search_icon"
                             />
                         </InputLeftElement>
@@ -255,6 +261,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
+                                    unoptimized="true"
+                                    priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"

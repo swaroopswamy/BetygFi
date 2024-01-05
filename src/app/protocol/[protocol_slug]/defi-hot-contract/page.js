@@ -8,7 +8,6 @@ import {
 	Td,
 	Flex,
 	Icon,
-	Image,
 	useColorModeValue,
 	Tabs,
 	TabList,
@@ -20,6 +19,8 @@ import {
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
 const GenericBigTableComponent = dynamic(() => import('@components/pages/defiDashboard/GenericBigTable'));
 
 function Defi_Hot_Contracts() {
@@ -305,11 +306,13 @@ function TableRow({ key, blockchain, users, calls, feeconsumed, share }) {
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
-								height={"24px"}
-								width={"24px"}
+								unoptimized="true"
+								priority="true"
+								height={24}
+								width={24}
 								src={blockchain?.src}
 								alt="logo"
-							></Image>
+							/>
 							<Text
 								_dark={{
 									color: "#FFFFFF",

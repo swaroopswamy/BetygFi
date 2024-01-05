@@ -1,3 +1,9 @@
+export const AUTH_COOKIE_NAME = "betygfi-auth";
+export const COLOR_MODE_COOKIE_NAME = "bet-color";
+export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
+export const DOMAIN = "betygfi.com";
+export const HOST = `https://${DOMAIN}/`;
+
 export const blockchains = [
     "Ethereum",
     "Arbitrum",
@@ -30,8 +36,6 @@ export const categoryIds = [
 ];
 
 export const colors = {
-    // Define colors for both light and dark themes
-
     colors: {
         primary: {
             black: {

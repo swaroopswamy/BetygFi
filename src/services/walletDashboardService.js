@@ -1,10 +1,10 @@
 import { axiosInstance } from "@util/axiosInstance";
+import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 
 export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
-			`wallet/balance/${payloadData.address}`, payloadData.payload
-		);
+		const url = `wallet/balance/${payloadData.address}`;
+		const { data } = await axiosInstance.post(url, payloadData.payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -13,12 +13,19 @@ export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 
 export const getWalletTransactionsData = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance.post(
-			`wallet/transactions/${payloadData.address}/get`, payloadData.payload
-		);
-		return data;
+		const url = `wallet/transactions/${payloadData.address}/get`;
+		if (checkIfCacheAvailable(url)) {
+			return checkIfCacheAvailable(url);
+		} else {
+			const { data } = await axiosInstance.post(url, payloadData.payload);
+			return cacheHandler(url, data, 4, false);
+		}
 	} catch (err) {
-		return rejectWithValue(err);
+		if (rejectWithValue) {
+			return rejectWithValue(err);
+		} else {
+			return err;
+		}
 	}
 };
 

@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Box,
-	Image,
 	Text,
 	Tr,
 	Th,
@@ -15,6 +14,7 @@ import {
 	KnownEntitiesMobile,
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));
@@ -75,7 +75,8 @@ const TableRowDesktop = ({ item, i }) => {
 		<Tr height={"40px"} key={i}>
 			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
 				<Box layerStyle={"flexCenter"}>
-					<Image width={5} height={5} alt="logo" src={item?.logoUrl}></Image>
+					<Image width={5} height={5} alt="logo" src={item?.logoUrl} unoptimized="true"
+						priority="true" />
 					<Text ml="6px" variant={"h3"}>
 						{item?.name}
 					</Text>
@@ -119,13 +120,14 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
-						w={"20px"}
-						h={"20px"}
+						width={20}
+						height={20}
+						unoptimized="true"
+						priority="true"
 						src={item?.logoUrl}
-						borderRadius={"50%"}
+						style={{ borderRadius:'50%' }}
 						alt="logo"
-					></Image>
-
+					/>
 					<Text
 						variant={"smallTableHeaderMobile"}
 						letterSpacing={"1.4px"}

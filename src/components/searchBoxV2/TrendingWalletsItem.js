@@ -41,8 +41,10 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
                         <Image
                             alt="wallet"
                             src={"/icons/wallet.svg"}
-                            width={"24"}
-                            height={"24"}
+                            width={24}
+                            height={24}
+                            unoptimized="true"
+                            priority="true"
                         />
                     </Box>
                     <Box display={"flex"} justifyContent={"center"} alignItems={"start"} flexDir={"column"}>
@@ -77,8 +79,10 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
                             <Image
                                 alt="right-arrow"
                                 src={"/icons/right-arrow.svg"}
-                                width={"24"}
-                                height={"24"}
+                                width={24}
+                                height={24}
+                                unoptimized="true"
+                                priority="true"
                             />
                         </Box>
                     </Box>

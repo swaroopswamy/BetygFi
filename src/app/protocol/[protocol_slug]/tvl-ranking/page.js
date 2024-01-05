@@ -7,8 +7,8 @@ import {
 	Flex,
 	Box,
 	useColorModeValue,
-	Image,
 	useColorMode,
+Image as ChakraImage
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,7 @@ const GenericBigTableComponent = dynamic(() =>
 );
 import BackIconWhite from "/public/icons/backIconWhite.svg";
 import BackIconBlack from "/public/icons/backIconBlack.svg";
+import Image from "next/image";
 
 function TVL_Ranking() {
 	const router = useRouter();
@@ -213,13 +214,15 @@ function TableRow({
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
-								height={"24px"}
-								width={"24px"}
+								unoptimized="true"
+								priority="true"
+								height={24}
+								width={24}
 								src={DeFi.src}
 								alt="defi_logo"
 							// url={"/icons/Ethereum_sm_icon.svg"}
 							//  src="/icons/aave_logo.svg"
-							></Image>
+							/>
 							<Text
 								_dark={{
 									color: "#FFFFFF",
@@ -304,7 +307,8 @@ function TableRow({
 				<Td>
 					<Flex>
 						<Box width={"87px"} height={"23px"}>
-							<Image alt="line_graph" src={"/icons/line_graph.svg"}></Image>
+							<ChakraImage unoptimized="true"
+								priority="true" alt="line_graph" src={"/icons/line_graph.svg"} />
 						</Box>
 					</Flex>
 				</Td>

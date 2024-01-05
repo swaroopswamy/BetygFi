@@ -1,5 +1,4 @@
 import {
-    getCoinDashboardData,
     getCoinDevelopmentData,
     getCoinPriceData,
     getCoinRankingsTableData,
@@ -7,6 +6,8 @@ import {
     getTrendingCoinsData,
 } from "@/services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
+import { createCookies } from "@util/cookieHelper";
 
 export const fetchCoinRankingsTableData = createAsyncThunk(
     "getCoinRankingsTableData",
@@ -31,14 +32,6 @@ export const fetchTrendingCoinsData = createAsyncThunk(
     "getTrendingCoinsData",
     async (payload, { rejectWithValue }) => {
         const response = await getTrendingCoinsData(payload, rejectWithValue);
-        return response.data;
-    }
-);
-
-export const fetchCoinDashboardData = createAsyncThunk(
-    "getCoinDashboardData",
-    async (payload, { rejectWithValue }) => {
-        const response = await getCoinDashboardData(payload, rejectWithValue);
         return response.data;
     }
 );
@@ -75,12 +68,6 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         TrendingCoinsData: {
-            data: null,
-            isLoading: false,
-            isError: false,
-            isSuccess: false,
-        },
-        CoinDashboardData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -162,24 +149,6 @@ const CoinDataSlice = createSlice({
             state.TrendingCoinsData.isError = true;
             state.TrendingCoinsData.data = action.payload;
         });
-        builder.addCase(fetchCoinDashboardData.fulfilled, (state, action) => {
-            state.CoinDashboardData.data = action.payload;
-            state.CoinDashboardData.isLoading = false;
-            state.CoinDashboardData.isSuccess = true;
-            state.CoinDashboardData.isError = false;
-        });
-        builder.addCase(fetchCoinDashboardData.pending, (state, action) => {
-            state.CoinDashboardData.isLoading = true;
-            state.CoinDashboardData.isError = false;
-            state.CoinDashboardData.isSuccess = false;
-            state.CoinDashboardData.data = action.payload;
-        });
-        builder.addCase(fetchCoinDashboardData.rejected, (state, action) => {
-            state.CoinDashboardData.isLoading = false;
-            state.CoinDashboardData.isSuccess = false;
-            state.CoinDashboardData.isError = true;
-            state.CoinDashboardData.data = action.payload;
-        });
         builder.addCase(fetchCoinPriceData.fulfilled, (state, action) => {
             state.CoinPriceData.data = action.payload;
             state.CoinPriceData.isLoading = false;
@@ -232,6 +201,7 @@ const CoinDataSlice = createSlice({
                 );
                 state.blockchainType.push(action.payload);
             }
+            createCookies(BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME, JSON.stringify(state.blockchainType));
         },
         scoreChangedReducer: (state, action) => {
             if (state.scoreSelected === action.payload) {

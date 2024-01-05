@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text, Tr, Th, Td, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, Tr, Th, Td, useColorModeValue } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "@util/globalHelper";
 import {
@@ -8,6 +8,7 @@ import {
 	OutflowTokensMobile,
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));
@@ -85,7 +86,9 @@ const TableRowDesktop = ({ item, i }) => {
 						alt="logo"
 						style={{ borderRadius: "50%" }}
 						src={item?.logoUrl}
-					></Image>
+						unoptimized="true"
+						priority="true"
+					/>
 					<Text ml="6px" variant={"h3"}>
 						{item?.symbol}
 					</Text>
@@ -131,13 +134,14 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
-						w={"20px"}
-						h={"20px"}
+						width={20}
+						height={20}
+						unoptimized="true"
+						priority="true"
 						src={item?.logoUrl}
-						style={{ borderRadius: "50%" }}
-						alt=""
-					></Image>
-
+						style={{ borderRadius: '50%' }}
+						alt="logo"
+					/>
 					<Text variant={"smallTableHeaderMobile"} ml="12px">
 						{item?.symbol}
 					</Text>

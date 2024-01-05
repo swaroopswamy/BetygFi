@@ -11,7 +11,6 @@ import {
     Flex,
     Box,
     useColorModeValue,
-    Image,
     useColorMode,
     Accordion,
     AccordionItem,
@@ -23,6 +22,7 @@ import {
 import TableData from "@util/whales.json";
 import millify from "millify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const WalletTable = () => {
     const router = useRouter();
@@ -214,21 +214,14 @@ const WalletTable = () => {
                                                                                     }
                                                                                 >
                                                                                     <Image
-                                                                                        w={
-                                                                                            "14px"
-                                                                                        }
-                                                                                        h={
-                                                                                            "14px"
-                                                                                        }
-                                                                                        style={{
-                                                                                            borderRadius:
-                                                                                                "50%",
-                                                                                        }}
-                                                                                        src={
-                                                                                            item.logo_url
-                                                                                        }
+                                                                                        width={14}
+                                                                                        height={14}
+                                                                                        style={{ borderRadius: "50%" }}
+                                                                                        src={item.logo_url}
+                                                                                        unoptimized="true"
+                                                                                        priority="true"
                                                                                         alt=""
-                                                                                    ></Image>
+                                                                                    />
                                                                                     <Text
                                                                                         variant={
                                                                                             "h3"
@@ -474,12 +467,14 @@ function TableRow({ user, totalTokens, totalProtocols }) {
                                     gap={"3px"}
                                 >
                                     <Image
-                                        w={"20px"}
-                                        h={"20px"}
+                                        width={20}
+                                        height={20}
                                         style={{ borderRadius: "50%" }}
                                         src={item.logo_url}
                                         alt=""
-                                    ></Image>
+                                        unoptimized="true"
+                                        priority="true"
+                                    />
                                     <Text
                                         variant={"h3"}
                                         ml={"10px"}
