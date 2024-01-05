@@ -6,6 +6,8 @@ import {
     getTrendingCoinsData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
+import { createCookies } from "@util/cookieHelper";
 
 export const fetchCoinRankingsTableData = createAsyncThunk(
     "getCoinRankingsTableData",
@@ -199,6 +201,7 @@ const CoinDataSlice = createSlice({
                 );
                 state.blockchainType.push(action.payload);
             }
+            createCookies(BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME, JSON.stringify(state.blockchainType));
         },
         scoreChangedReducer: (state, action) => {
             if (state.scoreSelected === action.payload) {

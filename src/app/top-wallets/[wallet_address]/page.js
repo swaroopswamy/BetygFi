@@ -1,12 +1,12 @@
-import TopWalletDetailPage from "@components/pages/topWallets/TopWalletDetailPage";
+import TopWalletDetailPage from "@/components/pages/topWallets/TopWalletDetailPage";
+import { TopWalletDetailPageMetas } from "@util/metaHelper";
 
-const ProtocolPage = async ({ params }) => {
-	const searchParamAddress = params?.wallet_address;
-	return (
-		<TopWalletDetailPage
-			searchParamAddress={searchParamAddress}
-		/>
-	);
-};
+export async function generateMetadata({ params }) {
+	return TopWalletDetailPageMetas(params?.wallet_address);
+}
 
-export default ProtocolPage;
+const TopWalletsDetailPage = ({ params }) => (
+	<TopWalletDetailPage searchParamAddress={params?.wallet_address} />
+);
+
+export default TopWalletsDetailPage;

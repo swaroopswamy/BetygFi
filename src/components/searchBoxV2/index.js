@@ -132,8 +132,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src="/images/search_icon.svg"
-                                width="20"
-                                height="20"
+                                width={20}
+                                height={20}
                                 unoptimized="true"
                                 priority="true"
                                 alt="search_icon"

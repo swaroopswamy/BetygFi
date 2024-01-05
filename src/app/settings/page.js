@@ -6,6 +6,7 @@ import {
 	Text,
 	Button,
 	useDisclosure,
+	Image as ChakraImage
 } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
@@ -61,8 +62,8 @@ const Settings = () => {
 								unoptimized="true"
 								priority="true"
 								src="/images/SystemDefault.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
@@ -91,8 +92,8 @@ const Settings = () => {
 						>
 							<Image
 								src=" /images/LightTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 								unoptimized="true"
 								priority="true"
@@ -124,8 +125,8 @@ const Settings = () => {
 						>
 							<Image
 								src="/images/DarkTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 								unoptimized="true"
 								priority="true"
@@ -174,7 +175,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
+							<ChakraImage src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
 								priority="true" />
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
@@ -212,7 +213,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenter"}>
-							<Image
+							<ChakraImage
 								unoptimized="true"
 								priority="true"
 								src="/images/Google.svg"
@@ -256,7 +257,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image
+							<ChakraImage
 								src="/images/Twitter.svg"
 								mb={"20px"}
 								ml={"7px"}
@@ -378,7 +379,7 @@ const Settings = () => {
 					<Box layerStyle={"flexColumn"}>
 						<Box layerStyle={"flexColumn"} cursor={"pointer"}>
 							<Box layerStyle={"flexCenterFlexStart"}>
-								<Image src="/images/SelectBox.svg" alt="" ml={"21px"} unoptimized="true"
+								<ChakraImage src="/images/SelectBox.svg" alt="" ml={"21px"} unoptimized="true"
 									priority="true" />
 								<Box ml={"10px"}>
 									<Text
@@ -393,8 +394,8 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/SystemDefault.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 								mt={"12px"}
 								ml={"21px"}
@@ -429,8 +430,8 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/LightTheme.svg"
-								w="183px"
-								h="133px"
+								width={183}
+								height={133}
 								unoptimized="true"
 								priority="true"
 								alt=""
@@ -465,10 +466,10 @@ const Settings = () => {
 							</Box>
 							<Image
 								src="/images/DarkTheme.svg"
-								w="183px"
 								unoptimized="true"
 								priority="true"
-								h="133px"
+								width={183}
+								height={133}
 								alt=""
 								mt={"12px"}
 								ml={"21px"}
@@ -500,7 +501,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
+							<ChakraImage src="/images/Web3.svg" mb={"20px"} alt="" unoptimized="true"
 								priority="true" />
 							<Box layerStyle={"flexColumn"} pb={"15px"}>
 								<Text variant={"SettingsText1"} ml={"15px"}>
@@ -537,7 +538,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenter"}>
-							<Image
+							<ChakraImage
 								src="/images/Google.svg"
 								mb={"20px"}
 								ml={"7px"}
@@ -580,7 +581,7 @@ const Settings = () => {
 						)}
 					>
 						<Box layerStyle={"flexCenterFlexStart"}>
-							<Image
+							<ChakraImage
 								src="/images/Twitter.svg"
 								mb={"20px"}
 								ml={"7px"}

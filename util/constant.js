@@ -1,6 +1,7 @@
 export const AUTH_COOKIE_NAME = "betygfi-auth";
 export const API_URL_COOKIE_NAME = "bet-api-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
+export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
 export const HOST = `https://${DOMAIN}/`;
 

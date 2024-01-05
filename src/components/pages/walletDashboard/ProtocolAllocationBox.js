@@ -113,13 +113,13 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
-						w={"20px"}
+						width={20}
+						height={20}
 						unoptimized="true"
 						priority="true"
-						h={"20px"}
 						src={item?.logoUrl}
-						style={{ borderRadius: "50%" }}
-						alt=""
+						style={{ borderRadius: '50%' }}
+						alt="logo"
 					/>
 					<Text variant={"smallTableHeaderMobile"} ml="12px">
 						{item?.name}

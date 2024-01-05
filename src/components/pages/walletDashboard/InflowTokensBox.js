@@ -141,8 +141,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
-						w={"20px"}
-						h={"20px"}
+						width={20}
+						height={20}
 						src={item?.logoUrl}
 						style={{ borderRadius: "50%" }}
 						alt=""

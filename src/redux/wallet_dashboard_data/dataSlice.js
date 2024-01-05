@@ -1,22 +1,22 @@
 import { getDefiRankingsTableData } from "@services/dashboardService";
 import {
 	getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress,
-	getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsData,
-	getWalletTransactionsForAddressSummary
-} from "@services/walletDashboardService";
+	getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsForAddressSummary, getWalletTransactionsData
+} from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
+import { createCookies } from "@util/cookieHelper";
 
 export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload, { rejectWithValue }) => {
 	const response = await getDefiRankingsTableData(payload, rejectWithValue);
 	return response.data;
 });
 
-
 export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload, { rejectWithValue }) => {
 	const response = await getWalletBalanceData(payload, rejectWithValue);
 	return response;
 });
+
 export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload, { rejectWithValue }) => {
 	const response = await getWalletTransactionsData(payload, rejectWithValue);
 	return response;
@@ -50,7 +50,6 @@ export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOut
 		const response = await getInflowOutflowTokensForAddress(payload, rejectWithValue);
 		return response;
 	});
-
 
 const WalletDashboardDataSlice = createSlice({
 	name: "walletDashboardData",
@@ -268,6 +267,7 @@ const WalletDashboardDataSlice = createSlice({
 				state.blockchainType = state.blockchainType.filter(item => item !== "All");
 				state.blockchainType.push(action.payload);
 			}
+			createCookies(BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME, JSON.stringify(state.blockchainType));
 		},
 		defiArrayChangedReducer: (state, action) => {
 			if (action.payload === "All") {

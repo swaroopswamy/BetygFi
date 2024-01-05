@@ -9,6 +9,7 @@ import {
 	Box,
 	useColorModeValue,
 	useColorMode,
+	Image as ChakraImage
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import BackIconWhite from "/public/icons/backIconWhite.svg";
@@ -255,8 +256,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
 							<Image
 								unoptimized="true"
 								priority="true"
-								height={"24px"}
-								width={"24px"}
+								height={24}
+								width={24}
 								src={users.src}
 								alt="logo"
 							/>
@@ -326,7 +327,7 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
 							<Flex gap={"-10px"}>
 								{assets.map((item, i) => (
 									<Box key={i}>
-										<Image
+										<ChakraImage
 											unoptimized="true"
 											priority="true"
 											alt={""} key={i} src={assets[i]} />

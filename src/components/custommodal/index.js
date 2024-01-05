@@ -10,8 +10,8 @@ import {
     useColorMode,
     Box,
     Button,
+    Image as ChakraImage
 } from "@chakra-ui/react";
-import Image from "next/image";
 
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
     const { colorMode } = useColorMode();
@@ -26,7 +26,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                     {state === "success" ? (<>
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
-                                <Image
+                                <ChakraImage
                                     unoptimized="true"
                                     priority="true"
                                     alt="success"
@@ -58,7 +58,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                     </>) : state === "failure" ? (<>
                         <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}>
                             <Box layerStyle={"flexAlignCenterJustifyCenter"} mb="60px">
-                                <Image
+                                <ChakraImage
                                     unoptimized="true"
                                     priority="true"
                                     alt="danger"

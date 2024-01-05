@@ -194,8 +194,8 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
-								height={"24px"}
-								width={"24px"}
+								height={24}
+								width={24}
 								src={Asset?.src}
 								alt="logo"
 								// url={"/icons/Ethereum_sm_icon.svg"}
