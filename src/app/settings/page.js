@@ -44,30 +44,19 @@ const Settings = () => {
 					height={"325px"}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					ml={"33px"}
-					mr={"20px"}
-					mb={"20px"}
+					m={"0px 20px 20px 33px"}
 				>
 					<Box ml={"25px"} pt={"20px"} layerStyle={"flexCenter"} gap={"17px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
 							Profile Details
 						</Text>
-						<Button
-							variant={"outline"}
-							border={"1px"}
-							width={"139.2px"}
-							height={"33.6px"}
-							background={useColorModeValue("#FFFFFF", "#191919")}
-						>
-							<Text variant={"SettingsButtonText"}
-								color={useColorModeValue("#191919", "#FFFFFF")}
-							>
+						<Button variant={"settingsButton"}>
+							<Text variant={"SettingsButtonText"}>
 								Edit Details
 							</Text>
 						</Button>
 					</Box>
-					<Box ml={"25px"} pt={"20px"} layerStyle={"flexCenter"} justifyContent={"space-between"}>
+					<Box ml={"25px"} pt={"20px"} layerStyle={"flexCenterSpaceBetween"}>
 						<Box layerStyle={"flexCenter"} gap={"17px"}>
 							<Image
 								borderRadius={"full"}
@@ -93,7 +82,7 @@ const Settings = () => {
 							borderRadius={"10px"}
 							mr={"25px"}
 						>
-							<Box p={"12px 0px 3px"} layerStyle={"flexCenter"} justifyContent={"space-around"}>
+							<Box p={"12px 0px 3px"} layerStyle={"flexCenterSpaceAround"}>
 								<Box borderBottom={"dotted"} borderColor={"#A4A8AB"} pt={"2px"}>
 									<Text variant={"profileText"} pb={"5px"}>
 										Profile Score
@@ -120,10 +109,7 @@ const Settings = () => {
 					height={"250px"}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					ml={"33px"}
-					mr={"20px"}
-					mt={"20px"}
+					m={"20px 20px 0px 33px"}
 				>
 					<Box ml={"25px"} pt={"20px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
@@ -134,16 +120,8 @@ const Settings = () => {
 						<Box w={"50%"} borderRight={"2px solid #D9D9D9"}>
 							<Box layerStyle={"flexCenter"} p={"30px 20px"} gap={"70px"}>
 								<Text variant={"contentHeading"} lineHeight={"normal"}>BetygFi Community</Text>
-								<Button
-									variant={"outline"}
-									border={"1px"}
-									width={"139.2px"}
-									height={"33.6px"}
-									background={useColorModeValue("#FFFFFF", "#191919")}
-								>
-									<Text variant={"SettingsButtonText"}
-										color={useColorModeValue("#191919", "#FFFFFF")}
-									>
+								<Button variant={"settingsButton"}>
+									<Text variant={"SettingsButtonText"}>
 										Go To Community
 									</Text>
 								</Button>
@@ -178,16 +156,8 @@ const Settings = () => {
 						<Box w={"50%"}>
 							<Box layerStyle={"flexCenter"} p={"30px 20px"} gap={"70px"}>
 								<Text variant={"contentHeading"} lineHeight={"normal"}>BetygFi Data Studio</Text>
-								<Button
-									variant={"outline"}
-									border={"1px"}
-									width={"139.2px"}
-									height={"33.6px"}
-									background={useColorModeValue("#FFFFFF", "#191919")}
-								>
-									<Text variant={"SettingsButtonText"}
-										color={useColorModeValue("#191919", "#FFFFFF")}
-									>
+								<Button variant={"settingsButton"}>
+									<Text variant={"SettingsButtonText"}>
 										Go To Data Studio
 									</Text>
 								</Button>
@@ -212,9 +182,7 @@ const Settings = () => {
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
 					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					ml={"33px"}
-					mt={"20px"}
-					mr={"20px"}
+					m={"20px 20px 0px 33px"}
 				>
 					<Text variant={"contentHeading3"} fontWeight={"400"} ml={5} pt={5}>
 						Account Settings
@@ -224,8 +192,7 @@ const Settings = () => {
 							w={"33%"}
 							h={"93px"}
 							layerStyle={"flexCenter"}
-							ml={"25px"}
-							mt={"25px"}
+							m={"25px 0px 0px 25px"}
 							gap={"40px"}
 							borderRight={"2px solid #D9D9D9"}
 						>
@@ -335,9 +302,7 @@ const Settings = () => {
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
 					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					ml={"33px"}
-					mr={"20px"}
-					mt={"20px"}
+					m={"20px 20px 0px 33px"}
 				>
 					<Box ml={"25px"} pt={"20px"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
@@ -359,10 +324,8 @@ const Settings = () => {
 								<Text
 									variant={" h6"}
 									textTransform={"uppercase"}
-									_light={{ color: "#191919" }}
-									_dark={{ color: "#FFF" }}
-									ml={"15px"}
-									mt={"2px"}
+									color={useColorModeValue("#191919", "#FFFFFF")}
+									m={"2px 0px 0px 15px"}
 								>
 									System Default
 								</Text>
@@ -387,13 +350,10 @@ const Settings = () => {
 									name={colorMode === "light" ? "green_tick" : "unticked"}
 								/>
 								<Text
-									color={useColorModeValue("#191919", "#FFFFFF")}
 									variant={" h6"}
 									textTransform={"uppercase"}
-									_light={{ color: "#191919" }}
-									_dark={{ color: "#FFF" }}
-									ml={"15px"}
-									mt={"2px"}
+									color={useColorModeValue("#191919", "#FFFFFF")}
+									m={"2px 0px 0px 15px"}
 								>
 									Light THEME
 								</Text>
@@ -418,13 +378,10 @@ const Settings = () => {
 									name={colorMode === "dark" ? "green_tick" : "unticked"}
 								/>
 								<Text
-									color={useColorModeValue("#191919", "#FFFFFF")}
 									layerStyle={" h6"}
 									textTransform={"uppercase"}
-									_light={{ color: "#191919" }}
-									_dark={{ color: "#FFF" }}
-									ml={"15px"}
-									mt={"2px"}
+									color={useColorModeValue("#191919", "#FFFFFF")}
+									m={"2px 0px 0px 15px"}
 								>
 									DARK THEME
 								</Text>
@@ -529,20 +486,19 @@ const Settings = () => {
 				</Text>
 				<Box
 					height={"525px"}
-					flexShrink={"0"}
+					flexShrink={0}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
 					mx={"15px"}
 				>
-					<Box p={"15px 0px 20px 21px"} layerStyle={"flexCenter"} justifyContent={"space-between"}>
+					<Box p={"15px 0px 20px 21px"} layerStyle={"flexCenterSpaceBetween"}>
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
 							Profile Details
 						</Text>
-						<Image src="/icons/Edit_icon.svg" mr={"25px"}></Image>
+						<Image src={useColorModeValue("/icons/Edit_icon.svg","/icons/Edit_icon(Dark).svg")} mr={"25px"}></Image>
 					</Box>
 
-					<Box w={"100%"} mx={"25px"}>
+					<Box layerStyle={"flexColumnCenterSpaceAround"}>
 						<Image
 							borderRadius={"full"}
 							boxSize={"150px"}
@@ -570,10 +526,9 @@ const Settings = () => {
 							height={"50px"}
 							background={"#494949"}
 							borderRadius={"10px"}
-							mx={"15px"}
 							mt={"20px"}
 						>
-							<Box p={"5px 0px 20px 13px"} borderColor={"#A4A8AB"} layerStyle={"flexCenter"} justifyContent={"space-between"}>
+							<Box p={"5px 0px 20px 13px"} borderColor={"#A4A8AB"} layerStyle={"flexCenterSpaceBetween"}>
 								<Box layerStyle={"flexCenter"}>
 									<Text variant={"profileText"}>
 										Profile Score
@@ -593,60 +548,52 @@ const Settings = () => {
 					flexShrink={"0"}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					mx={"15px"}
-					mt={"20px"}
+					m={"20px 15px 0px 15px"}
 				>
 					<Box p={"15px 0px 15px 20px"}>
-						<Text variant={"contentHeading3"} fontWeight={"400"}>
+						<Text variant={"contentHeading3"} fontWeight={400}>
 							My Stats
 						</Text>
 					</Box>
 					<Box>
-						<Box borderBottom={"2px solid #D9D9D9"}>
+						<Box layerStyle={"flexColumnCenterSpaceAround"}>
 							<Text variant={"contentHeading4"} lineHeight={"normal"}>BetygFi Community</Text>
-							<Box layerStyle={"flexCenter"} p={"25px 0px 0px"}>
-								<Box w={"33%"} borderRight={"2px solid #D9D9D9"} p={"0px 20px"}>
-									<Text variant={"bigNumericText"}>
-										142
-									</Text>
-									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
-										Followers
-									</Text>
-								</Box>
-								<Box w={"34%"} borderRight={"2px solid #D9D9D9"} p={"0px 25px"}>
-									<Text variant={"bigNumericText"}>
-										386
-									</Text>
-									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
-										Following
-									</Text>
-								</Box>
-								<Box w={"33%"} p={"0px 25px"}>
-									<Text variant={"bigNumericText"}>
-										46
-									</Text>
-									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
-										Posts
-									</Text>
-								</Box>
+						</Box>
+						<Box layerStyle={"flexCenter"} p={"25px 0px 0px"}>
+							<Box w={"33%"} borderRight={"2px solid #D9D9D9"} p={"0px 20px"}>
+								<Text variant={"bigNumericText"}>
+									142
+								</Text>
+								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
+									Followers
+								</Text>
 							</Box>
-							<Button
-								variant={"outline"}
-								border={"1px"}
-								width={"139.2px"}
-								height={"33.6px"}
-								my={"30px"}
-								background={useColorModeValue("#FFFFFF", "#191919")}
-							>
-								<Text variant={"SettingsButtonText"}
-									color={useColorModeValue("#191919", "#FFFFFF")}
-								>
+							<Box w={"34%"} borderRight={"2px solid #D9D9D9"} p={"0px 25px"}>
+								<Text variant={"bigNumericText"}>
+									386
+								</Text>
+								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
+									Following
+								</Text>
+							</Box>
+							<Box w={"33%"} p={"0px 25px"}>
+								<Text variant={"bigNumericText"}>
+									46
+								</Text>
+								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
+									Posts
+								</Text>
+							</Box>
+						</Box>
+						<Box borderBottom={"2px solid #D9D9D9"} layerStyle={"flexColumnCenterSpaceAround"} mx={"25px"}>
+							<Button variant={"settingsButton"} my={"30px"}>
+								<Text variant={"SettingsButtonText"}>
 									Go To Community
 								</Text>
 							</Button>
 						</Box>
-						<Box>
+
+						<Box layerStyle={"flexColumnCenterSpaceAround"}>
 							<Text variant={"contentHeading4"} lineHeight={"normal"} mt={"30px"}>BetygFi Data Studio</Text>
 							<Box pl={"15px"} pt={"15px"}>
 								<Text variant={"bigNumericText"}>
@@ -656,17 +603,8 @@ const Settings = () => {
 									My Queries
 								</Text>
 							</Box>
-							<Button
-								variant={"outline"}
-								border={"1px"}
-								width={"139.2px"}
-								height={"33.6px"}
-								my={"30px"}
-								background={useColorModeValue("#FFFFFF", "#191919")}
-							>
-								<Text variant={"SettingsButtonText"}
-									color={useColorModeValue("#191919", "#FFFFFF")}
-								>
+							<Button variant={"settingsButton"} my={"30px"}>
+								<Text variant={"SettingsButtonText"}>
 									Go To Data Studio
 								</Text>
 							</Button>
@@ -679,13 +617,10 @@ const Settings = () => {
 					flexShrink={"0"}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
-					mx={"15px"}
-					mt={"15px"}
-					mb={"20px"}
+					m={"15px 15px 20px 15px"}
 				>
 					<Box p={"15px 0px 20px 21px"}>
-						<Text variant={"contentHeading3"} fontWeight={"400"}>
+						<Text variant={"contentHeading3"} fontWeight={400}>
 							Account Settings
 						</Text>
 					</Box>
@@ -723,8 +658,7 @@ const Settings = () => {
 
 					<Box
 						layerStyle={"flexSpaceBetween"}
-						mx={"23px"}
-						mt={"21px"}
+						m={"21px 23px 0px 23px"}
 						borderBottom={"2px solid #D9D9D9"}
 					>
 						<Box layerStyle={"flexCenter"}>
@@ -802,7 +736,6 @@ const Settings = () => {
 					flexShrink={"0"}
 					borderRadius={"6px"}
 					background={useColorModeValue("#FFFFFF", "#202020")}
-					boxShadow={"0px 4px 4px 0px rgba(0, 0, 0, 0.05)"}
 					mx={"15px"}
 				>
 					<Box p={"15px 0px 15px 21px"}>
@@ -818,8 +751,7 @@ const Settings = () => {
 									<Text
 										variant={" h6"}
 										textTransform={"uppercase"}
-										_light={{ color: "#191919" }}
-										_dark={{ color: "#FFF" }}
+										color={useColorModeValue("#191919", "#FFFFFF")}
 									>
 										System Default
 									</Text>
@@ -830,8 +762,7 @@ const Settings = () => {
 								w="183px"
 								h="133px"
 								alt=""
-								mt={"12px"}
-								ml={"21px"}
+								m={"12px 0px 0px 21px"}
 							></Image>
 						</Box>
 
@@ -852,8 +783,7 @@ const Settings = () => {
 									<Text
 										variant={" h6"}
 										textTransform={"uppercase"}
-										_light={{ color: "#191919" }}
-										_dark={{ color: "#FFF" }}
+										color={useColorModeValue("#191919", "#FFFFFF")}
 									>
 										Light THEME
 									</Text>
@@ -864,8 +794,7 @@ const Settings = () => {
 								w="183px"
 								h="133px"
 								alt=""
-								mt={"12px"}
-								ml={"21px"}
+								m={"12px 0px 0px 21px"}
 							></Image>
 						</Box>
 
@@ -886,8 +815,7 @@ const Settings = () => {
 									<Text
 										layerStyle={" h6"}
 										textTransform={"uppercase"}
-										_light={{ color: "#191919" }}
-										_dark={{ color: "#FFF" }}
+										color={useColorModeValue("#191919", "#FFFFFF")}
 									>
 										DARK THEME
 									</Text>
@@ -898,8 +826,7 @@ const Settings = () => {
 								w="183px"
 								h="133px"
 								alt=""
-								mt={"12px"}
-								ml={"21px"}
+								m={"12px 0px 0px 21px"}
 							></Image>
 						</Box>
 					</Box>
