@@ -64,25 +64,23 @@ const LoginPage = ({ isOpen, onClose }) => {
                     paddingBottom={"0px"}
                 >
                     {browserWalletProcessSelected === true ? (
-                        <>
-                            <Text
-                                mb="52px"
-                                fontSize={"12px"}
-                                fontWeight={400}
-                                lineHeight={"20px"}
-                                textTransform={"uppercase"}
-                                _dark={{ color: "#FFF" }}
-                                _light={{ color: "#202020" }}
-                                letterSpacing={"2px"}
-                                cursor={"pointer"}
-                                onClick={() => {
-                                    setBrowserWalletProcessSelected(false);
-                                }}
-                            >
-                                {/* 									<TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} /> */}
-                                Back
-                            </Text>
-                        </>
+                        <Text
+                            mb="52px"
+                            fontSize={"12px"}
+                            fontWeight={400}
+                            lineHeight={"20px"}
+                            textTransform={"uppercase"}
+                            _dark={{ color: "#FFF" }}
+                            _light={{ color: "#202020" }}
+                            letterSpacing={"2px"}
+                            cursor={"pointer"}
+                            onClick={() => {
+                                setBrowserWalletProcessSelected(false);
+                            }}
+                        >
+                            {/*<TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} /> */}
+                            Back
+                        </Text>
                     ) : (
                         <>
                             <Text
