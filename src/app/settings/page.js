@@ -6,6 +6,7 @@ import {
 	Text,
 	Button,
 	useDisclosure,
+	Image,
 } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
@@ -14,7 +15,7 @@ const LoginPage = dynamic(() => import("@components/login"));
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import DynamicIcon from "@components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
+//import Image from "next/image";
 
 const Settings = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -67,10 +68,10 @@ const Settings = () => {
 								<Text variant={"smallTableHeader"} lineHeight={"normal"}>
 									Cameron Williamson
 								</Text>
-								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")}>
+								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")} pt={"6px"}>
 									@TBgjD…CYVg4
 								</Text>
-								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")}>
+								<Text variant={"h3"} lineHeight={"normal"} color={useColorModeValue("#757575", "#A5A5A5")} pt={"6px"}>
 									Member since: 12/11/2022
 								</Text>
 							</Box>
