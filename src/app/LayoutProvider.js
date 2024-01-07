@@ -88,7 +88,7 @@ export default function LayoutProvider({ appConfig, children }) {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
                             disconnect();
-                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
                             verifyJWTtokenFromCookieHandler(cookie);
@@ -125,7 +125,7 @@ export default function LayoutProvider({ appConfig, children }) {
             if (status === "authenticated") {
                 (localStorage.getItem("googleAuthInitiated") === "false" ||
                     localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
             }
         }
         manageOnlineOfflineStatus();
@@ -148,7 +148,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 ),
             });
             setTimeout(() => {
-                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
             }, 2000);
         }
     }, [GoogleVerifiedData]);
@@ -181,7 +181,7 @@ export default function LayoutProvider({ appConfig, children }) {
             setTimeout(() => {
                 dispatch(LogoutReducer(appConfig));
                 setTimeout(() => {
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                 }, 200);
             }, 100);
         }
@@ -194,7 +194,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 setTimeout(() => {
                     dispatch(LogoutReducer(appConfig));
                     setTimeout(() => {
-                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                     }, 200);
                 }, 100);
             }

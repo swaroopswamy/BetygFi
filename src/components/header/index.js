@@ -265,7 +265,7 @@ const Navbar = ({ ...rest }) => {
                                         setTimeout(() => {
                                             dispatch(LogoutReducer(appConfigState));
                                             setTimeout(() => {
-                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL });
+                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                                             }, 200);
                                         }, 100);
                                     }}

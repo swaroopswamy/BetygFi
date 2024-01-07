@@ -1145,17 +1145,13 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                         </Text>
                                                     )}
                                                 </Box>
-                                                <i
-                                                    className={`icon ${colorMode === "light"
-                                                        ? "log_in_black"
-                                                        : "log_in_white"
-                                                        }`}
+                                                <i className={`icon ${colorMode === "light" ? "log_in_black" : "log_in_white"}`}
                                                     onClick={() => {
                                                         disconnect();
                                                         setTimeout(() => {
                                                             dispatch(LogoutReducer(appConfigState));
                                                             setTimeout(() => {
-                                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL });
+                                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                                                             }, 200);
                                                         }, 100);
                                                     }}
