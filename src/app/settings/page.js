@@ -62,6 +62,7 @@ const Settings = () => {
 							<Image
 								borderRadius={"full"}
 								boxSize={"150px"}
+								alt=" "
 								src="/images/Profile_photo.svg"
 							></Image>
 							<Box >
@@ -89,7 +90,7 @@ const Settings = () => {
 										Profile Score
 									</Text>
 								</Box>
-								<Image src="/icons/question_mark_lg_icon.svg"></Image>
+								<Image src="/icons/question_mark_lg_icon.svg" alt=" "></Image>
 							</Box>
 							<Text variant={"profileText"} fontSize={"24px"} p={"1px 24px"}>
 								72
@@ -198,7 +199,7 @@ const Settings = () => {
 							borderRight={"2px solid #D9D9D9"}
 						>
 							<Box layerStyle={"flexCenterFlexStart"}>
-								<Image src="/images/Web3.svg" alt=""></Image>
+								<Image src="/images/Web3.svg" alt=" "></Image>
 								<Box layerStyle={"flexColumn"}>
 									<Text variant={"SettingsText1"} ml={"15px"}>
 										Web 3
@@ -234,7 +235,7 @@ const Settings = () => {
 							borderRight={"2px solid #D9D9D9"}
 						>
 							<Box layerStyle={"flexCenterFlexStart"}>
-								<Image src="/images/Google.svg" alt=""></Image>
+								<Image src="/images/Google.svg" alt=" "></Image>
 								<Box layerStyle={"flexColumn"}>
 									<Text variant={"SettingsText1"} ml={"15px"}>
 										Email
@@ -269,7 +270,7 @@ const Settings = () => {
 							gap={"50px"}
 						>
 							<Box layerStyle={"flexCenterFlexStart"}>
-								<Image src="/images/Twitter.svg" alt=""></Image>
+								<Image src="/images/Twitter.svg" alt=" "></Image>
 								<Box layerStyle={"flexColumn"}>
 									<Text variant={"SettingsText1"} ml={"15px"}>
 										Twitter
@@ -318,7 +319,7 @@ const Settings = () => {
 								src="/images/SystemDefault.svg"
 								width={183}
 								height={133}
-								alt=""
+								alt=" "
 							/>
 							<Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
 								{/* <DynamicIcon
@@ -346,7 +347,7 @@ const Settings = () => {
 								src=" /images/LightTheme.svg"
 								width={183}
 								height={133}
-								alt=""
+								alt=" "
 								unoptimized="true"
 								priority="true"
 							/>
@@ -502,13 +503,14 @@ const Settings = () => {
 						<Text variant={"contentHeading3"} fontWeight={"400"}>
 							Profile Details
 						</Text>
-						<Image src={useColorModeValue("/icons/Edit_icon.svg","/icons/Edit_icon(Dark).svg")} mr={"25px"}></Image>
+						<Image src={useColorModeValue("/icons/Edit_icon.svg", "/icons/Edit_icon(Dark).svg")} alt=" " mr={"25px"}></Image>
 					</Box>
 
 					<Box layerStyle={"flexColumnCenterSpaceAround"}>
 						<Image
 							borderRadius={"full"}
 							boxSize={"150px"}
+							alt=" "
 							src="/images/Profile_photo.svg"
 						></Image>
 						<Text variant={"smallTableHeader"} lineHeight={"normal"} pt={"15px"}>
@@ -540,7 +542,7 @@ const Settings = () => {
 									<Text variant={"profileText"}>
 										Profile Score
 									</Text>
-									<Image src="/icons/question_mark_lg_icon.svg" ml={"15px"}></Image>
+									<Image src="/icons/question_mark_lg_icon.svg" alt=" " ml={"15px"}></Image>
 								</Box>
 								<Text variant={"profileText"} fontSize={"24px"} p={"5px 24px"}>
 									72
