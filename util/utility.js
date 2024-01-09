@@ -113,7 +113,7 @@ export const getDomainForCookie = appConfig => '.' + getMainDomain(appConfig);
 
 export const getMainDomain = (appConfig) => {
     if (typeof window !== "undefined") {
-        if (appConfig.NEXT_PUBLIC_ENV === "production") {
+        if (getEnvironmentWiseConfig().isProd) {
             return window.location.hostname;
         } else {
             const host = window.location.hostname;
@@ -133,7 +133,7 @@ export const calculatePercentage = (value, totalValue) => (value / totalValue) *
 export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
 
 export const GET_LOCAL_SERVER_HOST = () => {
-    if (process.env.NODE_ENV === "development") {
+    if (getEnvironmentWiseConfig().isLocal) {
         return `http://local.betygfi.com:3000`;
     } else {
         return `http://localhost:7000`;
@@ -144,4 +144,12 @@ export const getAppConfigMappeedToGlobalEnv = appConfig => {
     for (const [key, value] of Object.entries(appConfig)) {
         process.env[key] = value;
     }
+}
+
+export const getEnvironmentWiseConfig = () => {
+    const isLocal = process.env.NODE_ENV === "development" && process.env.BUILD_ENV === "local";
+    const isDev = process.env.NODE_ENV === "development" && process.env.BUILD_ENV === "dev";
+    const isQA = process.env.NODE_ENV === "qa" && process.env.BUILD_ENV === "qa";
+    const isProd = process.env.NODE_ENV === "production" && process.env.BUILD_ENV === "prod";
+    return { isLocal, isDev, isQA, isProd };
 }

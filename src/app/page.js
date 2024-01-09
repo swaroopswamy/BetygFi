@@ -3,10 +3,6 @@ import { DefiLandingPageMetas } from "@util/metaHelper";
 
 export const metadata = DefiLandingPageMetas('');
 
-const HomePage = () => {
-	return (
-		<ProtocolPage />
-	);
-};
+const HomePage = () => <ProtocolPage />;
 
 export default HomePage;
