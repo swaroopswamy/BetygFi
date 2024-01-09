@@ -1,11 +1,11 @@
 import React from "react";
-import LayoutProvider from "@app/LayoutProvider";
 import { ReduxProvider } from "@redux/provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import { Providers } from "@app/ChakraProvider";
-import { WagmiProvider } from "@app/Web3Provider";
-import SessionProvider from "@app/SessionProvider";
+import { Providers } from "@/app/ChakraProvider";
+// import { WagmiProvider } from "@/app/Web3Provider";
+import LayoutProvider from "@/app/LayoutProvider";
+import SessionProvider from "@/app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
@@ -82,11 +82,11 @@ export default async function RootLayout({ children }) {
 				<body>
 					<SessionProvider session={session}>
 						<ReduxProvider>
-							<WagmiProvider>
-								<Providers>
-									<LayoutProvider appConfig={modifiedConfig}>{children}</LayoutProvider>
-								</Providers>
-							</WagmiProvider>
+							{/* <WagmiProvider> */}
+							<Providers>
+								<LayoutProvider appConfig={modifiedConfig}>{children}</LayoutProvider>
+							</Providers>
+							{/* </WagmiProvider> */}
 						</ReduxProvider>
 					</SessionProvider>
 				</body>

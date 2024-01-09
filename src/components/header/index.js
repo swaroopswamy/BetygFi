@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useDisconnect } from "wagmi";
+// import { useDisconnect } from "wagmi";
 import {
     Box,
     Flex,
@@ -50,7 +50,6 @@ const Navbar = ({ ...rest }) => {
     const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const { data: AuthSession } = useSession();
-    const { disconnect } = useDisconnect();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
@@ -68,6 +67,7 @@ const Navbar = ({ ...rest }) => {
         setSearchWalletAddressValue("");
     };
 
+    // const { disconnect } = useDisconnect();
     const handleSearchByWalletAddress = (e) => {
         if (e.key === "Enter") {
             if (!isEmpty(e.target.value)) {
@@ -261,7 +261,7 @@ const Navbar = ({ ...rest }) => {
                                         : "log_in_white"
                                         }`}
                                     onClick={() => {
-                                        disconnect();
+                                        // disconnect();
                                         setTimeout(() => {
                                             dispatch(LogoutReducer(appConfigState));
                                             setTimeout(() => {

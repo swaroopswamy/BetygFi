@@ -24,16 +24,16 @@ import {
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
-import { useAccount, useDisconnect } from "wagmi";
+// import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 import { appConfigData } from "@redux/app_data/dataSlice";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
-    const { connector: activeConnector } = useAccount();
+    // const { connector: activeConnector } = useAccount();
     const [isMd] = useMediaQuery("(min-width: 768px)");
-    const { disconnect } = useDisconnect();
+    // const { disconnect } = useDisconnect();
     const toast = useToast();
     const { data: AuthSession, status, update } = useSession();
 
@@ -87,7 +87,7 @@ export default function LayoutProvider({ appConfig, children }) {
                     if (status === "authenticated") {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
-                            disconnect();
+                            // disconnect();
                             signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
@@ -177,7 +177,7 @@ export default function LayoutProvider({ appConfig, children }) {
             setTimeout(() => {
                 dispatch(ResetValidatedUserData());
             }, 200);
-            disconnect();
+            // disconnect();
             setTimeout(() => {
                 dispatch(LogoutReducer(appConfig));
                 setTimeout(() => {
@@ -187,25 +187,26 @@ export default function LayoutProvider({ appConfig, children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
-    useEffect(() => {
-        const handleConnectorUpdate = ({ account }) => {
-            if (account) {
-                disconnect();
-                setTimeout(() => {
-                    dispatch(LogoutReducer(appConfig));
-                    setTimeout(() => {
-                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
-                    }, 200);
-                }, 100);
-            }
-        };
+    // const { connector: activeConnector } = useAccount();
+    // useEffect(() => {
+    //     const handleConnectorUpdate = ({ account }) => {
+    //         if (account) {
+    //             disconnect();
+    //             setTimeout(() => {
+    //                 dispatch(LogoutReducer());
+    //                 setTimeout(() => {
+    //                     signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+    //                 }, 200);
+    //             }, 100);
+    //         }
+    //     };
 
-        if (activeConnector) {
-            activeConnector.on("change", handleConnectorUpdate);
-        }
+    //     if (activeConnector) {
+    //         activeConnector.on("change", handleConnectorUpdate);
+    //     }
 
-        return () => activeConnector?.off("change", handleConnectorUpdate);
-    }, [activeConnector]);
+    //     return () => activeConnector?.off("change", handleConnectorUpdate);
+    // }, [activeConnector]);
 
     const manageOnlineOfflineStatus = () => {
         window.addEventListener('online', function () {
