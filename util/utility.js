@@ -139,3 +139,9 @@ export const GET_LOCAL_SERVER_HOST = () => {
         return `http://localhost:7000`;
     }
 };
+
+export const getAppConfigMappeedToGlobalEnv = appConfig => {
+    for (const [key, value] of Object.entries(appConfig)) {
+        process.env[key] = value;
+    }
+}

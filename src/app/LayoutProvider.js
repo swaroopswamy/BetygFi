@@ -27,6 +27,7 @@ import isEmpty from "lodash/isEmpty";
 // import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 import { appConfigData } from "@redux/app_data/dataSlice";
+import { getAllCacheKeys } from "@util/cacheHelper";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -129,6 +130,7 @@ export default function LayoutProvider({ appConfig, children }) {
             }
         }
         manageOnlineOfflineStatus();
+        window.getAllCacheKeys = getAllCacheKeys;
     }, []);
 
     // for creating cookie after google sign in is successful

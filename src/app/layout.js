@@ -9,7 +9,7 @@ import SessionProvider from "@/app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
-import { GET_LOCAL_SERVER_HOST } from "@util/utility";
+import { GET_LOCAL_SERVER_HOST, getAppConfigMappeedToGlobalEnv } from "@util/utility";
 
 export const metadata = DefiLandingPageMetas('');
 
@@ -34,14 +34,7 @@ export default async function RootLayout({ children }) {
 		if (process.env.NODE_ENV === "development") {
 			modifiedConfig.NEXTAUTH_URL = GET_LOCAL_SERVER_HOST();
 		}
-
-		process.env.GOOGLE_CLIENT_ID = modifiedConfig.GOOGLE_CLIENT_ID;
-		process.env.GOOGLE_CLIENT_SECRET = modifiedConfig.GOOGLE_CLIENT_SECRET;
-		process.env.NEXTAUTH_SECRET = modifiedConfig.NEXTAUTH_SECRET;
-		process.env.NEXT_PUBLIC_BETYGFI_URL = modifiedConfig.NEXT_PUBLIC_BETYGFI_URL;
-		process.env.NEXT_PUBLIC_STUDIO_URL = modifiedConfig.NEXT_PUBLIC_STUDIO_URL;
-		process.env.NEXT_PUBLIC_COMMUNITY_URL = modifiedConfig.NEXT_PUBLIC_COMMUNITY_URL;
-		process.env.NEXTAUTH_URL = modifiedConfig.NEXTAUTH_URL;
+		getAppConfigMappeedToGlobalEnv(modifiedConfig);
 
 		return (
 			<html lang={"en"}>

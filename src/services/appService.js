@@ -33,13 +33,9 @@ export const postReportBugData = async (payload, rejectWithValue) => {
 
 export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`user/suggestFeature`, payload, {
-			headers: {
-				'Content-Type': 'multipart/form-data', // Override Content-Type for this request
-			},
-		}
-		);
+		const url = `user/suggestFeature`;
+		const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload, config);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -48,9 +44,8 @@ export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 
 export const getSearchV2Data = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(
-			`/protocols/searchv2?name=${payloadData.searchValue}`
-		);
+		const url = `/protocols/searchv2?name=${payloadData.searchValue}`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -66,7 +61,7 @@ export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 	}
 };
 
-export const getAppConfig = async (host) => {
+export const getAppConfig = async host => {
 	try {
 		const url = `${host}/api/config`;
 		if (checkIfCacheAvailable(url)) {
