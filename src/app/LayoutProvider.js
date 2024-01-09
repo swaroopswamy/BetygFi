@@ -24,7 +24,7 @@ import {
 import { AUTH_COOKIE_NAME } from "@util/constant";
 import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
-import { useAccount, useDisconnect } from "wagmi";
+// import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 
 export default function LayoutProvider({ children }) {
@@ -38,7 +38,7 @@ export default function LayoutProvider({ children }) {
     const isMobileSidebarCollapsed = useSelector(
         (state) => state?.appData?.isMobileSidebarCollapsed
     );
-    const { disconnect } = useDisconnect();
+    // const { disconnect } = useDisconnect();
     const { data: AuthSession, status, update } = useSession();
     const GoogleVerifiedData = useSelector(
         (state) => state.authData.GoogleVerifiedData
@@ -93,7 +93,7 @@ export default function LayoutProvider({ children }) {
                     if (status === "authenticated") {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
-                            disconnect();
+                            // disconnect();
                             signOut({ callbackUrl: process.env.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
@@ -203,7 +203,7 @@ export default function LayoutProvider({ children }) {
             setTimeout(() => {
                 dispatch(ResetValidatedUserData());
             }, 200);
-            disconnect();
+            // disconnect();
             setTimeout(() => {
                 dispatch(LogoutReducer());
                 setTimeout(() => {
@@ -213,26 +213,26 @@ export default function LayoutProvider({ children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
-    const { connector: activeConnector } = useAccount();
-    useEffect(() => {
-        const handleConnectorUpdate = ({ account }) => {
-            if (account) {
-                disconnect();
-                setTimeout(() => {
-                    dispatch(LogoutReducer());
-                    setTimeout(() => {
-                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-                    }, 200);
-                }, 100);
-            }
-        };
+    // const { connector: activeConnector } = useAccount();
+    // useEffect(() => {
+    //     const handleConnectorUpdate = ({ account }) => {
+    //         if (account) {
+    //             disconnect();
+    //             setTimeout(() => {
+    //                 dispatch(LogoutReducer());
+    //                 setTimeout(() => {
+    //                     signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+    //                 }, 200);
+    //             }, 100);
+    //         }
+    //     };
 
-        if (activeConnector) {
-            activeConnector.on("change", handleConnectorUpdate);
-        }
+    //     if (activeConnector) {
+    //         activeConnector.on("change", handleConnectorUpdate);
+    //     }
 
-        return () => activeConnector?.off("change", handleConnectorUpdate);
-    }, [activeConnector]);
+    //     return () => activeConnector?.off("change", handleConnectorUpdate);
+    // }, [activeConnector]);
 
     return (
         <Box
