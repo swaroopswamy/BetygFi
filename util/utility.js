@@ -111,15 +111,23 @@ export function PublicAddressStringFormatter(name) {
 
 export const getDomainForCookie = () => '.' + getMainDomain();
 
+export const getNonWWWDomain = () => {
+    const host = window.location.hostname;
+    const splittedHost = host.split(".");
+    splittedHost.shift();
+    return splittedHost.join(".");
+};
+
 export const getMainDomain = () => {
     if (typeof window !== "undefined") {
         if (getEnvironmentWiseConfig().isProd) {
-            return window.location.hostname;
+            if (process.env.PORTAL_NAME === 'dashboard') {
+                return window.location.hostname;
+            } else {
+                return getNonWWWDomain();
+            }
         } else {
-            const host = window.location.hostname;
-            const splittedHost = host.split(".");
-            splittedHost.shift();
-            return splittedHost.join(".");
+            return getNonWWWDomain();
         }
     } else {
         return DOMAIN;
