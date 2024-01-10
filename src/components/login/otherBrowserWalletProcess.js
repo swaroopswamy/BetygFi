@@ -1,22 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useColorMode, useSteps, useToast } from "@chakra-ui/react";
-import { ethers } from "ethers";
 import isEmpty from "lodash/isEmpty";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount, useConnect } from "wagmi";
+import { signMessage as wagmiSignMessage, getAccount } from '@wagmi/core';
 import {
     LoginGetToken,
     StoreLoggedInUserData,
     VerifyPublicAddressData,
 } from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
+import { config } from "@/app/Web3Provider";
+
 
 const OtherBrowserWalletProcess = ({
     onClose,
     setBrowserWalletProcessSelected,
 }) => {
     const dispatch = useDispatch();
+    const { connector } = getAccount(config);
     const { connect, connectors, error } = useConnect();
     const { address, isConnected } = useAccount();
     const verifiedPublicAddressData = useSelector((state) => state.authData.verifiedPublicAddressData);
@@ -27,6 +30,7 @@ const OtherBrowserWalletProcess = ({
         index: 0,
         count: 2,
     });
+    /*     const { signMessage: wagmiSignMessage } = useSignMessage(); */
     const signMessage = async ({ message }) => {
         try {
             if (!window.ethereum) {
@@ -43,11 +47,11 @@ const OtherBrowserWalletProcess = ({
 
             }
 
-            await window.ethereum.send("eth_requestAccounts");
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            const signature = await signer.signMessage(message);
-            const address = await signer.getAddress();
+            const result = await wagmiSignMessage(config, {
+                connector,
+                message: message
+            });
+            const signature = result;
             return {
                 message,
                 signature,
@@ -74,7 +78,6 @@ const OtherBrowserWalletProcess = ({
 
             }
 
-            await window.ethereum.send("eth_requestAccounts");
             connect({ connector });
         } catch (err) {
             // setError(err.message);
@@ -124,9 +127,9 @@ const OtherBrowserWalletProcess = ({
         {
             title: isConnected ? "Wallet Connected" : "Connect Wallet",
             description: isConnected
-                ? `Address: ${address.split("").join("").substring(0, 6) +
+                ? `Address: ${address?.split("").join("").substring(0, 6) +
                 "..." +
-                address.slice(-5)
+                address?.slice(-5)
                 }`
                 : "Tell which address you want to use",
             buttonText: "Connect",

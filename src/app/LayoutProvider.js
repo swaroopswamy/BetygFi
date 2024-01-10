@@ -24,17 +24,19 @@ import {
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
-// import { useAccount, useDisconnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 import { appConfigData } from "@redux/app_data/dataSlice";
 import { getAllCacheKeys } from "@util/cacheHelper";
+import { watchAccount } from '@wagmi/core';
+import { config } from "./Web3Provider";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
     // const { connector: activeConnector } = useAccount();
     const [isMd] = useMediaQuery("(min-width: 768px)");
-    // const { disconnect } = useDisconnect();
+    const { disconnect } = useDisconnect();
     const toast = useToast();
     const { data: AuthSession, status, update } = useSession();
 
@@ -42,6 +44,7 @@ export default function LayoutProvider({ appConfig, children }) {
     const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
     const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const { address } = useAccount();
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -189,27 +192,6 @@ export default function LayoutProvider({ appConfig, children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
-    // const { connector: activeConnector } = useAccount();
-    // useEffect(() => {
-    //     const handleConnectorUpdate = ({ account }) => {
-    //         if (account) {
-    //             disconnect();
-    //             setTimeout(() => {
-    //                 dispatch(LogoutReducer());
-    //                 setTimeout(() => {
-    //                     signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-    //                 }, 200);
-    //             }, 100);
-    //         }
-    //     };
-
-    //     if (activeConnector) {
-    //         activeConnector.on("change", handleConnectorUpdate);
-    //     }
-
-    //     return () => activeConnector?.off("change", handleConnectorUpdate);
-    // }, [activeConnector]);
-
     const manageOnlineOfflineStatus = () => {
         window.addEventListener('online', function () {
             toast({
@@ -235,6 +217,28 @@ export default function LayoutProvider({ appConfig, children }) {
             });
         }, false);
     };
+
+    React.useEffect(() => {
+        const unwatch = watchAccount(config, {
+            onChange(data) {
+
+                if (AuthSession) {
+                    if (data?.address !== address) {
+                        disconnect();
+                        setTimeout(() => {
+                            dispatch(LogoutReducer());
+                            setTimeout(() => {
+                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                            }, 200);
+                        }, 100);
+                    }
+                }
+            },
+        });
+
+        // Cleanup by calling unwatch to unsubscribe from the account change event
+        return () => unwatch();
+    }, [address]);
 
     return (
         <Box

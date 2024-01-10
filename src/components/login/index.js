@@ -27,8 +27,8 @@ const LoginPage = ({ isOpen, onClose }) => {
     const { colorMode } = useColorMode();
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
 
-    const handleProcessSelector = (wallet) => {
-        setBrowserWalletProcessSelected(wallet === 'metamask');
+    const handleProcessSelector = () => {
+        setBrowserWalletProcessSelected(true);
     };
 
     const appConfigState = useSelector((state) => state?.appData?.appConfigData);
