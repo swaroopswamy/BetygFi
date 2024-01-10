@@ -41,7 +41,7 @@ import SuggestFeatureModal from "@components/sidebar/suggestfeature";
 import { signOut, useSession } from "next-auth/react";
 import { LogoutReducer } from "@redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
-// import { useDisconnect } from "wagmi";
+import { useDisconnect } from "wagmi";
 import { PublicAddressStringFormatter } from "@util/utility";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
@@ -754,7 +754,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
     const router = useRouter();
     const pathname = usePathname();
     const { data: AuthSession } = useSession();
-    // const { disconnect } = useDisconnect();
+    const { disconnect } = useDisconnect();
     const dispatch = useDispatch();
 
     return (
@@ -1145,7 +1145,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 </Box>
                                                 <i className={`icon ${colorMode === "light" ? "log_in_black" : "log_in_white"}`}
                                                     onClick={() => {
-                                                        // disconnect();
+                                                        disconnect();
                                                         setTimeout(() => {
                                                             dispatch(LogoutReducer());
                                                             setTimeout(() => {
