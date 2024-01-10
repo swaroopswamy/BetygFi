@@ -26,6 +26,8 @@ import { getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
+import { watchAccount } from '@wagmi/core';
+import { config } from "./Web3Provider";
 
 export default function LayoutProvider({ children }) {
 
@@ -47,6 +49,7 @@ export default function LayoutProvider({ children }) {
         (state) => state.authData.ValidatedUserData
     );
     const toast = useToast();
+    const { address } = useAccount();
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -213,26 +216,27 @@ export default function LayoutProvider({ children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
-    const { connector: activeConnector } = useAccount();
-    useEffect(() => {
-        const handleConnectorUpdate = ({ account }) => {
-            if (account) {
-                disconnect();
-                setTimeout(() => {
-                    dispatch(LogoutReducer());
-                    setTimeout(() => {
-                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-                    }, 200);
-                }, 100);
-            }
-        };
+    React.useEffect(() => {
+        const unwatch = watchAccount(config, {
+            onChange(data) {
 
-        if (activeConnector) {
-            activeConnector.on("change", handleConnectorUpdate);
-        }
+                if (AuthSession) {
+                    if (data?.address !== address) {
+                        disconnect();
+                        setTimeout(() => {
+                            dispatch(LogoutReducer());
+                            setTimeout(() => {
+                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                            }, 200);
+                        }, 100);
+                    }
+                }
+            },
+        });
 
-        return () => activeConnector?.off("change", handleConnectorUpdate);
-    }, [activeConnector]);
+        // Cleanup by calling unwatch to unsubscribe from the account change event
+        return () => unwatch();
+    }, [address]);
 
     return (
         <Box
