@@ -167,7 +167,7 @@ export default function LayoutProvider({ appConfig, children }) {
             setTimeout(() => {
                 dispatch(ResetValidatedUserData());
             }, 200);
-            // disconnect();
+            disconnect();
             setTimeout(() => {
                 dispatch(LogoutReducer());
                 setTimeout(() => {
