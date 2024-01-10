@@ -77,7 +77,7 @@ export default function LayoutProvider({ appConfig, children }) {
                     if (status === "authenticated") {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
-                            // disconnect();
+                            disconnect();
                             signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
