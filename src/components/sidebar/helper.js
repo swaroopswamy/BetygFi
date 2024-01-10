@@ -28,7 +28,7 @@ export const bottomMenu = [
     },
 ];
 
-export const dashboards = (appConfig) => [
+export const dashboards = () => [
     {
         name: "DeFi Market Analytics",
         icon: IoIosTrendingUp,
@@ -50,8 +50,8 @@ export const dashboards = (appConfig) => [
     {
         name: "BetygFi Studio",
         icon: AiOutlineCodeSandbox,
-        path: `${appConfig.NEXT_PUBLIC_STUDIO_URL}`,
-        activePaths: [`${appConfig.NEXT_PUBLIC_STUDIO_URL}`],
+        path: `${process.env.NEXT_PUBLIC_STUDIO_URL}`,
+        activePaths: [`${process.env.NEXT_PUBLIC_STUDIO_URL}`],
         newTab: true,
     },
 ];
@@ -65,11 +65,11 @@ export const pages = [
     { name: "About", icon: BetygFiSmLogo, path: "/about" },
 ];
 
-export const communities = (appConfig) => [
+export const communities = () => [
     {
         name: "BetygFi",
         icon: VscCommentDiscussion,
-        path: `${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`,
+        path: `${process.env.NEXT_PUBLIC_COMMUNITY_URL}`,
         newTab: true,
     },
     {

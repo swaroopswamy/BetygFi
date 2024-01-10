@@ -1,32 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
-import {
-    Box,
-    useColorModeValue,
-    useDisclosure,
-    useMediaQuery,
-    useToast,
-} from "@chakra-ui/react";
+import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import SidebarContent from "@components/sidebar";
 import Footer from "@components/footer";
 import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
-import {
-    LogInFromCookie,
-    StoreLoggedInUserDataGoogle,
-    ResetValidatedUserData,
-    socialLoginGoogle,
-    verifyJWTtokenFromCookie,
-    LogoutReducer,
-} from "@redux/auth_data/authSlice";
+import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
-import { appConfigData } from "@redux/app_data/dataSlice";
 import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
@@ -92,7 +78,7 @@ export default function LayoutProvider({ appConfig, children }) {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
                             // disconnect();
-                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
                             verifyJWTtokenFromCookieHandler(cookie);
@@ -119,8 +105,7 @@ export default function LayoutProvider({ appConfig, children }) {
 
     //useEffect to check auth on mount
     useEffect(() => {
-        dispatch(appConfigData(appConfig));
-        createCookies(API_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_API_URL, appConfig);
+        createCookies(API_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_API_URL);
 
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
         if (!isEmpty(cookie)) {
@@ -129,7 +114,7 @@ export default function LayoutProvider({ appConfig, children }) {
             if (status === "authenticated") {
                 (localStorage.getItem("googleAuthInitiated") === "false" ||
                     localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }
         }
         manageOnlineOfflineStatus();
@@ -153,7 +138,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 ),
             });
             setTimeout(() => {
-                signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }, 2000);
         }
     }, [GoogleVerifiedData]);
@@ -184,9 +169,9 @@ export default function LayoutProvider({ appConfig, children }) {
             }, 200);
             // disconnect();
             setTimeout(() => {
-                dispatch(LogoutReducer(appConfig));
+                dispatch(LogoutReducer());
                 setTimeout(() => {
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                 }, 200);
             }, 100);
         }
@@ -228,7 +213,7 @@ export default function LayoutProvider({ appConfig, children }) {
                         setTimeout(() => {
                             dispatch(LogoutReducer());
                             setTimeout(() => {
-                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                             }, 200);
                         }, 100);
                     }

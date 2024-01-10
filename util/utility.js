@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_COMMUNITY_HOST, LOCAL_DASHBOARD_HOST, LOCAL_SERVER_HOST, LOCAL_STUDIO_HOST } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -109,9 +109,9 @@ export function PublicAddressStringFormatter(name) {
     }
 }
 
-export const getDomainForCookie = appConfig => '.' + getMainDomain(appConfig);
+export const getDomainForCookie = () => '.' + getMainDomain();
 
-export const getMainDomain = (appConfig) => {
+export const getMainDomain = () => {
     if (typeof window !== "undefined") {
         if (getEnvironmentWiseConfig().isProd) {
             return window.location.hostname;
@@ -133,18 +133,29 @@ export const calculatePercentage = (value, totalValue) => (value / totalValue) *
 export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
 
 export const GET_LOCAL_SERVER_HOST = () => {
-    if (getEnvironmentWiseConfig().isLocal) {
-        return `http://local.betygfi.com:3000`;
-    } else {
-        return `http://localhost:7000`;
-    }
+    const APP_PORT = process.env.APP_PORT;
+    const getHost = (isLocal) => {
+        const PORTAL_NAME = process.env.PORTAL_NAME;
+        if (isLocal) {
+            if (PORTAL_NAME === 'dashboard') {
+                return LOCAL_DASHBOARD_HOST;
+            } else if (PORTAL_NAME === 'community') {
+                return LOCAL_COMMUNITY_HOST;
+            } else if (PORTAL_NAME === 'studio') {
+                return LOCAL_STUDIO_HOST;
+            }
+        } else {
+            return LOCAL_SERVER_HOST;
+        }
+    };
+    return `http://${getHost(getEnvironmentWiseConfig().isLocal)}:${APP_PORT}`;
 };
 
-export const getAppConfigMappeedToGlobalEnv = appConfig => {
+export const getAppConfigMappedToGlobalEnv = appConfig => {
     for (const [key, value] of Object.entries(appConfig)) {
         process.env[key] = value;
     }
-}
+};
 
 export const getEnvironmentWiseConfig = () => {
     const isLocal = process.env.NODE_ENV === "development" && process.env.BUILD_ENV === "local";
@@ -152,4 +163,4 @@ export const getEnvironmentWiseConfig = () => {
     const isQA = process.env.NODE_ENV === "qa" && process.env.BUILD_ENV === "qa";
     const isProd = process.env.NODE_ENV === "production" && process.env.BUILD_ENV === "prod";
     return { isLocal, isDev, isQA, isProd };
-}
+};

@@ -26,8 +26,6 @@ export const getSearchV2TrendingList = createAsyncThunk('getSearchV2TrendingList
 	return response;
 });
 
-export const appConfigData = createAsyncThunk('appConfigData', payload => payload);
-
 const AppDataSlice = createSlice({
 	name: "AppData",
 	initialState: {
@@ -55,8 +53,6 @@ const AppDataSlice = createSlice({
 			status: "idle",
 			error: null
 		},
-		appConfigData: {
-		}
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchBlockchainListData.fulfilled, (state, action) => {
@@ -106,9 +102,6 @@ const AppDataSlice = createSlice({
 		builder.addCase(getSearchV2TrendingList.rejected, (state, action) => {
 			state.searchV2TrendingData.error = action.payload;
 			state.searchV2TrendingData.status = 'failure';
-		});
-		builder.addCase(appConfigData.fulfilled, (state, action) => {
-			state.appConfigData = action.payload;
 		});
 	},
 	reducers: {

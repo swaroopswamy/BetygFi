@@ -2,14 +2,14 @@ import React from "react";
 import { ReduxProvider } from "@redux/provider";
 import Script from "next/script";
 import "/styles/styles.scss";
-import { Providers } from "@/app/ChakraProvider";
-import LayoutProvider from "@/app/LayoutProvider";
-import SessionProvider from "@/app/SessionProvider";
+import { Providers } from "@app/ChakraProvider";
+import LayoutProvider from "@app/LayoutProvider";
+import SessionProvider from "@app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
-import { GET_LOCAL_SERVER_HOST, getAppConfigMappeedToGlobalEnv, getEnvironmentWiseConfig } from "@util/utility";
-import { Web3Provider } from '@/app/Web3Provider';
+import { GET_LOCAL_SERVER_HOST, getAppConfigMappedToGlobalEnv, getEnvironmentWiseConfig } from "@util/utility";
+import { Web3Provider } from '@app/Web3Provider';
 
 export const metadata = DefiLandingPageMetas('');
 
@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
 		if (getEnvironmentWiseConfig().isLocal) {
 			modifiedConfig.NEXTAUTH_URL = GET_LOCAL_SERVER_HOST();
 		}
-		getAppConfigMappeedToGlobalEnv(modifiedConfig);
+		getAppConfigMappedToGlobalEnv(modifiedConfig);
 
 		return (
 			<html lang={"en"}>

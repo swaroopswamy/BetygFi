@@ -112,7 +112,7 @@ const AuthDataSlice = createSlice({
 		});
 	},
 	reducers: {
-		LogoutReducer: (state, action) => {
+		LogoutReducer: (state) => {
 			state.LoggedInData = {
 				data: null,
 				isLoading: false,
@@ -131,9 +131,9 @@ const AuthDataSlice = createSlice({
 			};
 
 			localStorage.clear();
-			deleteCookieByName(AUTH_COOKIE_NAME, action.payload);
+			deleteCookieByName(AUTH_COOKIE_NAME);
 		},
-		StoreLoggedInUserData: (state, action) => {
+		StoreLoggedInUserData: (state) => {
 			const accountState = {
 				state: {
 					token: state.LoggedInData.data.token,
@@ -145,13 +145,13 @@ const AuthDataSlice = createSlice({
 				name: state.verifiedPublicAddressData.data?.public_address,
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState, action.payload);
+			createCookies(AUTH_COOKIE_NAME, serializedState);
 			setTimeout(() => {
 				signIn("credentials", user);
 			}, 100);
 
 		},
-		StoreLoggedInUserDataGoogle: (state, action) => {
+		StoreLoggedInUserDataGoogle: (state) => {
 			const accountState = {
 				state: {
 					token: state.GoogleVerifiedData.data?.token,
@@ -159,7 +159,7 @@ const AuthDataSlice = createSlice({
 				},
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState, action.payload);
+			createCookies(AUTH_COOKIE_NAME, serializedState);
 		},
 		LogInFromCookie: (state, /* action */) => {
 			const user = {

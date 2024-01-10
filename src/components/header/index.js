@@ -53,7 +53,6 @@ const Navbar = ({ ...rest }) => {
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
-    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
@@ -127,7 +126,7 @@ const Navbar = ({ ...rest }) => {
     };
 
     const toggleColorModeGlobally = () => {
-        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode), appConfigState);
+        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode));
         toggleColorMode();
     };
 
@@ -263,9 +262,9 @@ const Navbar = ({ ...rest }) => {
                                     onClick={() => {
                                         // disconnect();
                                         setTimeout(() => {
-                                            dispatch(LogoutReducer(appConfigState));
+                                            dispatch(LogoutReducer());
                                             setTimeout(() => {
-                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
                                             }, 200);
                                         }, 100);
                                     }}

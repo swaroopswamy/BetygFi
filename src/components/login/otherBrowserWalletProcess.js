@@ -11,7 +11,7 @@ import {
     VerifyPublicAddressData,
 } from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
-import { config } from "@/app/Web3Provider";
+import { config } from "@app/Web3Provider";
 
 
 const OtherBrowserWalletProcess = ({

@@ -18,7 +18,6 @@ import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
-import { useSelector } from "react-redux";
 import { walletArray } from "@util/constant";
 
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
@@ -30,8 +29,6 @@ const LoginPage = ({ isOpen, onClose }) => {
     const handleProcessSelector = () => {
         setBrowserWalletProcessSelected(true);
     };
-
-    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     return (
         <Modal
@@ -266,7 +263,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                     you are agreeging to
                                 </Text>
                                 <Link
-                                    href={`${appConfigState.NEXT_PUBLIC_BETYGFI_URL}/legal`}
+                                    href={`${process.env.NEXT_PUBLIC_BETYGFI_URL}/legal`}
                                     target="_blank"
                                 >
                                     <Text

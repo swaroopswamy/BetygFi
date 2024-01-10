@@ -57,7 +57,6 @@ const SidebarContent = ({ ...rest }) => {
     };
 
     const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
-    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     const {
         isOpen: isSuggestFeatureModalOpen,
@@ -120,7 +119,7 @@ const SidebarContent = ({ ...rest }) => {
                         >
                             Dashboards
                         </Text>
-                        {dashboards(appConfigState).map((link, i) => (
+                        {dashboards().map((link, i) => (
                             <NavItem
                                 key={i}
                                 NavIcon={link.icon}
@@ -203,7 +202,7 @@ const SidebarContent = ({ ...rest }) => {
                                 </AccordionButton>
                                 <AccordionPanel w={"100%"} p={0}>
                                     <Box layerStyle={"flexColumn"}>
-                                        {communities(appConfigState).map((link, i) => (
+                                        {communities().map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -414,7 +413,7 @@ const SidebarContent = ({ ...rest }) => {
                         </Box>
 
                         <Box layerStyle={"flexColumn"} mt={"20px"}>
-                            {dashboards(appConfigState).map((link, i) => (
+                            {dashboards().map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -441,7 +440,7 @@ const SidebarContent = ({ ...rest }) => {
                                 ></CollapsedNavItem>
                             ))}
 
-                            {communities(appConfigState).map((link, i) => (
+                            {communities().map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -757,7 +756,6 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
     const { data: AuthSession } = useSession();
     // const { disconnect } = useDisconnect();
     const dispatch = useDispatch();
-    const appConfigState = useSelector((state) => state?.appData?.appConfigData);
 
     return (
         <>
@@ -874,7 +872,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                     </Box>
 
                                     <Box layerStyle={"flexColumn"}>
-                                        {dashboards(appConfigState).map((link, i) => (
+                                        {dashboards().map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -994,7 +992,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                             animateOpacity={"true"}
                                         >
                                             <Box layerStyle={"flexColumn"}>
-                                                {communities(appConfigState).map((link, i) => (
+                                                {communities().map((link, i) => (
                                                     <NavItem
                                                         key={i}
                                                         NavIcon={link.icon}
@@ -1149,9 +1147,9 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                     onClick={() => {
                                                         // disconnect();
                                                         setTimeout(() => {
-                                                            dispatch(LogoutReducer(appConfigState));
+                                                            dispatch(LogoutReducer());
                                                             setTimeout(() => {
-                                                                signOut({ callbackUrl: appConfigState.NEXTAUTH_URL || process.env.NEXTAUTH_URL });
+                                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
                                                             }, 200);
                                                         }, 100);
                                                     }}
