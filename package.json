@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run clean:build && npm run dev",
-    "dev": "NODE_ENV=development BUILD_ENV=dev PORTAL_NAME=dashboard APP_PORT=3000 next dev -p 3000",
+    "dev": "NODE_ENV=development BUILD_ENV=local PORTAL_NAME=dashboard APP_PORT=3000 next dev -p 3000",
     "start:dev": "NODE_ENV=production BUILD_ENV=dev PORTAL_NAME=dashboard APP_PORT=7000 node_modules/next/dist/bin/next start -p 7000",
     "start:qa": "NODE_ENV=production BUILD_ENV=qa PORTAL_NAME=dashboard APP_PORT=7000 node_modules/next/dist/bin/next start -p 7000",
     "start:prod": "NODE_ENV=production BUILD_ENV=prod PORTAL_NAME=dashboard APP_PORT=7000 node_modules/next/dist/bin/next start -p 7000",
