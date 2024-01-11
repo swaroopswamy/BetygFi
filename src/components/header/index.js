@@ -175,105 +175,101 @@ const Navbar = ({ ...rest }) => {
                     />
 
                     {!AuthSession ? (
-                        <>
+                        <Box
+                            ml="20px"
+                            pl="20px"
+                            borderLeft={"1px solid #333333"}
+                            alignContent={"center"}
+                        >
                             <Box
-                                ml="20px"
-                                pl="20px"
-                                borderLeft={"1px solid #333333"}
-                                alignContent={"center"}
+                                cursor={"pointer"}
+                                onClick={onLoginModalOpen}
+                                bgColor={
+                                    colorMode === "light"
+                                        ? "#282828"
+                                        : "#FFF"
+                                }
+                                layerStyle={"center"}
+                                borderRadius={"2px"}
+                                p="15px 20px"
+                                minW="150px"
                             >
-                                <Box
-                                    cursor={"pointer"}
-                                    onClick={onLoginModalOpen}
-                                    bgColor={
-                                        colorMode === "light"
-                                            ? "#282828"
-                                            : "#FFF"
-                                    }
-                                    layerStyle={"center"}
-                                    borderRadius={"2px"}
-                                    p="15px 20px"
-                                    minW="150px"
+                                <Text
+                                    variant={"SearchText"}
+                                    fontWeight={"600"}
+                                    _light={{ color: "#FAFAFB" }}
+                                    _dark={{ color: "#191919" }}
                                 >
-                                    <Text
-                                        variant={"SearchText"}
-                                        fontWeight={"600"}
-                                        _light={{ color: "#FAFAFB" }}
-                                        _dark={{ color: "#191919" }}
-                                    >
-                                        Connect Wallet
-                                    </Text>
-                                </Box>
+                                    Login/Signup
+                                </Text>
                             </Box>
-                        </>
+                        </Box>
                     ) : (
-                        <>
-                            <Box
-                                layerStyle={"flexCenter"}
-                                justifyContent={"end"}
-                                ml="20px"
-                                pl="20px"
-                                borderLeft={"1px solid #333333"}
-                                w="100%"
-                            >
-                                {typeof window !== "undefined" && (
-                                    <CustomAvatar
-                                        src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
-                                    />
-                                )}
-
-
-                                <Box
-                                    layerStyle={"flexColumn"}
-                                    ml="10px"
-                                    mr="20px"
-                                    minW="130px"
-                                >
-                                    <Text
-                                        variant={"TopWalletsText"}
-                                        w="120px"
-                                        whiteSpace={"nowrap"}
-                                        overflow={"hidden"}
-                                        textOverflow={"ellipsis"}
-                                    >
-                                        {AuthSession?.user?.name
-                                            ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
-                                    </Text>
-                                    {AuthSession?.user?.public_address && (
-                                        <Text
-                                            variant={"h5"}
-                                            letterSpacing={"1.2px"}
-                                            _light={{ color: "#16171B" }}
-                                            _dark={{ color: "#A8ADBD" }}
-                                        >
-                                            {AuthSession?.user?.public_address
-                                                ?.split("")
-                                                ?.join("")
-                                                ?.substring(0, 6) +
-                                                "..." +
-                                                AuthSession?.user?.public_address?.slice(
-                                                    -5
-                                                )}
-                                        </Text>
-                                    )}
-                                </Box>
-                                <i
-                                    className={`icon ${colorMode === "light"
-                                        ? "log_in_black"
-                                        : "log_in_white"
-                                        }`}
-                                    onClick={() => {
-                                        disconnect();
-                                        setTimeout(() => {
-                                            dispatch(LogoutReducer());
-                                            setTimeout(() => {
-                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-                                            }, 200);
-                                        }, 100);
-                                    }}
+                        <Box
+                            layerStyle={"flexCenter"}
+                            justifyContent={"end"}
+                            ml="20px"
+                            pl="20px"
+                            borderLeft={"1px solid #333333"}
+                            w="100%"
+                        >
+                            {typeof window !== "undefined" && (
+                                <CustomAvatar
+                                    src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
                                 />
+                            )}
+
+
+                            <Box
+                                layerStyle={"flexColumn"}
+                                ml="10px"
+                                mr="20px"
+                                minW="130px"
+                            >
+                                <Text
+                                    variant={"TopWalletsText"}
+                                    w="120px"
+                                    whiteSpace={"nowrap"}
+                                    overflow={"hidden"}
+                                    textOverflow={"ellipsis"}
+                                >
+                                    {AuthSession?.user?.name
+                                        ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                </Text>
+                                {AuthSession?.user?.public_address && (
+                                    <Text
+                                        variant={"h5"}
+                                        letterSpacing={"1.2px"}
+                                        _light={{ color: "#16171B" }}
+                                        _dark={{ color: "#A8ADBD" }}
+                                    >
+                                        {AuthSession?.user?.public_address
+                                            ?.split("")
+                                            ?.join("")
+                                            ?.substring(0, 6) +
+                                            "..." +
+                                            AuthSession?.user?.public_address?.slice(
+                                                -5
+                                            )}
+                                    </Text>
+                                )}
                             </Box>
-                        </>
+                            <i
+                                className={`icon ${colorMode === "light"
+                                    ? "log_in_black"
+                                    : "log_in_white"
+                                    }`}
+                                onClick={() => {
+                                    disconnect();
+                                    setTimeout(() => {
+                                        dispatch(LogoutReducer());
+                                        setTimeout(() => {
+                                            signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                        }, 200);
+                                    }, 100);
+                                }}
+                            />
+                        </Box>
                     )}
                 </Box>
             </Flex>
