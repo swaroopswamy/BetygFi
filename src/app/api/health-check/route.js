@@ -3,7 +3,7 @@ import { GET_LOCAL_SERVER_HOST } from "@util/utility";
 export async function GET() {
     const getAppConfig = async () => {
         try {
-            const res = await fetch(`${GET_LOCAL_SERVER_HOST()}/api/app-configuration`, { cache: 'no-store' });
+            const res = await fetch(`${GET_LOCAL_SERVER_HOST()}/api/config`, { cache: 'no-store' });
             const data = await res.json();
             return data?.data?.config?.values?.NEXT_PUBLIC_API_URL;
         } catch (err) {

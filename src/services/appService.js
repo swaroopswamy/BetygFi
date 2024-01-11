@@ -63,7 +63,7 @@ export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 
 export const getAppConfig = async host => {
 	try {
-		const url = `${host}/api/app-configuration`;
+		const url = `${host}/api/config`;
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
 		} else {
