@@ -3,11 +3,11 @@ import { ReduxProvider } from "@/redux/provider";
 import Script from "next/script";
 import "/styles/styles.scss";
 import { Providers } from "@/app/ChakraProvider";
-import { WagmiProvider } from "@/app/Web3Provider";
 import LayoutProvider from "@/app/LayoutProvider";
 import SessionProvider from "@/app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
+import { Web3Provider } from '@/app/Web3Provider';
 
 export const metadata = DefiLandingPageMetas('');
 
@@ -20,6 +20,7 @@ export const maxDuration = 5;
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
+
 	return (
 		<html lang={"en"}>
 			<head>
@@ -59,11 +60,11 @@ export default async function RootLayout({ children }) {
 			<body>
 				<SessionProvider session={session}>
 					<ReduxProvider>
-						<WagmiProvider>
+						<Web3Provider>
 							<Providers>
 								<LayoutProvider>{children}</LayoutProvider>
 							</Providers>
-						</WagmiProvider>
+						</Web3Provider>
 					</ReduxProvider>
 				</SessionProvider>
 			</body>
