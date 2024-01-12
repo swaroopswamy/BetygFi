@@ -8,11 +8,10 @@ import {
 	AccordionButton,
 	AccordionPanel,
 	useColorModeValue,
-
+	Image,
 	useColorMode,
 } from "@chakra-ui/react";
 import { General, BetygFi, WalletsAndDeFiDashboard, DeFi } from "@components/pages/help/helper";
-import Image from "next/image";
 
 const Help = () => {
 	const { colorMode } = useColorMode();
@@ -32,8 +31,8 @@ const Help = () => {
 								unoptimized="true"
 								priority="true"
 								src={useColorModeValue(
-									"/images/bg-logo.svg",
-									"/images/bg-logo-dark.svg"
+									"/images/bg-logo-dark.svg",
+									"/images/bg-logo.svg"
 								)}
 								alt="bg-logo"
 							/>
@@ -70,8 +69,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												) : (
@@ -83,8 +80,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												)}
@@ -150,8 +145,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												) : (
@@ -163,8 +156,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												)}
@@ -210,8 +201,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												) : (
@@ -223,8 +212,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												)}
@@ -305,8 +292,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												) : (
@@ -318,8 +303,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt="ellipse"
 													/>
 												)}
@@ -426,8 +409,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												) : (
@@ -439,8 +420,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												)}
@@ -502,8 +481,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												) : (
@@ -515,8 +492,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												)}
@@ -557,8 +532,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												) : (
@@ -570,8 +543,6 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														width={24}
-														height={24}
 														alt=""
 													/>
 												)}
@@ -646,8 +617,6 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														width={24}
-														height={24}
 														unoptimized="true"
 														priority="true"
 														alt=""
@@ -661,8 +630,6 @@ const Help = () => {
 														}
 														unoptimized="true"
 														priority="true"
-														width={24}
-														height={24}
 														alt=""
 													/>
 												)}

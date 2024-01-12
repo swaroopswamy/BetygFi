@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Table, Text, Tbody, Th, Thead, Tr, Flex, Box, useColorModeValue, Tooltip } from "@chakra-ui/react";
+import { Table, Text, Tbody, Th, Thead, Tr, Flex, Box, useColorModeValue, Tooltip, Image as ChakraImage } from "@chakra-ui/react";
 import Image from "next/image";
 
 const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent, Definitions }) => {
@@ -41,8 +41,8 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 
 				>
 					<Image
-						width={"12px"}
-						height={"12px"}
+						width={12}
+						height={12}
 						flexShrink={"0"}
 						mt={"22px"}
 						ml={"5px"}
@@ -116,7 +116,7 @@ function ThreadItem({ key, name }) {
 		>
 			<Flex>
 				{name}
-				<Image
+				<ChakraImage
 					unoptimized="true"
 					priority="true"
 					src={useColorModeValue("/images/Arrowdown(light).svg", "/images/Arrowdown(dark).svg")}

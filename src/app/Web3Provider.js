@@ -1,27 +1,28 @@
 "use client";
-import React from "react";
-import { WagmiConfig, createConfig, configureChains, mainnet } from "wagmi";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { WagmiProvider } from 'wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { http, createConfig } from 'wagmi';
+import { mainnet, sepolia } from 'wagmi/chains';
+import { metaMask, } from 'wagmi/connectors';
 
-// Configure chains & providers with the Alchemy provider.
-// Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-	[mainnet],
-	[alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), publicProvider()],
-);
-
-// Set up wagmi config
-const config = createConfig({
-	autoConnect: true,
+export const config = createConfig({
+	chains: [mainnet, sepolia],
 	connectors: [
-		new MetaMaskConnector({ chains }),
+		metaMask(),
 	],
-	publicClient,
-	webSocketPublicClient,
+	transports: {
+		[mainnet.id]: http(),
+		[sepolia.id]: http(),
+	},
 });
 
-export const WagmiProvider = ({ children }) => {
-	return <WagmiConfig config={config}>{children}</WagmiConfig>;
+export const Web3Provider = ({ children }) => {
+	const queryClient = new QueryClient();
+	return (
+		<WagmiProvider config={config}>
+			<QueryClientProvider client={queryClient}>
+				{children}
+			</QueryClientProvider>
+		</WagmiProvider>
+	);
 };

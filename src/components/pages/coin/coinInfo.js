@@ -285,8 +285,8 @@ const SmartContractsMenu = ({ coinDetails }) => {
                     <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                         <CustomAvatar
                             src={coinDetails?.smart_contracts[0].logoUrl}
-                            height={"15px"}
-                            width={"15px"}
+                            height={15}
+                            width={15}
                             name={
                                 coinDetails?.smart_contracts[0]?.platform
                                     .name
@@ -314,16 +314,16 @@ const SmartContractsMenu = ({ coinDetails }) => {
                 overflowY={"auto"}
                 className="hidescrollbar"
             >
-                {coinDetails?.smart_contracts.map((contract, i) => {
-                    return (
+                {
+                coinDetails?.smart_contracts.map((contract, i) => (
                         <PageMenuItem
                             key={i}
                             name={contract?.platform?.name}
                             logoUrl={contract?.logoUrl}
                             address={contract?.contract_address}
-                        ></PageMenuItem>
-                    );
-                })}
+                        />
+                    ))
+                }
             </MenuList>
         </Menu>
     );
@@ -342,7 +342,6 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
             key={i}
             onClick={() => {
                 navigator.clipboard.writeText(address);
-
                 toast({
                     title: "Address Copied to Clipboard",
                     status: "success",
@@ -365,8 +364,8 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
                 <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <CustomAvatar
                         src={logoUrl}
-                        height={"15px"}
-                        width={"15px"}
+                        height={15}
+                        width={15}
                         name={"contract_icon"}
                     />
                     <Box layerStyle={"flexColumn"}>
