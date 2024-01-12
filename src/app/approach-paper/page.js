@@ -90,9 +90,6 @@ const ApproachPaperPage = () => {
                 flexDir={"column"}
                 pos="relative"
             >
-                <Text variant="approachPaperHeading" mb="34px" fontWeight={"600"} w='100%' textAlign={"center"}>
-                    BetygFi Approach Paper
-                </Text>
                 <Box display={"flex"} flexDir={{ sm: "column", md: "row" }} mb="40px">
                     <Box w={{ sm: "100%", md: "30%" }} pr="10px">
                         <Text variant="approachPaperHeading" fontWeight={"500"} mb={{ sm: "10px" }}>
