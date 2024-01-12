@@ -16,12 +16,12 @@ import Image from "next/image";
 const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => {
     const { colorMode } = useColorMode();
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} >
             <ModalOverlay
                 bg="blackAlpha.300"
                 backdropFilter="blur(10px) hue-rotate(90deg)"
             />
-            <ModalContent>
+            <ModalContent zIndex={1000000}>
                 {state === "success" ? (
                     <Box layerStyle={"FlexColumnCenter"} p={"60px 26px 40px"}
                         _dark={{
@@ -107,7 +107,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                                 bgColor: "#D5D5D5",
                             }}
                             _dark={{
-                                bgColor: "#D5D5D5",
+                                bgColor: "#202020",
                             }}
                             p={"35px"}
                             pb={"40px"}
@@ -118,7 +118,15 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
                             <Text variant={"customModalHeader"}>{headerTitle}</Text>
                         </ModalHeader>
                         <ModalCloseButton />
-                        <ModalBody p={{ md: "20px 35px 36px" }} bg={"#F4F4F4"}>
+                        <ModalBody p={{ md: "20px 35px 36px" }}
+                            borderRadius={"6px"}
+                            _light={{
+                                bgColor: "white",
+                            }}
+                            _dark={{
+                                bgColor: "#313131",
+                            }}
+                        >
                             <BodyComponent></BodyComponent>
                         </ModalBody>
                     </React.Fragment>)}
