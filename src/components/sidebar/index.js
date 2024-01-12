@@ -25,7 +25,7 @@ import {
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { sidebarCollapsedReducer } from "@redux/app_data/dataSlice";
+import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
 import {
     bottomMenu,
@@ -39,7 +39,7 @@ import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "@components/sidebar/report";
 import SuggestFeatureModal from "@components/sidebar/suggestfeature";
 import { signOut, useSession } from "next-auth/react";
-import { LogoutReducer } from "@redux/auth_data/authSlice";
+import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
 import { PublicAddressStringFormatter } from "@util/utility";
@@ -56,7 +56,9 @@ const SidebarContent = ({ ...rest }) => {
         dispatch(sidebarCollapsedReducer(value));
     };
 
-    const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
+    const isSidebarCollapsed = useSelector(
+        (state) => state?.appData?.isSidebarCollapsed
+    );
 
     const {
         isOpen: isSuggestFeatureModalOpen,
@@ -119,7 +121,7 @@ const SidebarContent = ({ ...rest }) => {
                         >
                             Dashboards
                         </Text>
-                        {dashboards().map((link, i) => (
+                        {dashboards.map((link, i) => (
                             <NavItem
                                 key={i}
                                 NavIcon={link.icon}
@@ -202,7 +204,7 @@ const SidebarContent = ({ ...rest }) => {
                                 </AccordionButton>
                                 <AccordionPanel w={"100%"} p={0}>
                                     <Box layerStyle={"flexColumn"}>
-                                        {communities().map((link, i) => (
+                                        {communities.map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -413,7 +415,7 @@ const SidebarContent = ({ ...rest }) => {
                         </Box>
 
                         <Box layerStyle={"flexColumn"} mt={"20px"}>
-                            {dashboards().map((link, i) => (
+                            {dashboards.map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -440,7 +442,7 @@ const SidebarContent = ({ ...rest }) => {
                                 ></CollapsedNavItem>
                             ))}
 
-                            {communities().map((link, i) => (
+                            {communities.map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -758,295 +760,127 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
     const dispatch = useDispatch();
 
     return (
-        <>
-            <Drawer
-                isOpen={isOpen}
-                placement={"left"}
-                onClose={onClose}
-                //size={"md"}
-                w="80%"
-            >
-                <DrawerOverlay />
+        <Drawer
+            isOpen={isOpen}
+            placement={"left"}
+            onClose={onClose}
+            //size={"md"}
+            w="80%"
+        >
+            <DrawerOverlay />
 
-                <DrawerContent>
-                    <DrawerBody p={0}>
+            <DrawerContent>
+                <DrawerBody p={0}>
+                    <Box
+                        bg={useColorModeValue("white", "#191919")}
+                        borderRight="1px"
+                        borderRightColor={useColorModeValue(
+                            "gray.200",
+                            "gray.700"
+                        )}
+                        minH="100vh"
+                        boxShadow={useColorModeValue(
+                            "1px 0px 0px 0px #E1E1E1",
+                            "1px 0px 0px 0px #333"
+                        )}
+                        display={"flex"}
+                        pos={"fixed"}
+                        zIndex={"100"}
+                        w={"100%"}
+                        h={"100%"}
+                    >
                         <Box
-                            bg={useColorModeValue("white", "#191919")}
-                            borderRight="1px"
-                            borderRightColor={useColorModeValue(
-                                "gray.200",
-                                "gray.700"
-                            )}
-                            minH="100vh"
-                            boxShadow={useColorModeValue(
-                                "1px 0px 0px 0px #E1E1E1",
-                                "1px 0px 0px 0px #333"
-                            )}
+                            w="100%"
+                            h="100%"
                             display={"flex"}
-                            pos={"fixed"}
-                            zIndex={"100"}
-                            w={"100%"}
-                            h={"100%"}
+                            flexDirection={"column"}
+                            justifyContent={"space-between"}
                         >
-                            <Box
-                                w="100%"
-                                h="100%"
-                                display={"flex"}
-                                flexDirection={"column"}
-                                justifyContent={"space-between"}
-                            >
-                                {/* Top Half */}
-                                <Box>
+                            {/* Top Half */}
+                            <Box>
+                                <Box
+                                    display={"flex"}
+                                    alignItems={"center"}
+                                    justifyContent={"space-between"}
+                                    padding={"5px 20px"}
+                                    borderBottom={"2px"}
+                                    borderColor={
+                                        colorMode === "light"
+                                            ? "#E1E1E1"
+                                            : "#333"
+                                    }
+                                >
                                     <Box
                                         display={"flex"}
                                         alignItems={"center"}
-                                        justifyContent={"space-between"}
-                                        padding={"5px 20px"}
-                                        borderBottom={"2px"}
-                                        borderColor={
-                                            colorMode === "light"
-                                                ? "#E1E1E1"
-                                                : "#333"
-                                        }
                                     >
                                         <Box
-                                            display={"flex"}
-                                            alignItems={"center"}
+                                            mr="10px"
+                                            cursor={"pointer"}
+                                            onClick={onClose}
                                         >
-                                            <Box
-                                                mr="10px"
-                                                cursor={"pointer"}
-                                                onClick={onClose}
-                                            >
-                                                <DynamicIcon
-                                                    name={
-                                                        colorMode === "light"
-                                                            ? "x_dark"
-                                                            : "x_light"
-                                                    }
-                                                />
-                                            </Box>
-
-                                            <Box
-                                                layerStyle={"flexCenter"}
-                                                cursor={"pointer"}
-                                                p={"20px"}
-                                            >
-                                                <Image
-                                                    width={100}
-                                                    height={70}
-                                                    alt="logo"
-                                                    unoptimized="true"
-                                                    priority="true"
-                                                    src={
-                                                        colorMode === "light"
-                                                            ? "/icons/light_betgyfi_sm_icon.svg"
-                                                            : "/icons/dark_betgyfi_sm_logo.svg"
-                                                    }
-                                                    cursor={"pointer"}
-                                                    onClick={() =>
-                                                        router.push("/")
-                                                    }
-                                                />
-                                            </Box>
+                                            <DynamicIcon
+                                                name={
+                                                    colorMode === "light"
+                                                        ? "x_dark"
+                                                        : "x_light"
+                                                }
+                                            />
                                         </Box>
 
-                                        <Box>
-                                            <div className="controller-row">
-                                                <label className="switch">
-                                                    <input
-                                                        id="toggler"
-                                                        type="checkbox"
-                                                        checked={
-                                                            colorMode !==
-                                                            "light"
-                                                        }
-                                                        onChange={() => {
-                                                            toggleColorMode();
-                                                        }}
-                                                    />
-                                                    <span className="slider round"></span>
-                                                </label>
-                                            </div>
+                                        <Box
+                                            layerStyle={"flexCenter"}
+                                            cursor={"pointer"}
+                                            p={"20px"}
+                                        >
+                                            <Image
+                                                width={100}
+                                                height={70}
+                                                alt="logo"
+                                                unoptimized="true"
+                                                priority="true"
+                                                src={
+                                                    colorMode === "light"
+                                                        ? "/icons/light_betgyfi_sm_icon.svg"
+                                                        : "/icons/dark_betgyfi_sm_logo.svg"
+                                                }
+                                                cursor={"pointer"}
+                                                onClick={() =>
+                                                    router.push("/")
+                                                }
+                                            />
                                         </Box>
                                     </Box>
 
-                                    <Box layerStyle={"flexColumn"}>
-                                        {dashboards().map((link, i) => (
-                                            <NavItem
-                                                key={i}
-                                                NavIcon={link.icon}
-                                                path={link.path}
-                                                newTab={link.newTab}
-                                                // isActive={pathname === link.path}
-                                                isActive={link.activePaths.includes(pathname)}
-                                                height={"50px"}
-                                                mr={"0px"}
-                                            >
-                                                <Text
-                                                    fontSize={"14px"}
-                                                    lineHeight={"20px"}
-                                                    letterSpacing={"1.4px"}
-                                                >
-                                                    {link.name}
-                                                </Text>
-                                            </NavItem>
-                                        ))}
-
-                                        {pages.map((link, i) => (
-                                            <NavItem
-                                                key={i}
-                                                NavIcon={link.icon}
-                                                path={link.path}
-                                                newTab={link.newTab}
-                                                isActive={
-                                                    pathname === link.path
-                                                }
-                                                height={"50px"}
-                                                mr={"0px"}
-                                            >
-                                                <Text
-                                                    fontSize={"14px"}
-                                                    lineHeight={"20px"}
-                                                    letterSpacing={"1.4px"}
-                                                >
-                                                    {link.name}
-                                                </Text>
-                                            </NavItem>
-                                        ))}
-
-                                        {/* communities */}
-                                        <Flex
-                                            alignItems="stretch"
-                                            alignContent={"center"}
-                                            justifyContent={"space-between"}
-                                            height={"50px"}
-                                            padding={"9px 20px"}
-                                            role="group"
-                                            cursor="pointer"
-                                            _hover={{
-                                                bg:
-                                                    colorMode === "light"
-                                                        ? "#202020"
-                                                        : "#FFFFFF",
-                                                color:
-                                                    colorMode === "light"
-                                                        ? "#FFFFFF"
-                                                        : "#191919",
-                                                fontWeight: "600",
-                                            }}
-                                            fontSize="14px"
-                                            fontWeight={"400"}
-                                            lineHeight="20px"
-                                            letterSpacing="1.4px"
-                                            onClick={onCommunitiesToggle}
-                                        >
-                                            <Box
-                                                display={"flex"}
-                                                justifyContent={"center"}
-                                                alignItems={"center"}
-                                                alignContent={"center"}
-                                                gap={"10px"}
-                                            >
-                                                <Icon
-                                                    as={BsPeople}
-                                                    boxSize={18}
-                                                    color={
-                                                        colorMode === "light"
-                                                            ? "#161616"
-                                                            : "#FFFFFF"
+                                    <Box>
+                                        <div className="controller-row">
+                                            <label className="switch">
+                                                <input
+                                                    id="toggler"
+                                                    type="checkbox"
+                                                    checked={
+                                                        colorMode !==
+                                                        "light"
                                                     }
-                                                    _groupHover={{
-                                                        color:
-                                                            colorMode ===
-                                                                "light"
-                                                                ? "#FFFFFF"
-                                                                : "#191919",
+                                                    onChange={() => {
+                                                        toggleColorMode();
                                                     }}
                                                 />
-                                                <Text>Communities</Text>
-                                            </Box>
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </Box>
+                                </Box>
 
-                                            <Box>
-                                                <DirectionArrowIcon
-                                                    boxSize={25}
-                                                    color={
-                                                        colorMode === "light"
-                                                            ? "dark"
-                                                            : "white"
-                                                    }
-                                                    _groupHover={{
-                                                        color:
-                                                            colorMode ===
-                                                                "light"
-                                                                ? "white"
-                                                                : "dark",
-                                                    }}
-                                                    style={{ rotate: "90deg" }}
-                                                />
-                                            </Box>
-                                        </Flex>
-
-                                        <Collapse
-                                            in={isCommunitiesOpen}
-                                            animateOpacity={"true"}
-                                        >
-                                            <Box layerStyle={"flexColumn"}>
-                                                {communities().map((link, i) => (
-                                                    <NavItem
-                                                        key={i}
-                                                        NavIcon={link.icon}
-                                                        path={link.path}
-                                                        newTab={link.newTab}
-                                                        isActive={
-                                                            pathname ===
-                                                            link.path
-                                                        }
-                                                        height={"40px"}
-                                                        pl={"20px"}
-                                                        mr={"0px"}
-                                                    >
-                                                        <Text
-                                                            fontSize={"12px"}
-                                                            lineHeight={"20px"}
-                                                            letterSpacing={
-                                                                "1.4px"
-                                                            }
-                                                        >
-                                                            {link.name}
-                                                        </Text>
-                                                    </NavItem>
-                                                ))}
-                                            </Box>
-                                        </Collapse>
-
-                                        {bottomMenu.map((link, i) => (
-                                            <NavItem
-                                                key={i}
-                                                NavIcon={link.icon}
-                                                path={link.path}
-                                                newTab={link.newTab}
-                                                isActive={
-                                                    pathname === link.path
-                                                }
-                                                height={"50px"}
-                                                mr={"0px"}
-                                            >
-                                                <Text
-                                                    fontSize={"14px"}
-                                                    lineHeight={"20px"}
-                                                    letterSpacing={"1.4px"}
-                                                >
-                                                    {link.name}
-                                                </Text>
-                                            </NavItem>
-                                        ))}
-
+                                <Box layerStyle={"flexColumn"}>
+                                    {dashboards.map((link, i) => (
                                         <NavItem
-                                            NavIcon={legal.icon}
-                                            path={legal.path}
-                                            newTab={legal.newTab}
-                                            isActive={pathname === legal.path}
+                                            key={i}
+                                            NavIcon={link.icon}
+                                            path={link.path}
+                                            newTab={link.newTab}
+                                            // isActive={pathname === link.path}
+                                            isActive={link.activePaths.includes(pathname)}
                                             height={"50px"}
                                             mr={"0px"}
                                         >
@@ -1055,115 +889,281 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 lineHeight={"20px"}
                                                 letterSpacing={"1.4px"}
                                             >
-                                                Legal
+                                                {link.name}
                                             </Text>
                                         </NavItem>
-                                    </Box>
-                                </Box>
+                                    ))}
 
-                                <Box
-                                    display={"flex"}
-                                    justifyContent={"center"}
-                                    padding={"10px"}
-                                    mb={"40px"}
-                                >
-                                    {!AuthSession ? (
-                                        <>
-                                            <Box
-                                                alignContent={"center"}
+                                    {pages.map((link, i) => (
+                                        <NavItem
+                                            key={i}
+                                            NavIcon={link.icon}
+                                            path={link.path}
+                                            newTab={link.newTab}
+                                            isActive={
+                                                pathname === link.path
+                                            }
+                                            height={"50px"}
+                                            mr={"0px"}
+                                        >
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                                letterSpacing={"1.4px"}
                                             >
-                                                <Box
-                                                    cursor={"pointer"}
-                                                    onClick={onLoginModalOpen}
-                                                    bgColor={
-                                                        colorMode === "light"
-                                                            ? "#282828"
-                                                            : "#FFF"
+                                                {link.name}
+                                            </Text>
+                                        </NavItem>
+                                    ))}
+
+                                    {/* communities */}
+                                    <Flex
+                                        alignItems="stretch"
+                                        alignContent={"center"}
+                                        justifyContent={"space-between"}
+                                        height={"50px"}
+                                        padding={"9px 20px"}
+                                        role="group"
+                                        cursor="pointer"
+                                        _hover={{
+                                            bg:
+                                                colorMode === "light"
+                                                    ? "#202020"
+                                                    : "#FFFFFF",
+                                            color:
+                                                colorMode === "light"
+                                                    ? "#FFFFFF"
+                                                    : "#191919",
+                                            fontWeight: "600",
+                                        }}
+                                        fontSize="14px"
+                                        fontWeight={"400"}
+                                        lineHeight="20px"
+                                        letterSpacing="1.4px"
+                                        onClick={onCommunitiesToggle}
+                                    >
+                                        <Box
+                                            display={"flex"}
+                                            justifyContent={"center"}
+                                            alignItems={"center"}
+                                            alignContent={"center"}
+                                            gap={"10px"}
+                                        >
+                                            <Icon
+                                                as={BsPeople}
+                                                boxSize={18}
+                                                color={
+                                                    colorMode === "light"
+                                                        ? "#161616"
+                                                        : "#FFFFFF"
+                                                }
+                                                _groupHover={{
+                                                    color:
+                                                        colorMode ===
+                                                            "light"
+                                                            ? "#FFFFFF"
+                                                            : "#191919",
+                                                }}
+                                            />
+                                            <Text>Communities</Text>
+                                        </Box>
+
+                                        <Box>
+                                            <DirectionArrowIcon
+                                                boxSize={25}
+                                                color={
+                                                    colorMode === "light"
+                                                        ? "dark"
+                                                        : "white"
+                                                }
+                                                _groupHover={{
+                                                    color:
+                                                        colorMode ===
+                                                            "light"
+                                                            ? "white"
+                                                            : "dark",
+                                                }}
+                                                style={{ rotate: "90deg" }}
+                                            />
+                                        </Box>
+                                    </Flex>
+
+                                    <Collapse
+                                        in={isCommunitiesOpen}
+                                        animateOpacity={"true"}
+                                    >
+                                        <Box layerStyle={"flexColumn"}>
+                                            {communities.map((link, i) => (
+                                                <NavItem
+                                                    key={i}
+                                                    NavIcon={link.icon}
+                                                    path={link.path}
+                                                    newTab={link.newTab}
+                                                    isActive={
+                                                        pathname ===
+                                                        link.path
                                                     }
-                                                    layerStyle={"center"}
-                                                    borderRadius={"2px"}
-                                                    p="15px 20px"
-                                                    minW="150px"
+                                                    height={"40px"}
+                                                    pl={"20px"}
+                                                    mr={"0px"}
                                                 >
                                                     <Text
-                                                        variant={"SearchText"}
-                                                        fontWeight={"600"}
-                                                        _light={{ color: "#FAFAFB" }}
-                                                        _dark={{ color: "#191919" }}
+                                                        fontSize={"12px"}
+                                                        lineHeight={"20px"}
+                                                        letterSpacing={
+                                                            "1.4px"
+                                                        }
                                                     >
-                                                        Connect Wallet
+                                                        {link.name}
                                                     </Text>
-                                                </Box>
-                                            </Box>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Box
-                                                layerStyle={"flexCenter"}
-                                                justifyContent={"center"}
-                                                w="100%"
-                                            >
-                                                {typeof window !== "undefined" && (
-                                                    <CustomAvatar
-                                                        src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
-                                                    />
-                                                )}
+                                                </NavItem>
+                                            ))}
+                                        </Box>
+                                    </Collapse>
 
-                                                <Box
-                                                    layerStyle={"flexColumn"}
-                                                    ml="10px"
-                                                    mr="20px"
-                                                    minW="150px"
-                                                >
-                                                    <Text
-                                                        variant={"TopWalletsText"}
-                                                        w="140px"
-                                                        whiteSpace={"nowrap"}
-                                                        overflow={"hidden"}
-                                                        textOverflow={"ellipsis"}
-                                                    >
-                                                        {AuthSession?.user?.name
-                                                            ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
-                                                    </Text>
-                                                    {AuthSession?.user?.public_address && (
-                                                        <Text
-                                                            variant={"h5"}
-                                                            letterSpacing={"1.2px"}
-                                                            _light={{ color: "#16171B" }}
-                                                            _dark={{ color: "#A8ADBD" }}
-                                                        >
-                                                            {AuthSession?.user?.public_address
-                                                                ?.split("")
-                                                                ?.join("")
-                                                                ?.substring(0, 6) +
-                                                                "..." +
-                                                                AuthSession?.user?.public_address?.slice(
-                                                                    -5
-                                                                )}
-                                                        </Text>
-                                                    )}
-                                                </Box>
-                                                <i className={`icon ${colorMode === "light" ? "log_in_black" : "log_in_white"}`}
-                                                    onClick={() => {
-                                                        disconnect();
-                                                        setTimeout(() => {
-                                                            dispatch(LogoutReducer());
-                                                            setTimeout(() => {
-                                                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-                                                            }, 200);
-                                                        }, 100);
-                                                    }}
-                                                />
-                                            </Box>
-                                        </>
-                                    )}
+                                    {bottomMenu.map((link, i) => (
+                                        <NavItem
+                                            key={i}
+                                            NavIcon={link.icon}
+                                            path={link.path}
+                                            newTab={link.newTab}
+                                            isActive={
+                                                pathname === link.path
+                                            }
+                                            height={"50px"}
+                                            mr={"0px"}
+                                        >
+                                            <Text
+                                                fontSize={"14px"}
+                                                lineHeight={"20px"}
+                                                letterSpacing={"1.4px"}
+                                            >
+                                                {link.name}
+                                            </Text>
+                                        </NavItem>
+                                    ))}
+
+                                    <NavItem
+                                        NavIcon={legal.icon}
+                                        path={legal.path}
+                                        newTab={legal.newTab}
+                                        isActive={pathname === legal.path}
+                                        height={"50px"}
+                                        mr={"0px"}
+                                    >
+                                        <Text
+                                            fontSize={"14px"}
+                                            lineHeight={"20px"}
+                                            letterSpacing={"1.4px"}
+                                        >
+                                            Legal
+                                        </Text>
+                                    </NavItem>
                                 </Box>
                             </Box>
+
+                            <Box
+                                display={"flex"}
+                                justifyContent={"center"}
+                                padding={"10px"}
+                                mb={"40px"}
+                            >
+                                {!AuthSession ? (
+                                    <Box
+                                        alignContent={"center"}
+                                    >
+                                        <Box
+                                            cursor={"pointer"}
+                                            onClick={onLoginModalOpen}
+                                            bgColor={
+                                                colorMode === "light"
+                                                    ? "#282828"
+                                                    : "#FFF"
+                                            }
+                                            layerStyle={"center"}
+                                            borderRadius={"2px"}
+                                            p="15px 20px"
+                                            minW="150px"
+                                        >
+                                            <Text
+                                                variant={"SearchText"}
+                                                fontWeight={"600"}
+                                                _light={{ color: "#FAFAFB" }}
+                                                _dark={{ color: "#191919" }}
+                                            >
+                                                Login/Signup
+                                            </Text>
+                                        </Box>
+                                    </Box>
+                                ) : (
+                                    <Box
+                                        layerStyle={"flexCenter"}
+                                        justifyContent={"center"}
+                                        w="100%"
+                                    >
+                                        {typeof window !== "undefined" && (
+                                            <CustomAvatar
+                                                src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                            />
+                                        )}
+
+                                        <Box
+                                            layerStyle={"flexColumn"}
+                                            ml="10px"
+                                            mr="20px"
+                                            minW="150px"
+                                        >
+                                            <Text
+                                                variant={"TopWalletsText"}
+                                                w="140px"
+                                                whiteSpace={"nowrap"}
+                                                overflow={"hidden"}
+                                                textOverflow={"ellipsis"}
+                                            >
+                                                {AuthSession?.user?.name
+                                                    ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                            </Text>
+                                            {AuthSession?.user?.public_address && (
+                                                <Text
+                                                    variant={"h5"}
+                                                    letterSpacing={"1.2px"}
+                                                    _light={{ color: "#16171B" }}
+                                                    _dark={{ color: "#A8ADBD" }}
+                                                >
+                                                    {AuthSession?.user?.public_address
+                                                        ?.split("")
+                                                        ?.join("")
+                                                        ?.substring(0, 6) +
+                                                        "..." +
+                                                        AuthSession?.user?.public_address?.slice(
+                                                            -5
+                                                        )}
+                                                </Text>
+                                            )}
+                                        </Box>
+                                        <i
+                                            className={`icon ${colorMode === "light"
+                                                ? "log_in_black"
+                                                : "log_in_white"
+                                                }`}
+                                            onClick={() => {
+                                                disconnect();
+                                                setTimeout(() => {
+                                                    dispatch(LogoutReducer());
+                                                    setTimeout(() => {
+                                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                                    }, 200);
+                                                }, 100);
+                                            }}
+                                        />
+                                    </Box>
+                                )}
+                            </Box>
                         </Box>
-                    </DrawerBody>
-                </DrawerContent>
-            </Drawer>
-        </>
+                    </Box>
+                </DrawerBody>
+            </DrawerContent>
+        </Drawer >
     );
 };
 

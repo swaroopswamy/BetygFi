@@ -28,7 +28,7 @@ export const bottomMenu = [
     },
 ];
 
-export const dashboards = () => [
+export const dashboards = [
     {
         name: "DeFi Market Analytics",
         icon: IoIosTrendingUp,
@@ -65,7 +65,7 @@ export const pages = [
     { name: "About", icon: BetygFiSmLogo, path: "/about" },
 ];
 
-export const communities = () => [
+export const communities = [
     {
         name: "BetygFi",
         icon: VscCommentDiscussion,
