@@ -7,15 +7,16 @@ import React, { useEffect, useState } from "react";
 const ApproachPaperPage = () => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [isVisible, setIsVisible] = useState(false);
+    const [isBigVisible, setIsBigVisible] = useState(false);
 
     const handleScroll = () => {
         // Check if the user has scrolled down 200 pixels
         const scrollDiv = document.getElementById('main-body');
 
         if (scrollDiv.scrollTop > 200) {
-            setIsVisible(true);
+            setIsBigVisible(true);
         } else {
-            setIsVisible(false);
+            setIsBigVisible(false);
         }
     };
 
@@ -457,7 +458,7 @@ const ApproachPaperPage = () => {
                 <Text variant={"footNoteText"} mb="30px" pl="10px">
                     A digital wallet in blockchain is like a digital pocket that helps you store and manage your online coin/token.
                 </Text>
-                {isMd ? (isVisible && (
+                {isMd ? (isBigVisible && (
                     <Button
                         alt=""
                         mb={"5px"}
