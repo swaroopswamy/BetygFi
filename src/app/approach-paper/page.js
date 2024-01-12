@@ -9,6 +9,13 @@ const ApproachPaperPage = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isBigVisible, setIsBigVisible] = useState(false);
 
+    const scrollToElementById = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     const handleScroll = () => {
         // Check if the user has scrolled down 200 pixels
         const scrollDiv = document.getElementById('main-body');
@@ -117,7 +124,7 @@ const ApproachPaperPage = () => {
                             perception of blockchain as a technology, real time access to financial data without a gatekeeper is
                             unprecedented. Despite real time availability of financial data, the process of accessing data is technically
                             challenging and understanding on chain data is difficult. Bad actors have leveraged this information
-                            asymmetry, hence actors using blockchain have become synonymous with malicious conduct.<sup>[1]</sup>
+                            asymmetry, hence actors using blockchain have become synonymous with malicious conduct.<sup id="footnote-1" onClick={() => scrollToElementById('footnote-bottom-1')} style={{ cursor: "pointer" }}>[1]</sup>
                         </Text>
                         <Text
                             variant={'bigText'}
@@ -216,7 +223,7 @@ const ApproachPaperPage = () => {
                             seeks global co ordination to enable the same. It highlights concerns such as undermining monetary policy,
                             fiscal risks, and the potential for systemic threats. The document emphasizes the need for a comprehensive
                             regulatory response, advocating for strengthened monetary policy frameworks, clear tax treatments, and
-                            robust supervisory oversight.<sup>[2]</sup>
+                            robust supervisory oversight.<sup id="footnote-2" onClick={() => scrollToElementById('footnote-bottom-2')} style={{ cursor: "pointer" }}>[2]</sup>
                         </Text>
                         <Text variant={"h4"} lineHeight={"28px"}>
                             Notwithstanding the negative sentiment as recognized by the IMF-FSB paper, it is hard to ignore the
@@ -279,7 +286,7 @@ const ApproachPaperPage = () => {
                         <Text variant={"h4"} lineHeight={"28px"}>
                             The model provides relative health and growth scoring of actors and constituents within the ecosystem viz.
                             it attributes real time dynamic score to Decentralized Financial Organizations (DeFis), Coins/Tokens and
-                            Wallets and further establishes relationship modeling to highlight real time systemic risk.<sup>[3]</sup>
+                            Wallets and further establishes relationship modeling to highlight real time systemic risk.<sup id="footnote-3" onClick={() => scrollToElementById('footnote-bottom-3')} style={{ cursor: "pointer" }}>[3]</sup>
                         </Text>
                     </Box>
                 </Box>
@@ -347,7 +354,7 @@ const ApproachPaperPage = () => {
                     className="list-body"
                 >
                     <Text variant={"smApproachSmallHeading"}>
-                        Highlights of BetygFi’s Machine Learning model:
+                        Highlights of BetygFi&apos;s Machine Learning model:
                     </Text>
                     <Box display={"flex"} flexDirection={"column"} pl="24px">
                         <ul>
@@ -440,19 +447,39 @@ const ApproachPaperPage = () => {
                 <Text variant="approachPaperHeading" mt="30px" fontWeight={"700"} >
                     References
                 </Text>
-                <Text variant={"footNoteText"} mt="10px" mb="30px" >
+                <Text variant={"footNoteText"} mt="10px" mb="30px"
+                    id={`footnote-bottom-1`}
+                    onClick={() => scrollToElementById('footnote-1')}
+                    cursor={"pointer"}
+                >
                     [1] It is our approach to identify the problem and solve for it agnostic of intent; for the consequences of actions notwithstanding intent are the same. It is debatable and the subject matter of judicial review as to whether actors that inhabit the crypto and blockchain space acted out of malice, negligence or both. It is however not a matter of debate that their actions had serious consequences on retail investors and the community. <br></br>&ldquo;Never attribute to malice what can be sufficiently explained by ignorance&rdquo;
                 </Text>
-                <Text variant={"footNoteText"} mb="30px" >
+                <Text variant={"footNoteText"} mb="30px"
+                    id={`footnote-bottom-2`}
+                    onClick={() => scrollToElementById('footnote-2')}
+                    cursor={"pointer"}
+                >
                     [2] Please see the IMF-FSB Synthesis Paper: <Link href={"https://www.fsb.org/wp-content/uploads/R070923-1.pdf"} target="_blank" style={{ color: "#0066CC", textDecoration: "underline" }}>https://www.fsb.org/wp-content/uploads/R070923-1.pdf</Link>
                 </Text>
-                <Text variant={"footNoteText"} mb="30px">
+                <Text variant={"footNoteText"} mb="30px"
+                    id={`footnote-bottom-3`}
+                    onClick={() => scrollToElementById('footnote-3')}
+                    cursor={"pointer"}
+                >
                     [3] Coin typically refers to a unit of digital currency. It&apos;s like the money you use in your wallet, but it exists in electronic form on the blockchain.
                 </Text>
-                <Text variant={"footNoteText"} mb="30px" pl="10px">
+                <Text variant={"footNoteText"} mb="30px" pl="10px"
+                    id={`footnote-bottom-3`}
+                    onClick={() => scrollToElementById('footnote-3')}
+                    cursor={"pointer"}
+                >
                     A token is a digital asset that can represent a variety of assets or values. Tokens can be like certificates that represent ownership of something or the right to access certain services within a specific blockchain ecosystem.
                 </Text>
-                <Text variant={"footNoteText"} mb="30px" pl="10px">
+                <Text variant={"footNoteText"} mb="30px" pl="10px"
+                    id={`footnote-bottom-3`}
+                    onClick={() => scrollToElementById('footnote-3')}
+                    cursor={"pointer"}
+                >
                     A digital wallet in blockchain is like a digital pocket that helps you store and manage your online coin/token.
                 </Text>
                 {isMd ? (isBigVisible && (
