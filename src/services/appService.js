@@ -63,7 +63,7 @@ export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 
 export const getAppConfig = async host => {
 	try {
-		const url = `${host}/api/config`;
+		const url = `${host}/api/config?portal=${process.env.PORTAL_NAME}&env=${process.env.BUILD_ENV}`;
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
 		} else {

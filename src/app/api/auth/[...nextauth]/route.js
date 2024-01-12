@@ -46,7 +46,7 @@ export const authOptions = () => {
             },
         },
 
-        secret: "HIqQTCc71HYJUtPmroi9ubMRmOpWSlM/Hl+aegkeMtk="
+        secret: process.env.NEXTAUTH_SECRET
     };
 };
 
