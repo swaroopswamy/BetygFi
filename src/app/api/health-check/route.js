@@ -1,9 +1,10 @@
-import { GET_LOCAL_SERVER_HOST } from "@util/utility";
+export async function GET(req) {
+    const { searchParams } = new URL(req.url);
+    const BUILD_ENV = searchParams.get("env");
 
-export async function GET() {
     const getAppConfig = async () => {
         try {
-            const url = `${GET_LOCAL_SERVER_HOST()}/api/config?portal=${process.env.PORTAL_NAME}&env=${process.env.BUILD_ENV}`;
+            const url = `http://localhost:7000/api/config?env=${BUILD_ENV}`;
             const res = await fetch(url, { cache: 'no-store' });
             const data = await res.json();
             return data?.data?.config?.values?.NEXT_PUBLIC_API_URL;

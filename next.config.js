@@ -1,10 +1,10 @@
 /**
  * @type {import('next').NextConfig}
- */
+*/
+// const webpack = require("webpack");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-
 const nextConfig = {
   async headers() {
     return [
@@ -21,6 +21,22 @@ const nextConfig = {
     ];
   },
   reactStrictMode: false,
+  // webpack(config) {
+  //   config.plugins.push(
+  //     new webpack.DefinePlugin({
+  //       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+  //     })
+  //   );
+  //   config.resolve = {
+  //     ...config.resolve,
+  //     fallback: {
+  //       "fs": false,
+  //       "path": false,
+  //       "os": false,
+  //     }
+  //   };
+  //   return config;
+  // },
   images: {
     remotePatterns: [
       {

@@ -141,7 +141,7 @@ export const calculatePercentage = (value, totalValue) => (value / totalValue) *
 export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
 
 export const GET_LOCAL_SERVER_HOST = () => {
-    const APP_PORT = process.env.APP_PORT;
+    const APP_PORT = process.env.APP_PORT || 7000;
     const getHost = (isLocal) => {
         const PORTAL_NAME = process.env.PORTAL_NAME;
         if (isLocal) {
