@@ -12,9 +12,9 @@
     "build": "next build",
     "clean:build": "rm -rf .next && rm -rf .env && npm run build",
     "analyze-build": "cross-env ANALYZE=true next build",
-    "test-build:dev": "npm run clean:build && npm run generateconfig:dev && npm run deploy",
-    "test-build:qa": "npm run clean:build && npm run generateconfig:qa && npm run deploy",
-    "test-build:prod": "npm run clean:build && npm run generateconfig:prod && npm run deploy",
+    "build:deploy:dev": "npm run clean:build && npm run generateconfig:dev && npm run deploy",
+    "build:deploy:qa": "npm run clean:build && npm run generateconfig:qa && npm run deploy",
+    "build:deploy:prod": "npm run clean:build && npm run generateconfig:prod && npm run deploy",
     "eslint": "eslint ./src",
     "prepare": "husky install"
   },
