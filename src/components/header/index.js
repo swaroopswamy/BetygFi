@@ -319,8 +319,8 @@ const Navbar = ({ ...rest }) => {
                                         ? "/icons/light_betgyfi_sm_icon.svg"
                                         : "/icons/dark_betgyfi_sm_logo.svg"
                                 }
-                                height={25}
-                                width={25}
+                                height={120}
+                                width={120}
                                 cursor={"pointer"}
                                 onClick={() => {
                                     router.push("/");
