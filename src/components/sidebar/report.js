@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useToast } from "@chakra-ui/react";
 import { categories } from "@util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,8 +12,10 @@ import {
 const CustomInput = dynamic(() => import("@components/customInput"));
 const CustomModal = dynamic(() => import("@components/custommodal/index"));
 const CustomDropdown = dynamic(() => import("@components/dropdown/index"));
+const CustomToast = dynamic(() => import("@/components/toast"));
 const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
     const dispatch = useDispatch();
+    const toast = useToast();
     const [formData, setFormData] = useState({
         userId: 123,
         category: "",
@@ -55,7 +57,19 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(postReportBug(formData));
+        if (formData?.description.trim().length === 0) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Required field cannot be empty'}
+                    />
+                ),
+            });
+        } else {
+            dispatch(postReportBug(formData));
+        }
     };
 
     useEffect(() => {
@@ -151,6 +165,7 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
                         <Box w={"100%"} layerStyle={"center"}>
                             <Button
                                 as="submit"
+                                cursor={"pointer"}
                                 variant={"submitModal"}
                                 onClick={handleSubmit}
                             >

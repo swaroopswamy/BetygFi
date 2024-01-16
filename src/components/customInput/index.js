@@ -10,7 +10,7 @@ const CustomInput = ({ name, label, placeholder, handleChange, type, value }) =>
                 {type === "textarea" ? (
                     <Textarea
                         _placeholder={{
-                            color: "#161616"
+                            color: "#757575"
                         }}
                         key={name}
                         name={name}
@@ -27,13 +27,18 @@ const CustomInput = ({ name, label, placeholder, handleChange, type, value }) =>
                         }}
                         fontFamily={"Inter"}
                         fontWeight="400"
-                        color={"#161616"}
+                        _light={{
+                            color: "#191919"
+                        }}
+                        _dark={{
+                            color: "#525252"
+                        }}
                         fontSize="12px"
                     />
                 ) : (
                     <Input
                         _placeholder={{
-                            color: "#161616"
+                            color: "#757575"
                         }}
                         key={name}
                         name={name}
@@ -50,7 +55,12 @@ const CustomInput = ({ name, label, placeholder, handleChange, type, value }) =>
                         }}
                         fontFamily={"Inter"}
                         fontWeight="400"
-                        color={"#161616"}
+                        _light={{
+                            color: "#191919"
+                        }}
+                        _dark={{
+                            color: "#525252"
+                        }}
                         fontSize="12px"
                     />
                 )}
