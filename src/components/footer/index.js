@@ -85,7 +85,7 @@ const Footer = React.memo(() => {
                         position={"fixed"}
                         bottom="0"
                         width="100%"
-                        display={{ base: "flex", md: "none" }}
+                        display={!isScrolledDown ? "flex" : "none"}
                         bg={useColorModeValue("#F0F0F5", "#272727")}
                         height={"85px"}
                         zIndex={"100"}
