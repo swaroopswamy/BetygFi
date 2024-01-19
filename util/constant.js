@@ -48,6 +48,27 @@ export const categories = [
     { name: "Launchpad", id: "Launchpad" },
 ];
 
+export const walletDashboardTabListData = [
+    {
+        name: "Transactions",
+        slug: "transactions",
+        iconLight: "/images/transactions_black.svg",
+        iconDark: "/images/transactions_white.svg"
+    },
+    {
+        name: "Portfolio",
+        slug: "portfolio",
+        iconLight: "/images/portfolio_black.svg",
+        iconDark: "/images/portfolio_white.svg"
+    },
+    {
+        name: "Wallet Analytics",
+        slug: "wallet-analytics",
+        iconLight: "/images/wallet_analytics_black.svg",
+        iconDark: "/images/wallet_analytics_white.svg"
+    },
+];
+
 export const categoryIds = [
     "Prediction Market",
     "Derivatives",
