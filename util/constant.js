@@ -15,6 +15,29 @@ export const blockchains = [
     "Kava",
 ];
 
+export const GOVERNANCE_TABLE_DATA_KEYS = (item) => [
+    {
+        value: item?.Title,
+        slug: "title"
+    },
+    {
+        value: item?.Start,
+        slug: "start"
+    },
+    {
+        value: item?.End,
+        slug: "end"
+    },
+    {
+        value: item?.State,
+        slug: "state"
+    },
+    {
+        value: item?.Votes,
+        slug: "votes"
+    },
+];
+
 export const categories = [
     { name: "Prediction Markets", id: "Prediction Market" },
     { name: "Derivatives", id: "Derivatives" },
