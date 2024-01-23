@@ -17,9 +17,8 @@ import PageButtonsWide from "@components/pageButtonsWide";
 import { GOVERNANCE_TABLE_DATA_KEYS } from "@util/constant";
 
 const GovernanceTable = ({ tablePage, setTableLimit, pageChangeHandler, tableLimit }) => {
-	const defiGovernanceTableData = useSelector(
-		(state) => state?.defiDashboardData?.DefiGovernanceTableData
-	);
+
+	const defiGovernanceTableData = useSelector((state) => state?.defiDashboardData?.DefiGovernanceTableData);
 
 	return (
 		<Box
