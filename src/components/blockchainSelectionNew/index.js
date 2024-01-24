@@ -213,7 +213,7 @@ const BlockchainSelectionMenuNew = () => {
                                     </Box>
                                 </MenuButton>
                                 <MenuList
-                                    zIndex={"10"}
+                                    zIndex={"100"}
                                     boxShadow={
                                         "0px 5px 4px 0px rgba(0, 0, 0, 0.10)"
                                     }
