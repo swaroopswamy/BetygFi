@@ -1,0 +1,2 @@
+run your local on below url
+http://local.betygfi.com:7000/
