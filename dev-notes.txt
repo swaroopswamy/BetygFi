@@ -1,2 +1,4 @@
-run your local on below url
+1) npm install
+2) npm start
+3) run your local on below url
 http://local.betygfi.com:7000/
