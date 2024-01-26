@@ -291,14 +291,23 @@ const Text = defineStyleConfig({
             fontSize: "32px",
             fontStyle: "normal",
             fontWeight: "400",
-            lineHeight: "36px",
+            lineHeight: "normal",
+        }),
+        bigTextNumber: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: "Inter",
+            fontSize: "34px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            lineHeight: "normal",
         }),
         approachPaperHeading: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "24px",
             fontStyle: "normal",
-            fontWeight: "400",
+            fontWeight: "500",
+            lineHeight: "normal",
         }),
         smApproachSmallHeading: () => ({
             fontFamily: "Inter",
@@ -307,12 +316,13 @@ const Text = defineStyleConfig({
             lineHeight: "26px",
             color: "#3F3F41",
         }),
-        smApproachSmallText: () => ({
+        smApproachSmallText: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#333" : "#EEE",
             fontFamily: "Inter",
+            textAlign: "justify",
             fontSize: "16px",
             fontWeight: "400",
-            lineHeight: "26px",
-            color: "#3F3F41",
+            lineHeight: "28px",
         }),
         footNoteText: ({ colorMode }) => ({
             fontFamily: "Inter",
