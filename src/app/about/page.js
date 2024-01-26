@@ -6,21 +6,25 @@ const About = () => {
 		<>
 			<Box
 				display={{ base: "none", md: "block" }}
+				position={"relative"}
 				maxWidth={"100%"}
 				_dark={{ background: "#191919" }}
 				_light={{ background: "#F0F0F5" }}
 			>
 				<Box>
 					<Image src="/images/sunshine.svg" alt=" "></Image>
-					{/* <Text
-					color={"#FFF"}
-					textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
-					fontSize={"54px"}
-					fontWeight={700}
-					lineHeight={"46px"}
+					<Text
+						position={"absolute"}
+						top={"6%"}
+						left={"5%"}
+						color={"#FFF"}
+						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+						fontSize={"54px"}
+						fontWeight={700}
+						lineHeight={"46px"}
 					>
 						About BetygFi
-						</Text> */}
+					</Text>
 				</Box>
 				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"1050px"} borderRadius={"6px"} m={"20px"}>
 					<Box display={"flex"} p={"35px 20px"} width={"100%"} gap={"27px"}>
@@ -39,7 +43,7 @@ const About = () => {
 								The Blockchain Challenge
 							</Text>
 						</Box>
-						<Box width={"72%"} borderBottom={useColorModeValue("1px solid #000", "1px solid #FFFFFF")} pb={"35px"}>
+						<Box width={"72%"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")} pb={"35px"}>
 							<Text variant={"smApproachSmallText"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
 						</Box>
 					</Box>
@@ -50,7 +54,7 @@ const About = () => {
 							</Text>
 						</Box>
 						<Box width={"72%"}>
-							<Box borderBottom={useColorModeValue("1px solid #000", "1px solid #FFFFFF")}>
+							<Box borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
 								<Text variant={"bigText"} p={"35px"} textAlign={"center"} >Sunlight is the Best Disinfectant</Text>
 							</Box>
 							<Box>
@@ -90,31 +94,35 @@ const About = () => {
 			{/* Mobile Optimization Part */}
 			<Box
 				display={{ base: "block", md: "none" }}
+				position={"relative"}
 				maxWidth={"100%"}
 				_dark={{ background: "#191919" }}
 				_light={{ background: "#F0F0F5" }}
 			>
 				<Box>
-					<Image src="/images/sunshine.svg" alt=" " height={"175px"}></Image>
-					{/* <Text
-					color={"#FFF"}
-					textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
-					fontSize={"54px"}
-					fontWeight={700}
-					lineHeight={"46px"}
+					<Image src="/images/sunshine_MO.svg" alt=" " width={"100%"}></Image>
+					<Text
+						position={"absolute"}
+						top={"5%"}
+						left={"5%"}
+						color={"#FFF"}
+						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+						fontSize={"24px"}
+						fontWeight={700}
+						lineHeight={"46px"}
 					>
 						About BetygFi
-						</Text> */}
+					</Text>
 				</Box>
 				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"auto"}>
-					<Box mx={"20px"} pt={"25px"} borderBottom={useColorModeValue("1px solid #000", "1px solid #FFFFFF")}>
+					<Box mx={"20px"} pt={"25px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
 						<Text variant={"approachPaperHeading"}>Democratizing Access to Information</Text>
 						<Text variant={"smApproachSmallText"} pt={"15px"}>At BetygFi, we are more than just a company; we are an Information Utility (emphasis supplied), dedicated to democratizing access to information. Blockchain as a technology is unique; it makes information available real-time. Notwithstanding public perception of blockchain as a technology, real-time access to financial data without a gatekeeper is unprecedented.</Text>
 						<Text variant={"approachPaperHeading"} pt={"25px"}>The Blockchain Challenge</Text>
 						<Text variant={"smApproachSmallText"} pt={"15px"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
 						<Text variant={"approachPaperHeading"} pt={"25px"} pb={"15px"}>BetygFi’s Vision</Text>
 					</Box>
-					<Box layerStyle={"center"} mx={"20px"} borderBottom={useColorModeValue("1px solid #000", "1px solid #FFFFFF")}>
+					<Box layerStyle={"center"} mx={"20px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
 						<Text variant={"contentHeading4"} fontWeight={400} lineHeight={"24px"} pt={"25px"} pb={"25px"}>Sunlight is the Best Disinfectant </Text>
 					</Box>
 					<Box mx={"20px"}>
