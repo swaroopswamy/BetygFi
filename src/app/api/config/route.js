@@ -29,8 +29,7 @@ export async function GET(req) {
     const { host } = absoluteUrl(req);
     const hostWithoutPort = host => host.split(":")[0];
     const { searchParams } = new URL(req.url);
-    const CONFIG_SERVER_IP_HOST = process.env.CONFIG_SERVER_IP_HOST;
-    // const CONFIG_SERVER_IP_HOST = "http://52.66.250.16:4000";
+    const CONFIG_SERVER_IP_HOST = process.env.CONFIG_SERVER_IP_HOST || "http://52.66.250.16:4000";
     const BUILD_ENV = searchParams.get("env");
 
     const fetchConfiguration = {
