@@ -85,7 +85,7 @@ const Footer = React.memo(() => {
                         position={"fixed"}
                         bottom="0"
                         width="100%"
-                        display={{ base: "flex", md: "none" }}
+                        display={!isScrolledDown ? "flex" : "none"}
                         bg={useColorModeValue("#F0F0F5", "#272727")}
                         height={"85px"}
                         zIndex={"100"}
@@ -95,21 +95,25 @@ const Footer = React.memo(() => {
                                 name={"Home"}
                                 NavIcon={RiHomeLine}
                                 link={"/"}
+                                isExternal={false}
                             />
                             <FooterMobileLink
                                 name={"Approach Paper"}
                                 NavIcon={TiDocumentText}
                                 link={"/approach-paper"}
+                                isExternal={false}
                             />
                             <FooterMobileLink
                                 name={"Top Wallets"}
                                 NavIcon={BiWalletAlt}
                                 link={"/top-wallets"}
+                                isExternal={false}
                             />
                             <FooterMobileLink
                                 name={"Community"}
                                 NavIcon={FaPeopleGroup}
-                                link={""}
+                                link={"community"}
+                                isExternal={true}
                             />
                         </Box>
                     </Box>
@@ -121,60 +125,59 @@ const Footer = React.memo(() => {
 export default Footer;
 Footer.displayName = 'Footer';
 
-const FooterMobileLink = ({ name, NavIcon, link }) => {
+const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
     const { colorMode } = useColorMode();
     const router = useRouter();
     const pathname = usePathname();
 
     return (
-        <>
-            <Box
-                layerStyle={"FlexColumnCenter"}
-                padding={"10px 10px"}
-                position="relative"
-                gap={"10px"}
-                cursor={"pointer"}
-                onClick={() => {
+        <Box
+            layerStyle={"FlexColumnCenter"}
+            padding={"10px 10px"}
+            position="relative"
+            gap={"10px"}
+            cursor={"pointer"}
+            onClick={() => {
+                isExternal ? window.open(link === "community" ? process.env.NEXT_PUBLIC_COMMUNITY_URL : link, "_blank", "noreferrer") :
                     router.push(link);
-                }}
-                borderColor={"#FFF"}
-                _after={
-                    pathname === link && {
-                        position: "absolute",
-                        content: '""',
-                        bottom: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "3px",
-                        bgColor: colorMode === "light" ? "#202020" : "#FFFFFF",
-                    }
+            }}
+            borderColor={"#FFF"}
+            _after={
+                pathname === link && {
+                    position: "absolute",
+                    content: '""',
+                    bottom: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "3px",
+                    bgColor: colorMode === "light" ? "#202020" : "#FFFFFF",
                 }
-            >
-                <Box layerStyle={"center"}>
-                    <Icon
-                        as={NavIcon}
-                        boxSize={"28px"}
-                        color={
-                            pathname === link
-                                ? colorMode === "light"
-                                    ? "#202020"
-                                    : "#FFFFFF"
-                                : colorMode === "light"
-                                    ? "#6F7383"
-                                    : "#676767"
-                        }
-                    />
-                </Box>
-                <Text
-                    fontSize={{ sm: "12px", midSize: "14px" }}
-                    lineHeight={"20px"}
-                    fontWeight={pathname === link ? "600" : "400"}
-                    textTransform={"capitalize"}
-                    textAlign={"center"}
-                >
-                    {name}
-                </Text>
+            }
+        >
+            <Box layerStyle={"center"}>
+                <Icon
+                    as={NavIcon}
+                    boxSize={"28px"}
+                    color={
+                        pathname === link
+                            ? colorMode === "light"
+                                ? "#202020"
+                                : "#FFFFFF"
+                            : colorMode === "light"
+                                ? "#6F7383"
+                                : "#676767"
+                    }
+                />
             </Box>
-        </>
+            <Text
+                fontSize={{ sm: "12px", midSize: "14px" }}
+                lineHeight={"20px"}
+                fontWeight={pathname === link ? "600" : "400"}
+                textTransform={"capitalize"}
+                textAlign={"center"}
+            >
+                {name}
+            </Text>
+        </Box>
     );
 };

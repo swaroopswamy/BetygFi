@@ -14,11 +14,12 @@ export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 export const getWalletTransactionsData = async (payloadData, rejectWithValue) => {
 	try {
 		const url = `wallet/transactions/${payloadData.address}/get`;
-		if (checkIfCacheAvailable(url)) {
-			return checkIfCacheAvailable(url);
+		const cacheUrl = url + payloadData.payload.page;
+		if (checkIfCacheAvailable(cacheUrl)) {
+			return checkIfCacheAvailable(cacheUrl);
 		} else {
 			const { data } = await axiosInstance.post(url, payloadData.payload);
-			return cacheHandler(url, data, 4, false);
+			return cacheHandler(cacheUrl, data, 4, false);
 		}
 	} catch (err) {
 		if (rejectWithValue) {
