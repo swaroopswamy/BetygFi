@@ -872,7 +872,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                     </Box>
                                 </Box>
 
-                                <Box layerStyle={"flexColumn"}>
+                                <Box overflowY={"scroll"} height={"100vh"} layerStyle={"flexColumn"}>
                                     {dashboards.map((link, i) => (
                                         <NavItem
                                             key={i}

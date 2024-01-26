@@ -14,11 +14,11 @@ import { useSelector } from "react-redux";
 import GenericTable from "@components/table";
 import { GovernanceTableHeader } from "@components/pages/defiDashboard/helper";
 import PageButtonsWide from "@components/pageButtonsWide";
+import { GOVERNANCE_TABLE_DATA_KEYS } from "@util/constant";
 
 const GovernanceTable = ({ tablePage, setTableLimit, pageChangeHandler, tableLimit }) => {
-	const defiGovernanceTableData = useSelector(
-		(state) => state?.defiDashboardData?.DefiGovernanceTableData
-	);
+
+	const defiGovernanceTableData = useSelector((state) => state?.defiDashboardData?.DefiGovernanceTableData);
 
 	return (
 		<Box
@@ -183,114 +183,42 @@ const TableRow = ({ item, i }) => {
 			borderColor={useColorModeValue("#DFDFDF", "#313131")}
 			borderRadius={"2px"}
 		>
-			<Td>
-				<Flex>
-					<Box alignItems={"center"} display={"flex"} gap={"15px"}>
-						<Text
-							_dark={{
-								color: "#FFFFFF",
-							}}
-							_light={{
-								color: "#16171B",
-							}}
-							fontSize={"14px"}
-							fontStyle={"normal"}
-							fontWeight={"400"}
-							lineHeight={"20px"}
-						>
-							{item?.Title}
-						</Text>
-					</Box>
-				</Flex>
-			</Td>
-			<Td>
-				<Flex>
-					<Box alignItems={"center"} display={"flex"} gap={"15px"}>
-						<Text
-							_dark={{
-								color: "#FFFFFF",
-							}}
-							_light={{
-								color: "#16171B",
-							}}
-							fontSize={"14px"}
-							fontStyle={"normal"}
-							fontWeight={"400"}
-							lineHeight={"20px"}
-						>
-							{item?.Start}
-						</Text>
-					</Box>
-				</Flex>
-			</Td>
-			<Td>
-				<Flex>
-					<Box alignItems={"center"} display={"flex"} gap={"15px"}>
-						<Text
-							_dark={{
-								color: "#FFFFFF",
-							}}
-							_light={{
-								color: "#16171B",
-							}}
-							fontSize={"14px"}
-							fontStyle={"normal"}
-							fontWeight={"400"}
-							lineHeight={"20px"}
-						>
-							{item?.End}
-						</Text>
-					</Box>
-				</Flex>
-			</Td>
-			<Td>
-				<Flex>
-					<Box alignItems={"center"} display={"flex"} gap={"5px"}>
-						<Box
-							w="12px"
-							h="9px"
-							borderRadius={"30px"}
-							mr={"4px"}
-							bgColor={item?.State === "active" ? "#62D845" : "#FF4848"}
-						></Box>
-						<Text
-							_dark={{
-								color: "#FFFFFF",
-							}}
-							_light={{
-								color: "#16171B",
-							}}
-							fontSize={"14px"}
-							fontStyle={"normal"}
-							fontWeight={"400"}
-							lineHeight={"20px"}
-							textTransform={"capitalize"}
-						>
-							{item?.State}
-						</Text>
-					</Box>
-				</Flex>
-			</Td>
-			<Td>
-				<Flex>
-					<Box alignItems={"center"} display={"flex"} gap={"15px"}>
-						<Text
-							_dark={{
-								color: "#FFFFFF",
-							}}
-							_light={{
-								color: "#16171B",
-							}}
-							fontSize={"14px"}
-							fontStyle={"normal"}
-							fontWeight={"400"}
-							lineHeight={"20px"}
-						>
-							{item?.Votes}
-						</Text>
-					</Box>
-				</Flex>
-			</Td>
+			{
+				GOVERNANCE_TABLE_DATA_KEYS(item).map((item_, index) => <TableData key={index} item={item_} />)
+			}
 		</Tr>
 	);
 };
+
+const TableData = ({ item }) => (
+	<Td>
+		<Flex>
+			<Box alignItems={"center"} display={"flex"} gap={item.slug === 'state' ? "5px" : "15px"}>
+				{
+					item.slug === 'state' && <Box
+						w="12px"
+						h="9px"
+						borderRadius={"30px"}
+						mr={"4px"}
+						bgColor={item?.State === "active" ? "#62D845" : "#FF4848"}
+					></Box>
+				}
+				<Text
+					_dark={{
+						color: "#FFFFFF",
+					}}
+					_light={{
+						color: "#16171B",
+					}}
+					fontSize={"14px"}
+					fontStyle={"normal"}
+					fontWeight={"400"}
+					lineHeight={"20px"}
+					textTransform={item.slug === 'state' ? "capitalize" : ""}
+				>
+					{item?.value}
+				</Text>
+			</Box>
+		</Flex>
+	</Td>
+);
