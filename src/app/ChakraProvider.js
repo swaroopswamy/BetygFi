@@ -97,6 +97,10 @@ export function Providers({ children }) {
                 display: "flex",
                 justifyContent: "space-between",
             },
+            flexSpaceEvenly: {
+                display: "flex",
+                justifyContent: "space-evenly",
+            },
             flexAlignCenterJustifyCenter: {
                 display: "flex",
                 alignItems: "center",

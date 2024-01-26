@@ -1,171 +1,150 @@
 "use client";
 import React from "react";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
-import CustomNextImage from "@components/customImage";
+import { Box, Text, useColorModeValue, Image } from "@chakra-ui/react";
 const About = () => {
 	return (
 		<>
 			<Box
 				display={{ base: "none", md: "block" }}
+				position={"relative"}
 				maxWidth={"100%"}
 				_dark={{ background: "#191919" }}
 				_light={{ background: "#F0F0F5" }}
 			>
-				<Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
-					<Box layerStyle={"flexCenterSpaceBetween"}>
-						<Text variant={"bigHeading"} pl={"2em"} color={"#FFF"}>
-							We BetygFi
-						</Text>
-						<Box>
-							<CustomNextImage
-								src="/images/solvendo-bg-logo.svg"
-								alt="icon"
-								paddingRight={"100px"}
-								width={300}
-								height={300}
-							></CustomNextImage>
+				<Box>
+					<Image src="/images/sunshine.svg" alt=" "></Image>
+					<Text
+						position={"absolute"}
+						top={"6%"}
+						left={"5%"}
+						color={"#FFF"}
+						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+						fontSize={"54px"}
+						fontWeight={700}
+						lineHeight={"46px"}
+					>
+						About BetygFi
+					</Text>
+				</Box>
+				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"1050px"} borderRadius={"6px"} m={"20px"}>
+					<Box display={"flex"} p={"35px 20px"} width={"100%"} gap={"27px"}>
+						<Box width={"28%"}>
+							<Text variant={"approachPaperHeading"}>
+								Democratizing Access to Information
+							</Text>
+						</Box>
+						<Box width={"72%"}>
+							<Text variant={"smApproachSmallText"}>At BetygFi, we are more than just a company; we are an Information Utility (emphasis supplied), dedicated to democratizing access to information. Blockchain as a technology is unique; it makes information available real-time. Notwithstanding public perception of blockchain as a technology, real-time access to financial data without a gatekeeper is unprecedented.</Text>
 						</Box>
 					</Box>
-				</Box>
-				<Box px={"3em"} pt={"1em"}>
-					<Box display={"flex"}>
-						<Box layerStyle={"flexCenter"} w="200px">
-							<CustomNextImage
-								src={useColorModeValue(
-									"/images/solvendo-logo.svg",
-									"/images/solvendo-logo(black).svg"
-								)}
-								width={161}
-								height={127}
-								alt=""
-								mt={"1em"}
-							></CustomNextImage>
+					<Box display={"flex"} p={"0px 20px"} width={"100%"} gap={"27px"}>
+						<Box width={"28%"}>
+							<Text variant={"approachPaperHeading"}>
+								The Blockchain Challenge
+							</Text>
 						</Box>
-						<Box flex="1">
-							<Text
-								variant={"content"}
-								padding={"20px  70px  0px  0px"}
-								mt={17}
-							>
-								BetygFi is a blockchain analytics platform that enriches
-								on-chain data with millions of wallet labels. Powered By
-								Solvendo. Crypto investors use BetygFi to discover
-								opportunities, perform due diligence and defend their portfolios
-								with our real-time dashboards and alerts.
+						<Box width={"72%"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")} pb={"35px"}>
+							<Text variant={"smApproachSmallText"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
+						</Box>
+					</Box>
+					<Box display={"flex"} p={"0px 20px 35px"} width={"100%"} gap={"27px"}>
+						<Box width={"28%"}>
+							<Text variant={"approachPaperHeading"}>
+								BetygFi’s Vision
+							</Text>
+						</Box>
+						<Box width={"72%"}>
+							<Box borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+								<Text variant={"bigText"} p={"35px"} textAlign={"center"} >Sunlight is the Best Disinfectant</Text>
+							</Box>
+							<Box>
+								<Text variant={"smApproachSmallText"} pt={"25px"}>BetygFi’s foundational thesis is that sunlight is the best disinfectant, it provides actionable intelligence on the blockchain ecosystem. It leverages proprietary ML modelling and AI to provide actionable intelligence to stakeholders viz. regulators and the community globally.</Text>
+							</Box>
+						</Box>
+					</Box>
+					<Box display={"flex"} p={"0px 20px"} width={"100%"} gap={"27px"}>
+						<Box width={"28%"}>
+							<Text variant={"approachPaperHeading"}>
+								Same Activity, Same Risk, Same Regulation
+							</Text>
+						</Box>
+						<Box width={"72%"} pb={"35px"}>
+							<Text variant={"smApproachSmallText"}>
+								BetygFi has built an approach that leverages its model to enable the foundational premise of the IMF-FSB paper which is the principle of ’’same activity, same risk, same regulation’’ (emphasis supplied).<br /><br />
+								Our approach endeavors to simplify on-chain data, it enables stakeholders to better understand actors that inhabit the blockchain paradigm and take decision accordingly.
 							</Text>
 						</Box>
 					</Box>
-
-					<Text variant={"contentHeading"} lineHeight={"20px"}>
-						About BetygFi
-					</Text>
-
-					<Text variant={"content"} mt={5} paddingBottom={19}>
-						We believe that BetygFi represents the beginnings of the future of
-						finance. With BetygFi, Solvendo is building the future of financial
-						data and analytics using large language models.
-						<br />
-						<br />
-						We are grateful for your patronage and invite you walk along with
-						us, as we navigate and build global financial ecosystems using out
-						learning from BetygFi.
-						<br /> <br />
-						Decentralised Finance and entities that offer such solutions promise
-						to be able to solve for some of the existing inefficiencies of
-						traditional finance. However, they present new challenges that are
-						significant. We expect and look forward to a regime where such
-						entities are regulated by sovereign’s, in the interest of
-						stakeholders. BetygFi is designed to be an invaluable tool for such
-						regulators and sovereigns.
-						<br /> <br />
-						However, when speaking about the future of finance, we believe the
-						future of finance would require a new approach to regulation that
-						engages the consumer or community regularly. BetygFi, leverages the
-						best in technology and artificial intelligence to build an approach
-						for such engagement. It empowers the consumer with intelligence that
-						is trustworthy and easy to consume.
-						<br /> <br />
-					</Text>
+					<Box
+						background={useColorModeValue("linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)", "#FFFBD3")}
+						height={"150px"}
+						mx={"20px"}
+						borderRadius={"7px"}
+					>
+						<Text variant={"contentHeading"} fontSize={"21px"} color={"#191919"} mx={"25px"} paddingTop={"30px"}>
+							Join us in our mission to bring transparency and intelligence to the blockchain ecosystem.
+						</Text>
+						<Text variant={"bigText"} fontWeight={600} color={"#191919"} mx={"30px"} paddingTop={"50px"}>
+							BetygFi - where information becomes power.
+						</Text>
+					</Box>
 				</Box>
 			</Box>
 
 			{/* Mobile Optimization Part */}
 			<Box
 				display={{ base: "block", md: "none" }}
+				position={"relative"}
 				maxWidth={"100%"}
 				_dark={{ background: "#191919" }}
 				_light={{ background: "#F0F0F5" }}
 			>
-				<Box background={"linear-gradient(147deg, #009DD8 0%, #0071CE 100%)"}>
-					<Box layerStyle={"flexSpaceBetween"}>
-						<Box padding={"51px 0px 78px 20px"}>
-							<Text variant={"bigHeading"} color={"#FFF"}>
-								We BetygFi
-							</Text>
-						</Box>
-						<Box padding={"37px 10px 38px 20px"}>
-							<CustomNextImage
-								src="/images/solvendo-bg-logo.svg"
-								width={123}
-								height={100}
-								alt="icon"
-							></CustomNextImage>
-						</Box>
-					</Box>
-				</Box>
-				<Box p={"10px 90px 0px 110px"}>
-					<CustomNextImage
-						src={useColorModeValue(
-							"/images/solvendo-logo.svg",
-							"/images/solvendo-logo(black).svg"
-						)}
-						width={123}
-						height={100}
-						alt="icon"
-					></CustomNextImage>
-				</Box>
-				<Box p={"0px 15px 10px 15px"}>
-					<Text variant={"content"}>
-						BetygFi is a blockchain analytics platform that enriches on-chain
-						data with millions of wallet labels. Powered By Solvendo. Crypto
-						investors use BetygFi to discover opportunities, perform due
-						diligence and defend their portfolios with our real-time dashboards
-						and alerts.
+				<Box>
+					<Image src="/images/sunshine_MO.svg" alt=" " width={"100%"}></Image>
+					<Text
+						position={"absolute"}
+						top={"5%"}
+						left={"5%"}
+						color={"#FFF"}
+						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+						fontSize={"24px"}
+						fontWeight={700}
+						lineHeight={"46px"}
+					>
+						About BetygFi
 					</Text>
 				</Box>
-				<Text
-					variant={"contentHeading"}
-					lineHeight={"20px"}
-					p={"25px 0px 15px 12px"}
-				>
-					About BetygFi
-				</Text>
-				<Text variant={"content"} p={"0px 15px 55px 15px"}>
-					We believe that BetygFi represents the beginnings of the future of
-					finance. With BetygFi, Solvendo is building the future of financial
-					data and analytics using large language models.
-					<br />
-					<br />
-					We are grateful for your patronage and invite you walk along with us,
-					as we navigate and build global financial ecosystems using out
-					learning from BetygFi.
-					<br /> <br />
-					Decentralised Finance and entities that offer such solutions promise
-					to be able to solve for some of the existing inefficiencies of
-					traditional finance. However, they present new challenges that are
-					significant. We expect and look forward to a regime where such
-					entities are regulated by sovereign’s, in the interest of
-					stakeholders. BetygFi is designed to be an invaluable tool for such
-					regulators and sovereigns.
-					<br /> <br />
-					However, when speaking about the future of finance, we believe the
-					future of finance would require a new approach to regulation that
-					engages the consumer or community regularly. BetygFi, leverages the
-					best in technology and artificial intelligence to build an approach
-					for such engagement. It empowers the consumer with intelligence that
-					is trustworthy and easy to consume.
-					<br /> <br />
-				</Text>
+				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"auto"}>
+					<Box mx={"20px"} pt={"25px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+						<Text variant={"approachPaperHeading"}>Democratizing Access to Information</Text>
+						<Text variant={"smApproachSmallText"} pt={"15px"}>At BetygFi, we are more than just a company; we are an Information Utility (emphasis supplied), dedicated to democratizing access to information. Blockchain as a technology is unique; it makes information available real-time. Notwithstanding public perception of blockchain as a technology, real-time access to financial data without a gatekeeper is unprecedented.</Text>
+						<Text variant={"approachPaperHeading"} pt={"25px"}>The Blockchain Challenge</Text>
+						<Text variant={"smApproachSmallText"} pt={"15px"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
+						<Text variant={"approachPaperHeading"} pt={"25px"} pb={"15px"}>BetygFi’s Vision</Text>
+					</Box>
+					<Box layerStyle={"center"} mx={"20px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+						<Text variant={"contentHeading4"} fontWeight={400} lineHeight={"24px"} pt={"25px"} pb={"25px"}>Sunlight is the Best Disinfectant </Text>
+					</Box>
+					<Box mx={"20px"}>
+						<Text variant={"smApproachSmallText"} pt={"25px"}>BetygFi’s foundational thesis is that sunlight is the best disinfectant, it provides actionable intelligence on the blockchain ecosystem. It leverages proprietary ML modelling and AI to provide actionable intelligence to stakeholders viz. regulators and the community globally.</Text>
+						<Text variant={"approachPaperHeading"} pt={"25px"}>Same Activity, Same Risk, Same Regulation</Text>
+						<Text variant={"smApproachSmallText"} pt={"15px"}>BetygFi has built an approach that leverages its model to enable the foundational premise of the IMF-FSB paper which is the principle of ’’same activity, same risk, same regulation’’ (emphasis supplied).<br /><br />
+							Our approach endeavors to simplify on-chain data, it enables stakeholders to better understand actors that inhabit the blockchain paradigm and take decision accordingly.</Text>
+					</Box>
+					<Box
+						background={useColorModeValue("linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)", "#FFFBD3")}
+						layerStyle={"flexColumnSpaceBetween"}
+						height={"200px"}
+						borderRadius={"7px"}
+						mt={"20px"}
+						marginBottom={"100px"}
+					>
+						<Text variant={"contentHeading4"} color={"#191919"} fontWeight={400} lineHeight={"24px"} mx={"20px"} pt={"15px"}>Join us in our mission to bring transparency and intelligence to the blockchain ecosystem. </Text>
+						<Text variant={"approachPaperHeading"} fontWeight={600} color={"#191919"} mx={"20px"}>
+							BetygFi - where information becomes power.
+						</Text>
+					</Box>
+				</Box>
 			</Box>
 		</>
 	);
