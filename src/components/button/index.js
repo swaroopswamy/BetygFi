@@ -119,6 +119,21 @@ const Button = defineStyleConfig({
                 color: colorMode === "light" ? "#FFFFFF" : "#191919",
             },
         }),
+        modalButton: ({ colorMode }) => ({
+            bg: colorMode === "light" ? "#FFFFFF" : "#313131",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            textAlign: "center",
+            fontSize: "14px",
+            fontWeight: "600",
+            lineHeight: "12px",
+            variant: "outline",
+            borderRadius: "6px",
+            border: "1px",
+            _active: {
+                bg: colorMode === "light" ? "#191919" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#191919",
+            },
+        }),
     },
     defaultProps: {
         variant: "base",
