@@ -21,6 +21,29 @@ export const blockchains = [
     "Kava",
 ];
 
+export const GOVERNANCE_TABLE_DATA_KEYS = (item) => [
+    {
+        value: item?.Title,
+        slug: "title"
+    },
+    {
+        value: item?.Start,
+        slug: "start"
+    },
+    {
+        value: item?.End,
+        slug: "end"
+    },
+    {
+        value: item?.State,
+        slug: "state"
+    },
+    {
+        value: item?.Votes,
+        slug: "votes"
+    },
+];
+
 export const categories = [
     { name: "Prediction Markets", id: "Prediction Market" },
     { name: "Derivatives", id: "Derivatives" },
@@ -29,6 +52,27 @@ export const categories = [
     { name: "CDP", id: "CDP" },
     { name: "Lending", id: "Lending" },
     { name: "Launchpad", id: "Launchpad" },
+];
+
+export const walletDashboardTabListData = [
+    {
+        name: "Transactions",
+        slug: "transactions",
+        iconLight: "/images/transactions_black.svg",
+        iconDark: "/images/transactions_white.svg"
+    },
+    {
+        name: "Portfolio",
+        slug: "portfolio",
+        iconLight: "/images/portfolio_black.svg",
+        iconDark: "/images/portfolio_white.svg"
+    },
+    {
+        name: "Wallet Analytics",
+        slug: "wallet-analytics",
+        iconLight: "/images/wallet_analytics_black.svg",
+        iconDark: "/images/wallet_analytics_white.svg"
+    },
 ];
 
 export const categoryIds = [

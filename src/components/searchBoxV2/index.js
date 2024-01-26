@@ -199,7 +199,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const renderSMInputGroup = () => {
         return (
-            <InputGroup ref={ref} w="100%" zIndex={"1000"}>
+            <InputGroup id={"searchMobileInput"} ref={ref} w="100%" zIndex={"1000"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
                     <Box display={"flex"} flexDir={"row"}>
                         <InputLeftElement pointerEvents="none">

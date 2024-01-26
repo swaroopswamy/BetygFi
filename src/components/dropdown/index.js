@@ -19,13 +19,24 @@ const CustomDropdown = ({ label, placeholder, options = [], onSelect, selectedVa
                     as={Button}
                     w='100%'
                     p={"15px"}
+                    _light={{
+                        bgColor: "#F4F4F4"
+                    }}
+                    _dark={{
+                        bgColor: "#262626"
+                    }}
                     borderBottom="1px solid #8D8D8D"
                     rightIcon={<ChevronDownIcon />}>
 
                     <Text
                         textAlign={"left"}
                         variant={"h3"}
-                        color={"#161616"}
+                        _light={{
+                            color: selectedValue !== '' ? '#191919' : "#757575",
+                        }}
+                        _dark={{
+                            color: selectedValue !== '' ? '#C6C6C6' : "#757575",
+                        }}
                     >
                         {selectedValue === "" ? placeholder : selectedValue}
                     </Text>

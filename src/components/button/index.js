@@ -107,6 +107,18 @@ const Button = defineStyleConfig({
                 opacity: "1",
             },
         }),
+        settingsButton: ({ colorMode }) => ({
+            width: "140px",
+            height: "30px",
+            border: colorMode === "light" ? "1px solid #191919" : "1px solid #FFFFFF",
+            borderRadius: "3px",
+            bg: colorMode === "light" ? "#FFFFFF" : "#202020",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            _active: {
+                bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#191919",
+            },
+        }),
     },
     defaultProps: {
         variant: "base",
