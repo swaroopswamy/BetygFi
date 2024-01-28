@@ -33,7 +33,6 @@
     "next": "14.0.2",
     "next-absolute-url": "^1.2.2",
     "next-auth": "4.24.5",
-    "pino-pretty": "^10.3.1",
     "react": "^18",
     "react-apexcharts": "1.4.1",
     "react-dom": "^18",
