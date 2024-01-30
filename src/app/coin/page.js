@@ -3,10 +3,6 @@ import { CoinLandingPageMetas } from "@util/metaHelper";
 
 export const metadata = CoinLandingPageMetas('coin');
 
-const CoinListPage = () => {
-    return (
-        <CoinPage />
-    );
-};
+const CoinListPage = () => <CoinPage />;
 
 export default CoinListPage;
