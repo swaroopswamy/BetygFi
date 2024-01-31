@@ -1,11 +1,11 @@
 import { axiosInstance } from "@util/axiosInstance";
+import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
 import { getAPI_URL } from "@util/utility";
 
 export const getDefiRankingsTableData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`protocols`, payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `protocols`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -14,9 +14,8 @@ export const getDefiRankingsTableData = async (payload, rejectWithValue) => {
 
 export const getProtocolScoresData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`protocols/scores`, payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/scores`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -25,9 +24,8 @@ export const getProtocolScoresData = async (payload, rejectWithValue) => {
 
 export const getOverviewData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`protocols/overview`, payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/overview`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -36,19 +34,10 @@ export const getOverviewData = async (payload, rejectWithValue) => {
 
 export const getOverviewGraphData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`protocols/graph/data`, payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/graph/data`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
 	}
-};
-
-
-export default {
-	getDefiRankingsTableData,
-	getProtocolScoresData,
-	getOverviewData,
-	getOverviewGraphData
 };

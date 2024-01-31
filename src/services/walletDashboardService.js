@@ -1,10 +1,11 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
+import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
 import { getAPI_URL } from "@util/utility";
 
 export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 	try {
-		const url = `wallet/balance/${payloadData.address}`;
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/balance/${payloadData.address}`;
 		const { data } = await axiosInstance(getAPI_URL()).post(url, payloadData.payload);
 		return data;
 	} catch (err) {
@@ -14,7 +15,7 @@ export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 
 export const getWalletTransactionsData = async (payloadData, rejectWithValue) => {
 	try {
-		const url = `wallet/transactions/${payloadData.address}/get`;
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/transactions/${payloadData.address}/get`;
 		const cacheUrl = url + payloadData.payload.page;
 		if (checkIfCacheAvailable(cacheUrl)) {
 			return checkIfCacheAvailable(cacheUrl);
@@ -33,9 +34,8 @@ export const getWalletTransactionsData = async (payloadData, rejectWithValue) =>
 
 export const getWalletTransactionsForAddressSummary = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`wallet/address/${payloadData.address}/address`, payloadData.payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/address/${payloadData.address}/address`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payloadData.payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -44,9 +44,8 @@ export const getWalletTransactionsForAddressSummary = async (payloadData, reject
 
 export const getAssetAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(
-			`wallet/address/${payloadData.address}/assets-allocation`
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/address/${payloadData.address}/assets-allocation`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -55,9 +54,8 @@ export const getAssetAllocationForAddress = async (payloadData, rejectWithValue)
 
 export const getProtocolAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(
-			`wallet/address/${payloadData.address}/protocol-allocation`
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/address/${payloadData.address}/protocol-allocation`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -66,9 +64,8 @@ export const getProtocolAllocationForAddress = async (payloadData, rejectWithVal
 
 export const getBlockchainAllocationForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(
-			`wallet/address/${payloadData.address}/blockchain-allocation`
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/address/${payloadData.address}/blockchain-allocation`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -77,17 +74,10 @@ export const getBlockchainAllocationForAddress = async (payloadData, rejectWithV
 
 export const getInflowOutflowTokensForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(
-			`/wallet/address/${payloadData.address}/inflow-outflow-token`
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `/wallet/address/${payloadData.address}/inflow-outflow-token`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
 	}
-};
-
-export default {
-	getWalletBalanceData,
-	getWalletTransactionsData,
-	getWalletTransactionsForAddressSummary
 };

@@ -1,10 +1,11 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
+import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
 import { getAPI_URL } from "@util/utility";
 
 export const getBlockchainListData = async (rejectWithValue) => {
 	try {
-		const url = `protocols/blockchains`;
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/blockchains`;
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
 		} else {
@@ -18,9 +19,8 @@ export const getBlockchainListData = async (rejectWithValue) => {
 
 export const postReportBugData = async (payload, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).post(
-			`user/reportBug`, payload
-		);
+		const url = NEXT_BE_URL_SEPARATOR + `user/reportBug`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		if (err.response.status === 401) {
@@ -33,7 +33,7 @@ export const postReportBugData = async (payload, rejectWithValue) => {
 
 export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 	try {
-		const url = `user/suggestFeature`;
+		const url = NEXT_BE_URL_SEPARATOR + `user/suggestFeature`;
 		const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 		const { data } = await axiosInstance(getAPI_URL()).post(url, payload, config);
 		return data;
@@ -44,7 +44,7 @@ export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 
 export const getSearchV2Data = async (payloadData, rejectWithValue) => {
 	try {
-		const url = `/protocols/searchv2?name=${payloadData.searchValue}`;
+		const url = NEXT_BE_URL_SEPARATOR + `/protocols/searchv2?name=${payloadData.searchValue}`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
@@ -54,7 +54,8 @@ export const getSearchV2Data = async (payloadData, rejectWithValue) => {
 
 export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 	try {
-		const { data } = await axiosInstance(getAPI_URL()).get(`/protocols/trendingSearch`);
+		const url = NEXT_BE_URL_SEPARATOR + `/protocols/trendingSearch`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -79,9 +80,4 @@ export const getAppConfig = async host => {
 	} catch (err) {
 		return err;
 	}
-};
-
-export default {
-	getBlockchainListData,
-	postReportBugData
 };

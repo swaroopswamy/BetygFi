@@ -1,5 +1,5 @@
 const fs = require('fs');
-const VALID_KEY_LIST = ["NEXTAUTH_SECRET", "NEXTAUTH_URL", "CONFIG_SERVER_IP_HOST"];
+const VALID_KEY_LIST = ["NEXTAUTH_SECRET", "NEXTAUTH_URL", "CONFIG_SERVER_IP_HOST", "API_SERVICE_URL"];
 const CONFIG_SERVER_IP_HOST = process.env.CONFIG_SERVER_IP_HOST || "http://52.66.250.16:4000";
 const BUILD_ENV = "dev";
 const PORTAL_NAME = "dashboard";
@@ -16,6 +16,7 @@ const getAppConfig = async () => {
 
 getAppConfig().then(result => {
     result.CONFIG_SERVER_IP_HOST = "http://52.66.250.16:4000";
+    result.API_SERVICE_URL = "http://54.211.170.34:30268";
     let modifiedData = '';
     for (const [key, value] of Object.entries(result)) {
         if (VALID_KEY_LIST.includes(key)) {
