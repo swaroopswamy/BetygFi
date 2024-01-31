@@ -7,6 +7,14 @@ import {
 	Button,
 	useDisclosure,
 	Image,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	Input,
+	FormControl,
 } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
@@ -25,6 +33,7 @@ const Settings = () => {
 		onOpen: onLoginModalOpen,
 		onClose: onLoginModalClose,
 	} = useDisclosure();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const preLoadedData = useSelector((state) => state.authData.preLoadedData);
 
 	return (
@@ -130,7 +139,7 @@ const Settings = () => {
 							</Box>
 							<Box layerStyle={"flexCenter"} p={"45px 15px 0px"}>
 								<Box w={"33%"} layerStyle={"flexCenter"} borderRight={"2px solid #D9D9D9"} pl={"10px"}>
-									<Text variant={"bigNumericText"}>
+									<Text variant={"bigTextNumber"}>
 										142
 									</Text>
 									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")} p={"10px 0px 0px 5px"}>
@@ -138,7 +147,7 @@ const Settings = () => {
 									</Text>
 								</Box>
 								<Box w={"37%"} layerStyle={"flexCenter"} borderRight={"2px solid #D9D9D9"} pl={"20px"}>
-									<Text variant={"bigNumericText"}>
+									<Text variant={"bigTextNumber"}>
 										386
 									</Text>
 									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")} p={"10px 5px 0px"}>
@@ -146,7 +155,7 @@ const Settings = () => {
 									</Text>
 								</Box>
 								<Box w={"30%"} layerStyle={"flexCenter"} pl={"20px"}>
-									<Text variant={"bigNumericText"}>
+									<Text variant={"bigTextNumber"}>
 										46
 									</Text>
 									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")} p={"10px 5px 0px"}>
@@ -166,7 +175,7 @@ const Settings = () => {
 							</Box>
 							<Box layerStyle={"flexCenter"} p={"45px 15px 0px"}>
 								<Box w={"50%"} layerStyle={"flexCenter"} pl={"15px"}>
-									<Text variant={"bigNumericText"}>
+									<Text variant={"bigTextNumber"}>
 										142
 									</Text>
 									<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")} p={"10px 0px 0px 5px"}>
@@ -404,12 +413,6 @@ const Settings = () => {
 							<Text variant={"contentHeading3"} fontWeight={"400"}>
 								Login to BetygFi
 							</Text>
-							{/* <Text
-                                        variant={"SettingsText3"}
-                                        ml={"50px"}
-                                        mt={"3px"}>
-                                        After logging out, the verification information for the current address will be deleted from your browser.
-                                    </Text> */}
 							<Button
 								width={"116px"}
 								height={"28px"}
@@ -443,7 +446,7 @@ const Settings = () => {
 								height={"28px"}
 								variant={"outline"}
 								border={"1px"}
-								onClick={() => dispatch(LogoutReducer())}
+								onClick={onOpen}
 							>
 								<Text
 									variant={"SettingsButtonText"}
@@ -482,6 +485,7 @@ const Settings = () => {
 					</>
 				)}
 			</Box>
+
 			{/* Mobile Optimization Part */}
 
 			<Box
@@ -570,7 +574,7 @@ const Settings = () => {
 						</Box>
 						<Box layerStyle={"flexCenter"} p={"25px 0px 0px"}>
 							<Box w={"33%"} borderRight={"2px solid #D9D9D9"} p={"0px 20px"}>
-								<Text variant={"bigNumericText"}>
+								<Text variant={"bigTextNumber"}>
 									142
 								</Text>
 								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
@@ -578,7 +582,7 @@ const Settings = () => {
 								</Text>
 							</Box>
 							<Box w={"34%"} borderRight={"2px solid #D9D9D9"} p={"0px 25px"}>
-								<Text variant={"bigNumericText"}>
+								<Text variant={"bigTextNumber"}>
 									386
 								</Text>
 								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
@@ -586,7 +590,7 @@ const Settings = () => {
 								</Text>
 							</Box>
 							<Box w={"33%"} p={"0px 25px"}>
-								<Text variant={"bigNumericText"}>
+								<Text variant={"bigTextNumber"}>
 									46
 								</Text>
 								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
@@ -605,7 +609,7 @@ const Settings = () => {
 						<Box layerStyle={"flexColumnCenterSpaceAround"}>
 							<Text variant={"contentHeading4"} lineHeight={"normal"} mt={"30px"}>BetygFi Data Studio</Text>
 							<Box pl={"15px"} pt={"15px"}>
-								<Text variant={"bigNumericText"}>
+								<Text variant={"bigTextNumber"}>
 									142
 								</Text>
 								<Text variant={"toastText"} color={useColorModeValue("#757575", "#A5A5A5")}>
@@ -887,6 +891,7 @@ const Settings = () => {
 								variant={"outline"}
 								mt={"15px"}
 								border={"1px"}
+								onClick={onOpen}
 							>
 								<Text
 									variant={"SettingsButtonText"}
@@ -933,6 +938,45 @@ const Settings = () => {
 				onOpen={onLoginModalOpen}
 				onClose={onLoginModalClose}
 			/>
+			<Modal isOpen={isOpen} onClose={onClose} size={{ base: "sm", md: "lg" }}>
+				<ModalOverlay
+					bg="blackAlpha.300"
+					backdropFilter="blur(3px) hue-rotate(90deg)"
+				/>
+				<ModalContent background={useColorModeValue("#FFFFFF", "#313131")} mx={{ base: "18px", md: "0px" }}>
+					<ModalHeader py={"40px"}>
+						<Text variant={"approachPaperHeading"} lineHeight={"20px"}>
+							Delete BetygFi Account Confirmation
+						</Text>
+					</ModalHeader>
+					<ModalBody>
+						<Text variant={"baseStyle"} color={useColorModeValue("#191919", "#FFFFFF")}>
+							We’re sorry to see you go. We will retain your data for 15 days and then it will be permanently deleted. You can reactivate your account at any point within 15 days of deactivation by logging back in. Once your account is deleted, all your content will be permanently gone, including your profile, posts, queries, comments, and followers.
+						</Text>
+						<Box layerStyle={"flexCenterSpaceAround"}>
+							<Text variant={"baseStyle"} color={useColorModeValue("#191919", "#FFFFFF")} p={"30px 0px 15px 0px"}>
+								To confirm deletion, type “delete” below:
+							</Text>
+						</Box>
+						<FormControl px={{ base: "0px", md: "50px" }} borderRadius={"7px"}>
+							<Input placeholder='Type “delete”' />
+						</FormControl>
+					</ModalBody>
+
+					<ModalFooter
+						justifyContent={{ base: "none", md: "space-evenly" }}
+						layerStyle={{ base: "flexColumnCenterSpaceAround", md: "none" }}
+						mx={{ base: "0px", md: "50px" }}
+					>
+						<Button variant={"modalButton"}>
+							Confirm Account Deletion
+						</Button>
+						<Button onClick={onClose} variant={"modalButton"} mt={"20px"}>
+							Cancel
+						</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
 		</>
 	);
 };
