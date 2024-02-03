@@ -4,8 +4,6 @@ export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
 export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
-export const LOCAL_COMMUNITY_HOST = "localcommunity.betygfi.com";
-export const LOCAL_STUDIO_HOST = "localstudio.betygfi.com";
 export const LOCAL_SERVER_HOST = "localhost";
 export const NEXT_BE_URL_SEPARATOR = '/api/bet-dash/';
 

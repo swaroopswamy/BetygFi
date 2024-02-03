@@ -23,18 +23,16 @@ export const maxDuration = 5;
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
 
-	const appConfig = await getAppConfig(GET_LOCAL_SERVER_HOST());
-	let modifiedConfig = { ...appConfig };
-	modifiedConfig = modifiedConfig?.values;
-	if (!modifiedConfig) {
+	let appConfig = await getAppConfig(GET_LOCAL_SERVER_HOST());
+	if (!appConfig) {
 		return (
 			<p>Error happend, failed to fetch config</p>
 		);
 	} else {
 		if (getEnvironmentWiseConfig().isLocal) {
-			modifiedConfig.NEXTAUTH_URL_DASHBOARD = GET_LOCAL_SERVER_HOST();
+			appConfig.NEXTAUTH_URL_DASHBOARD = GET_LOCAL_SERVER_HOST();
 		}
-		getAppConfigMappedToGlobalEnv(modifiedConfig);
+		getAppConfigMappedToGlobalEnv(appConfig);
 
 		return (
 			<html lang={"en"}>
@@ -77,7 +75,7 @@ export default async function RootLayout({ children }) {
 						<ReduxProvider>
 							<Web3Provider>
 								<Providers>
-									<LayoutProvider appConfig={modifiedConfig}>{children}</LayoutProvider>
+									<LayoutProvider appConfig={appConfig}>{children}</LayoutProvider>
 								</Providers>
 							</Web3Provider>
 						</ReduxProvider>

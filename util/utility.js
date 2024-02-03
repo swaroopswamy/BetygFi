@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_COMMUNITY_HOST, LOCAL_DASHBOARD_HOST, LOCAL_SERVER_HOST, LOCAL_STUDIO_HOST } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_DASHBOARD_HOST, LOCAL_SERVER_HOST } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -143,20 +143,14 @@ export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
 export const GET_LOCAL_SERVER_HOST = () => {
     const APP_PORT = process.env.APP_PORT || 7000;
     const getHost = (isLocal) => {
-        const PORTAL_NAME = process.env.PORTAL_NAME;
         if (isLocal) {
-            if (PORTAL_NAME === 'dashboard') {
-                return LOCAL_DASHBOARD_HOST;
-            } else if (PORTAL_NAME === 'community') {
-                return LOCAL_COMMUNITY_HOST;
-            } else if (PORTAL_NAME === 'studio') {
-                return LOCAL_STUDIO_HOST;
-            }
+            return LOCAL_DASHBOARD_HOST;
         } else {
             return LOCAL_SERVER_HOST;
         }
     };
     return `http://${getHost(getEnvironmentWiseConfig().isLocal)}:${APP_PORT}`;
+    // return `http://${LOCAL_SERVER_HOST}:${APP_PORT}`;
 };
 
 export const getAppConfigMappedToGlobalEnv = appConfig => {
