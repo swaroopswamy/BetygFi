@@ -32,7 +32,7 @@ export default async function RootLayout({ children }) {
 		);
 	} else {
 		if (getEnvironmentWiseConfig().isLocal) {
-			modifiedConfig.NEXTAUTH_URL = GET_LOCAL_SERVER_HOST();
+			modifiedConfig.NEXTAUTH_URL_DASHBOARD = GET_LOCAL_SERVER_HOST();
 		}
 		getAppConfigMappedToGlobalEnv(modifiedConfig);
 
