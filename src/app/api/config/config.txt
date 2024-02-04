@@ -2,7 +2,7 @@
     "community": [
         {
             "NEXT_PUBLIC_ENV": "local",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_SECRET": "secret",
@@ -12,7 +12,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "development",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_SECRET": "secret",
@@ -22,7 +22,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "qa",
-            "NEXT_PUBLIC_API_URL": "https://qa.betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://qa.betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "1056218295159-1em015t6t5d1bjtjseq1105ltar9sm2q.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_URL_DASHBOARD": "https://qacommunity.betygfi.com",
@@ -32,7 +32,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "production",
-            "NEXT_PUBLIC_API_URL": "https://betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "967206282075-3huhhmcjs96h5fdhj3m09uf50obk092n.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_URL_DASHBOARD": "https://community.betygfi.com",
@@ -44,7 +44,7 @@
     "dashboard": [
         {
             "NEXT_PUBLIC_ENV": "local",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_SECRET": "secret",
@@ -55,7 +55,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "development",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_SECRET": "secret",
@@ -66,7 +66,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "qa",
-            "NEXT_PUBLIC_API_URL": "https://qa.betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://qa.betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "1056218295159-1em015t6t5d1bjtjseq1105ltar9sm2q.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_SECRET": "secret",
@@ -77,7 +77,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "production",
-            "NEXT_PUBLIC_API_URL": "https://betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "967206282075-3huhhmcjs96h5fdhj3m09uf50obk092n.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_URL_DASHBOARD": "https://betygfi.com",
@@ -90,7 +90,7 @@
     "studio": [
         {
             "NEXT_PUBLIC_ENV": "local",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXT_PUBLIC_BETYGFI_URL": "http://dev.betygfi.com",
@@ -99,7 +99,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "development",
-            "NEXT_PUBLIC_API_URL": "http://15.207.71.9:4000/",
+            "API_SERVICE_URL": "http://15.207.71.9:4000/",
             "GOOGLE_CLIENT_ID": "819863214659-mva6tg7nlktjm2separsfqfrjnnolpi7.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXT_PUBLIC_BETYGFI_URL": "http://dev.betygfi.com",
@@ -108,7 +108,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "qa",
-            "NEXT_PUBLIC_API_URL": "https://qa.betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://qa.betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "1056218295159-1em015t6t5d1bjtjseq1105ltar9sm2q.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_URL_DASHBOARD": "http://qastudio.betygfi.com/",
@@ -117,7 +117,7 @@
         },
         {
             "NEXT_PUBLIC_ENV": "production",
-            "NEXT_PUBLIC_API_URL": "https://betygfi.com/api/v2/",
+            "API_SERVICE_URL": "https://betygfi.com/api/v2/",
             "GOOGLE_CLIENT_ID": "967206282075-3huhhmcjs96h5fdhj3m09uf50obk092n.apps.googleusercontent.com",
             "GOOGLE_CLIENT_SECRET": "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",
             "NEXTAUTH_URL_DASHBOARD": "https://studio.betygfi.com",

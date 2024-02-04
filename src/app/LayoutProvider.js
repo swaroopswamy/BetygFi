@@ -105,7 +105,7 @@ export default function LayoutProvider({ appConfig, children }) {
 
     //useEffect to check auth on mount
     useEffect(() => {
-        createCookies(API_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_API_URL);
+        createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
 
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
         if (!isEmpty(cookie)) {

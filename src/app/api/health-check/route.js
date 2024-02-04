@@ -4,7 +4,7 @@ export async function GET() {
             const url = `http://localhost:7000/api/config`;
             const res = await fetch(url, { cache: 'no-store' });
             const data = await res.json();
-            return data?.data?.config?.values?.NEXT_PUBLIC_API_URL;
+            return data?.data?.config?.API_SERVICE_URL;
         } catch (err) {
             return false;
         }
