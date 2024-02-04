@@ -10,9 +10,10 @@ export async function GET() {
         }
     };
 
+    const API_URL = await getAppConfig();
+
     const checkBetygfi = async () => {
         try {
-            const API_URL = await getAppConfig();
             const res = await fetch(`${API_URL}health/extra`, { cache: 'no-store' });
             return await res.json();
         } catch (err) {

@@ -10,9 +10,10 @@ export async function GET() {
         }
     };
 
+    const API_URL = await getAppConfig();
+
     const checkBetygfi = async () => {
         try {
-            const API_URL = await getAppConfig();
             const res = await fetch(`${API_URL}health/betygfi`, { cache: 'no-store' });
             const betygfiHealth = await res.json();
             return betygfiHealth.status;
@@ -23,7 +24,6 @@ export async function GET() {
 
     const checkLimitlessDB = async () => {
         try {
-            const API_URL = await getAppConfig();
             const res = await fetch(`${API_URL}health/limitlessdb`, { cache: 'no-store' });
             const limitLessDBHealth = await res.json();
             return limitLessDBHealth.status;
