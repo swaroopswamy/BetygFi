@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getBlockchainListData, getSearchV2Data, getSearchV2TrendingData, postReportBugData, postSuggestFeatureData } from "@/services/appService";
+import { getBlockchainListData, getSearchV2Data, getSearchV2TrendingData, postReportBugData, postSuggestFeatureData } from "@services/appService";
 
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload, { rejectWithValue }) => {
 	const response = await getBlockchainListData(rejectWithValue);
@@ -25,7 +25,6 @@ export const getSearchV2TrendingList = createAsyncThunk('getSearchV2TrendingList
 	const response = await getSearchV2TrendingData(payload, rejectWithValue);
 	return response;
 });
-
 
 const AppDataSlice = createSlice({
 	name: "AppData",
@@ -53,7 +52,7 @@ const AppDataSlice = createSlice({
 		searchV2TrendingData: {
 			status: "idle",
 			error: null
-		}
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchBlockchainListData.fulfilled, (state, action) => {

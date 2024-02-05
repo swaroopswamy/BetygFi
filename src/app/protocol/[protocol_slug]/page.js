@@ -1,5 +1,5 @@
-import { getDefiData } from "@/services/defiDashboardService";
-import ProtocolDetailPage from "@/components/pages/defiDashboard/ProtocolDetailPage";
+import { getDefiData } from "@services/defiDashboardService";
+import ProtocolDetailPage from "@components/pages/defiDashboard/ProtocolDetailPage";
 import { DefiDetailPageMetas } from "@util/metaHelper";
 
 export async function generateMetadata({ params }) {

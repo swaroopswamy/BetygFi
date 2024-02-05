@@ -17,7 +17,7 @@ import React from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { MdContentCopy } from "react-icons/md";
 import TooltipComp from "@components/tooltipComp";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const CoinInfo = ({ coinDetails }) => {
     return (

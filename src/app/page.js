@@ -1,12 +1,8 @@
-import ProtocolPage from "@/components/pages/defiDashboard/ProtocolPage";
+import ProtocolPage from "@components/pages/defiDashboard/ProtocolPage";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 
 export const metadata = DefiLandingPageMetas('');
 
-const HomePage = () => {
-	return (
-		<ProtocolPage />
-	);
-};
+const HomePage = () => <ProtocolPage />;
 
 export default HomePage;

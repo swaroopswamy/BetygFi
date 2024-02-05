@@ -9,9 +9,9 @@ import {
     LoginGetToken,
     StoreLoggedInUserData,
     VerifyPublicAddressData,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
-import { config } from "@/app/Web3Provider";
+import { config } from "@app/Web3Provider";
 
 
 const OtherBrowserWalletProcess = ({
@@ -59,7 +59,6 @@ const OtherBrowserWalletProcess = ({
             };
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
 
@@ -82,7 +81,6 @@ const OtherBrowserWalletProcess = ({
             connect({ connector });
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
     const handleVerifyWallet = () => {

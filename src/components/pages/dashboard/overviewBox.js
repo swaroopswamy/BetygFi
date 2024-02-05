@@ -9,7 +9,7 @@ import OverviewAreaChart from "@components/pages/dashboard/overviewAreaChart";
 import {
     fetchOverviewData,
     fetchOverviewGraphData,
-} from "@/redux/dashboard_data/dataSlice";
+} from "@redux/dashboard_data/dataSlice";
 
 const OverviewBox = () => {
     const dispatch = useDispatch();

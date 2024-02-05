@@ -1,40 +1,28 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@/services/authService";
+import { loginMetamask, socialLoginGoogleAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookies, deleteCookieByName } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
 
-export const VerifyPublicAddressData = createAsyncThunk(
-	"verifyPublicAddressData",
-	async (payload, { rejectWithValue }) => {
-		const response = await verifyPublicAddress(payload, rejectWithValue);
-		return response.data;
-	}
-);
+export const VerifyPublicAddressData = createAsyncThunk("verifyPublicAddressData", async (payload, { rejectWithValue }) => {
+	const response = await verifyPublicAddress(payload, rejectWithValue);
+	return response.data;
+});
 
-export const LoginGetToken = createAsyncThunk(
-	"LoginMetamask",
-	async (payload) => {
-		const response = await loginMetamask(payload);
-		return response.data;
-	}
-);
+export const LoginGetToken = createAsyncThunk("LoginMetamask", async (payload) => {
+	const response = await loginMetamask(payload);
+	return response.data;
+});
 
-export const socialLoginGoogle = createAsyncThunk(
-	"socialLoginGoogle",
-	async (payload, { rejectWithValue }) => {
-		const response = await socialLoginGoogleAPI(payload, rejectWithValue);
-		return response.data;
-	}
-);
-export const verifyJWTtokenFromCookie = createAsyncThunk(
-	"verifyJWTtokenFromCookie",
-	async (payload, { rejectWithValue }) => {
-		const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
-		return response.data;
-	}
-);
+export const socialLoginGoogle = createAsyncThunk("socialLoginGoogle", async (payload, { rejectWithValue }) => {
+	const response = await socialLoginGoogleAPI(payload, rejectWithValue);
+	return response.data;
+});
 
+export const verifyJWTtokenFromCookie = createAsyncThunk("verifyJWTtokenFromCookie", async (payload, { rejectWithValue }) => {
+	const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
+	return response.data;
+});
 
 const AuthDataSlice = createSlice({
 	name: "authData",
@@ -124,7 +112,7 @@ const AuthDataSlice = createSlice({
 		});
 	},
 	reducers: {
-		LogoutReducer: (state, /* action */) => {
+		LogoutReducer: (state) => {
 			state.LoggedInData = {
 				data: null,
 				isLoading: false,
@@ -145,8 +133,7 @@ const AuthDataSlice = createSlice({
 			localStorage.clear();
 			deleteCookieByName(AUTH_COOKIE_NAME);
 		},
-
-		StoreLoggedInUserData: (state,/*  action */) => {
+		StoreLoggedInUserData: (state) => {
 			const accountState = {
 				state: {
 					token: state.LoggedInData.data.token,
@@ -164,7 +151,7 @@ const AuthDataSlice = createSlice({
 			}, 100);
 
 		},
-		StoreLoggedInUserDataGoogle: (state,/*  action */) => {
+		StoreLoggedInUserDataGoogle: (state) => {
 			const accountState = {
 				state: {
 					token: state.GoogleVerifiedData.data?.token,
@@ -173,7 +160,6 @@ const AuthDataSlice = createSlice({
 			};
 			const serializedState = JSON.stringify(accountState);
 			createCookies(AUTH_COOKIE_NAME, serializedState);
-			// localStorage.setItem("verifiedState", serializedState);
 		},
 		LogInFromCookie: (state, /* action */) => {
 			const user = {

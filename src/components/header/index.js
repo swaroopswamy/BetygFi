@@ -15,18 +15,18 @@ import {
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import LoginPage from "@components/login";
 import "./index.css";
-import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import {
     LogoutReducer,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import { MobileSidebar } from "@components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
 import { PublicAddressStringFormatter } from "@util/utility";
 import SearchBoxV2 from "@components/searchBoxV2";
-import { useDebounce } from "@/hooks/useDebounce";
-import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
+import { useDebounce } from "@hooks/useDebounce";
+import { getSearchV2List, getSearchV2TrendingList } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
@@ -36,6 +36,7 @@ const Navbar = ({ ...rest }) => {
     const searchParamAddress = searchParams.get("address");
     const router = useRouter();
     const pathname = usePathname();
+    const dispatch = useDispatch();
     const {
         isOpen: isMobileSidebarOpen,
         onOpen: onMobileSidebarOpen,
@@ -46,18 +47,19 @@ const Navbar = ({ ...rest }) => {
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
-
+    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const { data: AuthSession } = useSession();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
-    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
-    const dispatch = useDispatch();
-    const { colorMode, toggleColorMode } = useColorMode();
+
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 300);
-    const { data: AuthSession } = useSession();
+
+    const { colorMode, toggleColorMode } = useColorMode();
+    const normalizeColorMode = (colorMode) => colorMode === "light" ? "dark" : "light";
 
     const clearValueMobileSearch = () => {
         setSearchValue("");
@@ -109,9 +111,6 @@ const Navbar = ({ ...rest }) => {
         updateColorMode();
         dispatch(getSearchV2TrendingList());
     }, []);
-
-    const normalizeColorMode = (colorMode) =>
-        colorMode === "light" ? "dark" : "light";
 
     const updateColorMode = () => {
         const colorCookie = getCookieByName(COLOR_MODE_COOKIE_NAME);
@@ -257,7 +256,7 @@ const Navbar = ({ ...rest }) => {
                                 setTimeout(() => {
                                     dispatch(LogoutReducer());
                                     setTimeout(() => {
-                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL_DASHBOARD });
                                     }, 200);
                                 }, 100);
                             }}

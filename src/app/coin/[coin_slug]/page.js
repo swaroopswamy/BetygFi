@@ -1,5 +1,5 @@
-import CoinDetailPage from "@/components/pages/coin/CoinDetailPage";
-import { getCoinDashboardData } from "@/services/coinService";
+import CoinDetailPage from "@components/pages/coin/CoinDetailPage";
+import { getCoinDashboardData } from "@services/coinService";
 import { CoinDetailPageMetas } from "@util/metaHelper";
 
 export async function generateMetadata({ params }) {

@@ -13,7 +13,7 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@redux/dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
 import CustomAvatar from "@components/avatar";
 const SearchBox = dynamic(() => import("@components/searchBox"));

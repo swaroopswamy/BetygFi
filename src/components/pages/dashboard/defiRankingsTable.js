@@ -19,8 +19,8 @@ import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
-import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
-import CustomAvatar from "@/components/avatar";
+import { fetchDefiRankingTableData } from "@redux/dashboard_data/dataSlice";
+import CustomAvatar from "@components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));

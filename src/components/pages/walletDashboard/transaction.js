@@ -17,10 +17,10 @@ import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
+import { fetchWalletTransactionsData } from "@redux/wallet_dashboard_data/dataSlice";
 import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
 import Image from "next/image";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));

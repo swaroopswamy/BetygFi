@@ -1,9 +1,9 @@
-import { getDefiRankingsTableData } from "@/services/dashboardService";
 import {
 	getAssetAllocationForAddress, getBlockchainAllocationForAddress, getProtocolAllocationForAddress,
 	getInflowOutflowTokensForAddress, getWalletBalanceData, getWalletTransactionsForAddressSummary, getWalletTransactionsData
 } from "@/services/walletDashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getDefiRankingsTableData } from "@services/dashboardService";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 

@@ -14,9 +14,9 @@ import React, { useEffect } from "react";
 // import { BreadCrumb } from "@components/breadcrumb2";
 import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import TrendingCoinPanel from "@components/trendingCoinPanel";
-import { fetchTrendingCoinsData } from "@/redux/coin_data/dataSlice";
+import { fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 
 const CoinPage = () => {

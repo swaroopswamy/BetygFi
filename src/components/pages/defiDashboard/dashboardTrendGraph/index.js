@@ -58,7 +58,6 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     //     graphData2?.data?.map((item) => {
     //         if (graphTypeSelected.includes(item.name)) {
     //             mapdata.push(item);
-    //             console.log("mapdata", mapdata);
     //         }
     //     })
     //     setSeries(mapdata);

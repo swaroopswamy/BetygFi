@@ -7,7 +7,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import Image from "next/image";
 
 const BlockchainSelectionMenuBlocks = () => {

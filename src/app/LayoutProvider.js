@@ -1,54 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect } from "react";
-import {
-    Box,
-    useColorModeValue,
-    useDisclosure,
-    useMediaQuery,
-    useToast,
-} from "@chakra-ui/react";
+import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import SidebarContent from "@components/sidebar";
 import Footer from "@components/footer";
 import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
-import {
-    LogInFromCookie,
-    StoreLoggedInUserDataGoogle,
-    ResetValidatedUserData,
-    socialLoginGoogle,
-    verifyJWTtokenFromCookie,
-    LogoutReducer,
-} from "@/redux/auth_data/authSlice";
-import { AUTH_COOKIE_NAME } from "@util/constant";
-import { getCookieByName } from "@util/cookieHelper";
+import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
+import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
+import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
 
-export default function LayoutProvider({ children }) {
-
-    const [isMd] = useMediaQuery("(min-width: 768px)");
+export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
-    const isSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isSidebarCollapsed
-    );
-    const isMobileSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isMobileSidebarCollapsed
-    );
+    // const { connector: activeConnector } = useAccount();
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     const { disconnect } = useDisconnect();
-    const { data: AuthSession, status, update } = useSession();
-    const GoogleVerifiedData = useSelector(
-        (state) => state.authData.GoogleVerifiedData
-    );
-    const ValidatedUserData = useSelector(
-        (state) => state.authData.ValidatedUserData
-    );
     const toast = useToast();
+    const { data: AuthSession, status, update } = useSession();
+
+    const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
+    const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
+    const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
 
     // it is used to verify and validate token this will return user details and initiate Sign In
@@ -97,7 +78,7 @@ export default function LayoutProvider({ children }) {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
                             disconnect();
-                            signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL_DASHBOARD });
                         } else {
                             // here we need to check if the user has logged in from same account
                             verifyJWTtokenFromCookieHandler(cookie);
@@ -124,6 +105,8 @@ export default function LayoutProvider({ children }) {
 
     //useEffect to check auth on mount
     useEffect(() => {
+        createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
+
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
         if (!isEmpty(cookie)) {
             verifyJWTtokenFromCookieHandler(cookie);
@@ -131,33 +114,11 @@ export default function LayoutProvider({ children }) {
             if (status === "authenticated") {
                 (localStorage.getItem("googleAuthInitiated") === "false" ||
                     localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL_DASHBOARD });
             }
         }
-
-        window.addEventListener('online', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={true}
-                        content={'Internet connection is back :)'}
-                    />
-                ),
-            });
-        }, false);
-
-        window.addEventListener('offline', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={false}
-                        content={"Internet connection is down :("}
-                    />
-                ),
-            });
-        }, false);
+        manageOnlineOfflineStatus();
+        window.getAllCacheKeys = getAllCacheKeys;
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -177,7 +138,7 @@ export default function LayoutProvider({ children }) {
                 ),
             });
             setTimeout(() => {
-                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                signOut({ callbackUrl: appConfig.NEXTAUTH_URL_DASHBOARD });
             }, 2000);
         }
     }, [GoogleVerifiedData]);
@@ -210,11 +171,37 @@ export default function LayoutProvider({ children }) {
             setTimeout(() => {
                 dispatch(LogoutReducer());
                 setTimeout(() => {
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL_DASHBOARD });
                 }, 200);
             }, 100);
         }
     }, [dispatch, ValidatedUserData]);
+
+    const manageOnlineOfflineStatus = () => {
+        window.addEventListener('online', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={true}
+                        content={'Internet connection is back :)'}
+                    />
+                ),
+            });
+        }, false);
+
+        window.addEventListener('offline', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={"Internet connection is down :("}
+                    />
+                ),
+            });
+        }, false);
+    };
 
     React.useEffect(() => {
         const unwatch = watchAccount(config, {
@@ -226,7 +213,7 @@ export default function LayoutProvider({ children }) {
                         setTimeout(() => {
                             dispatch(LogoutReducer());
                             setTimeout(() => {
-                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                signOut({ callbackUrl: appConfig.NEXTAUTH_URL_DASHBOARD });
                             }, 200);
                         }, 100);
                     }
@@ -251,61 +238,56 @@ export default function LayoutProvider({ children }) {
                 h={"100%"}
             />
             {isMd ? (
-                <>
+                <Box
+                    display={{
+                        base: "none",
+                        md: isMobileSidebarCollapsed ? "flex" : "none",
+                    }}
+                    flexDirection={"column"}
+                    className="margin-conditions"
+                    id="main-body"
+                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                    w="100%"
+                    overflowX={"hidden"}
+                >
+                    <Navbar onOpenMenu={onOpen} />
                     <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
                         }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                        _dark={{
+                            bgColor: "#131313",
+                        }}
                         w="100%"
-                        overflowX={"hidden"}
+                        height={"100vh"}
                     >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#131313",
-                            }}
-                            w="100%"
-                            height={"100vh"}
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
+                        {children}
+                        <Footer />
                     </Box>
-                </>
+                </Box>
             ) : (
-                <>
+                <Box
+                    display={{ base: "flex", md: "none" }}
+                    flexDirection={"column"}
+                    overflowX={"hidden"}
+                    mt={"60px"}
+                    w="100%" >
+                    <Navbar onOpenMenu={onOpen} />
                     <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
+                        }}
+                        _dark={{
+                            bgColor: "#282828",
+                        }}
                         w="100%"
                     >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#282828",
-                            }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
+                        {children}
+                        <Footer />
                     </Box>
-                </>
+                </Box>
             )}
         </Box>
     );

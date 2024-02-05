@@ -4,7 +4,7 @@ import {
     getCoinRankingsTableData,
     getCoinScoresData,
     getTrendingCoinsData,
-} from "@/services/coinService";
+} from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
