@@ -1,8 +1,8 @@
 const fs = require('fs');
-const VALID_KEY_LIST = ["NEXTAUTH_SECRET", "NEXTAUTH_URL_DASHBOARD", "CONFIG_SERVER_IP_HOST", "API_SERVICE_URL"];
-const CONFIG_SERVER_IP_HOST = process.env.CONFIG_SERVER_IP_HOST || "http://52.66.250.16:4000";
+const VALID_KEY_LIST = ["NEXTAUTH_SECRET", "NEXTAUTH_URL_DASHBOARD", "ADMINWEBURL", "API_SERVICE_URL"];
+const ADMINWEBURL = process.env.ADMINWEBURL || "http://52.66.250.16:4000";
 
-const URL = `${CONFIG_SERVER_IP_HOST}/config`;
+const URL = `${ADMINWEBURL}/config`;
 
 const getAppConfig = async () => {
     try {

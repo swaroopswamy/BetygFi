@@ -27,7 +27,7 @@ const config = {
 export async function GET(req) {
     const { host } = absoluteUrl(req);
     const hostWithoutPort = host => host.split(":")[0];
-    const CONFIG_SERVER_IP_HOST = process.env.CONFIG_SERVER_IP_HOST;
+    const ADMINWEBURL = process.env.ADMINWEBURL;
 
     const fetchConfiguration = {
         headers: { 'Content-Type': 'application/json' },
@@ -41,7 +41,7 @@ export async function GET(req) {
     } else {
         configuration = config['prod'];
     }
-    url = `${CONFIG_SERVER_IP_HOST}/config`;
+    url = `${ADMINWEBURL}/config`;
     const res = await fetch(url, fetchConfiguration);
     const data = await res.json();
     const configValues = { ...data?.config, ...configuration };
