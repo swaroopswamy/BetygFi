@@ -41,7 +41,7 @@ export async function GET(req) {
     } else {
         configuration = config['prod'];
     }
-    url = `${ADMINWEBURL}/config`;
+    url = `${ADMINWEBURL}`;
     const res = await fetch(url, fetchConfiguration);
     const data = await res.json();
     const configValues = { ...data?.config, ...configuration };
