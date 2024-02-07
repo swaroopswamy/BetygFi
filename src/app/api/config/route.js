@@ -3,7 +3,7 @@ import absoluteUrl from 'next-absolute-url';
 
 const config = {
     localhost: {
-        BUILD_ENV: "dev",
+        BUILD_ENV: "local",
         PORTAL_NAME: "dashboard",
         APP_PORT: "7000"
     },

@@ -1151,7 +1151,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 setTimeout(() => {
                                                     dispatch(LogoutReducer());
                                                     setTimeout(() => {
-                                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL_DASHBOARD });
+                                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
                                                     }, 200);
                                                 }, 100);
                                             }}

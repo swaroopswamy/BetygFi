@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "start": "rimraf .next && npm run dev",
-    "dev": "npm run generateconfig:dev && NODE_ENV=development next dev -p 7000",
+    "dev": "NODE_ENV=development next dev -p 7000",
     "deploy": "NODE_ENV=production APP_PORT=7000 next start -p 7000",
-    "generateconfig:dev": "node ./config/devConfigGenerator.js",
     "build": "next build",
     "clean:build": "rimraf .next && npm run build",
     "analyze-build": "cross-env ANALYZE=true next build",
@@ -33,6 +32,7 @@
     "next": "14.0.2",
     "next-absolute-url": "^1.2.2",
     "next-auth": "4.24.5",
+    "pino-pretty": "^10.3.1",
     "react": "^18",
     "react-apexcharts": "1.4.1",
     "react-dom": "^18",
