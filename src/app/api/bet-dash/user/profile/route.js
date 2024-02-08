@@ -4,7 +4,8 @@ export async function GET(req) {
     const fetchConfiguration = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': req.headers.Authorization,
+            // 'Authorization': req.headers.Authorization,
+            ...req.headers
         },
         cache: 'no-store'
     };
