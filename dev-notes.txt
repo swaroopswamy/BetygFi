@@ -1,3 +1,4 @@
+create .env with content in sample.env.txt
 Make sure to add an entry in /etc/hosts (for unix os) or c:/Windows/System32/drivers/etc/hosts (for windows os)
 127.0.0.1       local.betygfi.com
 1) npm install
