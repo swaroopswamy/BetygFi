@@ -72,6 +72,8 @@ const SidebarContent = ({ ...rest }) => {
         onClose: onReportBugModalClose,
     } = useDisclosure();
 
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+
     return (
         <Box
             id="betygfi-sidebar"
@@ -290,7 +292,7 @@ const SidebarContent = ({ ...rest }) => {
                                                 <NavItem
                                                     key={i}
                                                     NavIcon={link.icon}
-                                                    path={link.path}
+                                                    path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                                     newTab={link.newTab}
                                                     isActive={
                                                         pathname ===
@@ -462,7 +464,7 @@ const SidebarContent = ({ ...rest }) => {
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
-                                    path={link.path}
+                                    path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                     newTab={link.newTab}
                                     name={link.name}
                                     isActive={pathname === link.path}
@@ -758,6 +760,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
     const { data: AuthSession } = useSession();
     const { disconnect } = useDisconnect();
     const dispatch = useDispatch();
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
     return (
         <Drawer
@@ -1025,7 +1028,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                         <NavItem
                                             key={i}
                                             NavIcon={link.icon}
-                                            path={link.path}
+                                            path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                             newTab={link.newTab}
                                             isActive={
                                                 pathname === link.path
