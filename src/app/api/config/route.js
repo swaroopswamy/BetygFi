@@ -27,12 +27,8 @@ const config = {
 export async function GET(req) {
     const { protocol, origin } = absoluteUrl(req);
     const hostWithoutPort = (origin, protocol) => {
-        console.log("🤦‍♀️🤷‍♂️🤔 ~ GET ~ protocol:", protocol);
-        console.log("🤦‍♀️🤷‍♂️🤔 ~ hostWithoutPort ~ origin:", origin);
         const removedProtocol = origin.replace(protocol, '');
-        console.log("🤦‍♀️🤷‍♂️🤔 ~ hostWithoutPort ~ removedProtocol:", removedProtocol);
         const splittedOrigin = removedProtocol.split(":")[0].replace("//", "");
-        console.log("🤦‍♀️🤷‍♂️🤔 ~ hostWithoutPort ~ splittedOrigin:", splittedOrigin);
         return splittedOrigin;
     };
     const ADMINWEBURL = process.env.ADMINWEBURL || "http://52.66.250.16:4000/config";
@@ -42,7 +38,6 @@ export async function GET(req) {
         cache: 'no-store'
     };
     const hostValue = hostWithoutPort(origin, protocol);
-    console.log("🤦‍♀️🤷‍♂️🤔 ~ GET ~ hostValue:", hostValue);
     let configuration = {};
     if (['localhost', 'dev', 'qa'].includes(hostValue)) {
         configuration = config[hostValue];
@@ -52,7 +47,6 @@ export async function GET(req) {
     const res = await fetch(ADMINWEBURL, fetchConfiguration);
     const data = await res.json();
     const configValues = { ...data?.config, ...configuration };
-    console.log("🤦‍♀️🤷‍♂️🤔 ~ GET ~ configValues:", configValues);
     getAppConfigMappedToGlobalEnv(configValues);
     return Response.json({ data });
 }
