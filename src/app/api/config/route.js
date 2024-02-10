@@ -27,7 +27,7 @@ const config = {
 export async function GET(req) {
     const { host } = absoluteUrl(req);
     const hostWithoutPort = host => host.split(":")[0];
-    const ADMINWEBURL = process.env.ADMINWEBURL;
+    const ADMINWEBURL = process.env.ADMINWEBURL || "http://52.66.250.16:4000/config";
 
     const fetchConfiguration = {
         headers: { 'Content-Type': 'application/json' },
