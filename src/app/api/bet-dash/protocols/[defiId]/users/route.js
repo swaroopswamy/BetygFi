@@ -11,6 +11,6 @@ export async function GET(req) {
         const data = await res.json();
         return Response.json(data);
     } catch (error) {
-        return Response.json(error);
+        return Response.json({ error });
     }
 }
