@@ -33,7 +33,6 @@ export async function GET(req) {
         headers: { 'Content-Type': 'application/json' },
         cache: 'no-store'
     };
-    let url = '';
     const hostValue = hostWithoutPort(host);
     let configuration = {};
     if (['localhost', 'dev', 'qa'].includes(hostValue)) {
@@ -41,12 +40,7 @@ export async function GET(req) {
     } else {
         configuration = config['prod'];
     }
-    if (hostValue === 'localhost') {
-        url = `${ADMINWEBURL}/config`;
-    } else {
-        url = `${ADMINWEBURL}`;
-    }
-    const res = await fetch(url, fetchConfiguration);
+    const res = await fetch(ADMINWEBURL, fetchConfiguration);
     const data = await res.json();
     const configValues = { ...data?.config, ...configuration };
     getAppConfigMappedToGlobalEnv(configValues);
