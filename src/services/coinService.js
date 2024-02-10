@@ -1,6 +1,7 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
 import { getAPI_URL } from "@util/utility";
 
 export const getCoinDashboardData = async (payload, rejectWithValue) => {
@@ -18,6 +19,20 @@ export const getCoinDashboardData = async (payload, rejectWithValue) => {
         } else {
             return err;
         }
+    }
+};
+
+export const getCoinDashboardDataFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-dashboard/${payload.id}`;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: `http://localhost:${process.env.APP_PORT}` + url, method: 'POST', payload });
+            return cacheHandler(url, data, 4, false);
+        }
+    } catch (error) {
+        return error;
     }
 };
 
