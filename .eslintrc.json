@@ -29,16 +29,16 @@
                 "ignoreRestSiblings": false
             }
         ],
-        // "no-console": [
-        //     "error",
-        //     {
-        //         "allow": [
-        //             "warn",
-        //             "error",
-        //             "info"
-        //         ]
-        //     }
-        // ],
+        "no-console": [
+            "error",
+            {
+                "allow": [
+                    "warn",
+                    "error",
+                    "info"
+                ]
+            }
+        ],
         "object-curly-spacing": [
             "error",
             "always"
