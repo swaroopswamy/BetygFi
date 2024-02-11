@@ -13,25 +13,25 @@ import {
     useMediaQuery,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import LoginPage from "@components/login";
 import "./index.css";
 import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import {
     LogoutReducer,
 } from "@redux/auth_data/authSlice";
-import { MobileSidebar } from "@components/sidebar";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
 import { PublicAddressStringFormatter } from "@util/utility";
-import SearchBoxV2 from "@components/searchBoxV2";
 import { useDebounce } from "@hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
+import LoginPage from "@components/login";
+import { MobileSidebar } from "@components/sidebar";
+import SearchBoxV2 from "@components/searchBoxV2";
 
-const Navbar = ({ ...rest }) => {
+const Navbar = ({ appConfig, ...rest }) => {
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
     const router = useRouter();
@@ -256,7 +256,7 @@ const Navbar = ({ ...rest }) => {
                                 setTimeout(() => {
                                     dispatch(LogoutReducer());
                                     setTimeout(() => {
-                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                                     }, 200);
                                 }, 100);
                             }}
@@ -372,11 +372,13 @@ const Navbar = ({ ...rest }) => {
                 onClose={onMobileSidebarClose}
                 isLoginModalOpen={isLoginModalOpen}
                 onLoginModalOpen={onLoginModalOpen}
+                appConfig={appConfig}
                 onLoginModalClose={onLoginModalClose}
             />
             <LoginPage
                 isOpen={isLoginModalOpen}
                 onOpen={onLoginModalOpen}
+                appConfig={appConfig}
                 onClose={onLoginModalClose}
             />
         </Box>

@@ -22,7 +22,7 @@ import { walletArray } from "@util/constant";
 
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
 
-const LoginPage = ({ isOpen, onClose }) => {
+const LoginPage = ({ isOpen, onClose, appConfig }) => {
     const { colorMode } = useColorMode();
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
 
@@ -263,7 +263,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                                     you are agreeging to
                                 </Text>
                                 <Link
-                                    href={`${process.env.NEXT_PUBLIC_BETYGFI_URL}/legal`}
+                                    href={`${appConfig.NEXT_PUBLIC_BETYGFI_URL}/legal`}
                                     target="_blank"
                                 >
                                     <Text

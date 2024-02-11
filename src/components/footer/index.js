@@ -16,7 +16,10 @@ import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { useRouter, usePathname } from "next/navigation";
 
-const Footer = React.memo(() => {
+const Footer = React.memo(({ appConfig }) => {
+    if (!appConfig) {
+        appConfig = { ...process.env };
+    }
     const { onToggle } = useDisclosure();
     const [isScrolledDown, setIsScrolledDown] = useState(false);
     const [scrollValue, setScrollValue] = useState(0);
@@ -92,24 +95,28 @@ const Footer = React.memo(() => {
                     >
                         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
                             <FooterMobileLink
+                                appConfig={appConfig}
                                 name={"Home"}
                                 NavIcon={RiHomeLine}
                                 link={"/"}
                                 isExternal={false}
                             />
                             <FooterMobileLink
+                                appConfig={appConfig}
                                 name={"Approach Paper"}
                                 NavIcon={TiDocumentText}
                                 link={"/approach-paper"}
                                 isExternal={false}
                             />
                             <FooterMobileLink
+                                appConfig={appConfig}
                                 name={"Top Wallets"}
                                 NavIcon={BiWalletAlt}
                                 link={"/top-wallets"}
                                 isExternal={false}
                             />
                             <FooterMobileLink
+                                appConfig={appConfig}
                                 name={"Community"}
                                 NavIcon={FaPeopleGroup}
                                 link={"community"}
@@ -125,7 +132,7 @@ const Footer = React.memo(() => {
 export default Footer;
 Footer.displayName = 'Footer';
 
-const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
+const FooterMobileLink = ({ name, NavIcon, link, isExternal, appConfig }) => {
     const { colorMode } = useColorMode();
     const router = useRouter();
     const pathname = usePathname();
@@ -138,7 +145,7 @@ const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
             gap={"10px"}
             cursor={"pointer"}
             onClick={() => {
-                isExternal ? window.open(link === "community" ? process.env.NEXT_PUBLIC_COMMUNITY_URL : link, "_blank", "noreferrer") :
+                isExternal ? window.open(link === "community" ? appConfig.NEXT_PUBLIC_COMMUNITY_URL : link, "_blank", "noreferrer") :
                     router.push(link);
             }}
             borderColor={"#FFF"}

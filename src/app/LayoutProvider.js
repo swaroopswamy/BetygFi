@@ -3,9 +3,6 @@
 import React, { useEffect } from "react";
 import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import SidebarContent from "@components/sidebar";
-import Footer from "@components/footer";
-import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
 import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
@@ -16,6 +13,9 @@ import CustomToast from "@components/toast";
 import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
+import Footer from "@components/footer";
+import SidebarContent from "@components/sidebar";
+import Navbar from "@components/header";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -236,6 +236,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 onClose={() => onClose}
                 w={isMobileSidebarCollapsed ? "null" : "80%"}
                 h={"100%"}
+                appConfig={appConfig}
             />
             {isMd ? (
                 <Box
@@ -250,7 +251,7 @@ export default function LayoutProvider({ appConfig, children }) {
                     w="100%"
                     overflowX={"hidden"}
                 >
-                    <Navbar onOpenMenu={onOpen} />
+                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
                     <Box
                         p="0"
                         _light={{
@@ -263,7 +264,7 @@ export default function LayoutProvider({ appConfig, children }) {
                         height={"100vh"}
                     >
                         {children}
-                        <Footer />
+                        <Footer appConfig={appConfig} />
                     </Box>
                 </Box>
             ) : (
@@ -273,7 +274,7 @@ export default function LayoutProvider({ appConfig, children }) {
                     overflowX={"hidden"}
                     mt={"60px"}
                     w="100%" >
-                    <Navbar onOpenMenu={onOpen} />
+                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
                     <Box
                         p="0"
                         _light={{
