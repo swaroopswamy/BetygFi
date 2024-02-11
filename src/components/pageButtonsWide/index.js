@@ -114,6 +114,11 @@ const PaginationButtons = ({ page, pageChangeHandler, totalPages }) => {
 
     const handlePaginationChange = (type, value) => {
         if (type === "input") {
+            if (value === "") {
+                value = 1;
+            } else {
+                value = +value;
+            }
             if (value < 0) {
                 value = 1;
             }
