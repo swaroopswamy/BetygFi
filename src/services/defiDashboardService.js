@@ -25,10 +25,11 @@ export const getDefiData = async (payload, rejectWithValue) => {
 export const getDefiDataFetched = async (payload) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `protocols/${payload.id}/get`;
+		const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
 		} else {
-			const data = await fetchInstance({ url: `http://localhost:${process.env.APP_PORT}` + url, method: 'POST', payload });
+			const data = await fetchInstance({ url: finalUrl, method: 'POST', payload });
 			return cacheHandler(url, data, 4, false);
 		}
 	} catch (error) {
