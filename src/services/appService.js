@@ -44,7 +44,7 @@ export const postSuggestFeatureData = async (payload, rejectWithValue) => {
 
 export const getSearchV2Data = async (payloadData, rejectWithValue) => {
 	try {
-		const url = NEXT_BE_URL_SEPARATOR + `/protocols/searchv2?name=${payloadData.searchValue}`;
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/searchv2?name=${payloadData.searchValue}`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
@@ -54,7 +54,7 @@ export const getSearchV2Data = async (payloadData, rejectWithValue) => {
 
 export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 	try {
-		const url = NEXT_BE_URL_SEPARATOR + `/protocols/trendingSearch`;
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/trendingSearch`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
