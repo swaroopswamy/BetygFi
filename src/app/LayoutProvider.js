@@ -106,7 +106,6 @@ export default function LayoutProvider({ appConfig, children }) {
     //useEffect to check auth on mount
     useEffect(() => {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
-
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
@@ -180,16 +179,11 @@ export default function LayoutProvider({ appConfig, children }) {
             }
         }
     };
+
     const manageOnlineOfflineStatus = () => {
         window.addEventListener('online', function () {
             toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={true}
-                        content={'Internet connection is back :)'}
-                    />
-                ),
+                position: "bottom", render: () => <CustomToast isSuccessful={true} content={'Internet connection is back :)'} />
             });
         }, false);
 
