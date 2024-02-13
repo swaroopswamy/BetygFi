@@ -107,16 +107,7 @@ export default function LayoutProvider({ appConfig, children }) {
     useEffect(() => {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
 
-        const cookie = getCookieByName(AUTH_COOKIE_NAME);
-        if (!isEmpty(cookie)) {
-            verifyJWTtokenFromCookieHandler(cookie);
-        } else {
-            if (status === "authenticated") {
-                (localStorage.getItem("googleAuthInitiated") === "false" ||
-                    localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
-            }
-        }
+        checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
     }, []);
@@ -177,6 +168,18 @@ export default function LayoutProvider({ appConfig, children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
+    const checkIfVerifiedOrNot = () => {
+        const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        if (!isEmpty(cookie)) {
+            verifyJWTtokenFromCookieHandler(cookie);
+        } else {
+            if (status === "authenticated") {
+                (localStorage.getItem("googleAuthInitiated") === "false" ||
+                    localStorage.getItem("googleAuthInitiated") === null) &&
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+            }
+        }
+    };
     const manageOnlineOfflineStatus = () => {
         window.addEventListener('online', function () {
             toast({
