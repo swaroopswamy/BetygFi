@@ -169,13 +169,17 @@ export default function LayoutProvider({ appConfig, children }) {
 
     const checkIfVerifiedOrNot = () => {
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ cookie:", cookie);
         if (!isEmpty(cookie)) {
             verifyJWTtokenFromCookieHandler(cookie);
         } else {
+            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ status:", status);
+            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ localStorage.getItem(googleAuthInitiated):", localStorage.getItem("googleAuthInitiated"));
+            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ appConfig:", appConfig);
             if (status === "authenticated") {
-                (localStorage.getItem("googleAuthInitiated") === "false" ||
-                    localStorage.getItem("googleAuthInitiated") === null) &&
+                if ([null, "false"].includes(localStorage.getItem("googleAuthInitiated"))) {
                     signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                }
             }
         }
     };
