@@ -109,6 +109,7 @@ export default function LayoutProvider({ appConfig, children }) {
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
+        window.checkIfVerifiedOrNot = checkIfVerifiedOrNot;
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -169,13 +170,9 @@ export default function LayoutProvider({ appConfig, children }) {
 
     const checkIfVerifiedOrNot = () => {
         const cookie = getCookieByName(AUTH_COOKIE_NAME);
-        console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ cookie:", cookie);
         if (!isEmpty(cookie)) {
             verifyJWTtokenFromCookieHandler(cookie);
         } else {
-            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ status:", status);
-            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ localStorage.getItem(googleAuthInitiated):", localStorage.getItem("googleAuthInitiated"));
-            console.log("🤦‍♀️🤷‍♂️🤔 ~ checkIfVerifiedOrNot ~ appConfig:", appConfig);
             if (status === "authenticated") {
                 if ([null, "false"].includes(localStorage.getItem("googleAuthInitiated"))) {
                     signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
