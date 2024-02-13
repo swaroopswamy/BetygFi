@@ -22,9 +22,9 @@ import { walletArray } from "@util/constant";
 
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
 
-const LoginPage = ({ isOpen, onClose }) => {
+const LoginPage = ({ isOpen, onClose, web3Verification = false }) => {
     const { colorMode } = useColorMode();
-    const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
+    const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(web3Verification);
 
     const handleProcessSelector = () => {
         setBrowserWalletProcessSelected(true);
@@ -44,7 +44,7 @@ const LoginPage = ({ isOpen, onClose }) => {
         >
             <ModalOverlay
                 bg="blackAlpha.300"
-                backdropFilter="blur(3px) hue-rotate(90deg)"
+                backdropFilter="blur(3px)"
             />
             <ModalContent mx={{ base: "14px", md: "0px" }}>
                 <ModalHeader
@@ -75,7 +75,6 @@ const LoginPage = ({ isOpen, onClose }) => {
                                 setBrowserWalletProcessSelected(false);
                             }}
                         >
-                            {/*<TriangleDownIcon mb={"4px"} transform={`rotate(${90}deg)`} /> */}
                             Back
                         </Text>
                     ) : (
@@ -127,6 +126,7 @@ const LoginPage = ({ isOpen, onClose }) => {
                     {browserWalletProcessSelected === true ? (
                         <OtherBrowserWalletProcess
                             onClose={onClose}
+                            web3Verification={web3Verification}
                             setBrowserWalletProcessSelected={
                                 setBrowserWalletProcessSelected
                             }

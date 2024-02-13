@@ -16,6 +16,7 @@ import CustomToast from "@components/toast";
 import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
+import LoginPage from "@components/login";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -31,6 +32,12 @@ export default function LayoutProvider({ appConfig, children }) {
     const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
+
+    const {
+        isOpen: isLoginModalOpen,
+        onOpen: onLoginModalOpen,
+        onClose: onLoginModalClose,
+    } = useDisclosure();
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -226,69 +233,77 @@ export default function LayoutProvider({ appConfig, children }) {
     }, [address]);
 
     return (
-        <Box
-            width="100%"
-            minH="100vh"
-            bg={useColorModeValue("#F0F0F5", "#191919")}
-            display={"flex"}
-        >
-            <SidebarContent
-                onClose={() => onClose}
-                w={isMobileSidebarCollapsed ? "null" : "80%"}
-                h={"100%"}
+        <React.Fragment>
+            <Box
+                width="100%"
+                minH="100vh"
+                bg={useColorModeValue("#F0F0F5", "#191919")}
+                display={"flex"}
+            >
+                <SidebarContent
+                    onLoginModalOpen={onLoginModalOpen}
+                    onClose={() => onClose}
+                    w={isMobileSidebarCollapsed ? "null" : "80%"}
+                    h={"100%"}
+                />
+                {isMd ? (
+                    <Box
+                        display={{
+                            base: "none",
+                            md: isMobileSidebarCollapsed ? "flex" : "none",
+                        }}
+                        flexDirection={"column"}
+                        className="margin-conditions"
+                        id="main-body"
+                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                        w="100%"
+                        overflowX={"hidden"}
+                    >
+                        <Navbar onOpenMenu={onOpen} />
+                        <Box
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
+                            }}
+                            _dark={{
+                                bgColor: "#131313",
+                            }}
+                            w="100%"
+                            height={"100vh"}
+                        >
+                            {children}
+                            <Footer />
+                        </Box>
+                    </Box>
+                ) : (
+                    <Box
+                        display={{ base: "flex", md: "none" }}
+                        flexDirection={"column"}
+                        overflowX={"hidden"}
+                        mt={"60px"}
+                        w="100%" >
+                        <Navbar onOpenMenu={onOpen} />
+                        <Box
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
+                            }}
+                            _dark={{
+                                bgColor: "#282828",
+                            }}
+                            w="100%"
+                        >
+                            {children}
+                            <Footer />
+                        </Box>
+                    </Box>
+                )}
+            </Box>
+            <LoginPage
+                isOpen={isLoginModalOpen}
+                onOpen={onLoginModalOpen}
+                onClose={onLoginModalClose}
             />
-            {isMd ? (
-                <Box
-                    display={{
-                        base: "none",
-                        md: isMobileSidebarCollapsed ? "flex" : "none",
-                    }}
-                    flexDirection={"column"}
-                    className="margin-conditions"
-                    id="main-body"
-                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                    w="100%"
-                    overflowX={"hidden"}
-                >
-                    <Navbar onOpenMenu={onOpen} />
-                    <Box
-                        p="0"
-                        _light={{
-                            bgColor: "#FFF",
-                        }}
-                        _dark={{
-                            bgColor: "#131313",
-                        }}
-                        w="100%"
-                        height={"100vh"}
-                    >
-                        {children}
-                        <Footer />
-                    </Box>
-                </Box>
-            ) : (
-                <Box
-                    display={{ base: "flex", md: "none" }}
-                    flexDirection={"column"}
-                    overflowX={"hidden"}
-                    mt={"60px"}
-                    w="100%" >
-                    <Navbar onOpenMenu={onOpen} />
-                    <Box
-                        p="0"
-                        _light={{
-                            bgColor: "#FFF",
-                        }}
-                        _dark={{
-                            bgColor: "#282828",
-                        }}
-                        w="100%"
-                    >
-                        {children}
-                        <Footer />
-                    </Box>
-                </Box>
-            )}
-        </Box>
+        </React.Fragment>
     );
 }

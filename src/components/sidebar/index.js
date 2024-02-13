@@ -46,7 +46,7 @@ import { PublicAddressStringFormatter } from "@util/utility";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
 
-const SidebarContent = ({ ...rest }) => {
+const SidebarContent = ({ onLoginModalOpen,...rest }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -66,6 +66,7 @@ const SidebarContent = ({ ...rest }) => {
         onClose: onSuggestFeatureModalClose,
     } = useDisclosure();
 
+ 
     const {
         isOpen: isReportBugModalOpen,
         onOpen: onReportBugModalOpen,
@@ -292,12 +293,14 @@ const SidebarContent = ({ ...rest }) => {
                                                 <NavItem
                                                     key={i}
                                                     NavIcon={link.icon}
+                                                    onLoginModalOpen={onLoginModalOpen}
                                                     path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                                     newTab={link.newTab}
                                                     isActive={
                                                         pathname ===
                                                         link.path
                                                     }
+
                                                 >
                                                     <Text
                                                         fontSize={"14px"}
@@ -464,6 +467,7 @@ const SidebarContent = ({ ...rest }) => {
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
+                                    //onLoginModalOpen={onLoginModalOpen}
                                     path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                     newTab={link.newTab}
                                     name={link.name}
@@ -644,9 +648,9 @@ const CollapsedNavItem = ({ NavIcon, path, newTab, name }) => {
     );
 };
 
-const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
+const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, ...rest }) => {
     const { colorMode } = useColorMode();
-
+    const { data : AuthSession } = useSession();
     if (isActive) {
         return (
             <Link
@@ -679,76 +683,83 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
             </Link>
         );
     }
-    if (isActive) {
+    if (path.includes("settings") && AuthSession === null) {
         return (
-            <Link
-                href={path}
-                target={newTab ? "_blank" : null}
-                style={{ textDecoration: "none" }}
-                _focus={{ boxShadow: "none" }}
-            >
-                <Box
-                    display={"flex"}
-                    alignItems="center"
-                    justifyContent={"left"}
-                    height={"38px"}
-                    padding={"9px 20px"}
-                    role="group"
-                    cursor="pointer"
-                    gap={"10px"}
-                    bg={colorMode === "light" ? "#202020" : "#FFFFFF"}
-                    color={colorMode === "light" ? "#FFFFFF" : "#191919"}
-                    mr={"-13px"}
-                    {...rest}
-                >
-                    <Icon
-                        as={NavIcon}
-                        boxSize={18}
-                        color={colorMode === "light" ? "#FFFFFF" : "#191919"}
-                    />
-                    {children}
-                </Box>
-            </Link>
-        );
-    }
-
-    return (
-        <Link
-            href={path}
-            target={newTab ? "_blank" : null}
-            style={{ textDecoration: "none" }}
-            _focus={{ boxShadow: "none" }}
-        >
             <Box
-                display={"flex"}
-                alignItems="center"
-                justifyContent={"left"}
-                height={"38px"}
-                padding={"9px 20px"}
-                role="group"
-                cursor="pointer"
-                gap={"10px"}
-                _hover={{
-                    bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                    color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                    fontWeight: "600",
-                }}
-                color={"text.primary"}
-                mr={"-13px"}
-                {...rest}
+                onClick={onLoginModalOpen}
+                style={{ textDecoration: "none" }}
+                _focus={{ boxShadow: "none" }}
             >
-                <Icon
-                    as={NavIcon}
-                    boxSize={18}
-                    color={colorMode === "light" ? "#161616" : "#FFFFFF"}
-                    _groupHover={{
+                <Box
+                    display={"flex"}
+                    alignItems="center"
+                    justifyContent={"left"}
+                    height={"38px"}
+                    padding={"9px 20px"}
+                    role="group"
+                    cursor="pointer"
+                    gap={"10px"}
+                    _hover={{
+                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
                         color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        fontWeight: "600",
                     }}
-                />
-                {children}
+                    color={"text.primary"}
+                    mr={"-13px"}
+                    {...rest}
+                >
+                    <Icon
+                        as={NavIcon}
+                        boxSize={18}
+                        color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                        _groupHover={{
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        }}
+                    />
+                    {children}
+                </Box>
             </Box>
-        </Link>
-    );
+        );
+    } else {
+        return (
+            <Link
+                href={path}
+                target={newTab ? "_blank" : null}
+                style={{ textDecoration: "none" }}
+                _focus={{ boxShadow: "none" }}
+            >
+                <Box
+                    display={"flex"}
+                    alignItems="center"
+                    justifyContent={"left"}
+                    height={"38px"}
+                    padding={"9px 20px"}
+                    role="group"
+                    cursor="pointer"
+                    gap={"10px"}
+                    _hover={{
+                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        fontWeight: "600",
+                    }}
+                    color={"text.primary"}
+                    mr={"-13px"}
+                    {...rest}
+                >
+                    <Icon
+                        as={NavIcon}
+                        boxSize={18}
+                        color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                        _groupHover={{
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                        }}
+                    />
+                    {children}
+                </Box>
+            </Link>
+        );
+    }
+
 };
 
 const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {

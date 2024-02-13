@@ -275,7 +275,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                         width: "100%",
                         overflow: "hidden",
                         backgroundColor: "blackAlpha.700",
-                        backdropFilter: 'blur(10px) hue-rotate(180deg)'
+                        backdropFilter: 'blur(10px)'
                     }}
                 >
                 </Box>

@@ -4,19 +4,21 @@ import React, { useState } from "react";
 import { Box, Text, Button, useMediaQuery, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import EditPage from "./editModal";
+import { useSelector } from "react-redux";
+import { PublicAddressStringFormatter } from "@util/utility";
 
 
 const ProfileBox = () => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    /* const handleOpenModal = () => {
+    const handleOpenModal = () => {
         setIsModalOpen(true);
-    }; */
+    };
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
     const { colorMode } = useColorMode();
-    //const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
+    const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
 
     return (
         <>{
@@ -36,7 +38,7 @@ const ProfileBox = () => {
                         <Text variant={"contentHeading3"} fontWeight={"400"}>
                             Profile Details
                         </Text>
-                        <Button variant={"settingsButton"}>
+                        <Button variant={"settingsButton"} onClick={handleOpenModal}>
                             <Text variant={"SettingsButtonText"}>
                                 Edit Details
                             </Text>
@@ -55,24 +57,28 @@ const ProfileBox = () => {
                             ></Image>
                             <Box >
                                 <Text variant={"smallTableHeader"} lineHeight={"normal"}>
-                                    Cameron Williamson
+                                    {UserDetailsData?.data?.user?.name ? (
+                                        UserDetailsData?.data?.user?.name
+                                    ) : (
+                                        "No Name"
+                                    )}
                                 </Text>
                                 <Text variant={"h3"} lineHeight={"normal"}
                                     _light={{
                                         color: "#757575"
                                     }}
                                     _dark={{
-                                        bg: "#A5A5A5"
+                                        color: "#A5A5A5"
                                     }}
                                     pt={"6px"}>
-                                    @TBgjD…CYVg4
+                                    @{PublicAddressStringFormatter(UserDetailsData?.data?.user?.user_name)}
                                 </Text>
                                 <Text variant={"h3"} lineHeight={"normal"}
                                     _light={{
                                         color: "#757575"
                                     }}
                                     _dark={{
-                                        bg: "#A5A5A5"
+                                        color: "#A5A5A5"
                                     }} pt={"6px"}>
                                     Member since: 12/11/2022
                                 </Text>
@@ -94,7 +100,12 @@ const ProfileBox = () => {
                                 <Image src="/icons/question_mark_lg_icon.svg" width={20} height={20} alt="question_mark"></Image>
                             </Box>
                             <Text variant={"profileText"} fontSize={"24px"} p={"1px 24px"}>
-                                72
+                                {UserDetailsData?.data?.user?.profile_score ? (
+                                    "-"
+                                ) : (
+                                    UserDetailsData?.data?.user?.profile_score
+                                )}
+
                             </Text>
                         </Box>
                     </Box>
@@ -104,7 +115,7 @@ const ProfileBox = () => {
                                 color: "#757575"
                             }}
                             _dark={{
-                                bg: "#A5A5A5"
+                                color: "#A5A5A5"
                             }}
 
                         >
@@ -115,10 +126,14 @@ const ProfileBox = () => {
                                 color: "#757575"
                             }}
                             _dark={{
-                                bg: "#A5A5A5"
+                                color: "#A5A5A5"
                             }}
                             paddingTop={"10px"}>
-                            I’m a crypto enthusiast—navigating the blockchain with a passion for decentralized innovation and a keen eye on the ever-evolving landscape, reshaping the future of finance one digital asset at a time.
+                            {UserDetailsData?.data?.user?.about ? (
+                                UserDetailsData?.data?.user?.about
+                            ) : (
+                                "I’m a crypto enthusiast—navigating the blockchain with a passion for decentralized innovation and a keen eye on the ever-evolving landscape, reshaping the future of finance one digital asset at a time."
+                            )}
                         </Text>
                     </Box>
                 </Box>
@@ -140,6 +155,7 @@ const ProfileBox = () => {
                             Profile Details
                         </Text>
                         <Image
+                            onClick={handleOpenModal}
                             width={20}
                             height={20}
                             src={colorMode === "light" ? ("/icons/Edit_icon.svg") : ("/icons/Edit_icon(Dark).svg")}
@@ -159,7 +175,11 @@ const ProfileBox = () => {
                             src="/images/Profile_photo.svg"
                         ></Image>
                         <Text variant={"smallTableHeader"} lineHeight={"normal"} pt={"15px"}>
-                            Cameron Williamson
+                            {UserDetailsData?.data?.user?.name ? (
+                                UserDetailsData?.data?.user?.name
+                            ) : (
+                                "No Name"
+                            )}
                         </Text>
                         <Text variant={"h3"} lineHeight={"normal"} _light={{
                             color: "#757575"
@@ -167,7 +187,8 @@ const ProfileBox = () => {
                             _dark={{
                                 color: "#A5A5A5"
                             }} pt={"10px"}>
-                            @TBgjD…CYVg4
+                            @{PublicAddressStringFormatter(UserDetailsData?.data?.user?.user_name)}
+
                         </Text>
                         <Text variant={"h3"} lineHeight={"normal"}
                             _light={{
@@ -196,7 +217,11 @@ const ProfileBox = () => {
                                 _dark={{
                                     color: "#FFFFFF"
                                 }} paddingTop={"10px"}>
-                                I’m a crypto enthusiast—navigating the blockchain with a passion for decentralized innovation and a keen eye on the ever-evolving landscape, reshaping the future of finance one digital asset at a time.
+                                {UserDetailsData?.data?.user?.about ? (
+                                    UserDetailsData?.data?.user?.about
+                                ) : (
+                                    "I’m a crypto enthusiast—navigating the blockchain with a passion for decentralized innovation and a keen eye on the ever-evolving landscape, reshaping the future of finance one digital asset at a time."
+                                )}
                             </Text>
                         </Box>
                         <Box
@@ -214,7 +239,11 @@ const ProfileBox = () => {
                                     <Image src="/icons/question_mark_lg_icon.svg" width={20} height={20} alt="question_mark"></Image>
                                 </Box>
                                 <Text variant={"profileText"} fontSize={"24px"} p={"5px 24px"}>
-                                    72
+                                    {UserDetailsData?.data?.user?.profile_score ? (
+                                        "-"
+                                    ) : (
+                                        UserDetailsData?.data?.user?.profile_score
+                                    )}
                                 </Text>
                             </Box>
                         </Box>

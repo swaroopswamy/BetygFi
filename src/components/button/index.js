@@ -134,6 +134,41 @@ const Button = defineStyleConfig({
                 color: colorMode === "light" ? "#FFFFFF" : "#191919",
             },
         }),
+        blackButton: ({ colorMode }) => ({
+            bg: colorMode === "light" ? "#1C1C1C" : "#FFF",
+            color: colorMode === "light" ? "#FFFFFF" : "#000000",
+            _hover: {
+                bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+            },
+            _active: {
+                bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+            },
+            fontSize: "12px",
+            fontWeight: "600",
+            borderRadius: "2px",
+            letterSpacing: "1px",
+            p: "7px 23px",
+        }),
+        whiteButton: ({ colorMode }) => ({
+            bg: colorMode !== "light" ? "#1C1C1C" : "#FFFFFF",
+            color: colorMode !== "light" ? "#FFFFFF" : "#191919",
+            _hover: {
+                bg: colorMode !== "light" ? "#202020" : "#FFFFFF",
+                color: colorMode !== "light" ? "#FFFFFF" : "#191919",
+            },
+            _active: {
+                bg: colorMode !== "light" ? "#202020" : "#FFFFFF",
+                color: colorMode !== "light" ? "#FFFFFF" : "#191919",
+            },
+            border: "1px solid #8c8c8c",
+            fontSize: "12px",
+            fontWeight: "600",
+            borderRadius: "4px",
+            letterSpacing: "1px",
+            p: "7px 23px",
+        }),
     },
     defaultProps: {
         variant: "base",

@@ -19,7 +19,7 @@ const CustomModal = ({ isOpen, onClose, headerTitle, BodyComponent, state }) => 
         <Modal isOpen={isOpen} onClose={onClose} >
             <ModalOverlay
                 bg="blackAlpha.300"
-                backdropFilter="blur(10px) hue-rotate(90deg)"
+                backdropFilter="blur(10px) "
             />
             <ModalContent zIndex={1000000}>
                 {state === "success" ? (

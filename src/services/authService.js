@@ -69,13 +69,16 @@ export const getUserDetailsAPI = async (payload, { rejectWithValue }) => {
 };
 
 export const editDetailsAPI = async (payload,) => {
-	const data = await axiosInstance.put(`user/edit/user-profile`, payload, getAxiosHeadersFromCookie());
+	const url = NEXT_BE_URL_SEPARATOR + `user/edit/user-profile`;
+	const data = await axiosInstance(getAPI_URL()).put(url, payload, getAxiosHeadersFromCookie());
 	return data;
 };
 
 export const getUserCountAPI = async (payload, { rejectWithValue }) => {
 	try {
-		const { data } = await axiosInstance.get(`user/count`, getAxiosHeadersFromCookie());
+
+		const url = NEXT_BE_URL_SEPARATOR + `user/count`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
 		return data;
 	} catch (err) {
 		return rejectWithValue(err.response.data);
@@ -83,11 +86,11 @@ export const getUserCountAPI = async (payload, { rejectWithValue }) => {
 };
 
 export const usernameValidityAPI = async (payload) => {
-	const url = `user/suggest-username/${payload?.user_name}`;
+	const url = NEXT_BE_URL_SEPARATOR + `user/suggest-username/${payload?.user_name}`;
 	if (checkIfCacheAvailable(url)) {
 		return checkIfCacheAvailable(url);
 	} else {
-		const data = await axiosInstance.get(url, getAxiosHeadersFromCookie());
+		const data = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
 		return cacheHandler(url, data, 4, false);
 	}
 };
