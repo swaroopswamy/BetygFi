@@ -81,6 +81,8 @@ const SidebarContent = ({ appConfig, ...rest }) => {
             minWidth={isSidebarCollapsed ? "50px" : "220px"}
             className="sidebar-styles"
             zIndex={"999"}
+            overflowY={"auto"}
+            overflowX={"hidden"}
             display={{ base: "none", md: "flex" }}
             {...rest}
         >
