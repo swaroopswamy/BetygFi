@@ -23,7 +23,6 @@ const LoginPage = dynamic(() => import("@components/login"));
 import { LogoutReducer } from "@redux/auth_data/authSlice";
 import DynamicIcon from "@components/icons/index_new";
 import { useDispatch, useSelector } from "react-redux";
-//import Image from "next/image";
 
 const Settings = () => {
 	const { colorMode, toggleColorMode } = useColorMode();
