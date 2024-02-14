@@ -38,8 +38,8 @@ export default function LayoutProvider({ appConfig, children }) {
             const payload = {
                 token: cookie?.state?.token,
             };
-            update();
             dispatch(verifyJWTtokenFromCookie(payload));
+            update();
         }
     };
 
