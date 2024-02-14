@@ -23,6 +23,9 @@ import { walletArray } from "@util/constant";
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
 
 const LoginPage = ({ isOpen, onClose, appConfig }) => {
+    if (!appConfig) {
+        appConfig = { ...process.env };
+    }
     const { colorMode } = useColorMode();
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
 
