@@ -37,7 +37,7 @@ const Settings = ({ params }) => {
 		onOpen: onLoginModalOpen,
 		onClose: onLoginModalClose,
 	} = useDisclosure();
-	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { isOpen, /* onOpen, */ onClose } = useDisclosure();
 	const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
 
@@ -49,7 +49,10 @@ const Settings = ({ params }) => {
 	};
 
 	const getUserCountHandler = () => {
-		dispatch(getUserCount());
+		const payload = {
+			user_name: user_name
+		};
+		dispatch(getUserCount(payload));
 	};
 	useEffect(() => {
 		Promise.all([
@@ -115,7 +118,7 @@ const Settings = ({ params }) => {
 						</>
 					) : (
 						<>
-							<Box layerStyle={"flexSpaceBetween"} p={"50px 35px 20px 50px"}>
+							{/* <Box layerStyle={"flexSpaceBetween"} p={"50px 35px 20px 50px"}>
 								<Text variant={"contentHeading3"} fontWeight={"400"}>
 									Delete Account
 								</Text>
@@ -137,7 +140,7 @@ const Settings = ({ params }) => {
 										Delete Account
 									</Text>
 								</Button>
-							</Box>
+							</Box> */}
 
 							<Box layerStyle={"flexSpaceBetween"} p={"50px 35px 90px 50px"}>
 								<Text variant={"contentHeading3"} fontWeight={"400"}>
@@ -221,7 +224,7 @@ const Settings = ({ params }) => {
 						</>
 					) : (
 						<>
-							<Box layerStyle={"flexColumn"} p={"30px 15px 30px 15px"}>
+							{/* <Box layerStyle={"flexColumn"} p={"30px 15px 30px 15px"}>
 								<Text variant={"contentHeading3"} fontWeight={"400"}>
 									Delete Account
 								</Text>
@@ -246,7 +249,7 @@ const Settings = ({ params }) => {
 										Delete Account
 									</Text>
 								</Button>
-							</Box>
+							</Box> */}
 
 							<Box layerStyle={"flexColumn"} p={"20px 15px 100px 15px"}>
 								<Text variant={"contentHeading3"} fontWeight={"400"}>

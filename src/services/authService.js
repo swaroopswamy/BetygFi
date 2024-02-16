@@ -77,7 +77,7 @@ export const editDetailsAPI = async (payload,) => {
 export const getUserCountAPI = async (payload, { rejectWithValue }) => {
 	try {
 
-		const url = NEXT_BE_URL_SEPARATOR + `user/count`;
+		const url = NEXT_BE_URL_SEPARATOR + `user/stats/${payload?.user_name}`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
 		return data;
 	} catch (err) {

@@ -50,7 +50,7 @@ export const getUserCount = createAsyncThunk(
 	"getUserCount",
 	async (payload, { rejectWithValue }) => {
 		const response = await getUserCountAPI(payload, rejectWithValue);
-		return response.data;
+		return response;
 	}
 );
 

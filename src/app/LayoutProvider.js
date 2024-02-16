@@ -3,9 +3,6 @@
 import React, { useEffect } from "react";
 import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import SidebarContent from "@components/sidebar";
-import Footer from "@components/footer";
-import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
 import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
 import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
@@ -16,7 +13,10 @@ import CustomToast from "@components/toast";
 import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
-import LoginPage from "@components/login";
+//import LoginPage from "@components/login";
+import Footer from "@components/footer";
+import SidebarContent from "@components/sidebar";
+import Navbar from "@components/header";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -33,12 +33,12 @@ export default function LayoutProvider({ appConfig, children }) {
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
 
-    const {
-        isOpen: isLoginModalOpen,
-        onOpen: onLoginModalOpen,
-        onClose: onLoginModalClose,
-    } = useDisclosure();
-
+    /*   const {
+          isOpen: isLoginModalOpen,
+          onOpen: onLoginModalOpen,
+          onClose: onLoginModalClose,
+      } = useDisclosure();
+   */
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
         if (cookie?.state?.token) {
@@ -46,6 +46,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 token: cookie?.state?.token,
             };
             dispatch(verifyJWTtokenFromCookie(payload));
+
         }
     };
 
@@ -63,8 +64,12 @@ export default function LayoutProvider({ appConfig, children }) {
                         dispatch(socialLoginGoogle(payload));
                     }
                 } else {
-                    if (AuthSession?.user?.name) {
-                        update();
+                    if (AuthSession?.provider !== 'credentials') {
+                        if (AuthSession?.user?.name) {
+                            update();
+                        }
+                    } else {
+                        localStorage.setItem("googleAuthInitiated", false);
                     }
                 }
             }
@@ -113,19 +118,11 @@ export default function LayoutProvider({ appConfig, children }) {
     //useEffect to check auth on mount
     useEffect(() => {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
-
-        const cookie = getCookieByName(AUTH_COOKIE_NAME);
-        if (!isEmpty(cookie)) {
-            verifyJWTtokenFromCookieHandler(cookie);
-        } else {
-            if (status === "authenticated") {
-                (localStorage.getItem("googleAuthInitiated") === "false" ||
-                    localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
-            }
-        }
+        checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
+        window.appConfig = appConfig;
+
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -184,16 +181,23 @@ export default function LayoutProvider({ appConfig, children }) {
         }
     }, [dispatch, ValidatedUserData]);
 
+    const checkIfVerifiedOrNot = () => {
+        const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        if (!isEmpty(cookie)) {
+            verifyJWTtokenFromCookieHandler(cookie);
+        } else {
+            if (status === "authenticated") {
+                if ([null, "false"].includes(localStorage.getItem("googleAuthInitiated"))) {
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                }
+            }
+        }
+    };
+
     const manageOnlineOfflineStatus = () => {
         window.addEventListener('online', function () {
             toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={true}
-                        content={'Internet connection is back :)'}
-                    />
-                ),
+                position: "bottom", render: () => <CustomToast isSuccessful={true} content={'Internet connection is back :)'} />
             });
         }, false);
 
@@ -232,78 +236,72 @@ export default function LayoutProvider({ appConfig, children }) {
         return () => unwatch();
     }, [address]);
 
+    
     return (
-        <React.Fragment>
-            <Box
-                width="100%"
-                minH="100vh"
-                bg={useColorModeValue("#F0F0F5", "#191919")}
-                display={"flex"}
-            >
-                <SidebarContent
-                    onLoginModalOpen={onLoginModalOpen}
-                    onClose={() => onClose}
-                    w={isMobileSidebarCollapsed ? "null" : "80%"}
-                    h={"100%"}
-                />
-                {isMd ? (
-                    <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
-                        }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                        w="100%"
-                        overflowX={"hidden"}
-                    >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#131313",
-                            }}
-                            w="100%"
-                            height={"100vh"}
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
-                    </Box>
-                ) : (
-                    <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
-                        w="100%" >
-                        <Navbar onOpenMenu={onOpen} />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#282828",
-                            }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
-                    </Box>
-                )}
-            </Box>
-            <LoginPage
-                isOpen={isLoginModalOpen}
-                onOpen={onLoginModalOpen}
-                onClose={onLoginModalClose}
+        <Box
+            width="100%"
+            minH="100vh"
+            bg={useColorModeValue("#F0F0F5", "#191919")}
+            display={"flex"}
+        >
+            <SidebarContent
+                onClose={() => onClose}
+                w={isMobileSidebarCollapsed ? "null" : "80%"}
+                h={"100%"}
+                appConfig={appConfig}
             />
-        </React.Fragment>
+            {isMd ? (
+                <Box
+                    display={{
+                        base: "none",
+                        md: isMobileSidebarCollapsed ? "flex" : "none",
+                    }}
+                    flexDirection={"column"}
+                    className="margin-conditions"
+                    id="main-body"
+                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                    w="100%"
+                    overflowX={"hidden"}
+                >
+                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
+                    <Box
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
+                        }}
+                        _dark={{
+                            bgColor: "#131313",
+                        }}
+                        w="100%"
+                        height={"100vh"}
+                    >
+                        {children}
+                        <Footer appConfig={appConfig} />
+                    </Box>
+                </Box>
+            ) : (
+                <Box
+                    display={{ base: "flex", md: "none" }}
+                    flexDirection={"column"}
+                    overflowX={"hidden"}
+                    mt={"60px"}
+                    w="100%" >
+                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
+                    <Box
+                        p="0"
+                        _light={{
+                            bgColor: "#FFF",
+                        }}
+                        _dark={{
+                            bgColor: "#282828",
+                        }}
+                        w="100%"
+                    >
+                        {children}
+                        <Footer />
+                    </Box>
+                </Box>
+            )}
+        </Box>
     );
 }

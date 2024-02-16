@@ -1,7 +1,7 @@
 export async function GET() {
     const getAppConfig = async () => {
         try {
-            const url = `http://localhost:7000/api/config`;
+            const url = `http://localhost:${process.env.APP_PORT}/api/config`;
             const res = await fetch(url, { cache: 'no-store' });
             const data = await res.json();
             return data?.data?.config?.API_SERVICE_URL;

@@ -32,7 +32,9 @@ export default async function RootLayout({ children }) {
 		if (getEnvironmentWiseConfig().isLocal) {
 			appConfig.NEXTAUTH_URL_DASHBOARD = GET_LOCAL_SERVER_HOST();
 		}
-		appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
+		if (appConfig.NEXTAUTH_URL_DASHBOARD) {
+			appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
+		}
 		getAppConfigMappedToGlobalEnv(appConfig);
 
 		return (

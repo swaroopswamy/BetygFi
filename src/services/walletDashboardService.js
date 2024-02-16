@@ -74,7 +74,7 @@ export const getBlockchainAllocationForAddress = async (payloadData, rejectWithV
 
 export const getInflowOutflowTokensForAddress = async (payloadData, rejectWithValue) => {
 	try {
-		const url = NEXT_BE_URL_SEPARATOR + `/wallet/address/${payloadData.address}/inflow-outflow-token`;
+		const url = NEXT_BE_URL_SEPARATOR + `wallet/address/${payloadData.address}/inflow-outflow-token`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {

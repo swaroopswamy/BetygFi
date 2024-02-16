@@ -1,17 +1,23 @@
-import { Box, Button, Text, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Text, useColorMode, useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import LoginPage from "@components/login";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
+import DynamicIcon from "@components/icons/index_new";
+import { signIn } from "next-auth/react";
+
 
 
 const AccountSettingsBox = () => {
     const [isLg] = useMediaQuery("(min-width: 1165px)");
-
+    const { colorMode } = useColorMode();
     const {
         isOpen: isLoginModalOpen,
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
+
+    const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
 
     return (
         <React.Fragment>
@@ -49,35 +55,61 @@ const AccountSettingsBox = () => {
                                         Web 3
                                     </Text>
                                     <Text variant={"SettingsText2"} ml={"15px"}>
-                                        Not Verified
+                                        {UserDetailsData?.data?.isweb3 ? "Verified" : "Not Verified"}
                                     </Text>
                                 </Box>
                             </Box>
-                            <Button
-                                variant={"outline"}
-                                border={"1px"}
-                                width={"110px"}
-                                height={"34px"}
-                                _light={{
-                                    bg: "#FFFFFF"
-                                }}
-                                _dark={{
-                                    bg: "#191919"
-                                }}
-                                onClick={onLoginModalOpen}
-                            >
-                                <Text
-                                    variant={"SettingsButtonText"}
-                                    _light={{
-                                        color: "#191919"
-                                    }}
-                                    _dark={{
-                                        color: "#FFFFFF"
-                                    }}
-                                >
-                                    Verify
-                                </Text>
-                            </Button>
+                            {
+                                UserDetailsData?.data?.isweb3 ?
+                                    <Box
+                                        layerStyle={"flexCenter"}
+                                    >
+                                        <DynamicIcon
+                                            name={colorMode === "light" ? "green_tick" : "unticked"}
+                                        />
+                                        <Text
+                                            variant={"SettingsButtonText"}
+                                            _light={{
+                                                color: "#191919"
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                            fontSize={"14px"}
+                                            ml={"7px"}
+                                        >
+                                            Verified
+                                        </Text>
+                                    </Box>
+                                    :
+                                    <Button
+                                        variant={"outline"}
+                                        border={"1px"}
+                                        width={"110px"}
+                                        height={"34px"}
+                                        _light={{
+                                            bg: "#FFFFFF"
+                                        }}
+                                        _dark={{
+                                            bg: "#191919"
+                                        }}
+                                        onClick={onLoginModalOpen}
+                                    >
+                                        <Text
+                                            variant={"SettingsButtonText"}
+                                            _light={{
+                                                color: "#191919"
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                        >
+                                            Not Verified
+                                        </Text>
+                                    </Button>
+                            }
+
+
                         </Box>
 
                         <Box
@@ -102,35 +134,64 @@ const AccountSettingsBox = () => {
                                         Email
                                     </Text>
                                     <Text variant={"SettingsText2"} ml={"15px"}>
-                                        Not Added
+                                        {UserDetailsData?.data?.isEmailVerified ? "Added" : "Not Added"}
                                     </Text>
                                 </Box>
                             </Box>
-                            <Button
-                                variant={"outline"}
-                                border={"1px"}
-                                width={"110px"}
-                                height={"34px"}
-                                _light={{
-                                    bg: "#FFFFFF"
-                                }}
-                                _dark={{
-                                    bg: "#191919"
-                                }}
+                            {
+                                UserDetailsData?.data?.isEmailVerified ?
+                                    <Box
+                                        layerStyle={"flexCenter"}
+                                    >
+                                        <DynamicIcon
+                                            name={colorMode === "light" ? "green_tick" : "unticked"}
+                                        />
+                                        <Text
+                                            variant={"SettingsButtonText"}
+                                            _light={{
+                                                color: "#191919"
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                            fontSize={"14px"}
+                                            ml={"7px"}
+                                        >
+                                            Added
+                                        </Text>
+                                    </Box>
+                                    :
+                                    <Button
+                                        variant={"outline"}
+                                        border={"1px"}
+                                        width={"110px"}
+                                        height={"34px"}
+                                        _light={{
+                                            bg: "#FFFFFF"
+                                        }}
+                                        _dark={{
+                                            bg: "#191919"
+                                        }}
+                                        onClick={() => {
+                                            localStorage.setItem('googleAuthInitiated', true);
+                                            signIn('google');
+                                        }}
 
-                            >
-                                <Text
-                                    variant={"SettingsButtonText"}
-                                    _light={{
-                                        color: "#191919"
-                                    }}
-                                    _dark={{
-                                        color: "#FFFFFF"
-                                    }}
-                                >
-                                    Add Email
-                                </Text>
-                            </Button>
+                                    >
+                                        <Text
+                                            variant={"SettingsButtonText"}
+                                            _light={{
+                                                color: "#191919"
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF"
+                                            }}
+                                        >
+                                            Add Email
+                                        </Text>
+                                    </Button>
+                            }
+
                         </Box>
 
                         {/*                     <Box

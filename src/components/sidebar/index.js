@@ -46,7 +46,7 @@ import { PublicAddressStringFormatter } from "@util/utility";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
 
-const SidebarContent = ({ onLoginModalOpen,...rest }) => {
+const SidebarContent = ({ onLoginModalOpen, appConfig, ...rest }) => {
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -84,6 +84,8 @@ const SidebarContent = ({ onLoginModalOpen,...rest }) => {
             minWidth={isSidebarCollapsed ? "50px" : "220px"}
             className="sidebar-styles"
             zIndex={"999"}
+            overflowY={"auto"}
+            overflowX={"hidden"}
             display={{ base: "none", md: "flex" }}
             {...rest}
         >
@@ -124,7 +126,7 @@ const SidebarContent = ({ onLoginModalOpen,...rest }) => {
                         >
                             Dashboards
                         </Text>
-                        {dashboards.map((link, i) => (
+                        {dashboards(appConfig).map((link, i) => (
                             <NavItem
                                 key={i}
                                 NavIcon={link.icon}
@@ -207,7 +209,7 @@ const SidebarContent = ({ onLoginModalOpen,...rest }) => {
                                 </AccordionButton>
                                 <AccordionPanel w={"100%"} p={0}>
                                     <Box layerStyle={"flexColumn"}>
-                                        {communities.map((link, i) => (
+                                        {communities(appConfig).map((link, i) => (
                                             <NavItem
                                                 key={i}
                                                 NavIcon={link.icon}
@@ -420,7 +422,7 @@ const SidebarContent = ({ onLoginModalOpen,...rest }) => {
                         </Box>
 
                         <Box layerStyle={"flexColumn"} mt={"20px"}>
-                            {dashboards.map((link, i) => (
+                            {dashboards(appConfig).map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -447,7 +449,7 @@ const SidebarContent = ({ onLoginModalOpen,...rest }) => {
                                 ></CollapsedNavItem>
                             ))}
 
-                            {communities.map((link, i) => (
+                            {communities(appConfig).map((link, i) => (
                                 <CollapsedNavItem
                                     key={i}
                                     NavIcon={link.icon}
@@ -762,7 +764,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, 
 
 };
 
-const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
+const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen, appConfig }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } =
         useDisclosure();
@@ -887,7 +889,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                 </Box>
 
                                 <Box overflowY={"scroll"} height={"100vh"} layerStyle={"flexColumn"}>
-                                    {dashboards.map((link, i) => (
+                                    {dashboards(appConfig).map((link, i) => (
                                         <NavItem
                                             key={i}
                                             NavIcon={link.icon}
@@ -1007,7 +1009,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                         animateOpacity={"true"}
                                     >
                                         <Box layerStyle={"flexColumn"}>
-                                            {communities.map((link, i) => (
+                                            {communities(appConfig).map((link, i) => (
                                                 <NavItem
                                                     key={i}
                                                     NavIcon={link.icon}
@@ -1165,7 +1167,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                                 setTimeout(() => {
                                                     dispatch(LogoutReducer());
                                                     setTimeout(() => {
-                                                        signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                                                     }, 200);
                                                 }, 100);
                                             }}

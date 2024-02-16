@@ -25,28 +25,26 @@ const config = {
 };
 
 export async function GET(req) {
-    const { host } = absoluteUrl(req);
-    const hostWithoutPort = host => host.split(":")[0];
-    const ADMINWEBURL = process.env.ADMINWEBURL;
+    const { protocol, origin } = absoluteUrl(req);
+    const hostWithoutPort = (origin, protocol) => {
+        const removedProtocol = origin.replace(protocol, '');
+        const splittedOrigin = removedProtocol.split(":")[0].replace("//", "");
+        return splittedOrigin;
+    };
+    const ADMINWEBURL = process.env.ADMINWEBURL || "http://52.66.250.16:4000/config";
 
     const fetchConfiguration = {
         headers: { 'Content-Type': 'application/json' },
         cache: 'no-store'
     };
-    let url = '';
-    const hostValue = hostWithoutPort(host);
+    const hostValue = hostWithoutPort(origin, protocol);
     let configuration = {};
     if (['localhost', 'dev', 'qa'].includes(hostValue)) {
         configuration = config[hostValue];
     } else {
         configuration = config['prod'];
     }
-    if (hostValue === 'localhost') {
-        url = `${ADMINWEBURL}/config`;
-    } else {
-        url = `${ADMINWEBURL}`;
-    }
-    const res = await fetch(url, fetchConfiguration);
+    const res = await fetch(ADMINWEBURL, fetchConfiguration);
     const data = await res.json();
     const configValues = { ...data?.config, ...configuration };
     getAppConfigMappedToGlobalEnv(configValues);

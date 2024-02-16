@@ -7,6 +7,9 @@ const StatsBox = () => {
     const [isLg] = useMediaQuery("(min-width: 1165px)");
     const UserCountData = useSelector((state) => state.authData.UserCountData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const abc = {
+        ...process.env
+    };
     return (
         <React.Fragment>
             {
@@ -80,7 +83,7 @@ const StatsBox = () => {
                                     <Box w={"30%"} layerStyle={"flexCenter"} pl={"20px"}>
                                         <Text variant={"bigTextNumber"}>
                                             {
-                                                UserCountData?.data?.posts ?? "-"
+                                                UserCountData?.data?.postsCount ?? "-"
                                             }
                                         </Text>
                                         <Text variant={"toastText"}
@@ -115,7 +118,7 @@ const StatsBox = () => {
                                     <Box w={"50%"} layerStyle={"flexCenter"} pl={"15px"}>
                                         <Text variant={"bigTextNumber"}>
                                             {
-                                                UserCountData?.data?.queries ?? "-"
+                                                UserCountData?.data?.getQueryCountById ?? "-"
                                             }
                                         </Text>
                                         <Text variant={"toastText"}
@@ -192,7 +195,7 @@ const StatsBox = () => {
                                 <Box w={"33%"} p={"0px 25px"}>
                                     <Text variant={"bigTextNumber"}>
                                         {
-                                            UserCountData?.data?.posts ?? "-"
+                                            UserCountData?.data?.postsCount ?? "-"
                                         }
                                     </Text>
                                     <Text variant={"toastText"}
@@ -225,7 +228,7 @@ const StatsBox = () => {
                                 <Box pl={"15px"} pt={"15px"}>
                                     <Text variant={"bigTextNumber"} textAlign={"center"}>
                                         {
-                                            UserCountData?.data?.queries ?? "-"
+                                            UserCountData?.data?.getQueryCountById ?? "-"
                                         }
                                     </Text>
                                     <Text variant={"toastText"}

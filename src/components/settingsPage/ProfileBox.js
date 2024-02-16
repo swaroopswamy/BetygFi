@@ -6,6 +6,7 @@ import Image from "next/image";
 import EditPage from "./editModal";
 import { useSelector } from "react-redux";
 import { PublicAddressStringFormatter } from "@util/utility";
+import moment from "moment";
 
 
 const ProfileBox = () => {
@@ -80,11 +81,11 @@ const ProfileBox = () => {
                                     _dark={{
                                         color: "#A5A5A5"
                                     }} pt={"6px"}>
-                                    Member since: 12/11/2022
+                                    Member since: {UserDetailsData?.data?.memberSince ? moment(UserDetailsData?.data?.memberSince).format("DD/MM/YYYY") : "-"}
                                 </Text>
                             </Box>
                         </Box>
-                        <Box
+                        {/* <Box
                             width={"184px"}
                             height={"70px"}
                             background={"#494949"}
@@ -107,7 +108,7 @@ const ProfileBox = () => {
                                 )}
 
                             </Text>
-                        </Box>
+                        </Box> */}
                     </Box>
                     <Box pt={"20px"}>
                         <Text variant={"h3"} lineHeight={"normal"}
@@ -224,7 +225,7 @@ const ProfileBox = () => {
                                 )}
                             </Text>
                         </Box>
-                        <Box
+                        {/* <Box
                             width={"290px"}
                             height={"50px"}
                             background={"#494949"}
@@ -246,7 +247,7 @@ const ProfileBox = () => {
                                     )}
                                 </Text>
                             </Box>
-                        </Box>
+                        </Box> */}
                     </Box>
                 </Box>
 
