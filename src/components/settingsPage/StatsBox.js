@@ -7,9 +7,7 @@ const StatsBox = () => {
     const [isLg] = useMediaQuery("(min-width: 1165px)");
     const UserCountData = useSelector((state) => state.authData.UserCountData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
-    const abc = {
-        ...process.env
-    };
+    
     return (
         <React.Fragment>
             {

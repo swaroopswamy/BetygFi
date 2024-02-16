@@ -121,8 +121,7 @@ export default function LayoutProvider({ appConfig, children }) {
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
-        window.appConfig = appConfig;
-
+        
     }, []);
 
     // for creating cookie after google sign in is successful
