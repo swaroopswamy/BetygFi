@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Box,
     Text,
@@ -15,11 +15,9 @@ import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { useRouter, usePathname } from "next/navigation";
+import AppConfigContext from "@components/context/appConfigContext";
 
-const Footer = React.memo(({ appConfig }) => {
-    if (!appConfig) {
-        appConfig = { ...process.env };
-    }
+const Footer = React.memo(() => {
     const { onToggle } = useDisclosure();
     const [isScrolledDown, setIsScrolledDown] = useState(false);
     const [scrollValue, setScrollValue] = useState(0);
@@ -39,6 +37,33 @@ const Footer = React.memo(({ appConfig }) => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     });
+
+    const footerMobileLinkList = [
+        {
+            name: "Home",
+            NavIcon: RiHomeLine,
+            link: "/",
+            isExternal: false
+        },
+        {
+            name: "Approach Paper",
+            NavIcon: TiDocumentText,
+            link: "/approach-paper",
+            isExternal: false,
+        },
+        {
+            name: "Top Wallets",
+            NavIcon: BiWalletAlt,
+            link: "/top-wallets",
+            isExternal: false,
+        },
+        {
+            name: "Community",
+            NavIcon: FaPeopleGroup,
+            link: "community",
+            isExternal: true,
+        }
+    ];
 
     return (
         <>
@@ -94,34 +119,15 @@ const Footer = React.memo(({ appConfig }) => {
                         zIndex={"100"}
                     >
                         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
-                            <FooterMobileLink
-                                appConfig={appConfig}
-                                name={"Home"}
-                                NavIcon={RiHomeLine}
-                                link={"/"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                appConfig={appConfig}
-                                name={"Approach Paper"}
-                                NavIcon={TiDocumentText}
-                                link={"/approach-paper"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                appConfig={appConfig}
-                                name={"Top Wallets"}
-                                NavIcon={BiWalletAlt}
-                                link={"/top-wallets"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                appConfig={appConfig}
-                                name={"Community"}
-                                NavIcon={FaPeopleGroup}
-                                link={"community"}
-                                isExternal={true}
-                            />
+                            {
+                                footerMobileLinkList?.map((fm, index) => <FooterMobileLink
+                                    name={fm.name}
+                                    key={index}
+                                    NavIcon={fm.NavIcon}
+                                    link={fm.link}
+                                    isExternal={fm.isExternal}
+                                />)
+                            }
                         </Box>
                     </Box>
             }
@@ -132,7 +138,8 @@ const Footer = React.memo(({ appConfig }) => {
 export default Footer;
 Footer.displayName = 'Footer';
 
-const FooterMobileLink = ({ name, NavIcon, link, isExternal, appConfig }) => {
+const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
+    const appConfig = useContext(AppConfigContext);
     const { colorMode } = useColorMode();
     const router = useRouter();
     const pathname = usePathname();

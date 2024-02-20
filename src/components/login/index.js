@@ -12,20 +12,19 @@ import {
     useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import dynamic from "next/dynamic";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 import { walletArray } from "@util/constant";
+import AppConfigContext from "@components/context/appConfigContext";
 
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
 
-const LoginPage = ({ isOpen, onClose, appConfig }) => {
-    if (!appConfig) {
-        appConfig = { ...process.env };
-    }
+const LoginPage = ({ isOpen, onClose }) => {
+    const appConfig = useContext(AppConfigContext);
     const { colorMode } = useColorMode();
     const [browserWalletProcessSelected, setBrowserWalletProcessSelected] = useState(false);
 

@@ -14,7 +14,7 @@ import {
 	Input,
 	FormControl,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
 import dynamic from "next/dynamic";
 
 const LoginPage = dynamic(() => import("@components/login"));
@@ -23,8 +23,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "next-auth/react";
 import { useDisconnect } from "wagmi";
 import ThemeBox from "@components/settingsPage/themeBox";
+import AppConfigContext from "@components/context/appConfigContext";
 
 const Settings = () => {
+	const appConfig = useContext(AppConfigContext);
 	const dispatch = useDispatch();
 	const { disconnect } = useDisconnect();
 	const {
@@ -97,7 +99,7 @@ const Settings = () => {
 									setTimeout(() => {
 										dispatch(LogoutReducer());
 										setTimeout(() => {
-											signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+											signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
 										}, 200);
 									}, 100);
 								}}
@@ -181,7 +183,7 @@ const Settings = () => {
 									setTimeout(() => {
 										dispatch(LogoutReducer());
 										setTimeout(() => {
-											signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+											signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
 										}, 200);
 									}, 100);
 								}}

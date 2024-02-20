@@ -121,11 +121,11 @@ export const getNonWWWDomain = () => {
 export const getMainDomain = () => {
     if (typeof window !== "undefined") {
         if (getEnvironmentWiseConfig().isProd) {
-            if (process.env.PORTAL_NAME === 'dashboard') {
-                return window.location.hostname;
-            } else {
-                return getNonWWWDomain();
-            }
+            // if (process.env.PORTAL_NAME === 'dashboard') {
+            return window.location.hostname;
+            // } else {
+            //     return getNonWWWDomain();
+            // }
         } else {
             return getNonWWWDomain();
         }

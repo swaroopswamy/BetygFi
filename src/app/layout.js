@@ -22,7 +22,6 @@ export const maxDuration = 5;
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
-
 	let appConfig = await getAppConfig(GET_LOCAL_SERVER_HOST());
 	if (!appConfig) {
 		return (

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import {
     Box,
     Flex,
@@ -43,10 +43,12 @@ import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
 import { PublicAddressStringFormatter } from "@util/utility";
+import AppConfigContext from "@components/context/appConfigContext";
 
 const DynamicIcon = dynamic(() => import("@components/icons/index_new"), { ssr: false });
 
-const SidebarContent = ({ appConfig, ...rest }) => {
+const SidebarContent = ({ ...rest }) => {
+    const appConfig = useContext(AppConfigContext);
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -751,7 +753,8 @@ const NavItem = ({ NavIcon, path, newTab, isActive, children, ...rest }) => {
     );
 };
 
-const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen, appConfig }) => {
+const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
+    const appConfig = useContext(AppConfigContext);
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen: isCommunitiesOpen, onToggle: onCommunitiesToggle } =
         useDisclosure();
