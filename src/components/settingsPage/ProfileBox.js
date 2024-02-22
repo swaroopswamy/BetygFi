@@ -1,17 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 //import { useSelector } from "react-redux";
 import { Box, Text, Button, useMediaQuery, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import EditPage from "./editModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PublicAddressStringFormatter } from "@util/utility";
 import moment from "moment";
+import { changeProfilePic } from "@redux/auth_data/authSlice";
 
 
 const ProfileBox = () => {
+    const fileInputRef = useRef(null);
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useDispatch();
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -20,6 +23,24 @@ const ProfileBox = () => {
     };
     const { colorMode } = useColorMode();
     const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
+
+    const [userImg, setUserImg] = useState(null);
+    const handleChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            const i = e.target.files[0];
+            /* const payload = {
+                profilePic: i
+            }; */
+            let formData = new FormData();
+            formData.append('profilePic', i);
+            setUserImg(URL.createObjectURL(i));
+            dispatch(changeProfilePic(formData));
+        }
+    };
+
+    useEffect(() => {
+        setUserImg(UserDetailsData?.data?.profile_url);
+    }, [UserDetailsData]);
 
     return (
         <>{
@@ -47,15 +68,38 @@ const ProfileBox = () => {
                     </Box>
                     <Box pt={"20px"} layerStyle={"flexCenterSpaceBetween"}>
                         <Box layerStyle={"flexCenter"} gap={"17px"}>
-                            <Image
-                                style={{
-                                    borderRadius: "50%",
-                                }}
-                                width={150}
-                                height={150}
-                                alt="profile_img"
-                                src="/images/Profile_photo.svg"
-                            ></Image>
+                            <Box
+                                pos={"relative"}
+                            >
+                                <Image
+                                    style={{
+                                        borderRadius: "50%",
+                                        width: "150px",
+                                        height: "150px",
+                                        objectFit: "cover",
+                                        background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
+                                        backgroundRepeat: " no-repeat"
+
+                                    }}
+                                    width={150}
+                                    height={150}
+                                    alt="profile_img"
+                                    src={userImg === null ? "/images/Profile_photo.svg" : userImg}
+                                ></Image>
+                                <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
+                                    cursor={"pointer"}
+                                >
+                                    <input type="file" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
+                                    <Text variant={"h5"} color={"#FFFFFF"} textAlign={"center"} pt="5px"
+                                        onClick={() => {
+                                            fileInputRef.current.click();
+                                        }}
+                                    >
+                                        Change
+                                    </Text>
+                                </Box>
+                            </Box>
+
                             <Box >
                                 <Text variant={"smallTableHeader"} lineHeight={"normal"}>
                                     {UserDetailsData?.data?.user?.name ? (
@@ -199,7 +243,7 @@ const ProfileBox = () => {
                                 color: "#A5A5A5"
                             }}
                             pt={"10px"}>
-                            Member since: 12/11/2022
+                            Member since: {UserDetailsData?.data?.memberSince ? moment(UserDetailsData?.data?.memberSince).format("DD/MM/YYYY") : "-"}
                         </Text>
                         <Box mx={"20px"} pt={"25px"}>
                             <Text variant={"h3"} lineHeight={"normal"}

@@ -13,6 +13,7 @@ export async function GET(req) {
         cache: 'no-store'
     };
     const res = await fetch(URL, fetchConfiguration);
+
     const data = await res.json();
     return Response.json(data);
 }

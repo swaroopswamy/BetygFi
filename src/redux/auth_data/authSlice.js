@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
+import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookies, deleteCookieByName } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
@@ -65,6 +65,12 @@ export const usernameValidity = createAsyncThunk(
 		}
 	}
 );
+
+export const changeProfilePic = createAsyncThunk("changeProfilePic", async (payload, { rejectWithValue }) => {
+	const response = await changeProfilePicAPI(payload, rejectWithValue);
+	return response.data;
+
+});
 
 
 const AuthDataSlice = createSlice({

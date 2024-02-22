@@ -1,5 +1,4 @@
 import { axiosInstance } from "@util/axiosInstance";
-import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
 import { getAPI_URL, getAuthenticatedUserToken } from "@util/utility";
 
@@ -87,10 +86,17 @@ export const getUserCountAPI = async (payload, { rejectWithValue }) => {
 
 export const usernameValidityAPI = async (payload) => {
 	const url = NEXT_BE_URL_SEPARATOR + `user/suggest-username/${payload?.user_name}`;
-	if (checkIfCacheAvailable(url)) {
-		return checkIfCacheAvailable(url);
-	} else {
-		const data = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
-		return cacheHandler(url, data, 4, false);
+	const data = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
+	return data;
+};
+
+export const changeProfilePicAPI = async (payload, { rejectWithValue }) => {
+	try {
+		const url = NEXT_BE_URL_SEPARATOR + `user/profile-pic`;
+		const { data } = await axiosInstance(getAPI_URL()).put(url, payload, getAxiosHeadersFromCookie());
+		return data;
+	}
+	catch (err) {
+		return rejectWithValue(err.response.data);
 	}
 };

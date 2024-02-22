@@ -218,8 +218,8 @@ const EditPage = ({ isOpen, onClose }) => {
                                                 ) :
                                                 (
                                                     <Box layerStyle={"flexCenter"} pb="14px">
-                                                        <i className="icon green_check_filled" />
-                                                        <Text variant={"warningText"} color={"#245F00"}>
+                                                        <i className="icon green_check_circle" />
+                                                        <Text variant={"warningText"} color={"#245F00"} ml={"5px"}>
                                                             Username available
                                                         </Text>
                                                     </Box>
