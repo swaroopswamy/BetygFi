@@ -9,7 +9,7 @@ const StatsBox = () => {
     const [isLg] = useMediaQuery("(min-width: 1165px)");
     const UserCountData = useSelector((state) => state.authData.UserCountData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
-    
+
     return (
         <React.Fragment>
             {
@@ -104,7 +104,7 @@ const StatsBox = () => {
                                     <Text variant={"contentHeading"} lineHeight={"normal"}>BetygFi Data Studio</Text>
                                     <Link
                                         target="_blank"
-                                        href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                        href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}`}
                                     >
                                         <Button variant={"settingsButton"}>
                                             <Text variant={"SettingsButtonText"}>
@@ -246,7 +246,7 @@ const StatsBox = () => {
                                 <Link
                                     style={{ marginBottom: "20px" }}
                                     target="_blank"
-                                    href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                    href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}`}
                                 >
                                     <Button variant={"settingsButton"}>
                                         <Text variant={"SettingsButtonText"}>

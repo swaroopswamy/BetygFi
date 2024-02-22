@@ -12,7 +12,7 @@ const CustomAvatar = ({ src, height = 48, width = 48, ...rest }) => {
         width = width.replace('px', '');
         width = parseInt(width);
     }
-    
+
     return (
         <Image
             unoptimized={'true'}
