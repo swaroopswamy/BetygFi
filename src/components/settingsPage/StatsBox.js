@@ -1,9 +1,11 @@
 import { Box, Button, Text, useMediaQuery, Link } from "@chakra-ui/react";
-import React from "react";
+import AppConfigContext from "@components/context/appConfigContext";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 
 
 const StatsBox = () => {
+    const appConfig = useContext(AppConfigContext);
     const [isLg] = useMediaQuery("(min-width: 1165px)");
     const UserCountData = useSelector((state) => state.authData.UserCountData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
@@ -33,7 +35,7 @@ const StatsBox = () => {
                                 <Box layerStyle={"flexCenter"} p={"30px 20px"} justifyContent={"space-between"}>
                                     <Text variant={"contentHeading"} lineHeight={"normal"}>BetygFi Community</Text>
                                     <Link
-                                        href={`${process.env.NEXT_PUBLIC_COMMUNITY_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                        href={`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}/settings/${ValidatedUserData?.data?.user_name}`}
                                         target="_blank"
                                     >
                                         <Button variant={"settingsButton"}>
@@ -102,7 +104,7 @@ const StatsBox = () => {
                                     <Text variant={"contentHeading"} lineHeight={"normal"}>BetygFi Data Studio</Text>
                                     <Link
                                         target="_blank"
-                                        href={`${process.env.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                        href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
                                     >
                                         <Button variant={"settingsButton"}>
                                             <Text variant={"SettingsButtonText"}>
@@ -211,7 +213,7 @@ const StatsBox = () => {
                             <Box borderBottom={"2px solid #D9D9D9"} layerStyle={"flexColumnCenterSpaceAround"} mx={"25px"} py="20px">
                                 <Link
                                     target="_blank"
-                                    href={`${process.env.NEXT_PUBLIC_COMMUNITY_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                    href={`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}/settings/${ValidatedUserData?.data?.user_name}`}
                                 >
                                     <Button variant={"settingsButton"}>
                                         <Text variant={"SettingsButtonText"}>
@@ -244,7 +246,7 @@ const StatsBox = () => {
                                 <Link
                                     style={{ marginBottom: "20px" }}
                                     target="_blank"
-                                    href={`${process.env.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
+                                    href={`${appConfig.NEXT_PUBLIC_STUDIO_URL}/settings/${ValidatedUserData?.data?.user_name}`}
                                 >
                                     <Button variant={"settingsButton"}>
                                         <Text variant={"SettingsButtonText"}>

@@ -17,6 +17,7 @@ import { config } from "./Web3Provider";
 import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
+import AppConfigContext from "@components/context/appConfigContext";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -237,70 +238,71 @@ export default function LayoutProvider({ appConfig, children }) {
 
     
     return (
-        <Box
-            width="100%"
-            minH="100vh"
-            bg={useColorModeValue("#F0F0F5", "#191919")}
-            display={"flex"}
-        >
-            <SidebarContent
-                onClose={() => onClose}
-                w={isMobileSidebarCollapsed ? "null" : "80%"}
-                h={"100%"}
-                appConfig={appConfig}
-            />
-            {isMd ? (
-                <Box
-                    display={{
-                        base: "none",
-                        md: isMobileSidebarCollapsed ? "flex" : "none",
-                    }}
-                    flexDirection={"column"}
-                    className="margin-conditions"
-                    id="main-body"
-                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                    w="100%"
-                    overflowX={"hidden"}
-                >
-                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
+        <AppConfigContext.Provider value={appConfig}>
+            <Box
+                width="100%"
+                minH="100vh"
+                bg={useColorModeValue("#F0F0F5", "#191919")}
+                display={"flex"}
+            >
+                <SidebarContent
+                    onClose={() => onClose}
+                    w={isMobileSidebarCollapsed ? "null" : "80%"}
+                    h={"100%"}
+                />
+                {isMd ? (
                     <Box
-                        p="0"
-                        _light={{
-                            bgColor: "#FFF",
+                        display={{
+                            base: "none",
+                            md: isMobileSidebarCollapsed ? "flex" : "none",
                         }}
-                        _dark={{
-                            bgColor: "#131313",
-                        }}
+                        flexDirection={"column"}
+                        className="margin-conditions"
+                        id="main-body"
+                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
                         w="100%"
-                        height={"100vh"}
+                        overflowX={"hidden"}
                     >
-                        {children}
-                        <Footer appConfig={appConfig} />
+                        <Navbar onOpenMenu={onOpen} />
+                        <Box
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
+                            }}
+                            _dark={{
+                                bgColor: "#131313",
+                            }}
+                            w="100%"
+                            height={"100vh"}
+                        >
+                            {children}
+                            <Footer />
+                        </Box>
                     </Box>
-                </Box>
-            ) : (
-                <Box
-                    display={{ base: "flex", md: "none" }}
-                    flexDirection={"column"}
-                    overflowX={"hidden"}
-                    mt={"60px"}
-                    w="100%" >
-                    <Navbar appConfig={appConfig} onOpenMenu={onOpen} />
+                ) : (
                     <Box
-                        p="0"
-                        _light={{
-                            bgColor: "#FFF",
-                        }}
-                        _dark={{
-                            bgColor: "#282828",
-                        }}
-                        w="100%"
-                    >
-                        {children}
-                        <Footer />
+                        display={{ base: "flex", md: "none" }}
+                        flexDirection={"column"}
+                        overflowX={"hidden"}
+                        mt={"60px"}
+                        w="100%" >
+                        <Navbar onOpenMenu={onOpen} />
+                        <Box
+                            p="0"
+                            _light={{
+                                bgColor: "#FFF",
+                            }}
+                            _dark={{
+                                bgColor: "#282828",
+                            }}
+                            w="100%"
+                        >
+                            {children}
+                            <Footer />
+                        </Box>
                     </Box>
-                </Box>
-            )}
-        </Box>
+                )}
+            </Box>
+        </AppConfigContext.Provider>
     );
 }

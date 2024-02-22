@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDisconnect } from "wagmi";
 import {
@@ -30,8 +30,10 @@ import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
 import LoginPage from "@components/login";
 import { MobileSidebar } from "@components/sidebar";
 import SearchBoxV2 from "@components/searchBoxV2";
+import AppConfigContext from "@components/context/appConfigContext";
 
-const Navbar = ({ appConfig, ...rest }) => {
+const Navbar = ({ ...rest }) => {
+    const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
     const router = useRouter();
@@ -372,13 +374,11 @@ const Navbar = ({ appConfig, ...rest }) => {
                 onClose={onMobileSidebarClose}
                 isLoginModalOpen={isLoginModalOpen}
                 onLoginModalOpen={onLoginModalOpen}
-                appConfig={appConfig}
                 onLoginModalClose={onLoginModalClose}
             />
             <LoginPage
                 isOpen={isLoginModalOpen}
                 onOpen={onLoginModalOpen}
-                appConfig={appConfig}
                 onClose={onLoginModalClose}
             />
         </Box>

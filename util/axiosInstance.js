@@ -3,7 +3,6 @@ import axios from "axios";
 export const axiosInstance = (baseURL) => {
   if (!baseURL) baseURL = '';
   return axios.create({
-    // baseURL: baseURL || process.env.API_SERVICE_URL,
     headers: {
       post: {
         "Content-Type": "application/json",

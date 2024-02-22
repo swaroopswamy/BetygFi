@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { postSuggestFeature } from "@redux/app_data/dataSlice";
 import { resetSuggestFeature } from "@redux/app_data/dataSlice";
 const CustomInput = dynamic(() => import('@components/customInput'));
 const CustomUpload = dynamic(() => import('@components/customUpload'));
 const CustomModal = dynamic(() => import("@components/custommodal/index"));
-const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
+const CustomToast = dynamic(() => import("@components/toast/index"));
 
+const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
+    const toast = useToast();
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         userId: 123,
@@ -20,6 +22,7 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
     const statusSuggestFeature = useSelector(
         (state) => state?.appData?.suggestFeature
     );
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === "image") {
@@ -35,10 +38,24 @@ const SuggestFeatureModal = ({ isOpen, onOpen, onClose }) => {
             }));
         }
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(postSuggestFeature(formData));
+        if (formData.featureName.trim() === "" || formData.description.trim() === "") {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Required field cannot be empty'}
+                    />
+                ),
+            });
+        } else {
+            dispatch(postSuggestFeature(formData));
+        }
     };
+
     return (
         <CustomModal
             state={statusSuggestFeature.status}
