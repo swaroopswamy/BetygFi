@@ -150,13 +150,9 @@ const DashboardDataSlice = createSlice({
             if (action.payload === "All") {
                 state.categorySelected = [];
             } else if (state.categorySelected.includes(action.payload)) {
-                state.categorySelected = state.categorySelected.filter(
-                    (item) => item !== action.payload
-                );
+                state.categorySelected = state.categorySelected.filter(item => item !== action.payload);
             } else {
-                state.categorySelected = state.categorySelected.filter(
-                    (item) => item !== "All"
-                );
+                state.categorySelected = state.categorySelected.filter(item => item !== "All");
                 state.categorySelected.push(action.payload);
             }
         },
