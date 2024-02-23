@@ -21,7 +21,7 @@ const SearchBox = dynamic(() => import("@components/searchBox"));
 const BlockchainSelectionMenuNew = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
-
+    
     const [tempBlockchain, setTempBlockchain] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -56,6 +56,8 @@ const BlockchainSelectionMenuNew = () => {
         setSearchableBlockchains(blockchainListData?.data?.slice(5));
         setTempBlockchain(blockchainListData?.data?.slice(5));
     }, [blockchainListData]);
+
+    
 
     return (
         <>
@@ -254,6 +256,7 @@ const BlockchainSelectionMenuNew = () => {
                                                         }}
                                                     >
                                                         <Checkbox
+
                                                             colorScheme="green"
                                                             value={item.id}
                                                             // checked={blockchainSelected.includes(
@@ -299,6 +302,7 @@ const BlockchainSelectionMenuNew = () => {
                                                                     }}
                                                                 />
                                                                 <Text
+                                                                    ml={"8px"}
                                                                     fontSize={
                                                                         "12px"
                                                                     }

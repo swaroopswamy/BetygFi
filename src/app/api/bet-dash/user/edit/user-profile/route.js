@@ -15,6 +15,11 @@ export async function PUT(req) {
     };
 
     const res = await fetch(URL, fetchConfiguration);
-    const data = await res.json();
-    return Response.json(data);
+    if (res.ok) {
+        const data = await res.json();
+        return Response.json(data);
+    } else {
+        const errorData = await res.json();
+        return new Response(JSON.stringify({ ...errorData }), { status: res.status });
+    }
 }

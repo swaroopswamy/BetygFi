@@ -21,7 +21,7 @@ const CustomAvatar = ({ src, height = 48, width = 48, ...rest }) => {
             {...rest}
             width={width}
             height={height}
-            style={{ borderRadius: '50%' }}
+            style={{ borderRadius: '50%', width: width + 'px', height: height + 'px', objectFit: "cover" }}
             priority={'true'}
         />
     );

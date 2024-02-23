@@ -28,9 +28,6 @@ const ProfileBox = () => {
     const handleChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             const i = e.target.files[0];
-            /* const payload = {
-                profilePic: i
-            }; */
             let formData = new FormData();
             formData.append('profilePic', i);
             setUserImg(URL.createObjectURL(i));
@@ -72,6 +69,7 @@ const ProfileBox = () => {
                                 pos={"relative"}
                             >
                                 <Image
+                                    unoptimized={'true'}
                                     style={{
                                         borderRadius: "50%",
                                         width: "150px",
@@ -84,7 +82,8 @@ const ProfileBox = () => {
                                     width={150}
                                     height={150}
                                     alt="profile_img"
-                                    src={userImg === null ? "/images/Profile_photo.svg" : userImg}
+                                    priority={'true'}
+                                    src={userImg === null ? "/icons/avatar_icon_light.svg" : userImg}
                                 ></Image>
                                 <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                     cursor={"pointer"}
