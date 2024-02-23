@@ -161,9 +161,7 @@ const DashboardDataSlice = createSlice({
             }
         },
         scoreChangedReducer: (state, action) => {
-            if (state.scoreSelected === action.payload) {
-                state.scoreSelected = "";
-            } else {
+            if (state.scoreSelected !== action.payload) {
                 state.scoreSelected = action.payload;
             }
         },

@@ -12,9 +12,7 @@ const boxData = [
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
-    const scoreSelected = useSelector(
-        (state) => state?.dashboardTableData?.scoreSelected
-    );
+    const scoreSelected = useSelector(state => state?.dashboardTableData?.scoreSelected);
 
     return (
         <Tooltip label={`View all ${data.label} risk DeFis`}>
@@ -80,7 +78,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     lineHeight={"18px"}
                     letterSpacing={"0.18px"}
                     fontWeight={700}
-                    color={"#FFF"}
+                    color={"#FFFFFF"}
                 >
                     {scoreTotalData[data.index].value ?? "-"}
                 </Text>
