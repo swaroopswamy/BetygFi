@@ -89,7 +89,7 @@ const LoginPage = ({ isOpen, onClose, web3Verification = false }) => {
                                 _dark={{ color: "#FFF" }}
                                 _light={{ color: "#202020" }}
                             >
-                                BetygFi Community
+                                BetygFi
                             </Text>
 
                             <Text
@@ -109,7 +109,7 @@ const LoginPage = ({ isOpen, onClose, web3Verification = false }) => {
                                 mb="26px"
                                 w={"fit-content"}
                             >
-                                Join the Conversation
+                                {/* Join the Conversation */}
                             </Text>
                         </>
                     )}

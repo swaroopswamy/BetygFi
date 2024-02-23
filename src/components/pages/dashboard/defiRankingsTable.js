@@ -288,19 +288,15 @@ const TableRow = ({ item, rowIndex }) => {
                 </Text>
             </Td>
             <Td key={5}>
-                {!isEmpty(item.mcap) ? (
-                    <Text variant={"h3"}>
-                        {Math.trunc(item.mcap).toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                        })}
-                    </Text>
-                ) : (
-                    <Text variant={"h3"}>NA</Text>
-                )}
+                <Text variant={"h3"}>
+                    {Math.trunc(item.mcap).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    })}
+                </Text>
             </Td>
             <Td key={6}>
-                {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+                {item.tvl !== 0 ? (
                     <Text variant={"h3"}>
                         {(item.mcap / item.tvl).toFixed(2)}
                     </Text>
@@ -537,19 +533,12 @@ const PanelComp = ({ item }) => {
                     <Text variant="tableHead"> MCap </Text>
                     {/* <TooltipComp label="Market capitalization of the DeFi is the total value of tokens of the DeFi" /> */}
                 </Box>
-                {!isEmpty(item.mcap) ? (
-                    <Text variant={"h3"} textAlign={"left"}>
-                        $
-                        {Math.trunc(item.mcap).toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                        })}
-                    </Text>
-                ) : (
-                    <Text variant={"h3"} textAlign={"left"}>
-                        NA
-                    </Text>
-                )}
+                <Text variant={"h3"} textAlign={"left"}>
+                    {Math.trunc(item.mcap).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    })}
+                </Text>
             </Box>
 
             <Box
@@ -568,13 +557,13 @@ const PanelComp = ({ item }) => {
                     {/* <TooltipComp label="The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (Market Value of the DeFi) and the total value of assets of the DeFi" /> */}
                 </Box>
 
-                {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+                {item.tvl !== 0 ? (
                     <Text variant={"h3"} textAlign={"left"}>
                         {(item.mcap / item.tvl).toFixed(2)}
                     </Text>
                 ) : (
                     <Text variant={"h3"} textAlign={"left"}>
-                        NA{" "}
+                        NA
                     </Text>
                 )}
             </Box>
