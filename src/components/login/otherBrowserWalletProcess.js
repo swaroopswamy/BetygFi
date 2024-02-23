@@ -17,6 +17,7 @@ import { config } from "@app/Web3Provider";
 const OtherBrowserWalletProcess = ({
     onClose,
     setBrowserWalletProcessSelected,
+    web3Verification
 }) => {
     const dispatch = useDispatch();
     const { connector } = getAccount(config);
@@ -117,10 +118,11 @@ const OtherBrowserWalletProcess = ({
         if (!isEmpty(LoggedInData.data?.token)) {
             setBrowserWalletProcessSelected(false);
             onClose();
-            setTimeout(() => {
-                dispatch(StoreLoggedInUserData());
-            }, 100);
-
+            if (!web3Verification) {
+                setTimeout(() => {
+                    dispatch(StoreLoggedInUserData());
+                }, 100);
+            }
         }
     }, [LoggedInData]);
     const steps = [

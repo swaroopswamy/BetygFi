@@ -47,6 +47,16 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets.coingecko.com",
       },
+      {
+        protocol: "https",
+        hostname: "betygfi-media.s3.ap-south-1.amazonaws.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "7000",
+      },
+
     ],
     minimumCacheTTL: 3600, // 1hour
     dangerouslyAllowSVG: true,

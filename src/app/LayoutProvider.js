@@ -13,6 +13,7 @@ import CustomToast from "@components/toast";
 import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
+//import LoginPage from "@components/login";
 import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
@@ -33,6 +34,12 @@ export default function LayoutProvider({ appConfig, children }) {
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
 
+    /*   const {
+          isOpen: isLoginModalOpen,
+          onOpen: onLoginModalOpen,
+          onClose: onLoginModalClose,
+      } = useDisclosure();
+   */
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
         if (cookie?.state?.token) {
@@ -40,7 +47,7 @@ export default function LayoutProvider({ appConfig, children }) {
                 token: cookie?.state?.token,
             };
             dispatch(verifyJWTtokenFromCookie(payload));
-            update();
+
         }
     };
 
@@ -58,8 +65,12 @@ export default function LayoutProvider({ appConfig, children }) {
                         dispatch(socialLoginGoogle(payload));
                     }
                 } else {
-                    if (AuthSession?.user?.name) {
-                        update();
+                    if (AuthSession?.provider !== 'credentials') {
+                        if (AuthSession?.user?.name) {
+                            update();
+                        }
+                    } else {
+                        localStorage.setItem("googleAuthInitiated", false);
                     }
                 }
             }
@@ -111,7 +122,7 @@ export default function LayoutProvider({ appConfig, children }) {
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.getAllCacheKeys = getAllCacheKeys;
-        window.checkIfVerifiedOrNot = checkIfVerifiedOrNot;
+        
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -225,6 +236,7 @@ export default function LayoutProvider({ appConfig, children }) {
         return () => unwatch();
     }, [address]);
 
+    
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box

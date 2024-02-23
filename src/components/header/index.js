@@ -209,6 +209,8 @@ const Navbar = ({ ...rest }) => {
                     >
                         {typeof window !== "undefined" && (
                             <CustomAvatar
+                                width={48}
+                                height={48}
                                 src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
                             />
                         )}
