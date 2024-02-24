@@ -1,11 +1,5 @@
 import React from "react";
-import {
-	Box,
-	Text,
-	Tooltip,
-	useColorMode,
-	useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Text, Tooltip, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import Image from "next/image";
@@ -13,12 +7,8 @@ import Image from "next/image";
 const BlockchainSelectionMenuBlocks = () => {
 	const dispatch = useDispatch();
 	const { colorMode } = useColorMode();
-	const blockchains = useSelector(
-		(state) => state?.appData?.BlockchainListData?.data
-	);
-	const blockchainSelected = useSelector(
-		(state) => state?.walletDashboardTableData?.blockchainType
-	);
+	const blockchains = useSelector(state => state?.appData?.BlockchainListData?.data);
+	const blockchainSelected = useSelector(state => state?.walletDashboardTableData?.blockchainType);
 	const BlockchainTypeHandler = (type) => {
 		dispatch(blockchainTypeChangedReducer(type));
 	};
@@ -62,9 +52,7 @@ const BlockchainSelectionMenuBlocks = () => {
 						bgColor: colorMode === "light" ? "#16171B" : "#FFFFFF",
 					}
 				}
-				onClick={() => {
-					BlockchainTypeHandler("All");
-				}}
+				onClick={() => BlockchainTypeHandler("All")}
 				mr={{ base: "18px", md: "18px" }}
 				ml={{ base: "10px" }}
 			>
@@ -87,9 +75,7 @@ const BlockchainSelectionMenuBlocks = () => {
 								bgColor: colorMode === "light" ? "#16171B" : "#FFFFFF",
 							}
 						}
-						onClick={() => {
-							BlockchainTypeHandler(item.id);
-						}}
+						onClick={() => BlockchainTypeHandler(item.id)}
 						mr={{ base: "20px", md: "20px" }}
 						display={"flex"}
 						alignItems={"center"}

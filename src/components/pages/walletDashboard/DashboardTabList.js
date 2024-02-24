@@ -22,10 +22,7 @@ const DashboardTabList = ({ tabIndex }) => (
 const DashboardTabItem = ({ tabData, tabIndex, index }) => {
 	const { colorMode } = useColorMode();
 	return (
-		<Tab
-			padding="0"
-			w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
-		>
+		<Tab padding="0" w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}>
 			<Box
 				layerStyle={"flexCenter"}
 				h={"35px"}
@@ -36,12 +33,8 @@ const DashboardTabItem = ({ tabData, tabIndex, index }) => {
 				}}
 				bgColor={
 					tabIndex === index
-						? colorMode === "light"
-							? "#202020"
-							: "#FFFFFF"
-						: colorMode === "light"
-							? "#F0F0F5"
-							: "#202020"
+						? colorMode === "light" ? "#202020" : "#FFFFFF"
+						: colorMode === "light" ? "#F0F0F5" : "#202020"
 				}
 			>
 				<Text
@@ -49,18 +42,11 @@ const DashboardTabItem = ({ tabData, tabIndex, index }) => {
 					fontWeight={tabIndex === index ? "600" : "400"}
 					color={
 						tabIndex === index
-							? colorMode === "light"
-								? "#FFFFFF"
-								: "#000000"
-							: colorMode === "light"
-								? "#000000"
-								: "#FFFFFF"
+							? colorMode === "light" ? "#FFFFFF" : "#000000"
+							: colorMode === "light" ? "#000000" : "#FFFFFF"
 					}
 					mr={{ base: "10px", md: "44px" }}
-					lineHeight={"10px"}
-				>
-					{tabData?.name}
-				</Text>
+					lineHeight={"10px"}>{tabData?.name}</Text>
 				<Image
 					width={25}
 					height={25}
@@ -69,12 +55,8 @@ const DashboardTabItem = ({ tabData, tabIndex, index }) => {
 					priority="true"
 					src={
 						tabIndex === index
-							? colorMode === "light"
-								? tabData?.iconLight
-								: tabData?.iconDark
-							: colorMode === "light"
-								? tabData?.iconDark
-								: tabData?.iconLight
+							? colorMode === "light" ? tabData?.iconLight : tabData?.iconDark
+							: colorMode === "light" ? tabData?.iconDark : tabData?.iconLight
 					}
 				/>
 			</Box>
