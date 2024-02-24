@@ -1,10 +1,10 @@
+import { getConfigFromWebAdmin } from "@services/appService";
+
 export async function GET() {
     const getAppConfig = async () => {
         try {
-            const url = `http://localhost:${process.env.APP_PORT}/api/config`;
-            const res = await fetch(url, { cache: 'no-store' });
-            const data = await res.json();
-            return data?.data?.config?.values?.API_SERVICE_URL;
+            const data = await getConfigFromWebAdmin();
+            return data?.config?.API_SERVICE_URL;
         } catch (err) {
             return false;
         }
