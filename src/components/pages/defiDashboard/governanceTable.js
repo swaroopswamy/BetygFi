@@ -121,7 +121,6 @@ const GovernanceTable = ({ tablePage, setTableLimit, pageChangeHandler, tableLim
 
 			<Box display={"flex"} bgColor={useColorModeValue('#FFFFFF', '#202020')}
 				minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
-
 				<PageButtonsWide
 					page={tablePage}
 					totalPages={defiGovernanceTableData?.data?.totalPages}
