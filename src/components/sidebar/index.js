@@ -816,7 +816,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                             justifyContent={"space-between"}
                         >
                             {/* Top Half */}
-                            <Box>
+                            <Box overflowY={{ base: "auto" }}>
                                 <Box
                                     display={"flex"}
                                     alignItems={"center"}
@@ -891,7 +891,7 @@ const MobileSidebar = ({ isOpen, onClose, onLoginModalOpen }) => {
                                     </Box>
                                 </Box>
 
-                                <Box overflowY={"scroll"} height={"100vh"} layerStyle={"flexColumn"}>
+                                <Box overflowY={"scroll"} height={{ md: "100vh" }} layerStyle={"flexColumn"}>
                                     {dashboards(appConfig).map((link, i) => (
                                         <NavItem
                                             key={i}
