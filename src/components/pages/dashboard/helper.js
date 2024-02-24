@@ -44,6 +44,7 @@ export const tableHeader = [
 		tooltipLabel: "Market capitalization of the DeFi is the total accessor of tokens of the DeFi",
 	},
 	{
+		accessor: "mcap-tvl",
 		Header: "MCap/TVL",
 		isTooltip: true,
 		isSortingEnabled: false,

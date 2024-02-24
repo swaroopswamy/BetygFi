@@ -7,48 +7,38 @@ import { getDefiRankingsTableData } from "@services/dashboardService";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 
+export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress', async (payload, { rejectWithValue }) => await getInflowOutflowTokensForAddress(payload, rejectWithValue));
+
+export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload, { rejectWithValue }) => await getWalletBalanceData(payload, rejectWithValue));
+
+export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload, { rejectWithValue }) => await getWalletTransactionsData(payload, rejectWithValue));
+
 export const fetchDefiRankingTableData = createAsyncThunk('getDefiRankingsTableData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiRankingsTableData(payload, rejectWithValue);
-	return response.data;
-});
-
-export const fetchWalletBalanceData = createAsyncThunk('getWalletBalanceData', async (payload, { rejectWithValue }) => {
-	const response = await getWalletBalanceData(payload, rejectWithValue);
-	return response;
-});
-
-export const fetchWalletTransactionsData = createAsyncThunk('getWalletTransactionsData', async (payload, { rejectWithValue }) => {
-	const response = await getWalletTransactionsData(payload, rejectWithValue);
-	return response;
+	const { data } = await getDefiRankingsTableData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchWalletTransactionsForAddressSummary = createAsyncThunk('getWalletTransactionsForAddressSummary',
 	async (payload, { rejectWithValue }) => {
-		const response = await getWalletTransactionsForAddressSummary(payload, rejectWithValue);
-		return response.data;
+		const { data } = await getWalletTransactionsForAddressSummary(payload, rejectWithValue);
+		return data;
 	});
 
 export const fetchAssetAllocationForAddress = createAsyncThunk('getAssetAllocationForAddress',
 	async (payload, { rejectWithValue }) => {
-		const response = await getAssetAllocationForAddress(payload, rejectWithValue);
-		return response.data;
+		const { data } = await getAssetAllocationForAddress(payload, rejectWithValue);
+		return data;
 	});
 export const fetchProtocolAllocationForAddress = createAsyncThunk('getProtocolAllocationForAddress',
 	async (payload, { rejectWithValue }) => {
-		const response = await getProtocolAllocationForAddress(payload, rejectWithValue);
-		return response.data;
+		const { data } = await getProtocolAllocationForAddress(payload, rejectWithValue);
+		return data;
 	});
 
 export const fetchBlockchainAllocationForAddress = createAsyncThunk('getBlockchainAllocationForAddress',
 	async (payload, { rejectWithValue }) => {
-		const response = await getBlockchainAllocationForAddress(payload, rejectWithValue);
-		return response.data;
-	});
-
-export const fetchInflowOutflowTokensForAddress = createAsyncThunk('getInflowOutflowTokensForAddress',
-	async (payload, { rejectWithValue }) => {
-		const response = await getInflowOutflowTokensForAddress(payload, rejectWithValue);
-		return response;
+		const { data } = await getBlockchainAllocationForAddress(payload, rejectWithValue);
+		return data;
 	});
 
 const WalletDashboardDataSlice = createSlice({
@@ -272,8 +262,7 @@ const WalletDashboardDataSlice = createSlice({
 		defiArrayChangedReducer: (state, action) => {
 			if (action.payload === "All") {
 				state.defiArraySelected = [];
-			}
-			else if (state.defiArraySelected.includes(action.payload)) {
+			} else if (state.defiArraySelected.includes(action.payload)) {
 				state.defiArraySelected = state.defiArraySelected.filter(item => item !== action.payload);
 			} else {
 				state.defiArraySelected = state.defiArraySelected.filter(item => item !== "All");

@@ -2,18 +2,18 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getBlockchainListData, getSearchV2Data, getSearchV2TrendingData, postReportBugData, postSuggestFeatureData } from "@services/appService";
 
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload, { rejectWithValue }) => {
-	const response = await getBlockchainListData(rejectWithValue);
-	return response.data;
+	const { data } = await getBlockchainListData(rejectWithValue);
+	return data;
 });
 
 export const postReportBug = createAsyncThunk('postReportBug', async (payload, { rejectWithValue }) => {
-	const response = await postReportBugData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await postReportBugData(payload, rejectWithValue);
+	return data;
 });
 
 export const postSuggestFeature = createAsyncThunk('postSuggestFeature', async (payload, { rejectWithValue }) => {
-	const response = await postSuggestFeatureData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await postSuggestFeatureData(payload, rejectWithValue);
+	return data;
 });
 
 export const getSearchV2List = createAsyncThunk('getSearchV2List', async (payload, { rejectWithValue }) => {
