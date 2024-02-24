@@ -100,13 +100,7 @@ const GenericTable = ({
 										)}
 										{
 											showSortingIcon &&
-											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined &&
-												sortedState.by === 'desc'
-												?
-												HiSortDescending
-												:
-												HiSortAscending
-											}
+											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined && sortedState.by === 'desc' ? HiSortDescending : HiSortAscending}
 												boxSize={"16px"}
 												alt="Sort"
 												ml={"3px"}
@@ -284,11 +278,7 @@ const GenericTable = ({
 		);
 	};
 
-	return (
-		<>
-			{isMd ? renderMDTable() : renderSMTable()}
-		</>
-	);
+	return isMd ? renderMDTable() : renderSMTable();
 };
 
 export default GenericTable;
