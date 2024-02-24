@@ -28,7 +28,7 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 
 	const blockchainSelected = useSelector((state) => state?.walletDashboardTableData?.blockchainType);
 	const walletAddress = useSelector((state) => state?.walletDashboardTableData?.walletAddress);
-	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData?.data);
+	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
 
 	const fetchWalletBalanceDataHandler = (blockchainSelected, searchParamAddress) => {
 		const data = {
@@ -66,7 +66,7 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 	}, []);
 
 	useEffect(() => {
-		if (walletBalanceData?.isQueryInPendingState) {
+		if (walletBalanceData?.data?.isQueryInPendingState) {
 			setTimeout(() => {
 				fetchWalletBalanceDataHandler(blockchainSelected, searchParamAddress);
 			}, 5000);
@@ -78,7 +78,7 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 			<Breadcrumb
 				link="/top-wallets"
 				text="Top Wallets/"
-				additionalText={walletBalanceData?.name}
+				additionalText={walletBalanceData?.data?.name}
 			/>
 			<HeaderComponent walletBalanceData={walletBalanceData} walletAddress={walletAddress} />
 			<Box>
@@ -93,10 +93,10 @@ export default function TopWalletDetailPage({ searchParamAddress }) {
 								<TransactionPanelComponent searchParamAddress={searchParamAddress} />
 							</TabPanel>
 							<TabPanel p="0px" bgColor={useColorModeValue("#F0F0F5", "#191919")}>
-								<PortfolioPanelComponent />
+								<PortfolioPanelComponent walletBalanceData={walletBalanceData} />
 							</TabPanel>
 							<TabPanel p="0px" bgColor={useColorModeValue("#F0F0F5", "#191919")}>
-								<WalletAnalyticsPanel walletBalanceData={walletBalanceData} />
+								<WalletAnalyticsPanel />
 							</TabPanel>
 						</TabPanels>
 					</Box>

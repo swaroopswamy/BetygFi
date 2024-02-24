@@ -122,17 +122,17 @@ const WalletDashboardDataSlice = createSlice({
 			state.walletBalanceData.isSuccess = true;
 			state.walletBalanceData.isError = false;
 		});
-		builder.addCase(fetchWalletBalanceData.pending, (state, action) => {
+		builder.addCase(fetchWalletBalanceData.pending, (state, /* action */) => {
 			state.walletBalanceData.isLoading = true;
 			state.walletBalanceData.isError = false;
 			state.walletBalanceData.isSuccess = false;
-			state.walletBalanceData.data = action.payload;
+			// state.walletBalanceData.data = action.payload;
 		});
-		builder.addCase(fetchWalletBalanceData.rejected, (state, action) => {
+		builder.addCase(fetchWalletBalanceData.rejected, (state, /* action */) => {
 			state.walletBalanceData.isLoading = false;
 			state.walletBalanceData.isSuccess = false;
 			state.walletBalanceData.isError = true;
-			state.walletBalanceData.data = action.payload;
+			// state.walletBalanceData.data = action.payload;
 		});
 		builder.addCase(fetchWalletTransactionsData.fulfilled, (state, action) => {
 			state.walletTransactionsData.data = action.payload;

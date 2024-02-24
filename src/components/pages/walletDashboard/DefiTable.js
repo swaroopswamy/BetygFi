@@ -1,31 +1,14 @@
 "use client";
 import React from "react";
-import {
-	Text,
-	Td,
-	Th,
-	Tr,
-	Box,
-	Icon,
-	Image as ChakraImage
-} from "@chakra-ui/react";
-
+import { Text, Td, Th, Tr, Box, Icon, Image as ChakraImage } from "@chakra-ui/react";
 import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+import { portfolioTableHeader, PortfolioTableDesktop, PortfolioTableMobile, } from "@components/pages/walletDashboard/helper";
 
 const GenericTable = dynamic(() => import("@components/table"));
 
-import {
-	portfolioTableHeader,
-	PortfolioTableDesktop,
-	PortfolioTableMobile,
-} from "@components/pages/walletDashboard/helper";
-import Image from "next/image";
-import { useSelector } from "react-redux";
-
-const DefiTable = () => {
-	const walletBalanceData = useSelector((state) => state?.walletDashboardTableData?.walletBalanceData);
-
+const DefiTable = ({ walletBalanceData }) => {
 	return (
 		<Box display={"flex"} overflow={"auto"}>
 			<GenericTable

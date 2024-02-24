@@ -5,29 +5,16 @@ import React from "react";
 const HeaderComponent = ({ walletBalanceData, walletAddress }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 	return (
-		<Box
-			layerStyle={"flexSpaceBetween"}
-			padding={{ base: "17px 13px 50px", md: "20px 30px 50px 30px" }}
-		>
+		<Box layerStyle={"flexSpaceBetween"} padding={{ base: "17px 13px 50px", md: "20px 30px 50px 30px" }}>
 			<Box layerStyle={"flexCenter"}>
 				<Box mr={"22px"}>
-					{isMd ?
-						<Image
-							width={47}
-							height={47}
-							style={{ borderRadius: "50%" }}
-							src="/images/basic_profile.svg"
-							alt="proifile_img"
-						/>
-						:
-						<Image
-							width={35}
-							height={35}
-							style={{ borderRadius: "50%" }}
-							src="/images/basic_profile.svg"
-							alt="proifile_img"
-						/>
-					}
+					<Image
+						width={isMd ? 47 : 35}
+						height={isMd ? 47 : 35}
+						style={{ borderRadius: "50%" }}
+						src="/images/basic_profile.svg"
+						alt="proifile_img"
+					/>
 				</Box>
 				<Box layerStyle={"flexColumn"}>
 					{walletBalanceData?.name === undefined && (
