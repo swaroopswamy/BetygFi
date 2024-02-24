@@ -1,15 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-    Text,
-    Td,
-    Th,
-    Tr,
-    Box,
-    useColorModeValue,
-    Button,
-} from "@chakra-ui/react";
+import { Text, Td, Th, Tr, Box, useColorModeValue, Button } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -27,16 +19,17 @@ const CoinRankingsTable = () => {
     const [tableLimit, setTableLimit] = useState(20);
     const [totalDefis, setTotalDefis] = useState(0);
 
-    const tableData = useSelector(
-        (state) => state.coinData.CoinRankingsTableData
-    );
-    const coinScoresData = useSelector(
-        (state) => state.coinData.CoinScoresData
-    );
+    const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
+    const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
     const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
 
     const pageChangeHandler = (page) => {
-        setTablePage(page);
+        if (page == "") {
+            setTablePage(page);
+        }
+        if (page >= 1) {
+            setTablePage(page);
+        }
     };
 
     const getCoinRankingsTableDataHandler = () => {
@@ -49,8 +42,12 @@ const CoinRankingsTable = () => {
     };
 
     useEffect(() => {
-        getCoinRankingsTableDataHandler();
-    }, [tablePage, tableLimit, scoreSelected]);
+        if (tablePage != "") {
+            setTimeout(() => {
+                getCoinRankingsTableDataHandler();
+            }, 1500);
+        }
+    }, [tablePage, tableLimit, scoreSelected, setTablePage]);
 
     useEffect(() => {
         dispatch(fetchCoinScoresData());

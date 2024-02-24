@@ -35,7 +35,12 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 	const blockchainSelected = useSelector((state) => state?.walletDashboardTableData?.blockchainType);
 
 	const pageChangeHandler = (page) => {
-		tablePage >= 1 && setTablePage(page);
+		if (page == "") {
+			setTablePage(page);
+		}
+		if (page >= 1) {
+			setTablePage(page);
+		}
 	};
 
 	const fetchWalletTransactionsDataHandler = useCallback(() => {
@@ -49,8 +54,12 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 		if (searchParamAddress && searchParamAddress !== '') {
 			data.address = searchParamAddress;
 		}
-		dispatch(fetchWalletTransactionsData(data));
-	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit]);
+		if (tablePage != "") {
+			setTimeout(() => {
+				dispatch(fetchWalletTransactionsData(data));
+			}, 1500);
+		}
+	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit, setTablePage]);
 
 	useEffect(() => {
 		fetchWalletTransactionsDataHandler();

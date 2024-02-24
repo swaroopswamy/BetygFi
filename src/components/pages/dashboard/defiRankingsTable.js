@@ -37,37 +37,26 @@ const Rankings = () => {
 
     const dispatch = useDispatch();
 
-    const blockchainSelected = useSelector(
-        (state) => state?.dashboardTableData?.blockchainType
-    );
-
-    const categorySelected = useSelector(
-        (state) => state?.dashboardTableData?.categorySelected
-    );
-    const scoreSelected = useSelector(
-        (state) => state?.dashboardTableData?.scoreSelected
-    );
-
-    const tableData = useSelector(
-        (state) => state?.dashboardTableData.DefiRankingsTableData
-    );
-    const scoreTotalData = useSelector(
-        (state) => state.dashboardTableData.ScoreGraphData?.data?.safety_score
-    );
+    const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
+    const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
+    const scoreSelected = useSelector((state) => state?.dashboardTableData?.scoreSelected);
+    const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
+    const scoreTotalData = useSelector((state) => state.dashboardTableData.ScoreGraphData?.data?.safety_score);
 
     useEffect(() => {
         if (scoreTotalData) {
-            setTotalDefis(
-                scoreTotalData[0]?.value +
-                scoreTotalData[1]?.value +
-                scoreTotalData[2].value +
-                scoreTotalData[3].value
-            );
+            const total = scoreTotalData[0]?.value + scoreTotalData[1]?.value + scoreTotalData[2].value + scoreTotalData[3].value;
+            setTotalDefis(total);
         }
     }, [scoreTotalData]);
 
     const pageChangeHandler = (page) => {
-        setTablePage(page);
+        if (page == "") {
+            setTablePage(page);
+        }
+        if (page >= 1) {
+            setTablePage(page);
+        }
     };
 
     const searchByNameHandler = (name) => {
@@ -106,7 +95,11 @@ const Rankings = () => {
     };
 
     useEffect(() => {
-        getDefiRankingsTableDataHandler();
+        if (tablePage != "") {
+            setTimeout(() => {
+                getDefiRankingsTableDataHandler();
+            }, 1500);
+        }
     }, [
         blockchainSelected,
         categorySelected,
@@ -114,6 +107,7 @@ const Rankings = () => {
         searchByName,
         tableLimit,
         scoreSelected,
+        setTablePage
     ]);
 
     return (
