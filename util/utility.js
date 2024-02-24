@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_DASHBOARD_HOST, LOCAL_SERVER_HOST } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -111,24 +111,9 @@ export function PublicAddressStringFormatter(name) {
 
 export const getDomainForCookie = () => '.' + getMainDomain();
 
-export const getNonWWWDomain = () => {
-    const host = window.location.hostname;
-    const splittedHost = host.split(".");
-    splittedHost.shift();
-    return splittedHost.join(".");
-};
-
 export const getMainDomain = () => {
     if (typeof window !== "undefined") {
-        if (getEnvironmentWiseConfig().isProd) {
-            // if (process.env.PORTAL_NAME === 'dashboard') {
-            return window.location.hostname;
-            // } else {
-            //     return getNonWWWDomain();
-            // }
-        } else {
-            return getNonWWWDomain();
-        }
+        return window.location.hostname;
     } else {
         return DOMAIN;
     }
@@ -144,27 +129,11 @@ export const isNotNullAndUndefined = value => value !== null && value !== undefi
 
 export const GET_LOCAL_SERVER_HOST = () => {
     const APP_PORT = process.env.APP_PORT || 7000;
-    const getHost = (isLocal) => {
-        if (isLocal) {
-            return LOCAL_DASHBOARD_HOST;
-        } else {
-            return LOCAL_SERVER_HOST;
-        }
-    };
-    return `http://${getHost(getEnvironmentWiseConfig().isLocal)}:${APP_PORT}`;
-    // return `http://${LOCAL_SERVER_HOST}:${APP_PORT}`;
+    return `http://${LOCAL_SERVER_HOST}:${APP_PORT}`;
 };
 
 export const getAppConfigMappedToGlobalEnv = appConfig => {
     for (const [key, value] of Object.entries(appConfig)) {
         process.env[key] = value;
     }
-};
-
-export const getEnvironmentWiseConfig = () => {
-    const isLocal = process.env.NODE_ENV === "development" && process.env.BUILD_ENV === "local";
-    const isDev = process.env.NODE_ENV === "development" && process.env.BUILD_ENV === "dev";
-    const isQA = process.env.NODE_ENV === "qa" && process.env.BUILD_ENV === "qa";
-    const isProd = process.env.NODE_ENV === "production" && process.env.BUILD_ENV === "prod";
-    return { isLocal, isDev, isQA, isProd };
 };

@@ -8,7 +8,7 @@ import SessionProvider from "@app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
-import { GET_LOCAL_SERVER_HOST, getAppConfigMappedToGlobalEnv, getEnvironmentWiseConfig } from "@util/utility";
+import { getAppConfigMappedToGlobalEnv } from "@util/utility";
 import { Web3Provider } from '@app/Web3Provider';
 
 export const metadata = DefiLandingPageMetas('');
@@ -28,9 +28,6 @@ export default async function RootLayout({ children }) {
 			<p>Error happend, failed to fetch config</p>
 		);
 	} else {
-		if (getEnvironmentWiseConfig().isLocal) {
-			appConfig.NEXTAUTH_URL_DASHBOARD = GET_LOCAL_SERVER_HOST();
-		}
 		if (appConfig.NEXTAUTH_URL_DASHBOARD) {
 			appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
 		}
