@@ -292,7 +292,7 @@ const TableRow = ({ item, rowIndex }) => {
             <Td key={6}>
                 {item.tvl !== 0 ? (
                     <Text variant={"h3"}>
-                        {(item['mcap-tvl']).toFixed(2)}
+                        {(item['mcap-tvl'])?.toFixed(2)}
                     </Text>
                 ) : (
                     <Text variant={"h3"}>NA</Text>
