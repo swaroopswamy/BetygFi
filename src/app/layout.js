@@ -22,7 +22,7 @@ export const maxDuration = 5;
 
 export default async function RootLayout({ children }) {
 	const session = await getServerSession();
-	let appConfig = await getAppConfig(GET_LOCAL_SERVER_HOST());
+	let appConfig = await getAppConfig();
 	if (!appConfig) {
 		return (
 			<p>Error happend, failed to fetch config</p>

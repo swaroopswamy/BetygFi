@@ -62,21 +62,55 @@ export const getSearchV2TrendingData = async (payloadData, rejectWithValue) => {
 	}
 };
 
-export const getAppConfig = async host => {
+export const getConfigFromWebAdmin = async () => {
+	const ADMINWEBURL = process.env.ADMINWEBURL;
 	try {
-		const url = `${host}/api/config`;
-		if (checkIfCacheAvailable(url)) {
-			return checkIfCacheAvailable(url);
+		const fetchedData = await fetch(ADMINWEBURL, { headers: { 'Content-Type': 'application/json' }, cache: 'no-store' });
+		return await fetchedData.json();
+	} catch (error) {
+		return error;
+	}
+};
+
+export const getConfigFromLocalServer = async () => {
+	const LOCAL_SERVER_URL = "http://localhost:7000/api/config";
+	try {
+		const fetchedData = await fetch(LOCAL_SERVER_URL, { headers: { 'Content-Type': 'application/json' }, cache: 'no-store' });
+		return await fetchedData.json();
+	} catch (error) {
+		return error;
+	}
+};
+
+export const getAppConfig = async () => {
+	try {
+		const configFromAdmin = await getConfigFromWebAdmin();
+		const configFromLocalServer = await getConfigFromLocalServer();
+		const hostValue = configFromLocalServer?.host;
+		const config = {
+			localhost: {
+				BUILD_ENV: "local"
+			},
+			dev: {
+				BUILD_ENV: "dev"
+			},
+			qa: {
+				BUILD_ENV: "qa"
+			},
+			prod: {
+				BUILD_ENV: "prod"
+			},
+		};
+
+		let configuration = {};
+		if (['localhost', 'dev', 'qa'].includes(hostValue)) {
+			configuration = config[hostValue];
 		} else {
-			const res = await fetch(url, {
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
-			const { data } = await res.json();
-			return cacheHandler(url, data?.config, 4, false);
+			configuration = config['prod'];
 		}
+		configuration.PORTAL_NAME = "dashboard";
+		configuration.APP_PORT = "7000";
+		return { ...configFromAdmin?.config, ...configuration };
 	} catch (err) {
 		return err;
 	}
