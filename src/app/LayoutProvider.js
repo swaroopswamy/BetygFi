@@ -10,7 +10,6 @@ import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
-import { getAllCacheKeys } from "@util/cacheHelper";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
 //import LoginPage from "@components/login";
@@ -121,7 +120,6 @@ export default function LayoutProvider({ appConfig, children }) {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
-        window.getAllCacheKeys = getAllCacheKeys;
     }, []);
 
     // for creating cookie after google sign in is successful
