@@ -176,8 +176,8 @@ const DefiDashboardPage = ({ searchParamProtocolSlug, defiData }) => {
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <DefiUsersSmallTable searchParamProtocolSlug={searchParamProtocolSlug} />
-                    <DefiTVLChart searchParamProtocolSlug={searchParamProtocolSlug} />
+                    <DefiAssetsSmallTable searchParamProtocolSlug={searchParamProtocolSlug} />
+                    <DefiFeeRevenueChart searchParamProtocolSlug={searchParamProtocolSlug} />
                 </Box>
 
                 <Box
@@ -186,8 +186,8 @@ const DefiDashboardPage = ({ searchParamProtocolSlug, defiData }) => {
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <DefiAssetsSmallTable searchParamProtocolSlug={searchParamProtocolSlug} />
-                    <DefiFeeRevenueChart searchParamProtocolSlug={searchParamProtocolSlug} />
+                    <DefiUsersSmallTable searchParamProtocolSlug={searchParamProtocolSlug} />
+                    <DefiTVLChart searchParamProtocolSlug={searchParamProtocolSlug} />
                 </Box>
 
                 <Box
