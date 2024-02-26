@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -124,7 +124,7 @@ export const USDollar = new Intl.NumberFormat('en-US');
 export const calculatePercentage = (value, totalValue) => (value / totalValue) * 100;
 
 export const getAPI_URL = () => getCookieByName(API_URL_COOKIE_NAME);
-
+export const getNTF_API_URL = () => getCookieByName(NTF_URL_COOKIE_NAME);
 export const isNotNullAndUndefined = value => value !== null && value !== undefined;
 
 export const GET_LOCAL_SERVER_HOST = () => {
@@ -135,5 +135,19 @@ export const GET_LOCAL_SERVER_HOST = () => {
 export const getAppConfigMappedToGlobalEnv = appConfig => {
     for (const [key, value] of Object.entries(appConfig)) {
         process.env[key] = value;
+    }
+};
+
+export const replaceWithWS = (url) => {
+    // Check if the URL starts with http or https
+    if (url.startsWith("http://")) {
+        // Replace http with ws
+        return url.replace('http', 'ws');
+    } else if (url.startsWith("https://")) {
+        // Replace https with ws
+        return url.replace('https', 'ws');
+    } else {
+        // URL does not start with http or https
+        return url;
     }
 };

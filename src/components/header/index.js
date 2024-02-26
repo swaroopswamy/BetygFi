@@ -31,8 +31,9 @@ import LoginPage from "@components/login";
 import { MobileSidebar } from "@components/sidebar";
 import SearchBoxV2 from "@components/searchBoxV2";
 import AppConfigContext from "@components/context/appConfigContext";
+import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ ...rest }) => {
+const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
@@ -132,6 +133,8 @@ const Navbar = ({ ...rest }) => {
         toggleColorMode();
     };
 
+    const Notifications = useSelector((state) => state?.appData?.Notifications);
+
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
@@ -168,6 +171,10 @@ const Navbar = ({ ...rest }) => {
             <Box layerStyle={"flexCenter"}>
                 <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
                     onClick={() => { toggleColorModeGlobally(); }} />
+                <NotificationBell
+                    noOfNotifcations={Notifications?.data?.length}
+                    onClick={onNotificationDrawerOpen}
+                />
                 {!AuthSession ? (
                     <Box
                         ml="20px"
