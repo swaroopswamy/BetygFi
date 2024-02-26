@@ -164,6 +164,9 @@ export default function LayoutProvider({ appConfig, children }) {
                 signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }, 2000);
         }
+        if (GoogleVerifiedData?.isCookieSet) {
+            checkIfVerifiedOrNot();
+        }
     }, [GoogleVerifiedData]);
 
     useEffect(() => {

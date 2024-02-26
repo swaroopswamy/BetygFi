@@ -92,6 +92,7 @@ const AuthDataSlice = createSlice({
 			data: null,
 			isError: null,
 			isSuccess: null,
+			isCookieSet: false,
 		},
 		ValidatedUserData: {
 			data: null,
@@ -276,6 +277,7 @@ const AuthDataSlice = createSlice({
 			};
 			const serializedState = JSON.stringify(accountState);
 			createCookies(AUTH_COOKIE_NAME, serializedState);
+			state.GoogleVerifiedData.isCookieSet = true;
 		},
 		LogInFromCookie: (state, /* action */) => {
 			const user = {

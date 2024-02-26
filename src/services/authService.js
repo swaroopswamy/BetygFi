@@ -40,7 +40,11 @@ export const loginMetamask = async (payload) => {
 export const socialLoginGoogleAPI = async (payload, { rejectWithValue }) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `auth/social-login?access_token=${payload?.token}`;
-		const { data } = await axiosInstance(getAPI_URL()).post(url);
+		const { data } = await axiosInstance(getAPI_URL()).post(url, {
+			headers: {
+				origin:window.location.hostname,
+			},
+		});
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);

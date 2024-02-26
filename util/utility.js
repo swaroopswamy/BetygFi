@@ -151,3 +151,8 @@ export const replaceWithWS = (url) => {
         return url;
     }
 };
+
+export const getOrigin = url => {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname;
+};
