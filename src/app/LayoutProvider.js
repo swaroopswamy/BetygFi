@@ -69,7 +69,6 @@ export default function LayoutProvider({ appConfig, children }) {
                 token: cookie?.state?.token,
             };
             dispatch(verifyJWTtokenFromCookie(payload));
-
         }
     };
 

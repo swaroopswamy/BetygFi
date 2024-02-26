@@ -8,14 +8,12 @@ import {
     ModalOverlay,
     Text,
     Box,
-    useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import InputText from "./editDetailsInput/input";
 import React, { useState, useEffect } from "react";
 import { ResetEditUserDetailsData, ResetUsernameValidData, editUserDetails, usernameValidity } from "@/redux/auth_data/authSlice";
 import { useRouter } from "next/navigation";
-import CustomToast from "@components/toast";
 
 
 const EditPage = ({ isOpen, onClose }) => {
@@ -32,7 +30,6 @@ const EditPage = ({ isOpen, onClose }) => {
         twitter: UserDetailsData?.data?.user?.twitter ?? "",
         aboutme: UserDetailsData?.data?.user?.about ?? "",
     });
-    const toast = useToast();
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === "user_name") {
@@ -65,12 +62,6 @@ const EditPage = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         if (EditUserDetailsData?.isSuccess !== null) {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast isSuccessful={EditUserDetailsData?.isSuccess} content={EditUserDetailsData?.isSuccess ? "User details updated successfully." : EditUserDetailsData?.data?.error} />
-                )
-            });
             if (EditUserDetailsData?.isSuccess) {
                 onClose();
                 dispatch(ResetEditUserDetailsData());

@@ -12,6 +12,7 @@ import {
 	ModalBody,
 	Input,
 	FormControl,
+	useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
@@ -26,12 +27,15 @@ import StatsBox from "@components/settingsPage/StatsBox";
 import AccountSettingsBox from "@components/settingsPage/accountSettingsBox";
 import ThemeBox from "@components/settingsPage/themeBox";
 import { useDisconnect } from "wagmi";
+import CustomToast from "@components/toast";
 //import Image from "next/image";
 
 const Settings = ({ params }) => {
 	const { user_name } = params;
 	const { disconnect } = useDisconnect();
 	const dispatch = useDispatch();
+	const toast = useToast();
+    
 	const {
 		isOpen: isLoginModalOpen,
 		onOpen: onLoginModalOpen,
@@ -67,6 +71,17 @@ const Settings = ({ params }) => {
 			Promise.all([
 				getUserDetailsHandler(),
 			]).then(res => res);
+		}
+	}, [EditUserDetailsData]);
+
+	useEffect(() => {
+		if (EditUserDetailsData?.isSuccess !== null) {
+			toast({
+				position: "bottom",
+				render: () => (
+					<CustomToast isSuccessful={EditUserDetailsData?.isSuccess} content={EditUserDetailsData?.isSuccess ? "User details updated successfully." : EditUserDetailsData?.data?.error} />
+				)
+			});
 		}
 	}, [EditUserDetailsData]);
 
