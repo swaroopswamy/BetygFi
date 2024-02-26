@@ -10,8 +10,13 @@ export async function POST(req) {
     };
 
     const res = await fetch(URL, fetchConfiguration);
-    const data = await res.json();
-    return Response.json(data);
+    if (res.ok) {
+        const data = await res.json();
+        return Response.json(data);
+    } else {
+        const errorData = await res.json();
+        return new Response(JSON.stringify({ ...errorData }), { status: res.status });
+    }
     // } catch (error) {
     //   return Response.json({ error });
     // }
