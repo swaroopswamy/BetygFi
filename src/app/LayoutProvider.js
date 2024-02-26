@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut, useSession } from "next-auth/react";
@@ -17,6 +17,10 @@ import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
 import AppConfigContext from "@components/context/appConfigContext";
+import { replaceWithWS } from "@util/utility";
+import useSocket from "@hooks/useSocket";
+import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
+import NotificationDrawer from "@components/notification/drawer";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
@@ -26,6 +30,8 @@ export default function LayoutProvider({ appConfig, children }) {
     const { disconnect } = useDisconnect();
     const toast = useToast();
     const { data: AuthSession, status, update } = useSession();
+    const [messageSent, setMessageSent] = useState(false);
+    const [isUser, setIsUser] = useState(false);
 
     const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
     const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
@@ -39,6 +45,23 @@ export default function LayoutProvider({ appConfig, children }) {
           onClose: onLoginModalClose,
       } = useDisclosure();
    */
+
+    const {
+        isOpen: isNotificationDrawerOpen,
+        onOpen: onNotificationDrawerOpen,
+        onClose: onNotificationDrawerClose,
+    } = useDisclosure();
+    const Notifications = useSelector((state) => state?.appData?.Notifications);
+    const notificationRecievedFromSocket = useSelector((state) => state?.appData?.notificationRecievedFromSocket);
+    // Callback function to handle incoming messages
+    const handleReceivedMessage = (message) => {
+        if (message) {
+            dispatch(notificationsReducer(JSON?.parse(message)));
+        }
+    };
+
+    useSocket(replaceWithWS(appConfig?.NEXT_PUBLIC_SOCKET_HOST), handleReceivedMessage);
+
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
         if (cookie?.state?.token) {
@@ -233,6 +256,42 @@ export default function LayoutProvider({ appConfig, children }) {
         return () => unwatch();
     }, [address]);
 
+    const getAllPublicNotificationsHandler = () => {
+        dispatch(getAllPublicNotifications());
+    };
+    /* const getAllUserNotificationsByUserIdHandler = () => {
+        const payload = {
+            id: ValidatedUserData?.data?.id
+        };
+        if (isUser) {
+            dispatch(getAllUserNotificationsByUserId(payload));
+        }
+    }; */
+
+
+
+    useEffect(() => {
+        /* const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        if (!isEmpty(cookie)) {
+            getAllUserNotificationsByUserIdHandler();
+        } else { */
+        getAllPublicNotificationsHandler();
+        //}
+    }, [notificationRecievedFromSocket, isUser]);
+
+    useEffect(() => {
+        if (AuthSession) {
+            if (messageSent === false && ValidatedUserData.data?.id) {
+                //sendMessage(ValidatedUserData?.data?.id);
+                setMessageSent(true);
+            }
+            if (isUser === false && ValidatedUserData?.data !== null) {
+                setIsUser(true);
+            }
+        }
+
+    }, [ValidatedUserData]);
+
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box
@@ -259,7 +318,13 @@ export default function LayoutProvider({ appConfig, children }) {
                         w="100%"
                         overflowX={"hidden"}
                     >
-                        <Navbar onOpenMenu={onOpen} />
+                        <Navbar
+                            onOpenMenu={onOpen}
+                            isNotificationDrawerOpen={isNotificationDrawerOpen}
+                            onNotificationDrawerOpen={onNotificationDrawerOpen}
+                            onNotificationDrawerClose={onNotificationDrawerClose}
+
+                        />
                         <Box
                             p="0"
                             _light={{
@@ -282,7 +347,13 @@ export default function LayoutProvider({ appConfig, children }) {
                         overflowX={"hidden"}
                         mt={"60px"}
                         w="100%" >
-                        <Navbar onOpenMenu={onOpen} />
+                        <Navbar
+                            onOpenMenu={onOpen}
+                            isNotificationDrawerOpen={isNotificationDrawerOpen}
+                            onNotificationDrawerOpen={onNotificationDrawerOpen}
+                            onNotificationDrawerClose={onNotificationDrawerClose}
+
+                        />
                         <Box
                             p="0"
                             _light={{
@@ -299,6 +370,12 @@ export default function LayoutProvider({ appConfig, children }) {
                     </Box>
                 )}
             </Box>
+            <NotificationDrawer
+                isOpen={isNotificationDrawerOpen}
+                onOpen={onNotificationDrawerOpen}
+                onClose={onNotificationDrawerClose}
+                notifications={Notifications}
+            />
         </AppConfigContext.Provider>
     );
 }
