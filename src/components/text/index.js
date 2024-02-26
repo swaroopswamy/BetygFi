@@ -341,6 +341,20 @@ const Text = defineStyleConfig({
             lineHeight: " normal",
             color: colorMode === "light" ? "#666666" : "#EFEFEF",
         }),
+        smallText: () => ({
+            fontSize: "10px",
+            fontFamily: "Inter",
+            fontWeight: "400",
+            letterSpacing: "0.5px",
+            color: "#FFFFFF",
+        }),
+        textBold: ({ colorMode }) => ({
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontWeight: "600",
+            color: colorMode !== "light" ? "#FFFFFF" : "#191919",
+            lineHeight: "24px"
+        }),
     },
     defaultProps: {
         variant: "base",
