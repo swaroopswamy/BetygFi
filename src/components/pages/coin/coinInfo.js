@@ -287,10 +287,7 @@ const SmartContractsMenu = ({ coinDetails }) => {
                             src={coinDetails?.smart_contracts[0].logoUrl}
                             height={15}
                             width={15}
-                            name={
-                                coinDetails?.smart_contracts[0]?.platform
-                                    .name
-                            }
+                            name={coinDetails?.smart_contracts[0]?.platform.name}
                         />
                         <Text
                             variant={"h3"}
@@ -315,7 +312,7 @@ const SmartContractsMenu = ({ coinDetails }) => {
                 className="hidescrollbar"
             >
                 {
-                coinDetails?.smart_contracts.map((contract, i) => (
+                    coinDetails?.smart_contracts.map((contract, i) => (
                         <PageMenuItem
                             key={i}
                             name={contract?.platform?.name}
@@ -336,9 +333,7 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
     return (
         <MenuItem
             bgColor={colorMode === "light" ? "#FFF" : "#191919"}
-            _hover={{
-                bg: colorMode === "light" ? "#F5F5F7" : "#202020",
-            }}
+            _hover={{ bg: colorMode === "light" ? "#F5F5F7" : "#202020" }}
             key={i}
             onClick={() => {
                 navigator.clipboard.writeText(address);
@@ -348,9 +343,7 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
                     duration: 2000,
                     isClosable: true,
                     position: "top-right",
-                    containerStyle: {
-                        fontSize: "12px",
-                    },
+                    containerStyle: { fontSize: "12px" },
                 });
             }}
         >
@@ -371,21 +364,15 @@ const PageMenuItem = ({ i, name, logoUrl, address }) => {
                     <Box layerStyle={"flexColumn"}>
                         <Text
                             variant={"h3"}
-                            color={
-                                colorMode === "light" ? "#191919" : "#FFFFFF"
-                            }
+                            color={colorMode === "light" ? "#191919" : "#FFFFFF"}
                         >
                             {name ?? "-"}
                         </Text>
                         <Text
                             variant={"h5"}
-                            color={
-                                colorMode === "light" ? "#191919" : "#FFFFFF"
-                            }
+                            color={colorMode === "light" ? "#191919" : "#FFFFFF"}
                         >
-                            {address?.split("").join("").substring(0, 6) +
-                                "......" +
-                                address?.slice(-5) ?? "-"}
+                            {address?.split("").join("").substring(0, 6) + "......" + address?.slice(-5) ?? "-"}
                         </Text>
                     </Box>
                 </Box>
