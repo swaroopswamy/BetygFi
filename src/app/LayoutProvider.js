@@ -33,12 +33,6 @@ export default function LayoutProvider({ appConfig, children }) {
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
 
-    /*   const {
-          isOpen: isLoginModalOpen,
-          onOpen: onLoginModalOpen,
-          onClose: onLoginModalClose,
-      } = useDisclosure();
-   */
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
         if (cookie?.state?.token) {

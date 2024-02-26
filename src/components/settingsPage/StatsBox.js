@@ -146,6 +146,7 @@ const StatsBox = () => {
                         }}
                         mt={"15px"}
                         mb={"15px"}
+                        mx={"15px"}
                     >
                         <Box p={"15px 0px 15px 20px"}>
                             <Text variant={"contentHeading3"} fontWeight={400}>

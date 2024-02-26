@@ -83,7 +83,7 @@ const ProfileBox = () => {
                                     height={150}
                                     alt="profile_img"
                                     priority={'true'}
-                                    src={userImg === null ? "/icons/avatar_icon_light.svg" : userImg}
+                                    src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
                                 ></Image>
                                 <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                     cursor={"pointer"}
@@ -183,7 +183,7 @@ const ProfileBox = () => {
                 </Box>
             ) : (
                 <Box
-                    height={"525px"}
+                    pb={"20px"}
                     flexShrink={0}
                     borderRadius={"6px"}
                     _light={{
@@ -204,20 +204,44 @@ const ProfileBox = () => {
                             height={20}
                             src={colorMode === "light" ? ("/icons/Edit_icon.svg") : ("/icons/Edit_icon(Dark).svg")}
                             alt="edit_icon"
-                            mr={"25px"}
+                            style={{ marginRight: "25px" }}
                         ></Image>
                     </Box>
 
                     <Box layerStyle={"flexColumnCenterSpaceAround"}>
-                        <Image
-                            style={{
-                                borderRadius: "50%",
-                            }}
-                            width={150}
-                            height={150}
-                            alt="profile_img"
-                            src="/images/Profile_photo.svg"
-                        ></Image>
+                        <Box
+                            pos={"relative"}
+                        >
+                            <Image
+                                unoptimized={'true'}
+                                style={{
+                                    borderRadius: "50%",
+                                    width: "150px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                    background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
+                                    backgroundRepeat: " no-repeat"
+
+                                }}
+                                width={150}
+                                height={150}
+                                alt="profile_img"
+                                priority={'true'}
+                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
+                            ></Image>
+                            <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
+                                cursor={"pointer"}
+                            >
+                                <input type="file" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
+                                <Text variant={"h5"} color={"#FFFFFF"} textAlign={"center"} pt="5px"
+                                    onClick={() => {
+                                        fileInputRef.current.click();
+                                    }}
+                                >
+                                    Change
+                                </Text>
+                            </Box>
+                        </Box>
                         <Text variant={"smallTableHeader"} lineHeight={"normal"} pt={"15px"}>
                             {UserDetailsData?.data?.user?.name ? (
                                 UserDetailsData?.data?.user?.name

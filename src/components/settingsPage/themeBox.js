@@ -133,7 +133,7 @@ const ThemeBox = () => {
         )
             : (
                 <Box
-
+                    mx={"15px"}
                     flexShrink={"0"}
                     borderRadius={"6px"}
                     _light={{

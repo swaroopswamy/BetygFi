@@ -243,7 +243,8 @@ const AccountSettingsBox = () => {
 
             ) : (
                 <Box
-                    height={"285px"}
+                    mx={"15px"}
+                    mb="15px"
                     flexShrink={"0"}
                     borderRadius={"6px"}
                     _light={{
@@ -271,34 +272,60 @@ const AccountSettingsBox = () => {
                                     Web 3
                                 </Text>
                                 <Text variant={"SettingsText2"} ml={"15px"}>
-                                    Not Added
+                                    {UserDetailsData?.data?.isweb3 ? "Verified" : "Not Verified"}
                                 </Text>
                             </Box>
                         </Box>
-                        <Button
-                            variant={"outline"}
-                            border={"1px"}
-                            width={"110px"}
-                            height={"34px"}
-                            _light={{
-                                bg: "#FFFFFF"
-                            }}
-                            _dark={{
-                                bg: "#191919"
-                            }}
-                        >
-                            <Text
-                                variant={"SettingsButtonText"}
-                                _light={{
-                                    color: "#191919"
-                                }}
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                            >
-                                Verify
-                            </Text>
-                        </Button>
+                        {
+                            UserDetailsData?.data?.isweb3 ?
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                >
+                                    <DynamicIcon
+                                        name={colorMode === "light" ? "green_tick" : "unticked"}
+                                    />
+                                    <Text
+                                        variant={"SettingsButtonText"}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                        fontSize={"14px"}
+                                        ml={"7px"}
+                                    >
+                                        Verified
+                                    </Text>
+                                </Box>
+                                :
+                                <Button
+                                    variant={"outline"}
+                                    border={"1px"}
+                                    width={"110px"}
+                                    height={"34px"}
+                                    _light={{
+                                        bg: "#FFFFFF"
+                                    }}
+                                    _dark={{
+                                        bg: "#191919"
+                                    }}
+                                    onClick={onLoginModalOpen}
+                                >
+                                    <Text
+                                        variant={"SettingsButtonText"}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                    >
+                                        Not Verified
+                                    </Text>
+                                </Button>
+                        }
+
                     </Box>
 
                     <Box
@@ -322,34 +349,63 @@ const AccountSettingsBox = () => {
                                     Email
                                 </Text>
                                 <Text variant={"SettingsText2"} ml={"15px"}>
-                                    Not Added
+                                    {UserDetailsData?.data?.isEmailVerified ? "Added" : "Not Added"}
                                 </Text>
                             </Box>
                         </Box>
-                        <Button
-                            variant={"outline"}
-                            border={"1px"}
-                            width={"110px"}
-                            height={"34px"}
-                            _light={{
-                                bg: "#FFFFFF"
-                            }}
-                            _dark={{
-                                bg: "#191919"
-                            }}
-                        >
-                            <Text
-                                variant={"SettingsButtonText"}
-                                _light={{
-                                    color: "#191919"
-                                }}
-                                _dark={{
-                                    color: "#FFFFFF"
-                                }}
-                            >
-                                Add Email
-                            </Text>
-                        </Button>
+                        {
+                            UserDetailsData?.data?.isEmailVerified ?
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                >
+                                    <DynamicIcon
+                                        name={colorMode === "light" ? "green_tick" : "unticked"}
+                                    />
+                                    <Text
+                                        variant={"SettingsButtonText"}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                        fontSize={"14px"}
+                                        ml={"7px"}
+                                    >
+                                        Added
+                                    </Text>
+                                </Box>
+                                :
+                                <Button
+                                    variant={"outline"}
+                                    border={"1px"}
+                                    width={"110px"}
+                                    height={"34px"}
+                                    _light={{
+                                        bg: "#FFFFFF"
+                                    }}
+                                    _dark={{
+                                        bg: "#191919"
+                                    }}
+                                    onClick={() => {
+                                        localStorage.setItem('googleAuthInitiated', true);
+                                        signIn('google');
+                                    }}
+
+                                >
+                                    <Text
+                                        variant={"SettingsButtonText"}
+                                        _light={{
+                                            color: "#191919"
+                                        }}
+                                        _dark={{
+                                            color: "#FFFFFF"
+                                        }}
+                                    >
+                                        Add Email
+                                    </Text>
+                                </Button>
+                        }
                     </Box>
 
                     {/*                 <Box

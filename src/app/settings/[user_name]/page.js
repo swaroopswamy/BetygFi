@@ -39,6 +39,7 @@ const Settings = ({ params }) => {
 	} = useDisclosure();
 	const { isOpen, /* onOpen, */ onClose } = useDisclosure();
 	const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+	const EditUserDetailsData = useSelector((state) => state.authData.editUserDetailsData);
 
 
 	const getUserDetailsHandler = () => {
@@ -60,6 +61,14 @@ const Settings = ({ params }) => {
 			getUserCountHandler()
 		]).then(res => res);
 	}, []);
+
+	useEffect(() => {
+		if (EditUserDetailsData?.isSuccess) {
+			Promise.all([
+				getUserDetailsHandler(),
+			]).then(res => res);
+		}
+	}, [EditUserDetailsData]);
 
 	const { data: AuthSession } = useSession();
 	if (AuthSession === null) {
