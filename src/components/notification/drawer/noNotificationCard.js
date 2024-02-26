@@ -18,7 +18,7 @@ const NoNotificationCard = () => {
                 Stay tuned for updates and important <br /> announcements.
             </Text>
         </Box>
-    )
-}
+    );
+};
 
 export default NoNotificationCard;
