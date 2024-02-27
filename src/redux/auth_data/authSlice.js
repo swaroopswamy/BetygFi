@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
 import { signIn } from "next-auth/react";
-import { createCookies, deleteCookieByName } from "@util/cookieHelper";
+import { createCookiesAuth, deleteCookieByNameAuth } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
 
 
@@ -248,7 +248,7 @@ const AuthDataSlice = createSlice({
 			};
 
 			localStorage.clear();
-			deleteCookieByName(AUTH_COOKIE_NAME);
+			deleteCookieByNameAuth(AUTH_COOKIE_NAME);
 		},
 		StoreLoggedInUserData: (state) => {
 			const accountState = {
@@ -262,7 +262,7 @@ const AuthDataSlice = createSlice({
 				name: state.verifiedPublicAddressData.data?.public_address,
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState);
+			createCookiesAuth(AUTH_COOKIE_NAME, serializedState);
 			setTimeout(() => {
 				signIn("credentials", user);
 			}, 100);
@@ -276,7 +276,7 @@ const AuthDataSlice = createSlice({
 				},
 			};
 			const serializedState = JSON.stringify(accountState);
-			createCookies(AUTH_COOKIE_NAME, serializedState);
+			createCookiesAuth(AUTH_COOKIE_NAME, serializedState);
 			state.GoogleVerifiedData.isCookieSet = true;
 		},
 		LogInFromCookie: (state, /* action */) => {
