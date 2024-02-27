@@ -119,7 +119,7 @@ export const getMainDomain = () => {
     //}
 };
 
-export const getDomainForCookieAuth = () => getMainDomainAuth();
+export const getDomainForCookieAuth = () => "." + getMainDomainAuth();
 export const getMainDomainAuth = () => {
     /* if (typeof window !== "undefined") {
         return window.location.hostname.split('.').slice(-2).join('.');
