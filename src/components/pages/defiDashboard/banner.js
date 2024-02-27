@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import BlockchainSelectionMenu from "@components/blockchainSelectionMenu";
 import { useRouter } from "next/navigation";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const Banner = ({ defiData }) => {
 	const router = useRouter();

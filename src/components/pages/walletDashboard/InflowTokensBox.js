@@ -8,7 +8,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { USDollar } from "@util/globalHelper";
+import { USDollar } from "@util/utility";
 import {
 	InflowTokensTableHeader,
 	InflowTokensDesktop,
@@ -16,7 +16,7 @@ import {
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const GenericTable = dynamic(() => import("@components/table"));

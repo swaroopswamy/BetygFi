@@ -17,10 +17,10 @@ import moment from "moment/moment";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
-import { fetchWalletTransactionsData } from "@/redux/wallet_dashboard_data/dataSlice";
+import { fetchWalletTransactionsData } from "@redux/wallet_dashboard_data/dataSlice";
 import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
 import Image from "next/image";
-import CustomAvatar from "@/components/avatar";
+import CustomAvatar from "@components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -35,7 +35,12 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 	const blockchainSelected = useSelector((state) => state?.walletDashboardTableData?.blockchainType);
 
 	const pageChangeHandler = (page) => {
-		tablePage >= 1 && setTablePage(page);
+		if (page == "") {
+			setTablePage(page);
+		}
+		if (page >= 1) {
+			setTablePage(page);
+		}
 	};
 
 	const fetchWalletTransactionsDataHandler = useCallback(() => {
@@ -49,8 +54,12 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 		if (searchParamAddress && searchParamAddress !== '') {
 			data.address = searchParamAddress;
 		}
-		dispatch(fetchWalletTransactionsData(data));
-	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit]);
+		if (tablePage != "") {
+			setTimeout(() => {
+				dispatch(fetchWalletTransactionsData(data));
+			}, 1500);
+		}
+	}, [blockchainSelected, tablePage, searchParamAddress, tableLimit, setTablePage]);
 
 	useEffect(() => {
 		fetchWalletTransactionsDataHandler();

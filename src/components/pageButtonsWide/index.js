@@ -1,23 +1,6 @@
 import React from "react";
-import {
-    Text,
-    Box,
-    useColorMode,
-    Input,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    Button,
-    useColorModeValue,
-} from "@chakra-ui/react";
-import {
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    ChevronDownIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-} from "@chakra-ui/icons";
+import { Text, Box, useColorMode, Input, Menu, MenuButton, MenuList, MenuItem, Button, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import { ArrowLeftIcon, ArrowRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import LastUpdate from "@components/lastUpdate";
 
 const PageButtonsWide = ({
@@ -29,14 +12,16 @@ const PageButtonsWide = ({
     time,
     ...rest
 }) => {
+    const [isMd] = useMediaQuery("(min-width: 768px)");
+
     if (totalPages === 0) {
         return null;
     }
 
-    return (
-        <>
+    const renderMDPageButton = () => {
+        return (
             <Box
-                display={{ base: "none", md: "flex" }}
+                display={"flex"}
                 justifyContent={"space-between"}
                 alignItems={"center"}
                 {...rest}
@@ -65,9 +50,13 @@ const PageButtonsWide = ({
                     />
                 </Box>
             </Box>
+        );
+    };
 
+    const renderSMPageButton = () => {
+        return (
             <Box
-                display={{ base: "flex", md: "none" }}
+                display={"flex"}
                 flexDir={"column"}
                 my={"10px"}
                 gap={"30px"}
@@ -103,8 +92,10 @@ const PageButtonsWide = ({
                     />
                 </Box>
             </Box>
-        </>
-    );
+        );
+    };
+
+    return isMd ? renderMDPageButton() : renderSMPageButton();
 };
 
 export default PageButtonsWide;
@@ -114,6 +105,9 @@ const PaginationButtons = ({ page, pageChangeHandler, totalPages }) => {
 
     const handlePaginationChange = (type, value) => {
         if (type === "input") {
+            if (value !== "") {
+                value = +value;
+            }
             if (value < 0) {
                 value = 1;
             }

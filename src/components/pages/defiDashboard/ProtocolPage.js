@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import {
     categoryChangedReducer,
     fetchOverviewData,
     fetchScoreGraphData,
-} from "@/redux/dashboard_data/dataSlice";
+} from "@redux/dashboard_data/dataSlice";
 import {
     Box,
     Button,
@@ -30,9 +30,7 @@ const ProtocolPage = () => {
 
     const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
 
-    const categorySelected = useSelector(
-        (state) => state?.dashboardTableData?.categorySelected
-    );
+    const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
 
     const getOverviewDataHandler = () => {
         const payload = {

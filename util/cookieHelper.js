@@ -1,7 +1,9 @@
 import { setCookie, deleteCookie, getCookie } from 'cookies-next';
-import { getDomainForCookie } from '@util/utility';
+import { getDomainForCookie, getDomainForCookieAuth } from '@util/utility';
 
 const options = () => { return ({ domain: getDomainForCookie(), path: '/' }); };
+const optionsAuth = () => { return ({ domain: getDomainForCookieAuth(), path: '/' }); };
+
 
 export const getCookieByName = (cookieName) => {
     const rawCookie = getCookie(cookieName);
@@ -26,4 +28,14 @@ export const createCookies = (name, value) => {
 export const deleteCookieByName = (name) => {
     deleteCookie(name, options());
 };
+
+
+export const createCookiesAuth = (name, value) => {
+    setCookie(name, value, optionsAuth());
+};
+
+export const deleteCookieByNameAuth = (name) => {
+    deleteCookie(name, optionsAuth());
+};
+
 

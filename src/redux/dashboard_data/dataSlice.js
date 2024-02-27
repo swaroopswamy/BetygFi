@@ -1,27 +1,22 @@
 import {
-    getDefiRankingsTableData,
     getOverviewData,
-    getProtocolScoresData,
     getOverviewGraphData,
-} from "@/services/dashboardService";
+    getDefiRankingsTableData,
+    getProtocolScoresData,
+} from "@services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 
 export const fetchDefiRankingTableData = createAsyncThunk(
-    "getDefiRankingsTableData",
-    async (payload, { rejectWithValue }) => {
-        const response = await getDefiRankingsTableData(
-            payload,
-            rejectWithValue
-        );
+    "getDefiRankingsTableData", async (payload, { rejectWithValue }) => {
+        const response = await getDefiRankingsTableData(payload, rejectWithValue);
         return response.data;
     }
 );
 
 export const fetchOverviewData = createAsyncThunk(
-    "getOverviewData",
-    async (payload, { rejectWithValue }) => {
+    "getOverviewData", async (payload, { rejectWithValue }) => {
         const response = await getOverviewData(payload, rejectWithValue);
         return response.data;
     }
@@ -155,13 +150,9 @@ const DashboardDataSlice = createSlice({
             if (action.payload === "All") {
                 state.categorySelected = [];
             } else if (state.categorySelected.includes(action.payload)) {
-                state.categorySelected = state.categorySelected.filter(
-                    (item) => item !== action.payload
-                );
+                state.categorySelected = state.categorySelected.filter(item => item !== action.payload);
             } else {
-                state.categorySelected = state.categorySelected.filter(
-                    (item) => item !== "All"
-                );
+                state.categorySelected = state.categorySelected.filter(item => item !== "All");
                 state.categorySelected.push(action.payload);
             }
         },

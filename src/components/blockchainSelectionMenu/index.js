@@ -14,8 +14,8 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
-import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@redux/dashboard_data/dataSlice";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import CustomAvatar from "@components/avatar";
 
 const BlockchainSelectionMenu = ({ chains }) => {

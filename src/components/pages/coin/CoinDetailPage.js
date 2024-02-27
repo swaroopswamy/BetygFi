@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import {
     fetchCoinDevelopmentData,
     fetchCoinPriceData,
-} from "@/redux/coin_data/dataSlice";
-import CustomAvatar from "@/components/avatar";
+} from "@redux/coin_data/dataSlice";
+import CustomAvatar from "@components/avatar";
 import dynamic from "next/dynamic";
 
 const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"));

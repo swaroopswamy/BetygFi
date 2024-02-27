@@ -8,7 +8,7 @@ import {
     fetchBlockchainListData,
     postReportBug,
     resetReportBug,
-} from "@/redux/app_data/dataSlice";
+} from "@redux/app_data/dataSlice";
 const CustomInput = dynamic(() => import("@components/customInput"));
 const CustomModal = dynamic(() => import("@components/custommodal/index"));
 const CustomDropdown = dynamic(() => import("@components/dropdown/index"));

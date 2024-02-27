@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
     Box,
     Text,
@@ -15,6 +15,7 @@ import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt } from "react-icons/bi";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { useRouter, usePathname } from "next/navigation";
+import AppConfigContext from "@components/context/appConfigContext";
 
 const Footer = React.memo(() => {
     const { onToggle } = useDisclosure();
@@ -36,6 +37,33 @@ const Footer = React.memo(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     });
+
+    const footerMobileLinkList = [
+        {
+            name: "Home",
+            NavIcon: RiHomeLine,
+            link: "/",
+            isExternal: false
+        },
+        {
+            name: "Approach Paper",
+            NavIcon: TiDocumentText,
+            link: "/approach-paper",
+            isExternal: false,
+        },
+        {
+            name: "Top Wallets",
+            NavIcon: BiWalletAlt,
+            link: "/top-wallets",
+            isExternal: false,
+        },
+        {
+            name: "Community",
+            NavIcon: FaPeopleGroup,
+            link: "community",
+            isExternal: true,
+        }
+    ];
 
     return (
         <>
@@ -91,30 +119,15 @@ const Footer = React.memo(() => {
                         zIndex={"100"}
                     >
                         <Box width={"100%"} layerStyle={"flexCenterSpaceEvenly"}>
-                            <FooterMobileLink
-                                name={"Home"}
-                                NavIcon={RiHomeLine}
-                                link={"/"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                name={"Approach Paper"}
-                                NavIcon={TiDocumentText}
-                                link={"/approach-paper"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                name={"Top Wallets"}
-                                NavIcon={BiWalletAlt}
-                                link={"/top-wallets"}
-                                isExternal={false}
-                            />
-                            <FooterMobileLink
-                                name={"Community"}
-                                NavIcon={FaPeopleGroup}
-                                link={"community"}
-                                isExternal={true}
-                            />
+                            {
+                                footerMobileLinkList?.map((fm, index) => <FooterMobileLink
+                                    name={fm.name}
+                                    key={index}
+                                    NavIcon={fm.NavIcon}
+                                    link={fm.link}
+                                    isExternal={fm.isExternal}
+                                />)
+                            }
                         </Box>
                     </Box>
             }
@@ -126,6 +139,7 @@ export default Footer;
 Footer.displayName = 'Footer';
 
 const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
+    const appConfig = useContext(AppConfigContext);
     const { colorMode } = useColorMode();
     const router = useRouter();
     const pathname = usePathname();
@@ -138,7 +152,7 @@ const FooterMobileLink = ({ name, NavIcon, link, isExternal }) => {
             gap={"10px"}
             cursor={"pointer"}
             onClick={() => {
-                isExternal ? window.open(link === "community" ? process.env.NEXT_PUBLIC_COMMUNITY_URL : link, "_blank", "noreferrer") :
+                isExternal ? window.open(link === "community" ? appConfig.NEXT_PUBLIC_COMMUNITY_URL : link, "_blank", "noreferrer") :
                     router.push(link);
             }}
             borderColor={"#FFF"}

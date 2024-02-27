@@ -13,7 +13,7 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { blockchainTypeChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import { blockchainTypeChangedReducer } from "@redux/dashboard_data/dataSlice";
 import dynamic from "next/dynamic";
 import CustomAvatar from "@components/avatar";
 const SearchBox = dynamic(() => import("@components/searchBox"));
@@ -21,7 +21,7 @@ const SearchBox = dynamic(() => import("@components/searchBox"));
 const BlockchainSelectionMenuNew = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
-
+    
     const [tempBlockchain, setTempBlockchain] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -56,6 +56,8 @@ const BlockchainSelectionMenuNew = () => {
         setSearchableBlockchains(blockchainListData?.data?.slice(5));
         setTempBlockchain(blockchainListData?.data?.slice(5));
     }, [blockchainListData]);
+
+    
 
     return (
         <>
@@ -213,7 +215,7 @@ const BlockchainSelectionMenuNew = () => {
                                     </Box>
                                 </MenuButton>
                                 <MenuList
-                                    zIndex={"10"}
+                                    zIndex={"100"}
                                     boxShadow={
                                         "0px 5px 4px 0px rgba(0, 0, 0, 0.10)"
                                     }
@@ -254,6 +256,7 @@ const BlockchainSelectionMenuNew = () => {
                                                         }}
                                                     >
                                                         <Checkbox
+
                                                             colorScheme="green"
                                                             value={item.id}
                                                             // checked={blockchainSelected.includes(
@@ -299,6 +302,7 @@ const BlockchainSelectionMenuNew = () => {
                                                                     }}
                                                                 />
                                                                 <Text
+                                                                    ml={"8px"}
                                                                     fontSize={
                                                                         "12px"
                                                                     }

@@ -44,13 +44,14 @@ export const tableHeader = [
 		tooltipLabel: "Market capitalization of the DeFi is the total accessor of tokens of the DeFi",
 	},
 	{
+		accessor: "mcap-tvl",
 		Header: "MCap/TVL",
 		isTooltip: true,
 		isSortingEnabled: false,
 		tooltipLabel: "The MCAP/TVL Ratio show the difference between the total accessor of the token issued by the DeFi (Market Value of the DeFi) and the total accessor of assets of the DeFi",
 	},
 	{
-		accessor: "score",
+		accessor: "safety_score",
 		Header: "Score",
 		isTooltip: true,
 		isSortingEnabled: false,

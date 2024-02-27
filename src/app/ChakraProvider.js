@@ -97,6 +97,10 @@ export function Providers({ children }) {
                 display: "flex",
                 justifyContent: "space-between",
             },
+            flexSpaceEvenly: {
+                display: "flex",
+                justifyContent: "space-evenly",
+            },
             flexAlignCenterJustifyCenter: {
                 display: "flex",
                 alignItems: "center",
@@ -111,6 +115,17 @@ export function Providers({ children }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
+            },
+            flexColumnCenterSpaceAround: {
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "space-around",
+            },
+            flexCenterSpaceAround: {
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-around",
             },
             flexCenterFlexStart: {
                 display: "flex",

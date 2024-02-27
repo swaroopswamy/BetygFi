@@ -315,7 +315,6 @@ const SelectorGraph = ({ series, period }) => {
                 });
             }
             if (period === "30d") {
-                // console.log("hit");
                 let minDate = new Date(
                     Date.parse(mostRecentSeries.data.slice(-1)[0].x)
                 );

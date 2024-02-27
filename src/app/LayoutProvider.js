@@ -1,55 +1,66 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect } from "react";
-import {
-    Box,
-    useColorModeValue,
-    useDisclosure,
-    useMediaQuery,
-    useToast,
-} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import SidebarContent from "@components/sidebar";
-import Footer from "@components/footer";
-import Navbar from "@components/header";
 import { signOut, useSession } from "next-auth/react";
-import {
-    LogInFromCookie,
-    StoreLoggedInUserDataGoogle,
-    ResetValidatedUserData,
-    socialLoginGoogle,
-    verifyJWTtokenFromCookie,
-    LogoutReducer,
-} from "@/redux/auth_data/authSlice";
-import { AUTH_COOKIE_NAME } from "@util/constant";
-import { getCookieByName } from "@util/cookieHelper";
+import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
+import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
+//import LoginPage from "@components/login";
+import Footer from "@components/footer";
+import SidebarContent from "@components/sidebar";
+import Navbar from "@components/header";
+import AppConfigContext from "@components/context/appConfigContext";
+import { replaceWithWS } from "@util/utility";
+import useSocket from "@hooks/useSocket";
+import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
+import NotificationDrawer from "@components/notification/drawer";
 
-export default function LayoutProvider({ children }) {
-
-    const [isMd] = useMediaQuery("(min-width: 768px)");
+export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
     const { onOpen, onClose } = useDisclosure();
-    const isSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isSidebarCollapsed
-    );
-    const isMobileSidebarCollapsed = useSelector(
-        (state) => state?.appData?.isMobileSidebarCollapsed
-    );
+    // const { connector: activeConnector } = useAccount();
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     const { disconnect } = useDisconnect();
-    const { data: AuthSession, status, update } = useSession();
-    const GoogleVerifiedData = useSelector(
-        (state) => state.authData.GoogleVerifiedData
-    );
-    const ValidatedUserData = useSelector(
-        (state) => state.authData.ValidatedUserData
-    );
     const toast = useToast();
+    const { data: AuthSession, status, update } = useSession();
+    const [messageSent, setMessageSent] = useState(false);
+    const [isUser, setIsUser] = useState(false);
+
+    const isSidebarCollapsed = useSelector((state) => state?.appData?.isSidebarCollapsed);
+    const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
+    const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const { address } = useAccount();
+
+    /*   const {
+          isOpen: isLoginModalOpen,
+          onOpen: onLoginModalOpen,
+          onClose: onLoginModalClose,
+      } = useDisclosure();
+   */
+
+    const {
+        isOpen: isNotificationDrawerOpen,
+        onOpen: onNotificationDrawerOpen,
+        onClose: onNotificationDrawerClose,
+    } = useDisclosure();
+    const Notifications = useSelector((state) => state?.appData?.Notifications);
+    const notificationRecievedFromSocket = useSelector((state) => state?.appData?.notificationRecievedFromSocket);
+    // Callback function to handle incoming messages
+    const handleReceivedMessage = (message) => {
+        if (message) {
+            dispatch(notificationsReducer(JSON?.parse(message)));
+        }
+    };
+
+    useSocket(replaceWithWS(appConfig?.NEXT_PUBLIC_SOCKET_HOST), handleReceivedMessage);
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -75,8 +86,12 @@ export default function LayoutProvider({ children }) {
                         dispatch(socialLoginGoogle(payload));
                     }
                 } else {
-                    if (AuthSession?.user?.name) {
-                        update();
+                    if (AuthSession?.provider !== 'credentials') {
+                        if (AuthSession?.user?.name) {
+                            update();
+                        }
+                    } else {
+                        localStorage.setItem("googleAuthInitiated", false);
                     }
                 }
             }
@@ -97,7 +112,7 @@ export default function LayoutProvider({ children }) {
                         // someone logsout from other microservice
                         if (isEmpty(cookie)) {
                             disconnect();
-                            signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                            signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                         } else {
                             // here we need to check if the user has logged in from same account
                             verifyJWTtokenFromCookieHandler(cookie);
@@ -124,40 +139,9 @@ export default function LayoutProvider({ children }) {
 
     //useEffect to check auth on mount
     useEffect(() => {
-        const cookie = getCookieByName(AUTH_COOKIE_NAME);
-        if (!isEmpty(cookie)) {
-            verifyJWTtokenFromCookieHandler(cookie);
-        } else {
-            if (status === "authenticated") {
-                (localStorage.getItem("googleAuthInitiated") === "false" ||
-                    localStorage.getItem("googleAuthInitiated") === null) &&
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-            }
-        }
-
-        window.addEventListener('online', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={true}
-                        content={'Internet connection is back :)'}
-                    />
-                ),
-            });
-        }, false);
-
-        window.addEventListener('offline', function () {
-            toast({
-                position: "bottom",
-                render: () => (
-                    <CustomToast
-                        isSuccessful={false}
-                        content={"Internet connection is down :("}
-                    />
-                ),
-            });
-        }, false);
+        createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
+        checkIfVerifiedOrNot();
+        manageOnlineOfflineStatus();
     }, []);
 
     // for creating cookie after google sign in is successful
@@ -177,8 +161,11 @@ export default function LayoutProvider({ children }) {
                 ),
             });
             setTimeout(() => {
-                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
             }, 2000);
+        }
+        if (GoogleVerifiedData?.isCookieSet) {
+            checkIfVerifiedOrNot();
         }
     }, [GoogleVerifiedData]);
 
@@ -210,11 +197,44 @@ export default function LayoutProvider({ children }) {
             setTimeout(() => {
                 dispatch(LogoutReducer());
                 setTimeout(() => {
-                    signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                 }, 200);
             }, 100);
         }
     }, [dispatch, ValidatedUserData]);
+
+    const checkIfVerifiedOrNot = () => {
+        const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        if (!isEmpty(cookie)) {
+            verifyJWTtokenFromCookieHandler(cookie);
+        } else {
+            if (status === "authenticated") {
+                if ([null, "false"].includes(localStorage.getItem("googleAuthInitiated"))) {
+                    signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                }
+            }
+        }
+    };
+
+    const manageOnlineOfflineStatus = () => {
+        window.addEventListener('online', function () {
+            toast({
+                position: "bottom", render: () => <CustomToast isSuccessful={true} content={'Internet connection is back :)'} />
+            });
+        }, false);
+
+        window.addEventListener('offline', function () {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={"Internet connection is down :("}
+                    />
+                ),
+            });
+        }, false);
+    };
 
     React.useEffect(() => {
         const unwatch = watchAccount(config, {
@@ -226,7 +246,7 @@ export default function LayoutProvider({ children }) {
                         setTimeout(() => {
                             dispatch(LogoutReducer());
                             setTimeout(() => {
-                                signOut({ callbackUrl: process.env.NEXTAUTH_URL });
+                                signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
                             }, 200);
                         }, 100);
                     }
@@ -238,20 +258,56 @@ export default function LayoutProvider({ children }) {
         return () => unwatch();
     }, [address]);
 
+    const getAllPublicNotificationsHandler = () => {
+        dispatch(getAllPublicNotifications());
+    };
+    /* const getAllUserNotificationsByUserIdHandler = () => {
+        const payload = {
+            id: ValidatedUserData?.data?.id
+        };
+        if (isUser) {
+            dispatch(getAllUserNotificationsByUserId(payload));
+        }
+    }; */
+
+
+
+    useEffect(() => {
+        /* const cookie = getCookieByName(AUTH_COOKIE_NAME);
+        if (!isEmpty(cookie)) {
+            getAllUserNotificationsByUserIdHandler();
+        } else { */
+        getAllPublicNotificationsHandler();
+        //}
+    }, [notificationRecievedFromSocket, isUser]);
+
+    useEffect(() => {
+        if (AuthSession) {
+            if (messageSent === false && ValidatedUserData.data?.id) {
+                //sendMessage(ValidatedUserData?.data?.id);
+                setMessageSent(true);
+            }
+            if (isUser === false && ValidatedUserData?.data !== null) {
+                setIsUser(true);
+            }
+        }
+
+    }, [ValidatedUserData]);
+
     return (
-        <Box
-            width="100%"
-            minH="100vh"
-            bg={useColorModeValue("#F0F0F5", "#191919")}
-            display={"flex"}
-        >
-            <SidebarContent
-                onClose={() => onClose}
-                w={isMobileSidebarCollapsed ? "null" : "80%"}
-                h={"100%"}
-            />
-            {isMd ? (
-                <>
+        <AppConfigContext.Provider value={appConfig}>
+            <Box
+                width="100%"
+                minH="100vh"
+                bg={useColorModeValue("#F0F0F5", "#191919")}
+                display={"flex"}
+            >
+                <SidebarContent
+                    onClose={() => onClose}
+                    w={isMobileSidebarCollapsed ? "null" : "80%"}
+                    h={"100%"}
+                />
+                {isMd ? (
                     <Box
                         display={{
                             base: "none",
@@ -264,7 +320,13 @@ export default function LayoutProvider({ children }) {
                         w="100%"
                         overflowX={"hidden"}
                     >
-                        <Navbar onOpenMenu={onOpen} />
+                        <Navbar
+                            onOpenMenu={onOpen}
+                            isNotificationDrawerOpen={isNotificationDrawerOpen}
+                            onNotificationDrawerOpen={onNotificationDrawerOpen}
+                            onNotificationDrawerClose={onNotificationDrawerClose}
+
+                        />
                         <Box
                             p="0"
                             _light={{
@@ -280,17 +342,20 @@ export default function LayoutProvider({ children }) {
                             <Footer />
                         </Box>
                     </Box>
-                </>
-            ) : (
-                <>
+                ) : (
                     <Box
                         display={{ base: "flex", md: "none" }}
                         flexDirection={"column"}
                         overflowX={"hidden"}
                         mt={"60px"}
-                        w="100%"
-                    >
-                        <Navbar onOpenMenu={onOpen} />
+                        w="100%" >
+                        <Navbar
+                            onOpenMenu={onOpen}
+                            isNotificationDrawerOpen={isNotificationDrawerOpen}
+                            onNotificationDrawerOpen={onNotificationDrawerOpen}
+                            onNotificationDrawerClose={onNotificationDrawerClose}
+
+                        />
                         <Box
                             p="0"
                             _light={{
@@ -305,8 +370,14 @@ export default function LayoutProvider({ children }) {
                             <Footer />
                         </Box>
                     </Box>
-                </>
-            )}
-        </Box>
+                )}
+            </Box>
+            <NotificationDrawer
+                isOpen={isNotificationDrawerOpen}
+                onOpen={onNotificationDrawerOpen}
+                onClose={onNotificationDrawerClose}
+                notifications={Notifications}
+            />
+        </AppConfigContext.Provider>
     );
 }

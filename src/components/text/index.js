@@ -132,7 +132,7 @@ const Text = defineStyleConfig({
             fontFamily: "Inter",
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
         }),
-        contentHeading_MobileOptimization: ({ colorMode }) => ({
+        contentHeading4: ({ colorMode }) => ({
             fontSize: "18px",
             fontWeight: "500",
             lineHeight: "20px",
@@ -167,9 +167,8 @@ const Text = defineStyleConfig({
             fontsize: "12px",
             fontFamily: "Inter",
             fontWeight: "400",
-            lineHeight: "10px",
-            opacity: "0.5",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            lineHeight: "normal",
+            color: colorMode === "light" ? "#757575" : "#A5A5A5",
         }),
         SettingsButtonText: () => ({
             fontSize: "12px",
@@ -294,12 +293,31 @@ const Text = defineStyleConfig({
             fontWeight: "400",
             lineHeight: "36px",
         }),
+        profileText: () => ({
+            fontFamily: "Poppins",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            fontSize: "16px",
+            fontWeight: "400",
+
+            lineHeight: "normal",
+        }),
+        bigTextNumber: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: "Inter",
+            fontSize: "34px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            lineHeight: "normal",
+        }),
         approachPaperHeading: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "24px",
             fontStyle: "normal",
-            fontWeight: "400",
+            fontWeight: "500",
+            lineHeight: "normal",
         }),
         smApproachSmallHeading: () => ({
             fontFamily: "Inter",
@@ -308,12 +326,13 @@ const Text = defineStyleConfig({
             lineHeight: "26px",
             color: "#3F3F41",
         }),
-        smApproachSmallText: () => ({
+        smApproachSmallText: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#333" : "#EEE",
             fontFamily: "Inter",
+            textAlign: "justify",
             fontSize: "16px",
             fontWeight: "400",
-            lineHeight: "26px",
-            color: "#3F3F41",
+            lineHeight: "28px",
         }),
         footNoteText: ({ colorMode }) => ({
             fontFamily: "Inter",
@@ -321,6 +340,20 @@ const Text = defineStyleConfig({
             fontWeight: "400",
             lineHeight: " normal",
             color: colorMode === "light" ? "#666666" : "#EFEFEF",
+        }),
+        smallText: () => ({
+            fontSize: "10px",
+            fontFamily: "Inter",
+            fontWeight: "400",
+            letterSpacing: "0.5px",
+            color: "#FFFFFF",
+        }),
+        textBold: ({ colorMode }) => ({
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontWeight: "600",
+            color: colorMode !== "light" ? "#FFFFFF" : "#191919",
+            lineHeight: "24px"
         }),
     },
     defaultProps: {

@@ -9,8 +9,6 @@ const TrendingCoinPanel = ({ coinData }) => {
     const router = useRouter();
     const { colorMode } = useColorMode();
 
-    // console.log("cd", coinData);
-
     const series = useMemo(
         () => [
             {

@@ -9,14 +9,15 @@ import {
     LoginGetToken,
     StoreLoggedInUserData,
     VerifyPublicAddressData,
-} from "@/redux/auth_data/authSlice";
+} from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
-import { config } from "@/app/Web3Provider";
+import { config } from "@app/Web3Provider";
 
 
 const OtherBrowserWalletProcess = ({
     onClose,
     setBrowserWalletProcessSelected,
+    web3Verification
 }) => {
     const dispatch = useDispatch();
     const { connector } = getAccount(config);
@@ -59,7 +60,6 @@ const OtherBrowserWalletProcess = ({
             };
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
 
@@ -82,7 +82,6 @@ const OtherBrowserWalletProcess = ({
             connect({ connector });
         } catch (err) {
             // setError(err.message);
-            // console.log(err, "Error");
         }
     };
     const handleVerifyWallet = () => {
@@ -119,10 +118,11 @@ const OtherBrowserWalletProcess = ({
         if (!isEmpty(LoggedInData.data?.token)) {
             setBrowserWalletProcessSelected(false);
             onClose();
-            setTimeout(() => {
-                dispatch(StoreLoggedInUserData());
-            }, 100);
-
+            if (!web3Verification) {
+                setTimeout(() => {
+                    dispatch(StoreLoggedInUserData());
+                }, 100);
+            }
         }
     }, [LoggedInData]);
     const steps = [

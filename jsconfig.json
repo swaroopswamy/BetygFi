@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@app/*": ["./src/app/*"],
       "@services/*": ["./src/services/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@pages/*": ["./src/pages/*"],
-      "@util/*": ["./util/*"]
+      "@util/*": ["./util/*"],
+      "@/*": ["./src/*"],
     }
   }
 }

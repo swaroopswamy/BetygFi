@@ -1,6 +1,6 @@
-import { scoreChangedReducer } from "@/redux/dashboard_data/dataSlice";
+import { scoreChangedReducer } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import { calculatePercentage } from "@util/globalHelper";
+import { calculatePercentage } from "@util/utility";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,9 +12,7 @@ const boxData = [
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
-    const scoreSelected = useSelector(
-        (state) => state?.dashboardTableData?.scoreSelected
-    );
+    const scoreSelected = useSelector(state => state?.dashboardTableData?.scoreSelected);
 
     return (
         <Tooltip label={`View all ${data.label} risk DeFis`}>
@@ -65,10 +63,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                 onClick={() => ScoreSelectHandler(data.key)}
                 p={"7px 10px"}
                 alignItems={"start"}
-                w={`${calculatePercentage(
-                    scoreTotalData[data.index].value,
-                    totalDefis
-                )}%`}
+                w={`${calculatePercentage(scoreTotalData[data.index].value, totalDefis)}%`}
             >
                 <Text
                     fontSize={{ base: "12px", md: "14px" }}
@@ -83,7 +78,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     lineHeight={"18px"}
                     letterSpacing={"0.18px"}
                     fontWeight={700}
-                    color={"#FFF"}
+                    color={"#FFFFFF"}
                 >
                     {scoreTotalData[data.index].value ?? "-"}
                 </Text>

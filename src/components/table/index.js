@@ -4,7 +4,7 @@ import { Box, Table, Tbody, Text, Th, Thead, Tr, Td, Spinner, Icon, useMediaQuer
 import dynamic from "next/dynamic";
 import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
-import { orderByKey } from "@util/utility";
+import { isNotNullAndUndefined, orderByKey } from "@util/utility";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
@@ -24,12 +24,25 @@ const GenericTable = ({
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 
-	const [tableBodyData, setTableBodyData] = useState(tableData?.data?.data);
+	const [tableBodyData, setTableBodyData] = useState([]);
 	const [sortedState, setSortedState] = useState({ on: null, by: 'asc' });
 
 	useEffect(() => {
+		if (Array.isArray(tableData?.data?.data)) {
+			setTableBodyData([...tableData.data.data]);
+		}
+	}, []);
+
+	useEffect(() => {
 		if (tableData?.data?.data) {
-			setTableBodyData(tableData?.data?.data);
+			const tableData_ = [...tableData.data.data].map(tb => {
+				const tbCopy = { ...tb };
+				if (isNotNullAndUndefined(tb.mcap) && isNotNullAndUndefined(tb.tvl)) {
+					tbCopy['mcap-tvl'] = tbCopy.mcap / tbCopy.tvl;
+				}
+				return tbCopy;
+			});
+			setTableBodyData(tableData_);
 		}
 	}, [tableData]);
 
@@ -87,13 +100,7 @@ const GenericTable = ({
 										)}
 										{
 											showSortingIcon &&
-											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined &&
-												sortedState.by === 'desc'
-												?
-												HiSortDescending
-												:
-												HiSortAscending
-											}
+											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined && sortedState.by === 'desc' ? HiSortDescending : HiSortAscending}
 												boxSize={"16px"}
 												alt="Sort"
 												ml={"3px"}
@@ -271,11 +278,7 @@ const GenericTable = ({
 		);
 	};
 
-	return (
-		<>
-			{isMd ? renderMDTable() : renderSMTable()}
-		</>
-	);
+	return isMd ? renderMDTable() : renderSMTable();
 };
 
 export default GenericTable;

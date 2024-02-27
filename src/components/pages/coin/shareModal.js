@@ -19,7 +19,7 @@ const ShareModal = ({ isShareOpen, onShareClose }) => {
         >
             <ModalOverlay
                 bg="blackAlpha.300"
-                backdropFilter="blur(3px) hue-rotate(90deg)"
+                backdropFilter="blur(3px)"
             />
             <ModalContent>
                 <ModalHeader>Head</ModalHeader>

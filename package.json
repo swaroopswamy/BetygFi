@@ -3,18 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -f .env.dev next dev",
-    "start": "rm -rf .next && env-cmd -f .env.dev next dev",
-    "start:dev": "NODE_ENV=production env-cmd -f .env.dev node_modules/next/dist/bin/next start -p 7000",
-    "start:qa": "NODE_ENV=production env-cmd -f .env.qa node_modules/next/dist/bin/next start -p 7000",
-    "start:prod": "NODE_ENV=production env-cmd -f .env.prod node_modules/next/dist/bin/next start -p 7000",
-    "build:dev": "env-cmd -f .env.dev next build",
-    "build:qa": "env-cmd -f .env.qa next build",
-    "build:prod": "env-cmd -f .env.prod next build",
-    "analyze:dev": "cross-env ANALYZE=true next build",
-    "test:build": "npm run build:dev && npm run start:dev",
+    "start": "rimraf .next && npm run dev",
+    "dev": "NODE_ENV=development next dev -p 7000",
+    "deploy": "NODE_ENV=production APP_PORT=7000 next start -p 7000",
+    "build": "next build",
+    "clean:build": "rimraf .next && npm run build",
+    "analyze-build": "cross-env ANALYZE=true next build",
+    "build:deploy": "npm run clean:build && npm run deploy",
     "eslint": "eslint ./src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:dev": "npm run clean:build",
+    "start:dev": "npm run deploy"
   },
   "dependencies": {
     "@chakra-ui/icon": "3.2.0",
@@ -23,10 +22,9 @@
     "@reduxjs/toolkit": "1.9.5",
     "@tanstack/react-query": "^5.17.9",
     "apexcharts": "3.41.1",
-    "axios": "1.4.0",
+    "axios": "1.6.7",
     "cookies-next": "4.1.0",
     "encoding": "^0.1.13",
-    "env-cmd": "10.1.0",
     "lodash": "4.17.21",
     "memory-cache": "0.2.0",
     "millify": "6.1.0",
@@ -51,7 +49,8 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.9.0",
     "eslint-config-next": "^14.0.4",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "rimraf": "^5.0.5"
   },
   "husky": {
     "hooks": {

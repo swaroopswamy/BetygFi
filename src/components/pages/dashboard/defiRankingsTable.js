@@ -19,8 +19,8 @@ import isEmpty from "lodash/isEmpty";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
-import { fetchDefiRankingTableData } from "@/redux/dashboard_data/dataSlice";
-import CustomAvatar from "@/components/avatar";
+import { fetchDefiRankingTableData } from "@redux/dashboard_data/dataSlice";
+import CustomAvatar from "@components/avatar";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -37,37 +37,26 @@ const Rankings = () => {
 
     const dispatch = useDispatch();
 
-    const blockchainSelected = useSelector(
-        (state) => state?.dashboardTableData?.blockchainType
-    );
-
-    const categorySelected = useSelector(
-        (state) => state?.dashboardTableData?.categorySelected
-    );
-    const scoreSelected = useSelector(
-        (state) => state?.dashboardTableData?.scoreSelected
-    );
-
-    const tableData = useSelector(
-        (state) => state?.dashboardTableData.DefiRankingsTableData
-    );
-    const scoreTotalData = useSelector(
-        (state) => state.dashboardTableData.ScoreGraphData?.data?.safety_score
-    );
+    const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
+    const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
+    const scoreSelected = useSelector((state) => state?.dashboardTableData?.scoreSelected);
+    const tableData = useSelector((state) => state?.dashboardTableData.DefiRankingsTableData);
+    const scoreTotalData = useSelector((state) => state.dashboardTableData.ScoreGraphData?.data?.safety_score);
 
     useEffect(() => {
         if (scoreTotalData) {
-            setTotalDefis(
-                scoreTotalData[0]?.value +
-                scoreTotalData[1]?.value +
-                scoreTotalData[2].value +
-                scoreTotalData[3].value
-            );
+            const total = scoreTotalData[0]?.value + scoreTotalData[1]?.value + scoreTotalData[2].value + scoreTotalData[3].value;
+            setTotalDefis(total);
         }
     }, [scoreTotalData]);
 
     const pageChangeHandler = (page) => {
-        setTablePage(page);
+        if (page == "") {
+            setTablePage(page);
+        }
+        if (page >= 1) {
+            setTablePage(page);
+        }
     };
 
     const searchByNameHandler = (name) => {
@@ -106,7 +95,11 @@ const Rankings = () => {
     };
 
     useEffect(() => {
-        getDefiRankingsTableDataHandler();
+        if (tablePage != "") {
+            setTimeout(() => {
+                getDefiRankingsTableDataHandler();
+            }, 1500);
+        }
     }, [
         blockchainSelected,
         categorySelected,
@@ -114,6 +107,7 @@ const Rankings = () => {
         searchByName,
         tableLimit,
         scoreSelected,
+        setTablePage
     ]);
 
     return (
@@ -288,21 +282,17 @@ const TableRow = ({ item, rowIndex }) => {
                 </Text>
             </Td>
             <Td key={5}>
-                {!isEmpty(item.mcap) ? (
-                    <Text variant={"h3"}>
-                        {Math.trunc(item.mcap).toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                        })}
-                    </Text>
-                ) : (
-                    <Text variant={"h3"}>NA</Text>
-                )}
+                <Text variant={"h3"}>
+                    {Math.trunc(item.mcap).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    })}
+                </Text>
             </Td>
             <Td key={6}>
-                {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+                {item.tvl !== 0 ? (
                     <Text variant={"h3"}>
-                        {(item.mcap / item.tvl).toFixed(2)}
+                        {(item['mcap-tvl'])?.toFixed(2)}
                     </Text>
                 ) : (
                     <Text variant={"h3"}>NA</Text>
@@ -313,35 +303,33 @@ const TableRow = ({ item, rowIndex }) => {
                     {item?.safety_score === undefined ? (
                         "-"
                     ) : (
-                        <>
-                            <Box
-                                layerStyle={"flexCenter"}
-                                justifyContent={"center"}
-                                w="88px"
-                                h="33px"
-                                borderRadius={"30px"}
-                                mr={"4px"}
-                                bgColor={
-                                    item.safety_score >= 75
-                                        ? "#0E6027"
-                                        : item.safety_score < 75 &&
-                                            item.safety_score >= 50
-                                            ? "#00799F"
-                                            : item.safety_score < 50 &&
-                                                item.safety_score >= 25
-                                                ? "#B87A00"
-                                                : "#FF0000"
-                                }
+                        <Box
+                            layerStyle={"flexCenter"}
+                            justifyContent={"center"}
+                            w="88px"
+                            h="33px"
+                            borderRadius={"30px"}
+                            mr={"4px"}
+                            bgColor={
+                                item.safety_score >= 75
+                                    ? "#0E6027"
+                                    : item.safety_score < 75 &&
+                                        item.safety_score >= 50
+                                        ? "#00799F"
+                                        : item.safety_score < 50 &&
+                                            item.safety_score >= 25
+                                            ? "#B87A00"
+                                            : "#FF0000"
+                            }
+                        >
+                            <Text
+                                variant={"h3"}
+                                color={"#FFFFFF"}
+                                fontWeight={"700"}
                             >
-                                <Text
-                                    variant={"h3"}
-                                    color={"#FFFFFF"}
-                                    fontWeight={"700"}
-                                >
-                                    {item?.safety_score?.toFixed(0)}
-                                </Text>
-                            </Box>
-                        </>
+                                {item?.safety_score?.toFixed(0)}
+                            </Text>
+                        </Box>
                     )}
                 </Box>
             </Td>
@@ -539,19 +527,12 @@ const PanelComp = ({ item }) => {
                     <Text variant="tableHead"> MCap </Text>
                     {/* <TooltipComp label="Market capitalization of the DeFi is the total value of tokens of the DeFi" /> */}
                 </Box>
-                {!isEmpty(item.mcap) ? (
-                    <Text variant={"h3"} textAlign={"left"}>
-                        $
-                        {Math.trunc(item.mcap).toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                        })}
-                    </Text>
-                ) : (
-                    <Text variant={"h3"} textAlign={"left"}>
-                        NA
-                    </Text>
-                )}
+                <Text variant={"h3"} textAlign={"left"}>
+                    {Math.trunc(item.mcap).toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    })}
+                </Text>
             </Box>
 
             <Box
@@ -570,13 +551,13 @@ const PanelComp = ({ item }) => {
                     {/* <TooltipComp label="The MCAP/TVL Ratio show the difference between the total value of the token issued by the DeFi (Market Value of the DeFi) and the total value of assets of the DeFi" /> */}
                 </Box>
 
-                {!isEmpty(item.mcap) && item.tvl !== 0 ? (
+                {item.tvl !== 0 ? (
                     <Text variant={"h3"} textAlign={"left"}>
                         {(item.mcap / item.tvl).toFixed(2)}
                     </Text>
                 ) : (
                     <Text variant={"h3"} textAlign={"left"}>
-                        NA{" "}
+                        NA
                     </Text>
                 )}
             </Box>

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDisconnect } from "wagmi";
 import {
@@ -13,29 +13,33 @@ import {
     useMediaQuery,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import LoginPage from "@components/login";
 import "./index.css";
-import { walletAddressChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
+import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import {
     LogoutReducer,
-} from "@/redux/auth_data/authSlice";
-import { MobileSidebar } from "@components/sidebar";
+} from "@redux/auth_data/authSlice";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
 import { PublicAddressStringFormatter } from "@util/utility";
-import SearchBoxV2 from "@components/searchBoxV2";
-import { useDebounce } from "@/hooks/useDebounce";
-import { getSearchV2List, getSearchV2TrendingList } from "@/redux/app_data/dataSlice";
+import { useDebounce } from "@hooks/useDebounce";
+import { getSearchV2List, getSearchV2TrendingList } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
+import LoginPage from "@components/login";
+import { MobileSidebar } from "@components/sidebar";
+import SearchBoxV2 from "@components/searchBoxV2";
+import AppConfigContext from "@components/context/appConfigContext";
+import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ ...rest }) => {
+const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
+    const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
     const router = useRouter();
     const pathname = usePathname();
+    const dispatch = useDispatch();
     const {
         isOpen: isMobileSidebarOpen,
         onOpen: onMobileSidebarOpen,
@@ -46,18 +50,19 @@ const Navbar = ({ ...rest }) => {
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
     } = useDisclosure();
-
+    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const { data: AuthSession } = useSession();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
-    const { isOpen: isMobileSearchOpen, onToggle: onMobileSearchToggle } = useDisclosure();
-    const dispatch = useDispatch();
-    const { colorMode, toggleColorMode } = useColorMode();
+
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 300);
-    const { data: AuthSession } = useSession();
+
+    const { colorMode, toggleColorMode } = useColorMode();
+    const normalizeColorMode = (colorMode) => colorMode === "light" ? "dark" : "light";
 
     const clearValueMobileSearch = () => {
         setSearchValue("");
@@ -110,9 +115,6 @@ const Navbar = ({ ...rest }) => {
         dispatch(getSearchV2TrendingList());
     }, []);
 
-    const normalizeColorMode = (colorMode) =>
-        colorMode === "light" ? "dark" : "light";
-
     const updateColorMode = () => {
         const colorCookie = getCookieByName(COLOR_MODE_COOKIE_NAME);
         if (colorCookie === "light") {
@@ -131,150 +133,150 @@ const Navbar = ({ ...rest }) => {
         toggleColorMode();
     };
 
-    const MdHeader = () => {
-        return (
-            <Flex
-                px={{ base: 4, md: 4 }}
-                display={{ base: "none", md: "flex" }}
-                height="20"
-                alignItems="center"
-                bg={useColorModeValue("#FFFFFF", "#191919")}
-                borderBottom={useColorModeValue("2px solid #E8E8E8", "2px solid #202020")}
-                justifyContent={{ base: "space-between", md: "space-between" }}
-                {...rest}
+    const Notifications = useSelector((state) => state?.appData?.Notifications);
+
+    const MdHeader = () => (
+        <Flex
+            px={{ base: 4, md: 4 }}
+            display={{ base: "none", md: "flex" }}
+            height="20"
+            alignItems="center"
+            bg={useColorModeValue("#FFFFFF", "#191919")}
+            borderBottom={useColorModeValue("2px solid #E8E8E8", "2px solid #202020")}
+            justifyContent={{ base: "space-between", md: "space-between" }}
+            {...rest}
+        >
+            <Box
+                w={"64%"}
+                height={"45px"}
+                flexShrink={0}
+                borderRadius={"20px"}
+                bg={useColorModeValue("#F4F4F4", "#000000")}
+                ml={"10px"}
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
             >
-                <Box
-                    w={"64%"}
-                    height={"45px"}
-                    flexShrink={0}
-                    borderRadius={"20px"}
-                    bg={useColorModeValue("#F4F4F4", "#000000")}
-                    ml={"10px"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                >
-                    <SearchBoxV2
-                        searchWalletAddressValue={searchWalletAddressValue}
-                        handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
-                        handleSearchInputChange={handleSearchInputChange}
-                        searchValue={searchValue}
-                        clearValueMobileSearch={clearValueMobileSearch}
-                        searchListData={searchListData?.data?.data?.data}
-                        searchListTrendingData={searchListTrendingData?.data?.data?.data}
-                    />
-                </Box>
+                <SearchBoxV2
+                    searchWalletAddressValue={searchWalletAddressValue}
+                    handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
+                    handleSearchInputChange={handleSearchInputChange}
+                    searchValue={searchValue}
+                    clearValueMobileSearch={clearValueMobileSearch}
+                    searchListData={searchListData?.data?.data?.data}
+                    searchListTrendingData={searchListTrendingData?.data?.data?.data}
+                />
+            </Box>
 
-                <Box layerStyle={"flexCenter"}>
-                    <i
-                        className={`icon ${colorMode === "light" ? "moon" : "sun"
-                            }`}
-                        onClick={() => {
-                            toggleColorModeGlobally();
-                        }}
-                    />
-
-                    {!AuthSession ? (
+            <Box layerStyle={"flexCenter"}>
+                <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
+                    onClick={() => { toggleColorModeGlobally(); }} />
+                <NotificationBell
+                    noOfNotifcations={Notifications?.data?.length}
+                    onClick={onNotificationDrawerOpen}
+                />
+                {!AuthSession ? (
+                    <Box
+                        ml="20px"
+                        pl="20px"
+                        borderLeft={"1px solid #333333"}
+                        alignContent={"center"}
+                    >
                         <Box
-                            ml="20px"
-                            pl="20px"
-                            borderLeft={"1px solid #333333"}
-                            alignContent={"center"}
+                            cursor={"pointer"}
+                            onClick={onLoginModalOpen}
+                            bgColor={
+                                colorMode === "light"
+                                    ? "#282828"
+                                    : "#FFF"
+                            }
+                            layerStyle={"center"}
+                            borderRadius={"2px"}
+                            p="15px 20px"
+                            minW="150px"
                         >
-                            <Box
-                                cursor={"pointer"}
-                                onClick={onLoginModalOpen}
-                                bgColor={
-                                    colorMode === "light"
-                                        ? "#282828"
-                                        : "#FFF"
-                                }
-                                layerStyle={"center"}
-                                borderRadius={"2px"}
-                                p="15px 20px"
-                                minW="150px"
+                            <Text
+                                variant={"SearchText"}
+                                fontWeight={"600"}
+                                _light={{ color: "#FAFAFB" }}
+                                _dark={{ color: "#191919" }}
                             >
-                                <Text
-                                    variant={"SearchText"}
-                                    fontWeight={"600"}
-                                    _light={{ color: "#FAFAFB" }}
-                                    _dark={{ color: "#191919" }}
-                                >
-                                    Login/Signup
-                                </Text>
-                            </Box>
+                                Login/Signup
+                            </Text>
                         </Box>
-                    ) : (
-                        <Box
-                            layerStyle={"flexCenter"}
-                            justifyContent={"end"}
-                            ml="20px"
-                            pl="20px"
-                            borderLeft={"1px solid #333333"}
-                            w="100%"
-                        >
-                            {typeof window !== "undefined" && (
-                                <CustomAvatar
-                                    src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
-                                />
-                            )}
-
-
-                            <Box
-                                layerStyle={"flexColumn"}
-                                ml="10px"
-                                mr="20px"
-                                minW="130px"
-                            >
-                                <Text
-                                    variant={"TopWalletsText"}
-                                    w="120px"
-                                    whiteSpace={"nowrap"}
-                                    overflow={"hidden"}
-                                    textOverflow={"ellipsis"}
-                                >
-                                    {AuthSession?.user?.name
-                                        ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
-                                </Text>
-                                {AuthSession?.user?.public_address && (
-                                    <Text
-                                        variant={"h5"}
-                                        letterSpacing={"1.2px"}
-                                        _light={{ color: "#16171B" }}
-                                        _dark={{ color: "#A8ADBD" }}
-                                    >
-                                        {AuthSession?.user?.public_address
-                                            ?.split("")
-                                            ?.join("")
-                                            ?.substring(0, 6) +
-                                            "..." +
-                                            AuthSession?.user?.public_address?.slice(
-                                                -5
-                                            )}
-                                    </Text>
-                                )}
-                            </Box>
-                            <i
-                                className={`icon ${colorMode === "light"
-                                    ? "log_in_black"
-                                    : "log_in_white"
-                                    }`}
-                                onClick={() => {
-                                    disconnect();
-                                    setTimeout(() => {
-                                        dispatch(LogoutReducer());
-                                        setTimeout(() => {
-                                            signOut({ callbackUrl: process.env.NEXTAUTH_URL });
-                                        }, 200);
-                                    }, 100);
-                                }}
+                    </Box>
+                ) : (
+                    <Box
+                        layerStyle={"flexCenter"}
+                        justifyContent={"end"}
+                        ml="20px"
+                        pl="20px"
+                        borderLeft={"1px solid #333333"}
+                        w="100%"
+                    >
+                        {typeof window !== "undefined" && (
+                            <CustomAvatar
+                                width={48}
+                                height={48}
+                                src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
                             />
+                        )}
+
+
+                        <Box
+                            layerStyle={"flexColumn"}
+                            ml="10px"
+                            mr="20px"
+                            minW="130px"
+                        >
+                            <Text
+                                variant={"TopWalletsText"}
+                                w="120px"
+                                whiteSpace={"nowrap"}
+                                overflow={"hidden"}
+                                textOverflow={"ellipsis"}
+                            >
+                                {AuthSession?.user?.name
+                                    ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                            </Text>
+                            {AuthSession?.user?.public_address && (
+                                <Text
+                                    variant={"h5"}
+                                    letterSpacing={"1.2px"}
+                                    _light={{ color: "#16171B" }}
+                                    _dark={{ color: "#A8ADBD" }}
+                                >
+                                    {AuthSession?.user?.public_address
+                                        ?.split("")
+                                        ?.join("")
+                                        ?.substring(0, 6) +
+                                        "..." +
+                                        AuthSession?.user?.public_address?.slice(
+                                            -5
+                                        )}
+                                </Text>
+                            )}
                         </Box>
-                    )}
-                </Box>
-            </Flex>
-        );
-    };
+                        <i
+                            className={`icon ${colorMode === "light"
+                                ? "log_in_black"
+                                : "log_in_white"
+                                }`}
+                            onClick={() => {
+                                disconnect();
+                                setTimeout(() => {
+                                    dispatch(LogoutReducer());
+                                    setTimeout(() => {
+                                        signOut({ callbackUrl: appConfig.NEXTAUTH_URL });
+                                    }, 200);
+                                }, 100);
+                            }}
+                        />
+                    </Box>
+                )}
+            </Box>
+        </Flex>
+    );
 
     const SMHeader = () => {
         return (
@@ -330,7 +332,13 @@ const Navbar = ({ ...rest }) => {
                         </Box>
                     </Box>
                     {
-                        <Box cursor={"pointer"} onClick={onMobileSearchToggle}>
+                        <Box cursor={"pointer"} onClick={() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth', });
+                            onMobileSearchToggle();
+                            // setTimeout(() => {
+                            //     document.getElementById("searchMobileInput")?.focus();
+                            // }, 700);
+                        }}>
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
                                 height={20}

@@ -1,12 +1,10 @@
 /**
  * @type {import('next').NextConfig}
- */
+*/
+// const webpack = require("webpack");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-
-const webpack = require("webpack");
-
 const nextConfig = {
   async headers() {
     return [
@@ -23,19 +21,42 @@ const nextConfig = {
     ];
   },
   reactStrictMode: false,
-  webpack(config) {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        // "process.env.CONFIG": JSON.stringify(require('./config.json')),
-        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      })
-    );
-    return config;
-  },
+  // webpack(config) {
+  //   config.plugins.push(
+  //     new webpack.DefinePlugin({
+  //       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+  //     })
+  //   );
+  //   config.resolve = {
+  //     ...config.resolve,
+  //     fallback: {
+  //       "fs": false,
+  //       "path": false,
+  //       "os": false,
+  //     }
+  //   };
+  //   return config;
+  // },
   images: {
-    domains: [
-      "s2.coinmarketcap.com",
-      "assets.coingecko.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "s2.coinmarketcap.com",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.coingecko.com",
+      },
+      {
+        protocol: "https",
+        hostname: "betygfi-media.s3.ap-south-1.amazonaws.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "7000",
+      },
+
     ],
     minimumCacheTTL: 3600, // 1hour
     dangerouslyAllowSVG: true,

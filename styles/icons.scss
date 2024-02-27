@@ -206,3 +206,57 @@
         background-image: url('/icons/red_check_circle.svg');
     }
 }
+
+.bell_light {
+    width: 25px;
+    height: 25px;
+
+    &::before {
+        background-image: url('/icons/bell_light.svg');
+    }
+}
+
+.bell_dark {
+    width: 25px;
+    height: 25px;
+
+    &::before {
+        background-image: url('/icons/bell_dark.svg');
+    }
+}
+
+.solvendo_notification_dark {
+    width: 30px;
+    height: 30px;
+
+    &::before {
+        background-image: url('/icons/solvendo_notification_dark.svg');
+    }
+}
+
+.solvendo_notification_light {
+    width: 30px;
+    height: 30px;
+
+    &::before {
+        background-image: url('/icons/solvendo_notification_light.svg');
+    }
+}
+
+.no_notification_light {
+    width: 230px;
+    height: 210px;
+
+    &::before {
+        background-image: url('/icons/no_notification_light.svg');
+    }
+}
+
+.no_notification_dark {
+    width: 230px;
+    height: 210px;
+
+    &::before {
+        background-image: url('/icons/no_notification_dark.svg');
+    }
+}

@@ -1,13 +1,16 @@
 import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
+import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
+import { getAPI_URL } from "@util/utility";
 
 export const getCoinDashboardData = async (payload, rejectWithValue) => {
     try {
-        const url = `coin-risk/coin-dashboard/${payload.id}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-dashboard/${payload.id}`;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);
         } else {
-            const { data } = await axiosInstance.get(url);
+            const { data } = await axiosInstance(getAPI_URL()).get(url);
             return cacheHandler(url, data, 4, false);
         }
     } catch (err) {
@@ -19,12 +22,25 @@ export const getCoinDashboardData = async (payload, rejectWithValue) => {
     }
 };
 
+export const getCoinDashboardDataFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-dashboard/${payload.id}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, 4, false);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
-        const { data } = await axiosInstance.post(
-            `coin-risk/coins-table`,
-            payload
-        );
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
         return data;
     } catch (err) {
         return rejectWithValue(err);
@@ -33,7 +49,8 @@ export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
 
 export const getCoinScoresData = async (rejectWithValue) => {
     try {
-        const { data } = await axiosInstance.get(`coin-risk/scores`);
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {
         return rejectWithValue(err);
@@ -42,7 +59,8 @@ export const getCoinScoresData = async (rejectWithValue) => {
 
 export const getTrendingCoinsData = async (rejectWithValue) => {
     try {
-        const { data } = await axiosInstance.get(`coin-risk/trending-coins`);
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/trending-coins`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {
         return rejectWithValue(err);
@@ -51,10 +69,8 @@ export const getTrendingCoinsData = async (rejectWithValue) => {
 
 export const getCoinPriceData = async (payload, rejectWithValue) => {
     try {
-        const { data } = await axiosInstance.post(
-            `coin-risk/graph-data/`,
-            payload
-        );
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/graph-data`;
+        const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
         return data;
     } catch (err) {
         return rejectWithValue(err);
@@ -63,21 +79,10 @@ export const getCoinPriceData = async (payload, rejectWithValue) => {
 
 export const getCoinDevelopmentData = async (payload, rejectWithValue) => {
     try {
-        const { data } = await axiosInstance.get(
-            `coin-risk/development-analysis/${payload.id}`,
-            payload
-        );
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/development-analysis/${payload.id}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {
         return rejectWithValue(err);
     }
-};
-
-export default {
-    getCoinRankingsTableData,
-    getCoinScoresData,
-    getTrendingCoinsData,
-    getCoinDashboardData,
-    getCoinPriceData,
-    getCoinDevelopmentData,
 };

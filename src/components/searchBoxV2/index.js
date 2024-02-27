@@ -1,37 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, Input, InputGroup, InputLeftElement, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
+import { SEARCH_LIST } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
-const SEARCH_LIST = [
-    {
-        title: "Trending DeFi’s",
-        slug: "trending-defis",
-    },
-    {
-        title: "Trending Coin’s",
-        slug: "trending-coins",
-    },
-    {
-        title: "Trending Wallet’s",
-        slug: "trending-wallets",
-    },
-];
-
 const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
     const [searchList, setSearchList] = useState([]);
-    useOutsideClick({
-        ref: ref,
-        handler: () => searchSuggestionOpenState(false),
-    });
+    useOutsideClick({ ref: ref, handler: () => searchSuggestionOpenState(false) });
     const { colorMode } = useColorMode();
-
 
     const handleSearchInputClick = () => {
         setSearchList(searchListTrendingData);
@@ -217,7 +199,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const renderSMInputGroup = () => {
         return (
-            <InputGroup ref={ref} w="100%" zIndex={"1000"}>
+            <InputGroup id={"searchMobileInput"} ref={ref} w="100%" zIndex={"1000"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
                     <Box display={"flex"} flexDir={"row"}>
                         <InputLeftElement pointerEvents="none">
@@ -293,7 +275,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                         width: "100%",
                         overflow: "hidden",
                         backgroundColor: "blackAlpha.700",
-                        backdropFilter: 'blur(10px) hue-rotate(180deg)'
+                        backdropFilter: 'blur(10px)'
                     }}
                 >
                 </Box>

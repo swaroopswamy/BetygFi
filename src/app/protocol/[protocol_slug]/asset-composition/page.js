@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchBlockchainListData } from "@/redux/app_data/dataSlice";
-// import { blockchainTypeChangedReducer } from "@/redux/wallet_dashboard_data/dataSlice";
-import { fetchDefiAssetCompositionTableData } from "@/redux/defi_dashboard_data/dataSlice";
+// import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
+// import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
+import { fetchDefiAssetCompositionTableData } from "@redux/defi_dashboard_data/dataSlice";
 import {
 	Text,
 	Td,
@@ -35,15 +35,16 @@ function AssetComposition({ params }) {
 	const [tableLimit, setTableLimit] = useState(10);
 
 	const pageChangeHandler = (page) => {
-		tablePage >= 1 && setTablePage(page);
+		if (page == "") {
+			setTablePage(page);
+		}
+		if (page >= 1) {
+			setTablePage(page);
+		}
 	};
 
-	const blockchainSelected = useSelector(
-		(state) => state?.dashboardTableData?.blockchainType
-	);
-	const defiAssetsTableData = useSelector(
-		(state) => state?.defiDashboardData?.DefiAssetCompositionTableData
-	);
+	const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
+	const defiAssetsTableData = useSelector((state) => state?.defiDashboardData?.DefiAssetCompositionTableData);
 
 	const getDefiAssetsTableDataHandler = () => {
 		const payload = {
@@ -58,8 +59,12 @@ function AssetComposition({ params }) {
 	};
 
 	useEffect(() => {
-		getDefiAssetsTableDataHandler();
-	}, [blockchainSelected, tablePage, tableLimit]);
+		if (tablePage != "") {
+			setTimeout(() => {
+				getDefiAssetsTableDataHandler();
+			}, 1500);
+		}
+	}, [blockchainSelected, tablePage, tableLimit, setTablePage]);
 
 	return (
 		<Box
@@ -74,10 +79,7 @@ function AssetComposition({ params }) {
 				cursor={"pointer"}
 				gap={"10px"}
 				my={"20px"}
-				onClick={() =>
-					router.push(`/protocol/${searchParamProtocolSlug}`)
-					// router.push(`/defi_dashboard?defi=${defi}&id=${id}`)
-				}
+				onClick={() => router.push(`/protocol/${searchParamProtocolSlug}`)}
 			>
 				<ChevronLeftIcon
 					w={"24px"}

@@ -1,7 +1,13 @@
 export const AUTH_COOKIE_NAME = "betygfi-auth";
+export const API_URL_COOKIE_NAME = "bet-api-url";
+export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
+export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
+export const LOCAL_SERVER_HOST = "localhost";
+export const NEXT_BE_URL_SEPARATOR = '/api/bet-dash/';
+
 export const HOST = `https://${DOMAIN}/`;
 
 export const blockchains = [
@@ -15,6 +21,29 @@ export const blockchains = [
     "Kava",
 ];
 
+export const GOVERNANCE_TABLE_DATA_KEYS = (item) => [
+    {
+        value: item?.Title,
+        slug: "title"
+    },
+    {
+        value: item?.Start,
+        slug: "start"
+    },
+    {
+        value: item?.End,
+        slug: "end"
+    },
+    {
+        value: item?.State,
+        slug: "state"
+    },
+    {
+        value: item?.Votes,
+        slug: "votes"
+    },
+];
+
 export const categories = [
     { name: "Prediction Markets", id: "Prediction Market" },
     { name: "Derivatives", id: "Derivatives" },
@@ -23,6 +52,27 @@ export const categories = [
     { name: "CDP", id: "CDP" },
     { name: "Lending", id: "Lending" },
     { name: "Launchpad", id: "Launchpad" },
+];
+
+export const walletDashboardTabListData = [
+    {
+        name: "Transactions",
+        slug: "transactions",
+        iconLight: "/images/transactions_black.svg",
+        iconDark: "/images/transactions_white.svg"
+    },
+    {
+        name: "Portfolio",
+        slug: "portfolio",
+        iconLight: "/images/portfolio_black.svg",
+        iconDark: "/images/portfolio_white.svg"
+    },
+    {
+        name: "Wallet Analytics",
+        slug: "wallet-analytics",
+        iconLight: "/images/wallet_analytics_black.svg",
+        iconDark: "/images/wallet_analytics_white.svg"
+    },
 ];
 
 export const categoryIds = [
@@ -133,3 +183,27 @@ export const colors = {
         },
     },
 };
+
+export const walletArray = [
+    {
+        name: "Metamask",
+        slug: "metamask",
+        icon: "metamask_icon.png",
+        key: 1,
+    },
+];
+
+export const SEARCH_LIST = [
+    {
+        title: "Trending DeFi’s",
+        slug: "trending-defis",
+    },
+    {
+        title: "Trending Coin’s",
+        slug: "trending-coins",
+    },
+    {
+        title: "Trending Wallet’s",
+        slug: "trending-wallets",
+    },
+];
