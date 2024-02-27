@@ -109,14 +109,14 @@ export function PublicAddressStringFormatter(name) {
     }
 }
 
-export const getDomainForCookie = () => '.' + getMainDomain();
+export const getDomainForCookie = () => "." + getMainDomain();
 
 export const getMainDomain = () => {
-    if (typeof window !== "undefined") {
+    /* if (typeof window !== "undefined") {
         return window.location.hostname;
-    } else {
-        return DOMAIN;
-    }
+    } else { */
+    return DOMAIN;
+    //}
 };
 
 export const getDomainForCookieAuth = () => getMainDomainAuth();
