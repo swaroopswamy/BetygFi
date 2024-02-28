@@ -172,14 +172,9 @@ const Rankings = () => {
                     TableHeaderRowMobile={TableHeaderRowMobile}
                     ButtonComp={ButtonComp}
                     PanelComp={PanelComp}
-                    SkeletonRowsColumnsDesktop={{
-                        numRows: tableLimit,
-                        numColumns: 8,
-                    }}
-                    SkeletonRowsColumnsMobile={{
-                        numRows: tableLimit,
-                        numColumns: 3,
-                    }}
+                    SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 8 }}
+                    slideToLeftFeature={true}
+                    SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
                 />
             </Box>
 
