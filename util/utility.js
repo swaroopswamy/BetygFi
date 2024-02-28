@@ -166,3 +166,11 @@ export const getOrigin = url => {
     const parsedUrl = new URL(url);
     return parsedUrl.hostname;
 };
+
+export const mapTypeObject = object => {
+    let obj = {};
+    for (const [key, value] of Object.entries(object)) {
+        obj[key] = value === null ? 'null' : (value === undefined ? 'undefined' : typeof value);
+    }
+    return obj;
+};

@@ -8,7 +8,7 @@ import SessionProvider from "@app/SessionProvider";
 import { getServerSession } from "next-auth";
 import { DefiLandingPageMetas } from "@util/metaHelper";
 import { getAppConfig } from "@services/appService";
-import { getAppConfigMappedToGlobalEnv } from "@util/utility";
+import { getAppConfigMappedToGlobalEnv, mapTypeObject } from "@util/utility";
 import { Web3Provider } from '@app/Web3Provider';
 
 export const metadata = DefiLandingPageMetas('');
@@ -32,7 +32,7 @@ export default async function RootLayout({ children }) {
 			appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
 		}
 		getAppConfigMappedToGlobalEnv(appConfig);
-
+		window.appConfig = mapTypeObject(appConfig);
 		return (
 			<html lang={"en"}>
 				<head>
