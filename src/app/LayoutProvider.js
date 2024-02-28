@@ -294,6 +294,13 @@ export default function LayoutProvider({ appConfig, children }) {
 
     }, [ValidatedUserData]);
 
+    useEffect(() => {
+        if (status === "authenticated") {
+            checkIfVerifiedOrNot();
+        }
+    }, [AuthSession]);
+
+
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box
