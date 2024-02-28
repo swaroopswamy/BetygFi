@@ -294,8 +294,6 @@ export default function LayoutProvider({ appConfig, children }) {
 
     }, [ValidatedUserData]);
 
-
-
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box

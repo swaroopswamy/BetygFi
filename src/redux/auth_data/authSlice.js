@@ -264,7 +264,7 @@ const AuthDataSlice = createSlice({
 			const serializedState = JSON.stringify(accountState);
 			createCookiesAuth(AUTH_COOKIE_NAME, serializedState);
 			setTimeout(() => {
-				signIn("credentials", { ...user });
+				signIn("credentials", { redirect: false, ...user });
 			}, 100);
 
 		},
@@ -286,7 +286,7 @@ const AuthDataSlice = createSlice({
 				image: state.ValidatedUserData?.data?.profile_url,
 			};
 			setTimeout(() => {
-				signIn("credentials", { ...user });
+				signIn("credentials", { redirect: false, ...user });
 			}, 100);
 		},
 		ResetValidatedUserData: (state) => {
