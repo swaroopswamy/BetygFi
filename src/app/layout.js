@@ -32,7 +32,6 @@ export default async function RootLayout({ children }) {
 			appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
 		}
 		getAppConfigMappedToGlobalEnv(appConfig);
-
 		return (
 			<html lang={"en"}>
 				<head>
