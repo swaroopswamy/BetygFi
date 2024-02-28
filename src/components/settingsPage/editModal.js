@@ -22,6 +22,7 @@ const EditPage = ({ isOpen, onClose }) => {
     const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
     const EditUserDetailsData = useSelector((state) => state.authData.editUserDetailsData);
     const UsernameValidData = useSelector((state) => state.authData.UsernameValidData);
+    const [newUsername, setNewUserame] = useState(null);
 
     const [userData, setUserData] = useState({
         fullname: UserDetailsData?.data?.user?.name ?? "",
@@ -37,6 +38,7 @@ const EditPage = ({ isOpen, onClose }) => {
                 ...prevData,
                 user_name: value,
             }));
+            setNewUserame(value);
             const payload = {
                 user_name: value,
             };
@@ -61,16 +63,19 @@ const EditPage = ({ isOpen, onClose }) => {
     };
 
     useEffect(() => {
-        if (EditUserDetailsData?.isSuccess !== null) {
-            if (EditUserDetailsData?.isSuccess) {
-                onClose();
-                dispatch(ResetEditUserDetailsData());
-                dispatch(ResetUsernameValidData());
-                router.push(`/settings/${userData?.user_name}`);
-            }
-        }
+        if (EditUserDetailsData?.isSuccess && newUsername !== null) {
+            onClose();
+            dispatch(ResetEditUserDetailsData());
+            dispatch(ResetUsernameValidData());
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+            router.replace(`/settings/${newUsername}`);
 
-    }, [EditUserDetailsData]);
+        } else if (EditUserDetailsData.isSuccess) {
+            onClose();
+        }
+    }, [dispatch, EditUserDetailsData]);
     useEffect(() => {
         setUserData({
             fullname: UserDetailsData?.data?.user?.name ?? "",
