@@ -448,7 +448,6 @@ const PanelComp = ({ item }) => {
                     w={"40%"}
                 >
                     <Text variant="tableHead"> 1hr </Text>
-                    {/* <TooltipComp label="Market price of the DeFi token" /> */}
                 </Box>
 
                 <Text

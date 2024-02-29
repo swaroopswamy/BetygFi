@@ -386,8 +386,7 @@ const ButtonComp = ({ item }) => {
                         <Text variant={"h3"}> {item?.name} </Text>
                         <Text
                             fontSize={"12px"}
-                            color={useColorModeValue("#000000", "#FFFFFF")}
-                            opacity={"0.5"}
+                            color={useColorModeValue("rgba(0, 0, 0, 0.5)", "rgba(255, 255, 255, 0.5)")}
                         >
                             {item?.chains?.length} Chains
                         </Text>
@@ -472,7 +471,6 @@ const PanelComp = ({ item }) => {
                     w={"40%"}
                 >
                     <Text variant="tableHead"> Price </Text>
-                    {/* <TooltipComp label="Market price of the DeFi token" /> */}
                 </Box>
 
                 <Text variant={"h3"} textAlign={"left"}>
