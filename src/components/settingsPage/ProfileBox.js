@@ -36,7 +36,7 @@ const ProfileBox = () => {
     };
 
     useEffect(() => {
-        setUserImg(UserDetailsData?.data?.profile_url);
+        setUserImg(UserDetailsData?.data?.user?.profile_url);
     }, [UserDetailsData]);
 
     return (
