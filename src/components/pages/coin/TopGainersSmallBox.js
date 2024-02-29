@@ -6,7 +6,7 @@ const TopGainersSmallBox = () => {
     const { colorMode } = useColorMode();
     return (
         <Box
-            width={"295px"}
+            width={"30%"}
             height={"197px"}
             borderRadius={"8px"}
             mb={"15px"}
