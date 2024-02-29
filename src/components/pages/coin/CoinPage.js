@@ -11,6 +11,7 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import Top_Gainers_Losers_BTCetf from "@components/pages/coin/Highlights";
 // import { BreadCrumb } from "@components/breadcrumb2";
 import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,6 +53,8 @@ const CoinPage = () => {
             {/* <BlockchainSelectionMenuNew /> */}
 
             {/* <CoinOverviewChart /> */}
+
+            <Top_Gainers_Losers_BTCetf />
 
             <CoinRankingsTable />
 
