@@ -60,6 +60,7 @@ const AppDataSlice = createSlice({
 	initialState: {
 		isSidebarCollapsed: false,
 		isMobileSidebarCollapsed: true,
+		isMobileSearchOpen: false,
 		BlockchainListData: {
 			data: null,
 			isLoading: false,
@@ -192,6 +193,14 @@ const AppDataSlice = createSlice({
 				state.isMobileSidebarCollapsed = false;
 			}
 		},
+		mobileSearchbarOpenReducer: (state, action) => {
+			if (action.payload === true) {
+				state.isMobileSearchOpen = true;
+			}
+			else {
+				state.isMobileSearchOpen = false;
+			}
+		},
 		resetReportBug: (state) => {
 			state.reportBug.status = "idle";
 			state.reportBug.error = null;
@@ -230,5 +239,5 @@ const AppDataSlice = createSlice({
 	},
 });
 
-export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer, resetReportBug, resetSuggestFeature, notificationsReducer, markNotificationAsReadReducer, clearAllNotificationReducer } = AppDataSlice.actions;
+export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer, resetReportBug, resetSuggestFeature, notificationsReducer, markNotificationAsReadReducer, clearAllNotificationReducer, mobileSearchbarOpenReducer } = AppDataSlice.actions;
 export default AppDataSlice.reducer;
