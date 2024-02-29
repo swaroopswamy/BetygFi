@@ -9,6 +9,7 @@ import {
     LoginGetToken,
     StoreLoggedInUserData,
     VerifyPublicAddressData,
+    verifyJWTtokenFromCookie,
 } from "@redux/auth_data/authSlice";
 import CustomToast from "@components/toast";
 import { config } from "@app/Web3Provider";
@@ -122,6 +123,10 @@ const OtherBrowserWalletProcess = ({
                 setTimeout(() => {
                     dispatch(StoreLoggedInUserData());
                 }, 100);
+                const payload = {
+                    token: LoggedInData.data?.token,
+                };
+                dispatch(verifyJWTtokenFromCookie(payload));
             }
         }
     }, [LoggedInData]);

@@ -17,7 +17,7 @@ import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
 import AppConfigContext from "@components/context/appConfigContext";
-import { replaceWithWS } from "@util/utility";
+import { mapTypeObject, replaceWithWS } from "@util/utility";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
 import NotificationDrawer from "@components/notification/drawer";
@@ -142,6 +142,7 @@ export default function LayoutProvider({ appConfig, children }) {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
+        window.appConfig = mapTypeObject(appConfig);
     }, []);
 
     // for creating cookie after google sign in is successful
