@@ -18,6 +18,7 @@ export default function Error() {
             width={48}
             height={53}
             src={colorMode === 'light' ? "/images/Wrong_Image_light.svg" : "/images/Wrong_Image_dark.svg"}
+            alt=" "
             style={{ paddingTop: "30px", marginLeft: "150px" }}
           >
           </Image>
@@ -25,6 +26,7 @@ export default function Error() {
             width={83}
             height={83}
             src={colorMode === 'light' ? "/images/Ellipse_Image_light.svg" : "/images/Ellipse_Image_dark.svg"}
+            alt=" "
             style={{ paddingTop: "90px", marginLeft: "400px" }}
           >
           </Image>
@@ -48,6 +50,7 @@ export default function Error() {
           width={29}
           height={29}
           src={colorMode === 'light' ? "/images/Ellipse_Image_light.svg" : "/images/Ellipse_Image_dark.svg"}
+          alt=" "
           style={{ marginLeft: "550px" }}
         >
         </Image>
@@ -56,6 +59,7 @@ export default function Error() {
             width={21}
             height={24}
             src={colorMode === 'light' ? "/images/Wrong_Image_light.svg" : "/images/Wrong_Image_dark.svg"}
+            alt=" "
             style={{ marginLeft: "115px" }}
           ></Image>
           <Text
@@ -99,6 +103,7 @@ export default function Error() {
           width={48}
           height={53}
           src={colorMode === 'light' ? "/images/Wrong_Image_light.svg" : "/images/Wrong_Image_dark.svg"}
+          alt=" "
           style={{ marginLeft: "600px", marginTop: "25px" }}
         >
         </Image>
@@ -108,6 +113,7 @@ export default function Error() {
           width={275}
           height={400}
           src={colorMode === 'light' ? "/images/BrokenWire_Image_light.svg" : "/images/BrokenWire_Image_dark.svg"}
+          alt=""
         >
         </Image>
       </Box>
