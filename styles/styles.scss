@@ -187,12 +187,46 @@ body {
 }
 
 
-.list-body{
-    ul{
-        li{
-            &::marker{
+.list-body {
+    ul {
+        li {
+            &::marker {
                 color: #3F3F41;
             }
         }
+    }
+}
+
+.marquee-container {
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-div {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    width: 200%;
+
+    /* Animate to the left */
+    animation: marquee 10s linear infinite;
+}
+.marquee-content{
+    float: left;
+    width: 50%;
+}
+
+@keyframes marquee {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: -100%;
     }
 }

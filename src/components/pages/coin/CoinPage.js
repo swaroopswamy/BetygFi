@@ -9,6 +9,9 @@ import {
     AccordionItem,
     AccordionPanel,
     useColorMode,
+    Switch,
+    useDisclosure,
+    Collapse,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 // import { BreadCrumb } from "@components/breadcrumb2";
@@ -18,10 +21,14 @@ import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import TrendingCoinPanel from "@components/trendingCoinPanel";
 import { fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
+import Marquee from "@/components/pages/coin/marquee";
+import HighlightsBox from "./HighlightsBox";
+
 
 const CoinPage = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
+    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
 
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
 
@@ -38,12 +45,26 @@ const CoinPage = () => {
             flexDir={"column"}
             bgColor={"background.primary"}
             p={"20px 30px"}
+            pt="10px"
             gap={"20px"}
         >
             {/* <BreadCrumb
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
             ></BreadCrumb> */}
+            <Box layerStyle={"flexCenter"} w="100%">
+                <Marquee />
+                <Box layerStyle={"flexCenter"} w="10%" ml={"30px"} >
+                    <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
+                    <Switch size={"lg"} onChange={onHighlightsBoxToggle}
+                        className=""
+                    ></Switch>
+                </Box>
+            </Box>
+            <Collapse in={isHighlightsBoxOpen} >
+                <HighlightsBox />
+            </Collapse>
+
 
             <Text fontSize={"32px"} color={"text.primary"} my={"20px"}>
                 Coin Listing
