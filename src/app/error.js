@@ -1,9 +1,15 @@
 'use client'; // Error components must be Client Components
+import React, { useContext } from "react";
 import { Box, Text, Button, useColorMode } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+import AppConfigContext from '@components/context/appConfigContext';
 import Image from 'next/image';
 
 export default function Error() {
   const { colorMode } = useColorMode();
+  const router = useRouter();
+  const appConfig = useContext(AppConfigContext);
+
   return (
     <Box
       width={"100%"}
@@ -77,6 +83,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
+            onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
           >
             CTA 1
           </Button>
@@ -86,6 +93,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
+            onClick={() => router.push("/coin")}
           >
             CTA 2
           </Button>
@@ -95,6 +103,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
+            onClick={() => router.push("/", "/protocol")}
           >
             CTA 3
           </Button>
