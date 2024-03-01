@@ -83,7 +83,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
-            onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
+            onClick={() => router.push("/")}
           >
             CTA 1
           </Button>
@@ -93,7 +93,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
-            onClick={() => router.push("/coin")}
+            onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
           >
             CTA 2
           </Button>
@@ -103,7 +103,7 @@ export default function Error() {
             width={"150px"}
             style={{ borderRadius: "24px 24px 24px 24px" }}
             borderColor={"2px solid #191919"}
-            onClick={() => router.push("/", "/protocol")}
+            onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
           >
             CTA 3
           </Button>
