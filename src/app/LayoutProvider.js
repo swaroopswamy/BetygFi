@@ -5,7 +5,7 @@ import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from 
 import { useDispatch, useSelector } from "react-redux";
 import { signOut, useSession } from "next-auth/react";
 import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME } from "@util/constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, NTF_URL_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
@@ -17,7 +17,7 @@ import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
 import AppConfigContext from "@components/context/appConfigContext";
-import { mapTypeObject, replaceWithWS } from "@util/utility";
+import { getEnv, mapTypeObject, replaceWithWS } from "@util/utility";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
 import NotificationDrawer from "@components/notification/drawer";
@@ -60,7 +60,7 @@ export default function LayoutProvider({ appConfig, children }) {
         }
     };
 
-    useSocket(replaceWithWS(appConfig?.NEXT_PUBLIC_SOCKET_HOST), handleReceivedMessage);
+    useSocket(replaceWithWS(typeof window !== "undefined" && window.location.origin + "/" + getEnv(window.location.hostname) + '/notification'), handleReceivedMessage);
 
     // it is used to verify and validate token this will return user details and initiate Sign In
     const verifyJWTtokenFromCookieHandler = (cookie) => {
@@ -140,6 +140,7 @@ export default function LayoutProvider({ appConfig, children }) {
     //useEffect to check auth on mount
     useEffect(() => {
         createCookies(API_URL_COOKIE_NAME, appConfig.API_SERVICE_URL);
+        createCookies(NTF_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_SOCKET_HOST);
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
         window.appConfig = mapTypeObject(appConfig);
