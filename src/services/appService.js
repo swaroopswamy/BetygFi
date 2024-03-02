@@ -94,7 +94,7 @@ export const getAppConfig = async () => {
 export const getAllUserNotificationsByUserIdAPI = async (payload, { rejectWithValue }) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `notifications/user`;
-		const { data } = await axiosInstance(getNTF_API_URL()).get(url, getAxiosHeaders());
+		const { data } = await axiosNTFInstance(getNTF_API_URL()).get(url, getAxiosHeaders());
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
@@ -104,7 +104,7 @@ export const getAllUserNotificationsByUserIdAPI = async (payload, { rejectWithVa
 export const getAllPublicNotificationsAPI = async (payload, { rejectWithValue }) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `notifications/public`;
-		const { data } = await axiosInstance(getNTF_API_URL()).get(url);
+		const { data } = await axiosNTFInstance(getNTF_API_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);

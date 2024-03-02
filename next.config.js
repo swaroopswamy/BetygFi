@@ -6,6 +6,22 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/dev/notification/:path*',
+        destination: 'http://54.84.90.145:31924/:path*'
+      },
+      {
+        source: '/qa/notification/:path*',
+        destination: 'https://qanotificationapi.betygfi.com/:path*'
+      },
+      {
+        source: '/prod/notification/:path*',
+        destination: 'https://notificationapi.betygfi.com/:path*'
+      },
+    ];
+  },
   async headers() {
     return [
       {
