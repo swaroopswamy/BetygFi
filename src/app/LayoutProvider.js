@@ -331,14 +331,9 @@ export default function LayoutProvider({ appConfig, children }) {
                         />
                         <Box
                             p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#131313",
-                            }}
+                            _light={{ bgColor: "#FFFFFF" }}
+                            _dark={{ bgColor: "#131313" }}
                             w="100%"
-                            height={"100vh"}
                         >
                             {children}
                             <Footer />
