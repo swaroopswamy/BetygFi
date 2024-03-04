@@ -127,6 +127,10 @@ const OtherBrowserWalletProcess = ({
                     token: LoggedInData.data?.token,
                 };
                 dispatch(verifyJWTtokenFromCookie(payload));
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+    
             }
         }
     }, [LoggedInData]);

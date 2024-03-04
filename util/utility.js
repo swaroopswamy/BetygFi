@@ -189,7 +189,7 @@ export const getEnv = (url) => {
         } else if (allowedDev.includes(url)) {
             return 'dev';
         } else if (allowedLocal.includes(url)) {
-            return 'qa';
+            return 'local';
         }
         else {
             return 'prod';
