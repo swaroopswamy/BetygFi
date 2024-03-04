@@ -2,7 +2,7 @@ import { Box, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 
-const TopGainersSmallBox = () => {
+const TopLosersSmallBox = () => {
     const { colorMode } = useColorMode();
     return (
         <Box
@@ -22,11 +22,11 @@ const TopGainersSmallBox = () => {
                     <Image
                         height={25}
                         width={25}
-                       
-                        src="/icons/trophy.svg"
+                        
+                        src="/icons/trending-down.svg"
                         alt="trophy_icon"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} pl={"8px"}>
-                        Top Gainers
+                        Top Losers
                     </Text>
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"3px"} >
@@ -44,7 +44,7 @@ const TopGainersSmallBox = () => {
                         height={6}
                         width={6}
                         alt="arrow">
-                        </Image>
+                    </Image>
                 </Box>
             </Box>
             <Box layerStyle={"spaceBetween"} mt={"10px"}>
@@ -99,4 +99,4 @@ const TopGainersSmallBox = () => {
 };
 
 
-export default TopGainersSmallBox;
+export default TopLosersSmallBox;
