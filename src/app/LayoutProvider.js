@@ -38,7 +38,7 @@ export default function LayoutProvider({ appConfig, children }) {
     const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const LoggedInData = useSelector((state) => state.authData.LoggedInData);
-    
+
     const { address } = useAccount();
 
     /*   const {
@@ -299,16 +299,10 @@ export default function LayoutProvider({ appConfig, children }) {
     }, [ValidatedUserData]);
 
     useEffect(() => {
-		const cookie = getCookieByName(AUTH_COOKIE_NAME);
-
-		if (LoggedInData?.isSuccess && ValidatedUserData?.isSuccess && !isEmpty(cookie)) {
-			setTimeout(() => {
-				window.location.reload();
-			}, 500);
-		}
-	}, [ValidatedUserData, LoggedInData]);
-
-
+        if (LoggedInData?.isSuccess) {
+            getAllPublicNotificationsHandler();
+        }
+    }, [LoggedInData]);
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box
