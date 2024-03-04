@@ -1,4 +1,5 @@
 import {
+    getBTCDominanceScoresAPI,
     getCoinDevelopmentData,
     getCoinPriceData,
     getCoinRankingsTableData,
@@ -52,6 +53,14 @@ export const fetchCoinDevelopmentData = createAsyncThunk(
     }
 );
 
+export const fetchBTCDominanceScoresData = createAsyncThunk(
+    "getBTCDominanceScoresData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getBTCDominanceScoresAPI(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -80,6 +89,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         CoinDevelopmentData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        BTCDominanceScoresData: {
             data: null,
             isLoading: false,
             isError: false,
