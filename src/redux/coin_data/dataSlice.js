@@ -1,4 +1,5 @@
 import {
+    getBTCDominanceScoresAPI,
     getCoinDevelopmentData,
     getCoinPriceData,
     getCoinRankingsTableData,
@@ -57,7 +58,15 @@ export const fetchTopGainersAndLosersData = createAsyncThunk(
     "getTopGainersAndLosersData",
     async (payload, { rejectWithValue }) => {
         const response = await getTopGainersAndLosersData(payload, rejectWithValue);
-        return response.result;
+        return response.data;
+    }
+);
+
+export const fetchBTCDominanceScoresData = createAsyncThunk(
+    "getBTCDominanceScoresData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getBTCDominanceScoresAPI(payload, rejectWithValue);
+        return response.data;
     }
 );
 
@@ -95,6 +104,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         TopGainersAndLosersData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        BTCDominanceScoresData: {
             data: null,
             isLoading: false,
             isError: false,

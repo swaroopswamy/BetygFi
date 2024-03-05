@@ -2,7 +2,7 @@ import { Box, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 
-const TopLosersSmallBox = () => {
+const BTCetfSmallBox = () => {
     const { colorMode } = useColorMode();
     return (
         <Box
@@ -23,10 +23,10 @@ const TopLosersSmallBox = () => {
                         height={25}
                         width={25}
 
-                        src="/icons/trending-down.svg"
+                        src="/icons/bitcoin_logo.svg"
                         alt="trophy_icon"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} pl={"8px"}>
-                        Top Losers
+                        BTC ETF
                     </Text>
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"3px"} >
@@ -94,8 +94,9 @@ const TopLosersSmallBox = () => {
                 </Box>
             </Box>
         </Box>
+
     );
 };
 
 
-export default TopLosersSmallBox;
+export default BTCetfSmallBox;
