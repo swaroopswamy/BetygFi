@@ -13,6 +13,10 @@ const nextConfig = {
         destination: 'http://54.84.90.145:31924/:path*'
       },
       {
+        source: '/local/notification/:path*',
+        destination: 'http://54.84.90.145:31924/:path*'
+      },
+      {
         source: '/qa/notification/:path*',
         destination: 'https://qanotificationapi.betygfi.com/:path*'
       },

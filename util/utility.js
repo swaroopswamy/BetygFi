@@ -156,7 +156,7 @@ export const replaceWithWS = (url) => {
             return url.replace('http', 'ws');
         } else if (url.startsWith("https://")) {
             // Replace https with ws
-            return url.replace('https', 'ws');
+            return url.replace('https', 'wss');
         } else {
             // URL does not start with http or https
             return url;
@@ -189,7 +189,7 @@ export const getEnv = (url) => {
         } else if (allowedDev.includes(url)) {
             return 'dev';
         } else if (allowedLocal.includes(url)) {
-            return 'qa';
+            return 'local';
         }
         else {
             return 'prod';
