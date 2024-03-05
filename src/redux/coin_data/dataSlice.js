@@ -4,6 +4,7 @@ import {
     getCoinRankingsTableData,
     getCoinScoresData,
     getTrendingCoinsData,
+    getTopGainersAndLosersData
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -52,6 +53,14 @@ export const fetchCoinDevelopmentData = createAsyncThunk(
     }
 );
 
+export const fetchTopGainersAndLosersData = createAsyncThunk(
+    "getTopGainersAndLosersData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTopGainersAndLosersData(payload, rejectWithValue);
+        return response.result;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -80,6 +89,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         CoinDevelopmentData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TopGainersAndLosersData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -185,6 +200,24 @@ const CoinDataSlice = createSlice({
             state.CoinDevelopmentData.isError = true;
             state.CoinDevelopmentData.data = action.payload;
         });
+        builder.addCase(fetchTopGainersAndLosersData.fulfilled, (state, action) => {
+            state.TopGainersAndLosersData.data = action.payload;
+            state.TopGainersAndLosersData.isLoading = false;
+            state.TopGainersAndLosersData.isSuccess = true;
+            state.TopGainersAndLosersData.isError = false;
+        });
+        builder.addCase(fetchTopGainersAndLosersData.pending, (state, action) => {
+            state.TopGainersAndLosersData.isLoading = true;
+            state.TopGainersAndLosersData.isError = false;
+            state.TopGainersAndLosersData.isSuccess = false;
+            state.TopGainersAndLosersData.data = action.payload;
+        });
+        builder.addCase(fetchTopGainersAndLosersData.rejected, (state, action) => {
+            state.TopGainersAndLosersData.isLoading = false;
+            state.TopGainersAndLosersData.isSuccess = false;
+            state.TopGainersAndLosersData.isError = true;
+            state.TopGainersAndLosersData.data = action.payload;
+        });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {
@@ -213,6 +246,5 @@ const CoinDataSlice = createSlice({
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer } =
-    CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;
