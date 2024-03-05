@@ -156,7 +156,7 @@ export const replaceWithWS = (url) => {
             return url.replace('http', 'ws');
         } else if (url.startsWith("https://")) {
             // Replace https with ws
-            return url.replace('https', 'ws');
+            return url.replace('https', 'wss');
         } else {
             // URL does not start with http or https
             return url;
