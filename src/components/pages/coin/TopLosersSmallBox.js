@@ -22,7 +22,7 @@ const TopLosersSmallBox = () => {
                     <Image
                         height={25}
                         width={25}
-                        
+
                         src="/icons/trending-down.svg"
                         alt="trophy_icon"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} pl={"8px"}>
@@ -94,7 +94,6 @@ const TopLosersSmallBox = () => {
                 </Box>
             </Box>
         </Box>
-
     );
 };
 
