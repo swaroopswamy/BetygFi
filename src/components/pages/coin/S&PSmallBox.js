@@ -1,5 +1,6 @@
 import { Box, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
+//import { useSelector } from "react-redux";
 import Image from "next/image";
 import React, { useMemo } from "react";
 
@@ -11,9 +12,9 @@ const randomData = [
     { x: new Date(2023, 11, 4), y: 6 },
 ];
 
-
-const BTCDominanceSmallBox = () => {
+const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
+    //const SAPData = useSelector((state) => state.coinData.SAPData);
     const options = {
         chart: {
             type: 'area',
@@ -27,8 +28,24 @@ const BTCDominanceSmallBox = () => {
         grid: {
             show: false
         },
+        // zoom: {
+        //     enabled: false,
+        // },
         zoom: {
             enabled: false,
+            zoomIn: {
+                autoScaleYaxis: true
+            },
+            zoomOut: {
+                autoScaleYaxis: true
+            },
+            pan: {
+                enabled: false,
+                autoScaleYaxis: true
+            },
+            reset: {
+                enabled: false
+            }
         },
         stroke: {
             curve: 'smooth',
@@ -79,7 +96,7 @@ const BTCDominanceSmallBox = () => {
     );
     return (
         <Box
-            width={"20%"}
+            width={"30%"}
             height={"197px"}
             borderRadius={"8px"}
             _light={{
@@ -88,17 +105,23 @@ const BTCDominanceSmallBox = () => {
             _dark={{
                 bg: "#282828"
             }}
+            mb={"15px"}
         >
-            <Box layerStyle={"spaceBetween"} p={"10px"}>
+            <Box layerStyle={"spaceBetween"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
-                        height={25}
-                        width={25}
-
-                        src="/icons/trophy.svg"
+                        height={60}
+                        width={50}
+                        src="/icons/bitcoin_logo.svg"
+                        style={{ padding: "10px 5px 15px 10px" }}
                         alt="trophy_icon"></Image>
-                    <Text variant={"contentHeading3"} fontWeight={500} pl={"8px"}>
-                        BTC Dominance
+                    <Text
+                        variant={"contentHeading3"}
+                        fontWeight={500}
+                        color={colorMode === 'light' ? "#757575" : "#A5A5A5"}
+                        pl={"8px"}
+                    >
+                        S&P 500
                     </Text>
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"3px"} >
@@ -119,9 +142,9 @@ const BTCDominanceSmallBox = () => {
                     </Image>
                 </Box>
             </Box>
-            <Box layerStyle={"flexCenter"} p={"10px"}>
-                <Text variant={"textBold"} fontSize={"24px"}>51.61%</Text>
-                <Box borderRadius={"16px"} layerStyle={"flexCenter"} bgColor={"rgba(36, 95, 0, 0.12)"} px={"12px"} py="3px" ml={"10px"}>
+            <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"} >
+                <Text variant={"textBold"} fontSize={"24px"}>$5,030.59 </Text>
+                <Box borderRadius={"16px"} layerStyle={"flexCenter"} bgColor={"rgba(36, 95, 0, 0.12)"} px={"12px"} py="3px" ml={"5px"}>
                     <Text variant={"baseStyle"} lineHeight={"17px"}
                         _light={{
                             color: "#245F00"
@@ -130,9 +153,15 @@ const BTCDominanceSmallBox = () => {
                             color: "#60C000"
                         }}
                     >
-                        52.0%
+                        0.49%
+                        {/* {SAPData?.data?.percentageChange} */}
                     </Text>
                 </Box>
+                <Image
+                    height={12}
+                    width={12}
+                    src="/icons/green_dot.svg"
+                    alt="green_dot_icon"></Image>
             </Box>
             <Box >
                 <CustomChart
@@ -146,4 +175,4 @@ const BTCDominanceSmallBox = () => {
 };
 
 
-export default BTCDominanceSmallBox;
+export default SandPSmallBox;

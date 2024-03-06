@@ -97,6 +97,16 @@ export const getTopGainersAndLosersData = async (rejectWithValue) => {
     }
 };
 
+export const getSAPData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/sap-500`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
 export const getBTCDominanceScoresAPI = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-dominance-scores`;

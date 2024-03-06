@@ -9,46 +9,44 @@ const TopGainersSmallBox = () => {
 
     return (
         <>
-            {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
-                <Box
-                    width={"30%"}
-                    height={"197px"}
-                    borderRadius={"8px"}
-                    mb={"15px"}
-                    _light={{ bg: "#FFFFFF" }}
-                    _dark={{ bg: "#282828" }}
-                    key={i}
-                >
-                    <Box layerStyle={"spaceBetween"}>
-                        <Box layerStyle={"flexCenter"}>
-                            <Image
-                                height={60}
-                                width={50}
-                                src="/icons/trophy.svg"
-                                style={{ padding: "10px 5px 15px 10px" }}
-                                alt="trophy_icon"></Image>
-                            <Text variant={"contentHeading3"} fontWeight={500}>
-                                Top Gainers
-                            </Text>
-                        </Box>
-                        <Box layerStyle={"flexCenter"} gap={"3px"}>
-                            <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
-                                _light={{ color: "#757575" }}
-                                _dark={{ color: "#A5A5A5" }}
-                            >
-                                View more
-                            </Text>
-                            <Image
-                                height={5}
-                                width={8}
-                                src={colorMode === "light" ? "/icons/Arrow_Right.svg" : "/icons/Arrow_down_dark.svg"}
-                                style={colorMode !== "light" ? { transform: "rotate(-90deg)" } : {}}
-                                mr={"5px"}
-                                alt="view_more"></Image>
-                        </Box>
+            <Box
+                width={"30%"}
+                height={"197px"}
+                borderRadius={"8px"}
+                mb={"15px"}
+                _light={{ bg: "#FFFFFF" }}
+                _dark={{ bg: "#282828" }}
+            >
+                <Box layerStyle={"spaceBetween"}>
+                    <Box layerStyle={"flexCenter"}>
+                        <Image
+                            height={60}
+                            width={50}
+                            src="/icons/trophy.svg"
+                            style={{ padding: "10px 5px 15px 10px" }}
+                            alt="trophy_icon"></Image>
+                        <Text variant={"contentHeading3"} fontWeight={500}>
+                            Top Gainers
+                        </Text>
                     </Box>
-
-                    <Box layerStyle={"spaceBetween"}>
+                    <Box layerStyle={"flexCenter"} gap={"3px"}>
+                        <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
+                            _light={{ color: "#757575" }}
+                            _dark={{ color: "#A5A5A5" }}
+                        >
+                            View more
+                        </Text>
+                        <Image
+                            height={5}
+                            width={8}
+                            src={colorMode === "light" ? "/icons/Arrow_Right.svg" : "/icons/Arrow_down_dark.svg"}
+                            style={colorMode !== "light" ? { transform: "rotate(-90deg)" } : {}}
+                            mr={"5px"}
+                            alt="view_more"></Image>
+                    </Box>
+                </Box>
+                {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
+                    <Box layerStyle={"spaceBetween"} key={i}>
                         <Box layerStyle={"flexCenter"}>
                             <Image
                                 height={32}
@@ -62,7 +60,7 @@ const TopGainersSmallBox = () => {
                         </Box>
                         <Box layerStyle={"flexCenter"} gap={"5px"}>
                             <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                                ${gainer.price.toFixed(2)}
+                                ${gainer?.price.toFixed(2)}
                             </Text>
                             <Box
                                 width={"57px"}
@@ -80,14 +78,13 @@ const TopGainersSmallBox = () => {
                                     _light={{ color: "#245F00" }}
                                     _dark={{ color: "#60C000" }}
                                 >
-                                    {`${gainer.change.toFixed(1)}%`}
+                                    {`${gainer?.change.toFixed(1)}%`}
                                 </Text>
                             </Box>
                         </Box>
                     </Box>
-                </Box>
-            ))
-            }
+                ))}
+            </Box>
         </>
     );
 };

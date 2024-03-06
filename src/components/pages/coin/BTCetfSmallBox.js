@@ -6,7 +6,7 @@ const BTCetfSmallBox = () => {
     const { colorMode } = useColorMode();
     return (
         <Box
-            width={"20%"}
+            width={"30%"}
             height={"197px"}
             borderRadius={"8px"}
             _light={{
@@ -15,15 +15,15 @@ const BTCetfSmallBox = () => {
             _dark={{
                 bg: "#282828"
             }}
-            p={"10px"}
+        mb={"15px"}
         >
             <Box layerStyle={"spaceBetween"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
-                        height={25}
-                        width={25}
-
+                        height={60}
+                        width={50}
                         src="/icons/bitcoin_logo.svg"
+                        style={{ padding: "10px 5px 15px 10px" }}
                         alt="trophy_icon"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} pl={"8px"}>
                         BTC ETF
@@ -47,16 +47,15 @@ const BTCetfSmallBox = () => {
                     </Image>
                 </Box>
             </Box>
-            <Box layerStyle={"spaceBetween"} mt={"10px"}>
+            <Box layerStyle={"spaceBetween"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
-                        height={40}
-                        width={40}
-
+                        height={32}
+                        width={32}
                         src="/icons/bitcoin_logo.svg"
-                        p={"10px 10px 5px 10px"}
+                        style={{ margin: "5px 10px" }}
                         alt=" "></Image>
-                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"} pl={"8px"}>
+                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                         Livepeer
                     </Text>
                 </Box>
@@ -73,20 +72,86 @@ const BTCetfSmallBox = () => {
                         padding={"2px 8px"}
                         borderRadius={"16px"}
                         gap={"10px"}
-                        _light={{
-                            bg: "#245F001F"
-                        }}
-                        _dark={{
-                            bg: "#60C0003F"
-                        }}
+                        _light={{ bg: "#FF00001F" }}
+                        _dark={{ bg: "#FF00003F" }}
                     >
                         <Text variant={"baseStyle"} lineHeight={"17px"}
-                            _light={{
-                                color: "#245F00"
-                            }}
-                            _dark={{
-                                color: "#60C000"
-                            }}
+                            _light={{ color: "#FF0000" }}
+                            _dark={{ color: "#FF0000" }}
+                        >
+                            52.0%
+                        </Text>
+                    </Box>
+                </Box>
+            </Box>
+            <Box layerStyle={"spaceBetween"}>
+                <Box layerStyle={"flexCenter"}>
+                    <Image
+                        height={32}
+                        width={32}
+                        src="/icons/bitcoin_logo.svg"
+                        style={{ margin: "5px 10px" }}
+                        alt=" "></Image>
+                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                        Livepeer
+                    </Text>
+                </Box>
+                <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                        $12.29
+                    </Text>
+                    <Box
+                        width={"57px"}
+                        height={"21px"}
+                        mr={"5px"}
+                        top={"67px"}
+                        left={"226px"}
+                        padding={"2px 8px"}
+                        borderRadius={"16px"}
+                        gap={"10px"}
+                        _light={{ bg: "#FF00001F" }}
+                        _dark={{ bg: "#FF00003F" }}
+                    >
+                        <Text variant={"baseStyle"} lineHeight={"17px"}
+                            _light={{ color: "#FF0000" }}
+                            _dark={{ color: "#FF0000" }}
+                        >
+                            52.0%
+                        </Text>
+                    </Box>
+                </Box>
+            </Box>
+            <Box layerStyle={"spaceBetween"}>
+                <Box layerStyle={"flexCenter"}>
+                    <Image
+                        height={32}
+                        width={32}
+                        src="/icons/bitcoin_logo.svg"
+                        style={{ margin: "5px 10px" }}
+                        alt=" "></Image>
+                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                        Livepeer
+                    </Text>
+                </Box>
+                <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                        $12.29
+                    </Text>
+                    <Box
+                        width={"57px"}
+                        height={"21px"}
+                        mr={"5px"}
+                        top={"67px"}
+                        left={"226px"}
+                        padding={"2px 8px"}
+                        borderRadius={"16px"}
+                        gap={"10px"}
+                        _light={{ bg: "#FF00001F" }}
+                        _dark={{ bg: "#FF00003F" }}
+                    >
+                        <Text variant={"baseStyle"} lineHeight={"17px"}
+                            _light={{ color: "#FF0000" }}
+                            _dark={{ color: "#FF0000" }}
                         >
                             52.0%
                         </Text>

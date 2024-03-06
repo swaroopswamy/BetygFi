@@ -24,7 +24,6 @@ import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
 
-
 const CoinPage = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
@@ -56,8 +55,9 @@ const CoinPage = () => {
                 <Marquee />
                 <Box layerStyle={"flexCenter"} w="10%" ml={"30px"} >
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
-                    <Switch size={"lg"} onChange={onHighlightsBoxToggle}
-                        className=""
+                    <Switch 
+                    size={"lg"} 
+                    onChange={onHighlightsBoxToggle}
                     ></Switch>
                 </Box>
             </Box>

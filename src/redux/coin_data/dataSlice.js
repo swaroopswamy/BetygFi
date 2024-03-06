@@ -5,7 +5,8 @@ import {
     getCoinRankingsTableData,
     getCoinScoresData,
     getTrendingCoinsData,
-    getTopGainersAndLosersData
+    getTopGainersAndLosersData,
+    getSAPData
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -62,6 +63,14 @@ export const fetchTopGainersAndLosersData = createAsyncThunk(
     }
 );
 
+export const fetchSAPData = createAsyncThunk(
+    "getSAPData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getSAPData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 export const fetchBTCDominanceScoresData = createAsyncThunk(
     "getBTCDominanceScoresData",
     async (payload, { rejectWithValue }) => {
@@ -104,6 +113,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         TopGainersAndLosersData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        SAPData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -233,6 +248,24 @@ const CoinDataSlice = createSlice({
             state.TopGainersAndLosersData.isError = true;
             state.TopGainersAndLosersData.data = action.payload;
         });
+        builder.addCase(fetchSAPData.fulfilled, (state, action) => {
+            state.SAPData.data = action.payload;
+            state.SAPData.isLoading = false;
+            state.SAPData.isSuccess = true;
+            state.SAPData.isError = false;
+        });
+        builder.addCase(fetchSAPData.pending, (state, action) => {
+            state.SAPData.isLoading = true;
+            state.SAPData.isError = false;
+            state.SAPData.isSuccess = false;
+            state.SAPData.data = action.payload;
+        });
+        builder.addCase(fetchSAPData.rejected, (state, action) => {
+            state.SAPData.isLoading = false;
+            state.SAPData.isSuccess = false;
+            state.SAPData.isError = true;
+            state.SAPData.data = action.payload;
+        });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {
@@ -261,5 +294,5 @@ const CoinDataSlice = createSlice({
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData } = CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;
