@@ -1,8 +1,9 @@
-import { Box, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, Select, Text, /* useColorMode, */ useColorModeValue } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
 //import { useSelector } from "react-redux";
 import Image from "next/image";
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 
 const randomData = [
     { x: new Date(2023, 11, 1), y: 5 },
@@ -13,7 +14,11 @@ const randomData = [
 ];
 
 const SandPSmallBox = () => {
-    const { colorMode } = useColorMode();
+  //  const { colorMode } = useColorMode();
+    const SAPData = useSelector((state) => state.coinData.SAPData);
+
+    const periods = ["7d", "14d", "30d"];
+
     //const SAPData = useSelector((state) => state.coinData.SAPData);
     const options = {
         chart: {
@@ -98,52 +103,52 @@ const SandPSmallBox = () => {
         <Box
             width={"30%"}
             height={"197px"}
+            minW={"295px"}
             borderRadius={"8px"}
-            _light={{
-                bg: "#FFFFFF"
-            }}
-            _dark={{
-                bg: "#282828"
-            }}
             mb={"15px"}
+            p={"12px"}
+            pb={"0px"}
+            _light={{ bg: "#FFFFFF" }}
+            _dark={{ bg: "#282828" }}
         >
-            <Box layerStyle={"spaceBetween"}>
+            <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>
                     <Image
-                        height={60}
-                        width={50}
+                        height={32}
+                        width={32}
                         src="/icons/bitcoin_logo.svg"
-                        style={{ padding: "10px 5px 15px 10px" }}
                         alt="trophy_icon"></Image>
-                    <Text
-                        variant={"contentHeading3"}
-                        fontWeight={500}
-                        color={colorMode === 'light' ? "#757575" : "#A5A5A5"}
-                        pl={"8px"}
-                    >
+                    <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         S&P 500
                     </Text>
                 </Box>
-                <Box layerStyle={"flexCenter"} gap={"3px"} >
-                    <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
-                        _light={{
-                            color: "#757575"
-                        }}
-                        _dark={{
-                            color: "#A5A5A5"
-                        }}>
-                        View more
-                    </Text>
-                    <Image
-                        src={colorMode === "light" ? "/icons/arrow_right.svg" : "/icons/Arrow_down_dark.svg"}
-                        height={6}
-                        width={6}
-                        alt="arrow">
-                    </Image>
+                <Box layerStyle={"flexCenter"} gap={"3px"}>
+                    <Select
+                        fontSize={"14px"}
+                        fontWeight={"600"}
+                        height={"24px"}
+                        border={"1px"}
+                        borderRadius={"2px"}
+                        borderColor={useColorModeValue("#E0E0E0", "#333")}
+                        padding={"0"}
+                    >
+                        {
+                            periods.map((period, i) => {
+                                return (
+                                    <option value={period} key={i}>{period}</option>
+                                );
+                            })
+                        }
+                    </Select>
                 </Box>
             </Box>
             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"} >
-                <Text variant={"textBold"} fontSize={"24px"}>$5,030.59 </Text>
+                <Text variant={"textBold"} fontSize={"24px"}>
+                    {SAPData?.data?.last?.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                    }) ?? "-"}
+                </Text>
                 <Box borderRadius={"16px"} layerStyle={"flexCenter"} bgColor={"rgba(36, 95, 0, 0.12)"} px={"12px"} py="3px" ml={"5px"}>
                     <Text variant={"baseStyle"} lineHeight={"17px"}
                         _light={{
@@ -153,8 +158,7 @@ const SandPSmallBox = () => {
                             color: "#60C000"
                         }}
                     >
-                        0.49%
-                        {/* {SAPData?.data?.percentageChange} */}
+                        {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}
                     </Text>
                 </Box>
                 <Image

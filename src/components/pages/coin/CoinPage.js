@@ -19,7 +19,7 @@ import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import TrendingCoinPanel from "@components/trendingCoinPanel";
-import { fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
+import { fetchSAPData, fetchTopGainersAndLosersData, fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
@@ -31,10 +31,20 @@ const CoinPage = () => {
 
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
 
+    const fetchTopGainersAndLosersDataHandler = () => {
+        dispatch(fetchTopGainersAndLosersData());
+    };
+
+    const fetchSAPDataHandler = () => {
+        dispatch(fetchSAPData());
+    };
+
     useEffect(() => {
         Promise.all([
             dispatch(fetchTrendingCoinsData()),
             dispatch(fetchBlockchainListData()),
+            fetchTopGainersAndLosersDataHandler(),
+            fetchSAPDataHandler()
         ]).then(result => result);
     }, []);
 
@@ -55,9 +65,9 @@ const CoinPage = () => {
                 <Marquee />
                 <Box layerStyle={"flexCenter"} w="10%" ml={"30px"} >
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
-                    <Switch 
-                    size={"lg"} 
-                    onChange={onHighlightsBoxToggle}
+                    <Switch
+                        size={"lg"}
+                        onChange={onHighlightsBoxToggle}
                     ></Switch>
                 </Box>
             </Box>
