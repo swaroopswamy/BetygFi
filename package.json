@@ -10,6 +10,8 @@
     "clean:build": "rimraf .next && npm run build",
     "analyze-build": "cross-env ANALYZE=true next build",
     "build:deploy": "npm run clean:build && npm run deploy",
+    "patch:add-meta": "npm version patch && node write-meta.js && git add meta/meta.json && git commit -m \"added meta\" && git push",
+    "minor:add-meta": "npm version patch && node write-meta.js && git add meta/meta.json && git commit -m \"added meta\" && git push",
     "eslint": "eslint ./src",
     "prepare": "husky install",
     "build:dev": "npm run clean:build",

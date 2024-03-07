@@ -1,15 +1,15 @@
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 export async function GET(req) {
     // try {
-    const headersList = headers();
-    const authorization = headersList.get('authorization');
+    // const headersList = headers();
+    // const authorization = headersList.get('authorization');
     const NEXT_PUBLIC_SOCKET_HOST = process.env.NEXT_PUBLIC_SOCKET_HOST;
     const URL = NEXT_PUBLIC_SOCKET_HOST + (req.url.split("bet-dash"))[1];
     const fetchConfiguration = {
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': authorization,
+            // 'Authorization': authorization,
         },
         cache: 'no-store'
     };

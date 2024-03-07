@@ -149,16 +149,18 @@ export const getAppConfigMappedToGlobalEnv = appConfig => {
 };
 
 export const replaceWithWS = (url) => {
-    // Check if the URL starts with http or https
-    if (url.startsWith("http://")) {
-        // Replace http with ws
-        return url.replace('http', 'ws');
-    } else if (url.startsWith("https://")) {
-        // Replace https with ws
-        return url.replace('https', 'ws');
-    } else {
-        // URL does not start with http or https
-        return url;
+    if (url) {
+        // Check if the URL starts with http or https
+        if (url.startsWith("http://")) {
+            // Replace http with ws
+            return url.replace('http', 'ws');
+        } else if (url.startsWith("https://")) {
+            // Replace https with ws
+            return url.replace('https', 'wss');
+        } else {
+            // URL does not start with http or https
+            return url;
+        }
     }
 };
 
@@ -173,4 +175,24 @@ export const mapTypeObject = object => {
         obj[key] = value === null ? 'null' : (value === undefined ? 'undefined' : typeof value);
     }
     return obj;
+};
+
+export const getEnv = (url) => {
+    const allowedQA = ['qa.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
+    const allowedDev = ['dev.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
+    const allowedLocal = ['local.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
+
+
+    if (url) {
+        if (allowedQA.includes(url)) {
+            return 'qa';
+        } else if (allowedDev.includes(url)) {
+            return 'dev';
+        } else if (allowedLocal.includes(url)) {
+            return 'local';
+        }
+        else {
+            return 'prod';
+        }
+    }
 };
