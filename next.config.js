@@ -10,11 +10,11 @@ const nextConfig = {
     return [
       {
         source: '/dev/notification/:path*',
-        destination: 'http://54.84.90.145:31924/:path*'
+        destination: 'http://34.233.111.224:31924/:path*'
       },
       {
         source: '/local/notification/:path*',
-        destination: 'http://54.84.90.145:31924/:path*'
+        destination: 'http://34.233.111.224:31924/:path*'
       },
       {
         source: '/qa/notification/:path*',
