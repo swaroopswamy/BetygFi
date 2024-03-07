@@ -1,9 +1,12 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const FearGridIndexSmallBox = () => {
     const { colorMode } = useColorMode();
+    const FearAndGreedData = useSelector((state) => state.coinData.FearAndGreedData);
+
     return (
         <Box
             width={"30%"}
@@ -31,9 +34,11 @@ const FearGridIndexSmallBox = () => {
                 </Text>
             </Box>
             <Box layerStyle={"flexCenter"} pl={"10px"}>
-                <Text variant={"textBold"} fontSize={"24px"}>
-                    Greed
-                </Text>
+                {FearAndGreedData?.currentDay_Score?.map((item, i) => (
+                    <Text variant={"textBold"} fontSize={"24px"} key={i}>
+                        {item?.value_classification}
+                    </Text>
+                ))}
             </Box>
             <Text p={"12px"} variant={"SettingsText3"} fontWeight={500} lineHeight={"16px"}>
                 Next Update: 10hrs, 59 min
@@ -48,30 +53,36 @@ const FearGridIndexSmallBox = () => {
                     Historical Values
                 </Text>
                 <Box layerStyle={"flexCenter"}>
-                    <Box borderRight={colorMode === 'light' ? "1px solid #757575" : "1px solid #A5A5A5"}>
-                        <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
-                            72
-                        </Text>
-                        <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
-                            24h ago
-                        </Text>
-                    </Box>
-                    <Box borderRight={colorMode === 'light' ? "1px solid #757575" : "1px solid #A5A5A5"}>
-                        <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
-                            72
-                        </Text>
-                        <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
-                            7day ago
-                        </Text>
-                    </Box>
-                    <Box>
-                        <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
-                            64
-                        </Text>
-                        <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
-                            1min ago
-                        </Text>
-                    </Box>
+                    {FearAndGreedData?.score_1d_Ago?.map((item, i) => (
+                        <Box borderRight={colorMode === 'light' ? "1px solid #757575" : "1px solid #A5A5A5"} key={i}>
+                            <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
+                                {item?.value}
+                            </Text>
+                            <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
+                                24h ago
+                            </Text>
+                        </Box>
+                    ))}
+                    {FearAndGreedData?.score_7d_Ago?.map((item, i) => (
+                        <Box borderRight={colorMode === 'light' ? "1px solid #757575" : "1px solid #A5A5A5"} key={i}>
+                            <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
+                                {item?.value}
+                            </Text>
+                            <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
+                                7day ago
+                            </Text>
+                        </Box>
+                    ))}
+                    {FearAndGreedData?.currentDay_Score?.map((item, i) => (
+                        <Box key={i}>
+                            <Text p={"3px 10px 0px 10px"} variant={"modalHeader"} fontWeight={500} color={colorMode === 'light' ? "#245000" : "#60C000"}>
+                                {item?.value}
+                            </Text>
+                            <Text p={"0px 10px 0px 10px"} variant={"SettingsText3"} fontSize={"10px"} fontWeight={500} lineHeight={"16px"}>
+                                {item?.timestamp}
+                            </Text>
+                        </Box>
+                    ))}
                 </Box>
             </Box>
         </Box>

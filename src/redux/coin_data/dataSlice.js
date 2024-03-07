@@ -6,6 +6,8 @@ import {
     getCoinScoresData,
     getTrendingCoinsData,
     getTopGainersAndLosersData,
+    getTopBTCETFData,
+    getFearAndGreedData,
     getSAPData
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -63,6 +65,22 @@ export const fetchTopGainersAndLosersData = createAsyncThunk(
     }
 );
 
+export const fetchTopBTCETFData = createAsyncThunk(
+    "getTopBTCETFData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTopBTCETFData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchFearAndGreedData = createAsyncThunk(
+    "getFearAndGreedData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getFearAndGreedData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 export const fetchSAPData = createAsyncThunk(
     "getSAPData",
     async (payload, { rejectWithValue }) => {
@@ -113,6 +131,18 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         TopGainersAndLosersData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TopBTCETFData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        FearAndGreedData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -248,6 +278,42 @@ const CoinDataSlice = createSlice({
             state.TopGainersAndLosersData.isError = true;
             state.TopGainersAndLosersData.data = action.payload;
         });
+        builder.addCase(fetchTopBTCETFData.fulfilled, (state, action) => {
+            state.TopBTCETFData.data = action.payload;
+            state.TopBTCETFData.isLoading = false;
+            state.TopBTCETFData.isSuccess = true;
+            state.TopBTCETFData.isError = false;
+        });
+        builder.addCase(fetchTopBTCETFData.pending, (state, action) => {
+            state.TopBTCETFData.isLoading = true;
+            state.TopBTCETFData.isError = false;
+            state.TopBTCETFData.isSuccess = false;
+            state.TopBTCETFData.data = action.payload;
+        });
+        builder.addCase(fetchTopBTCETFData.rejected, (state, action) => {
+            state.TopBTCETFData.isLoading = false;
+            state.TopBTCETFData.isSuccess = false;
+            state.TopBTCETFData.isError = true;
+            state.TopBTCETFData.data = action.payload;
+        });
+        builder.addCase(fetchFearAndGreedData.fulfilled, (state, action) => {
+            state.FearAndGreedData.data = action.payload;
+            state.FearAndGreedData.isLoading = false;
+            state.FearAndGreedData.isSuccess = true;
+            state.FearAndGreedData.isError = false;
+        });
+        builder.addCase(fetchFearAndGreedData.pending, (state, action) => {
+            state.FearAndGreedData.isLoading = true;
+            state.FearAndGreedData.isError = false;
+            state.FearAndGreedData.isSuccess = false;
+            state.FearAndGreedData.data = action.payload;
+        });
+        builder.addCase(fetchFearAndGreedData.rejected, (state, action) => {
+            state.FearAndGreedData.isLoading = false;
+            state.FearAndGreedData.isSuccess = false;
+            state.FearAndGreedData.isError = true;
+            state.FearAndGreedData.data = action.payload;
+        });
         builder.addCase(fetchSAPData.fulfilled, (state, action) => {
             state.SAPData.data = action.payload;
             state.SAPData.isLoading = false;
@@ -294,5 +360,5 @@ const CoinDataSlice = createSlice({
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData } = CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;

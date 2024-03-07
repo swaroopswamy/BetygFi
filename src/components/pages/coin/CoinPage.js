@@ -19,7 +19,13 @@ import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import TrendingCoinPanel from "@components/trendingCoinPanel";
-import { fetchSAPData, fetchTopGainersAndLosersData, fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
+import {
+    fetchSAPData,
+    fetchTopGainersAndLosersData,
+    fetchTrendingCoinsData,
+    fetchTopBTCETFData,
+    fetchFearAndGreedData,
+} from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
@@ -35,6 +41,14 @@ const CoinPage = () => {
         dispatch(fetchTopGainersAndLosersData());
     };
 
+    const fetchTopBTCETFDataHandler = () => {
+        dispatch(fetchTopBTCETFData());
+    };
+
+    const fetchFearAndGreedDataHandler = () => {
+        dispatch(fetchFearAndGreedData());
+    };
+
     const fetchSAPDataHandler = () => {
         dispatch(fetchSAPData());
     };
@@ -44,7 +58,9 @@ const CoinPage = () => {
             dispatch(fetchTrendingCoinsData()),
             dispatch(fetchBlockchainListData()),
             fetchTopGainersAndLosersDataHandler(),
-            fetchSAPDataHandler()
+            fetchTopBTCETFDataHandler(),
+            fetchFearAndGreedDataHandler(),
+            fetchSAPDataHandler(),
         ]).then(result => result);
     }, []);
 
