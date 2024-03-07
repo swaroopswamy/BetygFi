@@ -68,26 +68,29 @@ const CoinPage = () => {
                     <Switch
                         size={"lg"}
                         onChange={onHighlightsBoxToggle}
+                        colorScheme={{
+                            base: {
+                                thumb: colorMode === 'light' ? "#000000" : "#FFFFFF",
+                                track: colorMode === 'light' ? "#FFFFFF" : "#000000",
+                            },
+                            checked: {
+                                thumb: colorMode === 'light' ? "#FFFFFF" : "#000000",
+                                track: colorMode === 'light' ? "#000000" : "#FFFFFF",
+                            },
+                        }}
                     ></Switch>
                 </Box>
             </Box>
             <Collapse in={isHighlightsBoxOpen} >
                 <HighlightsBox />
             </Collapse>
-
-
             <Text fontSize={"32px"} color={"text.primary"} my={"20px"}>
                 Coin Listing
             </Text>
-
             {/* <BlockchainSelectionMenuNew /> */}
-
             {/* <CoinOverviewChart /> */}
-
             <CoinRankingsTable />
-
             <hr />
-
             <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"}>
                 <Text
                     fontSize={"32px"}

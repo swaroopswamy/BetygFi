@@ -70,12 +70,12 @@ const TopLosersSmallBox = () => {
                             mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
-                            _light={{ bg: "#245F001F" }}
-                            _dark={{ bg: "#60C0003F" }}
+                            _light={{ bg: "#FF00001F" }}
+                            _dark={{ bg: "#FF35351F" }}
                         >
                             <Text variant={"baseStyle"} lineHeight={"17px"}
-                                _light={{ color: "#245F00" }}
-                                _dark={{ color: "#60C000" }}
+                                _light={{ color: "#FF0000" }}
+                                _dark={{ color: "#FF3535" }}
                             >
                                 {`${loser?.change?.toFixed(1)}%`}
                             </Text>

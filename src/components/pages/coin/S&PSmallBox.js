@@ -1,6 +1,5 @@
-import { Box, Select, Text, /* useColorMode, */ useColorModeValue } from "@chakra-ui/react";
+import { Box, Select, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
-//import { useSelector } from "react-redux";
 import Image from "next/image";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -14,12 +13,9 @@ const randomData = [
 ];
 
 const SandPSmallBox = () => {
-  //  const { colorMode } = useColorMode();
+    const { colorMode } = useColorMode();
     const SAPData = useSelector((state) => state.coinData.SAPData);
-
     const periods = ["7d", "14d", "30d"];
-
-    //const SAPData = useSelector((state) => state.coinData.SAPData);
     const options = {
         chart: {
             type: 'area',
@@ -55,7 +51,7 @@ const SandPSmallBox = () => {
         stroke: {
             curve: 'smooth',
             width: 1,
-            colors: "rgba(36, 95, 0, 1)"
+            colors: ['#245000'],
         },
         fill: {
             type: "gradient",
@@ -106,19 +102,19 @@ const SandPSmallBox = () => {
             minW={"295px"}
             borderRadius={"8px"}
             mb={"15px"}
-            p={"12px"}
-            pb={"0px"}
+            pl={"0px"}
+            pr={"0px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
         >
-            <Box layerStyle={"spaceBetween"} mb="12px">
+            <Box layerStyle={"spaceBetween"} p={"12px"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
                         height={32}
                         width={32}
                         src="/icons/bitcoin_logo.svg"
-                        alt="trophy_icon"></Image>
-                    <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
+                        alt="bitcoin_icon"></Image>
+                    <Text variant={"contentHeading3"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"} fontWeight={500} ml={"8px"}>
                         S&P 500
                     </Text>
                 </Box>
@@ -129,8 +125,8 @@ const SandPSmallBox = () => {
                         height={"24px"}
                         border={"1px"}
                         borderRadius={"2px"}
-                        borderColor={useColorModeValue("#E0E0E0", "#333")}
-                        padding={"0"}
+                        borderColor={colorMode === 'light' ? "#E0E0E0" : "#333333"}
+                        padding={0}
                     >
                         {
                             periods.map((period, i) => {
@@ -167,7 +163,7 @@ const SandPSmallBox = () => {
                     src="/icons/green_dot.svg"
                     alt="green_dot_icon"></Image>
             </Box>
-            <Box >
+            <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
                 <CustomChart
                     options={options}
                     series={series}

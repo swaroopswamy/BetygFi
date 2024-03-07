@@ -5,6 +5,7 @@ import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
 import BTCetfSmallBox from "./BTCetfSmallBox";
 import BTCDominanceSmallBox from "./BTCDominanceSmallBox";
 import SandPSmallBox from "./S&PSmallBox";
+import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
 
 const HighlightsBox = () => {
 
@@ -14,6 +15,7 @@ const HighlightsBox = () => {
             <TopLosersSmallBox />
             <BTCetfSmallBox />
             <BTCDominanceSmallBox />
+            <FearGridIndexSmallBox />
             <SandPSmallBox />
         </Box>
     );
