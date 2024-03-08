@@ -32,9 +32,9 @@ export const getOverviewData = async (payload, rejectWithValue) => {
 	}
 };
 
-export const getOverviewGraphData = async (payload, rejectWithValue) => {
+export const getOverviewGraphData = async (payload, query, rejectWithValue) => {
 	try {
-		const url = NEXT_BE_URL_SEPARATOR + `protocols/graph/data`;
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/graph/data${query ? '?blockchain=' + query : ''}`;
 		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { Box, Button, useToast } from "@chakra-ui/react";
-import { categories } from "@util/constant";
+import { defiCategories } from "@util/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
     fetchBlockchainListData,
@@ -25,7 +25,7 @@ const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
         description: "",
         emailId: "",
     });
-    const categoriesOptions = categories.map((category) => {
+    const categoriesOptions = defiCategories.map((category) => {
         return { label: category.name, name: category.name };
     });
     const blockchainListData = useSelector(
