@@ -1,9 +1,4 @@
-import {
-    getOverviewData,
-    getOverviewGraphData,
-    getDefiRankingsTableData,
-    getProtocolScoresData,
-} from "@services/dashboardService";
+import { getOverviewData, getOverviewGraphData, getDefiRankingsTableData, getProtocolScoresData } from "@services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";

@@ -7,39 +7,39 @@ import {
 } from "@services/defiDashboardService";
 
 export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiUsersTableData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiUsersTableData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchDefiHotContractsTableData = createAsyncThunk('getDefiHotContractsTableData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiHotContractsTableData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiHotContractsTableData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchDefiAssetCompositionTableData = createAsyncThunk('getDefiAssetCompositionTableData',
 	async (payload, { rejectWithValue }) => {
-		const response = await getDefiAssetCompositionTableData(payload, rejectWithValue);
-		return response.data;
+		const { data } = await getDefiAssetCompositionTableData(payload, rejectWithValue);
+		return data;
 	});
 
 export const fetchDefiFeeRevenueData = createAsyncThunk('getDefiFeeRevenueData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiFeeRevenueData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiFeeRevenueData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchDefiGovernanceTableData = createAsyncThunk('getDefiGovernanceTableData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiGovernanceTableData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiGovernanceTableData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchDefiTvlBorrowData = createAsyncThunk('getDefiTvlBorrowData', async (payload, { rejectWithValue }) => {
-	const response = await getDefiTvlBorrowData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiTvlBorrowData(payload, rejectWithValue);
+	return data;
 });
 
 export const fetchDefiGraphData = createAsyncThunk("fetchDefiGraphData", async (payload, { rejectWithValue }) => {
-	const response = await getDefiGraphData(payload, rejectWithValue);
-	return response.data;
+	const { data } = await getDefiGraphData(payload, rejectWithValue);
+	return data;
 });
 
 const DefiDashboardDataSlice = createSlice({

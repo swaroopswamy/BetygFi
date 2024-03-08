@@ -95,6 +95,14 @@ const DefiDashboardPage = ({ searchParamProtocolSlug, defiData }) => {
         }
     }, [tablePage, tableLimit, setTablePage]);
 
+    const getDefiGraphDataHandler = () => {
+        const payload = {
+            defi: searchParamProtocolSlug,
+            blockchain: blockchainSelected,
+        };
+        dispatch(fetchDefiGraphData(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             getDefiUsersTableDataHandler(),
@@ -104,14 +112,6 @@ const DefiDashboardPage = ({ searchParamProtocolSlug, defiData }) => {
             getDefiGraphDataHandler(),
         ]).then(result => result);
     }, [blockchainSelected]);
-
-    const getDefiGraphDataHandler = () => {
-        const payload = {
-            defi: searchParamProtocolSlug,
-            blockchain: blockchainSelected,
-        };
-        dispatch(fetchDefiGraphData(payload));
-    };
 
     return (
         <>
