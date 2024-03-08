@@ -55,12 +55,14 @@ const CoinRankingsTable = () => {
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
-            setTotalDefis(
-                coinScoresData.data[0]?.value +
-                coinScoresData.data[1]?.value +
-                coinScoresData.data[2].value +
-                coinScoresData.data[3].value
-            );
+            if (coinScoresData.data?.length > 0) {
+                setTotalDefis(
+                    coinScoresData?.data[0]?.value +
+                    coinScoresData?.data[1]?.value +
+                    coinScoresData?.data[2].value +
+                    coinScoresData?.data[3].value
+                );
+            }
         }
     }, [coinScoresData]);
 

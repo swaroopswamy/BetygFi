@@ -97,6 +97,26 @@ export const getTopGainersAndLosersData = async (rejectWithValue) => {
     }
 };
 
+export const getTopBTCETFData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/top-etfs`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getFearAndGreedData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-fear-and-index`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
 export const getSAPData = async (rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/sap-500`;

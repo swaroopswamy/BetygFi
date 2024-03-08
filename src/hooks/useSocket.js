@@ -7,9 +7,11 @@ const useSocket = (url, onMessage) => {
     // Memoize the WebSocket instance
 
     const socket = useMemo(() => {
-        const authenticatedToken = getAuthenticatedUserToken();
-        const socketUrl = authenticatedToken ? `${url}?token=${authenticatedToken}` : url;
-        return new WebSocket(socketUrl);
+        if (url) {
+            const authenticatedToken = getAuthenticatedUserToken();
+            const socketUrl = authenticatedToken ? `${url}?token=${authenticatedToken}` : url;
+            return new WebSocket(socketUrl);
+        }
     }, [url]);
 
     useEffect(() => {

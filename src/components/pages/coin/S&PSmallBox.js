@@ -101,7 +101,7 @@ const SandPSmallBox = () => {
                         width={32}
                         src="/icons/bitcoin_logo.svg"
                         alt="bitcoin_icon"></Image>
-                    <Text variant={"contentHeading3"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"} fontWeight={500} ml={"8px"}>
+                    <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         S&P 500
                     </Text>
                 </Box>

@@ -666,7 +666,8 @@ const CollapsedNavItem = ({ NavIcon, path, newTab, name }) => {
 
 const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, ...rest }) => {
     const { colorMode } = useColorMode();
-    const { data: AuthSession } = useSession();
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const LoggedInData = useSelector((state) => state.authData.LoggedInData);
     if (isActive) {
         return (
             <Link
@@ -699,7 +700,7 @@ const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, 
             </Link>
         );
     }
-    if (path.includes("settings") && AuthSession === null) {
+    if (path.includes("settings") && !(ValidatedUserData?.isSuccess || LoggedInData?.isSuccess)) {
         return (
             <Box
                 onClick={onLoginModalOpen}
@@ -1062,7 +1063,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                 key={i}
                                                 NavIcon={link.icon}
                                                 onLoginModalOpen={onLoginModalOpen}
-                                                       
+
                                                 path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                                 newTab={link.newTab}
                                                 isActive={

@@ -10,7 +10,6 @@ const BTCDominanceSmallBox = () => {
     const [series, setSeries] = useState();
     const dispatch = useDispatch();
     const BTCDominanceScoresData = useSelector((state) => state.coinData.BTCDominanceScoresData);
-
     const periods = [
         {
             value: "7D",
@@ -80,7 +79,7 @@ const BTCDominanceSmallBox = () => {
 
     useEffect(() => {
         setSeries([{
-            data: BTCDominanceScoresData.data
+            data: BTCDominanceScoresData?.data?.data
         }]);
     }, [BTCDominanceScoresData]);
     return (
@@ -108,7 +107,7 @@ const BTCDominanceSmallBox = () => {
                         width={32}
                         src="/icons/bitcoin_logo.svg"
                         alt="bitcoin_icon"></Image>
-                    <Text variant={"contentHeading3"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"} fontWeight={500} ml={"8px"}>
+                    <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         BTC Dominance
                     </Text>
                 </Box>
@@ -136,7 +135,7 @@ const BTCDominanceSmallBox = () => {
                 </Box>
             </Box>
             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
-                <Text variant={"textBold"} fontSize={"24px"}>51.61%</Text>
+                <Text variant={"textBold"} fontSize={"24px"}>{series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
                 <Box borderRadius={"16px"} layerStyle={"flexCenter"}
                     bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
                     px={"12px"} py="3px" ml={"5px"}>
@@ -145,7 +144,7 @@ const BTCDominanceSmallBox = () => {
                             color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                         }}
                     >
-                        52.0%
+                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)} %
                     </Text>
                 </Box>
             </Box>

@@ -22,10 +22,10 @@ const PrivateNotificationCard = ({ notification, handleNotificationClick }) => {
             mb='2px'
             py="25px"
             _light={{
-                bgColor: notification?.isSeen === "false" ? "#F1F3FD" : "transparent"
+                bgColor: notification?.isSeen === false ? "#F1F3FD" : "transparent"
             }}
             _dark={{
-                bgColor: notification?.isSeen === "false" ? "#2C2C2C" : "transparent"
+                bgColor: notification?.isSeen === false ? "#2C2C2C" : "transparent"
             }}
             pos={"relative"}
             _after={{
@@ -42,9 +42,9 @@ const PrivateNotificationCard = ({ notification, handleNotificationClick }) => {
 
             }}
         >
-            <Flex alignItems={"center"} pl={notification?.isSeen !== "false" ? "24px" : "0px"}>
+            <Flex alignItems={"center"} pl={notification?.isSeen !== false ? "24px" : "0px"}>
                 {
-                    notification?.isSeen === "false" && (
+                    notification?.isSeen === false && (
                         <Box w="8px" h="8px" bgColor={"#2A85FF"} mx="9px" borderRadius={"50%"}></Box>
                     )
                 }
