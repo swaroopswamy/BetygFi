@@ -4,6 +4,7 @@ import { sapDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import NoDataAvailable from "./NodataSmallBox";
 
 const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -128,39 +129,48 @@ const SandPSmallBox = () => {
                     </Select>
                 </Box>
             </Box>
-            <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"} >
-                <Text variant={"textBold"} fontSize={"24px"}>
-                    {SAPData?.data?.last?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }) ?? "-"}
-                </Text>
-                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
-                    bgColor={SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
-                    px={"12px"} py="3px" ml={"5px"}
-                >
-                    <Text variant={"baseStyle"} lineHeight={"17px"}
-                        _light={{
-                            color: SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
-                        }}
-                    >
-                        {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}
-                    </Text>
-                </Box>
-                <Image
-                    height={12}
-                    width={12}
-                    src="/icons/green_dot.svg"
-                    alt="green_dot_icon"></Image>
-            </Box>
-            <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
-                <CustomChart
-                    type={"area"}
-                    options={options}
-                    series={series}
-                    height={100}
-                />
-            </Box>
+            {
+                SAPData?.isSuccess ?
+                    (
+                        <React.Fragment>
+                            <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"} >
+                                <Text variant={"textBold"} fontSize={"24px"}>
+                                    {SAPData?.data?.last?.toLocaleString("en-US", {
+                                        style: "currency",
+                                        currency: "USD",
+                                    }) ?? "-"}
+                                </Text>
+                                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
+                                    bgColor={SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
+                                    px={"12px"} py="3px" ml={"5px"}
+                                >
+                                    <Text variant={"baseStyle"} lineHeight={"17px"}
+                                        _light={{
+                                            color: SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
+                                        }}
+                                    >
+                                        {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}
+                                    </Text>
+                                </Box>
+                                <Image
+                                    height={12}
+                                    width={12}
+                                    src="/icons/green_dot.svg"
+                                    alt="green_dot_icon"></Image>
+                            </Box>
+                            <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
+                                <CustomChart
+                                    type={"area"}
+                                    options={options}
+                                    series={series}
+                                    height={100}
+                                />
+                            </Box>
+                        </React.Fragment>)
+                    :
+                    <NoDataAvailable />
+            }
+
         </Box >
     );
 };
