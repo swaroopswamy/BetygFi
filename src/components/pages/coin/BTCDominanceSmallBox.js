@@ -152,7 +152,7 @@ const BTCDominanceSmallBox = () => {
                 type={"area"}
                 options={options}
                 series={series}
-                height={80}
+                height={110}
             />
         </Box>
     );

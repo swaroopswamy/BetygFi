@@ -158,7 +158,7 @@ const SandPSmallBox = () => {
                     type={"area"}
                     options={options}
                     series={series}
-                    height={80}
+                    height={100}
                 />
             </Box>
         </Box >
