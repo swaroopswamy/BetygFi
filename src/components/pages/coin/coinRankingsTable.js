@@ -167,6 +167,7 @@ const CoinRankingsTable = () => {
                         TableHeaderRowMobile={TableHeaderRowMobile}
                         ButtonComp={ButtonComp}
                         PanelComp={PanelComp}
+                        slideToLeftFeature={true}
                         SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
                         SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
                     />
