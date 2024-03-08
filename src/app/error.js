@@ -1,14 +1,18 @@
 'use client'; // Error components must be Client Components
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, Text, Button, useColorMode } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import AppConfigContext from '@components/context/appConfigContext';
 import Image from 'next/image';
 
-export default function Error() {
+export default function Error({ error }) {
   const { colorMode } = useColorMode();
   const router = useRouter();
   const appConfig = useContext(AppConfigContext);
+
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
     <Box

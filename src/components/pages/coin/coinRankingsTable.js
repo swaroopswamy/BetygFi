@@ -70,54 +70,10 @@ const CoinRankingsTable = () => {
     }, [coinScoresData]);
 
     const TAB_LIST = [
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
-        {
-            id: 1,
-            text: "All"
-        },
-        {
-            id: 2,
-            text: "All"
-        },
+        // {
+        //     id: 2,
+        //     text: "All"
+        // },
     ];
 
     const handleTabSelected = (tab) => {
@@ -129,7 +85,7 @@ const CoinRankingsTable = () => {
             <Tabs variant='soft-rounded' onChange={handleTabSelected} >
                 <TabList>
                     {
-                        TAB_LIST.map((tab, index) => (
+                        TAB_LIST.length > 0 && TAB_LIST.map((tab, index) => (
                             <Tab
                                 key={index}
                                 _selected={{
