@@ -38,7 +38,8 @@ const CoinPage = () => {
 
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
     const btcDominanceDay = useSelector((state) => state?.coinData?.btcDominanceDay);
-
+    const sapDay = useSelector((state) => state?.coinData?.sapDay);
+    
 
     const fetchTopGainersAndLosersDataHandler = () => {
         dispatch(fetchTopGainersAndLosersData());
@@ -53,7 +54,10 @@ const CoinPage = () => {
     };
 
     const fetchSAPDataHandler = () => {
-        dispatch(fetchSAPData());
+        const payload = {
+            day: sapDay
+        };
+        dispatch(fetchSAPData(payload));
     };
 
     const fetchMarqueeDataHandler = () => {
@@ -84,6 +88,12 @@ const CoinPage = () => {
             fetchBTCDominanceScoresDataHandler()
         ]).then(res => res);
     }, [btcDominanceDay]);
+
+    useEffect(() => {
+        Promise.all([
+            fetchSAPDataHandler()
+        ]).then(res => res);
+    }, [sapDay]);
 
     return (
         <Box

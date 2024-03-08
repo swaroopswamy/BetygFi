@@ -12,15 +12,15 @@ const SandPSmallBox = () => {
     const SAPData = useSelector((state) => state?.coinData?.SAPData);
     const periods = [
         {
-            value: "7D",
+            value: "week",
             label: "7d"
         },
         {
-            value: "14D",
+            value: "twoWeeks",
             label: "14d"
         },
         {
-            value: "30D",
+            value: "month",
             label: "30d"
         },
     ];

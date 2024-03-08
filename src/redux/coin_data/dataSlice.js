@@ -178,7 +178,7 @@ const CoinDataSlice = createSlice({
         blockchainType: [],
         scoreSelected: "",
         btcDominanceDay: "7D",
-        sapDay: "7D"
+        sapDay: "week"
     },
     extraReducers: (builder) => {
         builder.addCase(
