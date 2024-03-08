@@ -135,7 +135,7 @@ const BTCDominanceSmallBox = () => {
                 </Box>
             </Box>
             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
-                <Text variant={"textBold"} fontSize={"24px"}>{series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
+                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
                 <Box borderRadius={"16px"} layerStyle={"flexCenter"}
                     bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
                     px={"12px"} py="3px" ml={"5px"}>
