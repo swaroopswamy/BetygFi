@@ -2,18 +2,8 @@
 "use client";
 import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-import {
-    categoryChangedReducer,
-    fetchOverviewData,
-    fetchScoreGraphData,
-} from "@redux/dashboard_data/dataSlice";
-import {
-    Box,
-    Button,
-    Text,
-    useColorModeValue,
-    useMediaQuery,
-} from "@chakra-ui/react";
+import { categoryChangedReducer, fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
+import { Box, Button, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { categories } from "@util/constant";
 import dynamic from "next/dynamic";
 import React, { useEffect } from "react";
@@ -56,6 +46,8 @@ const ProtocolPage = () => {
         dispatch(fetchBlockchainListData());
     }, []);
 
+    const isMobileSearchBarOpen = useSelector((state) => state?.appData?.isMobileSearchOpen);
+
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             {isMd ? (
@@ -70,7 +62,7 @@ const ProtocolPage = () => {
                     <Text variant="h1new">DeFi Markets </Text>
                 </Box>
             ) : (
-                <Box display={{ base: "flex", md: "none" }} pt={"30px"}>
+                <Box display={{ base: "flex", md: "none" }} pt={isMobileSearchBarOpen ? "50px" : "30px"}>
                     <Text variant="h1" px={"18px"}>
                         DeFi Markets
                     </Text>
