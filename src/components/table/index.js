@@ -6,6 +6,7 @@ import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { isNotNullAndUndefined, orderByKey } from "@util/utility";
 import { useSearchParams } from "next/navigation";
+import SlideLeftTable from "./slideLeftTable";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
@@ -21,7 +22,8 @@ const GenericTable = ({
 	SkeletonRowsColumnsMobile,
 	isQueryInPendingState = false,
 	bigTable = false,
-	showSortingIcon
+	showSortingIcon,
+	slideToLeftFeature
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
 	const searchParams = useSearchParams();
@@ -67,6 +69,23 @@ const GenericTable = ({
 			setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
 		}
 	};
+
+	const renderSlideLeftTable = () => (
+		<SlideLeftTable
+			tableHeader={tableHeader}
+			tableData={tableData}
+			TableRow={TableRow}
+			SkeletonRowsColumnsDesktop={SkeletonRowsColumnsDesktop}
+			isQueryInPendingState={isQueryInPendingState}
+			bigTable={bigTable}
+			showSortingIcon={showSortingIcon}
+			onClickHeader={onClickHeader}
+			sortedState={sortedState}
+			HiSortAscending={HiSortAscending}
+			HiSortDescending={HiSortDescending}
+			tableBodyData={tableBodyData}
+		/>
+	);
 
 	const renderMDTable = () => {
 		return (
@@ -285,8 +304,7 @@ const GenericTable = ({
 			</Table>
 		);
 	};
-
-	return isMd ? renderMDTable() : renderSMTable();
+	return isMd ? renderMDTable() : slideToLeftFeature ? renderSlideLeftTable() : renderSMTable();
 };
 
 export default GenericTable;

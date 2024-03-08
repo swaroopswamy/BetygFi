@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
-import { Text, Td, Th, Tr, Box, useColorModeValue, Button } from "@chakra-ui/react";
+import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -18,6 +18,9 @@ const CoinRankingsTable = () => {
     const [tablePage, setTablePage] = useState(1);
     const [tableLimit, setTableLimit] = useState(20);
     const [totalDefis, setTotalDefis] = useState(0);
+
+    const [tabSelected, setTabSelected] = useState(0);
+    const { colorMode } = useColorMode();
 
     const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
     const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
@@ -66,77 +69,170 @@ const CoinRankingsTable = () => {
         }
     }, [coinScoresData]);
 
+    const TAB_LIST = [
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+        {
+            id: 1,
+            text: "All"
+        },
+        {
+            id: 2,
+            text: "All"
+        },
+    ];
+
+    const handleTabSelected = (tab) => {
+        setTabSelected(tab);
+    };
+
     return (
-        <Box
-            layerStyle={"flexColumn"}
-            borderRadius={"6px"}
-            mb={"20px"}
-            border={"1px"}
-            borderColor={useColorModeValue("#FFFFFF", "#282828")}
-            perspective={"1px"}
-        >
+        <>
+            <Tabs variant='soft-rounded' onChange={handleTabSelected} >
+                <TabList>
+                    {
+                        TAB_LIST.map((tab, index) => (
+                            <Tab
+                                key={index}
+                                _selected={{
+                                    bgColor: colorMode === "light" ? "#191919" : "#FFFFFF",
+                                    color: "#FFFFFF"
+                                }}
+                                border={colorMode === "light" ? "1px solid #C6C6C6" : "1px solid #A5A5A5"}
+                                bgColor={colorMode === "light" ? "#FFFFFF" : "transparent"}
+                                mr={"10px"}
+                            >
+                                <Text
+                                    fontWeight={tabSelected === index ? "600" : "400"}
+                                    _light={{
+                                        color: tabSelected === index ? "#FFFFFF" : "#191919"
+                                    }}
+                                    _dark={{
+                                        color: tabSelected === index ? "#191919" : "#FFFFFF"
+                                    }}
+                                    textAlign="center"
+                                    fontFamily="Inter"
+                                    fontSize="14px"
+                                    fontStyle="normal"
+                                    lineHeight="16px"
+                                >
+                                    {tab.text}
+                                </Text>
+                            </Tab>
+                        ))
+                    }
+                </TabList >
+            </Tabs >
+
             <Box
-                layerStyle={"spaceBetween"}
-                flexDirection={{ base: "column", md: "row", lg: "row" }}
-                p={"10px 20px"}
-                bgColor={"background.secondary"}
-                gap={"10px"}
+                layerStyle={"flexColumn"}
+                borderRadius={"6px"}
+                mb={"20px"}
+                border={"1px"}
+                borderColor={useColorModeValue("#FFFFFF", "#282828")}
+                perspective={"1px"}
             >
                 <Box
-                    display={"flex"}
-                    flexDirection={{ base: "row", md: "column" }}
-                    alignItems={"start"}
-                    justifyContent={"space-between"}
-                    w={{ base: "100%", md: "unset", lg: "unset" }}
+                    layerStyle={"spaceBetween"}
+                    flexDirection={{ base: "column", md: "row", lg: "row" }}
+                    p={"10px 20px"}
+                    bgColor={"background.secondary"}
+                    gap={"10px"}
                 >
-                    <Text variant={"h2"} fontWeight={"700"} lineHeight={"26px"}>
-                        Cryptocurrency Prices by Ranking
-                    </Text>
-                    <Text
-                        variant={"content"}
-                        fontWeight={"500"}
-                        _light={{ color: "#161616" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        lineHeight={"26px"}>
-                        Total - {totalDefis}
-                    </Text>
+                    <Box
+                        display={"flex"}
+                        flexDirection={{ base: "row", md: "column" }}
+                        alignItems={"start"}
+                        justifyContent={"space-between"}
+                        w={{ base: "100%", md: "unset", lg: "unset" }}
+                    >
+                        <Text variant={"h2"} fontWeight={"700"} lineHeight={"26px"}>
+                            Cryptocurrency Prices by Ranking
+                        </Text>
+                        <Text
+                            variant={"content"}
+                            fontWeight={"500"}
+                            _light={{ color: "#161616" }}
+                            _dark={{ color: "#FFFFFF" }}
+                            lineHeight={"26px"}>
+                            Total - {totalDefis}
+                        </Text>
+                    </Box>
+                    <ScoreDistribution
+                        totalDefis={totalDefis}
+                        scoreTotalData={coinScoresData.data}
+                    />
                 </Box>
-                <ScoreDistribution
-                    totalDefis={totalDefis}
-                    scoreTotalData={coinScoresData.data}
-                />
-            </Box>
 
-            <Box display={"flex"} overflowX={"auto"}>
-                <GenericTable
-                    tableHeader={tableHeader}
-                    tableData={tableData}
-                    TableRow={TableRow}
-                    showSortingIcon={true}
-                    TableHeaderRowMobile={TableHeaderRowMobile}
-                    ButtonComp={ButtonComp}
-                    PanelComp={PanelComp}
-                    SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
-                    SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
-                />
-            </Box>
+                <Box display={"flex"} overflowX={"auto"}>
+                    <GenericTable
+                        tableHeader={tableHeader}
+                        tableData={tableData}
+                        TableRow={TableRow}
+                        showSortingIcon={true}
+                        TableHeaderRowMobile={TableHeaderRowMobile}
+                        ButtonComp={ButtonComp}
+                        PanelComp={PanelComp}
+                        SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
+                        SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
+                    />
+                </Box>
 
-            <Box
-                display={"flex"}
-                minH={"60px"}
-                p={{ base: "10px", md: "5px 20px" }}
-                bgColor={"background.secondary"}
-            >
-                <PageButtonsWide
-                    page={tablePage}
-                    totalPages={tableData?.data?.totalPages}
-                    pageChangeHandler={pageChangeHandler}
-                    tableLimit={tableLimit}
-                    setTableLimit={setTableLimit}
-                    w={"100%"}
-                />
+                <Box
+                    display={"flex"}
+                    minH={"60px"}
+                    p={{ base: "10px", md: "5px 20px" }}
+                    bgColor={"background.secondary"}
+                >
+                    <PageButtonsWide
+                        page={tablePage}
+                        totalPages={tableData?.data?.totalPages}
+                        pageChangeHandler={pageChangeHandler}
+                        tableLimit={tableLimit}
+                        setTableLimit={setTableLimit}
+                        w={"100%"}
+                    />
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
@@ -450,7 +546,6 @@ const PanelComp = ({ item }) => {
                     w={"40%"}
                 >
                     <Text variant="tableHead"> 1hr </Text>
-                    {/* <TooltipComp label="Market price of the DeFi token" /> */}
                 </Box>
 
                 <Text

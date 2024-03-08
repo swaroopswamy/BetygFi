@@ -201,7 +201,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         return (
             <InputGroup id={"searchMobileInput"} ref={ref} w="100%" zIndex={"1000"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
-                    <Box display={"flex"} flexDir={"row"}>
+                    <Box display={"flex"} flexDir={"row"} backgroundColor={"#FFFFFF"}>
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
@@ -209,7 +209,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 height={18}
                                 unoptimized="true"
                                 priority="true"
-                                alt="search_icon"
+                                alt="search_icon_mob"
                             />
                         </InputLeftElement>
                         <Box w="100%" marginLeft={"1.7rem"}>
