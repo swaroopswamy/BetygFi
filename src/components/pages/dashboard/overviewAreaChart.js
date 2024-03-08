@@ -10,11 +10,11 @@ const periods = ["7d", "14d", "30d", "Max"];
 
 const OverviewAreaChart = () => {
     const { colorMode } = useColorMode();
-    const [period, setPeriod] = useState("30d");
+    const [period, setPeriod] = useState("Max");
 
     const periodSelectionHandler = (val) => {
-        if (val === period) setPeriod("30d");
-        else setPeriod(val);
+       /*  if (val === period) setPeriod("30d");
+        else */ setPeriod(val);
     };
 
     const overviewGraphData = useSelector((state) => state?.dashboardTableData?.OverviewGraphData);
@@ -125,12 +125,8 @@ const OverviewAreaChart = () => {
 
     useEffect(() => {
         overviewGraphData?.isSuccess &&
-            overviewGraphData?.data?.graphData.map((category, i) => {
-                if (
-                    categorySelected.includes(category?.name) ||
-                    (categorySelected.length === 0 &&
-                        categoryIds.includes(category?.name))
-                ) {
+            overviewGraphData?.data?.graphData.forEach((category, i) => {
+                if (categorySelected.includes(category?.name) || (categorySelected.length === 0 && categoryIds.includes(category?.name))) {
                     let categorySeries = {
                         name: category?.name,
                         data: category?.graphData,
@@ -143,40 +139,38 @@ const OverviewAreaChart = () => {
     }, [categorySelected, overviewGraphData]);
 
     return (
-        <>
-            <Box width={"100%"}>
+        <Box width={"100%"}>
+            <Box
+                px={{ base: "10px", md: "20px" }}
+                display={"flex"}
+                flexDirection={"column"}
+            >
                 <Box
-                    px={{ base: "10px", md: "20px" }}
+                    justifyContent={"flex-end"}
                     display={"flex"}
-                    flexDirection={"column"}
+                    alignItems={"center"}
+                    ml={"auto"}
                 >
-                    <Box
-                        justifyContent={"flex-end"}
-                        display={"flex"}
-                        alignItems={"center"}
-                        ml={"auto"}
-                    >
-                        <PeriodSelection
-                            currPeriod={period}
-                            periodSelectionHandler={periodSelectionHandler}
-                        />
-                    </Box>
-
-                    <CustomChart
-                        className="overview-chart"
-                        options={options}
-                        series={series}
-                        type="line"
-                        height={205}
+                    <PeriodSelection
+                        currPeriod={period}
+                        periodSelectionHandler={periodSelectionHandler}
                     />
                 </Box>
 
-                <Box display={{ base: "none", lg: "block" }} w={"100%"}>
-                    <SelectorGraph series={series} period={period} />
-                </Box>
-                <Box id="legend-container" mt="20px"></Box>
+                <CustomChart
+                    className="overview-chart"
+                    options={options}
+                    series={series}
+                    type="line"
+                    height={205}
+                />
             </Box>
-        </>
+
+            <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+                <SelectorGraph series={series} period={period} />
+            </Box>
+            <Box id="legend-container" mt="20px"></Box>
+        </Box>
     );
 };
 
@@ -185,9 +179,7 @@ export default OverviewAreaChart;
 const SelectorGraph = ({ series, period }) => {
     const { colorMode } = useColorMode;
 
-    const overviewGraphData = useSelector(
-        (state) => state?.dashboardTableData?.OverviewGraphData
-    );
+    const overviewGraphData = useSelector((state) => state?.dashboardTableData?.OverviewGraphData);
 
     let greySeries = [];
 
@@ -346,17 +338,19 @@ const SelectorGraph = ({ series, period }) => {
 
     return (
         <>
-            {overviewGraphData?.isSuccess && (
-                <Box px={"20px"}>
-                    <CustomChart
-                        options={options}
-                        series={greySeries}
-                        type={options.chart.type}
-                        height={"100px"}
-                        width={"100%"}
-                    />
-                </Box>
-            )}
+            {
+                overviewGraphData?.isSuccess && (
+                    <Box px={"20px"}>
+                        <CustomChart
+                            options={options}
+                            series={greySeries}
+                            type={options.chart.type}
+                            height={"100px"}
+                            width={"100%"}
+                        />
+                    </Box>
+                )
+            }
         </>
     );
 };
