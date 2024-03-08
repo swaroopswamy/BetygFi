@@ -294,40 +294,40 @@ const SelectorGraph = ({ series, period }) => {
             let mostRecentSeries = findMostRecentSeries(series);
             if (period === "7d") {
                 let minDate = new Date(
-                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0]?.x)
                 );
                 minDate.setDate(minDate.getDate() - 7);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0]?.x),
                 });
             }
             if (period === "14d") {
                 let minDate = new Date(
-                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0]?.x)
                 );
                 minDate.setDate(minDate.getDate() - 14);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0]?.x),
                 });
             }
             if (period === "30d") {
                 let minDate = new Date(
-                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0]?.x)
                 );
                 minDate.setMonth(minDate.getMonth() - 1);
                 minDate.setHours(0, 0, 0, 0);
                 setSelectionHandler({
                     min: Date.parse(minDate),
-                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0]?.x),
                 });
             }
             if (period === "1yr") {
                 let minDate = new Date(
-                    Date.parse(mostRecentSeries.data.slice(-1)[0].x)
+                    Date.parse(mostRecentSeries.data.slice(-1)[0]?.x)
                 );
                 minDate.setDate(minDate.getDate() - 365);
                 minDate.setHours(0, 0, 0, 0);
@@ -338,8 +338,8 @@ const SelectorGraph = ({ series, period }) => {
             }
             if (period === "Max")
                 setSelectionHandler({
-                    min: Date.parse(mostRecentSeries.data.slice(0)[0].x),
-                    max: Date.parse(mostRecentSeries.data.slice(-1)[0].x),
+                    min: Date.parse(mostRecentSeries.data.slice(0)[0]?.x),
+                    max: Date.parse(mostRecentSeries.data.slice(-1)[0]?.x),
                 });
         }
     }, [period, series]);
@@ -386,7 +386,7 @@ function findMostRecentSeries(series) {
     let mostRecentDate = 0;
     let mostRecentIndex = 0;
     for (let i = 0; i < series.length; i++) {
-        let currLastDate = Date.parse(series[i].data.slice(-1)[0].x);
+        let currLastDate = Date.parse(series[i].data.slice(-1)[0]?.x);
         if (currLastDate >= mostRecentDate) {
             mostRecentDate = currLastDate;
             mostRecentIndex = i;

@@ -44,14 +44,14 @@ export const GOVERNANCE_TABLE_DATA_KEYS = (item) => [
     },
 ];
 
-export const categories = [
-    { name: "Prediction Markets", id: "Prediction Market" },
-    { name: "Derivatives", id: "Derivatives" },
-    { name: "Insurance", id: "Insurance" },
-    { name: "Yield", id: "Yield" },
-    { name: "CDP", id: "CDP" },
-    { name: "Lending", id: "Lending" },
-    { name: "Launchpad", id: "Launchpad" },
+export const defiCategories = [
+    { name: "Prediction Markets", id: "Prediction Market", slug: "prediction-market" },
+    { name: "Derivatives", id: "Derivatives", slug: "derivatives" },
+    { name: "Insurance", id: "Insurance", slug: "insurance" },
+    { name: "Yield", id: "Yield", slug: "yield" },
+    { name: "CDP", id: "CDP", slug: "cdp" },
+    { name: "Lending", id: "Lending", slug: "lending" },
+    { name: "Launchpad", id: "Launchpad", slug: "launchpad" },
 ];
 
 export const walletDashboardTabListData = [

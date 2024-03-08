@@ -36,17 +36,17 @@ const OverviewBox = () => {
             // startDate: "1637750033",
             // endDate: "1637750033",
             // groupType: "day",
+            query: blockchainSelected.join(",")
         };
         dispatch(fetchOverviewGraphData(payload));
     };
 
     useEffect(() => {
-        getOverviewDataHandler();
+        Promise.all([
+            getOverviewDataHandler(),
+            getOverviewGraphDataHandler(),
+        ]).then(result => result);
     }, [blockchainSelected, categorySelected]);
-
-    useEffect(() => {
-        getOverviewGraphDataHandler();
-    }, [categorySelected]);
 
     const renderLgOverviewBox = () => {
         return (
