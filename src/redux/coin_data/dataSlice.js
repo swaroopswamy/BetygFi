@@ -414,7 +414,7 @@ const CoinDataSlice = createSlice({
             state.btcDominanceDay = action.payload;
         },
         sapDaySelectReducer: (state, action) => {
-            state.btcDominanceDay = action.payload;
+            state.sapDay = action.payload;
         },
     },
 });
