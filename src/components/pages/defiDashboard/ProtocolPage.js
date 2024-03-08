@@ -20,7 +20,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
-//const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
+const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
 
 const ProtocolPage = () => {
@@ -118,7 +118,7 @@ const ProtocolPage = () => {
                     py={"15px"}
                     gap={"15px"}
                 >
-                    {/* <OverviewBox /> */}
+                    <OverviewBox />
                     {/* <OverviewColumnChart /> */}
                 </Box>
                 <Rankings />

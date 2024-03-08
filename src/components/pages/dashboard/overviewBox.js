@@ -32,9 +32,10 @@ const OverviewBox = () => {
 
     const getOverviewGraphDataHandler = () => {
         const payload = {
-            category: categorySelected,
-            startDate: "1637750033",
-            groupType: "day",
+            // categories: categorySelected,
+            // startDate: "1637750033",
+            // endDate: "1637750033",
+            // groupType: "day",
         };
         dispatch(fetchOverviewGraphData(payload));
     };
@@ -47,9 +48,9 @@ const OverviewBox = () => {
         getOverviewGraphDataHandler();
     }, [categorySelected]);
 
-    return (
-        <>
-            {isLg ? (
+    const renderLgOverviewBox = () => {
+        return (
+            (
                 <Box
                     w="100%"
                     display={{ base: "none", lg: "flex" }}
@@ -89,55 +90,65 @@ const OverviewBox = () => {
                         </Text>
                     </Box> */}
                 </Box>
-            ) : (
-                <SingleAccordionComp
-                    display={{ base: "flex", lg: "none" }}
-                    minH={"50px"}
-                    ButtonComp={() => {
-                        return (
-                            <Box
-                                layerStyle="spaceBetween"
-                                w={"100%"}
-                                gap={"10px"}
-                                mr={"10px"}
-                            >
-                                <Text variant={"h2"}>Overview</Text>
+            )
+        );
+    };
 
-                                <Box layerStyle={"flexCenter"} gap={"5px"}>
-                                    <Text variant={"h3"}>Total Market Cap</Text>
-                                    <TooltipComp
-                                        label="Total Market Cap tracked by Solvendo"
-                                        mr="7px"
-                                    />
-                                    {overviewData?.tvl !== undefined ? (
-                                        <Text
-                                            variant={"h1"}
-                                            suppressHydrationWarning
-                                        >
-                                            {millify(overviewData?.tvl, {
-                                                precision: 2,
-                                                locales: "en-US",
-                                            })}
-                                        </Text>
-                                    ) : (
-                                        <Text variant={"h1"}>NA</Text>
-                                    )}
-                                </Box>
+    const renderNonLgOverviewBox = () => {
+        return (
+            <SingleAccordionComp
+                display={{ base: "flex", lg: "none" }}
+                minH={"50px"}
+                ButtonComp={() => {
+                    return (
+                        <Box
+                            layerStyle="spaceBetween"
+                            w={"100%"}
+                            gap={"10px"}
+                            mr={"10px"}
+                        >
+                            <Text variant={"h2"}>Overview</Text>
+
+                            <Box layerStyle={"flexCenter"} gap={"5px"}>
+                                <Text variant={"h3"}>Total Market Cap</Text>
+                                <TooltipComp
+                                    label="Total Market Cap tracked by Solvendo"
+                                    mr="7px"
+                                />
+                                {overviewData?.tvl !== undefined ? (
+                                    <Text
+                                        variant={"h1"}
+                                        suppressHydrationWarning
+                                    >
+                                        {millify(overviewData?.tvl, {
+                                            precision: 2,
+                                            locales: "en-US",
+                                        })}
+                                    </Text>
+                                ) : (
+                                    <Text variant={"h1"}>NA</Text>
+                                )}
                             </Box>
-                        );
-                    }}
-                    PanelComp={() => {
-                        return (
-                            <OverviewAreaChart />
-                            // <Box bg={"#00000014"} p="30px" mt={"30px"} minH={"100px"}>
-                            //     <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} lineHeight={"20px"} opacity={0.6}>
-                            //         For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
-                            //     </Text>
-                            // </Box>
-                        );
-                    }}
-                />
-            )}
+                        </Box>
+                    );
+                }}
+                PanelComp={() => {
+                    return (
+                        <OverviewAreaChart />
+                        // <Box bg={"#00000014"} p="30px" mt={"30px"} minH={"100px"}>
+                        //     <Text variant={"h2"} fontWeight={"300"} textAlign={"center"} lineHeight={"20px"} opacity={0.6}>
+                        //         For the Risk Trend to be launched, the system need to run for a minimum duration of 4 weeks.
+                        //     </Text>
+                        // </Box>
+                    );
+                }}
+            />
+        );
+    };
+
+    return (
+        <>
+            {isLg ? renderLgOverviewBox() : renderNonLgOverviewBox()}
         </>
     );
 };
