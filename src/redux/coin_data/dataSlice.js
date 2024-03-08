@@ -6,7 +6,8 @@ import {
     getCoinScoresData,
     getTrendingCoinsData,
     getTopGainersAndLosersData,
-    getSAPData
+    getSAPData,
+    getMarqueeDataAPI
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -79,6 +80,14 @@ export const fetchBTCDominanceScoresData = createAsyncThunk(
     }
 );
 
+export const fetchMarqueeData = createAsyncThunk(
+    "getMarqueeData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getMarqueeDataAPI(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -130,8 +139,16 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        MarqueeData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
         blockchainType: [],
         scoreSelected: "",
+        btcDominanceDay: "7D",
+        sapDay: "7D"
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -266,6 +283,42 @@ const CoinDataSlice = createSlice({
             state.SAPData.isError = true;
             state.SAPData.data = action.payload;
         });
+        builder.addCase(fetchBTCDominanceScoresData.fulfilled, (state, action) => {
+            state.BTCDominanceScoresData.data = action.payload;
+            state.BTCDominanceScoresData.isLoading = false;
+            state.BTCDominanceScoresData.isSuccess = true;
+            state.BTCDominanceScoresData.isError = false;
+        });
+        builder.addCase(fetchBTCDominanceScoresData.pending, (state, action) => {
+            state.BTCDominanceScoresData.isLoading = true;
+            state.BTCDominanceScoresData.isError = false;
+            state.BTCDominanceScoresData.isSuccess = false;
+            state.BTCDominanceScoresData.data = action.payload;
+        });
+        builder.addCase(fetchBTCDominanceScoresData.rejected, (state, action) => {
+            state.BTCDominanceScoresData.isLoading = false;
+            state.BTCDominanceScoresData.isSuccess = false;
+            state.BTCDominanceScoresData.isError = true;
+            state.BTCDominanceScoresData.data = action.payload;
+        });
+        builder.addCase(fetchMarqueeData.fulfilled, (state, action) => {
+            state.MarqueeData.data = action.payload;
+            state.MarqueeData.isLoading = false;
+            state.MarqueeData.isSuccess = true;
+            state.MarqueeData.isError = false;
+        });
+        builder.addCase(fetchMarqueeData.pending, (state, action) => {
+            state.MarqueeData.isLoading = true;
+            state.MarqueeData.isError = false;
+            state.MarqueeData.isSuccess = false;
+            state.MarqueeData.data = action.payload;
+        });
+        builder.addCase(fetchMarqueeData.rejected, (state, action) => {
+            state.MarqueeData.isLoading = false;
+            state.MarqueeData.isSuccess = false;
+            state.MarqueeData.isError = true;
+            state.MarqueeData.data = action.payload;
+        });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {
@@ -291,8 +344,14 @@ const CoinDataSlice = createSlice({
                 state.scoreSelected = action.payload;
             }
         },
+        btcDominanceDaySelectReducer: (state, action) => {
+            state.btcDominanceDay = action.payload;
+        },
+        sapDaySelectReducer: (state, action) => {
+            state.btcDominanceDay = action.payload;
+        },
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData } = CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;

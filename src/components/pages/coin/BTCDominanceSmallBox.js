@@ -1,35 +1,42 @@
 import { Box, Text, Select, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
+import { btcDominanceDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
-import React, { useMemo } from "react";
-
-const randomData = [
-    { x: new Date(2023, 11, 1), y: 5 },
-    { x: new Date(2023, 11, 2), y: 30 },
-    { x: new Date(2023, 11, 3), y: 15 },
-    { x: new Date(2023, 11, 4), y: 5 },
-    { x: new Date(2023, 11, 4), y: 6 },
-];
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const BTCDominanceSmallBox = () => {
     const { colorMode } = useColorMode();
-    const periods = ["7d", "14d", "30d"];
+    const [series, setSeries] = useState();
+    const dispatch = useDispatch();
+    const BTCDominanceScoresData = useSelector((state) => state.coinData.BTCDominanceScoresData);
+
+    const periods = [
+        {
+            value: "7D",
+            label: "7d"
+        },
+        {
+            value: "14D",
+            label: "14d"
+        },
+        {
+            value: "30D",
+            label: "30d"
+        },
+    ];
     const options = {
         chart: {
             type: 'area',
+            toolbar: {
+                show: false
+            },
         },
         dataLabels: {
             enabled: false,
         },
-        toolbar: {
-            show: false
-        },
         grid: {
             show: false
-        },
-        zoom: {
-            enabled: false,
         },
         stroke: {
             curve: 'smooth',
@@ -37,13 +44,14 @@ const BTCDominanceSmallBox = () => {
             colors: "rgba(36, 95, 0, 1)"
         },
         fill: {
-            type: "gradient",
+            type: 'gradient',
             gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.9,
-                stops: [0, 90, 100]
-            }
+                shade: 'light', // Choose shade (light, dark)
+                type: 'horizontal', // Choose gradient type (horizontal, vertical)
+                opacityFrom: 0.5, // Starting opacity (0-1)
+                opacityTo: 0.8 // Ending opacity (0-1)
+            },
+            colors: ["#245F00"]
         },
         xaxis: {
             type: 'datetime',
@@ -70,14 +78,11 @@ const BTCDominanceSmallBox = () => {
         },
     };
 
-    const series = useMemo(
-        () => [
-            {
-                data: randomData,
-            },
-        ],
-        [randomData]
-    );
+    useEffect(() => {
+        setSeries([{
+            data: BTCDominanceScoresData.data
+        }]);
+    }, [BTCDominanceScoresData]);
     return (
         <Box
             width={"30%"}
@@ -85,7 +90,6 @@ const BTCDominanceSmallBox = () => {
             height={"197px"}
             borderRadius={"8px"}
             mb={"15px"}
-            p={"12px"}
             pb={"0px"}
             _light={{
                 bg: "#FFFFFF"
@@ -93,8 +97,11 @@ const BTCDominanceSmallBox = () => {
             _dark={{
                 bg: "#282828"
             }}
+            display={"flex"}
+            justifyContent={"space-between"}
+            flexDirection={"column"}
         >
-            <Box layerStyle={"spaceBetween"} mb={"12px"}>
+            <Box layerStyle={"spaceBetween"} mb={"12px"} px={"12px"} pt={"12px"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
                         height={32}
@@ -112,13 +119,16 @@ const BTCDominanceSmallBox = () => {
                         height={"24px"}
                         border={"1px"}
                         borderRadius={"2px"}
+                        onChange={(e) => {
+                            dispatch(btcDominanceDaySelectReducer(e.target.value));
+                        }}
                         borderColor={colorMode === 'light' ? "#E0E0E0" : "#333333"}
                         padding={"0"}
                     >
                         {
                             periods.map((period, i) => {
                                 return (
-                                    <option value={period} key={i}>{period}</option>
+                                    <option value={period.value} key={i}>{period.label}</option>
                                 );
                             })
                         }
@@ -127,26 +137,24 @@ const BTCDominanceSmallBox = () => {
             </Box>
             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
                 <Text variant={"textBold"} fontSize={"24px"}>51.61%</Text>
-                <Box borderRadius={"16px"} layerStyle={"flexCenter"} bgColor={"rgba(36, 95, 0, 0.12)"} px={"12px"} py="3px" ml={"5px"}>
+                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
+                    bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
+                    px={"12px"} py="3px" ml={"5px"}>
                     <Text variant={"baseStyle"} lineHeight={"17px"}
                         _light={{
-                            color: "#245F00"
-                        }}
-                        _dark={{
-                            color: "#60C000"
+                            color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                         }}
                     >
                         52.0%
                     </Text>
                 </Box>
             </Box>
-            <Box >
-                <CustomChart
-                    options={options}
-                    series={series}
-                    height={80}
-                />
-            </Box>
+            <CustomChart
+                type={"area"}
+                options={options}
+                series={series}
+                height={80}
+            />
         </Box>
     );
 };

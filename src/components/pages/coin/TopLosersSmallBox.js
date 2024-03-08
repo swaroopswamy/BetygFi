@@ -1,11 +1,13 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useSelector } from "react-redux";
 
 const TopLosersSmallBox = () => {
     const { colorMode } = useColorMode();
     const TopGainersAndLosersData = useSelector((state) => state.coinData.TopGainersAndLosersData);
+    const router = useRouter();
 
     return (
         <Box
@@ -29,7 +31,12 @@ const TopLosersSmallBox = () => {
                         Top Losers
                     </Text>
                 </Box>
-                <Box layerStyle={"flexCenter"} gap={"3px"}>
+                <Box layerStyle={"flexCenter"} gap={"3px"}
+                    cursor={"pointer"}
+                    onClick={() => {
+                        router.push(`/coin?on=change_24hr&by=asc`);
+                    }} 
+                >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
                         _light={{ color: "#757575" }}
                         _dark={{ color: "#A5A5A5" }}

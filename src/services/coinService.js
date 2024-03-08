@@ -109,7 +109,18 @@ export const getSAPData = async (rejectWithValue) => {
 
 export const getBTCDominanceScoresAPI = async (payload, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-dominance-scores`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-dominance-scores/${payload?.day}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+
+export const getMarqueeDataAPI = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/marquee-data`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {

@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { isNotNullAndUndefined, orderByKey } from "@util/utility";
+import { useSearchParams } from "next/navigation";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
@@ -23,9 +24,12 @@ const GenericTable = ({
 	showSortingIcon
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
+	const searchParams = useSearchParams();
+	const on = searchParams.get('on');
+	const by = searchParams.get('by');
 
 	const [tableBodyData, setTableBodyData] = useState([]);
-	const [sortedState, setSortedState] = useState({ on: null, by: 'asc' });
+	const [sortedState, setSortedState] = useState({ on: on ?? null, by: by ?? 'asc' });
 
 	useEffect(() => {
 		if (Array.isArray(tableData?.data?.data)) {
@@ -53,6 +57,10 @@ const GenericTable = ({
 			}
 		}
 	}, [sortedState]);
+
+	useEffect(() => {
+		setSortedState({ on: on ?? null, by: by ?? 'asc' });
+	}, [on, by]);
 
 	const onClickHeader = headerItem => {
 		if (showSortingIcon) {

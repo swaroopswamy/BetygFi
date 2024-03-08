@@ -19,7 +19,7 @@ import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import TrendingCoinPanel from "@components/trendingCoinPanel";
-import { fetchSAPData, fetchTopGainersAndLosersData, fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
+import { fetchBTCDominanceScoresData, fetchMarqueeData, fetchSAPData, fetchTopGainersAndLosersData, fetchTrendingCoinsData } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
@@ -30,6 +30,8 @@ const CoinPage = () => {
     const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
 
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
+    const btcDominanceDay = useSelector((state) => state?.coinData?.btcDominanceDay);
+
 
     const fetchTopGainersAndLosersDataHandler = () => {
         dispatch(fetchTopGainersAndLosersData());
@@ -39,14 +41,32 @@ const CoinPage = () => {
         dispatch(fetchSAPData());
     };
 
+    const fetchMarqueeDataHandler = () => {
+        dispatch(fetchMarqueeData());
+    };
+
+    const fetchBTCDominanceScoresDataHandler = () => {
+        const payload = {
+            day: btcDominanceDay
+        };
+        dispatch(fetchBTCDominanceScoresData(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             dispatch(fetchTrendingCoinsData()),
             dispatch(fetchBlockchainListData()),
             fetchTopGainersAndLosersDataHandler(),
-            fetchSAPDataHandler()
+            fetchSAPDataHandler(),
+            fetchMarqueeDataHandler()
         ]).then(result => result);
     }, []);
+
+    useEffect(() => {
+        Promise.all([
+            fetchBTCDominanceScoresDataHandler()
+        ]).then(res => res);
+    }, [btcDominanceDay]);
 
     return (
         <Box

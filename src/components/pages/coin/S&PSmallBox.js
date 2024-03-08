@@ -1,66 +1,56 @@
 import { Box, Select, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
+import { sapDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
-
-const randomData = [
-    { x: new Date(2023, 11, 1), y: 5 },
-    { x: new Date(2023, 11, 2), y: 30 },
-    { x: new Date(2023, 11, 3), y: 15 },
-    { x: new Date(2023, 11, 4), y: 5 },
-    { x: new Date(2023, 11, 4), y: 6 },
-];
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
-    const SAPData = useSelector((state) => state.coinData.SAPData);
-    const periods = ["7d", "14d", "30d"];
+    const [series, setSeries] = useState();
+    const dispatch = useDispatch();
+    const SAPData = useSelector((state) => state?.coinData?.SAPData);
+    const periods = [
+        {
+            value: "7D",
+            label: "7d"
+        },
+        {
+            value: "14D",
+            label: "14d"
+        },
+        {
+            value: "30D",
+            label: "30d"
+        },
+    ];
     const options = {
         chart: {
             type: 'area',
+            toolbar: {
+                show: false
+            },
         },
         dataLabels: {
             enabled: false,
         },
-        toolbar: {
-            show: false
-        },
         grid: {
             show: false
-        },
-        // zoom: {
-        //     enabled: false,
-        // },
-        zoom: {
-            enabled: false,
-            zoomIn: {
-                autoScaleYaxis: true
-            },
-            zoomOut: {
-                autoScaleYaxis: true
-            },
-            pan: {
-                enabled: false,
-                autoScaleYaxis: true
-            },
-            reset: {
-                enabled: false
-            }
         },
         stroke: {
             curve: 'smooth',
             width: 1,
-            colors: ['#245000'],
+            colors: "rgba(36, 95, 0, 1)"
         },
         fill: {
-            type: "gradient",
+            type: 'gradient',
             gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.9,
-                stops: [0, 90, 100]
-            }
+                shade: 'light', // Choose shade (light, dark)
+                type: 'horizontal', // Choose gradient type (horizontal, vertical)
+                opacityFrom: 0.5, // Starting opacity (0-1)
+                opacityTo: 0.8 // Ending opacity (0-1)
+            },
+            colors: ["#245F00"]
         },
         xaxis: {
             type: 'datetime',
@@ -87,14 +77,11 @@ const SandPSmallBox = () => {
         },
     };
 
-    const series = useMemo(
-        () => [
-            {
-                data: randomData,
-            },
-        ],
-        [randomData]
-    );
+    useEffect(() => {
+        setSeries([{
+            data: SAPData?.data?.data
+        }]);
+    }, [SAPData]);
     return (
         <Box
             width={"30%"}
@@ -125,13 +112,16 @@ const SandPSmallBox = () => {
                         height={"24px"}
                         border={"1px"}
                         borderRadius={"2px"}
+                        onChange={(e) => {
+                            dispatch(sapDaySelectReducer(e.target.value));
+                        }}
                         borderColor={colorMode === 'light' ? "#E0E0E0" : "#333333"}
                         padding={0}
                     >
                         {
                             periods.map((period, i) => {
                                 return (
-                                    <option value={period} key={i}>{period}</option>
+                                    <option value={period.value} key={i}>{period.label}</option>
                                 );
                             })
                         }
@@ -145,13 +135,13 @@ const SandPSmallBox = () => {
                         currency: "USD",
                     }) ?? "-"}
                 </Text>
-                <Box borderRadius={"16px"} layerStyle={"flexCenter"} bgColor={"rgba(36, 95, 0, 0.12)"} px={"12px"} py="3px" ml={"5px"}>
+                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
+                    bgColor={SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
+                    px={"12px"} py="3px" ml={"5px"}
+                >
                     <Text variant={"baseStyle"} lineHeight={"17px"}
                         _light={{
-                            color: "#245F00"
-                        }}
-                        _dark={{
-                            color: "#60C000"
+                            color: SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                         }}
                     >
                         {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}
@@ -165,12 +155,13 @@ const SandPSmallBox = () => {
             </Box>
             <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
                 <CustomChart
+                    type={"area"}
                     options={options}
                     series={series}
                     height={80}
                 />
             </Box>
-        </Box>
+        </Box >
     );
 };
 
