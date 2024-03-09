@@ -295,37 +295,39 @@ const TableRow = ({ item, rowIndex }) => {
             </Td>
             <Td key={7} justifyContent={"center"}>
                 <Box layerStyle={"center"} justifyContent={"start"} h="100%">
-                    {item?.safety_score === undefined ? (
-                        "-"
-                    ) : (
-                        <Box
-                            layerStyle={"flexCenter"}
-                            justifyContent={"center"}
-                            w="88px"
-                            h="33px"
-                            borderRadius={"30px"}
-                            mr={"4px"}
-                            bgColor={
-                                item.safety_score >= 75
-                                    ? "#0E6027"
-                                    : item.safety_score < 75 &&
-                                        item.safety_score >= 50
-                                        ? "#00799F"
-                                        : item.safety_score < 50 &&
-                                            item.safety_score >= 25
-                                            ? "#B87A00"
-                                            : "#FF0000"
-                            }
-                        >
-                            <Text
-                                variant={"h3"}
-                                color={"#FFFFFF"}
-                                fontWeight={"700"}
-                            >
-                                {item?.safety_score?.toFixed(0)}
-                            </Text>
-                        </Box>
-                    )}
+                    {
+                        item?.safety_score === undefined ?
+                            ("-") :
+                            (
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                    justifyContent={"center"}
+                                    w="88px"
+                                    h="33px"
+                                    borderRadius={"30px"}
+                                    mr={"4px"}
+                                    bgColor={
+                                        item.safety_score >= 75
+                                            ? "#0E6027"
+                                            : item.safety_score < 75 &&
+                                                item.safety_score >= 50
+                                                ? "#00799F"
+                                                : item.safety_score < 50 &&
+                                                    item.safety_score >= 25
+                                                    ? "#B87A00"
+                                                    : "#FF0000"
+                                    }
+                                >
+                                    <Text
+                                        variant={"h3"}
+                                        color={"#FFFFFF"}
+                                        fontWeight={"700"}
+                                    >
+                                        {item?.safety_score?.toFixed(0)}
+                                    </Text>
+                                </Box>
+                            )
+                    }
                 </Box>
             </Td>
         </Tr>
