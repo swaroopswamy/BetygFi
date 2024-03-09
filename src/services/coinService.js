@@ -117,9 +117,9 @@ export const getFearAndGreedData = async (rejectWithValue) => {
     }
 };
 
-export const getSAPData = async (rejectWithValue) => {
+export const getSAPData = async (payload, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/sap-500`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/sap-500?type=${payload?.day}`;
         const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {

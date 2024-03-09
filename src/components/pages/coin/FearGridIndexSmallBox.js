@@ -47,9 +47,11 @@ const FearGridIndexSmallBox = () => {
                 Next Update: 10hrs, 59 min
             </Text>
 
-            <Box position={"absolute"} w="140px" h="140px" top="20px" right={"0px"}>
-                <FearMeter score={FearAndGreedData?.data?.currentDay_Score[0]?.value} />
-            </Box>
+            {FearAndGreedData?.isSuccess && (
+                <Box position={"absolute"} w="140px" h="140px" top="20px" right={"0px"}>
+                    <FearMeter score={FearAndGreedData?.data?.currentDay_Score[0]?.value} />
+                </Box>
+            )}
 
             <Box
                 height={"70px"}

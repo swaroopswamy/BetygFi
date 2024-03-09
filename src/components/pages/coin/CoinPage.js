@@ -25,7 +25,7 @@ import {
     fetchTrendingCoinsData,
     fetchTopBTCETFData,
     fetchFearAndGreedData,
-    fetchBTCDominanceScoresData, fetchMarqueeData, 
+    fetchBTCDominanceScoresData, fetchMarqueeData,
 } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
@@ -38,6 +38,7 @@ const CoinPage = () => {
 
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
     const btcDominanceDay = useSelector((state) => state?.coinData?.btcDominanceDay);
+    const sapDay = useSelector((state) => state?.coinData?.sapDay);
 
 
     const fetchTopGainersAndLosersDataHandler = () => {
@@ -53,7 +54,10 @@ const CoinPage = () => {
     };
 
     const fetchSAPDataHandler = () => {
-        dispatch(fetchSAPData());
+        const payload = {
+            day: sapDay
+        };
+        dispatch(fetchSAPData(payload));
     };
 
     const fetchMarqueeDataHandler = () => {
@@ -85,6 +89,12 @@ const CoinPage = () => {
         ]).then(res => res);
     }, [btcDominanceDay]);
 
+    useEffect(() => {
+        Promise.all([
+            fetchSAPDataHandler()
+        ]).then(res => res);
+    }, [sapDay]);
+
     return (
         <Box
             display={"flex"}
@@ -98,9 +108,9 @@ const CoinPage = () => {
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
             ></BreadCrumb> */}
-            <Box layerStyle={"flexCenter"} w="100%">
+            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }}>
                 <Marquee />
-                <Box layerStyle={"flexCenter"} w="10%" ml={"30px"} >
+                <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} ml={"30px"} justifyContent={"flex-end"}>
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                     <Switch
                         size={"lg"}

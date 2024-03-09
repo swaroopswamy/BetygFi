@@ -4,6 +4,7 @@ import { btcDominanceDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import NoDataAvailable from "./NodataSmallBox";
 
 const BTCDominanceSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -134,26 +135,35 @@ const BTCDominanceSmallBox = () => {
                     </Select>
                 </Box>
             </Box>
-            <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
-                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
-                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
-                    bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
-                    px={"12px"} py="3px" ml={"5px"}>
-                    <Text variant={"baseStyle"} lineHeight={"17px"}
-                        _light={{
-                            color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
-                        }}
-                    >
-                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)} %
-                    </Text>
-                </Box>
-            </Box>
-            <CustomChart
-                type={"area"}
-                options={options}
-                series={series}
-                height={80}
-            />
+            {
+                BTCDominanceScoresData?.isSuccess ?
+                    (
+                        <React.Fragment>
+                            <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
+                                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
+                                <Box borderRadius={"16px"} layerStyle={"flexCenter"}
+                                    bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
+                                    px={"12px"} py="3px" ml={"5px"}>
+                                    <Text variant={"baseStyle"} lineHeight={"17px"}
+                                        _light={{
+                                            color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
+                                        }}
+                                    >
+                                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)} %
+                                    </Text>
+                                </Box>
+                            </Box>
+                            <CustomChart
+                                type={"area"}
+                                options={options}
+                                series={series}
+                                height={110}
+                            />
+                        </React.Fragment>)
+                    :
+                    <NoDataAvailable />
+            }
+
         </Box>
     );
 };

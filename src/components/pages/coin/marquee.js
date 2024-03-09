@@ -185,7 +185,7 @@ const Marquee = () => {
     return (
         <Box w="90%" className="marquee-container">
             <Box className="marquee-div">
-                <Box display={"flex"} className="marquee-content">
+                <Box display={"flex"} className="marquee-content" mr={"200px"}>
                     {marqueetiles.map((tile, i) => {
                         return (
                             <Box layerStyle={"flexCenter"} mx={"10px"} key={i}>

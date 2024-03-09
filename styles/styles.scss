@@ -208,14 +208,18 @@ body {
 }
 
 .marquee-div {
-    display: block;
+    display: flex;
     position: absolute;
     overflow: hidden;
     width: 250%;
 
     /* Animate to the left */
-    animation: marquee 10s linear infinite;
+    animation: marquee 30s linear infinite;
 }
+.marquee-div:hover {
+    animation-play-state: paused;
+}
+
 .marquee-content{
     float: left;
     width: 50%;
