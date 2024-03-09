@@ -9,7 +9,8 @@ import {
     getTopBTCETFData,
     getFearAndGreedData,
     getSAPData,
-    getMarqueeDataAPI
+    getMarqueeDataAPI,
+    getCryptoCategoriesData
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -41,6 +42,11 @@ export const fetchTrendingCoinsData = createAsyncThunk(
         return response.data;
     }
 );
+
+export const fetchCryptoCategoriesData = createAsyncThunk("getCryptoCategoriesData", async (payload, { rejectWithValue }) => {
+    const response = await getCryptoCategoriesData(rejectWithValue);
+    return response.data;
+});
 
 export const fetchCoinPriceData = createAsyncThunk(
     "getCoinPriceData",
@@ -116,6 +122,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         CoinScoresData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        CryptoCategoriesData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -222,6 +234,24 @@ const CoinDataSlice = createSlice({
             state.CoinScoresData.isSuccess = false;
             state.CoinScoresData.isError = true;
             state.CoinScoresData.data = action.payload;
+        });
+        builder.addCase(fetchCryptoCategoriesData.fulfilled, (state, action) => {
+            state.CryptoCategoriesData.data = action.payload;
+            state.CryptoCategoriesData.isLoading = false;
+            state.CryptoCategoriesData.isSuccess = true;
+            state.CryptoCategoriesData.isError = false;
+        });
+        builder.addCase(fetchCryptoCategoriesData.pending, (state, action) => {
+            state.CryptoCategoriesData.isLoading = true;
+            state.CryptoCategoriesData.isError = false;
+            state.CryptoCategoriesData.isSuccess = false;
+            state.CryptoCategoriesData.data = action.payload;
+        });
+        builder.addCase(fetchCryptoCategoriesData.rejected, (state, action) => {
+            state.CryptoCategoriesData.isLoading = false;
+            state.CryptoCategoriesData.isSuccess = false;
+            state.CryptoCategoriesData.isError = true;
+            state.CryptoCategoriesData.data = action.payload;
         });
         builder.addCase(fetchTrendingCoinsData.fulfilled, (state, action) => {
             state.TrendingCoinsData.data = action.payload;

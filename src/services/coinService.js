@@ -47,9 +47,19 @@ export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     }
 };
 
-export const getCoinScoresData = async (rejectWithValue) => {
+export const getCoinScoresData = async (query, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores${query ? '?category=' + query : ''}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getCryptoCategoriesData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/categories`;
         const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {

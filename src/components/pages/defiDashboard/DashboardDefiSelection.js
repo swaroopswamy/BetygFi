@@ -16,7 +16,7 @@ const DashboardDefiSelection = () => {
     return isMd ? (
         <>
             <Box
-                display={{ base: "none", md: "flex" }}
+                display={"flex"}
                 h={"40px"}
                 px={{ base: "18px", md: "0px" }}
             >
@@ -60,7 +60,7 @@ const DashboardDefiSelection = () => {
     ) : (
         <>
             <Box
-                display={{ base: "flex", md: "none" }}
+                display={"flex"}
                 h={"40px"}
                 px={{ base: "0px", md: "30px" }}
             >
