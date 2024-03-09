@@ -134,12 +134,12 @@ const TableRow = ({ item, i }) => {
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>User Address</Text>
 				</Box>
 			</Th>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
 					<Text variant={"smallTableHeaderMobile"}>Share</Text>
 				</Box>

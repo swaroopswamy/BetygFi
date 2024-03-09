@@ -33,7 +33,8 @@ const SlideLeftTable = ({
                 <Tr color={"gray.200"}>
                     {
                         tableHeader.map((item, i) => (
-                            <Th key={i} border={"0px"}>
+                            <Th key={i} border={"0px"} _light={{ bgColor: "#F5F5F7", }}
+                                _dark={{ bgColor: "#191919", }}>
                                 <Box
                                     onClick={() => onClickHeader(item)}
                                     cursor={"pointer"}
@@ -71,7 +72,8 @@ const SlideLeftTable = ({
             >
                 {(tableData?.isError || tableData === null) && (
                     <Tr>
-                        <Td
+                        <Td _light={{ bgColor: "#FFFFFF", }}
+                            _dark={{ bgColor: "#202020", }}
                             p="20px"
                             textAlign={"center"}
                             height={"245px"}

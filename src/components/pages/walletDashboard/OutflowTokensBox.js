@@ -114,12 +114,12 @@ const TableRowDesktop = ({ item, i }) => {
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Asset Name</Text>
 				</Box>
 			</Th>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
 					<Text variant={"smallTableHeaderMobile"}>Value</Text>
 				</Box>

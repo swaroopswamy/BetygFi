@@ -251,6 +251,8 @@ const GenericTable = ({
 					<Tr>
 						<Td
 							p="20px"
+							_dark={{ bgColor: "#202020", }}
+							_light={{ bgColor: "#FFFFFF", }}
 							textAlign={"center"}
 							height={"245px"}
 							colSpan={SkeletonRowsColumnsDesktop?.numColumns}
@@ -272,7 +274,8 @@ const GenericTable = ({
 					(tableBodyData?.length > 0 ? (
 						tableBodyData.map((item, rowIndex) => (
 							<Tr key={rowIndex}>
-								<Td p={0} colSpan={3}>
+								<Td _dark={{ bgColor: "#202020", }}
+									_light={{ bgColor: "#FFFFFF", }} p={0} colSpan={3}>
 									<SingleAccordionComp
 										display={"flex"}
 										minH={"50px"}
@@ -287,6 +290,8 @@ const GenericTable = ({
 					) : (
 						<Tr>
 							<Td
+								_dark={{ bgColor: "#202020", }}
+								_light={{ bgColor: "#FFFFFF", }}
 								p="20px"
 								textAlign={"center"}
 								height={"245px"}

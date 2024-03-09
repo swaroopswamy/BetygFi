@@ -340,13 +340,13 @@ const TableRow = ({ item, rowIndex }) => {
 const TableHeaderRowMobile = () => {
     return (
         <Tr>
-            <Th border={"0px"} w={"20px"}>
+            <Th border={"0px"} w={"20px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Rank</Text>
             </Th>
-            <Th border={"0px"}>
+            <Th border={"0px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Name</Text>
             </Th>
-            <Th border={"0px"}>
+            <Th border={"0px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Score</Text>
             </Th>
         </Tr>

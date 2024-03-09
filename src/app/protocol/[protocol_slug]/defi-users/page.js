@@ -168,12 +168,7 @@ function DefiUsers() {
 				ml={"5px"}
 				mb={"20px"}
 				align={"center"}
-				onClick={() => {
-					router.push(
-						`/protocol/aave-v2`
-						// `/defi_dashboard?defi=aave-v2&id=64dd07303aadfa8bc5badabc`
-					);
-				}}
+				onClick={() => { router.push(`/protocol/aave-v2`); }}
 			>
 				<Icon
 					w="24px"

@@ -5,7 +5,8 @@ const SkeletonTable = ({ numColumns, numRows }) => {
 	const skeletonRows = Array.from({ length: numRows }, (_, rowIndex) => (
 		<Tr key={rowIndex}>
 			{Array.from({ length: numColumns }, (_, columnIndex) => (
-				<Td key={columnIndex}>
+				<Td _light={{ bgColor: "#FFFFFF", }}
+					_dark={{ bgColor: "#202020", }} key={columnIndex}>
 					<Skeleton height="20px" my={4} />
 				</Td>
 			))}

@@ -83,7 +83,10 @@ const RiskAnalysis = ({ coinDetails }) => {
 export default RiskAnalysis;
 
 const RiskTable = ({ coinDetails }) => {
-
+    const commonStyleTdProp = {
+        _light: { bgColor: "#FFFFFF", },
+        _dark: { bgColor: "#202020", }
+    };
     return (
         <Table variant="unstyled" w={"80%"}>
             <Thead>
@@ -94,11 +97,13 @@ const RiskTable = ({ coinDetails }) => {
                         textTransform={"none"}
                         lineHeight={"18px"}
                         letterSpacing={"0.16px"}
+                        {...commonStyleTdProp}
                     ></Th>
                     <Th
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Text variant="tableHead2">Risk 95% Level</Text>
                     </Th>
@@ -106,6 +111,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Text variant="tableHead2">Risk 95% Level</Text>
                     </Th>
@@ -118,6 +124,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Text variant="tableHead2">Value at Risk</Text>
                     </Th>
@@ -125,6 +132,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Box layerStyle={"center"}>
                             <Text
@@ -141,6 +149,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Box layerStyle={"center"}>
                             <Text
@@ -159,6 +168,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Text variant="tableHead2">
                             Expected Daily Shortfall
@@ -168,6 +178,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Box layerStyle={"center"}>
                             <Text
@@ -187,6 +198,7 @@ const RiskTable = ({ coinDetails }) => {
                         border={"1px"}
                         borderColor={useColorModeValue("#E0E0E0", "#494949")}
                         textTransform={"none"}
+                        {...commonStyleTdProp}
                     >
                         <Box layerStyle={"center"}>
                             <Text
