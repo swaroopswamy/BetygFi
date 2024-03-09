@@ -230,7 +230,10 @@ export default CoinRankingsTable;
 
 const TableRow = ({ item, rowIndex }) => {
     const router = useRouter();
-
+    const commonStyleTdProp = {
+        _light: { bgColor: "#FFFFFF", },
+        _dark: { bgColor: "#202020", }
+    };
     return (
         <Tr
             key={rowIndex}
@@ -241,12 +244,12 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             bgColor={"background.secondary"}
         >
-            <Td key={0} textAlign={"center"} p={0}>
+            <Td {...commonStyleTdProp} key={0} textAlign={"center"} p={0}>
                 <Text variant={"h3"}>
                     {item?.rank === undefined ? "-" : item?.rank}
                 </Text>
             </Td>
-            <Td key={1} p={"15px"}>
+            <Td {...commonStyleTdProp} key={1} p={"15px"}>
                 <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <CustomAvatar
                         width={"24px"}
@@ -276,7 +279,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Box>
                 </Box>
             </Td>
-            <Td key={2} p={0}>
+            <Td {...commonStyleTdProp} key={2} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.price === undefined
@@ -288,7 +291,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={3} p={0}>
+            <Td {...commonStyleTdProp} key={3} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -301,7 +304,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={4} p={0}>
+            <Td {...commonStyleTdProp} key={4} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -316,7 +319,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={5} p={0}>
+            <Td {...commonStyleTdProp} key={5} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -329,7 +332,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={6} p={0}>
+            <Td {...commonStyleTdProp} key={6} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.volume_24hr === undefined
@@ -341,7 +344,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={7} p={0}>
+            <Td {...commonStyleTdProp} key={7} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.mcap === undefined
@@ -353,7 +356,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={8} justifyContent={"center"} p={0}>
+            <Td {...commonStyleTdProp} key={8} justifyContent={"center"} p={0}>
                 <Box layerStyle={"center"} justifyContent={"start"} h="100%">
                     {item?.score === undefined ? (
                         "-"

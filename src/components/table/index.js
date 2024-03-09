@@ -87,7 +87,8 @@ const GenericTable = ({
 				<Tr>
 					{
 						tableHeader.map((item, i) => (
-							<Th key={i} border={"0px"}>
+							<Th key={i} border={"0px"} _light={{ bgColor: "#F5F5F7", }}
+								_dark={{ bgColor: "#191919", }}>
 								<Box
 									onClick={() => onClickHeader(item)}
 									cursor={"pointer"}
@@ -130,6 +131,8 @@ const GenericTable = ({
 				{(tableData?.isError || tableData === null) && (
 					<Tr>
 						<Td
+							_light={{ bgColor: "#FFFFFF", }}
+							_dark={{ bgColor: "#202020", }}
 							p={"20px"}
 							textAlign={"center"}
 							height={"245px"}
@@ -154,6 +157,8 @@ const GenericTable = ({
 							colSpan={SkeletonRowsColumnsDesktop?.numColumns}
 							textAlign={"center"}
 							p={"20px"}
+							_light={{ bgColor: "#FFFFFF", }}
+							_dark={{ bgColor: "#202020", }}
 						>
 							<Box
 								display={"flex"}
@@ -203,6 +208,8 @@ const GenericTable = ({
 					) : (
 						<Tr>
 							<Td
+								_light={{ bgColor: "#FFFFFF", }}
+								_dark={{ bgColor: "#202020", }}
 								p="20px"
 								textAlign={"center"}
 								height={"245px"}
