@@ -229,7 +229,10 @@ export default AssetComposition;
 function TableRow({ item, i }) {
 	const [clicked, setClick] = useState(false);
 	const { colorMode } = useColorMode();
-
+	const commonStyleTdProp = {
+		_light: { bgColor: "#FFFFFF", },
+		_dark: { bgColor: "#202020", }
+	};
 	return (
 		<>
 			<Tr
@@ -251,7 +254,7 @@ function TableRow({ item, i }) {
 				borderColor={useColorModeValue("#DFDFDF", "#313131")}
 				borderRadius={"2px"}
 			>
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Flex>
 						<Box
 							alignItems={"center"}
@@ -282,7 +285,7 @@ function TableRow({ item, i }) {
 					</Flex>
 				</Td>
 
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Flex>
 						<Box>
 							<Text
@@ -305,7 +308,7 @@ function TableRow({ item, i }) {
 					</Flex>
 				</Td>
 
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Flex>
 						<Box>
 							<Text
@@ -328,7 +331,7 @@ function TableRow({ item, i }) {
 					</Flex>
 				</Td>
 
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Flex>
 						<Box>
 							<Text
@@ -351,7 +354,7 @@ function TableRow({ item, i }) {
 					</Flex>
 				</Td>
 
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Flex>
 						<Box>
 							<Text
@@ -488,12 +491,12 @@ function TableRow({ item, i }) {
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Asset Name</Text>
 				</Box>
 			</Th>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Share</Text>
 				</Box>

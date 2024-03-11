@@ -135,54 +135,57 @@ function DefiAssetsSmallTable({ searchParamProtocolSlug }) {
 export default DefiAssetsSmallTable;
 
 function TableRow({ item, i }) {
-
+	const commonStyleTdProp = {
+		_light: { bgColor: "#FFFFFF", },
+		_dark: { bgColor: "#202020", }
+	};
 	return (
-		<>
-			<Tr
-				key={i}
-				cursor={"pointer"}
-				bgColor={useColorModeValue("#FFFFFF", "#202020")}
-				borderBottom={"1px"}
-				borderColor={useColorModeValue("#DFDFDF", "#313131")}
-				borderRadius={"2px"}
-			>
-				<Td>
-					<Box layerStyle={"flexCenter"} gap={"10px"}>
-						<CustomAvatar
-							height={"24px"}
-							width={"24px"}
-							src={item?.logoUrl}
-							name={item?.assetName}
-						/>
-						<Text variant={"h3"}> {item?.assetName} </Text>
-					</Box>
-				</Td>
+		<Tr
+			key={i}
+			cursor={"pointer"}
+			bgColor={useColorModeValue("#FFFFFF", "#202020")}
+			borderBottom={"1px"}
+			borderColor={useColorModeValue("#DFDFDF", "#313131")}
+			borderRadius={"2px"}
+		>
+			<Td {...commonStyleTdProp}>
+				<Box layerStyle={"flexCenter"} gap={"10px"}>
+					<CustomAvatar
+						height={"24px"}
+						width={"24px"}
+						src={item?.logoUrl}
+						name={item?.assetName}
+					/>
+					<Text variant={"h3"}> {item?.assetName} </Text>
+				</Box>
+			</Td>
 
-				<Td>
-					<Box>
-						<Text variant={"h3"}> {item?.share}% </Text>
-					</Box>
-				</Td>
+			<Td {...commonStyleTdProp}>
+				<Box>
+					<Text variant={"h3"}> {item?.share}% </Text>
+				</Box>
+			</Td>
 
-				<Td>
-					<Box>
-						<Text variant={"h3"}> {USDollar.format(item?.value)} </Text>
-					</Box>
-				</Td>
-			</Tr>
-		</>
+			<Td {...commonStyleTdProp}>
+				<Box>
+					<Text variant={"h3"}> {USDollar.format(item?.value)} </Text>
+				</Box>
+			</Td>
+		</Tr>
 	);
 }
 
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }}
+				_dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Asset Name</Text>
 				</Box>
 			</Th>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }}
+				_dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Value</Text>
 				</Box>

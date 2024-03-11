@@ -121,10 +121,13 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 const TableRow = ({ item, rowIndex }) => {
 	const { colorMode } = useColorMode();
 	const walletAddress = useSelector((state) => state?.walletDashboardTableData?.walletAddress);
-
+	const commonStyleTdProp = {
+		_light: { bgColor: "#FFFFFF", },
+		_dark: { bgColor: "#202020", }
+	};
 	return (
 		<Tr key={rowIndex}>
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Box layerStyle={"flexCenter"} gap={"10px"}>
 					<Tooltip label={item?.blockchain}>
 						<Image
@@ -157,7 +160,7 @@ const TableRow = ({ item, rowIndex }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Box layerStyle={"flexCenter"}>
 					<Link
 						fontSize={"14px"}
@@ -187,7 +190,7 @@ const TableRow = ({ item, rowIndex }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Box layerStyle={"flexCenter"}>
 					<CustomAvatar
 						width={"18px"}
@@ -207,7 +210,7 @@ const TableRow = ({ item, rowIndex }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Tooltip label={item?.to}>
 					<Box layerStyle={"flexCenter"}>
 						<Text variant={"h3"} letterSpacing={"1px"} w="95px">
@@ -219,7 +222,7 @@ const TableRow = ({ item, rowIndex }) => {
 				</Tooltip>
 			</Td>
 
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Tooltip label={item?.from}>
 					<Box layerStyle={"flexCenter"}>
 						<Text variant={"h3"} letterSpacing={"1px"} w="95px">
@@ -231,7 +234,7 @@ const TableRow = ({ item, rowIndex }) => {
 				</Tooltip>
 			</Td>
 
-			<Td>
+			<Td {...commonStyleTdProp}>
 				<Box layerStyle={"flexCenter"}>
 					<Text
 						fontSize={"14px"}
@@ -259,7 +262,7 @@ const TableRow = ({ item, rowIndex }) => {
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th colSpan={2}>
+			<Th colSpan={2} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"spaceBetween"}>
 					<Text
 						_light={{

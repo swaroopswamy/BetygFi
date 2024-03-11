@@ -140,12 +140,12 @@ export default GovernanceTable;
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>Title</Text>
 				</Box>
 			</Th>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
 					<Text variant={"smallTableHeaderMobile"}>State</Text>
 				</Box>
@@ -189,35 +189,41 @@ const TableRow = ({ item, i }) => {
 	);
 };
 
-const TableData = ({ item }) => (
-	<Td>
-		<Flex>
-			<Box alignItems={"center"} display={"flex"} gap={item.slug === 'state' ? "5px" : "15px"}>
-				{
-					item.slug === 'state' && <Box
-						w="12px"
-						h="9px"
-						borderRadius={"30px"}
-						mr={"4px"}
-						bgColor={item?.State === "active" ? "#62D845" : "#FF4848"}
-					></Box>
-				}
-				<Text
-					_dark={{
-						color: "#FFFFFF",
-					}}
-					_light={{
-						color: "#16171B",
-					}}
-					fontSize={"14px"}
-					fontStyle={"normal"}
-					fontWeight={"400"}
-					lineHeight={"20px"}
-					textTransform={item.slug === 'state' ? "capitalize" : ""}
-				>
-					{item?.value}
-				</Text>
-			</Box>
-		</Flex>
-	</Td>
-);
+const TableData = ({ item }) => {
+	const commonStyleTdProp = {
+		_light: { bgColor: "#FFFFFF", },
+		_dark: { bgColor: "#202020", }
+	};
+	return (
+		<Td {...commonStyleTdProp}>
+			<Flex>
+				<Box alignItems={"center"} display={"flex"} gap={item.slug === 'state' ? "5px" : "15px"}>
+					{
+						item.slug === 'state' && <Box
+							w="12px"
+							h="9px"
+							borderRadius={"30px"}
+							mr={"4px"}
+							bgColor={item?.State === "active" ? "#62D845" : "#FF4848"}
+						></Box>
+					}
+					<Text
+						_dark={{
+							color: "#FFFFFF",
+						}}
+						_light={{
+							color: "#16171B",
+						}}
+						fontSize={"14px"}
+						fontStyle={"normal"}
+						fontWeight={"400"}
+						lineHeight={"20px"}
+						textTransform={item.slug === 'state' ? "capitalize" : ""}
+					>
+						{item?.value}
+					</Text>
+				</Box>
+			</Flex>
+		</Td>
+	);
+};

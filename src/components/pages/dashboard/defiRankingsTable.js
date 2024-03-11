@@ -200,7 +200,10 @@ export default Rankings;
 
 const TableRow = ({ item, rowIndex }) => {
     const router = useRouter();
-
+    const commonStyleTdProp = {
+        _light: { bgColor: "#FFFFFF", },
+        _dark: { bgColor: "#202020", }
+    };
     return (
         <Tr
             key={rowIndex}
@@ -208,12 +211,12 @@ const TableRow = ({ item, rowIndex }) => {
             onClick={() => { router.push(`/protocol/${item?.slug}`); }}
             border={"0px"}
         >
-            <Td key={0} textAlign={"center"}>
+            <Td {...commonStyleTdProp} key={0} textAlign={"center"}>
                 <Text variant={"h3"}>
                     {item?.Rank === undefined ? "-" : item?.Rank}
                 </Text>
             </Td>
-            <Td key={1}>
+            <Td  {...commonStyleTdProp} key={1}>
                 <Box
                     display={"flex"}
                     alignItems={"center"}
@@ -257,10 +260,10 @@ const TableRow = ({ item, rowIndex }) => {
                     </Box>
                 </Box>
             </Td>
-            <Td key={2}>
+            <Td  {...commonStyleTdProp} key={2}>
                 <Text variant={"h3"}>{item.category}</Text>
             </Td>
-            <Td key={3}>
+            <Td  {...commonStyleTdProp} key={3}>
                 <Text variant={"h3"}>
                     {item.price?.toLocaleString("en-US", {
                         style: "currency",
@@ -268,7 +271,7 @@ const TableRow = ({ item, rowIndex }) => {
                     }) ?? "-"}
                 </Text>
             </Td>
-            <Td key={4}>
+            <Td   {...commonStyleTdProp} key={4}>
                 <Text variant={"h3"}>
                     {Math.trunc(item.tvl).toLocaleString("en-US", {
                         style: "currency",
@@ -276,7 +279,7 @@ const TableRow = ({ item, rowIndex }) => {
                     }) ?? "-"}
                 </Text>
             </Td>
-            <Td key={5}>
+            <Td  {...commonStyleTdProp} key={5}>
                 <Text variant={"h3"}>
                     {Math.trunc(item.mcap).toLocaleString("en-US", {
                         style: "currency",
@@ -284,7 +287,7 @@ const TableRow = ({ item, rowIndex }) => {
                     })}
                 </Text>
             </Td>
-            <Td key={6}>
+            <Td  {...commonStyleTdProp} key={6}>
                 {item.tvl !== 0 ? (
                     <Text variant={"h3"}>
                         {(item['mcap-tvl'])?.toFixed(2)}
@@ -293,39 +296,41 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>NA</Text>
                 )}
             </Td>
-            <Td key={7} justifyContent={"center"}>
+            <Td  {...commonStyleTdProp} key={7} justifyContent={"center"}>
                 <Box layerStyle={"center"} justifyContent={"start"} h="100%">
-                    {item?.safety_score === undefined ? (
-                        "-"
-                    ) : (
-                        <Box
-                            layerStyle={"flexCenter"}
-                            justifyContent={"center"}
-                            w="88px"
-                            h="33px"
-                            borderRadius={"30px"}
-                            mr={"4px"}
-                            bgColor={
-                                item.safety_score >= 75
-                                    ? "#0E6027"
-                                    : item.safety_score < 75 &&
-                                        item.safety_score >= 50
-                                        ? "#00799F"
-                                        : item.safety_score < 50 &&
-                                            item.safety_score >= 25
-                                            ? "#B87A00"
-                                            : "#FF0000"
-                            }
-                        >
-                            <Text
-                                variant={"h3"}
-                                color={"#FFFFFF"}
-                                fontWeight={"700"}
-                            >
-                                {item?.safety_score?.toFixed(0)}
-                            </Text>
-                        </Box>
-                    )}
+                    {
+                        item?.safety_score === undefined ?
+                            ("-") :
+                            (
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                    justifyContent={"center"}
+                                    w="88px"
+                                    h="33px"
+                                    borderRadius={"30px"}
+                                    mr={"4px"}
+                                    bgColor={
+                                        item.safety_score >= 75
+                                            ? "#0E6027"
+                                            : item.safety_score < 75 &&
+                                                item.safety_score >= 50
+                                                ? "#00799F"
+                                                : item.safety_score < 50 &&
+                                                    item.safety_score >= 25
+                                                    ? "#B87A00"
+                                                    : "#FF0000"
+                                    }
+                                >
+                                    <Text
+                                        variant={"h3"}
+                                        color={"#FFFFFF"}
+                                        fontWeight={"700"}
+                                    >
+                                        {item?.safety_score?.toFixed(0)}
+                                    </Text>
+                                </Box>
+                            )
+                    }
                 </Box>
             </Td>
         </Tr>
@@ -335,13 +340,13 @@ const TableRow = ({ item, rowIndex }) => {
 const TableHeaderRowMobile = () => {
     return (
         <Tr>
-            <Th border={"0px"} w={"20px"}>
+            <Th border={"0px"} w={"20px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Rank</Text>
             </Th>
-            <Th border={"0px"}>
+            <Th border={"0px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Name</Text>
             </Th>
-            <Th border={"0px"}>
+            <Th border={"0px"} _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
                 <Text variant={"tableHead"}>Score</Text>
             </Th>
         </Tr>
