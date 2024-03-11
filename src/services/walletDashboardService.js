@@ -16,7 +16,7 @@ export const getWalletBalanceData = async (payloadData, rejectWithValue) => {
 export const getWalletTransactionsData = async (payloadData, rejectWithValue) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `wallet/transactions/${payloadData.address}/get`;
-		const cacheUrl = url + payloadData.payload.page;
+		const cacheUrl = url + (payloadData?.payload?.page || 1) + (payloadData?.payload?.blockchain?.join(",") || "") + (payloadData?.payload?.limit || 10);
 		if (checkIfCacheAvailable(cacheUrl)) {
 			return checkIfCacheAvailable(cacheUrl);
 		} else {
