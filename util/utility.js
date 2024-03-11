@@ -181,6 +181,7 @@ export const getEnv = (url) => {
     const allowedQA = ['qa.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
     const allowedDev = ['dev.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
     const allowedLocal = ['local.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
+    const allowedKube = ['kube.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
 
 
     if (url) {
@@ -190,6 +191,9 @@ export const getEnv = (url) => {
             return 'dev';
         } else if (allowedLocal.includes(url)) {
             return 'local';
+        }
+        else if (allowedKube.includes(url)) {
+            return 'kube';
         }
         else {
             return 'prod';
