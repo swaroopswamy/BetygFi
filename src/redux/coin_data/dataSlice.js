@@ -19,10 +19,7 @@ import { createCookies } from "@util/cookieHelper";
 export const fetchCoinRankingsTableData = createAsyncThunk(
     "getCoinRankingsTableData",
     async (payload, { rejectWithValue }) => {
-        const response = await getCoinRankingsTableData(
-            payload,
-            rejectWithValue
-        );
+        const response = await getCoinRankingsTableData(payload, rejectWithValue);
         return response.data;
     }
 );

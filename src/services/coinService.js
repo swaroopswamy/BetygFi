@@ -49,7 +49,7 @@ export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
 
 export const getCoinScoresData = async (query, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores${query ? '?category=' + query : ''}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores-v2${query ? '?category=' + query : ''}`;
         const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {

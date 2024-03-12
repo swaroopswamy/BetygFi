@@ -43,7 +43,7 @@ const CoinRankingsTable = () => {
             category: cryptoCategorySelected,
             page: tablePage,
             limit: tableLimit,
-            score_dist: scoreSelected,
+            score_dist: scoreSelected || "Low",
         };
         dispatch(fetchCoinRankingsTableData(payload));
     };
