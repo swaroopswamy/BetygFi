@@ -38,7 +38,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     borderTopRightRadius={data.index === 0 ? "14px" : "0px"}
                     borderBottomRightRadius={data.index === 0 ? "14px" : "0px"}
                     bgColor={
-                        scoreTotalData[data.index].value === 0
+                        scoreTotalData[data.index]?.value === 0
                             ? "#8F8F8F"
                             : data.bgColor
                     }
@@ -67,7 +67,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     onClick={() => ScoreSelectHandler(data.key)}
                     p={"7px 10px"}
                     alignItems={"start"}
-                    w={`${calculatePercentage(scoreTotalData[data.index].value, totalDefis)}%`}
+                    w={`${calculatePercentage(scoreTotalData[data.index]?.value, totalDefis)}%`}
                 >
                     <Text
                         fontSize={{ base: "12px", md: "14px" }}
@@ -84,7 +84,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                         fontWeight={700}
                         color={"#FFF"}
                     >
-                        {scoreTotalData[data.index].value ?? "-"}
+                        {scoreTotalData[data.index]?.value ?? "-"}
                     </Text>
                 </Box>
             </Tooltip>

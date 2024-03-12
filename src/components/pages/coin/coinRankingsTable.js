@@ -96,8 +96,8 @@ const CoinRankingsTable = () => {
                 const totalValue =
                     coinScoresData?.data[0]?.value +
                     coinScoresData?.data[1]?.value +
-                    coinScoresData?.data[2].value +
-                    coinScoresData?.data[3].value;
+                    coinScoresData?.data[2]?.value +
+                    coinScoresData?.data[3]?.value;
                 setTotalDefis(totalValue);
             }
         }
