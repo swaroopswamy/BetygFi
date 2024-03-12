@@ -23,7 +23,7 @@ import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
 import { PublicAddressStringFormatter } from "@util/utility";
 import { useDebounce } from "@hooks/useDebounce";
-import { getSearchV2List, getSearchV2TrendingList } from "@redux/app_data/dataSlice";
+import { getSearchV2List, getSearchV2TrendingList, mobileSearchbarOpenReducer } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
 import Image from "next/image";
 import { COLOR_MODE_COOKIE_NAME } from "@util/constant";
@@ -333,11 +333,12 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     </Box>
                     {
                         <Box cursor={"pointer"} onClick={() => {
+                            dispatch(mobileSearchbarOpenReducer(!isMobileSearchOpen));
                             window.scrollTo({ top: 0, behavior: 'smooth', });
                             onMobileSearchToggle();
-                            // setTimeout(() => {
-                            //     document.getElementById("searchMobileInput")?.focus();
-                            // }, 700);
+                            setTimeout(() => {
+                                document.getElementById("searchInputMobile")?.focus();
+                            }, 700);
                         }}>
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
@@ -357,6 +358,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                         layerStyle={"flexCenter"}
                         bgColor={colorMode === "light" ? "#FFFFFF" : "#272727"}
                         border={"1px"}
+                        zIndex={99}
+                        position={"fixed"}
                         borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
                     >
                         <SearchBoxV2

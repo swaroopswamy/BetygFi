@@ -124,55 +124,53 @@ function DefiTVLChart() {
 	}];
 
 	return (
-		<>
-			<Box
-				w={{ base: "100%", lg: "50%" }}
-				height={"370px"}
-				borderRadius={"6px"}
-				bgColor={useColorModeValue('#FFFFFF', "#202020")}
-			>
-				<Box layerStyle={"spaceBetween"} p={"20px"} >
-					<Box layerStyle={"flexCenter"} gap={"5px"}>
-						<Text variant={"smallTableHeader"}>
-							DeFi Borrow/Supply/TVL
-						</Text>
-						<TooltipComp label="DeFi borrow is the total amount of assets 
+		<Box
+			w={{ base: "100%", lg: "50%" }}
+			height={"370px"}
+			borderRadius={"6px"}
+			bgColor={useColorModeValue('#FFFFFF', "#202020")}
+		>
+			<Box layerStyle={"spaceBetween"} p={"20px"} >
+				<Box layerStyle={"flexCenter"} gap={"5px"}>
+					<Text variant={"smallTableHeader"}>
+						DeFi Borrow/Supply/TVL
+					</Text>
+					<TooltipComp label="DeFi borrow is the total amount of assets 
                         that the DeFi has lent to its users. 
                         DeFi supply is the total amount of assets users have lent to the DeFi. 
                         Total value locked (TVL) is the real-time value of the assets that the DeFi holds." />
-					</Box>
+				</Box>
 
-					{/* <Button
+				{/* <Button
                   variant={'viewMore'}
                   // onClick={() => {
                   //     router.push("/defi_dashboard/defi_users");
                   // }}
               > View More </Button> */}
-				</Box>
-
-				<Box>
-					{defiTvlBorrowData?.isError && (
-						<>
-							<Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
-								<Text variant={"noDataText"}>No data available</Text>
-							</Box>
-						</>
-					)}
-					{
-						defiTvlBorrowData?.isSuccess && (
-							<>
-								<Chart
-									options={options}
-									series={series}
-									type={options.chart.type}
-									height={"280px"}
-								/>
-							</>
-						)
-					}
-				</Box>
 			</Box>
-		</>
+
+			<Box>
+				{defiTvlBorrowData?.isError && (
+					<>
+						<Box p="20px" textAlign={"center"} height={"245px"} colSpan={1}>
+							<Text variant={"noDataText"}>No data available</Text>
+						</Box>
+					</>
+				)}
+				{
+					defiTvlBorrowData?.isSuccess && (
+						<>
+							<Chart
+								options={options}
+								series={series}
+								type={options.chart.type}
+								height={"280px"}
+							/>
+						</>
+					)
+				}
+			</Box>
+		</Box>
 	);
 }
 

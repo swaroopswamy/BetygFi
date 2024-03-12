@@ -1,42 +1,27 @@
-import {
-    getOverviewData,
-    getOverviewGraphData,
-    getDefiRankingsTableData,
-    getProtocolScoresData,
-} from "@services/dashboardService";
+import { getOverviewData, getOverviewGraphData, getDefiRankingsTableData, getProtocolScoresData } from "@services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 
-export const fetchDefiRankingTableData = createAsyncThunk(
-    "getDefiRankingsTableData", async (payload, { rejectWithValue }) => {
-        const response = await getDefiRankingsTableData(payload, rejectWithValue);
-        return response.data;
-    }
-);
+export const fetchDefiRankingTableData = createAsyncThunk("getDefiRankingsTableData", async (payload, { rejectWithValue }) => {
+    const { data } = await getDefiRankingsTableData(payload, rejectWithValue);
+    return data;
+});
 
-export const fetchOverviewData = createAsyncThunk(
-    "getOverviewData", async (payload, { rejectWithValue }) => {
-        const response = await getOverviewData(payload, rejectWithValue);
-        return response.data;
-    }
-);
+export const fetchOverviewData = createAsyncThunk("getOverviewData", async (payload, { rejectWithValue }) => {
+    const { data } = await getOverviewData(payload, rejectWithValue);
+    return data;
+});
 
-export const fetchScoreGraphData = createAsyncThunk(
-    "fetchScoreGraphData",
-    async (payload, { rejectWithValue }) => {
-        const response = await getProtocolScoresData(payload, rejectWithValue);
-        return response.data;
-    }
-);
+export const fetchScoreGraphData = createAsyncThunk("fetchScoreGraphData", async (payload, { rejectWithValue }) => {
+    const { data } = await getProtocolScoresData(payload, rejectWithValue);
+    return data;
+});
 
-export const fetchOverviewGraphData = createAsyncThunk(
-    "getOverviewGraphData",
-    async (payload, { rejectWithValue }) => {
-        const response = await getOverviewGraphData(payload, rejectWithValue);
-        return response.data;
-    }
-);
+export const fetchOverviewGraphData = createAsyncThunk("getOverviewGraphData", async (payload, { rejectWithValue }) => {
+    const { data } = await getOverviewGraphData(payload, payload.query, rejectWithValue);
+    return data;
+});
 
 const DashboardDataSlice = createSlice({
     name: "dashboardData",

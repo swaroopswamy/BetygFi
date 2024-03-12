@@ -192,9 +192,23 @@ export const getEnv = (url) => {
             return 'local';
         } else if (allowedKube.includes(url)) {
             return 'kube';
-        }
-        else {
+        } else {
             return 'prod';
         }
     }
 };
+
+export const getHumanReadableTextFromSlug = value => {
+    if (value.indexOf("-") > -1) {
+        let string = '';
+        const splittedValue = value.split("-");
+        splittedValue.forEach(sv => {
+            string += ' ' + capitalizeFirstLetter(sv);
+        });
+        return string;
+    } else {
+        return capitalizeFirstLetter(value);
+    }
+};
+
+export const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);

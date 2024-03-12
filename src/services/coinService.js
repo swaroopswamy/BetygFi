@@ -47,9 +47,19 @@ export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     }
 };
 
-export const getCoinScoresData = async (rejectWithValue) => {
+export const getCoinScoresData = async (query, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/scores-v2${query ? '?category=' + query : ''}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getCryptoCategoriesData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/categories`;
         const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {
@@ -80,6 +90,67 @@ export const getCoinPriceData = async (payload, rejectWithValue) => {
 export const getCoinDevelopmentData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/development-analysis/${payload.id}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getTopGainersAndLosersData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/gainers-losers`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getTopBTCETFData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/top-etfs`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getFearAndGreedData = async (rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-fear-and-index`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getSAPData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/sap-500?type=${payload?.day}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getBTCDominanceScoresAPI = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/btc-dominance-scores/${payload?.day}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+
+export const getMarqueeDataAPI = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/marquee-data`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {

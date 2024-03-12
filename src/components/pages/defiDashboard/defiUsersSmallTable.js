@@ -16,13 +16,7 @@ import { DefiUsersSmallTableHeader } from "@components/pages/defiDashboard/helpe
 import LastUpdate from "@components/lastUpdate";
 
 function DefiUsersSmallTable() {
-
-
-
-	const defiUsersTableData = useSelector(
-		(state) => state?.defiDashboardData?.DefiUsersTableData
-	);
-
+	const defiUsersTableData = useSelector((state) => state?.defiDashboardData?.DefiUsersTableData);
 
 	return (
 		<Box
@@ -73,7 +67,10 @@ const TableRow = ({ item, i }) => {
 	const [clicked, setClick] = useState(false);
 	const { colorMode } = useColorMode();
 	const router = useRouter();
-
+	const commonStyleTdProp = {
+		_light: { bgColor: "#FFFFFF", },
+		_dark: { bgColor: "#202020", }
+	};
 	return (
 		<>
 			<Tr
@@ -96,7 +93,7 @@ const TableRow = ({ item, i }) => {
 				borderColor={useColorModeValue("#DFDFDF", "#313131")}
 				borderRadius={"2px"}
 			>
-				<Td>
+				<Td {...commonStyleTdProp}>
 					<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 						<Text
 							_dark={{
@@ -140,12 +137,12 @@ const TableRow = ({ item, i }) => {
 const TableHeaderRowMobile = () => {
 	return (
 		<Tr>
-			<Th>
+			<Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"smallTableHeaderMobile"}>User Address</Text>
 				</Box>
 			</Th>
-			{/* <Th>
+			{/* <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}>
         <Box layerStyle={"flexAlignCenterJustifyCenter"} w="100%">
           <Text variant={"smallTableHeaderMobile"}>Share</Text>
         </Box>

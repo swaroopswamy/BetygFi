@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { isNotNullAndUndefined, orderByKey } from "@util/utility";
+import { useSearchParams } from "next/navigation";
+import SlideLeftTable from "./slideLeftTable";
 
 const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
@@ -20,12 +22,16 @@ const GenericTable = ({
 	SkeletonRowsColumnsMobile,
 	isQueryInPendingState = false,
 	bigTable = false,
-	showSortingIcon
+	showSortingIcon,
+	slideToLeftFeature
 }) => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");
+	const searchParams = useSearchParams();
+	const on = searchParams.get('on');
+	const by = searchParams.get('by');
 
 	const [tableBodyData, setTableBodyData] = useState([]);
-	const [sortedState, setSortedState] = useState({ on: null, by: 'asc' });
+	const [sortedState, setSortedState] = useState({ on: on ?? null, by: by ?? 'asc' });
 
 	useEffect(() => {
 		if (Array.isArray(tableData?.data?.data)) {
@@ -54,231 +60,254 @@ const GenericTable = ({
 		}
 	}, [sortedState]);
 
+	useEffect(() => {
+		setSortedState({ on: on ?? null, by: by ?? 'asc' });
+	}, [on, by]);
+
 	const onClickHeader = headerItem => {
 		if (showSortingIcon) {
 			setSortedState({ on: headerItem.accessor, by: sortedState.on === headerItem.accessor && sortedState.by === 'desc' ? 'asc' : 'desc' });
 		}
 	};
 
-	const renderMDTable = () => {
-		return (
-			<Table
-				variant="simple"
-				w={"100%"}
-				display={{ base: "none", md: "table" }}
-				minW={bigTable ? "1200px" : "unset"}
+	return isMd ? (
+		<Table
+			variant="simple"
+			w={"100%"}
+			display={{ base: "none", md: "table" }}
+			minW={bigTable ? "1200px" : "unset"}
+		>
+			<Thead
+				_light={{ bgColor: "#F5F5F7", }}
+				_dark={{ bgColor: "#191919", }}
+				position="sticky"
+				top={0}
+				zIndex={"99"}
 			>
-				<Thead
-					_light={{ bgColor: "#F5F5F7", }}
-					_dark={{ bgColor: "#191919", }}
-					position="sticky"
-					top={0}
-					zIndex={"99"}
-				>
-					<Tr>
-						{
-							tableHeader.map((item, i) => (
-								<Th key={i} border={"0px"}>
-									<Box
-										onClick={() => onClickHeader(item)}
-										cursor={"pointer"}
-										display={"flex"}
-										alignItems={"center"}
-										gap={"3px"}
-									>
-										<Text
-											variant={"tableHead"}
-											textTransform={"capitalize"}
-											textAlign={"left"}
-										>
-											{item.Header || item.label}
-										</Text>
-										{item.isTooltip && (
-											<TooltipComp
-												label={item?.tooltipLabel}
-											/>
-										)}
-										{
-											showSortingIcon &&
-											<Icon as={sortedState.on == item.accessor && item.accessor !== undefined && sortedState.by === 'desc' ? HiSortDescending : HiSortAscending}
-												boxSize={"16px"}
-												alt="Sort"
-												ml={"3px"}
-											/>
-										}
-									</Box>
-								</Th>
-							))
-						}
-					</Tr>
-				</Thead>
-
-				<Tbody
-					border={"0px"}
-					_light={{ bgColor: "#FFF", }}
-					_dark={{ bgColor: "#202020", }}
-				>
-					{(tableData?.isError || tableData === null) && (
-						<Tr>
-							<Td
-								p="20px"
-								textAlign={"center"}
-								height={"245px"}
-								colSpan={SkeletonRowsColumnsDesktop?.numColumns}
-							>
-								<Text variant={"noDataText"}>
-									No data available
-								</Text>
-							</Td>
-						</Tr>
-					)}
-					{tableData?.isLoading && (
-						<SkeletonTable
-							numColumns={SkeletonRowsColumnsDesktop?.numColumns}
-							numRows={SkeletonRowsColumnsDesktop?.numRows}
-						/>
-					)}
-					{isQueryInPendingState && (
-						<Tr>
-							<Td
-								minH={"212px"}
-								colSpan={SkeletonRowsColumnsDesktop?.numColumns}
-								textAlign={"center"}
-								p="20px"
-							>
+				<Tr>
+					{
+						tableHeader.map((item, i) => (
+							<Th key={i} border={"0px"} _light={{ bgColor: "#F5F5F7", }}
+								_dark={{ bgColor: "#191919", }}>
 								<Box
+									onClick={() => onClickHeader(item)}
+									cursor={"pointer"}
 									display={"flex"}
-									flexDirection={"column"}
 									alignItems={"center"}
-									justifyContent={"center"}
+									gap={"3px"}
 								>
 									<Text
-										variant={"noDataText"}
-										mt="44px"
-										mb="20px"
+										variant={"tableHead"}
+										textTransform={"capitalize"}
+										textAlign={"left"}
 									>
-										We are retrieving data from the Blockchain.
+										{item.Header || item.label}
 									</Text>
-									<Spinner
-										thickness="4px"
-										speed="0.65s"
-										emptyColor="gray.200"
-										color="blue.500"
-										size="xl"
-									/>
-									<Text
-										variant={"noDataText"}
-										mt="20px"
-										mb="8px"
-									>
-										This process might take
-										approximately 2-3 minutes.
-									</Text>
-									<Text variant={"noDataText"} mb="50px">
-										You have the option to wait or
-										return later.
-									</Text>
-								</Box>
-							</Td>
-						</Tr>
-					)}
-					{tableData?.isSuccess &&
-						(tableBodyData?.length > 0 ? (
-							tableBodyData.map((item, rowIndex) => (
-								<TableRow
-									key={rowIndex}
-									item={item}
-									rowIndex={rowIndex}
-								/>
-							))
-						) : (
-							<Tr>
-								<Td
-									p="20px"
-									textAlign={"center"}
-									height={"245px"}
-									colSpan={
-										SkeletonRowsColumnsDesktop?.numColumns
+									{item.isTooltip && (
+										<TooltipComp
+											label={item?.tooltipLabel}
+										/>
+									)}
+									{
+										showSortingIcon &&
+										<Icon as={sortedState.on == item.accessor && item.accessor !== undefined && sortedState.by === 'desc' ? HiSortDescending : HiSortAscending}
+											boxSize={"16px"}
+											alt="Sort"
+											ml={"3px"}
+										/>
 									}
+								</Box>
+							</Th>
+						))
+					}
+				</Tr>
+			</Thead>
+
+			<Tbody
+				border={"0px"}
+				_light={{ bgColor: "#FFFFFF", }}
+				_dark={{ bgColor: "#202020", }}
+			>
+				{(tableData?.isError || tableData === null) && (
+					<Tr>
+						<Td
+							_light={{ bgColor: "#FFFFFF", }}
+							_dark={{ bgColor: "#202020", }}
+							p={"20px"}
+							textAlign={"center"}
+							height={"245px"}
+							colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+						>
+							<Text variant={"noDataText"}>
+								No data available
+							</Text>
+						</Td>
+					</Tr>
+				)}
+				{tableData?.isLoading && (
+					<SkeletonTable
+						numColumns={SkeletonRowsColumnsDesktop?.numColumns}
+						numRows={SkeletonRowsColumnsDesktop?.numRows}
+					/>
+				)}
+				{isQueryInPendingState && (
+					<Tr>
+						<Td
+							minH={"212px"}
+							colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+							textAlign={"center"}
+							p={"20px"}
+							_light={{ bgColor: "#FFFFFF", }}
+							_dark={{ bgColor: "#202020", }}
+						>
+							<Box
+								display={"flex"}
+								flexDirection={"column"}
+								alignItems={"center"}
+								justifyContent={"center"}
+							>
+								<Text
+									variant={"noDataText"}
+									mt="44px"
+									mb="20px"
 								>
-									<Text variant={"noDataText"}>
-										No data available
-									</Text>
-								</Td>
-							</Tr>
-						))}
-				</Tbody>
-			</Table>
-		);
-	};
-
-	const renderSMTable = () => {
-		return (
-			<Table variant={"unstyled"} display={{ base: "table", md: "none" }}>
-				<Thead _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} >
-					<TableHeaderRowMobile />
-				</Thead>
-
-				<Tbody _light={{ bgColor: "#FFF", }} _dark={{ bgColor: "#202020", }} >
-					{(tableData?.isError || tableData === null) && (
+									We are retrieving data from the Blockchain.
+								</Text>
+								<Spinner
+									thickness="4px"
+									speed="0.65s"
+									emptyColor="gray.200"
+									color="blue.500"
+									size="xl"
+								/>
+								<Text
+									variant={"noDataText"}
+									mt="20px"
+									mb="8px"
+								>
+									This process might take
+									approximately 2-3 minutes.
+								</Text>
+								<Text variant={"noDataText"} mb="50px">
+									You have the option to wait or
+									return later.
+								</Text>
+							</Box>
+						</Td>
+					</Tr>
+				)}
+				{tableData?.isSuccess &&
+					(tableBodyData?.length > 0 ? (
+						tableBodyData.map((item, rowIndex) => (
+							<TableRow
+								key={rowIndex}
+								item={item}
+								rowIndex={rowIndex}
+							/>
+						))
+					) : (
 						<Tr>
 							<Td
+								_light={{ bgColor: "#FFFFFF", }}
+								_dark={{ bgColor: "#202020", }}
 								p="20px"
 								textAlign={"center"}
 								height={"245px"}
-								colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+								colSpan={
+									SkeletonRowsColumnsDesktop?.numColumns
+								}
 							>
 								<Text variant={"noDataText"}>
 									No data available
 								</Text>
 							</Td>
 						</Tr>
-					)}
-					{tableData?.isLoading && (
-						<SkeletonTable
-							numColumns={SkeletonRowsColumnsMobile.numColumns}
-							numRows={SkeletonRowsColumnsMobile.numRows}
-						/>
-					)}
+					))}
+			</Tbody>
+		</Table>
+	) : slideToLeftFeature ? (
+		<SlideLeftTable
+			tableHeader={tableHeader}
+			tableData={tableData}
+			TableRow={TableRow}
+			SkeletonRowsColumnsDesktop={SkeletonRowsColumnsDesktop}
+			isQueryInPendingState={isQueryInPendingState}
+			bigTable={bigTable}
+			showSortingIcon={showSortingIcon}
+			onClickHeader={onClickHeader}
+			sortedState={sortedState}
+			HiSortAscending={HiSortAscending}
+			HiSortDescending={HiSortDescending}
+			tableBodyData={tableBodyData}
+		/>
+	) : (
+		<Table variant={"unstyled"} display={{ base: "table", md: "none" }}>
+			<Thead _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} >
+				<TableHeaderRowMobile />
+			</Thead>
 
-					{tableData?.isSuccess &&
-						(tableBodyData?.length > 0 ? (
-							tableBodyData.map((item, rowIndex) => (
-								<Tr key={rowIndex}>
-									<Td p={0} colSpan={3}>
-										<SingleAccordionComp
-											display={"flex"}
-											minH={"50px"}
-											w={"100%"}
-											borderRadius={"0px"}
-											ButtonComp={() => <ButtonComp item={item} />}
-											PanelComp={() => <PanelComp item={item} />}
-										/>
-									</Td>
-								</Tr>
-							))
-						) : (
-							<Tr>
-								<Td
-									p="20px"
-									textAlign={"center"}
-									height={"245px"}
-									colSpan={
-										SkeletonRowsColumnsDesktop?.numColumns
-									}
-								>
-									<Text variant={"noDataText"}>
-										No data available
-									</Text>
+			<Tbody _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }} >
+				{(tableData?.isError || tableData === null) && (
+					<Tr>
+						<Td
+							p="20px"
+							_dark={{ bgColor: "#202020", }}
+							_light={{ bgColor: "#FFFFFF", }}
+							textAlign={"center"}
+							height={"245px"}
+							colSpan={SkeletonRowsColumnsDesktop?.numColumns}
+						>
+							<Text variant={"noDataText"}>
+								No data available
+							</Text>
+						</Td>
+					</Tr>
+				)}
+				{tableData?.isLoading && (
+					<SkeletonTable
+						numColumns={SkeletonRowsColumnsMobile.numColumns}
+						numRows={SkeletonRowsColumnsMobile.numRows}
+					/>
+				)}
+
+				{tableData?.isSuccess &&
+					(tableBodyData?.length > 0 ? (
+						tableBodyData.map((item, rowIndex) => (
+							<Tr key={rowIndex}>
+								<Td _dark={{ bgColor: "#202020", }}
+									_light={{ bgColor: "#FFFFFF", }} p={0} colSpan={3}>
+									<SingleAccordionComp
+										display={"flex"}
+										minH={"50px"}
+										w={"100%"}
+										borderRadius={"0px"}
+										ButtonComp={() => <ButtonComp item={item} />}
+										PanelComp={() => <PanelComp item={item} />}
+									/>
 								</Td>
 							</Tr>
-						))}
-				</Tbody>
-			</Table>
-		);
-	};
-
-	return isMd ? renderMDTable() : renderSMTable();
+						))
+					) : (
+						<Tr>
+							<Td
+								_dark={{ bgColor: "#202020", }}
+								_light={{ bgColor: "#FFFFFF", }}
+								p="20px"
+								textAlign={"center"}
+								height={"245px"}
+								colSpan={
+									SkeletonRowsColumnsDesktop?.numColumns
+								}
+							>
+								<Text variant={"noDataText"}>
+									No data available
+								</Text>
+							</Td>
+						</Tr>
+					))}
+			</Tbody>
+		</Table>
+	);
 };
 
 export default GenericTable;

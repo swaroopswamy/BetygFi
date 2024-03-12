@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
-import { Text, Td, Th, Tr, Box, useColorModeValue, Button } from "@chakra-ui/react";
+import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
-import { fetchCoinRankingsTableData, fetchCoinScoresData, } from "@redux/coin_data/dataSlice";
+import { fetchCoinRankingsTableData, fetchCoinScoresData, fetchCryptoCategoriesData, } from "@redux/coin_data/dataSlice";
 import CustomAvatar from "@components/avatar";
+import { getHumanReadableTextFromSlug } from "@util/utility";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -15,13 +16,18 @@ const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDist
 
 const CoinRankingsTable = () => {
     const dispatch = useDispatch();
+    const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
+    const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
+    const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
+    const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
+
     const [tablePage, setTablePage] = useState(1);
     const [tableLimit, setTableLimit] = useState(20);
     const [totalDefis, setTotalDefis] = useState(0);
-
-    const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
-    const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
-    const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
+    const [tabSelected, setTabSelected] = useState(0);
+    const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
+    const { colorMode } = useColorMode();
+    const [cryptoCategories, setCryptoCategories] = useState(cryptoCategoriesData?.data || []);
 
     const pageChangeHandler = (page) => {
         if (page == "") {
@@ -34,9 +40,10 @@ const CoinRankingsTable = () => {
 
     const getCoinRankingsTableDataHandler = () => {
         const payload = {
+            category: cryptoCategorySelected,
             page: tablePage,
             limit: tableLimit,
-            score_dist: scoreSelected,
+            score_dist: scoreSelected || "Low",
         };
         dispatch(fetchCoinRankingsTableData(payload));
     };
@@ -45,98 +52,177 @@ const CoinRankingsTable = () => {
         if (tablePage != "") {
             setTimeout(() => {
                 getCoinRankingsTableDataHandler();
-            }, 1500);
+            }, 500);
         }
-    }, [tablePage, tableLimit, scoreSelected, setTablePage]);
+    }, [tablePage, tableLimit, scoreSelected, setTablePage, cryptoCategorySelected]);
 
     useEffect(() => {
-        dispatch(fetchCoinScoresData());
+        Promise.all([
+            fetchScoreData()
+        ]).then(resolve => resolve);
+    }, [cryptoCategorySelected]);
+
+    const fetchScoreData = () => {
+        const query = cryptoCategorySelected;
+        dispatch(fetchCoinScoresData(query));
+    };
+
+    const fetchCategories = () => {
+        dispatch(fetchCryptoCategoriesData());
+    };
+
+    useEffect(() => {
+        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData.data.length > 0) {
+            setCryptoCategories([...cryptoCategoriesData.data].map((cryptoData, index) => {
+                return {
+                    id: cryptoData + '_' + index + 1,
+                    text: getHumanReadableTextFromSlug(cryptoData),
+                    slug: cryptoData
+                };
+            }));
+        }
+    }, [cryptoCategoriesData]);
+
+    useEffect(() => {
+        Promise.all([
+            fetchCategories(),
+            fetchScoreData()
+        ]).then(resolve => resolve);
     }, []);
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
             if (coinScoresData.data?.length > 0) {
-                setTotalDefis(
+                const totalValue =
                     coinScoresData?.data[0]?.value +
                     coinScoresData?.data[1]?.value +
-                    coinScoresData?.data[2].value +
-                    coinScoresData?.data[3].value
-                );
+                    coinScoresData?.data[2]?.value +
+                    coinScoresData?.data[3]?.value;
+                setTotalDefis(totalValue);
             }
         }
     }, [coinScoresData]);
 
+    const handleTabSelected = (tab) => {
+        setTabSelected(tab);
+    };
+
     return (
-        <Box
-            layerStyle={"flexColumn"}
-            borderRadius={"6px"}
-            mb={"20px"}
-            border={"1px"}
-            borderColor={useColorModeValue("#FFFFFF", "#282828")}
-            perspective={"1px"}
-        >
+        <>
+            <Box display={"flex"}
+                overflow={"auto"}
+                className="hidescrollbar">
+                <Tabs variant='soft-rounded' onChange={handleTabSelected} >
+                    <TabList>
+                        {
+                            cryptoCategories.length > 0 && cryptoCategories.map((tab, index) => (
+                                <Tab
+                                    key={index}
+                                    _selected={{
+                                        bgColor: colorMode === "light" ? "#191919" : "#FFFFFF",
+                                        color: "#FFFFFF"
+                                    }}
+                                    onClick={() => setCryptoCategorySelected(tab.slug)}
+                                    border={colorMode === "light" ? "1px solid #C6C6C6" : "1px solid #A5A5A5"}
+                                    bgColor={colorMode === "light" ? "#FFFFFF" : "transparent"}
+                                    mr={"10px"}
+                                    width={"max-content"}
+                                >
+                                    <Text
+                                        fontWeight={tabSelected === index ? "600" : "400"}
+                                        _light={{
+                                            color: tabSelected === index ? "#FFFFFF" : "#191919"
+                                        }}
+                                        _dark={{
+                                            color: tabSelected === index ? "#191919" : "#FFFFFF"
+                                        }}
+                                        textAlign="center"
+                                        fontFamily="Inter"
+                                        fontSize="16px"
+                                        fontStyle="normal"
+                                        lineHeight="16px"
+                                    >
+                                        {tab.text}
+                                    </Text>
+                                </Tab>
+                            ))
+                        }
+                    </TabList >
+                </Tabs >
+            </Box>
+
             <Box
-                layerStyle={"spaceBetween"}
-                flexDirection={{ base: "column", md: "row", lg: "row" }}
-                p={"10px 20px"}
-                bgColor={"background.secondary"}
-                gap={"10px"}
+                layerStyle={"flexColumn"}
+                borderRadius={"6px"}
+                mb={"20px"}
+                border={"1px"}
+                borderColor={useColorModeValue("#FFFFFF", "#282828")}
+                perspective={"1px"}
             >
                 <Box
-                    display={"flex"}
-                    flexDirection={{ base: "row", md: "column" }}
-                    alignItems={"start"}
-                    justifyContent={"space-between"}
-                    w={{ base: "100%", md: "unset", lg: "unset" }}
+                    layerStyle={"spaceBetween"}
+                    flexDirection={{ base: "column", md: "row", lg: "row" }}
+                    p={"10px 20px"}
+                    bgColor={"background.secondary"}
+                    gap={"10px"}
                 >
-                    <Text variant={"h2"} fontWeight={"700"} lineHeight={"26px"}>
-                        Cryptocurrency Prices by Ranking
-                    </Text>
-                    <Text
-                        variant={"content"}
-                        fontWeight={"500"}
-                        _light={{ color: "#161616" }}
-                        _dark={{ color: "#FFFFFF" }}
-                        lineHeight={"26px"}>
-                        Total - {totalDefis}
-                    </Text>
+                    <Box
+                        display={"flex"}
+                        flexDirection={{ base: "row", md: "column" }}
+                        alignItems={"start"}
+                        justifyContent={"space-between"}
+                        w={{ base: "100%", md: "unset", lg: "unset" }}
+                    >
+                        <Text variant={"h2"} fontWeight={"700"} lineHeight={"26px"}>
+                            Cryptocurrency Prices by Ranking
+                        </Text>
+                        <Text
+                            variant={"content"}
+                            fontWeight={"500"}
+                            _light={{ color: "#161616" }}
+                            _dark={{ color: "#FFFFFF" }}
+                            lineHeight={"26px"}>
+                            Total - {totalDefis}
+                        </Text>
+                    </Box>
+                    <ScoreDistribution
+                        totalDefis={totalDefis}
+                        scoreTotalData={coinScoresData.data}
+                    />
                 </Box>
-                <ScoreDistribution
-                    totalDefis={totalDefis}
-                    scoreTotalData={coinScoresData.data}
-                />
-            </Box>
 
-            <Box display={"flex"} overflowX={"auto"}>
-                <GenericTable
-                    tableHeader={tableHeader}
-                    tableData={tableData}
-                    TableRow={TableRow}
-                    showSortingIcon={true}
-                    TableHeaderRowMobile={TableHeaderRowMobile}
-                    ButtonComp={ButtonComp}
-                    PanelComp={PanelComp}
-                    SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
-                    SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
-                />
-            </Box>
+                <Box display={"flex"} overflowX={"auto"}>
+                    <GenericTable
+                        tableHeader={tableHeader}
+                        tableData={tableData}
+                        TableRow={TableRow}
+                        showSortingIcon={true}
+                        TableHeaderRowMobile={TableHeaderRowMobile}
+                        ButtonComp={ButtonComp}
+                        PanelComp={PanelComp}
+                        slideToLeftFeature={true}
+                        SkeletonRowsColumnsDesktop={{ numRows: tableLimit, numColumns: 9 }}
+                        SkeletonRowsColumnsMobile={{ numRows: tableLimit, numColumns: 3 }}
+                    />
+                </Box>
 
-            <Box
-                display={"flex"}
-                minH={"60px"}
-                p={{ base: "10px", md: "5px 20px" }}
-                bgColor={"background.secondary"}
-            >
-                <PageButtonsWide
-                    page={tablePage}
-                    totalPages={tableData?.data?.totalPages}
-                    pageChangeHandler={pageChangeHandler}
-                    tableLimit={tableLimit}
-                    setTableLimit={setTableLimit}
-                    w={"100%"}
-                />
+                <Box
+                    display={"flex"}
+                    minH={"60px"}
+                    p={{ base: "10px", md: "5px 20px" }}
+                    bgColor={"background.secondary"}
+                >
+                    <PageButtonsWide
+                        page={tablePage}
+                        totalPages={tableData?.data?.totalPages}
+                        pageChangeHandler={pageChangeHandler}
+                        tableLimit={tableLimit}
+                        setTableLimit={setTableLimit}
+                        w={"100%"}
+                    />
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 };
 
@@ -144,7 +230,10 @@ export default CoinRankingsTable;
 
 const TableRow = ({ item, rowIndex }) => {
     const router = useRouter();
-
+    const commonStyleTdProp = {
+        _light: { bgColor: "#FFFFFF", },
+        _dark: { bgColor: "#202020", }
+    };
     return (
         <Tr
             key={rowIndex}
@@ -155,12 +244,12 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             bgColor={"background.secondary"}
         >
-            <Td key={0} textAlign={"center"} p={0}>
+            <Td {...commonStyleTdProp} key={0} textAlign={"center"} p={0}>
                 <Text variant={"h3"}>
                     {item?.rank === undefined ? "-" : item?.rank}
                 </Text>
             </Td>
-            <Td key={1} p={"15px"}>
+            <Td {...commonStyleTdProp} key={1} p={"15px"}>
                 <Box display={"flex"} alignItems={"center"} gap={"10px"}>
                     <CustomAvatar
                         width={"24px"}
@@ -190,7 +279,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Box>
                 </Box>
             </Td>
-            <Td key={2} p={0}>
+            <Td {...commonStyleTdProp} key={2} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.price === undefined
@@ -202,7 +291,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={3} p={0}>
+            <Td {...commonStyleTdProp} key={3} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -215,7 +304,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={4} p={0}>
+            <Td {...commonStyleTdProp} key={4} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -230,7 +319,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={5} p={0}>
+            <Td {...commonStyleTdProp} key={5} p={0}>
                 <Box layerStyle={"center"}>
                     <Text
                         variant={"h3"}
@@ -243,7 +332,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={6} p={0}>
+            <Td {...commonStyleTdProp} key={6} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.volume_24hr === undefined
@@ -255,7 +344,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={7} p={0}>
+            <Td {...commonStyleTdProp} key={7} p={0}>
                 <Box layerStyle={"center"}>
                     <Text variant={"h3"}>
                         {item?.mcap === undefined
@@ -267,7 +356,7 @@ const TableRow = ({ item, rowIndex }) => {
                     </Text>
                 </Box>
             </Td>
-            <Td key={8} justifyContent={"center"} p={0}>
+            <Td {...commonStyleTdProp} key={8} justifyContent={"center"} p={0}>
                 <Box layerStyle={"center"} justifyContent={"start"} h="100%">
                     {item?.score === undefined ? (
                         "-"
@@ -309,13 +398,13 @@ const TableRow = ({ item, rowIndex }) => {
 const TableHeaderRowMobile = () => {
     return (
         <Tr>
-            <Th border={"0px"} w={"20px"}>
+            <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} border={"0px"} w={"20px"}>
                 <Text variant={"tableHead"}>Rank</Text>
             </Th>
             <Th border={"0px"}>
                 <Text variant={"tableHead"}>Name</Text>
             </Th>
-            <Th border={"0px"}>
+            <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} border={"0px"}>
                 <Text variant={"tableHead"}>Score</Text>
             </Th>
         </Tr>
@@ -450,7 +539,6 @@ const PanelComp = ({ item }) => {
                     w={"40%"}
                 >
                     <Text variant="tableHead"> 1hr </Text>
-                    {/* <TooltipComp label="Market price of the DeFi token" /> */}
                 </Box>
 
                 <Text

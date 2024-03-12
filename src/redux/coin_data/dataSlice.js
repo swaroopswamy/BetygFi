@@ -1,9 +1,16 @@
 import {
+    getBTCDominanceScoresAPI,
     getCoinDevelopmentData,
     getCoinPriceData,
     getCoinRankingsTableData,
     getCoinScoresData,
     getTrendingCoinsData,
+    getTopGainersAndLosersData,
+    getTopBTCETFData,
+    getFearAndGreedData,
+    getSAPData,
+    getMarqueeDataAPI,
+    getCryptoCategoriesData
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -12,10 +19,7 @@ import { createCookies } from "@util/cookieHelper";
 export const fetchCoinRankingsTableData = createAsyncThunk(
     "getCoinRankingsTableData",
     async (payload, { rejectWithValue }) => {
-        const response = await getCoinRankingsTableData(
-            payload,
-            rejectWithValue
-        );
+        const response = await getCoinRankingsTableData(payload, rejectWithValue);
         return response.data;
     }
 );
@@ -36,6 +40,11 @@ export const fetchTrendingCoinsData = createAsyncThunk(
     }
 );
 
+export const fetchCryptoCategoriesData = createAsyncThunk("getCryptoCategoriesData", async (payload, { rejectWithValue }) => {
+    const response = await getCryptoCategoriesData(rejectWithValue);
+    return response.data;
+});
+
 export const fetchCoinPriceData = createAsyncThunk(
     "getCoinPriceData",
     async (payload, { rejectWithValue }) => {
@@ -52,6 +61,54 @@ export const fetchCoinDevelopmentData = createAsyncThunk(
     }
 );
 
+export const fetchTopGainersAndLosersData = createAsyncThunk(
+    "getTopGainersAndLosersData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTopGainersAndLosersData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchTopBTCETFData = createAsyncThunk(
+    "getTopBTCETFData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTopBTCETFData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchFearAndGreedData = createAsyncThunk(
+    "getFearAndGreedData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getFearAndGreedData(payload, rejectWithValue);
+        return response;
+    }
+);
+
+export const fetchSAPData = createAsyncThunk(
+    "getSAPData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getSAPData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchBTCDominanceScoresData = createAsyncThunk(
+    "getBTCDominanceScoresData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getBTCDominanceScoresAPI(payload, rejectWithValue);
+        return response;
+    }
+);
+
+export const fetchMarqueeData = createAsyncThunk(
+    "getMarqueeData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getMarqueeDataAPI(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -62,6 +119,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         CoinScoresData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        CryptoCategoriesData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -85,8 +148,46 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        TopGainersAndLosersData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TopBTCETFData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        FearAndGreedData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        SAPData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        BTCDominanceScoresData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        MarqueeData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
         blockchainType: [],
         scoreSelected: "",
+        btcDominanceDay: "7D",
+        sapDay: "week"
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -130,6 +231,24 @@ const CoinDataSlice = createSlice({
             state.CoinScoresData.isSuccess = false;
             state.CoinScoresData.isError = true;
             state.CoinScoresData.data = action.payload;
+        });
+        builder.addCase(fetchCryptoCategoriesData.fulfilled, (state, action) => {
+            state.CryptoCategoriesData.data = action.payload;
+            state.CryptoCategoriesData.isLoading = false;
+            state.CryptoCategoriesData.isSuccess = true;
+            state.CryptoCategoriesData.isError = false;
+        });
+        builder.addCase(fetchCryptoCategoriesData.pending, (state, action) => {
+            state.CryptoCategoriesData.isLoading = true;
+            state.CryptoCategoriesData.isError = false;
+            state.CryptoCategoriesData.isSuccess = false;
+            state.CryptoCategoriesData.data = action.payload;
+        });
+        builder.addCase(fetchCryptoCategoriesData.rejected, (state, action) => {
+            state.CryptoCategoriesData.isLoading = false;
+            state.CryptoCategoriesData.isSuccess = false;
+            state.CryptoCategoriesData.isError = true;
+            state.CryptoCategoriesData.data = action.payload;
         });
         builder.addCase(fetchTrendingCoinsData.fulfilled, (state, action) => {
             state.TrendingCoinsData.data = action.payload;
@@ -185,6 +304,114 @@ const CoinDataSlice = createSlice({
             state.CoinDevelopmentData.isError = true;
             state.CoinDevelopmentData.data = action.payload;
         });
+        builder.addCase(fetchTopGainersAndLosersData.fulfilled, (state, action) => {
+            state.TopGainersAndLosersData.data = action.payload;
+            state.TopGainersAndLosersData.isLoading = false;
+            state.TopGainersAndLosersData.isSuccess = true;
+            state.TopGainersAndLosersData.isError = false;
+        });
+        builder.addCase(fetchTopGainersAndLosersData.pending, (state, action) => {
+            state.TopGainersAndLosersData.isLoading = true;
+            state.TopGainersAndLosersData.isError = false;
+            state.TopGainersAndLosersData.isSuccess = false;
+            state.TopGainersAndLosersData.data = action.payload;
+        });
+        builder.addCase(fetchTopGainersAndLosersData.rejected, (state, action) => {
+            state.TopGainersAndLosersData.isLoading = false;
+            state.TopGainersAndLosersData.isSuccess = false;
+            state.TopGainersAndLosersData.isError = true;
+            state.TopGainersAndLosersData.data = action.payload;
+        });
+        builder.addCase(fetchTopBTCETFData.fulfilled, (state, action) => {
+            state.TopBTCETFData.data = action.payload;
+            state.TopBTCETFData.isLoading = false;
+            state.TopBTCETFData.isSuccess = true;
+            state.TopBTCETFData.isError = false;
+        });
+        builder.addCase(fetchTopBTCETFData.pending, (state, action) => {
+            state.TopBTCETFData.isLoading = true;
+            state.TopBTCETFData.isError = false;
+            state.TopBTCETFData.isSuccess = false;
+            state.TopBTCETFData.data = action.payload;
+        });
+        builder.addCase(fetchTopBTCETFData.rejected, (state, action) => {
+            state.TopBTCETFData.isLoading = false;
+            state.TopBTCETFData.isSuccess = false;
+            state.TopBTCETFData.isError = true;
+            state.TopBTCETFData.data = action.payload;
+        });
+        builder.addCase(fetchFearAndGreedData.fulfilled, (state, action) => {
+            state.FearAndGreedData.data = action.payload;
+            state.FearAndGreedData.isLoading = false;
+            state.FearAndGreedData.isSuccess = true;
+            state.FearAndGreedData.isError = false;
+        });
+        builder.addCase(fetchFearAndGreedData.pending, (state, action) => {
+            state.FearAndGreedData.isLoading = true;
+            state.FearAndGreedData.isError = false;
+            state.FearAndGreedData.isSuccess = false;
+            state.FearAndGreedData.data = action.payload;
+        });
+        builder.addCase(fetchFearAndGreedData.rejected, (state, action) => {
+            state.FearAndGreedData.isLoading = false;
+            state.FearAndGreedData.isSuccess = false;
+            state.FearAndGreedData.isError = true;
+            state.FearAndGreedData.data = action.payload;
+        });
+        builder.addCase(fetchSAPData.fulfilled, (state, action) => {
+            state.SAPData.data = action.payload;
+            state.SAPData.isLoading = false;
+            state.SAPData.isSuccess = true;
+            state.SAPData.isError = false;
+        });
+        builder.addCase(fetchSAPData.pending, (state, action) => {
+            state.SAPData.isLoading = true;
+            state.SAPData.isError = false;
+            state.SAPData.isSuccess = false;
+            state.SAPData.data = action.payload;
+        });
+        builder.addCase(fetchSAPData.rejected, (state, action) => {
+            state.SAPData.isLoading = false;
+            state.SAPData.isSuccess = false;
+            state.SAPData.isError = true;
+            state.SAPData.data = action.payload;
+        });
+        builder.addCase(fetchBTCDominanceScoresData.fulfilled, (state, action) => {
+            state.BTCDominanceScoresData.data = action.payload;
+            state.BTCDominanceScoresData.isLoading = false;
+            state.BTCDominanceScoresData.isSuccess = true;
+            state.BTCDominanceScoresData.isError = false;
+        });
+        builder.addCase(fetchBTCDominanceScoresData.pending, (state, action) => {
+            state.BTCDominanceScoresData.isLoading = true;
+            state.BTCDominanceScoresData.isError = false;
+            state.BTCDominanceScoresData.isSuccess = false;
+            state.BTCDominanceScoresData.data = action.payload;
+        });
+        builder.addCase(fetchBTCDominanceScoresData.rejected, (state, action) => {
+            state.BTCDominanceScoresData.isLoading = false;
+            state.BTCDominanceScoresData.isSuccess = false;
+            state.BTCDominanceScoresData.isError = true;
+            state.BTCDominanceScoresData.data = action.payload;
+        });
+        builder.addCase(fetchMarqueeData.fulfilled, (state, action) => {
+            state.MarqueeData.data = action.payload;
+            state.MarqueeData.isLoading = false;
+            state.MarqueeData.isSuccess = true;
+            state.MarqueeData.isError = false;
+        });
+        builder.addCase(fetchMarqueeData.pending, (state, action) => {
+            state.MarqueeData.isLoading = true;
+            state.MarqueeData.isError = false;
+            state.MarqueeData.isSuccess = false;
+            state.MarqueeData.data = action.payload;
+        });
+        builder.addCase(fetchMarqueeData.rejected, (state, action) => {
+            state.MarqueeData.isLoading = false;
+            state.MarqueeData.isSuccess = false;
+            state.MarqueeData.isError = true;
+            state.MarqueeData.data = action.payload;
+        });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {
@@ -210,9 +437,14 @@ const CoinDataSlice = createSlice({
                 state.scoreSelected = action.payload;
             }
         },
+        btcDominanceDaySelectReducer: (state, action) => {
+            state.btcDominanceDay = action.payload;
+        },
+        sapDaySelectReducer: (state, action) => {
+            state.sapDay = action.payload;
+        },
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer } =
-    CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;
