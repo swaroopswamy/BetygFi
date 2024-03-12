@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import TooltipComp from "@components/tooltipComp";
 
 const boxData = [
-    { bgColor: "#0E6027", label: "Low", key: "Low", index: 3 },
-    { bgColor: "#00799F", label: "Moderate", key: "Moderate", index: 2 },
-    { bgColor: "#B87A00", label: "High", key: "High", index: 1 },
-    { bgColor: "#FF0000", label: "Extreme", key: "Extreme", index: 0 },
+    { bgColor: "#0E6027", label: "Low", key: "Low", index: 0 },
+    { bgColor: "#00799F", label: "Moderate", key: "Moderate", index: 1 },
+    { bgColor: "#B87A00", label: "High", key: "High", index: 2 },
+    { bgColor: "#FF0000", label: "Extreme", key: "Extreme", index: 3 },
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
@@ -32,10 +32,10 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                             : "70px",
                 }}
                 position={"relative"}
-                borderTopLeftRadius={data.index === 3 ? "14px" : "0px"}
-                borderBottomLeftRadius={data.index === 3 ? "14px" : "0px"}
-                borderTopRightRadius={data.index === 0 ? "14px" : "0px"}
-                borderBottomRightRadius={data.index === 0 ? "14px" : "0px"}
+                borderTopLeftRadius={data.index === 0 ? "14px" : "0px"}
+                borderBottomLeftRadius={data.index === 0 ? "14px" : "0px"}
+                borderTopRightRadius={data.index === 3 ? "14px" : "0px"}
+                borderBottomRightRadius={data.index === 3 ? "14px" : "0px"}
                 bgColor={
                     scoreTotalData[data.index]?.value === 0
                         ? "#8F8F8F"
