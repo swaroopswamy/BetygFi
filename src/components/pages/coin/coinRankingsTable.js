@@ -94,10 +94,10 @@ const CoinRankingsTable = () => {
         if (coinScoresData.isSuccess) {
             if (coinScoresData.data?.length > 0) {
                 const totalValue =
-                    coinScoresData?.data[0]?.value +
-                    coinScoresData?.data[1]?.value +
-                    coinScoresData?.data[2]?.value +
-                    coinScoresData?.data[3]?.value;
+                    (coinScoresData?.data[0]?.value ?? 0) +
+                    (coinScoresData?.data[1]?.value ?? 0) +
+                    (coinScoresData?.data[2]?.value ?? 0) +
+                    (coinScoresData?.data[3]?.value ?? 0);
                 setTotalDefis(totalValue);
             }
         }
