@@ -7,8 +7,10 @@ export async function POST(req) {
 
     const API_SERVICE_URL = process.env.API_SERVICE_URL;
     const URL = API_SERVICE_URL + (req.url.split("bet-dash"))[1];
-    const origin = headersList.get('origin');
-
+    let origin = headersList.get('origin');
+    if (origin === 'betygfi.com') {
+        origin = 'www.betygfi.com';
+    }
     const fetchConfiguration = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', "origin": getOrigin(origin) },

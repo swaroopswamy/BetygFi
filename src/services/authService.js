@@ -42,7 +42,7 @@ export const socialLoginGoogleAPI = async (payload, { rejectWithValue }) => {
 		const url = NEXT_BE_URL_SEPARATOR + `auth/social-login?access_token=${payload?.token}`;
 		const { data } = await axiosInstance(getAPI_URL()).post(url, {
 			headers: {
-				origin:window.location.hostname,
+				origin: window.location.hostname === 'betygfi.com' ? 'www.betygfi.com' : window.location.hostname,
 			},
 		});
 		return data;
