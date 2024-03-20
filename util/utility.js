@@ -165,8 +165,12 @@ export const replaceWithWS = (url) => {
 };
 
 export const getOrigin = url => {
-    const parsedUrl = new URL(url);
-    return parsedUrl.hostname;
+    if (url) {
+        const parsedUrl = new URL(url);
+        return parsedUrl.hostname;
+    } else {
+        return 'betygfi.com';
+    }
 };
 
 export const mapTypeObject = object => {
