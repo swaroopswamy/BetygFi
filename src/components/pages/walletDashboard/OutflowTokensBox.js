@@ -78,7 +78,7 @@ const OutflowTokensBox = () => {
 const TableRowDesktop = ({ item, i }) => {
 	return (
 		<Tr height={"40px"} key={i}>
-			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
+			<Td _dark={{ color: "#FFFFFF", bgColor: "#202020", }} _light={{ color: "#16171B", bgColor: "#FFFFFF", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Image
 						width={5}
@@ -95,7 +95,7 @@ const TableRowDesktop = ({ item, i }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"h3"} color={useColorModeValue('#EF1E1E', '#FF3535')}>
 						- USD {USDollar.format(item?.value)}
@@ -103,7 +103,7 @@ const TableRowDesktop = ({ item, i }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"h3"}>{item?.percentage}%</Text>
 				</Box>
