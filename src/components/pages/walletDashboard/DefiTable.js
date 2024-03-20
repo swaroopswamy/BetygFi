@@ -42,7 +42,14 @@ const TableRowDesktop = ({ item, i }) => {
                           >
                               {item?.symbol}
                           </Td> */}
-			<Td>
+			<Td
+				_dark={{
+					bgColor: "#202020",
+				}}
+				_light={{
+					bgColor: "#FFFFFF",
+				}}
+			>
 				<Box display={"flex"} alignItems={"center"}>
 					{!isEmpty(item?.logoUrl) ? (
 						<Image
@@ -92,9 +99,11 @@ const TableRowDesktop = ({ item, i }) => {
 			</Td>
 			<Td
 				_dark={{
+					bgColor: "#202020",
 					color: "#FFF",
 				}}
 				_light={{
+					bgColor: "#FFFFFF",
 					color: "#16171B",
 				}}
 				fontSize={"14px"}
@@ -105,9 +114,11 @@ const TableRowDesktop = ({ item, i }) => {
 			</Td>
 			<Td
 				_dark={{
+					bgColor: "#202020",
 					color: "#FFF",
 				}}
 				_light={{
+					bgColor: "#FFFFFF",
 					color: "#16171B",
 				}}
 				fontSize={"14px"}
@@ -118,9 +129,11 @@ const TableRowDesktop = ({ item, i }) => {
 			</Td>
 			<Td
 				_dark={{
+					bgColor: "#202020",
 					color: "#FFF",
 				}}
 				_light={{
+					bgColor: "#FFFFFF",
 					color: "#16171B",
 				}}
 				fontSize={"14px"}
@@ -135,9 +148,11 @@ const TableRowDesktop = ({ item, i }) => {
 
 			<Td
 				_dark={{
+					bgColor: "#202020",
 					color: "#FFF",
 				}}
 				_light={{
+					bgColor: "#FFFFFF",
 					color: "#16171B",
 				}}
 				fontSize={"14px"}
