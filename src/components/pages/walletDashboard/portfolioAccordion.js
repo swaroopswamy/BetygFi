@@ -66,10 +66,11 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                         <Th
                                             key={i}
                                             _light={{
+                                                bgColor: "#FFFFFF",
                                                 color: "#16171B",
                                                 opacity: "0.8",
                                             }}
-                                            _dark={{ color: "#A8ADBD" }}
+                                            _dark={{ color: "#A8ADBD", bgColor: "#202020", }}
                                             fontSize={"14px"}
                                             fontFamily={"Inter"}
                                             fontWeight={"400"}
@@ -88,7 +89,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                         <Tbody>
                             {(tableData?.isError || !tableData?.data?.defiBalance) && (
                                 <Tr>
-                                    <Td colSpan={"8"}>
+                                    <Td _light={{ bgColor: "#FFFFFF", }}
+                                        _dark={{ bgColor: "#202020", }} colSpan={"8"}>
                                         <Text
                                             _light={{
                                                 color: "#16171B",
@@ -122,7 +124,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                 tableData?.data?.defiBalance?.map((item, i) => {
                                     return (
                                         <Tr key={i}>
-                                            <Td>
+                                            <Td _light={{ bgColor: "#FFFFFF", }}
+                                                _dark={{ bgColor: "#202020", }}>
                                                 <Flex>
                                                     <Image
                                                         width={24}
@@ -152,7 +155,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                 </Flex>
                                             </Td>
 
-                                            <Td>
+                                            <Td _light={{ bgColor: "#FFFFFF", }}
+                                                _dark={{ bgColor: "#202020", }}>
                                                 <Flex>
                                                     <Text
                                                         _light={{
@@ -171,7 +175,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                 </Flex>
                                             </Td>
 
-                                            <Td>
+                                            <Td _light={{ bgColor: "#FFFFFF", }}
+                                                _dark={{ bgColor: "#202020", }}>
                                                 <Flex>
                                                     <Text
                                                         _light={{
@@ -190,7 +195,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                 </Flex>
                                             </Td>
 
-                                            <Td>
+                                            <Td _light={{ bgColor: "#FFFFFF", }}
+                                                _dark={{ bgColor: "#202020", }}>
                                                 <Flex>
                                                     <Text
                                                         _light={{
@@ -240,9 +246,11 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                             mr={"20px"}
                                             _light={{
                                                 color: "#8F8F8F",
+                                                bgColor: "#FFFFFF",
                                             }}
                                             _dark={{
                                                 color: "#ADADAD",
+                                                bgColor: "#202020",
                                             }}
                                         >
                                             Token
@@ -259,9 +267,11 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                             <Text
                                                 _light={{
                                                     color: "#16171B",
+                                                    bgColor: "#FFFFFF",
                                                 }}
                                                 _dark={{
                                                     color: "#FFFFFF",
+                                                    bgColor: "#202020",
                                                 }}
                                                 fontSize={"14px"}
                                                 fontStyle={"normal"}
@@ -287,19 +297,23 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                             mr={"20px"}
                                             _light={{
                                                 color: "#8F8F8F",
+                                                bgColor: "#FFFFFF",
                                             }}
                                             _dark={{
                                                 color: "#ADADAD",
+                                                bgColor: "#202020",
                                             }}
                                         >
                                             Balance
                                         </Text>
                                         <Text
-                                            _dark={{
-                                                color: "#FFF",
-                                            }}
                                             _light={{
                                                 color: "#16171B",
+                                                bgColor: "#FFFFFF",
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF",
+                                                bgColor: "#202020",
                                             }}
                                             fontSize={"14px"}
                                             fontWeight={"400"}
@@ -319,19 +333,23 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                             mr={"20px"}
                                             _light={{
                                                 color: "#8F8F8F",
+                                                bgColor: "#FFFFFF",
                                             }}
                                             _dark={{
                                                 color: "#ADADAD",
+                                                bgColor: "#202020",
                                             }}
                                         >
                                             % Share
                                         </Text>
                                         <Text
-                                            _dark={{
-                                                color: "#FFF",
-                                            }}
                                             _light={{
                                                 color: "#16171B",
+                                                bgColor: "#FFFFFF",
+                                            }}
+                                            _dark={{
+                                                color: "#FFFFFF",
+                                                bgColor: "#202020",
                                             }}
                                             fontSize={"14px"}
                                             fontWeight={"400"}
@@ -349,13 +367,16 @@ const PorfolioAccordion = ({ thread, tableData }) => {
 
 const SkeletonRow = () => (
     <Box as="tr">
-        <Td>
+        <Td _light={{ bgColor: "#FFFFFF", }}
+            _dark={{ bgColor: "#202020", }}>
             <Skeleton height="20px" my={4} />
         </Td>
-        <Td>
+        <Td _light={{ bgColor: "#FFFFFF", }}
+            _dark={{ bgColor: "#202020", }}>
             <Skeleton height="20px" my={4} />
         </Td>
-        <Td>
+        <Td _light={{ bgColor: "#FFFFFF", }}
+            _dark={{ bgColor: "#202020", }}>
             <Skeleton height="20px" my={4} />
         </Td>
     </Box>

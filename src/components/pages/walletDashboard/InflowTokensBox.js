@@ -83,7 +83,7 @@ const TableRowDesktop = ({ item, i }) => {
 	if (i === 5) return;
 	return (
 		<Tr height={"40px"} key={i}>
-			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
+			<Td _dark={{ color: "#FFFFFF", bgColor: "#202020", }} _light={{ color: "#16171B", bgColor: "#FFFFFF", }}>
 				<Box layerStyle={"flexCenter"}>
 					<CustomAvatar
 						width={5}
@@ -98,7 +98,7 @@ const TableRowDesktop = ({ item, i }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text
 						variant={"h3"}
@@ -110,7 +110,7 @@ const TableRowDesktop = ({ item, i }) => {
 				</Box>
 			</Td>
 
-			<Td>
+			<Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
 				<Box layerStyle={"flexCenter"}>
 					<Text variant={"h3"}>{item?.percentage}%</Text>
 				</Box>

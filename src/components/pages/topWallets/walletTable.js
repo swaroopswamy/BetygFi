@@ -72,12 +72,12 @@ const WalletTable = () => {
                             position="sticky"
                             top={0}
                         >
-                            <Th>
+                            <Th _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
                                 <Text variant={"tableHead"}>
                                     Wallet Address
                                 </Text>
                             </Th>
-                            <Th>
+                            <Th _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }}>
                                 <Text variant={"tableHead"}>Net Worth</Text>
                             </Th>
                         </Tr>
@@ -87,7 +87,7 @@ const WalletTable = () => {
                         {TableData.whales.map((item, i) => {
                             return (
                                 <Tr key={i}>
-                                    <Td p="0" colSpan={2} borderBottom="none">
+                                    <Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }} p="0" colSpan={2} borderBottom="none">
                                         <Accordion
                                             _light={{
                                                 borderColor: "#DFDFDF",
