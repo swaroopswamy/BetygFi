@@ -298,7 +298,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 const TableBodyRowMobilePanelComp = ({ item }) => {
 	return (
 		<Tr borderBottom={"none"}>
-			<Td colSpan={2} borderBottom={"none"} p={1}>
+			<Td _light={{ bgColor: "#FFFFFF", }} _dark={{ bgColor: "#202020", }} colSpan={2} borderBottom={"none"} p={1}>
 				<Box display={"flex"} flexDirection={"column"}>
 					<Box display={"flex"} alignItems={"center"} mb={"15px"}>
 						<Text
