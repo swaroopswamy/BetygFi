@@ -11,6 +11,7 @@ const TopLosersSmallBox = () => {
 
     return (
         <Box
+            mx={"10px"}
             width={"30%"}
             minW={"295px"}
             height={"197px"}
@@ -35,7 +36,7 @@ const TopLosersSmallBox = () => {
                     cursor={"pointer"}
                     onClick={() => {
                         router.push(`/coin?on=change_24hr&by=asc`);
-                    }} 
+                    }}
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
                         _light={{ color: "#757575" }}

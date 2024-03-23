@@ -85,6 +85,7 @@ const SandPSmallBox = () => {
     }, [SAPData]);
     return (
         <Box
+            mx={"10px"}
             width={"30%"}
             height={"197px"}
             minW={"295px"}

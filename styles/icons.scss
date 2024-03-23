@@ -260,3 +260,12 @@
         background-image: url('/icons/no_notification_dark.svg');
     }
 }
+
+.arrow_circle_light {
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        background-image: url('/icons/arrow_circle_light.svg');
+    }
+}

@@ -16,6 +16,7 @@ const TopGainersSmallBox = () => {
             minW={"295px"}
             borderRadius={"8px"}
             mb={"15px"}
+            mx={"10px"}
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}

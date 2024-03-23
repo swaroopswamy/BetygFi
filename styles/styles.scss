@@ -216,11 +216,12 @@ body {
     /* Animate to the left */
     animation: marquee 30s linear infinite;
 }
+
 .marquee-div:hover {
     animation-play-state: paused;
 }
 
-.marquee-content{
+.marquee-content {
     float: left;
     width: 50%;
 }
@@ -235,3 +236,28 @@ body {
     }
 }
 
+.custom-switch-light {
+    .chakra-switch__track {
+        background: #191919 !important;
+    }
+}
+
+.custom-switch-dark {
+    .chakra-switch__track {
+        background: #FFFFFF !important;
+    }
+
+    .chakra-switch__thumb {
+        background: #191919 !important;
+    }
+}
+
+.custom-slick {
+    .slick-list {
+        height: 200px !important;
+    }
+
+    .slick-arrow {
+        display: none !important;
+    }
+}
