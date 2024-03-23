@@ -4,12 +4,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const BTCetfSmallBox = () => {
-   // const { colorMode } = useColorMode();
+    // const { colorMode } = useColorMode();
     const TopBTCETFData = useSelector((state) => state.coinData.TopBTCETFData);
     const top3ETFData = TopBTCETFData?.data?.slice(0, 3);
 
     return (
         <Box
+            mx={"10px"}
             width={"30%"}
             height={"197px"}
             minW={"295px"}
@@ -49,7 +50,7 @@ const BTCetfSmallBox = () => {
             {top3ETFData?.map((item, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="18px" pl={"12px"}>
                     <Box layerStyle={"flexCenter"}>
-                       {/*  <Image
+                        {/*  <Image
                             height={32}
                             width={32}
                             src={item?.logoUrl ?? '/icons/bitcoin_logo.svg'}

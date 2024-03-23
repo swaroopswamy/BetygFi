@@ -135,6 +135,17 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
 
     const Notifications = useSelector((state) => state?.appData?.Notifications);
 
+    const renderHeaderText = () => {
+        const splittedPathName = pathname.split("/");
+        if (splittedPathName.includes('coin')) {
+            return (
+                <Text fontSize={"24px"} color={"text.primary"} >
+                    Coin Listing
+                </Text>
+            );
+        }
+    };
+
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
@@ -146,8 +157,9 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             justifyContent={{ base: "space-between", md: "space-between" }}
             {...rest}
         >
+            {renderHeaderText()}
             <Box
-                w={"64%"}
+                w={"50%"}
                 height={"45px"}
                 flexShrink={0}
                 borderRadius={"20px"}

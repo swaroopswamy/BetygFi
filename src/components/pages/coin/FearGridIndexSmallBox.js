@@ -10,6 +10,7 @@ const FearGridIndexSmallBox = () => {
     const FearAndGreedData = useSelector((state) => state.coinData.FearAndGreedData);
     return (
         <Box
+            mx={"10px"}
             width={"30%"}
             minW={"295px"}
             height={"197px"}

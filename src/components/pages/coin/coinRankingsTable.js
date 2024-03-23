@@ -109,7 +109,9 @@ const CoinRankingsTable = () => {
 
     return (
         <>
-            <Box display={"flex"}
+            <Box
+                mx={"20px"}
+                display={"flex"}
                 overflow={"auto"}
                 className="hidescrollbar">
                 <Tabs variant='soft-rounded' onChange={handleTabSelected} >
@@ -152,6 +154,7 @@ const CoinRankingsTable = () => {
             </Box>
 
             <Box
+                mx={"20px"}
                 layerStyle={"flexColumn"}
                 borderRadius={"6px"}
                 mb={"20px"}

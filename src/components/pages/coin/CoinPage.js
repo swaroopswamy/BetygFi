@@ -79,7 +79,8 @@ const CoinPage = () => {
             fetchTopBTCETFDataHandler(),
             fetchFearAndGreedDataHandler(),
             fetchSAPDataHandler(),
-            fetchMarqueeDataHandler()
+            fetchMarqueeDataHandler(),
+            onHighlightsBoxToggle()
         ]).then(result => result);
     }, []);
 
@@ -100,7 +101,7 @@ const CoinPage = () => {
             display={"flex"}
             flexDir={"column"}
             bgColor={"background.primary"}
-            p={"20px 30px"}
+            p={"20px 0px"}
             pt="10px"
             gap={"20px"}
         >
@@ -108,37 +109,27 @@ const CoinPage = () => {
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
             ></BreadCrumb> */}
-            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }}>
+            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} px={"20px"}>
                 <Marquee />
                 <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} ml={"30px"} justifyContent={"flex-end"}>
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                     <Switch
                         size={"lg"}
+                        isChecked={isHighlightsBoxOpen}
                         onChange={onHighlightsBoxToggle}
-                        colorScheme={{
-                            base: {
-                                thumb: colorMode === 'light' ? "#000000" : "#FFFFFF",
-                                track: colorMode === 'light' ? "#FFFFFF" : "#000000",
-                            },
-                            checked: {
-                                thumb: colorMode === 'light' ? "#FFFFFF" : "#000000",
-                                track: colorMode === 'light' ? "#000000" : "#FFFFFF",
-                            },
-                        }}
+                        className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                     ></Switch>
                 </Box>
             </Box>
             <Collapse in={isHighlightsBoxOpen} >
                 <HighlightsBox />
             </Collapse>
-            <Text fontSize={"32px"} color={"text.primary"} my={"20px"}>
-                Coin Listing
-            </Text>
+
             {/* <BlockchainSelectionMenuNew /> */}
             {/* <CoinOverviewChart /> */}
             <CoinRankingsTable />
             <hr />
-            <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"}>
+            <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"} mx={"20px"}>
                 <Text
                     fontSize={"32px"}
                     lineHeight={"36px"}
@@ -167,7 +158,7 @@ const CoinPage = () => {
                 </Box>
             </Box>
 
-            <Box display={"flex"} flexDir={"column"}>
+            <Box display={"flex"} flexDir={"column"} mx={"20px"}>
                 <Text
                     fontSize={"32px"}
                     lineHeight={"36px"}
@@ -206,7 +197,7 @@ const CoinPage = () => {
                     );
                 })}
             </Box>
-        </Box>
+        </Box >
     );
 };
 
