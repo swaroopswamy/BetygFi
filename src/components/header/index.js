@@ -144,6 +144,16 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                 </Text>
             );
         }
+        else {
+            const splittedPathNameSpace = pathname.split("/");
+            if (splittedPathNameSpace.includes('protocol')) {
+                return (
+                    <Text fontSize={"24px"} color={"text.primary"} >
+                        DeFi Markets
+                    </Text>
+                );
+            }
+        }
     };
 
     const MdHeader = () => (

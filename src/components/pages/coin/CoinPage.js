@@ -127,6 +127,7 @@ const CoinPage = () => {
 
             {/* <BlockchainSelectionMenuNew /> */}
             {/* <CoinOverviewChart /> */}
+            
             <CoinRankingsTable />
             <hr />
             <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"} mx={"20px"}>

@@ -121,7 +121,7 @@ const Button = defineStyleConfig({
         }),
         modalButton: ({ colorMode }) => ({
             bg: colorMode === "light" ? "#FFFFFF" : "#313131",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            color: colorMode === "light" ? "#16171B" : "#FFFFFF",
             textAlign: "center",
             fontSize: "14px",
             fontWeight: "600",

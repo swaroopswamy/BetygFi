@@ -2,42 +2,36 @@
 import React, { useEffect, useState } from "react";
 import {
     Box,
-    Checkbox,
-    CheckboxGroup,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
     Text,
     Tooltip,
-    useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@redux/dashboard_data/dataSlice";
-import dynamic from "next/dynamic";
 import CustomAvatar from "@components/avatar";
-const SearchBox = dynamic(() => import("@components/searchBox"));
 
 const BlockchainSelectionMenuNew = () => {
     const dispatch = useDispatch();
-    const { colorMode } = useColorMode();
+    // const { colorMode } = useColorMode();
 
-    const [tempBlockchain, setTempBlockchain] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+     const [
+        // tempBlockchain,
+        setTempBlockchain] = useState([]);
 
-    const [searchableBlockchains, setSearchableBlockchains] = useState([]);
-    const blockchainSearchHandler = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-        if (searchableBlockchains && value !== "") {
-            let tempBlockchainArray = searchableBlockchains.filter((item) => {
-                return item.name.toLowerCase().includes(value.toLowerCase());
-            });
-            setTempBlockchain(tempBlockchainArray);
-        } else {
-            setTempBlockchain(blockchainListData?.data.slice(5));
-        }
-    };
+    const [
+        // searchableBlockchains,
+        setSearchableBlockchains] = useState([]);
+    // const blockchainSearchHandler = (e) => {
+    //     const value = e.target.value;
+    //     setSearchTerm(value);
+    //     if (searchableBlockchains && value !== "") {
+    //         let tempBlockchainArray = searchableBlockchains.filter((item) => {
+    //             return item.name.toLowerCase().includes(value.toLowerCase());
+    //         });
+    //         setTempBlockchain(tempBlockchainArray);
+    //     } else {
+    //         setTempBlockchain(blockchainListData?.data.slice(5));
+    //     }
+    // };
     const blockchainListData = useSelector(
         (state) => state?.appData?.BlockchainListData
     );
@@ -68,7 +62,7 @@ const BlockchainSelectionMenuNew = () => {
             <Box
                 display={"flex"}
                 alignItems={"center"}
-                p={{ base: "10px 14px" }}
+                p={{ base: "10px" }}
             >
                 <Box
                     borderRadius={"20px"}
@@ -107,53 +101,60 @@ const BlockchainSelectionMenuNew = () => {
                     </Text>
                 </Box>
                 {blockchains?.data?.map((item, i) => {
-                    if (i >= 5) return;
+                    if (i >= 7) return;
                     return (
                         <Tooltip key={i} label={item.name}>
-                            <Box
-                                layerStyle={"flexCenter"}
-                                justifyContent={"center"}
-                                cursor={"pointer"}
-                                _light={{
-                                    bg: blockchainSelected.includes(item.id)
-                                        ? "#D9D9D9"
-                                        : "#FFF",
-                                }}
-                                _dark={{
-                                    bg: blockchainSelected.includes(item.id)
-                                        ? "#FFFFFF"
-                                        : "#989898",
-                                }}
-                                border={
-                                    blockchainSelected.includes(item.id)
-                                        ? "2px solid #245F00"
-                                        : "1px solid rgba(0, 0, 0, 0.10)"
-                                }
-                                dropShadow={
-                                    "0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                }
-                                borderRadius="50%"
-                                w="32px"
-                                h="32px"
-                                ml={"15px"}
-                                onClick={() => {
-                                    BlockchainTypeHandler(item.id);
-                                }}
-                            >
-                                <CustomAvatar
-                                    style={{ borderRadius: "50%" }}
-                                    width={"21px"}
-                                    height={"21px"}
-                                    src={item?.logoUrl}
-                                    name={item.id ?? "Coin"}
-                                />
+                            <Box layerStyle={"flexCenter"} gap={"3px"}>
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                    justifyContent={"center"}
+                                    cursor={"pointer"}
+                                    _light={{
+                                        bg: blockchainSelected.includes(item.id)
+                                            ? "#D9D9D9"
+                                            : "#FFF",
+                                    }}
+                                    _dark={{
+                                        bg: blockchainSelected.includes(item.id)
+                                            ? "#FFFFFF"
+                                            : "#989898",
+                                    }}
+                                    border={
+                                        blockchainSelected.includes(item.id)
+                                            ? "2px solid #245F00"
+                                            : "1px solid rgba(0, 0, 0, 0.10)"
+                                    }
+                                    dropShadow={
+                                        "0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                    }
+                                    borderRadius="50%"
+                                    w="32px"
+                                    h="32px"
+                                    ml={"15px"}
+                                    onClick={() => {
+                                        BlockchainTypeHandler(item.id);
+                                    }}
+                                >
+                                    <CustomAvatar
+                                        style={{ borderRadius: "50%" }}
+                                        width={"21px"}
+                                        height={"21px"}
+                                        src={item?.logoUrl}
+                                        name={item.id ?? "Coin"}
+                                    />
+                                </Box>
+                                <Box>
+                                    <Text variant={"h3"}>
+                                        {item?.name}
+                                    </Text>
+                                </Box>
                             </Box>
                         </Tooltip>
                     );
                 })}
             </Box>
 
-            {blockchains?.data?.length > 6 && (
+            {/* {blockchains?.data?.length > 6 && (
                 <Menu
                     closeOnSelect={false}
                     suppressHydrationWarning={true}
@@ -331,7 +332,7 @@ const BlockchainSelectionMenuNew = () => {
                         </>
                     )}
                 </Menu>
-            )}
+            )} */}
         </Box>
     );
 };
