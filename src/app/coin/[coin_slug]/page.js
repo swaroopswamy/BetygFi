@@ -1,4 +1,5 @@
-import CoinDetailPage from "@components/pages/coin/CoinDetailPage";
+import dynamic from "next/dynamic";
+const CoinDetailPage = dynamic(() => import("@components/pages/coin/CoinDetailPage"));
 import { getCoinDashboardDataFetched } from "@services/coinService";
 import { CoinDetailPageMetas } from "@util/metaHelper";
 
