@@ -107,8 +107,8 @@ const SidebarContent = ({ ...rest }) => {
                             onClick={() => router.push("/")}
                         >
                             <Image
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 width={180}
                                 height={80}
                                 alt="logo"
@@ -416,8 +416,8 @@ const SidebarContent = ({ ...rest }) => {
                                 <Image
                                     width={35}
                                     height={35}
-                                    unoptimized="true"
-                                    priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     alt="logo"
                                     src={
                                         colorMode === "light"
@@ -584,8 +584,8 @@ const SidebarContent = ({ ...rest }) => {
                             width={24}
                             height={24}
                             alt="button"
-                            unoptimized="true"
-                            priority="true"
+                            // unoptimized="true"
+                            // priority="true"
                             style={
                                 isSidebarCollapsed
                                     ? { rotate: "180deg" }
@@ -874,8 +874,8 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                     width={100}
                                                     height={70}
                                                     alt="logo"
-                                                    unoptimized="true"
-                                                    priority="true"
+                                                    // unoptimized="true"
+                                                    // priority="true"
                                                     src={
                                                         colorMode === "light"
                                                             ? "/icons/light_betgyfi_sm_icon.svg"

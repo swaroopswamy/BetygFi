@@ -69,8 +69,14 @@ const TableRowDesktop = ({ item, i }) => {
 		<Tr height={"40px"} key={i}>
 			<Td _dark={{ color: "#FFFFFF" }} _light={{ color: "#16171B" }}>
 				<Box layerStyle={"flexCenter"}>
-					<Image width={5} height={5} alt="logo" unoptimized="true"
-						priority="true" src={item?.logoUrl} />
+					<Image
+						width={5}
+						height={5}
+						alt="logo"
+						// unoptimized="true"
+						// priority="true"
+						src={item?.logoUrl}
+					/>
 
 					<Text ml="6px" variant={"h3"}>
 						{item?.name}
@@ -115,8 +121,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 					<Image
 						width={20}
 						height={20}
-						unoptimized="true"
-						priority="true"
+						// unoptimized="true"
+						// priority="true"
 						src={item?.logoUrl}
 						style={{ borderRadius: '50%' }}
 						alt="logo"

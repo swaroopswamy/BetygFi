@@ -177,8 +177,8 @@ const BlockchainSelectionMenu = ({ chains }) => {
 						}}
 					>
 						<Image
-							unoptimized="true"
-							priority="true"
+							// unoptimized="true"
+							// priority="true"
 							style={{ borderRadius: "50%" }}
 							width={40}
 							height={40}

@@ -86,8 +86,8 @@ const TableRowDesktop = ({ item, i }) => {
 						alt="logo"
 						style={{ borderRadius: "50%" }}
 						src={item?.logoUrl}
-						unoptimized="true"
-						priority="true"
+					// unoptimized="true"
+					// priority="true"
 					/>
 					<Text ml="6px" variant={"h3"}>
 						{item?.symbol}
@@ -136,8 +136,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 					<Image
 						width={20}
 						height={20}
-						unoptimized="true"
-						priority="true"
+						// unoptimized="true"
+						// priority="true"
 						src={item?.logoUrl}
 						style={{ borderRadius: '50%' }}
 						alt="logo"

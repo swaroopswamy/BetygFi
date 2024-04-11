@@ -132,8 +132,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                         height={24}
                                                         src={item.tokenLogoUrl}
                                                         alt="token"
-                                                        unoptimized="true"
-                                                        priority="true"
+                                                    // unoptimized="true"
+                                                    // priority="true"
 
                                                     />
                                                     <Text
@@ -261,8 +261,8 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                 height={24}
                                                 src={item?.tokenLogoUrl}
                                                 alt="token"
-                                                unoptimized="true"
-                                                priority="true"
+                                            // unoptimized="true"
+                                            // priority="true"
                                             />
                                             <Text
                                                 _light={{

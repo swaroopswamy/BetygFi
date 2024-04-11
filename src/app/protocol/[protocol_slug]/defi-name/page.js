@@ -198,10 +198,10 @@ function TableRow({ key, Asset, Inflow, Outflow, NetValueflow }) {
 								width={24}
 								src={Asset?.src}
 								alt="logo"
-								// url={"/icons/Ethereum_sm_icon.svg"}
-								//  src="/icons/aave_logo.svg"
-								unoptimized="true"
-								priority="true"
+							// url={"/icons/Ethereum_sm_icon.svg"}
+							//  src="/icons/aave_logo.svg"
+							// unoptimized="true"
+							// priority="true"
 							/>
 							<Text
 								_dark={{

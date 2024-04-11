@@ -58,8 +58,8 @@ const TableRowDesktop = ({ item, i }) => {
 							style={{ borderRadius: "50%" }}
 							alt="logo"
 							src={item?.logoUrl}
-							unoptimized="true"
-							priority="true"
+						// unoptimized="true"
+						// priority="true"
 						/>
 					) : (
 						<Box
@@ -250,8 +250,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 							style={{ borderRadius: "50%" }}
 							alt="logo"
 							src={item?.logoUrl}
-							unoptimized="true"
-							priority="true"
+						// unoptimized="true"
+						// priority="true"
 						/>
 					) : (
 						<Box

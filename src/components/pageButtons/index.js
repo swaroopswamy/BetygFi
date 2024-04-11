@@ -47,8 +47,8 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
 										"/icons/direction-icon-dark.svg"
 									}
 									alt="prev-arrow"
-									unoptimized="true"
-									priority="true"
+								// unoptimized="true"
+								// priority="true"
 								/>
 							</Button>
 
@@ -64,8 +64,8 @@ const PageButtons = ({ page, totalPages = 0, pageChangeHandler }) => {
 								disabled={page === totalPages}
 							>
 								<Image
-									unoptimized="true"
-									priority="true"
+									// unoptimized="true"
+									// priority="true"
 									width={15}
 									height={15}
 									alt="next-arrow"

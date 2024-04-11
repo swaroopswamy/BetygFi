@@ -88,8 +88,8 @@ const BlockchainSelectionMenuBlocks = () => {
 								mr={"3px"}
 								style={{ borderRadius: "50%" }}
 								src={item.logoUrl}
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								alt={`${item.id}_icon`}
 							/>
 						</Tooltip>

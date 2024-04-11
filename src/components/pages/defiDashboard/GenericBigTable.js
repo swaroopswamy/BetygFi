@@ -148,8 +148,8 @@ function ThreadItem({ key, name }) {
 						)}
 						alt="Users"
 						ml="2"
-						unoptimized="true"
-						priority="true"
+					// unoptimized="true"
+					// priority="true"
 					/>
 				</Flex>
 			</Th>
@@ -235,8 +235,8 @@ function SelectionBox({ colorMode }) {
 										width={20}
 										height={20}
 										mr={"11px"}
-										unoptimized="true"
-										priority="true"
+										// unoptimized="true"
+										// priority="true"
 										src={item.logoUrl}
 										alt=""
 									></Image>
