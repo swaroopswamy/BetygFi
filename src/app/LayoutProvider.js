@@ -37,7 +37,7 @@ export default function LayoutProvider({ appConfig, children }) {
     const isMobileSidebarCollapsed = useSelector((state) => state?.appData?.isMobileSidebarCollapsed);
     const GoogleVerifiedData = useSelector((state) => state.authData.GoogleVerifiedData);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
-    // const LoggedInData = useSelector((state) => state.authData.LoggedInData);
+    const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
     const { address } = useAccount();
 
@@ -298,11 +298,11 @@ export default function LayoutProvider({ appConfig, children }) {
 
     }, [ValidatedUserData]);
 
-    // useEffect(() => {
-    //     if (LoggedInData?.isSuccess) {
-    //         getAllPublicNotificationsHandler();
-    //     }
-    // }, [LoggedInData]);
+    useEffect(() => {
+        if (LoggedInData && LoggedInData.isSuccess) {
+            getAllPublicNotificationsHandler();
+        }
+    }, [LoggedInData]);
 
     return (
         <AppConfigContext.Provider value={appConfig}>
