@@ -3,18 +3,18 @@
 import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useContext, useEffect } from "react";
+import React, { /* useContext, */ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AppConfigContext from "@components/context/appConfigContext";
+// import AppConfigContext from "@components/context/appConfigContext";
 
 // const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
-const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
+// const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
 const BlockchainSelectionMenuNew = dynamic(() => import("@components/blockchainSelectionNew"), { ssr: false });
 
 const ProtocolPage = () => {
-    const appConfig = useContext(AppConfigContext);
+    // const appConfig = useContext(AppConfigContext);
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
     const dispatch = useDispatch();
@@ -108,7 +108,7 @@ const ProtocolPage = () => {
                     py={"15px"}
                     gap={"15px"}
                 >
-                    {appConfig.showOverviewGraph && <OverviewBox />}
+                    {/* {appConfig.showOverviewGraph && <OverviewBox />} */}
                     {/* <OverviewColumnChart /> */}
                 </Box>
                 <Rankings />
