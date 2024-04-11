@@ -18,7 +18,7 @@ export const getBlockchainListData = async (rejectWithValue) => {
 			return checkIfCacheAvailable(url);
 		} else {
 			const { data } = await axiosInstance(getAPI_URL()).get(url);
-			return cacheHandler(url, data, 4, false);
+			return cacheHandler(url, data, false, 4);
 		}
 	} catch (err) {
 		return rejectWithValue(err);

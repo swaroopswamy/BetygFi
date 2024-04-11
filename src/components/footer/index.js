@@ -100,7 +100,7 @@ const Footer = React.memo(() => {
                                     paddingLeft={"10px"}
                                     opacity={"0.6"}
                                 >
-                                    &#169; 2023 BetygFi. All Rights Reserved.
+                                    &#169; {new Date().getFullYear()} BetygFi. All Rights Reserved.
                                 </Text>
                             </Box>
                         </Box>

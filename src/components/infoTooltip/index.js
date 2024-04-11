@@ -13,8 +13,8 @@ function GenericInfoTooltip({ label }) {
 			label={label}
 		>
 			<Image
-				unoptimized="true"
-				priority="true"
+				// unoptimized="true"
+				// priority="true"
 				className="tooltip-img"
 				src={"/icons/info_sm_icon.svg"}
 				width={12}

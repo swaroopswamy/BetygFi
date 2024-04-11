@@ -421,8 +421,8 @@ const Approach = () => {
 								Approach Paper
 							</Text>
 							<Image
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								height={40}
 								width={40}
 								src={useColorModeValue(

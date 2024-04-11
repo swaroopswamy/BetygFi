@@ -1,19 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
-import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AppConfigContext from "@components/context/appConfigContext";
 
 // const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
 const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
+const BlockchainSelectionMenuNew = dynamic(() => import("@components/blockchainSelectionNew"), { ssr: false });
 
 const ProtocolPage = () => {
+    const appConfig = useContext(AppConfigContext);
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
     const dispatch = useDispatch();
@@ -39,12 +40,11 @@ const ProtocolPage = () => {
     };
 
     useEffect(() => {
-        Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]).then(result => result);
+        Promise.all([
+            getOverviewDataHandler(),
+            getScoreGraphDataHandler()
+        ]).then(result => result);
     }, [blockchainSelected, categorySelected]);
-
-    useEffect(() => {
-        dispatch(fetchBlockchainListData());
-    }, []);
 
     const isMobileSearchBarOpen = useSelector((state) => state?.appData?.isMobileSearchOpen);
 
@@ -108,7 +108,7 @@ const ProtocolPage = () => {
                     py={"15px"}
                     gap={"15px"}
                 >
-                    <OverviewBox />
+                    {appConfig.showOverviewGraph && <OverviewBox />}
                     {/* <OverviewColumnChart /> */}
                 </Box>
                 <Rankings />
