@@ -82,7 +82,7 @@ const RiskAnalysis = ({ coinDetails }) => {
 
 export default RiskAnalysis;
 
-const RiskTable = ({ coinDetails }) => {
+const RiskTable = React.memo(({ coinDetails }) => {
     const commonStyleTdProp = {
         _light: { bgColor: "#FFFFFF", },
         _dark: { bgColor: "#202020", }
@@ -218,7 +218,8 @@ const RiskTable = ({ coinDetails }) => {
             </Tbody>
         </Table>
     );
-};
+});
+RiskTable.displayName = "RiskTable";
 
 const RiskChart = ({ coinDetails }) => {
     const [isLg] = useMediaQuery("(min-width: 960px)");

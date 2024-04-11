@@ -299,10 +299,11 @@ export default function LayoutProvider({ appConfig, children }) {
     }, [ValidatedUserData]);
 
     useEffect(() => {
-        if (LoggedInData?.isSuccess) {
+        if (LoggedInData && LoggedInData.isSuccess) {
             getAllPublicNotificationsHandler();
         }
     }, [LoggedInData]);
+
     return (
         <AppConfigContext.Provider value={appConfig}>
             <Box

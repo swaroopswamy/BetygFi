@@ -249,8 +249,8 @@ function TableRow({ key, users, deposited, borrowed, assets, share }) {
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								height={24}
 								width={24}
 								src={users.src}

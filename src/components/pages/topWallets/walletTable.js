@@ -218,8 +218,8 @@ const WalletTable = () => {
                                                                                         height={14}
                                                                                         style={{ borderRadius: "50%" }}
                                                                                         src={item.logo_url}
-                                                                                        unoptimized="true"
-                                                                                        priority="true"
+                                                                                        // unoptimized="true"
+                                                                                        // priority="true"
                                                                                         alt=""
                                                                                     />
                                                                                     <Text
@@ -472,8 +472,8 @@ function TableRow({ user, totalTokens, totalProtocols }) {
                                         style={{ borderRadius: "50%" }}
                                         src={item.logo_url}
                                         alt=""
-                                        unoptimized="true"
-                                        priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     />
                                     <Text
                                         variant={"h3"}

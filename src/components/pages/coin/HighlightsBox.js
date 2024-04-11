@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Box } from "@chakra-ui/react";
 import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
 import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
 import BTCetfSmallBox from "./BTCetfSmallBox";
@@ -8,7 +9,6 @@ import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from "@chakra-ui/react";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();

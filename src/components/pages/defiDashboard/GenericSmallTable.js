@@ -47,8 +47,8 @@ const GenericSmallTableComponent = ({ tableName, thread, tableData, RowComponent
 						mt={"22px"}
 						ml={"5px"}
 						alt=''
-						unoptimized="true"
-						priority="true"
+						// unoptimized="true"
+						// priority="true"
 						src={"/images/Frame.svg"}
 					/>
 				</Tooltip>

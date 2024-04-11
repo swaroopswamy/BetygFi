@@ -4,10 +4,7 @@ import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { BreadCrumb } from "@components/breadcrumb2";
 import { useDispatch } from "react-redux";
-import {
-    fetchCoinDevelopmentData,
-    fetchCoinPriceData,
-} from "@redux/coin_data/dataSlice";
+
 import CustomAvatar from "@components/avatar";
 import dynamic from "next/dynamic";
 
@@ -15,6 +12,11 @@ const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"));
 const RiskAnalysis = dynamic(() => import("@components/pages/coin/riskAnalysis"));
 const CoinPriceChart = dynamic(() => import("@components/pages/coin/coinPriceChart"));
 const DevelopmentAnalysis = dynamic(() => import("@components/pages/coin/developmentAnalysis"));
+
+import {
+    fetchCoinDevelopmentData,
+    fetchCoinPriceData,
+} from "@redux/coin_data/dataSlice";
 
 export default function CoinDetailPage({ coinSlug, coinDetails }) {
     const dispatch = useDispatch();
@@ -101,30 +103,6 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
                         </Text>
                     </Box>
                 </Box>
-
-                {/* <Box display={"flex"} alignItems={"flex-end"}>
-                    <Box
-                        layerStyle={"center"}
-                        p={"5px"}
-                        border={"1px"}
-                        borderRadius={"3px"}
-                        borderColor={useColorModeValue(
-                            "#494949",
-                            "rgba(255, 255, 255, 0.6"
-                        )}
-                        cursor={"pointer"}
-                        onClick={onShareOpen}
-                    >
-                        <Icon
-                            as={GoShareAndroid}
-                            boxSize={"15px"}
-                            color={useColorModeValue(
-                                "#494949",
-                                "rgba(255, 255, 255, 0.6"
-                            )}
-                        />
-                    </Box>
-                </Box> */}
             </Box>
 
             <hr />
@@ -137,7 +115,6 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
 
             <DevelopmentAnalysis />
 
-            {/* <ShareModal isShareOpen={isShareOpen} onShareClose={onShareClose} /> */}
         </Box>
     );
 }

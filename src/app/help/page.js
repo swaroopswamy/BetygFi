@@ -28,8 +28,8 @@ const Help = () => {
 						</Box>
 						<Box paddingRight={"205px"} paddingTop={"30px"}>
 							<Image
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								src={useColorModeValue(
 									"/images/bg-logo-dark.svg",
 									"/images/bg-logo.svg"
@@ -62,8 +62,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -73,8 +73,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -138,8 +138,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -149,8 +149,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -194,8 +194,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -205,8 +205,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -285,8 +285,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -296,8 +296,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -372,8 +372,8 @@ const Help = () => {
 									"/images/bg-logo.svg",
 									"/images/bg-logo-dark.svg"
 								)}
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								alt="bg-logo"
 								width={102}
 								height={100}
@@ -402,8 +402,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -413,8 +413,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -474,8 +474,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -485,8 +485,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -525,8 +525,8 @@ const Help = () => {
 												</Box>
 												{isExpanded ? (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-up.png"
@@ -536,8 +536,8 @@ const Help = () => {
 													/>
 												) : (
 													<Image
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														src={
 															colorMode === "light"
 																? "/images/ellipse-light-down.png"
@@ -617,8 +617,8 @@ const Help = () => {
 																? "/images/ellipse-light-up.png"
 																: "/images/ellipse-dark-up.png"
 														}
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														alt=""
 													/>
 												) : (
@@ -628,8 +628,8 @@ const Help = () => {
 																? "/images/ellipse-light-down.png"
 																: "/images/ellipse-dark-down.png"
 														}
-														unoptimized="true"
-														priority="true"
+														// unoptimized="true"
+														// priority="true"
 														alt=""
 													/>
 												)}

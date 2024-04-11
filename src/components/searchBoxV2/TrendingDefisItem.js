@@ -92,8 +92,8 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                                 alt="right-arrow"
                                 src={"/icons/right-arrow.svg"}
                                 width={24}
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 height={24}
                             />
                         </Box>

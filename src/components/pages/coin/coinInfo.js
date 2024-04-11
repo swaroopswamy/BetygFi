@@ -19,7 +19,7 @@ import { MdContentCopy } from "react-icons/md";
 import TooltipComp from "@components/tooltipComp";
 import CustomAvatar from "@components/avatar";
 
-const CoinInfo = ({ coinDetails }) => {
+const CoinInfo = React.memo(({ coinDetails }) => {
     return (
         <Box
             display={"flex"}
@@ -254,10 +254,9 @@ const CoinInfo = ({ coinDetails }) => {
             </Box>
         </Box>
     );
-};
-
+});
 export default CoinInfo;
-
+CoinInfo.displayName = "CoinInfo";
 const DashboardCell = ({ name, value, tooltip }) => {
     return (
         <Box layerStyle={"flexColumn"} w={"50%"}>

@@ -9,9 +9,9 @@ import {
 import React from "react";
 import { useSelector } from "react-redux";
 import CustomChart from "@components/graph";
+import TooltipComp from "@components/tooltipComp";
 import { SingleAccordionComp } from "@components/accordion";
 import { FaGithub } from "react-icons/fa";
-import TooltipComp from "@components/tooltipComp";
 
 const DevelopmentAnalysis = () => {
     const { colorMode } = useColorMode();

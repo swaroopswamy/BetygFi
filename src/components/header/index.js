@@ -326,8 +326,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                         ? "/icons/sidebar_icon_dark.svg"
                                         : "/icons/sidebar_icon_light.svg"
                                 }
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 width={18}
                                 height={18}
                                 alt="logo"
@@ -336,8 +336,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
 
                         <Box>
                             <Image
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 src={
                                     colorMode === "light"
                                         ? "/icons/light_betgyfi_sm_icon.svg"
@@ -346,9 +346,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 height={120}
                                 width={120}
                                 cursor={"pointer"}
-                                onClick={() => {
-                                    router.push("/");
-                                }}
+                                onClick={() => router.push("/")}
                                 alt="logo"
                             />
                         </Box>
@@ -367,8 +365,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 height={20}
                                 width={20}
                                 alt="logo"
-                                unoptimized="true"
-                                priority="true"
+                            // unoptimized="true"
+                            // priority="true"
                             />
                         </Box>
                     }

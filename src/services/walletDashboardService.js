@@ -21,7 +21,7 @@ export const getWalletTransactionsData = async (payloadData, rejectWithValue) =>
 			return checkIfCacheAvailable(cacheUrl);
 		} else {
 			const { data } = await axiosInstance(getAPI_URL()).post(url, payloadData.payload);
-			return cacheHandler(cacheUrl, data, 4, false);
+			return cacheHandler(cacheUrl, data, false, 4);
 		}
 	} catch (err) {
 		if (rejectWithValue) {

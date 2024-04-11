@@ -51,8 +51,8 @@ const DashboardTabItem = ({ tabData, tabIndex, index }) => {
 					width={25}
 					height={25}
 					alt="icon"
-					unoptimized="true"
-					priority="true"
+					// unoptimized="true"
+					// priority="true"
 					src={
 						tabIndex === index
 							? colorMode === "light" ? tabData?.iconLight : tabData?.iconDark

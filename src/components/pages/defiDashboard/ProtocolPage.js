@@ -1,12 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
-import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
+import { fetchOverviewData, fetchScoreGraphData, fetchBlockchainListData } from "@redux/dashboard_data/dataSlice";
 import { fetchTopGainersAndLosersData, fetchMarqueeData } from "@redux/coin_data/dataSlice";
 import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { /* useContext, */ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
 import Image from "next/image";
@@ -16,6 +14,7 @@ import Marquee from "./marquee";
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
 // const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
+const BlockchainSelectionMenuNew = dynamic(() => import("@components/blockchainSelectionNew"), { ssr: false });
 
 const ProtocolPage = () => {
     // const [isMd] = useMediaQuery("(min-width: 768px)");
