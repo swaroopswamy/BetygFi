@@ -123,14 +123,11 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             </>
         );
     };
-    const desktopPlaceholder = "";
-    // const desktopPlaceholder = "Search by Coin, DeFi, Wallet and more";
+
+    const desktopPlaceholder = "Search by Coin, DeFi, Wallet and more";
+    const mobilePlaceholder = "Search by Coin, DeFi, Wallet and more";
 
     const renderMDInputGroup = () => {
-        // useEffect(() => {
-
-
-        // },[]);
         return (
             <InputGroup ref={ref} w="100%" zIndex={"99999999"} alignItems={"center"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
@@ -229,7 +226,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 letterSpacing={"1.2px"}
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#A5A5A5" }}
-                                placeholder="Search by Coin, DeFi, Wallet and more"
+                                placeholder={mobilePlaceholder}
                                 value={searchValue}
                                 fontSize={"12px"}
                                 onClick={() => { handleSearchInputClick(); }}
