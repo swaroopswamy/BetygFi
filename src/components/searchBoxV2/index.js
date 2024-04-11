@@ -123,8 +123,14 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             </>
         );
     };
+    const desktopPlaceholder = "";
+    // const desktopPlaceholder = "Search by Coin, DeFi, Wallet and more";
 
     const renderMDInputGroup = () => {
+        // useEffect(() => {
+
+
+        // },[]);
         return (
             <InputGroup ref={ref} w="100%" zIndex={"99999999"} alignItems={"center"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
@@ -134,8 +140,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 src="/images/search_icon.svg"
                                 width={20}
                                 height={20}
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 alt="search_icon"
                                 borderLeftRadius={"20px"}
                                 borderRightRadius={"20px"}
@@ -163,7 +169,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 _light={{ color: "#16171B" }}
                                 _dark={{ color: "#A8ADBD" }}
                                 w="100%"
-                                placeholder="Search by Coin, DeFi name, Wallet and more"
+                                placeholder={desktopPlaceholder}
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                                 onClick={() => { handleSearchInputClick(); }}
                             />
@@ -182,8 +188,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
-                                    unoptimized="true"
-                                    priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"
@@ -207,8 +213,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 src={`/icons/search_icon_${colorMode}.svg`}
                                 width={18}
                                 height={18}
-                                unoptimized="true"
-                                priority="true"
+                                // unoptimized="true"
+                                // priority="true"
                                 alt="search_icon_mob"
                             />
                         </InputLeftElement>
@@ -243,8 +249,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
-                                    unoptimized="true"
-                                    priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"

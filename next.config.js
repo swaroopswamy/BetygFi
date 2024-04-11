@@ -1,7 +1,7 @@
 /**
  * @type {import('next').NextConfig}
 */
-// const webpack = require("webpack");
+const webpack = require("webpack");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -45,24 +45,29 @@ const nextConfig = {
     ];
   },
   reactStrictMode: false,
-  // webpack(config) {
-  //   config.plugins.push(
-  //     new webpack.DefinePlugin({
-  //       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-  //     })
-  //   );
-  //   config.resolve = {
-  //     ...config.resolve,
-  //     fallback: {
-  //       "fs": false,
-  //       "path": false,
-  //       "os": false,
-  //     }
-  //   };
-  //   return config;
-  // },
+  webpack(config) {
+    // config.plugins.push(
+    //   new webpack.DefinePlugin({
+    //     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    //   })
+    // );
+    // config.resolve = {
+    //   ...config.resolve,
+    //   fallback: {
+    //     "fs": false,
+    //     "path": false,
+    //     "os": false,
+    //   }
+    // };
+    config.mode = 'production';
+    return config;
+  },
   images: {
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "icons.llama.fi",
+      },
       {
         protocol: "https",
         hostname: "s2.coinmarketcap.com",
@@ -80,7 +85,6 @@ const nextConfig = {
         hostname: "localhost",
         port: "7000",
       },
-
     ],
     minimumCacheTTL: 3600, // 1hour
     dangerouslyAllowSVG: true,

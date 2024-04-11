@@ -69,7 +69,8 @@ const ProfileBox = () => {
                                 pos={"relative"}
                             >
                                 <Image
-                                    unoptimized={'true'}
+                                    // unoptimized={'true'}
+                                    // priority={'true'}
                                     style={{
                                         borderRadius: "50%",
                                         width: "150px",
@@ -77,12 +78,10 @@ const ProfileBox = () => {
                                         objectFit: "cover",
                                         background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
                                         backgroundRepeat: " no-repeat"
-
                                     }}
                                     width={150}
                                     height={150}
                                     alt="profile_img"
-                                    priority={'true'}
                                     src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
                                 ></Image>
                                 <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
@@ -213,7 +212,8 @@ const ProfileBox = () => {
                             pos={"relative"}
                         >
                             <Image
-                                unoptimized={'true'}
+                                // unoptimized={'true'}
+                                // priority={'true'}
                                 style={{
                                     borderRadius: "50%",
                                     width: "150px",
@@ -221,12 +221,10 @@ const ProfileBox = () => {
                                     objectFit: "cover",
                                     background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
                                     backgroundRepeat: " no-repeat"
-
                                 }}
                                 width={150}
                                 height={150}
                                 alt="profile_img"
-                                priority={'true'}
                                 src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
                             ></Image>
                             <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}

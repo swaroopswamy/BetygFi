@@ -1,7 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import BlockchainSelectionMenuNew from "@components/blockchainSelectionNew";
-import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
@@ -13,6 +11,7 @@ import AppConfigContext from "@components/context/appConfigContext";
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
 const OverviewBox = dynamic(() => import("@components/pages/dashboard/overviewBox"), { ssr: false });
 const Rankings = dynamic(() => import("@components/pages/dashboard/defiRankingsTable"), { ssr: false });
+const BlockchainSelectionMenuNew = dynamic(() => import("@components/blockchainSelectionNew"), { ssr: false });
 
 const ProtocolPage = () => {
     const appConfig = useContext(AppConfigContext);
@@ -41,12 +40,11 @@ const ProtocolPage = () => {
     };
 
     useEffect(() => {
-        Promise.all([getOverviewDataHandler(), getScoreGraphDataHandler()]).then(result => result);
+        Promise.all([
+            getOverviewDataHandler(),
+            getScoreGraphDataHandler()
+        ]).then(result => result);
     }, [blockchainSelected, categorySelected]);
-
-    useEffect(() => {
-        dispatch(fetchBlockchainListData());
-    }, []);
 
     const isMobileSearchBarOpen = useSelector((state) => state?.appData?.isMobileSearchOpen);
 

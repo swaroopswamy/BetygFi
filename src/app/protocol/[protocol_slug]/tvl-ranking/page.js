@@ -8,7 +8,7 @@ import {
 	Box,
 	useColorModeValue,
 	useColorMode,
-Image as ChakraImage
+	Image as ChakraImage
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -214,8 +214,8 @@ function TableRow({
 					<Flex>
 						<Box alignItems={"center"} display={"flex"} gap={"10px"}>
 							<Image
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								height={24}
 								width={24}
 								src={DeFi.src}

@@ -133,8 +133,8 @@ const TableRow = ({ item, rowIndex }) => {
 						<Image
 							width={18}
 							height={18}
-							unoptimized="true"
-							priority="true"
+							// unoptimized="true"
+							// priority="true"
 							src={item.logoUrl}
 							alt={`${item?.blockchain}_icon`}
 							style={{ borderRadius: "50%", marginRight: "3px" }}
@@ -305,8 +305,8 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 					width={5}
 					height={5}
 					alt="logo"
-					unoptimized="true"
-					priority="true"
+					// unoptimized="true"
+					// priority="true"
 					style={{ borderRadius: "50%" }}
 					src={item?.logoUrl}
 				/>
@@ -477,8 +477,8 @@ const TableBodyRowMobilePanelComp = ({ item }) => (
 					height={5}
 					alt="logo"
 					src={item?.tokenUrl}
-					unoptimized="true"
-					priority="true"
+					// unoptimized="true"
+					// priority="true"
 					style={{ borderRadius: "50%" }}
 				/>
 

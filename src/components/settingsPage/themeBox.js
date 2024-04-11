@@ -32,8 +32,8 @@ const ThemeBox = () => {
                 <Box layerStyle={"flexCenterSpaceEvenly"} mt={"10px"}>
                     <Box layerStyle={"flexColumn"} cursor={"pointer"}>
                         <Image
-                            unoptimized="true"
-                            priority="true"
+                            // unoptimized="true"
+                            // priority="true"
                             src="/images/SystemDefault.svg"
                             width={183}
                             height={133}
@@ -71,8 +71,8 @@ const ThemeBox = () => {
                             width={183}
                             height={133}
                             alt=" "
-                            unoptimized="true"
-                            priority="true"
+                        // unoptimized="true"
+                        // priority="true"
                         />
                         <Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
                             <DynamicIcon
@@ -106,8 +106,8 @@ const ThemeBox = () => {
                             width={183}
                             height={133}
                             alt=""
-                            unoptimized="true"
-                            priority="true"
+                        // unoptimized="true"
+                        // priority="true"
                         />
                         <Box layerStyle={"flexCenterFlexStart"} mt={"10px"}>
                             <DynamicIcon
@@ -209,8 +209,8 @@ const ThemeBox = () => {
                                     src="/images/LightTheme.svg"
                                     width={183}
                                     height={133}
-                                    unoptimized="true"
-                                    priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     alt=""
                                     m={"12px 0px 0px 21px"}
                                 ></Image>
@@ -254,8 +254,8 @@ const ThemeBox = () => {
                                 </Box>
                                 <Image
                                     src="/images/DarkTheme.svg"
-                                    unoptimized="true"
-                                    priority="true"
+                                    // unoptimized="true"
+                                    // priority="true"
                                     width={183}
                                     height={133}
                                     alt=""

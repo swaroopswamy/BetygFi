@@ -1,6 +1,6 @@
 import cache from "memory-cache";
 
-export const cacheHandler = (url, response, hours = 4, forceRefresh) => {
+export const cacheHandler = (url, response, forceRefresh, hours = 4) => {
   const cachedResponse = cache.get(url);
   if (cachedResponse && !forceRefresh) {
     return cachedResponse;

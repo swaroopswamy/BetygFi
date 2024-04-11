@@ -164,8 +164,8 @@ const LoginPage = ({ isOpen, onClose, web3Verification = false }) => {
                                             alignItems={"center"}
                                         >
                                             <Image
-                                                unoptimized="true"
-                                                priority="true"
+                                                // unoptimized="true"
+                                                // priority="true"
                                                 width={36}
                                                 height={36}
                                                 alt="Other Browser wallet"

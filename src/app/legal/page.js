@@ -29,8 +29,9 @@ const Legal = () => {
 							<Text variant={"bigHeading"} _light={{ color: "#000" }} _dark={{ color: "#FFF" }}>Legal</Text>
 						</Box>
 						<Box p={"9px 205px 16px 0px"}>
-							<Image unoptimized="true"
-								priority="true"
+							<Image
+								// unoptimized="true"
+								// priority="true"
 								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
 								alt=" " width={153} height={150} flexShrink={0} />
 						</Box>
@@ -119,8 +120,8 @@ const Legal = () => {
 						</Box>
 						<Box p={"6px 8px 28px 0px"}>
 							<Image
-								unoptimized="true"
-								priority="true"
+								// unoptimized="true"
+								// priority="true"
 								src={useColorModeValue("/images/bg-logo.svg", "/images/bg-logo-dark.svg")}
 								alt=" " width={102} height={100} flexShrink={0} />
 						</Box>
