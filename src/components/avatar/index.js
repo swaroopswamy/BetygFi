@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useColorMode } from '@chakra-ui/react';
 
-const CustomAvatar = ({ src, height = 48, width = 48, ...rest }) => {
+const CustomAvatar = React.memo(({ src, height = 48, width = 48, ...rest }) => {
     const { colorMode } = useColorMode();
     if (typeof height === 'string') {
         height = height.replace('px', '');
@@ -25,6 +25,7 @@ const CustomAvatar = ({ src, height = 48, width = 48, ...rest }) => {
             priority={'true'}
         />
     );
-};
+});
 
 export default CustomAvatar;
+CustomAvatar.displayName = "CustomAvatar";
