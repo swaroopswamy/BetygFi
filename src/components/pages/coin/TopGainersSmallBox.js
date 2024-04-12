@@ -27,7 +27,10 @@ const TopGainersSmallBox = () => {
                         height={32}
                         width={32}
                         src="/icons/trophy.svg"
-                        alt="trophy_icon"></Image>
+                        alt="trophy_icon"
+                        unoptimized="true"
+                        priority="true"
+                    ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         Top Gainers
                     </Text>
@@ -51,7 +54,9 @@ const TopGainersSmallBox = () => {
                         src={colorMode === "light" ? "/icons/Arrow_Right.svg" : "/icons/Arrow_down_dark.svg"}
                         style={colorMode !== "light" ? { transform: "rotate(-90deg)" } : {}}
                         mr={"5px"}
-                        alt="view_more"></Image>
+                        alt="view_more"
+                        unoptimized="true"
+                        priority="true"></Image>
                 </Box>
             </Box>
             {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
@@ -62,7 +67,7 @@ const TopGainersSmallBox = () => {
                             width={32}
                             src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
                             style={{ marginRight: "10px" }}
-                            alt=" "></Image>
+                            alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.name}
                         </Text>
@@ -99,82 +104,3 @@ const TopGainersSmallBox = () => {
 
 export default TopGainersSmallBox;
 
-
-
-
-
-
-{/* <Box layerStyle={"spaceBetween"}>
-                <Box layerStyle={"flexCenter"}>
-                    <Image
-                        height={32}
-                        width={32}
-                        src="/icons/bitcoin_logo.svg"
-                        style={{ margin: "5px 10px" }}
-                        alt=" "></Image>
-                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                        Livepeer
-                    </Text>
-                </Box>
-                <Box layerStyle={"flexCenter"} gap={"5px"}>
-                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                        $12.29
-                    </Text>
-                    <Box
-                        width={"57px"}
-                        height={"21px"}
-                        mr={"5px"}
-                        top={"67px"}
-                        left={"226px"}
-                        padding={"2px 8px"}
-                        borderRadius={"16px"}
-                        gap={"10px"}
-                        _light={{ bg: "#245F001F" }}
-                        _dark={{ bg: "#60C0003F" }}
-                    >
-                        <Text variant={"baseStyle"} lineHeight={"17px"}
-                            _light={{ color: "#245F00" }}
-                            _dark={{ color: "#60C000" }}
-                        >
-                            52.0%
-                        </Text>
-                    </Box>
-                </Box>
-            </Box>
-            <Box layerStyle={"spaceBetween"}>
-                <Box layerStyle={"flexCenter"}>
-                    <Image
-                        height={32}
-                        width={32}
-                        src="/icons/bitcoin_logo.svg"
-                        style={{ margin: "5px 10px" }}
-                        alt=" "></Image>
-                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                        Livepeer
-                    </Text>
-                </Box>
-                <Box layerStyle={"flexCenter"} gap={"5px"}>
-                    <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                        $12.29
-                    </Text>
-                    <Box
-                        width={"57px"}
-                        height={"21px"}
-                        mr={"5px"}
-                        top={"67px"}
-                        left={"226px"}
-                        padding={"2px 8px"}
-                        borderRadius={"16px"}
-                        gap={"10px"}
-                        _light={{ bg: "#245F001F" }}
-                        _dark={{ bg: "#60C0003F" }}
-                    >
-                        <Text variant={"baseStyle"} lineHeight={"17px"}
-                            _light={{ color: "#245F00" }}
-                            _dark={{ color: "#60C000" }}
-                        >
-                            52.0%
-                        </Text>
-                    </Box>
-                </Box>
-            </Box> */}

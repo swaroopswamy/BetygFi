@@ -1,7 +1,7 @@
+import './index.css';
 import { Box, Icon, Spinner, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import SkeletonTable from "@components/skeleton";
 import TooltipComp from "@components/tooltipComp";
-import './index.css';
 
 const SlideLeftTable = ({
     tableHeader,

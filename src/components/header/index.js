@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
+import "./index.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDisconnect } from "wagmi";
@@ -13,7 +14,6 @@ import {
     useMediaQuery,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import "./index.css";
 import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import {
     LogoutReducer,
@@ -111,8 +111,10 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     }, [searchParamAddress]);
 
     useEffect(() => {
-        updateColorMode();
-        dispatch(getSearchV2TrendingList());
+        Promise.all([
+            updateColorMode(),
+            dispatch(getSearchV2TrendingList())
+        ]).then(res => res);
     }, []);
 
     const updateColorMode = () => {

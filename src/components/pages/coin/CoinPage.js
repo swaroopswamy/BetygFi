@@ -13,7 +13,7 @@ import {
     useDisclosure,
     Collapse,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { BreadCrumb } from "@components/breadcrumb2";
 import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,11 +25,12 @@ import {
     fetchTrendingCoinsData,
     fetchTopBTCETFData,
     fetchFearAndGreedData,
-    fetchBTCDominanceScoresData, fetchMarqueeData,
+    fetchBTCDominanceScoresData, fetchMarqueeData, fetchCoinRankingsTableData, fetchCoinScoresData, fetchCryptoCategoriesData,
 } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
+import { getHumanReadableTextFromSlug } from "@util/utility";
 
 const CoinPage = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,16 @@ const CoinPage = () => {
     const trendingCoinsData = useSelector((state) => state?.coinData?.TrendingCoinsData);
     const btcDominanceDay = useSelector((state) => state?.coinData?.btcDominanceDay);
     const sapDay = useSelector((state) => state?.coinData?.sapDay);
+
+    const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
+    const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
+
+
+    const [tablePage, setTablePage] = useState(1);
+    const [tableLimit, setTableLimit] = useState(20);
+    const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
+
+    const [cryptoCategories, setCryptoCategories] = useState([]);
 
 
     const fetchTopGainersAndLosersDataHandler = () => {
@@ -71,16 +82,67 @@ const CoinPage = () => {
         dispatch(fetchBTCDominanceScoresData(payload));
     };
 
+    const getCoinRankingsTableDataHandler = () => {
+        const payload = {
+            category: cryptoCategorySelected,
+            page: tablePage,
+            limit: tableLimit,
+            score_dist: scoreSelected,
+        };
+        dispatch(fetchCoinRankingsTableData(payload));
+    };
+    const fetchScoreData = () => {
+        const query = cryptoCategorySelected;
+        dispatch(fetchCoinScoresData(query));
+    };
+    const fetchCategories = () => {
+        dispatch(fetchCryptoCategoriesData());
+    };
+    const fetchTrendingCoinsDataHandler = () => {
+        dispatch(fetchTrendingCoinsData());
+    };
+    const fetchBlockchainListDataHandler = () => {
+        dispatch(fetchBlockchainListData());
+    };
+
+
     useEffect(() => {
         Promise.all([
-            dispatch(fetchTrendingCoinsData()),
-            dispatch(fetchBlockchainListData()),
+            fetchCategories(),
+        ]).then(resolve => resolve);
+    }, [cryptoCategorySelected]);
+
+    const pageChangeHandler = (page) => {
+        if (page == "") {
+            setTablePage(page);
+        }
+        if (page >= 1) {
+            setTablePage(page);
+        }
+    };
+
+    useEffect(() => {
+        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData.data.length > 0) {
+            setCryptoCategories([...cryptoCategoriesData.data].map((cryptoData, index) => {
+                return {
+                    id: cryptoData + '_' + index + 1,
+                    text: getHumanReadableTextFromSlug(cryptoData),
+                    slug: cryptoData
+                };
+            }));
+        }
+    }, [cryptoCategoriesData]);
+
+    useEffect(() => {
+        Promise.all([
             fetchTopGainersAndLosersDataHandler(),
             fetchTopBTCETFDataHandler(),
             fetchFearAndGreedDataHandler(),
-            fetchSAPDataHandler(),
             fetchMarqueeDataHandler(),
-            onHighlightsBoxToggle()
+            onHighlightsBoxToggle(),
+            fetchBlockchainListDataHandler(),
+            fetchTrendingCoinsDataHandler(),
+            fetchScoreData()
         ]).then(result => result);
     }, []);
 
@@ -95,6 +157,13 @@ const CoinPage = () => {
             fetchSAPDataHandler()
         ]).then(res => res);
     }, [sapDay]);
+
+    useEffect(() => {
+        if (tablePage != "") {
+            Promise.all([getCoinRankingsTableDataHandler()]).then(resolve => resolve);
+        }
+    }, [tablePage, tableLimit, scoreSelected, setTablePage, cryptoCategorySelected]);
+
 
     return (
         <Box
@@ -127,7 +196,19 @@ const CoinPage = () => {
 
             {/* <BlockchainSelectionMenuNew /> */}
             {/* <CoinOverviewChart /> */}
-            <CoinRankingsTable />
+            <CoinRankingsTable
+                tablePage={tablePage}
+                setTablePage={setTablePage}
+                tableLimit={tableLimit}
+                setTableLimit={setTableLimit}
+                cryptoCategorySelected={cryptoCategorySelected}
+                setCryptoCategorySelected={setCryptoCategorySelected}
+                cryptoCategories={cryptoCategories}
+                setCryptoCategories={setCryptoCategories}
+                pageChangeHandler={pageChangeHandler}
+
+
+            />
             <hr />
             <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"} mx={"20px"}>
                 <Text
