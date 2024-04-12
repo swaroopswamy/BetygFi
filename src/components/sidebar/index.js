@@ -588,11 +588,10 @@ const SidebarContent = ({ ...rest }) => {
                             alt="button"
                             // unoptimized="true"
                             // priority="true"
-                            style={
-                                isSidebarCollapsed
-                                    ? { rotate: "180deg" }
-                                    : { rotate: "0deg" }
-                            }
+                            style={{
+                                position: "fixed",
+                                rotate: isSidebarCollapsed ? "180deg" : "0deg"
+                            }}
                             src={useColorModeValue(
                                 "/icons/collapse-sidebar-light.svg",
                                 "/icons/collapse-sidebar-dark.svg"
