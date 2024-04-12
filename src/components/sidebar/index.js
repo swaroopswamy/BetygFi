@@ -573,6 +573,8 @@ const SidebarContent = ({ ...rest }) => {
 
                 <Box display={"flex"}>
                     <Flex
+                        justifyContent={"center"}
+                        alignItems={"center"}
                         mr={"-12px"}
                         padding={"0px"}
                         cursor={"pointer"}
