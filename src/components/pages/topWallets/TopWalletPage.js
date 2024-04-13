@@ -1,14 +1,19 @@
 "use client";
 import React from "react";
-import {
-	Box,
-	Text,
-	useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 const WalletTable = dynamic(() => import("@components/pages/topWallets/walletTable"));
 
 const WalletDashboardPage = () => {
+	const [isMd] = useMediaQuery("(min-width: 768px)");
+	let walletHeading = {};
+
+	if (isMd) {
+		walletHeading.layerStyle = "flexColumnSpaceBetween";
+	} else {
+		walletHeading.display = "flex";
+		walletHeading.justifyContent = "center";
+	}
 	return (
 		<Box
 			bgColor={useColorModeValue("#F5F5F7", "#131313")}
@@ -16,10 +21,10 @@ const WalletDashboardPage = () => {
 		>
 			<Box
 				layerStyle={"flexSpaceBetween"}
-				padding={"38px 30px 0px 30px"}
+				padding={{ base: "18px 30px", md: "38px 30px 0px 30px" }}
 				bgColor={useColorModeValue("#FFFFFF", "#131313")}
 			>
-				<Box layerStyle={"flexColumnSpaceBetween"}>
+				<Box {...walletHeading}>
 					<Text variant={"contentHeading"} lineHeight={"20px"}>
 						Top Wallets
 					</Text>
