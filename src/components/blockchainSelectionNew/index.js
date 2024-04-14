@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { /* useEffect, useState */ } from "react";
 import {
     Box,
     Text,
@@ -13,13 +13,13 @@ const BlockchainSelectionMenuNew = () => {
     const dispatch = useDispatch();
     // const { colorMode } = useColorMode();
 
-     const [
-        // tempBlockchain,
-        setTempBlockchain] = useState([]);
+/*      const [
+        tempBlockchain,
+        setTempBlockchain] = useState([]); */
 
-    const [
-        // searchableBlockchains,
-        setSearchableBlockchains] = useState([]);
+/*     const [
+         searchableBlockchains,
+        setSearchableBlockchains] = useState([]); */
     // const blockchainSearchHandler = (e) => {
     //     const value = e.target.value;
     //     setSearchTerm(value);
@@ -46,11 +46,11 @@ const BlockchainSelectionMenuNew = () => {
         data: blockchainListData.data,
         isSuccess: blockchainListData.isSuccess,
     };
-    useEffect(() => {
+   /*  useEffect(() => {
         setSearchableBlockchains(blockchainListData?.data?.slice(5));
         setTempBlockchain(blockchainListData?.data?.slice(5));
     }, [blockchainListData]);
-
+ */
     return (
         <Box
             display={"flex"}
