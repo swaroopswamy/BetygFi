@@ -73,33 +73,23 @@ const ProtocolPage = () => {
         ]).then(res => res);
     }, []);
 
+    const ScrollToRight = () => {
+        document.getElementById('blockchain-container').scrollBy(
+            {
+                left: 150, // Adjust this value according to your preference
+                behavior: 'smooth',
+            }
+        );
+    };
+
     return (
         <>
             <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
-                {/* {
-                isMd ? (
-                    <Box
-                        display={"flex"}
-                        alignItems={"center"}
-                        w={"100%"}
-                        pt={"28px"}
-                        gap={"20px"}
-                        px={"28px"}
-                    >
-                        <Text variant="h1new">DeFi Markets </Text>
-                    </Box>
-                ) : (
-                    <Box display={"flex"} pt={isMobileSearchBarOpen ? "50px" : "30px"}>
-                        <Text variant="h1" px={"18px"}>
-                            DeFi Markets
-                        </Text>
-                    </Box>
-                )
-            } */}
                 <Marquee />
-                <Box layerStyle={"flexCenter"} px={{ md: "28px" }} mb={{ base: "14px", md: "28px" }}>
-                    <BlockchainSelectionMenuNew />
-                    <Button onClick={onOpen} gap={"5px"}>
+                <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "28px" }} >
+                    <BlockchainSelectionMenuNew w="95%" />
+                    <i className="icon arrow_right_grey" onClick={ScrollToRight} />
+                    <Button onClick={onOpen} gap={"5px"} >
                         <Image src={"/icons/filter_list.svg"} width={15} height={15} alt=" "></Image>
                         <Text>Filter</Text>
                     </Button>
