@@ -160,7 +160,7 @@ const ProtocolPage = () => {
                     <Rankings />
                 </Box >
 
-                <Modal isOpen={isOpen} onClose={onClose}>
+                <Modal isOpen={isOpen} onClose={onClose} size={"xl"}>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader mt={"15px"} layerStyle={"flexCenter"}>
@@ -239,7 +239,7 @@ const ProtocolPage = () => {
                             </Box>
                         </ModalBody>
 
-                        <Box layerStyle={"flexCenterSpaceBetween"} m={"10px 20px"}>
+                        <Box layerStyle={"flexCenterSpaceBetween"} m={"40px 20px 10px 20px"}>
                             <Button variant={"modalButton"} width={100} height={30}>
                                 Reset
                             </Button>

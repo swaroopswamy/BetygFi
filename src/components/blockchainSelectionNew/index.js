@@ -101,7 +101,7 @@ const BlockchainSelectionMenuNew = () => {
                     </Text>
                 </Box>
                 {blockchains?.data?.map((item, i) => {
-                    if (i >= 7) return;
+                    if (i >= 9) return;
                     return (
                         <Tooltip key={i} label={item.name}>
                             <Box layerStyle={"flexCenter"} gap={"3px"}>
