@@ -27,7 +27,10 @@ const TopGainersSmallBox = () => {
                         height={32}
                         width={32}
                         src="/icons/trophy.svg"
-                        alt="trophy_icon"></Image>
+                        alt="trophy_icon"
+                        unoptimized="true"
+                        priority="true"
+                    ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         Top Gainers
                     </Text>
@@ -51,7 +54,9 @@ const TopGainersSmallBox = () => {
                         src={colorMode === "light" ? "/icons/Arrow_Right.svg" : "/icons/Arrow_down_dark.svg"}
                         style={colorMode !== "light" ? { transform: "rotate(-90deg)" } : {}}
                         mr={"5px"}
-                        alt="view_more"></Image>
+                        alt="view_more"
+                        unoptimized="true"
+                        priority="true"></Image>
                 </Box>
             </Box>
             {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
@@ -62,7 +67,7 @@ const TopGainersSmallBox = () => {
                             width={32}
                             src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
                             style={{ marginRight: "10px" }}
-                            alt=" "></Image>
+                            alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.name}
                         </Text>

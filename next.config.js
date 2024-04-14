@@ -46,19 +46,6 @@ const nextConfig = {
   },
   reactStrictMode: false,
   webpack(config) {
-    // config.plugins.push(
-    //   new webpack.DefinePlugin({
-    //     "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-    //   })
-    // );
-    // config.resolve = {
-    //   ...config.resolve,
-    //   fallback: {
-    //     "fs": false,
-    //     "path": false,
-    //     "os": false,
-    //   }
-    // };
     config.mode = 'production';
     return config;
   },
@@ -67,6 +54,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "icons.llama.fi",
+      },
+      {
+        protocol: "https",
+        hostname: "static.debank.com",
       },
       {
         protocol: "https",

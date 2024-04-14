@@ -26,36 +26,18 @@ const BTCetfSmallBox = () => {
                         height={32}
                         width={32}
                         src="/icons/bitcoin_logo.svg"
-                        alt="trophy_icon"></Image>
+                        alt="trophy_icon"
+                        unoptimized="true"
+                        priority="true"
+                        ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         BTC ETF
                     </Text>
                 </Box>
-                {/* <Box layerStyle={"flexCenter"} gap={"3px"}>
-                    <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
-                        _light={{ color: "#757575" }}
-                        _dark={{ color: "#A5A5A5" }}
-                    >
-                        View more
-                    </Text>
-                    <Image
-                        height={5}
-                        width={8}
-                        src={colorMode === "light" ? "/icons/Arrow_Right.svg" : "/icons/Arrow_down_dark.svg"}
-                        style={colorMode !== "light" ? { transform: "rotate(-90deg)" } : {}}
-                        mr={"5px"}
-                        alt="view_more"></Image>
-                </Box> */}
             </Box>
             {top3ETFData?.map((item, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="18px" pl={"12px"}>
                     <Box layerStyle={"flexCenter"}>
-                        {/*  <Image
-                            height={32}
-                            width={32}
-                            src={item?.logoUrl ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px" }}
-                            alt=" "></Image> */}
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {item?.symbol}
                         </Text>

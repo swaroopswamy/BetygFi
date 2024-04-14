@@ -32,7 +32,10 @@ const FearGridIndexSmallBox = () => {
                     height={32}
                     width={32}
                     src="/icons/bitcoin_logo.svg"
-                    alt="bitcoin_icon"></Image>
+                    alt="bitcoin_icon"
+                    unoptimized="true"
+                    priority="true"
+                    ></Image>
                 <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                     Fear/Greed Index
                 </Text>

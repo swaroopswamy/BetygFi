@@ -102,7 +102,9 @@ const SandPSmallBox = () => {
                         height={32}
                         width={32}
                         src="/icons/bitcoin_logo.svg"
-                        alt="bitcoin_icon"></Image>
+                        alt="bitcoin_icon"
+                        unoptimized="true"
+                        priority="true"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         S&P 500
                     </Text>
@@ -157,7 +159,10 @@ const SandPSmallBox = () => {
                                     height={12}
                                     width={12}
                                     src="/icons/green_dot.svg"
-                                    alt="green_dot_icon"></Image>
+                                    alt="green_dot_icon"
+                                    unoptimized="true"
+                                    priority="true"
+                                    ></Image>
                             </Box>
                             <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
                                 <CustomChart
