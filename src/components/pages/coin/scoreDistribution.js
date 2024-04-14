@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-
 import TooltipComp from "@components/tooltipComp";
 import { scoreChangedReducer } from "@redux/coin_data/dataSlice";
 import { calculatePercentage } from "@util/utility";

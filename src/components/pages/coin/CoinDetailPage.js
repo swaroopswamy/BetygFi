@@ -21,6 +21,7 @@ import {
 export default function CoinDetailPage({ coinSlug, coinDetails }) {
     const dispatch = useDispatch();
 
+
     const GetCoinPriceDataHandler = () => {
         const payload = {
             id: coinSlug,
@@ -42,6 +43,7 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
             GetCoinDevelopmentDataHandler(),
         ]).then(result => result);
     }, []);
+
 
     return (
         <Box

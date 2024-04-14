@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { fetchOverviewData, fetchScoreGraphData, fetchBlockchainListData } from "@redux/dashboard_data/dataSlice";
+import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
 import { fetchTopGainersAndLosersData, fetchMarqueeData } from "@redux/coin_data/dataSlice";
 import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
 import Image from "next/image";
 import Marquee from "./marquee";
+import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 
 // const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
@@ -67,7 +68,9 @@ const ProtocolPage = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(fetchBlockchainListData());
+        Promise.all([
+            dispatch(fetchBlockchainListData()),
+        ]).then(res => res);
     }, []);
 
     return (

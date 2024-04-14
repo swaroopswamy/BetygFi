@@ -14,7 +14,7 @@ const About = () => {
 				bg={colorMode === 'light' ? "#F0F0F5" : "#191919"}
 			>
 				<Box>
-					<Image src="/images/sunshine.svg" alt=" "></Image>
+					<Image style={{ width: "100%" }} src="/images/sunshine.svg" alt="sunshine" />
 					<Text
 						position={"absolute"}
 						top={"6%"}
@@ -50,7 +50,7 @@ const About = () => {
 						</Box>
 					</Box>
 					<Box display={"flex"} p={"0px 20px 35px"} width={"100%"} gap={"27px"}>
-						<Box width={"28%"}>
+						<Box mt={"1.4rem"} width={"28%"}>
 							<Text variant={"approachPaperHeading"}>
 								BetygFi’s Vision
 							</Text>

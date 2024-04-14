@@ -2,93 +2,35 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
-import { fetchCoinRankingsTableData, fetchCoinScoresData, fetchCryptoCategoriesData, } from "@redux/coin_data/dataSlice";
 import CustomAvatar from "@components/avatar";
-import { getHumanReadableTextFromSlug } from "@util/utility";
 
-const GenericTable = dynamic(() => import("@components/table"));
-const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
+const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
 const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"));
 
-const CoinRankingsTable = () => {
-    const dispatch = useDispatch();
+const CoinRankingsTable = (
+    {
+        tablePage,
+        tableLimit,
+        setTableLimit,
+        setCryptoCategorySelected,
+        cryptoCategories,
+        pageChangeHandler
+    }
+) => {
+    const { colorMode } = useColorMode();
     const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
     const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
-    const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
-    const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
-
-    const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(20);
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
-    const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
-    const { colorMode } = useColorMode();
-    const [cryptoCategories, setCryptoCategories] = useState(cryptoCategoriesData?.data || []);
 
-    const pageChangeHandler = (page) => {
-        if (page == "") {
-            setTablePage(page);
-        }
-        if (page >= 1) {
-            setTablePage(page);
-        }
-    };
 
-    const getCoinRankingsTableDataHandler = () => {
-        const payload = {
-            category: cryptoCategorySelected,
-            page: tablePage,
-            limit: tableLimit,
-            score_dist: scoreSelected,
-        };
-        dispatch(fetchCoinRankingsTableData(payload));
-    };
 
-    useEffect(() => {
-        if (tablePage != "") {
-            setTimeout(() => {
-                getCoinRankingsTableDataHandler();
-            }, 500);
-        }
-    }, [tablePage, tableLimit, scoreSelected, setTablePage, cryptoCategorySelected]);
 
-    useEffect(() => {
-        Promise.all([
-            fetchScoreData()
-        ]).then(resolve => resolve);
-    }, [cryptoCategorySelected]);
-
-    const fetchScoreData = () => {
-        const query = cryptoCategorySelected;
-        dispatch(fetchCoinScoresData(query));
-    };
-
-    const fetchCategories = () => {
-        dispatch(fetchCryptoCategoriesData());
-    };
-
-    useEffect(() => {
-        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData.data.length > 0) {
-            setCryptoCategories([...cryptoCategoriesData.data].map((cryptoData, index) => {
-                return {
-                    id: cryptoData + '_' + index + 1,
-                    text: getHumanReadableTextFromSlug(cryptoData),
-                    slug: cryptoData
-                };
-            }));
-        }
-    }, [cryptoCategoriesData]);
-
-    useEffect(() => {
-        Promise.all([
-            fetchCategories(),
-            fetchScoreData()
-        ]).then(resolve => resolve);
-    }, []);
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
