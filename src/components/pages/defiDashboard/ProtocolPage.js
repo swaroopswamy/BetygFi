@@ -76,7 +76,7 @@ const ProtocolPage = () => {
     const ScrollToRight = () => {
         document.getElementById('blockchain-container').scrollBy(
             {
-                left: 150, // Adjust this value according to your preference
+                left: 150,
                 behavior: 'smooth',
             }
         );
@@ -88,8 +88,10 @@ const ProtocolPage = () => {
                 <Marquee />
                 <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "28px" }} >
                     <BlockchainSelectionMenuNew w="95%" />
-                    <i className="icon arrow_right_grey" onClick={ScrollToRight} />
-                    <Button onClick={onOpen} gap={"5px"} >
+                    <Box marginLeft={"-35px"}>
+                        <i className="icon arrow_right_grey" onClick={ScrollToRight} />
+                    </Box>
+                    <Button onClick={onOpen} gap={"5px"} mr={"10px"} >
                         <Image src={"/icons/filter_list.svg"} width={15} height={15} alt=" "></Image>
                         <Text>Filter</Text>
                     </Button>

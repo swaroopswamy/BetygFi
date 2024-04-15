@@ -1,10 +1,6 @@
 "use client";
 import React, { /* useEffect, useState */ } from "react";
-import {
-    Box,
-    Text,
-    Tooltip,
-} from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { blockchainTypeChangedReducer } from "@redux/dashboard_data/dataSlice";
 import CustomAvatar from "@components/avatar";
@@ -37,7 +33,7 @@ const BlockchainSelectionMenuNew = ({ w = "100%" }) => {
             <Box
                 display={"flex"}
                 alignItems={"center"}
-                p={{ base: "10px" }}
+                p={{ base: "10px 0px 10px 10px" }}
                 w="100%"
             >
                 <Box
@@ -95,51 +91,49 @@ const BlockchainSelectionMenuNew = ({ w = "100%" }) => {
                 >
                     {blockchains?.data?.map((item, i) => {
                         return (
-                            <Tooltip key={i} label={item.name}>
-                                <Box layerStyle={"flexCenter"} gap={"3px"} ml={"15px"}>
-                                    <Box
-                                        layerStyle={"flexCenter"}
-                                        justifyContent={"center"}
-                                        cursor={"pointer"}
-                                        _light={{
-                                            bg: blockchainSelected.includes(item.id)
-                                                ? "#D9D9D9"
-                                                : "#FFF",
-                                        }}
-                                        _dark={{
-                                            bg: blockchainSelected.includes(item.id)
-                                                ? "#FFFFFF"
-                                                : "#989898",
-                                        }}
-                                        border={
-                                            blockchainSelected.includes(item.id)
-                                                ? "2px solid #245F00"
-                                                : "1px solid rgba(0, 0, 0, 0.10)"
-                                        }
-                                        dropShadow={
-                                            "0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                        }
-                                        borderRadius="50%"
-                                        w="32px"
-                                        h="32px"
+                            <Box layerStyle={"flexCenter"} gap={"3px"} ml={"15px"} key={i}>
+                                <Box
+                                    layerStyle={"flexCenter"}
+                                    justifyContent={"center"}
+                                    cursor={"pointer"}
+                                    _light={{
+                                        bg: blockchainSelected.includes(item.id)
+                                            ? "#D9D9D9"
+                                            : "#FFF",
+                                    }}
+                                    _dark={{
+                                        bg: blockchainSelected.includes(item.id)
+                                            ? "#FFFFFF"
+                                            : "#989898",
+                                    }}
+                                    border={
+                                        blockchainSelected.includes(item.id)
+                                            ? "2px solid #245F00"
+                                            : "1px solid rgba(0, 0, 0, 0.10)"
+                                    }
+                                    dropShadow={
+                                        "0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                    }
+                                    borderRadius="50%"
+                                    w="32px"
+                                    h="32px"
 
-                                        onClick={() => {
-                                            BlockchainTypeHandler(item.id);
-                                        }}
-                                    >
-                                        <CustomAvatar
-                                            style={{ borderRadius: "50%" }}
-                                            width={"21px"}
-                                            height={"21px"}
-                                            src={item?.logoUrl}
-                                            name={item.id ?? "Coin"}
-                                        />
-                                    </Box>
-                                    <Text variant={"h3"} whiteSpace={"nowrap"}>
-                                        {item?.name}
-                                    </Text>
+                                    onClick={() => {
+                                        BlockchainTypeHandler(item.id);
+                                    }}
+                                >
+                                    <CustomAvatar
+                                        style={{ borderRadius: "50%" }}
+                                        width={"21px"}
+                                        height={"21px"}
+                                        src={item?.logoUrl}
+                                        name={item.id ?? "Coin"}
+                                    />
                                 </Box>
-                            </Tooltip>
+                                <Text variant={"h3"} whiteSpace={"nowrap"}>
+                                    {item?.name}
+                                </Text>
+                            </Box>
                         );
                     })}
                 </Box>
