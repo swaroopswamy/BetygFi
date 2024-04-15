@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Text, Image, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 
 const About = () => {
 	const { colorMode } = useColorMode();
@@ -13,12 +13,23 @@ const About = () => {
 				maxWidth={"100%"}
 				bg={colorMode === 'light' ? "#F0F0F5" : "#191919"}
 			>
-				<Box>
-					<Image style={{ width: "100%" }} src="/images/sunshine.svg" alt="sunshine" />
+				<Box
+					height={"25rem"}
+					width={"100vw"}
+					backgroundImage={'url("/images/sunshine.svg")'}
+					backgroundPosition={"center"}
+					backgroundRepeat={"no-repeat"}
+					backgroundSize={"100% 100%"}
+					display={"flex"}
+					alignItems={"center"}
+					justifyContent={"flex-start"}
+					backgroundAttachment={"fixed"}
+				>
 					<Text
-						position={"absolute"}
-						top={"6%"}
-						left={"5%"}
+						// position={"absolute"}
+						// top={"6%"}
+						// left={"5%"}
+						ml={"4rem"}
 						color={"#FFF"}
 						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
 						fontSize={"54px"}
@@ -100,12 +111,19 @@ const About = () => {
 				maxWidth={"100%"}
 				bg={colorMode === 'light' ? "#F0F0F5" : "#191919"}
 			>
-				<Box>
-					<Image src="/images/sunshine_MO.svg" alt=" " width={"100%"}></Image>
+				<Box
+					height={"10rem"}
+					width={"100vw"}
+					backgroundImage={'url("/images/sunshine_MO.svg")'}
+					backgroundPosition={"center"}
+					backgroundRepeat={"no-repeat"}
+					backgroundSize={"cover"}
+					display={"flex"}
+					alignItems={"center"}
+					justifyContent={"flex-start"}
+				>
 					<Text
-						position={"absolute"}
-						top={"5%"}
-						left={"5%"}
+						ml={"5%"}
 						color={"#FFF"}
 						textShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
 						fontSize={"24px"}
