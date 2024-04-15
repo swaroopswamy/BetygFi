@@ -364,7 +364,7 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             Our proprietary ML model processes real time on chain data to calculate risk scores for entities that leverage the blockchain ecosystem.
                             These scores are derived from a comprehensive set of metrics both financial and non financial, including transaction volume, volatility, smart
                             contract activity and network participation.
@@ -378,7 +378,7 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             The model constructs relationship graphs to illustrate the interdependencies among various modules within the ecosystem. This processing
                             aids in understanding the systemic implications of disruptions or anomalies in specific entities or sectors and their correlations.
                         </Text>
@@ -391,7 +391,7 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             The Risk score provides valuable insights into the stability and potential trajectory of individual actors and constituents. Entities with
                             consistently high scores demonstrate robustness and positive growth potential, while those with declining scores may warrant further scrutiny
                         </Text>
@@ -404,7 +404,7 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             The model identifies key systemic risk indicators, including high concentration of influence, excessive dependence on specific entities, and
                             anomalies in transaction patterns. These indicators serve as early warning signals for potential systemic vulnerabilities.
                         </Text>
@@ -417,7 +417,7 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             The Data Studio is designed to democratize data access and reduce information symmetry on account of lack of data access. It allows
                             proficient users to leverage BetygFi data repository to enable them to build applications, solutions and/or bespoke analysis. The Data Studio
                             will in time make data, technological tools and machine learning capabilities available to users.
@@ -431,15 +431,15 @@ const ApproachPaperPage = () => {
                                 </Text>
                             </li>
                         </ul>
-                        <Text variant={"smApproachSmallText"} my="30px">
+                        <Text variant={"smApproachSmallText"} my="30px" color={"#3F3F41"}>
                             The community space enables the community to access real time credible data and actionable intelligence. We hope to incentivise the
                             community to actively participate and provide feedback on our machine learning efforts, necessary to democratise finance.
                         </Text>
-                        <Text variant={"smApproachSmallText"} mb="30px">
+                        <Text variant={"smApproachSmallText"} mb="30px" color={"#3F3F41"}>
                             Insights generated from the community are integrated into the model, enabling it to adapt and refine its risk assessment capabilities over time.
                             This iterative process ensures that the model remains responsive to evolving market dynamics and is democratic.
                         </Text>
-                        <Text variant={"smApproachSmallText"} mb="20px">
+                        <Text variant={"smApproachSmallText"} mb="20px" color={"#3F3F41"}>
                             We are working towards gamifying community participation to incentivise community to actively participate with BetygFi.
                         </Text>
                     </Box>
