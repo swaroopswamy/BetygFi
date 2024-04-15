@@ -103,4 +103,3 @@ const TopGainersSmallBox = () => {
 
 
 export default TopGainersSmallBox;
-

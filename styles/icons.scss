@@ -269,3 +269,13 @@
         background-image: url('/icons/arrow_circle_light.svg');
     }
 }
+
+.arrow_right_grey {
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        background-size: cover;
+        background-image: url('/icons/arrow_right_grey.svg');
+    }
+}

@@ -1,14 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Box } from "@chakra-ui/react";
 import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
 import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
-import BTCetfSmallBox from "./BTCetfSmallBox";
-import BTCDominanceSmallBox from "./BTCDominanceSmallBox";
-import SandPSmallBox from "./S&PSmallBox";
-import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
+import DeFiTVLByCategoryBox from "@/components/pages/defiDashboard/DefiTVLCategory";
+import DeFiTVLByBlockchainBox from "@/components/pages/defiDashboard/DefiTVLBlockchain";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Box } from "@chakra-ui/react";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
@@ -25,8 +23,8 @@ const HighlightsBox = () => {
         dots: false,
         infinite: true,
         vertical: false,
-        slidesToShow: 4,
-        slidesToScroll: 2,
+        slidesToShow: 3,
+        slidesToScroll: 1,
         initialSlide: 0,
         variableWidth: true,
         ref: sliderRef,
@@ -50,15 +48,14 @@ const HighlightsBox = () => {
             },
         ],
     };
+    
     return (
-        <Box pos={"relative"} px={"20px"}>
+        <Box pos={"relative"} p={"20px 0px 10px 0px"}>
             <Slider {...settings}>
                 <TopGainersSmallBox />
                 <TopLosersSmallBox />
-                <BTCetfSmallBox />
-                <BTCDominanceSmallBox />
-                <FearGridIndexSmallBox />
-                <SandPSmallBox />
+                <DeFiTVLByCategoryBox />
+                <DeFiTVLByBlockchainBox />
             </Slider>
             {
                 currentSlide > 0 && (
@@ -71,7 +68,6 @@ const HighlightsBox = () => {
                 <i className="icon arrow_circle_light" />
             </Box>
         </Box>
-
     );
 };
 

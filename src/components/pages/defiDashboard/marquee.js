@@ -78,13 +78,13 @@ const Marquee = () => {
                 }),
             percentage: false
         },
-        {
-            key: "No of Coins: ",
-            value: MarqueeData?.data?.totalCoins === undefined
-                ? "-"
-                : MarqueeData?.data?.totalCoins,
-            percentage: false
-        },
+        // {
+        //     key: "No of Coins: ",
+        //     value: MarqueeData?.data?.totalCoins === undefined
+        //         ? "-"
+        //         : MarqueeData?.data?.totalCoins,
+        //     percentage: false
+        // },
         {
             key: "No of DeFi: ",
             value: MarqueeData?.data?.totalDefis === undefined
@@ -166,13 +166,13 @@ const Marquee = () => {
                     }),
                 percentage: false
             },
-            {
-                key: "No of Coins: ",
-                value: MarqueeData?.data?.totalCoins === undefined
-                    ? "-"
-                    : MarqueeData?.data?.totalCoins,
-                percentage: false
-            },
+            // {
+            //     key: "No of Coins: ",
+            //     value: MarqueeData?.data?.totalCoins === undefined
+            //         ? "-"
+            //         : MarqueeData?.data?.totalCoins,
+            //     percentage: false
+            // },
             {
                 key: "No of DeFi: ",
                 value: MarqueeData?.data?.totalDefis === undefined

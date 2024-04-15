@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
+
 const About = () => {
+	const { colorMode } = useColorMode();
+
 	return (
 		<>
 			<Box
 				display={{ base: "none", md: "block" }}
 				position={"relative"}
 				maxWidth={"100%"}
-				_dark={{ background: "#191919" }}
-				_light={{ background: "#F0F0F5" }}
+				bg={colorMode === 'light' ? "#F0F0F5" : "#191919"}
 			>
 				<Box
 					height={"25rem"}
@@ -37,7 +39,7 @@ const About = () => {
 						About BetygFi
 					</Text>
 				</Box>
-				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"1050px"} borderRadius={"6px"} m={"20px"}>
+				<Box bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} height={"1050px"} borderRadius={"6px"} m={"20px"}>
 					<Box display={"flex"} p={"35px 20px"} width={"100%"} gap={"27px"}>
 						<Box width={"28%"}>
 							<Text variant={"approachPaperHeading"}>
@@ -54,7 +56,7 @@ const About = () => {
 								The Blockchain Challenge
 							</Text>
 						</Box>
-						<Box width={"72%"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")} pb={"35px"}>
+						<Box width={"72%"} borderBottom={colorMode === 'light' ? "1px solid rgba(0, 0, 0, 0.2)" : "1px solid rgba(255, 255, 255, 0.2)"} pb={"35px"}>
 							<Text variant={"smApproachSmallText"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
 						</Box>
 					</Box>
@@ -65,7 +67,7 @@ const About = () => {
 							</Text>
 						</Box>
 						<Box width={"72%"}>
-							<Box borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+							<Box borderBottom={colorMode === 'light' ? "1px solid rgba(0, 0, 0, 0.2)" : "1px solid rgba(255, 255, 255, 0.2)"}>
 								<Text variant={"bigText"} p={"35px"} textAlign={"center"} >Sunlight is the Best Disinfectant</Text>
 							</Box>
 							<Box>
@@ -87,7 +89,7 @@ const About = () => {
 						</Box>
 					</Box>
 					<Box
-						background={useColorModeValue("linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)", "#FFFBD3")}
+						background={colorMode === 'light' ? "linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)" : "#FFFBD3"}
 						height={"150px"}
 						mx={"20px"}
 						borderRadius={"7px"}
@@ -107,8 +109,7 @@ const About = () => {
 				display={{ base: "block", md: "none" }}
 				position={"relative"}
 				maxWidth={"100%"}
-				_dark={{ background: "#191919" }}
-				_light={{ background: "#F0F0F5" }}
+				bg={colorMode === 'light' ? "#F0F0F5" : "#191919"}
 			>
 				<Box
 					height={"10rem"}
@@ -132,15 +133,15 @@ const About = () => {
 						About BetygFi
 					</Text>
 				</Box>
-				<Box background={useColorModeValue("#FFFFFF", "#282828")} height={"auto"}>
-					<Box mx={"20px"} pt={"25px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+				<Box bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} height={"auto"}>
+					<Box mx={"20px"} pt={"25px"} borderBottom={colorMode === 'light' ? "1px solid rgba(0, 0, 0, 0.2)" : "1px solid rgba(255, 255, 255, 0.2)"}>
 						<Text variant={"approachPaperHeading"}>Democratizing Access to Information</Text>
 						<Text variant={"smApproachSmallText"} pt={"15px"}>At BetygFi, we are more than just a company; we are an Information Utility (emphasis supplied), dedicated to democratizing access to information. Blockchain as a technology is unique; it makes information available real-time. Notwithstanding public perception of blockchain as a technology, real-time access to financial data without a gatekeeper is unprecedented.</Text>
 						<Text variant={"approachPaperHeading"} pt={"25px"}>The Blockchain Challenge</Text>
 						<Text variant={"smApproachSmallText"} pt={"15px"}>Despite real-time availability of financial data, the process of accessing data is technically challenging and understanding on-chain data is difficult. Bad actors have leveraged this information asymmetry, hence actors using blockchain have become synonymous with malicious conduct. Retail investors and the community have lost huge amounts of capital because of these bad actors (emphasis supplied).</Text>
 						<Text variant={"approachPaperHeading"} pt={"25px"} pb={"15px"}>BetygFi’s Vision</Text>
 					</Box>
-					<Box layerStyle={"center"} mx={"20px"} borderBottom={useColorModeValue("1px solid rgba(0, 0, 0, 0.2)", "1px solid rgba(255, 255, 255, 0.2)")}>
+					<Box layerStyle={"center"} mx={"20px"} borderBottom={colorMode === 'light' ? "1px solid rgba(0, 0, 0, 0.2)" : "1px solid rgba(255, 255, 255, 0.2)"}>
 						<Text variant={"contentHeading4"} fontWeight={400} lineHeight={"24px"} pt={"25px"} pb={"25px"}>Sunlight is the Best Disinfectant </Text>
 					</Box>
 					<Box mx={"20px"}>
@@ -150,7 +151,7 @@ const About = () => {
 							Our approach endeavors to simplify on-chain data, it enables stakeholders to better understand actors that inhabit the blockchain paradigm and take decision accordingly.</Text>
 					</Box>
 					<Box
-						background={useColorModeValue("linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)", "#FFFBD3")}
+						background={colorMode === 'light' ? "linear-gradient(180deg, #FFFBD4 0%, rgba(251,250,222,0.35) 100%)" : "#FFFBD3"}
 						layerStyle={"flexColumnSpaceBetween"}
 						height={"200px"}
 						borderRadius={"7px"}
