@@ -28,10 +28,6 @@ const CoinRankingsTable = (
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
 
-
-
-
-
     useEffect(() => {
         if (coinScoresData.isSuccess) {
             if (coinScoresData.data?.length > 0) {

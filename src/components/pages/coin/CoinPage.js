@@ -109,6 +109,7 @@ const CoinPage = () => {
     useEffect(() => {
         Promise.all([
             fetchCategories(),
+            fetchScoreData()
         ]).then(resolve => resolve);
     }, [cryptoCategorySelected]);
 
@@ -206,8 +207,6 @@ const CoinPage = () => {
                 cryptoCategories={cryptoCategories}
                 setCryptoCategories={setCryptoCategories}
                 pageChangeHandler={pageChangeHandler}
-
-
             />
             <hr />
             <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"} mx={"20px"}>
