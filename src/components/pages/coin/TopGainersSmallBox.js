@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { ScrollToTable } from "@util/utility";
 
 const TopGainersSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -39,6 +40,7 @@ const TopGainersSmallBox = () => {
                     cursor={"pointer"}
                     onClick={() => {
                         router.push(`?on=change_24hr&by=desc`);
+                        ScrollToTable('table-container-protocol');
                     }}
 
                 >

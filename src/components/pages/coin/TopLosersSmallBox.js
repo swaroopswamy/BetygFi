@@ -1,4 +1,5 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { ScrollToTable } from "@util/utility";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -39,6 +40,7 @@ const TopLosersSmallBox = () => {
                     cursor={"pointer"}
                     onClick={() => {
                         router.push(`/coin?on=change_24hr&by=asc`);
+                        ScrollToTable('table-container-protocol');
                     }}
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
