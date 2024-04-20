@@ -45,6 +45,12 @@ const CoinRankingsTable = (
         setTabSelected(tab);
     };
 
+    const pageMenuList = [
+        { value: 20 },
+        { value: 50 },
+        { value: 100 },
+    ];
+
     return (
         <>
             <Box
@@ -154,6 +160,7 @@ const CoinRankingsTable = (
                     bgColor={"background.secondary"}
                 >
                     <PageButtonsWide
+                        pageMenuList={pageMenuList}
                         page={tablePage}
                         totalPages={tableData?.data?.totalPages}
                         pageChangeHandler={pageChangeHandler}
