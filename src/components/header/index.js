@@ -250,8 +250,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
                             />
                         )}
-
-
                         <Box
                             layerStyle={"flexColumn"}
                             ml="10px"
