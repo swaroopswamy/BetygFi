@@ -65,6 +65,12 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 		fetchWalletTransactionsDataHandler();
 	}, [fetchWalletTransactionsDataHandler]);
 
+	const pageMenuList = [
+		{ value: 10 },
+		{ value: 20 },
+		{ value: 50 },
+	];
+
 	return (
 		<Box
 			w={"100%"}
@@ -111,6 +117,7 @@ const TransactionPanelComponent = ({ searchParamAddress }) => {
 					tableLimit={tableLimit}
 					setTableLimit={setTableLimit}
 					time={3}
+					pageMenuList={pageMenuList}
 					w={"100%"}
 				/>
 			</Box>

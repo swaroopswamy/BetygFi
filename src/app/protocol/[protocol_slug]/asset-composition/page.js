@@ -66,6 +66,12 @@ function AssetComposition({ params }) {
 		}
 	}, [blockchainSelected, tablePage, tableLimit, setTablePage]);
 
+	const pageMenuList = [
+		{ value: 10 },
+		{ value: 20 },
+		{ value: 50 },
+	];
+
 	return (
 		<Box
 			display={"flexColumn"}
@@ -218,6 +224,7 @@ function AssetComposition({ params }) {
 					tableLimit={tableLimit}
 					setTableLimit={setTableLimit}
 					time={3}
+					pageMenuList={pageMenuList}
 					w={"100%"}
 				/>
 			</Box>
@@ -234,148 +241,146 @@ function TableRow({ item, i }) {
 		_dark: { bgColor: "#202020", }
 	};
 	return (
-		<>
-			<Tr
-				key={i}
-				cursor={"pointer"}
-				bgColor={
-					clicked
-						? colorMode === "light"
-							? "#F5F5F7"
-							: "#191919"
-						: colorMode === "light"
-							? "#FFFFFF"
-							: "#202020"
-				}
-				onClick={() => {
-					setClick(!clicked);
-				}}
-				borderBottom={"1px"}
-				borderColor={useColorModeValue("#DFDFDF", "#313131")}
-				borderRadius={"2px"}
-			>
-				<Td {...commonStyleTdProp}>
-					<Flex>
-						<Box
-							alignItems={"center"}
-							display={"flex"}
-							gap={"15px"}
+		<Tr
+			key={i}
+			cursor={"pointer"}
+			bgColor={
+				clicked
+					? colorMode === "light"
+						? "#F5F5F7"
+						: "#191919"
+					: colorMode === "light"
+						? "#FFFFFF"
+						: "#202020"
+			}
+			onClick={() => {
+				setClick(!clicked);
+			}}
+			borderBottom={"1px"}
+			borderColor={useColorModeValue("#DFDFDF", "#313131")}
+			borderRadius={"2px"}
+		>
+			<Td {...commonStyleTdProp}>
+				<Flex>
+					<Box
+						alignItems={"center"}
+						display={"flex"}
+						gap={"15px"}
+					>
+						<CustomAvatar
+							name={item?.assetName}
+							src={item?.logoUrl}
+							height={"24px"}
+							width={"24px"}
+						/>
+						<Text
+							_dark={{
+								color: "#FFFFFF",
+							}}
+							_light={{
+								color: "#16171B",
+							}}
+							fontSize={"14px"}
+							fontStyle={"normal"}
+							fontWeight={"400"}
+							lineHeight={"20px"}
 						>
-							<CustomAvatar
-								name={item?.assetName}
-								src={item?.logoUrl}
-								height={"24px"}
-								width={"24px"}
-							/>
-							<Text
-								_dark={{
-									color: "#FFFFFF",
-								}}
-								_light={{
-									color: "#16171B",
-								}}
-								fontSize={"14px"}
-								fontStyle={"normal"}
-								fontWeight={"400"}
-								lineHeight={"20px"}
-							>
-								{item?.assetName}
-							</Text>
-						</Box>
-					</Flex>
-				</Td>
+							{item?.assetName}
+						</Text>
+					</Box>
+				</Flex>
+			</Td>
 
-				<Td {...commonStyleTdProp}>
-					<Flex>
-						<Box>
-							<Text
-								_dark={{
-									color: "#FFFFFF",
-								}}
-								_light={{
-									color: "#16171B",
-								}}
-								fontSize={"14px"}
-								fontStyle={"normal"}
-								fontWeight={"400"}
-								lineHeight={"20px"}
-							>
-								{item?.price
-									? "USD " + USDollar.format(item?.price)
-									: "-"}
-							</Text>
-						</Box>
-					</Flex>
-				</Td>
+			<Td {...commonStyleTdProp}>
+				<Flex>
+					<Box>
+						<Text
+							_dark={{
+								color: "#FFFFFF",
+							}}
+							_light={{
+								color: "#16171B",
+							}}
+							fontSize={"14px"}
+							fontStyle={"normal"}
+							fontWeight={"400"}
+							lineHeight={"20px"}
+						>
+							{item?.price
+								? "USD " + USDollar.format(item?.price)
+								: "-"}
+						</Text>
+					</Box>
+				</Flex>
+			</Td>
 
-				<Td {...commonStyleTdProp}>
-					<Flex>
-						<Box>
-							<Text
-								_dark={{
-									color: "#FFFFFF",
-								}}
-								_light={{
-									color: "#16171B",
-								}}
-								fontSize={"14px"}
-								fontStyle={"normal"}
-								fontWeight={"400"}
-								lineHeight={"20px"}
-							>
-								{item?.amount
-									? "USD " + USDollar.format(item?.amount)
-									: "-"}
-							</Text>
-						</Box>
-					</Flex>
-				</Td>
+			<Td {...commonStyleTdProp}>
+				<Flex>
+					<Box>
+						<Text
+							_dark={{
+								color: "#FFFFFF",
+							}}
+							_light={{
+								color: "#16171B",
+							}}
+							fontSize={"14px"}
+							fontStyle={"normal"}
+							fontWeight={"400"}
+							lineHeight={"20px"}
+						>
+							{item?.amount
+								? "USD " + USDollar.format(item?.amount)
+								: "-"}
+						</Text>
+					</Box>
+				</Flex>
+			</Td>
 
-				<Td {...commonStyleTdProp}>
-					<Flex>
-						<Box>
-							<Text
-								_dark={{
-									color: "#FFFFFF",
-								}}
-								_light={{
-									color: "#16171B",
-								}}
-								fontSize={"14px"}
-								fontStyle={"normal"}
-								fontWeight={"400"}
-								lineHeight={"20px"}
-							>
-								{item?.value
-									? "USD " + USDollar.format(item?.value)
-									: "-"}
-							</Text>
-						</Box>
-					</Flex>
-				</Td>
+			<Td {...commonStyleTdProp}>
+				<Flex>
+					<Box>
+						<Text
+							_dark={{
+								color: "#FFFFFF",
+							}}
+							_light={{
+								color: "#16171B",
+							}}
+							fontSize={"14px"}
+							fontStyle={"normal"}
+							fontWeight={"400"}
+							lineHeight={"20px"}
+						>
+							{item?.value
+								? "USD " + USDollar.format(item?.value)
+								: "-"}
+						</Text>
+					</Box>
+				</Flex>
+			</Td>
 
-				<Td {...commonStyleTdProp}>
-					<Flex>
-						<Box>
-							<Text
-								_dark={{
-									color: "#FFFFFF",
-								}}
-								_light={{
-									color: "#16171B",
-								}}
-								fontSize={"14px"}
-								fontStyle={"normal"}
-								fontWeight={"400"}
-								lineHeight={"20px"}
-							>
-								{item?.share ? item?.share + "%" : "-"}
-							</Text>
-						</Box>
-					</Flex>
-				</Td>
-			</Tr>
-		</>
+			<Td {...commonStyleTdProp}>
+				<Flex>
+					<Box>
+						<Text
+							_dark={{
+								color: "#FFFFFF",
+							}}
+							_light={{
+								color: "#16171B",
+							}}
+							fontSize={"14px"}
+							fontStyle={"normal"}
+							fontWeight={"400"}
+							lineHeight={"20px"}
+						>
+							{item?.share ? item?.share + "%" : "-"}
+						</Text>
+					</Box>
+				</Flex>
+			</Td>
+		</Tr>
 	);
 }
 

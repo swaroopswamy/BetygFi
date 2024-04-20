@@ -85,7 +85,7 @@ const ProtocolPage = () => {
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             <Marquee />
-            <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "28px" }} >
+            <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "14px" }} >
                 <BlockchainSelectionMenuNew w="95%" />
                 <Box marginLeft={"-35px"}>
                     <i className="icon arrow_right_grey" onClick={ScrollToRight} />
@@ -142,7 +142,7 @@ const ProtocolPage = () => {
                 <Box
                     display={"flex"}
                     flexDir={{ base: "column", lg: "row" }}
-                    py={"15px"}
+                    py={"10px"}
                     gap={"15px"}
                 >
                     {/* <OverviewBox /> */}

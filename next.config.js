@@ -46,7 +46,9 @@ const nextConfig = {
   },
   reactStrictMode: false,
   webpack(config) {
-    config.mode = 'production';
+    if (process.env.NODE_ENV === 'production') {
+      config.mode = 'production';
+    }
     return config;
   },
   images: {

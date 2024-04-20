@@ -3,8 +3,9 @@ import React from "react";
 import { Text, Box, useColorModeValue, useMediaQuery, } from "@chakra-ui/react";
 import MDWalletTable from "./MDWalletTable";
 import SMWalletTable from "./SMWalletTable";
+// import SlideToLeftWalletTable from "./SlideToLeftWalletTable";
 
-const WalletTable = () => {
+const WalletTable = (/* { slideToLeftFeature } */) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
 
     return (
@@ -34,7 +35,7 @@ const WalletTable = () => {
                     </Text>
                 </Box>
             </Box>
-            {isMd ? <MDWalletTable /> : <SMWalletTable />}
+            {isMd ? <MDWalletTable /> :/*  slideToLeftFeature ? <SlideToLeftWalletTable /> : */ <SMWalletTable />}
         </Box>
     );
 };

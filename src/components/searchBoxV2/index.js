@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Box, Input, InputGroup, InputLeftElement, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement, Text, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
 import { SEARCH_LIST } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -19,6 +19,18 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         setSearchList(searchListTrendingData);
         setOpenSearchSuggestion(true);
     };
+
+    useEffect(() => {
+        window.addEventListener('keydown', function (event) {
+            let key = event.key;
+            if (key === "/") {
+                setOpenSearchSuggestion(true);
+            }
+            if (key === "Escape") {
+                setOpenSearchSuggestion(false);
+            }
+        }, false);
+    }, []);
 
     useEffect(() => {
         if (searchValue?.length == 0) {
@@ -51,20 +63,18 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const searchDataContent = () => {
         return (
-            <>
-                <Box m={"23px 29px 22px 20px"}>
-                    {
-                        SEARCH_LIST.map((searchItem, index) => (
-                            <SearchItemGroup
-                                searchItem={searchItem}
-                                searchListData={searchList}
-                                key={index}
-                                closeSearchInput={searchSuggestionOpenState}
-                            />
-                        ))
-                    }
-                </Box>
-            </>
+            <Box m={"23px 29px 22px 20px"}>
+                {
+                    SEARCH_LIST.map((searchItem, index) => (
+                        <SearchItemGroup
+                            searchItem={searchItem}
+                            searchListData={searchList}
+                            key={index}
+                            closeSearchInput={searchSuggestionOpenState}
+                        />
+                    ))
+                }
+            </Box>
         );
     };
 
@@ -94,7 +104,32 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                     }
                                 }
                             >
+                                {/* <Box> */}
                                 {searchDataContent()}
+                                {/* <Box border={"1px solid red"} display={"flex"} justifyContent={"space-between"} backgroundColor={"#FFFFFF"} m={"12px 29px 15px 20px"}>
+                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                            <Box display={"flex"} padding={"2px"} >
+                                                <i className={`icon up_arrow`} />
+                                                <i className={`icon down_arrow`} />
+                                            </Box>
+                                            To enter
+                                        </Box>
+
+                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                            <Box display={"flex"} padding={"2px"} >
+                                                <i className={`icon to_enter`} />
+                                            </Box>
+                                            To enter
+                                        </Box>
+
+                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                                            <Box display={"flex"} padding={"2px"} >
+                                                <i className={`icon to_enter`} />
+                                            </Box>
+                                            To enter
+                                        </Box>
+                                    </Box> */}
+                                {/* </Box> */}
                             </Box>
                             :
                             <Box
@@ -144,7 +179,13 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 borderRightRadius={"20px"}
                             />
                         </InputLeftElement>
-                        <Box w="100%" marginLeft={"1.5rem"}>
+                        <Box
+                            w="100%"
+                            marginLeft={"1.5rem"}
+                            display={"flex"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                        >
                             <Input
                                 type="text"
                                 border="none"
@@ -170,6 +211,13 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                                 onClick={() => { handleSearchInputClick(); }}
                             />
+                            <Box mr={"1%"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                _light={{ backgroundColor: "#FFFFFF" }}
+                                _dark={{ backgroundColor: "#202020" }}>
+                                <Text variant={"h5"} colorMode={colorMode}>
+                                    /
+                                </Text>
+                            </Box>
                         </Box>
                         {
                             searchValue?.length > 0 &&
