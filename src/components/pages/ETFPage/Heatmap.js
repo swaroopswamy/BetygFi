@@ -1,8 +1,8 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
 
-const DeFiTVLByCategoryBox = () => {
+const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
     const options = {
         legend: {
@@ -21,11 +21,12 @@ const DeFiTVLByCategoryBox = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '14px',
+                fontSize: '12px',
             },
             formatter: function (text, op) {
                 return [text, op.value];
             },
+            offsetY: -4
         },
         plotOptions: {
             treemap: {
@@ -107,41 +108,18 @@ const DeFiTVLByCategoryBox = () => {
 
     return (
         <Box
-            width={"30%"}
-            height={"197px"}
-            minW={"295px"}
+            width={"100%"}
+            height={"100%"}
             borderRadius={"8px"}
-            mb={"15px"}
-            mx={"10px"}
-            p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
         >
-            <Box layerStyle={"spaceBetween"}>
-                <Box layerStyle={"flexCenter"}>
-                    <Text variant={"contentHeading3"} fontWeight={500} ml={"5px"}>
-                        DeFi TVL by category
-                    </Text>
-                </Box>
-                <Box layerStyle={"flexCenter"} gap={"3px"}>
-                    <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
-                        _light={{ color: "#757575" }}
-                        _dark={{ color: "#A5A5A5" }}
-                    >
-                        Total:
-                    </Text>
-                    <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}>
-                        $876B
-                    </Text>
-                </Box>
-            </Box>
-            <Box borderRadius={"6px"}>
+            <Box borderRadius={"8px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}
                     series={series}
-                    height={145}
-                    width={"100%"}
                 />
             </Box>
         </Box>
@@ -149,4 +127,4 @@ const DeFiTVLByCategoryBox = () => {
 };
 
 
-export default DeFiTVLByCategoryBox;
+export default HeatmapGraphBox;
