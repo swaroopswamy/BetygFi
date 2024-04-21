@@ -39,7 +39,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
 
     const DefiItemData = ({ defiItem, index }) => {
         return (
-            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
+            <Box tabIndex={defiItem?.searchIndex} _focus={{ backgroundColor: "#adaaaa" }} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
                 display={"flex"} flexDirection={"row"} key={index}>
                 <Box onClick={() => onNavigateArrowClick(searchItem.slug, defiItem.slug)} cursor={"pointer"} w={isMd ? "30%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <CustomAvatar

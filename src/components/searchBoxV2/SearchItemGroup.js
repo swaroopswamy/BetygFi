@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Divider, Text, useColorMode } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import TrendingDefisItem from '@components/searchBoxV2/TrendingDefisItem';
 import TrendingCoinsItem from '@components/searchBoxV2/TrendingCoinsItem';
 import TrendingWalletsItem from '@components/searchBoxV2/TrendingWalletsItem';
-import { groupListByKey } from '@util/utility';
+import { createSearchGroupedData } from '@util/utility';
+import { TRENDING_COINS_SLUG, TRENDING_DEFIS_SLUG } from '@util/constant';
 
-const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
-    const router = useRouter();
+const SearchItemGroup = ({ searchItem, searchListData, onNavigateArrowClick }) => {
     const { colorMode } = useColorMode();
     const [searchToPopulate, setSearchToPopulate] = useState([]);
     const [groupedSearchData, setGroupedSearchData] = useState({});
@@ -16,18 +15,18 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
 
     useEffect(() => {
         if (JSON.stringify(prevSearchListRef.current) === JSON.stringify(searchListData)) {
-            updateSearchToPopulate();
+            updateSearchToPopulate(searchListData);
         } else {
             if (searchListData?.length > 0) {
-                updateSearchToPopulate();
+                updateSearchToPopulate(searchListData);
             }
         }
         prevSearchListRef.current = searchListData;
     }, [searchListData]);
 
-    const updateSearchToPopulate = () => {
+    const updateSearchToPopulate = searchListData => {
         if (searchListData?.length > 0) {
-            const groupedData = groupListByKey(searchListData, 'type');
+            const groupedData = createSearchGroupedData(searchListData);
             setGroupedSearchData(groupedData);
             let searchToPopulate_ = [];
             if (groupedData.coin !== undefined) {
@@ -63,28 +62,15 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
         }
     };
 
-    const onNavigateArrowClick = (slug, itemSlug) => {
-        if (slug === "trending-defis") {
-            router.push(`/protocol/${itemSlug}`);
-            closeSearchInput(false);
-        } else if (slug === "trending-coins") {
-            router.push(`/coin/${itemSlug}`);
-            closeSearchInput(false);
-        } else if (slug === "trending-wallets") {
-            router.push(`/top-wallets/${itemSlug}`);
-            closeSearchInput(false);
-        }
-    };
-
     return (
         <>
             {
-                searchItem.slug === "trending-defis" ?
+                searchItem.slug === TRENDING_DEFIS_SLUG ?
                     (
                         searchToPopulate.includes("defi") && groupedSearchData?.defi?.length > 0 &&
                         <>
                             <Text variant={"modalHeader"} colorMode={colorMode}>
-                                {searchItem.title}
+                                {searchItem?.title}
                             </Text>
                             <TrendingDefisItem
                                 groupedSearchData={groupedSearchData.defi}
@@ -95,7 +81,7 @@ const SearchItemGroup = ({ searchItem, searchListData, closeSearchInput }) => {
                         </>
                     )
                     :
-                    searchItem.slug === "trending-coins" ?
+                    searchItem.slug === TRENDING_COINS_SLUG ?
                         (
                             searchToPopulate.includes("coin") && groupedSearchData?.coin?.length > 0 &&
                             <>

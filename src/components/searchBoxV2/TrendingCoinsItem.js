@@ -24,7 +24,7 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
 
     const CoinItemData = ({ coinItem, index }) => {
         return (
-            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
+            <Box tabIndex={coinItem?.searchIndex} _focus={{ backgroundColor: "#adaaaa" }} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
                 <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, coinItem.slug)} w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <CustomAvatar
                         width={"24px"}

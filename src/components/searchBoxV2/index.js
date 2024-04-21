@@ -1,19 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, Input, InputGroup, InputLeftElement, Text, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
-import { SEARCH_LIST } from '@util/constant';
+import { SEARCH_LIST, TRENDING_COINS_SLUG, TRENDING_DEFIS_SLUG, TRENDING_WALLETS_SLUG } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { createSearchGroupedData } from '@util/utility';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
 const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
-    const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
-    const ref = useRef();
-    const [searchList, setSearchList] = useState([]);
-    useOutsideClick({ ref: ref, handler: () => searchSuggestionOpenState(false) });
     const { colorMode } = useColorMode();
+    const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
+    const [searchList, setSearchList] = useState([]);
+    const ref = useRef();
+    const router = useRouter();
+
+    useOutsideClick({ ref: ref, handler: () => searchSuggestionOpenState(false) });
 
     const handleSearchInputClick = () => {
         setSearchList(searchListTrendingData);
@@ -29,8 +33,59 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
             }
+            if (key === "Enter") {
+                checkAndRedirectToActiveTabIndex();
+            }
         }, false);
     }, []);
+
+    useEffect(() => {
+        window.addEventListener('keydown', function (event) {
+            let key = event.key;
+            if (key === "/") {
+                setOpenSearchSuggestion(true);
+            }
+            if (key === "Escape") {
+                setOpenSearchSuggestion(false);
+            }
+            if (key === "Enter") {
+                checkAndRedirectToActiveTabIndex();
+            }
+        }, false);
+    });
+
+    const getActiveTabIndex = () => document.activeElement.tabIndex;
+    const getGroupData = () => createSearchGroupedData(searchValue.length == 0 ? searchListTrendingData : searchListData);
+
+    const checkAndRedirectToActiveTabIndex = () => {
+        const activeTabIndex = getActiveTabIndex();
+        const groupedData_ = getGroupData();
+        const searchInDefi = groupedData_.defi && groupedData_.defi.find(df => df.searchIndex === activeTabIndex);
+        const searchInCoin = groupedData_.coin && groupedData_.coin.find(cn => cn.searchIndex === activeTabIndex);
+        const searchInWallet = groupedData_.wallet && groupedData_.wallet.find(wl => wl.searchIndex === activeTabIndex);
+        if (searchInDefi) {
+            onNavigateArrowClick(TRENDING_DEFIS_SLUG, searchInDefi.slug);
+        } else if (searchInCoin) {
+            onNavigateArrowClick(TRENDING_COINS_SLUG, searchInCoin.slug);
+        } else if (searchInWallet) {
+            onNavigateArrowClick(TRENDING_WALLETS_SLUG, searchInWallet.slug);
+        } else {
+            console.info('not found where user clicked');
+        }
+    };
+
+    const onNavigateArrowClick = (slug, itemSlug) => {
+        if (slug === TRENDING_DEFIS_SLUG) {
+            router.push(`/protocol/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        } else if (slug === TRENDING_COINS_SLUG) {
+            router.push(`/coin/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        } else if (slug === TRENDING_WALLETS_SLUG) {
+            router.push(`/top-wallets/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        }
+    };
 
     useEffect(() => {
         if (searchValue?.length == 0) {
@@ -70,7 +125,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                             searchItem={searchItem}
                             searchListData={searchList}
                             key={index}
-                            closeSearchInput={searchSuggestionOpenState}
+                            onNavigateArrowClick={onNavigateArrowClick}
                         />
                     ))
                 }

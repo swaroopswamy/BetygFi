@@ -35,7 +35,7 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
 
     const WalletItemData = ({ walletItem, index }) => {
         return (
-            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, walletItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
+            <Box tabIndex={walletItem?.searchIndex} _focus={{ backgroundColor: "#adaaaa" }} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, walletItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
                 <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, walletItem.slug)} w={"72%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Box mr={"10px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
                         <Image

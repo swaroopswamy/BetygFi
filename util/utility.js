@@ -33,6 +33,35 @@ export const groupListByKey_Pure = (list, key) => Object.groupBy(list, ({ [key]:
 
 export const groupListByKey = (list, key) => groupBy(list, (value) => value[key]);
 
+export const createSearchGroupedData = searchListData => {
+    const groupedData = groupListByKey(searchListData, 'type');
+    let i = 1;
+    if (groupedData?.defi) {
+        groupedData.defi = JSON.parse(JSON.stringify([...groupedData.defi])).map(gd => {
+            gd.searchIndex = i;
+            i++;
+            return gd;
+        });
+    }
+
+    if (groupedData?.coin) {
+        groupedData.coin = JSON.parse(JSON.stringify([...groupedData.coin])).map(gd => {
+            gd.searchIndex = i;
+            i++;
+            return gd;
+        });
+    }
+
+    if (groupedData?.wallet) {
+        groupedData.wallet = JSON.parse(JSON.stringify([...groupedData.wallet])).map(gd => {
+            gd.searchIndex = i;
+            i++;
+            return gd;
+        });
+    }
+    return groupedData;
+};
+
 export const convertToInternationalCurrencySystem = labelValue => {
     const billion = (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + " B";
     const million = (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + " M";
