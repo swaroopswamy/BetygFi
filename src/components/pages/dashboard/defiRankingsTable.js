@@ -217,6 +217,7 @@ const TableRow = ({ item, rowIndex }) => {
             cursor={"pointer"}
             onClick={() => { router.push(`/protocol/${item?.slug}`); }}
             border={"0px"}
+            bgColor={"background.secondary"}
         >
             <Td {...commonStyleTdProp} key={0} textAlign={"center"}>
                 <Text variant={"h3"}>
