@@ -44,9 +44,8 @@ const CoinPage = () => {
     const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
     const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
 
-
     const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(20);
+    const [tableLimit, setTableLimit] = useState(100);
     const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
 
     const [cryptoCategories, setCryptoCategories] = useState([]);
@@ -109,6 +108,7 @@ const CoinPage = () => {
     useEffect(() => {
         Promise.all([
             fetchCategories(),
+            fetchScoreData()
         ]).then(resolve => resolve);
     }, [cryptoCategorySelected]);
 
@@ -206,8 +206,6 @@ const CoinPage = () => {
                 cryptoCategories={cryptoCategories}
                 setCryptoCategories={setCryptoCategories}
                 pageChangeHandler={pageChangeHandler}
-
-
             />
             <hr />
             <Box display={"flex"} flexDir={"column"} gap={"25px"} my={"20px"} mx={"20px"}>

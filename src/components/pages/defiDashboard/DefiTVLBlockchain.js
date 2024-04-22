@@ -1,9 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
 
 const DeFiTVLByBlockchainBox = () => {
-
+    const { colorMode } = useColorMode();
     const options = {
         legend: {
             show: false
@@ -23,6 +23,10 @@ const DeFiTVLByBlockchainBox = () => {
                 return [text, op.value];
             },
             offsetY: -4
+        },
+        tooltip: {
+            enabled: true,
+            theme: colorMode
         },
         plotOptions: {
             treemap: {

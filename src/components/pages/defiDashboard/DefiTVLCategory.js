@@ -1,9 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
 
 const DeFiTVLByCategoryBox = () => {
-
+    const { colorMode } = useColorMode();
     const options = {
         legend: {
             show: false
@@ -13,6 +13,10 @@ const DeFiTVLByCategoryBox = () => {
             toolbar: {
                 show: false
             },
+        },
+        tooltip: {
+            enabled: true,
+            theme: colorMode
         },
         dataLabels: {
             enabled: true,

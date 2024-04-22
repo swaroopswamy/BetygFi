@@ -28,7 +28,7 @@ const ScoreDistribuition = dynamic(() => import("@components/pages/dashboard/sco
 
 const Rankings = () => {
     const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(20);
+    const [tableLimit, setTableLimit] = useState(100);
     const [totalDefis, setTotalDefis] = useState(0);
     const timerRef = useRef(null);
 
@@ -110,7 +110,11 @@ const Rankings = () => {
         setTablePage
     ]);
 
-
+    const pageMenuList = [
+        { value: 20 },
+        { value: 50 },
+        { value: 100 },
+    ];
 
     return (
         <Box
@@ -192,6 +196,7 @@ const Rankings = () => {
                     pageChangeHandler={pageChangeHandler}
                     tableLimit={tableLimit}
                     setTableLimit={setTableLimit}
+                    pageMenuList={pageMenuList}
                     w={"100%"}
                 />
             </Box>

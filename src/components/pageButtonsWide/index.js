@@ -9,6 +9,7 @@ const PageButtonsWide = ({
     pageChangeHandler,
     tableLimit,
     setTableLimit,
+    pageMenuList,
     time,
     ...rest
 }) => {
@@ -47,6 +48,7 @@ const PageButtonsWide = ({
                     <TableLimitMenu
                         tableLimit={tableLimit}
                         setTableLimit={setTableLimit}
+                        pageMenuList={pageMenuList}
                     />
                 </Box>
             </Box>
@@ -75,6 +77,7 @@ const PageButtonsWide = ({
                     <TableLimitMenu
                         tableLimit={tableLimit}
                         setTableLimit={setTableLimit}
+                        pageMenuList={pageMenuList}
                     />
                 </Box>
 
@@ -189,7 +192,7 @@ const PaginationButtons = ({ page, pageChangeHandler, totalPages }) => {
     );
 };
 
-const TableLimitMenu = ({ tableLimit, setTableLimit }) => {
+const TableLimitMenu = ({ pageMenuList, tableLimit, setTableLimit }) => {
     return (
         <Menu>
             <MenuButton as={Button} variant={"menu"}>
@@ -203,30 +206,15 @@ const TableLimitMenu = ({ tableLimit, setTableLimit }) => {
                 bgColor={useColorModeValue("#FFF", "#191919")}
                 minWidth={"50px"}
             >
-                <PageMenuItem
-                    onClick={() => {
-                        setTableLimit(10);
-                    }}
-                >
-                    {" "}
-                    10 / Page{" "}
-                </PageMenuItem>
-                <PageMenuItem
-                    onClick={() => {
-                        setTableLimit(20);
-                    }}
-                >
-                    {" "}
-                    20 / Page{" "}
-                </PageMenuItem>
-                <PageMenuItem
-                    onClick={() => {
-                        setTableLimit(30);
-                    }}
-                >
-                    {" "}
-                    30 / Page{" "}
-                </PageMenuItem>
+                {
+                    pageMenuList.map((pm, index) => (
+                        <PageMenuItem
+                            key={index}
+                            onClick={() => setTableLimit(pm.value)}>
+                            {pm.value} / Page
+                        </PageMenuItem>
+                    ))
+                }
             </MenuList>
         </Menu>
     );

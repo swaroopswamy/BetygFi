@@ -6,11 +6,11 @@
     }
 
     .margin-conditions {
-        margin-left: 225px;
+        margin-left: 220px;
     }
 
     #main-body[aria-expanded="false"] {
-        margin-left: 225px;
+        margin-left: 220px;
 
     }
 
@@ -238,17 +238,31 @@ body {
 
 .custom-switch-light {
     .chakra-switch__track {
+        background: #FFFFFF !important;
+        border: 1px solid #858BA0;
+
+        .chakra-switch__thumb {
+            background: #191919 !important;
+        }
+    }
+
+    .chakra-switch__track[data-checked] {
         background: #191919 !important;
+
+        .chakra-switch__thumb {
+            background: #FFFFFF !important;
+        }
     }
 }
 
 .custom-switch-dark {
-    .chakra-switch__track {
-        background: #FFFFFF !important;
-    }
 
-    .chakra-switch__thumb {
-        background: #191919 !important;
+    .chakra-switch__track[data-checked] {
+        background: #FFFFFF !important;
+
+        .chakra-switch__thumb {
+            background: #191919 !important;
+        }
     }
 }
 

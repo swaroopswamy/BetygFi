@@ -52,7 +52,9 @@ const WalletDashboardPage = () => {
 					pt={{ base: "0", md: "20px" }}
 					bgColor={useColorModeValue("#F0F0F5", "#191919")}
 				>
-					<WalletTable />
+					<WalletTable
+						slideToLeftFeature={true}
+					/>
 				</Box>
 			</Box>
 		</Box>

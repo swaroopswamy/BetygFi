@@ -20,6 +20,12 @@ const GovernanceTable = ({ tablePage, setTableLimit, pageChangeHandler, tableLim
 
 	const defiGovernanceTableData = useSelector((state) => state?.defiDashboardData?.DefiGovernanceTableData);
 
+	const pageMenuList = [
+		{ value: 10 },
+		{ value: 20 },
+		{ value: 50 },
+	];
+
 	return (
 		<Box
 			w={"100%"}
@@ -123,6 +129,7 @@ const GovernanceTable = ({ tablePage, setTableLimit, pageChangeHandler, tableLim
 				minH={"60px"} p={{ base: "10px", md: "5px 20px" }}>
 				<PageButtonsWide
 					page={tablePage}
+					pageMenuList={pageMenuList}
 					totalPages={defiGovernanceTableData?.data?.totalPages}
 					pageChangeHandler={pageChangeHandler}
 					tableLimit={tableLimit}

@@ -28,10 +28,6 @@ const CoinRankingsTable = (
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
 
-
-
-
-
     useEffect(() => {
         if (coinScoresData.isSuccess) {
             if (coinScoresData.data?.length > 0) {
@@ -48,6 +44,12 @@ const CoinRankingsTable = (
     const handleTabSelected = (tab) => {
         setTabSelected(tab);
     };
+
+    const pageMenuList = [
+        { value: 20 },
+        { value: 50 },
+        { value: 100 },
+    ];
 
     return (
         <>
@@ -159,6 +161,7 @@ const CoinRankingsTable = (
                     bgColor={"background.secondary"}
                 >
                     <PageButtonsWide
+                        pageMenuList={pageMenuList}
                         page={tablePage}
                         totalPages={tableData?.data?.totalPages}
                         pageChangeHandler={pageChangeHandler}
