@@ -105,6 +105,7 @@ const CoinRankingsTable = (
                 border={"1px"}
                 borderColor={useColorModeValue("#FFFFFF", "#282828")}
                 perspective={"1px"}
+                id="total-container-protocol"
             >
                 <Box
                     layerStyle={"spaceBetween"}
