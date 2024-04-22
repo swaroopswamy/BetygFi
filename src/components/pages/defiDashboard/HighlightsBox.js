@@ -58,7 +58,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="40px"
-                bg={colorMode === 'light' ? "linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : ""}
+                bg={colorMode === 'light' ? "linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : "linear-gradient(270.22deg, rgb(43 43 47 / 59%) 11.4%, rgb(26 26 30) 70.2%)"}
                 zIndex={1}
             />
             <Box
@@ -67,7 +67,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="50px"
-                bg={colorMode === 'light' ? "linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : ""}
+                bg={colorMode === 'light' ? "linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : "linear-gradient(86deg, rgb(43 43 47 / 59%) 11.4%, rgb(26 26 30) 70.2%)"}
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
