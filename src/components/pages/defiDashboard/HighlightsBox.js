@@ -6,10 +6,11 @@ import DeFiTVLByBlockchainBox from "@/components/pages/defiDashboard/DefiTVLBloc
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
+    const { colorMode } = useColorMode();
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const goToNextSlide = () => {
@@ -57,7 +58,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="40px"
-                bg="linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
+                bg={colorMode === 'light' ? "linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : ""}
                 zIndex={1}
             />
             <Box
@@ -66,7 +67,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="50px"
-                bg="linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
+                bg={colorMode === 'light' ? "linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : ""}
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">

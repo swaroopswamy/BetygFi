@@ -55,8 +55,10 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     const { data: AuthSession } = useSession();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
+    const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
 
+    const [userImg, setUserImg] = useState(null);
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 300);
@@ -109,6 +111,10 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             setSearchWalletAddressValue(searchParamAddress);
         }
     }, [searchParamAddress]);
+
+    useEffect(() => {
+        setUserImg(UserDetailsData?.data?.user?.profile_url);
+    }, [UserDetailsData]);
 
     useEffect(() => {
         Promise.all([
@@ -242,7 +248,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
                             />
                         )}
                         <Box
