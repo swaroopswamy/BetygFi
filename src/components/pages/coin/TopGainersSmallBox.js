@@ -38,7 +38,8 @@ const TopGainersSmallBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`?on=change_24hr&by=desc`);
+                        router.push(`/coin?on=change_24hr&by=desc`);
+
                     }}
 
                 >

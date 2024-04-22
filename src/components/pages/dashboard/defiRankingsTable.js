@@ -129,6 +129,7 @@ const Rankings = () => {
                 p={"10px 20px"}
             >
                 <Box
+                    id="total-container-protocol"
                     display={"flex"}
                     flexDirection={{ base: "row", md: "column", lg: "column" }}
                     alignItems={"start"}
