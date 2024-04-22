@@ -22,6 +22,8 @@ const HeatmapGraphBox = () => {
             enabled: true,
             style: {
                 fontSize: '12px',
+                fontWeight: 500,
+                color: "#191919",
             },
             formatter: function (text, op) {
                 return [text, op.value];
@@ -113,13 +115,14 @@ const HeatmapGraphBox = () => {
             borderRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
-            boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
+            p={0}
         >
-            <Box borderRadius={"8px"}>
+            <Box borderRadius={"8px"} p={0}>
                 <CustomChart
                     type={"treemap"}
                     options={options}
                     series={series}
+                    height={438}
                 />
             </Box>
         </Box>
