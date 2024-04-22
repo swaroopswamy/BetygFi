@@ -56,8 +56,8 @@ const HighlightsBox = () => {
                 left="0"
                 top="0"
                 bottom="0"
-                width="125px"
-                background="linear-gradient(270.78deg, rgba(240, 240, 245, 0) 63.38%, #F0F0F5 99.45%)"
+                width="40px"
+                bg="linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
                 zIndex={1}
             />
             <Box
@@ -66,7 +66,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="50px"
-                background="linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
+                bg="linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
@@ -77,7 +77,7 @@ const HighlightsBox = () => {
             </Slider>
             {
                 currentSlide > 0 && (
-                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"85px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"5px"} top={"85px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                         <i className="icon arrow_circle_light" style={{ rotate: "180deg" }} />
                     </Box>
                 )
