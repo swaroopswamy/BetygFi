@@ -96,7 +96,7 @@ const PorfolioAccordion = ({ thread, tableData }) => {
                                                 color: "#16171B",
                                             }}
                                             _dark={{
-                                                color: "#FF",
+                                                color: "#FFF",
                                             }}
                                             fontSize={"20px"}
                                             fontWeight={"400"}
