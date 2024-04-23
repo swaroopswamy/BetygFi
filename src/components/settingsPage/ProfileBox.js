@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PublicAddressStringFormatter } from "@util/utility";
 import moment from "moment";
 import { changeProfilePic } from "@redux/auth_data/authSlice";
-
+import Navbar from "@components/header";
 
 const ProfileBox = () => {
     const fileInputRef = useRef(null);
@@ -315,13 +315,9 @@ const ProfileBox = () => {
                         </Box> */}
                     </Box>
                 </Box>
-
             )
-
         }
-
-
-
+            <Navbar userImg={userImg} />
             <EditPage isOpen={isModalOpen} onClose={handleCloseModal} />
         </>
     );

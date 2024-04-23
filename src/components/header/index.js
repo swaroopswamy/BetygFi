@@ -33,7 +33,7 @@ import SearchBoxV2 from "@components/searchBoxV2";
 import AppConfigContext from "@components/context/appConfigContext";
 import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
+const Navbar = ({ userImg ,onNotificationDrawerOpen, ...rest }) => {
     const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
@@ -55,10 +55,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     const { data: AuthSession } = useSession();
 
     const searchListData = useSelector((state) => state.appData.searchV2Data);
-    const UserDetailsData = useSelector((state) => state.authData.UserDetailsData);
     const searchListTrendingData = useSelector((state) => state.appData.searchV2TrendingData);
 
-    const [userImg, setUserImg] = useState(null);
     const [searchWalletAddressValue, setSearchWalletAddressValue] = useState(searchParamAddress);
     const [searchValue, setSearchValue] = useState('');
     const debouncedValue = useDebounce(searchValue, 300);
@@ -111,10 +109,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             setSearchWalletAddressValue(searchParamAddress);
         }
     }, [searchParamAddress]);
-
-    useEffect(() => {
-        setUserImg(UserDetailsData?.data?.user?.profile_url);
-    }, [UserDetailsData]);
 
     useEffect(() => {
         Promise.all([
