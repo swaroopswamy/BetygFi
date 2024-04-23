@@ -85,13 +85,15 @@ const ProtocolPage = () => {
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             <Marquee />
-            <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "14px" }} >
-                <BlockchainSelectionMenuNew w="95%" />
-                <Box marginLeft={"-35px"}>
+            <Box layerStyle={"flexCenter"} mx={{ md: "14px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
+                <Box w={{ base: "85%", md: "94%" }}>
+                    <BlockchainSelectionMenuNew />
+                </Box>
+                <Box ml={{ base: "-5px", md: "-20px" }}>
                     <i className="icon arrow_right_grey" onClick={ScrollToRight} />
                 </Box>
-                <Button onClick={onOpen} gap={"5px"} mr={"10px"} >
-                    <Image src={"/icons/filter_list.svg"} width={15} height={15} alt=" "></Image>
+                <Button onClick={onOpen} gap={{ base: "2px", md: "5px" }} ml={{ base: "4px" }} >
+                    <Image src={"/icons/filter_list.svg"} width={20} height={20} alt=" "></Image>
                     <Text>Filter</Text>
                 </Button>
             </Box>
