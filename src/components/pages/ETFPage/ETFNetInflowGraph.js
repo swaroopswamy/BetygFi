@@ -98,7 +98,7 @@ const ETFNetInflowBox = () => {
                 options={options}
                 series={series}
                 type="bar"
-                height={350}
+                height={439}
             />
         </Box>
     );

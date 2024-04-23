@@ -39,7 +39,7 @@ const DeFiTVLByCategoryBox = () => {
                         {
                             from: -6,
                             to: 0,
-                            color: '#CD363A'
+                            color: '#FF6161'
                         },
                         {
                             from: 0.001,

@@ -21,9 +21,9 @@ const HeatmapGraphBox = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
+                fontSize: '16px',
                 fontWeight: 500,
-                color: "#191919",
+                color: [colorMode === 'light' ? "#191919" : "#191919"],
             },
             formatter: function (text, op) {
                 return [text, op.value];
@@ -40,7 +40,7 @@ const HeatmapGraphBox = () => {
                         {
                             from: -6,
                             to: 0,
-                            color: '#CD363A'
+                            color: '#FF6161'
                         },
                         {
                             from: 0.001,
