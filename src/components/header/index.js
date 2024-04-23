@@ -194,7 +194,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     searchValue={searchValue}
                     clearValueMobileSearch={clearValueMobileSearch}
                     searchListData={searchListData?.data?.data?.data}
-                    searchListTrendingData={searchListTrendingData?.data?.data?.data}
+                    searchListTrendingData={searchListTrendingData?.data?.data}
                 />
             </Box>
 
