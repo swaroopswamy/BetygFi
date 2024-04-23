@@ -216,6 +216,33 @@
     }
 }
 
+.to_enter {
+    width: 25px;
+    height: 25px;
+
+    &::before {
+        background-image: url('/icons/enter-logo.svg');
+    }
+}
+
+.up_arrow {
+    width: 25px;
+    height: 25px;
+
+    &::before {
+        background-image: url('/icons/up-arrow.svg');
+    }
+}
+
+.down_arrow {
+    width: 25px;
+    height: 25px;
+
+    &::before {
+        background-image: url('/icons/down-arrow.svg');
+    }
+}
+
 .bell_dark {
     width: 25px;
     height: 25px;

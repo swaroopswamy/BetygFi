@@ -56,7 +56,7 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
                 </Box>
                 <Box w={isMd ? "21%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} justifyContent={"right"} alignItems={"center"} flexDirection={"row"}>
                     <Text ml={"10px"} fontSize={!isMd && "14px"} variant={"modalTableData"}>
-                        {"$" + getToFixedValue(defiItem.price) || "N/A"}
+                        {getToFixedValue(defiItem.price) ? "$" + getToFixedValue(defiItem.price) : "N/A"}
                     </Text>
                 </Box>
                 {

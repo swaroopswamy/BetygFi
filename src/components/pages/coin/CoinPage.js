@@ -31,6 +31,7 @@ import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";
 import HighlightsBox from "./HighlightsBox";
 import { getHumanReadableTextFromSlug } from "@util/utility";
+import { useSearchParams } from "next/navigation";
 
 const CoinPage = () => {
     const dispatch = useDispatch();
@@ -44,12 +45,15 @@ const CoinPage = () => {
     const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
     const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
 
-
     const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(20);
+    const [tableLimit, setTableLimit] = useState(100);
     const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
 
     const [cryptoCategories, setCryptoCategories] = useState([]);
+
+    const searchParams = useSearchParams();
+    const on = searchParams.get('on');
+    const by = searchParams.get('by');
 
 
     const fetchTopGainersAndLosersDataHandler = () => {
@@ -165,6 +169,14 @@ const CoinPage = () => {
         }
     }, [tablePage, tableLimit, scoreSelected, setTablePage, cryptoCategorySelected]);
 
+    useEffect(() => {
+        setTimeout(() => {
+            if (document.getElementById('total-container-protocol')) {
+                document.getElementById('total-container-protocol').scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 1000);
+
+    }, [on, by]);
 
     return (
         <Box

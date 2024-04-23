@@ -147,6 +147,8 @@ const SlideLeftTable = ({
                     ) : (
                         <Tr>
                             <Td
+                                _dark={{ bgColor: "#202020" }}
+                                _light={{ bgColor: "#FFFFFF" }}
                                 p="20px"
                                 textAlign={"center"}
                                 height={"245px"}

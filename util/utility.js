@@ -216,3 +216,8 @@ export const getHumanReadableTextFromSlug = value => {
 };
 
 export const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+
+
+export const ScrollToTable = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+};

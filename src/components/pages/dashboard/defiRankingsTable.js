@@ -28,7 +28,7 @@ const ScoreDistribuition = dynamic(() => import("@components/pages/dashboard/sco
 
 const Rankings = () => {
     const [tablePage, setTablePage] = useState(1);
-    const [tableLimit, setTableLimit] = useState(20);
+    const [tableLimit, setTableLimit] = useState(100);
     const [totalDefis, setTotalDefis] = useState(0);
     const timerRef = useRef(null);
 
@@ -110,6 +110,12 @@ const Rankings = () => {
         setTablePage
     ]);
 
+    const pageMenuList = [
+        { value: 20 },
+        { value: 50 },
+        { value: 100 },
+    ];
+
     return (
         <Box
             layerStyle={"flexColumn"}
@@ -123,6 +129,7 @@ const Rankings = () => {
                 p={"10px 20px"}
             >
                 <Box
+                    id="total-container-protocol"
                     display={"flex"}
                     flexDirection={{ base: "row", md: "column", lg: "column" }}
                     alignItems={"start"}
@@ -189,6 +196,7 @@ const Rankings = () => {
                     pageChangeHandler={pageChangeHandler}
                     tableLimit={tableLimit}
                     setTableLimit={setTableLimit}
+                    pageMenuList={pageMenuList}
                     w={"100%"}
                 />
             </Box>
@@ -210,6 +218,7 @@ const TableRow = ({ item, rowIndex }) => {
             cursor={"pointer"}
             onClick={() => { router.push(`/protocol/${item?.slug}`); }}
             border={"0px"}
+            bgColor={"background.secondary"}
         >
             <Td {...commonStyleTdProp} key={0} textAlign={"center"}>
                 <Text variant={"h3"}>
