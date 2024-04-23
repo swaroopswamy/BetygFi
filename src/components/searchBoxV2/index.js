@@ -25,6 +25,11 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             let key = event.key;
             if (key === "/") {
                 setOpenSearchSuggestion(true);
+                if (document.getElementById("searchInputDesktop")) {
+                    setTimeout(() => {
+                        document.getElementById("searchInputDesktop").focus();
+                    }, 1000);
+                }
             }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
