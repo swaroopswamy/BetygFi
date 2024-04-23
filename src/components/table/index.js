@@ -36,23 +36,12 @@ const GenericTable = ({
 	useEffect(() => {
 		if (Array.isArray(tableData?.data?.data)) {
 			setTableBodyData([...tableData.data.data]);
-		} else if (Array.isArray(tableData?.data)) {
-			setTableBodyData([...tableData.data]);
 		}
 	}, []);
 
 	useEffect(() => {
 		if (tableData?.data?.data) {
 			const tableData_ = [...tableData.data.data].map(tb => {
-				const tbCopy = { ...tb };
-				if (isNotNullAndUndefined(tb.mcap) && isNotNullAndUndefined(tb.tvl)) {
-					tbCopy['mcap-tvl'] = tbCopy.mcap / tbCopy.tvl;
-				}
-				return tbCopy;
-			});
-			setTableBodyData(tableData_);
-		} else if (tableData?.data) {
-			const tableData_ = [...tableData.data].map(tb => {
 				const tbCopy = { ...tb };
 				if (isNotNullAndUndefined(tb.mcap) && isNotNullAndUndefined(tb.tvl)) {
 					tbCopy['mcap-tvl'] = tbCopy.mcap / tbCopy.tvl;
