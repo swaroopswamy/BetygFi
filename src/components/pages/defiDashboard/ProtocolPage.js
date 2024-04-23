@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
+import { fetchOverviewData, fetchScoreGraphData, fetchDefiOverviewData } from "@redux/dashboard_data/dataSlice";
 import { fetchTopGainersAndLosersData, fetchMarqueeData } from "@redux/coin_data/dataSlice";
 import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
@@ -44,6 +44,10 @@ const ProtocolPage = () => {
         dispatch(fetchScoreGraphData(payload));
     };
 
+    const fetchDefiOverviewDataHandler = () => {
+        dispatch(fetchDefiOverviewData());
+    };
+
     const fetchTopGainersAndLosersDataHandler = () => {
         dispatch(fetchTopGainersAndLosersData());
     };
@@ -62,6 +66,7 @@ const ProtocolPage = () => {
     useEffect(() => {
         Promise.all([
             fetchTopGainersAndLosersDataHandler(),
+            fetchDefiOverviewDataHandler(),
             fetchMarqueeDataHandler(),
             onHighlightsBoxToggle(),
         ]).then(result => result);

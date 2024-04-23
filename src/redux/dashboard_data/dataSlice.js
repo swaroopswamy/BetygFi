@@ -1,4 +1,4 @@
-import { getOverviewData, getOverviewGraphData, getDefiRankingsTableData, getProtocolScoresData } from "@services/dashboardService";
+import { getOverviewData, getOverviewGraphData, getDefiRankingsTableData, getProtocolScoresData, getDefiOverviewData } from "@services/dashboardService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
@@ -20,6 +20,11 @@ export const fetchScoreGraphData = createAsyncThunk("fetchScoreGraphData", async
 
 export const fetchOverviewGraphData = createAsyncThunk("getOverviewGraphData", async (payload, { rejectWithValue }) => {
     const { data } = await getOverviewGraphData(payload, payload.query, rejectWithValue);
+    return data;
+});
+
+export const fetchDefiOverviewData = createAsyncThunk("getDefiOverviewData", async (payload, { rejectWithValue }) => {
+    const { data } = await getDefiOverviewData(payload, rejectWithValue);
     return data;
 });
 
@@ -50,20 +55,23 @@ const DashboardDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        DefiOverviewData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
         blockchainType: [],
         categorySelected: [],
         scoreSelected: "",
     },
     extraReducers: (builder) => {
-        builder.addCase(
-            fetchDefiRankingTableData.fulfilled,
-            (state, action) => {
-                state.DefiRankingsTableData.data = action.payload;
-                state.DefiRankingsTableData.isLoading = false;
-                state.DefiRankingsTableData.isSuccess = true;
-                state.DefiRankingsTableData.isError = false;
-            }
-        );
+        builder.addCase(fetchDefiRankingTableData.fulfilled, (state, action) => {
+            state.DefiRankingsTableData.data = action.payload;
+            state.DefiRankingsTableData.isLoading = false;
+            state.DefiRankingsTableData.isSuccess = true;
+            state.DefiRankingsTableData.isError = false;
+        });
         builder.addCase(fetchDefiRankingTableData.pending, (state, action) => {
             state.DefiRankingsTableData.isLoading = true;
             state.DefiRankingsTableData.isError = false;
@@ -111,6 +119,24 @@ const DashboardDataSlice = createSlice({
         builder.addCase(fetchOverviewGraphData.rejected, (state) => {
             state.OverviewGraphData.isLoading = false;
             state.OverviewGraphData.isError = true;
+        });
+        builder.addCase(fetchDefiOverviewData.fulfilled, (state, action) => {
+            state.DefiOverviewData.data = action.payload;
+            state.DefiOverviewData.isLoading = false;
+            state.DefiOverviewData.isSuccess = true;
+            state.DefiOverviewData.isError = false;
+        });
+        builder.addCase(fetchDefiOverviewData.pending, (state, action) => {
+            state.DefiOverviewData.isLoading = true;
+            state.DefiOverviewData.isError = false;
+            state.DefiOverviewData.isSuccess = false;
+            state.DefiOverviewData.data = action.payload;
+        });
+        builder.addCase(fetchDefiOverviewData.rejected, (state, action) => {
+            state.DefiOverviewData.isLoading = false;
+            state.DefiOverviewData.isSuccess = false;
+            state.DefiOverviewData.isError = true;
+            state.DefiOverviewData.data = action.payload;
         });
     },
     reducers: {

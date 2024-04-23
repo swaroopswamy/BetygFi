@@ -1,9 +1,13 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
+import { useSelector } from "react-redux";
+import millify from "millify";
 
 const DeFiTVLByCategoryBox = () => {
     const { colorMode } = useColorMode();
+    const DefiOverviewData = useSelector((state) => state?.dashboardData?.DefiOverviewData);
+
     const options = {
         legend: {
             show: false
@@ -36,13 +40,13 @@ const DeFiTVLByCategoryBox = () => {
                 colorScale: {
                     ranges: [
                         {
-                            from: -6,
-                            to: 0,
-                            color: '#CD363A'
+                            from: 0,
+                            to: 100000000,
+                            color: '#FF6161'
                         },
                         {
-                            from: 0.001,
-                            to: 6,
+                            from: 100000000,
+                            to: 1000000000,
                             color: '#52B12C'
                         }
                     ]
@@ -51,60 +55,12 @@ const DeFiTVLByCategoryBox = () => {
         }
     };
 
-    const series = [
-        {
-            data: [
-                {
-                    x: 'GBTC',
-                    y: 2.9
-                },
-                {
-                    x: 'UNH',
-                    y: -1.5
-                },
-                {
-                    x: 'ABBV',
-                    y: 1.2
-                },
-                {
-                    x: 'LLY',
-                    y: 1.3
-                },
-                {
-                    x: 'DHR',
-                    y: 5.1
-                },
-                {
-                    x: 'ABT',
-                    y: -2.3
-                },
-                {
-                    x: 'VSC',
-                    y: 2.1
-                },
-                {
-                    x: 'TMO',
-                    y: 0.3
-                },
-                {
-                    x: 'MDT',
-                    y: 0.12
-                },
-                {
-                    x: 'MMM',
-                    y: -2.31
-                },
-                {
-                    x: 'NKE',
-                    y: 3.98
-                },
-                {
-                    x: 'IYT',
-                    y: 1.67
-                }
-            ]
-        }
-    ];
+    const series = [{
+        data: DefiOverviewData?.data?.tvlByCategory.map(item => ({
+            x: item._id,
+            y: item.totalTvl
+        }))
+    }];
 
     return (
         <Box
@@ -132,7 +88,7 @@ const DeFiTVLByCategoryBox = () => {
                         Total:
                     </Text>
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}>
-                        $876B
+                        ${millify(DefiOverviewData?.data?.totalTvl)}
                     </Text>
                 </Box>
             </Box>
