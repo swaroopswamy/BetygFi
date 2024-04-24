@@ -8,7 +8,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
-const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
+const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch, setSearchValue }) => {
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
     const [searchList, setSearchList] = useState([]);
@@ -24,6 +24,10 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         window.addEventListener('keydown', function (event) {
             let key = event.key;
             if (key === "/") {
+                if (searchValue.charAt(searchValue.length - 1) === '/') {
+                    const charValue = searchValue.replace(searchValue.substring(searchValue.length - 1, searchValue.length), "");
+                    setSearchValue(charValue);
+                }
                 setOpenSearchSuggestion(true);
                 if (document.getElementById("searchInputDesktop")) {
                     setTimeout(() => {

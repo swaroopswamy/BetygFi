@@ -33,7 +33,7 @@ import SearchBoxV2 from "@components/searchBoxV2";
 import AppConfigContext from "@components/context/appConfigContext";
 import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ userImg ,onNotificationDrawerOpen, ...rest }) => {
+const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
     const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
@@ -97,6 +97,9 @@ const Navbar = ({ userImg ,onNotificationDrawerOpen, ...rest }) => {
     }, [debouncedValue]);
 
     const handleSearchInputChange = (value) => {
+        if (value.startsWith('/') || value.endsWith('/')) {
+            value.replaceAll("/", "");
+        }
         setSearchValue(value);
     };
 
@@ -186,6 +189,7 @@ const Navbar = ({ userImg ,onNotificationDrawerOpen, ...rest }) => {
                     handleSearchByWalletAddressV2={handleSearchByWalletAddressV2}
                     handleSearchInputChange={handleSearchInputChange}
                     searchValue={searchValue}
+                    setSearchValue={setSearchValue}
                     clearValueMobileSearch={clearValueMobileSearch}
                     searchListData={searchListData?.data?.data?.data}
                     searchListTrendingData={searchListTrendingData?.data?.data?.data}
