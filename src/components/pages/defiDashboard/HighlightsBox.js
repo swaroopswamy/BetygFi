@@ -6,10 +6,11 @@ import DeFiTVLByBlockchainBox from "@/components/pages/defiDashboard/DefiTVLBloc
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
+    const { colorMode } = useColorMode();
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const goToNextSlide = () => {
@@ -56,8 +57,8 @@ const HighlightsBox = () => {
                 left="0"
                 top="0"
                 bottom="0"
-                width="125px"
-                background="linear-gradient(270.78deg, rgba(240, 240, 245, 0) 63.38%, #F0F0F5 99.45%)"
+                width="40px"
+                bg={colorMode === 'light' ? "linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : "linear-gradient(89.22deg, #191919 9.63%, rgba(25, 25, 25, 0.898319) 29.31%, rgba(25, 25, 25, 0.8) 39.06%, rgba(25, 25, 25, 0.5) 66.57%, rgba(25, 25, 25, 0) 96.15%)"}
                 zIndex={1}
             />
             <Box
@@ -66,7 +67,7 @@ const HighlightsBox = () => {
                 top="0"
                 bottom="0"
                 width="50px"
-                background="linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)"
+                bg={colorMode === 'light' ? "linear-gradient(270.78deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : "linear-gradient(270.43deg, #191919 9.63%, rgba(25, 25, 25, 0.898319) 29.31%, rgba(25, 25, 25, 0.8) 39.06%, rgba(25, 25, 25, 0.5) 66.57%, rgba(25, 25, 25, 0) 96.15%)"}
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
@@ -77,7 +78,7 @@ const HighlightsBox = () => {
             </Slider>
             {
                 currentSlide > 0 && (
-                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"85px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"5px"} top={"85px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                         <i className="icon arrow_circle_light" style={{ rotate: "180deg" }} />
                     </Box>
                 )

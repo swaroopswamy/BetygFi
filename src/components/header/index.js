@@ -33,7 +33,7 @@ import SearchBoxV2 from "@components/searchBoxV2";
 import AppConfigContext from "@components/context/appConfigContext";
 import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
+const Navbar = ({ userImg ,onNotificationDrawerOpen, ...rest }) => {
     const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
@@ -242,7 +242,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
                             />
                         )}
                         <Box

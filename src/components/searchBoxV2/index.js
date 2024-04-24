@@ -29,6 +29,11 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             let key = event.key;
             if (key === "/") {
                 setOpenSearchSuggestion(true);
+                if (document.getElementById("searchInputDesktop")) {
+                    setTimeout(() => {
+                        document.getElementById("searchInputDesktop").focus();
+                    }, 1000);
+                }
             }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
@@ -307,7 +312,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         return (
             <InputGroup id={"searchMobileInput"} ref={ref} w="100%" zIndex={"1000"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
-                    <Box display={"flex"} flexDir={"row"} backgroundColor={"#FFFFFF"}>
+                    <Box display={"flex"} flexDir={"row"} backgroundColor={colorMode === 'light' ? "#FFFFFF" : "#191919"}>
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
