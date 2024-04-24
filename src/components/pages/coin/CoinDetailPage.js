@@ -70,7 +70,7 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
 
                     <Box layerStyle={"flexColumn"} gap={"15px"}>
                         <Box display={"flex"} alignItems={"center"} gap={"5px"}>
-                            <Text fontSize={"32px"} color={"text.primary"}>
+                            <Text fontSize={"32px"} lineHeight={"35px"} color={"text.primary"}>
                                 {" "}
                                 {coinDetails?.name}{" "}
                             </Text>

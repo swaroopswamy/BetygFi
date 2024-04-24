@@ -246,7 +246,7 @@ const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
+                                src={userImg === null || userImg === undefined ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : userImg}
                             />
                         )}
                         <Box
