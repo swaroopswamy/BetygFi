@@ -29,7 +29,7 @@ export default async function RootLayout({ children }) {
 		);
 	} else {
 		if (appConfig.NEXTAUTH_URL_DASHBOARD) {
-			appConfig.NEXTAUTH_URL = appConfig.NEXTAUTH_URL_DASHBOARD;
+			appConfig.NEXTAUTH_URL = 'http://local.betygfi.com:7000';
 		}
 		getAppConfigMappedToGlobalEnv(appConfig);
 		return (

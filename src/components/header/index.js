@@ -64,6 +64,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const normalizeColorMode = (colorMode) => colorMode === "light" ? "dark" : "light";
 
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+
     const clearValueMobileSearch = () => {
         setSearchValue("");
         setSearchWalletAddressValue("");
@@ -246,7 +248,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={AuthSession?.user?.profile_url === null || AuthSession?.user?.profile_url === undefined ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : AuthSession?.user?.profile_url}
+                                src={ValidatedUserData?.data?.profile_url === null || ValidatedUserData?.data?.profile_url === undefined ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : ValidatedUserData?.data?.profile_url}
                             />
                         )}
                         <Box
@@ -262,22 +264,22 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 overflow={"hidden"}
                                 textOverflow={"ellipsis"}
                             >
-                                {AuthSession?.user?.name
-                                    ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                {ValidatedUserData?.data?.name
+                                    ? PublicAddressStringFormatter(ValidatedUserData?.data?.name) : 'No Name'}
                             </Text>
-                            {AuthSession?.user?.public_address && (
+                            {ValidatedUserData?.data?.public_address && (
                                 <Text
                                     variant={"h5"}
                                     letterSpacing={"1.2px"}
                                     _light={{ color: "#16171B" }}
                                     _dark={{ color: "#A8ADBD" }}
                                 >
-                                    {AuthSession?.user?.public_address
+                                    {ValidatedUserData?.data?.public_address
                                         ?.split("")
                                         ?.join("")
                                         ?.substring(0, 6) +
                                         "..." +
-                                        AuthSession?.user?.public_address?.slice(
+                                        ValidatedUserData?.data?.public_address?.slice(
                                             -5
                                         )}
                                 </Text>
