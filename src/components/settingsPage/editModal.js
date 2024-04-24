@@ -158,7 +158,7 @@ const EditPage = ({ isOpen, onClose }) => {
                                 />
                             </Box>
                         </Box>
-                        <Box display={"flex"} w="100%" flexDir={"row"} pb="24px">
+                        <Box display={"flex"} w="100%" flexDir={"row"} pb="8px">
                             <Box w="17%" layerStyle={"flexCenter"} >
                                 <Text variant={"editModalText"}>
                                     User Name:
