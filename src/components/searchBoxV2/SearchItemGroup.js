@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Divider, Text, useColorMode } from '@chakra-ui/react';
+import { Box, Divider, Text, useColorMode } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import TrendingDefisItem from '@components/searchBoxV2/TrendingDefisItem';
 import TrendingCoinsItem from '@components/searchBoxV2/TrendingCoinsItem';
@@ -63,7 +63,7 @@ const SearchItemGroup = ({ searchItem, searchListData, onNavigateArrowClick }) =
     };
 
     return (
-        <>
+        <Box id='searchSuggestionDesktopTitle'>
             {
                 searchItem.slug === TRENDING_DEFIS_SLUG ?
                     (
@@ -112,7 +112,7 @@ const SearchItemGroup = ({ searchItem, searchListData, onNavigateArrowClick }) =
                             </>
                         )
             }
-        </>
+        </Box>
     );
 };
 

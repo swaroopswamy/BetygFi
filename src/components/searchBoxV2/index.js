@@ -10,7 +10,7 @@ import { createSearchGroupedData } from '@util/utility';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
-const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
+const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch, setSearchValue }) => {
     const { colorMode } = useColorMode();
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const [searchList, setSearchList] = useState([]);
@@ -28,11 +28,24 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         window.addEventListener('keydown', function (event) {
             let key = event.key;
             if (key === "/") {
+                if (searchValue.charAt(searchValue.length - 1) === '/') {
+                    const charValue = searchValue.replace(searchValue.substring(searchValue.length - 1, searchValue.length), "");
+                    setSearchValue(charValue);
+                }
                 setOpenSearchSuggestion(true);
                 if (document.getElementById("searchInputDesktop")) {
                     setTimeout(() => {
                         document.getElementById("searchInputDesktop").focus();
                     }, 1000);
+                }
+            }
+            if (key === 'Tab') {
+                setOpenSearchSuggestion(true);
+                if (document.getElementById("searchSuggestionDesktopTitle")) {
+                    // setTimeout(() => {
+                    document.getElementById("searchSuggestionDesktopTitle").focus();
+                    document.getElementById("searchSuggestionDesktopTitle").click();
+                    // }, 100);
                 }
             }
             if (key === "Escape") {
@@ -44,30 +57,15 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         }, false);
     }, []);
 
-    useEffect(() => {
-        window.addEventListener('keydown', function (event) {
-            let key = event.key;
-            if (key === "/") {
-                setOpenSearchSuggestion(true);
-            }
-            if (key === "Escape") {
-                setOpenSearchSuggestion(false);
-            }
-            if (key === "Enter") {
-                checkAndRedirectToActiveTabIndex();
-            }
-        }, false);
-    });
-
     const getActiveTabIndex = () => document.activeElement.tabIndex;
     const getGroupData = () => createSearchGroupedData(searchValue.length == 0 ? searchListTrendingData : searchListData);
 
     const checkAndRedirectToActiveTabIndex = () => {
         const activeTabIndex = getActiveTabIndex();
         const groupedData_ = getGroupData();
-        const searchInDefi = groupedData_.defi && groupedData_.defi.find(df => df.searchIndex === activeTabIndex);
-        const searchInCoin = groupedData_.coin && groupedData_.coin.find(cn => cn.searchIndex === activeTabIndex);
-        const searchInWallet = groupedData_.wallet && groupedData_.wallet.find(wl => wl.searchIndex === activeTabIndex);
+        const searchInDefi = groupedData_.defi ? groupedData_.defi.find(df => df.searchIndex === activeTabIndex) : null;
+        const searchInCoin = groupedData_.coin ? groupedData_.coin.find(cn => cn.searchIndex === activeTabIndex) : null;
+        const searchInWallet = groupedData_.wallet ? groupedData_.wallet.find(wl => wl.searchIndex === activeTabIndex) : null;
         if (searchInDefi) {
             onNavigateArrowClick(TRENDING_DEFIS_SLUG, searchInDefi.slug);
         } else if (searchInCoin) {
@@ -146,6 +144,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                     (
                         isMd ?
                             <Box
+                                id='searchSuggestionDesktop'
                                 borderRadius={"4px"}
                                 zIndex={"9999"}
                                 width={"100%"}
