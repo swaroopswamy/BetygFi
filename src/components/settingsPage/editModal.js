@@ -158,14 +158,13 @@ const EditPage = ({ isOpen, onClose }) => {
                                 />
                             </Box>
                         </Box>
-                        <Box display={"flex"} w="100%" flexDir={"row"} pb="5px">
+                        <Box display={"flex"} w="100%" flexDir={"row"} pb="24px">
                             <Box w="17%" layerStyle={"flexCenter"} >
                                 <Text variant={"editModalText"}>
-                                    Username:
+                                    User Name:
                                 </Text>
                             </Box>
                             <Box w="83%">
-                                <Box display={"flex"} flexDir={"column"}>
                                     <InputText
                                         value={userData?.user_name}
                                         placeholder={"Enter your Username"}
@@ -174,7 +173,6 @@ const EditPage = ({ isOpen, onClose }) => {
                                         name="user_name"
                                         validUsername={UsernameValidData?.isSuccess}
                                     />
-                                </Box>
                             </Box>
                         </Box>
                         <Box display={"flex"} w="100%" flexDir={"row"} >
