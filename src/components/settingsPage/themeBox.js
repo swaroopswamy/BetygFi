@@ -67,10 +67,10 @@ const ThemeBox = () => {
                         }}
                     >
                         <Image
-                            src=" /images/LightTheme.svg"
+                            src="/images/LightTheme.svg"
                             width={183}
                             height={133}
-                            alt=" "
+                            alt="light-theme"
                         // unoptimized="true"
                         // priority="true"
                         />
@@ -211,7 +211,7 @@ const ThemeBox = () => {
                                     height={133}
                                     // unoptimized="true"
                                     // priority="true"
-                                    alt=""
+                                    alt="light-theme"
                                     m={"12px 0px 0px 21px"}
                                 ></Image>
                             </Box>
