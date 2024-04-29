@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
-import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
+import TopGainersBox from "./TopGainersBox";
+import TopLosersBox from "./TopLosersBox";
 import DeFiTVLByCategoryBox from "@/components/pages/defiDashboard/DefiTVLCategory";
 import DeFiTVLByBlockchainBox from "@/components/pages/defiDashboard/DefiTVLBlockchain";
 import Slider from "react-slick";
@@ -71,8 +71,8 @@ const HighlightsBox = () => {
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
-                <TopGainersSmallBox />
-                <TopLosersSmallBox />
+                <TopGainersBox />
+                <TopLosersBox />
                 <DeFiTVLByCategoryBox />
                 <DeFiTVLByBlockchainBox />
             </Slider>

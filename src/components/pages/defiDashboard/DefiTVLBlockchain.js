@@ -18,6 +18,7 @@ const DeFiTVLByBlockchainBox = () => {
             enabled: true,
             style: {
                 fontSize: '12px',
+                color: "#191919", 
             },
             formatter: function (text, op) {
                 return [text, op.value];
@@ -36,13 +37,13 @@ const DeFiTVLByBlockchainBox = () => {
                 colorScale: {
                     ranges: [
                         {
-                            from: -6,
+                            from: -Infinity,
                             to: 0,
                             color: '#CD363A'
                         },
                         {
-                            from: 0.001,
-                            to: 6,
+                            from: 0,
+                            to: Infinity,
                             color: '#52B12C'
                         }
                     ]

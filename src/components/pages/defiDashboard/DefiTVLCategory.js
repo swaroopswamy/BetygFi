@@ -26,6 +26,7 @@ const DeFiTVLByCategoryBox = () => {
             enabled: true,
             style: {
                 fontSize: '12px',
+                color: "#191919"
             },
             formatter: function (text, op) {
                 return [text, op.value];
@@ -40,14 +41,14 @@ const DeFiTVLByCategoryBox = () => {
                 colorScale: {
                     ranges: [
                         {
-                            from: 0,
-                            to: 100000000,
-                            color: '#FF6161'
+                            from: -Infinity,
+                            to: 0,
+                            color: '#FF6161',
                         },
                         {
-                            from: 100000000,
-                            to: 1000000000,
-                            color: '#52B12C'
+                            from: 0,
+                            to: Infinity,
+                            color: '#9ADA8A'
                         }
                     ]
                 }
