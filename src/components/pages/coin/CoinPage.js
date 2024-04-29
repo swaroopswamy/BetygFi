@@ -25,7 +25,11 @@ import {
     fetchTrendingCoinsData,
     fetchTopBTCETFData,
     fetchFearAndGreedData,
-    fetchBTCDominanceScoresData, fetchMarqueeData, fetchCoinRankingsTableData, fetchCoinScoresData, fetchCryptoCategoriesData,
+    fetchBTCDominanceScoresData, 
+    fetchMarqueeData, 
+    fetchCoinRankingsTableData, 
+    fetchCoinScoresData, 
+    fetchCryptoCategoriesData
 } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
 import Marquee from "@/components/pages/coin/marquee";

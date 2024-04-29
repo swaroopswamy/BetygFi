@@ -1,9 +1,12 @@
 import CustomChart from "@components/graph";
 import { Box, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import millify from "millify";
 
 const ETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
+    const ETFInflowOutflowData = useSelector((state) => state?.coinData?.ETFInflowOutflowData);
 
     const [series, setSeries] = useState([
         {
@@ -19,19 +22,31 @@ const ETFNetInflowBox = () => {
     ]);
 
     useEffect(() => {
-        setSeries([
-            {
-                name: "Inflow",
-                data: ["600","200","1000","400","600","800","0","700","100"],
-                color: colorMode === "light" ? "#90BE6D" : "#60C000",
-            },
-            {
-                name: "Outflow",
-                data: ["-400","-800","-100","-900","-1000","-200","-600","-700","-500"],
-                color: colorMode === "light" ? "#F94144" : "#FF3535",
-            },
-        ]);
-    }, []);
+        if (ETFInflowOutflowData?.data) {
+            setSeries([
+                {
+                    name: "Inflow",
+                    data: ETFInflowOutflowData?.data?.map((entry) => {
+                        if (entry?.changeUsd >= 0) {
+                            return [new Date(entry?.date), entry?.changeUsd];
+                        }
+                        return null;
+                    }).filter(entry => entry !== null),
+                    color: colorMode === "light" ? "#90BE6D" : "#60C000",
+                },
+                {
+                    name: "Outflow",
+                    data: ETFInflowOutflowData?.data?.map((entry) => {
+                        if (entry?.changeUsd < 0) {
+                            return [new Date(entry?.date), entry?.changeUsd];
+                        }
+                        return null;
+                    }).filter(entry => entry !== null),
+                    color: colorMode === "light" ? "#F94144" : "#FF3535",
+                },
+            ]);
+        }
+    }, [ETFInflowOutflowData]);
 
     const options = {
         chart: {
@@ -45,7 +60,7 @@ const ETFNetInflowBox = () => {
             enabled: false,
         },
         xaxis: {
-            categories: ["29 Jan", "31 Jan", "02 Feb", "04 Feb", "06 Feb", "08 Feb", "10 Feb", "12 Feb", "14 Feb"],
+            type: "datetime",
             labels: {
                 style: {
                     colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -56,8 +71,11 @@ const ETFNetInflowBox = () => {
         },
         yaxis: {
             labels: {
-                formatter: function (value) {
-                    return value + "M";
+                formatter: function (changeUsd) {
+                    return millify(changeUsd, {
+                        precision: 0,
+                        locales: "en-US",
+                    });
                 },
                 style: {
                     colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -83,6 +101,22 @@ const ETFNetInflowBox = () => {
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
+            x: {
+                formatter: function (val) {
+                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                }
+            },
+            y: {
+                formatter: function (changeUsd) {
+                    return millify(changeUsd, {
+                        precision: 0,
+                        locales: "en-US",
+                    });
+                }
+            },
+            marker: {
+                show: true,
+            },
         },
     };
 
@@ -90,9 +124,10 @@ const ETFNetInflowBox = () => {
         <Box
             width={"100%"}
             height={"100%"}
-            borderRadius={"8px"}           
+            borderRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            p={"0px 10px"}
         >
             <CustomChart
                 options={options}

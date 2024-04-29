@@ -12,6 +12,7 @@ import {
     useColorMode,
     Text,
     useMediaQuery,
+    Button,
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
@@ -167,6 +168,30 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
         }
     };
 
+    const renderHeaderMenu = () => {
+        const splittedPathName = pathname.split("/");
+        if (splittedPathName.includes('coin')) {
+            return (
+                <>
+                    <Button
+                        size={"sm"}
+                        layerStyle={"flexCenter"}
+                        gap={"5px"}
+                        px={"8px"}
+                        borderRadius={"10px"}
+                        bg={"background.primary"}
+                        border={"2px solid #E0E0E0"}
+                        onClick={() => router.push(`/ETF`)}
+                    >
+                        <Image src={colorMode === 'light' ? "/icons/ETF_Icon_Light.svg" : "/icons/ETF_Icon_Dark.svg"}
+                            width={25}
+                            height={25}></Image>
+                        ETF
+                    </Button>
+                </>
+            );
+        }
+    };
 
     const MdHeader = () => (
         <Flex
@@ -202,7 +227,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     searchListTrendingData={searchListTrendingData?.data?.data?.data}
                 />
             </Box>
-
+            {renderHeaderMenu()}
             <Box layerStyle={"flexCenter"}>
                 <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
                     onClick={() => { toggleColorModeGlobally(); }} />

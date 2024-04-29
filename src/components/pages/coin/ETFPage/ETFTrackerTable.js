@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Input, InputGroup, InputLeftElement, Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import millify from "millify";
 
-const GenericTable = dynamic(() => import("@components/table"));
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const ETFTracker = () => {
     const { colorMode } = useColorMode();
+    const tableData = useSelector((state) => state?.coinData?.ETFListData);
+    const [selectedOption, setSelectedOption] = useState("Futures");
+
     const placeholderStyle = {
         color: "#6F6F6F",
         fontSize: "12px",
@@ -60,20 +66,27 @@ const ETFTracker = () => {
                         borderColor={colorMode === "light" ? "#1C1C1CCC" : "#333"}
                         bg={colorMode === "light" ? "#FFFFFF" : "#191919"}
                         padding={"9px 5px"}
+                        value={selectedOption}
+                        onChange={(e) => setSelectedOption(e.target.value)}
                     >
-                        <option value="Volume">
+                        <option value="Futures">
                             <Text variant={"h0"} fontSize={"14px"} lineHeight={"16px"}>
                                 Futures
                             </Text>
                         </option>
-                        <option value="Liquidity">Volume</option>
+                        <option value="Spot">
+                            <Text variant={"h0"} fontSize={"14px"} lineHeight={"16px"}>
+                                Spot
+                            </Text>
+                        </option>
                     </Select>
                 </Box>
             </Box>
 
-            <Box overflowX={"auto"}>
+            <Box display={"flex"} overflowX={"auto"}>
                 <GenericTable
                     tableHeader={tableHeader}
+                    tableData={tableData}
                     TableRow={TableRow}
                     SkeletonRowsColumnsDesktop={{ numRows: 10, numColumns: 10 }}
                     slideToLeftFeature={true}
@@ -84,61 +97,72 @@ const ETFTracker = () => {
 };
 export default ETFTracker;
 
-const TableRow = () => {
+const TableRow = ({ item, rowIndex }) => {
+    const { colorMode } = useColorMode();
+    const router = useRouter();
     const commonStyleTdProp = {
         _light: { bgColor: "#FFFFFF", },
         _dark: { bgColor: "#202020", }
     };
     return (
-        <Tr cursor={"pointer"} border={"0px"}>
-            <Td {...commonStyleTdProp} textAlign={"center"}>
+        <Tr
+            cursor={"pointer"}
+            border={"0px"}
+            key={rowIndex}
+            bgColor={"background.secondary"}
+            onClick={() => router.push(`/ETFDetailsPage`)}
+        >
+            <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
+                <Image src={"/icons/Bookmark_Icon.svg"} width={24} height={20}></Image>
+            </Td>
+            <Td {...commonStyleTdProp} key={1} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
-                    ARKB
+                    {item?.ticker === undefined ? "-" : item?.ticker}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
                     ARK Invest
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={3} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    ARK 21Shares Bitcoin ETF
+                    {item?.etfName === undefined ? "-" : item?.etfName}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={4} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    Spot
+                    {item?.type === undefined ? "-" : item?.type}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={5} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    $51.13
+                    ${item?.share === undefined ? "-" : item?.share}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={6} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                     100,122
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={7} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                     Coinbase
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    $48,207,897
+                    ${millify(item?.volumeUsd === undefined ? "-" : item?.volumeUsd, { precision: 0 })}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
+            <Td {...commonStyleTdProp} key={9} whiteSpace={"nowrap"}>
                 <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    944
+                    ${item?.volumeBtc === undefined ? "-" : item?.volumeBtc}
                 </Text>
             </Td>
-            <Td {...commonStyleTdProp}>
-                <Box width={"80px"} height={"33px"} bg={"#245F003D"} borderRadius={"8px"}>
-                    <Text variant={"contentHeading3"} lineHeight={"24px"} fontWeight={700} color={"#245F00"} textAlign={"center"}>
+            <Td {...commonStyleTdProp} key={10} whiteSpace={"nowrap"}>
+                <Box width={"80px"} bg={colorMode === 'light' ? "#245F003D" : "#60C0003D"} borderRadius={"8px"}>
+                    <Text variant={"contentHeading3"} lineHeight={"24px"} fontWeight={700} color={"text.green"} textAlign={"center"} py={"6px"} px={"7px"}>
                         Running
                     </Text>
                 </Box>

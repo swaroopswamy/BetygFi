@@ -1,5 +1,11 @@
 export const tableHeader = [
 	{
+		accessor: " ",
+        Header: "", // Empty string for the first column
+        isTooltip: false,
+        isSortingEnabled: false,
+	},
+	{
 		accessor: "ticker",
 		Header: "Ticker",
 		isTooltip: true,

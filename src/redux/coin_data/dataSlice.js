@@ -10,7 +10,10 @@ import {
     getFearAndGreedData,
     getSAPData,
     getMarqueeDataAPI,
-    getCryptoCategoriesData
+    getCryptoCategoriesData,
+    getETFListData,
+    getETFInflowOutflowData,
+    getETFHeatMapData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -109,6 +112,30 @@ export const fetchMarqueeData = createAsyncThunk(
     }
 );
 
+export const fetchETFListData = createAsyncThunk(
+    "getETFListData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFListData(payload, rejectWithValue);
+        return response;
+    }
+);
+
+export const fetchETFInflowOutflowData = createAsyncThunk(
+    "getETFInflowOutflowData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFInflowOutflowData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchETFHeatMapData = createAsyncThunk(
+    "getETFHeatMapData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFHeatMapData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -179,6 +206,24 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         MarqueeData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFListData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFInflowOutflowData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFHeatMapData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -411,6 +456,60 @@ const CoinDataSlice = createSlice({
             state.MarqueeData.isSuccess = false;
             state.MarqueeData.isError = true;
             state.MarqueeData.data = action.payload;
+        });
+        builder.addCase(fetchETFListData.fulfilled, (state, action) => {
+            state.ETFListData.data = action.payload;
+            state.ETFListData.isLoading = false;
+            state.ETFListData.isSuccess = true;
+            state.ETFListData.isError = false;
+        });
+        builder.addCase(fetchETFListData.pending, (state, action) => {
+            state.ETFListData.isLoading = true;
+            state.ETFListData.isError = false;
+            state.ETFListData.isSuccess = false;
+            state.ETFListData.data = action.payload;
+        });
+        builder.addCase(fetchETFListData.rejected, (state, action) => {
+            state.ETFListData.isLoading = false;
+            state.ETFListData.isSuccess = false;
+            state.ETFListData.isError = true;
+            state.ETFListData.data = action.payload;
+        });
+        builder.addCase(fetchETFInflowOutflowData.fulfilled, (state, action) => {
+            state.ETFInflowOutflowData.data = action.payload;
+            state.ETFInflowOutflowData.isLoading = false;
+            state.ETFInflowOutflowData.isSuccess = true;
+            state.ETFInflowOutflowData.isError = false;
+        });
+        builder.addCase(fetchETFInflowOutflowData.pending, (state, action) => {
+            state.ETFInflowOutflowData.isLoading = true;
+            state.ETFInflowOutflowData.isError = false;
+            state.ETFInflowOutflowData.isSuccess = false;
+            state.ETFInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFInflowOutflowData.rejected, (state, action) => {
+            state.ETFInflowOutflowData.isLoading = false;
+            state.ETFInflowOutflowData.isSuccess = false;
+            state.ETFInflowOutflowData.isError = true;
+            state.ETFInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFHeatMapData.fulfilled, (state, action) => {
+            state.ETFHeatMapData.data = action.payload;
+            state.ETFHeatMapData.isLoading = false;
+            state.ETFHeatMapData.isSuccess = true;
+            state.ETFHeatMapData.isError = false;
+        });
+        builder.addCase(fetchETFHeatMapData.pending, (state, action) => {
+            state.ETFHeatMapData.isLoading = true;
+            state.ETFHeatMapData.isError = false;
+            state.ETFHeatMapData.isSuccess = false;
+            state.ETFHeatMapData.data = action.payload;
+        });
+        builder.addCase(fetchETFHeatMapData.rejected, (state, action) => {
+            state.ETFHeatMapData.isLoading = false;
+            state.ETFHeatMapData.isSuccess = false;
+            state.ETFHeatMapData.isError = true;
+            state.ETFHeatMapData.data = action.payload;
         });
     },
     reducers: {

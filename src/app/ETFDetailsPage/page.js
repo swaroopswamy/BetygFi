@@ -2,11 +2,11 @@
 import React from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import { BreadCrumb } from "@components/breadcrumb2";
-import News from "@components/pages/ETFPage/News";
-import ARKInvest from "@components/pages/ETFPage/ARKInvestBox";
-import ARK21Shares from "@components/pages/ETFPage/ARK21SharesChart";
-import ETFNetInflowBox from "@components/pages/ETFPage/ETFNetInflowGraph";
-import KeyStats from "@components/pages/ETFPage/KeyStatsBox";
+import News from "@components/pages/coin/ETFPage/News";
+import ARKInvest from "@components/pages/coin/ETFPage/ARKInvestBox";
+import ARK21Shares from "@components/pages/coin/ETFPage/ARK21SharesChart";
+import ETFNetInflowBox from "@components/pages/coin/ETFPage/ETFNetInflowGraph";
+import KeyStats from "@components/pages/coin/ETFPage/KeyStatsBox";
 
 const BTCETFDetailsPage = () => {
     const { colorMode } = useColorMode();

@@ -1,14 +1,41 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import millify from "millify";
 import { BreadCrumb } from "@components/breadcrumb2";
-import HeatmapGraphBox from "@components/pages/ETFPage/Heatmap";
-import ETFNetInflowBox from "@components/pages/ETFPage/ETFNetInflowGraph";
-import ETFTracker from "@components/pages/ETFPage/ETFTrackerTable";
+import HeatmapGraphBox from "@components/pages/coin/ETFPage/Heatmap";
+import ETFNetInflowBox from "@components/pages/coin/ETFPage/ETFNetInflowGraph";
+import ETFTracker from "@components/pages/coin/ETFPage/ETFTrackerTable";
+import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
 
 const BTCETFPage = () => {
+    const dispatch = useDispatch();
     const { colorMode } = useColorMode();
+
+    const fetchETFListDataHandler = () => {
+        dispatch(fetchETFListData());
+    };
+
+    const fetchETFInflowOutflowDataHandler = () => {
+        dispatch(fetchETFInflowOutflowData());
+    };
+
+    const fetchETFHeatMapDataHandler = () => {
+        dispatch(fetchETFHeatMapData());
+    };
+
+    useEffect(() => {
+        Promise.all([
+            fetchETFListDataHandler(),
+            fetchETFInflowOutflowDataHandler(),
+            fetchETFHeatMapDataHandler(),
+        ]).then(result => result);
+    }, []);
+
+    const ETFListData = useSelector((state) => state?.coinData?.ETFListData);
+
     return (
         <>
             <Box
@@ -22,7 +49,7 @@ const BTCETFPage = () => {
                 <Box layerStyle={"spaceBetween"}>
                     <BreadCrumb
                         text={"Defi Markets/BTC ETF Tracker"}
-                        link={"/protocol"}
+                        link={"/coin"}
                     ></BreadCrumb>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
                         <Image src={"/icons/Red_Dot.svg"} width={9} height={9} alt=" "></Image>
@@ -32,43 +59,22 @@ const BTCETFPage = () => {
                 <Box layerStyle={"flexCenter"} gap={"20px"}>
                     <Box>
                         <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Volume</Text>
-                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>$1.47B</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalVolume === undefined ?
+                            "NA" : ETFListData?.totalVolume, { precision: 0 })}</Text>
                     </Box>
                     <Box>
                         <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Marketcap</Text>
-                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>$1.47B</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalMarketCap === undefined ?
+                            "NA" : ETFListData?.totalMarketCap, { precision: 0 })}</Text>
                     </Box>
                     <Box>
                         <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total AUM</Text>
-                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>$1.47B</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalAum === undefined ?
+                            "NA" : ETFListData?.totalAum, { precision: 0 })}</Text>
                     </Box>
                 </Box>
                 <Box layerStyle={"flexCenter"} mt={"15px"}>
                     <Box width={"45%"} mr={"1rem"}>
-                        <Text variant={"h2"} mb={"15px"}>Heatmap</Text>
-                        <Box layerStyle={"flexCenter"} mb={"5px"}>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Holding
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Price
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Volume
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Turnover
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Shares
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                AUM
-                            </Button>
-                            <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                                Market Cap
-                            </Button>
-                        </Box>
                         <HeatmapGraphBox />
                     </Box>
                     <Box width={"55%"}>
