@@ -9,7 +9,6 @@ import { PublicAddressStringFormatter } from "@util/utility";
 import moment from "moment";
 import { changeProfilePic } from "@redux/auth_data/authSlice";
 
-
 const ProfileBox = () => {
     const fileInputRef = useRef(null);
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -76,7 +75,6 @@ const ProfileBox = () => {
                                         width: "150px",
                                         height: "150px",
                                         objectFit: "cover",
-                                        background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
                                         backgroundRepeat: " no-repeat"
                                     }}
                                     width={150}
@@ -315,13 +313,8 @@ const ProfileBox = () => {
                         </Box> */}
                     </Box>
                 </Box>
-
             )
-
         }
-
-
-
             <EditPage isOpen={isModalOpen} onClose={handleCloseModal} />
         </>
     );

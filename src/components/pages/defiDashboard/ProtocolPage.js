@@ -2,11 +2,11 @@
 "use client";
 import { fetchOverviewData, fetchScoreGraphData, fetchDefiOverviewData } from "@redux/dashboard_data/dataSlice";
 import { fetchTopGainersAndLosersData, fetchMarqueeData } from "@redux/coin_data/dataSlice";
-import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useDisclosure, /* Switch, */ useColorMode, /* Collapse, */ Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { /* useContext, */ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
+//import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
 import Image from "next/image";
 import Marquee from "./marquee";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
@@ -20,9 +20,9 @@ const BlockchainSelectionMenuNew = dynamic(() => import("@components/blockchainS
 const ProtocolPage = () => {
     // const [isMd] = useMediaQuery("(min-width: 768px)");
     const { colorMode } = useColorMode();
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen, /* onOpen, */ onClose } = useDisclosure();
     const dispatch = useDispatch();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
+    const { /*  isOpen: isHighlightsBoxOpen, */ onToggle: onHighlightsBoxToggle } = useDisclosure();
 
     const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
     const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
@@ -90,15 +90,17 @@ const ProtocolPage = () => {
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             <Marquee />
-            <Box layerStyle={"flexCenter"} px={{ md: "14px" }} mb={{ base: "14px", md: "14px" }} >
-                <BlockchainSelectionMenuNew w="95%" />
-                <Box marginLeft={"-35px"}>
+            <Box layerStyle={"flexCenter"} mx={{ md: "14px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
+                <Box w={{ base: "85%", md: "100%" }}>
+                    <BlockchainSelectionMenuNew />
+                </Box>
+                <Box ml={{ base: "-5px", md: "-50px" }} cursor={"pointer"}>
                     <i className="icon arrow_right_grey" onClick={ScrollToRight} />
                 </Box>
-                <Button onClick={onOpen} gap={"5px"} mr={"10px"} >
-                    <Image src={"/icons/filter_list.svg"} width={15} height={15} alt=" "></Image>
+                {/*                 <Button onClick={onOpen} gap={{ base: "2px", md: "5px" }} ml={{ base: "4px" }} >
+                    <Image src={"/icons/filter_list.svg"} width={20} height={20} alt=" "></Image>
                     <Text>Filter</Text>
-                </Button>
+                </Button> */}
             </Box>
             <Box
                 display={"flex"}
@@ -106,11 +108,12 @@ const ProtocolPage = () => {
                 bg={useColorModeValue("#F0F0F5", "#191919")}
                 px={{ base: "18px", md: "30px" }}
                 borderTop={"1px solid " + useColorModeValue("rgba(0, 0, 0, 0.1)", "rgba(255, 255, 255, 0.1)")}>
+                {/* 
                 <Box layerStyle={"flexCenterSpaceBetween"} w="100%" mt={"20px"}>
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"22px"}>
                         DeFi Overview
                     </Text>
-                    <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"}>
+                     <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"}>
                         <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                         <Switch
                             size={"lg"}
@@ -119,10 +122,10 @@ const ProtocolPage = () => {
                             className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                         ></Switch>
                     </Box>
-                </Box>
-                <Collapse in={isHighlightsBoxOpen}>
+                </Box> */}
+                {/*                 <Collapse in={isHighlightsBoxOpen}>
                     <HighlightsBox />
-                </Collapse>
+                </Collapse> */}
                 <Box
                     display={"flex"}
                     flexDirection={"column"}

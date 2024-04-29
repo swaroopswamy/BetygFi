@@ -182,44 +182,42 @@ const DashboardTrendGraph = ({ searchParamProtocolSlug }) => {
     }], [defiGraphData]);
 
     return (
-        <>
+        <Box
+            display={"flex"}
+            flexDirection={"column"}
+            alignContent={"center"}
+            // height={"400px"}
+            width={{ base: "100%", lg: "70%" }}
+            bgColor={useColorModeValue("#FFFFFF", "#202020")}
+            border={"1px"}
+            borderColor={useColorModeValue("#FFFFFF", "#272727")}
+            borderRadius={"6px"}
+        >
+            <Box padding={"20px 0 0 20px"}>
+                <Text fontSize={"18px"} fontWeight={600} lineHeight={"20px"}>
+                    Trend Graph
+                </Text>
+            </Box>
+
+            {/* Buttons and selection go here */}
+            {/* {renderTrendGraphFilters()} */}
+
             <Box
-                display={"flex"}
-                flexDirection={"column"}
-                alignContent={"center"}
-                // height={"400px"}
-                width={{ base: "100%", lg: "70%" }}
-                bgColor={useColorModeValue("#FFFFFF", "#202020")}
-                border={"1px"}
-                borderColor={useColorModeValue("#FFFFFF", "#272727")}
-                borderRadius={"6px"}
+                padding={"20px 20px 0px 20px"}
+                borderBottom={"1px"}
+                borderColor={colorMode === "light" ? "#F0F0F5" : "#333"}
             >
-                <Box padding={"20px 0 0 20px"}>
-                    <Text fontSize={"18px"} fontWeight={600} lineHeight={"20px"}>
-                        Trend Graph
-                    </Text>
-                </Box>
+                <TrendGraph
+                    colorMode={colorMode}
+                    searchParamProtocolSlug={searchParamProtocolSlug}
+                    series={series}
+                />
+            </Box>
 
-                {/* Buttons and selection go here */}
-                {/* {renderTrendGraphFilters()} */}
-
-                <Box
-                    padding={"20px 20px 0px 20px"}
-                    borderBottom={"1px"}
-                    borderColor={colorMode === "light" ? "#F0F0F5" : "#333"}
-                >
-                    <TrendGraph
-                        colorMode={colorMode}
-                        searchParamProtocolSlug={searchParamProtocolSlug}
-                        series={series}
-                    />
-                </Box>
-
-                {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+            {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
                     <SelectorGraph colorMode={colorMode} />
                 </Box> */}
-            </Box>
-        </>
+        </Box>
     );
 };
 

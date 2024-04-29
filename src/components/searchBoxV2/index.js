@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Box, Input, InputGroup, InputLeftElement, Text, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement, Text, Tooltip, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
 import { SEARCH_LIST } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
-const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch }) => {
+const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch, setSearchValue }) => {
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const ref = useRef();
     const [searchList, setSearchList] = useState([]);
@@ -24,6 +24,10 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         window.addEventListener('keydown', function (event) {
             let key = event.key;
             if (key === "/") {
+                if (searchValue.charAt(searchValue.length - 1) === '/') {
+                    const charValue = searchValue.replace(searchValue.substring(searchValue.length - 1, searchValue.length), "");
+                    setSearchValue(charValue);
+                }
                 setOpenSearchSuggestion(true);
                 if (document.getElementById("searchInputDesktop")) {
                     setTimeout(() => {
@@ -101,13 +105,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 maxW="100vw"
                                 maxH="80vh"
                                 whiteSpace="nowrap"
-                                sx={
-                                    {
-                                        '::-webkit-scrollbar': {
-                                            display: 'none'
-                                        }
-                                    }
-                                }
+                                sx={{ '::-webkit-scrollbar': { display: 'none' } }}
                             >
                                 {/* <Box> */}
                                 {searchDataContent()}
@@ -216,13 +214,15 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                                 onClick={() => { handleSearchInputClick(); }}
                             />
-                            <Box mr={"1%"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
-                                _light={{ backgroundColor: "#FFFFFF" }}
-                                _dark={{ backgroundColor: "#202020" }}>
-                                <Text variant={"h5"} colorMode={colorMode}>
-                                    /
-                                </Text>
-                            </Box>
+                            <Tooltip label={`Press / to search`}>
+                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                    _light={{ backgroundColor: "#FFFFFF" }}
+                                    _dark={{ backgroundColor: "#202020" }}>
+                                    <Text variant={"h5"} colorMode={colorMode}>
+                                        /
+                                    </Text>
+                                </Box>
+                            </Tooltip>
                         </Box>
                         {
                             searchValue?.length > 0 &&
@@ -257,7 +257,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         return (
             <InputGroup id={"searchMobileInput"} ref={ref} w="100%" zIndex={"1000"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
-                    <Box display={"flex"} flexDir={"row"} backgroundColor={"#FFFFFF"}>
+                    <Box display={"flex"} flexDir={"row"} backgroundColor={colorMode === 'light' ? "#FFFFFF" : "#191919"}>
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src={`/icons/search_icon_${colorMode}.svg`}
