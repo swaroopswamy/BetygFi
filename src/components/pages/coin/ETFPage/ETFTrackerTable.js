@@ -110,7 +110,7 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             key={rowIndex}
             bgColor={"background.secondary"}
-            onClick={() => router.push(`/ETFDetailsPage`)}
+            onClick={() => router.push(`/etf/${item?.ticker}`)}
         >
             <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
                 <Image src={"/icons/Bookmark_Icon.svg"} width={24} height={20}></Image>
