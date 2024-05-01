@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Input, InputGroup, InputLeftElement, Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
@@ -12,7 +12,6 @@ const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const ETFTracker = () => {
     const { colorMode } = useColorMode();
     const tableData = useSelector((state) => state?.coinData?.ETFListData);
-    const [selectedOption, setSelectedOption] = useState("Futures");
 
     const placeholderStyle = {
         color: "#6F6F6F",
@@ -66,8 +65,6 @@ const ETFTracker = () => {
                         borderColor={colorMode === "light" ? "#1C1C1CCC" : "#333"}
                         bg={colorMode === "light" ? "#FFFFFF" : "#191919"}
                         padding={"9px 5px"}
-                        value={selectedOption}
-                        onChange={(e) => setSelectedOption(e.target.value)}
                     >
                         <option value="Futures">
                             <Text variant={"h0"} fontSize={"14px"} lineHeight={"16px"}>

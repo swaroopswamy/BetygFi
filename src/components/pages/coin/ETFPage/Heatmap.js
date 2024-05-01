@@ -38,7 +38,15 @@ const HeatmapGraphBox = () => {
         },
         tooltip: {
             enabled: true,
-            theme: colorMode
+            theme: colorMode === "light" ? "light" : "dark",
+            x: {
+                formatter: function (val) {
+                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                }
+            },
+            marker: {
+                show: true,
+            },
         },
         dataLabels: {
             enabled: true,
@@ -60,13 +68,13 @@ const HeatmapGraphBox = () => {
                 colorScale: {
                     ranges: [
                         {
-                            from: -Infinity,
+                            from: -Number.MAX_SAFE_INTEGER,
                             to: 0,
                             color: '#FF9F6A'
                         },
                         {
                             from: 0,
-                            to: Infinity,
+                            to: Number.MAX_SAFE_INTEGER,
                             color: '#9ADA8A'
                         }
                     ]
@@ -125,9 +133,9 @@ const HeatmapGraphBox = () => {
                     <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('volume')}>
                         Volume
                     </Button>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
                         Turnover
-                    </Button>
+                    </Button> */}
                     <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>

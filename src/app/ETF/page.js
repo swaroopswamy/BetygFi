@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Box, Button, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
@@ -77,9 +77,9 @@ const BTCETFPage = () => {
                     <HeatmapGraphBox />
                 </Box>
                 <Box width={"55%"}>
-                    <Text variant={"h2"} mb={"15px"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
-                    <Box layerStyle={"flexCenter"} mb={"5px"}>
-                        <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                    <Text variant={"h2"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
+                    <Box layerStyle={"flexCenter"} mb={"45px"}>
+                        {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
                             Flows (USD)
                         </Button>
                         <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
@@ -90,9 +90,11 @@ const BTCETFPage = () => {
                         </Button>
                         <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
                             Volume
-                        </Button>
+                        </Button> */}
                     </Box>
-                    <ETFNetInflowBox />
+                    <Box>
+                        <ETFNetInflowBox />
+                    </Box>
                 </Box>
             </Box>
             <Box mt={"15px"} w={"100%"}>
