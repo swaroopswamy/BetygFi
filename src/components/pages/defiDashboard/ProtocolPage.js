@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { fetchOverviewData, fetchScoreGraphData, fetchDefiOverviewData } from "@redux/dashboard_data/dataSlice";
-import { fetchTopGainersAndLosersData, fetchMarqueeData } from "@redux/coin_data/dataSlice";
+import { fetchMarqueeData } from "@redux/coin_data/dataSlice";
 import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { /* useContext, */ useEffect } from "react";
@@ -48,10 +48,6 @@ const ProtocolPage = () => {
         dispatch(fetchDefiOverviewData());
     };
 
-    const fetchTopGainersAndLosersDataHandler = () => {
-        dispatch(fetchTopGainersAndLosersData());
-    };
-
     const fetchMarqueeDataHandler = () => {
         dispatch(fetchMarqueeData());
     };
@@ -65,7 +61,6 @@ const ProtocolPage = () => {
 
     useEffect(() => {
         Promise.all([
-            fetchTopGainersAndLosersDataHandler(),
             fetchDefiOverviewDataHandler(),
             fetchMarqueeDataHandler(),
             onHighlightsBoxToggle(),
@@ -108,12 +103,12 @@ const ProtocolPage = () => {
                 bg={useColorModeValue("#F0F0F5", "#191919")}
                 px={{ base: "18px", md: "30px" }}
                 borderTop={"1px solid " + useColorModeValue("rgba(0, 0, 0, 0.1)", "rgba(255, 255, 255, 0.1)")}>
-                
+
                 <Box layerStyle={"flexCenterSpaceBetween"} w="100%" mt={"20px"}>
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"22px"}>
                         DeFi Overview
                     </Text>
-                     <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"}>
+                    <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"}>
                         <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                         <Switch
                             size={"lg"}
@@ -123,7 +118,7 @@ const ProtocolPage = () => {
                         ></Switch>
                     </Box>
                 </Box>
-                                <Collapse in={isHighlightsBoxOpen}>
+                <Collapse in={isHighlightsBoxOpen}>
                     <HighlightsBox />
                 </Collapse>
                 <Box

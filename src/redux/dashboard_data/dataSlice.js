@@ -23,10 +23,13 @@ export const fetchOverviewGraphData = createAsyncThunk("getOverviewGraphData", a
     return data;
 });
 
-export const fetchDefiOverviewData = createAsyncThunk("getDefiOverviewData", async (payload, { rejectWithValue }) => {
-    const { data } = await getDefiOverviewData(payload, rejectWithValue);
-    return data;
-});
+export const fetchDefiOverviewData = createAsyncThunk(
+    "getDefiOverviewData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getDefiOverviewData(payload, rejectWithValue);
+        return response;
+    }
+);
 
 const DashboardDataSlice = createSlice({
     name: "dashboardData",

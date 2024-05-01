@@ -42,10 +42,10 @@ export const getOverviewGraphData = async (payload, query, rejectWithValue) => {
 	}
 };
 
-export const getDefiOverviewData = async (payload, rejectWithValue) => {
+export const getDefiOverviewData = async (rejectWithValue) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `protocols/defi-overview`;
-		const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
