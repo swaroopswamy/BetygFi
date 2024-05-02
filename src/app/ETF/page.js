@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
 import { BreadCrumb } from "@components/breadcrumb2";
 import HeatmapGraphBox from "@components/pages/coin/ETFPage/Heatmap";
-import ETFNetInflowBox from "@components/pages/coin/ETFPage/ETFNetInflowGraph";
+import BTCETFNetInflowBox from "@components/pages/coin/ETFPage/BTCETFNetInflowGraph";
 import ETFTracker from "@components/pages/coin/ETFPage/ETFTrackerTable";
 import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
 
@@ -93,7 +93,7 @@ const BTCETFPage = () => {
                         </Button> */}
                     </Box>
                     <Box>
-                        <ETFNetInflowBox />
+                        <BTCETFNetInflowBox />
                     </Box>
                 </Box>
             </Box>

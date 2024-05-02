@@ -4,49 +4,43 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
 
-const ETFNetInflowBox = () => {
+const TickerETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
-    const ETFInflowOutflowData = useSelector((state) => state?.coinData?.ETFInflowOutflowData);
+    const TickerInflowOutflowData = useSelector((state) => state?.coinData?.TickerInflowOutflowData);
 
-    const [series, setSeries] = useState([
-        {
-            name: "Inflow",
-            data: [],
-            color: colorMode === "light" ? "#90BE6D" : "#60C000",
-        },
-        {
-            name: "Outflow",
-            data: [],
-            color: colorMode === "light" ? "#F94144" : "#FF3535",
-        },
-    ]);
+    const [series, setSeries] = useState([]);
 
     useEffect(() => {
-        if (ETFInflowOutflowData?.data) {
+        if (TickerInflowOutflowData?.data) {
+            const inflowData = [];
+            const outflowData = [];
+
+            TickerInflowOutflowData?.data?.forEach((entry) => {
+                const date = new Date(entry.date);
+                const formattedDate = date.getTime();
+                const changeUsd = entry.change?.changeUsd || 0;
+
+                if (changeUsd >= 0) {
+                    inflowData.push([formattedDate, changeUsd]);
+                } else {
+                    outflowData.push([formattedDate, changeUsd]);
+                }
+            });
+
             setSeries([
                 {
                     name: "Inflow",
-                    data: ETFInflowOutflowData?.data?.map((entry) => {
-                        if (entry?.changeUsd >= 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
-                        }
-                        return null;
-                    }).filter(entry => entry !== null),
+                    data: inflowData,
                     color: colorMode === "light" ? "#90BE6D" : "#60C000",
                 },
                 {
                     name: "Outflow",
-                    data: ETFInflowOutflowData?.data?.map((entry) => {
-                        if (entry?.changeUsd < 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
-                        }
-                        return null;
-                    }).filter(entry => entry !== null),
+                    data: outflowData,
                     color: colorMode === "light" ? "#F94144" : "#FF3535",
                 },
             ]);
         }
-    }, [ETFInflowOutflowData]);
+    }, [TickerInflowOutflowData]);
 
     const options = {
         chart: {
@@ -138,4 +132,4 @@ const ETFNetInflowBox = () => {
         </Box>
     );
 };
-export default ETFNetInflowBox;
+export default TickerETFNetInflowBox;

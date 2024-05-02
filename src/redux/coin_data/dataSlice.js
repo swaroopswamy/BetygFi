@@ -12,8 +12,10 @@ import {
     getMarqueeDataAPI,
     getCryptoCategoriesData,
     getETFListData,
-    getETFInflowOutflowData,
+    getBTCETFInflowOutflowData,
     getETFHeatMapData,
+    getTickerInflowOutflowData,
+    getETFChartData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -121,9 +123,9 @@ export const fetchETFListData = createAsyncThunk(
 );
 
 export const fetchETFInflowOutflowData = createAsyncThunk(
-    "getETFInflowOutflowData",
+    "getBTCETFInflowOutflowData",
     async (payload, { rejectWithValue }) => {
-        const response = await getETFInflowOutflowData(payload, rejectWithValue);
+        const response = await getBTCETFInflowOutflowData(payload, rejectWithValue);
         return response.data;
     }
 );
@@ -132,6 +134,22 @@ export const fetchETFHeatMapData = createAsyncThunk(
     "getETFHeatMapData",
     async (payload, { rejectWithValue }) => {
         const response = await getETFHeatMapData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchTickerETFInflowOutflowData = createAsyncThunk(
+    "getTickerInflowOutflowData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTickerInflowOutflowData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchETFChartData = createAsyncThunk(
+    "getETFChartData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFChartData(payload, rejectWithValue);
         return response.data;
     }
 );
@@ -224,6 +242,18 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         ETFHeatMapData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TickerInflowOutflowData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFChartData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -510,6 +540,42 @@ const CoinDataSlice = createSlice({
             state.ETFHeatMapData.isSuccess = false;
             state.ETFHeatMapData.isError = true;
             state.ETFHeatMapData.data = action.payload;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.fulfilled, (state, action) => {
+            state.TickerInflowOutflowData.data = action.payload;
+            state.TickerInflowOutflowData.isLoading = false;
+            state.TickerInflowOutflowData.isSuccess = true;
+            state.TickerInflowOutflowData.isError = false;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.pending, (state, action) => {
+            state.TickerInflowOutflowData.isLoading = true;
+            state.TickerInflowOutflowData.isError = false;
+            state.TickerInflowOutflowData.isSuccess = false;
+            state.TickerInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.rejected, (state, action) => {
+            state.TickerInflowOutflowData.isLoading = false;
+            state.TickerInflowOutflowData.isSuccess = false;
+            state.TickerInflowOutflowData.isError = true;
+            state.TickerInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFChartData.fulfilled, (state, action) => {
+            state.ETFChartData.data = action.payload;
+            state.ETFChartData.isLoading = false;
+            state.ETFChartData.isSuccess = true;
+            state.ETFChartData.isError = false;
+        });
+        builder.addCase(fetchETFChartData.pending, (state, action) => {
+            state.ETFChartData.isLoading = true;
+            state.ETFChartData.isError = false;
+            state.ETFChartData.isSuccess = false;
+            state.ETFChartData.data = action.payload;
+        });
+        builder.addCase(fetchETFChartData.rejected, (state, action) => {
+            state.ETFChartData.isLoading = false;
+            state.ETFChartData.isSuccess = false;
+            state.ETFChartData.isError = true;
+            state.ETFChartData.data = action.payload;
         });
     },
     reducers: {

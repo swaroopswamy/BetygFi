@@ -1,16 +1,41 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import { BreadCrumb } from "@components/breadcrumb2";
+import { useDispatch } from "react-redux";
 import News from "@components/pages/coin/ETFPage/News";
 import ARKInvest from "@components/pages/coin/ETFPage/ARKInvestBox";
 import ARK21Shares from "@components/pages/coin/ETFPage/ARK21SharesChart";
-import ETFNetInflowBox from "@components/pages/coin/ETFPage/ETFNetInflowGraph";
+import TickerETFNetInflowBox from "@components/pages/coin/ETFPage/TickerETFNetInflowGraph";
 import KeyStats from "@components/pages/coin/ETFPage/KeyStatsBox";
+import { fetchTickerETFInflowOutflowData, fetchETFChartData } from "@redux/coin_data/dataSlice";
 
 const BTCETFDetailsPage = ({ params }) => {
     const ticker = params?.ticker;
     const { colorMode } = useColorMode();
+    const dispatch = useDispatch();
+
+    const getTickerETFInflowOutflowDataHandler = () => {
+        const payload = {
+            ticker: ticker
+        };
+        dispatch(fetchTickerETFInflowOutflowData(payload));
+    };
+
+    const getETFChartDataHandler = () => {
+        const payload = {
+            ticker: ticker
+        };
+        dispatch(fetchETFChartData(payload));
+    };
+
+    useEffect(() => {
+        Promise.all([
+            getTickerETFInflowOutflowDataHandler(),
+            getETFChartDataHandler(),
+        ]).then(res => res);
+    }, []);
+
     return (
         <Box
             display={"flex"}
@@ -50,7 +75,7 @@ const BTCETFDetailsPage = ({ params }) => {
                 <Box padding={"20px"}>
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>Total {ticker} Spot ETF Net Inflow (USD)</Text>
                 </Box>
-                <ETFNetInflowBox />
+                <TickerETFNetInflowBox />
             </Box>
         </Box>
     );

@@ -2,9 +2,11 @@
 import { Box, Text, useColorMode, Progress } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const ARKInvest = () => {
     const { colorMode } = useColorMode();
+    const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
 
     return (
         <Box
@@ -24,16 +26,25 @@ const ARKInvest = () => {
                             letterSpacing={"0.2rem"}
                             variant={"modalHeader"}
                         >
-                            40.78
+                            {ETFChartData?.data?.marketPrice === undefined ? "-" : ETFChartData?.data?.marketPrice}
                         </Text>
                         <Text
                             fontSize={"20px"}
                             lineHeight={"22px"}
                             variant={"contentHeading4"}
                             letterSpacing={"0.1rem"}
-                            color={colorMode === 'light' ? "#0B866E" : "#60C000"}
+                            color={colorMode === 'light' ? ETFChartData?.data?.change1day >= 0 ? "#0B866E" : "#C50606" : ETFChartData?.data?.change1day >= 0 ? "#60C000" : "#FF3535"}
                         >
-                            +1.23 (+3.11%)
+                            {ETFChartData?.data?.change1day.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1day.toFixed(2)}
+                        </Text>
+                        <Text
+                            fontSize={"20px"}
+                            lineHeight={"22px"}
+                            variant={"contentHeading4"}
+                            letterSpacing={"0.1rem"}
+                            color={colorMode === 'light' ? ETFChartData?.data?.change1dayPercent >= 0 ? "#0B866E" : "#C50606" : ETFChartData?.data?.change1dayPercent >= 0 ? "#60C000" : "#FF3535"}
+                        >
+                            ({ETFChartData?.data?.change1dayPercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1dayPercent.toFixed(2)}%)
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>
@@ -43,41 +54,59 @@ const ARKInvest = () => {
                 </Box>
                 <Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text fontSize={"14px"} lineHeight={"17px"} variant={"contentHeading"}>Volume</Text>
+                        <Text fontSize={"14px"} lineHeight={"17px"} variant={"contentHeading"}>
+                            Volume
+                        </Text>
                         <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
                     </Box>
                     <Box mt={"15px"}>
-                        <Text fontSize={"20px"} lineHeight={"18px"} variant={"contentHeading4"}>89,933,8383</Text>
+                        <Text fontSize={"20px"} lineHeight={"18px"} variant={"contentHeading4"}>
+                            {ETFChartData?.data?.dailyVolume === undefined ? "-" : ETFChartData?.data?.dailyVolume}
+                        </Text>
                     </Box>
                 </Box>
             </Box>
             <Box mt={"25"}>
                 <Box layerStyle={"spaceBetween"}>
-                    <Text variant={"contentHeading3"} fontWeight={500}>37.77</Text>
-                    <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>Day’s Range</Text>
-                    <Text variant={"contentHeading3"} fontWeight={500}>40.2</Text>
+                    <Text variant={"contentHeading3"} fontWeight={500}>
+                        {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
+                    </Text>
+                    <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
+                        Day’s Range
+                    </Text>
+                    <Text variant={"contentHeading3"} fontWeight={500}>
+                        {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
+                    </Text>
                 </Box>
-                <Progress 
-                value={50} 
-                colorScheme='green' 
-                mt={"5px"} 
-                bg={colorMode === 'light' ? "#D9D9D9" : "#333333"}
-                borderRadius={"70px"}
-                 />
+                <Progress
+                    value={(ETFChartData?.data?.marketPrice.toFixed(2) - ETFChartData?.data?.dayLow.toFixed(2)) /
+                        (ETFChartData?.data?.dayHigh.toFixed(2) - ETFChartData?.data?.dayLow.toFixed(2)) * 100}
+                    colorScheme='green'
+                    mt={"5px"}
+                    bg={colorMode === 'light' ? "#D9D9D9" : "#333333"}
+                    borderRadius={"70px"}
+                />
             </Box>
             <Box mt={"30"}>
                 <Box layerStyle={"spaceBetween"}>
-                    <Text variant={"contentHeading3"} fontWeight={500}>21.54</Text>
-                    <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>52 Week Range</Text>
-                    <Text variant={"contentHeading3"} fontWeight={500}>40.2</Text>
+                    <Text variant={"contentHeading3"} fontWeight={500}>
+                        {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
+                    </Text>
+                    <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
+                        52 Week Range
+                    </Text>
+                    <Text variant={"contentHeading3"} fontWeight={500}>
+                        {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
+                    </Text>
                 </Box>
-                <Progress 
-                value={25} 
-                colorScheme='green' 
-                mt={"5px"} 
-                bg={colorMode === 'light' ? "#D9D9D9" : "#333333"}
-                borderRadius={"70px"}
-                 />
+                <Progress
+                    value={(ETFChartData?.data?.marketPrice.toFixed(2) - ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)) /
+                        (ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2) - ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)) * 100}
+                    colorScheme='green'
+                    mt={"5px"}
+                    bg={colorMode === 'light' ? "#D9D9D9" : "#333333"}
+                    borderRadius={"70px"}
+                />
             </Box>
         </Box>
     );

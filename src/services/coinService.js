@@ -167,7 +167,7 @@ export const getETFListData = async (payload, rejectWithValue) => {
     }
 };
 
-export const getETFInflowOutflowData = async (payload, rejectWithValue) => {
+export const getBTCETFInflowOutflowData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-inflow-outflow`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
@@ -186,3 +186,24 @@ export const getETFHeatMapData = async (payload, rejectWithValue) => {
         return rejectWithValue(err);
     }
 };
+
+export const getTickerInflowOutflowData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/inflow-outflow`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getETFChartData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/chart-data`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
