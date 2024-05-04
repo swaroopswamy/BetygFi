@@ -13,9 +13,13 @@ import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from
 const BTCETFPage = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
+    const ETFType = useSelector((state) => state?.coinData?.ETFType);
 
     const fetchETFListDataHandler = () => {
-        dispatch(fetchETFListData());
+        const payload = {
+            type: ETFType
+        };
+        dispatch(fetchETFListData(payload));
     };
 
     const fetchETFInflowOutflowDataHandler = () => {
@@ -28,11 +32,16 @@ const BTCETFPage = () => {
 
     useEffect(() => {
         Promise.all([
-            fetchETFListDataHandler(),
             fetchETFInflowOutflowDataHandler(),
             fetchETFHeatMapDataHandler(),
-        ]).then(result => result);
+        ]).then(res => res);
     }, []);
+
+    useEffect(() => {
+        Promise.all([
+            fetchETFListDataHandler(),
+        ]).then(res => res);
+    }, [ETFType]);
 
     const ETFListData = useSelector((state) => state?.coinData?.ETFListData);
 

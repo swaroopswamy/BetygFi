@@ -36,6 +36,9 @@ const ARK21Shares = () => {
                 },
             },
         },
+        grid: {
+            show: false,
+        },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
         },

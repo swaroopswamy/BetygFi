@@ -262,7 +262,8 @@ const CoinDataSlice = createSlice({
         blockchainType: [],
         scoreSelected: "",
         btcDominanceDay: "7D",
-        sapDay: "week"
+        sapDay: "week",
+        ETFType: "All",
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -608,8 +609,11 @@ const CoinDataSlice = createSlice({
         sapDaySelectReducer: (state, action) => {
             state.sapDay = action.payload;
         },
+        ETFTypeSelectReducer: (state, action) => {
+            state.ETFType = action.payload;
+        },
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer } = CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer, ETFTypeSelectReducer } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;

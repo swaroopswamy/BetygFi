@@ -2,8 +2,9 @@ import React from "react";
 import { Box, Input, InputGroup, InputLeftElement, Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
+import { ETFTypeSelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import millify from "millify";
 
@@ -11,7 +12,15 @@ const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const ETFTracker = () => {
     const { colorMode } = useColorMode();
-    const tableData = useSelector((state) => state?.coinData?.ETFListData);
+    const dispatch = useDispatch();
+    const tableData = useSelector((state) => {
+        const selectedType = state.coinData.ETFType;
+        if (selectedType === "All") {
+            return state.coinData.ETFListData;
+        } else {
+            return state.coinData.ETFListData.filter((item) => item.type === selectedType);
+        }
+    });
 
     const placeholderStyle = {
         color: "#6F6F6F",
@@ -19,6 +28,21 @@ const ETFTracker = () => {
         fontWeight: 400,
         lineHeight: "20px",
     };
+
+    const periods = [
+        {
+            value: "All",
+            label: "All"
+        },
+        {
+            value: "Futures",
+            label: "Futures"
+        },
+        {
+            value: "Spot",
+            label: "Spot"
+        },
+    ];
 
     return (
         <Box
@@ -65,17 +89,17 @@ const ETFTracker = () => {
                         borderColor={colorMode === "light" ? "#1C1C1CCC" : "#333"}
                         bg={colorMode === "light" ? "#FFFFFF" : "#191919"}
                         padding={"9px 5px"}
+                        onChange={(e) => {
+                            dispatch(ETFTypeSelectReducer(e.target.value));
+                        }}
                     >
-                        <option value="Futures">
-                            <Text variant={"h0"} fontSize={"14px"} lineHeight={"16px"}>
-                                Futures
-                            </Text>
-                        </option>
-                        <option value="Spot">
-                            <Text variant={"h0"} fontSize={"14px"} lineHeight={"16px"}>
-                                Spot
-                            </Text>
-                        </option>
+                        {
+                            periods.map((period, i) => {
+                                return (
+                                    <option value={period.value} key={i}>{period.label}</option>
+                                );
+                            })
+                        }
                     </Select>
                 </Box>
             </Box>

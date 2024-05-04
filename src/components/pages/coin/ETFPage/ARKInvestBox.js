@@ -26,7 +26,7 @@ const ARKInvest = () => {
                             letterSpacing={"0.2rem"}
                             variant={"modalHeader"}
                         >
-                            {ETFChartData?.data?.marketPrice === undefined ? "-" : ETFChartData?.data?.marketPrice}
+                            {ETFChartData?.data?.marketPrice.toFixed(2) === undefined ? "-" : ETFChartData?.data?.marketPrice.toFixed(2)}
                         </Text>
                         <Text
                             fontSize={"20px"}

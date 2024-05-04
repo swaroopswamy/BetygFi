@@ -181,7 +181,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                         borderRadius={"10px"}
                         bg={"background.primary"}
                         border={"2px solid #E0E0E0"}
-                        onClick={() => router.push(`/ETF`)}
+                        onClick={() => router.push(`/etf`)}
                     >
                         <Image src={colorMode === 'light' ? "/icons/ETF_Icon_Light.svg" : "/icons/ETF_Icon_Dark.svg"}
                             width={25}
