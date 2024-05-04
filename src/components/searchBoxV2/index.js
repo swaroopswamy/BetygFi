@@ -16,8 +16,10 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
     const { colorMode } = useColorMode();
 
     const handleSearchInputClick = () => {
-        setSearchList(searchListTrendingData);
-        setOpenSearchSuggestion(true);
+        if (searchValue.length == 0) {
+            setSearchList(searchListTrendingData);
+            setOpenSearchSuggestion(true);
+        }
     };
 
     useEffect(() => {
@@ -72,7 +74,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const searchDataContent = () => {
         return (
-            <Box m={"23px 29px 22px 20px"}>
+            <Box m={"23px 20px 22px 20px"}>
                 {
                     SEARCH_LIST.map((searchItem, index) => (
                         <SearchItemGroup
