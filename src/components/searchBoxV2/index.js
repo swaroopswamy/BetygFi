@@ -45,6 +45,10 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             if (key === 'Tab') {
                 setOpenSearchSuggestion(true);
             }
+            // if (key == "ArrowUp") {
+            //     event.preventDefault();
+            //     event.dispatchEvent(new Event('keypress', { key: 'Tab' }));
+            // }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
             }
@@ -256,7 +260,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onClick={() => { handleSearchInputClick(); }}
                             />
                             <Tooltip label={`Press / to search`}>
-                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50%"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
                                     _light={{ backgroundColor: "#FFFFFF" }}
                                     _dark={{ backgroundColor: "#202020" }}>
                                     <Text variant={"h5"} colorMode={colorMode}>
