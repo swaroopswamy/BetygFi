@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Box, Input, InputGroup, InputLeftElement, Text, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputLeftElement, Text, Tooltip, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
 import { SEARCH_LIST, TRENDING_COINS_SLUG, TRENDING_DEFIS_SLUG, TRENDING_WALLETS_SLUG } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -11,17 +11,19 @@ import { createSearchGroupedData } from '@util/utility';
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
 const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch, setSearchValue }) => {
-    const { colorMode } = useColorMode();
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const ref = useRef();
     const router = useRouter();
 
     useOutsideClick({ ref: ref, handler: () => searchSuggestionOpenState(false) });
+    const { colorMode } = useColorMode();
 
     const handleSearchInputClick = () => {
-        setSearchList(searchListTrendingData);
-        setOpenSearchSuggestion(true);
+        if (searchValue.length == 0) {
+            setSearchList(searchListTrendingData);
+            setOpenSearchSuggestion(true);
+        }
     };
 
     useEffect(() => {
@@ -121,7 +123,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const searchDataContent = () => {
         return (
-            <Box m={"23px 29px 22px 20px"}>
+            <Box m={"23px 20px 22px 20px"}>
                 {
                     SEARCH_LIST.map((searchItem, index) => (
                         <SearchItemGroup
@@ -155,13 +157,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 maxW="100vw"
                                 maxH="80vh"
                                 whiteSpace="nowrap"
-                                sx={
-                                    {
-                                        '::-webkit-scrollbar': {
-                                            display: 'none'
-                                        }
-                                    }
-                                }
+                                sx={{ '::-webkit-scrollbar': { display: 'none' } }}
                             >
                                 {/* <Box> */}
                                 {searchDataContent()}
@@ -270,13 +266,15 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                                 onClick={() => { handleSearchInputClick(); }}
                             />
-                            <Box mr={"1%"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
-                                _light={{ backgroundColor: "#FFFFFF" }}
-                                _dark={{ backgroundColor: "#202020" }}>
-                                <Text variant={"h5"} colorMode={colorMode}>
-                                    /
-                                </Text>
-                            </Box>
+                            <Tooltip label={`Press / to search`}>
+                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                    _light={{ backgroundColor: "#FFFFFF" }}
+                                    _dark={{ backgroundColor: "#202020" }}>
+                                    <Text variant={"h5"} colorMode={colorMode}>
+                                        /
+                                    </Text>
+                                </Box>
+                            </Tooltip>
                         </Box>
                         {
                             searchValue?.length > 0 &&

@@ -33,7 +33,7 @@ import SearchBoxV2 from "@components/searchBoxV2";
 import AppConfigContext from "@components/context/appConfigContext";
 import NotificationBell from "@components/notification/notificationBell";
 
-const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
+const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     const appConfig = useContext(AppConfigContext);
     const searchParams = useSearchParams();
     const searchParamAddress = searchParams.get("address");
@@ -63,6 +63,8 @@ const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
 
     const { colorMode, toggleColorMode } = useColorMode();
     const normalizeColorMode = (colorMode) => colorMode === "light" ? "dark" : "light";
+
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
     const clearValueMobileSearch = () => {
         setSearchValue("");
@@ -97,6 +99,9 @@ const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
     }, [debouncedValue]);
 
     const handleSearchInputChange = (value) => {
+        if (value.startsWith('/') || value.endsWith('/')) {
+            value.replaceAll("/", "");
+        }
         setSearchValue(value);
     };
 
@@ -243,7 +248,7 @@ const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
+                                src={ValidatedUserData?.data?.profile_url === null || ValidatedUserData?.data?.profile_url === undefined ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : ValidatedUserData?.data?.profile_url}
                             />
                         )}
                         <Box
@@ -259,22 +264,22 @@ const Navbar = ({ userImg, onNotificationDrawerOpen, ...rest }) => {
                                 overflow={"hidden"}
                                 textOverflow={"ellipsis"}
                             >
-                                {AuthSession?.user?.name
-                                    ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                {ValidatedUserData?.data?.name
+                                    ? PublicAddressStringFormatter(ValidatedUserData?.data?.name) : 'No Name'}
                             </Text>
-                            {AuthSession?.user?.public_address && (
+                            {ValidatedUserData?.data?.public_address && (
                                 <Text
                                     variant={"h5"}
                                     letterSpacing={"1.2px"}
                                     _light={{ color: "#16171B" }}
                                     _dark={{ color: "#A8ADBD" }}
                                 >
-                                    {AuthSession?.user?.public_address
+                                    {ValidatedUserData?.data?.public_address
                                         ?.split("")
                                         ?.join("")
                                         ?.substring(0, 6) +
                                         "..." +
-                                        AuthSession?.user?.public_address?.slice(
+                                        ValidatedUserData?.data?.public_address?.slice(
                                             -5
                                         )}
                                 </Text>

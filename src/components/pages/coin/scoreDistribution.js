@@ -25,11 +25,11 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     base:
                         data.index === 0 || data.index === 1
                             ? "70px"
-                            : "50px",
+                            : "60px",
                     md:
                         data.index === 0 || data.index === 1
                             ? "90px"
-                            : "70px",
+                            : "80px",
                 }}
                 position={"relative"}
                 borderTopLeftRadius={data.index === 0 ? "14px" : "0px"}
@@ -103,8 +103,6 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                 flexDirection={"column"}
                 alignItems={"start"}
                 w={{ base: "100%", md: "unset" }}
-                py={{ base: "5px", md: "10px" }}
-            // overflowX={"auto"}
             >
                 <Box layerStyle={"flexCenter"} mb={{ base: "20px", md: "0px" }}>
                     <Text

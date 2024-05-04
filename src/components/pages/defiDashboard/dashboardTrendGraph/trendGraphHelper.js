@@ -28,7 +28,7 @@ export const TrendGraphOptions = {
             stops: [0, 90, 100],
         },
     },
-    colors: ["#544FC5", "#00E272", "#FF5C00"],
+    colors: ["#00E272", "#FF5C00"],
     xaxis: {
         type: "datetime",
         labels: {
