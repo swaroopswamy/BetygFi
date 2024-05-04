@@ -63,7 +63,7 @@ const SearchItemGroup = ({ searchItem, searchListData, onNavigateArrowClick }) =
     };
 
     return (
-        <Box id='searchSuggestionDesktopTitle'>
+        <Box id={`searchSuggestionDesktopTitle-${searchItem.slug}`}>
             {
                 searchItem.slug === TRENDING_DEFIS_SLUG ?
                     (

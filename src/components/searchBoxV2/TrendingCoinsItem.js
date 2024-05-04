@@ -1,8 +1,9 @@
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
-import { formatMCAPSearchTableString } from '@util/utility';
+import { formatMCAPSearchTableString, setSearchSuggestionToStorage } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 import CustomAvatar from '@components/avatar';
+import { TRENDING_COINS_SLUG } from '@util/constant';
 
 const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -22,9 +23,15 @@ const TrendingCoinsItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
         );
     };
 
+    const onFocusCoin = event => {
+        setSearchSuggestionToStorage(TRENDING_COINS_SLUG, event.target.ariaLabel);
+    };
+
     const CoinItemData = ({ coinItem, index }) => {
         return (
-            <Box tabIndex={coinItem?.searchIndex} _focus={{ backgroundColor: "#adaaaa" }} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
+            <Box tabIndex={coinItem?.searchIndex}
+                role="dialog" aria-labelledby={`popup-${coinItem.slug}`}
+                _focus={{ backgroundColor: "#adaaaa" }} onFocus={(event) => { onFocusCoin(event); }} aria-label={coinItem.slug} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, coinItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
                 <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, coinItem.slug)} w={isMd ? "72%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <CustomAvatar
                         width={"24px"}

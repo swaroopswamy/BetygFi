@@ -1,4 +1,5 @@
 export const AUTH_COOKIE_NAME = "betygfi-auth";
+export const SEARCH_TYPE_SELECTED = "betygfi-srch-slct";
 export const API_URL_COOKIE_NAME = "bet-api-url";
 export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";

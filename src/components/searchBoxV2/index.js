@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createSearchGroupedData } from '@util/utility';
+import { clearSearchSuggestionToStorage, getSearchSuggestionToStorage } from '@util/utility';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
@@ -22,8 +22,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
     const handleSearchInputClick = () => {
         if (searchValue.length == 0) {
             setSearchList(searchListTrendingData);
-            setOpenSearchSuggestion(true);
         }
+        setOpenSearchSuggestion(true);
     };
 
     useEffect(() => {
@@ -32,6 +32,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             if (key === "/") {
                 if (searchValue.charAt(searchValue.length - 1) === '/') {
                     const charValue = searchValue.replace(searchValue.substring(searchValue.length - 1, searchValue.length), "");
+                    clearSearchSuggestionToStorage();
                     setSearchValue(charValue);
                 }
                 setOpenSearchSuggestion(true);
@@ -43,12 +44,6 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             }
             if (key === 'Tab') {
                 setOpenSearchSuggestion(true);
-                if (document.getElementById("searchSuggestionDesktopTitle")) {
-                    // setTimeout(() => {
-                    document.getElementById("searchSuggestionDesktopTitle").focus();
-                    document.getElementById("searchSuggestionDesktopTitle").click();
-                    // }, 100);
-                }
             }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
@@ -59,23 +54,17 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         }, false);
     }, []);
 
-    const getActiveTabIndex = () => document.activeElement.tabIndex;
-    const getGroupData = () => createSearchGroupedData(searchValue.length == 0 ? searchListTrendingData : searchListData);
-
     const checkAndRedirectToActiveTabIndex = () => {
-        const activeTabIndex = getActiveTabIndex();
-        const groupedData_ = getGroupData();
-        const searchInDefi = groupedData_.defi ? groupedData_.defi.find(df => df.searchIndex === activeTabIndex) : null;
-        const searchInCoin = groupedData_.coin ? groupedData_.coin.find(cn => cn.searchIndex === activeTabIndex) : null;
-        const searchInWallet = groupedData_.wallet ? groupedData_.wallet.find(wl => wl.searchIndex === activeTabIndex) : null;
-        if (searchInDefi) {
-            onNavigateArrowClick(TRENDING_DEFIS_SLUG, searchInDefi.slug);
-        } else if (searchInCoin) {
-            onNavigateArrowClick(TRENDING_COINS_SLUG, searchInCoin.slug);
-        } else if (searchInWallet) {
-            onNavigateArrowClick(TRENDING_WALLETS_SLUG, searchInWallet.slug);
-        } else {
-            console.info('not found where user clicked');
+        const searchSuggestion = getSearchSuggestionToStorage();
+        if (searchSuggestion) {
+            const suggestion = JSON.parse(searchSuggestion);
+            if (suggestion.searchType === TRENDING_DEFIS_SLUG) {
+                onNavigateArrowClick(TRENDING_DEFIS_SLUG, suggestion.searchValue);
+            } else if (suggestion.searchType === TRENDING_COINS_SLUG) {
+                onNavigateArrowClick(TRENDING_COINS_SLUG, suggestion.searchValue);
+            } else if (suggestion.searchType === TRENDING_WALLETS_SLUG) {
+                onNavigateArrowClick(TRENDING_WALLETS_SLUG, suggestion.searchValue);
+            }
         }
     };
 
