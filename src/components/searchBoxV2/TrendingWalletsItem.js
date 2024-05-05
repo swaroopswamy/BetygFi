@@ -1,5 +1,6 @@
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
-import { getToFixedValue } from '@util/utility';
+import { TRENDING_WALLETS_SLUG } from '@util/constant';
+import { getToFixedValue, setSearchSuggestionToStorage } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 
@@ -33,9 +34,15 @@ const TrendingWalletsItem = ({ searchItem, onNavigateArrowClick, groupedSearchDa
         }
     };
 
+    const onFocusWallet = event => {
+        setSearchSuggestionToStorage(TRENDING_WALLETS_SLUG, event.target.ariaLabel);
+    };
+
     const WalletItemData = ({ walletItem, index }) => {
         return (
-            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, walletItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
+            <Box tabIndex={walletItem?.searchIndex}
+                role="dialog" aria-labelledby={`popup-${walletItem.slug}`}
+                _focus={{ backgroundColor: "#adaaaa" }} onFocus={(event) => { onFocusWallet(event); }} aria-label={walletItem.slug} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, walletItem.slug)} display={"flex"} flexDirection={"row"} key={index}>
                 <Box cursor={"pointer"} onClick={() => onNavigateArrowClick(searchItem.slug, walletItem.slug)} w={"72%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <Box mr={"10px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
                         <Image

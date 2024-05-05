@@ -18,11 +18,15 @@ export const postSuggestFeature = createAsyncThunk('postSuggestFeature', async (
 
 export const getSearchV2List = createAsyncThunk('getSearchV2List', async (payload, { rejectWithValue }) => {
 	const response = await getSearchV2Data(payload, rejectWithValue);
+	const response_ = response?.data?.data?.map((sd, index) => { sd.id = index + 1; return sd; });
+	response.data.data = response_;
 	return response;
 });
 
 export const getSearchV2TrendingList = createAsyncThunk('getSearchV2TrendingList', async (payload, { rejectWithValue }) => {
 	const response = await getSearchV2TrendingData(payload, rejectWithValue);
+	const response_ = response?.data?.data?.map((sd, index) => { sd.id = index + 1; return sd; });
+	response.data.data = response_;
 	return response;
 });
 
