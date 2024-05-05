@@ -3,7 +3,7 @@ import TableData from "@util/whales.json";
 import MDWalletTableRow from "./MDWalletTableRow";
 import './index.css';
 
-const SlideToLeftWalletTable = () => {
+const SlideToLeftWalletTable = ({ slideToLeftFeature }) => {
     return (
         <Table
             variant="simple"
@@ -23,17 +23,17 @@ const SlideToLeftWalletTable = () => {
                     borderRadius={"6px"}
                 >
                     <Th bg={useColorModeValue("#F5F5F7", "#131313")}>
-                        <Text variant={"tableHead"} textAlign={"left"}>
+                        <Text variant={"tableHead"} fontWeight={400} textAlign={"left"}>
                             Wallet Address
                         </Text>
                     </Th>
                     <Th width={"50%"} bg={useColorModeValue("#F5F5F7", "#131313")}>
-                        <Text variant={"tableHead"} textAlign={"left"}>
+                        <Text variant={"tableHead"} fontWeight={400} textAlign={"left"}>
                             Total Tokens
                         </Text>
                     </Th>
                     <Th bg={useColorModeValue("#F5F5F7", "#131313")}>
-                        <Text variant={"tableHead"} textAlign={"left"}>
+                        <Text variant={"tableHead"} fontWeight={400} textAlign={"left"}>
                             Total Protocols
                         </Text>
                     </Th>
@@ -49,6 +49,7 @@ const SlideToLeftWalletTable = () => {
                             netWorth={item.usd_value}
                             totalTokens={item.stats.top_coins}
                             totalProtocols={"-"}
+                            slideToLeftFeature={slideToLeftFeature}
                             totalNFT={""}
                         />
                     );
