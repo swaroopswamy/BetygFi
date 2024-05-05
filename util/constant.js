@@ -1,4 +1,5 @@
 export const AUTH_COOKIE_NAME = "betygfi-auth";
+export const SEARCH_TYPE_SELECTED = "betygfi-srch-slct";
 export const API_URL_COOKIE_NAME = "bet-api-url";
 export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
@@ -7,6 +8,12 @@ export const DOMAIN = "betygfi.com";
 export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
 export const LOCAL_SERVER_HOST = "localhost";
 export const NEXT_BE_URL_SEPARATOR = '/api/bet-dash/';
+export const TRENDING_DEFIS_TITLE = "Trending DeFi’s";
+export const TRENDING_DEFIS_SLUG = "trending-defis";
+export const TRENDING_COINS_TITLE = "Trending Coin’s";
+export const TRENDING_COINS_SLUG = "trending-coins";
+export const TRENDING_WALLETS_TITLE = "Trending Wallet’s";
+export const TRENDING_WALLETS_SLUG = "trending-wallets";
 
 export const HOST = `https://${DOMAIN}/`;
 
@@ -195,15 +202,15 @@ export const walletArray = [
 
 export const SEARCH_LIST = [
     {
-        title: "Trending DeFi’s",
-        slug: "trending-defis",
+        title: TRENDING_DEFIS_TITLE,
+        slug: TRENDING_DEFIS_SLUG,
     },
     {
-        title: "Trending Coin’s",
-        slug: "trending-coins",
+        title: TRENDING_COINS_TITLE,
+        slug: TRENDING_COINS_SLUG,
     },
     {
-        title: "Trending Wallet’s",
-        slug: "trending-wallets",
+        title: TRENDING_WALLETS_TITLE,
+        slug: TRENDING_WALLETS_SLUG,
     },
 ];

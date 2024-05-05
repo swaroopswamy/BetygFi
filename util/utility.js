@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME, SEARCH_TYPE_SELECTED } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -32,6 +32,50 @@ export const reloadSession = () => {
 export const groupListByKey_Pure = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
 
 export const groupListByKey = (list, key) => groupBy(list, (value) => value[key]);
+
+export const createSearchGroupedData = searchListData => {
+    const groupedData = groupListByKey(searchListData, 'type');
+    let i = 0;
+    if (groupedData?.defi) {
+        groupedData.defi = JSON.parse(JSON.stringify([...groupedData.defi])).map(gd => {
+            gd.searchIndex = i;
+            // i++;
+            return gd;
+        });
+    }
+
+    if (groupedData?.coin) {
+        groupedData.coin = JSON.parse(JSON.stringify([...groupedData.coin])).map(gd => {
+            gd.searchIndex = i;
+            // i++;
+            return gd;
+        });
+    }
+
+    if (groupedData?.wallet) {
+        groupedData.wallet = JSON.parse(JSON.stringify([...groupedData.wallet])).map(gd => {
+            gd.searchIndex = i;
+            // i++;
+            return gd;
+        });
+    }
+    return groupedData;
+};
+
+export const setSearchSuggestionToStorage = (type, value) => {
+    localStorage.setItem(SEARCH_TYPE_SELECTED, JSON.stringify({
+        searchType: type,
+        searchValue: value,
+    }));
+};
+
+export const getSearchSuggestionToStorage = () => {
+    return localStorage.getItem(SEARCH_TYPE_SELECTED);
+};
+
+export const clearSearchSuggestionToStorage = () => {
+    return localStorage.removeItem(SEARCH_TYPE_SELECTED);
+};
 
 export const convertToInternationalCurrencySystem = labelValue => {
     const billion = (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + " B";

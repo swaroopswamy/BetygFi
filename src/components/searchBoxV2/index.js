@@ -1,25 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, Input, InputGroup, InputLeftElement, Text, Tooltip, useColorMode, useMediaQuery, useOutsideClick } from '@chakra-ui/react';
-import { SEARCH_LIST } from '@util/constant';
+import { SEARCH_LIST, TRENDING_COINS_SLUG, TRENDING_DEFIS_SLUG, TRENDING_WALLETS_SLUG } from '@util/constant';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { clearSearchSuggestionToStorage, getSearchSuggestionToStorage } from '@util/utility';
 
 const SearchItemGroup = dynamic(() => import("@components/searchBoxV2/SearchItemGroup"), { ssr: false });
 
 const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, searchListTrendingData, clearValueMobileSearch, setSearchValue }) => {
     const [openSearchSuggestion, setOpenSearchSuggestion] = useState(false);
-    const ref = useRef();
     const [searchList, setSearchList] = useState([]);
+    const ref = useRef();
+    const router = useRouter();
+
     useOutsideClick({ ref: ref, handler: () => searchSuggestionOpenState(false) });
     const { colorMode } = useColorMode();
 
     const handleSearchInputClick = () => {
         if (searchValue.length == 0) {
             setSearchList(searchListTrendingData);
-            setOpenSearchSuggestion(true);
         }
+        setOpenSearchSuggestion(true);
     };
 
     useEffect(() => {
@@ -28,6 +32,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             if (key === "/") {
                 if (searchValue.charAt(searchValue.length - 1) === '/') {
                     const charValue = searchValue.replace(searchValue.substring(searchValue.length - 1, searchValue.length), "");
+                    clearSearchSuggestionToStorage();
                     setSearchValue(charValue);
                 }
                 setOpenSearchSuggestion(true);
@@ -37,11 +42,48 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                     }, 1000);
                 }
             }
+            if (key === 'Tab') {
+                setOpenSearchSuggestion(true);
+            }
+            // if (key == "ArrowUp") {
+            //     event.preventDefault();
+            //     event.dispatchEvent(new Event('keypress', { key: 'Tab' }));
+            // }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
             }
+            if (key === "Enter") {
+                checkAndRedirectToActiveTabIndex();
+            }
         }, false);
     }, []);
+
+    const checkAndRedirectToActiveTabIndex = () => {
+        const searchSuggestion = getSearchSuggestionToStorage();
+        if (searchSuggestion) {
+            const suggestion = JSON.parse(searchSuggestion);
+            if (suggestion.searchType === TRENDING_DEFIS_SLUG) {
+                onNavigateArrowClick(TRENDING_DEFIS_SLUG, suggestion.searchValue);
+            } else if (suggestion.searchType === TRENDING_COINS_SLUG) {
+                onNavigateArrowClick(TRENDING_COINS_SLUG, suggestion.searchValue);
+            } else if (suggestion.searchType === TRENDING_WALLETS_SLUG) {
+                onNavigateArrowClick(TRENDING_WALLETS_SLUG, suggestion.searchValue);
+            }
+        }
+    };
+
+    const onNavigateArrowClick = (slug, itemSlug) => {
+        if (slug === TRENDING_DEFIS_SLUG) {
+            router.push(`/protocol/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        } else if (slug === TRENDING_COINS_SLUG) {
+            router.push(`/coin/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        } else if (slug === TRENDING_WALLETS_SLUG) {
+            router.push(`/top-wallets/${itemSlug}`);
+            searchSuggestionOpenState(false);
+        }
+    };
 
     useEffect(() => {
         if (searchValue?.length == 0) {
@@ -81,7 +123,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                             searchItem={searchItem}
                             searchListData={searchList}
                             key={index}
-                            closeSearchInput={searchSuggestionOpenState}
+                            onNavigateArrowClick={onNavigateArrowClick}
                         />
                     ))
                 }
@@ -97,6 +139,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                     (
                         isMd ?
                             <Box
+                                id='searchSuggestionDesktop'
                                 borderRadius={"4px"}
                                 zIndex={"9999"}
                                 width={"100%"}
@@ -217,7 +260,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onClick={() => { handleSearchInputClick(); }}
                             />
                             <Tooltip label={`Press / to search`}>
-                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50px"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50%"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
                                     _light={{ backgroundColor: "#FFFFFF" }}
                                     _dark={{ backgroundColor: "#202020" }}>
                                     <Text variant={"h5"} colorMode={colorMode}>
