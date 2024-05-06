@@ -43,7 +43,7 @@ const BTCETFPage = () => {
         ]).then(res => res);
     }, [ETFType]);
 
-    const ETFListData = useSelector((state) => state?.coinData?.ETFListData);
+    const ETFListData = useSelector((state) => state.coinData.ETFListData);
 
     return (
         <Box
@@ -82,7 +82,7 @@ const BTCETFPage = () => {
                 </Box>
             </Box>
             <Box layerStyle={"flexCenter"} mt={"15px"}>
-                <Box width={"45%"} mr={"1rem"}>
+                <Box width={"45%"} mr={"1rem"} borderRadius={"8px"}>
                     <HeatmapGraphBox />
                 </Box>
                 <Box width={"55%"}>

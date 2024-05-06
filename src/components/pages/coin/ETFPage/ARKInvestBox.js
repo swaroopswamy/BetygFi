@@ -35,7 +35,7 @@ const ARKInvest = () => {
                             letterSpacing={"0.1rem"}
                             color={colorMode === 'light' ? ETFChartData?.data?.change1day >= 0 ? "#0B866E" : "#C50606" : ETFChartData?.data?.change1day >= 0 ? "#60C000" : "#FF3535"}
                         >
-                            {ETFChartData?.data?.change1day.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1day.toFixed(2)}
+                            {ETFChartData?.data?.change1day.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1day >= 0 ? `+${ETFChartData?.data?.change1day.toFixed(2)}` : ETFChartData?.data?.change1day.toFixed(2)}
                         </Text>
                         <Text
                             fontSize={"20px"}
@@ -44,7 +44,7 @@ const ARKInvest = () => {
                             letterSpacing={"0.1rem"}
                             color={colorMode === 'light' ? ETFChartData?.data?.change1dayPercent >= 0 ? "#0B866E" : "#C50606" : ETFChartData?.data?.change1dayPercent >= 0 ? "#60C000" : "#FF3535"}
                         >
-                            ({ETFChartData?.data?.change1dayPercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1dayPercent.toFixed(2)}%)
+                            ({ETFChartData?.data?.change1dayPercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1dayPercent >= 0 ? `+${ETFChartData?.data?.change1dayPercent.toFixed(2)}` : ETFChartData?.data?.change1dayPercent.toFixed(2)}%)
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>

@@ -207,3 +207,12 @@ export const getETFChartData = async (payload, rejectWithValue) => {
     }
 };
 
+export const getETFNewsData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/news`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};

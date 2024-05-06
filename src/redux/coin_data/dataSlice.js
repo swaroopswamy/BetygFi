@@ -16,6 +16,7 @@ import {
     getETFHeatMapData,
     getTickerInflowOutflowData,
     getETFChartData,
+    getETFNewsData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -154,6 +155,14 @@ export const fetchETFChartData = createAsyncThunk(
     }
 );
 
+export const fetchETFNewsData = createAsyncThunk(
+    "getETFNewsData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFNewsData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -259,11 +268,16 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        ETFNewsData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
         blockchainType: [],
         scoreSelected: "",
         btcDominanceDay: "7D",
         sapDay: "week",
-        ETFType: "All",
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -578,6 +592,24 @@ const CoinDataSlice = createSlice({
             state.ETFChartData.isError = true;
             state.ETFChartData.data = action.payload;
         });
+        builder.addCase(fetchETFNewsData.fulfilled, (state, action) => {
+            state.ETFNewsData.data = action.payload;
+            state.ETFNewsData.isLoading = false;
+            state.ETFNewsData.isSuccess = true;
+            state.ETFNewsData.isError = false;
+        });
+        builder.addCase(fetchETFNewsData.pending, (state, action) => {
+            state.ETFNewsData.isLoading = true;
+            state.ETFNewsData.isError = false;
+            state.ETFNewsData.isSuccess = false;
+            state.ETFNewsData.data = action.payload;
+        });
+        builder.addCase(fetchETFNewsData.rejected, (state, action) => {
+            state.ETFNewsData.isLoading = false;
+            state.ETFNewsData.isSuccess = false;
+            state.ETFNewsData.isError = true;
+            state.ETFNewsData.data = action.payload;
+        });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {
@@ -609,11 +641,8 @@ const CoinDataSlice = createSlice({
         sapDaySelectReducer: (state, action) => {
             state.sapDay = action.payload;
         },
-        ETFTypeSelectReducer: (state, action) => {
-            state.ETFType = action.payload;
-        },
     },
 });
 
-export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer, ETFTypeSelectReducer } = CoinDataSlice.actions;
+export const { blockchainTypeChangedReducer, scoreChangedReducer, TopGainersAndLosersData, SAPData, btcDominanceDaySelectReducer, sapDaySelectReducer } = CoinDataSlice.actions;
 export default CoinDataSlice.reducer;

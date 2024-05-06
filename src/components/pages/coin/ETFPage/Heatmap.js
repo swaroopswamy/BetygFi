@@ -12,7 +12,7 @@ const HeatmapGraphBox = () => {
     const [priceData, setPriceData] = useState([]);
     const [volumeData, setVolumeData] = useState([]);
     const [sharesData, setSharesData] = useState([]);
-    const [aumData, setAumData] = useState([]);
+    //const [aumData, setAumData] = useState([]);
     const [marketCapData, setMarketCapData] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const HeatmapGraphBox = () => {
             setPriceData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.price) })));
             setVolumeData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.volume) })));
             setSharesData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.shares) })));
-            setAumData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.aum) })));
+            //setAumData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.aum) })));
             setMarketCapData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.marketCap) })));
         }
     }, [ETFHeatMapData]);
@@ -84,6 +84,13 @@ const HeatmapGraphBox = () => {
     };
 
     const [activeCategory, setActiveCategory] = useState('holding');
+    const [buttonStyles, setButtonStyles] = useState({
+        holding: { bg: "#313131", color: "#FFFFFF" },
+        price: { bg: "background.primary", color: "#191919" },
+        volume: { bg: "background.primary", color: "#191919" },
+        shares: { bg: "background.primary", color: "#191919" },
+        marketCap: { bg: "background.primary", color: "#191919" }
+    });
     let activeData;
     switch (activeCategory) {
         case 'holding':
@@ -98,9 +105,9 @@ const HeatmapGraphBox = () => {
         case 'shares':
             activeData = sharesData;
             break;
-        case 'aum':
-            activeData = aumData;
-            break;
+        // case 'aum':
+        //     activeData = aumData;
+        //     break;
         case 'marketCap':
             activeData = marketCapData;
             break;
@@ -110,6 +117,11 @@ const HeatmapGraphBox = () => {
 
     const handleButtonClick = (category) => {
         setActiveCategory(category);
+        setButtonStyles(prevStyles => ({
+            ...prevStyles,
+            [category]: { bg: "#313131", color: "#FFFFFF" },
+            [activeCategory]: { bg: "background.primary", color: "#191919" }
+        }));
     };
 
     return (
@@ -124,30 +136,56 @@ const HeatmapGraphBox = () => {
             <Box bgColor={"background.primary"} pb={"5px"}>
                 <Text variant={"h2"} mb={"15px"}>Heatmap</Text>
                 <Box layerStyle={"flexCenter"} mb={"5px"}>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('holding')}>
+                    <Button
+                        variant={"modalButton"}
+                        bg={buttonStyles.holding.bg}
+                        color={buttonStyles.holding.color}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('holding')}>
                         Holding
                     </Button>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('price')}>
+                    <Button
+                        variant={"modalButton"}
+                        bg={"background.primary"}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('price')}>
                         Price
                     </Button>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('volume')}>
+                    <Button
+                        variant={"modalButton"}
+                        bg={"background.primary"}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('volume')}>
                         Volume
                     </Button>
                     {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
                         Turnover
                     </Button> */}
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('shares')}>
+                    <Button
+                        variant={"modalButton"}
+                        bg={"background.primary"}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('aum')}>
+                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('aum')}>
                         AUM
-                    </Button>
-                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('marketCap')}>
+                    </Button> */}
+                    <Button
+                        variant={"modalButton"}
+                        bg={"background.primary"}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('marketCap')}>
                         Market Cap
                     </Button>
                 </Box>
             </Box>
-            <Box borderRadius={"8px"} p={0}>
+            <Box borderRadius={"8px"} p={"0px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}

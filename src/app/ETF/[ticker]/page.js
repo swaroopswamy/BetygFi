@@ -8,7 +8,7 @@ import ARKInvest from "@components/pages/coin/ETFPage/ARKInvestBox";
 import ARK21Shares from "@components/pages/coin/ETFPage/ARK21SharesChart";
 import TickerETFNetInflowBox from "@components/pages/coin/ETFPage/TickerETFNetInflowGraph";
 import KeyStats from "@components/pages/coin/ETFPage/KeyStatsBox";
-import { fetchTickerETFInflowOutflowData, fetchETFChartData } from "@redux/coin_data/dataSlice";
+import { fetchTickerETFInflowOutflowData, fetchETFChartData, fetchETFNewsData } from "@redux/coin_data/dataSlice";
 
 const BTCETFDetailsPage = ({ params }) => {
     const ticker = params?.ticker;
@@ -29,10 +29,18 @@ const BTCETFDetailsPage = ({ params }) => {
         dispatch(fetchETFChartData(payload));
     };
 
+    const getETFNewsDataHandler = () => {
+        const payload = {
+            ticker: ticker
+        };
+        dispatch(fetchETFNewsData(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             getTickerETFInflowOutflowDataHandler(),
             getETFChartDataHandler(),
+            getETFNewsDataHandler(),
         ]).then(res => res);
     }, []);
 
@@ -53,29 +61,32 @@ const BTCETFDetailsPage = ({ params }) => {
                 <Text variant={"contentHeading"} fontWeight={500} lineHeight={"20px"} letterSpacing={"0.1em"}>{ticker} ETF</Text>
                 <Text variant={"h3"} lineHeight={"21px"} mt={"15px"} letterSpacing={"0.1em"}>ARK Invest</Text>
             </Box>
-            <Box display={"flex"}>
+            <Box width={"100%"} display={"flex"}>
                 <Box width={"68%"} mr={"0.8rem"}>
-                    <ARKInvest />
+                    <Box>
+                        <ARKInvest />
+                    </Box>
+                    <Box mt={"0.8rem"}>
+                        <ARK21Shares />
+                    </Box>
+                    <Box mt={"0.8rem"}>
+                        <Box padding={"20px"} bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} borderTopRadius={"8px"}>
+                            <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>Total {ticker} Spot ETF Net Inflow (USD)</Text>
+                        </Box>
+                        <TickerETFNetInflowBox />
+                    </Box>
+
                 </Box>
                 <Box width={"32%"}>
-                    <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"} mb={"15px"} mt={"-35px"}>Key Stats</Text>
-                    <KeyStats />
+                    <Box mt={"-35px"}>
+                        <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"} mb={"15px"}>Key Stats</Text>
+                        <KeyStats />
+                    </Box>
+                    <Box mt={"25px"}>
+                        <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"} mb={"10px"}>News</Text>
+                        <News />
+                    </Box>
                 </Box>
-            </Box>
-            <Box display={"flex"}>
-                <Box width={"68%"} mr={"0.8rem"} mt={"-185px"}>
-                    <ARK21Shares />
-                </Box>
-                <Box width={"32%"}>
-                    <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"} mb={"10px"}>News</Text>
-                    <News />
-                </Box>
-            </Box>
-            <Box width={"67%"} mr={"0.8rem"} mt={"-180px"} bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} borderRadius={"8px"}>
-                <Box padding={"20px"}>
-                    <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>Total {ticker} Spot ETF Net Inflow (USD)</Text>
-                </Box>
-                <TickerETFNetInflowBox />
             </Box>
         </Box>
     );

@@ -118,7 +118,7 @@ const TickerETFNetInflowBox = () => {
         <Box
             width={"100%"}
             height={"100%"}
-            borderRadius={"8px"}
+            borderEndEndRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
             p={"0px 10px"}
