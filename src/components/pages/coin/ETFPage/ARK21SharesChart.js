@@ -69,6 +69,11 @@ const ARK21Shares = () => {
                 filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= thirtyDaysAgo);
                 break;
             }
+            case "1yr": {
+                const oneyearAgo = new Date(currentDate.getTime() - 365 * 24 * 60 * 60 * 1000);
+                filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= oneyearAgo);
+                break;
+            }
             case "Max":
                 filteredData = ETFChartData?.data?.chartHistorical;
                 break;
@@ -77,7 +82,7 @@ const ARK21Shares = () => {
         }
         return filteredData;
     };
-    
+
 
 
     const series = [{
@@ -137,14 +142,14 @@ const ARK21Shares = () => {
                         onClick={() => handleRangeChange("30d")}>
                         30d
                     </Button>
-                    {/* <Button
+                    <Button
                         variant={"modalButton"}
                         bg={"background.secondary"}
                         height={"28px"}
                         border={"1px solid #C6C6C6"}
                         onClick={() => handleRangeChange("1yr")}>
                         1yr
-                    </Button> */}
+                    </Button>
                     <Button
                         variant={"modalButton"}
                         bg={"background.secondary"}
