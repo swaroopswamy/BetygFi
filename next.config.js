@@ -18,7 +18,7 @@ const nextConfig = {
       },
       {
         source: '/qa/notification/:path*',
-        destination: 'https://qanotificationapi.betygfi.com/:path*'
+        destination: 'http://qanotificationapi.betygfi.com/:path*'
       },
       {
         source: '/kube/notification/:path*',
