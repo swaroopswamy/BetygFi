@@ -1,8 +1,9 @@
 import { Box, Text, useMediaQuery } from '@chakra-ui/react';
-import { formatMCAPSearchTableString, getToFixedValue } from '@util/utility';
+import { formatMCAPSearchTableString, getToFixedValue, setSearchSuggestionToStorage } from '@util/utility';
 import Image from 'next/image';
 import React from 'react';
 import CustomAvatar from '@components/avatar';
+import { TRENDING_DEFIS_SLUG } from '@util/constant';
 
 const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -37,9 +38,15 @@ const TrendingDefisItem = ({ searchItem, onNavigateArrowClick, groupedSearchData
         );
     };
 
+    const onFocusDefi = event => {
+        setSearchSuggestionToStorage(TRENDING_DEFIS_SLUG, event.target.ariaLabel);
+    };
+
     const DefiItemData = ({ defiItem, index }) => {
         return (
-            <Box onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
+            <Box tabIndex={defiItem?.searchIndex}
+                role="dialog" aria-labelledby={`popup-${defiItem.slug}`}
+                _focus={{ backgroundColor: "#adaaaa" }} onFocus={(event) => { onFocusDefi(event); }} aria-label={defiItem.slug} onClick={() => !isMd && onNavigateArrowClick(searchItem.slug, defiItem.slug)}
                 display={"flex"} flexDirection={"row"} key={index}>
                 <Box onClick={() => onNavigateArrowClick(searchItem.slug, defiItem.slug)} cursor={"pointer"} w={isMd ? "30%" : "50%"} mt={"12px"} mb={"18px"} display={"flex"} flexDirection={"row"}>
                     <CustomAvatar

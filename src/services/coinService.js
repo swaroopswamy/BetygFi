@@ -147,10 +147,69 @@ export const getBTCDominanceScoresAPI = async (payload, rejectWithValue) => {
     }
 };
 
-
 export const getMarqueeDataAPI = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/marquee-data`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getETFListData = async (type, { rejectWithValue }) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?type=${type}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getBTCETFInflowOutflowData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-inflow-outflow`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getETFHeatMapData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-heatmap`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getTickerInflowOutflowData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/inflow-outflow`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getETFChartData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/chart-data`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getETFNewsData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf/${payload.ticker}/news`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {
