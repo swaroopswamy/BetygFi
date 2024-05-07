@@ -21,12 +21,13 @@ const DeFiTVLByCategoryBox = () => {
         dataLabels: {
             enabled: true,
             style: {
-                fontSize: '12px',
+                fontSize: '16px',
+                fontWeight: 500,
+                color: "#191919"
             },
             formatter: function (text, op) {
                 return [text, op.value];
             },
-            offsetY: -4
         },
         plotOptions: {
             treemap: {
@@ -38,7 +39,7 @@ const DeFiTVLByCategoryBox = () => {
                         {
                             from: -6,
                             to: 0,
-                            color: '#CD363A'
+                            color: '#FF6161'
                         },
                         {
                             from: 0.001,
@@ -114,13 +115,12 @@ const DeFiTVLByCategoryBox = () => {
             borderRadius={"8px"}
             mb={"15px"}
             mx={"10px"}
-            p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
         >
-            <Box layerStyle={"spaceBetween"}>
+            <Box layerStyle={"spaceBetween"} pt={"15px"} mx={"15px"}>
                 <Box layerStyle={"flexCenter"}>
-                    <Text variant={"contentHeading3"} fontWeight={500} ml={"5px"}>
+                    <Text variant={"contentHeading3"} fontWeight={500}>
                         DeFi TVL by category
                     </Text>
                 </Box>
@@ -136,13 +136,12 @@ const DeFiTVLByCategoryBox = () => {
                     </Text>
                 </Box>
             </Box>
-            <Box borderRadius={"6px"}>
+            <Box borderRadius={"6px"} ml={"10px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}
                     series={series}
-                    height={145}
-                    width={"100%"}
+                    height={150}
                 />
             </Box>
         </Box>

@@ -10,7 +10,13 @@ import {
     getFearAndGreedData,
     getSAPData,
     getMarqueeDataAPI,
-    getCryptoCategoriesData
+    getCryptoCategoriesData,
+    getETFListData,
+    getBTCETFInflowOutflowData,
+    getETFHeatMapData,
+    getTickerInflowOutflowData,
+    getETFChartData,
+    getETFNewsData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -109,6 +115,54 @@ export const fetchMarqueeData = createAsyncThunk(
     }
 );
 
+export const fetchETFListData = createAsyncThunk(
+    "getETFListData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFListData(payload, rejectWithValue);
+        return response;
+    }
+);
+
+export const fetchETFInflowOutflowData = createAsyncThunk(
+    "getBTCETFInflowOutflowData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getBTCETFInflowOutflowData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchETFHeatMapData = createAsyncThunk(
+    "getETFHeatMapData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFHeatMapData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchTickerETFInflowOutflowData = createAsyncThunk(
+    "getTickerInflowOutflowData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTickerInflowOutflowData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchETFChartData = createAsyncThunk(
+    "getETFChartData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFChartData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchETFNewsData = createAsyncThunk(
+    "getETFNewsData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getETFNewsData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -184,10 +238,46 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        ETFListData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFInflowOutflowData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFHeatMapData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TickerInflowOutflowData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFChartData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        ETFNewsData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
         blockchainType: [],
         scoreSelected: "",
         btcDominanceDay: "7D",
-        sapDay: "week"
+        sapDay: "week",
     },
     extraReducers: (builder) => {
         builder.addCase(
@@ -411,6 +501,114 @@ const CoinDataSlice = createSlice({
             state.MarqueeData.isSuccess = false;
             state.MarqueeData.isError = true;
             state.MarqueeData.data = action.payload;
+        });
+        builder.addCase(fetchETFListData.fulfilled, (state, action) => {
+            state.ETFListData.data = action.payload;
+            state.ETFListData.isLoading = false;
+            state.ETFListData.isSuccess = true;
+            state.ETFListData.isError = false;
+        });
+        builder.addCase(fetchETFListData.pending, (state, action) => {
+            state.ETFListData.isLoading = true;
+            state.ETFListData.isError = false;
+            state.ETFListData.isSuccess = false;
+            state.ETFListData.data = action.payload;
+        });
+        builder.addCase(fetchETFListData.rejected, (state, action) => {
+            state.ETFListData.isLoading = false;
+            state.ETFListData.isSuccess = false;
+            state.ETFListData.isError = true;
+            state.ETFListData.data = action.payload;
+        });
+        builder.addCase(fetchETFInflowOutflowData.fulfilled, (state, action) => {
+            state.ETFInflowOutflowData.data = action.payload;
+            state.ETFInflowOutflowData.isLoading = false;
+            state.ETFInflowOutflowData.isSuccess = true;
+            state.ETFInflowOutflowData.isError = false;
+        });
+        builder.addCase(fetchETFInflowOutflowData.pending, (state, action) => {
+            state.ETFInflowOutflowData.isLoading = true;
+            state.ETFInflowOutflowData.isError = false;
+            state.ETFInflowOutflowData.isSuccess = false;
+            state.ETFInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFInflowOutflowData.rejected, (state, action) => {
+            state.ETFInflowOutflowData.isLoading = false;
+            state.ETFInflowOutflowData.isSuccess = false;
+            state.ETFInflowOutflowData.isError = true;
+            state.ETFInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFHeatMapData.fulfilled, (state, action) => {
+            state.ETFHeatMapData.data = action.payload;
+            state.ETFHeatMapData.isLoading = false;
+            state.ETFHeatMapData.isSuccess = true;
+            state.ETFHeatMapData.isError = false;
+        });
+        builder.addCase(fetchETFHeatMapData.pending, (state, action) => {
+            state.ETFHeatMapData.isLoading = true;
+            state.ETFHeatMapData.isError = false;
+            state.ETFHeatMapData.isSuccess = false;
+            state.ETFHeatMapData.data = action.payload;
+        });
+        builder.addCase(fetchETFHeatMapData.rejected, (state, action) => {
+            state.ETFHeatMapData.isLoading = false;
+            state.ETFHeatMapData.isSuccess = false;
+            state.ETFHeatMapData.isError = true;
+            state.ETFHeatMapData.data = action.payload;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.fulfilled, (state, action) => {
+            state.TickerInflowOutflowData.data = action.payload;
+            state.TickerInflowOutflowData.isLoading = false;
+            state.TickerInflowOutflowData.isSuccess = true;
+            state.TickerInflowOutflowData.isError = false;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.pending, (state, action) => {
+            state.TickerInflowOutflowData.isLoading = true;
+            state.TickerInflowOutflowData.isError = false;
+            state.TickerInflowOutflowData.isSuccess = false;
+            state.TickerInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchTickerETFInflowOutflowData.rejected, (state, action) => {
+            state.TickerInflowOutflowData.isLoading = false;
+            state.TickerInflowOutflowData.isSuccess = false;
+            state.TickerInflowOutflowData.isError = true;
+            state.TickerInflowOutflowData.data = action.payload;
+        });
+        builder.addCase(fetchETFChartData.fulfilled, (state, action) => {
+            state.ETFChartData.data = action.payload;
+            state.ETFChartData.isLoading = false;
+            state.ETFChartData.isSuccess = true;
+            state.ETFChartData.isError = false;
+        });
+        builder.addCase(fetchETFChartData.pending, (state, action) => {
+            state.ETFChartData.isLoading = true;
+            state.ETFChartData.isError = false;
+            state.ETFChartData.isSuccess = false;
+            state.ETFChartData.data = action.payload;
+        });
+        builder.addCase(fetchETFChartData.rejected, (state, action) => {
+            state.ETFChartData.isLoading = false;
+            state.ETFChartData.isSuccess = false;
+            state.ETFChartData.isError = true;
+            state.ETFChartData.data = action.payload;
+        });
+        builder.addCase(fetchETFNewsData.fulfilled, (state, action) => {
+            state.ETFNewsData.data = action.payload;
+            state.ETFNewsData.isLoading = false;
+            state.ETFNewsData.isSuccess = true;
+            state.ETFNewsData.isError = false;
+        });
+        builder.addCase(fetchETFNewsData.pending, (state, action) => {
+            state.ETFNewsData.isLoading = true;
+            state.ETFNewsData.isError = false;
+            state.ETFNewsData.isSuccess = false;
+            state.ETFNewsData.data = action.payload;
+        });
+        builder.addCase(fetchETFNewsData.rejected, (state, action) => {
+            state.ETFNewsData.isLoading = false;
+            state.ETFNewsData.isSuccess = false;
+            state.ETFNewsData.isError = true;
+            state.ETFNewsData.data = action.payload;
         });
     },
     reducers: {
