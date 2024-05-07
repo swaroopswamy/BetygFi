@@ -85,25 +85,8 @@ const BTCETFPage = () => {
                 <Box width={"45%"} mr={"1rem"} borderRadius={"8px"}>
                     <HeatmapGraphBox />
                 </Box>
-                <Box width={"55%"}>
-                    <Text variant={"h2"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
-                    <Box layerStyle={"flexCenter"} mb={"45px"}>
-                        {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                            Flows (USD)
-                        </Button>
-                        <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                            AUM
-                        </Button>
-                        <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                            Market Cap
-                        </Button>
-                        <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
-                            Volume
-                        </Button> */}
-                    </Box>
-                    <Box>
-                        <BTCETFNetInflowBox />
-                    </Box>
+                <Box width={"55%"} borderRadius={"8px"} padding={"0px"}>
+                    <BTCETFNetInflowBox />
                 </Box>
             </Box>
             <Box mt={"15px"} w={"100%"}>

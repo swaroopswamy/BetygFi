@@ -1,5 +1,5 @@
 import CustomChart from "@components/graph";
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode, /*Button*/ } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
@@ -127,8 +127,25 @@ const BTCETFNetInflowBox = () => {
             borderRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
-            p={"0px 10px"}
+            p={"0px"}
         >
+            <Box bgColor={"background.primary"}>
+                <Text variant={"h2"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
+                <Box layerStyle={"flexCenter"} mt={"53px"}>
+                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                        Flows (USD)
+                    </Button>
+                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                        AUM
+                    </Button>
+                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                        Market Cap
+                    </Button>
+                    <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                        Volume
+                    </Button> */}
+                </Box>
+            </Box>
             <CustomChart
                 options={options}
                 series={series}

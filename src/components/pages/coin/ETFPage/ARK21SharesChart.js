@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Text, Button, useColorMode } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
 import { useSelector } from "react-redux";
@@ -8,6 +8,70 @@ const ARK21Shares = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
     const [selectedRange, setSelectedRange] = useState("24h");
+
+    const [buttonStyles, setButtonStyles] = useState({
+        "24h": {
+            bg: colorMode === "light" ? "#313131" : "#FFFFFF",
+            color: colorMode === "light" ? "#FFFFFF" : "#191919"
+        },
+        "7d": {
+            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF"
+        },
+        "14d": {
+            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF"
+        },
+        "30d": {
+            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF"
+        },
+        "1yr": {
+            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF"
+        },
+        Max: {
+            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+            color: colorMode === "light" ? "#191919" : "#FFFFFF"
+        }
+    });
+
+    useEffect(() => {
+        // Update button styles when color mode changes
+        setButtonStyles({
+            ...buttonStyles,
+            "24h": {
+                ...buttonStyles["24h"],
+                bg: colorMode === "light" ? "#313131" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#191919"
+            },
+            "7d": {
+                ...buttonStyles["7d"],
+                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+                color: colorMode === "light" ? "#191919" : "#FFFFFF"
+            },
+            "14d": {
+                ...buttonStyles["14d"],
+                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+                color: colorMode === "light" ? "#191919" : "#FFFFFF"
+            },
+            "30d": {
+                ...buttonStyles["30d"],
+                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+                color: colorMode === "light" ? "#191919" : "#FFFFFF"
+            },
+            "1yr": {
+                ...buttonStyles["1yr"],
+                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+                color: colorMode === "light" ? "#191919" : "#FFFFFF"
+            },
+            "Max": {
+                ...buttonStyles["Max"],
+                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
+                color: colorMode === "light" ? "#191919" : "#FFFFFF"
+            },
+        });
+    }, [colorMode]);
 
     const options = {
         chart: {
@@ -49,41 +113,23 @@ const ARK21Shares = () => {
 
     const getFilteredData = (range) => {
         const currentDate = new Date();
-        let filteredData;
         switch (range) {
             case "24h":
-                filteredData = ETFChartData?.data?.chartLast24Hours;
-                break;
-            case "7d": {
-                const sevenDaysAgo = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);
-                filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= sevenDaysAgo);
-                break;
-            }
-            case "14d": {
-                const fourteenDaysAgo = new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000);
-                filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= fourteenDaysAgo);
-                break;
-            }
-            case "30d": {
-                const thirtyDaysAgo = new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000);
-                filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= thirtyDaysAgo);
-                break;
-            }
-            case "1yr": {
-                const oneyearAgo = new Date(currentDate.getTime() - 365 * 24 * 60 * 60 * 1000);
-                filteredData = ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= oneyearAgo);
-                break;
-            }
+                return ETFChartData?.data?.chartLast24Hours;
+            case "7d":
+                return ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000));
+            case "14d":
+                return ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000));
+            case "30d":
+                return ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000));
+            case "1yr":
+                return ETFChartData?.data?.chartHistorical.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 365 * 24 * 60 * 60 * 1000));
             case "Max":
-                filteredData = ETFChartData?.data?.chartHistorical;
-                break;
+                return ETFChartData?.data?.chartHistorical;
             default:
-                filteredData = ETFChartData?.data?.chartLast24Hours;
+                return ETFChartData?.data?.chartLast24Hours;
         }
-        return filteredData;
     };
-
-
 
     const series = [{
         data: getFilteredData(selectedRange)?.map(item => ({
@@ -94,8 +140,20 @@ const ARK21Shares = () => {
 
     const handleRangeChange = (range) => {
         setSelectedRange(range);
-    };
 
+        // Update button styles
+        const updatedButtonStyles = { ...buttonStyles };
+        for (let key in updatedButtonStyles) {
+            if (key === range) {
+                updatedButtonStyles[key].bg = colorMode === "light" ? "#313131" : "#FFFFFF";
+                updatedButtonStyles[key].color = colorMode === "light" ? "#FFFFFF" : "#313131";
+            } else {
+                updatedButtonStyles[key].bg = colorMode === "light" ? "#FFFFFF" : "#282828";
+                updatedButtonStyles[key].color = colorMode === "light" ? "#191919" : "#FFFFFF";
+            }
+        }
+        setButtonStyles(updatedButtonStyles);
+    };
     return (
         <Box
             width={"100%"}
@@ -109,55 +167,18 @@ const ARK21Shares = () => {
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>ARK 21Shares Price Chart</Text>
                 </Box>
                 <Box layerStyle={"flexCenter"}>
-                    <Button
-                        variant={"modalButton"}
-                        bg={selectedRange === "24h" ? "#313131" : "background.secondary"}
-                        color={selectedRange === "24h" ? "#FFFFFF" : "#16171B"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("24h")}>
-                        24h
-                    </Button>
-                    <Button
-                        variant={"modalButton"}
-                        bg={"background.secondary"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("7d")}>
-                        7d
-                    </Button>
-                    <Button
-                        variant={"modalButton"}
-                        bg={"background.secondary"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("14d")}>
-                        14d
-                    </Button>
-                    <Button
-                        variant={"modalButton"}
-                        bg={"background.secondary"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("30d")}>
-                        30d
-                    </Button>
-                    <Button
-                        variant={"modalButton"}
-                        bg={"background.secondary"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("1yr")}>
-                        1yr
-                    </Button>
-                    <Button
-                        variant={"modalButton"}
-                        bg={"background.secondary"}
-                        height={"28px"}
-                        border={"1px solid #C6C6C6"}
-                        onClick={() => handleRangeChange("Max")}>
-                        Max
-                    </Button>
+                    {Object.entries(buttonStyles).map(([range, styles]) => (
+                        <Button
+                            key={range}
+                            variant={"modalButton"}
+                            bg={styles.bg}
+                            color={styles.color}
+                            height={"28px"}
+                            border={"1px solid #C6C6C6"}
+                            onClick={() => handleRangeChange(range)}>
+                            {range}
+                        </Button>
+                    ))}
                 </Box>
             </Box>
             <CustomChart
