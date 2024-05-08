@@ -10,15 +10,15 @@ const nextConfig = {
     return [
       {
         source: '/dev/notification/:path*',
-        destination: 'http://34.233.111.224:31924/:path*'
+        destination: 'http://10.40.59.142:30380/:path*'
       },
       {
         source: '/local/notification/:path*',
-        destination: 'http://34.233.111.224:31924/:path*'
+        destination: 'http://10.40.59.142:30380/:path*'
       },
       {
         source: '/qa/notification/:path*',
-        destination: 'https://qanotificationapi.betygfi.com/:path*'
+        destination: 'http://qanotificationapi.betygfi.com/:path*'
       },
       {
         source: '/kube/notification/:path*',
