@@ -50,15 +50,15 @@ const ETFTracker = () => {
                     <Text variant={"h2"} fontWeight={700} lineHeight={"26px"}>
                         Bitcoin ETF Tracker
                     </Text>
-                    <Text
+                    {/* <Text
                         variant={"baseStyle"}
                         fontWeight={500}
                         color={colorMode === 'light' ? "#191919" : "#FFFFFF"}
                         lineHeight={"18px"}
                         mt={"5px"}
                     >
-                        Total - 24
-                    </Text>
+                        Total - {tableData?.data?.length}
+                    </Text> */}
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"20px"}>
                     {/* <InputGroup width={"250px"} height={"35px"} bg={"background.primary"} borderRadius={"20px"}>
