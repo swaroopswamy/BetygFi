@@ -67,18 +67,18 @@ const BTCETFPage = () => {
             <Box layerStyle={"flexCenter"} gap={"20px"}>
                 <Box>
                     <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Volume</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalVolume === undefined ?
-                        "NA" : ETFListData?.totalVolume, { precision: 0 })}</Text>
+                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalVolume === undefined ?
+                        "NA" : ETFListData?.data?.totalVolume, { precision: 2 })}</Text>
                 </Box>
                 <Box>
                     <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Marketcap</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalMarketCap === undefined ?
-                        "NA" : ETFListData?.totalMarketCap, { precision: 0 })}</Text>
+                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalMarketCap === undefined ?
+                        "NA" : ETFListData?.data?.totalMarketCap, { precision: 2 })}</Text>
                 </Box>
                 <Box>
                     <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total AUM</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalAum === undefined ?
-                        "NA" : ETFListData?.totalAum, { precision: 0 })}</Text>
+                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalAum === undefined ?
+                        "NA" : ETFListData?.data?.totalAum, { precision: 2 })}</Text>
                 </Box>
             </Box>
             <Box layerStyle={"flexCenter"} mt={"15px"}>
