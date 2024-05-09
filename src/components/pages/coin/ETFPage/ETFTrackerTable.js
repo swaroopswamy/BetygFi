@@ -52,15 +52,15 @@ const ETFTracker = () => {
                     <Text variant={"h2"} fontWeight={700} lineHeight={"26px"}>
                         Bitcoin ETF Tracker
                     </Text>
-                    {/* <Text
+                    <Text
                         variant={"baseStyle"}
                         fontWeight={500}
                         color={colorMode === 'light' ? "#191919" : "#FFFFFF"}
                         lineHeight={"18px"}
                         mt={"5px"}
                     >
-                        Total - {tableData?.data?.length}
-                    </Text> */}
+                        Total - 24
+                    </Text>
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"20px"}>
                     {/* <InputGroup width={"250px"} height={"35px"} bg={"background.primary"} borderRadius={"20px"}>
@@ -161,7 +161,7 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 </Td>
                 <Td {...commonStyleTdProp} key={7} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    {item?.custodian === undefined ? "-" : item?.custodian}
+                        {item?.custodian === undefined ? "-" : item?.custodian}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"}>
@@ -184,6 +184,6 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
             </Tr>
         );
     } else {
-        return null; 
+        return null;
     }
 };

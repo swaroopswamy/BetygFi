@@ -53,7 +53,7 @@ const HeatmapGraphBox = () => {
             style: {
                 fontSize: '16px',
                 fontWeight: 500,
-                color: [colorMode === 'light' ? "#191919" : "#191919"],
+                color: "#191919"
             },
             formatter: function (text, op) {
                 return [text, op.value];
