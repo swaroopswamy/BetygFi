@@ -41,9 +41,7 @@ const ETFTracker = () => {
             width={"100%"}
             height={"100%"}
             borderRadius={"8px"}
-            _light={{ bg: "#FFFFFF" }}
-            _dark={{ bg: "#282828" }}
-            boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
+            bg={colorMode === 'light' ? "#FFFFFF" : "#282828"}
         >
             <Box layerStyle={"flexSpaceBetween"}
                 p={"15px"}
