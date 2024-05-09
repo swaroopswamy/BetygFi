@@ -35,10 +35,11 @@ const HeatmapGraphBox = () => {
             toolbar: {
                 show: false
             },
+            height: "100%",
         },
         tooltip: {
             enabled: true,
-            theme: colorMode === "light" ? "light" : "dark",
+            theme: colorMode,
             x: {
                 formatter: function (val) {
                     return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -53,13 +54,15 @@ const HeatmapGraphBox = () => {
             style: {
                 fontSize: '16px',
                 fontWeight: 500,
-                color: [colorMode === 'light' ? "#191919" : "#191919"],
+                colors: ["#191919"],
             },
             formatter: function (text, op) {
                 return [text, op.value];
             },
-            offsetY: -4
-        },
+            offsetX: 4,
+            offsetY: -4,
+            allowOverlap: true,
+        },        
         plotOptions: {
             treemap: {
                 enableShades: false,

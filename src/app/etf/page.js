@@ -1,18 +1,17 @@
 "use client";
 import React, { useEffect } from "react";
-import { Box, Text, useColorMode } from "@chakra-ui/react";
-import Image from "next/image";
+import { Box, Text, useColorMode, Switch, useDisclosure, Collapse } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import millify from "millify";
 import { BreadCrumb } from "@components/breadcrumb2";
-import HeatmapGraphBox from "@components/pages/coin/ETFPage/Heatmap";
-import BTCETFNetInflowBox from "@components/pages/coin/ETFPage/BTCETFNetInflowGraph";
+import HighlightsBox from "@components/pages/coin/ETFPage/Highlights";
 import ETFTracker from "@components/pages/coin/ETFPage/ETFTrackerTable";
 import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
 
 const BTCETFPage = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
+    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
     const ETFType = useSelector((state) => state?.coinData?.ETFType);
 
     const fetchETFListDataHandler = () => {
@@ -56,39 +55,45 @@ const BTCETFPage = () => {
         >
             <Box layerStyle={"spaceBetween"}>
                 <BreadCrumb
-                    text={"Defi Markets/BTC ETF Tracker"}
+                    text={"Coin Ranking"}
                     link={"/coin"}
                 ></BreadCrumb>
-                <Box layerStyle={"flexCenter"} gap={"5px"}>
+                {/* <Box layerStyle={"flexCenter"} gap={"5px"}>
                     <Image src={"/icons/Red_Dot.svg"} width={9} height={9} alt=" "></Image>
                     <Text fontSize={"14px"} lineHeight={"17px"} variant={"contentHeading4"}>Market Closed</Text>
+                </Box> */}
+            </Box>
+            <Box display={"flex"} justifyContent={"space-between"}>
+                <Box layerStyle={"flexCenter"} gap={"20px"}>
+                    <Box>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Volume</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalVolume === undefined ?
+                            "NA" : ETFListData?.data?.totalVolume, { precision: 2 })}</Text>
+                    </Box>
+                    <Box>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Marketcap</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalMarketCap === undefined ?
+                            "NA" : ETFListData?.data?.totalMarketCap, { precision: 2 })}</Text>
+                    </Box>
+                    <Box>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total AUM</Text>
+                        <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalAum === undefined ?
+                            "NA" : ETFListData?.data?.totalAum, { precision: 2 })}</Text>
+                    </Box>
+                </Box>
+                <Box layerStyle={"flexCenter"} ml={"30px"} justifyContent={"flex-end"}>
+                    <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
+                    <Switch
+                        size={"lg"}
+                        isChecked={isHighlightsBoxOpen}
+                        onChange={onHighlightsBoxToggle}
+                        className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
+                    ></Switch>
                 </Box>
             </Box>
-            <Box layerStyle={"flexCenter"} gap={"20px"}>
-                <Box>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Volume</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalVolume === undefined ?
-                        "NA" : ETFListData?.totalVolume, { precision: 0 })}</Text>
-                </Box>
-                <Box>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Marketcap</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalMarketCap === undefined ?
-                        "NA" : ETFListData?.totalMarketCap, { precision: 0 })}</Text>
-                </Box>
-                <Box>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total AUM</Text>
-                    <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.totalAum === undefined ?
-                        "NA" : ETFListData?.totalAum, { precision: 0 })}</Text>
-                </Box>
-            </Box>
-            <Box layerStyle={"flexCenter"} mt={"15px"}>
-                <Box width={"45%"} mr={"1rem"} borderRadius={"8px"}>
-                    <HeatmapGraphBox />
-                </Box>
-                <Box width={"55%"} borderRadius={"8px"} padding={"0px"}>
-                    <BTCETFNetInflowBox />
-                </Box>
-            </Box>
+            <Collapse in={isHighlightsBoxOpen} >
+                <HighlightsBox />
+            </Collapse>
             <Box mt={"15px"} w={"100%"}>
                 <ETFTracker />
             </Box>
