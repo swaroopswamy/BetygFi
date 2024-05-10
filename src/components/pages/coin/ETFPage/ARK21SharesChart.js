@@ -37,7 +37,6 @@ const ARK21Shares = () => {
     });
 
     useEffect(() => {
-        // Update button styles when color mode changes
         setButtonStyles({
             ...buttonStyles,
             "24h": {
@@ -141,7 +140,6 @@ const ARK21Shares = () => {
     const handleRangeChange = (range) => {
         setSelectedRange(range);
 
-        // Update button styles
         const updatedButtonStyles = { ...buttonStyles };
         for (let key in updatedButtonStyles) {
             if (key === range) {
@@ -157,14 +155,14 @@ const ARK21Shares = () => {
     return (
         <Box
             width={"100%"}
-            height={"400px"}
-            p={"20px"}
+            height={"100%"}
+            p={{ base: "5px", md: "20px" }}
             borderRadius={"10px"}
             bg={colorMode === 'light' ? "#FFFFFF" : "#282828"}
         >
             <Box layerStyle={"spaceBetween"}>
                 <Box>
-                    <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>ARK 21Shares Price Chart</Text>
+                    <Text variant={"contentHeading4"} fontSize={{ base: "14px", md: "20px" }} lineHeight={"20px"}>ARK 21Shares Price Chart</Text>
                 </Box>
                 <Box layerStyle={"flexCenter"}>
                     {Object.entries(buttonStyles).map(([range, styles]) => (
@@ -175,6 +173,7 @@ const ARK21Shares = () => {
                             color={styles.color}
                             height={"28px"}
                             border={"1px solid #C6C6C6"}
+                            padding={{ base: "0px" }}
                             onClick={() => handleRangeChange(range)}>
                             {range}
                         </Button>

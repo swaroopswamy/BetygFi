@@ -63,8 +63,8 @@ const BTCETFPage = () => {
                     <Text fontSize={"14px"} lineHeight={"17px"} variant={"contentHeading4"}>Market Closed</Text>
                 </Box> */}
             </Box>
-            <Box display={"flex"} justifyContent={"space-between"}>
-                <Box layerStyle={"flexCenter"} gap={"20px"}>
+            <Box display={{ md: "flex" }} justifyContent={{ md: "space-between" }}>
+                <Box layerStyle={"flexCenter"} gap={{ base: "15px", md: "20px" }}>
                     <Box>
                         <Text variant={"h5"} color={colorMode === 'light' ? "#16171B" : "#FFFFFF"} opacity={"80%"}>Total Volume</Text>
                         <Text variant={"h5"} color={colorMode === 'light' ? "#191919" : "#FFFFFF"} fontWeight={500}>${millify(ETFListData?.data?.totalVolume === undefined ?
@@ -81,7 +81,7 @@ const BTCETFPage = () => {
                             "NA" : ETFListData?.data?.totalAum, { precision: 2 })}</Text>
                     </Box>
                 </Box>
-                <Box layerStyle={"flexCenter"} ml={"30px"} justifyContent={"flex-end"}>
+                <Box layerStyle={"flexCenter"} justifyContent={"flex-end"} mt={{ base: "20px" }}>
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                     <Switch
                         size={"lg"}
@@ -94,7 +94,7 @@ const BTCETFPage = () => {
             <Collapse in={isHighlightsBoxOpen} >
                 <HighlightsBox />
             </Collapse>
-            <Box mt={"15px"} w={"100%"}>
+            <Box mt={{ base: "5px", md: "15px" }} w={"100%"}>
                 <ETFTracker />
             </Box>
         </Box>
