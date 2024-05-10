@@ -7,24 +7,19 @@ import millify from "millify";
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
     const ETFHeatMapData = useSelector((state) => state?.coinData?.ETFHeatMapData);
-
-    const [holdingData, setHoldingData] = useState([]);
-    const [priceData, setPriceData] = useState([]);
-    const [volumeData, setVolumeData] = useState([]);
-    const [sharesData, setSharesData] = useState([]);
-    //const [aumData, setAumData] = useState([]);
-    const [marketCapData, setMarketCapData] = useState([]);
+    const [activeData, setActiveData] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('holding');
 
     useEffect(() => {
         if (ETFHeatMapData) {
-            setHoldingData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.holding) })));
-            setPriceData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.price) })));
-            setVolumeData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.volume) })));
-            setSharesData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.shares) })));
-            //setAumData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.aum) })));
-            setMarketCapData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.marketCap) })));
+            setActiveData(ETFHeatMapData?.data?.map(item => (
+                {
+                    x: item.ticker,
+                    y: millify(item?.[activeCategory]),
+                    name: activeCategory
+                })));
         }
-    }, [ETFHeatMapData]);
+    }, [ETFHeatMapData, activeCategory]);
 
     const options = {
         legend: {
@@ -48,6 +43,17 @@ const HeatmapGraphBox = () => {
             marker: {
                 show: true,
             },
+            custom: function ({ /* series, */ seriesIndex, dataPointIndex, w }) {
+                const item = w.config.series[seriesIndex].data[dataPointIndex];
+                let tooltipContent = `
+                    <div class="tooltip-parent">
+                    <div class="">${item.x}</div>
+                    <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: ${item.y}</div>
+                    <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: ${ETFHeatMapData.data[dataPointIndex][activeCategory + 'Change']}</div>
+                    </div
+                `;
+                return tooltipContent;
+            }
         },
         dataLabels: {
             enabled: true,
@@ -62,7 +68,7 @@ const HeatmapGraphBox = () => {
             offsetX: 4,
             offsetY: -4,
             allowOverlap: true,
-        },        
+        },
         plotOptions: {
             treemap: {
                 enableShades: false,
@@ -86,93 +92,9 @@ const HeatmapGraphBox = () => {
         }
     };
 
-    const [activeCategory, setActiveCategory] = useState('holding');
-    const [buttonStyles, setButtonStyles] = useState({
-        holding: {
-            bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-            color: colorMode === 'light' ? "#FFFFFF" : "#191919"
-        },
-        price: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        volume: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        shares: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        marketCap: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        }
-    });
-
-    useEffect(() => {
-        setButtonStyles({
-            holding: {
-                bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-                color: colorMode === 'light' ? "#FFFFFF" : "#191919"
-            },
-            price: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            volume: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            shares: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            marketCap: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            }
-        });
-    }, [colorMode]);
-
-
-    let activeData;
-    switch (activeCategory) {
-        case 'holding':
-            activeData = holdingData;
-            break;
-        case 'price':
-            activeData = priceData;
-            break;
-        case 'volume':
-            activeData = volumeData;
-            break;
-        case 'shares':
-            activeData = sharesData;
-            break;
-        // case 'aum':
-        //     activeData = aumData;
-        //     break;
-        case 'marketCap':
-            activeData = marketCapData;
-            break;
-        default:
-            activeData = holdingData;
-    }
 
     const handleButtonClick = (category) => {
         setActiveCategory(category);
-        setButtonStyles(prevStyles => ({
-            ...prevStyles,
-            [category]: {
-                bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-                color: colorMode === 'light' ? "#FFFFFF" : "#313131"
-            },
-            [activeCategory]: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            }
-        }));
     };
 
     return (
@@ -188,8 +110,11 @@ const HeatmapGraphBox = () => {
                 <Box layerStyle={"flexCenter"} mb={"5px"}>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.holding.bg}
-                        color={buttonStyles.holding.color}
+                        className={
+                            activeCategory === 'holding' ? 'chart-button-light-selected' : 'chart-button-light'
+                        }
+
+
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('holding')}>
@@ -197,8 +122,9 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.price.bg}
-                        color={buttonStyles.price.color}
+                        className={
+                            activeCategory === 'price' ? 'chart-button-light-selected' : 'chart-button-light'
+                        }
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('price')}>
@@ -206,8 +132,9 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.volume.bg}
-                        color={buttonStyles.volume.color}
+                        className={
+                            activeCategory === 'volume' ? 'chart-button-light-selected' : 'chart-button-light'
+                        }
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('volume')}>
@@ -218,8 +145,9 @@ const HeatmapGraphBox = () => {
                     </Button> */}
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.shares.bg}
-                        color={buttonStyles.shares.color}
+                        className={
+                            activeCategory === 'shares' ? 'chart-button-light-selected' : 'chart-button-light'
+                        }
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('shares')}>
@@ -230,8 +158,9 @@ const HeatmapGraphBox = () => {
                     </Button> */}
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.marketCap.bg}
-                        color={buttonStyles.marketCap.color}
+                        className={
+                            activeCategory === 'marketCap' ? 'chart-button-light-selected' : 'chart-button-light'
+                        }
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('marketCap')}>
