@@ -41,9 +41,7 @@ const ETFTracker = () => {
             width={"100%"}
             height={"100%"}
             borderRadius={"8px"}
-            _light={{ bg: "#FFFFFF" }}
-            _dark={{ bg: "#282828" }}
-            boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
+            bg={colorMode === 'light' ? "#FFFFFF" : "#282828"}
         >
             <Box layerStyle={"flexSpaceBetween"}
                 p={"15px"}
@@ -161,7 +159,7 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 </Td>
                 <Td {...commonStyleTdProp} key={7} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    {item?.custodian === undefined ? "-" : item?.custodian}
+                        {item?.custodian === undefined ? "-" : item?.custodian}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"}>
@@ -184,6 +182,6 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
             </Tr>
         );
     } else {
-        return null; 
+        return null;
     }
 };
