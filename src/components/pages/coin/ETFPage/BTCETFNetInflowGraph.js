@@ -130,7 +130,7 @@ const BTCETFNetInflowBox = () => {
             p={"0px"}
         >
             <Box bgColor={"background.primary"}>
-                <Text variant={"h2"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
+                <Text variant={"h2"} lineHeight={"20px"}>Total Bitcoin Spot ETF Net Inflow (USD)</Text>
                 <Box layerStyle={"flexCenter"} mt={"53px"}>
                     {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
                         Flows (USD)
