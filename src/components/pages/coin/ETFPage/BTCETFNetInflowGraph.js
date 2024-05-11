@@ -85,7 +85,7 @@ const BTCETFNetInflowBox = () => {
             },
         },
         grid: {
-            show: false,
+            show: true,
         },
         legend: {
             fontSize: "12px",
@@ -101,18 +101,20 @@ const BTCETFNetInflowBox = () => {
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
-            x: {
-                formatter: function (val) {
-                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
-            },
-            y: {
-                formatter: function (changeUsd) {
-                    return millify(changeUsd, {
-                        precision: 0,
-                        locales: "en-US",
-                    });
-                }
+            followCursor: true,
+            intersect: true,
+            custom: function ({ dataPointIndex }) {
+                const entry = ETFInflowOutflowData?.data[dataPointIndex];
+                const flow = entry?.changeUsd >= 0 ? "Inflow" : "Outflow";
+                let tooltipContent = '';
+                tooltipContent = `
+                    <div class="tooltip-parent">
+                       <div>${new Date(entry.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                       <div style="margin-top: 10px;">Price: <span style="font-weight: bold;">$${entry.price}</span></div>
+                       <div>${flow}: <span style="font-weight: bold;"> ${millify(entry.changeUsd, { precision: 0, locales: "en-US" })}</span></div>
+                    </div>
+                    `;
+                return tooltipContent;
             },
             marker: {
                 show: true,

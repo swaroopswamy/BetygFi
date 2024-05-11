@@ -21,6 +21,10 @@ const HeatmapGraphBox = () => {
         }
     }, [ETFHeatMapData, activeCategory]);
 
+    const handleButtonClick = (category) => {
+        setActiveCategory(category);
+    };
+
     const options = {
         legend: {
             show: false
@@ -43,15 +47,60 @@ const HeatmapGraphBox = () => {
             marker: {
                 show: true,
             },
-            custom: function ({ /* series, */ seriesIndex, dataPointIndex, w }) {
+            custom: function ({ seriesIndex, dataPointIndex, w }) {
                 const item = w.config.series[seriesIndex].data[dataPointIndex];
-                let tooltipContent = `
-                    <div class="tooltip-parent">
-                    <div class="">${item.x}</div>
-                    <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: ${item.y}</div>
-                    <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: ${ETFHeatMapData.data[dataPointIndex][activeCategory + 'Change']}</div>
-                    </div
-                `;
+                let tooltipContent = '';
+                const changeValue = ETFHeatMapData.data[dataPointIndex][item.name + 'Change'];
+                const PriceValue = ETFHeatMapData.data[dataPointIndex]['priceChange'];
+                if (item.name === 'holding') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin: <span style="font-weight: bold;">${item.y} BTC</span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin (1d%): <span style="font-weight: bold;">${changeValue} BTC</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'price') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: <span style="font-weight: bold;">${changeValue} %</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'volume') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
+                            <div>Price Change: <span style="font-weight: bold;">${PriceValue} %</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'shares') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Outstanding: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'aum') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'marketCap') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                }
                 return tooltipContent;
             }
         },
@@ -92,11 +141,6 @@ const HeatmapGraphBox = () => {
         }
     };
 
-
-    const handleButtonClick = (category) => {
-        setActiveCategory(category);
-    };
-
     return (
         <Box
             width={"100%"}
@@ -110,11 +154,7 @@ const HeatmapGraphBox = () => {
                 <Box layerStyle={"flexCenter"} mb={"5px"}>
                     <Button
                         variant={"modalButton"}
-                        className={
-                            activeCategory === 'holding' ? 'chart-button-light-selected' : 'chart-button-light'
-                        }
-
-
+                        className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('holding')}>
@@ -122,9 +162,7 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        className={
-                            activeCategory === 'price' ? 'chart-button-light-selected' : 'chart-button-light'
-                        }
+                        className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('price')}>
@@ -132,9 +170,7 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        className={
-                            activeCategory === 'volume' ? 'chart-button-light-selected' : 'chart-button-light'
-                        }
+                        className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('volume')}>
@@ -145,22 +181,23 @@ const HeatmapGraphBox = () => {
                     </Button> */}
                     <Button
                         variant={"modalButton"}
-                        className={
-                            activeCategory === 'shares' ? 'chart-button-light-selected' : 'chart-button-light'
-                        }
+                        className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>
-                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('aum')}>
-                        AUM
-                    </Button> */}
                     <Button
                         variant={"modalButton"}
-                        className={
-                            activeCategory === 'marketCap' ? 'chart-button-light-selected' : 'chart-button-light'
-                        }
+                        className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('aum')}>
+                        AUM
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('marketCap')}>
@@ -179,6 +216,5 @@ const HeatmapGraphBox = () => {
         </Box>
     );
 };
-
 
 export default HeatmapGraphBox; 

@@ -8,36 +8,43 @@ const TickerETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
     const TickerInflowOutflowData = useSelector((state) => state?.coinData?.TickerInflowOutflowData);
 
-    const [series, setSeries] = useState([]);
+    const [series, setSeries] = useState([
+        {
+            name: "Inflow",
+            data: [],
+            color: colorMode === "light" ? "#90BE6D" : "#60C000",
+        },
+        {
+            name: "Outflow",
+            data: [],
+            color: colorMode === "light" ? "#F94144" : "#FF3535",
+        },
+    ]);
 
     useEffect(() => {
         if (TickerInflowOutflowData?.data) {
-            const inflowData = [];
-            const outflowData = [];
-
-            TickerInflowOutflowData?.data?.forEach((entry) => {
-                const date = new Date(entry.date);
-                const formattedDate = date.getTime();
-                const changeUsd = entry.change?.changeUsd || 0;
-
-                if (changeUsd >= 0) {
-                    inflowData.push([formattedDate, changeUsd]);
-                } else {
-                    outflowData.push([formattedDate, changeUsd]);
-                }
-            });
-
             setSeries([
                 {
                     name: "Inflow",
-                    data: inflowData,
+                    data: TickerInflowOutflowData?.data?.map((entry) => {
+                        if (entry?.change?.changeUsd >= 0) {
+                            return { x: new Date(entry?.date), y: entry?.change?.changeUsd };
+                        }
+                        return null;
+                    }).filter(entry => entry !== null),
                     color: colorMode === "light" ? "#90BE6D" : "#60C000",
                 },
                 {
                     name: "Outflow",
-                    data: outflowData,
+                    data: TickerInflowOutflowData?.data?.map((entry) => {
+                        if (entry?.change?.changeUsd < 0) {
+                            return { x: new Date(entry?.date), y: entry?.change?.changeUsd };
+                        }
+                        return null;
+                    }).filter(entry => entry !== null),
                     color: colorMode === "light" ? "#F94144" : "#FF3535",
                 },
+                
             ]);
         }
     }, [TickerInflowOutflowData]);
@@ -95,18 +102,20 @@ const TickerETFNetInflowBox = () => {
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
-            x: {
-                formatter: function (val) {
-                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
-            },
-            y: {
-                formatter: function (changeUsd) {
-                    return millify(changeUsd, {
-                        precision: 0,
-                        locales: "en-US",
-                    });
-                }
+            followCursor: true,
+            intersect: true,
+            custom: function ({ dataPointIndex }) {
+                const entry = TickerInflowOutflowData?.data[dataPointIndex];
+                const flow = entry?.change?.changeUsd >= 0 ? "Inflow" : "Outflow";
+                let tooltipContent = '';
+                tooltipContent = `
+                    <div class="tooltip-parent">
+                       <div>${new Date(entry.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                       <div style="margin-top: 10px;">Price: <span style="font-weight: bold;">$${entry.price}</span></div>
+                       <div> ${flow}: <span style="font-weight: bold;"> ${millify(entry?.change?.changeUsd, { precision: 0, locales: "en-US" })}</span></div>
+                    </div>
+                    `;
+                return tooltipContent;
             },
             marker: {
                 show: true,
