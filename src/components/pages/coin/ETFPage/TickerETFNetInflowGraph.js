@@ -28,7 +28,11 @@ const TickerETFNetInflowBox = () => {
                     name: "Inflow",
                     data: TickerInflowOutflowData?.data?.map((entry) => {
                         if (entry?.change?.changeUsd >= 0) {
-                            return { x: new Date(entry?.date), y: entry?.change?.changeUsd };
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.change?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
@@ -38,13 +42,16 @@ const TickerETFNetInflowBox = () => {
                     name: "Outflow",
                     data: TickerInflowOutflowData?.data?.map((entry) => {
                         if (entry?.change?.changeUsd < 0) {
-                            return { x: new Date(entry?.date), y: entry?.change?.changeUsd };
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.change?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
                     color: colorMode === "light" ? "#F94144" : "#FF3535",
                 },
-                
             ]);
         }
     }, [TickerInflowOutflowData]);
@@ -86,7 +93,7 @@ const TickerETFNetInflowBox = () => {
             },
         },
         grid: {
-            show: false,
+            show: true,
         },
         legend: {
             fontSize: "12px",
@@ -104,21 +111,27 @@ const TickerETFNetInflowBox = () => {
             theme: colorMode === "light" ? "light" : "dark",
             followCursor: true,
             intersect: true,
-            custom: function ({ dataPointIndex }) {
-                const entry = TickerInflowOutflowData?.data[dataPointIndex];
-                const flow = entry?.change?.changeUsd >= 0 ? "Inflow" : "Outflow";
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
+                let marker = entry?.y >= 0 ? "/icons/Inflow_Icon.svg" : "/icons/Outflow_Icon.svg";
                 let tooltipContent = '';
                 tooltipContent = `
                     <div class="tooltip-parent">
-                       <div>${new Date(entry.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                       <div style="margin-top: 10px;">Price: <span style="font-weight: bold;">$${entry.price}</span></div>
-                       <div> ${flow}: <span style="font-weight: bold;"> ${millify(entry?.change?.changeUsd, { precision: 0, locales: "en-US" })}</span></div>
+                       <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                       <div><img src="/icons/Price_Marker.svg" style="width: 10px; height: 15px; display: inline-block; margin-right: 5px; padding-top: 5px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow}: <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span></div>
                     </div>
                     `;
                 return tooltipContent;
             },
             marker: {
                 show: true,
+            },
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: 5,
             },
         },
     };

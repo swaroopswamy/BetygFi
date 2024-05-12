@@ -132,40 +132,11 @@ const HeatmapGraphBox = () => {
         },
         plotOptions: {
             treemap: {
-                enableShades: false,
+                enableShades: true,
                 shadeIntensity: 0.5,
-                reverseNegativeShade: false,
-                /*                 useFillColorAsStroke: true,
-                
-                                colorScale: {
-                                    ranges: [
-                                        {
-                                            from: -Number.MAX_SAFE_INTEGER,
-                                            to: 0,
-                                            color: '#FF9F6A'
-                                        },
-                                        {
-                                            from: 0,
-                                            to: Number.MAX_SAFE_INTEGER,
-                                            color: 
-                                        }
-                                    ]
-                                }, */
-
+                reverseNegativeShade: true,
             }
         },
-        /*        fill: {
-                   type: ['solid'],
-                   colors: [function ({ value, seriesIndex, w, dataPointIndex }) {
-                       let item = w.config.series[seriesIndex].data[dataPointIndex];
-                       if (item?.[activeCategory + "Change"] > 0) {
-                           console.log(item?.[activeCategory + "Change"], "item");
-                           return '#9ADA8A';
-                       } else {
-                           return '#FF9F6A';
-                       }
-                   }]
-               } */
     };
     return (
         <Box
