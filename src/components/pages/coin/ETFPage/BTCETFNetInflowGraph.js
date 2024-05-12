@@ -28,7 +28,11 @@ const BTCETFNetInflowBox = () => {
                     name: "Inflow",
                     data: ETFInflowOutflowData?.data?.map((entry) => {
                         if (entry?.changeUsd >= 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
@@ -38,7 +42,11 @@ const BTCETFNetInflowBox = () => {
                     name: "Outflow",
                     data: ETFInflowOutflowData?.data?.map((entry) => {
                         if (entry?.changeUsd < 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
@@ -103,15 +111,15 @@ const BTCETFNetInflowBox = () => {
             theme: colorMode === "light" ? "light" : "dark",
             followCursor: true,
             intersect: true,
-            custom: function ({ dataPointIndex }) {
-                const entry = ETFInflowOutflowData?.data[dataPointIndex];
-                const flow = entry?.changeUsd >= 0 ? "Inflow" : "Outflow";
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
                 let tooltipContent = '';
                 tooltipContent = `
                     <div class="tooltip-parent">
-                       <div>${new Date(entry.date).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                       <div style="margin-top: 10px;">Price: <span style="font-weight: bold;">$${entry.price}</span></div>
-                       <div>${flow}: <span style="font-weight: bold;"> ${millify(entry.changeUsd, { precision: 0, locales: "en-US" })}</span></div>
+                       <div>${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                       <div style="margin-top: 10px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                       <div>${flow}: <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span></div>
                     </div>
                     `;
                 return tooltipContent;

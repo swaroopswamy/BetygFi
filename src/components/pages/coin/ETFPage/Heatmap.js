@@ -12,15 +12,28 @@ const HeatmapGraphBox = () => {
 
     useEffect(() => {
         if (ETFHeatMapData) {
-            setActiveData(ETFHeatMapData?.data?.map(item => (
-                {
-                    x: item.ticker,
-                    y: millify(item?.[activeCategory]),
-                    name: activeCategory
-                })));
+            if (activeCategory === 'volume') {
+                setActiveData(ETFHeatMapData?.data?.map(item => (
+                    {
+                        x: item.ticker,
+                        y: millify(item?.[activeCategory]),
+                        name: activeCategory,
+                        [activeCategory + "Change"]: item?.["priceChange"],
+                        fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                    })));
+            } else {
+                setActiveData(ETFHeatMapData?.data?.map(item => (
+                    {
+                        x: item.ticker,
+                        y: millify(item?.[activeCategory]),
+                        name: activeCategory,
+                        [activeCategory + "Change"]: item?.[activeCategory + "Change"],
+                        fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                    })));
+            }
+
         }
     }, [ETFHeatMapData, activeCategory]);
-
     const handleButtonClick = (category) => {
         setActiveCategory(category);
     };
@@ -48,10 +61,9 @@ const HeatmapGraphBox = () => {
                 show: true,
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
-                const item = w.config.series[seriesIndex].data[dataPointIndex];
+                let item = w.config.series[seriesIndex].data[dataPointIndex];
                 let tooltipContent = '';
-                const changeValue = ETFHeatMapData.data[dataPointIndex][item.name + 'Change'];
-                const PriceValue = ETFHeatMapData.data[dataPointIndex]['priceChange'];
+                let changeValue = item?.[item?.name + "Change"];
                 if (item.name === 'holding') {
                     tooltipContent = `
                         <div class="tooltip-parent">
@@ -73,7 +85,7 @@ const HeatmapGraphBox = () => {
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
                             <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
-                            <div>Price Change: <span style="font-weight: bold;">${PriceValue} %</span></div>
+                            <div>Price Change: <span style="font-weight: bold;">${changeValue} %</span></div>
                         </div>
                     `;
                 } else if (item.name === 'shares') {
@@ -123,24 +135,38 @@ const HeatmapGraphBox = () => {
                 enableShades: false,
                 shadeIntensity: 0.5,
                 reverseNegativeShade: false,
-                colorScale: {
-                    ranges: [
-                        {
-                            from: -Number.MAX_SAFE_INTEGER,
-                            to: 0,
-                            color: '#FF9F6A'
-                        },
-                        {
-                            from: 0,
-                            to: Number.MAX_SAFE_INTEGER,
-                            color: '#9ADA8A'
-                        }
-                    ]
-                }
-            }
-        }
-    };
+                /*                 useFillColorAsStroke: true,
+                
+                                colorScale: {
+                                    ranges: [
+                                        {
+                                            from: -Number.MAX_SAFE_INTEGER,
+                                            to: 0,
+                                            color: '#FF9F6A'
+                                        },
+                                        {
+                                            from: 0,
+                                            to: Number.MAX_SAFE_INTEGER,
+                                            color: 
+                                        }
+                                    ]
+                                }, */
 
+            }
+        },
+        /*        fill: {
+                   type: ['solid'],
+                   colors: [function ({ value, seriesIndex, w, dataPointIndex }) {
+                       let item = w.config.series[seriesIndex].data[dataPointIndex];
+                       if (item?.[activeCategory + "Change"] > 0) {
+                           console.log(item?.[activeCategory + "Change"], "item");
+                           return '#9ADA8A';
+                       } else {
+                           return '#FF9F6A';
+                       }
+                   }]
+               } */
+    };
     return (
         <Box
             width={"100%"}
@@ -207,6 +233,7 @@ const HeatmapGraphBox = () => {
             </Box>
             <Box>
                 <CustomChart
+                    className="etf-heatmap-custom-style"
                     type={"treemap"}
                     options={options}
                     series={[{ data: activeData }]}
