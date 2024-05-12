@@ -28,7 +28,11 @@ const BTCETFNetInflowBox = () => {
                     name: "Inflow",
                     data: ETFInflowOutflowData?.data?.map((entry) => {
                         if (entry?.changeUsd >= 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
@@ -38,7 +42,11 @@ const BTCETFNetInflowBox = () => {
                     name: "Outflow",
                     data: ETFInflowOutflowData?.data?.map((entry) => {
                         if (entry?.changeUsd < 0) {
-                            return [new Date(entry?.date), entry?.changeUsd];
+                            return {
+                                x: new Date(entry?.date),
+                                y: entry?.changeUsd,
+                                price: entry?.price
+                            };
                         }
                         return null;
                     }).filter(entry => entry !== null),
@@ -85,7 +93,7 @@ const BTCETFNetInflowBox = () => {
             },
         },
         grid: {
-            show: false,
+            show: true,
         },
         legend: {
             fontSize: "12px",
@@ -101,21 +109,29 @@ const BTCETFNetInflowBox = () => {
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
-            x: {
-                formatter: function (val) {
-                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
-            },
-            y: {
-                formatter: function (changeUsd) {
-                    return millify(changeUsd, {
-                        precision: 0,
-                        locales: "en-US",
-                    });
-                }
+            followCursor: true,
+            intersect: true,
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
+                let marker = entry?.y >= 0 ? "/icons/Inflow_Icon.svg" : "/icons/Outflow_Icon.svg";
+                let tooltipContent = '';
+                tooltipContent = `
+                    <div class="tooltip-parent">
+                       <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                       <div><img src="/icons/Price_Marker.svg" style="width: 10px; height: 15px; display: inline-block; margin-right: 5px; padding-top: 5px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow}: <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span></div>
+                    </div>
+                    `;
+                return tooltipContent;
             },
             marker: {
                 show: true,
+            },
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: 3, 
             },
         },
     };

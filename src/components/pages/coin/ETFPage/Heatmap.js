@@ -7,24 +7,36 @@ import millify from "millify";
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
     const ETFHeatMapData = useSelector((state) => state?.coinData?.ETFHeatMapData);
-
-    const [holdingData, setHoldingData] = useState([]);
-    const [priceData, setPriceData] = useState([]);
-    const [volumeData, setVolumeData] = useState([]);
-    const [sharesData, setSharesData] = useState([]);
-    //const [aumData, setAumData] = useState([]);
-    const [marketCapData, setMarketCapData] = useState([]);
+    const [activeData, setActiveData] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('holding');
 
     useEffect(() => {
         if (ETFHeatMapData) {
-            setHoldingData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.holding) })));
-            setPriceData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.price) })));
-            setVolumeData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.volume) })));
-            setSharesData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.shares) })));
-            //setAumData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.aum) })));
-            setMarketCapData(ETFHeatMapData?.data?.map(item => ({ x: item.ticker, y: millify(item.marketCap) })));
+            if (activeCategory === 'volume') {
+                setActiveData(ETFHeatMapData?.data?.map(item => (
+                    {
+                        x: item.ticker,
+                        y: millify(item?.[activeCategory]),
+                        name: activeCategory,
+                        [activeCategory + "Change"]: item?.["priceChange"],
+                        fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                    })));
+            } else {
+                setActiveData(ETFHeatMapData?.data?.map(item => (
+                    {
+                        x: item.ticker,
+                        y: millify(item?.[activeCategory]),
+                        name: activeCategory,
+                        [activeCategory + "Change"]: item?.[activeCategory + "Change"],
+                        fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                    })));
+            }
+
         }
-    }, [ETFHeatMapData]);
+    }, [ETFHeatMapData, activeCategory]);
+    const handleButtonClick = (category) => {
+        setActiveCategory(category);
+    };
 
     const options = {
         legend: {
@@ -48,6 +60,61 @@ const HeatmapGraphBox = () => {
             marker: {
                 show: true,
             },
+            custom: function ({ seriesIndex, dataPointIndex, w }) {
+                let item = w.config.series[seriesIndex].data[dataPointIndex];
+                let tooltipContent = '';
+                let changeValue = item?.[item?.name + "Change"];
+                if (item.name === 'holding') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin: <span style="font-weight: bold;">${item.y} BTC</span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin (1d%): <span style="font-weight: bold;">${changeValue} BTC</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'price') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: <span style="font-weight: bold;">${changeValue} %</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'volume') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
+                            <div>Price Change: <span style="font-weight: bold;">${changeValue} %</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'shares') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Outstanding: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'aum') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                } else if (item.name === 'marketCap') {
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                            <div style="font-weight: bold;">${item.x}</div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                        </div>
+                    `;
+                }
+                return tooltipContent;
+            }
         },
         dataLabels: {
             enabled: true,
@@ -62,119 +129,15 @@ const HeatmapGraphBox = () => {
             offsetX: 4,
             offsetY: -4,
             allowOverlap: true,
-        },        
+        },
         plotOptions: {
             treemap: {
-                enableShades: false,
+                enableShades: true,
                 shadeIntensity: 0.5,
-                reverseNegativeShade: false,
-                colorScale: {
-                    ranges: [
-                        {
-                            from: -Number.MAX_SAFE_INTEGER,
-                            to: 0,
-                            color: '#FF9F6A'
-                        },
-                        {
-                            from: 0,
-                            to: Number.MAX_SAFE_INTEGER,
-                            color: '#9ADA8A'
-                        }
-                    ]
-                }
+                reverseNegativeShade: true,
             }
-        }
+        },
     };
-
-    const [activeCategory, setActiveCategory] = useState('holding');
-    const [buttonStyles, setButtonStyles] = useState({
-        holding: {
-            bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-            color: colorMode === 'light' ? "#FFFFFF" : "#191919"
-        },
-        price: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        volume: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        shares: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        },
-        marketCap: {
-            bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-            color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-        }
-    });
-
-    useEffect(() => {
-        setButtonStyles({
-            holding: {
-                bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-                color: colorMode === 'light' ? "#FFFFFF" : "#191919"
-            },
-            price: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            volume: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            shares: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            },
-            marketCap: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            }
-        });
-    }, [colorMode]);
-
-
-    let activeData;
-    switch (activeCategory) {
-        case 'holding':
-            activeData = holdingData;
-            break;
-        case 'price':
-            activeData = priceData;
-            break;
-        case 'volume':
-            activeData = volumeData;
-            break;
-        case 'shares':
-            activeData = sharesData;
-            break;
-        // case 'aum':
-        //     activeData = aumData;
-        //     break;
-        case 'marketCap':
-            activeData = marketCapData;
-            break;
-        default:
-            activeData = holdingData;
-    }
-
-    const handleButtonClick = (category) => {
-        setActiveCategory(category);
-        setButtonStyles(prevStyles => ({
-            ...prevStyles,
-            [category]: {
-                bg: colorMode === 'light' ? "#313131" : "#FFFFFF",
-                color: colorMode === 'light' ? "#FFFFFF" : "#313131"
-            },
-            [activeCategory]: {
-                bg: colorMode === 'light' ? "#F0F0F5" : "#191919",
-                color: colorMode === 'light' ? "#191919" : "#FFFFFF"
-            }
-        }));
-    };
-
     return (
         <Box
             width={"100%"}
@@ -188,8 +151,7 @@ const HeatmapGraphBox = () => {
                 <Box layerStyle={"flexCenter"} mb={"5px"}>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.holding.bg}
-                        color={buttonStyles.holding.color}
+                        className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('holding')}>
@@ -197,8 +159,7 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.price.bg}
-                        color={buttonStyles.price.color}
+                        className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('price')}>
@@ -206,8 +167,7 @@ const HeatmapGraphBox = () => {
                     </Button>
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.volume.bg}
-                        color={buttonStyles.volume.color}
+                        className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('volume')}>
@@ -218,20 +178,23 @@ const HeatmapGraphBox = () => {
                     </Button> */}
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.shares.bg}
-                        color={buttonStyles.shares.color}
+                        className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>
-                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"} onClick={() => handleButtonClick('aum')}>
-                        AUM
-                    </Button> */}
                     <Button
                         variant={"modalButton"}
-                        bg={buttonStyles.marketCap.bg}
-                        color={buttonStyles.marketCap.color}
+                        className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={"1px solid #E0E0E0"}
+                        onClick={() => handleButtonClick('aum')}>
+                        AUM
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
                         onClick={() => handleButtonClick('marketCap')}>
@@ -241,6 +204,7 @@ const HeatmapGraphBox = () => {
             </Box>
             <Box>
                 <CustomChart
+                    className="etf-heatmap-custom-style"
                     type={"treemap"}
                     options={options}
                     series={[{ data: activeData }]}
@@ -250,6 +214,5 @@ const HeatmapGraphBox = () => {
         </Box>
     );
 };
-
 
 export default HeatmapGraphBox; 

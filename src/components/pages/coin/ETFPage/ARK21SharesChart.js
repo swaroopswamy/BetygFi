@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Text, Button, useColorMode } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
 import { useSelector } from "react-redux";
@@ -8,107 +8,6 @@ const ARK21Shares = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
     const [selectedRange, setSelectedRange] = useState("24h");
-
-    const [buttonStyles, setButtonStyles] = useState({
-        "24h": {
-            bg: colorMode === "light" ? "#313131" : "#FFFFFF",
-            color: colorMode === "light" ? "#FFFFFF" : "#191919"
-        },
-        "7d": {
-            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF"
-        },
-        "14d": {
-            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF"
-        },
-        "30d": {
-            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF"
-        },
-        "1yr": {
-            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF"
-        },
-        Max: {
-            bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-            color: colorMode === "light" ? "#191919" : "#FFFFFF"
-        }
-    });
-
-    useEffect(() => {
-        setButtonStyles({
-            ...buttonStyles,
-            "24h": {
-                ...buttonStyles["24h"],
-                bg: colorMode === "light" ? "#313131" : "#FFFFFF",
-                color: colorMode === "light" ? "#FFFFFF" : "#191919"
-            },
-            "7d": {
-                ...buttonStyles["7d"],
-                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-                color: colorMode === "light" ? "#191919" : "#FFFFFF"
-            },
-            "14d": {
-                ...buttonStyles["14d"],
-                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-                color: colorMode === "light" ? "#191919" : "#FFFFFF"
-            },
-            "30d": {
-                ...buttonStyles["30d"],
-                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-                color: colorMode === "light" ? "#191919" : "#FFFFFF"
-            },
-            "1yr": {
-                ...buttonStyles["1yr"],
-                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-                color: colorMode === "light" ? "#191919" : "#FFFFFF"
-            },
-            "Max": {
-                ...buttonStyles["Max"],
-                bg: colorMode === "light" ? "#FFFFFF" : "#282828",
-                color: colorMode === "light" ? "#191919" : "#FFFFFF"
-            },
-        });
-    }, [colorMode]);
-
-    const options = {
-        chart: {
-            type: 'candlestick',
-            toolbar: {
-                show: false,
-            },
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: {
-                style: {
-                    colors: colorMode === "light" ? "#16171B" : "#FFF",
-                    fontSize: "12px",
-                    fontWeight: 300,
-                },
-            },
-        },
-        yaxis: {
-            labels: {
-                formatter: function (value) {
-                    return `$${millify(value, { precision: 0 })}b`;
-                },
-
-                style: {
-                    colors: colorMode === "light" ? "#16171B" : "#FFF",
-                    fontSize: "12px",
-                    fontWeight: 300,
-                },
-            },
-        },
-        grid: {
-            show: false,
-        },
-        tooltip: {
-            theme: colorMode === "light" ? "light" : "dark",
-        },
-    };
 
     const getFilteredData = (range) => {
         const currentDate = new Date();
@@ -130,6 +29,47 @@ const ARK21Shares = () => {
         }
     };
 
+    const handleRangeChange = (range) => {
+        setSelectedRange(range);
+    };
+
+    const options = {
+        chart: {
+            type: 'candlestick',
+            toolbar: {
+                show: false,
+            },
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                style: {
+                    colors: colorMode === "light" ? "#16171B" : "#FFF",
+                    fontSize: "12px",
+                    fontWeight: 300,
+                },
+            },
+        },
+        yaxis: {
+            labels: {
+                formatter: function (value) {
+                    return `$${millify(value, { precision: 0, locales: "en-US" })}`;
+                },
+                style: {
+                    colors: colorMode === "light" ? "#16171B" : "#FFF",
+                    fontSize: "12px",
+                    fontWeight: 300,
+                },
+            },
+        },
+        grid: {
+            show: false,
+        },
+        tooltip: {
+            theme: colorMode === "light" ? "light" : "dark",
+        },
+    };
+
     const series = [{
         data: getFilteredData(selectedRange)?.map(item => ({
             x: new Date(item.date).getTime(),
@@ -137,21 +77,6 @@ const ARK21Shares = () => {
         }))
     }];
 
-    const handleRangeChange = (range) => {
-        setSelectedRange(range);
-
-        const updatedButtonStyles = { ...buttonStyles };
-        for (let key in updatedButtonStyles) {
-            if (key === range) {
-                updatedButtonStyles[key].bg = colorMode === "light" ? "#313131" : "#FFFFFF";
-                updatedButtonStyles[key].color = colorMode === "light" ? "#FFFFFF" : "#313131";
-            } else {
-                updatedButtonStyles[key].bg = colorMode === "light" ? "#FFFFFF" : "#282828";
-                updatedButtonStyles[key].color = colorMode === "light" ? "#191919" : "#FFFFFF";
-            }
-        }
-        setButtonStyles(updatedButtonStyles);
-    };
     return (
         <Box
             width={"100%"}
@@ -165,19 +90,60 @@ const ARK21Shares = () => {
                     <Text variant={"contentHeading4"} fontSize={{ base: "14px", md: "20px" }} lineHeight={"20px"}>ARK 21Shares Price Chart</Text>
                 </Box>
                 <Box layerStyle={"flexCenter"}>
-                    {Object.entries(buttonStyles).map(([range, styles]) => (
-                        <Button
-                            key={range}
-                            variant={"modalButton"}
-                            bg={styles.bg}
-                            color={styles.color}
-                            height={"28px"}
-                            border={"1px solid #C6C6C6"}
-                            padding={{ base: "0px" }}
-                            onClick={() => handleRangeChange(range)}>
-                            {range}
-                        </Button>
-                    ))}
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '24h' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('24h')}>
+                        24h
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '7d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('7d')}>
+                        7d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '14d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('14d')}>
+                        14d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '30d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('30d')}>
+                        30d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '1yr' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('1yr')}>
+                        1yr
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === 'Max' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"28px"}
+                        border={"1px solid #C6C6C6"}
+                        padding={{ base: "0px" }}
+                        onClick={() => handleRangeChange('Max')}>
+                        Max
+                    </Button>
                 </Box>
             </Box>
             <CustomChart
