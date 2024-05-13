@@ -11,13 +11,21 @@ const BTCETFNetInflowBox = () => {
     const [series, setSeries] = useState([
         {
             name: "Inflow",
+            type: "bar",
             data: [],
-            color: colorMode === "light" ? "#90BE6D" : "#60C000",
+            color: colorMode === "light" ? "#245F00" : "#60C000",
         },
         {
             name: "Outflow",
+            type: "bar",
             data: [],
-            color: colorMode === "light" ? "#F94144" : "#FF3535",
+            color: colorMode === "light" ? "#C50606" : "#FF3535",
+        },
+        {
+            name: "Price",
+            type: "line",
+            data: [],
+            color: colorMode === "light" ? "#B87A00" : "#FF0000",
         },
     ]);
 
@@ -36,7 +44,7 @@ const BTCETFNetInflowBox = () => {
                         }
                         return null;
                     }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#90BE6D" : "#60C000",
+                    color: colorMode === "light" ? "#245F00" : "#60C000",
                 },
                 {
                     name: "Outflow",
@@ -50,7 +58,17 @@ const BTCETFNetInflowBox = () => {
                         }
                         return null;
                     }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#F94144" : "#FF3535",
+                    color: colorMode === "light" ? "#C50606" : "#FF3535",
+                },
+                {
+                    name: "Price",
+                    data: ETFInflowOutflowData?.data?.map((entry) => {
+                        return {
+                            x: new Date(entry?.date),
+                            y: entry?.price,
+                        };
+                    }),
+                    color: colorMode === 'light' ? "#B87A00" : "#FF0000",
                 },
             ]);
         }
@@ -59,11 +77,12 @@ const BTCETFNetInflowBox = () => {
     const options = {
         chart: {
             type: "bar",
+            stacked: false,
             toolbar: {
                 show: false,
             },
         },
-        colors: ["#90BE6D", "#F94144"],
+        colors: ["#245F00", "#60C000", "#C50606", "#FF3535", "#B87A00", "#FF0000"],
         dataLabels: {
             enabled: false,
         },
@@ -75,6 +94,12 @@ const BTCETFNetInflowBox = () => {
                     fontSize: "12px",
                     fontWeight: 300,
                 },
+            },
+            tooltip: {
+                enabled: true,
+                formatter: function (val) {
+                    return new Date(val).toUTCString();
+                }
             },
         },
         yaxis: {
@@ -90,6 +115,12 @@ const BTCETFNetInflowBox = () => {
                     fontSize: "12px",
                     fontWeight: 300,
                 },
+            },
+            tooltip: {
+                enabled: true,
+                formatter: function (val) {
+                    return new Date(val).toUTCString();
+                }
             },
         },
         grid: {
@@ -109,8 +140,7 @@ const BTCETFNetInflowBox = () => {
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
-            followCursor: true,
-            intersect: true,
+            shared: false,
             custom: function ({ dataPointIndex, seriesIndex, w }) {
                 let entry = w.config.series[seriesIndex].data[dataPointIndex];
                 let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
@@ -129,11 +159,7 @@ const BTCETFNetInflowBox = () => {
                 show: true,
             },
         },
-        plotOptions: {
-            bar: {
-                columnWidth: 3, 
-            },
-        },
+
     };
 
     return (

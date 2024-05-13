@@ -132,9 +132,9 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                         {item?.ticker === undefined ? "-" : item?.ticker}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"} textAlign={"center"}>
+                <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
-                        ARK Invest
+                    {item?.issuer === undefined ? "-" : item?.issuer}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={3} whiteSpace={"nowrap"}>

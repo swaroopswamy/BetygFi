@@ -12,12 +12,12 @@ const TickerETFNetInflowBox = () => {
         {
             name: "Inflow",
             data: [],
-            color: colorMode === "light" ? "#90BE6D" : "#60C000",
+            color: colorMode === "light" ? "#245F00" : "#60C000",
         },
         {
             name: "Outflow",
             data: [],
-            color: colorMode === "light" ? "#F94144" : "#FF3535",
+            color: colorMode === "light" ? "#C50606" : "#FF3535",
         },
     ]);
 
@@ -29,28 +29,28 @@ const TickerETFNetInflowBox = () => {
                     data: TickerInflowOutflowData?.data?.map((entry) => {
                         if (entry?.change?.changeUsd >= 0) {
                             return {
-                                x: new Date(entry?.date),
+                                x: new Date(entry?.date).getTime(),
                                 y: entry?.change?.changeUsd,
                                 price: entry?.price
                             };
                         }
                         return null;
                     }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#90BE6D" : "#60C000",
+                    color: colorMode === "light" ? "#245F00" : "#60C000",
                 },
                 {
                     name: "Outflow",
                     data: TickerInflowOutflowData?.data?.map((entry) => {
                         if (entry?.change?.changeUsd < 0) {
                             return {
-                                x: new Date(entry?.date),
+                                x: new Date(entry?.date).getTime(),
                                 y: entry?.change?.changeUsd,
                                 price: entry?.price
                             };
                         }
                         return null;
                     }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#F94144" : "#FF3535",
+                    color: colorMode === "light" ? "#C50606" : "#FF3535",
                 },
             ]);
         }
@@ -63,7 +63,7 @@ const TickerETFNetInflowBox = () => {
                 show: false,
             },
         },
-        colors: ["#90BE6D", "#F94144"],
+        colors: ["#245F00", "#60C000", "#C50606", "#FF3535"],
         dataLabels: {
             enabled: false,
         },
@@ -75,6 +75,12 @@ const TickerETFNetInflowBox = () => {
                     fontSize: "12px",
                     fontWeight: 300,
                 },
+            },
+            tooltip: {
+                enabled: true,
+                formatter: function (val) {
+                    return new Date(val).toUTCString();
+                }
             },
         },
         yaxis: {
@@ -90,6 +96,12 @@ const TickerETFNetInflowBox = () => {
                     fontSize: "12px",
                     fontWeight: 300,
                 },
+            },
+            tooltip: {
+                enabled: true,
+                formatter: function (val) {
+                    return new Date(val).toUTCString();
+                }
             },
         },
         grid: {

@@ -31,7 +31,6 @@ const HeatmapGraphBox = () => {
                         fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
                     })));
             }
-
         }
     }, [ETFHeatMapData, activeCategory]);
     const handleButtonClick = (category) => {
@@ -47,16 +46,10 @@ const HeatmapGraphBox = () => {
             toolbar: {
                 show: false
             },
-            height: "100%",
         },
         tooltip: {
             enabled: true,
             theme: colorMode,
-            x: {
-                formatter: function (val) {
-                    return new Date(val).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                }
-            },
             marker: {
                 show: true,
             },
@@ -124,7 +117,7 @@ const HeatmapGraphBox = () => {
                 colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text, op.value];
+                return [text, "$" + (op.value)];
             },
             offsetX: 4,
             offsetY: -4,
@@ -135,6 +128,12 @@ const HeatmapGraphBox = () => {
                 enableShades: true,
                 shadeIntensity: 0.5,
                 reverseNegativeShade: true,
+                dataLabels: {
+                    format: "scale",
+                },
+                colorScale: {
+                    inverse: false,
+                },
             }
         },
     };
