@@ -128,15 +128,13 @@ const HeatmapGraphBox = () => {
             style: {
                 fontSize: '16px',
                 fontWeight: 700,
-                fontFamily:"Inter",
+                fontFamily: "Inter",
                 colors: ["#191919"],
             },
             formatter: function (text, op) {
                 let item = op.w.config.series[op.seriesIndex].data[op.dataPointIndex];
                 if (item.name === "holding" || item.name === "shares") {
-                    return [text,
-                        (millify(op.value, { precision: 2, locales: "en-US" }))
-                    ];
+                    return [text, (millify(op.value, { precision: 2, locales: "en-US" }))];
                 } else {
                     return [text, "$" + (millify(op.value, { precision: 2, locales: "en-US" }))];
                 }

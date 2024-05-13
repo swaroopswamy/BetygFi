@@ -114,7 +114,6 @@ const BTCETFNetInflowBox = () => {
                     return new Date(val).toUTCString();
                 }
             },
-
         },
         yaxis: [
             {
@@ -149,11 +148,6 @@ const BTCETFNetInflowBox = () => {
                 },
                 forceNiceScale: true,
             },
-            /*  {
-                 show:false,
- 
-             }, */
-
         ],
         grid: {
             show: true,
@@ -177,7 +171,6 @@ const BTCETFNetInflowBox = () => {
                 } else {
                     return [seriesName];
                 }
-
             }
         },
         tooltip: {
@@ -201,12 +194,17 @@ const BTCETFNetInflowBox = () => {
                 show: true,
             },
         },
+        plotOptions: {
+            bar: {
+                columnWidth: "3px", 
+                horizontal: false,
+                endingShape: 'flat',
+            },
+        },
         stroke: {
             curve: 'smooth',
             width: [2, 2, 3]
         },
-
-
     };
 
     return (
