@@ -29,6 +29,13 @@ const ARK21Shares = () => {
         }
     };
 
+    const series = [{
+        data: getFilteredData(selectedRange)?.map(item => ({
+            x: new Date(item.date).getTime(),
+            y: [item.open.toFixed(2), item.high.toFixed(2), item.low.toFixed(2), item.close.toFixed(2)]
+        }))
+    }];
+
     const handleRangeChange = (range) => {
         setSelectedRange(range);
     };
@@ -61,21 +68,33 @@ const ARK21Shares = () => {
                     fontWeight: 300,
                 },
             },
+            tooltip: {
+                enabled: true,
+                formatter: function (val) {
+                    return new Date(val).toUTCString();
+                }
+            },
         },
         grid: {
             show: false,
         },
         tooltip: {
             theme: colorMode === "light" ? "light" : "dark",
+            custom: function ({ seriesIndex, dataPointIndex, w }) {
+                let item = w.config.series[seriesIndex].data[dataPointIndex];
+                let tooltipContent = `
+                    <div class="tooltip-parent">
+                        <div>${new Date(item.x).toUTCString()}</div>
+                        <div class="First-Data">Open: <span style="font-weight: bold;">$${item.y[0]}</span></div>
+                        <div class="First-Data">High: <span style="font-weight: bold;">$${item.y[1]}</span></div>
+                        <div class="First-Data">Low: <span style="font-weight: bold;">$${item.y[2]}</span></div>
+                        <div class="First-Data">Close: <span style="font-weight: bold;">$${item.y[3]}</span></div>
+                    </div>
+                `;
+                return tooltipContent;
+            },
         },
     };
-
-    const series = [{
-        data: getFilteredData(selectedRange)?.map(item => ({
-            x: new Date(item.date).getTime(),
-            y: [item.open, item.high, item.low, item.close]
-        }))
-    }];
 
     return (
         <Box
@@ -87,7 +106,7 @@ const ARK21Shares = () => {
         >
             <Box layerStyle={"spaceBetween"}>
                 <Box>
-                    <Text variant={"contentHeading4"} fontSize={{ base: "14px", md: "20px" }} lineHeight={"20px"}>ARK 21Shares Price Chart</Text>
+                    <Text variant={"contentHeading4"} fontSize={{ base: "14px", md: "20px" }} lineHeight={"25px"}>{ETFChartData?.data?.name} Price Chart</Text>
                 </Box>
                 <Box layerStyle={"flexCenter"}>
                     <Button
