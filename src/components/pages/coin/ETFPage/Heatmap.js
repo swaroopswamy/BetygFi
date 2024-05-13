@@ -16,7 +16,7 @@ const HeatmapGraphBox = () => {
                 setActiveData(ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
-                        y: millify(item?.[activeCategory]),
+                        y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.["priceChange"],
                         fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
@@ -25,7 +25,7 @@ const HeatmapGraphBox = () => {
                 setActiveData(ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
-                        y: millify(item?.[activeCategory]),
+                        y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.[activeCategory + "Change"],
                         fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
@@ -61,48 +61,62 @@ const HeatmapGraphBox = () => {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin: <span style="font-weight: bold;">${item.y} BTC</span></div>
-                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin (1d%): <span style="font-weight: bold;">${changeValue} BTC</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin: <span style="font-weight: bold;">
+                            ${millify(item.y, { precision: 2, locales: "en-US" })} 
+                            BTC</span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Bitcoin (1d%): <span style="font-weight: bold;">
+                            ${millify(changeValue, { precision: 2, locales: "en-US" })}
+                             BTC</span></div>
                         </div>
                     `;
                 } else if (item.name === 'price') {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
-                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: <span style="font-weight: bold;">${changeValue} %</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$
+                            ${millify(item.y, { precision: 2, locales: "en-US" })}
+                            </span></div>
+                            <div>${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Change: <span style="font-weight: bold;">
+                            ${millify(changeValue, { precision: 2, locales: "en-US" })}
+                             %</span></div>
                         </div>
                     `;
                 } else if (item.name === 'volume') {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$${item.y}</span></div>
-                            <div>Price Change: <span style="font-weight: bold;">${changeValue} %</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">$
+                            ${millify(item.y, { precision: 2, locales: "en-US" })}
+                            </span></div>
+                            <div>Price Change: <span style="font-weight: bold;">${millify(changeValue, { precision: 2, locales: "en-US" })}
+                            %</span></div>
                         </div>
                     `;
                 } else if (item.name === 'shares') {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Outstanding: <span style="font-weight: bold;">${item.y}</span></div>
-                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)} Outstanding: <span style="font-weight: bold;">${millify(item.y, { precision: 2, locales: "en-US" })}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${millify(changeValue, { precision: 2, locales: "en-US" })}
+                            </span></div>
                         </div>
                     `;
                 } else if (item.name === 'aum') {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
-                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${millify(item.y, { precision: 2, locales: "en-US" })}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${millify(changeValue, { precision: 2, locales: "en-US" })}
+                            </span></div>
                         </div>
                     `;
                 } else if (item.name === 'marketCap') {
                     tooltipContent = `
                         <div class="tooltip-parent">
                             <div style="font-weight: bold;">${item.x}</div>
-                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${item.y}</span></div>
-                            <div> Change: <span style="font-weight: bold;">${changeValue}</span></div>
+                            <div class="First-Data">${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: <span style="font-weight: bold;">${millify(item.y, { precision: 2, locales: "en-US" })}</span></div>
+                            <div> Change: <span style="font-weight: bold;">${millify(changeValue, { precision: 2, locales: "en-US" })}
+                            </span></div>
                         </div>
                     `;
                 }
@@ -113,11 +127,19 @@ const HeatmapGraphBox = () => {
             enabled: true,
             style: {
                 fontSize: '16px',
-                fontWeight: 500,
+                fontWeight: 700,
+                fontFamily:"Inter",
                 colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text, "$" + (op.value)];
+                let item = op.w.config.series[op.seriesIndex].data[op.dataPointIndex];
+                if (item.name === "holding" || item.name === "shares") {
+                    return [text,
+                        (millify(op.value, { precision: 2, locales: "en-US" }))
+                    ];
+                } else {
+                    return [text, "$" + (millify(op.value, { precision: 2, locales: "en-US" }))];
+                }
             },
             offsetX: 4,
             offsetY: -4,
