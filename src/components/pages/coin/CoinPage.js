@@ -131,7 +131,7 @@ const CoinPage = () => {
     };
 
     useEffect(() => {
-        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData.data.length > 0) {
+        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData?.data?.length > 0) {
             setCryptoCategories([...cryptoCategoriesData.data].map((cryptoData, index) => {
                 return {
                     id: cryptoData + '_' + index + 1,

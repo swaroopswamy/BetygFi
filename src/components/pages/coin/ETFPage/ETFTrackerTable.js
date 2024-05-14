@@ -41,9 +41,7 @@ const ETFTracker = () => {
             width={"100%"}
             height={"100%"}
             borderRadius={"8px"}
-            _light={{ bg: "#FFFFFF" }}
-            _dark={{ bg: "#282828" }}
-            boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
+            bg={colorMode === 'light' ? "#FFFFFF" : "#282828"}
         >
             <Box layerStyle={"flexSpaceBetween"}
                 p={"15px"}
@@ -136,7 +134,7 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 </Td>
                 <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
-                        ARK Invest
+                    {item?.issuer === undefined ? "-" : item?.issuer}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={3} whiteSpace={"nowrap"}>
@@ -144,34 +142,34 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                         {item?.etfName === undefined ? "-" : item?.etfName}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={4} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={4} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         {item?.type === undefined ? "-" : item?.type}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={5} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={5} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         ${item?.share.toFixed(2) === undefined ? "-" : item?.share.toFixed(2)}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={6} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={6} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         ${millify(item?.shareOutstanding === undefined ? "-" : item?.shareOutstanding, { precision: 2 })}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={7} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                    {item?.custodian === undefined ? "-" : item?.custodian}
+                        {item?.custodian === undefined ? "-" : item?.custodian}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                        ${millify(item?.volumeUsd === undefined ? "-" : item?.volumeUsd, { precision: 0 })}
+                        ${millify(item?.volumeUsd === undefined ? "-" : item?.volumeUsd, { precision: 2 })}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={9} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={9} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                        ${item?.volumeBtc === undefined ? "-" : item?.volumeBtc}
+                        {millify(item?.volumeBtc === undefined ? "-" : item?.volumeBtc, { precision: 2 })}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={10} whiteSpace={"nowrap"}>
@@ -184,6 +182,6 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
             </Tr>
         );
     } else {
-        return null; 
+        return null;
     }
 };
