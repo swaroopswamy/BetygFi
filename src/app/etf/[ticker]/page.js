@@ -54,31 +54,31 @@ const BTCETFDetailsPage = ({ params }) => {
             pb={{ base: "100px", lg: "20px" }}
         >
             <BreadCrumb
-                text={`Defi Markets/BTC ETF Tracker/${ticker}`}
+                text={`BTC ETF Tracker/${ticker}`}
                 link={"/etf"}
             ></BreadCrumb>
             <Box mt={"10px"}>
                 <Text variant={"contentHeading"} fontWeight={500} lineHeight={"20px"} letterSpacing={"0.1em"}>{ticker} ETF</Text>
                 <Text variant={"h3"} lineHeight={"21px"} mt={"15px"} letterSpacing={"0.1em"}>ARK Invest</Text>
             </Box>
-            <Box width={"100%"} display={"flex"}>
-                <Box width={"68%"} mr={"0.8rem"}>
+            <Box width={"100%"} display={{ md: "flex" }}>
+                <Box width={{ base: "100%", md: "68%" }} mr={{ md: "0.8rem" }}>
                     <Box>
                         <ARKInvest />
                     </Box>
                     <Box mt={"0.8rem"}>
                         <ARK21Shares />
                     </Box>
-                    <Box mt={"0.8rem"}>
-                        <Box padding={"20px"} bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} borderTopRadius={"8px"}>
+                    <Box mt={{ base: "2.5rem", md: "0.8rem" }}>
+                        <Box padding={{ base: "10px", md: "20px" }} bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} borderTopRadius={"8px"}>
                             <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>Total {ticker} Spot ETF Net Inflow (USD)</Text>
                         </Box>
                         <TickerETFNetInflowBox />
                     </Box>
 
                 </Box>
-                <Box width={"32%"}>
-                    <Box mt={"-35px"}>
+                <Box width={{ base: "100%", md: "32%" }}>
+                    <Box mt={{ base: "25px", md: "-35px" }}>
                         <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"} mb={"15px"}>Key Stats</Text>
                         <KeyStats />
                     </Box>
