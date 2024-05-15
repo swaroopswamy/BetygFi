@@ -3,7 +3,7 @@ import {
 	getDefiUsersTableData, getDefiHotContractsTableData,
 	getDefiAssetCompositionTableData, getDefiFeeRevenueData,
 	getDefiGovernanceTableData, getDefiTvlBorrowData,
-	getDefiGraphData
+	getDefiGraphData, getDefiOverviewData,
 } from "@services/defiDashboardService";
 
 export const fetchDefiUsersTableData = createAsyncThunk('getDefiUsersTableData', async (payload, { rejectWithValue }) => {
@@ -39,6 +39,11 @@ export const fetchDefiTvlBorrowData = createAsyncThunk('getDefiTvlBorrowData', a
 
 export const fetchDefiGraphData = createAsyncThunk("fetchDefiGraphData", async (payload, { rejectWithValue }) => {
 	const { data } = await getDefiGraphData(payload, rejectWithValue);
+	return data;
+});
+
+export const fetchDefiOverviewData = createAsyncThunk("getDefiOverviewData", async (payload, { rejectWithValue }) => {
+	const { data } = await getDefiOverviewData(payload, rejectWithValue);
 	return data;
 });
 
@@ -82,6 +87,12 @@ const DefiDashboardDataSlice = createSlice({
 			isSuccess: false,
 		},
 		DefiGraphData: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		DefiOverviewData: {
 			data: null,
 			isLoading: false,
 			isError: false,
@@ -215,6 +226,24 @@ const DefiDashboardDataSlice = createSlice({
 			state.DefiGraphData.isError = true;
 			state.DefiGraphData.isLoading = false;
 			state.DefiGraphData.data = action.payload;
+		});
+		builder.addCase(fetchDefiOverviewData.fulfilled, (state, action) => {
+			state.DefiOverviewData.data = action.payload;
+			state.DefiOverviewData.isLoading = false;
+			state.DefiOverviewData.isSuccess = true;
+			state.DefiOverviewData.isError = false;
+		});
+		builder.addCase(fetchDefiOverviewData.pending, (state, action) => {
+			state.DefiOverviewData.isLoading = true;
+			state.DefiOverviewData.isError = false;
+			state.DefiOverviewData.isSuccess = false;
+			state.DefiOverviewData.data = action.payload;
+		});
+		builder.addCase(fetchDefiOverviewData.rejected, (state, action) => {
+			state.DefiOverviewData.isLoading = false;
+			state.DefiOverviewData.isSuccess = false;
+			state.DefiOverviewData.isError = true;
+			state.DefiOverviewData.data = action.payload;
 		});
 	},
 	reducers: {

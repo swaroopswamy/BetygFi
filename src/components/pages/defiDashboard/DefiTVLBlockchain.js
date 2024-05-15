@@ -1,9 +1,21 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
+import { useSelector } from "react-redux";
+import millify from "millify";
 
 const DeFiTVLByBlockchainBox = () => {
     const { colorMode } = useColorMode();
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
+
+    const series = [{
+        data: DefiOverviewData?.data?.tvlByChain.map(item => ({
+            x: item._id,
+            y: item.totalTvl,
+            fillColor: item.totalTvl >= 0 ? '#9ADA8A' : '#FF6161'
+        }))
+    }];
+
     const options = {
         legend: {
             show: false
@@ -14,99 +26,40 @@ const DeFiTVLByBlockchainBox = () => {
                 show: false
             },
         },
+        tooltip: {
+            enabled: true,
+            theme: colorMode,
+            y: {
+                formatter: (value) => `$${millify(value, { precision: 2, locales: "en-US" })}`
+            }
+        },
         dataLabels: {
             enabled: true,
             style: {
                 fontSize: '16px',
-                fontWeight: 500,
-                color: "#191919"
+                fontWeight: 600,
+                colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text, op.value];
+                return [text,(millify(op.value, { precision: 2, locales: "en-US" }))];
             },
-            offsetY: -4
-        },
-        tooltip: {
-            enabled: true,
-            theme: colorMode
+            allowOverlap: true,
+            offsetY: -3,
         },
         plotOptions: {
             treemap: {
                 enableShades: true,
                 shadeIntensity: 0.5,
                 reverseNegativeShade: true,
+                dataLabels: {
+                    format: "scale",
+                },
                 colorScale: {
-                    ranges: [
-                        {
-                            from: -Infinity,
-                            to: 0,
-                            color: '#FF6161'
-                        },
-                        {
-                            from: 0,
-                            to: Infinity,
-                            color: '#52B12C'
-                        }
-                    ]
-                }
+                    inverse: false,
+                },
             }
         }
     };
-
-    const series = [
-        {
-            data: [
-                {
-                    x: 'GBTC',
-                    y: 2.9
-                },
-                {
-                    x: 'UNH',
-                    y: -1.5
-                },
-                {
-                    x: 'ABBV',
-                    y: 1.2
-                },
-                {
-                    x: 'LLY',
-                    y: 1.3
-                },
-                {
-                    x: 'DHR',
-                    y: 5.1
-                },
-                {
-                    x: 'ABT',
-                    y: -2.3
-                },
-                {
-                    x: 'VSC',
-                    y: 2.1
-                },
-                {
-                    x: 'TMO',
-                    y: 0.3
-                },
-                {
-                    x: 'MDT',
-                    y: 0.12
-                },
-                {
-                    x: 'MMM',
-                    y: -2.31
-                },
-                {
-                    x: 'NKE',
-                    y: 3.98
-                },
-                {
-                    x: 'IYT',
-                    y: 1.67
-                }
-            ]
-        }
-    ];
 
     return (
         <Box
@@ -116,7 +69,6 @@ const DeFiTVLByBlockchainBox = () => {
             borderRadius={"8px"}
             mb={"15px"}
             mx={"10px"}
-            color={"#191919"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
         >
@@ -134,11 +86,11 @@ const DeFiTVLByBlockchainBox = () => {
                         Total:
                     </Text>
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}>
-                        $876B
+                        ${millify(DefiOverviewData?.data?.totalTvl)}
                     </Text>
                 </Box>
             </Box>
-            <Box borderRadius={"6px"} ml={"10px"} color={"#191919"}>
+            <Box mx={"10px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}

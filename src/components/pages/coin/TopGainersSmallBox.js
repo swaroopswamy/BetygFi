@@ -64,10 +64,10 @@ const TopGainersSmallBox = () => {
                 <Box layerStyle={"spaceBetween"} key={i} mb="12px">
                     <Box layerStyle={"flexCenter"}>
                         <Image
-                            height={32}
-                            width={32}
+                            height={35}
+                            width={35}
                             src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px" }}
+                            style={{ marginRight: "10px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.name}

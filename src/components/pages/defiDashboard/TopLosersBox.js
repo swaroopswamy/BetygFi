@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const TopLosersBox = () => {
     const { colorMode } = useColorMode();
-    const DefiOverviewData = useSelector((state) => state.dashboardData?.DefiOverviewData);
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
     const router = useRouter();
 
     return (
@@ -38,7 +38,7 @@ const TopLosersBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/protocol`);
+                        router.push(`/`);
                     }}
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
@@ -59,14 +59,14 @@ const TopLosersBox = () => {
                     ></Image>
                 </Box>
             </Box>
-            {DefiOverviewData?.data.loserList.map((loser, i) => (
+            {DefiOverviewData?.data?.loserList?.slice(0, 3)?.map((loser, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="12px">
                     <Box layerStyle={"flexCenter"}>
                         <Image
-                            height={32}
-                            width={32}
+                            height={35}
+                            width={35}
                             src={loser?.logo ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px" }}
+                            style={{ marginRight: "10px", borderRadius: "50%" }}
                             alt="bitcoin"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {loser?.slug}

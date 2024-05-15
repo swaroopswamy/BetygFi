@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 const TopGainersBox = () => {
     const { colorMode } = useColorMode();
-    const DefiOverviewData = useSelector((state) => state?.dashboardData?.DefiOverviewData);
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
     const router = useRouter();
 
     return (
@@ -38,7 +38,7 @@ const TopGainersBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/protocol`);
+                        router.push(`/`);
 
                     }}
 
@@ -60,14 +60,14 @@ const TopGainersBox = () => {
                         priority="true"></Image>
                 </Box>
             </Box>
-            {DefiOverviewData?.data?.gainerList?.map((gainer, i) => (
+            {DefiOverviewData?.data?.gainerList?.slice(0, 3)?.map((gainer, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="12px">
                     <Box layerStyle={"flexCenter"}>
                         <Image
-                            height={32}
-                            width={32}
+                            height={35}
+                            width={35}
                             src={gainer?.logo ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px" }}
+                            style={{ marginRight: "10px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.slug}

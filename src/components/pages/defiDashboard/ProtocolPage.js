@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { fetchOverviewData, fetchScoreGraphData, fetchDefiOverviewData } from "@redux/dashboard_data/dataSlice";
+import { fetchOverviewData, fetchScoreGraphData } from "@redux/dashboard_data/dataSlice";
+import { fetchDefiOverviewData } from "@redux/defi_dashboard_data/dataSlice";
 import { fetchMarqueeData } from "@redux/coin_data/dataSlice";
-import { Box, Text, useColorModeValue, useDisclosure, Switch, useColorMode, Collapse, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useDisclosure,/* Switch, Collapse */ useColorMode, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import React, { /* useContext, */ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
+//import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
 import Image from "next/image";
 import Marquee from "./marquee";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
@@ -22,7 +23,7 @@ const ProtocolPage = () => {
     const { colorMode } = useColorMode();
     const { isOpen, /* onOpen, */ onClose } = useDisclosure();
     const dispatch = useDispatch();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
+    const { /*isOpen: isHighlightsBoxOpen */ onToggle: onHighlightsBoxToggle } = useDisclosure();
 
     const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
     const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
@@ -104,7 +105,7 @@ const ProtocolPage = () => {
                 px={{ base: "18px", md: "30px" }}
                 borderTop={"1px solid " + useColorModeValue("rgba(0, 0, 0, 0.1)", "rgba(255, 255, 255, 0.1)")}>
 
-                <Box layerStyle={"flexCenterSpaceBetween"} w="100%" mt={"20px"}>
+                {/* <Box layerStyle={"flexCenterSpaceBetween"} w="100%" mt={"20px"}>
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"22px"}>
                         DeFi Overview
                     </Text>
@@ -120,7 +121,7 @@ const ProtocolPage = () => {
                 </Box>
                 <Collapse in={isHighlightsBoxOpen}>
                     <HighlightsBox />
-                </Collapse>
+                </Collapse> */}
                 <Box
                     display={"flex"}
                     flexDirection={"column"}

@@ -98,6 +98,7 @@ const AuthDataSlice = createSlice({
 			data: null,
 			isError: null,
 			isSuccess: null,
+			AnnotationState: false,
 		},
 		UserDetailsData: {
 			data: null,
@@ -173,10 +174,12 @@ const AuthDataSlice = createSlice({
 			state.ValidatedUserData.data = action.payload;
 			state.ValidatedUserData.isSuccess = true;
 			state.ValidatedUserData.isError = false;
+			state.ValidatedUserData.AnnotationState = true;
 		});
 		builder.addCase(verifyJWTtokenFromCookie.rejected, (state, action) => {
 			state.ValidatedUserData.isSuccess = false;
 			state.ValidatedUserData.isError = true;
+			state.ValidatedUserData.AnnotationState = false;
 			state.ValidatedUserData.data = action.payload;
 		});
 		builder.addCase(getUserDetails.fulfilled, (state, action) => {
@@ -245,6 +248,7 @@ const AuthDataSlice = createSlice({
 				data: null,
 				isError: false,
 				isSuccess: false,
+				AnnotationState: false,
 			};
 
 			localStorage.clear();
@@ -293,6 +297,7 @@ const AuthDataSlice = createSlice({
 			state.ValidatedUserData.data = null;
 			state.ValidatedUserData.isSuccess = null;
 			state.ValidatedUserData.isError = null;
+			state.ValidatedUserData.AnnotationState = null;
 		},
 		ResetEditUserDetailsData: (state) => {
 			state.editUserDetailsData.data = null;

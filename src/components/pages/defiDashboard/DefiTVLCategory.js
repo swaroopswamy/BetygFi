@@ -6,7 +6,15 @@ import millify from "millify";
 
 const DeFiTVLByCategoryBox = () => {
     const { colorMode } = useColorMode();
-    const DefiOverviewData = useSelector((state) => state?.dashboardData?.DefiOverviewData);
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
+
+    const series = [{
+        data: DefiOverviewData?.data?.tvlByCategory.map(item => ({
+            x: item._id,
+            y: item.totalTvl,
+            fillColor: item.totalTvl >= 0 ? '#9ADA8A' : '#FF6161'
+        }))
+    }];
 
     const options = {
         legend: {
@@ -20,48 +28,37 @@ const DeFiTVLByCategoryBox = () => {
         },
         tooltip: {
             enabled: true,
-            theme: colorMode
+            theme: colorMode,
+            y: {
+                formatter: (value) => `$${millify(value, { precision: 2, locales: "en-US" })}`
+            }
         },
         dataLabels: {
             enabled: true,
             style: {
                 fontSize: '16px',
-                fontWeight: 500,
-                color: "#191919"
+                fontWeight: 600,
+                colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text, op.value];
+                return [text,(millify(op.value, { precision: 2, locales: "en-US" }))];
             },
+            allowOverlap: true,
         },
         plotOptions: {
             treemap: {
                 enableShades: true,
                 shadeIntensity: 0.5,
                 reverseNegativeShade: true,
+                dataLabels: {
+                    format: "scale",
+                },
                 colorScale: {
-                    ranges: [
-                        {
-                            from: -Infinity,
-                            to: 0,
-                            color: '#FF6161'
-                        },
-                        {
-                            from: 0,
-                            to: Infinity,
-                            color: '#9ADA8A'
-                        }
-                    ]
-                }
+                    inverse: false,
+                },
             }
         }
     };
-
-    const series = [{
-        data: DefiOverviewData?.data?.tvlByCategory.map(item => ({
-            x: item._id,
-            y: item.totalTvl
-        }))
-    }];
 
     return (
         <Box
@@ -92,7 +89,7 @@ const DeFiTVLByCategoryBox = () => {
                     </Text>
                 </Box>
             </Box>
-            <Box borderRadius={"6px"} ml={"10px"}>
+            <Box mx={"10px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}
