@@ -185,7 +185,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     >
                         <Image src={colorMode === 'light' ? "/icons/ETF_Icon_Light.svg" : "/icons/ETF_Icon_Dark.svg"}
                             width={25}
-                            height={25}></Image>
+                            alt={"ETF_Icon"}
+                            height={25} />
                         ETF
                     </Button>
                 </>
