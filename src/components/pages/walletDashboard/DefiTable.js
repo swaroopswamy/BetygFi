@@ -53,8 +53,8 @@ const TableRowDesktop = ({ item, i }) => {
 				<Box display={"flex"} alignItems={"center"}>
 					{!isEmpty(item?.logoUrl) ? (
 						<Image
-							width={5}
-							height={5}
+							width={20}
+							height={20}
 							style={{ borderRadius: "50%" }}
 							alt="logo"
 							src={item?.logoUrl}
