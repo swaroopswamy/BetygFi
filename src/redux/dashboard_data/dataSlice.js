@@ -55,15 +55,12 @@ const DashboardDataSlice = createSlice({
         scoreSelected: "",
     },
     extraReducers: (builder) => {
-        builder.addCase(
-            fetchDefiRankingTableData.fulfilled,
-            (state, action) => {
-                state.DefiRankingsTableData.data = action.payload;
-                state.DefiRankingsTableData.isLoading = false;
-                state.DefiRankingsTableData.isSuccess = true;
-                state.DefiRankingsTableData.isError = false;
-            }
-        );
+        builder.addCase(fetchDefiRankingTableData.fulfilled, (state, action) => {
+            state.DefiRankingsTableData.data = action.payload;
+            state.DefiRankingsTableData.isLoading = false;
+            state.DefiRankingsTableData.isSuccess = true;
+            state.DefiRankingsTableData.isError = false;
+        });
         builder.addCase(fetchDefiRankingTableData.pending, (state, action) => {
             state.DefiRankingsTableData.isLoading = true;
             state.DefiRankingsTableData.isError = false;

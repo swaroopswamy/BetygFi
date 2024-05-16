@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import { BreadCrumb } from "@components/breadcrumb2";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 import News from "@components/pages/coin/ETFPage/News";
 import ARKInvest from "@components/pages/coin/ETFPage/ARKInvestBox";
 import ARK21Shares from "@components/pages/coin/ETFPage/SharesChart";
@@ -14,6 +15,7 @@ const BTCETFDetailsPage = ({ params }) => {
     const ticker = params?.ticker;
     const { colorMode } = useColorMode();
     const dispatch = useDispatch();
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
     const getTickerETFInflowOutflowDataHandler = () => {
         const payload = {
@@ -45,6 +47,13 @@ const BTCETFDetailsPage = ({ params }) => {
     }, []);
 
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
+
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box

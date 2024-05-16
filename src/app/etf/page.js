@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { Box, Text, useColorMode, Switch, useDisclosure, Collapse } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 import millify from "millify";
 import { BreadCrumb } from "@components/breadcrumb2";
 import HighlightsBox from "@components/pages/coin/ETFPage/Highlights";
@@ -13,6 +14,7 @@ const BTCETFPage = () => {
     const { colorMode } = useColorMode();
     const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
     const ETFType = useSelector((state) => state?.coinData?.ETFType);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
     const fetchETFListDataHandler = () => {
         const payload = {
@@ -43,6 +45,13 @@ const BTCETFPage = () => {
     }, [ETFType]);
 
     const ETFListData = useSelector((state) => state.coinData.ETFListData);
+
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box

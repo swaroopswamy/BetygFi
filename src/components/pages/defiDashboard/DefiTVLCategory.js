@@ -1,9 +1,21 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React from "react";
 import CustomChart from "@components/graph";
+import { useSelector } from "react-redux";
+import millify from "millify";
 
 const DeFiTVLByCategoryBox = () => {
     const { colorMode } = useColorMode();
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
+
+    const series = [{
+        data: DefiOverviewData?.data?.tvlByCategory.map(item => ({
+            x: item._id,
+            y: item.totalTvl,
+            fillColor: item.totalTvl >= 0 ? '#9ADA8A' : '#FF6161'
+        }))
+    }];
+
     const options = {
         legend: {
             show: false
@@ -16,96 +28,37 @@ const DeFiTVLByCategoryBox = () => {
         },
         tooltip: {
             enabled: true,
-            theme: colorMode
+            theme: colorMode,
+            y: {
+                formatter: (value) => `$${millify(value, { precision: 2, locales: "en-US" })}`
+            }
         },
         dataLabels: {
             enabled: true,
             style: {
                 fontSize: '16px',
-                fontWeight: 500,
-                color: "#191919"
+                fontWeight: 600,
+                colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text, op.value];
+                return [text,(millify(op.value, { precision: 2, locales: "en-US" }))];
             },
+            allowOverlap: true,
         },
         plotOptions: {
             treemap: {
                 enableShades: true,
                 shadeIntensity: 0.5,
                 reverseNegativeShade: true,
+                dataLabels: {
+                    format: "scale",
+                },
                 colorScale: {
-                    ranges: [
-                        {
-                            from: -6,
-                            to: 0,
-                            color: '#FF6161'
-                        },
-                        {
-                            from: 0.001,
-                            to: 6,
-                            color: '#52B12C'
-                        }
-                    ]
-                }
+                    inverse: false,
+                },
             }
         }
     };
-
-    const series = [
-        {
-            data: [
-                {
-                    x: 'GBTC',
-                    y: 2.9
-                },
-                {
-                    x: 'UNH',
-                    y: -1.5
-                },
-                {
-                    x: 'ABBV',
-                    y: 1.2
-                },
-                {
-                    x: 'LLY',
-                    y: 1.3
-                },
-                {
-                    x: 'DHR',
-                    y: 5.1
-                },
-                {
-                    x: 'ABT',
-                    y: -2.3
-                },
-                {
-                    x: 'VSC',
-                    y: 2.1
-                },
-                {
-                    x: 'TMO',
-                    y: 0.3
-                },
-                {
-                    x: 'MDT',
-                    y: 0.12
-                },
-                {
-                    x: 'MMM',
-                    y: -2.31
-                },
-                {
-                    x: 'NKE',
-                    y: 3.98
-                },
-                {
-                    x: 'IYT',
-                    y: 1.67
-                }
-            ]
-        }
-    ];
 
     return (
         <Box
@@ -132,11 +85,11 @@ const DeFiTVLByCategoryBox = () => {
                         Total:
                     </Text>
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}>
-                        $876B
+                        ${millify(DefiOverviewData?.data?.totalTvl)}
                     </Text>
                 </Box>
             </Box>
-            <Box borderRadius={"6px"} ml={"10px"}>
+            <Box mx={"10px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}

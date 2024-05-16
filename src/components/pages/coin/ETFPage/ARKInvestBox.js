@@ -1,7 +1,7 @@
 "use client";
 import { Box, Text, useColorMode, Progress } from "@chakra-ui/react";
 import React from "react";
-import Image from "next/image";
+//import Image from "next/image";
 import { useSelector } from "react-redux";
 
 const ARKInvest = () => {
@@ -47,19 +47,19 @@ const ARKInvest = () => {
                             ({ETFChartData?.data?.change1dayPercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1dayPercent >= 0 ? `+${ETFChartData?.data?.change1dayPercent.toFixed(2)}` : ETFChartData?.data?.change1dayPercent.toFixed(2)}%)
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>
+                    {/* <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>
                         <Image src={"/icons/Red_Dot.svg"} width={9} height={9} alt=" "></Image>
                         <Text fontSize={{ base: "12px", md: "14px" }} lineHeight={"17px"} variant={"contentHeading"}>Pre-Market</Text>
-                    </Box>
+                    </Box> */}
                 </Box>
                 <Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Box layerStyle={"flexCenter"} gap={"5px"} ml={"15px"}>
                         <Text fontSize={{ base: "12px", md: "14px" }} lineHeight={"17px"} variant={"contentHeading"}>
                             Volume
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
-                    <Box mt={{ base: "8px", md: "15px" }}>
+                    <Box mt={{ base: "8px", md: "10px" }}>
                         <Text fontSize={{ base: "16px", md: "20px" }} lineHeight={"18px"} variant={"contentHeading4"}>
                             {ETFChartData?.data?.dailyVolume === undefined ? "-" : ETFChartData?.data?.dailyVolume}
                         </Text>
