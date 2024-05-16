@@ -38,7 +38,7 @@ const TopGainersBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/`);
+                        router.push(`/protocol?on=MCap&by=desc`);
 
                     }}
 
