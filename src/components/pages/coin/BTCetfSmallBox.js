@@ -39,7 +39,7 @@ const BTCetfSmallBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/etf`);
+                        router.push(`/crypto-etfs-data-tracker`);
 
                     }}
                 >

@@ -65,8 +65,8 @@ const BTCETFDetailsPage = ({ params }) => {
             pb={{ base: "100px", lg: "20px" }}
         >
             <BreadCrumb
-                text={`BTC ETF Tracker/${ticker}`}
-                link={"/etf"}
+                text={`Bitcoin ETF Tracker/${ticker}`}
+                link={"/crypto-etfs-data-tracker"}
             ></BreadCrumb>
             <Box mt={"10px"}>
                 <Text variant={"contentHeading"} fontWeight={500} lineHeight={"20px"} letterSpacing={"0.1em"}>{ticker} ETF</Text>
