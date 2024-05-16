@@ -32,7 +32,12 @@ const ARK21Shares = () => {
     const series = [{
         data: getFilteredData(selectedRange)?.map(item => ({
             x: new Date(item.date).getTime(),
-            y: [item.open.toFixed(2), item.high.toFixed(2), item.low.toFixed(2), item.close.toFixed(2)]
+            y: [
+                millify((item.open), { precision: 2 }),
+                millify((item.high), { precision: 2 }),
+                millify((item.low), { precision: 2 }),
+                millify((item.close), { precision: 2 })
+            ]
         }))
     }];
 

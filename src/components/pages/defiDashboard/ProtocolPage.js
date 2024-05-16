@@ -11,6 +11,7 @@ import HighlightsBox from "@components/pages/defiDashboard/HighlightsBox";
 import Image from "next/image";
 import Marquee from "./marquee";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
+import { useSearchParams } from "next/navigation";
 
 // const OverviewColumnChart = dynamic(() => import("@components/pages/dashboard/overviewColumnChart"), { ssr: false });
 const DashboardDefiSelection = dynamic(() => import("./DashboardDefiSelection"), { ssr: false });
@@ -23,11 +24,14 @@ const ProtocolPage = () => {
     const { colorMode } = useColorMode();
     const { isOpen, /* onOpen, */ onClose } = useDisclosure();
     const dispatch = useDispatch();
-    const { isOpen: isHighlightsBoxOpen , onToggle: onHighlightsBoxToggle } = useDisclosure();
+    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
 
     const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
     const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
     // const isMobileSearchBarOpen = useSelector((state) => state?.appData?.isMobileSearchOpen);
+    const searchParams = useSearchParams();
+    const on = searchParams.get('on');
+    const by = searchParams.get('by');
 
     const getOverviewDataHandler = () => {
         const payload = {
@@ -82,6 +86,16 @@ const ProtocolPage = () => {
             }
         );
     };
+
+    useEffect(() => {
+        if (on !== null && by !== null) {
+            setTimeout(() => {
+                if (document.getElementById('total-container-protocol')) {
+                    document.getElementById('total-container-protocol').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000);
+        }
+    }, [on, by]);
 
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>

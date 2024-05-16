@@ -86,7 +86,7 @@ const DeFiTVLByBlockchainBox = () => {
                         Total:
                     </Text>
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}>
-                        ${millify(DefiOverviewData?.data?.totalTvl)}
+                        ${millify(DefiOverviewData?.data?.totalTvl === undefined ? "-" : DefiOverviewData?.data?.totalTvl)}
                     </Text>
                 </Box>
             </Box>

@@ -38,7 +38,7 @@ const TopLosersBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/protocol?on=MCap&by=asc`);
+                        router.push(`/protocol?on=mcap&by=asc`);
                     }}
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
