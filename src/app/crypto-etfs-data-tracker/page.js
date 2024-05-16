@@ -9,7 +9,7 @@ import HighlightsBox from "@components/pages/coin/ETFPage/Highlights";
 import ETFTracker from "@components/pages/coin/ETFPage/ETFTrackerTable";
 import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
 
-const BTCETFPage = () => {
+const Bitcoin_ETFs_Tracker = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
     const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
@@ -110,4 +110,4 @@ const BTCETFPage = () => {
     );
 };
 
-export default BTCETFPage;
+export default Bitcoin_ETFs_Tracker;
