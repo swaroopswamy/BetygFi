@@ -9,7 +9,7 @@ const DeFiTVLByBlockchainBox = () => {
     const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
 
     const series = [{
-        data: DefiOverviewData?.data?.tvlByChain.map(item => ({
+        data: DefiOverviewData?.data?.tvlByChain?.slice(0, 15).map(item => ({
             x: item._id,
             y: item.totalTvl,
             fillColor: item.totalTvl >= 0 ? '#9ADA8A' : '#FF6161'
@@ -41,7 +41,7 @@ const DeFiTVLByBlockchainBox = () => {
                 colors: ["#191919"],
             },
             formatter: function (text, op) {
-                return [text,(millify(op.value, { precision: 2, locales: "en-US" }))];
+                return [text, (millify(op.value, { precision: 2, locales: "en-US" }))];
             },
             allowOverlap: true,
             offsetY: -3,

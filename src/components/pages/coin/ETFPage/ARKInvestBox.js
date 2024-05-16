@@ -33,7 +33,7 @@ const ARKInvest = () => {
                             letterSpacing={{ md: "0.2rem" }}
                             variant={"modalHeader"}
                         >
-                            {ETFChartData?.data?.marketPrice.toFixed(2) === undefined ? "-" : ETFChartData?.data?.marketPrice.toFixed(2)}
+                            ${ETFChartData?.data?.marketPrice.toFixed(2) === undefined ? "-" : ETFChartData?.data?.marketPrice.toFixed(2)}
                         </Text>
                         <Text
                             fontSize={{ base: "14px", md: "20px" }}
@@ -76,13 +76,13 @@ const ARKInvest = () => {
             <Box mt={"25"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
+                        $ {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         Day’s Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
+                        $ {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress
@@ -97,13 +97,13 @@ const ARKInvest = () => {
             <Box mt={"30"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
+                        $ {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         52 Week Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
+                        $ {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress
