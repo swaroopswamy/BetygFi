@@ -142,6 +142,7 @@ const CoinRankingsTable = (
 
                 <Box display={"flex"} overflowX={"auto"}>
                     <GenericTable
+                        isFirstColumnSmall
                         tableHeader={tableHeader}
                         tableData={tableData}
                         TableRow={TableRow}
@@ -286,7 +287,7 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.volume_24hr === undefined
                             ? "-"
-                            : item.volume_24hr > 1000
+                            : item.volume_24hr > 100000
                                 ? `$${millify(item.volume_24hr, { precision: 2 })}`
                                 : item.volume_24hr.toLocaleString("en-US", {
                                     style: "currency",
@@ -300,7 +301,7 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.mcap === undefined
                             ? "-"
-                            : item.mcap > 1000
+                            : item.mcap > 100000
                                 ? `$${millify(item.mcap, { precision: 2 })}`
                                 : item.mcap.toLocaleString("en-US", {
                                     style: "currency",

@@ -173,6 +173,7 @@ const Rankings = () => {
 
             <Box display={"flex"} overflowX={"auto"}>
                 <GenericTable
+                    isFirstColumnSmall
                     tableHeader={tableHeader}
                     tableData={tableData}
                     showSortingIcon={true}
@@ -286,7 +287,7 @@ const TableRow = ({ item, rowIndex }) => {
                 <Text variant={"h3"}>
                     {item?.tvl === undefined
                         ? "-"
-                        : item.tvl > 1000
+                        : item.tvl > 100000
                             ? `$${millify(Math.trunc(item.tvl), { precision: 2 })}`
                             : Math.trunc(item.tvl).toLocaleString("en-US", {
                                 style: "currency",
@@ -298,7 +299,7 @@ const TableRow = ({ item, rowIndex }) => {
                 <Text variant={"h3"}>
                     {item?.mcap === undefined
                         ? "-"
-                        : item.mcap > 1000
+                        : item.mcap > 100000
                             ? `$${millify(Math.trunc(item.mcap), { precision: 2 })}`
                             : Math.trunc(item.mcap).toLocaleString("en-US", {
                                 style: "currency",
