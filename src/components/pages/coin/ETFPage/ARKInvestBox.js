@@ -1,12 +1,19 @@
 "use client";
 import { Box, Text, useColorMode, Progress } from "@chakra-ui/react";
 import React from "react";
-//import Image from "next/image";
+import Image from "next/image";
 import { useSelector } from "react-redux";
 
 const ARKInvest = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box

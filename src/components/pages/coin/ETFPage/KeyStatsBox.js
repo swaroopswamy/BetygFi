@@ -1,12 +1,19 @@
 import React from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
-//import Image from "next/image";
+import Image from "next/image";
 import { useSelector } from "react-redux";
 import millify from "millify";
 
 const KeyStats = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box
