@@ -4,9 +4,9 @@ import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const TopGainersSmallBox = () => {
+const TopGainersBox = () => {
     const { colorMode } = useColorMode();
-    const TopGainersAndLosersData = useSelector((state) => state.coinData.TopGainersAndLosersData);
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
     const router = useRouter();
 
     return (
@@ -38,8 +38,7 @@ const TopGainersSmallBox = () => {
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/coin?on=change_24hr&by=desc`);
-
+                        router.push(`/protocol?on=mcap&by=desc`);
                     }}
 
                 >
@@ -60,17 +59,17 @@ const TopGainersSmallBox = () => {
                         priority="true"></Image>
                 </Box>
             </Box>
-            {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
+            {DefiOverviewData?.data?.gainerList?.slice(0, 3)?.map((gainer, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="12px">
                     <Box layerStyle={"flexCenter"}>
                         <Image
                             height={35}
                             width={35}
-                            src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
+                            src={gainer?.logo ?? '/icons/bitcoin_logo.svg'}
                             style={{ marginRight: "10px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            {gainer?.name}
+                            {gainer?.slug}
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
@@ -103,4 +102,4 @@ const TopGainersSmallBox = () => {
 };
 
 
-export default TopGainersSmallBox;
+export default TopGainersBox;

@@ -1,22 +1,22 @@
 import { Box, Text, useColorMode } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
-import React from "react";
 import { useRouter } from "next/navigation";
+import React from "react";
+import { useSelector } from "react-redux";
 
-const TopGainersSmallBox = () => {
+const TopLosersBox = () => {
     const { colorMode } = useColorMode();
-    const TopGainersAndLosersData = useSelector((state) => state.coinData.TopGainersAndLosersData);
+    const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
     const router = useRouter();
 
     return (
         <Box
+            mx={"10px"}
             width={"30%"}
-            height={"197px"}
             minW={"295px"}
+            height={"197px"}
             borderRadius={"8px"}
             mb={"15px"}
-            mx={"10px"}
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
@@ -26,22 +26,20 @@ const TopGainersSmallBox = () => {
                     <Image
                         height={32}
                         width={32}
-                        src="/icons/trophy.svg"
+                        src="/icons/trending-down.svg"
                         alt="trophy_icon"
                         unoptimized="true"
                         priority="true"
                     ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
-                        Top Gainers
+                        Top Losers
                     </Text>
                 </Box>
                 <Box layerStyle={"flexCenter"} gap={"3px"}
                     cursor={"pointer"}
                     onClick={() => {
-                        router.push(`/coin?on=change_24hr&by=desc`);
-
+                        router.push(`/protocol?on=mcap&by=asc`);
                     }}
-
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
                         _light={{ color: "#757575" }}
@@ -57,25 +55,26 @@ const TopGainersSmallBox = () => {
                         mr={"5px"}
                         alt="view_more"
                         unoptimized="true"
-                        priority="true"></Image>
+                        priority="true"
+                    ></Image>
                 </Box>
             </Box>
-            {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
+            {DefiOverviewData?.data?.loserList?.slice(0, 3)?.map((loser, i) => (
                 <Box layerStyle={"spaceBetween"} key={i} mb="12px">
                     <Box layerStyle={"flexCenter"}>
                         <Image
                             height={35}
                             width={35}
-                            src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
+                            src={loser?.logo ?? '/icons/bitcoin_logo.svg'}
                             style={{ marginRight: "10px", borderRadius: "50%" }}
-                            alt="bitcoin_logo"></Image>
+                            alt="bitcoin"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            {gainer?.name}
+                            {loser?.slug}
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${gainer?.price?.toFixed(2)}
+                            ${loser?.price?.toFixed(2) ?? '-'}
                         </Text>
                         <Box
                             width={"70px"}
@@ -85,14 +84,14 @@ const TopGainersSmallBox = () => {
                             mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
-                            _light={{ bg: "#245F001F" }}
-                            _dark={{ bg: "#60C0003F" }}
+                            _light={{ bg: "#FF00001F" }}
+                            _dark={{ bg: "#FF35351F" }}
                         >
                             <Text variant={"baseStyle"} lineHeight={"17px"}
-                                _light={{ color: "#245F00" }}
-                                _dark={{ color: "#60C000" }}
+                                _light={{ color: "#FF0000" }}
+                                _dark={{ color: "#FF3535" }}
                             >
-                                {`${gainer?.change?.toFixed(1)}%`}
+                                {`${loser?.change?.toFixed(1)}%`}
                             </Text>
                         </Box>
                     </Box>
@@ -103,4 +102,4 @@ const TopGainersSmallBox = () => {
 };
 
 
-export default TopGainersSmallBox;
+export default TopLosersBox;

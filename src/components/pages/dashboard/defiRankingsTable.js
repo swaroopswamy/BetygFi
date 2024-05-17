@@ -21,6 +21,7 @@ import { tableHeader } from "@components/pages/dashboard/helper";
 import { MobileSearchBox } from "@components/mobileSearchBox";
 import { fetchDefiRankingTableData } from "@redux/dashboard_data/dataSlice";
 import CustomAvatar from "@components/avatar";
+import millify from "millify";
 
 const GenericTable = dynamic(() => import("@components/table"));
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
@@ -172,6 +173,7 @@ const Rankings = () => {
 
             <Box display={"flex"} overflowX={"auto"}>
                 <GenericTable
+                    isFirstColumnSmall
                     tableHeader={tableHeader}
                     tableData={tableData}
                     showSortingIcon={true}
@@ -212,6 +214,7 @@ const TableRow = ({ item, rowIndex }) => {
         _light: { bgColor: "#FFFFFF", },
         _dark: { bgColor: "#202020", }
     };
+
     return (
         <Tr
             key={rowIndex}
@@ -220,7 +223,7 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             bgColor={"background.secondary"}
         >
-            <Td {...commonStyleTdProp} key={0} textAlign={"center"}>
+            <Td {...commonStyleTdProp} key={0} textAlign={"center"} px={0} mx={0}>
                 <Text variant={"h3"}>
                     {item?.Rank === undefined ? "-" : item?.Rank}
                 </Text>
@@ -272,7 +275,7 @@ const TableRow = ({ item, rowIndex }) => {
             <Td  {...commonStyleTdProp} key={2}>
                 <Text variant={"h3"}>{item.category}</Text>
             </Td>
-            <Td  {...commonStyleTdProp} key={3}>
+            <Td  {...commonStyleTdProp} key={3} textAlign={"center"}>
                 <Text variant={"h3"}>
                     {item.price?.toLocaleString("en-US", {
                         style: "currency",
@@ -280,23 +283,31 @@ const TableRow = ({ item, rowIndex }) => {
                     }) ?? "-"}
                 </Text>
             </Td>
-            <Td   {...commonStyleTdProp} key={4}>
+            <Td {...commonStyleTdProp} key={4} textAlign={"center"}>
                 <Text variant={"h3"}>
-                    {Math.trunc(item.tvl).toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }) ?? "-"}
+                    {item?.tvl === undefined
+                        ? "-"
+                        : item.tvl > 100000
+                            ? `$${millify(Math.trunc(item.tvl), { precision: 2 })}`
+                            : Math.trunc(item.tvl).toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                            })}
                 </Text>
             </Td>
-            <Td  {...commonStyleTdProp} key={5}>
+            <Td {...commonStyleTdProp} key={5} textAlign={"center"}>
                 <Text variant={"h3"}>
-                    {Math.trunc(item.mcap).toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    })}
+                    {item?.mcap === undefined
+                        ? "-"
+                        : item.mcap > 100000
+                            ? `$${millify(Math.trunc(item.mcap), { precision: 2 })}`
+                            : Math.trunc(item.mcap).toLocaleString("en-US", {
+                                style: "currency",
+                                currency: "USD",
+                            })}
                 </Text>
             </Td>
-            <Td  {...commonStyleTdProp} key={6}>
+            <Td  {...commonStyleTdProp} key={6} textAlign={"center"}>
                 {item.tvl !== 0 ? (
                     <Text variant={"h3"}>
                         {(item['mcap-tvl'])?.toFixed(2)}

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
 import CustomAvatar from "@components/avatar";
+import millify from "millify";
 
 const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
@@ -141,6 +142,7 @@ const CoinRankingsTable = (
 
                 <Box display={"flex"} overflowX={"auto"}>
                     <GenericTable
+                        isFirstColumnSmall
                         tableHeader={tableHeader}
                         tableData={tableData}
                         TableRow={TableRow}
@@ -193,7 +195,7 @@ const TableRow = ({ item, rowIndex }) => {
             border={"0px"}
             bgColor={"background.secondary"}
         >
-            <Td {...commonStyleTdProp} key={0} textAlign={"center"} p={0}>
+            <Td {...commonStyleTdProp} key={0} textAlign={"center"} px={0} mx={0}>
                 <Text variant={"h3"}>
                     {item?.rank === undefined ? "-" : item?.rank}
                 </Text>
@@ -207,7 +209,6 @@ const TableRow = ({ item, rowIndex }) => {
                         name={item?.name}
                         src={item?.logoUrl}
                     />
-
                     <Box
                         display={"flex"}
                         alignItems={"start"}
@@ -286,10 +287,12 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.volume_24hr === undefined
                             ? "-"
-                            : item?.volume_24hr?.toLocaleString("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                            })}
+                            : item.volume_24hr > 100000
+                                ? `$${millify(item.volume_24hr, { precision: 2 })}`
+                                : item.volume_24hr.toLocaleString("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                })}
                     </Text>
                 </Box>
             </Td>
@@ -298,10 +301,12 @@ const TableRow = ({ item, rowIndex }) => {
                     <Text variant={"h3"}>
                         {item?.mcap === undefined
                             ? "-"
-                            : item?.mcap?.toLocaleString("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                            })}
+                            : item.mcap > 100000
+                                ? `$${millify(item.mcap, { precision: 2 })}`
+                                : item.mcap.toLocaleString("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                })}
                     </Text>
                 </Box>
             </Td>

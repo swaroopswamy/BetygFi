@@ -25,10 +25,10 @@ import {
     fetchTrendingCoinsData,
     fetchTopBTCETFData,
     fetchFearAndGreedData,
-    fetchBTCDominanceScoresData, 
-    fetchMarqueeData, 
-    fetchCoinRankingsTableData, 
-    fetchCoinScoresData, 
+    fetchBTCDominanceScoresData,
+    fetchMarqueeData,
+    fetchCoinRankingsTableData,
+    fetchCoinScoresData,
     fetchCryptoCategoriesData
 } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
@@ -131,7 +131,7 @@ const CoinPage = () => {
     };
 
     useEffect(() => {
-        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData.data.length > 0) {
+        if (cryptoCategoriesData.isSuccess && cryptoCategoriesData?.data?.length > 0) {
             setCryptoCategories([...cryptoCategoriesData.data].map((cryptoData, index) => {
                 return {
                     id: cryptoData + '_' + index + 1,
@@ -174,12 +174,13 @@ const CoinPage = () => {
     }, [tablePage, tableLimit, scoreSelected, setTablePage, cryptoCategorySelected]);
 
     useEffect(() => {
-        setTimeout(() => {
-            if (document.getElementById('total-container-protocol')) {
-                document.getElementById('total-container-protocol').scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 1000);
-
+        if (on !== null && by !== null) {
+            setTimeout(() => {
+                if (document.getElementById('total-container-protocol')) {
+                    document.getElementById('total-container-protocol').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000);
+        }
     }, [on, by]);
 
     return (

@@ -7,6 +7,13 @@ import millify from "millify";
 const KeyStats = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box
@@ -23,10 +30,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Open
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.open === undefined ? "-" : ETFChartData?.data?.open}
+                        $ {ETFChartData?.data?.open === undefined ? "-" : ETFChartData?.data?.open}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -34,10 +41,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Day High
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.dayHigh === undefined ? "-" : ETFChartData?.data?.dayHigh}
+                        $ {ETFChartData?.data?.dayHigh === undefined ? "-" : ETFChartData?.data?.dayHigh}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -45,10 +52,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Day Low
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.dayLow === undefined ? "-" : ETFChartData?.data?.dayLow}
+                        $ {ETFChartData?.data?.dayLow === undefined ? "-" : ETFChartData?.data?.dayLow}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -56,10 +63,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Prev Close
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.prevClose === undefined ? "-" : ETFChartData?.data?.prevClose}
+                        $ {ETFChartData?.data?.prevClose === undefined ? "-" : ETFChartData?.data?.prevClose}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -67,10 +74,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             10 Day Average Volume
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {millify(ETFChartData?.data?.tenDayAverageVolume === undefined ? "-" : ETFChartData?.data?.tenDayAverageVolume, { precision: 2 })}
+                        $ {millify(ETFChartData?.data?.tenDayAverageVolume === undefined ? "-" : ETFChartData?.data?.tenDayAverageVolume, { precision: 2 })}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -78,7 +85,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Expense Ratio
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.expenseRation === undefined ? "-" : ETFChartData?.data?.expenseRation}</Text>
@@ -88,7 +95,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             AUM
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.aum === undefined ? "-" : ETFChartData?.data?.aum}</Text>
@@ -100,10 +107,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             52 Week High
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.fiftyTwoWeekHigh === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHigh}
+                        $ {ETFChartData?.data?.fiftyTwoWeekHigh === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHigh}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -111,7 +118,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             52 Week High Date
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.fiftyTwoWeekHighDate.split('T')[0] === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHighDate.split('T')[0]}
@@ -122,10 +129,10 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             52 Week Low
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.fiftyTwoWeekLow === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLow}
+                        $ {ETFChartData?.data?.fiftyTwoWeekLow === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLow}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -133,7 +140,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             52 Week Low Date
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.fiftyTwoWeekLowDate.split('T')[0] === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLowDate.split('T')[0]}
@@ -144,7 +151,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             YTD % Change
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.ytdChangePercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.ytdChangePercent.toFixed(2)}%
@@ -155,7 +162,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             1 Year % Change
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.oneYearChangePercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.oneYearChangePercent.toFixed(2)}%
@@ -166,7 +173,7 @@ const KeyStats = () => {
                         <Text variant={"h5"} lineHeight={"15px"} color={colorMode === 'light' ? "#525252" : "#A5A5A5"}>
                             Shares Outstanding
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
                         {ETFChartData?.data?.shareOutStanding === undefined ? "-" : ETFChartData?.data?.shareOutStanding}

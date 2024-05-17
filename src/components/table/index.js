@@ -12,6 +12,7 @@ const TooltipComp = dynamic(() => import("@components/tooltipComp"));
 const SkeletonTable = dynamic(() => import("@components/skeleton"));
 
 const GenericTable = ({
+	isFirstColumnSmall = false,
 	tableHeader,
 	tableData = null,
 	TableRow,
@@ -88,7 +89,9 @@ const GenericTable = ({
 					{
 						tableHeader.map((item, i) => (
 							<Th key={i} border={"0px"} _light={{ bgColor: "#F5F5F7", }}
-								_dark={{ bgColor: "#191919", }}>
+								_dark={{ bgColor: "#191919", }}
+								className={i == 0 && (isFirstColumnSmall && ("SmallColumn"))}
+							>
 								<Box
 									onClick={() => onClickHeader(item)}
 									cursor={"pointer"}

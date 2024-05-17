@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box,/* Input, InputGroup, InputLeftElement*/ Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
-import Image from "next/image";
+//import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import millify from "millify";
@@ -122,11 +122,11 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 border={"0px"}
                 key={rowIndex}
                 bgColor={"background.secondary"}
-                onClick={() => router.push(`/etf/${item?.ticker}`)}
+                onClick={() => router.push(`/crypto-etfs-data-tracker/${item?.ticker}`)}
             >
-                <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
-                    <Image src={"/icons/Bookmark_Icon.svg"} width={24} height={20}></Image>
-                </Td>
+                {/* <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
+                    <Image src={"/icons/Bookmark_Icon.svg"} width={24} height={20} alt=" "></Image>
+                </Td> */}
                 <Td {...commonStyleTdProp} key={1} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
                         {item?.ticker === undefined ? "-" : item?.ticker}
@@ -134,7 +134,7 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 </Td>
                 <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
-                        ARK Invest
+                    {item?.issuer === undefined ? "-" : item?.issuer}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={3} whiteSpace={"nowrap"}>
@@ -142,17 +142,17 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                         {item?.etfName === undefined ? "-" : item?.etfName}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={4} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={4} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         {item?.type === undefined ? "-" : item?.type}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={5} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={5} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         ${item?.share.toFixed(2) === undefined ? "-" : item?.share.toFixed(2)}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={6} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={6} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
                         ${millify(item?.shareOutstanding === undefined ? "-" : item?.shareOutstanding, { precision: 2 })}
                     </Text>
@@ -162,17 +162,17 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                         {item?.custodian === undefined ? "-" : item?.custodian}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={8} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                        ${millify(item?.volumeUsd === undefined ? "-" : item?.volumeUsd, { precision: 0 })}
+                        ${millify(item?.volumeUsd === undefined ? "-" : item?.volumeUsd, { precision: 2 })}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={9} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={9} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={400}>
-                        ${item?.volumeBtc === undefined ? "-" : item?.volumeBtc}
+                        {millify(item?.volumeBtc === undefined ? "-" : item?.volumeBtc, { precision: 2 })}
                     </Text>
                 </Td>
-                <Td {...commonStyleTdProp} key={10} whiteSpace={"nowrap"}>
+                <Td {...commonStyleTdProp} key={10} whiteSpace={"nowrap"} textAlign={"center"}>
                     <Box width={"80px"} bg={colorMode === 'light' ? "#245F003D" : "#60C0003D"} borderRadius={"8px"}>
                         <Text variant={"contentHeading3"} lineHeight={"24px"} fontWeight={700} color={"text.green"} textAlign={"center"} py={"6px"} px={"7px"}>
                             Running

@@ -7,6 +7,13 @@ import { useSelector } from "react-redux";
 const ARKInvest = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    {
+        ValidatedUserData?.AnnotationState &&
+            <Box>
+                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+            </Box>;
+    }
 
     return (
         <Box
@@ -26,7 +33,7 @@ const ARKInvest = () => {
                             letterSpacing={{ md: "0.2rem" }}
                             variant={"modalHeader"}
                         >
-                            {ETFChartData?.data?.marketPrice.toFixed(2) === undefined ? "-" : ETFChartData?.data?.marketPrice.toFixed(2)}
+                            ${ETFChartData?.data?.marketPrice.toFixed(2) === undefined ? "-" : ETFChartData?.data?.marketPrice.toFixed(2)}
                         </Text>
                         <Text
                             fontSize={{ base: "14px", md: "20px" }}
@@ -47,19 +54,19 @@ const ARKInvest = () => {
                             ({ETFChartData?.data?.change1dayPercent.toFixed(2) === undefined ? "-" : ETFChartData?.data?.change1dayPercent >= 0 ? `+${ETFChartData?.data?.change1dayPercent.toFixed(2)}` : ETFChartData?.data?.change1dayPercent.toFixed(2)}%)
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>
+                    {/* <Box layerStyle={"flexCenter"} gap={"5px"} mt={"10px"}>
                         <Image src={"/icons/Red_Dot.svg"} width={9} height={9} alt=" "></Image>
                         <Text fontSize={{ base: "12px", md: "14px" }} lineHeight={"17px"} variant={"contentHeading"}>Pre-Market</Text>
-                    </Box>
+                    </Box> */}
                 </Box>
                 <Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Box layerStyle={"flexCenter"} gap={"5px"} ml={"15px"}>
                         <Text fontSize={{ base: "12px", md: "14px" }} lineHeight={"17px"} variant={"contentHeading"}>
                             Volume
                         </Text>
-                        <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                        {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
-                    <Box mt={{ base: "8px", md: "15px" }}>
+                    <Box mt={{ base: "8px", md: "10px" }}>
                         <Text fontSize={{ base: "16px", md: "20px" }} lineHeight={"18px"} variant={"contentHeading4"}>
                             {ETFChartData?.data?.dailyVolume === undefined ? "-" : ETFChartData?.data?.dailyVolume}
                         </Text>
@@ -69,13 +76,13 @@ const ARKInvest = () => {
             <Box mt={"25"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
+                        $ {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         Day’s Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
+                        $ {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress
@@ -90,13 +97,13 @@ const ARKInvest = () => {
             <Box mt={"30"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
+                        $ {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         52 Week Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
+                        $ {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress

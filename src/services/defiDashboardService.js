@@ -106,3 +106,13 @@ export const getDefiGraphData = async (payload, rejectWithValue) => {
 		return rejectWithValue(err);
 	}
 };
+
+export const getDefiOverviewData = async (rejectWithValue) => {
+	try {
+		const url = NEXT_BE_URL_SEPARATOR + `protocols/defi-overview`;
+		const { data } = await axiosInstance(getAPI_URL()).get(url);
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};

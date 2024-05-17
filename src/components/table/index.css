@@ -28,3 +28,8 @@ tr> :nth-child(2) {
     position: sticky;
     left: 0;
 }
+
+.SmallColumn{
+    width: 10px !important;
+    padding: 12px 10px 12px 15px !important;
+}
