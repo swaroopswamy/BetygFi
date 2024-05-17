@@ -100,11 +100,11 @@ const ProtocolPage = () => {
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             <Marquee />
-            <Box layerStyle={"flexCenter"} mx={{ md: "14px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
-                <Box w={{ base: "85%", md: "100%" }}>
+            <Box layerStyle={"flexCenter"} mx={{ md: "10px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
+                <Box w={{ base: "95%", md: "100%" }}>
                     <BlockchainSelectionMenuNew />
                 </Box>
-                <Box ml={{ base: "-5px", md: "-50px" }} cursor={"pointer"}>
+                <Box ml={{ base: "5px", md: "-40px" }} cursor={"pointer"}>
                     <i className="icon arrow_right_grey" onClick={ScrollToRight} />
                 </Box>
                 {/*                 <Button onClick={onOpen} gap={{ base: "2px", md: "5px" }} ml={{ base: "4px" }} >
