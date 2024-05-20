@@ -68,8 +68,7 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                                 name={"Daily Volatility"}
                                 value={
                                     coinDetails?.daily_vol
-                                        ? 100 *
-                                        coinDetails?.daily_vol?.toFixed(
+                                        ? (100 * coinDetails?.daily_vol)?.toFixed(
                                             3
                                         ) +
                                         "%"
@@ -110,10 +109,9 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                                 name={"Volume Volatility"}
                                 value={
                                     coinDetails?.volume_vol
-                                        ? 100 *
-                                        coinDetails?.volume_vol?.toFixed(
-                                            4
-                                        )
+                                        ? (100 * coinDetails?.volume_vol)?.toFixed(
+                                                4
+                                            )
                                         : "-"
                                 }
                                 tooltip={
