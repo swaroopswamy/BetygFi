@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/guardian-sans');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import './icons.scss';
 @media screen and (min-height: 595px) {
     .sidebar-styles {
@@ -33,6 +35,276 @@
 
 body {
     font-family: 'Inter', sans-serif !important;
+}
+
+.ent-feature-card {
+    width: 380px;
+    height: 164px;
+}
+
+.video-container {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    /* To place it behind other content */
+}
+
+.fullscreen-video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: contain;
+}
+
+.ent-page-container {
+    scroll-snap-type: y mandatory;
+    /* Changed from proximity to mandatory */
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
+    section {
+        scroll-snap-align: start;
+    }
+}
+
+.ent-scroll-down {
+    .box span {
+        width: 30px;
+        height: 30px;
+        display: block;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        transform: rotate(45deg);
+        margin: -10px;
+        animation: animate 2s infinite;
+    }
+
+    .box span:nth-child(2) {
+        animation-delay: -0.2s;
+    }
+
+    .box span:nth-child(3) {
+        animation-delay: -0.4s;
+    }
+
+    @keyframes animate {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+
+#spin-word:after {
+    content: "";
+    font-weight: 700;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        content: "Banks";
+    }
+
+    25% {
+        content: "Investors";
+    }
+
+    50% {
+        content: "Institutions";
+    }
+
+    75% {
+        content: "Individuals";
+    }
+
+    100% {
+        content: "Banks";
+    }
+}
+
+
+
+.fullscreen-video-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Optional for background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+
+/***** Pulse *****/
+
+.pulse:hover {
+    animation: pulse 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+//spinner styles
+
+.custom-loader {
+    position: relative;
+    margin: auto;
+    width: 2vmin;
+    height: 2vmin;
+
+    .loader-el-light {
+        --origin-x: center;
+        --origin-y: center;
+
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: calc(50% - 4px);
+        left: calc(50% - 4px);
+        animation: loader-spin 2.6s linear infinite;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            animation: loader-spin 2s ease-out infinite;
+            transform-origin: var(--origin-x) var(--origin-y);
+            background-color: #4682B4;
+        }
+
+        &:nth-child(1) {
+            &::before {
+                --origin-y: -100%;
+            }
+
+            &::after {
+                --origin-y: 200%;
+            }
+        }
+
+        &:nth-child(2) {
+            &::before {
+                --origin-x: -100%;
+            }
+
+            &::after {
+                --origin-x: 200%;
+            }
+        }
+    }
+
+    .loader-el-dark {
+        --origin-x: center;
+        --origin-y: center;
+
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: calc(50% - 4px);
+        left: calc(50% - 4px);
+        animation: loader-spin 2.6s linear infinite;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            animation: loader-spin 2s ease-out infinite;
+            transform-origin: var(--origin-x) var(--origin-y);
+            background-color: white;
+        }
+
+        &:nth-child(1) {
+            &::before {
+                --origin-y: -100%;
+            }
+
+            &::after {
+                --origin-y: 200%;
+            }
+        }
+
+        &:nth-child(2) {
+            &::before {
+                --origin-x: -100%;
+            }
+
+            &::after {
+                --origin-x: 200%;
+            }
+        }
+    }
+
+    @keyframes loader-spin {
+        to {
+            transform: rotate(1turn);
+        }
+    }
+}
+
+.wordContainer {
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: "Montserrat";
+    color: #DADADA;
+    line-height: 100%;
+    letter-spacing: -1.92px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 10ch;
+    text-align: left;
+    
+}
+
+.ent-feature-card {
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: 0.7s;
+}
+
+.ent_carousel_button{
+    &:hover{
+        border:2px solid #63B8FF;
+    }
 }
 
 .parent {
@@ -268,7 +540,8 @@ body {
 
 .custom-slick {
     .slick-list {
-        height: 200px !important;
+        height: 500px !important;
+        // height: 200px !important;
     }
 
     .slick-arrow {
