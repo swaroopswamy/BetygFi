@@ -355,6 +355,44 @@ const Text = defineStyleConfig({
             color: colorMode !== "light" ? "#FFFFFF" : "#191919",
             lineHeight: "24px"
         }),
+        ent_title: () => ({
+            fontSize: "64px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            fontFamily: "Montserrat",
+            color: "#DADADA",
+            lineHeight: "100%",
+            letterSpacing: "-1.92px",
+            textAlign: "center"
+        }),
+        ent_subtitle: () => ({
+            fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: "400",
+            color: "#DADADA",
+            textAlign: "center"
+        }),
+        ent_feature_title: () => ({
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            color: "#DADADA",
+            letterSpacing: "-0.16px",
+        }),
+        ent_feature_desc: () => ({
+            fontSize: "14px",
+            fontWeight: "400",
+            color: "#DADADA",
+        }),
+        ent_md_title: () => ({
+            fontSize: "32px",
+            fontStyle: "normal",
+            fontFamily: "Montserrat",
+            fontWeight: "700",
+            color: "#DADADA",
+            lineHeight: "38px",
+            letterSpacing: "-0.32px",
+        }),
     },
     defaultProps: {
         variant: "base",

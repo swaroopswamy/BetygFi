@@ -41,6 +41,8 @@ export default async function RootLayout({ children }) {
 						href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap"
 						rel="stylesheet"
 					/>
+					<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+					<link href="https://fonts.cdnfonts.com/css/guardian-sans" rel="stylesheet" />
 					{/* Hotjar Tracking Code for https://betygfi.com/ */}
 					<Script rel="preconnect" id="hotjar-analytics">
 						{`(function(h,o,t,j,a,r){

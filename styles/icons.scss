@@ -306,3 +306,97 @@
         background-image: url('/icons/arrow_right_grey.svg');
     }
 }
+
+.ent_logo {
+    width: 140px;
+    height: 29px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/ent_logo.svg');
+    }
+}
+
+
+.ent_feature_1 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_1.svg');
+    }
+}
+
+.ent_feature_2 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_2.svg');
+    }
+}
+
+.ent_feature_3 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_3.svg');
+    }
+}
+
+.ent_feature_4 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_4.svg');
+    }
+}
+
+.ent_feature_5 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_5.svg');
+    }
+}
+
+.ent_feature_6 {
+    width: 32px;
+    height: 32px;
+
+    &::before {
+        background-image: url('/icons/ent_feature_6.svg');
+    }
+}
+
+.ent-scroll-down {
+    width: 46px;
+    height: 57px;
+
+    &::before {
+        background-image: url('/images/ent_scroll_down.svg');
+    }
+}
+
+
+.ent-carousel-arrow-left {
+    width: 24px;
+    height: 24px;
+
+    &::before {
+        background-image: url('/images/ent_carousel_arrow.svg');
+    }
+}
+
+.ent-carousel-arrow-right {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+
+    &::before {
+        background-image: url('/images/ent_carousel_arrow.svg');
+    }
+}

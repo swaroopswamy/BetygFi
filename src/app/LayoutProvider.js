@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
-import { Box, useColorModeValue, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
+import { Box, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut, useSession } from "next-auth/react";
 import { LogInFromCookie, StoreLoggedInUserDataGoogle, ResetValidatedUserData, socialLoginGoogle, verifyJWTtokenFromCookie, LogoutReducer, } from "@redux/auth_data/authSlice";
@@ -21,9 +21,11 @@ import { getEnv, mapTypeObject, replaceWithWS } from "@util/utility";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
 import NotificationDrawer from "@components/notification/drawer";
+import { usePathname } from "next/navigation";
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
+    const pathname = usePathname();
     const { onOpen, onClose } = useDisclosure();
     // const { connector: activeConnector } = useAccount();
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -306,77 +308,117 @@ export default function LayoutProvider({ appConfig, children }) {
 
     return (
         <AppConfigContext.Provider value={appConfig}>
-            <Box
-                width="100%"
-                minH="100vh"
-                bg={useColorModeValue("#F0F0F5", "#191919")}
-                display={"flex"}
-            >
-                <SidebarContent
-                    onClose={() => onClose}
-                    w={isMobileSidebarCollapsed ? "null" : "80%"}
-                    h={"100%"}
-                />
-                {isMd ? (
-                    <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
-                        }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                        w="100%"
-                        overflowX={"hidden"}
-                    >
-                        <Navbar
-                            onOpenMenu={onOpen}
-                            isNotificationDrawerOpen={isNotificationDrawerOpen}
-                            onNotificationDrawerOpen={onNotificationDrawerOpen}
-                            onNotificationDrawerClose={onNotificationDrawerClose}
-
-                        />
+            {
+                pathname === '/home' ? (
+                    // <ReactLenis root>
+                    <React.Fragment>
                         <Box
-                            p="0"
-                            _light={{ bgColor: "#FFFFFF" }}
-                            _dark={{ bgColor: "#131313" }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
-                    </Box>
-                ) : (
-                    <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
-                        w="100%" >
-                        <Navbar
-                            onOpenMenu={onOpen}
-                            isNotificationDrawerOpen={isNotificationDrawerOpen}
-                            onNotificationDrawerOpen={onNotificationDrawerOpen}
-                            onNotificationDrawerClose={onNotificationDrawerClose}
-
-                        />
-                        <Box
-                            p="0"
+                            className="ent-page-container"
+                            width="100%"
+                            minH=""
                             _light={{
-                                bgColor: "#FFF",
+                                bg: "#060606"
                             }}
                             _dark={{
-                                bgColor: "#282828",
+                                bg: "#060606"
                             }}
-                            w="100%"
+                            display={"flex"}
+
+                            flexDir={"column"}
                         >
                             {children}
-                            <Footer />
                         </Box>
+                    </React.Fragment>
+                ) : (
+                    <Box
+                        width="100%"
+                        minH="100vh"
+                        _light={{
+                            bg: "#F0F0F5"
+                        }}
+                        _dark={{
+                            bg: "#191919"
+                        }}
+                        display={"flex"}
+                    >
+                        <SidebarContent
+                            onClose={() => onClose}
+                            w={isMobileSidebarCollapsed ? "null" : "80%"}
+                            h={"100%"}
+                        />
+                        {isMd ? (
+                            <>
+                                <Box
+                                    display={{
+                                        base: "none",
+                                        md: isMobileSidebarCollapsed ? "flex" : "none",
+                                    }}
+                                    flexDirection={"column"}
+                                    className="margin-conditions"
+                                    id="main-body"
+                                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                                    w="100%"
+                                    overflowX={"hidden"}
+                                >
+                                    <Navbar
+                                        onOpenMenu={onOpen}
+                                        isNotificationDrawerOpen={isNotificationDrawerOpen}
+                                        onNotificationDrawerOpen={onNotificationDrawerOpen}
+                                        onNotificationDrawerClose={onNotificationDrawerClose}
+
+                                    />
+                                    <Box
+                                        p="0"
+                                        _light={{
+                                            bgColor: "#FFF",
+                                        }}
+                                        _dark={{
+                                            bgColor: "#131313",
+                                        }}
+                                        w="100%"
+                                    //height={"100vh"}
+                                    >
+                                        {children}
+                                        <Footer />
+                                    </Box>
+                                </Box>
+                            </>
+                        ) : (
+                            <>
+                                <Box
+                                    display={{ base: "flex", md: "none" }}
+                                    flexDirection={"column"}
+                                    overflowX={"hidden"}
+                                    mt={"60px"}
+                                    w="100%"
+
+                                >
+                                    <Navbar
+                                        onOpenMenu={onOpen}
+                                        isNotificationDrawerOpen={isNotificationDrawerOpen}
+                                        onNotificationDrawerOpen={onNotificationDrawerOpen}
+                                        onNotificationDrawerClose={onNotificationDrawerClose}
+
+                                    />
+                                    <Box
+                                        p="0"
+                                        _light={{
+                                            bgColor: "#FFF",
+                                        }}
+                                        _dark={{
+                                            bgColor: "#282828",
+                                        }}
+                                        w="100%"
+                                    >
+                                        {children}
+                                        <Footer />
+                                    </Box>
+                                </Box>
+                            </>
+                        )}
                     </Box>
-                )}
-            </Box>
+                )
+            }
             <NotificationDrawer
                 isOpen={isNotificationDrawerOpen}
                 onOpen={onNotificationDrawerOpen}
