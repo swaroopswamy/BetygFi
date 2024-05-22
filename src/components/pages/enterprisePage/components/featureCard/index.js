@@ -35,7 +35,7 @@ const FeatureCard = ({
                     </Box>
                 ) : (
                     <Box
-                        p={"24px"}
+                        p={"22px"}
                         layerStyle={"flexColumn"}
                     >
                         <Text mb={"10px"} variant={"ent_feature_title"}>{smallTitle}</Text>
