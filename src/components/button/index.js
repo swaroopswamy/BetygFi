@@ -169,6 +169,29 @@ const Button = defineStyleConfig({
             letterSpacing: "1px",
             p: "7px 23px",
         }),
+        ent_header_button: () => ({
+            fontSize: "18px",
+            color: "#ECECEC",
+            fontWeight: "400",
+        }),
+        ent_header_launch_button: () => ({
+            fontSize: "18px",
+            padding: "8px 20px",
+            color: "#0B081C",
+            fontWeight: "500",
+            borderRadius: "50px",
+            border: " 1px solid #ECECEC",
+            background: "#ECECEC",
+        }),
+        ent_carousel_button: () => ({
+            width: "54px",
+            height: "54px",
+            display: "flex",
+            borderRadius: "50%",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundImage: "url('/images/ent_carousel_button_bg.svg')",
+        })
     },
     defaultProps: {
         variant: "base",
