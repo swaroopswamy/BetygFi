@@ -25,7 +25,7 @@ const VideoBox = ({ featureSelected, setFeatureSelected }) => {
             <Box layerStyle={"center"}
                 position={"absolute"}
                 zIndex={10}
-                w="100%" pt={"32px"} pb="86px" bg={"rgba(0,0,0,0.5)"}
+                w="100%" py={"25px"} bg={"rgba(0,0,0,0.5)"}
                 borderTop={"1px solid rgba(178, 126, 250, 0.42)"}
                 px={"5%"}
                 bottom={0}

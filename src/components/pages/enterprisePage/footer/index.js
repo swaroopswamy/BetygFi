@@ -38,7 +38,6 @@ const EnterpriseFooter = () => {
                 <Box mb={"50px"}>
                     <Image src={"/icons/New_BetgFi_Logo_Light.svg"} width={138} height={22} alt="logo"></Image>
                     <Text
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         textAlign={"left"}
@@ -48,7 +47,6 @@ const EnterpriseFooter = () => {
                         BetygFi is an Information Utility dedicated to democratizing access to information.
                     </Text>
                     <Text
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         textAlign={"left"}
@@ -60,7 +58,6 @@ const EnterpriseFooter = () => {
                 </Box>
                 <Box ml={"100px"}>
                     <Text
-                        fontFamily={"Roboto"}
                         fontSize={"16px"}
                         fontWeight={700}
                         lineHeight={"22px"}
@@ -69,35 +66,33 @@ const EnterpriseFooter = () => {
                         Service
                     </Text>
                     <Box
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         textAlign={"left"}
                         color={"#77808B"}
                     >
-                        <Text mt={"25px"} cursor={"pointer"}>
+                        <Text mt={"25px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Illustration
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Mobile Design
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Motion Graphic
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Web Design
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Development
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             SEO
                         </Text>
                     </Box>
                 </Box>
                 <Box ml={"100px"}>
                     <Text
-                        fontFamily={"Roboto"}
                         fontSize={"16px"}
                         fontWeight={700}
                         lineHeight={"22px"}
@@ -106,34 +101,33 @@ const EnterpriseFooter = () => {
                         Company
                     </Text>
                     <Box
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         textAlign={"left"}
-                        color={"#77808B"}                    >
-                        <Text mt={"25px"} cursor={"pointer"}>
+                        color={"#77808B"}
+                    >
+                        <Text mt={"25px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Service
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Features
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Our Team
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             About Us
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Blog
                         </Text>
-                        <Text mt={"15px"} cursor={"pointer"}>
+                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
                             Contact Us
                         </Text>
                     </Box>
                 </Box>
                 <Box ml={"100px"} mb={"65px"}>
                     <Text
-                        fontFamily={"Roboto"}
                         fontSize={"16px"}
                         fontWeight={700}
                         lineHeight={"22px"}
@@ -143,7 +137,6 @@ const EnterpriseFooter = () => {
                         Join a Newsletter
                     </Text>
                     <Text
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         color={"#77808B"}
@@ -195,7 +188,6 @@ const EnterpriseFooter = () => {
             <Box w={"80%"} layerStyle={"flexCenterSpaceBetween"}>
                 <Box>
                     <Text
-                        fontFamily={"Roboto"}
                         variant={"h4"}
                         lineHeight={"24px"}
                         textAlign={"left"}
