@@ -22,8 +22,8 @@ const EnterpriseHeader = () => {
                 layerStyle={"flexCenter"}
                 gap={"50px"}
             >
-                <Button variant={"ent_header_button"} onClick={() => router.push(`/research-paper`)}>Features</Button>
-                <Button variant={"ent_header_button"} onClick={() => router.push(`/aboutus`)}>About us</Button>
+                <Button variant={"ent_header_button"} onClick={() => router.push(`/approach-paper`)}>Features</Button>
+                <Button variant={"ent_header_button"} onClick={() => router.push(`/about`)}>About us</Button>
                 <Link href={"https://platfrom.betygfi.com"} target="_blank">
                     <Button variant={"ent_header_launch_button"} >
                         Launch Platform
