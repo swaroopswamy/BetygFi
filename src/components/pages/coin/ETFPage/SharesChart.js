@@ -7,7 +7,7 @@ import millify from "millify";
 const ARK21Shares = () => {
     const { colorMode } = useColorMode();
     const ETFChartData = useSelector((state) => state?.coinData?.ETFChartData);
-    const [selectedRange, setSelectedRange] = useState("24h");
+    const [selectedRange, setSelectedRange] = useState("30d");
 
     const getFilteredData = (range) => {
         const currentDate = new Date();

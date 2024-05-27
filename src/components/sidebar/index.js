@@ -104,7 +104,7 @@ const SidebarContent = ({ ...rest }) => {
                             alignItems="center"
                             cursor={"pointer"}
                             p={"20px"}
-                            onClick={() => router.push("/")}
+                            onClick={() => router.push("/coin")}
                         >
                             <Image
                                 // unoptimized="true"
@@ -884,7 +884,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                     }
                                                     cursor={"pointer"}
                                                     onClick={() =>
-                                                        router.push("/")
+                                                        router.push("/coin")
                                                     }
                                                 />
                                             </Box>

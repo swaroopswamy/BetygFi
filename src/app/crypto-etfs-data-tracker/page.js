@@ -12,7 +12,7 @@ import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from
 const Bitcoin_ETFs_Tracker = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
+    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure({ defaultIsOpen: true });
     const ETFType = useSelector((state) => state?.coinData?.ETFType);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 

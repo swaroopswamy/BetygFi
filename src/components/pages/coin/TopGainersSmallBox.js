@@ -1,4 +1,4 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, Tooltip, useColorMode } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import React from "react";
@@ -67,22 +67,25 @@ const TopGainersSmallBox = () => {
                             height={35}
                             width={35}
                             src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px", borderRadius: "50%" }}
+                            style={{ marginRight: "7px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.name}
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${gainer?.price?.toFixed(2)}
-                        </Text>
+                    <Box layerStyle={"flexCenter"} gap={"2px"}>
+                        <Tooltip hasArrow label={`$ ${gainer?.price}`}>
+                            <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                                ${gainer.price.toString().split('').slice(0, 4).join('') +
+                                    "..." +
+                                    gainer.price.toString().slice(-2)}
+                            </Text>
+                        </Tooltip>
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}
                             justifyContent={"center"}
                             height={"21px"}
-                            mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
                             _light={{ bg: "#245F001F" }}
@@ -97,8 +100,9 @@ const TopGainersSmallBox = () => {
                         </Box>
                     </Box>
                 </Box>
-            ))}
-        </Box>
+            ))
+            }
+        </Box >
     );
 };
 
