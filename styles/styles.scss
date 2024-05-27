@@ -67,6 +67,7 @@ body {
     overflow-y: scroll;
     height: 100vh;
     scroll-behavior: smooth;
+
     section {
         scroll-snap-align: start;
     }
@@ -292,7 +293,7 @@ body {
     overflow: hidden;
     width: 10ch;
     text-align: left;
-    
+
 }
 
 .ent-feature-card {
@@ -301,9 +302,9 @@ body {
     transition: 0.7s;
 }
 
-.ent_carousel_button{
-    &:hover{
-        border:2px solid #63B8FF;
+.ent_carousel_button {
+    &:hover {
+        border: 2px solid #63B8FF;
     }
 }
 
@@ -540,8 +541,8 @@ body {
 
 .custom-slick {
     .slick-list {
-        height: 500px !important;
-        // height: 200px !important;
+        //height: 500px !important;
+        height: 200px !important;
     }
 
     .slick-arrow {
@@ -581,6 +582,6 @@ body {
     margin-top: 8px;
 }
 
-.Heatmap{
+.Heatmap {
     border-radius: 8px;
 }

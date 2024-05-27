@@ -212,7 +212,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     const renderMDInputGroup = () => {
         return (
-            <InputGroup ref={ref} w="100%" zIndex={"99999999"} alignItems={"center"}>
+            <InputGroup ref={ref} w="100%" alignItems={"center"}>
                 <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
                     <Box display={"flex"} flexDir={"row"}>
                         <InputLeftElement pointerEvents="none">
@@ -259,15 +259,18 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 onChange={(e) => { handleSearchInputChange(e.target.value); }}
                                 onClick={() => { handleSearchInputClick(); }}
                             />
-                            <Tooltip label={`Press / to search`}>
-                                <Box mr={"1%"} cursor={"pointer"} borderRadius={"50%"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
-                                    _light={{ backgroundColor: "#FFFFFF" }}
-                                    _dark={{ backgroundColor: "#202020" }}>
-                                    <Text variant={"h5"} colorMode={colorMode}>
-                                        /
-                                    </Text>
-                                </Box>
-                            </Tooltip>
+                            {
+                                searchValue?.length <= 0 &&
+                                <Tooltip label={`Press / to search`}>
+                                    <Box mr={"1%"} cursor={"pointer"} borderRadius={"50%"} width={"35px"} display={"flex"} justifyContent={"center"} alignItems={"center"} height={"35px"}
+                                        _light={{ backgroundColor: "#FFFFFF" }}
+                                        _dark={{ backgroundColor: "#202020" }}>
+                                        <Text variant={"h5"} colorMode={colorMode}>
+                                            /
+                                        </Text>
+                                    </Box>
+                                </Tooltip>
+                            }
                         </Box>
                         {
                             searchValue?.length > 0 &&

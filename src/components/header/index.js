@@ -355,7 +355,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 height={120}
                                 width={120}
                                 cursor={"pointer"}
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/coin")}
                                 alt="logo"
                             />
                         </Box>
