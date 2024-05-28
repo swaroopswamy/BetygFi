@@ -353,8 +353,8 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 // priority="true"
                                 src={
                                     colorMode === "light"
-                                        ? "/icons/light_betgyfi_sm_icon.svg"
-                                        : "/icons/dark_betgyfi_sm_logo.svg"
+                                        ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                        : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                 }
                                 height={120}
                                 width={120}
