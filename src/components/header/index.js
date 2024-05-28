@@ -202,12 +202,16 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                 />
             </Box>
             <Box layerStyle={"flexCenter"}>
-                <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
-                    onClick={() => { toggleColorModeGlobally(); }} />
-                <NotificationBell
-                    noOfNotifcations={Notifications?.data?.length}
-                    onClick={onNotificationDrawerOpen}
-                />
+                <Box mr={"10px"}>
+                    <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
+                        onClick={() => { toggleColorModeGlobally(); }} />
+                </Box>
+                <Box>
+                    <NotificationBell
+                        noOfNotifcations={Notifications?.data?.length}
+                        onClick={onNotificationDrawerOpen}
+                    />
+                </Box>
                 {!AuthSession ? (
                     <Box
                         ml="20px"
