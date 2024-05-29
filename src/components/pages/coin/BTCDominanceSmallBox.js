@@ -75,6 +75,9 @@ const BTCDominanceSmallBox = () => {
         },
         tooltip: {
             enabled: false,
+            /* formatter: function (val) {
+                return "BTC Dominance:-" + val;
+            } */
         },
     };
 
@@ -111,7 +114,7 @@ const BTCDominanceSmallBox = () => {
                         alt="bitcoin_icon"
                         unoptimized="true"
                         priority="true"
-                        ></Image>
+                    ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         BTC Dominance
                     </Text>

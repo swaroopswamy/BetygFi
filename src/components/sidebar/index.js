@@ -117,9 +117,9 @@ const SidebarContent = ({ ...rest }) => {
                                 height={80}
                                 alt="logo"
                                 src={
-                                    colorMode === "dark"
-                                        ? "/icons/dark_betgyfi_sm_logo.svg"
-                                        : "/icons/light_betgyfi_sm_icon.svg"
+                                    colorMode === "light"
+                                        ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                        : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                 }
                             />
                         </Box>
@@ -418,15 +418,15 @@ const SidebarContent = ({ ...rest }) => {
                                 onClick={() => router.push("/")}
                             >
                                 <Image
-                                    width={35}
-                                    height={35}
+                                    width={38}
+                                    height={38}
                                     // unoptimized="true"
                                     // priority="true"
                                     alt="logo"
                                     src={
                                         colorMode === "light"
-                                            ? "/icons/company_sidebar_sm_logo_dark.svg"
-                                            : "/icons/company_sidebar_sm_logo_light.svg"
+                                            ? "/icons/BetygFiLogo_sidebar_small_dark.svg"
+                                            : "/icons/BetygFiLogo_sidebar_small_light.svg"
                                     }
                                     cursor={"pointer"}
                                     onClick={() => router.push("/")}
@@ -883,8 +883,8 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                     // priority="true"
                                                     src={
                                                         colorMode === "light"
-                                                            ? "/icons/light_betgyfi_sm_icon.svg"
-                                                            : "/icons/dark_betgyfi_sm_logo.svg"
+                                                            ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                                            : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                                     }
                                                     cursor={"pointer"}
                                                     onClick={() =>

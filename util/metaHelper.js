@@ -2,12 +2,12 @@ import { DOMAIN, HOST } from "@util/constant";
 
 // const SHARED_IMAGES_DETAIL = [
 //     {
-//         url: "https://betygfi.com/icons/light_betgyfi_sm_icon.svg",
+//         url: "https://betygfi.com/icons/BetygFiLogo_sidebar_big_light.svg",
 //         width: 800,
 //         height: 600,
 //     },
 //     {
-//         url: "https://betygfi.com/icons/light_betgyfi_sm_icon.svg",
+//         url: "https://betygfi.com/icons/BetygFiLogo_sidebar_big_light.svg",
 //         width: 1800,
 //         height: 1600,
 //         alt: 'My custom alt',
@@ -15,7 +15,7 @@ import { DOMAIN, HOST } from "@util/constant";
 // ];
 
 const SHARED_IMAGES = [
-    "https://betygfi.com/icons/light_betgyfi_sm_icon.svg"
+    "https://betygfi.com/icons/BetygFiLogo_sidebar_big_light.svg"
 ];
 
 const SHARED_OPENGRAPH_IMAGES = () => [...SHARED_IMAGES];

@@ -61,7 +61,14 @@ const TopGainersSmallBox = () => {
                 </Box>
             </Box>
             {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
-                <Box layerStyle={"spaceBetween"} key={i} mb="12px">
+                <Box
+                    layerStyle={"spaceBetween"}
+                    key={i}
+                    mb="12px"
+                    onClick={() => {
+                        if (gainer?.slug) router.push(`/coin/${gainer?.slug}`);
+                    }}
+                    cursor={"pointer"}>
                     <Box layerStyle={"flexCenter"}>
                         <Image
                             height={35}
