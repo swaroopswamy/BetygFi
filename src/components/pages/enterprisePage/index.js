@@ -13,6 +13,7 @@ import { directionAnimations, features, scrollToId, words } from "./helper";
 import ScrollDownBox from "./components/scrollDownBox";
 import { motion } from 'framer-motion';
 import BoxMap from "./components/mapBox";
+import { useSearchParams } from "next/navigation";
 
 const EnterpriseLandingPage = () => {
     const [featureSelected, setFeatureSelected] = useState(null);
@@ -34,7 +35,19 @@ const EnterpriseLandingPage = () => {
         }
     };
 
+    const searchParams = useSearchParams();
+    const on = searchParams.get('on');
+    const by = searchParams.get('by');
 
+    useEffect(() => {
+        if (on !== null && by !== null) {
+            setTimeout(() => {
+                if (document.getElementById('total-container-protocol')) {
+                    document.getElementById('total-container-protocol').scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000);
+        }
+    }, [on, by]);
 
     return (
         <Box display={"flex"} flexDir={"column"} w="100%" bg={"#000000"}  >
