@@ -5,6 +5,11 @@
 @media screen and (min-height: 595px) {
     .sidebar-styles {
         position: fixed !important;
+        display: none;
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
     }
 
     .margin-conditions {
@@ -586,14 +591,13 @@ body {
     border-radius: 8px;
 }
 
-.btc_dominance_tooltip{
+.btc_dominance_tooltip {
     padding: 8px;
-    .btc_dominance_tooltip_text{
+
+    .btc_dominance_tooltip_text {
         font-size: 14px;
         font-weight: 600;
     }
-    
-    .btc_dominance_tooltip_text_date{
 
-    }
+    .btc_dominance_tooltip_text_date {}
 }
