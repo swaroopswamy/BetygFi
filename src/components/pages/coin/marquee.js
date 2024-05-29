@@ -51,7 +51,7 @@ const Marquee = () => {
             key: "BTC Dominance: ",
             value: MarqueeData?.data?.btcDominance === undefined
                 ? "-"
-                : MarqueeData?.data?.btcDominance,
+                : MarqueeData?.data?.btcDominance + "%",
             percentage: true
         },
         {
@@ -139,7 +139,7 @@ const Marquee = () => {
                 key: "BTC Dominance: ",
                 value: MarqueeData?.data?.btcDominance === undefined
                     ? "-"
-                    : MarqueeData?.data?.btcDominance,
+                    : MarqueeData?.data?.btcDominance + "%",
                 percentage: true
             },
             {
