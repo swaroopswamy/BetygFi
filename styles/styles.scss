@@ -585,3 +585,15 @@ body {
 .Heatmap {
     border-radius: 8px;
 }
+
+.btc_dominance_tooltip{
+    padding: 8px;
+    .btc_dominance_tooltip_text{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .btc_dominance_tooltip_text_date{
+
+    }
+}

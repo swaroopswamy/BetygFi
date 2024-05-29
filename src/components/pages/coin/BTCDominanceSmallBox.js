@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NoDataAvailable from "./NodataSmallBox";
+import moment from "moment";
 
 const BTCDominanceSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -74,10 +75,25 @@ const BTCDominanceSmallBox = () => {
             show: false,
         },
         tooltip: {
-            enabled: false,
-            /* formatter: function (val) {
-                return "BTC Dominance:-" + val;
-            } */
+            enabled: true,
+            theme: colorMode,
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+            let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                return (
+                    '<div class="btc_dominance_tooltip">' +
+                        '<div class="btc_dominance_tooltip_text">' +
+                            '<p>' +
+                                "BTC Dominance " +
+                                entry?.y +
+                                "%" +
+                            '</p>' +
+                        "</div>" +
+                        '<div class="btc_dominance_tooltip_text_date">' +
+                            moment(entry?.x).format('DD MMM, YYYY') +
+                        "</div>" +
+                    "</div>"
+                );
+            },
         },
     };
 
