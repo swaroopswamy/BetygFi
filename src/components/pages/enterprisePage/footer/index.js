@@ -136,15 +136,18 @@ const EnterpriseFooter = () => {
                     </Box>
                     <Box layerStyle={"flexCenter"} mt={"20px"} gap={"25px"} cursor={"pointer"}>
                         <a href="https://x.com/BetygFi" target="_blank">
-                            <Image src={"/icons/twitter-icon.svg"}
+                            <Image src={"/images/twitter_black.svg"}
                                 alt="icon"
-                                width={25} height={25} />
+                                width={30} height={30} />
                         </a>
                         <a href="https://www.reddit.com/r/betygFi/" target="_blank">
                             <Image src={"/images/reddit_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
                         <a href="https://www.youtube.com/channel/UCwX7D6Z9u8zB5UixSAcfnyA" target="_blank">
                             <Image src={"/images/youtube_black.svg"} width={30} height={30} alt="icon"></Image>
+                        </a>
+                        <a href="https://www.linkedin.com/company/solvendo-io/" target="_blank">
+                            <Image src={"/images/linkedin_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
                     </Box>
                 </Box>
