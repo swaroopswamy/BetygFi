@@ -34,7 +34,7 @@ const BoxMap = () => {
 
 
     return (
-        <Box layerStyle={"center"} flexDir={"column"} pt="50px" >
+        <Box layerStyle={"center"} flexDir={"column"} pt="50px" id="get_in_touch">
             <Text variant={"ent_md_title"} mb="8px">
                 Get In Touch
             </Text>

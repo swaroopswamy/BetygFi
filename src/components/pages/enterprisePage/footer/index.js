@@ -25,6 +25,13 @@ const EnterpriseFooter = () => {
         window.location.href = mailtoLink;
     };
 
+    const scrollToElementById = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <Box
             bg={"#F8F9FA"}
@@ -84,7 +91,7 @@ const EnterpriseFooter = () => {
                         color={"#77808B"}
                     >
                         <Link href="https://betygfi.com/about"><Text mt={"25px"} whiteSpace={"nowrap"}>about</Text></Link>
-                        <Link href="/home?on=Get_In_Touch&by=asc"><Text mt={"15px"} whiteSpace={"nowrap"}>Contact</Text></Link>
+                        <Link onClick={() => scrollToElementById('get_in_touch')}><Text mt={"15px"} whiteSpace={"nowrap"}>Contact</Text></Link>
                         <Link href="https://blog.betygfi.com"><Text mt={"15px"} whiteSpace={"nowrap"}>blog</Text></Link>
                         <Link href="https://betygfi.com/legal"><Text mt={"15px"} whiteSpace={"nowrap"}>Legal</Text></Link>
                         <Link href="https://betygfi.com/approach-paper"><Text mt={"15px"} whiteSpace={"nowrap"}>Approach paper</Text></Link>
@@ -143,10 +150,10 @@ const EnterpriseFooter = () => {
                         <a href="https://www.reddit.com/r/betygFi/" target="_blank">
                             <Image src={"/images/reddit_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
-                        <a href="https://www.youtube.com/channel/UCwX7D6Z9u8zB5UixSAcfnyA" target="_blank">
+                        <a href="https://www.youtube.com/@betygfi" target="_blank">
                             <Image src={"/images/youtube_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
-                        <a href="https://www.linkedin.com/company/solvendo-io/" target="_blank">
+                        <a href="https://www.linkedin.com/company/betygfi/" target="_blank">
                             <Image src={"/images/linkedin_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
                     </Box>
