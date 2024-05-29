@@ -37,21 +37,21 @@ const Marquee = () => {
                 }),
             percentage: false
         },
-        {
-            key: "MCAP: ",
-            value: MarqueeData?.data?.totalMarketCap === undefined
-                ? "-"
-                : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
-            percentage: false
-        },
+        // {
+        //     key: "MCAP: ",
+        //     value: MarqueeData?.data?.totalMarketCap === undefined
+        //         ? "-"
+        //         : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
+        //             style: "currency",
+        //             currency: "USD",
+        //         }),
+        //     percentage: false
+        // },
         {
             key: "BTC Dominance: ",
             value: MarqueeData?.data?.btcDominance === undefined
                 ? "-"
-                : MarqueeData?.data?.btcDominance,
+                : MarqueeData?.data?.btcDominance + "%",
             percentage: true
         },
         {
@@ -125,21 +125,21 @@ const Marquee = () => {
                     }),
                 percentage: false
             },
-            {
-                key: "MCAP: ",
-                value: MarqueeData?.data?.totalMarketCap === undefined
-                    ? "-"
-                    : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
-                percentage: false
-            },
+            // {
+            //     key: "MCAP: ",
+            //     value: MarqueeData?.data?.totalMarketCap === undefined
+            //         ? "-"
+            //         : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
+            //             style: "currency",
+            //             currency: "USD",
+            //         }),
+            //     percentage: false
+            // },
             {
                 key: "BTC Dominance: ",
                 value: MarqueeData?.data?.btcDominance === undefined
                     ? "-"
-                    : MarqueeData?.data?.btcDominance,
+                    : MarqueeData?.data?.btcDominance + "%",
                 percentage: true
             },
             {
