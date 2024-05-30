@@ -95,6 +95,7 @@ const SandPSmallBox = () => {
             pr={"0px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="sandp"
         >
             <Box layerStyle={"spaceBetween"} p={"12px"}>
                 <Box layerStyle={"flexCenter"}>
@@ -162,7 +163,7 @@ const SandPSmallBox = () => {
                                     alt="green_dot_icon"
                                     unoptimized="true"
                                     priority="true"
-                                    ></Image>
+                                ></Image>
                             </Box>
                             <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
                                 <CustomChart
