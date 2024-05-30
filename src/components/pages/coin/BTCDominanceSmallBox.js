@@ -120,6 +120,7 @@ const BTCDominanceSmallBox = () => {
             display={"flex"}
             justifyContent={"space-between"}
             flexDirection={"column"}
+            key="btc-dominance"
         >
             <Box layerStyle={"spaceBetween"} mb={"12px"} px={"12px"} pt={"12px"}>
                 <Box layerStyle={"flexCenter"}>

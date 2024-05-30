@@ -25,6 +25,7 @@ const FearGridIndexSmallBox = () => {
                 bg: "#282828"
             }}
             position={"relative"}
+            key="fear-grid"
         >
 
             <Box layerStyle={"flexCenter"} p={"12px"}>

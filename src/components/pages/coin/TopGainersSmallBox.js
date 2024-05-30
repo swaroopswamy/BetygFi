@@ -20,6 +20,7 @@ const TopGainersSmallBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="top-gainers"
         >
             <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>

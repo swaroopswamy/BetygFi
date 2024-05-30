@@ -45,10 +45,6 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
             if (key === 'Tab') {
                 setOpenSearchSuggestion(true);
             }
-            // if (key == "ArrowUp") {
-            //     event.preventDefault();
-            //     event.dispatchEvent(new Event('keypress', { key: 'Tab' }));
-            // }
             if (key === "Escape") {
                 setOpenSearchSuggestion(false);
             }
@@ -59,6 +55,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
     }, []);
 
     const checkAndRedirectToActiveTabIndex = () => {
+        if (searchValue.length === 0) return; // Do not redirect if the search value is empty
         const searchSuggestion = getSearchSuggestionToStorage();
         if (searchSuggestion) {
             const suggestion = JSON.parse(searchSuggestion);
@@ -87,6 +84,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 
     useEffect(() => {
         if (searchValue?.length == 0) {
+            clearSearchSuggestionToStorage(); // Clear search suggestion from storage when input is empty
             searchSuggestionOpenState(false);
             setSearchList(searchListTrendingData);
         }
@@ -152,32 +150,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 whiteSpace="nowrap"
                                 sx={{ '::-webkit-scrollbar': { display: 'none' } }}
                             >
-                                {/* <Box> */}
                                 {searchDataContent()}
-                                {/* <Box border={"1px solid red"} display={"flex"} justifyContent={"space-between"} backgroundColor={"#FFFFFF"} m={"12px 29px 15px 20px"}>
-                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                            <Box display={"flex"} padding={"2px"} >
-                                                <i className={`icon up_arrow`} />
-                                                <i className={`icon down_arrow`} />
-                                            </Box>
-                                            To enter
-                                        </Box>
-
-                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                            <Box display={"flex"} padding={"2px"} >
-                                                <i className={`icon to_enter`} />
-                                            </Box>
-                                            To enter
-                                        </Box>
-
-                                        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                                            <Box display={"flex"} padding={"2px"} >
-                                                <i className={`icon to_enter`} />
-                                            </Box>
-                                            To enter
-                                        </Box>
-                                    </Box> */}
-                                {/* </Box> */}
                             </Box>
                             :
                             <Box
@@ -191,13 +164,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 maxW="100vw"
                                 maxH="80vh"
                                 whiteSpace="nowrap"
-                                sx={
-                                    {
-                                        '::-webkit-scrollbar': {
-                                            display: 'none'
-                                        }
-                                    }
-                                }
+                                sx={{ '::-webkit-scrollbar': { display: 'none' } }}
                             >
                                 {searchDataContent()}
                             </Box>
@@ -213,15 +180,13 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
     const renderMDInputGroup = () => {
         return (
             <InputGroup ref={ref} w="100%" alignItems={"center"} zIndex={"99999999"}>
-                <Box position={"relative"}  w="100%" display={"flex"} flexDir={"column"}>
+                <Box position={"relative"} w="100%" display={"flex"} flexDir={"column"}>
                     <Box display={"flex"} flexDir={"row"}>
                         <InputLeftElement pointerEvents="none">
                             <Image
                                 src="/images/search_icon.svg"
                                 width={20}
                                 height={20}
-                                // unoptimized="true"
-                                // priority="true"
                                 alt="search_icon"
                                 borderLeftRadius={"20px"}
                                 borderRightRadius={"20px"}
@@ -286,8 +251,6 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
-                                    // unoptimized="true"
-                                    // priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"
@@ -311,8 +274,6 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 src={`/icons/search_icon_${colorMode}.svg`}
                                 width={18}
                                 height={18}
-                                // unoptimized="true"
-                                // priority="true"
                                 alt="search_icon_mob"
                             />
                         </InputLeftElement>
@@ -331,7 +292,12 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 value={searchValue}
                                 fontSize={"12px"}
                                 onClick={() => { handleSearchInputClick(); }}
-                                onChange={(e) => { handleSearchInputChange(e.target.value); }}
+                                onChange={(e) => { 
+                                    handleSearchInputChange(e.target.value); 
+                                    if (e.target.value.length === 0) {
+                                        clearSearchSuggestionToStorage();
+                                    }
+                                }}
                             />
                         </Box>
                         {
@@ -342,13 +308,11 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 bgColor={colorMode === "light" ? "#FFFFFF" : "#191919"}
                                 width={"35px"}
                                 borderColor={colorMode === "light" ? "#E1E1E1" : "#333"}
-                                onClick={() => { clearValueMobileSearch(); }}
+                                onClick={() => { clearValueMobileSearch(); clearSearchSuggestionToStorage(); }}
                             >
                                 <Image
                                     src={`/icons/cross-${colorMode}.svg`}
                                     height={24}
-                                    // unoptimized="true"
-                                    // priority="true"
                                     width={24}
                                     cursor={"pointer"}
                                     alt="logo"
@@ -389,3 +353,4 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
 };
 
 export default SearchBoxV2;
+

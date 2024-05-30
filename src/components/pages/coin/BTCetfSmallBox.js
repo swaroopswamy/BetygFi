@@ -21,6 +21,7 @@ const BTCetfSmallBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="btc-etf"
         >
             <Box layerStyle={"spaceBetween"} mb="10px">
                 <Box layerStyle={"flexCenter"}>
