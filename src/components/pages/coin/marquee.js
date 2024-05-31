@@ -37,16 +37,6 @@ const Marquee = () => {
                 }),
             percentage: false
         },
-        // {
-        //     key: "MCAP: ",
-        //     value: MarqueeData?.data?.totalMarketCap === undefined
-        //         ? "-"
-        //         : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-        //             style: "currency",
-        //             currency: "USD",
-        //         }),
-        //     percentage: false
-        // },
         {
             key: "BTC Dominance: ",
             value: MarqueeData?.data?.btcDominance === undefined
@@ -58,14 +48,14 @@ const Marquee = () => {
             key: "ETH Dominance: ",
             value: MarqueeData?.data?.ethDominance === undefined
                 ? "-"
-                : MarqueeData?.data?.ethDominance,
+                : MarqueeData?.data?.ethDominance + "%",
             percentage: true
         },
         {
             key: "ETH Gas Price: ",
             value: MarqueeData?.data?.ethGasPrice === undefined
                 ? "-"
-                : MarqueeData?.data?.ethGasPrice,
+                : MarqueeData?.data?.ethGasPrice + " Gwei",
             percentage: false
         },
         {
@@ -125,16 +115,6 @@ const Marquee = () => {
                     }),
                 percentage: false
             },
-            // {
-            //     key: "MCAP: ",
-            //     value: MarqueeData?.data?.totalMarketCap === undefined
-            //         ? "-"
-            //         : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-            //             style: "currency",
-            //             currency: "USD",
-            //         }),
-            //     percentage: false
-            // },
             {
                 key: "BTC Dominance: ",
                 value: MarqueeData?.data?.btcDominance === undefined
@@ -146,14 +126,14 @@ const Marquee = () => {
                 key: "ETH Dominance: ",
                 value: MarqueeData?.data?.ethDominance === undefined
                     ? "-"
-                    : MarqueeData?.data?.ethDominance,
+                    : MarqueeData?.data?.ethDominance + "%",
                 percentage: true
             },
             {
                 key: "ETH Gas Price: ",
                 value: MarqueeData?.data?.ethGasPrice === undefined
                     ? "-"
-                    : MarqueeData?.data?.ethGasPrice,
+                    : MarqueeData?.data?.ethGasPrice + " Gwei",
                 percentage: false
             },
             {
