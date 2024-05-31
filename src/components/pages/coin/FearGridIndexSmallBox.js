@@ -32,8 +32,8 @@ const FearGridIndexSmallBox = () => {
                 <Image
                     height={32}
                     width={32}
-                    src="/icons/bitcoin_logo.svg"
-                    alt="bitcoin_icon"
+                    src="/icons/FearGreedIndex_Icon.svg"
+                    alt="feargreedindex_icon"
                     unoptimized="true"
                     priority="true"
                     ></Image>
