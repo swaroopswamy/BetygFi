@@ -6,6 +6,7 @@ import {
 	Th,
 	Td,
 	useColorModeValue,
+	useColorMode
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { USDollar } from "@util/utility";
@@ -80,6 +81,7 @@ const InflowTokensBox = () => {
 };
 
 const TableRowDesktop = ({ item, i }) => {
+	const { colorMode } = useColorMode();
 	if (i === 5) return;
 	return (
 		<Tr height={"40px"} key={i}>
@@ -102,8 +104,7 @@ const TableRowDesktop = ({ item, i }) => {
 				<Box layerStyle={"flexCenter"}>
 					<Text
 						variant={"h3"}
-						_dark={{ color: "#245F00" }}
-						_light={{ color: "#60C000" }}
+						color={colorMode === 'light' ? "#245F00" : "#60C000"}
 					>
 						+ USD {USDollar.format(item?.value)}
 					</Text>

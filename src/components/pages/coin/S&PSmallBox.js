@@ -5,6 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NoDataAvailable from "./NodataSmallBox";
+import moment from "moment";
 
 const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -74,7 +75,25 @@ const SandPSmallBox = () => {
             show: false,
         },
         tooltip: {
-            enabled: false,
+            enabled: true,
+            theme: colorMode,
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                    return (
+                        '<div class="btc_dominance_tooltip">' +
+                            '<div class="btc_dominance_tooltip_text">' +
+                                '<p>' +
+                                    "S&P 500 Price " +
+                                    "$" +
+                                    entry?.y?.toFixed(2) +
+                                '</p>' +
+                            "</div>" +
+                            '<div class="btc_dominance_tooltip_text_date">' +
+                                moment(entry?.x).format('DD MMM, YYYY') +
+                            "</div>" +
+                        "</div>"
+                    );
+                },
         },
     };
 
@@ -102,8 +121,8 @@ const SandPSmallBox = () => {
                     <Image
                         height={32}
                         width={32}
-                        src="/icons/bitcoin_logo.svg"
-                        alt="bitcoin_icon"
+                        src="/icons/s&p_bitcoin_logo.svg"
+                        alt="s&p_bitcoin_icon"
                         unoptimized="true"
                         priority="true"></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
@@ -153,7 +172,7 @@ const SandPSmallBox = () => {
                                             color: SAPData?.data?.percentageChange.toFixed(2) && (SAPData?.data?.percentageChange.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                                         }}
                                     >
-                                        {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}
+                                        {SAPData?.data?.percentageChange.toFixed(2) ?? '-'}%
                                     </Text>
                                 </Box>
                                 <Image
