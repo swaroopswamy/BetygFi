@@ -415,7 +415,7 @@ const SidebarContent = ({ ...rest }) => {
                                 cursor={"pointer"}
                                 py={"20px"}
                                 mr={"-13px"}
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/coin")}
                             >
                                 <Image
                                     width={38}
@@ -433,7 +433,7 @@ const SidebarContent = ({ ...rest }) => {
                                 />
                             </Box>
 
-                            <Box layerStyle={"flexColumn"} mt={"20px"}>
+                            <Box layerStyle={"flexColumn"} width={"100%"} mt={"20px"}>
                                 {dashboards(appConfig).map((link, i) => (
                                     <CollapsedNavItem
                                         key={i}
@@ -481,96 +481,115 @@ const SidebarContent = ({ ...rest }) => {
                                     <CollapsedNavItem
                                         key={i}
                                         NavIcon={link.icon}
-                                        //onLoginModalOpen={onLoginModalOpen}
+                                        onLoginModalOpen={onLoginModalOpen}
                                         path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                         newTab={link.newTab}
                                         name={link.name}
-                                        isActive={pathname === link.path}
+                                        isActive={
+                                            pathname ===
+                                            link.path
+                                        }
                                     ></CollapsedNavItem>
                                 );
                             })}
 
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onSuggestFeatureModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[2].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
+                            <Tooltip label="Suggest Feature">
+                                <Box
+                                    display={"flex"}
+                                    justifyContent="center"
+                                    alignItems={"center"}
+                                    height={"45px"}
+                                    padding={"9px 20px"}
+                                    role="group"
+                                    cursor="pointer"
+                                    gap={"10px"}
+                                    _hover={{
+                                        bg:
+                                            colorMode === "light"
+                                                ? "#202020"
+                                                : "#FFFFFF",
                                         color:
                                             colorMode === "light"
                                                 ? "#FFFFFF"
                                                 : "#191919",
+                                        fontWeight: "600",
                                     }}
-                                    alt="logo"
-                                />
-                            </Box>
+                                    mr={"-13px"}
+                                    onClick={onSuggestFeatureModalOpen}
+                                >
+                                    <Icon
+                                        as={bottomMenu[2].icon}
+                                        boxSize={22}
+                                        color={
+                                            colorMode === "light"
+                                                ? "#161616"
+                                                : "#FFFFFF"
+                                        }
+                                        _groupHover={{
+                                            color:
+                                                colorMode === "light"
+                                                    ? "#FFFFFF"
+                                                    : "#191919",
+                                        }}
+                                        alt="logo"
+                                    />
+                                </Box>
+                            </Tooltip>
 
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onReportBugModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[3].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
+                            <Tooltip label="Report Bug">
+                                <Box
+                                    display={"flex"}
+                                    justifyContent="center"
+                                    alignItems={"center"}
+                                    height={"45px"}
+                                    padding={"9px 20px"}
+                                    role="group"
+                                    cursor="pointer"
+                                    gap={"10px"}
+                                    _hover={{
+                                        bg:
+                                            colorMode === "light"
+                                                ? "#202020"
+                                                : "#FFFFFF",
                                         color:
                                             colorMode === "light"
                                                 ? "#FFFFFF"
                                                 : "#191919",
+                                        fontWeight: "600",
                                     }}
-                                    alt="logo"
-                                />
-                            </Box>
+                                    mr={"-13px"}
+                                    onClick={onReportBugModalOpen}
+                                >
+                                    <Icon
+                                        as={bottomMenu[3].icon}
+                                        boxSize={22}
+                                        color={
+                                            colorMode === "light"
+                                                ? "#161616"
+                                                : "#FFFFFF"
+                                        }
+                                        _groupHover={{
+                                            color:
+                                                colorMode === "light"
+                                                    ? "#FFFFFF"
+                                                    : "#191919",
+                                        }}
+                                        alt="logo"
+                                    />
+                                </Box>
+                            </Tooltip>
+
+                            <Tooltip label="Legal">
+                                <Box ml={"12px"} mb={"50px"}>
+                                    <NavItem
+                                        NavIcon={legal.icon}
+                                        name={legal.name}
+                                        path={legal.path}
+                                        newTab={legal.newTab}
+                                        isActive={pathname === legal.path}
+                                    />
+                                </Box>
+                            </Tooltip>
                         </Box>
                     </Box>
                 )}
@@ -626,47 +645,128 @@ const SidebarContent = ({ ...rest }) => {
 
 export default SidebarContent;
 
-const CollapsedNavItem = ({ NavIcon, path, newTab, name }) => {
+const CollapsedNavItem = ({ NavIcon, path, newTab, name, isActive, onLoginModalOpen }) => {
     const { colorMode } = useColorMode();
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
-    return (
-        <Tooltip label={name}>
-            <Link
-                href={path}
-                target={newTab ? "_blank" : null}
-                style={{ textDecoration: "none" }}
-                _focus={{ boxShadow: "none" }}
-            >
-                <Box
-                    display={"flex"}
-                    justifyContent="center"
-                    alignItems={"center"}
-                    height={"45px"}
-                    padding={"9px 20px"}
-                    role="group"
-                    cursor="pointer"
-                    gap={"10px"}
-                    _hover={{
-                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                        fontWeight: "600",
-                    }}
-                    mr={"-13px"}
+    if (isActive) {
+        return (
+            <Tooltip label={name}>
+                <Link
+                    href={path}
+                    target={newTab ? "_blank" : null}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
                 >
-                    <Icon
-                        as={NavIcon}
-                        boxSize={22}
-                        color={colorMode === "light" ? "#161616" : "#FFFFFF"}
-                        _groupHover={{
-                            color:
-                                colorMode === "light" ? "#FFFFFF" : "#191919",
+                    <Box
+                        display={"flex"}
+                        justifyContent="center"
+                        alignItems={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
                         }}
-                        alt="logo"
-                    />
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color:
+                                    colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
+                </Link>
+            </Tooltip>
+        );
+    }
+    if (path.includes("settings") && !(ValidatedUserData?.isSuccess || LoggedInData?.isSuccess)) {
+        return (
+            <Tooltip label={name}>
+                <Box
+                    onClick={onLoginModalOpen}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
+                >
+                    <Box
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                        }}
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
                 </Box>
-            </Link>
-        </Tooltip>
-    );
+            </Tooltip>
+        );
+    } else {
+        return (
+            <Tooltip label={name}>
+                <Link
+                    href={path}
+                    target={newTab ? "_blank" : null}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
+                >
+                    <Box
+                        display={"flex"}
+                        justifyContent="center"
+                        alignItems={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                        }}
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color:
+                                    colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
+                </Link>
+            </Tooltip>
+        );
+    }
 };
 
 const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, ...rest }) => {
