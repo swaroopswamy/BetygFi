@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import millify from "millify";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -31,10 +32,9 @@ const Marquee = () => {
             key: "MCAP: ",
             value: MarqueeData?.data?.totalMarketCap === undefined
                 ? "-"
-                : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
+                : "$" + millify(MarqueeData?.data?.totalMarketCap,
+                    { precision: 2, locales: "en-US" }
+                ),
             percentage: false
         },
         {
@@ -62,10 +62,9 @@ const Marquee = () => {
             key: "24 Hr Vol: ",
             value: MarqueeData?.data?.totalVolume_24 === undefined
                 ? "-"
-                : MarqueeData?.data?.totalVolume_24?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
+                : "$" + millify(MarqueeData?.data?.totalVolume_24,
+                    { precision: 2, locales: "en-US" }
+                ),
             percentage: false
         },
         {
@@ -109,10 +108,9 @@ const Marquee = () => {
                 key: "MCAP: ",
                 value: MarqueeData?.data?.totalMarketCap === undefined
                     ? "-"
-                    : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
+                    : "$" + millify(MarqueeData?.data?.totalMarketCap,
+                        { precision: 2, locales: "en-US" }
+                    ),
                 percentage: false
             },
             {
@@ -140,10 +138,9 @@ const Marquee = () => {
                 key: "24 Hr Vol: ",
                 value: MarqueeData?.data?.totalVolume_24 === undefined
                     ? "-"
-                    : MarqueeData?.data?.totalVolume_24?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
+                    : "$" + millify(MarqueeData?.data?.totalVolume_24,
+                        { precision: 2, locales: "en-US" }
+                    ),
                 percentage: false
             },
             {
