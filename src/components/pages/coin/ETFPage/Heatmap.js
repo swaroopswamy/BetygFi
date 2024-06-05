@@ -1,8 +1,10 @@
 import { Box, useColorMode, Button, Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import CustomChart from "@components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+
 
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();

@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import millify from "millify";
 import { BreadCrumb } from "@components/breadcrumb2";
-import HighlightsBox from "@components/pages/coin/ETFPage/Highlights";
-import ETFTracker from "@components/pages/coin/ETFPage/ETFTrackerTable";
 import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
+import dynamic from "next/dynamic";
+const HighlightsBox = dynamic(() => import("@components/pages/coin/ETFPage/Highlights", { ssr: false }));
+const ETFTracker = dynamic(() => import("@components/pages/coin/ETFPage/ETFTrackerTable", { ssr: false }));
+
+
 
 const Bitcoin_ETFs_Tracker = () => {
     const dispatch = useDispatch();

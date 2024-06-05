@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Box,/* Input, InputGroup, InputLeftElement*/ Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
+import { Box, Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
-//import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import millify from "millify";

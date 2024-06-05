@@ -1,8 +1,10 @@
-import CustomChart from "@components/graph";
-import { Box, Text, useColorMode, /*Button*/ } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+
 
 const BTCETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
@@ -196,7 +198,7 @@ const BTCETFNetInflowBox = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: "3px", 
+                columnWidth: "3px",
                 horizontal: false,
                 endingShape: 'flat',
             },
