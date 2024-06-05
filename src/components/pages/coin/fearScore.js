@@ -25,8 +25,8 @@ const FearMeter = ({ score }) => {
         labels: [''],
         plotOptions: {
             radialBar: {
-                startAngle: -135,
-                endAngle: 225,
+                startAngle: -180,
+                endAngle: 180,
                 dataLabels: {
                     value: {
                         fontSize: "24px",
