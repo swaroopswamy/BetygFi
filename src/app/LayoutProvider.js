@@ -55,6 +55,7 @@ export default function LayoutProvider({ appConfig, children }) {
         onOpen: onNotificationDrawerOpen,
         onClose: onNotificationDrawerClose,
     } = useDisclosure();
+    
     const Notifications = useSelector((state) => state?.appData?.Notifications);
     const notificationRecievedFromSocket = useSelector((state) => state?.appData?.notificationRecievedFromSocket);
     // Callback function to handle incoming messages
