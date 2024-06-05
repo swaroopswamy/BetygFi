@@ -3,6 +3,7 @@ import { Box, Text, useColorMode, Progress } from "@chakra-ui/react";
 import React from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
+import millify from "millify";
 
 const ARKInvest = () => {
     const { colorMode } = useColorMode();
@@ -60,7 +61,7 @@ const ARKInvest = () => {
                     </Box> */}
                 </Box>
                 <Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"} ml={"15px"}>
+                    <Box textAlign={"right"}>
                         <Text fontSize={{ base: "12px", md: "14px" }} lineHeight={"17px"} variant={"contentHeading"}>
                             Volume
                         </Text>
@@ -68,7 +69,7 @@ const ARKInvest = () => {
                     </Box>
                     <Box mt={{ base: "8px", md: "10px" }}>
                         <Text fontSize={{ base: "16px", md: "20px" }} lineHeight={"18px"} variant={"contentHeading4"}>
-                            {ETFChartData?.data?.dailyVolume === undefined ? "-" : ETFChartData?.data?.dailyVolume}
+                            ${millify(ETFChartData?.data?.dailyVolume === undefined ? "-" : ETFChartData?.data?.dailyVolume, { precision: 2 })}
                         </Text>
                     </Box>
                 </Box>
@@ -76,13 +77,13 @@ const ARKInvest = () => {
             <Box mt={"25"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        $ {ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
+                        ${ETFChartData?.data?.dayLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         Day’s Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        $ {ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
+                        ${ETFChartData?.data?.dayHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.dayHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress
@@ -97,13 +98,13 @@ const ARKInvest = () => {
             <Box mt={"30"}>
                 <Box layerStyle={"spaceBetween"}>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        $ {ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
+                        ${ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2) === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLow.toFixed(2)}
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500} color={colorMode === 'light' ? "#525252" : "#FFF"}>
                         52 Week Range
                     </Text>
                     <Text variant={"contentHeading3"} fontWeight={500}>
-                        $ {ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
+                        ${ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2) === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHigh.toFixed(2)}
                     </Text>
                 </Box>
                 <Progress
