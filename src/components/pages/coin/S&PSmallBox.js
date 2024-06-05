@@ -62,13 +62,16 @@ const SandPSmallBox = () => {
             labels: {
                 show: true,
                 style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
+                    colors: useColorModeValue("#16171B", "#FFFFFF"),
                     fontSize: "11px",
                     fontWeight: 300,
                 },
             },
             axisTicks: {
                 show: false,
+            },
+            tooltip: {
+                enabled: false
             },
         },
         yaxis: {

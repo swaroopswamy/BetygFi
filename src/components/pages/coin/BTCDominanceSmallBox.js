@@ -62,14 +62,20 @@ const BTCDominanceSmallBox = () => {
             labels: {
                 show: true,
                 style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
+                    colors: useColorModeValue("#16171B", "#FFFFFF"),
                     fontSize: "11px",
                     fontWeight: 300,
                 },
+                formatter: function (value) {
+                    return moment(value).format('DD MMM');
+                }
             },
             axisTicks: {
                 show: false,
             },
+            tooltip: {
+                enabled: false,
+            }
         },
         yaxis: {
             show: false,
@@ -110,19 +116,13 @@ const BTCDominanceSmallBox = () => {
             height={"197px"}
             borderRadius={"8px"}
             mb={"15px"}
-            pb={"0px"}
-            _light={{
-                bg: "#FFFFFF"
-            }}
-            _dark={{
-                bg: "#282828"
-            }}
-            display={"flex"}
-            justifyContent={"space-between"}
-            flexDirection={"column"}
+            pl={"0px"}
+            pr={"0px"}
+            _light={{ bg: "#FFFFFF" }}
+            _dark={{ bg: "#282828" }}
             key="btc-dominance"
         >
-            <Box layerStyle={"spaceBetween"} mb={"12px"} px={"12px"} pt={"12px"}>
+            <Box layerStyle={"spaceBetween"} p={"12px"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
                         height={32}
@@ -147,7 +147,7 @@ const BTCDominanceSmallBox = () => {
                             dispatch(btcDominanceDaySelectReducer(e.target.value));
                         }}
                         borderColor={colorMode === 'light' ? "#E0E0E0" : "#333333"}
-                        padding={"0"}
+                        padding={0}
                     >
                         {
                             periods.map((period, i) => {
@@ -164,7 +164,7 @@ const BTCDominanceSmallBox = () => {
                     (
                         <React.Fragment>
                             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
-                                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
+                                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y}%</Text>
                                 <Box borderRadius={"16px"} layerStyle={"flexCenter"}
                                     bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
                                     px={"12px"} py="3px" ml={"5px"}>
@@ -173,16 +173,18 @@ const BTCDominanceSmallBox = () => {
                                             color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                                         }}
                                     >
-                                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)} %
+                                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)}%
                                     </Text>
                                 </Box>
                             </Box>
-                            <CustomChart
-                                type={"area"}
-                                options={options}
-                                series={series}
-                                height={110}
-                            />
+                            <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
+                                <CustomChart
+                                    type={"area"}
+                                    options={options}
+                                    series={series}
+                                    height={100}
+                                />
+                            </Box>
                         </React.Fragment>)
                     :
                     <NoDataAvailable />

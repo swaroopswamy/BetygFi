@@ -99,7 +99,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.aum === undefined ? "-" : ETFChartData?.data?.aum} USD
+                        {millify(ETFChartData?.data?.aum === undefined ? "-" : ETFChartData?.data?.aum)} USD
                     </Text>
                 </Box>
             </Box>
@@ -178,7 +178,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.shareOutStanding === undefined ? "-" : ETFChartData?.data?.shareOutStanding}
+                        {millify(ETFChartData?.data?.shareOutStanding === undefined ? "-" : ETFChartData?.data?.shareOutStanding)}
                     </Text>
                 </Box>
             </Box>
