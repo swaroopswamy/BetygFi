@@ -33,7 +33,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.open === undefined ? "-" : ETFChartData?.data?.open}
+                        ${ETFChartData?.data?.open === undefined ? "-" : ETFChartData?.data?.open}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -44,7 +44,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.dayHigh === undefined ? "-" : ETFChartData?.data?.dayHigh}
+                        ${ETFChartData?.data?.dayHigh === undefined ? "-" : ETFChartData?.data?.dayHigh}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -55,7 +55,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.dayLow === undefined ? "-" : ETFChartData?.data?.dayLow}
+                        ${ETFChartData?.data?.dayLow === undefined ? "-" : ETFChartData?.data?.dayLow}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -66,7 +66,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.prevClose === undefined ? "-" : ETFChartData?.data?.prevClose}
+                        ${ETFChartData?.data?.prevClose === undefined ? "-" : ETFChartData?.data?.prevClose}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -77,7 +77,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {millify(ETFChartData?.data?.tenDayAverageVolume === undefined ? "-" : ETFChartData?.data?.tenDayAverageVolume, { precision: 2 })}
+                        ${millify(ETFChartData?.data?.tenDayAverageVolume === undefined ? "-" : ETFChartData?.data?.tenDayAverageVolume, { precision: 2 })}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -88,7 +88,8 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.expenseRation === undefined ? "-" : ETFChartData?.data?.expenseRation}</Text>
+                        {ETFChartData?.data?.expenseRation === undefined ? "-" : ETFChartData?.data?.expenseRation}%
+                    </Text>
                 </Box>
                 <Box mt={"16px"}>
                     <Box layerStyle={"flexCenter"} gap={"8px"}>
@@ -98,7 +99,8 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.aum === undefined ? "-" : ETFChartData?.data?.aum}</Text>
+                        {millify(ETFChartData?.data?.aum === undefined ? "-" : ETFChartData?.data?.aum)} USD
+                    </Text>
                 </Box>
             </Box>
             <Box>
@@ -110,7 +112,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.fiftyTwoWeekHigh === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHigh}
+                        ${ETFChartData?.data?.fiftyTwoWeekHigh === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekHigh}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -132,7 +134,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        $ {ETFChartData?.data?.fiftyTwoWeekLow === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLow}
+                        ${ETFChartData?.data?.fiftyTwoWeekLow === undefined ? "-" : ETFChartData?.data?.fiftyTwoWeekLow}
                     </Text>
                 </Box>
                 <Box mt={"16px"}>
@@ -176,7 +178,7 @@ const KeyStats = () => {
                         {/* <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image> */}
                     </Box>
                     <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"18px"} mt={"7px"}>
-                        {ETFChartData?.data?.shareOutStanding === undefined ? "-" : ETFChartData?.data?.shareOutStanding}
+                        {millify(ETFChartData?.data?.shareOutStanding === undefined ? "-" : ETFChartData?.data?.shareOutStanding)}
                     </Text>
                 </Box>
             </Box>

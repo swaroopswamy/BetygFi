@@ -1,7 +1,9 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
-import HeatmapGraphBox from "./Heatmap";
-import BTCETFNetInflowBox from "./BTCETFNetInflowGraph";
+import dynamic from "next/dynamic";
+const HeatmapGraphBox = dynamic(() => import("@components/pages/coin/ETFPage/Heatmap", { ssr: false }));
+const BTCETFNetInflowBox = dynamic(() => import("@components/pages/coin/ETFPage/BTCETFNetInflowGraph", { ssr: false }));
+
 
 const HighlightsBox = () => {
     return (

@@ -21,6 +21,7 @@ const BTCetfSmallBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="btc-etf"
         >
             <Box layerStyle={"spaceBetween"} mb="10px">
                 <Box layerStyle={"flexCenter"}>
@@ -61,7 +62,14 @@ const BTCetfSmallBox = () => {
                 </Box>
             </Box>
             {top3ETFData?.map((item, i) => (
-                <Box layerStyle={"spaceBetween"} key={i} mb="10px" pl={"12px"} mt={"23px"}>
+                <Box 
+                layerStyle={"spaceBetween"} 
+                key={i} mb="10px" 
+                pl={"12px"} 
+                mt={"23px"} 
+                cursor={"pointer"}
+                onClick={() => router.push(`/crypto-etfs-data-tracker/${item?.symbol}`)}
+                >
                     <Box layerStyle={"flexCenter"}>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {item?.symbol}

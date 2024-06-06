@@ -1,10 +1,10 @@
 export const tableHeader = [
-	// {
-	// 	accessor: " ",
-    //     Header: "", 
-    //     isTooltip: false,
-    //     isSortingEnabled: false,
-	// },
+	{
+		accessor: " ",
+        Header: "#", 
+        isTooltip: false,
+        isSortingEnabled: false,
+	},
 	{
 		accessor: "ticker",
 		Header: "Ticker",

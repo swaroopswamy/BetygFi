@@ -25,17 +25,18 @@ const FearGridIndexSmallBox = () => {
                 bg: "#282828"
             }}
             position={"relative"}
+            key="fear-grid"
         >
 
             <Box layerStyle={"flexCenter"} p={"12px"}>
                 <Image
                     height={32}
                     width={32}
-                    src="/icons/bitcoin_logo.svg"
-                    alt="bitcoin_icon"
+                    src="/icons/FearGreedIndex_Icon.svg"
+                    alt="feargreedindex_icon"
                     unoptimized="true"
                     priority="true"
-                    ></Image>
+                ></Image>
                 <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                     Fear/Greed Index
                 </Text>
@@ -48,11 +49,11 @@ const FearGridIndexSmallBox = () => {
                 ))}
             </Box>
             <Text p={"12px"} variant={"SettingsText3"} fontWeight={500} lineHeight={"16px"}>
-                Next Update: 10hrs, 59 min
+                Next Update: {FearAndGreedData?.data?.nextUpdateIn === undefined ? "NA" : FearAndGreedData?.data?.nextUpdateIn}
             </Text>
 
             {FearAndGreedData?.isSuccess && (
-                <Box position={"absolute"} w="140px" h="140px" top="20px" right={"0px"}>
+                <Box position={"absolute"} w="140px" h="140px" top="10px" right={"0px"}>
                     <FearMeter score={FearAndGreedData?.data?.currentDay_Score[0]?.value} />
                 </Box>
             )}

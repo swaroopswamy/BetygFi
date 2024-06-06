@@ -1,4 +1,4 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode, Tooltip } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -20,6 +20,7 @@ const TopLosersSmallBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="top-losers"
         >
             <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>
@@ -30,7 +31,7 @@ const TopLosersSmallBox = () => {
                         alt="trophy_icon"
                         unoptimized="true"
                         priority="true"
-                        ></Image>
+                    ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         Top Losers
                     </Text>
@@ -56,32 +57,42 @@ const TopLosersSmallBox = () => {
                         alt="view_more"
                         unoptimized="true"
                         priority="true"
-                        ></Image>
+                    ></Image>
                 </Box>
             </Box>
             {TopGainersAndLosersData.data?.losers?.map((loser, i) => (
-                <Box layerStyle={"spaceBetween"} key={i} mb="12px">
+                <Box
+                    layerStyle={"spaceBetween"}
+                    key={i}
+                    mb="12px"
+                    onClick={() => {
+                        if (loser?.slug) router.push(`/coin/${loser?.slug}`);
+                    }}
+                    cursor={"pointer"}>
                     <Box layerStyle={"flexCenter"}>
                         <Image
                             height={35}
                             width={35}
                             src={loser?.logoUrl ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px", borderRadius: "50%" }}
+                            style={{ marginRight: "7px", borderRadius: "50%" }}
                             alt="bitcoin"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {loser?.name}
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${loser?.price?.toFixed(2) ?? '-'}
-                        </Text>
+                    <Box layerStyle={"flexCenter"} gap={"2px"}>
+                        <Tooltip hasArrow label={`$ ${loser?.price}`}>
+                            <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                                ${loser.price.toString().split('').slice(0, 4).join('') +
+                                    "..." +
+                                    loser.price.toString().slice(-2)}
+                            </Text>
+                        </Tooltip>
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}
                             justifyContent={"center"}
                             height={"21px"}
-                            mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
                             _light={{ bg: "#FF00001F" }}

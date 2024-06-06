@@ -226,10 +226,10 @@ export const mapTypeObject = object => {
 };
 
 export const getEnv = (url) => {
-    const allowedQA = ['qa.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
-    const allowedDev = ['dev.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
-    const allowedLocal = ['local.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
-    const allowedKube = ['kube.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
+    const allowedQA = ['qaplatform.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
+    const allowedDev = ['devplatform.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
+    const allowedLocal = ['localplatform.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
+    const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
 
     if (url) {
         if (allowedQA.includes(url)) {

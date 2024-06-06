@@ -202,12 +202,16 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                 />
             </Box>
             <Box layerStyle={"flexCenter"}>
-                <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
-                    onClick={() => { toggleColorModeGlobally(); }} />
-                <NotificationBell
-                    noOfNotifcations={Notifications?.data?.length}
-                    onClick={onNotificationDrawerOpen}
-                />
+                <Box mr={"10px"}>
+                    <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
+                        onClick={() => { toggleColorModeGlobally(); }} />
+                </Box>
+                <Box>
+                    <NotificationBell
+                        noOfNotifcations={Notifications?.data?.length}
+                        onClick={onNotificationDrawerOpen}
+                    />
+                </Box>
                 {!AuthSession ? (
                     <Box
                         ml="20px"
@@ -349,13 +353,13 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 // priority="true"
                                 src={
                                     colorMode === "light"
-                                        ? "/icons/light_betgyfi_sm_icon.svg"
-                                        : "/icons/dark_betgyfi_sm_logo.svg"
+                                        ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                        : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                 }
                                 height={120}
                                 width={120}
                                 cursor={"pointer"}
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/coin")}
                                 alt="logo"
                             />
                         </Box>

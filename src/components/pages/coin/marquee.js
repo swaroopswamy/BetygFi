@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import millify from "millify";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -31,51 +32,39 @@ const Marquee = () => {
             key: "MCAP: ",
             value: MarqueeData?.data?.totalMarketCap === undefined
                 ? "-"
-                : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
-            percentage: false
-        },
-        {
-            key: "MCAP: ",
-            value: MarqueeData?.data?.totalMarketCap === undefined
-                ? "-"
-                : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
+                : "$" + millify(MarqueeData?.data?.totalMarketCap,
+                    { precision: 2, locales: "en-US" }
+                ),
             percentage: false
         },
         {
             key: "BTC Dominance: ",
             value: MarqueeData?.data?.btcDominance === undefined
                 ? "-"
-                : MarqueeData?.data?.btcDominance,
+                : MarqueeData?.data?.btcDominance + "%",
             percentage: true
         },
         {
             key: "ETH Dominance: ",
             value: MarqueeData?.data?.ethDominance === undefined
                 ? "-"
-                : MarqueeData?.data?.ethDominance,
+                : MarqueeData?.data?.ethDominance + "%",
             percentage: true
         },
         {
             key: "ETH Gas Price: ",
             value: MarqueeData?.data?.ethGasPrice === undefined
                 ? "-"
-                : MarqueeData?.data?.ethGasPrice,
+                : MarqueeData?.data?.ethGasPrice + " Gwei",
             percentage: false
         },
         {
             key: "24 Hr Vol: ",
             value: MarqueeData?.data?.totalVolume_24 === undefined
                 ? "-"
-                : MarqueeData?.data?.totalVolume_24?.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                }),
+                : "$" + millify(MarqueeData?.data?.totalVolume_24,
+                    { precision: 2, locales: "en-US" }
+                ),
             percentage: false
         },
         {
@@ -119,51 +108,39 @@ const Marquee = () => {
                 key: "MCAP: ",
                 value: MarqueeData?.data?.totalMarketCap === undefined
                     ? "-"
-                    : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
-                percentage: false
-            },
-            {
-                key: "MCAP: ",
-                value: MarqueeData?.data?.totalMarketCap === undefined
-                    ? "-"
-                    : MarqueeData?.data?.totalMarketCap?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
+                    : "$" + millify(MarqueeData?.data?.totalMarketCap,
+                        { precision: 2, locales: "en-US" }
+                    ),
                 percentage: false
             },
             {
                 key: "BTC Dominance: ",
                 value: MarqueeData?.data?.btcDominance === undefined
                     ? "-"
-                    : MarqueeData?.data?.btcDominance,
+                    : MarqueeData?.data?.btcDominance + "%",
                 percentage: true
             },
             {
                 key: "ETH Dominance: ",
                 value: MarqueeData?.data?.ethDominance === undefined
                     ? "-"
-                    : MarqueeData?.data?.ethDominance,
+                    : MarqueeData?.data?.ethDominance + "%",
                 percentage: true
             },
             {
                 key: "ETH Gas Price: ",
                 value: MarqueeData?.data?.ethGasPrice === undefined
                     ? "-"
-                    : MarqueeData?.data?.ethGasPrice,
+                    : MarqueeData?.data?.ethGasPrice + " Gwei",
                 percentage: false
             },
             {
                 key: "24 Hr Vol: ",
                 value: MarqueeData?.data?.totalVolume_24 === undefined
                     ? "-"
-                    : MarqueeData?.data?.totalVolume_24?.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                    }),
+                    : "$" + millify(MarqueeData?.data?.totalVolume_24,
+                        { precision: 2, locales: "en-US" }
+                    ),
                 percentage: false
             },
             {

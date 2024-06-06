@@ -4,7 +4,7 @@ import { BiWalletAlt, BiBulb } from "react-icons/bi";
 import { SlSocialReddit, SlSettings, SlShield } from "react-icons/sl";
 import { RxDiscordLogo } from "react-icons/rx";
 import { BetygFiSmLogo } from "@components/icons";
-import { GoDatabase } from "react-icons/go";
+import { GoDatabase, GoGraph } from "react-icons/go";
 import { IoIosTrendingUp } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
 import { MdOutlineHelp } from "react-icons/md";
@@ -30,16 +30,22 @@ export const bottomMenu = [
 
 export const dashboards = (appConfig) => [
     {
-        name: "DeFi Market Analytics",
-        icon: IoIosTrendingUp,
-        path: "/protocol",
-        activePaths: ["/", "/protocol"]
-    },
-    {
         name: "Coin Ranking",
         icon: GoDatabase,
         path: "/coin",
-        activePaths: ["/coin"],
+        activePaths: ["/", "/coin"],
+    },
+    {
+        name: "ETF Tracker",
+        icon: GoGraph,
+        path: "/crypto-etfs-data-tracker",
+        activePaths: ["/crypto-etfs-data-tracker"],
+    },
+    {
+        name: "DeFi Ranking",
+        icon: IoIosTrendingUp,
+        path: "/protocol",
+        activePaths: ["/protocol"]
     },
     {
         name: "Top Wallets",

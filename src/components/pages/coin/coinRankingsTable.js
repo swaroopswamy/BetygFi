@@ -207,7 +207,7 @@ const TableRow = ({ item, rowIndex }) => {
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
-                        src={item?.logoUrl}
+                        src={item?.logoUrl ?? '/icons/coin_icon.svg'}
                     />
                     <Box
                         display={"flex"}

@@ -1,8 +1,10 @@
-import CustomChart from "@components/graph";
-import { Box, Text, useColorMode, /*Button*/ } from "@chakra-ui/react";
+import { Box, Text, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+
 
 const BTCETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
@@ -25,7 +27,7 @@ const BTCETFNetInflowBox = () => {
             name: "Price",
             type: "line",
             data: [],
-            color: colorMode === "light" ? "#B87A00" : "#FF0000",
+            color: colorMode === "light" ? "#544FC5" : "#2CAFFE",
         },
     ]);
 
@@ -81,7 +83,7 @@ const BTCETFNetInflowBox = () => {
                 {
                     name: "Price",
                     data: priceData,
-                    color: colorMode === 'light' ? "#B87A00" : "#FF0000",
+                    color: colorMode === 'light' ? "#544FC5" : "#2CAFFE",
                     type: "line",
 
                 },
@@ -95,7 +97,7 @@ const BTCETFNetInflowBox = () => {
                 show: false,
             },
         },
-        colors: ["#245F00", "#60C000", "#C50606", "#FF3535", "#B87A00", "#FF0000"],
+        colors: ["#245F00", "#60C000", "#C50606", "#FF3535", "#544FC5", "#2CAFFE"],
         dataLabels: {
             enabled: false,
         },
@@ -184,7 +186,7 @@ const BTCETFNetInflowBox = () => {
                 tooltipContent = `
                     <div class="tooltip-parent">
                        <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                       <div><img src="/icons/Price_Marker.svg" style="width: 10px; height: 15px; display: inline-block; margin-right: 5px; padding-top: 5px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                       <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
                        <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow}: <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span></div>
                     </div>
                     `;
@@ -196,7 +198,7 @@ const BTCETFNetInflowBox = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: "3px", 
+                columnWidth: "3px",
                 horizontal: false,
                 endingShape: 'flat',
             },

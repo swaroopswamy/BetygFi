@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -25,6 +25,13 @@ const EnterpriseFooter = () => {
         window.location.href = mailtoLink;
     };
 
+    const scrollToElementById = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <Box
             bg={"#F8F9FA"}
@@ -35,7 +42,7 @@ const EnterpriseFooter = () => {
             mt={"100px"}
         >
             <Box w={"80%"} layerStyle={"flexCenter"} borderBottom={"1px solid rgba(51, 51, 51, 0.24)"} pb={"50px"}>
-                <Box mb={"50px"}>
+                <Box mb={"75px"}>
                     <Image src={"/icons/New_BetgFi_Logo_Light.svg"} width={138} height={22} alt="logo"></Image>
                     <Text
                         variant={"h4"}
@@ -46,24 +53,15 @@ const EnterpriseFooter = () => {
                     >
                         BetygFi is an Information Utility dedicated to democratizing access to information.
                     </Text>
-                    <Text
-                        variant={"h4"}
-                        lineHeight={"24px"}
-                        textAlign={"left"}
-                        color={"#283646"}
-                        mt={"20px"}
-                    >
-                        Copyright BetygFi
-                    </Text>
                 </Box>
-                <Box ml={"100px"}>
+                <Box ml={"100px"} mb={"40px"}>
                     <Text
                         fontSize={"16px"}
                         fontWeight={700}
                         lineHeight={"22px"}
                         color={"#333333"}
                     >
-                        Service
+                        Product
                     </Text>
                     <Box
                         variant={"h4"}
@@ -71,27 +69,13 @@ const EnterpriseFooter = () => {
                         textAlign={"left"}
                         color={"#77808B"}
                     >
-                        <Text mt={"25px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Illustration
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Mobile Design
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Motion Graphic
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Web Design
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Development
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            SEO
-                        </Text>
+                        <Link href={"https://platfrom.betygfi.com"}><Text mt={"25px"} whiteSpace={"nowrap"}>Platform</Text></Link>
+                        <Link href="https://betygfi.com/coin"><Text mt={"15px"} whiteSpace={"nowrap"}>Coin Ranking</Text></Link>
+                        <Link href={"https://studio.betygfi.com"}><Text mt={"15px"} whiteSpace={"nowrap"}>Data Studio</Text></Link>
+                        <Link href="https://betygfi.com/crypto-etfs-data-tracker"><Text mt={"15px"} whiteSpace={"nowrap"}>ETF</Text></Link>
                     </Box>
                 </Box>
-                <Box ml={"100px"}>
+                <Box ml={"100px"} mb={"10px"}>
                     <Text
                         fontSize={"16px"}
                         fontWeight={700}
@@ -106,27 +90,14 @@ const EnterpriseFooter = () => {
                         textAlign={"left"}
                         color={"#77808B"}
                     >
-                        <Text mt={"25px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Service
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Features
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Our Team
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            About Us
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Blog
-                        </Text>
-                        <Text mt={"15px"} cursor={"pointer"} whiteSpace={"nowrap"}>
-                            Contact Us
-                        </Text>
+                        <Link href="https://betygfi.com/about"><Text mt={"25px"} whiteSpace={"nowrap"}>about</Text></Link>
+                        <Link onClick={() => scrollToElementById('get_in_touch')}><Text mt={"15px"} whiteSpace={"nowrap"}>Contact</Text></Link>
+                        <Link href="https://blog.betygfi.com"><Text mt={"15px"} whiteSpace={"nowrap"}>blog</Text></Link>
+                        <Link href="https://betygfi.com/legal"><Text mt={"15px"} whiteSpace={"nowrap"}>Legal</Text></Link>
+                        <Link href="https://betygfi.com/approach-paper"><Text mt={"15px"} whiteSpace={"nowrap"}>Approach paper</Text></Link>
                     </Box>
                 </Box>
-                <Box ml={"100px"} mb={"65px"}>
+                <Box ml={"100px"} mb={"40px"}>
                     <Text
                         fontSize={"16px"}
                         fontWeight={700}
@@ -172,15 +143,18 @@ const EnterpriseFooter = () => {
                     </Box>
                     <Box layerStyle={"flexCenter"} mt={"20px"} gap={"25px"} cursor={"pointer"}>
                         <a href="https://x.com/BetygFi" target="_blank">
-                            <Image src={"/icons/twitter-icon.svg"}
+                            <Image src={"/images/twitter_black.svg"}
                                 alt="icon"
-                                width={25} height={25} />
+                                width={30} height={30} />
                         </a>
                         <a href="https://www.reddit.com/r/betygFi/" target="_blank">
                             <Image src={"/images/reddit_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
-                        <a href="https://www.youtube.com/channel/UCwX7D6Z9u8zB5UixSAcfnyA" target="_blank">
+                        <a href="https://www.youtube.com/@betygfi" target="_blank">
                             <Image src={"/images/youtube_black.svg"} width={30} height={30} alt="icon"></Image>
+                        </a>
+                        <a href="https://www.linkedin.com/company/betygfi/" target="_blank">
+                            <Image src={"/images/linkedin_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>
                     </Box>
                 </Box>
