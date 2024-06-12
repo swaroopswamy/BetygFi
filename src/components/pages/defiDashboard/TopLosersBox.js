@@ -1,4 +1,5 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, Tooltip, useColorMode } from "@chakra-ui/react";
+import { convertENotationToNumber } from "@util/utility";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -12,7 +13,7 @@ const TopLosersBox = () => {
     return (
         <Box
             mx={"10px"}
-            width={"30%"}
+            //width={"30%"}
             minW={"295px"}
             height={"197px"}
             borderRadius={"8px"}
@@ -73,9 +74,13 @@ const TopLosersBox = () => {
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${loser?.price?.toFixed(2) ?? '-'}
-                        </Text>
+                        <Tooltip hasArrow label={`$ ${convertENotationToNumber(loser?.price)}`}>
+                            <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"} cursor={"pointer"}>
+                                ${convertENotationToNumber(loser?.price).toString().split('').slice(0, 4).join('') +
+                                    "..." +
+                                    convertENotationToNumber(loser?.price).toString().slice(-2)}
+                            </Text>
+                        </Tooltip>
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}

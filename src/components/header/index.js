@@ -255,7 +255,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : ValidatedUserData?.data?.profile_url}
+                                src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidatedUserData?.data?.profile_url}
                             />
                         )}
                         <Box

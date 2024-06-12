@@ -1,8 +1,9 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, Tooltip, useColorMode } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { convertENotationToNumber } from "@util/utility";
 
 const TopGainersBox = () => {
     const { colorMode } = useColorMode();
@@ -11,7 +12,7 @@ const TopGainersBox = () => {
 
     return (
         <Box
-            width={"30%"}
+            width={"95%"}
             height={"197px"}
             minW={"295px"}
             borderRadius={"8px"}
@@ -73,9 +74,14 @@ const TopGainersBox = () => {
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${gainer?.price?.toFixed(2)}
-                        </Text>
+                        <Tooltip hasArrow label={`$ ${convertENotationToNumber(gainer?.price)}`}>
+                            <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"} cursor={"pointer"}>
+                                ${convertENotationToNumber(gainer?.price).toString().split('').slice(0, 4).join('') +
+                                    "..." +
+                                    convertENotationToNumber(gainer?.price).toString().slice(-2)}
+                            </Text>
+                        </Tooltip>
+
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}

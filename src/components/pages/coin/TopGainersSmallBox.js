@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { convertENotationToNumber } from "@util/utility";
 
 const TopGainersSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -11,7 +12,7 @@ const TopGainersSmallBox = () => {
 
     return (
         <Box
-            width={"30%"}
+            width={"95%"}
             height={"197px"}
             minW={"295px"}
             borderRadius={"8px"}
@@ -82,11 +83,11 @@ const TopGainersSmallBox = () => {
                         </Text>
                     </Box>
                     <Box layerStyle={"flexCenter"} gap={"2px"}>
-                        <Tooltip hasArrow label={`$ ${gainer?.price}`}>
+                        <Tooltip hasArrow label={`$ ${convertENotationToNumber(gainer?.price)}`}>
                             <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                                ${gainer.price.toString().split('').slice(0, 4).join('') +
+                                ${convertENotationToNumber(gainer?.price).toString().split('').slice(0, 4).join('') +
                                     "..." +
-                                    gainer.price.toString().slice(-2)}
+                                    convertENotationToNumber(gainer?.price).toString().slice(-2)}
                             </Text>
                         </Tooltip>
                         <Box
