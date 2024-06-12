@@ -217,7 +217,6 @@ const ProfileBox = () => {
                                     width: "150px",
                                     height: "150px",
                                     objectFit: "cover",
-                                    background: " linear-gradient(36deg, #272b66 42.34%, transparent 42.34%) 0 0",
                                     backgroundRepeat: " no-repeat"
                                 }}
                                 width={150}
