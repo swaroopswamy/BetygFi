@@ -74,6 +74,10 @@ const nextConfig = {
         hostname: "betygfi-media.s3.ap-south-1.amazonaws.com",
       },
       {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
         port: "7000",
