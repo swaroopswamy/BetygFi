@@ -265,3 +265,20 @@ export const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + 
 export const ScrollToTable = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 };
+
+export function convertENotationToNumber(num) {
+    const str = num.toString();
+    const match = str.match(/^(\d+)(\.(\d+))?[eE]([-\+]?\d+)$/);
+    if (!match) return str; //number was not e notation or toString converted
+    // we parse the e notation as (integer).(tail)e(exponent)
+    const [, integer, , tail, exponentStr] = match;
+    const exponent = Number(exponentStr);
+    const realInteger = integer + (tail || '');
+    if (exponent > 0) {
+        const realExponent = Math.abs(exponent + integer.length);
+        return realInteger.padEnd(realExponent, '0');
+    } else {
+        const realExponent = Math.abs(exponent - (tail?.length || 0));
+        return '0.' + realInteger.padStart(realExponent, '0');
+    }
+}

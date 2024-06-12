@@ -80,7 +80,7 @@ const ProfileBox = () => {
                                     width={150}
                                     height={150}
                                     alt="profile_img"
-                                    src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
+                                    src={["", null, undefined].includes(userImg) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : userImg}
                                 ></Image>
                                 <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                     cursor={"pointer"}
@@ -223,7 +223,7 @@ const ProfileBox = () => {
                                 width={150}
                                 height={150}
                                 alt="profile_img"
-                                src={userImg === null || userImg === undefined ? "/icons/avatar_icon_light.svg" : userImg}
+                                src={userImg === null || userImg === undefined ? "/images/new_avatar.svg" : userImg}
                             ></Image>
                             <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                 cursor={"pointer"}

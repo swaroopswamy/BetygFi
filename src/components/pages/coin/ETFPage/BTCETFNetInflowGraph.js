@@ -89,7 +89,7 @@ const BTCETFNetInflowBox = () => {
                 },
             ]);
         }
-    }, [ETFInflowOutflowData]);
+    }, [ETFInflowOutflowData, colorMode]);
     const options = {
         chart: {
             stacked: false,
@@ -111,7 +111,7 @@ const BTCETFNetInflowBox = () => {
                 },
             },
             tooltip: {
-                enabled: true,
+                enabled: false,
                 formatter: function (val) {
                     return new Date(val).toUTCString();
                 }
@@ -134,7 +134,7 @@ const BTCETFNetInflowBox = () => {
                     },
                 },
                 tooltip: {
-                    enabled: true,
+                    enabled: false,
                     formatter: function (val) {
                         return new Date(val).toUTCString();
                     }
@@ -186,8 +186,8 @@ const BTCETFNetInflowBox = () => {
                 tooltipContent = `
                     <div class="tooltip-parent">
                        <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                       <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
-                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow}: <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span></div>
+                       <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">BTC Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow} :${flow === "Inflow" ? ` <span style="font-weight: bold;"> +${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`: ` <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`}</div>
                     </div>
                     `;
                 return tooltipContent;

@@ -14,27 +14,36 @@ const HeatmapGraphBox = () => {
 
     useEffect(() => {
         if (ETFHeatMapData) {
+            let sortedData;
             if (activeCategory === 'volume') {
-                setActiveData(ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.["priceChange"],
                         fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
-                    })));
+                    }
+                ));
             } else {
-                setActiveData(ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.[activeCategory + "Change"],
                         fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
-                    })));
+                    }
+                ));
             }
+
+            // Sort the data in descending order based on the value of y
+            sortedData = sortedData.sort((a, b) => b.y - a.y);
+
+            setActiveData(sortedData);
         }
     }, [ETFHeatMapData, activeCategory]);
+
     const handleButtonClick = (category) => {
         setActiveCategory(category);
     };
