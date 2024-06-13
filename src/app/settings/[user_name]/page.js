@@ -18,7 +18,7 @@ import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const LoginPage = dynamic(() => import("@components/login"));
-import { LogoutReducer, getUserCount, getUserDetails } from "@redux/auth_data/authSlice";
+import { LogoutReducer, ResetChangeProfilePicData, getUserCount, getUserDetails, verifyJWTtokenFromCookie } from "@redux/auth_data/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileBox from "@components/settingsPage/ProfileBox";
 import { redirect } from "next/navigation";
@@ -28,6 +28,8 @@ import AccountSettingsBox from "@components/settingsPage/accountSettingsBox";
 import ThemeBox from "@components/settingsPage/themeBox";
 import { useDisconnect } from "wagmi";
 import CustomToast from "@components/toast";
+import { AUTH_COOKIE_NAME } from "@util/constant";
+import { getCookieByName } from "@util/cookieHelper";
 //import Image from "next/image";
 
 const Settings = ({ params }) => {
@@ -35,7 +37,7 @@ const Settings = ({ params }) => {
 	const { disconnect } = useDisconnect();
 	const dispatch = useDispatch();
 	const toast = useToast();
-    
+
 	const {
 		isOpen: isLoginModalOpen,
 		onOpen: onLoginModalOpen,
@@ -44,6 +46,7 @@ const Settings = ({ params }) => {
 	const { isOpen, /* onOpen, */ onClose } = useDisclosure();
 	const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 	const EditUserDetailsData = useSelector((state) => state.authData.editUserDetailsData);
+	const ChangeProfilePicData = useSelector((state) => state.authData.ChangeProfilePicData);
 
 
 	const getUserDetailsHandler = () => {
@@ -85,6 +88,36 @@ const Settings = ({ params }) => {
 		}
 	}, [EditUserDetailsData]);
 
+	useEffect(() => {
+		if (ChangeProfilePicData?.isSuccess !== null) {
+			toast({
+				position: "bottom",
+				render: () => (
+					<CustomToast isSuccessful={ChangeProfilePicData?.isSuccess} content={ChangeProfilePicData?.isSuccess ? "Profile Picture updated successfully." : ChangeProfilePicData?.data?.error} />
+				)
+			});
+		}
+		dispatch(ResetChangeProfilePicData());
+	}, [ChangeProfilePicData]);
+
+	const verifyJWTtokenFromCookieHandler = (cookie) => {
+		if (cookie?.state?.token) {
+			const payload = {
+				token: cookie?.state?.token,
+			};
+			dispatch(verifyJWTtokenFromCookie(payload));
+		}
+	};
+
+	useEffect(() => {
+		if (ChangeProfilePicData?.isSuccess) {
+			const cookie = getCookieByName(AUTH_COOKIE_NAME);
+			Promise.all([
+				verifyJWTtokenFromCookieHandler(cookie)
+			]).then(res => res);
+		}
+	}, [ChangeProfilePicData]);
+	
 	const { data: AuthSession } = useSession();
 	if (AuthSession === null) {
 		return redirect("/");

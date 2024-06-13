@@ -68,7 +68,7 @@ const ProfileBox = () => {
                                 pos={"relative"}
                             >
                                 <Image
-                                    // unoptimized={'true'}
+                                    unoptimized={false}
                                     // priority={'true'}
                                     style={{
                                         borderRadius: "50%",
@@ -78,6 +78,7 @@ const ProfileBox = () => {
                                         backgroundRepeat: " no-repeat"
                                     }}
                                     width={150}
+
                                     height={150}
                                     alt="profile_img"
                                     src={["", null, undefined].includes(userImg) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : userImg}
@@ -85,7 +86,7 @@ const ProfileBox = () => {
                                 <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                     cursor={"pointer"}
                                 >
-                                    <input type="file" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
+                                    <input type="file" accept=".png, .jpeg, .jpg" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
                                     <Text variant={"h5"} color={"#FFFFFF"} textAlign={"center"} pt="5px"
                                         onClick={() => {
                                             fileInputRef.current.click();
@@ -222,12 +223,12 @@ const ProfileBox = () => {
                                 width={150}
                                 height={150}
                                 alt="profile_img"
-                                src={userImg === null || userImg === undefined ? "/images/new_avatar.svg" : userImg}
+                                src={["", null, undefined].includes(userImg) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : userImg}
                             ></Image>
                             <Box pos={"absolute"} zIndex={"10"} bottom={"-4px"} left={"5px"} bgImage={"/icons/intersect.svg"} bgPosition={"center"} bgRepeat={"no-repeat"} width={"140px"} height={"43px"}
                                 cursor={"pointer"}
                             >
-                                <input type="file" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
+                                <input type="file" accept=".png, .jpeg, .jpg" onChange={(e) => handleChange(e)} hidden ref={fileInputRef} />
                                 <Text variant={"h5"} color={"#FFFFFF"} textAlign={"center"} pt="5px"
                                     onClick={() => {
                                         fileInputRef.current.click();
