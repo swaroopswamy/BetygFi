@@ -129,7 +129,7 @@ const DefiDashboardPage = ({ searchParamProtocolSlug, defiData }) => {
                     cursor={"pointer"}
                     gap={"10px"}
                     p={"10px 20px"}
-                    onClick={() => router.push(`/`)}
+                    onClick={() => router.push(`/protocol`)}
                 >
                     <ChevronLeftIcon
                         w={"24px"}

@@ -1247,7 +1247,10 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                         >
                                             {typeof window !== "undefined" && (
                                                 <CustomAvatar
-                                                    src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                                    unoptimised={true}
+                                                    width={48}
+                                                    height={48}
+                                                    src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidatedUserData?.data?.profile_url}
                                                 />
                                             )}
 
@@ -1255,31 +1258,31 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                 layerStyle={"flexColumn"}
                                                 ml="10px"
                                                 mr="20px"
-                                                minW="150px"
+                                                minW="130px"
                                             >
                                                 <Text
                                                     variant={"TopWalletsText"}
-                                                    w="140px"
+                                                    w="120px"
                                                     whiteSpace={"nowrap"}
                                                     overflow={"hidden"}
                                                     textOverflow={"ellipsis"}
                                                 >
-                                                    {AuthSession?.user?.name
-                                                        ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                                    {ValidatedUserData?.data?.name
+                                                        ? PublicAddressStringFormatter(ValidatedUserData?.data?.name) : 'No Name'}
                                                 </Text>
-                                                {AuthSession?.user?.public_address && (
+                                                {ValidatedUserData?.data?.public_address && (
                                                     <Text
                                                         variant={"h5"}
                                                         letterSpacing={"1.2px"}
                                                         _light={{ color: "#16171B" }}
                                                         _dark={{ color: "#A8ADBD" }}
                                                     >
-                                                        {AuthSession?.user?.public_address
+                                                        {ValidatedUserData?.data?.public_address
                                                             ?.split("")
                                                             ?.join("")
                                                             ?.substring(0, 6) +
                                                             "..." +
-                                                            AuthSession?.user?.public_address?.slice(
+                                                            ValidatedUserData?.data?.public_address?.slice(
                                                                 -5
                                                             )}
                                                     </Text>

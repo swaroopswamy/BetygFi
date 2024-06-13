@@ -38,7 +38,7 @@ const HeatmapGraphBox = () => {
             }
 
             // Sort the data in descending order based on the value of y
-            sortedData = sortedData.sort((a, b) => b.y - a.y);
+            sortedData = sortedData?.sort((a, b) => b.y - a.y);
 
             setActiveData(sortedData);
         }

@@ -55,7 +55,7 @@ const HighlightsBox = () => {
     };
 
     return (
-        <Box pos={"relative"} p={"20px"}>
+        <Box pos={"relative"} p={"20px"} pt={"0px"}>
             <Box
                 pos="absolute"
                 left="0"
