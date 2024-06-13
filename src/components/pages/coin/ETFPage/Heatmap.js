@@ -178,16 +178,31 @@ const HeatmapGraphBox = () => {
         >
             <Box bgColor={"background.primary"} pb={"5px"}>
                 <Text variant={"h2"} mb={"15px"}>Heatmap</Text>
-                <Box layerStyle={"flexCenter"} mb={"5px"}>
+                <Box layerStyle={"flexCenter"} mb={"5px"}
+                    overflowX={"auto"}
+                    flexWrap="nowrap"
+                    css={{
+                        "&::-webkit-scrollbar": {
+                            width: "0.2rem",
+                            height: "0.2rem",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                            backgroundColor: "transparent",
+                        },
+                    }}
+                >
                     <Button
                         variant={"modalButton"}
                         className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
-                        onClick={() => handleButtonClick('holding')}>
+                        onClick={() => handleButtonClick('holding')}
+                        minW={"-moz-fit-content"}
+                    >
                         Holding
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -196,6 +211,7 @@ const HeatmapGraphBox = () => {
                         Price
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -207,6 +223,7 @@ const HeatmapGraphBox = () => {
                         Turnover
                     </Button> */}
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -215,6 +232,7 @@ const HeatmapGraphBox = () => {
                         Shares
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -223,6 +241,7 @@ const HeatmapGraphBox = () => {
                         AUM
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
