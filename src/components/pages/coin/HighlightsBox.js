@@ -1,15 +1,26 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
+/* 
 import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
 import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
 import BTCetfSmallBox from "./BTCetfSmallBox";
 import BTCDominanceSmallBox from "./BTCDominanceSmallBox";
 import SandPSmallBox from "./S&PSmallBox";
-import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
+import FearGridIndexSmallBox from "./FearGridIndexSmallBox"; 
+*/
+const TopGainersSmallBox = dynamic(() => import('@/components/pages/coin/TopGainersSmallBox'), { ssr: false });
+const TopLosersSmallBox = dynamic(() => import('@/components/pages/coin/TopLosersSmallBox'), { ssr: false });
+const BTCetfSmallBox = dynamic(() => import('@/components/pages/coin/BTCetfSmallBox'), { ssr: false });
+const BTCDominanceSmallBox = dynamic(() => import('@/components/pages/coin/BTCDominanceSmallBox'), { ssr: false });
+const SandPSmallBox = dynamic(() => import('@/components/pages/coin/S&PSmallBox'), { ssr: false });
+const FearGridIndexSmallBox = dynamic(() => import('@/components/pages/coin/FearGridIndexSmallBox'), { ssr: false });
+
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import dynamic from "next/dynamic";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();

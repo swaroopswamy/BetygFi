@@ -14,11 +14,11 @@ import {
     Collapse,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 // import { BreadCrumb } from "@components/breadcrumb2";
-import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
+//import CoinRankingsTable from "@components/pages/coin/coinRankingsTable";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-import TrendingCoinPanel from "@components/trendingCoinPanel";
 import {
     fetchSAPData,
     fetchTopGainersAndLosersData,
@@ -32,10 +32,17 @@ import {
     fetchCryptoCategoriesData
 } from "@redux/coin_data/dataSlice";
 import { faq } from "@components/pages/coin/helper";
-import Marquee from "@/components/pages/coin/marquee";
-import HighlightsBox from "./HighlightsBox";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
+
+const CoinRankingsTable = dynamic(() => import('@components/pages/coin/coinRankingsTable'), { ssr: false });
+const Marquee = dynamic(() => import("@/components/pages/coin/marquee"), { ssr: false });
+const HighlightsBox = dynamic(() => import("@/components/pages/coin/HighlightsBox"), { ssr: false });
+const TrendingCoinPanel = dynamic(() => import("@components/trendingCoinPanel"), { ssr: false });
+//import HighlightsBox from "./HighlightsBox";
+//import TrendingCoinPanel from "@components/trendingCoinPanel";
+
+
 
 const CoinPage = () => {
     const dispatch = useDispatch();
