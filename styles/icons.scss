@@ -400,3 +400,33 @@
         background-image: url('/images/ent_carousel_arrow.svg');
     }
 }
+
+
+.customize_tab_icon_light {
+
+    &::before {
+        background-image: url('/images/customize_tab_icon_light.svg');
+    }
+}
+
+.customize_tab_icon_dark {
+
+    &::before {
+        background-image: url('/images/customize_tab_icon_light.svg');
+    }
+}
+
+.tab_library_icon_light {
+
+    &::before {
+        background-image: url('/images/tab_library_icon_light.svg');
+    }
+}
+
+.tab_library_icon_dark {
+
+
+    &::before {
+        background-image: url('/images/tab_library_icon_light.svg');
+    }
+}

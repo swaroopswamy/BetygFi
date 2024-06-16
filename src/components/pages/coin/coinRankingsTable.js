@@ -11,7 +11,7 @@ import millify from "millify";
 
 const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
-const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"));
+const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"), { ssr: false });
 
 const CoinRankingsTable = (
     {
@@ -54,48 +54,80 @@ const CoinRankingsTable = (
 
     return (
         <>
-            <Box
-                mx={"20px"}
-                display={"flex"}
-                overflow={"auto"}
-                className="hidescrollbar">
-                <Tabs variant='soft-rounded' onChange={handleTabSelected} >
-                    <TabList>
-                        {
-                            cryptoCategories.length > 0 && cryptoCategories.map((tab, index) => (
-                                <Tab
-                                    key={index}
-                                    _selected={{
-                                        bgColor: colorMode === "light" ? "#191919" : "#FFFFFF",
-                                        color: "#FFFFFF"
-                                    }}
-                                    onClick={() => setCryptoCategorySelected(tab.slug)}
-                                    border={colorMode === "light" ? "1px solid #C6C6C6" : "1px solid #A5A5A5"}
-                                    bgColor={colorMode === "light" ? "#FFFFFF" : "transparent"}
-                                    mr={"10px"}
-                                    width={"max-content"}
-                                >
-                                    <Text
-                                        fontWeight={tabSelected === index ? "600" : "400"}
-                                        _light={{
-                                            color: tabSelected === index ? "#FFFFFF" : "#191919"
+            <Box layerStyle={"flexCenter"} w='100%' gap={"10px"}>
+                <Box
+                    mx={"20px"}
+                    w={"80%"}
+                    display={"flex"}
+                    overflow={"auto"}
+                    className="hidescrollbar">
+                    <Tabs variant='soft-rounded' onChange={handleTabSelected} >
+                        <TabList>
+                            {
+                                cryptoCategories.length > 0 && cryptoCategories.map((tab, index) => (
+                                    <Tab
+                                        key={index}
+                                        _selected={{
+                                            bgColor: colorMode === "light" ? "#191919" : "#FFFFFF",
+                                            color: "#FFFFFF"
                                         }}
-                                        _dark={{
-                                            color: tabSelected === index ? "#191919" : "#FFFFFF"
-                                        }}
-                                        textAlign="center"
-                                        fontFamily="Inter"
-                                        fontSize="16px"
-                                        fontStyle="normal"
-                                        lineHeight="16px"
+                                        onClick={() => setCryptoCategorySelected(tab.slug)}
+                                        border={colorMode === "light" ? "1px solid #C6C6C6" : "1px solid #A5A5A5"}
+                                        bgColor={colorMode === "light" ? "#FFFFFF" : "transparent"}
+                                        mr={"10px"}
+                                        width={"max-content"}
                                     >
-                                        {tab.text}
-                                    </Text>
-                                </Tab>
-                            ))
-                        }
-                    </TabList >
-                </Tabs >
+                                        <Text
+                                            fontWeight={tabSelected === index ? "600" : "400"}
+                                            _light={{
+                                                color: tabSelected === index ? "#FFFFFF" : "#191919"
+                                            }}
+                                            _dark={{
+                                                color: tabSelected === index ? "#191919" : "#FFFFFF"
+                                            }}
+                                            textAlign="center"
+                                            fontFamily="Inter"
+                                            fontSize="16px"
+                                            fontStyle="normal"
+                                            lineHeight="16px"
+                                        >
+                                            {tab.text}
+                                        </Text>
+                                    </Tab>
+                                ))
+                            }
+                        </TabList >
+                    </Tabs >
+                </Box>
+                <Box
+                    layerStyle={"flexCenter"}
+                    justifyContent={"start"}
+                >
+                    <i className={`icon ${colorMode === "light" ? 'tab_library_icon_light' : 'tab_library_icon_dark'}`} />
+                    <Text
+                        variant={"h5"}
+                        color={"#161616"}
+                        fontWeight={"500"}
+                        lineHeight={"16px"}
+                    >
+                        Tab Library
+                    </Text>
+                </Box>
+                <Box
+                    layerStyle={"flexCenter"}
+                    justifyContent={"start"}
+                >
+                    <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
+                    <Text
+                        variant={"h5"}
+                        color={"#161616"}
+                        fontWeight={"500"}
+                        lineHeight={"16px"}
+                    >
+                        Customize Tab
+                    </Text>
+                </Box>
+
             </Box>
 
             <Box
