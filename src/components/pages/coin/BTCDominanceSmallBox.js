@@ -111,7 +111,7 @@ const BTCDominanceSmallBox = () => {
     return (
         <Box
             mx={"10px"}
-            width={"30%"}
+            width={"90%"}
             minW={"295px"}
             height={"197px"}
             borderRadius={"8px"}
@@ -177,7 +177,7 @@ const BTCDominanceSmallBox = () => {
                                     </Text>
                                 </Box>
                             </Box>
-                            <Box width={"100%"} mt={"10px"} pl={"0px"} pr={"0px"}>
+                            <Box width={"100%"} mt={"10px"} pl={"10px"} pr={"0px"}>
                                 <CustomChart
                                     type={"area"}
                                     options={options}
