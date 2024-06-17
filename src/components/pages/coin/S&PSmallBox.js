@@ -1,11 +1,15 @@
+"use client";
 import { Box, Select, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import CustomChart from "@components/graph";
 import { sapDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NoDataAvailable from "./NodataSmallBox";
 import moment from "moment";
+
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+const NoDataAvailable = dynamic(() => import("@components/pages/coin/NodataSmallBox", { ssr: false }));
+
 
 const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -82,27 +86,27 @@ const SandPSmallBox = () => {
             theme: colorMode,
             custom: function ({ dataPointIndex, seriesIndex, w }) {
                 let entry = w.config.series[seriesIndex].data[dataPointIndex];
-                    return (
-                        '<div class="btc_dominance_tooltip">' +
-                            '<div class="btc_dominance_tooltip_text">' +
-                                '<p>' +
-                                    "S&P 500 Price " +
-                                    "$" +
-                                    entry?.y?.toFixed(2) +
-                                '</p>' +
-                            "</div>" +
-                            '<div class="btc_dominance_tooltip_text_date">' +
-                                moment(entry?.x).format('DD MMM, YYYY') +
-                            "</div>" +
-                        "</div>"
-                    );
-                },
+                return (
+                    '<div class="btc_dominance_tooltip">' +
+                    '<div class="btc_dominance_tooltip_text">' +
+                    '<p>' +
+                    "S&P 500 Price " +
+                    "$" +
+                    entry?.y?.toFixed(2) +
+                    '</p>' +
+                    "</div>" +
+                    '<div class="btc_dominance_tooltip_text_date">' +
+                    moment(entry?.x).format('DD MMM, YYYY') +
+                    "</div>" +
+                    "</div>"
+                );
+            },
         },
     };
 
     useEffect(() => {
         setSeries([{
-            data: SAPData?.data?.data
+            data: SAPData?.data?.data?.filter((item) => ![null, undefined, ''].includes(item))
         }]);
     }, [SAPData]);
     return (

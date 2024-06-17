@@ -1,9 +1,16 @@
-const { Box, Text, Icon, useColorMode } = require("@chakra-ui/react");
+"use client";
 import { GoArrowUpRight } from "react-icons/go";
 import React, { useMemo } from "react";
 import { useRouter } from "next/navigation";
-import CustomChart from "@components/graph";
-import CustomAvatar from "@components/avatar";
+
+import dynamic from "next/dynamic";
+import { Box, Icon, Text, useColorMode } from "@chakra-ui/react";
+
+/* import CustomChart from "@components/graph";
+import CustomAvatar from "@components/avatar"; */
+const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
+const CustomChart = dynamic(() => import("@components/graph"));
+
 
 const TrendingCoinPanel = ({ coinData }) => {
     const router = useRouter();

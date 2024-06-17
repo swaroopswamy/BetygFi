@@ -17,10 +17,10 @@ import {
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import CustomAvatar from "@components/avatar";
+const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
 
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const GenericTable = dynamic(() => import("@components/table"));
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const InflowTokensBox = () => {
 	const inflowOutflowTokensData = useSelector(

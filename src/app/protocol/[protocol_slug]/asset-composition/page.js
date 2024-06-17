@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-// import { blockchainTypeChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
 import { fetchDefiAssetCompositionTableData } from "@redux/defi_dashboard_data/dataSlice";
 import {
 	Text,
@@ -17,10 +15,13 @@ import {
 	useColorMode,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import GenericTable from "@components/table";
 import { DefiAssetsBigTableHeader } from "@components/pages/defiDashboard/helper";
-import PageButtonsWide from "@components/pageButtonsWide";
-import CustomAvatar from "@components/avatar";
+import dynamic from "next/dynamic";
+
+const PageButtonsWide = dynamic(() => import('@components/pageButtonsWide'), { ssr: false });
+const CustomAvatar = dynamic(() => import('@components/avatar'), { ssr: false });
+const GenericTable = dynamic(() => import('@components/table'), { ssr: false });
+
 
 let USDollar = new Intl.NumberFormat("en-US", {
 	currency: "USD",

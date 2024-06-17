@@ -1,11 +1,15 @@
+"use client";
 import { Box, Text, Select, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import CustomChart from "@components/graph";
 import { btcDominanceDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NoDataAvailable from "./NodataSmallBox";
 import moment from "moment";
+
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph"), { ssr: false });
+const NoDataAvailable = dynamic(() => import("@components/pages/coin/NodataSmallBox", { ssr: false }));
+
 
 const BTCDominanceSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -56,6 +60,7 @@ const BTCDominanceSmallBox = () => {
         },
         xaxis: {
             type: 'datetime',
+            tickAmount: 4,
             axisBorder: {
                 show: false,
             },
@@ -84,19 +89,19 @@ const BTCDominanceSmallBox = () => {
             enabled: true,
             theme: colorMode,
             custom: function ({ dataPointIndex, seriesIndex, w }) {
-            let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
                 return (
                     '<div class="btc_dominance_tooltip">' +
-                        '<div class="btc_dominance_tooltip_text">' +
-                            '<p>' +
-                                "BTC Dominance " +
-                                entry?.y +
-                                "%" +
-                            '</p>' +
-                        "</div>" +
-                        '<div class="btc_dominance_tooltip_text_date">' +
-                            moment(entry?.x).format('DD MMM, YYYY') +
-                        "</div>" +
+                    '<div class="btc_dominance_tooltip_text">' +
+                    '<p>' +
+                    "BTC Dominance " +
+                    entry?.y +
+                    "%" +
+                    '</p>' +
+                    "</div>" +
+                    '<div class="btc_dominance_tooltip_text_date">' +
+                    moment(entry?.x).format('DD MMM, YYYY') +
+                    "</div>" +
                     "</div>"
                 );
             },
@@ -105,7 +110,7 @@ const BTCDominanceSmallBox = () => {
 
     useEffect(() => {
         setSeries([{
-            data: BTCDominanceScoresData?.data?.data
+            data: BTCDominanceScoresData?.data?.data?.filter((item) => ![null, undefined, ''].includes(item))
         }]);
     }, [BTCDominanceScoresData]);
     return (
@@ -129,8 +134,8 @@ const BTCDominanceSmallBox = () => {
                         width={32}
                         src="/icons/bitcoin_logo.svg"
                         alt="bitcoin_icon"
-                        unoptimized="true"
-                        priority="true"
+                    //unoptimized="true"
+                    //priority="true"
                     ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         BTC Dominance
@@ -183,6 +188,7 @@ const BTCDominanceSmallBox = () => {
                                     options={options}
                                     series={series}
                                     height={100}
+
                                 />
                             </Box>
                         </React.Fragment>)

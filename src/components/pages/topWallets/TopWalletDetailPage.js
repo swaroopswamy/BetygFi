@@ -14,13 +14,13 @@ import {
 } from "@redux/wallet_dashboard_data/dataSlice";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 
-const PortfolioPanelComponent = dynamic(() => import("@components/pages/walletDashboard/portfolio"));
-const WalletAnalyticsPanel = dynamic(() => import("@components/pages/walletDashboard/wallet_analytics"));
-const TransactionPanelComponent = dynamic(() => import("@components/pages/walletDashboard/transaction"));
-const Breadcrumb = dynamic(() => import("@components/breadcrumb"));
-const HeaderComponent = dynamic(() => import("@components/pages/walletDashboard/HeaderComponent"));
-const DashboardTabList = dynamic(() => import("@components/pages/walletDashboard/DashboardTabList"));
-const BlockchainSelectionMenuBlocks = dynamic(() => import("@components/blockchainSelectionMenuBlocks"));
+const PortfolioPanelComponent = dynamic(() => import("@components/pages/walletDashboard/portfolio"), { ssr: false });
+const WalletAnalyticsPanel = dynamic(() => import("@components/pages/walletDashboard/wallet_analytics"), { ssr: false });
+const TransactionPanelComponent = dynamic(() => import("@components/pages/walletDashboard/transaction"), { ssr: false });
+const Breadcrumb = dynamic(() => import("@components/breadcrumb"), { ssr: false });
+const HeaderComponent = dynamic(() => import("@components/pages/walletDashboard/HeaderComponent"), { ssr: false });
+const DashboardTabList = dynamic(() => import("@components/pages/walletDashboard/DashboardTabList"), { ssr: false });
+const BlockchainSelectionMenuBlocks = dynamic(() => import("@components/blockchainSelectionMenuBlocks"), { ssr: false });
 
 export default function TopWalletDetailPage({ searchParamAddress }) {
 	const dispatch = useDispatch();
