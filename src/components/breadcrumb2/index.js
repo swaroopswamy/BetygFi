@@ -3,7 +3,7 @@ import { Box, useColorModeValue, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export const BreadCrumb = ({ text, link }) => {
+const BreadCrumb = ({ text, link }) => {
     const router = useRouter();
 
     return (
@@ -30,3 +30,5 @@ export const BreadCrumb = ({ text, link }) => {
         </Box>
     );
 };
+
+export default BreadCrumb;

@@ -2,16 +2,18 @@
 "use client";
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { BreadCrumb } from "@components/breadcrumb2";
+
 import { useDispatch } from "react-redux";
 
 import CustomAvatar from "@components/avatar";
 import dynamic from "next/dynamic";
 
-const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"));
-const RiskAnalysis = dynamic(() => import("@components/pages/coin/riskAnalysis"));
-const CoinPriceChart = dynamic(() => import("@components/pages/coin/coinPriceChart"));
-const DevelopmentAnalysis = dynamic(() => import("@components/pages/coin/developmentAnalysis"));
+const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"), { ssr: false });
+const RiskAnalysis = dynamic(() => import("@components/pages/coin/riskAnalysis"), { ssr: false });
+const CoinPriceChart = dynamic(() => import("@components/pages/coin/coinPriceChart"), { ssr: false });
+const DevelopmentAnalysis = dynamic(() => import("@components/pages/coin/developmentAnalysis"), { ssr: false });
+const BreadCrumb = dynamic(() => import("@components/breadcrumb2"), { ssr: false });
+
 
 import {
     fetchCoinDevelopmentData,
