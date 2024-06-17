@@ -1,6 +1,8 @@
+"use client";
 import { useColorMode } from "@chakra-ui/react";
-import CustomChart from "@components/graph";
-import React from "react";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph"), { ssr: false });
+
 
 // const colors = [ "#245F00", "#00799F", "#B87A00", "#FF0000"];
 
@@ -20,7 +22,7 @@ const FearMeter = ({ score }) => {
         chart: {
 
             type: "radialBar",
-           
+
         },
         labels: [''],
         plotOptions: {
@@ -43,7 +45,7 @@ const FearMeter = ({ score }) => {
         grid: {
             padding: {
                 top: -20,
-                right:-30
+                right: -30
             },
         },
         fill: {

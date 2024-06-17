@@ -1,15 +1,18 @@
 "use client";
 import React, { useEffect } from "react";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
-import { BreadCrumb } from "@components/breadcrumb2";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import News from "@components/pages/coin/ETFPage/News";
-import ARKInvest from "@components/pages/coin/ETFPage/ARKInvestBox";
-import ARK21Shares from "@components/pages/coin/ETFPage/SharesChart";
-import TickerETFNetInflowBox from "@components/pages/coin/ETFPage/TickerETFNetInflowGraph";
-import KeyStats from "@components/pages/coin/ETFPage/KeyStatsBox";
 import { fetchTickerETFInflowOutflowData, fetchETFChartData, fetchETFNewsData } from "@redux/coin_data/dataSlice";
+import dynamic from "next/dynamic";
+
+const BreadCrumb = dynamic(() => import("@components/breadcrumb2"), { ssr: false });
+const News = dynamic(() => import("@components/pages/coin/ETFPage/News"), { ssr: false });
+const ARKInvest = dynamic(() => import("@components/pages/coin/ETFPage/ARKInvestBox"), { ssr: false });
+const ARK21Shares = dynamic(() => import("@components/pages/coin/ETFPage/SharesChart"), { ssr: false });
+const TickerETFNetInflowBox = dynamic(() => import("@components/pages/coin/ETFPage/TickerETFNetInflowGraph"), { ssr: false });
+const KeyStats = dynamic(() => import("@components/pages/coin/ETFPage/KeyStatsBox"), { ssr: false });
+
 
 const BTCETFDetailsPage = ({ params }) => {
     const ticker = params?.ticker;

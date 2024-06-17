@@ -16,8 +16,8 @@ import {
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const GenericTable = dynamic(() => import("@components/table"));
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const InteractionWithKnownEntitiesBox = () => {
 	return (
