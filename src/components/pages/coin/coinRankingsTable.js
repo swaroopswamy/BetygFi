@@ -22,7 +22,8 @@ const CoinRankingsTable = (
         setTableLimit,
         setCryptoCategorySelected,
         cryptoCategories,
-        pageChangeHandler
+        pageChangeHandler,
+        onTabLibraryModalOpen
     }
 ) => {
     const { colorMode } = useColorMode();
@@ -104,6 +105,8 @@ const CoinRankingsTable = (
                 <Box
                     layerStyle={"flexCenter"}
                     justifyContent={"start"}
+                    cursor={"pointer"}
+                    onClick={() => { onTabLibraryModalOpen(); }}
                 >
                     <i className={`icon ${colorMode === "light" ? 'tab_library_icon_light' : 'tab_library_icon_dark'}`} />
                     <Text

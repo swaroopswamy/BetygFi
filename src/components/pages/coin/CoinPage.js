@@ -27,6 +27,7 @@ import {
 } from "@redux/coin_data/dataSlice";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
+import TabLibraryModal from "./TabLibraryModal";
 
 const CoinRankingsTable = dynamic(() => import('@components/pages/coin/coinRankingsTable'), { ssr: false });
 const Marquee = dynamic(() => import("@/components/pages/coin/marquee"), { ssr: false });
@@ -54,6 +55,12 @@ const CoinPage = () => {
     const searchParams = useSearchParams();
     const on = searchParams.get('on');
     const by = searchParams.get('by');
+
+    const {
+        isOpen: isTabLibraryModalOpen,
+        onOpen: onTabLibraryModalOpen,
+        onClose: onTabLibraryModalClose,
+    } = useDisclosure();
 
 
     const fetchTopGainersAndLosersDataHandler = () => {
@@ -220,11 +227,15 @@ const CoinPage = () => {
                 cryptoCategories={cryptoCategories}
                 setCryptoCategories={setCryptoCategories}
                 pageChangeHandler={pageChangeHandler}
+                onTabLibraryModalOpen={onTabLibraryModalOpen}
             />
             <hr />
             <TrendingCoinSection />
-
             <FaqSection />
+            <TabLibraryModal 
+                isTabLibraryModalOpen={isTabLibraryModalOpen}
+                onTabLibraryModalClose={onTabLibraryModalClose}
+            />
         </Box >
     );
 };
