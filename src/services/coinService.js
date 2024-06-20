@@ -11,7 +11,7 @@ export const getCoinDashboardData = async (payload, rejectWithValue) => {
             return checkIfCacheAvailable(url);
         } else {
             const { data } = await axiosInstance(getAPI_URL()).get(url);
-            return cacheHandler(url, data, false, 4);
+            return cacheHandler(url, data, false, 0.5);
         }
     } catch (err) {
         if (rejectWithValue) {
