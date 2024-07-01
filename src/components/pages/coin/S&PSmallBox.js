@@ -67,7 +67,8 @@ const SandPSmallBox = () => {
                 show: true,
                 style: {
                     colors: useColorModeValue("#16171B", "#FFFFFF"),
-                    fontSize: "11px",
+                    fontFamily: "Inter",
+                    fontSize: "12px",
                     fontWeight: 300,
                 },
             },
