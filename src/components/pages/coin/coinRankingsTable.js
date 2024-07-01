@@ -111,7 +111,7 @@ const CoinRankingsTable = (
                     <i className={`icon ${colorMode === "light" ? 'tab_library_icon_light' : 'tab_library_icon_dark'}`} />
                     <Text
                         variant={"h5"}
-                        color={"#161616"}
+                        color={colorMode === 'light' ? "#161616" : "#FFFFFF"}
                         fontWeight={"500"}
                         lineHeight={"16px"}
                     >
@@ -125,7 +125,7 @@ const CoinRankingsTable = (
                     <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
                     <Text
                         variant={"h5"}
-                        color={"#161616"}
+                        color={colorMode === 'light' ? "#161616" : "#FFFFFF"}
                         fontWeight={"500"}
                         lineHeight={"16px"}
                     >

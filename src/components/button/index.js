@@ -135,19 +135,19 @@ const Button = defineStyleConfig({
             },
         }),
         blackButton: ({ colorMode }) => ({
-            bg: colorMode === "light" ? "#1C1C1C" : "#FFF",
+            bg: colorMode === "light" ? "#1C1C1C" : "#FFFFFF",
             color: colorMode === "light" ? "#FFFFFF" : "#000000",
             _hover: {
                 bg: colorMode === "light" ? "#202020" : "#FFFFFF",
                 color: colorMode === "light" ? "#FFFFFF" : "#000000",
             },
             _active: {
-                bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+                bg: colorMode === "light" ? "#FFFFFF" : "#202020",
+                color: colorMode === "light" ? "#000000" : "#FFFFFF",
             },
             fontSize: "12px",
             fontWeight: "600",
-            borderRadius: "2px",
+            borderRadius: "4px",
             letterSpacing: "1px",
             p: "7px 23px",
         }),
