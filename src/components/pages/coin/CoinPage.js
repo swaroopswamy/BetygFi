@@ -28,6 +28,7 @@ import {
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
 import TabLibraryModal from "./TabLibraryModal";
+import CustomizeTabModal from "./CustomizeTabModal";
 
 const CoinRankingsTable = dynamic(() => import('@components/pages/coin/coinRankingsTable'), { ssr: false });
 const Marquee = dynamic(() => import("@/components/pages/coin/marquee"), { ssr: false });
@@ -62,6 +63,11 @@ const CoinPage = () => {
         onClose: onTabLibraryModalClose,
     } = useDisclosure();
 
+    const {
+        isOpen: isCustomizeTabModalOpen,
+        onOpen: onCustomizeTabModalOpen,
+        onClose: onCustomizeTabModalClose,
+    } = useDisclosure();
 
     const fetchTopGainersAndLosersDataHandler = () => {
         dispatch(fetchTopGainersAndLosersData());
@@ -228,13 +234,18 @@ const CoinPage = () => {
                 setCryptoCategories={setCryptoCategories}
                 pageChangeHandler={pageChangeHandler}
                 onTabLibraryModalOpen={onTabLibraryModalOpen}
+                onCustomizeTabModalOpen={onCustomizeTabModalOpen}
             />
             <hr />
             <TrendingCoinSection />
             <FaqSection />
-            <TabLibraryModal 
+            <TabLibraryModal
                 isTabLibraryModalOpen={isTabLibraryModalOpen}
                 onTabLibraryModalClose={onTabLibraryModalClose}
+            />
+            <CustomizeTabModal
+                isCustomizeTabModalOpen={isCustomizeTabModalOpen}
+                onCustomizeTabModalClose={onCustomizeTabModalClose}
             />
         </Box >
     );
