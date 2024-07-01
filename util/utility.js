@@ -282,3 +282,21 @@ export function convertENotationToNumber(num) {
         return '0.' + realInteger.padStart(realExponent, '0');
     }
 }
+
+export const getImgUrl = (profile_url) => {
+    var imgUrl = '';
+    const env = getEnv(window.location.hostname);
+    if (env) {
+        if (env === 'qa') {
+            imgUrl = `http://qaplatform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
+        } else if (env === 'dev') {
+            imgUrl = `http://devplatform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
+        } else if (env === 'local') {
+            imgUrl = `http://10.40.59.155/betygfi/dev/profiles/${encodeURIComponent(profile_url)}`;
+
+        } else {
+            imgUrl = `https://platform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
+        }
+    }
+    return imgUrl;
+}
