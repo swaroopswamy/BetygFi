@@ -28,6 +28,14 @@ const nextConfig = {
         source: '/prod/notification/:path*',
         destination: 'https://notificationapi.betygfi.com/:path*'
       },
+      {
+        source: '/dev/images/:filename',
+        destination: '/opt/statics/:filename*',
+      },
+      {
+        source: '/local/images/:filename',
+        destination: 'http://10.40.59.155/betygfi/dev/profiles/:filename*',
+      }
     ];
   },
   async headers() {
