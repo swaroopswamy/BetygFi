@@ -290,10 +290,9 @@ export const getImgUrl = (profile_url) => {
         if (env === 'qa') {
             imgUrl = `http://qaplatform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
         } else if (env === 'dev') {
-            imgUrl = `http://devplatform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
+            imgUrl = `/opt/statics/${encodeURIComponent(profile_url)}`;
         } else if (env === 'local') {
             imgUrl = `http://10.40.59.155/betygfi/dev/profiles/${encodeURIComponent(profile_url)}`;
-
         } else {
             imgUrl = `https://platform.betygfi.com/opt/statics/${encodeURIComponent(profile_url)}`;
         }
