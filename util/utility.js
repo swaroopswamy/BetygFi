@@ -230,7 +230,7 @@ export const getEnv = (url) => {
     const allowedDev = ['devplatform.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
     const allowedLocal = ['localplatform.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
     const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
-    const allowedLocalhost = ['localhost:7000', 'localhost:7001', 'localhost:7002'];
+    const allowedLocalhost = ['localhost:7000'];
 
     if (url) {
         if (allowedQA.includes(url)) {

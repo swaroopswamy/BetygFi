@@ -10,6 +10,7 @@ export async function GET(req, { params }) {
     const headersList = headers();
     const host = getEnv(headersList.get('host'));
     const imagePath = join(getImageFilePath(host), filename);
+    console.log(headersList.get('host'),host,getImageFilePath(host),'routes')
     if (!existsSync(imagePath)) {
         return new Response('Image not found', { status: 404 });
     }
