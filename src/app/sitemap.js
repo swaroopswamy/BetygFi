@@ -1,49 +1,51 @@
+import { BASE_URL } from "@util/constant";
+
 export default function sitemap() {
     return [
         {
-            url: 'https://platform.betygfi.com',
+            url: `${BASE_URL}`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 1,
         },
         {
-            url: 'https://platform.betygfi.com/top-wallets',
+            url: `${BASE_URL}/top-wallets`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.8,
         },
         {
-            url: 'https://platform.betygfi.com/protocol',
+            url: `${BASE_URL}/protocol`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,
         },
         {
-            url: 'https://platform.betygfi.com/coin',
+            url: `${BASE_URL}/coin`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,
         },
         {
-            url: 'https://platform.betygfi.com/about',
+            url: `${BASE_URL}/about`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,
         },
         {
-            url: 'https://platform.betygfi.com/approach-paper',
+            url: `${BASE_URL}/approach-paper`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,
         },
         {
-            url: 'https://platform.betygfi.com/help',
+            url: `${BASE_URL}/help`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,
         },
         {
-            url: 'https://platform.betygfi.com/legal',
+            url: `${BASE_URL}/legal`,
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.5,

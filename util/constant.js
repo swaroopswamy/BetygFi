@@ -214,3 +214,5 @@ export const SEARCH_LIST = [
         slug: TRENDING_WALLETS_SLUG,
     },
 ];
+
+export const BASE_URL = 'platform.betygfi.com';
