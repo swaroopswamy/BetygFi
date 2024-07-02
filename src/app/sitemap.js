@@ -50,5 +50,11 @@ export default function sitemap() {
             changeFrequency: 'hourly',
             priority: 0.5,
         },
+        {
+            url: `${BASE_URL}/crypto-etfs-data-tracker`,
+            lastModified: new Date(),
+            changeFrequency: 'hourly',
+            priority: 0.5,
+        },
     ];
 }

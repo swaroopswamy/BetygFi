@@ -215,4 +215,4 @@ export const SEARCH_LIST = [
     },
 ];
 
-export const BASE_URL = 'platform.betygfi.com';
+export const BASE_URL = 'https://platform.betygfi.com';
