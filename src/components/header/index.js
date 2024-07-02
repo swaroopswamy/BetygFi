@@ -252,6 +252,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                         borderLeft={"1px solid #333333"}
                         w="100%"
                     >
+                        new
                         {typeof window !== "undefined" && (
                             <CustomAvatar
                                 width={48}
