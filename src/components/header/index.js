@@ -21,7 +21,7 @@ import {
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
-import { PublicAddressStringFormatter, getEnv } from "@util/utility";
+import { PublicAddressStringFormatter } from "@util/utility";
 import { useDebounce } from "@hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList, mobileSearchbarOpenReducer } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
@@ -167,7 +167,10 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
         }
     };
 
-
+    /*     const getImageFilePathAPICall = async (profile_url) =>{
+              const image = await fetch('api')
+        }  
+     */
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
@@ -252,7 +255,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                         borderLeft={"1px solid #333333"}
                         w="100%"
                     >
-                        new
                         {typeof window !== "undefined" && (
                             <CustomAvatar
                                 width={48}
@@ -260,7 +262,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 src={
                                     ["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ?
                                         (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") :
-                                        `/${getEnv(window.location.hostname)}/images/${encodeURIComponent(ValidatedUserData?.data?.profile_url)}`
+                                        `/api/image/joker.jpg`
                                 }
                             />
                         )}

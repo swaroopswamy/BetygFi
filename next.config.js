@@ -6,7 +6,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 const nextConfig = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$|.*\\.jpg$).*)"],
   async rewrites() {
     return [
       {
@@ -29,14 +28,6 @@ const nextConfig = {
         source: '/prod/notification/:path*',
         destination: 'https://notificationapi.betygfi.com/:path*'
       },
-      {
-        source: '/dev/images/:filename',
-        destination: 'http://devplatform.betygfi.com/opt/statics/:filename*',
-      },
-      {
-        source: '/local/images/:filename',
-        destination: 'http://10.40.59.155/betygfi/dev/profiles/:filename*',
-      }
     ];
   },
   async headers() {
@@ -89,18 +80,6 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "10.40.59.155",
-      },
-      {
-        protocol: "http",
-        hostname: "devplatform.betygfi.com",
-      },
-      {
-        protocol: "http",
-        hostname: "qaplatform.betygfi.com",
-      },
-      {
-        protocol: "https",
-        hostname: "platform.betygfi.com",
       },
       {
         protocol: "http",
