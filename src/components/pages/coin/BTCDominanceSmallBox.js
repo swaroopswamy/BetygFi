@@ -1,10 +1,15 @@
+"use client";
 import { Box, Text, Select, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import CustomChart from "@components/graph";
 import { btcDominanceDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NoDataAvailable from "./NodataSmallBox";
+import moment from "moment";
+
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph"), { ssr: false });
+const NoDataAvailable = dynamic(() => import("@components/pages/coin/NodataSmallBox", { ssr: false }));
+
 
 const BTCDominanceSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -55,63 +60,84 @@ const BTCDominanceSmallBox = () => {
         },
         xaxis: {
             type: 'datetime',
+            tickAmount: 4,
             axisBorder: {
                 show: false,
             },
             labels: {
                 show: true,
                 style: {
-                    colors: useColorModeValue("#16171B", "#FFF"),
-                    fontSize: "11px",
+                    colors: useColorModeValue("#16171B", "#FFFFFF"),
+                    fontFamily: "Inter",
+                    fontSize: "12px",
                     fontWeight: 300,
                 },
+                formatter: function (value) {
+                    return moment(value).format('DD MMM');
+                }
             },
             axisTicks: {
                 show: false,
             },
+            tooltip: {
+                enabled: false,
+            }
         },
         yaxis: {
             show: false,
         },
         tooltip: {
-            enabled: false,
+            enabled: true,
+            theme: colorMode,
+            custom: function ({ dataPointIndex, seriesIndex, w }) {
+                let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                return (
+                    '<div class="btc_dominance_tooltip">' +
+                    '<div class="btc_dominance_tooltip_text">' +
+                    '<p>' +
+                    "BTC Dominance " +
+                    entry?.y +
+                    "%" +
+                    '</p>' +
+                    "</div>" +
+                    '<div class="btc_dominance_tooltip_text_date">' +
+                    moment(entry?.x).format('DD MMM, YYYY') +
+                    "</div>" +
+                    "</div>"
+                );
+            },
         },
     };
 
     useEffect(() => {
         setSeries([{
-            data: BTCDominanceScoresData?.data?.data
+            data: BTCDominanceScoresData?.data?.data?.filter((item) => ![null, undefined, ''].includes(item))
         }]);
     }, [BTCDominanceScoresData]);
     return (
         <Box
             mx={"10px"}
-            width={"30%"}
+            width={"90%"}
             minW={"295px"}
             height={"197px"}
             borderRadius={"8px"}
             mb={"15px"}
-            pb={"0px"}
-            _light={{
-                bg: "#FFFFFF"
-            }}
-            _dark={{
-                bg: "#282828"
-            }}
-            display={"flex"}
-            justifyContent={"space-between"}
-            flexDirection={"column"}
+            pl={"0px"}
+            pr={"0px"}
+            _light={{ bg: "#FFFFFF" }}
+            _dark={{ bg: "#282828" }}
+            key="btc-dominance"
         >
-            <Box layerStyle={"spaceBetween"} mb={"12px"} px={"12px"} pt={"12px"}>
+            <Box layerStyle={"spaceBetween"} p={"12px"}>
                 <Box layerStyle={"flexCenter"}>
                     <Image
                         height={32}
                         width={32}
                         src="/icons/bitcoin_logo.svg"
                         alt="bitcoin_icon"
-                        unoptimized="true"
-                        priority="true"
-                        ></Image>
+                    //unoptimized="true"
+                    //priority="true"
+                    ></Image>
                     <Text variant={"contentHeading3"} fontWeight={500} ml={"8px"}>
                         BTC Dominance
                     </Text>
@@ -127,7 +153,7 @@ const BTCDominanceSmallBox = () => {
                             dispatch(btcDominanceDaySelectReducer(e.target.value));
                         }}
                         borderColor={colorMode === 'light' ? "#E0E0E0" : "#333333"}
-                        padding={"0"}
+                        padding={0}
                     >
                         {
                             periods.map((period, i) => {
@@ -144,7 +170,7 @@ const BTCDominanceSmallBox = () => {
                     (
                         <React.Fragment>
                             <Box layerStyle={"flexCenter"} pl={"10px"} gap={"4px"}>
-                                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y} %</Text>
+                                <Text variant={"textBold"} fontSize={"24px"}>{(series?.length > 0) && series[0]?.data?.length > 1 && series[0].data[series[0]?.data?.length - 1]?.y}%</Text>
                                 <Box borderRadius={"16px"} layerStyle={"flexCenter"}
                                     bgColor={BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "rgba(36, 95, 0, 0.12)" : "rgba(255, 0, 0, 0.12)")}
                                     px={"12px"} py="3px" ml={"5px"}>
@@ -153,16 +179,19 @@ const BTCDominanceSmallBox = () => {
                                             color: BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) && (BTCDominanceScoresData?.data?.percentageChange?.toFixed(2) > 0 ? "#245F00" : "rgba(255, 0, 0, 1)")
                                         }}
                                     >
-                                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)} %
+                                        {BTCDominanceScoresData?.data?.percentageChange?.toFixed(2)}%
                                     </Text>
                                 </Box>
                             </Box>
-                            <CustomChart
-                                type={"area"}
-                                options={options}
-                                series={series}
-                                height={110}
-                            />
+                            <Box width={"100%"} mt={"10px"} pl={"10px"} pr={"0px"}>
+                                <CustomChart
+                                    type={"area"}
+                                    options={options}
+                                    series={series}
+                                    height={100}
+
+                                />
+                            </Box>
                         </React.Fragment>)
                     :
                     <NoDataAvailable />

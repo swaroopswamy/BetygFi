@@ -1,8 +1,10 @@
 import { Box, useColorMode, Button, Text } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
-import CustomChart from "@components/graph";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+
 
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
@@ -12,27 +14,36 @@ const HeatmapGraphBox = () => {
 
     useEffect(() => {
         if (ETFHeatMapData) {
+            let sortedData;
             if (activeCategory === 'volume') {
-                setActiveData(ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.["priceChange"],
                         fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
-                    })));
+                    }
+                ));
             } else {
-                setActiveData(ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map(item => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.[activeCategory + "Change"],
                         fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
-                    })));
+                    }
+                ));
             }
+
+            // Sort the data in descending order based on the value of y
+            sortedData = sortedData?.sort((a, b) => b.y - a.y);
+
+            setActiveData(sortedData);
         }
     }, [ETFHeatMapData, activeCategory]);
+
     const handleButtonClick = (category) => {
         setActiveCategory(category);
     };
@@ -167,16 +178,31 @@ const HeatmapGraphBox = () => {
         >
             <Box bgColor={"background.primary"} pb={"5px"}>
                 <Text variant={"h2"} mb={"15px"}>Heatmap</Text>
-                <Box layerStyle={"flexCenter"} mb={"5px"}>
+                <Box layerStyle={"flexCenter"} mb={"5px"}
+                    overflowX={"auto"}
+                    flexWrap="nowrap"
+                    css={{
+                        "&::-webkit-scrollbar": {
+                            width: "0.2rem",
+                            height: "0.2rem",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                            backgroundColor: "transparent",
+                        },
+                    }}
+                >
                     <Button
                         variant={"modalButton"}
                         className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
                         border={"1px solid #E0E0E0"}
-                        onClick={() => handleButtonClick('holding')}>
+                        onClick={() => handleButtonClick('holding')}
+                        minW={"-moz-fit-content"}
+                    >
                         Holding
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -185,6 +211,7 @@ const HeatmapGraphBox = () => {
                         Price
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -196,6 +223,7 @@ const HeatmapGraphBox = () => {
                         Turnover
                     </Button> */}
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -204,6 +232,7 @@ const HeatmapGraphBox = () => {
                         Shares
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
@@ -212,6 +241,7 @@ const HeatmapGraphBox = () => {
                         AUM
                     </Button>
                     <Button
+                        minW={"-moz-fit-content"}
                         variant={"modalButton"}
                         className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}

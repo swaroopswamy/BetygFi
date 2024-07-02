@@ -1,14 +1,29 @@
+"use client";
 import React, { useRef, useState } from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
+
+/* 
 import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
 import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
 import BTCetfSmallBox from "./BTCetfSmallBox";
 import BTCDominanceSmallBox from "./BTCDominanceSmallBox";
 import SandPSmallBox from "./S&PSmallBox";
 import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
+*/
+import dynamic from "next/dynamic";
+
+const TopGainersSmallBox = dynamic(() => import('@/components/pages/coin/TopGainersSmallBox'), { ssr: false });
+const TopLosersSmallBox = dynamic(() => import('@/components/pages/coin/TopLosersSmallBox'), { ssr: false });
+const BTCetfSmallBox = dynamic(() => import('@/components/pages/coin/BTCetfSmallBox'), { ssr: false });
+const BTCDominanceSmallBox = dynamic(() => import('@/components/pages/coin/BTCDominanceSmallBox'), { ssr: false });
+const SandPSmallBox = dynamic(() => import('@/components/pages/coin/S&PSmallBox'), { ssr: false });
+const FearGridIndexSmallBox = dynamic(() => import('@/components/pages/coin/FearGridIndexSmallBox'), { ssr: false });
+
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
@@ -22,13 +37,14 @@ const HighlightsBox = () => {
     const goToPrevSlide = () => {
         sliderRef.current.slickPrev();
     };
+
     const settings = {
         dots: false,
         infinite: true,
         vertical: false,
         slidesToShow: 4,
         slidesToScroll: 2,
-        initialSlide: 0,
+        initialSlide: 2,
         variableWidth: true,
         ref: sliderRef,
         className: "custom-slick",
@@ -51,8 +67,9 @@ const HighlightsBox = () => {
             },
         ],
     };
+
     return (
-        <Box pos={"relative"} p={"20px"}>
+        <Box pos={"relative"} p={"20px"} pt={"0px"}>
             <Box
                 pos="absolute"
                 left="0"
@@ -72,12 +89,12 @@ const HighlightsBox = () => {
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
-                <TopGainersSmallBox />
-                <TopLosersSmallBox />
-                <BTCetfSmallBox />
-                <BTCDominanceSmallBox />
-                <FearGridIndexSmallBox />
-                <SandPSmallBox />
+                <TopGainersSmallBox key="top-gainers" />
+                <TopLosersSmallBox key="top-losers" />
+                <BTCetfSmallBox key="btc-etf" />
+                <BTCDominanceSmallBox key="btc-dominance" />
+                <FearGridIndexSmallBox key="fear-grid" />
+                <SandPSmallBox key="sandp" />
             </Slider>
             {
                 currentSlide > 0 && (
@@ -90,7 +107,6 @@ const HighlightsBox = () => {
                 <i className="icon arrow_circle_light" />
             </Box>
         </Box>
-
     );
 };
 

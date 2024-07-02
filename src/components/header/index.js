@@ -202,12 +202,16 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                 />
             </Box>
             <Box layerStyle={"flexCenter"}>
-                <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
-                    onClick={() => { toggleColorModeGlobally(); }} />
-                <NotificationBell
-                    noOfNotifcations={Notifications?.data?.length}
-                    onClick={onNotificationDrawerOpen}
-                />
+                <Box mr={"10px"}>
+                    <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
+                        onClick={() => { toggleColorModeGlobally(); }} />
+                </Box>
+                <Box>
+                    <NotificationBell
+                        noOfNotifcations={Notifications?.data?.length}
+                        onClick={onNotificationDrawerOpen}
+                    />
+                </Box>
                 {!AuthSession ? (
                     <Box
                         ml="20px"
@@ -251,7 +255,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={ValidatedUserData?.data?.profile_url === null || ValidatedUserData?.data?.profile_url === undefined ? (colorMode === 'light' ? "/icons/avatar_icon_light.svg" : "/icons/avatar_icon_dark.svg") : ValidatedUserData?.data?.profile_url}
+                                src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidatedUserData?.data?.profile_url}
                             />
                         )}
                         <Box
@@ -349,13 +353,13 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 // priority="true"
                                 src={
                                     colorMode === "light"
-                                        ? "/icons/light_betgyfi_sm_icon.svg"
-                                        : "/icons/dark_betgyfi_sm_logo.svg"
+                                        ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                        : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                 }
                                 height={120}
                                 width={120}
                                 cursor={"pointer"}
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/coin")}
                                 alt="logo"
                             />
                         </Box>

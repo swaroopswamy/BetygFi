@@ -20,10 +20,12 @@ import dynamic from "next/dynamic";
 import { fetchWalletTransactionsData } from "@redux/wallet_dashboard_data/dataSlice";
 import { tableHeader, TransactionTableDesktop, TransactionTableMobile, } from "@components/pages/walletDashboard/helper";
 import Image from "next/image";
-import CustomAvatar from "@components/avatar";
 
-const GenericTable = dynamic(() => import("@components/table"));
-const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"));
+
+//import CustomAvatar from "@components/avatar";
+const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
+const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
 
 const TransactionPanelComponent = ({ searchParamAddress }) => {
 	const dispatch = useDispatch();

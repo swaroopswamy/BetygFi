@@ -6,12 +6,14 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
-import CustomAvatar from "@components/avatar";
+//import CustomAvatar from "@components/avatar";
 import millify from "millify";
 
 const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
-const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"));
+const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"), { ssr: false });
+const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
+
 
 const CoinRankingsTable = (
     {
@@ -207,7 +209,7 @@ const TableRow = ({ item, rowIndex }) => {
                         height={"24px"}
                         style={{ borderRadius: "50%" }}
                         name={item?.name}
-                        src={item?.logoUrl}
+                        src={item?.logoUrl ?? '/icons/coin_icon.svg'}
                     />
                     <Box
                         display={"flex"}

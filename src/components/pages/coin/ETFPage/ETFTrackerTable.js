@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Box,/* Input, InputGroup, InputLeftElement*/ Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
+import { Box, Select, Text, useColorMode, Tr, Td } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { tableHeader } from "./helper";
-//import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import millify from "millify";
@@ -124,9 +123,11 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 bgColor={"background.secondary"}
                 onClick={() => router.push(`/crypto-etfs-data-tracker/${item?.ticker}`)}
             >
-                {/* <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
-                    <Image src={"/icons/Bookmark_Icon.svg"} width={24} height={20} alt=" "></Image>
-                </Td> */}
+                <Td {...commonStyleTdProp} key={0} whiteSpace={"nowrap"} pl={"20px"} pr={0} >
+                    <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
+                        {rowIndex + 1}
+                    </Text>
+                </Td>
                 <Td {...commonStyleTdProp} key={1} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
                         {item?.ticker === undefined ? "-" : item?.ticker}
@@ -134,7 +135,7 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                 </Td>
                 <Td {...commonStyleTdProp} key={2} whiteSpace={"nowrap"}>
                     <Text variant={"contentHeading3"} fontSize={"14px"} fontWeight={500}>
-                    {item?.issuer === undefined ? "-" : item?.issuer}
+                        {item?.issuer === undefined ? "-" : item?.issuer}
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={3} whiteSpace={"nowrap"}>

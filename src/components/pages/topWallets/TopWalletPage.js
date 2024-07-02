@@ -2,7 +2,7 @@
 import React from "react";
 import { Box, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-const WalletTable = dynamic(() => import("@components/pages/topWallets/walletTable"));
+const WalletTable = dynamic(() => import("@components/pages/topWallets/walletTable"), { ssr: false });
 
 const WalletDashboardPage = () => {
 	const [isMd] = useMediaQuery("(min-width: 768px)");

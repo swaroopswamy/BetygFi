@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import TooltipComp from "@components/tooltipComp";
 import { scoreChangedReducer } from "@redux/coin_data/dataSlice";
 import { calculatePercentage } from "@util/utility";
-
+import dynamic from "next/dynamic";
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
 const boxData = [
     { bgColor: "#0E6027", label: "Low", key: "Low", index: 0 },
     { bgColor: "#00799F", label: "Moderate", key: "Moderate", index: 1 },

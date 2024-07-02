@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
     Box,
     Flex,
@@ -68,6 +68,10 @@ const SidebarContent = ({ ...rest }) => {
         (state) => state?.appData?.isSidebarCollapsed
     );
 
+    useEffect(() => {
+        dispatch(sidebarCollapsedReducer(true));
+    }, [dispatch]);
+
     const {
         isOpen: isSuggestFeatureModalOpen,
         onOpen: onSuggestFeatureModalOpen,
@@ -104,7 +108,7 @@ const SidebarContent = ({ ...rest }) => {
                             alignItems="center"
                             cursor={"pointer"}
                             p={"20px"}
-                            onClick={() => router.push("/")}
+                            onClick={() => router.push("/coin")}
                         >
                             <Image
                                 // unoptimized="true"
@@ -113,9 +117,9 @@ const SidebarContent = ({ ...rest }) => {
                                 height={80}
                                 alt="logo"
                                 src={
-                                    colorMode === "dark"
-                                        ? "/icons/dark_betgyfi_sm_logo.svg"
-                                        : "/icons/light_betgyfi_sm_icon.svg"
+                                    colorMode === "light"
+                                        ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                        : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                 }
                             />
                         </Box>
@@ -411,25 +415,25 @@ const SidebarContent = ({ ...rest }) => {
                                 cursor={"pointer"}
                                 py={"20px"}
                                 mr={"-13px"}
-                                onClick={() => router.push("/")}
+                                onClick={() => router.push("/coin")}
                             >
                                 <Image
-                                    width={35}
-                                    height={35}
+                                    width={38}
+                                    height={38}
                                     // unoptimized="true"
                                     // priority="true"
                                     alt="logo"
                                     src={
                                         colorMode === "light"
-                                            ? "/icons/company_sidebar_sm_logo_dark.svg"
-                                            : "/icons/company_sidebar_sm_logo_light.svg"
+                                            ? "/icons/BetygFiLogo_sidebar_small_dark.svg"
+                                            : "/icons/BetygFiLogo_sidebar_small_light.svg"
                                     }
                                     cursor={"pointer"}
                                     onClick={() => router.push("/")}
                                 />
                             </Box>
 
-                            <Box layerStyle={"flexColumn"} mt={"20px"}>
+                            <Box layerStyle={"flexColumn"} width={"100%"} mt={"20px"}>
                                 {dashboards(appConfig).map((link, i) => (
                                     <CollapsedNavItem
                                         key={i}
@@ -477,96 +481,115 @@ const SidebarContent = ({ ...rest }) => {
                                     <CollapsedNavItem
                                         key={i}
                                         NavIcon={link.icon}
-                                        //onLoginModalOpen={onLoginModalOpen}
+                                        onLoginModalOpen={onLoginModalOpen}
                                         path={link?.name === "Settings" ? `${link.path}/${ValidatedUserData?.data?.user_name}` : link.path}
                                         newTab={link.newTab}
                                         name={link.name}
-                                        isActive={pathname === link.path}
+                                        isActive={
+                                            pathname ===
+                                            link.path
+                                        }
                                     ></CollapsedNavItem>
                                 );
                             })}
 
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onSuggestFeatureModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[2].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
+                            <Tooltip label="Suggest Feature">
+                                <Box
+                                    display={"flex"}
+                                    justifyContent="center"
+                                    alignItems={"center"}
+                                    height={"45px"}
+                                    padding={"9px 20px"}
+                                    role="group"
+                                    cursor="pointer"
+                                    gap={"10px"}
+                                    _hover={{
+                                        bg:
+                                            colorMode === "light"
+                                                ? "#202020"
+                                                : "#FFFFFF",
                                         color:
                                             colorMode === "light"
                                                 ? "#FFFFFF"
                                                 : "#191919",
+                                        fontWeight: "600",
                                     }}
-                                    alt="logo"
-                                />
-                            </Box>
+                                    mr={"-13px"}
+                                    onClick={onSuggestFeatureModalOpen}
+                                >
+                                    <Icon
+                                        as={bottomMenu[2].icon}
+                                        boxSize={22}
+                                        color={
+                                            colorMode === "light"
+                                                ? "#161616"
+                                                : "#FFFFFF"
+                                        }
+                                        _groupHover={{
+                                            color:
+                                                colorMode === "light"
+                                                    ? "#FFFFFF"
+                                                    : "#191919",
+                                        }}
+                                        alt="logo"
+                                    />
+                                </Box>
+                            </Tooltip>
 
-                            <Box
-                                display={"flex"}
-                                justifyContent="center"
-                                alignItems={"center"}
-                                height={"45px"}
-                                padding={"9px 20px"}
-                                role="group"
-                                cursor="pointer"
-                                gap={"10px"}
-                                _hover={{
-                                    bg:
-                                        colorMode === "light"
-                                            ? "#202020"
-                                            : "#FFFFFF",
-                                    color:
-                                        colorMode === "light"
-                                            ? "#FFFFFF"
-                                            : "#191919",
-                                    fontWeight: "600",
-                                }}
-                                mr={"-13px"}
-                                onClick={onReportBugModalOpen}
-                            >
-                                <Icon
-                                    as={bottomMenu[3].icon}
-                                    boxSize={22}
-                                    color={
-                                        colorMode === "light"
-                                            ? "#161616"
-                                            : "#FFFFFF"
-                                    }
-                                    _groupHover={{
+                            <Tooltip label="Report Bug">
+                                <Box
+                                    display={"flex"}
+                                    justifyContent="center"
+                                    alignItems={"center"}
+                                    height={"45px"}
+                                    padding={"9px 20px"}
+                                    role="group"
+                                    cursor="pointer"
+                                    gap={"10px"}
+                                    _hover={{
+                                        bg:
+                                            colorMode === "light"
+                                                ? "#202020"
+                                                : "#FFFFFF",
                                         color:
                                             colorMode === "light"
                                                 ? "#FFFFFF"
                                                 : "#191919",
+                                        fontWeight: "600",
                                     }}
-                                    alt="logo"
-                                />
-                            </Box>
+                                    mr={"-13px"}
+                                    onClick={onReportBugModalOpen}
+                                >
+                                    <Icon
+                                        as={bottomMenu[3].icon}
+                                        boxSize={22}
+                                        color={
+                                            colorMode === "light"
+                                                ? "#161616"
+                                                : "#FFFFFF"
+                                        }
+                                        _groupHover={{
+                                            color:
+                                                colorMode === "light"
+                                                    ? "#FFFFFF"
+                                                    : "#191919",
+                                        }}
+                                        alt="logo"
+                                    />
+                                </Box>
+                            </Tooltip>
+
+                            <Tooltip label="Legal">
+                                <Box ml={"12px"} mb={"50px"}>
+                                    <NavItem
+                                        NavIcon={legal.icon}
+                                        name={legal.name}
+                                        path={legal.path}
+                                        newTab={legal.newTab}
+                                        isActive={pathname === legal.path}
+                                    />
+                                </Box>
+                            </Tooltip>
                         </Box>
                     </Box>
                 )}
@@ -622,47 +645,128 @@ const SidebarContent = ({ ...rest }) => {
 
 export default SidebarContent;
 
-const CollapsedNavItem = ({ NavIcon, path, newTab, name }) => {
+const CollapsedNavItem = ({ NavIcon, path, newTab, name, isActive, onLoginModalOpen }) => {
     const { colorMode } = useColorMode();
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
-    return (
-        <Tooltip label={name}>
-            <Link
-                href={path}
-                target={newTab ? "_blank" : null}
-                style={{ textDecoration: "none" }}
-                _focus={{ boxShadow: "none" }}
-            >
-                <Box
-                    display={"flex"}
-                    justifyContent="center"
-                    alignItems={"center"}
-                    height={"45px"}
-                    padding={"9px 20px"}
-                    role="group"
-                    cursor="pointer"
-                    gap={"10px"}
-                    _hover={{
-                        bg: colorMode === "light" ? "#202020" : "#FFFFFF",
-                        color: colorMode === "light" ? "#FFFFFF" : "#191919",
-                        fontWeight: "600",
-                    }}
-                    mr={"-13px"}
+    if (isActive) {
+        return (
+            <Tooltip label={name}>
+                <Link
+                    href={path}
+                    target={newTab ? "_blank" : null}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
                 >
-                    <Icon
-                        as={NavIcon}
-                        boxSize={22}
-                        color={colorMode === "light" ? "#161616" : "#FFFFFF"}
-                        _groupHover={{
-                            color:
-                                colorMode === "light" ? "#FFFFFF" : "#191919",
+                    <Box
+                        display={"flex"}
+                        justifyContent="center"
+                        alignItems={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
                         }}
-                        alt="logo"
-                    />
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color:
+                                    colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
+                </Link>
+            </Tooltip>
+        );
+    }
+    if (path.includes("settings") && !(ValidatedUserData?.isSuccess || LoggedInData?.isSuccess)) {
+        return (
+            <Tooltip label={name}>
+                <Box
+                    onClick={onLoginModalOpen}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
+                >
+                    <Box
+                        display={"flex"}
+                        alignItems="center"
+                        justifyContent={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                        }}
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
                 </Box>
-            </Link>
-        </Tooltip>
-    );
+            </Tooltip>
+        );
+    } else {
+        return (
+            <Tooltip label={name}>
+                <Link
+                    href={path}
+                    target={newTab ? "_blank" : null}
+                    style={{ textDecoration: "none" }}
+                    _focus={{ boxShadow: "none" }}
+                >
+                    <Box
+                        display={"flex"}
+                        justifyContent="center"
+                        alignItems={"center"}
+                        height={"45px"}
+                        padding={"9px 20px"}
+                        role="group"
+                        cursor="pointer"
+                        gap={"10px"}
+                        _hover={{
+                            bg: colorMode === "light" ? "#202020" : "#FFFFFF",
+                            color: colorMode === "light" ? "#FFFFFF" : "#191919",
+                            fontWeight: "600",
+                        }}
+                        mr={"-13px"}
+                    >
+                        <Icon
+                            as={NavIcon}
+                            boxSize={22}
+                            color={colorMode === "light" ? "#161616" : "#FFFFFF"}
+                            _groupHover={{
+                                color:
+                                    colorMode === "light" ? "#FFFFFF" : "#191919",
+                            }}
+                            alt="logo"
+                        />
+                    </Box>
+                </Link>
+            </Tooltip>
+        );
+    }
 };
 
 const NavItem = ({ NavIcon, path, newTab, isActive, onLoginModalOpen, children, ...rest }) => {
@@ -879,12 +983,12 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                     // priority="true"
                                                     src={
                                                         colorMode === "light"
-                                                            ? "/icons/light_betgyfi_sm_icon.svg"
-                                                            : "/icons/dark_betgyfi_sm_logo.svg"
+                                                            ? "/icons/BetygFiLogo_sidebar_big_light.svg"
+                                                            : "/icons/BetygFiLogo_sidebar_big_dark.svg"
                                                     }
                                                     cursor={"pointer"}
                                                     onClick={() =>
-                                                        router.push("/")
+                                                        router.push("/coin")
                                                     }
                                                 />
                                             </Box>
@@ -1143,7 +1247,10 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                         >
                                             {typeof window !== "undefined" && (
                                                 <CustomAvatar
-                                                    src={AuthSession?.user?.image !== "undefined" ? AuthSession?.user?.image : null}
+                                                    unoptimised={true}
+                                                    width={48}
+                                                    height={48}
+                                                    src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidatedUserData?.data?.profile_url}
                                                 />
                                             )}
 
@@ -1151,31 +1258,31 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                 layerStyle={"flexColumn"}
                                                 ml="10px"
                                                 mr="20px"
-                                                minW="150px"
+                                                minW="130px"
                                             >
                                                 <Text
                                                     variant={"TopWalletsText"}
-                                                    w="140px"
+                                                    w="120px"
                                                     whiteSpace={"nowrap"}
                                                     overflow={"hidden"}
                                                     textOverflow={"ellipsis"}
                                                 >
-                                                    {AuthSession?.user?.name
-                                                        ? PublicAddressStringFormatter(AuthSession?.user?.name) : 'No Name'}
+                                                    {ValidatedUserData?.data?.name
+                                                        ? PublicAddressStringFormatter(ValidatedUserData?.data?.name) : 'No Name'}
                                                 </Text>
-                                                {AuthSession?.user?.public_address && (
+                                                {ValidatedUserData?.data?.public_address && (
                                                     <Text
                                                         variant={"h5"}
                                                         letterSpacing={"1.2px"}
                                                         _light={{ color: "#16171B" }}
                                                         _dark={{ color: "#A8ADBD" }}
                                                     >
-                                                        {AuthSession?.user?.public_address
+                                                        {ValidatedUserData?.data?.public_address
                                                             ?.split("")
                                                             ?.join("")
                                                             ?.substring(0, 6) +
                                                             "..." +
-                                                            AuthSession?.user?.public_address?.slice(
+                                                            ValidatedUserData?.data?.public_address?.slice(
                                                                 -5
                                                             )}
                                                     </Text>

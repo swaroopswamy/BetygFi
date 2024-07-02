@@ -118,6 +118,10 @@ const AuthDataSlice = createSlice({
 		UsernameValidData: {
 			data: null,
 			isSuccess: null,
+		},
+		ChangeProfilePicData: {
+			data: null,
+			isSuccess: null
 		}
 	},
 	extraReducers: (builder) => {
@@ -230,6 +234,16 @@ const AuthDataSlice = createSlice({
 			state.UsernameValidData.isSuccess = false;
 			state.UsernameValidData.data = data;
 		});
+
+		builder.addCase(changeProfilePic.fulfilled, (state, action) => {
+			state.ChangeProfilePicData.data = action.payload;
+			state.ChangeProfilePicData.isSuccess = true;
+		});
+		builder.addCase(changeProfilePic.rejected, (state, action) => {
+			const { data } = action.payload.response;
+			state.ChangeProfilePicData.isSuccess = false;
+			state.ChangeProfilePicData.data = data;
+		});
 	},
 	reducers: {
 		LogoutReducer: (state) => {
@@ -307,8 +321,12 @@ const AuthDataSlice = createSlice({
 			state.UsernameValidData.data = null;
 			state.UsernameValidData.isSuccess = null;
 		},
+		ResetChangeProfilePicData: (state) => {
+			state.ChangeProfilePicData.data = null;
+			state.ChangeProfilePicData.isSuccess = null;
+		},
 	},
 });
 
-export const { LogoutReducer, StoreLoggedInUserData, StoreLoggedInUserDataGoogle, LogInFromCookie, ResetValidatedUserData, ResetUsernameValidData, ResetEditUserDetailsData } = AuthDataSlice.actions;
+export const { LogoutReducer, StoreLoggedInUserData, StoreLoggedInUserDataGoogle, LogInFromCookie, ResetValidatedUserData, ResetUsernameValidData, ResetEditUserDetailsData, ResetChangeProfilePicData } = AuthDataSlice.actions;
 export default AuthDataSlice.reducer;

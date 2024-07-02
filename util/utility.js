@@ -226,11 +226,10 @@ export const mapTypeObject = object => {
 };
 
 export const getEnv = (url) => {
-    const allowedQA = ['qa.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
-    const allowedDev = ['dev.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
-    const allowedLocal = ['local.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
-    const allowedKube = ['kube.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
-    // const allowedPlatform = ['platform.betygfi.com', 'platformcommunity.betygfi.com', 'platformstudio.betygfi.com'];
+    const allowedQA = ['qaplatform.betygfi.com', 'qacommunity.betygfi.com', 'qastudio.betygfi.com'];
+    const allowedDev = ['devplatform.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
+    const allowedLocal = ['localplatform.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
+    const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
 
     if (url) {
 /*         if (allowedPlatform.includes(url)) {
@@ -268,3 +267,20 @@ export const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + 
 export const ScrollToTable = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 };
+
+export function convertENotationToNumber(num) {
+    const str = num.toString();
+    const match = str.match(/^(\d+)(\.(\d+))?[eE]([-\+]?\d+)$/);
+    if (!match) return str; //number was not e notation or toString converted
+    // we parse the e notation as (integer).(tail)e(exponent)
+    const [, integer, , tail, exponentStr] = match;
+    const exponent = Number(exponentStr);
+    const realInteger = integer + (tail || '');
+    if (exponent > 0) {
+        const realExponent = Math.abs(exponent + integer.length);
+        return realInteger.padEnd(realExponent, '0');
+    } else {
+        const realExponent = Math.abs(exponent - (tail?.length || 0));
+        return '0.' + realInteger.padStart(realExponent, '0');
+    }
+}

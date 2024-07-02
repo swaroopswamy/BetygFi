@@ -1,8 +1,9 @@
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, Tooltip, useColorMode } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { convertENotationToNumber } from "@util/utility";
 
 const TopGainersSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -11,7 +12,7 @@ const TopGainersSmallBox = () => {
 
     return (
         <Box
-            width={"30%"}
+            width={"95%"}
             height={"197px"}
             minW={"295px"}
             borderRadius={"8px"}
@@ -20,6 +21,7 @@ const TopGainersSmallBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="top-gainers"
         >
             <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>
@@ -61,28 +63,38 @@ const TopGainersSmallBox = () => {
                 </Box>
             </Box>
             {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
-                <Box layerStyle={"spaceBetween"} key={i} mb="12px">
+                <Box
+                    layerStyle={"spaceBetween"}
+                    key={i}
+                    mb="12px"
+                    onClick={() => {
+                        if (gainer?.slug) router.push(`/coin/${gainer?.slug}`);
+                    }}
+                    cursor={"pointer"}>
                     <Box layerStyle={"flexCenter"}>
                         <Image
                             height={35}
                             width={35}
                             src={gainer?.logoUrl ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px", borderRadius: "50%" }}
+                            style={{ marginRight: "7px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.name}
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
-                        <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
-                            ${gainer?.price?.toFixed(2)}
-                        </Text>
+                    <Box layerStyle={"flexCenter"} gap={"2px"}>
+                        <Tooltip hasArrow label={`$ ${convertENotationToNumber(gainer?.price)}`}>
+                            <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
+                                ${convertENotationToNumber(gainer?.price).toString().split('').slice(0, 4).join('') +
+                                    "..." +
+                                    convertENotationToNumber(gainer?.price).toString().slice(-2)}
+                            </Text>
+                        </Tooltip>
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}
                             justifyContent={"center"}
                             height={"21px"}
-                            mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
                             _light={{ bg: "#245F001F" }}
@@ -97,8 +109,9 @@ const TopGainersSmallBox = () => {
                         </Box>
                     </Box>
                 </Box>
-            ))}
-        </Box>
+            ))
+            }
+        </Box >
     );
 };
 
