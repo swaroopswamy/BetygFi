@@ -30,7 +30,7 @@ const nextConfig = {
       },
       {
         source: '/dev/images/:filename',
-        destination: '/opt/statics/:filename*',
+        destination: 'http://devplatform.betygfi.com/opt/statics/:filename*',
       },
       {
         source: '/local/images/:filename',
