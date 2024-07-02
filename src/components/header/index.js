@@ -262,7 +262,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                                 src={
                                     ["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ?
                                         (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") :
-                                        `/api/image/joker.jpg`
+                                        `/api/image/${encodeURIComponent(ValidatedUserData?.data?.profile_url)}`
                                 }
                             />
                         )}
