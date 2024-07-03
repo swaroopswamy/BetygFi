@@ -83,18 +83,6 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: "devplatform.betygfi.com",
-      },
-      {
-        protocol: "http",
-        hostname: "qaplatform.betygfi.com",
-      },
-      {
-        protocol: "https",
-        hostname: "platform.betygfi.com",
-      },
-      {
-        protocol: "http",
         hostname: "localhost",
         port: "7000",
       },

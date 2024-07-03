@@ -21,7 +21,7 @@ import {
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
-import { PublicAddressStringFormatter, getImgUrl } from "@util/utility";
+import { PublicAddressStringFormatter, ValidImgURL } from "@util/utility";
 import { useDebounce } from "@hooks/useDebounce";
 import { getSearchV2List, getSearchV2TrendingList, mobileSearchbarOpenReducer } from "@redux/app_data/dataSlice";
 import isEmpty from "lodash/isEmpty";
@@ -166,8 +166,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             );
         }
     };
-
-
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
@@ -256,7 +254,11 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                             <CustomAvatar
                                 width={48}
                                 height={48}
-                                src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : getImgUrl(ValidatedUserData?.data?.profile_url)}
+                                src={
+                                    ["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ?
+                                        (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") :
+                                        ValidImgURL(ValidatedUserData?.data?.profile_url)
+                                }
                             />
                         )}
                         <Box

@@ -16,21 +16,25 @@ const getProtocolList = async (model, page) => {
     if (model.list == undefined) {
         model.list = [];
     }
-    if (model.list.length > 0) {
-        model.list = [...model.list, ...protocolData.data.data];
-    } else {
-        model.list = [...protocolData.data.data];
-    }
+    if (protocolData?.data?.data) {
+        if (model.list.length > 0) {
+            model.list = [...model.list, ...protocolData.data.data];
+        } else {
+            model.list = [...protocolData.data.data];
+        }
 
-    model.protocolTotalPages = protocolData.data.totalPages;
+        model.protocolTotalPages = protocolData.data.totalPages;
+    }
     return model;
 };
 
 const queryMoreProtocols = async (model) => {
-    const list = [...Array(model.protocolTotalPages)].map((x, i) => i + 1);
-    list.shift();
-    for (const item of list) {
-        model = await getProtocolList(model, item);
+    if (model.protocolTotalPages) {
+        const list = [...Array(model.protocolTotalPages)].map((x, i) => i + 1);
+        list.shift();
+        for (const item of list) {
+            model = await getProtocolList(model, item);
+        }
     }
     return model.list;
 };
