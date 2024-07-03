@@ -13,16 +13,18 @@ const getProtocolList = async (model, page) => {
     };
 
     const protocolData = await getDefiRankingsTableDataFetched(payload);
-    if (model.list == undefined) {
-        model.list = [];
-    }
-    if (model.list.length > 0) {
-        model.list = [...model.list, ...protocolData.data.data];
-    } else {
-        model.list = [...protocolData.data.data];
-    }
+    if (protocolData?.data?.data) {
+        if (model.list == undefined) {
+            model.list = [];
+        }
+        if (model.list.length > 0) {
+            model.list = [...model.list, ...protocolData.data.data];
+        } else {
+            model.list = [...protocolData.data.data];
+        }
 
-    model.protocolTotalPages = protocolData.data.totalPages;
+        model.protocolTotalPages = protocolData.data.totalPages;
+    }
     return model;
 };
 
