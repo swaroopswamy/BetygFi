@@ -46,15 +46,15 @@ const SandPSmallBox = () => {
         stroke: {
             curve: 'smooth',
             width: 1,
-            colors: "rgba(36, 95, 0, 1)"
+            colors: ["#245F00"]
         },
         fill: {
             type: 'gradient',
             gradient: {
-                shade: 'light', // Choose shade (light, dark)
-                type: 'horizontal', // Choose gradient type (horizontal, vertical)
-                opacityFrom: 0.5, // Starting opacity (0-1)
-                opacityTo: 0.8 // Ending opacity (0-1)
+                shade: 'light',
+                type: 'vertical',
+                gradientToColors: ["rgba(255, 255, 255, 0)"],
+                //stops: [0, 100],
             },
             colors: ["#245F00"]
         },
