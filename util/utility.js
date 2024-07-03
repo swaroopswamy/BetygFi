@@ -290,7 +290,7 @@ export const getImageFilePath = (env) => {
         if (env === 'local') {
             filePath = LOCAL_FILE_PATH;
         } else {
-            filePath = /* process.env.STATIC_FILE_PATH ?? */ '\\opt\\statics';
+            filePath = '/opt/statics';
         }
     }
     return filePath;

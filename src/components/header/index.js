@@ -166,7 +166,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             );
         }
     };
-
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
