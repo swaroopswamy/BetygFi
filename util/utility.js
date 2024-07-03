@@ -301,7 +301,7 @@ export const ValidImgURL = (url) => {
         if (url.split('/').includes('https')) {
             return url;
         } else {
-            return `/api/image/${encodeURIComponent(url)}`
+            return `/api/image/${url}`
         }
     }
 }
