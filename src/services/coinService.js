@@ -37,11 +37,45 @@ export const getCoinDashboardDataFetched = async (payload) => {
     }
 };
 
+export const getCoinRankingsTableDataFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'POST', payload });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getETFListDataFetched = async (type) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?type=${type}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
-        const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
-        return data;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
+            return cacheHandler(url, data, false, 4);
+        }
     } catch (err) {
         return rejectWithValue(err);
     }

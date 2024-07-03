@@ -232,7 +232,9 @@ export const getEnv = (url) => {
     const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
 
     if (url) {
-        if (allowedQA.includes(url)) {
+/*         if (allowedPlatform.includes(url)) {
+            return 'platform';
+        } else */ if (allowedQA.includes(url)) {
             return 'qa';
         } else if (allowedDev.includes(url)) {
             return 'dev';
