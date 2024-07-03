@@ -28,7 +28,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                             : "50px",
                     md:
                         data.index === 1 || data.index === 3
-                            ? "75px"
+                            ? "85px"
                             : "50px",
                 }}
                 position={"relative"}
