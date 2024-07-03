@@ -298,7 +298,7 @@ export const getImageFilePath = (env) => {
 
 export const ValidImgURL = (url) => {
     if (url) {
-        if (url.split('/').includes('https')) {
+        if (url.split('/').includes('https:')) {
             return url;
         } else {
             return `/api/image/${encodeURIComponent(url)}`
