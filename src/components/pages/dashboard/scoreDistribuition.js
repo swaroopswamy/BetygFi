@@ -20,12 +20,12 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                 key={data.index}
                 minW={{
                     base:
-                        data.index === 0 || data.index === 1
-                            ? "70px"
-                            : "60px",
+                        data.index === 1 || data.index === 3
+                            ? "40px"
+                            : "70px",
                     md:
-                        data.index === 0 || data.index === 1
-                            ? "90px"
+                        data.index === 1 || data.index === 3
+                            ? "50px"
                             : "80px",
                 }}
                 position={"relative"}
@@ -47,10 +47,10 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     zIndex: 1,
                     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
-                _notHovered={{
+               /*  _notHovered={{
                     transform: "scale(1.0)",
                     zIndex: 0,
-                }}
+                }} */
                 transform={
                     scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
                 }
@@ -63,7 +63,7 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                 onClick={() => ScoreSelectHandler(data.key)}
                 p={"7px 10px"}
                 alignItems={"start"}
-                w={`${calculatePercentage(scoreTotalData[data.index].value, totalDefis)}%`}
+                w={`${calculatePercentage(scoreTotalData[data.index]?.value, totalDefis).toFixed(1)}%`}
             >
                 <Text
                     fontSize={{ base: "12px", md: "14px" }}
