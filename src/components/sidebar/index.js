@@ -42,7 +42,7 @@ import { signOut, useSession } from "next-auth/react";
 import { LogoutReducer } from "@/redux/auth_data/authSlice";
 import CustomAvatar from "@components/avatar";
 import { useDisconnect } from "wagmi";
-import { PublicAddressStringFormatter } from "@util/utility";
+import { PublicAddressStringFormatter, ValidImgURL } from "@util/utility";
 import AppConfigContext from "@components/context/appConfigContext";
 import LoginPage from "@components/login";
 
@@ -1250,7 +1250,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
                                                     unoptimised={true}
                                                     width={48}
                                                     height={48}
-                                                    src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidatedUserData?.data?.profile_url}
+                                                    src={["", null, undefined].includes(ValidatedUserData?.data?.profile_url) ? (colorMode === 'light' ? "/images/new_avatar.svg" : "/images/new_avatar.svg") : ValidImgURL(ValidatedUserData?.data?.profile_url)}
                                                 />
                                             )}
 

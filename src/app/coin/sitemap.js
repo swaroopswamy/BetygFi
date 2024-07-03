@@ -15,21 +15,25 @@ const getCoinList = async (model, page) => {
     if (model.list == undefined) {
         model.list = [];
     }
-    if (model.list.length > 0) {
-        model.list = [...model.list, ...coinData.data.data];
-    } else {
-        model.list = [...coinData.data.data];
-    }
+    if (coinData?.data?.data) {
+        if (model.list.length > 0) {
+            model.list = [...model.list, ...coinData.data.data];
+        } else {
+            model.list = [...coinData.data.data];
+        }
 
-    model.coinTotalPages = coinData.data.totalPages;
+        model.coinTotalPages = coinData.data.totalPages;
+    }
     return model;
 };
 
 const queryMoreCoins = async (model) => {
-    const list = [...Array(model.coinTotalPages)].map((x, i) => i + 1);
-    list.shift();
-    for (const item of list) {
-        model = await getCoinList(model, item);
+    if (model.coinTotalPages) {
+        const list = [...Array(model.coinTotalPages)].map((x, i) => i + 1);
+        list.shift();
+        for (const item of list) {
+            model = await getCoinList(model, item);
+        }
     }
     return model.list;
 };

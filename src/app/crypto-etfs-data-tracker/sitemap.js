@@ -15,13 +15,15 @@ const getEtfList = async (model, page) => {
     if (model.list == undefined) {
         model.list = [];
     }
-    if (model.list.length > 0) {
-        model.list = [...model.list, ...etfData.data];
-    } else {
-        model.list = [...etfData.data];
-    }
+    if (etfData?.data) {
+        if (model.list.length > 0) {
+            model.list = [...model.list, ...etfData.data];
+        } else {
+            model.list = [...etfData.data];
+        }
 
-    model.etfTotalPages = etfData.data.totalPages;
+        model.etfTotalPages = etfData.data.totalPages;
+    }
     return model;
 };
 

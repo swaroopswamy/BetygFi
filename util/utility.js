@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME, SEARCH_TYPE_SELECTED } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_FILE_PATH, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME, SEARCH_TYPE_SELECTED } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -230,6 +230,7 @@ export const getEnv = (url) => {
     const allowedDev = ['devplatform.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
     const allowedLocal = ['localplatform.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
     const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
+    const allowedLocalhost = ['localhost:7000'];
 
     if (url) {
 /*         if (allowedPlatform.includes(url)) {
@@ -238,7 +239,7 @@ export const getEnv = (url) => {
             return 'qa';
         } else if (allowedDev.includes(url)) {
             return 'dev';
-        } else if (allowedLocal.includes(url)) {
+        } else if (allowedLocal.includes(url) || allowedLocalhost.includes(url)) {
             return 'local';
         } else if (allowedKube.includes(url)) {
             return 'kube';
@@ -282,5 +283,27 @@ export function convertENotationToNumber(num) {
     } else {
         const realExponent = Math.abs(exponent - (tail?.length || 0));
         return '0.' + realInteger.padStart(realExponent, '0');
+    }
+}
+
+export const getImageFilePath = (env) => {
+    var filePath = '';
+    if (env) {
+        if (env === 'local') {
+            filePath = LOCAL_FILE_PATH;
+        } else {
+            filePath = '/opt/statics';
+        }
+    }
+    return filePath;
+}
+
+export const ValidImgURL = (url) => {
+    if (url) {
+        if (url.split('/').includes('https:')) {
+            return url;
+        } else {
+            return `/api/image/${encodeURIComponent(url)}`
+        }
     }
 }
