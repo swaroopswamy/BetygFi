@@ -290,7 +290,7 @@ export const getImageFilePath = (env) => {
         if (env === 'local') {
             filePath = LOCAL_FILE_PATH;
         } else {
-            filePath = process.env.STATIC_FILE_PATH ?? '/opt/statics';
+            filePath = /* process.env.STATIC_FILE_PATH ?? */ '\\opt\\statics';
         }
     }
     return filePath;
@@ -301,7 +301,7 @@ export const ValidImgURL = (url) => {
         if (url.split('/').includes('https')) {
             return url;
         } else {
-            return `/api/image/${url}`
+            return `/api/image/${encodeURIComponent(url)}`
         }
     }
 }
