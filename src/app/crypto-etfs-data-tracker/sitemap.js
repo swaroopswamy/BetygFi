@@ -12,10 +12,10 @@ const getEtfList = async (model, page) => {
     };
 
     const etfData = await getETFListDataFetched(payload);
+    if (model.list == undefined) {
+        model.list = [];
+    }
     if (etfData?.data) {
-        if (model.list == undefined) {
-            model.list = [];
-        }
         if (model.list.length > 0) {
             model.list = [...model.list, ...etfData.data];
         } else {

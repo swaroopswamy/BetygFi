@@ -12,10 +12,10 @@ const getCoinList = async (model, page) => {
     };
 
     const coinData = await getCoinRankingsTableDataFetched(payload);
+    if (model.list == undefined) {
+        model.list = [];
+    }
     if (coinData?.data?.data) {
-        if (model.list == undefined) {
-            model.list = [];
-        }
         if (model.list.length > 0) {
             model.list = [...model.list, ...coinData.data.data];
         } else {
@@ -28,10 +28,12 @@ const getCoinList = async (model, page) => {
 };
 
 const queryMoreCoins = async (model) => {
-    const list = [...Array(model.coinTotalPages)].map((x, i) => i + 1);
-    list.shift();
-    for (const item of list) {
-        model = await getCoinList(model, item);
+    if (model.coinTotalPages) {
+        const list = [...Array(model.coinTotalPages)].map((x, i) => i + 1);
+        list.shift();
+        for (const item of list) {
+            model = await getCoinList(model, item);
+        }
     }
     return model.list;
 };
