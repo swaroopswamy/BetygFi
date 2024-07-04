@@ -2,7 +2,7 @@ import { useColorMode } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
 import React from "react";
 
-const ScoreMeter = ({ score }) => {
+const ScoreMeter = ({ score, rank }) => {
     const { colorMode } = useColorMode();
     const series = [score * 100];
 
@@ -29,20 +29,10 @@ const ScoreMeter = ({ score }) => {
                 endAngle: 135,
                 dataLabels: {
                     name: {
-                        fontSize: "16px",
-                        color: colorMode === "light" ? "#191919" : "#FFFFFF",
-                        offsetY: 80,
+                        show: false,
                     },
                     value: {
-                        fontSize: "32px",
-                        offsetY: -5,
-                        color: colorMode === "light" ? "#191919" : "#FFFFFF",
-                        formatter: function (val) {
-                            return val.toFixed(0) + "/100";
-                        },
-                        // formatter: function (val) {
-                        //     return `#${rank}\n${val.toFixed(0)}/100`;
-                        // },
+                        show: false,
                     },
                 },
             },
@@ -60,15 +50,53 @@ const ScoreMeter = ({ score }) => {
     };
 
     return (
-        <CustomChart
-            className="overview-chart"
-            options={options}
-            series={series}
-            type="radialBar"
-            width={252}
-            height={252}
-        />
+        <div style={{ position: 'relative', width: '252px', height: '252px' }}>
+            <CustomChart
+                className="overview-chart"
+                options={options}
+                series={series}
+                type="radialBar"
+                width={252}
+                height={252}
+            />
+            <div style={{
+                position: 'absolute',
+                top: '30%',
+                left: '50%',
+                transform: 'translate(-50%, -70%)',
+                color: colorMode === "light" ? "#191919" : "#FFFFFF",
+                fontSize: '20px',
+                textAlign: 'center'
+            }}>
+                #{rank}
+            </div>
+            <div style={{
+                position: 'absolute',
+                top: '42%',
+                left: '50%',
+                transform: 'translate(-50%, -30%)',
+                color: colorMode === "light" ? "#191919" : "#FFFFFF",
+                fontSize: '32px',
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+            }}>
+                {series[0].toFixed(0)}/100
+            </div>
+            <div style={{
+                position: 'absolute',
+                top: '70%',
+                left: '50%',
+                transform: 'translate(-50%, -30%)',
+                color: colorMode === "light" ? "#191919" : "#FFFFFF",
+                fontSize: '18px',
+                textAlign: 'center',
+                whiteSpace: 'nowrap',
+            }}>
+                BetygFi Score
+            </div>
+        </div>
     );
 };
 
 export default ScoreMeter;
+

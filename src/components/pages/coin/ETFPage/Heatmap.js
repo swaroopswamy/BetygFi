@@ -204,7 +204,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('holding')}
                         minW={"-moz-fit-content"}
                     >
@@ -215,7 +215,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('price')}>
                         Price
                     </Button>
@@ -224,11 +224,11 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('volume')}>
                         Volume
                     </Button>
-                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}>
                         Turnover
                     </Button> */}
                     <Button
@@ -236,7 +236,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>
@@ -245,7 +245,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('aum')}>
                         AUM
                     </Button>
@@ -254,7 +254,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('marketCap')}>
                         Market Cap
                     </Button>
