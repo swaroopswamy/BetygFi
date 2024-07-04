@@ -98,12 +98,12 @@ const HighlightsBox = () => {
             </Slider>
             {
                 currentSlide > 0 && (
-                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"98px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                         <i className="icon arrow_circle_light" style={{ rotate: "180deg" }} />
                     </Box>
                 )
             }
-            <Box onClick={goToNextSlide} pos={"absolute"} right={"10px"} top={"98px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+            <Box onClick={goToNextSlide} pos={"absolute"} right={"15px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                 <i className="icon arrow_circle_light" />
             </Box>
         </Box>
