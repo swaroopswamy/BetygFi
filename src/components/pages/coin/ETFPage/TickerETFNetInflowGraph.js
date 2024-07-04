@@ -143,7 +143,7 @@ const TickerETFNetInflowBox = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: 5,
+                columnWidth: 3,
             },
         },
     };

@@ -2,8 +2,6 @@ import { useColorMode } from "@chakra-ui/react";
 import CustomChart from "@components/graph";
 import React from "react";
 
-// const colors = [ "#245F00", "#00799F", "#B87A00", "#FF0000"];
-
 const ScoreMeter = ({ score }) => {
     const { colorMode } = useColorMode();
     const series = [score * 100];
@@ -42,6 +40,9 @@ const ScoreMeter = ({ score }) => {
                         formatter: function (val) {
                             return val.toFixed(0) + "/100";
                         },
+                        // formatter: function (val) {
+                        //     return `#${rank}\n${val.toFixed(0)}/100`;
+                        // },
                     },
                 },
             },
@@ -64,7 +65,8 @@ const ScoreMeter = ({ score }) => {
             options={options}
             series={series}
             type="radialBar"
-            width="auto"
+            width={252}
+            height={252}
         />
     );
 };

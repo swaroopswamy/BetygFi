@@ -29,6 +29,17 @@ export const reloadSession = () => {
     }
 };
 
+export async function copyToClipboard(link) {
+    let url = process.env.NEXT_PUBLIC_BETYGFI_URL + link;
+    try {
+        await navigator.clipboard.writeText(url);
+        /* Resolved - text copied to clipboard successfully */
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+        /* Rejected - text failed to copy to the clipboard */
+    }
+};
+
 export const groupListByKey_Pure = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
 
 export const groupListByKey = (list, key) => groupBy(list, (value) => value[key]);
