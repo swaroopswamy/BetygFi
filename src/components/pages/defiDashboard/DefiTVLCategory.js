@@ -7,12 +7,21 @@ import millify from "millify";
 const DeFiTVLByCategoryBox = () => {
     const { colorMode } = useColorMode();
     const DefiOverviewData = useSelector((state) => state?.defiDashboardData?.DefiOverviewData);
+    const getColor = (value, index) => {
+        const positiveColors = ['#C3F0B8', '#9ADA8A'];
+        const negativeColors = ['#FFA3A3', '#FF6161'];
+        if (value >= 0) {
+            return positiveColors[index % 2];
+        } else {
+            return negativeColors[index % 2];
+        }
+    };
 
     const series = [{
-        data: DefiOverviewData?.data?.tvlByCategory?.slice(0, 15).map(item => ({
+        data: DefiOverviewData?.data?.tvlByCategory?.slice(0, 15).map((item, index) => ({
             x: item._id,
             y: item.totalTvl,
-            fillColor: item.totalTvl >= 0 ? '#9ADA8A' : '#FF6161'
+            fillColor: getColor(item.totalTvl, index)
         }))
     }];
 

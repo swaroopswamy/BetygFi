@@ -15,13 +15,13 @@ const BTCETFNetInflowBox = () => {
             name: "Inflow",
             type: "bar",
             data: [],
-            color: colorMode === "light" ? "#245F00" : "#60C000",
+            color: ["#9ADA8A"],
         },
         {
             name: "Outflow",
             type: "bar",
             data: [],
-            color: colorMode === "light" ? "#C50606" : "#FF3535",
+            color: ["#FF7272"],
         },
         {
             name: "Price",
@@ -68,7 +68,7 @@ const BTCETFNetInflowBox = () => {
                     name: "bar",
                     seriesName: "Inflow",
                     data: inflowData,
-                    color: colorMode === "light" ? "#245F00" : "#60C000",
+                    color: "#9ADA8A",
                     type: "bar",
                     yAxis: 0,
                 },
@@ -76,7 +76,7 @@ const BTCETFNetInflowBox = () => {
                     name: "bar",
                     seriesName: "Outflow",
                     data: outflowData,
-                    color: colorMode === "light" ? "#C50606" : "#FF3535",
+                    color: "#FF7272",
                     type: "bar",
                     yAxis: 0,
                 },
@@ -97,7 +97,7 @@ const BTCETFNetInflowBox = () => {
                 show: false,
             },
         },
-        colors: ["#245F00", "#60C000", "#C50606", "#FF3535", "#544FC5", "#2CAFFE"],
+        colors: ["#9ADA8A", "#FF7272", "#544FC5", "#2CAFFE"],
         dataLabels: {
             enabled: false,
         },
@@ -187,7 +187,7 @@ const BTCETFNetInflowBox = () => {
                     <div class="tooltip-parent">
                        <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
                        <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">BTC Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
-                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow} :${flow === "Inflow" ? ` <span style="font-weight: bold;"> +${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`: ` <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`}</div>
+                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow} :${flow === "Inflow" ? ` <span style="font-weight: bold;"> +${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>` : ` <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`}</div>
                     </div>
                     `;
                 return tooltipContent;
@@ -215,7 +215,7 @@ const BTCETFNetInflowBox = () => {
             height={"100%"}
             borderRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
-            _dark={{ bg: "#282828" }}
+            _dark={{ bg: "#000000" }}
             p={"0px"}
         >
             <Box bgColor={"background.primary"}>

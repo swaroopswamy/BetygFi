@@ -192,7 +192,7 @@ const CoinPage = () => {
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
             ></BreadCrumb> */}
-            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} px={"20px"}>
+            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} pl={"25px"} pr={"15px"}>
                 <Marquee />
                 <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} ml={"30px"} justifyContent={"flex-end"}>
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>

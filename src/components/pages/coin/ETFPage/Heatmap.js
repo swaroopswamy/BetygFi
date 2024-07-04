@@ -5,7 +5,6 @@ import millify from "millify";
 import dynamic from "next/dynamic";
 const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
 
-
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
     const ETFHeatMapData = useSelector((state) => state?.coinData?.ETFHeatMapData);
@@ -14,25 +13,35 @@ const HeatmapGraphBox = () => {
 
     useEffect(() => {
         if (ETFHeatMapData) {
+            const getColor = (value, index) => {
+                const positiveColors = ['#9ADA8A', '#C3F0B8'];
+                const negativeColors = ['#FF6161', '#FFA3A3'];
+                if (value >= 0) {
+                    return positiveColors[index % 2];
+                } else {
+                    return negativeColors[index % 2];
+                }
+            };
+
             let sortedData;
             if (activeCategory === 'volume') {
-                sortedData = ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map((item, index) => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.["priceChange"],
-                        fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                        fillColor: getColor(item?.["priceChange"], index)
                     }
                 ));
             } else {
-                sortedData = ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map((item, index) => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.[activeCategory + "Change"],
-                        fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                        fillColor: getColor(item?.[activeCategory + "Change"], index)
                     }
                 ));
             }
