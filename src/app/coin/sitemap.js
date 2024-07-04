@@ -1,7 +1,17 @@
-import { getCoinRankingsTableDataFetched } from "@services/coinService";
 import { BASE_URL } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
+
+const getCoinRankingsTableDataFetched = async (payload) => {
+    try {
+        const API_SERVICE_URL = "http://10.40.59.141:30268";
+        const finalUrl = API_SERVICE_URL + `coin-risk/coins-table?sitemap=true`;
+        return await fetchInstance({ url: finalUrl, method: 'POST', payload });
+    } catch (error) {
+        return error;
+    }
+};
 
 const getCoinList = async (model, page) => {
     const payload = {
