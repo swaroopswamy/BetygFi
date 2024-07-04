@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Box, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue, useToast, useColorMode } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-
+import Image from "next/image";
 import { useDispatch } from "react-redux";
-
 import CustomAvatar from "@components/avatar";
 import dynamic from "next/dynamic";
+import { copyToClipboard } from "@util/utility";
 
+const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"), { ssr: false });
 const RiskAnalysis = dynamic(() => import("@components/pages/coin/riskAnalysis"), { ssr: false });
 const CoinPriceChart = dynamic(() => import("@components/pages/coin/coinPriceChart"), { ssr: false });
 const DevelopmentAnalysis = dynamic(() => import("@components/pages/coin/developmentAnalysis"), { ssr: false });
 const BreadCrumb = dynamic(() => import("@components/breadcrumb2"), { ssr: false });
-
 
 import {
     fetchCoinDevelopmentData,
@@ -21,8 +21,9 @@ import {
 } from "@redux/coin_data/dataSlice";
 
 export default function CoinDetailPage({ coinSlug, coinDetails }) {
+    const { colorMode } = useColorMode();
     const dispatch = useDispatch();
-
+    const toast = useToast();
 
     const GetCoinPriceDataHandler = () => {
         const payload = {
@@ -66,8 +67,8 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
                     <CustomAvatar
                         width={"54px"}
                         height={"54px"}
-                        src={coinDetails?.logoUrl} //logoUrl
-                        name={"Coin Name"} //name
+                        src={coinDetails?.logoUrl}
+                        name={"Coin Name"}
                     />
 
                     <Box layerStyle={"flexColumn"} gap={"15px"}>
@@ -105,6 +106,24 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
                                     }
                                 )}
                         </Text>
+                        <Box
+                            cursor={"pointer"}
+                            onClick={() => {
+                                copyToClipboard(coinDetails?.name);
+                                toast({
+                                    position: "bottom",
+                                    render: () => (
+                                        <CustomToast
+                                            isSuccessful={true}
+                                            content={
+                                                "Link successfully copied"
+                                            }
+                                        />
+                                    ),
+                                });
+                            }}>
+                            <Image src={colorMode === "light" ? "/icons/Share_Icon_Light.svg" : "/icons/Share_Icon_Dark.svg"} width={30} height={30} alt=" "></Image>
+                        </Box>
                     </Box>
                 </Box>
             </Box>
