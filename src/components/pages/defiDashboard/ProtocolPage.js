@@ -99,7 +99,7 @@ const ProtocolPage = () => {
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
             <Marquee />
-            <Box layerStyle={"flexCenter"} mx={{ md: "10px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
+            <Box layerStyle={"flexCenter"} ml={{ md: "10px" }} mr={{ md: "-15px" }} paddingRight={{ base: "18px" }} mb={{ base: "14px", md: "14px" }} >
                 <Box w={{ base: "95%", md: "100%" }}>
                     <BlockchainSelectionMenuNew />
                 </Box>
@@ -115,14 +115,14 @@ const ProtocolPage = () => {
                 display={"flex"}
                 flexDir={"column"}
                 bg={useColorModeValue("#F0F0F5", "#191919")}
-                px={{ base: "18px", md: "30px" }}
+                px={{ base: "18px", md: "20px" }}
                 borderTop={"1px solid " + useColorModeValue("rgba(0, 0, 0, 0.1)", "rgba(255, 255, 255, 0.1)")}>
 
                 <Box layerStyle={"flexCenterSpaceBetween"} w="100%" mt={"20px"}>
                     <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"22px"}>
                         DeFi Overview
                     </Text>
-                    <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"}>
+                    <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} justifyContent={"flex-end"} mr={"0px"}>
                         <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                         <Switch
                             size={"lg"}
