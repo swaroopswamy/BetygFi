@@ -39,7 +39,7 @@ export const getCoinDashboardDataFetched = async (payload) => {
 
 export const getCoinRankingsTableDataFetched = async (payload) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table?sitemap=true`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);
@@ -54,7 +54,7 @@ export const getCoinRankingsTableDataFetched = async (payload) => {
 
 export const getETFListDataFetched = async (type) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?type=${type}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?sitemap=true&type=${type}`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);

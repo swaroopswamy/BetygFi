@@ -16,7 +16,7 @@ export const getDefiRankingsTableData = async (payload, rejectWithValue) => {
 
 export const getDefiRankingsTableDataFetched = async (payload) => {
 	try {
-		const url = NEXT_BE_URL_SEPARATOR + `protocols`;
+		const url = NEXT_BE_URL_SEPARATOR + `protocols?sitemap=true`;
 		const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
 		if (checkIfCacheAvailable(url)) {
 			return checkIfCacheAvailable(url);
