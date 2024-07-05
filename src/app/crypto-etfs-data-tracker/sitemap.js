@@ -1,7 +1,21 @@
-import { getETFListDataFetched } from "@services/coinService";
 import { BASE_URL } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
+
+let API_SERVICE_URL = null;
+const getETFListDataSitemapFetch = async (payload) => {
+    try {
+        if (API_SERVICE_URL == null) {
+            const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
+            API_SERVICE_URL = config.API_SERVICE_URL;
+        }
+        const finalUrl = API_SERVICE_URL + `/coin-risk/etf-list?sitemap=true&type=${payload}`;
+        return await fetchInstance({ url: finalUrl, method: 'GET' });
+    } catch (error) {
+        return error;
+    }
+};
 
 const getEtfList = async (model, page) => {
     const payload = {
@@ -11,7 +25,7 @@ const getEtfList = async (model, page) => {
         "score_dist": ""
     };
 
-    const etfData = await getETFListDataFetched(payload);
+    const etfData = await getETFListDataSitemapFetch(payload);
     if (model.list == undefined) {
         model.list = [];
     }

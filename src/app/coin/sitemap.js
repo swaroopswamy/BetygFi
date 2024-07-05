@@ -4,7 +4,7 @@ import { fetchInstance } from "@util/fetchInstance";
 const LIMIT = 200;
 
 let API_SERVICE_URL = null;
-const getCoinRankingsTableDataFetched = async (payload) => {
+const getCoinRankingsTableDataSitemapFetch = async (payload) => {
     try {
         if (API_SERVICE_URL == null) {
             const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
@@ -25,7 +25,7 @@ const getCoinList = async (model, page) => {
         "score_dist": ""
     };
 
-    const coinData = await getCoinRankingsTableDataFetched(payload);
+    const coinData = await getCoinRankingsTableDataSitemapFetch(payload);
     if (model.list == undefined) {
         model.list = [];
     }

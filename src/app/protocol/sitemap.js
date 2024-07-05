@@ -1,7 +1,21 @@
-import { getDefiRankingsTableDataFetched } from "@services/dashboardService";
 import { BASE_URL } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
+
+let API_SERVICE_URL = null;
+const getDefiRankingsTableDataSitemapFetch = async (payload) => {
+    try {
+        if (API_SERVICE_URL == null) {
+            const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
+            API_SERVICE_URL = config.API_SERVICE_URL;
+        }
+        const finalUrl = API_SERVICE_URL + `/protocols?sitemap=true`;
+        return await fetchInstance({ url: finalUrl, method: 'POST', payload });
+    } catch (error) {
+        return error;
+    }
+};
 
 const getProtocolList = async (model, page) => {
     const payload = {
@@ -12,7 +26,7 @@ const getProtocolList = async (model, page) => {
         "score_dist": ""
     };
 
-    const protocolData = await getDefiRankingsTableDataFetched(payload);
+    const protocolData = await getDefiRankingsTableDataSitemapFetch(payload);
     if (model.list == undefined) {
         model.list = [];
     }
