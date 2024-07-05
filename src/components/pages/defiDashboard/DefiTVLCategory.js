@@ -99,12 +99,12 @@ const DeFiTVLByCategoryBox = () => {
                     </Text>
                 </Box>
             </Box>
-            <Box mx={"10px"}>
+            <Box mx={"10px"} mt={"-15px"}>
                 <CustomChart
                     type={"treemap"}
                     options={options}
                     series={series}
-                    height={150}
+                    height={165}
                 />
             </Box>
         </Box>
