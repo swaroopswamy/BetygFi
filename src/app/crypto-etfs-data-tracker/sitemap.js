@@ -1,3 +1,4 @@
+import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { BASE_URL } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
 
@@ -10,8 +11,15 @@ const getETFListDataSitemapFetch = async (payload) => {
             const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
             API_SERVICE_URL = config.API_SERVICE_URL;
         }
-        const finalUrl = API_SERVICE_URL + `/coin-risk/etf-list?sitemap=true&type=${payload}`;
-        return await fetchInstance({ url: finalUrl, method: 'GET' });
+
+        const finalUrl = API_SERVICE_URL + `/coin-risk/etf-list?sitemap=true&type=${payload}&page=${payload.page}`;
+
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(finalUrl, data, false, 11.9);
+        }
     } catch (error) {
         return error;
     }
