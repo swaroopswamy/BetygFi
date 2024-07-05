@@ -1,13 +1,15 @@
 "use client";
 import { Box, Button, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useEffect } from "react";
-import Link from 'next/link';
+import React, { useEffect, useContext } from "react";
+import { useRouter } from "next/navigation";
+import AppConfigContext from "@components/context/appConfigContext";
 
 export default function NotFoundPage() {
-
+	const router = useRouter();
 	const { colorMode } = useColorMode();
 	const [isMd] = useMediaQuery("(min-width: 768px)");
+	const appConfig = useContext(AppConfigContext);
 
 	useEffect(() => {
 		const footer = document.getElementById("betygfi-footer");
@@ -17,20 +19,13 @@ export default function NotFoundPage() {
 		};
 	}, []);
 
-	const navigateToPageList = [
-		{
-			btnText: "Home",
-			btnTextMob: "Home",
-			btnLink: "/"
-		},
-	];
-
 	const renderMobile404 = () => (
 		<Box
 			overflowY={"hidden"}
 			display={"flex"}
 			backgroundColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
 			height={"100vh"}
+			width={"100%!important"}
 			flexDir={"column"}
 			justifyContent={"center"}
 			alignItems={"center"}
@@ -68,26 +63,46 @@ export default function NotFoundPage() {
 						alt="4"
 					/>
 				</Box>
-				<Text mt={"50px"} variant={"h4"}>
+				<Text mt={"25px"} variant={"h4"}>
 					The page can not be found
 				</Text>
-				<Text mt={"40px"} variant={"h4"}>
+				<Text mt={"75px"} variant={"h4"}>
 					Based on what you are looking for,
 				</Text>
 				<Text mt={"10px"} variant={"h4"}>
 					the links below might help.
 				</Text>
-
-				<Box display={"flex"} mt={"21px"} flexDir={"row"}>
-					{
-						navigateToPageList.map((page, index) => (
-							<Box key={index} mr={"6px"}>
-								<Link href={`${page.btnLink}`}>
-									<CtaBtn colorMode={colorMode} btnText={page.btnTextMob} />
-								</Link>
-							</Box>
-						))
-					}
+				<Box layerStyle={"flexCenter"} gap={"5px"} mt={"20px"}>
+					<Button
+						variant={"outline"}
+						height={"30px"}
+						width={"85px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => router.push("/")}
+					>
+						CTA 1
+					</Button>
+					<Button
+						variant={"outline"}
+						height={"30px"}
+						width={"85px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
+					>
+						CTA 2
+					</Button>
+					<Button
+						variant={"outline"}
+						height={"30px"}
+						width={"85px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
+					>
+						CTA 3
+					</Button>
 				</Box>
 			</Box>
 			<Box
@@ -107,8 +122,7 @@ export default function NotFoundPage() {
 			display={"flex"}
 			backgroundColor={colorMode === "light" ? "#F0F0F5" : "#191919"}
 			height={"100vh"}
-			width={"100vw"}
-			marginLeft={"-100px"}
+			width={"100%"}
 			flexDir={"column"}
 			justifyContent={"center"}
 			alignItems={"center"}
@@ -146,23 +160,43 @@ export default function NotFoundPage() {
 						alt="universe"
 					/>
 				</Box>
-				<Text mt={"50px"} variant={"bigText"}>
+				<Text mt={"25px"} variant={"bigText"}>
 					The page can not be found
 				</Text>
 				<Text mt={"70px"} >
 					Based on what you are looking for, the links below might help.
 				</Text>
-
-				<Box display={"flex"} mt={"21px"} flexDir={"row"}>
-					{
-						navigateToPageList.map((page, index) => (
-							<Box key={index} mr={"10px"}>
-								<Link href={`${page.btnLink}`}>
-									<CtaBtn colorMode={colorMode} btnText={page.btnText} />
-								</Link>
-							</Box>
-						))
-					}
+				<Box layerStyle={"flexCenter"} gap={"10px"} mt={"20px"} ml={"10px"}>
+					<Button
+						variant={"outline"}
+						height={"35px"}
+						width={"150px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => router.push("/")}
+					>
+						CTA 1
+					</Button>
+					<Button
+						variant={"outline"}
+						height={"35px"}
+						width={"150px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
+					>
+						CTA 2
+					</Button>
+					<Button
+						variant={"outline"}
+						height={"35px"}
+						width={"150px"}
+						style={{ borderRadius: "24px 24px 24px 24px" }}
+						borderColor={"2px solid #191919"}
+						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
+					>
+						CTA 3
+					</Button>
 				</Box>
 			</Box>
 			<Box
@@ -178,19 +212,7 @@ export default function NotFoundPage() {
 			</Box>
 		</Box>
 	);
-
 	return (
 		isMd ? renderDesktop404() : renderMobile404()
 	);
 }
-
-const CtaBtn = ({ btnText, colorMode }) => {
-	return (
-		<Button
-			border={colorMode === "dark" ? "1px solid rgba(255, 255, 255, 0.60)" : "1px solid #494949"}
-			borderRadius={"1000px"}
-			width={"100%"}>
-			{btnText}
-		</Button>
-	);
-};
