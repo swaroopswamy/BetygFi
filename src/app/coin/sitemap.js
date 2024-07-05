@@ -3,10 +3,14 @@ import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
 
+let API_SERVICE_URL = null;
 const getCoinRankingsTableDataFetched = async (payload) => {
     try {
-        const API_SERVICE_URL = "http://10.40.59.141:30268";
-        const finalUrl = API_SERVICE_URL + `coin-risk/coins-table?sitemap=true`;
+        if (API_SERVICE_URL == null) {
+            const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
+            API_SERVICE_URL = config.API_SERVICE_URL;
+        }
+        const finalUrl = API_SERVICE_URL + `/coin-risk/coins-table?sitemap=true`;
         return await fetchInstance({ url: finalUrl, method: 'POST', payload });
     } catch (error) {
         return error;
