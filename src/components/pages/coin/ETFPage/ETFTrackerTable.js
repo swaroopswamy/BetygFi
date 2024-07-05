@@ -174,8 +174,8 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
                     </Text>
                 </Td>
                 <Td {...commonStyleTdProp} key={10} whiteSpace={"nowrap"} textAlign={"center"}>
-                    <Box width={"80px"} bg={colorMode === 'light' ? "#245F003D" : "#60C0003D"} borderRadius={"8px"}>
-                        <Text variant={"contentHeading3"} lineHeight={"24px"} fontWeight={700} color={"text.green"} textAlign={"center"} py={"6px"} px={"7px"}>
+                    <Box width={"80px"} bg={"#245F003D"} borderRadius={"8px"}>
+                        <Text variant={"contentHeading3"} lineHeight={"24px"} fontWeight={700} color={colorMode === 'light' ? "#245F00" : "#9ADA8A"} textAlign={"center"} py={"6px"} px={"7px"}>
                             Running
                         </Text>
                     </Box>

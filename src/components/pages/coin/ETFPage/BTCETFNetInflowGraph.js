@@ -111,7 +111,7 @@ const BTCETFNetInflowBox = () => {
     
     const calculateColumnWidth = () => {
         const filteredData = getFilteredData(selectedRange);
-        const dataLength = filteredData.length;
+        const dataLength = filteredData;
         if (dataLength > 30) {
             return "3px";
         } else if (dataLength > 14) {

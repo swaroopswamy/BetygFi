@@ -52,6 +52,14 @@ const ARK21Shares = () => {
                 show: false,
             },
         },
+        plotOptions: {
+            candlestick: {
+                colors: {
+                    upward: '#089981',
+                    downward: '#F23645',
+                },
+            },
+        },
         xaxis: {
             type: 'datetime',
             labels: {
