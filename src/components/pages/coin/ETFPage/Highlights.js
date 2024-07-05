@@ -11,7 +11,7 @@ const HighlightsBox = () => {
             <Box width={{ base: "100%", md: "45%" }} mr={{ md: "1rem" }} borderRadius={"8px"}>
                 <HeatmapGraphBox />
             </Box>
-            <Box width={{ base: "100%", md: "55%" }} mt={{ base: "20px", md:"5px" }} borderRadius={"8px"} padding={"0px"}>
+            <Box width={{ base: "100%", md: "55%" }} borderRadius={"8px"}>
                 <BTCETFNetInflowBox />
             </Box>
         </Box>

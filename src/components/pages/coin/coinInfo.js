@@ -43,7 +43,7 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                 >
                     {
                         coinDetails?.score &&
-                        <ScoreMeter score={coinDetails?.score} /*rank={coinDetails?.rank}*/ />
+                        <ScoreMeter score={coinDetails?.score} rank={coinDetails?.rank} />
                     }
                 </Box>
 
