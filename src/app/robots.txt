@@ -3,7 +3,6 @@ User-agent: *
 
 Allow: /*
 Disallow: /http/
-Disallow: /cgi-bin/
 Disallow: /https/
 Disallow: /_next/*
 Disallow: /api/*
