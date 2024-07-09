@@ -14,6 +14,8 @@ export const TRENDING_COINS_TITLE = "Trending Coin’s";
 export const TRENDING_COINS_SLUG = "trending-coins";
 export const TRENDING_WALLETS_TITLE = "Trending Wallet’s";
 export const TRENDING_WALLETS_SLUG = "trending-wallets";
+export const LOCAL_FILE_PATH = "C:\\opt\\statics";
+
 
 export const HOST = `https://${DOMAIN}/`;
 
@@ -214,3 +216,5 @@ export const SEARCH_LIST = [
         slug: TRENDING_WALLETS_SLUG,
     },
 ];
+
+export const BASE_URL = 'https://platform.betygfi.com';
