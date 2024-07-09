@@ -13,10 +13,10 @@ async function fetchDataInSeries(urls) {
 }
 
 const urls = [
-    'https://devplatform.betygfi.com/coin/sitemap.xml',
-    'https://devplatform.betygfi.com/protocol/sitemap.xml',
-    'https://devplatform.betygfi.com/top-wallets/sitemap.xml',
-    'https://devplatform.betygfi.com/crypto-etfs-data-tracker/sitemap.xml'
+    'https://platform.betygfi.com/coin/sitemap.xml',
+    'https://platform.betygfi.com/protocol/sitemap.xml',
+    'https://platform.betygfi.com/top-wallets/sitemap.xml',
+    'https://platform.betygfi.com/crypto-etfs-data-tracker/sitemap.xml'
 ];
 
 fetchDataInSeries(urls)
