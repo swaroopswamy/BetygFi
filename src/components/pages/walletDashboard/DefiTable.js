@@ -283,7 +283,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						fontSize={"14px"}
 						fontWeight={"400"}
 						letterSpacing={"1px"}
-						ml="6px"
+						ml="5px"
 					>
 						{item?.symbol}
 					</Text>
@@ -303,7 +303,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						color: "#FFF",
 					}}
 				>
-					{item?.price} USD
+					{item?.price.toFixed(8)} USD
 				</Text>
 			</Box>
 		</Box>

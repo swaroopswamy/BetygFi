@@ -1,9 +1,10 @@
+import React from "react";
 import { scoreChangedReducer } from "@redux/dashboard_data/dataSlice";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
 import { calculatePercentage } from "@util/utility";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import dynamic from "next/dynamic";
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
 const boxData = [
     { bgColor: "#0E6027", label: "Low", key: "Extreme", index: 3 },
     { bgColor: "#00799F", label: "Moderate", key: "High", index: 2 },
@@ -12,7 +13,9 @@ const boxData = [
 ];
 
 const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
-    const scoreSelected = useSelector(state => state?.dashboardTableData?.scoreSelected);
+    const scoreSelected = useSelector(
+        (state) => state?.dashboardTableData?.scoreSelected
+    );
 
     return (
         <Tooltip label={`View all ${data.label} risk DeFis`}>
@@ -21,12 +24,12 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                 minW={{
                     base:
                         data.index === 1 || data.index === 3
-                            ? "40px"
-                            : "70px",
+                            ? "50px"
+                            : "80px",
                     md:
                         data.index === 1 || data.index === 3
                             ? "50px"
-                            : "80px",
+                            : "85px",
                 }}
                 position={"relative"}
                 borderTopLeftRadius={data.index === 3 ? "14px" : "0px"}
@@ -47,10 +50,10 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     zIndex: 1,
                     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
-               /*  _notHovered={{
-                    transform: "scale(1.0)",
-                    zIndex: 0,
-                }} */
+                /*  _notHovered={{
+                     transform: "scale(1.0)",
+                     zIndex: 0,
+                 }} */
                 transform={
                     scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
                 }
@@ -92,6 +95,7 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
     const ScoreSelectHandler = (selected) => {
         dispatch(scoreChangedReducer(selected));
     };
+
     return (
         scoreTotalData && (
             <Box
@@ -104,11 +108,18 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                     <Text
                         variant={"content"}
                         fontWeight={"500"}
-                        _light={{ color: "#161616" }}
-                        _dark={{ color: "#FFFFFF" }}
+                        _light={{
+                            color: "#161616",
+                        }}
+                        _dark={{
+                            color: "#FFFFFF",
+                        }}
                     >
                         Risk Score distribution
                     </Text>
+                    <TooltipComp
+                        label={"Risk classification based on Solvendo score"}
+                    />
                 </Box>
                 <Box
                     w={{ base: "100%", md: "400px", lg: "500px" }}
@@ -117,8 +128,8 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                     position={"relative"}
                     mb={{ base: "24px", md: "0px", lg: "0px" }}
                 >
-                    {
-                        boxData.map((data, i) => (
+                    {boxData.map((data, i) => {
+                        return (
                             <ScoreBox
                                 key={i}
                                 data={data}
@@ -126,8 +137,8 @@ const ScoreDistribuition = ({ totalDefis, scoreTotalData }) => {
                                 scoreTotalData={scoreTotalData}
                                 ScoreSelectHandler={ScoreSelectHandler}
                             />
-                        ))
-                    }
+                        );
+                    })}
                 </Box>
             </Box>
         )
