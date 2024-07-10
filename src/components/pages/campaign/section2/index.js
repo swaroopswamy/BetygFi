@@ -1,8 +1,11 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import { featuresArray } from "../helper";
 import Image from "next/image";
-import TiltedBox from "../tiltedBox";
+import dynamic from "next/dynamic";
+
+const TiltedBox = dynamic(() => import("@/components/pages/campaign/tiltedBox"), { ssr: false });
+
+import { featuresArray } from "../helper";
 
 const CampaignPageSection2 = React.memo(() => {
     return (
@@ -22,7 +25,7 @@ const CampaignPageSection2 = React.memo(() => {
                 <Text variant={"campaign_big_text"} mb="16px">
                     Why BetygFi Crypto APIs?
                 </Text>
-                <Text variant={"campaign_mid_text"}>
+                <Text variant={"campaign_mid_text"} textAlign={"center"}>
                     Explain how the free API can be beneficial. Lorem ipsum dolor sit amet<br /> consectetur. Arcu neque blandit laoreet at eleifend
                 </Text>
             </Box>

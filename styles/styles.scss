@@ -599,6 +599,11 @@ body {
         font-size: 14px;
         font-weight: 600;
     }
+}
 
-    .btc_dominance_tooltip_text_date {}
+.tilted-div {
+    border: 2px solid transparent;
+    transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    -webkit-transform: rotate(-2deg);
 }

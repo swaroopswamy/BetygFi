@@ -9,16 +9,25 @@ const TiltedBox = React.memo(() => {
             position={"absolute"}
             top={0}
             left={"-5px"}
-            transform={"rotate(-2deg);"}
-            bgImage={"/images/tilted_sec_bg.svg"}
-            bgRepeat={"no-repeat"}
-            bgSize={"cover"}
+            className="tilted-div"
             zIndex={2}
-            p="40px"
+            py="2px"
         >
-            <Text variant={"campaign_feature_heading"} fontWeight={400} color={"#FFFFFF"}>
-                Claim your <b>$1,236</b> worth of <b>Credit for free</b> valid for a year!
-            </Text>
+            <Box
+                mb="2px"
+                p="60px"
+                bgImage={"/images/tilted_sec_bg.svg"}
+                bgRepeat={"no-repeat"}
+                bgSize={"cover"}
+                w="100%"
+                h={"100%"}
+                border={"2px solid #F1F6FF"}
+            >
+                <Text variant={"campaign_feature_heading"} fontWeight={400} color={"#FFFFFF"}>
+                    Claim your <b>$1,236</b> worth of <b>Credit for free</b> valid for a year!
+                </Text>
+            </Box>
+
         </Box>
     );
 });

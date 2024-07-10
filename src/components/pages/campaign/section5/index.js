@@ -1,7 +1,9 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import TabBox from "./TabBox";
 import { BuildSteps } from "../helper";
+import dynamic from "next/dynamic";
+const TabBox = dynamic(() => import("@/components/pages/campaign/section5/TabBox"), { ssr: false });
+
 
 const CampaignPageSection5 = React.memo(() => {
     return (

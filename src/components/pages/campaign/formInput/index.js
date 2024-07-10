@@ -1,13 +1,14 @@
 import { FormControl, Input, Textarea } from '@chakra-ui/react';
 import React from 'react';
 
-const CustomFormInput = ({ name, type, isRequired, placeholder, onChange }) => {
+const CustomFormInput = ({ name, value, type, isRequired, placeholder, onChange }) => {
     return (
         <FormControl isRequired={isRequired} mb={"24px"} color={"#DADADA"}>
             {
                 type === "textarea" ?
                     <Textarea
                         name={name}
+                        value={value}
                         type={type}
                         placeholder={placeholder}
                         color={"#FFFFFF"}
@@ -27,6 +28,7 @@ const CustomFormInput = ({ name, type, isRequired, placeholder, onChange }) => {
                     <Input
                         name={name}
                         type={type}
+                        value={value}
                         placeholder={placeholder}
                         color={"#FFFFFF"}
                         background={"rgba(255, 255, 255, 0.05)"}

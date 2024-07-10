@@ -83,18 +83,158 @@ export const PrivateKeyUses = [
 
 export const BuildSteps = [
     {
-        name:"Create your API key",
-        para:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
-        icon:"build_step_1"
+        name: "Create your API key",
+        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
+        icon: "build_step_1"
     },
     {
-        name:"Develop the code",
-        para:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
-        icon:"build_step_2"
+        name: "Develop the code",
+        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
+        icon: "build_step_2"
     },
     {
-        name:"Launch into production",
-        para:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
-        icon:"build_step_3"
+        name: "Launch into production",
+        para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi non viverra eros purus. Turpis ac scelerisque blandit mauris ut senectus.",
+        icon: "build_step_3"
     },
 ];
+
+
+export const codeSnippets = {
+    cURL: `curl -X GET "https://api.betygfi.com/v1/cryptocurrency/listings/latest" -H "X-BET_API_KEY: BET"`,
+    NodeJs: `const axios = require('axios');
+  
+  let response = null;
+  new Promise(async (resolve, reject) => {
+    try {
+      response = await axios.get('https://api.betygfi.com/v1/cryptocurrency/listings/latest', {
+        headers: {
+          'X-BET_API_KEY': 'BET',
+        },
+      });
+    } catch(ex) {
+      response = null;
+      // error
+      console.log(ex);
+      reject(ex);
+    }
+    if (response) {
+      // success
+      const json = response.data;
+      console.log(json);
+      resolve(json);
+    }
+  });`,
+    Python: `import requests
+  
+  try:
+      response = requests.get('https://api.betygfi.com/v1/cryptocurrency/listings/latest', headers={
+          'X-BET_API_KEY': 'BET'
+      })
+      response.raise_for_status()
+      json = response.json()
+      print(json)
+  except requests.exceptions.RequestException as ex:
+      print(ex)`,
+    PHP: `<?php
+  $curl = curl_init();
+  
+  curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://api.betygfi.com/v1/cryptocurrency/listings/latest",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => "",
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => array(
+      "X-BET_API_KEY: BET"
+    ),
+  ));
+  
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
+  
+  curl_close($curl);
+  
+  if ($err) {
+    echo "cURL Error #:" . $err;
+  } else {
+    echo $response;
+  }`,
+    Java: `import java.net.HttpURLConnection;
+  import java.net.URL;
+  import java.io.BufferedReader;
+  import java.io.InputStreamReader;
+  
+  public class Main {
+    public static void main(String[] args) {
+      try {
+        URL url = new URL("https://api.betygfi.com/v1/cryptocurrency/listings/latest");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("X-BET_API_KEY", "BET");
+  
+        int status = con.getResponseCode();
+        if (status == 200) {
+          BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+          String inputLine;
+          StringBuffer content = new StringBuffer();
+          while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+          }
+          in.close();
+          System.out.println(content.toString());
+        } else {
+          System.out.println("Error: " + status);
+        }
+        con.disconnect();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }`,
+    GO: `package main
+  
+  import (
+    "fmt"
+    "net/http"
+    "io/ioutil"
+  )
+  
+  func main() {
+    client := &http.Client{}
+    req, err := http.NewRequest("GET", "https://api.betygfi.com/v1/cryptocurrency/listings/latest", nil)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    req.Header.Add("X-BET_API_KEY", "BET")
+  
+    resp, err := client.Do(req)
+    if err != nil {
+      fmt.Println(err)
+      return
+    }
+    defer resp.Body.Close()
+  
+    if resp.StatusCode == http.StatusOK {
+      body, err := ioutil.ReadAll(resp.Body)
+      if err != nil {
+        fmt.Println(err)
+        return
+      }
+      fmt.Println(string(body))
+    } else {
+      fmt.Println("Error:", resp.Status)
+    }
+  }`
+};
+export const languageModes = {
+    cURL: 'json',
+    NodeJs: 'javascript',
+    Python: 'python',
+    PHP: 'php',
+    Java: 'java',
+    GO: 'golang'
+};
