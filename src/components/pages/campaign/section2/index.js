@@ -7,7 +7,7 @@ const TiltedBox = dynamic(() => import("@/components/pages/campaign/tiltedBox"),
 
 import { featuresArray } from "../helper";
 
-const CampaignPageSection2 = React.memo(() => {
+const CampaignPageSection2 = React.memo(({ scrollToApply }) => {
     return (
         <Box
             bgImage={"/images/section_2_bg_new.svg"}
@@ -20,7 +20,7 @@ const CampaignPageSection2 = React.memo(() => {
             position={"relative"}
             zIndex={1}
         >
-            <TiltedBox />
+            <TiltedBox scrollToApply={scrollToApply} />
             <Box w="100" layerStyle={"flexColumn"} alignItems={"center"} mb="18px">
                 <Text variant={"campaign_big_text"} mb="16px">
                     Why BetygFi Crypto APIs?

@@ -106,7 +106,7 @@ const CampaignPageSection6 = React.memo(({
             layerStyle={"center"}
             flexDir={"column"}
             py={"120px"}
-            id="form-body"
+            id="apply-form"
         >
             <Box w="100" layerStyle={"flexColumn"} alignItems={"center"} mb="18px">
                 <Text variant={"campaign_big_text"} color="#FFFFFF">

@@ -3,11 +3,11 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import React from "react";
 
-const CampaignPageSection1 = React.memo(() => {
+const CampaignPageSection1 = React.memo(({ scrollToApply }) => {
     return (
         <Box
             h="100%"
-            bgImage={"url('/images/section_1_bg.svg')"}
+            bgImage={"url('/images/section_1_bg_new.svg')"}
             bgRepeat={"no-repeat"}
             bgSize={"cover"}
             w="100%"
@@ -15,31 +15,34 @@ const CampaignPageSection1 = React.memo(() => {
             py={"150px"}
             gap={"150px"}
         >
-            <Box layerStyle={"flexColumn"} justifyContent={"start"}>
+            <Box layerStyle={"flexColumn"} justifyContent={"center"} alignItems={"center"} textAlign={"center"}>
                 <Text variant={"campaign_title"} color={"#FFFFFF"}>
-                    Free
+                    API Sponsorship
                 </Text>
-                <Text variant={"campaign_title"} color={"#191919"}>
-                    API Scholarship<br /> Program
+                <Text variant={"campaign_title"} color={"#FFFFFF"} >
+                    Program
                 </Text>
-                <Text variant={"campaign_private_use_name"} color={"#FFFFFF"} fontWeight={"400"} mt={"24px"} mb={"48px"}>
-                    FREE access premium features to the first 100 users!
+                <Text variant={"campaign_private_use_name"} color={"#FFFFFF"} fontWeight={"400"} fontSize={"20px"} mt={"24px"} mb={"48px"}>
+                    Unlock <b>$1,236</b> in Crypto API credits - <b>Free for First 100 Users!</b> <br />Limited-time API sponsorship!
                 </Text>
-                <Button variant={"ent_header_launch_button"} w="185px" borderRadius={"90px"} p="24px" fontWeight={700}
+                <Button variant={"ent_header_launch_button"}
+                    bgColor={"#0D75D3"}
+                    color={"#FFFFFF"}
+                    border={"none"}
+                    w="185px" borderRadius={"90px"} p="24px"
+                    h="100%"
+                    fontWeight={700}
                     onClick={() => {
-                        window.scrollTo({
-                            top: document.body.scrollHeight,
-                            behavior: 'smooth'
-                        });
+                        scrollToApply();
                     }}
                 >
                     Apply
                 </Button>
             </Box>
-            <Box w="648px" h="374px" bgImage={"/images/section_1_sidebox.svg"} bgRepeat={"no-repeat"}
+            {/*  <Box w="648px" h="374px" bgImage={"/images/section_1_sidebox.svg"} bgRepeat={"no-repeat"}
                 bgSize={"cover"}
             >
-            </Box>
+            </Box> */}
         </Box>
     );
 });

@@ -160,9 +160,9 @@ const CampaignPageFooter = () => {
                                     alt="icon"
                                     width={30} height={30} />
                             </a>
-                            <a href="https://www.reddit.com/r/betygFi/" target="_blank">
+                            {/* <a href="https://www.reddit.com/r/betygFi/" target="_blank">
                                 <Image src={"/images/reddit_black.svg"} width={30} height={30} alt="icon"></Image>
-                            </a>
+                            </a> */}
                             <a href="https://www.youtube.com/@betygfi" target="_blank">
                                 <Image src={"/images/youtube_black.svg"} width={30} height={30} alt="icon"></Image>
                             </a>
@@ -358,9 +358,9 @@ const CampaignPageFooter = () => {
                                 alt="icon"
                                 width={30} height={30} />
                         </a>
-                        <a href="https://www.reddit.com/r/betygFi/" target="_blank">
+                        {/* <a href="https://www.reddit.com/r/betygFi/" target="_blank">
                             <Image src={"/images/reddit_black.svg"} width={30} height={30} alt="icon"></Image>
-                        </a>
+                        </a> */}
                         <a href="https://www.youtube.com/@betygfi" target="_blank">
                             <Image src={"/images/youtube_black.svg"} width={30} height={30} alt="icon"></Image>
                         </a>

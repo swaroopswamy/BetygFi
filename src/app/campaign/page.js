@@ -25,11 +25,19 @@ const CampaignPage = () => {
         window.scrollTo(0, 0);
     }, []);
 
+    const scrollToApply = () => {
+        const section = document.getElementById('apply-form');
+        if (section) {
+            section.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    };
     return (
         <Box layerStyle={"flexColumn"} overflow={"hidden"}>
             <CampaignHeader />
-            <CampaignPageSection1 />
-            <CampaignPageSection2 />
+            <CampaignPageSection1 scrollToApply={scrollToApply} />
+            <CampaignPageSection2 scrollToApply={scrollToApply} />
             <CampaignPageSection3 />
             <CampaignPageSection4 />
             <CampaignPageSection5 />
