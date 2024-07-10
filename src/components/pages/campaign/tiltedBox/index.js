@@ -23,7 +23,7 @@ const TiltedBox = React.memo(() => {
                 h={"100%"}
                 border={"2px solid #F1F6FF"}
             >
-                <Text variant={"campaign_feature_heading"} fontWeight={400} color={"#FFFFFF"}>
+                <Text variant={"campaign_feature_heading"} fontWeight={400} w="100%" textAlign={"center"} color={"#FFFFFF"}>
                     Claim your <b>$1,236</b> worth of <b>Credit for free</b> valid for a year!
                 </Text>
             </Box>
