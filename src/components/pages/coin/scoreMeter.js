@@ -50,7 +50,7 @@ const ScoreMeter = ({ score, rank }) => {
     };
 
     return (
-        <div style={{ position: 'relative', width: '252px', height: '252px' }}>
+        <div style={{ position: 'relative', width: '252px', height: '175px' }}>
             <CustomChart
                 className="overview-chart"
                 options={options}
@@ -61,7 +61,7 @@ const ScoreMeter = ({ score, rank }) => {
             />
             <div style={{
                 position: 'absolute',
-                top: '30%',
+                top: '40%',
                 left: '50%',
                 transform: 'translate(-50%, -70%)',
                 color: colorMode === "light" ? "#191919" : "#FFFFFF",
@@ -72,7 +72,7 @@ const ScoreMeter = ({ score, rank }) => {
             </div>
             <div style={{
                 position: 'absolute',
-                top: '42%',
+                top: '60%',
                 left: '50%',
                 transform: 'translate(-50%, -30%)',
                 color: colorMode === "light" ? "#191919" : "#FFFFFF",
@@ -84,7 +84,7 @@ const ScoreMeter = ({ score, rank }) => {
             </div>
             <div style={{
                 position: 'absolute',
-                top: '70%',
+                top: '100%',
                 left: '50%',
                 transform: 'translate(-50%, -30%)',
                 color: colorMode === "light" ? "#191919" : "#FFFFFF",
