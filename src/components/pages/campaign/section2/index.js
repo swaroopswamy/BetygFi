@@ -10,7 +10,7 @@ import { featuresArray } from "../helper";
 const CampaignPageSection2 = React.memo(() => {
     return (
         <Box
-            bgImage={"/images/section_2_bg.svg"}
+            bgImage={"/images/section_2_bg_new.svg"}
             bgRepeat={"no-repeat"}
             bgSize={"cover"}
             w="100%"

@@ -10,6 +10,8 @@ const CampaignPageSection3 = dynamic(() => import('@components/pages/campaign/se
 const CampaignPageSection4 = dynamic(() => import('@components/pages/campaign/section4'));
 const CampaignPageSection5 = dynamic(() => import('@components/pages/campaign/section5'));
 const CampaignPageSection6 = dynamic(() => import('@components/pages/campaign/section6'));
+const CampaignPageFooter = dynamic(() => import('@components/pages/campaign/footer'));
+
 
 const CampaignPage = () => {
     const searchParams = useSearchParams();
@@ -32,6 +34,7 @@ const CampaignPage = () => {
             <CampaignPageSection4 />
             <CampaignPageSection5 />
             <CampaignPageSection6 source={source} medium={medium} campaign={campaign} content={content} />
+            <CampaignPageFooter />
         </Box>
     );
 };

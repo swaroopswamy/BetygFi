@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import AppConfigContext from "@components/context/appConfigContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -31,7 +31,7 @@ const CampaignHeader = () => {
                 layerStyle={"flexCenter"}
                 gap={"50px"}
             >
-                <Button variant={"ent_header_button"}
+                {/* <Button variant={"ent_header_button"}
                     onClick={() => router.push(`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}/about`)}
                     display={{
                         sm: "none",
@@ -39,7 +39,7 @@ const CampaignHeader = () => {
                     }}
                 >
                     About us
-                </Button>
+                </Button> */}
                 <Link href={`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}`} target="_blank">
                     <Button variant={"ent_header_launch_button"}>
                         {LaunchPlatformButtonText}
