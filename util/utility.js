@@ -38,7 +38,7 @@ export async function copyToClipboard(link) {
         console.error('Failed to copy: ', err);
         /* Rejected - text failed to copy to the clipboard */
     }
-};
+}
 
 export const groupListByKey_Pure = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
 
@@ -307,14 +307,20 @@ export const getImageFilePath = (env) => {
         }
     }
     return filePath;
-}
+};
 
 export const ValidImgURL = (url) => {
     if (url) {
         if (url.split('/').includes('https:')) {
             return url;
         } else {
-            return `/api/image/${encodeURIComponent(url)}`
+            return `/api/image/${encodeURIComponent(url)}`;
         }
     }
-}
+};
+
+export const validateEmail = (email) => {
+    return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};

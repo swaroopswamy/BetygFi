@@ -1,8 +1,9 @@
 import { Box, Button, Text, useToast } from "@chakra-ui/react";
+import { postCampaignUserData, resetPostCampaignUserData } from "@redux/app_data/dataSlice";
+import { validateEmail } from "@util/utility";
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postCampaignUserData, resetPostCampaignUserData } from "@redux/app_data/dataSlice";
-import dynamic from "next/dynamic";
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 const CustomFormInput = dynamic(() => import("@/components/pages/campaign/formInput"), { ssr: false });
 const CampaignPageSection6 = React.memo(({
@@ -42,6 +43,8 @@ const CampaignPageSection6 = React.memo(({
         return name && email && expectedMonthlyApiCalls && website && message;
     };
 
+    const validateEmailForm = () => validateEmail(formValue.email);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) {
@@ -51,6 +54,18 @@ const CampaignPageSection6 = React.memo(({
                     <CustomToast
                         isSuccessful={false}
                         content={'Required field cannot be empty'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateEmailForm()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Email is invalid'}
                     />
                 ),
             });
@@ -172,4 +187,3 @@ const CampaignPageSection6 = React.memo(({
 });
 
 CampaignPageSection6.displayName = "CampaignPageSection6";
-export default CampaignPageSection6;
