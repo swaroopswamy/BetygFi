@@ -53,13 +53,13 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                     justifyContent={"space-between"}
                     w={"100%"}
                     gap={"35px"}
-                    p={"35px 10px 10px 10px"}
+                    p={{ base: "10px", bigSize: "35px 10px 10px 10px" }}
                 >
                     <Box
                         layerStyle={"flexColumn"}
                         justifyContent={"space-between"}
                         p={"10px"}
-                        pt={"40px"}
+                        pt={{ bigSize: "40px" }}
                         minW={{ base: "100%", bigSize: "50%" }}
                         gap={"60px"}
                     >
