@@ -182,3 +182,18 @@ const SHARED_KEYWORDS = {
         "Asset tracking",
     ]
 };
+
+
+export const CampaignLandingPageMetas = (url) => {
+    const title = "Betygfi - Campaign";
+    const description = "Elevate your game";
+
+    return {
+        metadataBase: new URL(HOST),
+        title: title,
+        description: description,
+        keywords: ['Betygfi', ...SHARED_KEYWORDS.defi],
+        openGraph: openGraphData({ url, title, description }),
+        twitter: twitterData({ url, title, description }),
+    };
+};

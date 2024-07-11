@@ -18,7 +18,7 @@ const getCoinRankingsTableDataSitemapFetch = async (payload) => {
             return checkIfCacheAvailable(finalUrl);
         } else {
             const data = await fetchInstance({ url: finalUrl, method: 'POST', payload });
-            return cacheHandler(finalUrl, data, false, 11.9);
+            return cacheHandler(finalUrl, data, false, 24);
         }
     } catch (error) {
         return error;

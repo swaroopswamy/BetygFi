@@ -21,10 +21,8 @@ import dynamic from "next/dynamic";
 import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
-/* const Footer = dynamic(() => import("@components/footer"), { ssr: false });
-const SidebarContent = dynamic(() => import("@components/sidebar"), { ssr: false });
-const Navbar = dynamic(() => import("@components/header"), { ssr: false });
- */
+import { usePathname } from "next/navigation";
+
 const NotificationDrawer = dynamic(() => import("@components/notification/drawer"), { ssr: false });
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 
@@ -46,7 +44,7 @@ export default function LayoutProvider({ appConfig, children }) {
     const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
     const { address } = useAccount();
-
+    const pathname = usePathname();
 
     const {
         isOpen: isNotificationDrawerOpen,
@@ -307,90 +305,100 @@ export default function LayoutProvider({ appConfig, children }) {
 
     return (
         <AppConfigContext.Provider value={appConfig}>
-            <Box
-                width="100%"
-                minH="100vh"
-                _light={{
-                    bg: "#F0F0F5"
-                }}
-                _dark={{
-                    bg: "#191919"
-                }}
-                display={"flex"}
-            >
-                <SidebarContent
-                    onClose={() => onClose}
-                    w={isMobileSidebarCollapsed ? "null" : "80%"}
-                    h={"100%"}
-                />
-                {isMd ? (
-                    <Box
-                        display={{
-                            base: "none",
-                            md: isMobileSidebarCollapsed ? "flex" : "none",
-                        }}
-                        flexDirection={"column"}
-                        className="margin-conditions"
-                        id="main-body"
-                        aria-expanded={isSidebarCollapsed ? "false" : "true"}
-                        w="100%"
-                        overflowX={"hidden"}
-                    >
-                        <Navbar
-                            onNotificationDrawerOpen={onNotificationDrawerOpen}
-                        />
+            {
+                pathname === "/campaign" ?
+                    <React.Fragment>
+                        {children}
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
                         <Box
-                            p="0"
+                            width="100%"
+                            minH="100vh"
                             _light={{
-                                bgColor: "#FFF",
+                                bg: "#F0F0F5"
                             }}
                             _dark={{
-                                bgColor: "#131313",
+                                bg: "#191919"
                             }}
-                            w="100%"
-                        //height={"100vh"}
+                            display={"flex"}
                         >
-                            {children}
-                            <Footer />
+                            <SidebarContent
+                                onClose={() => onClose}
+                                w={isMobileSidebarCollapsed ? "null" : "80%"}
+                                h={"100%"}
+                            />
+                            {isMd ? (
+                                <Box
+                                    display={{
+                                        base: "none",
+                                        md: isMobileSidebarCollapsed ? "flex" : "none",
+                                    }}
+                                    flexDirection={"column"}
+                                    className="margin-conditions"
+                                    id="main-body"
+                                    aria-expanded={isSidebarCollapsed ? "false" : "true"}
+                                    w="100%"
+                                    overflowX={"hidden"}
+                                >
+                                    <Navbar
+                                        onNotificationDrawerOpen={onNotificationDrawerOpen}
+                                    />
+                                    <Box
+                                        p="0"
+                                        _light={{
+                                            bgColor: "#FFF",
+                                        }}
+                                        _dark={{
+                                            bgColor: "#131313",
+                                        }}
+                                        w="100%"
+                                    //height={"100vh"}
+                                    >
+                                        {children}
+                                        <Footer />
+                                    </Box>
+                                </Box>
+
+                            ) : (
+                                <Box
+                                    display={{ base: "flex", md: "none" }}
+                                    flexDirection={"column"}
+                                    overflowX={"hidden"}
+                                    mt={"60px"}
+                                    w="100%"
+
+                                >
+                                    <Navbar
+                                        onNotificationDrawerOpen={onNotificationDrawerOpen}
+
+                                    />
+                                    <Box
+                                        p="0"
+                                        _light={{
+                                            bgColor: "#FFF",
+                                        }}
+                                        _dark={{
+                                            bgColor: "#282828",
+                                        }}
+                                        w="100%"
+                                    >
+                                        {children}
+                                        <Footer />
+                                    </Box>
+                                </Box>
+
+                            )}
                         </Box>
-                    </Box>
-
-                ) : (
-                    <Box
-                        display={{ base: "flex", md: "none" }}
-                        flexDirection={"column"}
-                        overflowX={"hidden"}
-                        mt={"60px"}
-                        w="100%"
-
-                    >
-                        <Navbar
-                            onNotificationDrawerOpen={onNotificationDrawerOpen}
-
+                        <NotificationDrawer
+                            isOpen={isNotificationDrawerOpen}
+                            onOpen={onNotificationDrawerOpen}
+                            onClose={onNotificationDrawerClose}
+                            notifications={Notifications}
                         />
-                        <Box
-                            p="0"
-                            _light={{
-                                bgColor: "#FFF",
-                            }}
-                            _dark={{
-                                bgColor: "#282828",
-                            }}
-                            w="100%"
-                        >
-                            {children}
-                            <Footer />
-                        </Box>
-                    </Box>
+                    </React.Fragment>
+            }
 
-                )}
-            </Box>
-            <NotificationDrawer
-                isOpen={isNotificationDrawerOpen}
-                onOpen={onNotificationDrawerOpen}
-                onClose={onNotificationDrawerClose}
-                notifications={Notifications}
-            />
         </AppConfigContext.Provider>
     );
 }
