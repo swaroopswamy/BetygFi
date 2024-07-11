@@ -34,9 +34,9 @@ const CampaignPageSection5 = React.memo(() => {
                         BuildSteps.map((entry, i) => {
                             return (
                                 isLg ?
-                                    <LgBuildSteps entry={entry} i={i} />
+                                    <LgBuildSteps entry={entry} key={i} i={i} />
                                     :
-                                    <BaseBuildSteps entry={entry} i={i} />
+                                    <BaseBuildSteps entry={entry} key={i} i={i} />
                             );
                         })
                     }

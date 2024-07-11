@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
-const CustomFormInput = dynamic(() => import("@/components/pages/campaign/formInput"), { ssr: false });
+const CustomFormInput = dynamic(() => import("@/components/pages/campaign/formInput"));
 const CampaignPageSection6 = React.memo(({
     source,
     campaign,
@@ -187,3 +187,4 @@ const CampaignPageSection6 = React.memo(({
 });
 
 CampaignPageSection6.displayName = "CampaignPageSection6";
+export default CampaignPageSection6;
