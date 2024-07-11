@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { clearAllNotificationsByUserIdAPI, getAllPublicNotificationsAPI, getAllUserNotificationsByUserIdAPI, getBlockchainListData, getSearchV2Data, getSearchV2TrendingData, markNotificationReadByUserIdAPI, postReportBugData, postSuggestFeatureData } from "@services/appService";
+import { clearAllNotificationsByUserIdAPI, getAllPublicNotificationsAPI, getAllUserNotificationsByUserIdAPI, getBlockchainListData, getSearchV2Data, getSearchV2TrendingData, markNotificationReadByUserIdAPI, postCampaignUserDataAPI, postReportBugData, postSuggestFeatureData } from "@services/appService";
 
 export const fetchBlockchainListData = createAsyncThunk('getBlockchainListData', async (payload, { rejectWithValue }) => {
 	const { data } = await getBlockchainListData(rejectWithValue);
@@ -58,6 +58,11 @@ export const clearAllNotification = createAsyncThunk("/notifications/clearall",
 	}
 );
 
+export const postCampaignUserData = createAsyncThunk('postCampaignUserData', async (payload, { rejectWithValue }) => {
+	const data = await postCampaignUserDataAPI(payload, rejectWithValue);
+	return data;
+});
+
 
 const AppDataSlice = createSlice({
 	name: "AppData",
@@ -88,6 +93,12 @@ const AppDataSlice = createSlice({
 			error: null
 		},
 		Notifications: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		PostCampaignUserData: {
 			data: null,
 			isLoading: false,
 			isError: false,
@@ -179,6 +190,19 @@ const AppDataSlice = createSlice({
 			state.Notifications.isError = true;
 			state.Notifications.data = action.payload;
 		});
+
+		builder.addCase(postCampaignUserData.fulfilled, (state, action) => {
+			state.PostCampaignUserData.data = action.payload;
+			state.PostCampaignUserData.isLoading = false;
+			state.PostCampaignUserData.isSuccess = true;
+			state.PostCampaignUserData.isError = false;
+		});
+		builder.addCase(postCampaignUserData.rejected, (state, action) => {
+			state.PostCampaignUserData.isLoading = false;
+			state.PostCampaignUserData.isSuccess = false;
+			state.PostCampaignUserData.isError = true;
+			state.PostCampaignUserData.data = action.payload.message;
+		});
 	},
 	reducers: {
 		sidebarCollapsedReducer: (state, action) => {
@@ -240,8 +264,14 @@ const AppDataSlice = createSlice({
 		clearAllNotificationReducer: (state) => {
 			state.Notifications.data = null;
 		},
+		resetPostCampaignUserData: (state) => {
+			state.PostCampaignUserData.data = null;
+			state.PostCampaignUserData.isLoading = false;
+			state.PostCampaignUserData.isSuccess = false;
+			state.PostCampaignUserData.isError = false;
+		},
 	},
 });
 
-export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer, resetReportBug, resetSuggestFeature, notificationsReducer, markNotificationAsReadReducer, clearAllNotificationReducer, mobileSearchbarOpenReducer } = AppDataSlice.actions;
+export const { sidebarCollapsedReducer, mobileSidebarCollapsedReducer, resetReportBug, resetSuggestFeature, notificationsReducer, markNotificationAsReadReducer, clearAllNotificationReducer, mobileSearchbarOpenReducer, resetPostCampaignUserData } = AppDataSlice.actions;
 export default AppDataSlice.reducer;
