@@ -33,7 +33,7 @@ export const featuresArray = [
       "You can also access on-chain decentralized exchange data for cryptocurrencies that aren't listed on CoinGecko."
     ],
     turn: false,
-    sideBoxImg: "/images/sidebox_img_3.svg"
+    sideBoxImg: "/images/sidebox_img_3_new.svg"
   }
 ];
 

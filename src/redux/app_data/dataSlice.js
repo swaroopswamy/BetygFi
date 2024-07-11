@@ -59,7 +59,7 @@ export const clearAllNotification = createAsyncThunk("/notifications/clearall",
 );
 
 export const postCampaignUserData = createAsyncThunk('postCampaignUserData', async (payload, { rejectWithValue }) => {
-	const { data } = await postCampaignUserDataAPI(payload, rejectWithValue);
+	const data = await postCampaignUserDataAPI(payload, rejectWithValue);
 	return data;
 });
 
@@ -197,17 +197,11 @@ const AppDataSlice = createSlice({
 			state.PostCampaignUserData.isSuccess = true;
 			state.PostCampaignUserData.isError = false;
 		});
-		builder.addCase(postCampaignUserData.pending, (state, action) => {
-			state.PostCampaignUserData.isLoading = true;
-			state.PostCampaignUserData.isError = false;
-			state.PostCampaignUserData.isSuccess = false;
-			state.PostCampaignUserData.data = action.payload;
-		});
 		builder.addCase(postCampaignUserData.rejected, (state, action) => {
 			state.PostCampaignUserData.isLoading = false;
 			state.PostCampaignUserData.isSuccess = false;
 			state.PostCampaignUserData.isError = true;
-			state.PostCampaignUserData.data = action.payload;
+			state.PostCampaignUserData.data = action.payload.message;
 		});
 	},
 	reducers: {

@@ -19,7 +19,7 @@ const CampaignPageSection4 = React.memo(() => {
             </Box>
             <Box layerStyle={"flexCenter"} flexDir={{ base: "column", lg: "row" }} gap={"24px"}>
                 <Grid
-                    templateColumns={{ base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(2, 1fr)", xl: "repeat(4, 1fr)" }}
+                    templateColumns={{ base: "repeat(1, 1fr)", sm: "repeat(1, 1fr)", lg: "repeat(2, 1fr)", xl: "repeat(4, 1fr)" }}
                     gap={"24px"}
                 >
                     {PrivateKeyUses.map((entry, i) => {

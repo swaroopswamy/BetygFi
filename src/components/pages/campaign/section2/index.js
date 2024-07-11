@@ -18,6 +18,8 @@ const CampaignPageSection2 = React.memo(({ scrollToApply }) => {
             w="100%"
             layerStyle={"flexColumn"}
             pt={{ base: "150px", lg: "260px" }}
+            pb={{ base: "100px", lg: "150px" }}
+            
             px={{ base: "20px", lg: "60px" }}
             position={"relative"}
             zIndex={1}

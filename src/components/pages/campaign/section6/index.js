@@ -24,8 +24,8 @@ const CampaignPageSection6 = React.memo(({
         telegram: '',
         message: '',
         medium: medium,
-        campaign: campaign,
-        content: content,
+        campaignId: campaign,
+        adContent: content,
         source: source
     });
 
@@ -70,6 +70,18 @@ const CampaignPageSection6 = React.memo(({
                         />
                     ),
                 });
+                setFormValue({
+                    name: '',
+                    email: '',
+                    expectedMonthlyApiCalls: '',
+                    website: '',
+                    telegram: '',
+                    message: '',
+                    medium: medium,
+                    campaign: campaign,
+                    content: content,
+                    source: source
+                });
             }
             if (PostCampaignUserData.isError) {
                 toast({
@@ -83,18 +95,7 @@ const CampaignPageSection6 = React.memo(({
                 });
             }
             dispatch(resetPostCampaignUserData());
-            setFormValue({
-                name: '',
-                email: '',
-                expectedMonthlyApiCalls: '',
-                website: '',
-                telegram: '',
-                message: '',
-                medium: medium,
-                campaign: campaign,
-                content: content,
-                source: source
-            });
+
         }
     }, [PostCampaignUserData]);
     return (

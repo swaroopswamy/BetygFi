@@ -136,7 +136,7 @@ export const clearAllNotificationsByUserIdAPI = async (payload, { rejectWithValu
 export const postCampaignUserDataAPI = async (payload, rejectWithValue) => {
 	try {
 		const url = NEXT_BE_URL_SEPARATOR + `user/campaign-user-details`;
-		const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
+		const data = await axiosInstance(getAPI_URL()).post(url, payload);
 		return data;
 	} catch (err) {
 		return rejectWithValue(err);
