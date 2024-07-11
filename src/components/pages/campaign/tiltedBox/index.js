@@ -7,7 +7,7 @@ const TiltedBox = React.memo(({ scrollToApply }) => {
             w="105%"
             layerStyle={"center"}
             position={"absolute"}
-            top={"-10px"}
+            top={{ base: "5px", md: "-10px" }}
             left={"-5px"}
             className="tilted-div"
             zIndex={2}
@@ -15,7 +15,7 @@ const TiltedBox = React.memo(({ scrollToApply }) => {
         >
             <Box
                 mb="2px"
-                p="60px"
+                p={{ base: "20px", lg: "60px" }}
                 bgImage={"/images/tilted_sec_bg.svg"}
                 bgRepeat={"no-repeat"}
                 bgSize={"cover"}
@@ -32,21 +32,9 @@ const TiltedBox = React.memo(({ scrollToApply }) => {
                         scrollToApply();
                     }}
                 >
-                    Claim your <b>$1,236</b> worth of <b>Credit for free</b> valid for a year!
+                    Claim your <b>$1,236</b> worth of <b>Credit for free</b> valid for a year! <b><u>Unlock Now</u></b>
                 </Text>
-                <Text
-                    variant={"campaign_feature_heading"}
-                    cursor={"pointer"}
-                    fontWeight={700}
-                    color={"#FFFFFF"}
-                    textDecoration={"underline"}
-                    ml={"12px"}
-                    onClick={() => {
-                        scrollToApply();
-                    }}
-                >
-                    Unlock Now
-                </Text>
+
             </Box>
 
         </Box>

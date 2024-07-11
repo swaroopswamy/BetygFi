@@ -100,20 +100,20 @@ const CampaignPageSection6 = React.memo(({
     return (
         <Box
             w="100%"
-            bgImage={"/images/section_6_bg.svg"}
+            bgImage={{ base: "/images/section_6_base_bg.svg", lg: "/images/section_6_bg.svg" }}
             bgRepeat={"no-repeat"}
             bgSize={"cover"}
             layerStyle={"center"}
             flexDir={"column"}
-            py={"120px"}
+            py={{ base: "40px", lg: "120px" }}
             id="apply-form"
         >
-            <Box w="100" layerStyle={"flexColumn"} alignItems={"center"} mb="18px">
+            <Box w="100%" layerStyle={"flexColumn"} alignItems={"center"} mb="18px">
                 <Text variant={"campaign_big_text"} color="#FFFFFF">
                     API Sponsorship Program
                 </Text>
             </Box>
-            <Box mt="40px" layerStyle={"flexColumn"} w={{ xl: "546px", lg: "70%" }}>
+            <Box mt="40px" layerStyle={"flexColumn"} w={{ base: "100%", lg: "70%", xl: "546px" }} px={{ base: "16px", lg: "0px" }}>
                 <CustomFormInput
                     value={formValue.name}
                     isRequired={true}

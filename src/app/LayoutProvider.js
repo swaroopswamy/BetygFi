@@ -22,11 +22,7 @@ import Footer from "@components/footer";
 import SidebarContent from "@components/sidebar";
 import Navbar from "@components/header";
 import { usePathname } from "next/navigation";
-import CampaignPage from "./campaign/page";
-/* const Footer = dynamic(() => import("@components/footer"), { ssr: false });
-const SidebarContent = dynamic(() => import("@components/sidebar"), { ssr: false });
-const Navbar = dynamic(() => import("@components/header"), { ssr: false });
- */
+
 const NotificationDrawer = dynamic(() => import("@components/notification/drawer"), { ssr: false });
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 
@@ -311,7 +307,9 @@ export default function LayoutProvider({ appConfig, children }) {
         <AppConfigContext.Provider value={appConfig}>
             {
                 pathname === "/campaign" ?
-                    <CampaignPage />
+                    <React.Fragment>
+                        {children}
+                    </React.Fragment>
                     :
                     <React.Fragment>
                         <Box

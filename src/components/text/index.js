@@ -394,12 +394,12 @@ const Text = defineStyleConfig({
             letterSpacing: "-0.32px",
         }),
         campaign_title: () => ({
-            fontSize: "64px",
+            fontSize: { base: "32px", lg: "64px" },
             fontStyle: "normal",
             fontWeight: "700",
             fontFamily: "Raleway",
             color: "#DADADA",
-            lineHeight: "72px",
+            lineHeight: { base: "38px", lg: "78px" },
             letterSpacing: "-1.28px",
             textAlign: "left"
         }),
@@ -412,17 +412,17 @@ const Text = defineStyleConfig({
             lineHeight: "24px",
         }),
         campaign_big_text: () => ({
-            fontSize: "48px",
+            fontSize: { base: "24px", lg: "48px" },
             fontStyle: "normal",
             fontWeight: "700",
             fontFamily: "DM Sans",
             color: "#23262F",
-            lineHeight: "56px",
+            lineHeight: { base: "28px", lg: "56px" },
             letterSpacing: "-0.96px",
             textTransform: "capitalize"
         }),
         campaign_feature_heading: () => ({
-            fontSize: "32px",
+            fontSize: { base: "16px", lg: "32px" },
             fontStyle: "normal",
             fontWeight: "700",
             fontFamily: "DM Sans",
