@@ -78,8 +78,8 @@ const CampaignPageSection6 = React.memo(({
                     telegram: '',
                     message: '',
                     medium: medium,
-                    campaign: campaign,
-                    content: content,
+                    campaignId: campaign,
+                    adContent: content,
                     source: source
                 });
             }
