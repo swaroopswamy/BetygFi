@@ -102,7 +102,9 @@ const CampaignPageFooter = () => {
                             color={"#77808B"}
                         >
                             <Link href={`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}/about`} target="_blank"><Text mt={"25px"} whiteSpace={"nowrap"}>About</Text></Link>
+                            {/* 
                             <Link onClick={() => scrollToElementById('get_in_touch')}><Text mt={"15px"} whiteSpace={"nowrap"}>Contact</Text></Link>
+                             */}
                             {/* 
                         <Link href="https://blog.betygfi.com" target="_blank"><Text mt={"15px"} whiteSpace={"nowrap"}>Blog</Text></Link>
                          */}

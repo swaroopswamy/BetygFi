@@ -127,7 +127,7 @@ const CampaignPageSection6 = React.memo(({
                     value={formValue.email}
                     isRequired={true}
                     placeholder={"Email*"}
-                    type={"text"}
+                    type={"email"}
                     name="email"
                     onChange={handleInputChange}
                 />
@@ -135,7 +135,7 @@ const CampaignPageSection6 = React.memo(({
                     value={formValue.expectedMonthlyApiCalls}
                     isRequired={true}
                     placeholder={"Expected monthly API calls*"}
-                    type={"text"}
+                    type={"number"}
                     name="expectedMonthlyApiCalls"
                     onChange={handleInputChange}
                 />
