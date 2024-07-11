@@ -23,7 +23,7 @@ const CampaignPageSection1 = React.memo(({ scrollToApply }) => {
                 <Text variant={"campaign_title"} color={"#FFFFFF"} >
                     Program
                 </Text>
-                <Text variant={"campaign_private_use_name"} color={"#FFFFFF"} fontWeight={"400"} fontSize={{ base: "14px", lg: "20px" }} lineHeight={{ base: "20px" }} mt={"24px"} mb={"48px"}>
+                <Text variant={"campaign_private_use_name"} color={"#FFFFFF"} fontWeight={"400"} fontSize={{ base: "14px", lg: "20px" }} lineHeight={{ base: "20px",lg:"28px" }} mt={"24px"} mb={"48px"}>
                     Unlock <b>$1,236</b> in Crypto API credits - <b>Free for First 100 Users!</b> <br />Limited-time API sponsorship!
                 </Text>
                 <Button variant={"ent_header_launch_button"}

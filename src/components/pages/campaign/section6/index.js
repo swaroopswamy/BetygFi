@@ -38,8 +38,8 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateForm = () => {
-        const { name, email, expectedMonthlyApiCalls, website } = formValue;
-        return name && email && expectedMonthlyApiCalls && website;
+        const { name, email, expectedMonthlyApiCalls, website, message } = formValue;
+        return name && email && expectedMonthlyApiCalls && website && message;
     };
 
     const handleSubmit = (e) => {
@@ -157,7 +157,7 @@ const CampaignPageSection6 = React.memo(({
                 <CustomFormInput
                     value={formValue.message}
                     isRequired={false}
-                    placeholder={"Tell us a little about your product"}
+                    placeholder={"Tell us a little about your product.*"}
                     type={"textarea"}
                     name="message"
                     onChange={handleInputChange}

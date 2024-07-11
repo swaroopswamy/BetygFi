@@ -28,7 +28,7 @@ const CampaignPageSection2 = React.memo(({ scrollToApply }) => {
                     Why BetygFi Crypto APIs?
                 </Text>
                 <Text variant={"campaign_mid_text"} textAlign={"center"}>
-                    Explain how the free API can be beneficial. Lorem ipsum dolor sit amet<br /> consectetur. Arcu neque blandit laoreet at eleifend
+                    BetygFi Crypto APIs offer reliable, all-in-one cryptocurrency data with <br />24/7 support and a nearly perfect uptime record.
                 </Text>
             </Box>
             {

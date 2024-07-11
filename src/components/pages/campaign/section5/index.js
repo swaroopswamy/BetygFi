@@ -22,7 +22,7 @@ const CampaignPageSection5 = React.memo(() => {
                     Build in 3 steps
                 </Text>
                 <Text variant={"campaign_mid_text"} textAlign={"center"}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus mattis<br /> viverra ullamcorper cras viverra elementum donec.
+                    Follow three simple steps to get started with BetygFi<br /> Crypto APIs.
                 </Text>
             </Box>
             <Box mt={{ base: "20px", lg: "80px" }} layerStyle={"flexCenter"} gap={"70px"} px={{ base: "0px", lg: "70px" }} flexDir={{ base: "column", lg: "row" }}>
