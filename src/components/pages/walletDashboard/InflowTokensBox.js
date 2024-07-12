@@ -17,10 +17,10 @@ import {
 } from "@components/pages/walletDashboard/helper";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import CustomAvatar from "@components/avatar";
+const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
 
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const GenericTable = dynamic(() => import("@components/table"));
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const InflowTokensBox = () => {
 	const inflowOutflowTokensData = useSelector(
@@ -138,9 +138,9 @@ const TableHeaderRowMobile = () => {
 
 const TableBodyRowMobileButtonComp = ({ item }) => {
 	return (
-		<Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
+		<Box w="100%" m={"15px 8px"} layerStyle={"flexCenter"}>
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
-				<Box layerStyle={"flexCenterSpaceBetween"}>
+				<Box layerStyle={"flexCenter"}>
 					<Image
 						width={20}
 						height={20}
@@ -148,17 +148,17 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						style={{ borderRadius: "50%" }}
 						alt=""
 					/>
-					<Text variant={"smallTableHeaderMobile"} ml="12px">
+					<Text variant={"smallTableHeaderMobile"} textAlign={"left"} ml="10px" lineHeight={"15px"}>
 						{item?.symbol}
 					</Text>
 				</Box>
 
 				<Text
 					variant={"smallTableHeaderMobile"}
-					textAlign={"left"}
+					//textAlign={"left"}
 					color={useColorModeValue("#245F00", "#60C000")}
 				>
-					+ USD {USDollar.format(item?.value)}
+					+USD {USDollar.format(item?.value)}
 				</Text>
 			</Box>
 		</Box>

@@ -1,9 +1,12 @@
+"use client";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
 import moment from "moment";
 import Image from "next/image";
-import React from "react";
 import { useSelector } from "react-redux";
-import FearMeter from "./fearScore";
+
+import dynamic from "next/dynamic";
+const FearMeter = dynamic(() => import("@components/pages/coin/fearScore", { ssr: false }));
+
 
 const FearGridIndexSmallBox = () => {
     const { colorMode } = useColorMode();

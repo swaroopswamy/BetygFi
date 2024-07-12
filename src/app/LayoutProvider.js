@@ -9,25 +9,27 @@ import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, NTF_URL_COOKIE_NAME } from "@uti
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import isEmpty from "lodash/isEmpty";
 import { useAccount, useDisconnect } from "wagmi";
-import CustomToast from "@components/toast";
 import { watchAccount } from '@wagmi/core';
 import { config } from "./Web3Provider";
-//import LoginPage from "@components/login";
-import Footer from "@components/footer";
-import SidebarContent from "@components/sidebar";
-import Navbar from "@components/header";
+
 import AppConfigContext from "@components/context/appConfigContext";
 import { getEnv, mapTypeObject, replaceWithWS } from "@util/utility";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
-import NotificationDrawer from "@components/notification/drawer";
+import dynamic from "next/dynamic";
+
+import Footer from "@components/footer";
+import SidebarContent from "@components/sidebar";
+import Navbar from "@components/header";
 import { usePathname } from "next/navigation";
+
+const NotificationDrawer = dynamic(() => import("@components/notification/drawer"), { ssr: false });
+const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
+
 
 export default function LayoutProvider({ appConfig, children }) {
     const dispatch = useDispatch();
-    const pathname = usePathname();
-    const { onOpen, onClose } = useDisclosure();
-    // const { connector: activeConnector } = useAccount();
+    const { /* onOpen, */ onClose } = useDisclosure();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const { disconnect } = useDisconnect();
     const toast = useToast();
@@ -42,20 +44,14 @@ export default function LayoutProvider({ appConfig, children }) {
     const LoggedInData = useSelector((state) => state.authData.LoggedInData);
 
     const { address } = useAccount();
-
-    /*   const {
-          isOpen: isLoginModalOpen,
-          onOpen: onLoginModalOpen,
-          onClose: onLoginModalClose,
-      } = useDisclosure();
-   */
+    const pathname = usePathname();
 
     const {
         isOpen: isNotificationDrawerOpen,
         onOpen: onNotificationDrawerOpen,
         onClose: onNotificationDrawerClose,
     } = useDisclosure();
-    
+
     const Notifications = useSelector((state) => state?.appData?.Notifications);
     const notificationRecievedFromSocket = useSelector((state) => state?.appData?.notificationRecievedFromSocket);
     // Callback function to handle incoming messages
@@ -310,45 +306,29 @@ export default function LayoutProvider({ appConfig, children }) {
     return (
         <AppConfigContext.Provider value={appConfig}>
             {
-                pathname === '/home' ? (
-                    // <ReactLenis root>
+                pathname === "/campaign" ?
+                    <React.Fragment>
+                        {children}
+                    </React.Fragment>
+                    :
                     <React.Fragment>
                         <Box
-                            className="ent-page-container"
                             width="100%"
-                            minH=""
+                            minH="100vh"
                             _light={{
-                                bg: "#060606"
+                                bg: "#F0F0F5"
                             }}
                             _dark={{
-                                bg: "#060606"
+                                bg: "#191919"
                             }}
                             display={"flex"}
-
-                            flexDir={"column"}
                         >
-                            {children}
-                        </Box>
-                    </React.Fragment>
-                ) : (
-                    <Box
-                        width="100%"
-                        minH="100vh"
-                        _light={{
-                            bg: "#F0F0F5"
-                        }}
-                        _dark={{
-                            bg: "#191919"
-                        }}
-                        display={"flex"}
-                    >
-                        <SidebarContent
-                            onClose={() => onClose}
-                            w={isMobileSidebarCollapsed ? "null" : "80%"}
-                            h={"100%"}
-                        />
-                        {isMd ? (
-                            <>
+                            <SidebarContent
+                                onClose={() => onClose}
+                                w={isMobileSidebarCollapsed ? "null" : "80%"}
+                                h={"100%"}
+                            />
+                            {isMd ? (
                                 <Box
                                     display={{
                                         base: "none",
@@ -362,11 +342,7 @@ export default function LayoutProvider({ appConfig, children }) {
                                     overflowX={"hidden"}
                                 >
                                     <Navbar
-                                        onOpenMenu={onOpen}
-                                        isNotificationDrawerOpen={isNotificationDrawerOpen}
                                         onNotificationDrawerOpen={onNotificationDrawerOpen}
-                                        onNotificationDrawerClose={onNotificationDrawerClose}
-
                                     />
                                     <Box
                                         p="0"
@@ -383,9 +359,8 @@ export default function LayoutProvider({ appConfig, children }) {
                                         <Footer />
                                     </Box>
                                 </Box>
-                            </>
-                        ) : (
-                            <>
+
+                            ) : (
                                 <Box
                                     display={{ base: "flex", md: "none" }}
                                     flexDirection={"column"}
@@ -395,10 +370,7 @@ export default function LayoutProvider({ appConfig, children }) {
 
                                 >
                                     <Navbar
-                                        onOpenMenu={onOpen}
-                                        isNotificationDrawerOpen={isNotificationDrawerOpen}
                                         onNotificationDrawerOpen={onNotificationDrawerOpen}
-                                        onNotificationDrawerClose={onNotificationDrawerClose}
 
                                     />
                                     <Box
@@ -415,17 +387,18 @@ export default function LayoutProvider({ appConfig, children }) {
                                         <Footer />
                                     </Box>
                                 </Box>
-                            </>
-                        )}
-                    </Box>
-                )
+
+                            )}
+                        </Box>
+                        <NotificationDrawer
+                            isOpen={isNotificationDrawerOpen}
+                            onOpen={onNotificationDrawerOpen}
+                            onClose={onNotificationDrawerClose}
+                            notifications={Notifications}
+                        />
+                    </React.Fragment>
             }
-            <NotificationDrawer
-                isOpen={isNotificationDrawerOpen}
-                onOpen={onNotificationDrawerOpen}
-                onClose={onNotificationDrawerClose}
-                notifications={Notifications}
-            />
+
         </AppConfigContext.Provider>
     );
 }

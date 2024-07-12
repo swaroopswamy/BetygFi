@@ -69,7 +69,9 @@ const TickerETFNetInflowBox = () => {
         },
         xaxis: {
             type: "datetime",
+            tickAmount: 10,
             labels: {
+                format: 'dd MMM',
                 style: {
                     colors: colorMode === "light" ? "#757575" : "#A5A5A5",
                     fontSize: "12px",
@@ -81,6 +83,12 @@ const TickerETFNetInflowBox = () => {
                 formatter: function (val) {
                     return new Date(val).toUTCString();
                 }
+            },
+            datetimeFormatter: {
+                year: 'yyyy',
+                month: 'MMM yyyy',
+                day: 'dd MMM',
+                hour: 'HH:mm',
             },
         },
         yaxis: {
@@ -143,7 +151,7 @@ const TickerETFNetInflowBox = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: 5,
+                columnWidth: 3,
             },
         },
     };

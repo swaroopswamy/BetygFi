@@ -1,15 +1,29 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
+
+/* 
 import TopGainersSmallBox from "@/components/pages/coin/TopGainersSmallBox";
 import TopLosersSmallBox from "@/components/pages/coin/TopLosersSmallBox";
 import BTCetfSmallBox from "./BTCetfSmallBox";
 import BTCDominanceSmallBox from "./BTCDominanceSmallBox";
 import SandPSmallBox from "./S&PSmallBox";
 import FearGridIndexSmallBox from "./FearGridIndexSmallBox";
+*/
+import dynamic from "next/dynamic";
+
+const TopGainersSmallBox = dynamic(() => import('@/components/pages/coin/TopGainersSmallBox'), { ssr: false });
+const TopLosersSmallBox = dynamic(() => import('@/components/pages/coin/TopLosersSmallBox'), { ssr: false });
+const BTCetfSmallBox = dynamic(() => import('@/components/pages/coin/BTCetfSmallBox'), { ssr: false });
+const BTCDominanceSmallBox = dynamic(() => import('@/components/pages/coin/BTCDominanceSmallBox'), { ssr: false });
+const SandPSmallBox = dynamic(() => import('@/components/pages/coin/S&PSmallBox'), { ssr: false });
+const FearGridIndexSmallBox = dynamic(() => import('@/components/pages/coin/FearGridIndexSmallBox'), { ssr: false });
+
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
@@ -84,12 +98,12 @@ const HighlightsBox = () => {
             </Slider>
             {
                 currentSlide > 0 && (
-                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"98px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+                    <Box onClick={goToPrevSlide} pos={"absolute"} left={"4px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                         <i className="icon arrow_circle_light" style={{ rotate: "180deg" }} />
                     </Box>
                 )
             }
-            <Box onClick={goToNextSlide} pos={"absolute"} right={"10px"} top={"98px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+            <Box onClick={goToNextSlide} pos={"absolute"} right={"15px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                 <i className="icon arrow_circle_light" />
             </Box>
         </Box>

@@ -10,8 +10,8 @@ import {
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const GenericTable = dynamic(() => import("@components/table"));
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const OutflowTokensBox = () => {
 	const inflowOutflowTokensData = useSelector(
@@ -130,7 +130,7 @@ const TableHeaderRowMobile = () => {
 
 const TableBodyRowMobileButtonComp = ({ item }) => {
 	return (
-		<Box w="100%" m={"16px"} layerStyle={"flexCenter"}>
+		<Box w="100%" m={"15px 8px"} layerStyle={"flexCenter"}>
 			<Box layerStyle={"flexCenterSpaceBetween"} w={"100%"}>
 				<Box layerStyle={"flexCenterSpaceBetween"}>
 					<Image
@@ -142,13 +142,13 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						style={{ borderRadius: '50%' }}
 						alt="logo"
 					/>
-					<Text variant={"smallTableHeaderMobile"} ml="12px">
+					<Text variant={"smallTableHeaderMobile"} textAlign={"left"} ml="10px">
 						{item?.symbol}
 					</Text>
 				</Box>
 
 				<Text variant={"smallTableHeaderMobile"}
-					textAlign={"left"}
+					//textAlign={"left"}
 					color={useColorModeValue('#EF1E1E', '#FF3535')}>
 					- USD {USDollar.format(item?.value)}
 				</Text>

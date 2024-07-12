@@ -9,10 +9,10 @@ import {
     postReportBug,
     resetReportBug,
 } from "@redux/app_data/dataSlice";
-const CustomInput = dynamic(() => import("@components/customInput"));
-const CustomModal = dynamic(() => import("@components/custommodal/index"));
-const CustomDropdown = dynamic(() => import("@components/dropdown/index"));
-const CustomToast = dynamic(() => import("@/components/toast"));
+const CustomInput = dynamic(() => import("@components/customInput"), { ssr: false });
+const CustomModal = dynamic(() => import("@components/custommodal/index"), { ssr: false });
+const CustomDropdown = dynamic(() => import("@components/dropdown/index"), { ssr: false });
+const CustomToast = dynamic(() => import("@/components/toast"), { ssr: false });
 const ReportBugModal = ({ isOpen, onOpen, onClose }) => {
     const dispatch = useDispatch();
     const toast = useToast();

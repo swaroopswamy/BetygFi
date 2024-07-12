@@ -3,11 +3,11 @@ import { Box } from "@chakra-ui/react";
 import React from "react";
 import dynamic from "next/dynamic";
 
-const ProtocolAllocationBox = dynamic(() => import("@components/pages/walletDashboard/ProtocolAllocationBox"));
-const InteractionWithKnownEntitiesBox = dynamic(() => import("@components/pages/walletDashboard/InteractionWithKnownEntitiesBox"));
-const InflowTokensBox = dynamic(() => import("@components/pages/walletDashboard/InflowTokensBox"));
-const OutflowTokensBox = dynamic(() => import("@components/pages/walletDashboard/OutflowTokensBox"));
-const PerformanceMultiLineChartBox = dynamic(() => import("@components/pages/walletDashboard/PerformanceMultiLineChartBox"));
+const ProtocolAllocationBox = dynamic(() => import("@components/pages/walletDashboard/ProtocolAllocationBox"), { ssr: false });
+const InteractionWithKnownEntitiesBox = dynamic(() => import("@components/pages/walletDashboard/InteractionWithKnownEntitiesBox"), { ssr: false });
+const InflowTokensBox = dynamic(() => import("@components/pages/walletDashboard/InflowTokensBox"), { ssr: false });
+const OutflowTokensBox = dynamic(() => import("@components/pages/walletDashboard/OutflowTokensBox"), { ssr: false });
+const PerformanceMultiLineChartBox = dynamic(() => import("@components/pages/walletDashboard/PerformanceMultiLineChartBox"), { ssr: false });
 
 const WalletAnalyticsPanel = () => {
 	return (

@@ -6,10 +6,10 @@ import { SingleAccordionComp } from "@components/accordion";
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { isNotNullAndUndefined, orderByKey } from "@util/utility";
 import { useSearchParams } from "next/navigation";
-import SlideLeftTable from "./slideLeftTable";
 
-const TooltipComp = dynamic(() => import("@components/tooltipComp"));
-const SkeletonTable = dynamic(() => import("@components/skeleton"));
+const SlideLeftTable = dynamic(() => import("@components/table/slideLeftTable"), { ssr: false });
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
+const SkeletonTable = dynamic(() => import("@components/skeleton"), { ssr: false });
 
 const GenericTable = ({
 	isFirstColumnSmall = false,

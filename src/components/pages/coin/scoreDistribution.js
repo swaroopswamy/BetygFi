@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Text, Tooltip } from "@chakra-ui/react";
-import TooltipComp from "@components/tooltipComp";
 import { scoreChangedReducer } from "@redux/coin_data/dataSlice";
 import { calculatePercentage } from "@util/utility";
-
+import dynamic from "next/dynamic";
+const TooltipComp = dynamic(() => import("@components/tooltipComp"), { ssr: false });
 const boxData = [
     { bgColor: "#0E6027", label: "Low", key: "Low", index: 0 },
     { bgColor: "#00799F", label: "Moderate", key: "Moderate", index: 1 },
@@ -23,13 +23,13 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                 key={data.index}
                 minW={{
                     base:
-                        data.index === 0 || data.index === 1
-                            ? "70px"
-                            : "60px",
+                        data.index === 1 || data.index === 3
+                            ? "80px"
+                            : "50px",
                     md:
-                        data.index === 0 || data.index === 1
-                            ? "90px"
-                            : "80px",
+                        data.index === 1 || data.index === 3
+                            ? "85px"
+                            : "50px",
                 }}
                 position={"relative"}
                 borderTopLeftRadius={data.index === 0 ? "14px" : "0px"}
@@ -50,10 +50,10 @@ const ScoreBox = ({ data, totalDefis, scoreTotalData, ScoreSelectHandler }) => {
                     zIndex: 1,
                     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
-                _notHovered={{
+                /* _notHovered={{
                     transform: "scale(1.0)",
                     zIndex: 0,
-                }}
+                }} */
                 transform={
                     scoreSelected === data.key ? "scale(1.1)" : "scale(1)"
                 }

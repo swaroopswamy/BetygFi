@@ -161,7 +161,6 @@ const DevelopmentInfo = () => {
             layerStyle={"flexColumn"}
             justifyContent={"space-between"}
             p={"10px"}
-            pt={"40px"}
             minW={{ base: "100%", lg: "60%" }}
             gap={"30px"}
         >

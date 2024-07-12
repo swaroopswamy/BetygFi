@@ -1,11 +1,15 @@
+"use client";
 import { Box, Select, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import CustomChart from "@components/graph";
 import { sapDaySelectReducer } from "@redux/coin_data/dataSlice";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NoDataAvailable from "./NodataSmallBox";
 import moment from "moment";
+
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
+const NoDataAvailable = dynamic(() => import("@components/pages/coin/NodataSmallBox", { ssr: false }));
+
 
 const SandPSmallBox = () => {
     const { colorMode } = useColorMode();
@@ -42,15 +46,15 @@ const SandPSmallBox = () => {
         stroke: {
             curve: 'smooth',
             width: 1,
-            colors: "rgba(36, 95, 0, 1)"
+            colors: ["#245F00"]
         },
         fill: {
             type: 'gradient',
             gradient: {
-                shade: 'light', // Choose shade (light, dark)
-                type: 'horizontal', // Choose gradient type (horizontal, vertical)
-                opacityFrom: 0.5, // Starting opacity (0-1)
-                opacityTo: 0.8 // Ending opacity (0-1)
+                shade: 'light',
+                type: 'vertical',
+                gradientToColors: ["rgba(255, 255, 255, 0)"],
+                //stops: [0, 100],
             },
             colors: ["#245F00"]
         },
@@ -63,7 +67,8 @@ const SandPSmallBox = () => {
                 show: true,
                 style: {
                     colors: useColorModeValue("#16171B", "#FFFFFF"),
-                    fontSize: "11px",
+                    fontFamily: "Inter",
+                    fontSize: "12px",
                     fontWeight: 300,
                 },
             },
@@ -82,27 +87,27 @@ const SandPSmallBox = () => {
             theme: colorMode,
             custom: function ({ dataPointIndex, seriesIndex, w }) {
                 let entry = w.config.series[seriesIndex].data[dataPointIndex];
-                    return (
-                        '<div class="btc_dominance_tooltip">' +
-                            '<div class="btc_dominance_tooltip_text">' +
-                                '<p>' +
-                                    "S&P 500 Price " +
-                                    "$" +
-                                    entry?.y?.toFixed(2) +
-                                '</p>' +
-                            "</div>" +
-                            '<div class="btc_dominance_tooltip_text_date">' +
-                                moment(entry?.x).format('DD MMM, YYYY') +
-                            "</div>" +
-                        "</div>"
-                    );
-                },
+                return (
+                    '<div class="btc_dominance_tooltip">' +
+                    '<div class="btc_dominance_tooltip_text">' +
+                    '<p>' +
+                    "S&P 500 Price " +
+                    "$" +
+                    entry?.y?.toFixed(2) +
+                    '</p>' +
+                    "</div>" +
+                    '<div class="btc_dominance_tooltip_text_date">' +
+                    moment(entry?.x).format('DD MMM, YYYY') +
+                    "</div>" +
+                    "</div>"
+                );
+            },
         },
     };
 
     useEffect(() => {
         setSeries([{
-            data: SAPData?.data?.data
+            data: SAPData?.data?.data?.filter((item) => ![null, undefined, ''].includes(item))
         }]);
     }, [SAPData]);
     return (

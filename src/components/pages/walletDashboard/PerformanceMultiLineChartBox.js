@@ -3,8 +3,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import React from "react";
-import TooltipComp from "@components/tooltipComp";
-
+import dynamic from "next/dynamic";
+const TooltipComp = dynamic(() => import('@components/tooltipComp'), { ssr: false });
 const PerformanceMultiLineChartBox = () => {
 	// const { colorMode } = useColorMode();
 	/* 	const walletBalanceData = useSelector(

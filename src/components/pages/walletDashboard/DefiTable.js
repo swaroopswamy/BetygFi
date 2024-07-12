@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { portfolioTableHeader, PortfolioTableDesktop, PortfolioTableMobile, } from "@components/pages/walletDashboard/helper";
 
-const GenericTable = dynamic(() => import("@components/table"));
+const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 
 const DefiTable = ({ walletBalanceData }) => {
 	return (
@@ -283,7 +283,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						fontSize={"14px"}
 						fontWeight={"400"}
 						letterSpacing={"1px"}
-						ml="6px"
+						ml="5px"
 					>
 						{item?.symbol}
 					</Text>
@@ -303,7 +303,7 @@ const TableBodyRowMobileButtonComp = ({ item }) => {
 						color: "#FFF",
 					}}
 				>
-					{item?.price} USD
+					{item?.price.toFixed(8)} USD
 				</Text>
 			</Box>
 		</Box>

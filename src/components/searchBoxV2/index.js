@@ -188,8 +188,9 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 width={20}
                                 height={20}
                                 alt="search_icon"
-                                borderLeftRadius={"20px"}
-                                borderRightRadius={"20px"}
+                                style={{
+                                    borderRadius:"20px",
+                                }}
                             />
                         </InputLeftElement>
                         <Box
