@@ -20,7 +20,8 @@ const CampaignPageSection3 = React.memo(() => {
                     The numbers don’t lie
                 </Text>
                 <Text variant={"campaign_mid_text"} textAlign={"center"}>
-                    BetygFi collect On-chain and off-chain from all the possible sources provide<br /> accurate and comprehensive cryptocurrency data you can trust.
+                    BetygFi collects On-chain and off-chain from all possible sources and provide<br />
+                    accurate and comprehensive cryptocurrency data you can trust.
                 </Text>
             </Box>
             <Box p="40px" layerStyle={"flexCenter"} flexDir={{ base: "column", lg: "row" }} bgColor={"#FFFFFF"} borderRadius={"12px"} justifyContent={"space-between"} alignItems={{ base: "baseline", lg: "center" }} gap={"40px"} boxShadow={"0px 14px 64px 0px rgba(15, 15, 15, 0.10)"}>
