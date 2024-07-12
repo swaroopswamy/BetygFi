@@ -70,11 +70,12 @@ export const getETFListDataFetched = async (type) => {
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
-        if (checkIfCacheAvailable(url)) {
-            return checkIfCacheAvailable(url);
+        const finalUrl = url + payload.page + payload.score_dist;
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
         } else {
             const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
-            return cacheHandler(url, data, false, 4);
+            return cacheHandler(finalUrl, data, false, 4);
         }
     } catch (err) {
         return rejectWithValue(err);

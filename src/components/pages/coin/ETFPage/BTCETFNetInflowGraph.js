@@ -11,6 +11,134 @@ const BTCETFNetInflowBox = () => {
     const ETFInflowOutflowData = useSelector((state) => state?.coinData?.ETFInflowOutflowData);
     const [selectedRange, setSelectedRange] = useState("30d");
 
+    const [options, setOptions] = useState(
+        {
+            chart: {
+                stacked: false,
+                toolbar: {
+                    show: false,
+                },
+            },
+            colors: ["#9ADA8A", "#FF7272", "#544FC5", "#2CAFFE"],
+            dataLabels: {
+                enabled: false,
+            },
+            xaxis: {
+                type: "datetime",
+                //tickAmount: 10,
+                labels: {
+                    format: 'dd MMM',
+                    style: {
+                        colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                        fontSize: "12px",
+                        fontWeight: 300,
+                    },
+                },
+                tooltip: {
+                    enabled: true,
+                    formatter: function (val) {
+                        return new Date(val).toUTCString();
+                    }
+                },
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'MMM yyyy',
+                    day: 'dd MMM',
+                    hour: 'HH:mm',
+                },
+            },
+            yaxis: [
+                {
+                    seriesName: "bar",
+                    labels: {
+                        formatter: function (changeUsd) {
+                            return millify(changeUsd, {
+                                precision: 0,
+                                locales: "en-US",
+                            });
+                        },
+                        style: {
+                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                            fontSize: "12px",
+                            fontWeight: 300,
+                        },
+                    },
+                    tooltip: {
+                        enabled: false,
+                        formatter: function (val) {
+                            return new Date(val).toUTCString();
+                        }
+                    },
+                },
+                {
+                    show: false,
+                    tooltip: {
+                        enabled: true,
+                        formatter: function (val) {
+                            return new Date(val).toUTCString();
+                        }
+                    },
+                    forceNiceScale: true,
+                },
+            ],
+            grid: {
+                show: true,
+            },
+            legend: {
+                fontSize: "12px",
+                fontWeight: 400,
+                position: "top",
+                horizontalAlign: "right",
+                markers: {
+                    radius: 100,
+                },
+                labels: {
+                    colors: colorMode === "light" ? "#000000" : "#FFFFFF",
+                },
+                formatter: function (seriesName, opts) {
+                    if (opts?.seriesIndex === 0) {
+                        return ["Inflow"];
+                    } else if (opts?.seriesIndex === 1) {
+                        return ["Ouflow"];
+                    } else {
+                        return [seriesName];
+                    }
+                }
+            },
+            tooltip: {
+                theme: colorMode === "light" ? "light" : "dark",
+                custom: function ({ dataPointIndex, seriesIndex, w }) {
+
+                    let entry = w.config.series[seriesIndex].data[dataPointIndex];
+                    let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
+                    let marker = entry?.y >= 0 ? "/icons/Inflow_Icon.svg" : "/icons/Outflow_Icon.svg";
+                    let tooltipContent = '';
+                    tooltipContent = `
+                        <div class="tooltip-parent">
+                           <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                           <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">BTC Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
+                           <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow} :${flow === "Inflow" ? ` <span style="font-weight: bold;"> +${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>` : ` <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`}</div>
+                        </div>
+                        `;
+                    return tooltipContent;
+                },
+                marker: {
+                    show: true,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: "20px",
+                    horizontal: false,
+                    endingShape: 'flat',
+                },
+            },
+            stroke: {
+                curve: 'smooth',
+                width: [2, 2, 3]
+            },
+        }
+    );
     const getFilteredData = (range) => {
         const currentDate = new Date();
         switch (range) {
@@ -24,6 +152,20 @@ const BTCETFNetInflowBox = () => {
                 return ETFInflowOutflowData?.data;
             default:
                 return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000));
+        }
+    };
+
+    const calculateColumnWidth = () => {
+        const filteredData = getFilteredData(selectedRange);
+        const dataLength = filteredData !== null ? filteredData.length : 0 ;
+        if (dataLength > 30) {
+            return "3px";
+        } else if (dataLength > 14 && dataLength <= 30) {
+            return "20px";
+        } else if (dataLength > 7 && dataLength <= 14) {
+            return "25px";
+        } else {
+            return "25px";
         }
     };
 
@@ -107,148 +249,17 @@ const BTCETFNetInflowBox = () => {
                 },
             ]);
         }
+        setOptions({
+            ...options,
+            plotOptions: {
+                bar: {
+                    columnWidth: calculateColumnWidth(),
+                    horizontal: false,
+                    endingShape: 'flat',
+                },
+            },
+        });
     }, [ETFInflowOutflowData, colorMode, selectedRange]);
-    
-    const calculateColumnWidth = () => {
-        const filteredData = getFilteredData(selectedRange);
-        const dataLength = filteredData;
-        if (dataLength > 30) {
-            return "3px";
-        } else if (dataLength > 14) {
-            return "20px";
-        } else if (dataLength > 7) {
-            return "25px";
-        } else {
-            return "25px";
-        }
-    };
-
-    const options = {
-        chart: {
-            stacked: false,
-            toolbar: {
-                show: false,
-            },
-        },
-        colors: ["#9ADA8A", "#FF7272", "#544FC5", "#2CAFFE"],
-        dataLabels: {
-            enabled: false,
-        },
-        xaxis: {
-            type: "datetime",
-            //tickAmount: 10,
-            labels: {
-                format: 'dd MMM',
-                style: {
-                    colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                    fontSize: "12px",
-                    fontWeight: 300,
-                },
-            },
-            tooltip: {
-                enabled: true,
-                formatter: function (val) {
-                    return new Date(val).toUTCString();
-                }
-            },
-            datetimeFormatter: {
-                year: 'yyyy',
-                month: 'MMM yyyy',
-                day: 'dd MMM',
-                hour: 'HH:mm',
-            },
-        },
-        yaxis: [
-            {
-                seriesName: "bar",
-                labels: {
-                    formatter: function (changeUsd) {
-                        return millify(changeUsd, {
-                            precision: 0,
-                            locales: "en-US",
-                        });
-                    },
-                    style: {
-                        colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                        fontSize: "12px",
-                        fontWeight: 300,
-                    },
-                },
-                tooltip: {
-                    enabled: false,
-                    formatter: function (val) {
-                        return new Date(val).toUTCString();
-                    }
-                },
-            },
-            {
-                show: false,
-                tooltip: {
-                    enabled: true,
-                    formatter: function (val) {
-                        return new Date(val).toUTCString();
-                    }
-                },
-                forceNiceScale: true,
-            },
-        ],
-        grid: {
-            show: true,
-        },
-        legend: {
-            fontSize: "12px",
-            fontWeight: 400,
-            position: "top",
-            horizontalAlign: "right",
-            markers: {
-                radius: 100,
-            },
-            labels: {
-                colors: colorMode === "light" ? "#000000" : "#FFFFFF",
-            },
-            formatter: function (seriesName, opts) {
-                if (opts?.seriesIndex === 0) {
-                    return ["Inflow"];
-                } else if (opts?.seriesIndex === 1) {
-                    return ["Ouflow"];
-                } else {
-                    return [seriesName];
-                }
-            }
-        },
-        tooltip: {
-            theme: colorMode === "light" ? "light" : "dark",
-            custom: function ({ dataPointIndex, seriesIndex, w }) {
-
-                let entry = w.config.series[seriesIndex].data[dataPointIndex];
-                let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
-                let marker = entry?.y >= 0 ? "/icons/Inflow_Icon.svg" : "/icons/Outflow_Icon.svg";
-                let tooltipContent = '';
-                tooltipContent = `
-                    <div class="tooltip-parent">
-                       <div style="margin-bottom: 8px;">${new Date(entry?.x).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
-                       <div><img src="/icons/Price_Label.svg" style="width: 11px; height: 11px; display: inline-block; margin-right: 5px;">BTC Price: <span style="font-weight: bold;">$${entry?.price}</span></div>
-                       <div><img src="${marker}" style="width: 9; height: 9; display: inline-block; margin-right: 5px;">${flow} :${flow === "Inflow" ? ` <span style="font-weight: bold;"> +${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>` : ` <span style="font-weight: bold;"> ${millify(entry?.y, { precision: 0, locales: "en-US" })}</span>`}</div>
-                    </div>
-                    `;
-                return tooltipContent;
-            },
-            marker: {
-                show: true,
-            },
-        },
-        plotOptions: {
-            bar: {
-                columnWidth: calculateColumnWidth(),
-                horizontal: false,
-                endingShape: 'flat',
-            },
-        },
-        stroke: {
-            curve: 'smooth',
-            width: [2, 2, 3]
-        },
-    };
 
     const handleRangeChange = (range) => {
         setSelectedRange(range);
@@ -336,12 +347,12 @@ const BTCETFNetInflowBox = () => {
                             30d
                         </Button>
                         <Button
-                             variant={"modalButton"}
-                             className={selectedRange === '1yr' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
-                             height={"35px"}
-                             border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
-                             onClick={() => handleRangeChange('1yr')}
-                             minW={"-moz-fit-content"}
+                            variant={"modalButton"}
+                            className={selectedRange === '1yr' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                            height={"35px"}
+                            border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
+                            onClick={() => handleRangeChange('1yr')}
+                            minW={"-moz-fit-content"}
                         >
                             1yr
                         </Button>
