@@ -70,7 +70,7 @@ export const getETFListDataFetched = async (type) => {
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
-        const finalUrl = url + payload.page + payload.score_dist;
+        const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
         if (checkIfCacheAvailable(finalUrl)) {
             return checkIfCacheAvailable(finalUrl);
         } else {
