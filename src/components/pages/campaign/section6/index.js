@@ -1,6 +1,6 @@
 import { Box, Button, Text, useToast } from "@chakra-ui/react";
 import { postCampaignUserData, resetPostCampaignUserData } from "@redux/app_data/dataSlice";
-import { validateEmail } from "@util/utility";
+import { validateEmail, validateWebiste} from "@util/utility";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
-const validateWebsiteField = ()=>validateWebiste(formValue.website)
+    const validateWebsiteField = ()=> validateWebiste(formValue.website);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) {
