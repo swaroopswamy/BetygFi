@@ -166,19 +166,19 @@ const CampaignPageSection6 = React.memo(({
                     source: source
                 });
             }
-            if (PostCampaignUserData.isError) {
+            if (PostCampaignUserData.isError == true && PostCampaignUserData.isSuccess == false && PostCampaignUserData.isLoading == false) {
                 toast({
                     position: "bottom",
                     render: () => (
                         <CustomToast
                             isSuccessful={false}
-                            content={'Sorry! Please try again.'}
+                            content={PostCampaignUserData?.data}
                         />
                     ),
                 });
+                return;
             }
             dispatch(resetPostCampaignUserData());
-
         }
     }, [PostCampaignUserData]);
     return (

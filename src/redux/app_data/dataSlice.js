@@ -201,7 +201,7 @@ const AppDataSlice = createSlice({
 			state.PostCampaignUserData.isLoading = false;
 			state.PostCampaignUserData.isSuccess = false;
 			state.PostCampaignUserData.isError = true;
-			state.PostCampaignUserData.data = action.payload.message;
+			state.PostCampaignUserData.data = action.payload.response.data.message;
 		});
 	},
 	reducers: {
