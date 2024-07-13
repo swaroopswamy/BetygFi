@@ -44,9 +44,9 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
-    const validateMonthlyAPICalls = () => validateMonthApiCalls(formValue.email);
+    const validateMonthlyAPICalls = () => validateMonthApiCalls(formValue.expectedMonthlyApiCalls);
     const validateWebsiteField = () => validateWebiste(formValue.website);
-    const validateMonthApiCalls = () => typeof (formValue.expectedMonthlyApiCalls) === 'number';
+    const validateMonthApiCalls = (expectedMonthlyApiCalls) => !isNaN(+expectedMonthlyApiCalls) && typeof (+expectedMonthlyApiCalls) === 'number';
 
     const validateNameField = () => {
         const { name } = formValue;
