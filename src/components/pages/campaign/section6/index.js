@@ -44,7 +44,7 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
-
+const validateWebsiteField = ()=>validateWebiste(formValue.website)
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) {
@@ -66,6 +66,18 @@ const CampaignPageSection6 = React.memo(({
                     <CustomToast
                         isSuccessful={false}
                         content={'Email is invalid'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateWebsiteField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Website is invalid'}
                     />
                 ),
             });
