@@ -1,6 +1,6 @@
 import { Box, Button, Text, useToast } from "@chakra-ui/react";
 import { postCampaignUserData, resetPostCampaignUserData } from "@redux/app_data/dataSlice";
-import { validateEmail, validateWebiste} from "@util/utility";
+import { validateEmail, validateWebiste } from "@util/utility";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,23 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
-    const validateWebsiteField = ()=> validateWebiste(formValue.website);
+    const validateWebsiteField = () => validateWebiste(formValue.website);
+    const validateNameField = () => {
+        const { name } = formValue;
+        if (name.length < 3) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+    const validateMessageField = () => {
+        const { message } = formValue;
+        if (message.length < 3) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) {
@@ -83,6 +99,31 @@ const CampaignPageSection6 = React.memo(({
             });
             return;
         }
+        if (!validateNameField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Name should be atleast 3 characters'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateMessageField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Message should be atleast 3 characters'}
+                    />
+                ),
+            });
+            return;
+        }
+
         dispatch(postCampaignUserData(formValue));
     };
     useEffect(() => {
