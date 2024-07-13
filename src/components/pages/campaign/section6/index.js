@@ -44,7 +44,10 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
+    const validateMonthlyAPICalls = () => validateMonthApiCalls(formValue.email);
     const validateWebsiteField = () => validateWebiste(formValue.website);
+    const validateMonthApiCalls = () => typeof (formValue.expectedMonthlyApiCalls) === 'number';
+
     const validateNameField = () => {
         const { name } = formValue;
         if (name.length < 3) {
@@ -82,6 +85,18 @@ const CampaignPageSection6 = React.memo(({
                     <CustomToast
                         isSuccessful={false}
                         content={'Email is invalid'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateMonthlyAPICalls()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Expected Monthly Api Calls must be a number'}
                     />
                 ),
             });
@@ -203,7 +218,7 @@ const CampaignPageSection6 = React.memo(({
                     value={formValue.expectedMonthlyApiCalls}
                     isRequired={true}
                     placeholder={"Expected monthly API calls*"}
-                    type={"number"}
+                    type={"text"}
                     name="expectedMonthlyApiCalls"
                     onChange={handleInputChange}
                 />
