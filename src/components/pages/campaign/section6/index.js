@@ -1,6 +1,6 @@
 import { Box, Button, Text, useToast } from "@chakra-ui/react";
 import { postCampaignUserData, resetPostCampaignUserData } from "@redux/app_data/dataSlice";
-import { validateEmail } from "@util/utility";
+import { validateEmail, validateWebiste } from "@util/utility";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,26 @@ const CampaignPageSection6 = React.memo(({
     };
 
     const validateEmailForm = () => validateEmail(formValue.email);
+    const validateMonthlyAPICalls = () => validateMonthApiCalls(formValue.expectedMonthlyApiCalls);
+    const validateWebsiteField = () => validateWebiste(formValue.website);
+    const validateMonthApiCalls = (expectedMonthlyApiCalls) => !isNaN(+expectedMonthlyApiCalls) && typeof (+expectedMonthlyApiCalls) === 'number';
 
+    const validateNameField = () => {
+        const { name } = formValue;
+        if (name.length < 3) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+    const validateMessageField = () => {
+        const { message } = formValue;
+        if (message.length < 3) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!validateForm()) {
@@ -71,6 +90,55 @@ const CampaignPageSection6 = React.memo(({
             });
             return;
         }
+        if (!validateMonthlyAPICalls()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Expected Monthly Api Calls must be a number'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateWebsiteField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Website is invalid'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateNameField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Name should be atleast 3 characters'}
+                    />
+                ),
+            });
+            return;
+        }
+        if (!validateMessageField()) {
+            toast({
+                position: "bottom",
+                render: () => (
+                    <CustomToast
+                        isSuccessful={false}
+                        content={'Message should be atleast 3 characters'}
+                    />
+                ),
+            });
+            return;
+        }
+
         dispatch(postCampaignUserData(formValue));
     };
     useEffect(() => {
@@ -98,19 +166,19 @@ const CampaignPageSection6 = React.memo(({
                     source: source
                 });
             }
-            if (PostCampaignUserData.isError) {
+            if (PostCampaignUserData.isError == true && PostCampaignUserData.isSuccess == false && PostCampaignUserData.isLoading == false) {
                 toast({
                     position: "bottom",
                     render: () => (
                         <CustomToast
                             isSuccessful={false}
-                            content={'Sorry! Please try again.'}
+                            content={PostCampaignUserData?.data}
                         />
                     ),
                 });
+                return;
             }
             dispatch(resetPostCampaignUserData());
-
         }
     }, [PostCampaignUserData]);
     return (
@@ -150,7 +218,7 @@ const CampaignPageSection6 = React.memo(({
                     value={formValue.expectedMonthlyApiCalls}
                     isRequired={true}
                     placeholder={"Expected monthly API calls*"}
-                    type={"number"}
+                    type={"text"}
                     name="expectedMonthlyApiCalls"
                     onChange={handleInputChange}
                 />
