@@ -1,7 +1,29 @@
-import { getETFListDataFetched } from "@services/coinService";
+import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { BASE_URL } from "@util/constant";
+import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
+
+let API_SERVICE_URL = null;
+const getETFListDataSitemapFetch = async (payload) => {
+    try {
+        if (API_SERVICE_URL == null) {
+            const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
+            API_SERVICE_URL = config.API_SERVICE_URL;
+        }
+
+        const finalUrl = API_SERVICE_URL + `/coin-risk/etf-list?sitemap=true&type=${payload}&page=${payload.page}`;
+
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(finalUrl, data, false, 24);
+        }
+    } catch (error) {
+        return error;
+    }
+};
 
 const getEtfList = async (model, page) => {
     const payload = {
@@ -11,17 +33,19 @@ const getEtfList = async (model, page) => {
         "score_dist": ""
     };
 
-    const etfData = await getETFListDataFetched(payload);
+    const etfData = await getETFListDataSitemapFetch(payload);
     if (model.list == undefined) {
         model.list = [];
     }
-    if (model.list.length > 0) {
-        model.list = [...model.list, ...etfData.data];
-    } else {
-        model.list = [...etfData.data];
-    }
+    if (etfData?.data) {
+        if (model.list.length > 0) {
+            model.list = [...model.list, ...etfData.data];
+        } else {
+            model.list = [...etfData.data];
+        }
 
-    model.etfTotalPages = etfData.data.totalPages;
+        model.etfTotalPages = etfData.data.totalPages;
+    }
     return model;
 };
 

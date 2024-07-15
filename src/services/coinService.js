@@ -39,7 +39,7 @@ export const getCoinDashboardDataFetched = async (payload) => {
 
 export const getCoinRankingsTableDataFetched = async (payload) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table?sitemap=true`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);
@@ -54,7 +54,7 @@ export const getCoinRankingsTableDataFetched = async (payload) => {
 
 export const getETFListDataFetched = async (type) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?type=${type}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/etf-list?sitemap=true&type=${type}`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);
@@ -70,11 +70,12 @@ export const getETFListDataFetched = async (type) => {
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
-        if (checkIfCacheAvailable(url)) {
-            return checkIfCacheAvailable(url);
+        const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
         } else {
             const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
-            return cacheHandler(url, data, false, 4);
+            return cacheHandler(finalUrl, data, false, 4);
         }
     } catch (err) {
         return rejectWithValue(err);

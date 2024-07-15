@@ -5,7 +5,7 @@ import { Box, Text, Button, useMediaQuery, useColorMode } from "@chakra-ui/react
 import Image from "next/image";
 import EditPage from "./editModal";
 import { useDispatch, useSelector } from "react-redux";
-import { PublicAddressStringFormatter } from "@util/utility";
+import { PublicAddressStringFormatter, ValidImgURL } from "@util/utility";
 import moment from "moment";
 import { changeProfilePic } from "@redux/auth_data/authSlice";
 
@@ -35,7 +35,7 @@ const ProfileBox = () => {
     };
 
     useEffect(() => {
-        setUserImg(UserDetailsData?.data?.user?.profile_url);
+        setUserImg(ValidImgURL(UserDetailsData?.data?.user?.profile_url));
     }, [UserDetailsData]);
 
     return (

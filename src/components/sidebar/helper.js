@@ -1,7 +1,7 @@
 import { RiBugLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
 import { BiWalletAlt, BiBulb } from "react-icons/bi";
-import { SlSocialReddit, SlSettings, SlShield } from "react-icons/sl";
+import { /* SlSocialReddit, */ SlSettings, SlShield } from "react-icons/sl";
 import { RxDiscordLogo } from "react-icons/rx";
 import { BetygFiSmLogo } from "@components/icons";
 import { GoDatabase, GoGraph } from "react-icons/go";
@@ -79,12 +79,6 @@ export const communities = appConfig => [
         newTab: true,
     },
     {
-        name: "Reddit",
-        icon: SlSocialReddit,
-        path: "https://www.reddit.com/r/betygFi",
-        newTab: true,
-    },
-    {
         name: "Discord",
         icon: RxDiscordLogo,
         path: "https://discord.gg/bGMmeNRJtW",
@@ -96,6 +90,12 @@ export const communities = appConfig => [
         path: "https://twitter.com/betygFi",
         newTab: true,
     },
+    /* {
+        name: "Reddit",
+        icon: SlSocialReddit,
+        path: "https://www.reddit.com/r/betygFi",
+        newTab: true,
+    }, */
 ];
 
 export const legal = { name: "Legal", icon: SlShield, path: "/legal" };

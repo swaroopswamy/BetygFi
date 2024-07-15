@@ -43,7 +43,7 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                 >
                     {
                         coinDetails?.score &&
-                        <ScoreMeter score={[coinDetails?.score]} />
+                        <ScoreMeter score={coinDetails?.score} rank={coinDetails?.rank} />
                     }
                 </Box>
 
@@ -53,13 +53,13 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                     justifyContent={"space-between"}
                     w={"100%"}
                     gap={"35px"}
-                    p={"35px 10px 10px 10px"}
+                    p={{ base: "10px", bigSize: "35px 10px 10px 10px" }}
                 >
                     <Box
                         layerStyle={"flexColumn"}
                         justifyContent={"space-between"}
                         p={"10px"}
-                        pt={"40px"}
+                        pt={{ bigSize: "40px" }}
                         minW={{ base: "100%", bigSize: "50%" }}
                         gap={"60px"}
                     >
@@ -110,8 +110,8 @@ const CoinInfo = React.memo(({ coinDetails }) => {
                                 value={
                                     coinDetails?.volume_vol
                                         ? (100 * coinDetails?.volume_vol)?.toFixed(
-                                                4
-                                            )
+                                            4
+                                        )
                                         : "-"
                                 }
                                 tooltip={
@@ -253,8 +253,11 @@ const CoinInfo = React.memo(({ coinDetails }) => {
         </Box>
     );
 });
+
 export default CoinInfo;
+
 CoinInfo.displayName = "CoinInfo";
+
 const DashboardCell = ({ name, value, tooltip }) => {
     return (
         <Box layerStyle={"flexColumn"} w={"50%"}>

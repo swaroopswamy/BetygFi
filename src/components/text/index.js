@@ -392,6 +392,62 @@ const Text = defineStyleConfig({
             lineHeight: "38px",
             letterSpacing: "-0.32px",
         }),
+        campaign_title: () => ({
+            fontSize: { base: "32px", lg: "64px" },
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontFamily: "Raleway",
+            color: "#DADADA",
+            lineHeight: { base: "38px", lg: "78px" },
+            letterSpacing: "-1.28px",
+            textAlign: "left"
+        }),
+        campaign_sm_text: () => ({
+            fontSize: "16px",
+            fontStyle: "normal",
+            fontWeight: "400",
+            fontFamily: "DM Sans",
+            color: "#FFFFFF",
+            lineHeight: "24px",
+        }),
+        campaign_big_text: () => ({
+            fontSize: { base: "24px", lg: "48px" },
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontFamily: "DM Sans",
+            color: "#23262F",
+            lineHeight: { base: "28px", lg: "56px" },
+            letterSpacing: "-0.96px",
+            textTransform: "capitalize"
+        }),
+        campaign_feature_heading: () => ({
+            fontSize: { base: "16px", lg: "32px" },
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontFamily: "DM Sans",
+            color: "#23262F",
+            lineHeight: "24px",
+            textTransform: "capitalize"
+        }),
+        campaign_private_use_name: () => ({
+            fontSize: "20px",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontFamily: "DM Sans",
+            color: "#23262F",
+            lineHeight: "28px",
+            textTransform: "capatalize"
+        }),
+        campaign_12_text: () => ({
+            fontSize: "12px",
+            fontStyle: "normal",
+            fontWeight: "700",
+            fontFamily: "DM Sans",
+            color: "#1454B2",
+            lineHeight: "20px",
+            letterSpacing: "1.2px",
+            textTransform: "uppercase"
+        }),
     },
     defaultProps: {
         variant: "base",

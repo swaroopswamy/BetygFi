@@ -5,7 +5,6 @@ import millify from "millify";
 import dynamic from "next/dynamic";
 const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
 
-
 const HeatmapGraphBox = () => {
     const { colorMode } = useColorMode();
     const ETFHeatMapData = useSelector((state) => state?.coinData?.ETFHeatMapData);
@@ -14,25 +13,35 @@ const HeatmapGraphBox = () => {
 
     useEffect(() => {
         if (ETFHeatMapData) {
+            const getColor = (value, index) => {
+                const positiveColors = ['#9ADA8A', '#C3F0B8'];
+                const negativeColors = ['#FF6161', '#FFA3A3'];
+                if (value >= 0) {
+                    return positiveColors[index % 2];
+                } else {
+                    return negativeColors[index % 2];
+                }
+            };
+
             let sortedData;
             if (activeCategory === 'volume') {
-                sortedData = ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map((item, index) => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.["priceChange"],
-                        fillColor: item?.["priceChange"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                        fillColor: getColor(item?.["priceChange"], index)
                     }
                 ));
             } else {
-                sortedData = ETFHeatMapData?.data?.map(item => (
+                sortedData = ETFHeatMapData?.data?.map((item, index) => (
                     {
                         x: item.ticker,
                         y: item?.[activeCategory],
                         name: activeCategory,
                         [activeCategory + "Change"]: item?.[activeCategory + "Change"],
-                        fillColor: item?.[activeCategory + "Change"] >= 0 ? '#9ADA8A' : '#FF9F6A'
+                        fillColor: getColor(item?.[activeCategory + "Change"], index)
                     }
                 ));
             }
@@ -195,7 +204,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'holding' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('holding')}
                         minW={"-moz-fit-content"}
                     >
@@ -206,7 +215,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'price' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('price')}>
                         Price
                     </Button>
@@ -215,11 +224,11 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'volume' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('volume')}>
                         Volume
                     </Button>
-                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={"1px solid #E0E0E0"}>
+                    {/* <Button variant={"modalButton"} bg={"background.primary"} height={"35px"} border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}>
                         Turnover
                     </Button> */}
                     <Button
@@ -227,7 +236,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'shares' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('shares')}>
                         Shares
                     </Button>
@@ -236,7 +245,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'aum' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('aum')}>
                         AUM
                     </Button>
@@ -245,7 +254,7 @@ const HeatmapGraphBox = () => {
                         variant={"modalButton"}
                         className={activeCategory === 'marketCap' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
                         height={"35px"}
-                        border={"1px solid #E0E0E0"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
                         onClick={() => handleButtonClick('marketCap')}>
                         Market Cap
                     </Button>

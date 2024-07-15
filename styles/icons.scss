@@ -425,8 +425,111 @@
 
 .tab_library_icon_dark {
 
-
     &::before {
         background-image: url('/images/tab_library_icon_light.svg');
+    }
+}
+
+// campaign page
+.ent_logo {
+    width: 140px;
+    height: 29px;
+    cursor: pointer;
+
+    &::before {
+        background-image: url('/icons/ent_logo.svg');
+    }
+}
+
+
+.numbers_icon_1 {
+    width: 20px;
+    height: 20px;
+
+    &::before {
+        background-image: url('/icons/numbers_icon_1.svg');
+    }
+}
+
+.numbers_icon_2 {
+    width: 20px;
+    height: 20px;
+
+    &::before {
+        background-image: url('/icons/numbers_icon_2.svg');
+    }
+}
+
+.numbers_icon_3 {
+    width: 20px;
+    height: 20px;
+
+    &::before {
+        background-image: url('/icons/numbers_icon_3.svg');
+    }
+}
+
+
+.private_key_use_1 {
+    width: 48px;
+    height: 48px;
+
+    &::before {
+        background-image: url('/icons/private_key_use_1.svg');
+    }
+}
+
+.private_key_use_2 {
+    width: 48px;
+    height: 48px;
+
+    &::before {
+        background-image: url('/icons/private_key_use_2.svg');
+    }
+}
+
+.private_key_use_3 {
+    width: 48px;
+    height: 48px;
+
+    &::before {
+        background-image: url('/icons/private_key_use_3.svg');
+    }
+}
+
+.private_key_use_4 {
+    width: 48px;
+    height: 48px;
+
+    &::before {
+        background-image: url('/icons/private_key_use_4.svg');
+    }
+}
+
+
+.build_step_1 {
+    width: 100px;
+    height: 100px;
+
+    &::before {
+        background-image: url('/icons/build_step_1.svg');
+    }
+}
+
+.build_step_2 {
+    width: 100px;
+    height: 100px;
+
+    &::before {
+        background-image: url('/icons/build_step_2.svg');
+    }
+}
+
+.build_step_3 {
+    width: 100px;
+    height: 100px;
+
+    &::before {
+        background-image: url('/icons/build_step_3.svg');
     }
 }

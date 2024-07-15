@@ -2,7 +2,7 @@ import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
 import moment from "moment";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME, SEARCH_TYPE_SELECTED } from "./constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, DOMAIN, LOCAL_FILE_PATH, LOCAL_SERVER_HOST, NTF_URL_COOKIE_NAME, SEARCH_TYPE_SELECTED } from "./constant";
 
 export const makeCapitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -28,6 +28,17 @@ export const reloadSession = () => {
         document.dispatchEvent(event);
     }
 };
+
+export async function copyToClipboard(link) {
+    let url = process.env.NEXT_PUBLIC_BETYGFI_URL + link;
+    try {
+        await navigator.clipboard.writeText(url);
+        /* Resolved - text copied to clipboard successfully */
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+        /* Rejected - text failed to copy to the clipboard */
+    }
+}
 
 export const groupListByKey_Pure = (list, key) => Object.groupBy(list, ({ [key]: key_ }) => key_);
 
@@ -230,6 +241,7 @@ export const getEnv = (url) => {
     const allowedDev = ['devplatform.betygfi.com', 'devcommunity.betygfi.com', 'devstudio.betygfi.com'];
     const allowedLocal = ['localplatform.betygfi.com', 'localcommunity.betygfi.com', 'localstudio.betygfi.com'];
     const allowedKube = ['kubeplatform.betygfi.com', 'kubecommunity.betygfi.com', 'kubestudio.betygfi.com'];
+    const allowedLocalhost = ['localhost:7000'];
 
     if (url) {
 /*         if (allowedPlatform.includes(url)) {
@@ -238,7 +250,7 @@ export const getEnv = (url) => {
             return 'qa';
         } else if (allowedDev.includes(url)) {
             return 'dev';
-        } else if (allowedLocal.includes(url)) {
+        } else if (allowedLocal.includes(url) || allowedLocalhost.includes(url)) {
             return 'local';
         } else if (allowedKube.includes(url)) {
             return 'kube';
@@ -284,3 +296,36 @@ export function convertENotationToNumber(num) {
         return '0.' + realInteger.padStart(realExponent, '0');
     }
 }
+
+export const getImageFilePath = (env) => {
+    var filePath = '';
+    if (env) {
+        if (env === 'local') {
+            filePath = LOCAL_FILE_PATH;
+        } else {
+            filePath = '/opt/statics';
+        }
+    }
+    return filePath;
+};
+
+export const ValidImgURL = (url) => {
+    if (url) {
+        if (url.split('/').includes('https:')) {
+            return url;
+        } else {
+            return `/api/image/${encodeURIComponent(url)}`;
+        }
+    }
+};
+
+export const validateEmail = (email) => {
+    return email.match(
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
+export const validateWebiste = (website) => {
+    const regex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+    return regex.test(website);
+};
