@@ -37,8 +37,9 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                             <Tab padding={"0px"}>
                                 <Box
                                     layerStyle={"flexCenter"}
+                                    borderLeftRadius={"4px"}
                                     w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
-                                    padding={{ base: "12px 6px 12px 6px", md: "13px 19px 12px 12px" }}
+                                    padding={{ base: "12px 6px 12px 6px", md: "13px 15px" }}
                                     bgColor={tabIndex === 0 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
                                         (colorMode === 'light' ? "#F0F0F5" : "#202020")
@@ -53,12 +54,35 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                     >
                                         Layout
                                     </Text>
+                                    <Box
+                                        width={15}
+                                        height={15}
+                                        paddingY={"3px"}
+                                        borderRadius={"4px"}
+                                        bgColor={tabIndex === 0 ?
+                                            (colorMode === 'light' ? "#FFFFFF" : "#191919") :
+                                            (colorMode === 'light' ? "#191919" : "#FFFFFF")
+                                        }
+                                        textAlign={"center"}
+                                    >
+                                        <Text
+                                            variant={"footnoteText"}
+                                            fontWeight={500}
+                                            lineHeight={"10px"}
+                                            color={tabIndex === 0 ?
+                                                (colorMode === 'light' ? "#191919" : "#FFFFFF") :
+                                                (colorMode === 'light' ? "#FFFFFF" : "#191919")
+                                            }>
+                                            1
+                                        </Text>
+                                    </Box>
                                 </Box>
                             </Tab>
                             <Tab padding={"0px"}>
                                 <Box
-                                    w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                                     layerStyle={"flexCenter"}
+                                    borderRightRadius={"4px"}
+                                    w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                                     padding={{ base: "12px 6px 12px 6px", md: "13px 19px 12px 15x" }}
                                     bgColor={tabIndex === 1 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
@@ -68,8 +92,8 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                     <Text
                                         variant={"TabText"}
                                         color={tabIndex === 1 ?
-                                            (colorMode === 'light' ? "#FFFFFF" : "#202020") :
-                                            (colorMode === 'light' ? "#202020" : "#FFFFFF")
+                                            (colorMode === 'light' ? "#FFFFFF" : "#000000") :
+                                            (colorMode === 'light' ? "#000000" : "#FFFFFF")
                                         }
                                     >
                                         Assets
@@ -101,7 +125,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                     </Box>
                 </ModalBody>
             </ModalContent>
-        </Modal>
+        </Modal >
     );
 };
 
