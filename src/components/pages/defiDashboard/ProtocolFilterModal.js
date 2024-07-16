@@ -20,7 +20,7 @@ const ProtocolFilterModal = ({ isOpen, onClose }) => {
                         DeFi Market
                     </Text>
                     <InputGroup width={"100%"}>
-                        <InputLeftElement my={"7px"}><Image src={"/icons/search.svg"} width={16} height={16} alt=" "></Image></InputLeftElement>
+                        <InputLeftElement my={"7px"}><Image src={"/icons/search_Light.svg"} width={16} height={16} alt=" "></Image></InputLeftElement>
                         <Input
                             bg={"#F0F0F5"}
                             mt={"15px"}

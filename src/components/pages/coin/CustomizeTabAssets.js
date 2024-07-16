@@ -11,14 +11,16 @@ const CustomizeTabAssetsPanel = () => {
             <Box mt={"15px"} width={"100%"}>
                 <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"10px"} mt={"25px"}>Assets</Text>
                 <InputGroup width={"100%"}>
-                    <InputLeftElement m={"15px 10px 0px 10px"}><Image src={"/icons/search.svg"} width={16} height={16} alt=" "></Image></InputLeftElement>
+                    <InputLeftElement m={"15px 10px 0px 10px"}>
+                        <Image src={colorMode === 'light' ? "/icons/search_Light.svg" : "/icons/search_Dark.svg"} width={18} height={18} alt=" "></Image>
+                    </InputLeftElement>
                     <Input
-                        bg={"#F0F0F5"}
+                        bg={colorMode === 'light' ? "#F0F0F5" : "#282828"}
                         mt={"15px"}
                         width={"100%"}
                         placeholder='Search for asset'
                         size='md'
-                        color={colorMode === 'light' ? "#6F6F6F" : "#191919"}
+                        color={colorMode === 'light' ? "#6F6F6F" : "#A5A5A5"}
                     ></Input>
                 </InputGroup>
                 <Box layerStyle={"flexCenterSpaceBetween"} mt={"15px"}>
@@ -35,8 +37,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -56,8 +58,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -77,8 +79,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -98,8 +100,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -119,8 +121,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -140,8 +142,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -161,8 +163,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
@@ -182,8 +184,8 @@ const CustomizeTabAssetsPanel = () => {
                                         <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                             BTC
                                         </Text>
-                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} borderRadius={"50%"} ml={"10px"} padding={"5px 8px"}>
-                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"}>1</Text>
+                                        <Box backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#A5A5A5"} borderRadius={"4px"} ml={"10px"} padding={"2px 4px"}>
+                                            <Text variant={"footnoteText"} fontWeight={500} lineHeight={"10px"} color={"#191919"}>1</Text>
                                         </Box>
                                     </Box>
                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>

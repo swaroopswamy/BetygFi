@@ -21,9 +21,16 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose }) => {
                 bg="blackAlpha.300"
                 backdropFilter="blur(10px) "
             />
-            <ModalContent zIndex={10000} maxW={"800px"} padding={"20px 10px"} bgColor={colorMode === 'light' ? "#FFFFFF" : "#202020"} position={"fixed"}>
+            <ModalContent
+                zIndex={10000}
+                maxW={"800px"}
+                width={{ base: "90%" }}
+                padding={{ base: "10px", md: "20px 10px" }}
+                bgColor={colorMode === 'light' ? "#FFFFFF" : "#313131"}
+                position={{ md: "fixed" }}
+            >
                 <ModalHeader>
-                    <Text variant={"bigText"} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Tab Library</Text>
+                    <Text variant={"bigText"} fontSize={{ base: "24px" }} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Tab Library</Text>
                 </ModalHeader>
                 <ModalCloseButton borderRadius={"50%"} backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} mt={"10px"} />
                 <ModalBody>

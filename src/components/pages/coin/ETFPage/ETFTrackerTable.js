@@ -62,7 +62,7 @@ const ETFTracker = () => {
                 <Box layerStyle={"flexCenter"} gap={"20px"}>
                     {/* <InputGroup width={"250px"} height={"35px"} bg={"background.primary"} borderRadius={"20px"}>
                         <InputLeftElement>
-                            <Image src={"/icons/search.svg"} width={16} height={16} alt=" "></Image>
+                            <Image src={"/icons/search_Light .svg"} width={16} height={16} alt=" "></Image>
                         </InputLeftElement>
                         <Input
                             borderRadius={"20px"}

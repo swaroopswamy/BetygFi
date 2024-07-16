@@ -26,12 +26,19 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                 bg="blackAlpha.300"
                 backdropFilter="blur(10px) "
             />
-            <ModalContent zIndex={10000} maxW={"800px"} padding={"20px 10px"} bgColor={colorMode === 'light' ? "#FFFFFF" : "#202020"} position={"fixed"}>
+            <ModalContent
+                zIndex={10000}
+                maxW={"800px"}
+                width={{ base: "90%" }}
+                padding={{ base: "10px", md: "20px 10px" }}
+                bgColor={colorMode === 'light' ? "#FFFFFF" : "#313131"}
+                position={{ md: "fixed" }}
+            >
                 <ModalHeader>
-                    <Text variant={"bigText"} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Tab Name</Text>
+                    <Text variant={"bigText"} fontSize={{ base: "24px" }} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Tab Name</Text>
                 </ModalHeader>
                 <ModalCloseButton borderRadius={"50%"} backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} mt={"10px"} />
-                <ModalBody>
+                <ModalBody px={{ base: "8px" }}>
                     <Tabs onChange={(index) => setTabIndex(index)} mt={"15px"}>
                         <TabList>
                             <Tab padding={"0px"}>
@@ -39,7 +46,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                     layerStyle={"flexCenter"}
                                     borderLeftRadius={"4px"}
                                     w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
-                                    padding={{ base: "12px 6px 12px 6px", md: "13px 15px" }}
+                                    padding={{ base: "12px 6px", md: "13px 15px" }}
                                     bgColor={tabIndex === 0 ?
                                         (colorMode === 'light' ? "#202020" : "#FFFFFF") :
                                         (colorMode === 'light' ? "#F0F0F5" : "#202020")
@@ -55,6 +62,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                         Layout
                                     </Text>
                                     <Box
+                                        display={{ base: "none", md: "block" }}
                                         width={15}
                                         height={15}
                                         paddingY={"3px"}
@@ -115,7 +123,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                             Reset
                         </Button>
                         <Box layerStyle={"flexCenter"} gap={"10px"}>
-                            <Button variant={"modalButton"} width={100} height={30} onClick={onCustomizeTabModalClose}>
+                            <Button display={{ base: "none", md: "block" }} variant={"modalButton"} width={100} height={30} onClick={onCustomizeTabModalClose}>
                                 Cancel
                             </Button>
                             <Button variant={"modalButton"} width={100} height={30}>
