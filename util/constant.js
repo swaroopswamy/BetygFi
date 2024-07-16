@@ -3,6 +3,7 @@ export const SEARCH_TYPE_SELECTED = "betygfi-srch-slct";
 export const API_URL_COOKIE_NAME = "bet-api-url";
 export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
+export const BETYGFI_COOKIE_ACCEPTED = "bet-ck-acc";
 export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
 export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
@@ -214,6 +215,29 @@ export const SEARCH_LIST = [
     {
         title: TRENDING_WALLETS_TITLE,
         slug: TRENDING_WALLETS_SLUG,
+    },
+];
+
+export const COOKIE_TYPES = [
+    {
+        name: "Necessary",
+        slug: "necessary",
+        description: "Necessary cookies help make a website usable by enabing basic functions like page navigation and access to secure of the website. The website cannot function properly without these cookies."
+    },
+    {
+        name: "Statistic",
+        slug: "statistic",
+        description: "Statistic cookies help website owners to understand how visitors interact with websitesby collecting and reporting information anonymously."
+    },
+    {
+        name: "Preferences",
+        slug: "preferences",
+        description: "Preferencee cookies enable website to remember infomartion that changes the way thewebsite behaves or looks, like your preffered language or the region that you are in."
+    },
+    {
+        name: "Marketing",
+        slug: "marketing",
+        description: "Marketing cookies are used to track visitors across webstites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers."
     },
 ];
 
