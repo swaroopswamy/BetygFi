@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { fetchTickerETFInflowOutflowData, fetchETFChartData, fetchETFNewsData } from "@redux/coin_data/dataSlice";
@@ -16,7 +16,6 @@ const KeyStats = dynamic(() => import("@components/pages/coin/ETFPage/KeyStatsBo
 
 const BTCETFDetailsPage = ({ params }) => {
     const ticker = params?.ticker;
-    const { colorMode } = useColorMode();
     const dispatch = useDispatch();
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
 
@@ -84,9 +83,6 @@ const BTCETFDetailsPage = ({ params }) => {
                         <ARK21Shares />
                     </Box>
                     <Box mt={{ base: "2.5rem", md: "0.8rem" }}>
-                        <Box padding={{ base: "10px", md: "20px" }} bg={colorMode === 'light' ? "#FFFFFF" : "#282828"} borderTopRadius={"8px"}>
-                            <Text variant={"contentHeading4"} fontSize={"20px"} lineHeight={"20px"}>Total {ticker} Spot ETF Net Inflow (USD)</Text>
-                        </Box>
                         <TickerETFNetInflowBox />
                     </Box>
 
