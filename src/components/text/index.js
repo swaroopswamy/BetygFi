@@ -448,16 +448,16 @@ const Text = defineStyleConfig({
             letterSpacing: "1.2px",
             textTransform: "uppercase"
         }),
-        cookie_description: () => ({
-            color: "#333",
+        cookie_description: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#333" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "14px",
             fontStyle: "normal",
             fontWeight: "400",
             lineHeight: "20px",
         }),
-        cookie_subheading: () => ({
-            color: "#191919",
+        cookie_subheading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "16px",
             fontStyle: "normal",
@@ -465,16 +465,16 @@ const Text = defineStyleConfig({
             lineHeight: "18px",
             letterSpacing: "0.16px",
         }),
-        cookie_item_heading: () => ({
-            color: "#191919",
+        cookie_item_heading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "14px",
             fontStyle: "normal",
             fontWeight: "600",
             lineHeight: "20px",
         }),
-        cookie_heading_1: () => ({
-            color: "#191919",
+        cookie_heading_1: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFeatureSettings: 'clig off, liga off',
             fontFamily: "Inter",
             fontSize: "16px",
@@ -483,8 +483,8 @@ const Text = defineStyleConfig({
             lineHeight: "28px",
             letterSpacing: "0.444px",
         }),
-        cookie_heading_2: () => ({
-            color: "#191919",
+        cookie_heading_2: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFeatureSettings: 'clig off, liga off',
             fontFamily: "Inter",
             fontSize: "20px",
@@ -492,8 +492,8 @@ const Text = defineStyleConfig({
             fontWeight: "700",
             lineHeight: "28px",
         }),
-        cookie_description_2: () => ({
-            color: "#333",
+        cookie_description_2: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#333" : "#FFFFFF",
             fontFamily: "Inter",
             fontSize: "14px",
             fontStyle: "normal",
@@ -501,8 +501,8 @@ const Text = defineStyleConfig({
             lineHeight: "normal",
             letterSpacing: "0.7px",
         }),
-        cookies_footer: () => ({
-            color: "#191919",
+        cookies_footer: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
             textAlign: "center",
             fontFeatureSettings: 'clig off, liga off',
             fontFamily: "Inter",
