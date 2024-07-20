@@ -117,51 +117,72 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                         </Text>
                     </Box>
                 </Box>
-                <Text colorMode={colorMode} onClick={() => setPage("detail")} justifyContent={"end"} display={"flex"} cursor={"pointer"} variant={"cookies_footer"} mb={"1rem"} textDecor={"underline"}>Manage Cookies</Text>
+                <Text
+                    colorMode={colorMode}
+                    onClick={() => setPage("detail")}
+                    justifyContent={"end"}
+                    display={"flex"}
+                    cursor={"pointer"}
+                    variant={"cookies_footer"}
+                    my={"1rem"}
+                    textDecor={"underline"}
+                >Manage Cookies</Text>
             </Box>
         );
     };
 
     const renderDetailPage = () => {
         return (
-            <Box>
-                <Text colorMode={colorMode} mb={"1.2rem"} variant={"cookie_description"}>
-                    Cookies are small text that can be used by websites to make the user experience  more efficient. The law states that we may store cookies on your device if they are strictly necessaryfor the operation of this site. For all other types of cookies, we need your  permission. This site uses various types of cookies. Some cookies are placed by third party  services that appear on our pages.
-                </Text>
-                <Box
-                    cursor={"pointer"}
-                    bgColor={
-                        colorMode === "light"
-                            ? "#282828"
-                            : "#FFF"
-                    }
-                    layerStyle={"center"}
-                    borderRadius={"2px"}
-                    p="15px 20px"
-                    mb={"0.9rem"}
-                    w={"10rem"}
-                    onClick={() => allowSelectedCookies()}
-                >
-                    <Text colorMode={colorMode}
-                        variant={"SearchText"}
-                        fontWeight={"600"}
-                        _light={{ color: "#FAFAFB" }}
-                        _dark={{ color: "#191919" }}
-                    >
-                        Allow Selection
+            <Box maxH={{ base: "80vh" }} height={"max-content"} display={"flex"} flexDir={"column"} justifyContent={"space-between"}>
+                <Box>
+                    <Text colorMode={colorMode} mb={"1.2rem"} variant={"cookie_description"}>
+                        Cookies are small text that can be used by websites to make the user experience  more efficient. The law states that we may store cookies on your device if they are strictly necessaryfor the operation of this site. For all other types of cookies, we need your  permission. This site uses various types of cookies. Some cookies are placed by third party  services that appear on our pages.
                     </Text>
+                    <Box
+                        cursor={"pointer"}
+                        bgColor={
+                            colorMode === "light"
+                                ? "#282828"
+                                : "#FFF"
+                        }
+                        layerStyle={"center"}
+                        borderRadius={"2px"}
+                        p="15px 20px"
+                        mb={"1.5rem"}
+                        w={"10rem"}
+                        onClick={() => allowSelectedCookies()}
+                    >
+                        <Text colorMode={colorMode}
+                            variant={"SearchText"}
+                            fontWeight={"600"}
+                            _light={{ color: "#FAFAFB" }}
+                            _dark={{ color: "#191919" }}
+                        >
+                            Allow Selection
+                        </Text>
+                    </Box>
+                    <Text colorMode={colorMode} mb={"1.5rem"} variant={"cookie_subheading"}>
+                        Manage Consent Preferences
+                    </Text>
+                    <Box
+                        mb={"1.5rem"}
+                        height={"15rem"}
+                        overflowY={"scroll"}
+                    // background={"linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, #FFF 100%)"}
+                    >
+                        {
+                            COOKIE_TYPES.map((cookie, index) => (
+                                <CookieItem item={cookie} key={index} onCookieItemChangeList={onCookieItemChangeList} />
+                            ))
+                        }
+                    </Box>
                 </Box>
-                <Text colorMode={colorMode} mb={"0.8rem"} variant={"cookie_subheading"}>
-                    Manage Consent Preferences
-                </Text>
-                <Box mb={"0.8rem"}>
-                    {
-                        COOKIE_TYPES.map((cookie, index) => (
-                            <CookieItem item={cookie} key={index} onCookieItemChangeList={onCookieItemChangeList} />
-                        ))
-                    }
-                </Box>
-                <Box display={"flex"} gap={{ md: "1.2rem", base: "0.6rem" }} flexDir={"row"} justifyContent={"end"}>
+                <Box
+                    display={"flex"}
+                    gap={{ md: "1.2rem", base: "0.6rem" }}
+                    flexDir={"row"}
+                    justifyContent={"end"}
+                >
                     {
                         isMd && <Box
                             cursor={"pointer"}
@@ -241,22 +262,27 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
 
     return (
         <Modal
-            isCentered={{ md: true, base: false }}
+            isCentered={{ md: true, base: true }}
             isOpen={isOpen}
             onClose={() => onClose()}
             borderRadius={"6px"}
             boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
-            width={{ md: "700px", base: "50vw" }}
+            width={{ md: "700px", base: "90%" }}
             size={"xl"}
         >
             <ModalOverlay
+                top={{ base: "60px", md: "80px" }}
                 bg="blackAlpha.300"
                 backdropFilter="blur(3px)"
             />
-            <ModalContent mx={{ base: "0px", md: "0px" }}>
+            <ModalContent
+                width={{ base: "90%", md: "100%" }}
+                mx={{ base: "0px", md: "0px" }}
+            >
                 {
                     page === "detail" &&
                     <ModalHeader
+                        _light={{ bgColor: "white" }} _dark={{ bgColor: "#313131" }}
                         position={"relative"}
                         display={"flex"}
                         bgRepeat={"no-repeat"}
@@ -273,11 +299,11 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                         </Box>
                     </ModalHeader>
                 }
-                <ModalCloseButton />
+                {isMd && <ModalCloseButton />}
                 <ModalBody
                     borderRadius={"10px"}
                     px={{ md: "1.5rem", base: "0.8rem" }}
-                    py={"0.4rem"}
+                    py={"1rem"}
                     _light={{ bgColor: "white", }}
                     _dark={{ bgColor: "#313131", }}
                 >
