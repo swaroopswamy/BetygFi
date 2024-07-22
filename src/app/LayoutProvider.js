@@ -15,7 +15,7 @@ import { config } from "./Web3Provider";
 import AppConfigContext from "@components/context/appConfigContext";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
-import { getEnv, mapTypeObject, replaceWithWS } from "@util/utility";
+import { getEnv, replaceWithWS } from "@util/utility";
 import dynamic from "next/dynamic";
 
 import CookiesPopup from "@components/cookies";
@@ -151,7 +151,7 @@ export default function LayoutProvider({ appConfig, children }) {
         createCookies(NTF_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_SOCKET_HOST);
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
-        window.appConfig = mapTypeObject(appConfig);
+        // window.appConfig = mapTypeObject(appConfig);
 
         setTimeout(() => {
             if (!checkIfUserHasAlreadyFaceCookiePopup()) {
