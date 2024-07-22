@@ -232,7 +232,7 @@ const CampaignPageFooter = () => {
                     </Text>
                 </Box>
 
-                <Box layerStyle={'center'} w="100%" justifyContent={"left"} gap={"50px"}>
+                <Box layerStyle={'center'} w="100%" justifyContent={"left"} gap={"50px"} alignItems={"baseline"}>
                     <Box>
                         <Text
                             fontSize={"16px"}
