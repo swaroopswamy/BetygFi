@@ -8,6 +8,11 @@ export const authOptions = () => {
             GoogleProvider({
                 clientId: process.env.GOOGLE_CLIENT_ID_BETYG_FI ?? "",
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET_BETYG_FI ?? "",
+                authorization: {
+                    params: {
+                        prompt: "login",
+                    }
+                }
             }),
             CredentialsProvider({
                 id: "credentials",
