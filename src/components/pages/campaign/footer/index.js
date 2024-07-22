@@ -27,12 +27,12 @@ const CampaignPageFooter = () => {
         window.location.href = mailtoLink;
     };
 
-    const scrollToElementById = (id) => {
+    /* const scrollToElementById = (id) => {
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
-    };
+    }; */
 
 
     const [isCustomPoint] = useMediaQuery("(min-width: 935px)");
@@ -270,8 +270,9 @@ const CampaignPageFooter = () => {
                             color={"#77808B"}
                         >
                             <Link href={`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}/about`} target="_blank"><Text mt={"25px"} whiteSpace={"nowrap"}>About</Text></Link>
+                            {/* 
                             <Link onClick={() => scrollToElementById('get_in_touch')}><Text mt={"15px"} whiteSpace={"nowrap"}>Contact</Text></Link>
-
+                            */}
                             <Link href={`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}/legal`} target="_blank"><Text mt={"15px"} whiteSpace={"nowrap"}>Legal</Text></Link>
                             <Link href={`${appConfig.NEXT_PUBLIC_PLATFORM_BETYGFI_URL}/approach-paper`} target="_blank"><Text mt={"15px"} whiteSpace={"nowrap"}>Approach paper</Text></Link>
                         </Box>
