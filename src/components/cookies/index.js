@@ -172,7 +172,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                     >
                         {
                             COOKIE_TYPES.map((cookie, index) => (
-                                <CookieItem item={cookie} key={index} onCookieItemChangeList={onCookieItemChangeList} />
+                                <CookieItem item={cookie} key={index} cookieAccepted={cookieAccepted} onCookieItemChangeList={onCookieItemChangeList} />
                             ))
                         }
                     </Box>

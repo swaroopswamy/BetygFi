@@ -1,10 +1,9 @@
 import { Box, Switch, Text, useColorMode, useDisclosure, useMediaQuery } from "@chakra-ui/react";
 
-const CookieItem = ({ item, onCookieItemChangeList }) => {
-
+const CookieItem = ({ item, onCookieItemChangeList, cookieAccepted }) => {
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const { colorMode } = useColorMode();
-    const { isOpen: isCookieItemOpen, onToggle: onCookieItemToggle } = useDisclosure({ defaultIsOpen: true });
+    const { onToggle: onCookieItemToggle } = useDisclosure({ defaultIsOpen: true });
 
     const onCookieItemChange = (slug) => {
         onCookieItemChangeList(slug);
@@ -21,7 +20,7 @@ const CookieItem = ({ item, onCookieItemChangeList }) => {
                 <Box w={{ md: "0%", base: "8%" }}>
                     {
                         !isMd && <Switch
-                            isChecked={isCookieItemOpen}
+                            isChecked={cookieAccepted.includes(item?.slug)}
                             onChange={() => onCookieItemChange(item?.slug)}
                             className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"} size='md'
                         />
@@ -39,7 +38,7 @@ const CookieItem = ({ item, onCookieItemChangeList }) => {
                 <Box w={{ md: "10%", base: "0%" }}>
                     {
                         isMd && <Switch
-                            isChecked={isCookieItemOpen}
+                            isChecked={cookieAccepted.includes(item?.slug)}
                             onChange={() => onCookieItemChange(item?.slug)}
                             className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"} size='lg'
                         />
