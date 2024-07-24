@@ -48,7 +48,6 @@ const CoinPage = () => {
     const [tablePage, setTablePage] = useState(1);
     const [tableLimit, setTableLimit] = useState(100);
     const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
-
     const [cryptoCategories, setCryptoCategories] = useState([]);
 
     const searchParams = useSearchParams();
