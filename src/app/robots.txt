@@ -3,6 +3,14 @@ User-agent: *
 
 Allow: /*
 Disallow: /http/
+Disallow: /devcommunity/
+Disallow: /qacommunity/
+Disallow: /dev/
+Disallow: /qa/
+Disallow: /devplatform/
+Disallow: /qaplatform/
+Disallow: /devstudio/
+Disallow: /qastudio/
 Disallow: /https/
 Disallow: /_next/*
 Disallow: /api/*
