@@ -58,7 +58,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                 </Box>
                 <Box mb={"7rem"}>
                     <Text colorMode={colorMode} variant={"cookie_description_2"}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat aliquet maecenas ut sit nulla Consequat aliquet maecenas ut sit nullaConsequat aliquet maecenas ut sit nulla.
+                        If you consent, we can store and access personal information on your device to provide a more personalized browsing experience. This is accomplished through processing personal data collected from browsing data stored in cookies. You can provide/withdraw consent and object to processing based on a legitimate interest at any time by clicking on the ‘Manage Preferences’ button.
                     </Text>
                     <Text colorMode={colorMode} variant={"cookie_description_2"} marginTop="1.3rem"  >
                         We collects your data in order to improve your experience in the form of cookies.
@@ -136,7 +136,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
             <Box maxH={{ base: "80vh" }} height={"max-content"} display={"flex"} flexDir={"column"} justifyContent={"space-between"}>
                 <Box>
                     <Text colorMode={colorMode} mb={"1.2rem"} variant={"cookie_description"}>
-                        Cookies are small text that can be used by websites to make the user experience  more efficient. The law states that we may store cookies on your device if they are strictly necessaryfor the operation of this site. For all other types of cookies, we need your  permission. This site uses various types of cookies. Some cookies are placed by third party  services that appear on our pages.
+                        When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences or your device and is mostly used to make the site work as you expect it to. The information does not usually directly identify you, but it can give you a more personalized web experience. Because we respect your right to privacy, you can choose not to allow some types of cookies. Click on the different category headings to find out more and change our default settings. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer.
                     </Text>
                     <Box
                         cursor={"pointer"}
@@ -166,7 +166,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                     </Text>
                     <Box
                         mb={"1.5rem"}
-                        height={"15rem"}
+                        height={"11rem"}
                         overflowY={"scroll"}
                     // background={"linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, #FFF 100%)"}
                     >
