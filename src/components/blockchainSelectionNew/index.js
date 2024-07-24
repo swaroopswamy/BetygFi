@@ -76,6 +76,7 @@ const BlockchainSelectionMenuNew = ({ w = "100%" }) => {
                     id="blockchain-container"
                     w="90%"
                     overflowX="auto"
+                    className="hidescrollbar"
                     display={"flex"}
                     alignItems={"center"}
                     flexWrap="nowrap"

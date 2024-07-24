@@ -5,7 +5,6 @@ import millify from "millify";
 import dynamic from "next/dynamic";
 const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
 
-
 const BTCETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
     const ETFInflowOutflowData = useSelector((state) => state?.coinData?.ETFInflowOutflowData);
@@ -108,7 +107,6 @@ const BTCETFNetInflowBox = () => {
             tooltip: {
                 theme: colorMode === "light" ? "light" : "dark",
                 custom: function ({ dataPointIndex, seriesIndex, w }) {
-
                     let entry = w.config.series[seriesIndex].data[dataPointIndex];
                     let flow = entry?.y >= 0 ? "Inflow" : "Outflow";
                     let marker = entry?.y >= 0 ? "/icons/Inflow_Icon.svg" : "/icons/Outflow_Icon.svg";
@@ -139,19 +137,20 @@ const BTCETFNetInflowBox = () => {
             },
         }
     );
+
     const getFilteredData = (range) => {
         const currentDate = new Date();
         switch (range) {
             case "7d":
-                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000));
+                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 8 * 24 * 60 * 60 * 1000));
             case "14d":
-                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 14 * 24 * 60 * 60 * 1000));
+                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 15 * 24 * 60 * 60 * 1000));
             case "30d":
-                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000));
+                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 31 * 24 * 60 * 60 * 1000));
             case "1yr":
                 return ETFInflowOutflowData?.data;
             default:
-                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000));
+                return ETFInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 31 * 24 * 60 * 60 * 1000));
         }
     };
 

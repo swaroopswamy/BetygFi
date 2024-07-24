@@ -12,14 +12,14 @@ import {
     useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
-import dynamic from "next/dynamic";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import Image from "next/image";
-import { walletArray } from "@util/constant";
 import AppConfigContext from "@components/context/appConfigContext";
+import { walletArray } from "@util/constant";
+import { signIn } from "next-auth/react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+import { useContext, useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const OtherBrowserWalletProcess = dynamic(() => import("@components/login/otherBrowserWalletProcess"));
 
