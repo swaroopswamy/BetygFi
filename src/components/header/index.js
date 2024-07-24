@@ -15,9 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
-import {
-    LogoutReducer,
-} from "@redux/auth_data/authSlice";
+import { LogoutReducer } from "@redux/auth_data/authSlice";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
@@ -166,6 +164,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             );
         }
     };
+
     const MdHeader = () => (
         <Flex
             px={{ base: 4, md: 4 }}
@@ -317,6 +316,9 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     );
 
     const SMHeader = () => {
+        const router = useRouter();
+        const pathname = usePathname();
+        const showBackButton = pathname !== "/" && pathname !== "/coin";
         return (
             <>
                 <Flex
@@ -334,7 +336,12 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     justifyContent={{ base: "space-between", md: "flex-end" }}
                     {...rest}
                 >
-                    <Box gap={"20px"} layerStyle={"flexCenter"}>
+                    <Box gap={"15px"} layerStyle={"flexCenter"}>
+                        {showBackButton && (
+                            <Box cursor={"pointer"} onClick={() => router.back()}>
+                                <Image src={colorMode === 'light' ? "/icons/arrowleft_light.svg" : "/icons/arrowleft_dark.svg"} width={15} height={15} alt="Back" />
+                            </Box>
+                        )}
                         <Box cursor={"pointer"} onClick={onMobileSidebarOpen}>
                             <Image
                                 src={
