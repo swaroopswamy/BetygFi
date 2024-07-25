@@ -316,9 +316,6 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
     );
 
     const SMHeader = () => {
-        const router = useRouter();
-        const pathname = usePathname();
-        const showBackButton = pathname !== "/" && pathname !== "/coin";
         return (
             <>
                 <Flex
@@ -336,12 +333,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     justifyContent={{ base: "space-between", md: "flex-end" }}
                     {...rest}
                 >
-                    <Box gap={"15px"} layerStyle={"flexCenter"}>
-                        {showBackButton && (
-                            <Box cursor={"pointer"} onClick={() => router.back()}>
-                                <Image src={colorMode === 'light' ? "/icons/arrowleft_light.svg" : "/icons/arrowleft_dark.svg"} width={15} height={15} alt="Back" />
-                            </Box>
-                        )}
+                    <Box gap={"20px"} layerStyle={"flexCenter"}>
                         <Box cursor={"pointer"} onClick={onMobileSidebarOpen}>
                             <Image
                                 src={
