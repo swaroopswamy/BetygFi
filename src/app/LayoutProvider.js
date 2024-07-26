@@ -160,7 +160,7 @@ export default function LayoutProvider({ appConfig, children }) {
         }, 5000);
     }, []);
 
-    const checkIfUserHasAlreadyFaceCookiePopup = () => getCookieByName(BETYGFI_COOKIE_ACCEPTED);
+    const checkIfUserHasAlreadyFaceCookiePopup = () => getCookieByName(BETYGFI_COOKIE_ACCEPTED) == '';
 
     // for creating cookie after google sign in is successful
     useEffect(() => {
