@@ -24,7 +24,6 @@ const BTCETFNetInflowBox = () => {
             },
             xaxis: {
                 type: "datetime",
-                //tickAmount: 10,
                 labels: {
                     format: 'dd MMM',
                     style: {
