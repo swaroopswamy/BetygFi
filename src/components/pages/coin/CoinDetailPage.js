@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import CustomAvatar from "@components/avatar";
 import dynamic from "next/dynamic";
 import { copyToClipboard } from "@util/utility";
+import { useSelector } from "react-redux";
+import { fetchCoinDevelopmentData, fetchCoinPriceData } from "@redux/coin_data/dataSlice";
 
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"), { ssr: false });
@@ -14,11 +16,6 @@ const RiskAnalysis = dynamic(() => import("@components/pages/coin/riskAnalysis")
 const CoinPriceChart = dynamic(() => import("@components/pages/coin/coinPriceChart"), { ssr: false });
 const DevelopmentAnalysis = dynamic(() => import("@components/pages/coin/developmentAnalysis"), { ssr: false });
 const BreadCrumb = dynamic(() => import("@components/breadcrumb2"), { ssr: false });
-
-import {
-    fetchCoinDevelopmentData,
-    fetchCoinPriceData,
-} from "@redux/coin_data/dataSlice";
 
 export default function CoinDetailPage({ coinSlug, coinDetails }) {
     const { colorMode } = useColorMode();
@@ -39,6 +36,10 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
         };
         dispatch(fetchCoinDevelopmentData(payload));
     };
+
+    const CoinPriceData = useSelector(
+        (state) => state?.coinData?.CoinPriceData
+    );
 
     useEffect(() => {
         Promise.all([
@@ -109,7 +110,7 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
                         <Box
                             cursor={"pointer"}
                             onClick={() => {
-                                copyToClipboard(coinDetails?.name);
+                                copyToClipboard(CoinPriceData?.data?.name);
                                 toast({
                                     position: "bottom",
                                     render: () => (
