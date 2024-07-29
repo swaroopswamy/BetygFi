@@ -1,18 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import {
-    Box,
-    Text,
-    useColorMode,
-    Switch,
-    useDisclosure,
-    Collapse,
-} from "@chakra-ui/react";
-
+import { Box, Text, useColorMode, Switch, Collapse } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
+import { userPersonalization } from "@redux/auth_data/authSlice";
 import {
     fetchSAPData,
     fetchTopGainersAndLosersData,
@@ -37,23 +30,19 @@ const TrendingCoinSection = dynamic(() => import("@components/pages/coin/coinPag
 const CoinPage = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
-
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     const btcDominanceDay = useSelector((state) => state?.coinData?.btcDominanceDay);
     const sapDay = useSelector((state) => state?.coinData?.sapDay);
-
     const scoreSelected = useSelector((state) => state.coinData.scoreSelected);
     const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
-
     const [tablePage, setTablePage] = useState(1);
     const [tableLimit, setTableLimit] = useState(100);
     const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
+    const [isHighlightsBoxOpen, setIsHighlightsBoxOpen] = useState(true);
     const [cryptoCategories, setCryptoCategories] = useState([]);
-
     const searchParams = useSearchParams();
     const on = searchParams.get('on');
     const by = searchParams.get('by');
-
 
     const fetchTopGainersAndLosersDataHandler = () => {
         dispatch(fetchTopGainersAndLosersData());
@@ -94,20 +83,30 @@ const CoinPage = () => {
         };
         dispatch(fetchCoinRankingsTableData(payload));
     };
+
     const fetchScoreData = () => {
         const query = cryptoCategorySelected;
         dispatch(fetchCoinScoresData(query));
     };
+
     const fetchCategories = () => {
         dispatch(fetchCryptoCategoriesData());
     };
+
     const fetchTrendingCoinsDataHandler = () => {
         dispatch(fetchTrendingCoinsData());
     };
+
     const fetchBlockchainListDataHandler = () => {
         dispatch(fetchBlockchainListData());
     };
 
+    const userPersonalizationHandler = () => {
+        const payload = {
+            feature: 'coin_ranking_highlights',
+        };
+        dispatch(userPersonalization(payload));
+    };
 
     useEffect(() => {
         Promise.all([
@@ -143,7 +142,7 @@ const CoinPage = () => {
             fetchTopBTCETFDataHandler(),
             fetchFearAndGreedDataHandler(),
             fetchMarqueeDataHandler(),
-            onHighlightsBoxToggle(),
+            userPersonalizationHandler(),
             fetchBlockchainListDataHandler(),
             fetchTrendingCoinsDataHandler(),
             fetchScoreData()
@@ -178,6 +177,23 @@ const CoinPage = () => {
         }
     }, [on, by]);
 
+    useEffect(() => {
+        const savedPreference = localStorage.getItem('coin_ranking_highlights_open');
+        if (savedPreference) {
+            setIsHighlightsBoxOpen(savedPreference === 'true');
+        }
+    }, []);
+
+    const handleToggleHighlights = () => {
+        const newState = !isHighlightsBoxOpen;
+        setIsHighlightsBoxOpen(newState);
+        if (ValidatedUserData?.success) {
+            dispatch(userPersonalization({ feature: 'coin_ranking_highlights', state: newState }));
+        } else {
+            localStorage.setItem('coin_ranking_highlights_open', newState);
+        }
+    };
+
     return (
         <Box
             display={"flex"}
@@ -198,7 +214,7 @@ const CoinPage = () => {
                     <Switch
                         size={"lg"}
                         isChecked={isHighlightsBoxOpen}
-                        onChange={onHighlightsBoxToggle}
+                        onChange={handleToggleHighlights}
                         className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                     ></Switch>
                 </Box>

@@ -4,18 +4,10 @@ import "./index.css";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDisconnect } from "wagmi";
-import {
-    Box,
-    Flex,
-    useDisclosure,
-    useColorModeValue,
-    useColorMode,
-    Text,
-    useMediaQuery
-} from "@chakra-ui/react";
+import { Box, Flex, useDisclosure, useColorModeValue, useColorMode, Text, useMediaQuery } from "@chakra-ui/react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { walletAddressChangedReducer } from "@redux/wallet_dashboard_data/dataSlice";
-import { LogoutReducer } from "@redux/auth_data/authSlice";
+import { LogoutReducer, userPersonalization } from "@redux/auth_data/authSlice";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { signOut, useSession } from "next-auth/react";
 import CustomAvatar from "@components/avatar";
@@ -132,9 +124,14 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             }
         }
     };
-
+    
     const toggleColorModeGlobally = () => {
-        createCookies(COLOR_MODE_COOKIE_NAME, normalizeColorMode(colorMode));
+        const newColorMode = normalizeColorMode(colorMode);
+        if (ValidatedUserData?.success) {
+            dispatch(userPersonalization({ feature: 'theme', state: newColorMode }));
+        } else {
+            createCookies(COLOR_MODE_COOKIE_NAME, newColorMode);
+        }
         toggleColorMode();
     };
 
