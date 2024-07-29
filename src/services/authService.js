@@ -104,3 +104,14 @@ export const changeProfilePicAPI = async (payload, { rejectWithValue }) => {
 		return rejectWithValue(err.response.data);
 	}
 };
+
+export const userPersonalizationAPI = async (payload, { rejectWithValue }) => {
+	try {
+		const url = NEXT_BE_URL_SEPARATOR + `user/personalization`;
+		const { data } = await axiosInstance(getAPI_URL()).put(url, payload, getAxiosHeadersFromCookie());
+		return data;
+	}
+	catch (err) {
+		return rejectWithValue(err.response.data);
+	}
+};
