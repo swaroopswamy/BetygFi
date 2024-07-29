@@ -2,7 +2,7 @@
 "use client";
 import { Box, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
 import { LogInFromCookie, LogoutReducer, ResetValidatedUserData, socialLoginGoogle, StoreLoggedInUserDataGoogle, verifyJWTtokenFromCookie } from "@redux/auth_data/authSlice";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, BETYGFI_COOKIE_ACCEPTED, NTF_URL_COOKIE_NAME } from "@util/constant";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, BETYGFI_COOKIE_CONSENT_SEEN, NTF_URL_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { watchAccount } from '@wagmi/core';
 import isEmpty from "lodash/isEmpty";
@@ -154,13 +154,14 @@ export default function LayoutProvider({ appConfig, children }) {
         // window.appConfig = mapTypeObject(appConfig);
 
         setTimeout(() => {
-            if (!checkIfUserHasAlreadyFaceCookiePopup()) {
+            if (checkIfUserHasAlreadyFaceCookiePopup()) {
                 onCookieModalOpen();
+                createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
             }
         }, 5000);
     }, []);
 
-    const checkIfUserHasAlreadyFaceCookiePopup = () => getCookieByName(BETYGFI_COOKIE_ACCEPTED) == '';
+    const checkIfUserHasAlreadyFaceCookiePopup = () => getCookieByName(BETYGFI_COOKIE_CONSENT_SEEN) === undefined;
 
     // for creating cookie after google sign in is successful
     useEffect(() => {

@@ -3,7 +3,7 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
     Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Text, useColorMode, useMediaQuery
 } from "@chakra-ui/react";
-import { BETYGFI_COOKIE_ACCEPTED, COOKIE_TYPES } from "@util/constant";
+import { BETYGFI_COOKIE_ACCEPTED, BETYGFI_COOKIE_CONSENT_SEEN, COOKIE_TYPES } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 import Image from 'next/image';
 import { useState } from "react";
@@ -25,10 +25,12 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
         }
         setCookieAccepted(dupCookieAcc);
         createCookies(BETYGFI_COOKIE_ACCEPTED, dupCookieAcc.join(","));
+        createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
     };
 
     const allowSelectedCookies = () => {
         createCookies(BETYGFI_COOKIE_ACCEPTED, cookieAccepted.join(","));
+        createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
         onClose();
     };
 
@@ -36,6 +38,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
         const allCookies = COOKIE_TYPES.map(cookie => cookie.slug);
         setCookieAccepted(allCookies);
         createCookies(BETYGFI_COOKIE_ACCEPTED, allCookies.join(","));
+        createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
         onClose();
     };
 
@@ -43,6 +46,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
         const allCookieList = [];
         setCookieAccepted(allCookieList);
         createCookies(BETYGFI_COOKIE_ACCEPTED, '');
+        createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
         onClose();
     };
 

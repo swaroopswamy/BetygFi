@@ -4,6 +4,7 @@ export const API_URL_COOKIE_NAME = "bet-api-url";
 export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const BETYGFI_COOKIE_ACCEPTED = "bet-ck-acc";
+export const BETYGFI_COOKIE_CONSENT_SEEN = "bet-cc-seen";
 export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
 export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
