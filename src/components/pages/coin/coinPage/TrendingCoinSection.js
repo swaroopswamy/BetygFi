@@ -25,7 +25,7 @@ const TrendingCoinSection = () => {
                 w={"100%"}
             >
                 {trendingCoinsData.isSuccess &&
-                    trendingCoinsData.data.map((coinData, i) => {
+                    trendingCoinsData?.data?.map((coinData, i) => {
                         if (i > 2) return;
                         return (
                             <TrendingCoinPanel

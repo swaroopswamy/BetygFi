@@ -156,7 +156,6 @@ export default function LayoutProvider({ appConfig, children }) {
         setTimeout(() => {
             if (checkIfUserHasAlreadyFaceCookiePopup()) {
                 onCookieModalOpen();
-                createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
             }
         }, 5000);
     }, []);
