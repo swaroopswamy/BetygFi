@@ -512,6 +512,95 @@ const Text = defineStyleConfig({
             lineHeight: "16px",
             letterSpacing: "0.16px",
             textTransform: "capitalize",
+        }),
+        converter_heading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontSize: "20px",
+            fontFamily: "Inter",
+            lineHeight: "36px",
+            letterSpacing: "0px",
+            fontWeight: "500",
+        }),
+        converter_coin_ship: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#4682B4" : "#4682B4",
+            fontFeatureSettings: 'salt on, liga off',
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontStyle: "normal",
+            lineHeight: "18.49px",
+            fontWeight: "500",
+        }),
+        converter_main_price: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFeatureSettings: 'salt on, liga off',
+            fontFamily: "Inter",
+            fontSize: "32px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            lineHeight: "24px",
+        }),
+        converter_price_inc_dec: ({ colorMode, type }) => {
+            // console.log("🤦‍♀️🤷‍♂️🤔 ~ type:", type);
+            // console.log("🤦‍♀️🤷‍♂️🤔 ~ colorMode:", colorMode);
+            return {
+                color: colorMode === "light" ? (type === "decrease" ? "#FF0000" : "#245F00") : (type === "decrease" ? "#FF0000" : "#245F00"),
+                fontFamily: 'Inter',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+            };
+        },
+        converter_price_info: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#585858" : "#585858",
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '24px',
+        }),
+        converter_rank: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#4682B4" : "#4682B4",
+            fontFeatureSettings: 'salt on, liga off',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '18.494px'
+        }),
+        converter_low_high: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: 'normal',
+            letterSpacing: '0.028px'
+        }),
+        converter_low_high_value: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal',
+            letterSpacing: '0.028px'
+        }),
+        converter_left_box_title: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#585858" : "#585858",
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal',
+            letterSpacing: '0.024px'
+        }),
+        converter_betygfi_score: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#4682B4" : "#4682B4",
+            fontFamily: 'Inter',
+            fontSize: '32px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal'
         })
     },
     defaultProps: {

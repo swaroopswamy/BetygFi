@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
-import { extendTheme, ChakraProvider } from "@chakra-ui/react";
-import { colors } from "@util/constant";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Button from "@components/button";
 import Text from "@components/text";
+import { colors } from "@util/constant";
 
 export function Providers({ children }) {
     const breakpoints = {
@@ -28,6 +27,7 @@ export function Providers({ children }) {
     };
 
 
+
     const theme = extendTheme({
         initialColorMode: getColorModeFromStorage(),
         useSystemColorMode: true,
@@ -36,6 +36,13 @@ export function Providers({ children }) {
         components: {
             Button,
             Text,
+            Progress: {
+                baseStyle: {
+                    filledTrack: {
+                        bg: '#245F00'
+                    }
+                }
+            }
         },
         semanticTokens: {
             colors: {

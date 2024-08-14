@@ -86,6 +86,10 @@ const nextConfig = {
         hostname: "localhost",
         port: "7000",
       },
+      {
+        protocol: "https",
+        hostname: "platform.betygfi.com",
+      },
     ],
     minimumCacheTTL: 3600, // 1hour
     dangerouslyAllowSVG: true,
