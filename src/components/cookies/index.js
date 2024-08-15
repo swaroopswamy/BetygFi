@@ -15,6 +15,10 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
     const [page, setPage] = useState("summary");
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const [isSmallerThan1150] = useMediaQuery('(max-width: 1150px)');
+
+    const CookieDescriptionTitle = "If you consent, we can store and access personal information on your device to provide a more personalized browsing experience. This is accomplished through processing personal data collected from browsing data stored in cookies. You can provide/withdraw consent and object to processing based on a legitimate interest at any time by clicking on the ‘Manage Preferences’ button.";
+    const cookieCollectData = "We collects your data in order to improve your experience in the form of cookies.";
 
     useEffect(() => {
         setShowCookiePopup(isOpen);
@@ -122,109 +126,213 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
             <>
                 {
                     showCookiePopup &&
-                    <Box p={"1rem"} style={{ border: '2px solid rgba(70, 130, 180, 0.24)' }} _dark={{ bgColor: "#191919" }} _light={{ bgColor: "#FFFFFF" }}
-                        zIndex={"10000"} position={"fixed"} bottom={0} width={"100%"} >
-                        <Box display={"flex"}>
+                    (
+                        <>
+                            {
+                                isSmallerThan1150 ?
+                                    <Box p={"1rem"} style={{ border: '2px solid rgba(70, 130, 180, 0.24)' }} _dark={{ bgColor: "#191919" }} _light={{ bgColor: "#FFFFFF" }}
+                                        zIndex={"10000"} position={"fixed"} bottom={0} width={"100%"} >
+                                        <Box display={"flex"}>
 
+                                            <Box display={"flex"} justifyContent={"center"} w={"100%"} gap={"1rem"}>
 
+                                                <Box display={"flex"} flexDir={"row"} justifyContent={"flex-start"} alignItems={"flex-start"} gap={"0.5rem"} w={"15%"} >
+                                                    <Image src={"/images/cookie.svg"} alt={"cookie-image"} height={48} width={48} />
+                                                    <Box display={"flex"} flexDir={"column"}  >
+                                                        <Text colorMode={colorMode} variant={"cookie_heading_1"}>We Value</Text>
+                                                        <Text colorMode={colorMode} variant={"cookie_heading_2"}>Your Privacy.</Text>
+                                                    </Box>
+                                                </Box>
 
-                            <Box display={"flex"} w={"100%"} gap={"1rem"}>
+                                                <Box gap={"1.5rem"} display={"flex"} w={"63%"}>
+                                                    <Text colorMode={colorMode} variant={"cookie_description_2"}>
+                                                        {CookieDescriptionTitle}
+                                                    </Text>
+                                                    <Text colorMode={colorMode} variant={"cookie_description_2"}   >
+                                                        {cookieCollectData}
+                                                    </Text>
+                                                </Box>
 
-                                <Box display={"flex"} flexDir={"row"} justifyContent={"flex-start"} alignItems={"flex-start"} gap={"0.5rem"} w={"10%"} >
-                                    <Image src={"/images/cookie.svg"} alt={"cookie-image"} height={48} width={48} />
-                                    <Box display={"flex"} flexDir={"column"}  >
-                                        <Text colorMode={colorMode} variant={"cookie_heading_1"}>We Value</Text>
-                                        <Text colorMode={colorMode} variant={"cookie_heading_2"}>Your Privacy.</Text>
-                                    </Box>
-                                </Box>
+                                                <Box w={"22%"} display={"flex"} justifyContent={"end"} alignItems={"end"}>
+                                                    <Box display={"flex"} flexDir={"column"} justifyContent={"center"} alignItems={"center"} px={"1.5rem"} gap={"0.05rem"}>
+                                                        <Box
 
-                                <Box gap={"1.5rem"} display={"flex"} w={"55%"}>
-                                    <Text colorMode={colorMode} variant={"cookie_description_2"}>
-                                        If you consent, we can store and access personal information on your device to provide a more personalized browsing experience. This is accomplished through processing personal data collected from browsing data stored in cookies. You can provide/withdraw consent and object to processing based on a legitimate interest at any time by clicking on the ‘Manage Preferences’ button.
-                                    </Text>
-                                    <Text colorMode={colorMode} variant={"cookie_description_2"}   >
-                                        We collects your data in order to improve your experience in the form of cookies.
-                                    </Text>
-                                </Box>
+                                                            cursor={"pointer"}
+                                                            bgColor={
+                                                                colorMode === "light"
+                                                                    ? "#282828"
+                                                                    : "#FFF"
+                                                            }
+                                                            layerStyle={"center"}
+                                                            borderRadius={"4px"}
+                                                            p="15px 20px"
+                                                            mb={"0.9rem"}
+                                                            w={"10rem"}
+                                                            onClick={() => allowAllCookies()}
+                                                        >
+                                                            <Text
+                                                                colorMode={colorMode}
+                                                                variant={"SearchText"}
+                                                                fontWeight={"600"}
+                                                                _light={{ color: "#FAFAFB" }}
+                                                                _dark={{ color: "#191919" }}
+                                                            >
+                                                                Accept All
+                                                            </Text>
+                                                        </Box>
+                                                        <Box
+                                                            cursor={"pointer"}
+                                                            bgColor={
+                                                                colorMode === "dark"
+                                                                    ? "#282828"
+                                                                    : "#FFF"
+                                                            }
+                                                            layerStyle={"center"}
+                                                            borderRadius={"4px"}
+                                                            p="15px 20px"
+                                                            mb={"0.9rem"}
+                                                            w={"8rem"}
+                                                            border="2px solid rgba(70, 130, 180, 0.24)"
+                                                            onClick={() => {
+                                                                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                                                                setPage("detail");
+                                                            }}
+                                                        >
+                                                            <Text
+                                                                colorMode={colorMode}
+                                                                variant={"SearchText"}
+                                                                fontWeight={"600"}
+                                                                fontSize={{ md: "14px", base: "12px" }}
+                                                                _dark={{ color: "#FAFAFB" }}
+                                                                _light={{ color: "#191919" }}
+                                                            >
+                                                                Manage
+                                                            </Text>
+                                                        </Box>
+                                                        <Text
+                                                            colorMode={colorMode}
+                                                            onClick={() => rejectAllCookies()}
+                                                            justifyContent={"end"}
+                                                            display={"flex"}
+                                                            cursor={"pointer"}
+                                                            variant={"cookies_footer"}
+                                                            my={"1rem"}
 
-                                <Box w={"35%"} display={"flex"} justifyContent={"end"} alignItems={"end"}>
-                                    <Box display={"flex"} flexDir={"row"} justifyContent={"end"} px={"1.5rem"} gap={"1rem"}>
-                                        <Box
-                                            cursor={"pointer"}
-                                            bgColor={
-                                                colorMode === "light"
-                                                    ? "#282828"
-                                                    : "#FFF"
-                                            }
-                                            layerStyle={"center"}
-                                            borderRadius={"4px"}
-                                            p="15px 20px"
-                                            mb={"0.9rem"}
-                                            w={"10rem"}
-                                            onClick={() => allowAllCookies()}
-                                        >
-                                            <Text
-                                                colorMode={colorMode}
-                                                variant={"SearchText"}
-                                                fontWeight={"600"}
-                                                _light={{ color: "#FAFAFB" }}
-                                                _dark={{ color: "#191919" }}
-                                            >
-                                                Accept All
-                                            </Text>
+                                                        >Reject All</Text>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                            <Box cursor={"pointer"} onClick={() => setShowCookiePopup(false)}>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                                    <path d="M18.3396 6L6.11316 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M6.11316 6L18.3396 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </Box>
                                         </Box>
-                                        <Box
-                                            cursor={"pointer"}
-                                            bgColor={
-                                                colorMode === "dark"
-                                                    ? "#282828"
-                                                    : "#FFF"
-                                            }
-                                            layerStyle={"center"}
-                                            borderRadius={"4px"}
-                                            p="15px 20px"
-                                            mb={"0.9rem"}
-                                            w={"8rem"}
-                                            border="2px solid rgba(70, 130, 180, 0.24)"
-                                            onClick={() => {
-                                                document.body.scrollTop = document.documentElement.scrollTop = 0;
-                                                setPage("detail");
-                                            }}
-                                        >
-                                            <Text
-                                                colorMode={colorMode}
-                                                variant={"SearchText"}
-                                                fontWeight={"600"}
-                                                fontSize={{ md: "14px", base: "12px" }}
-                                                _dark={{ color: "#FAFAFB" }}
-                                                _light={{ color: "#191919" }}
-                                            >
-                                                Manage
-                                            </Text>
-                                        </Box>
-                                        <Text
-                                            colorMode={colorMode}
-                                            onClick={() => rejectAllCookies()}
-                                            justifyContent={"end"}
-                                            display={"flex"}
-                                            cursor={"pointer"}
-                                            variant={"cookies_footer"}
-                                            my={"1rem"}
-
-                                        >Reject All</Text>
                                     </Box>
+                                    :
+                                    <Box p={"1rem"} style={{ border: '2px solid rgba(70, 130, 180, 0.24)' }} _dark={{ bgColor: "#191919" }} _light={{ bgColor: "#FFFFFF" }}
+                                        zIndex={"10000"} position={"fixed"} bottom={0} width={"100%"} >
+                                        <Box display={"flex"}>
+                                            <Box display={"flex"} w={"100%"} gap={"1rem"}>
+                                                <Box display={"flex"} flexDir={"row"} justifyContent={"flex-start"} alignItems={"flex-start"} gap={"0.5rem"} w={"10%"} >
+                                                    <Image src={"/images/cookie.svg"} alt={"cookie-image"} height={48} width={48} />
+                                                    <Box display={"flex"} flexDir={"column"}  >
+                                                        <Text colorMode={colorMode} variant={"cookie_heading_1"}>We Value</Text>
+                                                        <Text colorMode={colorMode} variant={"cookie_heading_2"}>Your Privacy.</Text>
+                                                    </Box>
+                                                </Box>
 
-                                </Box>
-                            </Box>
-                            <Box cursor={"pointer"} onClick={() => setShowCookiePopup(false)}>
+                                                <Box gap={"1.5rem"} display={"flex"} w={"57%"}>
+                                                    <Text colorMode={colorMode} variant={"cookie_description_2"}>
+                                                        {CookieDescriptionTitle}
+                                                    </Text>
+                                                    <Text colorMode={colorMode} variant={"cookie_description_2"}   >
+                                                        {cookieCollectData}
+                                                    </Text>
+                                                </Box>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                                    <path d="M18.3396 6L6.11316 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M6.11316 6L18.3396 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </Box>
-                        </Box>
-                    </Box>
+                                                <Box w={"33%"} display={"flex"} justifyContent={"end"} alignItems={"end"}>
+                                                    <Box display={"flex"} flexDir={"row"} justifyContent={"end"} px={"1.5rem"} gap={"1rem"}>
+                                                        <Box
+                                                            cursor={"pointer"}
+                                                            bgColor={
+                                                                colorMode === "light"
+                                                                    ? "#282828"
+                                                                    : "#FFF"
+                                                            }
+                                                            layerStyle={"center"}
+                                                            borderRadius={"4px"}
+                                                            p="15px 20px"
+                                                            mb={"0.9rem"}
+                                                            w={"10rem"}
+                                                            onClick={() => allowAllCookies()}
+                                                        >
+                                                            <Text
+                                                                colorMode={colorMode}
+                                                                variant={"SearchText"}
+                                                                fontWeight={"600"}
+                                                                _light={{ color: "#FAFAFB" }}
+                                                                _dark={{ color: "#191919" }}
+                                                            >
+                                                                Accept All
+                                                            </Text>
+                                                        </Box>
+                                                        <Box
+                                                            cursor={"pointer"}
+                                                            bgColor={
+                                                                colorMode === "dark"
+                                                                    ? "#282828"
+                                                                    : "#FFF"
+                                                            }
+                                                            layerStyle={"center"}
+                                                            borderRadius={"4px"}
+                                                            p="15px 20px"
+                                                            mb={"0.9rem"}
+                                                            w={"8rem"}
+                                                            border="2px solid rgba(70, 130, 180, 0.24)"
+                                                            onClick={() => {
+                                                                document.body.scrollTop = document.documentElement.scrollTop = 0;
+                                                                setPage("detail");
+                                                            }}
+                                                        >
+                                                            <Text
+                                                                colorMode={colorMode}
+                                                                variant={"SearchText"}
+                                                                fontWeight={"600"}
+                                                                fontSize={{ md: "14px", base: "12px" }}
+                                                                _dark={{ color: "#FAFAFB" }}
+                                                                _light={{ color: "#191919" }}
+                                                            >
+                                                                Manage
+                                                            </Text>
+                                                        </Box>
+                                                        <Text
+                                                            colorMode={colorMode}
+                                                            onClick={() => rejectAllCookies()}
+                                                            justifyContent={"end"}
+                                                            display={"flex"}
+                                                            cursor={"pointer"}
+                                                            variant={"cookies_footer"}
+                                                            my={"1rem"}
+
+                                                        >Reject All</Text>
+                                                    </Box>
+                                                </Box>
+                                            </Box>
+                                            <Box cursor={"pointer"} onClick={() => setShowCookiePopup(false)}>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                                    <path d="M18.3396 6L6.11316 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M6.11316 6L18.3396 18" stroke={colorMode === "light" ? "black" : "white"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                            }
+                        </>
+                    )
                 }
             </>
         );
@@ -245,10 +353,10 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                         </Box>
                         <Box mb={"7rem"}>
                             <Text colorMode={colorMode} variant={"cookie_description_2"}>
-                                If you consent, we can store and access personal information on your device to provide a more personalized browsing experience. This is accomplished through processing personal data collected from browsing data stored in cookies. You can provide/withdraw consent and object to processing based on a legitimate interest at any time by clicking on the ‘Manage Preferences’ button.
+                                {CookieDescriptionTitle}
                             </Text>
                             <Text colorMode={colorMode} variant={"cookie_description_2"} marginTop="1.3rem"  >
-                                We collects your data in order to improve your experience in the form of cookies.
+                                {cookieCollectData}
                             </Text>
                         </Box>
 
