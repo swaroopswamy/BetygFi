@@ -100,7 +100,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                             </Box>
                         </ModalHeader>
                     }
-                    {isMd && <ModalCloseButton />}
+                    {/* isMd && */ <ModalCloseButton />}
                     <ModalBody
                         borderRadius={"10px"}
                         px={{ md: "1.5rem", base: "0.8rem" }}
