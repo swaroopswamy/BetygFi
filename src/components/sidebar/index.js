@@ -27,13 +27,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { sidebarCollapsedReducer } from "@/redux/app_data/dataSlice";
 import dynamic from "next/dynamic";
-import {
-    bottomMenu,
-    dashboards,
-    pages,
-    communities,
-    legal,
-} from "@components/sidebar/helper";
+import { bottomMenu, dashboards, pages, communities, legal } from "@components/sidebar/helper";
 import { BsPeople } from "react-icons/bs";
 import { SlSettings } from "react-icons/sl";
 import ReportBugModal from "@components/sidebar/report";

@@ -29,6 +29,8 @@ const TabBox = React.memo(() => {
                     w={{ base: "100%", sm: "100%", midSize: "auto", md: "auto" }}
                     bg="transparent"
                     gap={"18px"}
+                    overflowX={"scroll"}
+                    overflowY={"hidden"}
                 >
                     {Object.keys(codeSnippets).map((tab) => {
                         return (

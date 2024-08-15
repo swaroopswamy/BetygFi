@@ -4,6 +4,7 @@ export const API_URL_COOKIE_NAME = "bet-api-url";
 export const NTF_URL_COOKIE_NAME = "bet-ntf-url";
 export const COLOR_MODE_COOKIE_NAME = "bet-color";
 export const BETYGFI_COOKIE_ACCEPTED = "bet-ck-acc";
+export const BETYGFI_COOKIE_CONSENT_SEEN = "bet-cc-seen";
 export const BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME = "bet-blockchain-selected";
 export const DOMAIN = "betygfi.com";
 export const LOCAL_DASHBOARD_HOST = "local.betygfi.com";
@@ -222,23 +223,23 @@ export const COOKIE_TYPES = [
     {
         name: "Necessary",
         slug: "necessary",
-        description: "Necessary cookies help make a website usable by enabing basic functions like page navigation and access to secure of the website. The website cannot function properly without these cookies."
+        description: "These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms.    You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information."
     },
     {
-        name: "Statistic",
-        slug: "statistic",
-        description: "Statistic cookies help website owners to understand how visitors interact with websitesby collecting and reporting information anonymously."
+        name: "Functional",
+        slug: "functional",
+        description: "These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages. If you do not allow these cookies, some or all of these services may not function properly."
     },
     {
-        name: "Preferences",
-        slug: "preferences",
-        description: "Preferencee cookies enable website to remember infomartion that changes the way thewebsite behaves or looks, like your preffered language or the region that you are in."
+        name: "Performance",
+        slug: "performance",
+        description: "These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site. All information these cookies collect is aggregated and therefore anonymous. If you do not allow these cookies we will not know when you have visited our site, and will not be able to monitor its performance."
     },
     {
-        name: "Marketing",
-        slug: "marketing",
-        description: "Marketing cookies are used to track visitors across webstites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers."
-    },
+        name: "Targetting",
+        slug: "targetting",
+        description: "These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising."
+    }
 ];
 
 export const BASE_URL = 'https://platform.betygfi.com';

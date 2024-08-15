@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Box, useDisclosure, useMediaQuery, useToast, } from "@chakra-ui/react";
-import { LogInFromCookie, LogoutReducer, ResetValidatedUserData, socialLoginGoogle, StoreLoggedInUserDataGoogle, verifyJWTtokenFromCookie, } from "@redux/auth_data/authSlice";
-import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, NTF_URL_COOKIE_NAME } from "@util/constant";
+import { LogInFromCookie, LogoutReducer, ResetValidatedUserData, socialLoginGoogle, StoreLoggedInUserDataGoogle, verifyJWTtokenFromCookie } from "@redux/auth_data/authSlice";
+import { API_URL_COOKIE_NAME, AUTH_COOKIE_NAME, BETYGFI_COOKIE_CONSENT_SEEN, NTF_URL_COOKIE_NAME } from "@util/constant";
 import { createCookies, getCookieByName } from "@util/cookieHelper";
 import { watchAccount } from '@wagmi/core';
 import isEmpty from "lodash/isEmpty";
@@ -15,7 +15,7 @@ import { config } from "./Web3Provider";
 import AppConfigContext from "@components/context/appConfigContext";
 import useSocket from "@hooks/useSocket";
 import { getAllPublicNotifications, /* getAllUserNotificationsByUserId, */ notificationsReducer } from "@redux/app_data/dataSlice";
-import { getEnv, mapTypeObject, replaceWithWS } from "@util/utility";
+import { getEnv, replaceWithWS } from "@util/utility";
 import dynamic from "next/dynamic";
 
 import CookiesPopup from "@components/cookies";
@@ -151,12 +151,16 @@ export default function LayoutProvider({ appConfig, children }) {
         createCookies(NTF_URL_COOKIE_NAME, appConfig.NEXT_PUBLIC_SOCKET_HOST);
         checkIfVerifiedOrNot();
         manageOnlineOfflineStatus();
-        window.appConfig = mapTypeObject(appConfig);
+        // window.appConfig = mapTypeObject(appConfig);
 
         setTimeout(() => {
-            onCookieModalOpen();
+            if (checkIfUserHasAlreadyFaceCookiePopup()) {
+                onCookieModalOpen();
+            }
         }, 5000);
     }, []);
+
+    const checkIfUserHasAlreadyFaceCookiePopup = () => getCookieByName(BETYGFI_COOKIE_CONSENT_SEEN) === undefined;
 
     // for creating cookie after google sign in is successful
     useEffect(() => {

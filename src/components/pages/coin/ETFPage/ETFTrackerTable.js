@@ -13,13 +13,6 @@ const ETFTracker = () => {
     const tableData = useSelector((state) => state?.coinData?.ETFListData);
     const [selectedType, setSelectedType] = useState("All");
 
-    // const placeholderStyle = {
-    //     color: "#6F6F6F",
-    //     fontSize: "12px",
-    //     fontWeight: 400,
-    //     lineHeight: "20px",
-    // };
-
     const periods = [
         {
             value: "All",
@@ -111,8 +104,8 @@ const TableRow = ({ item, rowIndex, selectedType }) => {
     const { colorMode } = useColorMode();
     const router = useRouter();
     const commonStyleTdProp = {
-        _light: { bgColor: "#FFFFFF", },
-        _dark: { bgColor: "#202020", }
+        _light: { bgColor: "#FFFFFF" },
+        _dark: { bgColor: "#202020" }
     };
     if (selectedType === "All" || item.type === selectedType) {
         return (

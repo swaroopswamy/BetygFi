@@ -1,60 +1,96 @@
-import CustomChart from "@components/graph";
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorMode, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import millify from "millify";
+import dynamic from "next/dynamic";
+const CustomChart = dynamic(() => import("@components/graph", { ssr: false }));
 
 const TickerETFNetInflowBox = () => {
     const { colorMode } = useColorMode();
     const TickerInflowOutflowData = useSelector((state) => state?.coinData?.TickerInflowOutflowData);
+    const [selectedRange, setSelectedRange] = useState("30d");
+    const tickerName = TickerInflowOutflowData?.data?.[0]?.change?.ticker || undefined;
 
     const [series, setSeries] = useState([
         {
             name: "Inflow",
+            type: "bar",
             data: [],
-            color: colorMode === "light" ? "#245F00" : "#60C000",
+            color: ["#089981"],
         },
         {
             name: "Outflow",
+            type: "bar",
             data: [],
-            color: colorMode === "light" ? "#C50606" : "#FF3535",
+            color: ["#F23645"],
         },
     ]);
 
     useEffect(() => {
         if (TickerInflowOutflowData?.data) {
+            const filteredData = getFilteredData(selectedRange);
+            const inflowData = filteredData.map((entry) => {
+                if (entry?.change?.changeUsd >= 0) {
+                    return {
+                        x: new Date(entry?.date).getTime(),
+                        y: entry?.change?.changeUsd,
+                        price: entry?.price
+                    };
+                }
+                return null;
+            }).filter(entry => entry !== null);
+
+            const outflowData = filteredData.map((entry) => {
+                if (entry?.change?.changeUsd < 0) {
+                    return {
+                        x: new Date(entry?.date).getTime(),
+                        y: entry?.change?.changeUsd,
+                        price: entry?.price
+                    };
+                }
+                return null;
+            }).filter(entry => entry !== null);
+
             setSeries([
                 {
                     name: "Inflow",
-                    data: TickerInflowOutflowData?.data?.map((entry) => {
-                        if (entry?.change?.changeUsd >= 0) {
-                            return {
-                                x: new Date(entry?.date).getTime(),
-                                y: entry?.change?.changeUsd,
-                                price: entry?.price
-                            };
-                        }
-                        return null;
-                    }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#245F00" : "#60C000",
+                    data: inflowData,
+                    color: "#089981",
                 },
                 {
                     name: "Outflow",
-                    data: TickerInflowOutflowData?.data?.map((entry) => {
-                        if (entry?.change?.changeUsd < 0) {
-                            return {
-                                x: new Date(entry?.date).getTime(),
-                                y: entry?.change?.changeUsd,
-                                price: entry?.price
-                            };
-                        }
-                        return null;
-                    }).filter(entry => entry !== null),
-                    color: colorMode === "light" ? "#C50606" : "#FF3535",
+                    data: outflowData,
+                    color: "#F23645",
                 },
             ]);
         }
-    }, [TickerInflowOutflowData]);
+    }, [TickerInflowOutflowData, selectedRange, colorMode]);
+
+    const getFilteredData = (range) => {
+        const currentDate = new Date();
+        switch (range) {
+            case "7d":
+                return TickerInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 8 * 24 * 60 * 60 * 1000));
+            case "14d":
+                return TickerInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 15 * 24 * 60 * 60 * 1000));
+            case "30d":
+                return TickerInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 31 * 24 * 60 * 60 * 1000));
+            case "1yr":
+                return TickerInflowOutflowData?.data;
+            default:
+                return TickerInflowOutflowData?.data?.filter(item => new Date(item.date) >= new Date(currentDate.getTime() - 31 * 24 * 60 * 60 * 1000));
+        }
+    };
+
+    const calculateColumnWidth = () => {
+        const filteredData = getFilteredData(selectedRange);
+        const dataLength = ![null, undefined].includes(filteredData) ? filteredData?.length : 0;
+        if (dataLength > 31) {
+            return "3px";
+        } else {
+            return "25px";
+        }
+    };
 
     const options = {
         chart: {
@@ -63,13 +99,12 @@ const TickerETFNetInflowBox = () => {
                 show: false,
             },
         },
-        colors: ["#245F00", "#60C000", "#C50606", "#FF3535"],
+        colors: ["#089981", "#F23645"],
         dataLabels: {
             enabled: false,
         },
         xaxis: {
             type: "datetime",
-            tickAmount: 10,
             labels: {
                 format: 'dd MMM',
                 style: {
@@ -151,27 +186,85 @@ const TickerETFNetInflowBox = () => {
         },
         plotOptions: {
             bar: {
-                columnWidth: 3,
+                columnWidth: calculateColumnWidth(),
+                horizontal: false,
+                endingShape: 'flat',
             },
         },
+    };
+
+    const handleRangeChange = (range) => {
+        setSelectedRange(range);
     };
 
     return (
         <Box
             width={"100%"}
             height={"100%"}
-            borderEndEndRadius={"8px"}
+            borderRadius={"8px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
-            p={"0px 10px"}
+            p={"10px"}
         >
-            <CustomChart
-                options={options}
-                series={series}
-                type="bar"
-                height={439}
-            />
+            <Box layerStyle={"spaceBetween"}>
+                <Box>
+                    <Text variant={"contentHeading4"} fontSize={{ base: "14px", md: "20px" }} lineHeight={"20px"}>
+                        Total {tickerName} Spot ETF Net Inflow (USD)
+                    </Text>
+                </Box>
+                <Box layerStyle={"flexCenter"}>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '7d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
+                        onClick={() => handleRangeChange('7d')}
+                        minW={"-moz-fit-content"}
+                    >
+                        7d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '14d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
+                        onClick={() => handleRangeChange('14d')}
+                        minW={"-moz-fit-content"}
+                    >
+                        14d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '30d' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
+                        onClick={() => handleRangeChange('30d')}
+                        minW={"-moz-fit-content"}
+                    >
+                        30d
+                    </Button>
+                    <Button
+                        variant={"modalButton"}
+                        className={selectedRange === '1yr' ? (colorMode === 'light' ? 'chart-button-light-selected' : 'chart-button-dark-selected') : (colorMode === 'light' ? 'chart-button-light' : 'chart-button-dark')}
+                        height={"35px"}
+                        border={colorMode === 'light' ? "1px solid #E0E0E0" : "1px solid #C6C6C699"}
+                        onClick={() => handleRangeChange('1yr')}
+                        minW={"-moz-fit-content"}
+                    >
+                        1yr
+                    </Button>
+                </Box>
+            </Box>
+            <Box width={"100%"} height={"100%"}>
+                <CustomChart
+                    series={series}
+                    options={options}
+                    type={"bar"}
+                    height={439}
+                />
+            </Box>
         </Box>
     );
 };
+
 export default TickerETFNetInflowBox;

@@ -1,30 +1,36 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress } from "@services/authService";
+import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress, userPersonalizationAPI } from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookiesAuth, deleteCookieByNameAuth } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
 
+export const VerifyPublicAddressData = createAsyncThunk(
+	"verifyPublicAddressData", async (payload, { rejectWithValue }) => {
+		const response = await verifyPublicAddress(payload, rejectWithValue);
+		return response.data;
+	}
+);
 
-export const VerifyPublicAddressData = createAsyncThunk("verifyPublicAddressData", async (payload, { rejectWithValue }) => {
-	const response = await verifyPublicAddress(payload, rejectWithValue);
-	return response.data;
-});
+export const LoginGetToken = createAsyncThunk(
+	"LoginMetamask", async (payload) => {
+		const response = await loginMetamask(payload);
+		return response.data;
+	}
+);
 
-export const LoginGetToken = createAsyncThunk("LoginMetamask", async (payload) => {
-	const response = await loginMetamask(payload);
-	return response.data;
-});
+export const socialLoginGoogle = createAsyncThunk(
+	"socialLoginGoogle", async (payload, { rejectWithValue }) => {
+		const response = await socialLoginGoogleAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
 
-export const socialLoginGoogle = createAsyncThunk("socialLoginGoogle", async (payload, { rejectWithValue }) => {
-	const response = await socialLoginGoogleAPI(payload, rejectWithValue);
-	return response.data;
-});
-
-export const verifyJWTtokenFromCookie = createAsyncThunk("verifyJWTtokenFromCookie", async (payload, { rejectWithValue }) => {
-	const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
-	return response.data;
-});
-
+export const verifyJWTtokenFromCookie = createAsyncThunk(
+	"verifyJWTtokenFromCookie", async (payload, { rejectWithValue }) => {
+		const response = await verifyJWTtokenFromCookieAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
 
 export const getUserDetails = createAsyncThunk(
 	"getUserDetails",
@@ -66,12 +72,21 @@ export const usernameValidity = createAsyncThunk(
 	}
 );
 
-export const changeProfilePic = createAsyncThunk("changeProfilePic", async (payload, { rejectWithValue }) => {
-	const response = await changeProfilePicAPI(payload, rejectWithValue);
-	return response.data;
+export const changeProfilePic = createAsyncThunk(
+	"changeProfilePic",
+	async (payload, { rejectWithValue }) => {
+		const response = await changeProfilePicAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
 
-});
-
+export const userPersonalization = createAsyncThunk(
+	"userPersonalization",
+	async (payload, { rejectWithValue }) => {
+		const response = await userPersonalizationAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
 
 const AuthDataSlice = createSlice({
 	name: "authData",
@@ -122,7 +137,13 @@ const AuthDataSlice = createSlice({
 		ChangeProfilePicData: {
 			data: null,
 			isSuccess: null
-		}
+		},
+		UserPersonalizationData: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: null
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(VerifyPublicAddressData.fulfilled, (state, action) => {
@@ -234,7 +255,6 @@ const AuthDataSlice = createSlice({
 			state.UsernameValidData.isSuccess = false;
 			state.UsernameValidData.data = data;
 		});
-
 		builder.addCase(changeProfilePic.fulfilled, (state, action) => {
 			state.ChangeProfilePicData.data = action.payload;
 			state.ChangeProfilePicData.isSuccess = true;
@@ -243,6 +263,24 @@ const AuthDataSlice = createSlice({
 			const { data } = action.payload.response;
 			state.ChangeProfilePicData.isSuccess = false;
 			state.ChangeProfilePicData.data = data;
+		});
+		builder.addCase(userPersonalization.fulfilled, (state, action) => {
+			state.UserPersonalizationData.data = action.payload;
+			state.UserPersonalizationData.isLoading = false;
+			state.UserPersonalizationData.isSuccess = true;
+			state.UserPersonalizationData.isError = false;
+		});
+		builder.addCase(userPersonalization.pending, (state, action) => {
+			state.UserPersonalizationData.isLoading = true;
+			state.UserPersonalizationData.isError = false;
+			state.UserPersonalizationData.isSuccess = false;
+			state.UserPersonalizationData.data = action.payload;
+		});
+		builder.addCase(userPersonalization.rejected, (state, action) => {
+			state.UserPersonalizationData.isLoading = false;
+			state.UserPersonalizationData.isSuccess = false;
+			state.UserPersonalizationData.isError = true;
+			state.UserPersonalizationData.data = action.payload;
 		});
 	},
 	reducers: {
@@ -325,8 +363,14 @@ const AuthDataSlice = createSlice({
 			state.ChangeProfilePicData.data = null;
 			state.ChangeProfilePicData.isSuccess = null;
 		},
+		ResetUserPersonalizationData: (state) => {
+			state.UserPersonalizationData.data = null;
+			state.UserPersonalizationData.isSuccess = null;
+			state.UserPersonalizationData.isError = null;
+			state.UserPersonalizationData.isLoading = null;
+		},
 	},
 });
 
-export const { LogoutReducer, StoreLoggedInUserData, StoreLoggedInUserDataGoogle, LogInFromCookie, ResetValidatedUserData, ResetUsernameValidData, ResetEditUserDetailsData, ResetChangeProfilePicData } = AuthDataSlice.actions;
+export const { LogoutReducer, StoreLoggedInUserData, StoreLoggedInUserDataGoogle, LogInFromCookie, ResetValidatedUserData, ResetUsernameValidData, ResetEditUserDetailsData, ResetChangeProfilePicData, ResetUserPersonalizationData } = AuthDataSlice.actions;
 export default AuthDataSlice.reducer;

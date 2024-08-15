@@ -5,8 +5,9 @@ import { fetchDefiOverviewData } from "@redux/defi_dashboard_data/dataSlice";
 import { fetchMarqueeData } from "@redux/coin_data/dataSlice";
 import { Box, Text, useColorModeValue, useDisclosure, Switch, Collapse, useColorMode } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { userPersonalization } from "@redux/auth_data/authSlice";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
 import { useSearchParams } from "next/navigation";
 
@@ -19,15 +20,14 @@ const Marquee = dynamic(() => import("@/components/pages/coin/marquee"), { ssr: 
 const ProtocolFilterModal = dynamic(() => import("@components/pages/defiDashboard/ProtocolFilterModal"), { ssr: false });
 const HighlightsBox = dynamic(() => import("@/components/pages/defiDashboard/HighlightsBox"), { ssr: false });
 
-
 const ProtocolPage = () => {
     const { colorMode } = useColorMode();
     const { isOpen, /* onOpen, */ onClose } = useDisclosure();
     const dispatch = useDispatch();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure();
-
     const blockchainSelected = useSelector((state) => state?.dashboardTableData?.blockchainType);
     const categorySelected = useSelector((state) => state?.dashboardTableData?.categorySelected);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const [isHighlightsBoxOpen, setIsHighlightsBoxOpen] = useState(true);
     const searchParams = useSearchParams();
     const on = searchParams.get('on');
     const by = searchParams.get('by');
@@ -56,6 +56,13 @@ const ProtocolPage = () => {
         dispatch(fetchMarqueeData());
     };
 
+    const userPersonalizationHandler = () => {
+        const payload = {
+            feature: 'defi_ranking_highlights',
+        };
+        dispatch(userPersonalization(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             getOverviewDataHandler(),
@@ -67,7 +74,7 @@ const ProtocolPage = () => {
         Promise.all([
             fetchDefiOverviewDataHandler(),
             fetchMarqueeDataHandler(),
-            onHighlightsBoxToggle(),
+            userPersonalizationHandler(),
         ]).then(result => result);
     }, []);
 
@@ -95,6 +102,23 @@ const ProtocolPage = () => {
             }, 1000);
         }
     }, [on, by]);
+
+    useEffect(() => {
+        const savedPreference = localStorage.getItem('defi_ranking_highlights_open');
+        if (savedPreference) {
+            setIsHighlightsBoxOpen(savedPreference === 'true');
+        }
+    }, []);
+
+    const handleToggleHighlights = () => {
+        const newState = !isHighlightsBoxOpen;
+        setIsHighlightsBoxOpen(newState);
+        if (ValidatedUserData?.success) {
+            dispatch(userPersonalization({ feature: 'defi_ranking_highlights', state: newState }));
+        } else {
+            localStorage.setItem('defi_ranking_highlights_open', newState);
+        }
+    };
 
     return (
         <Box display={"flex"} flexDir={"column"} overflow={"hidden"}>
@@ -127,7 +151,7 @@ const ProtocolPage = () => {
                         <Switch
                             size={"lg"}
                             isChecked={isHighlightsBoxOpen}
-                            onChange={onHighlightsBoxToggle}
+                            onChange={handleToggleHighlights}
                             className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                         ></Switch>
                     </Box>

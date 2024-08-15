@@ -1,23 +1,22 @@
 "use client";
-import React, { useEffect } from "react";
-import { Box, Text, useColorMode, Switch, useDisclosure, Collapse } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Text, useColorMode, Switch, Collapse } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 //import Image from "next/image";
 import millify from "millify";
 import { fetchETFListData, fetchETFInflowOutflowData, fetchETFHeatMapData } from "@redux/coin_data/dataSlice";
+import { userPersonalization } from "@redux/auth_data/authSlice";
 import dynamic from "next/dynamic";
 const BreadCrumb = dynamic(() => import("@components/breadcrumb2"), { ssr: false });
 const HighlightsBox = dynamic(() => import("@components/pages/coin/ETFPage/Highlights", { ssr: false }));
 const ETFTracker = dynamic(() => import("@components/pages/coin/ETFPage/ETFTrackerTable", { ssr: false }));
 
-
-
 const Bitcoin_ETFs_Tracker = () => {
     const dispatch = useDispatch();
     const { colorMode } = useColorMode();
-    const { isOpen: isHighlightsBoxOpen, onToggle: onHighlightsBoxToggle } = useDisclosure({ defaultIsOpen: true });
     const ETFType = useSelector((state) => state?.coinData?.ETFType);
-    //const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
+    const [isHighlightsBoxOpen, setIsHighlightsBoxOpen] = useState(true);
 
     const fetchETFListDataHandler = () => {
         const payload = {
@@ -34,10 +33,18 @@ const Bitcoin_ETFs_Tracker = () => {
         dispatch(fetchETFHeatMapData());
     };
 
+    const userPersonalizationHandler = () => {
+        const payload = {
+            feature: 'etf_highlights',
+        };
+        dispatch(userPersonalization(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             fetchETFInflowOutflowDataHandler(),
             fetchETFHeatMapDataHandler(),
+            userPersonalizationHandler(),
         ]).then(res => res);
     }, []);
 
@@ -47,15 +54,31 @@ const Bitcoin_ETFs_Tracker = () => {
         ]).then(res => res);
     }, [ETFType]);
 
-    const ETFListData = useSelector((state) => state.coinData.ETFListData);
+    useEffect(() => {
+        const savedPreference = localStorage.getItem('etf_highlights_open');
+        if (savedPreference) {
+            setIsHighlightsBoxOpen(savedPreference === 'true');
+        }
+    }, []);
 
-/*     {
-        ValidatedUserData?.AnnotationState &&
-            <Box>
-                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
-            </Box>;
-    }
- */
+    const ETFListData = useSelector((state) => state.coinData.ETFListData);
+    /*     {
+            ValidatedUserData?.AnnotationState &&
+                <Box>
+                    <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
+                </Box>;
+        }
+     */
+    const handleToggleHighlights = () => {
+        const newState = !isHighlightsBoxOpen;
+        setIsHighlightsBoxOpen(newState);
+        if (ValidatedUserData?.success) {
+            dispatch(userPersonalization({ feature: 'etf_highlights', state: newState }));
+        } else {
+            localStorage.setItem('etf_highlights_open', newState);
+        }
+    };
+
     return (
         <Box
             display={"flex"}
@@ -98,7 +121,7 @@ const Bitcoin_ETFs_Tracker = () => {
                     <Switch
                         size={"lg"}
                         isChecked={isHighlightsBoxOpen}
-                        onChange={onHighlightsBoxToggle}
+                        onChange={handleToggleHighlights}
                         className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                     ></Switch>
                 </Box>
