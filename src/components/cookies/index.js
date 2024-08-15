@@ -29,8 +29,8 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
             dupCookieAcc.push(cookieAccepted_);
         }
         setCookieAccepted(dupCookieAcc);
-        createCookies(BETYGFI_COOKIE_ACCEPTED, dupCookieAcc.join(","));
-        createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
+        // createCookies(BETYGFI_COOKIE_ACCEPTED, dupCookieAcc.join(","));
+        // createCookies(BETYGFI_COOKIE_CONSENT_SEEN, "true");
     };
 
     const allowSelectedCookies = () => {
@@ -61,6 +61,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                 isCentered={{ md: true, base: true }}
                 isOpen={isOpen}
                 onClose={() => onClose()}
+                closeOnOverlayClick={false}
                 borderRadius={"6px"}
                 boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
                 width={{ md: "700px", base: "90%" }}
@@ -588,6 +589,7 @@ const CookiesPopup = ({ isOpen, onClose, }) => {
                                   isCentered={{ md: true, base: true }}
                                   isOpen={isOpen}
                                   onClose={() => onClose()}
+                                  closeOnOverlayClick={false}
                                   borderRadius={"6px"}
                                   boxShadow={"0px 34px 24px 0px rgba(0, 0, 0, 0.25)"}
                                   width={{ md: "700px", base: "90%" }}
