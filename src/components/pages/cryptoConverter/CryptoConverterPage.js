@@ -279,7 +279,7 @@ const CryptoConverterPage = () => {
                         </Box>
                     </Box>
 
-                    <Box style={{ border: '1px solid pink' }} borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
+                    <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
                         <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                             <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
@@ -289,7 +289,7 @@ const CryptoConverterPage = () => {
                             <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
                                 <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
 
-                                    <Box style={{ border: '1px solid red' }} w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={{ base: "1rem", md: "2rem" }} flexDir={{ base: "column", md: "row" }}>
+                                    <Box w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={{ base: "1rem", md: "2rem" }} flexDir={{ base: "column", md: "row" }}>
                                         <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
                                             <Input type="number" min={0} />
                                             <InputRightAddon>
@@ -310,7 +310,7 @@ const CryptoConverterPage = () => {
                                             </InputRightAddon>
                                         </InputGroup>
                                     </Box>
-                                    <Box style={{ border: '1px solid red' }} display={"flex"} justifyContent={"space-between"}   >
+                                    <Box display={"flex"} justifyContent={"space-between"}   >
                                         <Box display={"flex"} justifyContent={"flex-start"}>
                                             <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
                                                 1 BTC = ₹4,619,183

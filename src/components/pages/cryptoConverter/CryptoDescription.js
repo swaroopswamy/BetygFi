@@ -81,7 +81,7 @@ const CryptoDescription = () => {
         },
     ];
     return (
-        <Box style={{ border: '1px solid red' }} display={"flex"} flexDir={{ md: "row", base: "column" }} gap={"1rem"} w={"100%"}>
+        <Box display={"flex"} flexDir={{ md: "row", base: "column" }} gap={"1rem"} w={"100%"}>
             <Box bg={useColorModeValue("#FFFFFF", "#191919")} w={{ base: "100%", md: "75%" }}>
                 <Box background='linear-gradient(184deg, rgba(255, 255, 255, 0.00) 4.24%, #FFF 89.89%)' p={"1.7rem 1.5rem"} height={"max-content"} maxH={"550px"} overflow={"auto"} gap={"1.5rem"} display={"flex"} flexDir={"column"}>
                     {descriptionList.map((desc, index) => (

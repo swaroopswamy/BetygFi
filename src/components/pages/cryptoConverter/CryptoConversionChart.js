@@ -246,7 +246,7 @@ const CryptoConversionChart = () => {
 
     return (
         <>
-            <Box style={{ border: '1px solid red' }} height={"458px"}
+            <Box height={"458px"}
                 bgColor={useColorModeValue("#FFFFFF", "#282828")}
             // border={"1px solid #D9D9D9"}
             // boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
@@ -260,8 +260,7 @@ const CryptoConversionChart = () => {
                 {
 
                     <React.Fragment>
-                        <Box style={{ border: '1px solid red' }}  >
-
+                        <Box>
                             <Box zIndex={"99"} display={"flex"} gap={{ base: "0.4rem", md: "1rem" }} flexDir={{ base: "column", md: "row" }} justifyContent={"space-between"}>
 
                                 {/* <Text onClick={() => onZoomCLicked()} float={"left"} cursor={"pointer"} fontSize={"16px"} mr={"9px"}>Zoom</Text> */}
