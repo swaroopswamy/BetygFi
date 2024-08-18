@@ -1,6 +1,7 @@
 import { Box, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { renderSVG } from "@util/utility";
 import CryptoConversionChart from "./CryptoConversionChart";
+import IntervalWiseTableData from "./IntervalWiseTableData";
 
 const CryptoConversionWithChart = () => {
     const { colorMode } = useColorMode();
@@ -10,9 +11,15 @@ const CryptoConversionWithChart = () => {
                 <Text colorMode={colorMode} variant={"converter_heading"}>
                     BTC to INR Chart
                 </Text>
-                {renderSVG("info")}
-                {renderSVG("download")}
-                {renderSVG("share")}
+                <Box cursor={"pointer"}>
+                    {renderSVG("info")}
+                </Box>
+                <Box cursor={"pointer"}>
+                    {renderSVG("download")}
+                </Box>
+                <Box cursor={"pointer"}>
+                    {renderSVG("share")}
+                </Box>
             </Box>
             <Box>
                 <Text variant={"converter_calc_desc"}>
@@ -21,6 +28,9 @@ const CryptoConversionWithChart = () => {
             </Box>
             <Box>
                 <CryptoConversionChart />
+            </Box>
+            <Box>
+                <IntervalWiseTableData />
             </Box>
         </Box>
     );

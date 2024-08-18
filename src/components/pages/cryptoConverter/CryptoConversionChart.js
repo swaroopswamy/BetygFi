@@ -16,9 +16,18 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
-import { DateRangePicker } from 'rsuite';
+import 'react-date-range/dist/styles.css'; // Main css file
+import 'react-date-range/dist/theme/default.css'; // Theme css file
 import PeriodSelection from "./PeriodSelection";
+
 const CryptoConversionChart = () => {
+    // const [state, setState] = useState([
+    //     {
+    //         startDate: new Date(),
+    //         endDate: null,
+    //         key: 'selection'
+    //     }
+    // ]);
     // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
 
     const annualizedVolatilityChartOptions = {
@@ -161,7 +170,8 @@ const CryptoConversionChart = () => {
             <PeriodSelection
                 periods={periods}
                 currPeriod={period}
-                renderComponent={renderDatePicker}
+                renderComponent={null}
+                // renderComponent={renderDatePicker}
                 periodSelectionHandler={periodSelectionHandler}
             />
         );
@@ -211,20 +221,32 @@ const CryptoConversionChart = () => {
         );
     };
 
-    const renderDatePicker = () => {
-        return (
-            <Box /* display={"none"} */>
-                <DateRangePicker />
-                {/* <RangeDatepicker
-                    selectedDates={selectedDates}
-                    onDateChange={setSelectedDates}
-                >{children}</RangeDatepicker> */}
-            </Box>
-        );
-    };
+    // const renderDatePicker = () => {
+    //     return (
+    //         <Box /* display={"none"} */ style={{ border: '1px solid red' }} display={"flex"}>
+    //             {/* <DateRangePicker
+    //                 appearance="default"
+    //                 placeholder="Default"
+    //                 style={{ width: 230 }}
+    //             /> */}
+    //             {/* <RangeDatepicker
+    //                 selectedDates={selectedDates}
+    //                 onDateChange={setSelectedDates}
+    //             >{children}</RangeDatepicker> */}
+    //             <DateRange
+    //                 editableDateInputs={true}
+    //                 onChange={item => setState([item.selection])}
+    //                 showSelectionPreview={false}
+    //             // moveRangeOnFirstSelection={false}
+    //             // ranges={state}
+    //             />
+    //         </Box>
+    //     );
+    // };
+
     return (
         <>
-            <Box style={{ border: '1px solid red' }}
+            <Box style={{ border: '1px solid red' }} height={"458px"}
                 bgColor={useColorModeValue("#FFFFFF", "#282828")}
             // border={"1px solid #D9D9D9"}
             // boxShadow={"0px 6px 6px 2px rgba(0, 0, 0, 0.15)"}
