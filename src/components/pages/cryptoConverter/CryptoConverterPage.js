@@ -4,6 +4,7 @@ import { Box, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, Me
 import CustomAvatar from "@components/avatar";
 import { renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
+import { useMediaQuery } from "rsuite/esm/useMediaQuery/useMediaQuery";
 import CoinData from "./CoinData";
 import CoinRankRepresentator from "./CoinRankRepresentator";
 import CryptoConversionTable from "./CryptoConversionTable";
@@ -15,7 +16,7 @@ import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 const CryptoConverterPage = () => {
     const router = useRouter();
     const { colorMode } = useColorMode();
-
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     return (
         <>
             <Box
@@ -32,7 +33,7 @@ const CryptoConverterPage = () => {
                     cursor={"pointer"}
                     gap={"10px"}
                     p={"10px 20px"}
-                    onClick={() => router.push(`/protocol`)}
+                    onClick={() => router.push(`/`)}
                 >
                     <ChevronLeftIcon
                         w={"24px"}
@@ -57,7 +58,8 @@ const CryptoConverterPage = () => {
 
             <Box
                 display={"flex"}
-                flexDir={"column"}
+                // flexDir={"column"}
+                flexDir={{ base: "column", md: "column", lg: "column" }}
                 bg={useColorModeValue("#F0F0F5", "#191919")}
                 p={"20px"}
                 gap={"20px"}
@@ -65,11 +67,11 @@ const CryptoConverterPage = () => {
                 <Box
                     display={"flex"}
                     width={"100%"}
-                    flexDir={{ base: "column", lg: "row" }}
+                    flexDir={{ base: "column", md: "row", lg: "row" }}
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={"30%"}>
+                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "30%" }}>
 
                         <Box width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                             <CustomAvatar
@@ -277,7 +279,7 @@ const CryptoConverterPage = () => {
                         </Box>
                     </Box>
 
-                    <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={"70%"}>
+                    <Box style={{ border: '1px solid pink' }} borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
                         <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                             <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
@@ -286,7 +288,8 @@ const CryptoConverterPage = () => {
                             </Box>
                             <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
                                 <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
-                                    <Box w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={"2rem"} flexDir={"row"}>
+
+                                    <Box style={{ border: '1px solid red' }} w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={{ base: "1rem", md: "2rem" }} flexDir={{ base: "column", md: "row" }}>
                                         <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
                                             <Input type="number" min={0} />
                                             <InputRightAddon>
@@ -295,7 +298,7 @@ const CryptoConverterPage = () => {
                                                 </Text>
                                             </InputRightAddon>
                                         </InputGroup>
-                                        <Box>
+                                        <Box transform={`rotate(${isMd ? '0deg' : '90deg'})`}>
                                             {renderSVG("right-arrow")}
                                         </Box>
                                         <InputGroup colorScheme={"#4682B4"} size='md'>
@@ -307,14 +310,14 @@ const CryptoConverterPage = () => {
                                             </InputRightAddon>
                                         </InputGroup>
                                     </Box>
-                                    <Box display={"flex"} justifyContent={"space-between"}   >
+                                    <Box style={{ border: '1px solid red' }} display={"flex"} justifyContent={"space-between"}   >
                                         <Box display={"flex"} justifyContent={"flex-start"}>
-                                            <Text colorMode={colorMode} variant={"cookies_footer"}>
+                                            <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
                                                 1 BTC = ₹4,619,183
                                             </Text>
                                         </Box>
                                         <Box display={"flex"} justifyContent={"flex-end"}>
-                                            <Text colorMode={colorMode} variant={"cookies_footer"}>
+                                            <Text colorMode={colorMode} textAlign='end' variant={"cookies_footer"}>
                                                 1 INR = 0.000000212393 BTC
                                             </Text>
                                         </Box>

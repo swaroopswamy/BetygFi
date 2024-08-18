@@ -81,8 +81,8 @@ const CryptoDescription = () => {
         },
     ];
     return (
-        <Box display={"flex"} gap={"1rem"} w={"100%"}>
-            <Box bg={useColorModeValue("#FFFFFF", "#191919")} w={"75%"}>
+        <Box style={{ border: '1px solid red' }} display={"flex"} flexDir={{ md: "row", base: "column" }} gap={"1rem"} w={"100%"}>
+            <Box bg={useColorModeValue("#FFFFFF", "#191919")} w={{ base: "100%", md: "75%" }}>
                 <Box background='linear-gradient(184deg, rgba(255, 255, 255, 0.00) 4.24%, #FFF 89.89%)' p={"1.7rem 1.5rem"} height={"max-content"} maxH={"550px"} overflow={"auto"} gap={"1.5rem"} display={"flex"} flexDir={"column"}>
                     {descriptionList.map((desc, index) => (
                         <Box key={index} gap={"0.6rem"} display={"flex"} flexDir={"column"}>
@@ -97,7 +97,7 @@ const CryptoDescription = () => {
                 </Box>
             </Box>
 
-            <Box bg={useColorModeValue("#FFFFFF", "#191919")} w={"25%"}>
+            <Box bg={useColorModeValue("#FFFFFF", "#191919")} w={{ base: "100%", md: "25%" }}>
                 <Box p={"1.7rem 1.5rem"} gap={"1.5rem"} display={"flex"} flexDir={"column"}>
                     <Text colorMode={colorMode} variant={"converter_news_heading"}>
                         Trending coins and tokens
@@ -156,6 +156,9 @@ const CryptoDescription = () => {
                     </Box>
                 </Box>
             </Box >
+            <Box></Box>
+            <Box></Box>
+            <Box></Box>
         </Box >
     );
 };

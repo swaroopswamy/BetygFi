@@ -192,7 +192,7 @@ const CryptoConversionChart = () => {
         return (
             <Menu >
                 <MenuButton as={Button}
-                    px={2}
+                    px={{ base: 0, md: 2 }}
                     py={2}
                     transition='all 0.2s'
                     borderRadius='md'
@@ -262,14 +262,14 @@ const CryptoConversionChart = () => {
                     <React.Fragment>
                         <Box style={{ border: '1px solid red' }}  >
 
-                            <Box zIndex={"99"} display={"flex"} flexDir={"row"} justifyContent={"space-between"}>
+                            <Box zIndex={"99"} display={"flex"} gap={{ base: "0.4rem", md: "1rem" }} flexDir={{ base: "column", md: "row" }} justifyContent={"space-between"}>
 
                                 {/* <Text onClick={() => onZoomCLicked()} float={"left"} cursor={"pointer"} fontSize={"16px"} mr={"9px"}>Zoom</Text> */}
-                                <Box display={"flex"} flexDir={"row"} justifyContent={"center"} alignItems={"center"} gap={"0.8rem"}>
+                                <Box display={"flex"} flexDir={"row"} justifyContent={{ base: "space-between", md: "center" }} alignItems={"center"} gap={"0.8rem"}>
                                     {renderPriceMarketCapSelection()}
                                     {renderChartFilterSelection()}
                                 </Box>
-                                <Box display={"flex"} flexDir={"row"} justifyContent={"center"} alignItems={"center"} gap={"0.5rem"}>
+                                <Box display={"flex"} flexDir={"row"} justifyContent={{ base: "space-between", md: "center" }} alignItems={"center"} gap={"0.5rem"}>
                                     {renderCompareDropDown()}
                                     {renderPeriodSelection()}
                                     {/* {renderDatePicker()} */}
@@ -285,7 +285,7 @@ const CryptoConversionChart = () => {
                     </React.Fragment>
 
                 }
-            </Box>
+            </Box >
         </>
     );
 };

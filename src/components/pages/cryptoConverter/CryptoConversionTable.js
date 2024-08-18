@@ -13,8 +13,8 @@ const CryptoConversionTable = () => {
                     The conversion rate of Bitcoin (BTC) to INR is ₹4,708,263 for every 1 BTC. This means you can exchange 5 BTC for ₹23,541,316 or ₹50.00 for 0.00001062 BTC, excluding fees. Refer to our conversion tables for popular BTC trading amounts in their corresponding INR prices and vice versa.
                 </Text>
             </Box>
-            <Box p={"0.05rem 1.5rem"}>
-                <Table size='md'>
+            <Box p={{ md: "0.05rem 1.5rem", base: "0.05rem 0.8rem" }}>
+                <Table size={{ base: "xs", md: 'md' }}>
                     <Thead>
                         <Tr>
                             <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>BTC</Text></Th>
@@ -32,10 +32,10 @@ const CryptoConversionTable = () => {
                                 { date: "06 August, 2024", day: "Tuesday", cryptoConvert: "₹ 4,708,263", _24_hrchange: "₹ 291,706", changePercent: "6.6%", isNegative: true },
                             ].map((hist, index) => (
                                 <Tr key={index}>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high"}>{hist.date}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high"}>{hist.day}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high"}>{hist.cryptoConvert}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high"}>{hist._24_hrchange}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.date}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.day}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.cryptoConvert}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist._24_hrchange}</Text></Td>
                                 </Tr>
                             ))
                         }

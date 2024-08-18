@@ -580,6 +580,15 @@ const Text = defineStyleConfig({
             lineHeight: 'normal',
             letterSpacing: '0.028px'
         }),
+        converter_low_high_table: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: { base: '10px', md: '14px' },
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: 'normal',
+            letterSpacing: '0.028px'
+        }),
         converter_low_high_value: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: 'Inter',
@@ -618,10 +627,10 @@ const Text = defineStyleConfig({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFeatureSettings: 'salt on, liga off',
             fontFamily: 'Inter',
-            fontSize: '14px',
+            fontSize: { base: '9px', md: '14px' },
             fontStyle: 'normal',
             fontWeight: '500',
-            lineHeight: '18px'
+            lineHeight: { base: '12px', md: '18px' }
         }),
         converter_get_api_key: ({ colorMode }) => ({
             color: colorMode !== "light" ? "#191919" : "#FFFFFF",
