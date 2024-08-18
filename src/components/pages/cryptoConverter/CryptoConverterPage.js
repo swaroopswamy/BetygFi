@@ -1,67 +1,20 @@
 "use client";
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { Box, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
+import { renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
+import CoinData from "./CoinData";
+import CoinRankRepresentator from "./CoinRankRepresentator";
+import CryptoConversionTable from "./CryptoConversionTable";
+import CryptoConversionWithChart from "./CryptoConversionWithChart";
+import CryptoDescription from "./CryptoDescription";
+import CryptoNews from "./CryptoNews";
+import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
 const CryptoConverterPage = () => {
     const router = useRouter();
     const { colorMode } = useColorMode();
-    const renderSVG = type => {
-        if (type == "star") {
-            return (
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-                    <path d="M8.36067 1L10.6351 5.60778L15.7213 6.35121L12.041 9.93586L12.9096 15L8.36067 12.6078L3.81178 15L4.68034 9.93586L1 6.35121L6.08622 5.60778L8.36067 1Z" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            );
-        } else if (type == "share") {
-            return (
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-                    <path d="M12.7213 5.33337C13.8259 5.33337 14.7213 4.43794 14.7213 3.33337C14.7213 2.2288 13.8259 1.33337 12.7213 1.33337C11.6168 1.33337 10.7213 2.2288 10.7213 3.33337C10.7213 4.43794 11.6168 5.33337 12.7213 5.33337Z" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M4.72134 10C5.82591 10 6.72134 9.10457 6.72134 8C6.72134 6.89543 5.82591 6 4.72134 6C3.61677 6 2.72134 6.89543 2.72134 8C2.72134 9.10457 3.61677 10 4.72134 10Z" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M12.7213 14.6666C13.8259 14.6666 14.7213 13.7712 14.7213 12.6666C14.7213 11.5621 13.8259 10.6666 12.7213 10.6666C11.6168 10.6666 10.7213 11.5621 10.7213 12.6666C10.7213 13.7712 11.6168 14.6666 12.7213 14.6666Z" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M6.44801 9.00671L11.0013 11.66" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M10.9947 4.33997L6.44801 6.9933" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            );
-        } else if (type == "trending_up") {
-            return (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M23 6L13.5 15.5L8.5 10.5L1 18" stroke="#245F00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M17 6H23V12" stroke="#245F00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-            );
-        } else if (type == "trending_down") {
-            return (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <g clip-path="url(#clip0_6937_7147)">
-                        <path d="M15.3333 12L8.99999 5.66667L5.66666 9L0.666656 4" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M11.3333 12H15.3333V8" stroke="#FF0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_6937_7147">
-                            <rect width="16" height="16" fill="white" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            );
-        } else if (type == "info") {
-            return (
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <g clip-path="url(#clip0_6937_5802)">
-                        <path d="M7.99935 1.33464C4.31745 1.33464 1.33268 4.3194 1.33268 8.0013C1.33268 11.6832 4.31745 14.668 7.99935 14.668C11.6812 14.668 14.666 11.6832 14.666 8.0013C14.666 4.3194 11.6812 1.33464 7.99935 1.33464Z" stroke="#757575" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8 10.668V8.0013" stroke="#757575" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M8 5.33203H7.99333" stroke="#757575" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_6937_5802">
-                            <rect width="16" height="16" fill="white" transform="matrix(-1 0 0 -1 16 16)" />
-                        </clipPath>
-                    </defs>
-                </svg>
-            );
-        }
-    };
 
     return (
         <>
@@ -102,7 +55,7 @@ const CryptoConverterPage = () => {
                 </Box>
             </Box>
 
-            <Box style={{ border: '1px solid red' }}
+            <Box
                 display={"flex"}
                 flexDir={"column"}
                 bg={useColorModeValue("#F0F0F5", "#191919")}
@@ -116,9 +69,9 @@ const CryptoConverterPage = () => {
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} style={{ border: '1px solid green' }} width={"30%"}>
+                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={"30%"}>
 
-                        <Box style={{ border: '1px solid red' }} width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
+                        <Box width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                             <CustomAvatar
                                 width={"54px"}
                                 height={"54px"}
@@ -140,7 +93,7 @@ const CryptoConverterPage = () => {
                         </Box>
 
                         <Box gap={"0.5rem"} display={"flex"} flexDir={"column"}>
-                            <Box style={{ border: '1px solid red' }} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
+                            <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_main_price"}>
                                         $26,238.50
@@ -148,7 +101,7 @@ const CryptoConverterPage = () => {
                                 </Box>
 
                                 <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                    <Text colorMode={colorMode} variant={"converter_price_inc_dec"}>
+                                    <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={"increase"}>
                                         +2%
                                     </Text>
                                 </Box>
@@ -158,7 +111,7 @@ const CryptoConverterPage = () => {
                                 </Box>
                             </Box>
 
-                            <Box style={{ border: '1px solid red' }} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
+                            <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_price_info"}>
                                         Bitcoin Price(USD)
@@ -171,7 +124,7 @@ const CryptoConverterPage = () => {
                             </Box>
                         </Box>
 
-                        <Box style={{ border: '1px solid red' }} >
+                        <Box   >
                             <Box display='inline-flex' alignItems='center' gap='20px'>
 
                                 <Box padding={"3.363px 6.725px"} borderRadius={'3.363px'} background='rgba(70, 130, 180, 0.10)'>
@@ -192,7 +145,7 @@ const CryptoConverterPage = () => {
                         </Box>
 
 
-                        <Box style={{ border: '1px solid red' }} display={"flex"} gap={"1rem"} flexDir={"column"} >
+                        <Box display={"flex"} gap={"1rem"} flexDir={"column"} >
                             <Box display={"flex"} flexDir={"row"} justifyContent={"space-between"}>
 
                                 <Box display={"flex"} alignItems={"end"}>
@@ -247,7 +200,7 @@ const CryptoConverterPage = () => {
                         </Box>
 
                         <Box>
-                            <Box style={{ border: '1px solid red' }} display={"grid"}
+                            <Box display={"grid"}
                                 gridTemplateColumns={"1fr 1fr"}
                                 gridTemplateRows={"1fr 1fr"}
                                 gridRow={"auto auto"}
@@ -265,7 +218,7 @@ const CryptoConverterPage = () => {
                                         <Box padding={"1rem"} key={index} gap={"0.8rem"}
                                             bgColor={index == 0 ? "#C8E2F9" : (index == 1 ? "rgba(255, 163, 163, 0.24)" : (index == 2 ? "rgba(154, 218, 138, 0.24)" : "#E6F3FF"))
                                             }
-                                            style={{ border: '1px solid red' }}>
+                                        >
                                             <Box>
                                                 <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item.title}</Text>
                                             </Box>
@@ -281,7 +234,7 @@ const CryptoConverterPage = () => {
                                                         :
                                                         <Box display={"flex"} gap={"0.5rem"}>
                                                             <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                                                <Text colorMode={colorMode} variant={"converter_price_inc_dec"} color type={item.type}>
+                                                                <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={item.type}>
                                                                     {item.type === "increase" ? `+${item.increaseDecreaseBy}%` : `-${item.increaseDecreaseBy}%`}
                                                                 </Text>
                                                             </Box>
@@ -290,7 +243,6 @@ const CryptoConverterPage = () => {
                                                                 {renderSVG(item.type === "increase" ? "trending_up" : "trending_down")}
                                                             </Box>
                                                         </Box>
-                                                    // <Text variant={"converter_low_high_value"}>{item.amount}</Text>
                                                 }
                                             </Box>
                                         </Box>
@@ -300,7 +252,7 @@ const CryptoConverterPage = () => {
                             </Box>
                         </Box>
 
-                        <Box>
+                        <Box display={"flex"} flexDir={"column"} gap={"0.4rem"}>
                             <Text colorMode={colorMode} variant={"converter_low_high_value"}>
                                 Betygfi Score
                             </Text>
@@ -317,11 +269,79 @@ const CryptoConverterPage = () => {
                                 </Box>
                             </Box>
                         </Box>
+                        <Box>
+                            <CoinRankRepresentator />
+                        </Box>
+                        <Box>
+                            <CoinData />
+                        </Box>
                     </Box>
 
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} style={{ border: '1px solid red' }} width={"70%"}>
-                        dkmklfg
+                    <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={"70%"}>
+                        <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
+                            <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
+
+                                <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert Bitcoin to Indian Rupee (BTC to INR)</Text>
+                                <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 Bitcoin (BTC) to INR is ₹4,705,512 today.</Text>
+                            </Box>
+                            <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
+                                <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
+                                    <Box w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={"2rem"} flexDir={"row"}>
+                                        <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
+                                            <Input type="number" min={0} />
+                                            <InputRightAddon>
+                                                <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
+                                                    {"BTC"}
+                                                </Text>
+                                            </InputRightAddon>
+                                        </InputGroup>
+                                        <Box>
+                                            {renderSVG("right-arrow")}
+                                        </Box>
+                                        <InputGroup colorScheme={"#4682B4"} size='md'>
+                                            <Input type="number" min={0} />
+                                            <InputRightAddon>
+                                                <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
+                                                    {"INR"}
+                                                </Text>
+                                            </InputRightAddon>
+                                        </InputGroup>
+                                    </Box>
+                                    <Box display={"flex"} justifyContent={"space-between"}   >
+                                        <Box display={"flex"} justifyContent={"flex-start"}>
+                                            <Text colorMode={colorMode} variant={"cookies_footer"}>
+                                                1 BTC = ₹4,619,183
+                                            </Text>
+                                        </Box>
+                                        <Box display={"flex"} justifyContent={"flex-end"}>
+                                            <Text colorMode={colorMode} variant={"cookies_footer"}>
+                                                1 INR = 0.000000212393 BTC
+                                            </Text>
+                                        </Box>
+                                    </Box>
+                                </Box>
+                            </Box>
+                        </Box>
+
+
+
+                        <Box bg={useColorModeValue("#FFFFFF", "#191919")}>
+                            <CryptoConversionWithChart />
+                        </Box>
                     </Box>
+                </Box>
+                <Box>
+                    <SevenDaysPriceHistory />
+                </Box>
+                <Box>
+                    <CryptoConversionTable />
+                </Box>
+                <Box>
+                    <CryptoNews />
+                </Box>
+
+                <Box>
+                    <CryptoDescription />
                 </Box>
             </Box >
         </>

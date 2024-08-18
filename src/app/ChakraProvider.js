@@ -42,7 +42,13 @@ export function Providers({ children }) {
                         bg: '#245F00'
                     }
                 }
-            }
+            }, Input: {
+                baseStyle: {
+                    field: {
+                        border: "1px solid #4682B4"
+                    },
+                },
+            },
         },
         semanticTokens: {
             colors: {

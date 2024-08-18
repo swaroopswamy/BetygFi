@@ -539,17 +539,21 @@ const Text = defineStyleConfig({
             fontWeight: "500",
             lineHeight: "24px",
         }),
-        converter_price_inc_dec: ({ colorMode, type }) => {
-            // console.log("🤦‍♀️🤷‍♂️🤔 ~ type:", type);
-            // console.log("🤦‍♀️🤷‍♂️🤔 ~ colorMode:", colorMode);
-            return {
-                color: colorMode === "light" ? (type === "decrease" ? "#FF0000" : "#245F00") : (type === "decrease" ? "#FF0000" : "#245F00"),
-                fontFamily: 'Inter',
-                fontSize: '14px',
-                fontStyle: 'normal',
-                fontWeight: '500',
-            };
-        },
+        converter_price_inc_dec: ({ colorMode, type }) => ({
+            color: colorMode === "light" ? (type === "decrease" ? "#FF0000" : "#245F00") : (type === "decrease" ? "#FF0000" : "#245F00"),
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+        }),
+        converter_trending_coin_percent_change: ({ colorMode, type }) => ({
+            color: colorMode === "light" ? (type === "decrease" ? "#FF0000" : "#245F00") : (type === "decrease" ? "#FF0000" : "#245F00"),
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '16px'
+        }),
         converter_price_info: ({ colorMode }) => ({
             color: colorMode === "light" ? "#585858" : "#585858",
             fontFamily: 'Inter',
@@ -601,6 +605,80 @@ const Text = defineStyleConfig({
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: 'normal'
+        }),
+        converter_betygfi_coin_details_key: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#525252" : "#525252",
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: 'normal'
+        }),
+        converter_betygfi_coin_details_value: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFeatureSettings: 'salt on, liga off',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: '18px'
+        }),
+        converter_get_api_key: ({ colorMode }) => ({
+            color: colorMode !== "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: '24px',
+        }),
+        converter_calc_desc: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#757575" : "#757575",
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '22px',
+        }),
+        converter_news_heading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '20px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: '22px'
+        }),
+        converter_news_title: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFeatureSettings: 'salt on, liga off',
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            lineHeight: '20.176px'
+        }),
+        converter_news_description_text: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '20px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '24px'
+        }),
+        converter_news_description_subtext: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '24px'
+        }),
+        converter_trending_coin_name: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#000000" : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: '22px'
         })
     },
     defaultProps: {
