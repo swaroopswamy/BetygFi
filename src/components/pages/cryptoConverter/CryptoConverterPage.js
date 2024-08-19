@@ -217,11 +217,11 @@ const CryptoConverterPage = () => {
                                         { title: "24hr Volume", slug: "24hr-volume", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "increase" },
                                         { title: "Circulating Supply", slug: "circulating-supply", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "increase" }
                                     ].map((item, index) => (
-                                        <Box padding={"1rem"} key={index} gap={"0.8rem"}
+                                        <Box padding={"0.8rem"} key={index} gap={"0.8rem"}
                                             bgColor={index == 0 ? "#C8E2F9" : (index == 1 ? "rgba(255, 163, 163, 0.24)" : (index == 2 ? "rgba(154, 218, 138, 0.24)" : "#E6F3FF"))
                                             }
                                         >
-                                            <Box>
+                                            <Box mb={"0.8rem"}>
                                                 <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item.title}</Text>
                                             </Box>
                                             <Box>
@@ -298,9 +298,16 @@ const CryptoConverterPage = () => {
                                                 </Text>
                                             </InputRightAddon>
                                         </InputGroup>
-                                        <Box transform={`rotate(${isMd ? '0deg' : '90deg'})`}>
-                                            {renderSVG("right-arrow")}
-                                        </Box>
+                                        {
+                                            isMd ?
+                                                <Box>
+                                                    {renderSVG("right-arrow", colorMode)}
+                                                </Box>
+                                                :
+                                                <Box transform={`rotate(90deg)`}>
+                                                    {renderSVG("right-arrow", colorMode)}
+                                                </Box>
+                                        }
                                         <InputGroup colorScheme={"#4682B4"} size='md'>
                                             <Input type="number" min={0} />
                                             <InputRightAddon>

@@ -29,7 +29,7 @@ const CryptoConversionWithChart = () => {
             <Box>
                 <CryptoConversionChart />
             </Box>
-            <Box>
+            <Box p={"1.7rem 1.5rem"}>
                 <IntervalWiseTableData />
             </Box>
         </Box>
