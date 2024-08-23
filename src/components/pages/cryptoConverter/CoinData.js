@@ -1,16 +1,16 @@
 import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { renderSVG } from '@util/utility';
 
-const CoinData = () => {
+const CoinData = ({ coinDetails }) => {
     const { colorMode } = useColorMode();
 
     const coinDataList = [
-        { name: "Daily Volatility", slug: "daily-volatility", info: "", valueAccessor: "" },
-        { name: "Beta", slug: "beta", info: "", valueAccessor: "" },
-        { name: "Volume", slug: "volume", info: "", valueAccessor: "" },
-        { name: "Volume Volatility", slug: "volume-volatility", info: "", valueAccessor: "" },
-        { name: "Liquidity Ratio", slug: "liquidity-ratio", info: "", valueAccessor: "" },
-        { name: "Liquidity Volatility", slug: "liquidity-volatility", info: "", valueAccessor: "" },
+        { name: "Daily Volatility", slug: "daily-volatility", info: "", valueAccessor: "daily_vol" },
+        { name: "Beta", slug: "beta", info: "", valueAccessor: "beta" },
+        { name: "Volume", slug: "volume", info: "", valueAccessor: "volume" },
+        { name: "Volume Volatility", slug: "volume-volatility", info: "", valueAccessor: "volume_vol" },
+        { name: "Liquidity Ratio", slug: "liquidity-ratio", info: "", valueAccessor: "liquid_ratio" },
+        { name: "Liquidity Volatility", slug: "liquidity-volatility", info: "", valueAccessor: "liquid_vol" },
     ];
     return (
         <Box display={"flex"} flexDir={"column"} gap={"0.95rem"}>
@@ -21,7 +21,7 @@ const CoinData = () => {
                             <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_key"}>{coin?.name}</Text>
                             {renderSVG("info")}
                         </Box>
-                        <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>asflns</Text>
+                        <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>{coinDetails?.[coin?.valueAccessor]}</Text>
                     </Box>
                 ))}
             </Box>
@@ -34,7 +34,7 @@ const CoinData = () => {
                 _light={{ background: '#202020' }}
                 _dark={{ background: '#FFFFFF' }}
             >
-                <Text colorMode={colorMode} variant={"converter_get_api_key"}>
+                <Text cursor={"pointer"} colorMode={colorMode} variant={"converter_get_api_key"}>
                     Get This Data By API
                 </Text>
             </Box>

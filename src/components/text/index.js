@@ -688,7 +688,15 @@ const Text = defineStyleConfig({
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: '22px'
-        })
+        }),
+        converter_max_supply: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#585858" : "#585858",
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: '24px'
+        }),
     },
     defaultProps: {
         variant: "base",

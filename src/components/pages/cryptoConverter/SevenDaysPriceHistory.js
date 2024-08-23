@@ -1,6 +1,14 @@
 import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { convertToInternationalCurrencySystem } from "@util/utility";
+import { format, parseISO } from "date-fns";
+import { useEffect, useState } from "react";
 
-const SevenDaysPriceHistory = () => {
+const SevenDaysPriceHistory = ({ coinWeeklyData }) => {
+    const [weeklyPriceHistory, setWeeklyPriceHistory] = useState(coinWeeklyData);
+
+    useEffect(() => {
+        setWeeklyPriceHistory(coinWeeklyData);
+    }, [coinWeeklyData]);
     const { colorMode } = useColorMode();
 
     return (
@@ -26,18 +34,13 @@ const SevenDaysPriceHistory = () => {
                     </Thead>
                     <Tbody>
                         {
-                            [
-                                { date: "06 August, 2024", day: "Tuesday", cryptoConvert: "₹ 4,708,263", _24_hrchange: "₹ 291,706", changePercent: "6.6%", isNegative: true },
-                                { date: "06 August, 2024", day: "Tuesday", cryptoConvert: "₹ 4,708,263", _24_hrchange: "₹ 291,706", changePercent: "6.6%", isNegative: false },
-                                { date: "06 August, 2024", day: "Tuesday", cryptoConvert: "₹ 4,708,263", _24_hrchange: "₹ 291,706", changePercent: "6.6%", isNegative: true },
-                                { date: "06 August, 2024", day: "Tuesday", cryptoConvert: "₹ 4,708,263", _24_hrchange: "₹ 291,706", changePercent: "6.6%", isNegative: true },
-                            ].map((hist, index) => (
+                            weeklyPriceHistory.map((hist, index) => (
                                 <Tr key={index}>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.date}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.day}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.cryptoConvert}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist._24_hrchange}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.isNegative ? "#FF0000" : "#245F00"}>{hist.changePercent}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{format(parseISO(hist.date), "dd MMM, yyyy")}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.dayOfWeek}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{convertToInternationalCurrencySystem(hist.price)}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#245F00"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
                                 </Tr>
                             ))
                         }

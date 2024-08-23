@@ -2,7 +2,7 @@
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
-import { renderSVG } from "@util/utility";
+import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useMediaQuery } from "rsuite/esm/useMediaQuery/useMediaQuery";
 import CoinData from "./CoinData";
@@ -13,10 +13,23 @@ import CryptoDescription from "./CryptoDescription";
 import CryptoNews from "./CryptoNews";
 import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
-const CryptoConverterPage = () => {
+const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, toCurrency }) => {
+
     const router = useRouter();
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+
+    const checkIfIsCoinRising = () => {
+        // TODO: .....
+        return true;
+    };
+
+    const getHighLowProgressValue = () => {
+        const lowPrice = coinDetails?.price_low;
+        const highPrice = coinDetails?.price_high;
+        return (100 - (((highPrice - lowPrice) / highPrice) * 100));
+    };
+
     return (
         <>
             <Box
@@ -51,7 +64,7 @@ const CryptoConverterPage = () => {
                         _light={{ color: "#16171B" }}
                         _dark={{ color: "#A8ADBD" }}
                     >
-                        Coin Listing/Bitcoin/INR
+                        {`Coin Listing/${coinDetails?.name}/${toCurrency?.toUpperCase()}`}
                     </Text>
                 </Box>
             </Box>
@@ -77,16 +90,16 @@ const CryptoConverterPage = () => {
                             <CustomAvatar
                                 width={"54px"}
                                 height={"54px"}
-                                src={"https://platform.betygfi.com/_next/image?url=https%3A%2F%2Fs2.coinmarketcap.com%2Fstatic%2Fimg%2Fcoins%2F64x64%2F1.png&w=64&q=75"}
-                                name={"Coin Name"}
+                                src={coinDetails?.logoUrl}
+                                name={coinDetails?.name}
                             />
                             <Text variant={"converter_heading"} colorMode={colorMode}>
-                                Bitcoin
+                                {coinDetails?.name}
                             </Text>
 
                             <Box borderRadius={"3.36px"} padding={"3.3px 6.7px"} bgColor={"rgba(70, 130, 180, 0.10)"}>
                                 <Text colorMode={colorMode} variant={"converter_coin_ship"}>
-                                    BTC
+                                    {coinDetails?.ticker}
                                 </Text>
                             </Box>
 
@@ -98,7 +111,7 @@ const CryptoConverterPage = () => {
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_main_price"}>
-                                        $26,238.50
+                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price)}`}
                                     </Text>
                                 </Box>
 
@@ -109,14 +122,14 @@ const CryptoConverterPage = () => {
                                 </Box>
 
                                 <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                    {renderSVG("trending_up")}
+                                    {renderSVG(checkIfIsCoinRising() ? "trending_up" : "trending_down")}
                                 </Box>
                             </Box>
 
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_price_info"}>
-                                        Bitcoin Price(USD)
+                                        {coinDetails?.name} Price (USD)
                                     </Text>
                                 </Box>
 
@@ -131,7 +144,7 @@ const CryptoConverterPage = () => {
 
                                 <Box padding={"3.363px 6.725px"} borderRadius={'3.363px'} background='rgba(70, 130, 180, 0.10)'>
                                     <Text colorMode={colorMode} variant={"converter_rank"}>
-                                        Rank #1
+                                        Rank #{coinDetails?.rank}
                                     </Text>
                                 </Box>
 
@@ -178,7 +191,7 @@ const CryptoConverterPage = () => {
                             </Box>
 
 
-                            <Progress borderRadius={"60px"} value={80} />
+                            <Progress borderRadius={"60px"} value={getHighLowProgressValue()} />
 
                             <Box display={"flex"} justifyContent={"space-between"}>
                                 <Box display={"flex"}>
@@ -186,7 +199,7 @@ const CryptoConverterPage = () => {
                                         Low:
                                     </Text>&nbsp;
                                     <Text colorMode={colorMode} variant={"converter_low_high_value"}>
-                                        $37,005.19
+                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price_low)}`}
                                     </Text>
                                 </Box>
 
@@ -195,7 +208,7 @@ const CryptoConverterPage = () => {
                                         High:
                                     </Text>&nbsp;
                                     <Text colorMode={colorMode} variant={"converter_low_high_value"}>
-                                        $37,005.19
+                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price_high)}`}
                                     </Text>
                                 </Box>
                             </Box>
@@ -212,10 +225,10 @@ const CryptoConverterPage = () => {
                             >
                                 {
                                     [
-                                        { title: "Market Cap", slug: "market-cap", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "increase" },
+                                        { title: "Market Cap", slug: "market-cap", amount: "mcap", increaseDecreaseBy: "2", type: "increase" },
                                         { title: "Full Diluted", slug: "full-diluted", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "decrease" },
-                                        { title: "24hr Volume", slug: "24hr-volume", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "increase" },
-                                        { title: "Circulating Supply", slug: "circulating-supply", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "increase" }
+                                        { title: "24hr Volume", slug: "24hr-volume", amount: "volume_24hr", increaseDecreaseBy: "volume_change_24hr", type: "increase" },
+                                        { title: "Circulating Supply", slug: "circulating-supply", amount: "circulating_supply", increaseDecreaseBy: "2", type: "increase" }
                                     ].map((item, index) => (
                                         <Box padding={"0.8rem"} key={index} gap={"0.8rem"}
                                             bgColor={index == 0 ? "#C8E2F9" : (index == 1 ? "rgba(255, 163, 163, 0.24)" : (index == 2 ? "rgba(154, 218, 138, 0.24)" : "#E6F3FF"))
@@ -225,24 +238,24 @@ const CryptoConverterPage = () => {
                                                 <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item.title}</Text>
                                             </Box>
                                             <Box>
-                                                <Text colorMode={colorMode} variant={"converter_low_high_value"}>{item.amount}</Text>
+                                                <Text colorMode={colorMode} variant={"converter_low_high_value"}>{`$ ${convertToInternationalCurrencySystem(coinDetails[item.amount])}`}</Text>
                                             </Box>
                                             <Box>
                                                 {
                                                     item.slug === "circulating-supply" ?
-                                                        <Box>
-                                                            <Text colorMode={colorMode}>asfsd</Text>
+                                                        <Box mt={"0.2rem"}>
+                                                            <Text variant={"converter_max_supply"} colorMode={colorMode}>Max supply {convertToInternationalCurrencySystem(coinDetails?.total_supply)}</Text>
                                                         </Box>
                                                         :
                                                         <Box display={"flex"} gap={"0.5rem"}>
                                                             <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                                                <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={item.type}>
-                                                                    {item.type === "increase" ? `+${item.increaseDecreaseBy}%` : `-${item.increaseDecreaseBy}%`}
+                                                                <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={coinDetails[item.increaseDecreaseBy] > 0 ? "increase" : "decrease"}>
+                                                                    {`${coinDetails[item.increaseDecreaseBy]}%`}
                                                                 </Text>
                                                             </Box>
 
                                                             <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                                                {renderSVG(item.type === "increase" ? "trending_up" : "trending_down")}
+                                                                {renderSVG(coinDetails[item.increaseDecreaseBy] > 0 ? "trending_up" : "trending_down")}
                                                             </Box>
                                                         </Box>
                                                 }
@@ -260,31 +273,31 @@ const CryptoConverterPage = () => {
                             </Text>
                             <Box display={"flex"} justifyContent={"start"} alignItems={"center"} >
 
-                                <Text colorMode={colorMode} variant={"converter_betygfi_score"}>90</Text>
+                                <Text colorMode={colorMode} variant={"converter_betygfi_score"}>{coinDetails?.score.toFixed(2) * 100}</Text>
                                 <Box ml={"0.5rem"} display={"inline-flex"}
                                     padding={"3.363px 6.725px"}
                                     justifyContent="center"
                                     alignItems="center"
                                     gap="8.407px" borderRadius={"3.363px"}
                                     background={"rgba(70, 130, 180, 0.10)"}>
-                                    Rank #1
+                                    Rank #{coinDetails?.rank}
                                 </Box>
                             </Box>
                         </Box>
                         <Box>
-                            <CoinRankRepresentator />
+                            <CoinRankRepresentator coinDetails={coinDetails} />
                         </Box>
                         <Box>
-                            <CoinData />
+                            <CoinData coinDetails={coinDetails} />
                         </Box>
                     </Box>
 
-                    <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
+                    <Box style={{ border: '1px solid red' }} borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
                         <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                             <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
                                 <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert Bitcoin to Indian Rupee (BTC to INR)</Text>
-                                <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 Bitcoin (BTC) to INR is ₹4,705,512 today.</Text>
+                                <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 Bitcoin (BTC) to INR is ₹ {currentPrice.toLocaleString('en-IN')} today.</Text>
                             </Box>
                             <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
                                 <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
@@ -341,7 +354,10 @@ const CryptoConverterPage = () => {
                     </Box>
                 </Box>
                 <Box>
-                    <SevenDaysPriceHistory />
+                    <SevenDaysPriceHistory
+                        coinDetails={coinDetails}
+                        coinWeeklyData={coinWeeklyData}
+                    />
                 </Box>
                 <Box>
                     <CryptoConversionTable />
