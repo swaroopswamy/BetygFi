@@ -2,8 +2,7 @@ import { Box, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { truncateText } from '@util/utility';
 import Image from 'next/image';
 
-
-const CryptoNews = () => {
+const CryptoNews = ({ coinDetails }) => {
     const { colorMode } = useColorMode();
 
     const heroNews = [
@@ -54,7 +53,7 @@ const CryptoNews = () => {
             <Box p={"1.7rem 1.5rem"} gap={"0.5rem"} display={"flex"} flexDir={"column"}>
                 <Box gap={"1rem"} layerStyle={"flexColumn"}>
                     <Text colorMode={colorMode} variant={"converter_news_heading"}>
-                        Bitcoin news today
+                        {coinDetails?.name} news today
                     </Text>
                     <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"2fr 1fr 1fr"}  >
                         {

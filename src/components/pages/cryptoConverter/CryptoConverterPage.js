@@ -1,23 +1,21 @@
 "use client";
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { Box, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
-import { useMediaQuery } from "rsuite/esm/useMediaQuery/useMediaQuery";
+import CoinConverterRightBlock from "./CoinConverterRightBlock";
 import CoinData from "./CoinData";
 import CoinRankRepresentator from "./CoinRankRepresentator";
 import CryptoConversionTable from "./CryptoConversionTable";
-import CryptoConversionWithChart from "./CryptoConversionWithChart";
 import CryptoDescription from "./CryptoDescription";
 import CryptoNews from "./CryptoNews";
 import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
-const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, toCurrency }) => {
+const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPriceConversionData, toCurrency }) => {
 
     const router = useRouter();
     const { colorMode } = useColorMode();
-    const [isMd] = useMediaQuery("(min-width: 768px)");
 
     const checkIfIsCoinRising = () => {
         // TODO: .....
@@ -244,7 +242,11 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, toCurr
                                                 {
                                                     item.slug === "circulating-supply" ?
                                                         <Box mt={"0.2rem"}>
-                                                            <Text variant={"converter_max_supply"} colorMode={colorMode}>Max supply {convertToInternationalCurrencySystem(coinDetails?.total_supply)}</Text>
+                                                            {
+                                                                coinDetails?.ticker == "BTC" &&
+                                                                <Text variant={"converter_max_supply"} colorMode={colorMode}>Max supply {convertToInternationalCurrencySystem(coinDetails?.total_supply)}</Text>
+                                                            }
+
                                                         </Box>
                                                         :
                                                         <Box display={"flex"} gap={"0.5rem"}>
@@ -285,85 +287,43 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, toCurr
                             </Box>
                         </Box>
                         <Box>
-                            <CoinRankRepresentator coinDetails={coinDetails} />
+                            <CoinRankRepresentator
+                                coinDetails={coinDetails}
+                            />
                         </Box>
                         <Box>
-                            <CoinData coinDetails={coinDetails} />
+                            <CoinData
+                                coinDetails={coinDetails}
+                            />
                         </Box>
                     </Box>
 
-                    <Box style={{ border: '1px solid red' }} borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
-                        <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
-                            <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
+                    <CoinConverterRightBlock
+                        toCurrency={toCurrency}
+                        coinDetails={coinDetails}
+                        currentPrice={currentPrice}
+                    />
 
-                                <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert Bitcoin to Indian Rupee (BTC to INR)</Text>
-                                <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 Bitcoin (BTC) to INR is ₹ {currentPrice.toLocaleString('en-IN')} today.</Text>
-                            </Box>
-                            <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
-                                <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
-
-                                    <Box w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={{ base: "1rem", md: "2rem" }} flexDir={{ base: "column", md: "row" }}>
-                                        <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
-                                            <Input type="number" min={0} />
-                                            <InputRightAddon>
-                                                <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
-                                                    {"BTC"}
-                                                </Text>
-                                            </InputRightAddon>
-                                        </InputGroup>
-                                        {
-                                            isMd ?
-                                                <Box>
-                                                    {renderSVG("right-arrow", colorMode)}
-                                                </Box>
-                                                :
-                                                <Box transform={`rotate(90deg)`}>
-                                                    {renderSVG("right-arrow", colorMode)}
-                                                </Box>
-                                        }
-                                        <InputGroup colorScheme={"#4682B4"} size='md'>
-                                            <Input type="number" min={0} />
-                                            <InputRightAddon>
-                                                <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
-                                                    {"INR"}
-                                                </Text>
-                                            </InputRightAddon>
-                                        </InputGroup>
-                                    </Box>
-                                    <Box display={"flex"} justifyContent={"space-between"}   >
-                                        <Box display={"flex"} justifyContent={"flex-start"}>
-                                            <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
-                                                1 BTC = ₹4,619,183
-                                            </Text>
-                                        </Box>
-                                        <Box display={"flex"} justifyContent={"flex-end"}>
-                                            <Text colorMode={colorMode} textAlign='end' variant={"cookies_footer"}>
-                                                1 INR = 0.000000212393 BTC
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Box>
-
-
-
-                        <Box bg={useColorModeValue("#FFFFFF", "#191919")}>
-                            <CryptoConversionWithChart />
-                        </Box>
-                    </Box>
                 </Box>
                 <Box>
                     <SevenDaysPriceHistory
                         coinDetails={coinDetails}
+                        toCurrency={toCurrency}
                         coinWeeklyData={coinWeeklyData}
                     />
                 </Box>
                 <Box>
-                    <CryptoConversionTable />
+                    <CryptoConversionTable
+                        coinPriceConversionData={coinPriceConversionData}
+                        coinDetails={coinDetails}
+                        toCurrency={toCurrency}
+                    />
                 </Box>
                 <Box>
-                    <CryptoNews />
+                    <CryptoNews
+                        coinDetails={coinDetails}
+                        toCurrency={toCurrency}
+                    />
                 </Box>
 
                 <Box>

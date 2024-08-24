@@ -47,6 +47,12 @@ export function Providers({ children }) {
                     field: {
                         border: "1px solid #4682B4"
                     },
+                    addon: {
+                        border: '1px solid',
+                        borderColor: '#4682B4',
+                        background: '#4682B4',
+                        color: '#4682B4',
+                    },
                 },
             },
         },
