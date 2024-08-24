@@ -120,7 +120,7 @@ const Button = defineStyleConfig({
                 colorMode === "light" ? "#C6C6C6" : "rgba(255, 255, 255, 0.60)",
             _active: {
                 border: "1px",
-                borderRadius: "5px",
+                // borderRadius: "5px",
                 bg: colorMode === "light" ? "#191919" : "#FFFFFF",
                 color: colorMode === "light" ? "#FFFFFF" : "#000000",
                 borderColor:

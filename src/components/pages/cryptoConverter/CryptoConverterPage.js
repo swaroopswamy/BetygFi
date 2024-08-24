@@ -2,8 +2,11 @@
 import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
+import { fetchConversionCoinChartGraphData } from "@redux/coin_data/dataSlice";
 import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CoinConverterRightBlock from "./CoinConverterRightBlock";
 import CoinData from "./CoinData";
 import CoinRankRepresentator from "./CoinRankRepresentator";
@@ -13,7 +16,7 @@ import CryptoNews from "./CryptoNews";
 import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
 const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPriceConversionData, toCurrency }) => {
-
+    const dispatch = useDispatch();
     const router = useRouter();
     const { colorMode } = useColorMode();
 
@@ -21,6 +24,10 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
         // TODO: .....
         return true;
     };
+
+    useEffect(() => {
+        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price" }));
+    }, [coinDetails?.slug]);
 
     const getHighLowProgressValue = () => {
         const lowPrice = coinDetails?.price_low;

@@ -13,19 +13,22 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
             return isActive ? "dark" : "light";
         }
     };
-    // renderComponent
+
     return (
         <Box display={"flex"}>
-            {periods.map((period, i) => {
+            {periods.map((period, i, array) => {
                 return (
                     period.startsWith("comp-calendar") ?
-                        <>
+                        <Box pos={"relative"}>
+                            <Box pos={"absolute"} style={{ border: '1px solid red' }} >
+                                {renderSVG("calendar")}
+                            </Box>
                             {renderComponent && renderComponent()}
-                        </>
+                        </Box>
                         :
                         <Button
                             key={i}
-                            borderRadius={"5px"}
+                            borderRadius={i == 0 ? "5px 0px 0px 5px" : (i == array.length - 1 ? "0px 5px 5px 0px" : "0px 0px 0px 0px")}
                             variant="converterPeriodButton"
                             onClick={() => {
                                 periodSelectionHandler(period);

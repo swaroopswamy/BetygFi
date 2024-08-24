@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { getCookieByName } from "@util/cookieHelper";
 import groupBy from 'lodash/groupBy';
 import orderBy from 'lodash/orderBy';
@@ -424,5 +425,25 @@ export const renderSVG = (type, variation = null) => {
                 <path d="M2 6.66663H14" stroke={variation === "light" ? "#FFFFFF" : "#16171B"} stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         );
+    }
+};
+
+export const getLastnow = () => new Date(Date.now() - 0);
+export const getLast7days = () => new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+export const getLast14days = () => new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
+export const getLast30days = () => new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+export const getLast1year = () => new Date(new Date().setFullYear(new Date().getFullYear() - 1));
+
+export const filterTimestampsByPeriod = (timestamps, period) => {
+    const periodMapping = {
+        "7d": 7,
+        "14d": 14,
+        "30d": 30,
+        "1yr": 365,
+    };
+    if (period == "Max") {
+        return timestamps;
+    } else {
+        return timestamps && timestamps.slice(periodMapping[period] * -1);
     }
 };

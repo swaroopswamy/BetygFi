@@ -281,3 +281,13 @@ export const getETFNewsData = async (payload, rejectWithValue) => {
         return rejectWithValue(err);
     }
 };
+
+export const getConversionCoinChartGraphData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-chart/${payload.coinSlug}/${payload.filter}`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};

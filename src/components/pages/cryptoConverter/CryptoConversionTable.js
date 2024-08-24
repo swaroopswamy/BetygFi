@@ -77,11 +77,27 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, coinPriceConversionDat
                 </Text>
             </Box>
             <Box>
-                <Box display={"flex"} justifyContent={"space-between"} style={{ border: '1px solid red' }} p={{ md: "0.05rem 1.5rem", base: "0.05rem 0.8rem" }}>
-                    <Box width={"45%"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                <Box
+                    display={"flex"}
+                    flexDir={{ md: "row", base: "column" }}
+                    justifyContent={"space-between"}
+                    gap={"1rem"}
+                    p={{ md: "0.05rem 1.5rem", base: "0.05rem 0.8rem" }}
+                >
+                    <Box
+                        width={{ md: "45%", base: "100%" }}
+                        display={"flex"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                    >
                         {renderTable("coin-currency")}
                     </Box>
-                    <Box width={"45%"}>
+                    <Box
+                        display={"flex"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        width={{ md: "45%", base: "100%" }}
+                    >
                         {renderTable("currency-coin")}
                     </Box>
                 </Box>

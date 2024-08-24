@@ -583,9 +583,9 @@ const Text = defineStyleConfig({
         converter_low_high_table: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFamily: 'Inter',
-            fontSize: { base: '10px', md: '14px' },
+            fontSize: { base: '12px', md: '14px' },
             fontStyle: 'normal',
-            fontWeight: '400',
+            fontWeight: '300',
             lineHeight: 'normal',
             letterSpacing: '0.028px'
         }),
@@ -627,7 +627,7 @@ const Text = defineStyleConfig({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
             fontFeatureSettings: 'salt on, liga off',
             fontFamily: 'Inter',
-            fontSize: { base: '9px', md: '14px' },
+            fontSize: { base: '12px', md: '14px' },
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: { base: '12px', md: '18px' }
