@@ -1,26 +1,27 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
     getBTCDominanceScoresAPI,
+    getBTCETFInflowOutflowData,
     getCoinDevelopmentData,
     getCoinPriceData,
     getCoinRankingsTableData,
     getCoinScoresData,
-    getTrendingCoinsData,
-    getTopGainersAndLosersData,
-    getTopBTCETFData,
-    getFearAndGreedData,
-    getSAPData,
-    getMarqueeDataAPI,
+    getConversionCoinChartGraphData,
     getCryptoCategoriesData,
-    getETFListData,
-    getBTCETFInflowOutflowData,
-    getETFHeatMapData,
-    getTickerInflowOutflowData,
     getETFChartData,
+    getETFHeatMapData,
+    getETFListData,
     getETFNewsData,
     getTabLayoutsData,
     customizeTabData,
+    getFearAndGreedData,
+    getMarqueeDataAPI,
+    getSAPData,
+    getTickerInflowOutflowData,
+    getTopBTCETFData,
+    getTopGainersAndLosersData,
+    getTrendingCoinsData,
 } from "@services/coinService";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
 import { createCookies } from "@util/cookieHelper";
 
@@ -165,6 +166,14 @@ export const fetchETFNewsData = createAsyncThunk(
     }
 );
 
+export const fetchConversionCoinChartGraphData = createAsyncThunk(
+    "getConversionCoinChartGraphData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getConversionCoinChartGraphData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 export const fetchTabLayoutsData = createAsyncThunk(
     "getTabLayoutsData",
     async (payload, { rejectWithValue }) => {
@@ -287,6 +296,12 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         ETFNewsData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        CoinConverterGraphData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -639,6 +654,24 @@ const CoinDataSlice = createSlice({
             state.ETFNewsData.isSuccess = false;
             state.ETFNewsData.isError = true;
             state.ETFNewsData.data = action.payload;
+        });
+        builder.addCase(fetchConversionCoinChartGraphData.fulfilled, (state, action) => {
+            state.CoinConverterGraphData.data = action.payload;
+            state.CoinConverterGraphData.isLoading = false;
+            state.CoinConverterGraphData.isSuccess = true;
+            state.CoinConverterGraphData.isError = false;
+        });
+        builder.addCase(fetchConversionCoinChartGraphData.pending, (state, action) => {
+            state.CoinConverterGraphData.isLoading = true;
+            state.CoinConverterGraphData.isError = false;
+            state.CoinConverterGraphData.isSuccess = false;
+            state.CoinConverterGraphData.data = action.payload;
+        });
+        builder.addCase(fetchConversionCoinChartGraphData.rejected, (state, action) => {
+            state.CoinConverterGraphData.isLoading = false;
+            state.CoinConverterGraphData.isSuccess = false;
+            state.CoinConverterGraphData.isError = true;
+            state.CoinConverterGraphData.data = action.payload;
         });
         builder.addCase(fetchTabLayoutsData.fulfilled, (state, action) => {
             state.TabLayoutsData.data = action.payload;

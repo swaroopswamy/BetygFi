@@ -107,6 +107,30 @@ const Button = defineStyleConfig({
                 opacity: "1",
             },
         }),
+        converterPeriodButton: ({ colorMode }) => ({
+            border: "1px",
+            borderRadius: "5px",
+            fontSize: "14px",
+            lineHeight: "10px",
+            color: colorMode === "light" ? "#16171B" : "#FFFFFF",
+            p: "0px",
+            height: "2rem",
+            // opacity: "0.5",
+            borderColor:
+                colorMode === "light" ? "#C6C6C6" : "rgba(255, 255, 255, 0.60)",
+            _active: {
+                border: "1px",
+                // borderRadius: "5px",
+                bg: colorMode === "light" ? "#191919" : "#FFFFFF",
+                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+                borderColor:
+                    colorMode === "light"
+                        ? "#C6C6C6"
+                        : "rgba(255, 255, 255, 0.60)",
+                fontWeight: "600",
+                opacity: "1",
+            },
+        }),
         settingsButton: ({ colorMode }) => ({
             width: "140px",
             height: "30px",
