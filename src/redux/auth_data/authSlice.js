@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress, userPersonalizationAPI } from "@services/authService";
+import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress, userPersonalizationAPI, tabLibraryAPI } from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookiesAuth, deleteCookieByNameAuth } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
@@ -88,6 +88,14 @@ export const userPersonalization = createAsyncThunk(
 	}
 );
 
+export const userTabLibrary = createAsyncThunk(
+	"userTabLibrary",
+	async (payload, { rejectWithValue }) => {
+		const response = await tabLibraryAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
+
 const AuthDataSlice = createSlice({
 	name: "authData",
 	initialState: {
@@ -142,8 +150,14 @@ const AuthDataSlice = createSlice({
 			data: null,
 			isLoading: false,
 			isError: false,
-			isSuccess: null
+			isSuccess: false
 		},
+		TabLibraryData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
 	},
 	extraReducers: (builder) => {
 		builder.addCase(VerifyPublicAddressData.fulfilled, (state, action) => {
@@ -281,6 +295,24 @@ const AuthDataSlice = createSlice({
 			state.UserPersonalizationData.isSuccess = false;
 			state.UserPersonalizationData.isError = true;
 			state.UserPersonalizationData.data = action.payload;
+		});
+		builder.addCase(userTabLibrary.fulfilled, (state, action) => {
+			state.TabLibraryData.data = action.payload;
+			state.TabLibraryData.isLoading = false;
+			state.TabLibraryData.isSuccess = true;
+			state.TabLibraryData.isError = false;
+		});
+		builder.addCase(userTabLibrary.pending, (state, action) => {
+			state.TabLibraryData.isLoading = true;
+			state.TabLibraryData.isError = false;
+			state.TabLibraryData.isSuccess = false;
+			state.TabLibraryData.data = action.payload;
+		});
+		builder.addCase(userTabLibrary.rejected, (state, action) => {
+			state.TabLibraryData.isLoading = false;
+			state.TabLibraryData.isSuccess = false;
+			state.TabLibraryData.isError = true;
+			state.TabLibraryData.data = action.payload;
 		});
 	},
 	reducers: {

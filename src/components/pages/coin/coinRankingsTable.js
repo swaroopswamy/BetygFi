@@ -1,19 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
-import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode } from "@chakra-ui/react";
+import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
 //import CustomAvatar from "@components/avatar";
 import millify from "millify";
+import LoginPage from "@components/login";
+import { useSession } from "next-auth/react";
 
 const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
 const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"), { ssr: false });
 const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
-
 
 const CoinRankingsTable = (
     {
@@ -32,6 +33,7 @@ const CoinRankingsTable = (
     const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
+    const { data: AuthSession } = useSession();
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
@@ -56,8 +58,14 @@ const CoinRankingsTable = (
         { value: 100 },
     ];
 
+    const {
+        isOpen: isLoginModalOpen,
+        onOpen: onLoginModalOpen,
+        onClose: onLoginModalClose,
+    } = useDisclosure();
+
     return (
-        <>
+        <React.Fragment>
             <Box layerStyle={"flexCenter"} w='100%' gap={"10px"}>
                 <Box
                     mx={"20px"}
@@ -107,7 +115,7 @@ const CoinRankingsTable = (
                     layerStyle={"flexCenter"}
                     justifyContent={"start"}
                     cursor={"pointer"}
-                    onClick={() => { onTabLibraryModalOpen(); }}
+                    onClick={onTabLibraryModalOpen}
                 >
                     <i className={`icon ${colorMode === "light" ? 'tab_library_icon_light' : 'tab_library_icon_dark'}`} />
                     <Text
@@ -119,25 +127,42 @@ const CoinRankingsTable = (
                         Tab Library
                     </Text>
                 </Box>
-                <Box
-                    layerStyle={"flexCenter"}
-                    justifyContent={"start"}
-                    cursor={"pointer"}
-                    onClick={() => { onCustomizeTabModalOpen(); }}
-                >
-                    <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
-                    <Text
-                        variant={"h5"}
-                        color={colorMode === 'light' ? "#161616" : "#FFFFFF"}
-                        fontWeight={"500"}
-                        lineHeight={"16px"}
+                {!AuthSession ? (
+                    <Box
+                        layerStyle={"flexCenter"}
+                        justifyContent={"start"}
+                        cursor={"pointer"}
+                        onClick={onLoginModalOpen}
                     >
-                        Customize Tab
-                    </Text>
-                </Box>
-
+                        <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
+                        <Text
+                            variant={"h5"}
+                            color={colorMode === 'light' ? "#161616" : "#FFFFFF"}
+                            fontWeight={"500"}
+                            lineHeight={"16px"}
+                        >
+                            Customize Tab
+                        </Text>
+                    </Box>
+                ) : (
+                    <Box
+                        layerStyle={"flexCenter"}
+                        justifyContent={"start"}
+                        cursor={"pointer"}
+                        onClick={() => { onCustomizeTabModalOpen(); }}
+                    >
+                        <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
+                        <Text
+                            variant={"h5"}
+                            color={colorMode === 'light' ? "#161616" : "#FFFFFF"}
+                            fontWeight={"500"}
+                            lineHeight={"16px"}
+                        >
+                            Customize Tab
+                        </Text>
+                    </Box>
+                )}
             </Box>
-
             <Box
                 mx={"20px"}
                 layerStyle={"flexColumn"}
@@ -213,7 +238,12 @@ const CoinRankingsTable = (
                     />
                 </Box>
             </Box>
-        </>
+            <LoginPage
+                isOpen={isLoginModalOpen}
+                onOpen={onLoginModalOpen}
+                onClose={onLoginModalClose}
+            />
+        </React.Fragment>
     );
 };
 

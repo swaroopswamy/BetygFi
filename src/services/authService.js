@@ -115,3 +115,13 @@ export const userPersonalizationAPI = async (payload, { rejectWithValue }) => {
 		return rejectWithValue(err.response.data);
 	}
 };
+
+export const tabLibraryAPI = async (payload, { rejectWithValue }) => {
+	try {
+		const url = NEXT_BE_URL_SEPARATOR + `user/tab-library`;
+		const { data } = await axiosInstance(getAPI_URL()).post(url, payload, getAxiosHeadersFromCookie());
+		return data;
+	} catch (err) {
+		return rejectWithValue(err);
+	}
+};

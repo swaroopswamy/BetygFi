@@ -17,6 +17,8 @@ import {
     getTickerInflowOutflowData,
     getETFChartData,
     getETFNewsData,
+    getTabLayoutsData,
+    customizeTabData,
 } from "@services/coinService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BLOCK_CHAIN_TYPE_SELECTED_COOKIE_NAME } from "@util/constant";
@@ -163,6 +165,22 @@ export const fetchETFNewsData = createAsyncThunk(
     }
 );
 
+export const fetchTabLayoutsData = createAsyncThunk(
+    "getTabLayoutsData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getTabLayoutsData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
+export const fetchCustomizeTabData = createAsyncThunk(
+    "getCustomizeTabData",
+    async (payload, { rejectWithValue }) => {
+        const response = await customizeTabData(payload, rejectWithValue);
+        return response.data;
+    }
+);
+
 const CoinDataSlice = createSlice({
     name: "coinData",
     initialState: {
@@ -269,6 +287,18 @@ const CoinDataSlice = createSlice({
             isSuccess: false,
         },
         ETFNewsData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TabLayoutsData: {
+            data: null,
+            isLoading: false,
+            isError: false,
+            isSuccess: false,
+        },
+        TabCustomizeData: {
             data: null,
             isLoading: false,
             isError: false,
@@ -609,6 +639,42 @@ const CoinDataSlice = createSlice({
             state.ETFNewsData.isSuccess = false;
             state.ETFNewsData.isError = true;
             state.ETFNewsData.data = action.payload;
+        });
+        builder.addCase(fetchTabLayoutsData.fulfilled, (state, action) => {
+            state.TabLayoutsData.data = action.payload;
+            state.TabLayoutsData.isLoading = false;
+            state.TabLayoutsData.isSuccess = true;
+            state.TabLayoutsData.isError = false;
+        });
+        builder.addCase(fetchTabLayoutsData.pending, (state, action) => {
+            state.TabLayoutsData.isLoading = true;
+            state.TabLayoutsData.isError = false;
+            state.TabLayoutsData.isSuccess = false;
+            state.TabLayoutsData.data = action.payload;
+        });
+        builder.addCase(fetchTabLayoutsData.rejected, (state, action) => {
+            state.TabLayoutsData.isLoading = false;
+            state.TabLayoutsData.isSuccess = false;
+            state.TabLayoutsData.isError = true;
+            state.TabLayoutsData.data = action.payload;
+        });
+        builder.addCase(fetchCustomizeTabData.fulfilled, (state, action) => {
+            state.TabCustomizeData.data = action.payload;
+            state.TabCustomizeData.isLoading = false;
+            state.TabCustomizeData.isSuccess = true;
+            state.TabCustomizeData.isError = false;
+        });
+        builder.addCase(fetchCustomizeTabData.pending, (state, action) => {
+            state.TabCustomizeData.isLoading = true;
+            state.TabCustomizeData.isError = false;
+            state.TabCustomizeData.isSuccess = false;
+            state.TabCustomizeData.data = action.payload;
+        });
+        builder.addCase(fetchCustomizeTabData.rejected, (state, action) => {
+            state.TabCustomizeData.isLoading = false;
+            state.TabCustomizeData.isSuccess = false;
+            state.TabCustomizeData.isError = true;
+            state.TabCustomizeData.data = action.payload;
         });
     },
     reducers: {

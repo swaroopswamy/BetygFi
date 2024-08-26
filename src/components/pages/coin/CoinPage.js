@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-import { userPersonalization } from "@redux/auth_data/authSlice";
+import { userPersonalization, userTabLibrary } from "@redux/auth_data/authSlice";
 import {
     fetchSAPData,
     fetchTopGainersAndLosersData,
@@ -16,7 +16,9 @@ import {
     fetchMarqueeData,
     fetchCoinRankingsTableData,
     fetchCoinScoresData,
-    fetchCryptoCategoriesData
+    fetchCryptoCategoriesData,
+    fetchTabLayoutsData,
+    fetchCustomizeTabData,
 } from "@redux/coin_data/dataSlice";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
@@ -81,6 +83,10 @@ const CoinPage = () => {
         dispatch(fetchMarqueeData());
     };
 
+    const fetchTabLayoutsDataHandler = () => {
+        dispatch(fetchTabLayoutsData());
+    };
+
     const fetchBTCDominanceScoresDataHandler = () => {
         const payload = {
             day: btcDominanceDay
@@ -122,10 +128,27 @@ const CoinPage = () => {
         dispatch(userPersonalization(payload));
     };
 
+    const userTabLibraryHandler = () => {
+        const payload = {
+            name: " ",
+            layout: [],
+            assets: [],
+        };
+        dispatch(userTabLibrary(payload));
+    };
+
+    const fetchCustomizeTabDataHandler = () => {
+        const payload = {
+            layout: [],
+            assets: [],
+        };
+        dispatch(fetchCustomizeTabData(payload));
+    };
+
     useEffect(() => {
         Promise.all([
             fetchCategories(),
-            fetchScoreData()
+            fetchScoreData(),
         ]).then(resolve => resolve);
     }, [cryptoCategorySelected]);
 
@@ -159,7 +182,10 @@ const CoinPage = () => {
             userPersonalizationHandler(),
             fetchBlockchainListDataHandler(),
             fetchTrendingCoinsDataHandler(),
-            fetchScoreData()
+            fetchScoreData(),
+            userTabLibraryHandler(),
+            fetchTabLayoutsDataHandler(),
+            fetchCustomizeTabDataHandler(),
         ]).then(result => result);
     }, []);
 
@@ -209,61 +235,64 @@ const CoinPage = () => {
     };
 
     return (
-        <Box
-            display={"flex"}
-            flexDir={"column"}
-            bgColor={"background.primary"}
-            p={"20px 0px"}
-            pt="10px"
-            gap={"20px"}
-        >
-            {/* <BreadCrumb
+        <React.Fragment>
+            <Box
+                display={"flex"}
+                flexDir={"column"}
+                bgColor={"background.primary"}
+                p={"20px 0px"}
+                pt="10px"
+                gap={"20px"}
+            >
+                {/* <BreadCrumb
                 text={"Coin Ranking/Coin Listing"}
                 link={""}
             ></BreadCrumb> */}
-            <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} pl={"25px"} pr={{ base: "2px", md: "15px" }}>
-                <Marquee />
-                <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} mr={{ base: "27px" }} justifyContent={"flex-end"}>
-                    <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
-                    <Switch
-                        size={"lg"}
-                        isChecked={isHighlightsBoxOpen}
-                        onChange={handleToggleHighlights}
-                        className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
-                    ></Switch>
+                <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} pl={"25px"} pr={{ base: "2px", md: "15px" }}>
+                    <Marquee />
+                    <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} mr={{ base: "27px" }} justifyContent={"flex-end"}>
+                        <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
+                        <Switch
+                            size={"lg"}
+                            isChecked={isHighlightsBoxOpen}
+                            onChange={handleToggleHighlights}
+                            className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
+                        ></Switch>
+                    </Box>
                 </Box>
-            </Box>
-            <Collapse in={isHighlightsBoxOpen} >
-                <HighlightsBox />
-            </Collapse>
+                <Collapse in={isHighlightsBoxOpen} >
+                    <HighlightsBox />
+                </Collapse>
 
-            {/* <BlockchainSelectionMenuNew /> */}
-            {/* <CoinOverviewChart /> */}
-            <CoinRankingsTable
-                tablePage={tablePage}
-                setTablePage={setTablePage}
-                tableLimit={tableLimit}
-                setTableLimit={setTableLimit}
-                cryptoCategorySelected={cryptoCategorySelected}
-                setCryptoCategorySelected={setCryptoCategorySelected}
-                cryptoCategories={cryptoCategories}
-                setCryptoCategories={setCryptoCategories}
-                pageChangeHandler={pageChangeHandler}
-                onTabLibraryModalOpen={onTabLibraryModalOpen}
-                onCustomizeTabModalOpen={onCustomizeTabModalOpen}
-            />
-            <hr />
-            <TrendingCoinSection />
-            <FaqSection />
-            <TabLibraryModal
-                isTabLibraryModalOpen={isTabLibraryModalOpen}
-                onTabLibraryModalClose={onTabLibraryModalClose}
-            />
-            <CustomizeTabModal
-                isCustomizeTabModalOpen={isCustomizeTabModalOpen}
-                onCustomizeTabModalClose={onCustomizeTabModalClose}
-            />
-        </Box >
+                {/* <BlockchainSelectionMenuNew /> */}
+                {/* <CoinOverviewChart /> */}
+                <CoinRankingsTable
+                    tablePage={tablePage}
+                    setTablePage={setTablePage}
+                    tableLimit={tableLimit}
+                    setTableLimit={setTableLimit}
+                    cryptoCategorySelected={cryptoCategorySelected}
+                    setCryptoCategorySelected={setCryptoCategorySelected}
+                    cryptoCategories={cryptoCategories}
+                    setCryptoCategories={setCryptoCategories}
+                    pageChangeHandler={pageChangeHandler}
+                    onTabLibraryModalOpen={onTabLibraryModalOpen}
+                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                />
+                <hr />
+                <TrendingCoinSection />
+                <FaqSection />
+                <TabLibraryModal
+                    isTabLibraryModalOpen={isTabLibraryModalOpen}
+                    onTabLibraryModalClose={onTabLibraryModalClose}
+                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                />
+                <CustomizeTabModal
+                    isCustomizeTabModalOpen={isCustomizeTabModalOpen}
+                    onCustomizeTabModalClose={onCustomizeTabModalClose}
+                />
+            </Box >
+        </React.Fragment>
     );
 };
 

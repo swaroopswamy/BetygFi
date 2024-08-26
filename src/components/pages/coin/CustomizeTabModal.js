@@ -118,7 +118,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                             </TabPanel>
                         </TabPanels>
                     </Tabs>
-                    <Box layerStyle={"flexCenterSpaceBetween"} m={"50px 20px 10px 20px"}>
+                    <Box layerStyle={"flexCenterSpaceBetween"} m={"40px 20px 10px 20px"}>
                         <Button variant={"modalButton"} width={100} height={30}>
                             Reset
                         </Button>

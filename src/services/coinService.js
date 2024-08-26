@@ -251,3 +251,23 @@ export const getETFNewsData = async (payload, rejectWithValue) => {
         return rejectWithValue(err);
     }
 };
+
+export const getTabLayoutsData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/tab-layouts`;
+        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const customizeTabData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/tab-customize/${payload.name}`;
+        const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
+        return data;
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
