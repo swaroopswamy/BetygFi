@@ -1,14 +1,12 @@
-'use client'; // Error components must be Client Components
-import React, { useContext, useEffect } from "react";
+'use client'; 
+import React, { useEffect } from "react";
 import { Box, Text, Button, useColorMode } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import AppConfigContext from '@components/context/appConfigContext';
 import Image from 'next/image';
 
 export default function Error({ error }) {
   const { colorMode } = useColorMode();
   const router = useRouter();
-  const appConfig = useContext(AppConfigContext);
 
   useEffect(() => {
     console.error(error);
@@ -81,7 +79,7 @@ export default function Error({ error }) {
               Let’s find a better place for you to go.
             </Text>
           </Box>
-          <Box layerStyle={"flexCenter"} gap={"10px"} mt={"20px"} ml={"150px"}>
+          <Box mt={"20px"} ml={"200px"}>
             <Button
               variant={"outline"}
               height={"35px"}
@@ -90,27 +88,7 @@ export default function Error({ error }) {
               borderColor={colorMode === 'light' ? "2px solid #494949" : "2px solid #FFFFFF99"}
               onClick={() => router.push("/")}
             >
-              CTA 1
-            </Button>
-            <Button
-              variant={"outline"}
-              height={"35px"}
-              width={"150px"}
-              style={{ borderRadius: "24px 24px 24px 24px" }}
-              borderColor={colorMode === 'light' ? "2px solid #494949" : "2px solid #FFFFFF99"}
-              onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
-            >
-              CTA 2
-            </Button>
-            <Button
-              variant={"outline"}
-              height={"35px"}
-              width={"150px"}
-              style={{ borderRadius: "24px 24px 24px 24px" }}
-              borderColor={colorMode === 'light' ? "2px solid #494949" : "2px solid #FFFFFF99"}
-              onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
-            >
-              CTA 3
+              Home
             </Button>
           </Box>
           <Image
@@ -132,6 +110,7 @@ export default function Error({ error }) {
           </Image>
         </Box>
       </Box>
+
 
       <Box
         display={{ base: "block", md: "none" }}
@@ -195,29 +174,7 @@ export default function Error({ error }) {
               onClick={() => router.push("/")}
               mt={"20px"}
             >
-              CTA 1
-            </Button>
-            <Button
-              variant={"outline"}
-              height={"35px"}
-              width={"150px"}
-              style={{ borderRadius: "24px 24px 24px 24px" }}
-              borderColor={colorMode === 'light' ? "2px solid #494949" : "2px solid #FFFFFF99"}
-              onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
-              mt={"10px"}
-            >
-              CTA 2
-            </Button>
-            <Button
-              variant={"outline"}
-              height={"35px"}
-              width={"150px"}
-              style={{ borderRadius: "24px 24px 24px 24px" }}
-              borderColor={colorMode === 'light' ? "2px solid #494949" : "2px solid #FFFFFF99"}
-              onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
-              mt={"10px"}
-            >
-              CTA 3
+              Home
             </Button>
           </Box>
           <Box mt={"20px"} ml={"100px"}>
