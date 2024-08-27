@@ -3,7 +3,7 @@ import { renderSVG } from "@util/utility";
 import { useState } from "react";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
-const CoinConverterRightBlock = ({ coinDetails, toCurrency, currentPrice }) => {
+const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [coinValue, setCoinValue] = useState(1);
@@ -70,7 +70,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, currentPrice }) => {
                         <Box display={"flex"} justifyContent={"space-between"}   >
                             <Box display={"flex"} justifyContent={"flex-start"}>
                                 <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
-                                    1 {coinDetails?.ticker} = ₹ {currentPrice}
+                                    1 {coinDetails?.ticker} = ₹ {currentPrice?.toLocaleString('en-IN')}
                                 </Text>
                             </Box>
                             <Box display={"flex"} justifyContent={"flex-end"}>
@@ -86,6 +86,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, currentPrice }) => {
             <Box bg={useColorModeValue("#FFFFFF", "#191919")}>
                 <CryptoConversionWithChart
                     coinDetails={coinDetails}
+                    coinAnalyticsData={coinAnalyticsData}
                     toCurrency={toCurrency}
                     currentPrice={currentPrice}
                 />

@@ -11,11 +11,10 @@ import CoinConverterRightBlock from "./CoinConverterRightBlock";
 import CoinData from "./CoinData";
 import CoinRankRepresentator from "./CoinRankRepresentator";
 import CryptoConversionTable from "./CryptoConversionTable";
-import CryptoDescription from "./CryptoDescription";
 import CryptoNews from "./CryptoNews";
 import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
-const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPriceConversionData, toCurrency }) => {
+const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toCurrency }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { colorMode } = useColorMode();
@@ -230,8 +229,8 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
                             >
                                 {
                                     [
-                                        { title: "Market Cap", slug: "market-cap", amount: "mcap", increaseDecreaseBy: "2", type: "increase" },
-                                        { title: "Full Diluted", slug: "full-diluted", amount: "$826,445,951,378", increaseDecreaseBy: "2", type: "decrease" },
+                                        { title: "Market Cap", slug: "market-cap", amount: "mcap", increaseDecreaseBy: "mcap_percentage", type: "increase" },
+                                        { title: "Full Diluted", slug: "full-diluted", amount: null, increaseDecreaseBy: null, type: "decrease" },
                                         { title: "24hr Volume", slug: "24hr-volume", amount: "volume_24hr", increaseDecreaseBy: "volume_change_24hr", type: "increase" },
                                         { title: "Circulating Supply", slug: "circulating-supply", amount: "circulating_supply", increaseDecreaseBy: "2", type: "increase" }
                                     ].map((item, index) => (
@@ -243,7 +242,12 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
                                                 <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item.title}</Text>
                                             </Box>
                                             <Box>
-                                                <Text colorMode={colorMode} variant={"converter_low_high_value"}>{`$ ${convertToInternationalCurrencySystem(coinDetails[item.amount])}`}</Text>
+                                                <Text colorMode={colorMode} variant={"converter_low_high_value"}>
+                                                    {
+                                                        item.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails[item.amount])}` : "No info available"
+                                                    }
+
+                                                </Text>
                                             </Box>
                                             <Box>
                                                 {
@@ -253,20 +257,24 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
                                                                 coinDetails?.ticker == "BTC" &&
                                                                 <Text variant={"converter_max_supply"} colorMode={colorMode}>Max supply {convertToInternationalCurrencySystem(coinDetails?.total_supply)}</Text>
                                                             }
-
                                                         </Box>
                                                         :
-                                                        <Box display={"flex"} gap={"0.5rem"}>
-                                                            <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                                                <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={coinDetails[item.increaseDecreaseBy] > 0 ? "increase" : "decrease"}>
-                                                                    {`${coinDetails[item.increaseDecreaseBy]}%`}
-                                                                </Text>
-                                                            </Box>
+                                                        <>
+                                                            {
+                                                                item.increaseDecreaseBy && coinDetails[item.increaseDecreaseBy] &&
+                                                                <Box display={"flex"} gap={"0.5rem"}>
+                                                                    <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
+                                                                        <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={coinDetails[item.increaseDecreaseBy] > 0 ? "increase" : "decrease"}>
+                                                                            {`${+coinDetails[item.increaseDecreaseBy]?.toFixed(2)}%`}
+                                                                        </Text>
+                                                                    </Box>
 
-                                                            <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
-                                                                {renderSVG(coinDetails[item.increaseDecreaseBy] > 0 ? "trending_up" : "trending_down")}
-                                                            </Box>
-                                                        </Box>
+                                                                    <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
+                                                                        {renderSVG(coinDetails[item.increaseDecreaseBy] > 0 ? "trending_up" : "trending_down")}
+                                                                    </Box>
+                                                                </Box>
+                                                            }
+                                                        </>
                                                 }
                                             </Box>
                                         </Box>
@@ -307,6 +315,7 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
 
                     <CoinConverterRightBlock
                         toCurrency={toCurrency}
+                        coinAnalyticsData={coinAnalyticsData}
                         coinDetails={coinDetails}
                         currentPrice={currentPrice}
                     />
@@ -316,13 +325,14 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
                     <SevenDaysPriceHistory
                         coinDetails={coinDetails}
                         toCurrency={toCurrency}
-                        coinWeeklyData={coinWeeklyData}
+                        coinAnalyticsData={coinAnalyticsData}
                     />
                 </Box>
                 <Box>
                     <CryptoConversionTable
-                        coinPriceConversionData={coinPriceConversionData}
+                        coinAnalyticsData={coinAnalyticsData}
                         coinDetails={coinDetails}
+                        currentPrice={currentPrice}
                         toCurrency={toCurrency}
                     />
                 </Box>
@@ -333,9 +343,9 @@ const CryptoConverterPage = ({ coinDetails, coinWeeklyData, currentPrice, coinPr
                     />
                 </Box>
 
-                <Box>
+                {/* <Box>
                     <CryptoDescription />
-                </Box>
+                </Box> */}
             </Box >
         </>
     );

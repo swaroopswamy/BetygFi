@@ -67,6 +67,21 @@ export const getCoinPriceConversionDataFetched = async (payload) => {
     }
 };
 
+export const getCoinRiskPriceConversionAnalyticsFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-analytics/${payload.id}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinRankingsTableDataFetched = async (payload) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table?sitemap=true`;

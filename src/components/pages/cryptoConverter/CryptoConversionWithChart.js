@@ -3,7 +3,7 @@ import { renderSVG } from "@util/utility";
 import CryptoConversionChart from "./CryptoConversionChart";
 import IntervalWiseTableData from "./IntervalWiseTableData";
 
-const CryptoConversionWithChart = ({ coinDetails, toCurrency, currentPrice }) => {
+const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency, currentPrice }) => {
     const { colorMode } = useColorMode();
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={"1.7rem 1.5rem"} layerStyle={"flexColumn"} gap={"1.2rem"}>
@@ -23,7 +23,7 @@ const CryptoConversionWithChart = ({ coinDetails, toCurrency, currentPrice }) =>
             </Box>
             <Box>
                 <Text variant={"converter_calc_desc"}>
-                    {coinDetails?.name} ({coinDetails?.ticker}) is worth ₹ {currentPrice?.toLocaleString('en-IN')} today, which is a 0.5% increase from an hour ago and a 6.5% increase since yesterday. The value of {coinDetails?.ticker} today is 15.8% lower compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was ₹6,484,692,477,114..
+                    {coinDetails?.name} ({coinDetails?.ticker}) is worth ₹ {currentPrice?.toLocaleString('en-IN')} today, which is a {Math.abs(+coinAnalyticsData?.percentageChange_1hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_1hr > 0 ? "increase" : "decrease"} from an hour ago and a {Math.abs(+coinAnalyticsData?.percentageChange_24hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_24hr > 0 ? "increase" : "decrease"} since yesterday. The value of {coinDetails?.ticker} today is {Math.abs(+coinAnalyticsData?.percentageChange_7d)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_7d > 0 ? "higher" : "lower"} compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was ₹ {coinAnalyticsData?.volumeTraded?.toLocaleString('en-IN')}.
                 </Text>
             </Box>
             <Box>
@@ -32,7 +32,9 @@ const CryptoConversionWithChart = ({ coinDetails, toCurrency, currentPrice }) =>
                 />
             </Box>
             <Box p={{ base: "0.8rem 0.4rem", md: "1.4rem 1.5rem" }}>
-                <IntervalWiseTableData />
+                <IntervalWiseTableData
+                    coinAnalyticsData={coinAnalyticsData}
+                />
             </Box>
         </Box>
     );

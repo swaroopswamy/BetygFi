@@ -89,10 +89,10 @@ export const clearSearchSuggestionToStorage = () => {
     return localStorage.removeItem(SEARCH_TYPE_SELECTED);
 };
 
-export const convertToInternationalCurrencySystem = labelValue => {
-    const billion = (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(2) + " B";
-    const million = (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(2) + " M";
-    const thousand = (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(2) + " K";
+export const convertToInternationalCurrencySystem = (labelValue, fixedUpto = 2) => {
+    const billion = (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(fixedUpto) + " B";
+    const million = (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(fixedUpto) + " M";
+    const thousand = (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(fixedUpto) + " K";
     const lessThanThousand = Math.abs(Number(getToFixedValue(labelValue))) + "";
     const checkThousand = Math.abs(Number(labelValue)) >= 1.0e+3 ? thousand : lessThanThousand;
     const checkMillion = Math.abs(Number(labelValue)) >= 1.0e+6 ? million : checkThousand;
