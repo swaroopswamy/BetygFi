@@ -1,15 +1,13 @@
 "use client";
 import { Box, Button, Text, useColorMode, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import AppConfigContext from "@components/context/appConfigContext";
 
 export default function NotFoundPage() {
 	const router = useRouter();
 	const { colorMode } = useColorMode();
 	const [isMd] = useMediaQuery("(min-width: 768px)");
-	const appConfig = useContext(AppConfigContext);
 
 	useEffect(() => {
 		const footer = document.getElementById("betygfi-footer");
@@ -39,24 +37,18 @@ export default function NotFoundPage() {
 			>
 				<Box display={"flex"} flexDir={"row"}>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
 						alt="4"
 					/>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={150}
 						height={150}
 						src={`/images/universe-${colorMode}.svg`}
 						alt="universe"
 					/>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={75}
 						height={75}
 						src={`/images/404-${colorMode}-4.svg`}
@@ -66,13 +58,13 @@ export default function NotFoundPage() {
 				<Text mt={"25px"} variant={"h4"}>
 					The page can not be found
 				</Text>
-				<Text mt={"75px"} variant={"h4"}>
+				<Text mt={"50px"} variant={"h4"}>
 					Based on what you are looking for,
 				</Text>
 				<Text mt={"10px"} variant={"h4"}>
 					the links below might help.
 				</Text>
-				<Box layerStyle={"flexCenter"} gap={"5px"} mt={"20px"}>
+				<Box layerStyle={"flexCenter"} justifyContent={"center"} mt={"20px"}>
 					<Button
 						variant={"outline"}
 						height={"30px"}
@@ -81,27 +73,7 @@ export default function NotFoundPage() {
 						borderColor={"2px solid #191919"}
 						onClick={() => router.push("/")}
 					>
-						CTA 1
-					</Button>
-					<Button
-						variant={"outline"}
-						height={"30px"}
-						width={"85px"}
-						style={{ borderRadius: "24px 24px 24px 24px" }}
-						borderColor={"2px solid #191919"}
-						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
-					>
-						CTA 2
-					</Button>
-					<Button
-						variant={"outline"}
-						height={"30px"}
-						width={"85px"}
-						style={{ borderRadius: "24px 24px 24px 24px" }}
-						borderColor={"2px solid #191919"}
-						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
-					>
-						CTA 3
+						Home
 					</Button>
 				</Box>
 			</Box>
@@ -136,24 +108,18 @@ export default function NotFoundPage() {
 			>
 				<Box display={"flex"} flexDir={"row"}>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={150}
 						height={150}
 						src={`/images/404-${colorMode}-4.svg`}
 						alt="universe"
 					/>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={300}
 						height={300}
 						src={`/images/universe-${colorMode}.svg`}
 						alt="universe"
 					/>
 					<Image
-						// unoptimized="true"
-						// priority="true"
 						width={150}
 						height={150}
 						src={`/images/404-${colorMode}-4.svg`}
@@ -163,10 +129,10 @@ export default function NotFoundPage() {
 				<Text mt={"25px"} variant={"bigText"}>
 					The page can not be found
 				</Text>
-				<Text mt={"70px"} >
+				<Text mt={"35px"} >
 					Based on what you are looking for, the links below might help.
 				</Text>
-				<Box layerStyle={"flexCenter"} gap={"10px"} mt={"20px"} ml={"10px"}>
+				<Box layerStyle={"flexCenter"} justifyContent={"center"} mt={"20px"} ml={"10px"}>
 					<Button
 						variant={"outline"}
 						height={"35px"}
@@ -175,27 +141,7 @@ export default function NotFoundPage() {
 						borderColor={"2px solid #191919"}
 						onClick={() => router.push("/")}
 					>
-						CTA 1
-					</Button>
-					<Button
-						variant={"outline"}
-						height={"35px"}
-						width={"150px"}
-						style={{ borderRadius: "24px 24px 24px 24px" }}
-						borderColor={"2px solid #191919"}
-						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_STUDIO_URL}`)}
-					>
-						CTA 2
-					</Button>
-					<Button
-						variant={"outline"}
-						height={"35px"}
-						width={"150px"}
-						style={{ borderRadius: "24px 24px 24px 24px" }}
-						borderColor={"2px solid #191919"}
-						onClick={() => window.open(`${appConfig.NEXT_PUBLIC_COMMUNITY_URL}`)}
-					>
-						CTA 3
+						Home
 					</Button>
 				</Box>
 			</Box>

@@ -108,7 +108,7 @@ const TickerETFNetInflowBox = () => {
             labels: {
                 format: 'dd MMM',
                 style: {
-                    colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                    colors: ["#757575"],
                     fontSize: "12px",
                     fontWeight: 300,
                 },
@@ -135,7 +135,7 @@ const TickerETFNetInflowBox = () => {
                     });
                 },
                 style: {
-                    colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                    colors: ["#757575"],
                     fontSize: "12px",
                     fontWeight: 300,
                 },
@@ -159,7 +159,7 @@ const TickerETFNetInflowBox = () => {
                 radius: 100,
             },
             labels: {
-                colors: colorMode === "light" ? "#000000" : "#FFFFFF",
+                colors: colorMode === "light" ? "#525252" : "#757575",
             },
         },
         tooltip: {

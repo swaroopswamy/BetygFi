@@ -196,7 +196,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
                     searchListTrendingData={searchListTrendingData?.data?.data?.data}
                 />
             </Box>
-            <Box layerStyle={"flexCenter"}>
+            <Box layerStyle={"flexCenter"} mr={"5px"}>
                 <Box mr={"10px"}>
                     <i className={`icon ${colorMode === "light" ? "moon" : "sun"}`}
                         onClick={() => { toggleColorModeGlobally(); }} />
