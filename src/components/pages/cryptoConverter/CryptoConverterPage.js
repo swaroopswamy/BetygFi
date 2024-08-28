@@ -1,6 +1,6 @@
 "use client";
-import { ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
-import { Box, Menu, MenuButton, MenuItem, MenuList, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { ChevronLeftIcon } from "@chakra-ui/icons";
+import { Box, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { fetchConversionCoinChartGraphData } from "@redux/coin_data/dataSlice";
 import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
@@ -14,7 +14,7 @@ import CryptoConversionTable from "./CryptoConversionTable";
 import CryptoNews from "./CryptoNews";
 import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 
-const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toCurrency }) => {
+const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coinNewsData, toCurrency }) => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { colorMode } = useColorMode();
@@ -25,7 +25,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toC
     };
 
     useEffect(() => {
-        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price" }));
+        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h" }));
     }, [coinDetails?.slug]);
 
     const getHighLowProgressValue = () => {
@@ -156,9 +156,9 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toC
                                     Coin
                                 </Text>
 
-                                <Text colorMode={colorMode} variant={"converter_price_info"}>
+                                {/* <Text colorMode={colorMode} variant={"converter_price_info"}>
                                     On 2,771,773 watchlists
-                                </Text>
+                                </Text> */}
 
                             </Box>
                         </Box>
@@ -173,7 +173,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toC
                                     </Text>
                                 </Box>
 
-                                <Menu>
+                                {/* <Menu>
                                     <MenuButton
                                         px={4}
                                         py={2}
@@ -191,7 +191,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toC
                                         <MenuItem>24h</MenuItem>
                                         <MenuItem>5day</MenuItem>
                                     </MenuList>
-                                </Menu>
+                                </Menu> */}
                             </Box>
 
 
@@ -338,6 +338,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, toC
                 </Box>
                 <Box>
                     <CryptoNews
+                        coinNewsData={coinNewsData}
                         coinDetails={coinDetails}
                         toCurrency={toCurrency}
                     />

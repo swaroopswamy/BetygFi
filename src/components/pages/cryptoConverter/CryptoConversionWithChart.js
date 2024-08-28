@@ -28,6 +28,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
             </Box>
             <Box>
                 <CryptoConversionChart
+                    coinAnalyticsData={coinAnalyticsData}
                     coinDetails={coinDetails}
                 />
             </Box>

@@ -20,7 +20,7 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
                 return (
                     period.startsWith("comp-calendar") ?
                         <Box pos={"relative"}>
-                            <Box pos={"absolute"} style={{ border: '1px solid red' }} >
+                            <Box display={"flex"} justifyContent={"center"} alignItems={"center"} pos={"absolute"} width={"40px"} height={"30px"} >
                                 {renderSVG("calendar")}
                             </Box>
                             {renderComponent && renderComponent()}
@@ -48,7 +48,7 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
                         </Button>
                 );
             })}
-        </Box>
+        </Box >
     );
 };
 
