@@ -209,7 +209,7 @@ const CoinPage = () => {
             ></BreadCrumb> */}
             <Box layerStyle={"flexCenter"} w="100%" flexDir={{ base: 'column', md: 'row' }} pl={"25px"} pr={{ base: "2px", md: "15px" }}>
                 <Marquee />
-                <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} mr={{ base: "27px" }} justifyContent={"flex-end"}>
+                <Box layerStyle={"flexCenter"} w={{ base: "100%", md: "10%" }} mr={{ base: "35px", md: "5px" }} justifyContent={"flex-end"}>
                     <Text variant={"h3"} mr={"5px"} fontWeight={500}>Highlights</Text>
                     <Switch
                         size={"lg"}

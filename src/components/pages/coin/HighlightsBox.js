@@ -103,7 +103,7 @@ const HighlightsBox = () => {
                     </Box>
                 )
             }
-            <Box onClick={goToNextSlide} pos={"absolute"} right={"15px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
+            <Box onClick={goToNextSlide} pos={"absolute"} right={"20px"} top={"90px"} borderRadius={"50%"} w="24px" h="24px" cursor={"pointer"} zIndex={2}>
                 <i className="icon arrow_circle_light" />
             </Box>
         </Box>
