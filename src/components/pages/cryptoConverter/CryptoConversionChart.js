@@ -5,21 +5,24 @@ import CustomChart from "@/components/graph";
 import {
     Box,
     useColorMode,
-    useColorModeValue
+    useColorModeValue,
+    useMediaQuery
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
 import { fetchConversionCoinChartGraphData } from '@redux/coin_data/dataSlice';
+import { renderSVG } from "@util/utility";
 import { RangeDatepicker } from "chakra-dayzed-datepicker";
 import { format } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // Main css file
 import 'react-date-range/dist/theme/default.css'; // Theme css file
 import { useDispatch, useSelector } from 'react-redux';
 import PeriodSelection from "./PeriodSelection";
+// const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const CryptoConversionChart = ({ coinDetails }) => {
     const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
-
+    const [isMd] = useMediaQuery("(min-width: 768px)");
     const coinConversionLineChartOptions = {
         chart: {
             toolbar: {
@@ -175,7 +178,8 @@ const CryptoConversionChart = ({ coinDetails }) => {
         const conversionChartGraphData = conversionChartData?.data;
 
         if (conversionChartGraphData) {
-            const formatDate = (date) => format(new Date(date), "d MMM yy hh:mm a");
+            const formatDate = (date) => format(new Date(date),
+                chartFilter === "icon-line-chart" ? "d MMM HH:mm" : "d MMM yy hh:mm a");
 
             if (chartFilter === "icon-line-chart") {
                 const mappedXConversionChartData = conversionChartGraphData.map((icm) => formatDate(icm.timestamp));
@@ -191,7 +195,7 @@ const CryptoConversionChart = ({ coinDetails }) => {
 
                 const xaxisLine = {
                     categories: mappedXConversionChartData,
-                    // tickAmount: 10,
+                    tickAmount: 10,
                     labels: {
                         style: {
                             colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -211,7 +215,7 @@ const CryptoConversionChart = ({ coinDetails }) => {
                     },
                 };
 
-                setChartOptions({ ...chartOptions, xaxisLine, yaxisLine });
+                setChartOptions({ ...chartOptions, xaxis: xaxisLine, yaxis: yaxisLine });
                 setChartSeries([{ name: `${coinDetails?.name}`, data: mappedYConversionChartData }]);
             } else {
                 const mappedCandleStickConversionChartData = conversionChartGraphData.map(icm => {
@@ -241,7 +245,7 @@ const CryptoConversionChart = ({ coinDetails }) => {
                     },
                 };
 
-                setChartOptions({ ...chartOptions, xaxisCandleStick, yaxisCandleStick });
+                setChartOptions({ ...chartOptions, xaxis: xaxisCandleStick, yaxis: yaxisCandleStick });
                 setChartSeries([{ name: `${coinDetails?.name}`, data: mappedCandleStickConversionChartData }]);
             }
         }
@@ -377,15 +381,212 @@ const CryptoConversionChart = ({ coinDetails }) => {
                         </Box>
                     </Box>
                 </Box>
-                <CustomChart
-                    options={chartOptions}
-                    series={chartSeries}
-                    type={chartFilter === "icon-line-chart" ? "line" : "candlestick"}
-                    height={405}
-                />
+
+                <Box mt={"12px"} pos={"relative"}>
+                    <CustomChart
+                        options={chartOptions}
+                        series={chartSeries}
+                        type={chartFilter === "icon-line-chart" ? "line" : "candlestick"}
+                        height={405}
+                    />
+
+                    {/* <Box display={{ base: "none", lg: "block" }} w={"100%"}>
+                        <SelectorGraph period={period} colorMode={colorMode} />
+                    </Box> */}
+
+                </Box>
+                {
+                    isMd ?
+                        <Box pos={"absolute"} top={"15%"} left={"91%"}>
+                            {renderSVG("betygfi-logo")}
+                        </Box>
+                        :
+                        <Box pos={"absolute"} top={"32%"} left={"68%"}>
+                            {renderSVG("betygfi-logo")}
+                        </Box>
+                }
             </Box>
         </>
     );
 };
+
+// const SelectorGraph = ({ period, colorMode }) => {
+//     const CoinPriceData = useSelector(
+//         (state) => state?.coinData?.CoinPriceData
+//     );
+
+//     const series = useMemo(
+//         () => [
+//             {
+//                 data: CoinPriceData?.data?.data,
+//             },
+//         ],
+//         [CoinPriceData]
+//     );
+
+//     let [options, setOptions] = useState({
+//         chart: {
+//             id: "selection",
+//             toolbar: {
+//                 show: false,
+//             },
+//             stacked: false,
+//             type: "line",
+//             brush: {
+//                 enabled: true,
+//                 target: "coinOverview",
+//                 autoScaleYaxis: true,
+//             },
+//             selection: {
+//                 enabled: true,
+//                 fill: {
+//                     color: "#667AFF4D",
+//                     opacity: 0.3,
+//                 },
+//                 stroke: {
+//                     width: 1,
+//                     color: ["#544FC5", "#00E272"],
+//                 },
+//             },
+//             animations: {
+//                 enabled: false,
+//             },
+//         },
+//         stroke: {
+//             show: true,
+//         },
+//         colors: ["#544FC5", "#00E272"],
+//         xaxis: {
+//             type: "datetime",
+//             labels: {
+//                 show: false,
+//             },
+//             axisTicks: {
+//                 show: false,
+//             },
+//             axisBorder: {
+//                 show: false,
+//             },
+//         },
+//         yaxis: {
+//             labels: {
+//                 show: false,
+//             },
+//         },
+//         dataLabels: {
+//             enabled: false,
+//         },
+//         legend: {
+//             show: false,
+//         },
+//         tooltip: {
+//             enabled: false,
+//         },
+//         grid: {
+//             borderColor: colorMode === "light" ? "#191919" : "#36363A",
+//             xaxis: {
+//                 lines: {
+//                     show: false,
+//                 },
+//             },
+//             yaxis: {
+//                 lines: {
+//                     show: false,
+//                 },
+//             },
+//         },
+//     });
+
+//     const setSelectionHandler = (value) => {
+//         let newOptions = {
+//             ...options,
+//             chart: {
+//                 ...options.chart,
+//                 selection: {
+//                     ...options.chart.selection,
+//                     xaxis: value,
+//                 },
+//             },
+//             grid: {
+//                 ...options.grid,
+//                 borderColor: colorMode === "light" ? "#191919" : "#36363A",
+//             },
+//         };
+//         setOptions(newOptions);
+//     };
+
+//     useEffect(() => {
+//         if (CoinPriceData?.isSuccess && CoinPriceData?.data != undefined) {
+//             if (period === "7d") {
+//                 let minDate = new Date(
+//                     Date.parse(series[0].data.slice(-1)[0][0])
+//                 );
+//                 minDate.setDate(minDate.getDate() - 7);
+//                 minDate.setHours(0, 0, 0, 0);
+//                 setSelectionHandler({
+//                     min: Date.parse(minDate),
+//                     max: Date.parse(series[0].data.slice(-1)[0][0]),
+//                 });
+//             }
+//             if (period === "14d") {
+//                 let minDate = new Date(
+//                     Date.parse(series[0].data.slice(-1)[0][0])
+//                 );
+//                 minDate.setDate(minDate.getDate() - 14);
+//                 minDate.setHours(0, 0, 0, 0);
+//                 setSelectionHandler({
+//                     min: Date.parse(minDate),
+//                     max: Date.parse(series[0].data.slice(-1)[0][0]),
+//                 });
+//             }
+//             if (period === "30d") {
+//                 let minDate = new Date(
+//                     Date.parse(series[0].data.slice(-1)[0][0])
+//                 );
+//                 minDate.setMonth(minDate.getMonth() - 1);
+//                 minDate.setHours(0, 0, 0, 0);
+//                 setSelectionHandler({
+//                     min: Date.parse(minDate),
+//                     max: Date.parse(series[0].data.slice(-1)[0][0]),
+//                 });
+//             }
+//             if (period === "1yr") {
+//                 let minDate = new Date(
+//                     Date.parse(series[0].data.slice(-1)[0][0])
+//                 );
+//                 minDate.setDate(minDate.getDate() - 365);
+//                 minDate.setHours(0, 0, 0, 0);
+//                 setSelectionHandler({
+//                     min: Date.parse(minDate),
+//                     max: Date.parse(series[0].data.slice(-1)[0][0]),
+//                 });
+//             }
+//             if (period === "Max") {
+//                 setSelectionHandler({
+//                     min: Date.parse(series[0].data.slice(0)[0][0]),
+//                     max: Date.parse(series[0].data.slice(-1)[0][0]),
+//                 });
+//             }
+//         }
+//     }, [period, CoinPriceData, colorMode]);
+
+//     return (
+//         <>
+//             <Box
+//                 px={"20px"}
+//                 layerStyle={"flexColumn"}
+//                 justifyContent={"center"}
+//             >
+//                 <Chart
+//                     options={options}
+//                     series={series}
+//                     type={options.chart.type}
+//                     height={"100px"}
+//                     width={"100%"}
+//                 />
+//             </Box>
+//         </>
+//     );
+// };
 
 export default CryptoConversionChart;

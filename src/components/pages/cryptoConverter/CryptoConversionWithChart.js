@@ -32,7 +32,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                     coinDetails={coinDetails}
                 />
             </Box>
-            <Box p={{ base: "0.8rem 0.4rem", md: "1.4rem 1.5rem" }}>
+            <Box p={{ base: "0.8rem 0.4rem", md: "0.5rem 1.5rem" }}>
                 <IntervalWiseTableData
                     coinAnalyticsData={coinAnalyticsData}
                 />
