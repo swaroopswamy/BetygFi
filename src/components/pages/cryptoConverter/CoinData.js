@@ -1,9 +1,10 @@
 import { Box, Text, useColorMode } from '@chakra-ui/react';
 import { convertToInternationalCurrencySystem, renderSVG } from '@util/utility';
+import { useRouter } from 'next/navigation';
 
 const CoinData = ({ coinDetails }) => {
     const { colorMode } = useColorMode();
-
+    const router = useRouter();
     const coinDataList = [
         { name: "Daily Volatility", slug: "daily-volatility", info: "", valueAccessor: "daily_vol", valueModifier: "%" },
         { name: "Beta", slug: "beta", info: "", valueAccessor: "beta", valueModifier: "fix-0" },
@@ -54,6 +55,7 @@ const CoinData = ({ coinDetails }) => {
                 borderRadius='4px'
                 _light={{ background: '#202020' }}
                 _dark={{ background: '#FFFFFF' }}
+                onClick={() => router.push("/campaign")}
             >
                 <Text cursor={"pointer"} colorMode={colorMode} variant={"converter_get_api_key"}>
                     Get This Data By API
