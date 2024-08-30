@@ -41,9 +41,7 @@ const TopGainersSmallBox = () => {
                     cursor={"pointer"}
                     onClick={() => {
                         router.push(`/coin?on=change_24hr&by=desc`);
-
                     }}
-
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
                         _light={{ color: "#757575" }}
@@ -64,9 +62,7 @@ const TopGainersSmallBox = () => {
             </Box>
             {TopGainersAndLosersData.data?.gainers?.map((gainer, i) => (
                 <Box
-                    layerStyle={"spaceBetween"}
-                    key={i}
-                    mb="12px"
+                    layerStyle={"spaceBetween"} key={i} mb="12px"
                     onClick={() => {
                         if (gainer?.slug) router.push(`/coin/${gainer?.slug}`);
                     }}

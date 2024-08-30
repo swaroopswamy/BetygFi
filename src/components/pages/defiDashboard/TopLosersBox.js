@@ -21,6 +21,7 @@ const TopLosersBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="top-losers-defi"
         >
             <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>
@@ -67,13 +68,13 @@ const TopLosersBox = () => {
                             height={35}
                             width={35}
                             src={loser?.logo ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px", borderRadius: "50%" }}
+                            style={{ marginRight: "7px", borderRadius: "50%" }}
                             alt="bitcoin"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {loser?.slug}
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Box layerStyle={"flexCenter"} gap={"2px"}>
                         <Tooltip hasArrow label={`$ ${convertENotationToNumber(loser?.price)}`}>
                             <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"} cursor={"pointer"}>
                                 ${convertENotationToNumber(loser?.price).toString().split('').slice(0, 4).join('') +
@@ -86,7 +87,7 @@ const TopLosersBox = () => {
                             layerStyle={"flexCenter"}
                             justifyContent={"center"}
                             height={"21px"}
-                            mr={"5px"}
+                            //mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
                             _light={{ bg: "#FF00001F" }}
