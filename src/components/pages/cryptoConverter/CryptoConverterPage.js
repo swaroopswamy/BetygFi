@@ -3,7 +3,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { fetchConversionCoinChartGraphData } from "@redux/coin_data/dataSlice";
-import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
+import { commasInThousands, convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -18,11 +18,6 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     const dispatch = useDispatch();
     const router = useRouter();
     const { colorMode } = useColorMode();
-
-    const checkIfIsCoinRising = () => {
-        // TODO: .....
-        return true;
-    };
 
     useEffect(() => {
         dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h" }));
@@ -88,7 +83,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "30%" }}>
+                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "26%" }}>
 
                         <Box width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                             <CustomAvatar
@@ -107,8 +102,8 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                 </Text>
                             </Box>
 
-                            {renderSVG("star")}
-                            {renderSVG("share")}
+                            {/* {renderSVG("star")}
+                            {renderSVG("share")} */}
                         </Box>
 
                         <Box gap={"0.5rem"} display={"flex"} flexDir={"column"}>
@@ -119,7 +114,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                     </Text>
                                 </Box>
 
-                                <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
+                                {/* <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
                                     <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={"increase"}>
                                         +2%
                                     </Text>
@@ -127,7 +122,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
 
                                 <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
                                     {renderSVG(checkIfIsCoinRising() ? "trending_up" : "trending_down")}
-                                </Box>
+                                </Box> */}
                             </Box>
 
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
@@ -137,13 +132,13 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                     </Text>
                                 </Box>
 
-                                <Box display={"flex"} textAlign={"center"} justifyContent={"center"} alignItems={"center"}>
+                                {/* <Box display={"flex"} textAlign={"center"} justifyContent={"center"} alignItems={"center"}>
                                     {renderSVG("info")}
-                                </Box>
+                                </Box> */}
                             </Box>
                         </Box>
 
-                        <Box   >
+                        <Box>
                             <Box display='inline-flex' alignItems='center' gap='20px'>
 
                                 <Box padding={"3.363px 6.725px"} borderRadius={'3.363px'} background='rgba(70, 130, 180, 0.10)'>
@@ -162,7 +157,6 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
 
                             </Box>
                         </Box>
-
 
                         <Box display={"flex"} gap={"1rem"} flexDir={"column"} >
                             <Box display={"flex"} flexDir={"row"} justifyContent={"space-between"}>
@@ -234,7 +228,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                         { title: "24hr Volume", slug: "24hr-volume", amount: "volume_24hr", increaseDecreaseBy: "volume_change_24hr", type: "increase" },
                                         { title: "Circulating Supply", slug: "circulating-supply", amount: "circulating_supply", increaseDecreaseBy: "2", type: "increase" }
                                     ].map((item, index) => (
-                                        <Box padding={"0.8rem"} key={index} gap={"0.8rem"}
+                                        <Box borderRadius={"0.45rem"} padding={"0.8rem"} key={index} gap={"0.8rem"}
                                             bgColor={index == 0 ? "#C8E2F9" : (index == 1 ? "rgba(255, 163, 163, 0.24)" : (index == 2 ? "rgba(154, 218, 138, 0.24)" : "#E6F3FF"))
                                             }
                                         >
@@ -244,7 +238,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                             <Box>
                                                 <Text colorMode={colorMode} variant={"converter_low_high_value"}>
                                                     {
-                                                        item.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails[item.amount])}` : "No info available"
+                                                        item.amount ? `$ ${commasInThousands(coinDetails[item.amount])}` : "No info available"
                                                     }
 
                                                 </Text>

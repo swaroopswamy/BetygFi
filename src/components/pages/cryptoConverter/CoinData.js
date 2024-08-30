@@ -1,5 +1,5 @@
 import { Box, Text, useColorMode } from '@chakra-ui/react';
-import { convertToInternationalCurrencySystem, renderSVG } from '@util/utility';
+import { convertToInternationalCurrencySystem, float2Ratio } from '@util/utility';
 import { useRouter } from 'next/navigation';
 
 const CoinData = ({ coinDetails }) => {
@@ -29,7 +29,7 @@ const CoinData = ({ coinDetails }) => {
             return convertToInternationalCurrencySystem(value);
         }
         if (coin?.valueModifier === "ratio") {
-            return value;
+            return float2Ratio(value);
         }
         return value;
     };
@@ -41,7 +41,7 @@ const CoinData = ({ coinDetails }) => {
                     <Box flexDir={"column"} display={"flex"} gap={"0.15rem"} key={coin.slug}>
                         <Box flexDir={"row"} display={"flex"} gap={"0.5rem"} key={coin.slug}>
                             <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_key"}>{coin?.name}</Text>
-                            {renderSVG("info")}
+                            {/* {renderSVG("info")} */}
                         </Box>
                         <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>{getValue(coin)}</Text>
                     </Box>

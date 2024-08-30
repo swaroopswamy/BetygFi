@@ -1,5 +1,5 @@
 import { Box, Input, InputGroup, InputRightAddon, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
-import { renderSVG } from "@util/utility";
+import { convertExpToNumber, renderSVG } from "@util/utility";
 import { useState } from "react";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
@@ -16,20 +16,27 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     };
 
     const onCurrencyValueChange = (event) => {
-        const value = event.target.value;
-        setCurrencyValue(value);
+        const value = convertExpToNumber(Number(event.target.value));
+        if (value < 0) {
+            setCurrencyValue(0);
+        } else {
+            setCurrencyValue(value);
+        }
         setCoinValue(value / currentPrice);
     };
 
     const onCoinValueChange = (event) => {
-        const value = event.target.value;
-        setCoinValue(value);
+        const value = convertExpToNumber(Number(event.target.value));
+        if (value < 0) {
+            setCoinValue(0);
+        } else {
+            setCoinValue(value);
+        }
         setCurrencyValue(value * currentPrice);
     };
 
-    // calculatePrice
     return (
-        <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "70%" }}>
+        <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "74%" }}>
             <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                 <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
@@ -75,7 +82,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                             </Box>
                             <Box display={"flex"} justifyContent={"flex-end"}>
                                 <Text colorMode={colorMode} textAlign='end' variant={"cookies_footer"}>
-                                    1 {toCurrency?.toUpperCase()} = {Number(1 / currentPrice)} {coinDetails?.ticker}
+                                    1 {toCurrency?.toUpperCase()} = {convertExpToNumber(Number(1 / currentPrice))} {coinDetails?.ticker}
                                 </Text>
                             </Box>
                         </Box>

@@ -16,9 +16,11 @@ const CryptoNews = ({ coinDetails, coinNewsData }) => {
                             </Box>
                         </Box>
                         :
-                        <Box key={index} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
+                        <Box cursor={"pointer"} onClick={() => {
+                            window.open(news.link, "_blank");
+                        }} key={index} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
                             <Box borderRadius='4px 4px 0px 0px'   >
-                                <Box width={"380px"} height={"auto"} /* backgroundImage={`url('${news.image}')`} */>
+                                <Box width={"auto"} height={"auto"} /* backgroundImage={`url('${news.image}')`} */>
                                     <Image /* objectFit={"cover"} */ height={150} width={430} src={news.image} alt={news.title} />
                                 </Box>
                                 <Box display={"flex"} flexDir={"column"} gap={"0.6rem"} p={"1rem"}>

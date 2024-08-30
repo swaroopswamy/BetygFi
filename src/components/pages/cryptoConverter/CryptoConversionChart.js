@@ -8,12 +8,11 @@ import {
     useColorModeValue,
     useMediaQuery
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
 import { fetchConversionCoinChartGraphData } from '@redux/coin_data/dataSlice';
 import { renderSVG } from "@util/utility";
 import { RangeDatepicker } from "chakra-dayzed-datepicker";
 import { format } from 'date-fns';
+import { useEffect, useState } from "react";
 import 'react-date-range/dist/styles.css'; // Main css file
 import 'react-date-range/dist/theme/default.css'; // Theme css file
 import { useDispatch, useSelector } from 'react-redux';
@@ -397,7 +396,7 @@ const CryptoConversionChart = ({ coinDetails }) => {
                 </Box>
                 {
                     isMd ?
-                        <Box pos={"absolute"} top={"15%"} left={"91%"}>
+                        <Box pos={"absolute"} top={"16%"} left={"91%"}>
                             {renderSVG("betygfi-logo")}
                         </Box>
                         :

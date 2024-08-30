@@ -1,4 +1,5 @@
 import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { convertExpToNumber } from "@util/utility";
 import { useState } from "react";
 
 const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnalyticsData }) => {
@@ -57,7 +58,7 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                                 conversionList.currencyToCoinTable.map((hist, index) => (
                                     <Tr key={index}>
                                         <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{Number(hist.key)} {toCurrency?.toUpperCase()}</Text></Td>
-                                        <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.value} {coinDetails?.ticker}</Text></Td>
+                                        <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{convertExpToNumber(Number(hist.value))} {coinDetails?.ticker}</Text></Td>
                                     </Tr>
                                 ))
                             }
@@ -73,7 +74,7 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                     {coinDetails?.ticker} / {toCurrency?.toUpperCase()} Conversion Tables
                 </Text>
                 <Text colorMode={colorMode} variant={"converter_calc_desc"}>
-                    The conversion rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is ₹ {currentPrice?.toLocaleString('en-IN')} for every 1 {coinDetails?.ticker}. This means you can exchange 5 {coinDetails?.ticker} for ₹ {(currentPrice * 5)?.toLocaleString('en-IN')} or ₹ 50.00 for {50 / currentPrice} {coinDetails?.ticker}, excluding fees. Refer to our conversion tables for popular {coinDetails?.ticker} trading amounts in their corresponding {toCurrency?.toUpperCase()} prices and vice versa.
+                    The conversion rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is ₹ {currentPrice?.toLocaleString('en-IN')} for every 1 {coinDetails?.ticker}. This means you can exchange 5 {coinDetails?.ticker} for ₹ {(currentPrice * 5)?.toLocaleString('en-IN')} or ₹ 50.00 for {convertExpToNumber(Number(50 / currentPrice))} {coinDetails?.ticker}, excluding fees. Refer to our conversion tables for popular {coinDetails?.ticker} trading amounts in their corresponding {toCurrency?.toUpperCase()} prices and vice versa.
                 </Text>
             </Box>
             <Box>

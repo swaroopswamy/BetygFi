@@ -1,5 +1,4 @@
 import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import { convertToInternationalCurrencySystem } from "@util/utility";
 import { format, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 
@@ -28,7 +27,7 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                         <Tr>
                             <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>Date</Text></Th>
                             <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>Day Of The Week</Text></Th>
-                            <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1 {coinDetails?.ticker} to INR</Text></Th>
+                            <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1 {coinDetails?.ticker} to {toCurrency}</Text></Th>
                             <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>24hr Changes</Text></Th>
                             <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>Change %</Text></Th>
                         </Tr>
@@ -39,9 +38,9 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                                 <Tr key={index}>
                                     <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{format(parseISO(hist.date), "dd MMM, yyyy")}</Text></Td>
                                     <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.dayOfWeek}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{convertToInternationalCurrencySystem(hist.price)}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr}</Text></Td>
-                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#245F00"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}> ₹ {hist.price}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr < 0 ? "-" : ""}₹ {Math.abs(hist.priceChange_24hr)}</Text></Td>
+                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#62cd21"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
                                 </Tr>
                             ))
                         }

@@ -463,3 +463,53 @@ export const filterTimestampsByPeriod = (timestamps, period) => {
         return timestamps && timestamps.slice(periodMapping[period] * -1);
     }
 };
+
+export const convertExpToNumber = n => {
+    var sign = +n < 0 ? "-" : "",
+        toStr = n.toString();
+    if (!/e/i.test(toStr)) {
+        return n;
+    }
+    var [lead, decimal, pow] = n.toString()
+        .replace(/^-/, "")
+        .replace(/^([0-9]+)(e.*)/, "$1.$2")
+        .split(/e|\./);
+    return +pow < 0 ?
+        sign + "0." + "0".repeat(Math.max(Math.abs(pow) - 1 || 0, 0)) + lead + decimal :
+        sign + lead + (+pow >= decimal.length ? (decimal + "0".repeat(Math.max(+pow - decimal.length || 0, 0))) : (decimal.slice(0, +pow) + "." + decimal.slice(+pow)));
+};
+
+export const float2Ratio = (x) => {
+    let tolerance = 1.e-4;
+    let h1 = 1;
+    let h2 = 0;
+    let k1 = 0;
+    let k2 = 1;
+    let b = x;
+    do {
+        let a = Math.floor(b);
+        let aux = h1;
+        h1 = a * h1 + h2;
+        h2 = aux;
+        aux = k1;
+        k1 = a * k1 + k2;
+        k2 = aux;
+        b = 1 / (b - a);
+    } while (Math.abs(x - h1 / k1) > x * tolerance);
+
+    return h1 + ":" + k1;
+};
+
+export const commasInThousands = x => x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+export const copyToClipboard_ = (text) => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+
+};

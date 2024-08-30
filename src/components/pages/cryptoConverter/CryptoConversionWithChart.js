@@ -1,9 +1,10 @@
-import { Box, Text, useColorMode, useColorModeValue, } from "@chakra-ui/react";
-import { renderSVG } from "@util/utility";
+import { Box, Text, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
+import { copyToClipboard_, renderSVG } from "@util/utility";
 import CryptoConversionChart from "./CryptoConversionChart";
 import IntervalWiseTableData from "./IntervalWiseTableData";
 
 const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency, currentPrice }) => {
+    const toast = useToast();
     const { colorMode } = useColorMode();
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={"1.7rem 1.5rem"} layerStyle={"flexColumn"} gap={"1.2rem"}>
@@ -11,13 +12,22 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 <Text colorMode={colorMode} variant={"converter_heading"}>
                     {coinDetails?.ticker} to {toCurrency?.toUpperCase()} Chart
                 </Text>
-                <Box cursor={"pointer"}>
+                {/* <Box cursor={"pointer"}>
                     {renderSVG("info")}
-                </Box>
+                </Box> */}
                 <Box cursor={"pointer"}>
                     {renderSVG("download")}
                 </Box>
-                <Box cursor={"pointer"}>
+                <Box onClick={() => {
+                    copyToClipboard_(window.location.href);
+                    toast({
+                        title: 'Link copied!!',
+                        description: "You can share it now",
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                    });
+                }} cursor={"pointer"}>
                     {renderSVG("share")}
                 </Box>
             </Box>
