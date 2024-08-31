@@ -26,8 +26,6 @@ export function Providers({ children }) {
         return "system";
     };
 
-
-
     const theme = extendTheme({
         initialColorMode: getColorModeFromStorage(),
         useSystemColorMode: true,
@@ -42,16 +40,18 @@ export function Providers({ children }) {
                         bg: '#245F00'
                     }
                 }
-            }, Input: {
+            },
+            Input: {
                 baseStyle: {
                     field: {
+                        // borderColor: '#4682B4',
                         border: "1px solid #4682B4"
                     },
                     addon: {
-                        border: '1px solid',
-                        borderColor: '#4682B4',
-                        background: '#4682B4',
-                        color: '#4682B4',
+                        // border: '1px solid',
+                        // borderColor: '#4682B4',
+                        // background: 'red',
+                        // color: 'red',
                     },
                 },
             },

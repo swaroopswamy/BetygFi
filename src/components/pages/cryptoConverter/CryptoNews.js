@@ -1,16 +1,17 @@
 import { Box, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { truncateText } from '@util/utility';
 import Image from 'next/image';
+import React from 'react';
 
 const CryptoNews = ({ coinDetails, coinNewsData }) => {
     const { colorMode } = useColorMode();
 
-    const renderNewsCard = (news, index) => {
+    const renderNewsCard = news => {
         return (
             <>
                 {
                     news.isHero ?
-                        <Box key={index} display={"flex"} flex={"1 0 0"}>
+                        <Box display={"flex"} flex={"1 0 0"}>
                             <Box borderRadius='4px 4px 0px 0px'   >
                                 <Image height={200} width={880} src={news.image} alt={news.title} />
                             </Box>
@@ -18,7 +19,7 @@ const CryptoNews = ({ coinDetails, coinNewsData }) => {
                         :
                         <Box cursor={"pointer"} onClick={() => {
                             window.open(news.link, "_blank");
-                        }} key={index} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
+                        }} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
                             <Box borderRadius='4px 4px 0px 0px'   >
                                 <Box width={"auto"} height={"auto"} /* backgroundImage={`url('${news.image}')`} */>
                                     <Image /* objectFit={"cover"} */ height={150} width={430} src={news.image} alt={news.title} />
@@ -58,9 +59,9 @@ const CryptoNews = ({ coinDetails, coinNewsData }) => {
                     <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"1fr 1fr 1fr 1fr"}>
                         {
                             coinNewsData?.news?.length > 0 && coinNewsData?.news?.map((news, index) => (
-                                <>
-                                    {renderNewsCard(news, index)}
-                                </>
+                                <React.Fragment key={index}>
+                                    {renderNewsCard(news)}
+                                </React.Fragment>
                             ))
                         }
                     </Box>

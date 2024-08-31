@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { fetchConversionCoinChartGraphData } from '@redux/coin_data/dataSlice';
 import { renderSVG } from "@util/utility";
-import { RangeDatepicker } from "chakra-dayzed-datepicker";
+// import { RangeDatepicker } from "chakra-dayzed-datepicker";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
 import 'react-date-range/dist/styles.css'; // Main css file
@@ -20,7 +20,7 @@ import PeriodSelection from "./PeriodSelection";
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const CryptoConversionChart = ({ coinDetails }) => {
-    const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
+    // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const coinConversionLineChartOptions = {
         chart: {
@@ -105,12 +105,12 @@ const CryptoConversionChart = ({ coinDetails }) => {
         },
     };
 
-    const periods = ["24h", "7d", "14d", "30d", "1yr", "Max", "comp-calendar"];
+    const periods = ["24h", "7d", "14d", "30d", "1yr", "Max"/* , "comp-calendar" */];
     const chartFilters_ = ["icon-line-chart", "icon-candle-stick-chart"];
     const priceMCaps_ = ["Price", "MarketCap"];
 
     const [period, setPeriod] = useState("24h");
-    const [priceMCaps, setPriceMCaps] = useState(priceMCaps_);
+    const [priceMCaps,] = useState(priceMCaps_);
     const [priceMCap, setPriceMCap] = useState("Price");
     const [chartFilters, setChartFilters] = useState(chartFilters_);
     const [chartFilter, setChartFilter] = useState("icon-line-chart");
@@ -149,8 +149,10 @@ const CryptoConversionChart = ({ coinDetails }) => {
 
         setTimeout(() => {
             const datePickerElem = document.getElementById("popover-trigger-converter-range-date");
-            datePickerElem.innerHTML = "";
-            datePickerElem.style.height = "2rem";
+            if (datePickerElem) {
+                datePickerElem.innerHTML = "";
+                datePickerElem.style.height = "2rem";
+            }
         }, 500);
     }, []);
 
@@ -187,7 +189,11 @@ const CryptoConversionChart = ({ coinDetails }) => {
                     if (priceMCap === "Price") {
                         icm = +icm.close.toFixed(2);
                     } else {
-                        icm = +icm.marketCap.toFixed(2);
+                        if (icm.marketCap) {
+                            icm = +icm.marketCap.toFixed(2);
+                        } else {
+                            icm = +icm.close.toFixed(2);
+                        }
                     }
                     return icm;
                 });
@@ -234,9 +240,9 @@ const CryptoConversionChart = ({ coinDetails }) => {
                 const xaxisCandleStick = {
                     tickAmount: 10,
                     type: 'category',
-                    labels: {
-                        formatter: val => formatDate(val)
-                    }
+                    // labels: {
+                    //     formatter: val => formatDate(val)
+                    // }
                 };
                 const yaxisCandleStick = {
                     tooltip: {
@@ -269,7 +275,12 @@ const CryptoConversionChart = ({ coinDetails }) => {
         if (val === priceMCap) {
             setPriceMCap("Price");
         } else {
-            setPriceMCap(val);
+            if (val === "MarketCap") {
+                setChartFilter("icon-line-chart");
+                setPriceMCap(val);
+            } else {
+                setPriceMCap(val);
+            }
         }
     };
 
@@ -284,9 +295,9 @@ const CryptoConversionChart = ({ coinDetails }) => {
     useEffect(() => {
         if (chartFilter === "icon-candle-stick-chart") {
             setPriceMCap("Price");
-            setPriceMCaps(["Price"]);
-        } else {
-            setPriceMCaps(["Price", "MarketCap"]);
+            // setPriceMCaps(["Price"]);
+            // } else {
+            //     setPriceMCaps(["Price", "MarketCap"]);
         }
     }, [chartFilter]);
 
@@ -300,7 +311,8 @@ const CryptoConversionChart = ({ coinDetails }) => {
             <PeriodSelection
                 periods={periods}
                 currPeriod={period}
-                renderComponent={renderDatePicker}
+                renderComponent={null}
+                // renderComponent={renderDatePicker}
                 periodSelectionHandler={periodSelectionHandler}
             />
         );
@@ -350,17 +362,17 @@ const CryptoConversionChart = ({ coinDetails }) => {
         );
     };
 
-    const renderDatePicker = () => {
-        return (
-            <Box display={"flex"}>
-                <RangeDatepicker
-                    id="converter-range-date"
-                    selectedDates={selectedDates}
-                    onDateChange={setSelectedDates}
-                />
-            </Box>
-        );
-    };
+    // const renderDatePicker = () => {
+    //     return (
+    //         <Box display={"flex"}>
+    //             <RangeDatepicker
+    //                 id="converter-range-date"
+    //                 selectedDates={selectedDates}
+    //                 onDateChange={setSelectedDates}
+    //             />
+    //         </Box>
+    //     );
+    // };
 
     return (
         <>
