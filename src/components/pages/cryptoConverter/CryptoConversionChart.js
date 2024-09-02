@@ -9,7 +9,7 @@ import {
     useMediaQuery
 } from "@chakra-ui/react";
 import { fetchConversionCoinChartGraphData } from '@redux/coin_data/dataSlice';
-import { renderSVG } from "@util/utility";
+import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 // import { RangeDatepicker } from "chakra-dayzed-datepicker";
 import { format } from 'date-fns';
 import { useEffect, useState } from "react";
@@ -177,10 +177,19 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
 
     useEffect(() => {
         const conversionChartGraphData = conversionChartData?.data;
-
         if (conversionChartGraphData) {
-            const formatDate = (date) => format(new Date(date),
-                chartFilter === "icon-line-chart" ? "d MMM HH:mm" : "d MMM yy hh:mm a");
+            const formatDate = (date) => {
+                if (period === "24h") {
+                    return format(new Date(date), "d MMM yy HH:mm");
+                } else {
+                    return format(new Date(date), "d MMM");
+                }
+                // if (chartFilter === "icon-line-chart") {
+                //     return format(new Date(date), "d MMM HH:mm");
+                // } else {
+                //     return format(new Date(date), "d MMM yy HH:mm a");
+                // }
+            };
 
             if (chartFilter === "icon-line-chart") {
                 const mappedXConversionChartData = conversionChartGraphData.map((icm) => formatDate(icm.timestamp));
@@ -210,8 +219,11 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                     },
                 };
                 const yaxisLine = {
-                    formatter: (val) => (+val),
+                    tooltip: {
+                        enabled: true,
+                    },
                     labels: {
+                        formatter: (val) => convertToInternationalCurrencySystem(val),
                         style: {
                             colors: colorMode === "light" ? "#757575" : "#A5A5A5",
                             fontSize: "12px",
@@ -240,13 +252,26 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                 const xaxisCandleStick = {
                     tickAmount: 10,
                     type: 'category',
-                    // labels: {
-                    //     formatter: val => formatDate(val)
-                    // }
+                    labels: {
+                        style: {
+                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                            fontSize: "12px",
+                            fontWeight: 300,
+                        },
+                    },
                 };
+
                 const yaxisCandleStick = {
                     tooltip: {
                         enabled: true,
+                    },
+                    labels: {
+                        formatter: (val) => convertToInternationalCurrencySystem(val),
+                        style: {
+                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                            fontSize: "12px",
+                            fontWeight: 300,
+                        },
                     },
                 };
 
