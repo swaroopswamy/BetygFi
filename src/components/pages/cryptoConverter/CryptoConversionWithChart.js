@@ -1,11 +1,34 @@
 import { Box, Text, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
 import { copyToClipboard_, renderSVG } from "@util/utility";
+import html2canvas from "html2canvas";
+import { useRef } from "react";
 import CryptoConversionChart from "./CryptoConversionChart";
 import IntervalWiseTableData from "./IntervalWiseTableData";
 
 const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency, currentPrice }) => {
     const toast = useToast();
     const { colorMode } = useColorMode();
+    const ToCaptureRef = useRef();
+
+    const captureScreenshot = () => {
+        var canvasPromise = html2canvas(ToCaptureRef.current, {
+            useCORS: true
+        });
+        canvasPromise.then((canvas) => {
+            var dataURL = canvas.toDataURL("image/png");
+            var img = new Image();
+            img.src = dataURL;
+            img.download = dataURL;
+            var a = document.createElement("a");
+            a.innerHTML = "DOWNLOAD";
+            a.target = "_blank";
+            a.href = img.src;
+            a.download = `Betygfi - Chart ${coinDetails?.name}-${toCurrency?.toUpperCase()}.png`/* img.download */;
+            document.body.appendChild(a);
+            a.click();
+        });
+    };
+
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={"1.7rem 1.5rem"} layerStyle={"flexColumn"} gap={"1.2rem"}>
             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"} justifyContent={"start"} alignItems={"center"}>
@@ -15,7 +38,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 {/* <Box cursor={"pointer"}>
                     {renderSVG("info")}
                 </Box> */}
-                <Box cursor={"pointer"}>
+                <Box onClick={() => captureScreenshot()} cursor={"pointer"}>
                     {renderSVG("download")}
                 </Box>
                 <Box onClick={() => {
@@ -40,6 +63,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 <CryptoConversionChart
                     coinAnalyticsData={coinAnalyticsData}
                     coinDetails={coinDetails}
+                    ToCaptureRef={ToCaptureRef}
                 />
             </Box>
             <Box p={{ base: "0.8rem 0.4rem", md: "0.5rem 1.5rem" }}>

@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PeriodSelection from "./PeriodSelection";
 // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const CryptoConversionChart = ({ coinDetails }) => {
+const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const coinConversionLineChartOptions = {
@@ -393,7 +393,7 @@ const CryptoConversionChart = ({ coinDetails }) => {
                     </Box>
                 </Box>
 
-                <Box mt={"12px"} pos={"relative"}>
+                <Box ref={ToCaptureRef} id={"conversion-chart"} mt={"12px"} pos={"relative"}>
                     <CustomChart
                         options={chartOptions}
                         series={chartSeries}
@@ -405,17 +405,17 @@ const CryptoConversionChart = ({ coinDetails }) => {
                         <SelectorGraph period={period} colorMode={colorMode} />
                     </Box> */}
 
+                    {
+                        isMd ?
+                            <Box pos={"absolute"} top={"58%"} left={"91%"}>
+                                {renderSVG("betygfi-logo")}
+                            </Box>
+                            :
+                            <Box pos={"absolute"} top={"62%"} left={"72%"}>
+                                {renderSVG("betygfi-logo")}
+                            </Box>
+                    }
                 </Box>
-                {
-                    isMd ?
-                        <Box pos={"absolute"} top={"16%"} left={"91%"}>
-                            {renderSVG("betygfi-logo")}
-                        </Box>
-                        :
-                        <Box pos={"absolute"} top={"32%"} left={"68%"}>
-                            {renderSVG("betygfi-logo")}
-                        </Box>
-                }
             </Box>
         </>
     );
