@@ -1,44 +1,36 @@
 import { Box, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { truncateText } from '@util/utility';
 import Image from 'next/image';
+import React from 'react';
 
-const CryptoNews = ({ coinDetails }) => {
+const CryptoNews = ({ coinDetails, coinNewsData }) => {
     const { colorMode } = useColorMode();
 
-    const heroNews = [
-        {
-            tag: "crypto basic", title: "What is cryptocurrency? all you need to know", image: "/images/news_hero.png", isHero: true
-        }];
-    const newsList = [
-        { tag: "crypto basic", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-
-        { tag: "crypto basic", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-
-        { tag: "crypto basic e", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-        { tag: "crypto basic d", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-
-        { tag: "crypto basic sdg", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-        { tag: "crypto basic sdg", title: "What is cryptocurrency? all you need to know", description: "Cryptocurrencies are basically digital assets. It is secured by...", image: "/images/news_title.jpeg" },
-
-    ];
-    const heroNewsList = [...heroNews, ...newsList.filter((news, index) => index < 2)];
-    const restNewsList = newsList.filter((news, index) => index > 1);
-    const renderNewsCard = (news, index) => {
+    const renderNewsCard = news => {
         return (
             <>
                 {
                     news.isHero ?
-                        <Box key={index} display={"flex"} flex={"1 0 0"}>
+                        <Box display={"flex"} flex={"1 0 0"}>
                             <Box borderRadius='4px 4px 0px 0px'   >
-                                <Image height={200} width={880} src={news.image} alt={news.tag} />
+                                <Image height={200} width={880} src={news.image} alt={news.title} />
                             </Box>
                         </Box>
                         :
-                        <Box key={index} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
+                        <Box cursor={"pointer"} onClick={() => {
+                            window.open(news.link, "_blank");
+                        }} display={"flex"} borderRadius='0.25rem' border='0.841px solid rgba(0, 0, 0, 0.10)' background='rgba(255, 255, 255, 0.02)'>
                             <Box borderRadius='4px 4px 0px 0px'   >
-                                <Image height={163} width={430} src={news.image} alt={news.tag} />
+                                <Box width={"auto"} height={"auto"} /* backgroundImage={`url('${news.image}')`} */>
+                                    <Image /* objectFit={"cover"} */ height={150} width={430} src={news.image} alt={news.title} />
+                                </Box>
                                 <Box display={"flex"} flexDir={"column"} gap={"0.6rem"} p={"1rem"}>
-                                    <Text colorMode={colorMode} textTransform={"uppercase"} variant={"converter_left_box_title"}>{news.tag}</Text>
+                                    {/* <Text colorMode={colorMode} textTransform={"uppercase"} variant={"converter_left_box_title"}>{news.source}</Text> */}
+                                    {
+                                        news.source &&
+                                        <Image height={48} width={48} src={news.source} alt={news.title} />
+                                    }
+
                                     <Text colorMode={colorMode} variant={"converter_news_title"}>{news.title}</Text>
                                     <Text colorMode={colorMode} variant={"converter_rank"}>{news.description && truncateText(news.description, 60)}</Text>
                                 </Box>
@@ -55,7 +47,7 @@ const CryptoNews = ({ coinDetails }) => {
                     <Text colorMode={colorMode} variant={"converter_news_heading"}>
                         {coinDetails?.name} news today
                     </Text>
-                    <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"2fr 1fr 1fr"}  >
+                    {/* <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"2fr 1fr 1fr"}  >
                         {
                             heroNewsList.map((news, index) => (
                                 <>
@@ -63,13 +55,13 @@ const CryptoNews = ({ coinDetails }) => {
                                 </>
                             ))
                         }
-                    </Box>
+                    </Box> */}
                     <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"1fr 1fr 1fr 1fr"}>
                         {
-                            restNewsList.map((news, index) => (
-                                <>
-                                    {renderNewsCard(news, index)}
-                                </>
+                            coinNewsData?.news?.length > 0 && coinNewsData?.news?.map((news, index) => (
+                                <React.Fragment key={index}>
+                                    {renderNewsCard(news)}
+                                </React.Fragment>
                             ))
                         }
                     </Box>

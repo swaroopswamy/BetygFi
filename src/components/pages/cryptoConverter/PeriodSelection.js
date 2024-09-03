@@ -14,13 +14,27 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
         }
     };
 
+    const getBorderRadius = (i, array) => {
+        if (array.length === 1) {
+            return "5px 5px 5px 5px";
+        } else {
+            if (i == 0) {
+                return "5px 0px 0px 5px";
+            } else if (i == array.length - 1) {
+                return "0px 5px 5px 0px";
+            } else {
+                return "0px 0px 0px 0px";
+            }
+        }
+    };
+
     return (
         <Box display={"flex"}>
             {periods.map((period, i, array) => {
                 return (
                     period.startsWith("comp-calendar") ?
                         <Box pos={"relative"}>
-                            <Box pos={"absolute"} style={{ border: '1px solid red' }} >
+                            <Box display={"flex"} justifyContent={"center"} alignItems={"center"} pos={"absolute"} width={"40px"} height={"30px"} >
                                 {renderSVG("calendar")}
                             </Box>
                             {renderComponent && renderComponent()}
@@ -28,7 +42,7 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
                         :
                         <Button
                             key={i}
-                            borderRadius={i == 0 ? "5px 0px 0px 5px" : (i == array.length - 1 ? "0px 5px 5px 0px" : "0px 0px 0px 0px")}
+                            borderRadius={getBorderRadius(i, array)}
                             variant="converterPeriodButton"
                             onClick={() => {
                                 periodSelectionHandler(period);
@@ -48,7 +62,7 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
                         </Button>
                 );
             })}
-        </Box>
+        </Box >
     );
 };
 

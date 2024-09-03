@@ -1,6 +1,6 @@
 import { Box, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useColorModeValue } from "@chakra-ui/react";
 
-const IntervalWiseTableData = () => {
+const IntervalWiseTableData = ({ coinAnalyticsData }) => {
     const { colorMode } = useColorMode();
 
     return (
@@ -33,27 +33,27 @@ const IntervalWiseTableData = () => {
                         <Tbody>
                             {
                                 [
-                                    { one_hour: "+4.64%", twenty_four_hour: "-4.64%", seven_day: "+4.64%", fourteen_day: "+4.64%", thirty_day: "+4.64%", one_year: "+4.64%" },
+                                    { one_hour: "percentageChange_1hr", twenty_four_hour: "percentageChange_24hr", seven_day: "percentageChange_7d", fourteen_day: "percentageChange_14d", thirty_day: "percentageChange_30d", one_year: "percentageChange_1yr" },
 
                                 ].map((hist, index) => (
                                     <Tr key={index}>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={hist.one_hour.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.one_hour}</Text>
+                                            <Text color={coinAnalyticsData[hist.one_hour] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_hour]?.toFixed(2)}%</Text>
                                         </Td>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={hist.twenty_four_hour.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.twenty_four_hour}</Text>
+                                            <Text color={coinAnalyticsData[hist.twenty_four_hour] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.twenty_four_hour]?.toFixed(2)}%</Text>
                                         </Td>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={hist.seven_day.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.seven_day}</Text>
+                                            <Text color={coinAnalyticsData[hist.seven_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.seven_day]?.toFixed(2)}%</Text>
                                         </Td>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={hist.fourteen_day.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.fourteen_day}</Text>
+                                            <Text color={coinAnalyticsData[hist.fourteen_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.fourteen_day]?.toFixed(2)}%</Text>
                                         </Td>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={hist.thirty_day.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.thirty_day}</Text>
+                                            <Text color={coinAnalyticsData[hist.thirty_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.thirty_day]?.toFixed(2)}%</Text>
                                         </Td>
                                         <Td>
-                                            <Text color={hist.one_year.startsWith("-") ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{hist.one_year}</Text>
+                                            <Text color={coinAnalyticsData[hist.one_year] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_year]?.toFixed(2)}%</Text>
                                         </Td>
                                     </Tr>
                                 ))

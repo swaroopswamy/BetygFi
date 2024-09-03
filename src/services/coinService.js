@@ -67,6 +67,36 @@ export const getCoinPriceConversionDataFetched = async (payload) => {
     }
 };
 
+export const getCoinRiskPriceConversionAnalyticsFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-analytics/${payload.id}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getCoinNewsFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-news/${payload.id}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinRankingsTableDataFetched = async (payload) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table?sitemap=true`;
@@ -284,7 +314,7 @@ export const getETFNewsData = async (payload, rejectWithValue) => {
 
 export const getConversionCoinChartGraphData = async (payload, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-chart/${payload.coinSlug}/${payload.filter}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-chart?id=${payload.coinSlug}&filter=${payload.filter}&interval=${payload.interval == "Max" ? "max" : payload.interval}`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {
