@@ -259,39 +259,39 @@ const CoinPage = () => {
                             className={colorMode === 'light' ? "custom-switch-light" : "custom-switch-dark"}
                         ></Switch>
                     </Box>
-                    <Collapse in={isHighlightsBoxOpen} >
-                        <HighlightsBox />
-                    </Collapse>
+                </Box>
+                <Collapse in={isHighlightsBoxOpen} >
+                    <HighlightsBox />
+                </Collapse>
 
-                    {/* <BlockchainSelectionMenuNew /> */}
-                    {/* <CoinOverviewChart /> */}
-                    <CoinRankingsTable
-                        tablePage={tablePage}
-                        setTablePage={setTablePage}
-                        tableLimit={tableLimit}
-                        setTableLimit={setTableLimit}
-                        cryptoCategorySelected={cryptoCategorySelected}
-                        setCryptoCategorySelected={setCryptoCategorySelected}
-                        cryptoCategories={cryptoCategories}
-                        setCryptoCategories={setCryptoCategories}
-                        pageChangeHandler={pageChangeHandler}
-                        onTabLibraryModalOpen={onTabLibraryModalOpen}
-                        onCustomizeTabModalOpen={onCustomizeTabModalOpen}
-                    />
-                    <hr />
-                    <TrendingCoinSection />
-                    <FaqSection />
-                    <TabLibraryModal
-                        isTabLibraryModalOpen={isTabLibraryModalOpen}
-                        onTabLibraryModalClose={onTabLibraryModalClose}
-                        onCustomizeTabModalOpen={onCustomizeTabModalOpen}
-                    />
-                    <CustomizeTabModal
-                        isCustomizeTabModalOpen={isCustomizeTabModalOpen}
-                        onCustomizeTabModalClose={onCustomizeTabModalClose}
-                    />
-                </Box >
-            </Box>
+                {/* <BlockchainSelectionMenuNew /> */}
+                {/* <CoinOverviewChart /> */}
+                <CoinRankingsTable
+                    tablePage={tablePage}
+                    setTablePage={setTablePage}
+                    tableLimit={tableLimit}
+                    setTableLimit={setTableLimit}
+                    cryptoCategorySelected={cryptoCategorySelected}
+                    setCryptoCategorySelected={setCryptoCategorySelected}
+                    cryptoCategories={cryptoCategories}
+                    setCryptoCategories={setCryptoCategories}
+                    pageChangeHandler={pageChangeHandler}
+                    onTabLibraryModalOpen={onTabLibraryModalOpen}
+                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                />
+                <hr />
+                <TrendingCoinSection />
+                <FaqSection />
+                <TabLibraryModal
+                    isTabLibraryModalOpen={isTabLibraryModalOpen}
+                    onTabLibraryModalClose={onTabLibraryModalClose}
+                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                />
+                <CustomizeTabModal
+                    isCustomizeTabModalOpen={isCustomizeTabModalOpen}
+                    onCustomizeTabModalClose={onCustomizeTabModalClose}
+                />
+            </Box >
         </React.Fragment>
     );
 };
