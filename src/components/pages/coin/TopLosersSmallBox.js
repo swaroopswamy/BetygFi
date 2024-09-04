@@ -63,9 +63,7 @@ const TopLosersSmallBox = () => {
             </Box>
             {TopGainersAndLosersData.data?.losers?.map((loser, i) => (
                 <Box
-                    layerStyle={"spaceBetween"}
-                    key={i}
-                    mb="12px"
+                    layerStyle={"spaceBetween"} key={i} mb="12px"
                     onClick={() => {
                         if (loser?.slug) router.push(`/coin/${loser?.slug}`);
                     }}

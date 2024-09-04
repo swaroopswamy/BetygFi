@@ -21,6 +21,7 @@ const TopGainersBox = () => {
             p={"12px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="top-gainers-defi"
         >
             <Box layerStyle={"spaceBetween"} mb="12px">
                 <Box layerStyle={"flexCenter"}>
@@ -41,7 +42,6 @@ const TopGainersBox = () => {
                     onClick={() => {
                         router.push(`/protocol?on=mcap&by=desc`);
                     }}
-
                 >
                     <Text variant={"footnoteText"} fontSize={"12px"} fontWeight={500}
                         _light={{ color: "#757575" }}
@@ -67,13 +67,13 @@ const TopGainersBox = () => {
                             height={35}
                             width={35}
                             src={gainer?.logo ?? '/icons/bitcoin_logo.svg'}
-                            style={{ marginRight: "10px", borderRadius: "50%" }}
+                            style={{ marginRight: "7px", borderRadius: "50%" }}
                             alt="bitcoin_logo"></Image>
                         <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"}>
                             {gainer?.slug}
                         </Text>
                     </Box>
-                    <Box layerStyle={"flexCenter"} gap={"5px"}>
+                    <Box layerStyle={"flexCenter"} gap={"2px"}>
                         <Tooltip hasArrow label={`$ ${convertENotationToNumber(gainer?.price)}`}>
                             <Text variant={"contentHeading4"} fontSize={"14px"} lineHeight={"17px"} cursor={"pointer"}>
                                 ${convertENotationToNumber(gainer?.price).toString().split('').slice(0, 4).join('') +
@@ -81,13 +81,12 @@ const TopGainersBox = () => {
                                     convertENotationToNumber(gainer?.price).toString().slice(-2)}
                             </Text>
                         </Tooltip>
-
                         <Box
                             width={"70px"}
                             layerStyle={"flexCenter"}
                             justifyContent={"center"}
                             height={"21px"}
-                            mr={"5px"}
+                           // mr={"5px"}
                             padding={"2px 8px"}
                             borderRadius={"16px"}
                             _light={{ bg: "#245F001F" }}

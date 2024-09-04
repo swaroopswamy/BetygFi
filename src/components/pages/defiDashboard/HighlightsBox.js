@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState } from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
@@ -28,9 +29,9 @@ const HighlightsBox = () => {
         dots: false,
         infinite: true,
         vertical: false,
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        initialSlide: 0,
+        initialSlide: 1,
         variableWidth: true,
         ref: sliderRef,
         className: "custom-slick",
@@ -75,10 +76,10 @@ const HighlightsBox = () => {
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
-                <TopGainersBox key="top-gainers" />
-                <TopLosersBox key="top-losers" />
-                <DeFiTVLByCategoryBox key="tvl-category" />
-                <DeFiTVLByBlockchainBox  key="tvl-blockchain"/>
+                <TopGainersBox />
+                <TopLosersBox />
+                <DeFiTVLByCategoryBox />
+                <DeFiTVLByBlockchainBox />
             </Slider>
             {
                 currentSlide > 0 && (

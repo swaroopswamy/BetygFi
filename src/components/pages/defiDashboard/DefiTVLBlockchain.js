@@ -80,6 +80,7 @@ const DeFiTVLByBlockchainBox = () => {
             mx={"10px"}
             _light={{ bg: "#FFFFFF" }}
             _dark={{ bg: "#282828" }}
+            key="tvl-blockchain"
         >
             <Box layerStyle={"spaceBetween"} pt={"15px"} mx={"15px"}>
                 <Box layerStyle={"flexCenter"}>
