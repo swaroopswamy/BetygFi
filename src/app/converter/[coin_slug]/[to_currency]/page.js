@@ -5,7 +5,7 @@ const CryptoConverter = async ({ params }) => {
     const coinSlug = params?.coin_slug;
     const toCurrency = params?.to_currency;
     const coinDetails = await getCoinDashboardDataFetched({ id: coinSlug });
-    const coinAnalyticsData = await getCoinRiskPriceConversionAnalyticsFetched({ id: coinSlug });
+    const coinAnalyticsData = await getCoinRiskPriceConversionAnalyticsFetched({ id: coinSlug, currency: toCurrency });
     const coinNewsData = await getCoinNewsFetched({ id: coinSlug });
 
     return (

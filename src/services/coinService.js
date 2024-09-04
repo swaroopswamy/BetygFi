@@ -69,7 +69,7 @@ export const getCoinPriceConversionDataFetched = async (payload) => {
 
 export const getCoinRiskPriceConversionAnalyticsFetched = async (payload) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-analytics/${payload.id}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-analytics/${payload.id}/${payload.currency}`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
         if (checkIfCacheAvailable(url)) {
             return checkIfCacheAvailable(url);
