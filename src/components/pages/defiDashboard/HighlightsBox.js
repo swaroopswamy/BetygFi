@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
-import TopGainersBox from "./TopGainersBox";
-import TopLosersBox from "./TopLosersBox";
-import DeFiTVLByCategoryBox from "@/components/pages/defiDashboard/DefiTVLCategory";
-import DeFiTVLByBlockchainBox from "@/components/pages/defiDashboard/DefiTVLBlockchain";
+import { Box, useColorMode } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+
+const TopGainersBox = dynamic(() => import('@/components/pages/defiDashboard/TopGainersBox'), { ssr: false });
+const TopLosersBox = dynamic(() => import('@/components/pages/defiDashboard/TopLosersBox'), { ssr: false });
+const DeFiTVLByCategoryBox = dynamic(() => import('@/components/pages/defiDashboard/DefiTVLCategory'), { ssr: false });
+const DeFiTVLByBlockchainBox = dynamic(() => import('@/components/pages/defiDashboard/DefiTVLBlockchain'), { ssr: false });
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, useColorMode } from "@chakra-ui/react";
 
 const HighlightsBox = () => {
     const sliderRef = useRef();
@@ -20,11 +23,12 @@ const HighlightsBox = () => {
     const goToPrevSlide = () => {
         sliderRef.current.slickPrev();
     };
+
     const settings = {
         dots: false,
         infinite: true,
         vertical: false,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
         variableWidth: true,
@@ -57,7 +61,7 @@ const HighlightsBox = () => {
                 left="0"
                 top="0"
                 bottom="0"
-                width="40px"
+                width="50px"
                 bg={colorMode === 'light' ? "linear-gradient(89.22deg, #F0F0F5 63.38%, rgba(240, 240, 245, 0) 99.45%)" : "linear-gradient(89.22deg, #191919 9.63%, rgba(25, 25, 25, 0.898319) 29.31%, rgba(25, 25, 25, 0.8) 39.06%, rgba(25, 25, 25, 0.5) 66.57%, rgba(25, 25, 25, 0) 96.15%)"}
                 zIndex={1}
             />
@@ -71,10 +75,10 @@ const HighlightsBox = () => {
                 zIndex={1}
             />
             <Slider {...settings} zIndex="0">
-                <TopGainersBox />
-                <TopLosersBox />
-                <DeFiTVLByCategoryBox />
-                <DeFiTVLByBlockchainBox />
+                <TopGainersBox key="top-gainers" />
+                <TopLosersBox key="top-losers" />
+                <DeFiTVLByCategoryBox key="tvl-category" />
+                <DeFiTVLByBlockchainBox  key="tvl-blockchain"/>
             </Slider>
             {
                 currentSlide > 0 && (
