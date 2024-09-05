@@ -8,7 +8,7 @@ import Image from "next/image";
 const CustomizeTabLayoutPanel = dynamic(() => import("@components/pages/coin/CustomizeTabLayoutSettings"), { ssr: false });
 const CustomizeTabAssetsPanel = dynamic(() => import("@components/pages/coin/CustomizeTabAssets"), { ssr: false });
 
-const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }) => {
+const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose, onSaveTabModalOpen }) => {
 
     const { colorMode } = useColorMode();
     const [tabIndex, setTabIndex] = useState(0);
@@ -119,15 +119,15 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                         </TabPanels>
                     </Tabs>
                     <Box layerStyle={"flexCenterSpaceBetween"} m={"40px 20px 10px 20px"}>
-                        <Button variant={"modalButton"} width={100} height={30}>
+                        {/* <Button variant={"modalButton"} width={100} height={30}>
                             Reset
-                        </Button>
-                        <Box layerStyle={"flexCenter"} gap={"10px"}>
+                        </Button> */}
+                        <Box layerStyle={"flexCenter"} gap={"10px"} position="absolute" bottom="35px" right="25px">
                             <Button display={{ base: "none", md: "block" }} variant={"modalButton"} width={100} height={30} onClick={onCustomizeTabModalClose}>
                                 Cancel
                             </Button>
-                            <Button variant={"modalButton"} width={100} height={30}>
-                                Apply
+                            <Button variant={"modalButton"} width={100} height={30} onClick={onSaveTabModalOpen}>
+                                Continue
                             </Button>
                         </Box>
                     </Box>

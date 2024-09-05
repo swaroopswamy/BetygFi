@@ -7,7 +7,6 @@ import LoginPage from "@components/login";
 import { useSession } from "next-auth/react";
 
 const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCustomizeTabModalOpen }) => {
-
     const { colorMode } = useColorMode();
     const { data: AuthSession } = useSession();
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
