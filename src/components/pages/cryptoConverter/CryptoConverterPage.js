@@ -238,7 +238,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                             <Box>
                                                 <Text colorMode={colorMode} variant={"converter_low_high_value"}>
                                                     {
-                                                        item.amount ? `$ ${commasInThousands(coinDetails[item.amount])}` : "No info available"
+                                                        item?.amount ? `$ ${commasInThousands(coinDetails[item?.amount])}` : "No info available"
                                                     }
 
                                                 </Text>
