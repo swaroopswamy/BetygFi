@@ -1,9 +1,11 @@
-import { Box, Input, InputGroup, InputRightAddon, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { convertExpToNumber, renderSVG } from "@util/utility";
 import { useState } from "react";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
+    const CONVERTER_INPUT_VERSION = 2;
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [coinValue, setCoinValue] = useState(1);
@@ -35,6 +37,52 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         setCurrencyValue(value * currentPrice);
     };
 
+    const renderCompareDropDown = () => {
+        return (
+            <Menu>
+                <MenuButton as={Button}
+                    transition='all 0.2s'
+                    rightIcon={<ChevronDownIcon />}>
+                    Compare
+                </MenuButton>
+                <MenuList>
+                    <MenuItem>24h</MenuItem>
+                    <MenuItem>24h</MenuItem>
+                    <MenuItem>24h</MenuItem>
+                    <MenuItem>24h</MenuItem>
+                </MenuList>
+            </Menu>
+        );
+    };
+
+    const renderInput = (inputValue, showValue, type) => {
+        if (CONVERTER_INPUT_VERSION === 1) {
+            return (
+                <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
+                    <Input type="number" value={inputValue} onChange={(e) => {
+                        type === "coin" ? onCoinValueChange(e) : onCurrencyValueChange(e);
+                    }} min={0} />
+                    <InputRightAddon>
+                        <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
+                            {showValue}
+                        </Text>
+                    </InputRightAddon>
+                </InputGroup>
+            );
+        } else if (CONVERTER_INPUT_VERSION === 2) {
+            return (
+                <InputGroup border='1px solid #4682B4' background='#ECF2F7' variant="custom" colorScheme={"#4682B4"} borderRadius={"4px"} size='md'>
+                    <Input background='#ECF2F7' type="number" value={inputValue} onChange={(e) => {
+                        type === "coin" ? onCoinValueChange(e) : onCurrencyValueChange(e);
+                    }} min={0} />
+                    <InputRightAddon>
+                        {renderCompareDropDown()}
+                    </InputRightAddon>
+                </InputGroup>
+            );
+        }
+    };
+
     return (
         <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "74%" }}>
             <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
@@ -47,17 +95,10 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                     <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
 
                         <Box w={"100%"} display={"flex"} justifyContent={"center"} alignItems={"center"} gap={{ base: "1rem", md: "2rem" }} flexDir={{ base: "column", md: "row" }}>
-                            <InputGroup colorScheme={"#4682B4"} borderRadius={"2px"} size='md'>
-                                <Input type="number" value={coinValue} onChange={(e) => onCoinValueChange(e)} min={0} />
-                                <InputRightAddon>
-                                    <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
-                                        {coinDetails?.ticker}
-                                    </Text>
-                                </InputRightAddon>
-                            </InputGroup>
+                            {renderInput(coinValue, coinDetails?.ticker, "coin")}
                             {
                                 isMd ?
-                                    <Box>
+                                    <Box mx={"2rem"}>
                                         {renderSVG("right-arrow", colorMode)}
                                     </Box>
                                     :
@@ -65,15 +106,9 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                                         {renderSVG("right-arrow", colorMode)}
                                     </Box>
                             }
-                            <InputGroup colorScheme={"#4682B4"} size='md'>
-                                <Input type="number" value={currencyValue} onChange={(e) => onCurrencyValueChange(e)} min={0} />
-                                <InputRightAddon>
-                                    <Text colorMode={colorMode} variant={"converter_calc_desc"} fontWeight={600}>
-                                        {toCurrency?.toUpperCase()}
-                                    </Text>
-                                </InputRightAddon>
-                            </InputGroup>
+                            {renderInput(currencyValue, toCurrency?.toUpperCase(), "currency")}
                         </Box>
+
                         <Box display={"flex"} justifyContent={"space-between"}   >
                             <Box display={"flex"} justifyContent={"flex-start"}>
                                 <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>

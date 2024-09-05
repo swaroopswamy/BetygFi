@@ -1,6 +1,7 @@
 "use client";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Button from "@components/button";
+import Input from "@components/input";
 import Text from "@components/text";
 import { colors } from "@util/constant";
 
@@ -34,26 +35,13 @@ export function Providers({ children }) {
         components: {
             Button,
             Text,
+            Input,
             Progress: {
                 baseStyle: {
                     filledTrack: {
                         bg: '#245F00'
                     }
                 }
-            },
-            Input: {
-                baseStyle: {
-                    field: {
-                        // borderColor: '#4682B4',
-                        border: "1px solid #4682B4"
-                    },
-                    addon: {
-                        // border: '1px solid',
-                        // borderColor: '#4682B4',
-                        // background: 'red',
-                        // color: 'red',
-                    },
-                },
             },
         },
         semanticTokens: {
