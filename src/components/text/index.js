@@ -697,6 +697,15 @@ const Text = defineStyleConfig({
             fontWeight: '500',
             lineHeight: '24px'
         }),
+        converter_no_chart_available: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            textAlign: 'center',
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '22px'
+        }),
     },
     defaultProps: {
         variant: "base",

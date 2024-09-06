@@ -1,12 +1,13 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { convertExpToNumber, getCurrencyDetails, renderSVG } from "@util/utility";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
-
+    const router = useRouter();
     const allowedCurrenciesData = useSelector((state) => state?.coinData?.AllowedCurrenciesForConversionData);
     const coinsData = useSelector((state) => state?.coinData?.CoinRankingsTableData);
 
@@ -68,20 +69,33 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         setCurrencyValue(value * currentPrice);
     };
 
+    const onCoinItemClick = (slug) => {
+        router.push(`/converter/${slug}/${toCurrency?.toLowerCase()}`);
+    };
+
+    const onCurrencyItemClick = (slug) => {
+        router.push(`/converter/${coinDetails?.slug}/${slug}`);
+    };
+
     const renderCompareDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
         return (
             <Menu>
-                <MenuButton as={Button}
-                    transition='all 0.2s'
-                    rightIcon={<ChevronDownIcon />}>
-                    {type === "coin" ? coinSelected : currencySelected}
-                </MenuButton>
-                <MenuList>
-                    {
-                        list?.length > 0 && list.map(item => <MenuItem key={item.slug}>{item.name}</MenuItem>)
-                    }
-                </MenuList>
+                {({ isOpen }) => (
+                    <>
+                        <MenuButton as={Button}
+                            transition='all 0.2s'
+                            isActive={isOpen}
+                            rightIcon={<ChevronDownIcon />}>
+                            {type === "coin" ? coinSelected : currencySelected}
+                        </MenuButton>
+                        <MenuList>
+                            {
+                                list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{item.name}</MenuItem>)
+                            }
+                        </MenuList>
+                    </>
+                )}
             </Menu>
         );
     };
