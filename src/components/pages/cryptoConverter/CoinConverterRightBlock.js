@@ -1,21 +1,52 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
-import { convertExpToNumber, renderSVG } from "@util/utility";
-import { useState } from "react";
+import { convertExpToNumber, getCurrencyDetails, renderSVG } from "@util/utility";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
+
+    const allowedCurrenciesData = useSelector((state) => state?.coinData?.AllowedCurrenciesForConversionData);
+    const coinsData = useSelector((state) => state?.coinData?.CoinRankingsTableData);
+
     const CONVERTER_INPUT_VERSION = 2;
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const [coinValue, setCoinValue] = useState(1);
     const [currencyValue, setCurrencyValue] = useState(currentPrice);
-    const getFullForm = (currency) => {
-        const currencyMappingObject = {
-            inr: "Indian Rupee",
-        };
-        return currencyMappingObject[currency] || currency;
-    };
+    const [coinSelected, setCoinSelected] = useState('');
+    const [currencySelected, setCurrencySelected] = useState('');
+    const [coinList, setCoinList] = useState([]);
+    const [currencyList, setCurrencyList] = useState([]);
+
+    const checkIfToShowOneToOneConversion = () => coinSelected && coinSelected !== '' && currencySelected && currencySelected !== '';
+
+    useEffect(() => {
+        const currencyObject = allowedCurrenciesData?.data?.currencies;
+        if (currencyObject) {
+            const currencyList = [];
+            for (const [key, value] of Object.entries(currencyObject)) {
+                currencyList.push({ name: key, slug: key.toLowerCase(), description: value });
+            }
+            setCurrencyList(currencyList);
+            const foundCurrency = currencyList.some(currency => currency.slug === toCurrency);
+            if (foundCurrency) {
+                setCurrencySelected(toCurrency?.toUpperCase());
+            }
+        }
+    }, [allowedCurrenciesData]);
+
+    useEffect(() => {
+        const coinList = coinsData?.data?.data;
+        if (coinList?.length > 0) {
+            setCoinList(coinList);
+            const foundCoin = coinList.some(coin => coin.slug === coinDetails?.slug);
+            if (foundCoin) {
+                setCoinSelected(coinDetails?.ticker);
+            }
+        }
+    }, [coinsData]);
 
     const onCurrencyValueChange = (event) => {
         const value = convertExpToNumber(Number(event.target.value));
@@ -37,19 +68,19 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         setCurrencyValue(value * currentPrice);
     };
 
-    const renderCompareDropDown = () => {
+    const renderCompareDropDown = (type) => {
+        const list = type === "coin" ? coinList : currencyList;
         return (
             <Menu>
                 <MenuButton as={Button}
                     transition='all 0.2s'
                     rightIcon={<ChevronDownIcon />}>
-                    Compare
+                    {type === "coin" ? coinSelected : currencySelected}
                 </MenuButton>
                 <MenuList>
-                    <MenuItem>24h</MenuItem>
-                    <MenuItem>24h</MenuItem>
-                    <MenuItem>24h</MenuItem>
-                    <MenuItem>24h</MenuItem>
+                    {
+                        list?.length > 0 && list.map(item => <MenuItem key={item.slug}>{item.name}</MenuItem>)
+                    }
                 </MenuList>
             </Menu>
         );
@@ -76,7 +107,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                         type === "coin" ? onCoinValueChange(e) : onCurrencyValueChange(e);
                     }} min={0} />
                     <InputRightAddon>
-                        {renderCompareDropDown()}
+                        {renderCompareDropDown(type)}
                     </InputRightAddon>
                 </InputGroup>
             );
@@ -88,8 +119,8 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             <Box p={"1.25rem"} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                 <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
-                    <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert {coinDetails?.name} to {getFullForm(toCurrency)} ({coinDetails?.ticker} to {toCurrency?.toUpperCase()})</Text>
-                    <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is ₹ {currentPrice?.toLocaleString('en-IN')} today.</Text>
+                    <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert {coinDetails?.name} to {getCurrencyDetails(toCurrency, 'description')} ({coinDetails?.ticker} to {toCurrency?.toUpperCase()})</Text>
+                    <Text colorMode={colorMode} variant={"converter_calc_desc"}>The price of converting 1 {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} today.</Text>
                 </Box>
                 <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
                     <Box p={"1.25rem"} gap={"0.5rem"} flexDir={"column"} display={"flex"}>
@@ -108,19 +139,21 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                             }
                             {renderInput(currencyValue, toCurrency?.toUpperCase(), "currency")}
                         </Box>
-
-                        <Box display={"flex"} justifyContent={"space-between"}   >
-                            <Box display={"flex"} justifyContent={"flex-start"}>
-                                <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
-                                    1 {coinDetails?.ticker} = ₹ {currentPrice?.toLocaleString('en-IN')}
-                                </Text>
+                        {
+                            checkIfToShowOneToOneConversion() &&
+                            <Box display={"flex"} justifyContent={"space-between"}   >
+                                <Box display={"flex"} justifyContent={"flex-start"}>
+                                    <Text colorMode={colorMode} textAlign='start' variant={"cookies_footer"}>
+                                        1 {coinDetails?.ticker} = {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}
+                                    </Text>
+                                </Box>
+                                <Box display={"flex"} justifyContent={"flex-end"}>
+                                    <Text colorMode={colorMode} textAlign='end' variant={"cookies_footer"}>
+                                        1 {toCurrency?.toUpperCase()} = {convertExpToNumber(Number(1 / currentPrice))} {coinDetails?.ticker}
+                                    </Text>
+                                </Box>
                             </Box>
-                            <Box display={"flex"} justifyContent={"flex-end"}>
-                                <Text colorMode={colorMode} textAlign='end' variant={"cookies_footer"}>
-                                    1 {toCurrency?.toUpperCase()} = {convertExpToNumber(Number(1 / currentPrice))} {coinDetails?.ticker}
-                                </Text>
-                            </Box>
-                        </Box>
+                        }
                     </Box>
                 </Box>
             </Box>

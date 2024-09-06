@@ -45,6 +45,7 @@ const variantCustom = definePartsStyle((/* props */) => {
     // const { colorScheme: c } = props;
     return {
         field: {
+            borderRadius: "3px",
             // border: "0px solid",
             // bg: "gray.50",
             // borderTopRightRadius: "full",
@@ -71,6 +72,7 @@ const variantCustom = definePartsStyle((/* props */) => {
             // },
         },
         addon: {
+            padding: "0px"
             // border: "0px solid",
             // borderColor: "transparent",
             // borderTopLeftRadius: "full",
