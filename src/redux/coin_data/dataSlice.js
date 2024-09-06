@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
+    getAllAllowedCurrenciesData,
     getBTCDominanceScoresAPI,
     getBTCETFInflowOutflowData,
     getCoinDevelopmentData,
@@ -29,6 +30,14 @@ export const fetchCoinRankingsTableData = createAsyncThunk(
     "getCoinRankingsTableData",
     async (payload, { rejectWithValue }) => {
         const response = await getCoinRankingsTableData(payload, rejectWithValue);
+        return response?.data;
+    }
+);
+
+export const fetchCurrencyListData = createAsyncThunk(
+    "getCurrencyListData",
+    async (payload, { rejectWithValue }) => {
+        const response = await getAllAllowedCurrenciesData(payload, rejectWithValue);
         return response.data;
     }
 );
@@ -199,6 +208,12 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
+        AllowedCurrenciesForConversionData: {
+            data: null,
+            isLoading: true,
+            isError: false,
+            isSuccess: false,
+        },
         CoinScoresData: {
             data: null,
             isLoading: false,
@@ -325,30 +340,42 @@ const CoinDataSlice = createSlice({
         sapDay: "week",
     },
     extraReducers: (builder) => {
-        builder.addCase(
-            fetchCoinRankingsTableData.fulfilled,
-            (state, action) => {
-                state.CoinRankingsTableData.data = action.payload;
-                state.CoinRankingsTableData.isLoading = false;
-                state.CoinRankingsTableData.isSuccess = true;
-                state.CoinRankingsTableData.isError = false;
-            }
-        );
+        builder.addCase(fetchCoinRankingsTableData.fulfilled, (state, action) => {
+            state.CoinRankingsTableData.data = action.payload;
+            state.CoinRankingsTableData.isLoading = false;
+            state.CoinRankingsTableData.isSuccess = true;
+            state.CoinRankingsTableData.isError = false;
+        });
         builder.addCase(fetchCoinRankingsTableData.pending, (state, action) => {
             state.CoinRankingsTableData.isLoading = true;
             state.CoinRankingsTableData.isError = false;
             state.CoinRankingsTableData.isSuccess = false;
             state.CoinRankingsTableData.data = action.payload;
         });
-        builder.addCase(
-            fetchCoinRankingsTableData.rejected,
-            (state, action) => {
-                state.CoinRankingsTableData.isLoading = false;
-                state.CoinRankingsTableData.isSuccess = false;
-                state.CoinRankingsTableData.isError = true;
-                state.CoinRankingsTableData.data = action.payload;
-            }
-        );
+        builder.addCase(fetchCoinRankingsTableData.rejected, (state, action) => {
+            state.CoinRankingsTableData.isLoading = false;
+            state.CoinRankingsTableData.isSuccess = false;
+            state.CoinRankingsTableData.isError = true;
+            state.CoinRankingsTableData.data = action.payload;
+        });
+        builder.addCase(fetchCurrencyListData.fulfilled, (state, action) => {
+            state.AllowedCurrenciesForConversionData.data = action.payload;
+            state.AllowedCurrenciesForConversionData.isLoading = false;
+            state.AllowedCurrenciesForConversionData.isSuccess = true;
+            state.AllowedCurrenciesForConversionData.isError = false;
+        });
+        builder.addCase(fetchCurrencyListData.pending, (state, action) => {
+            state.AllowedCurrenciesForConversionData.isLoading = true;
+            state.AllowedCurrenciesForConversionData.isError = false;
+            state.AllowedCurrenciesForConversionData.isSuccess = false;
+            state.AllowedCurrenciesForConversionData.data = action.payload;
+        });
+        builder.addCase(fetchCurrencyListData.rejected, (state, action) => {
+            state.AllowedCurrenciesForConversionData.isLoading = false;
+            state.AllowedCurrenciesForConversionData.isSuccess = false;
+            state.AllowedCurrenciesForConversionData.isError = true;
+            state.AllowedCurrenciesForConversionData.data = action.payload;
+        });
         builder.addCase(fetchCoinScoresData.fulfilled, (state, action) => {
             state.CoinScoresData.data = action.payload;
             state.CoinScoresData.isLoading = false;

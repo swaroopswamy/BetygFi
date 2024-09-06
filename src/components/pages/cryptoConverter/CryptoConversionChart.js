@@ -4,6 +4,7 @@ import CustomChart from "@/components/graph";
 // import TopCoinToolBar from "@/components/topCoinToolbar";
 import {
     Box,
+    Text,
     useColorMode,
     useColorModeValue,
     useMediaQuery
@@ -12,6 +13,7 @@ import { fetchConversionCoinChartGraphData } from '@redux/coin_data/dataSlice';
 import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 // import { RangeDatepicker } from "chakra-dayzed-datepicker";
 import { format } from 'date-fns';
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import 'react-date-range/dist/styles.css'; // Main css file
 import 'react-date-range/dist/theme/default.css'; // Theme css file
@@ -19,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PeriodSelection from "./PeriodSelection";
 
 const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
+    const router = useRouter();
     // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const coinConversionLineChartOptions = {
@@ -108,6 +111,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     const chartFilters_ = ["icon-line-chart", "icon-candle-stick-chart"];
     const priceMCaps_ = ["Price", "MarketCap"];
 
+    const [noChartDataAvailable, setNoChartDataAvailable] = useState(false);
     const [period, setPeriod] = useState("24h");
     const [priceMCaps,] = useState(priceMCaps_);
     const [priceMCap, setPriceMCap] = useState("Price");
@@ -277,6 +281,8 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                 setChartOptions({ ...chartOptions, xaxis: xaxisCandleStick, yaxis: yaxisCandleStick });
                 setChartSeries([{ name: `${coinDetails?.name}`, data: mappedCandleStickConversionChartData }]);
             }
+        } else {
+            setNoChartDataAvailable(true);
         }
     }, [conversionChartData, chartFilter]);
 
@@ -398,6 +404,68 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     //     );
     // };
 
+    const renderNoChart = () => {
+        return (
+            <Box id={"conversion-no-chart"} mt={"12px"}>
+                <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)' backdropFilter='blur(8px)' height={405} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                    <Box width={"70%"} flexDir={"column"} display={"flex"} gap={"2.5rem"}>
+
+                        <Box>
+                            <Text variant={"converter_no_chart_available"}>
+                                At this time, we do not have a price conversion chart available for {coinDetails?.name} ({coinDetails?.ticker}). <br />We apologize for any inconvenience this may cause.<br />
+                                You can view data for other supported cryptocurrencies on our main dashboard.
+                            </Text>
+                        </Box>
+
+                        <Box justifyContent={"center"} display={"flex"}>
+                            <Box display='flex'
+                                w={{ base: "95%", md: "40%" }}
+                                padding='8px 16px'
+                                justifyContent='center'
+                                alignItems='center'
+                                gap='10px'
+                                borderRadius='4px'
+                                _light={{ background: '#202020' }}
+                                _dark={{ background: '#FFFFFF' }}
+                                onClick={() => router.push("/")}
+                            >
+                                <Text cursor={"pointer"} colorMode={colorMode} variant={"converter_get_api_key"}>
+                                    Go to Main Dashboard
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
+        );
+    };
+    const renderChart = () => {
+        return (
+            <Box ref={ToCaptureRef} id={"conversion-chart"} mt={"12px"} pos={"relative"}>
+                <CustomChart
+                    options={chartOptions}
+                    series={chartSeries}
+                    type={chartFilter === "icon-line-chart" ? "line" : "candlestick"}
+                    height={405}
+                />
+
+                {/* <Box style={{ border: '1px solid red' }} w={"100%"}>
+                        <ConverterChartSelectionGraph period={period} />
+                    </Box> */}
+
+                {
+                    isMd ?
+                        <Box pos={"absolute"} top={"58%"} left={"91%"}>
+                            {renderSVG("betygfi-logo")}
+                        </Box>
+                        :
+                        <Box pos={"absolute"} top={"62%"} left={"72%"}>
+                            {renderSVG("betygfi-logo")}
+                        </Box>
+                }
+            </Box>
+        );
+    };
     return (
         <>
             <Box
@@ -417,29 +485,11 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                     </Box>
                 </Box>
 
-                <Box ref={ToCaptureRef} id={"conversion-chart"} mt={"12px"} pos={"relative"}>
-                    <CustomChart
-                        options={chartOptions}
-                        series={chartSeries}
-                        type={chartFilter === "icon-line-chart" ? "line" : "candlestick"}
-                        height={405}
-                    />
 
-                    {/* <Box style={{ border: '1px solid red' }} w={"100%"}>
-                        <ConverterChartSelectionGraph period={period} />
-                    </Box> */}
+                {
+                    noChartDataAvailable ? renderNoChart() : renderChart()
+                }
 
-                    {
-                        isMd ?
-                            <Box pos={"absolute"} top={"58%"} left={"91%"}>
-                                {renderSVG("betygfi-logo")}
-                            </Box>
-                            :
-                            <Box pos={"absolute"} top={"62%"} left={"72%"}>
-                                {renderSVG("betygfi-logo")}
-                            </Box>
-                    }
-                </Box>
             </Box>
         </>
     );

@@ -1,5 +1,5 @@
-import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorMode, useColorModeValue } from "@chakra-ui/react";
-import { convertExpToNumber } from "@util/utility";
+import { Box, Table, Tbody, Td, Text, Th, Thead, Tr, useColorMode } from "@chakra-ui/react";
+import { convertExpToNumber, getCurrencyDetails } from "@util/utility";
 import { useState } from "react";
 
 const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnalyticsData }) => {
@@ -7,15 +7,17 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
     const getConversionData = () => {
         const coinToCurrencyTable = [];
         const currencyToCoinTable = [];
-        for (const key of Object.keys(coinAnalyticsData?.coinToInrTable)) {
-            coinToCurrencyTable.push({ key: +key, value: coinAnalyticsData?.coinToInrTable[key] });
-        }
+        if (coinAnalyticsData?.status) {
+            for (const key of Object.keys(coinAnalyticsData?.coinToInrTable)) {
+                coinToCurrencyTable.push({ key: +key, value: coinAnalyticsData?.coinToInrTable[key] });
+            }
 
-        for (const key of Object.keys(coinAnalyticsData?.inrToCoinTable
-        )) {
-            currencyToCoinTable.push({
-                key: +key, value: coinAnalyticsData?.inrToCoinTable[key]
-            });
+            for (const key of Object.keys(coinAnalyticsData?.inrToCoinTable
+            )) {
+                currencyToCoinTable.push({
+                    key: +key, value: coinAnalyticsData?.inrToCoinTable[key]
+                });
+            }
         }
         return { coinToCurrencyTable, currencyToCoinTable };
     };
@@ -67,43 +69,51 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
             </Table>
         );
     };
+
     return (
-        <Box bg={useColorModeValue("#FFFFFF", "#191919")} >
-            <Box p={"1.7rem 1.5rem"} gap={"0.5rem"} display={"flex"} flexDir={"column"}>
-                <Text colorMode={colorMode} variant={"converter_heading"}>
-                    {coinDetails?.ticker} / {toCurrency?.toUpperCase()} Conversion Tables
-                </Text>
-                <Text colorMode={colorMode} variant={"converter_calc_desc"}>
-                    The conversion rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is ₹ {currentPrice?.toLocaleString('en-IN')} for every 1 {coinDetails?.ticker}. This means you can exchange 5 {coinDetails?.ticker} for ₹ {(currentPrice * 5)?.toLocaleString('en-IN')} or ₹ 50.00 for {convertExpToNumber(Number(50 / currentPrice))} {coinDetails?.ticker}, excluding fees. Refer to our conversion tables for popular {coinDetails?.ticker} trading amounts in their corresponding {toCurrency?.toUpperCase()} prices and vice versa.
-                </Text>
-            </Box>
-            <Box>
-                <Box
-                    display={"flex"}
-                    flexDir={{ md: "row", base: "column" }}
-                    justifyContent={"space-between"}
-                    gap={"1rem"}
-                    p={{ md: "0.05rem 1.5rem", base: "0.05rem 0.8rem" }}
-                >
-                    <Box
-                        width={{ md: "45%", base: "100%" }}
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                    >
-                        {renderTable("coin-currency")}
+        <>
+            {
+                coinAnalyticsData?.status &&
+                (
+                    <Box _light={{ bg: "#FFFFFF" }} _dark={{ bg: "#191919" }}>
+                        <Box p={"1.7rem 1.5rem"} gap={"0.5rem"} display={"flex"} flexDir={"column"}>
+                            <Text colorMode={colorMode} variant={"converter_heading"}>
+                                {coinDetails?.ticker} / {toCurrency?.toUpperCase()} Conversion Tables
+                            </Text>
+                            <Text colorMode={colorMode} variant={"converter_calc_desc"}>
+                                The conversion rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} for every 1 {coinDetails?.ticker}. This means you can exchange 5 {coinDetails?.ticker} for {getCurrencyDetails(toCurrency, 'symbol')} {(currentPrice * 5)?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} or {getCurrencyDetails(toCurrency, 'symbol')} 50.00 for {convertExpToNumber(Number(50 / currentPrice))} {coinDetails?.ticker}, excluding fees. Refer to our conversion tables for popular {coinDetails?.ticker} trading amounts in their corresponding {toCurrency?.toUpperCase()} prices and vice versa.
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Box
+                                display={"flex"}
+                                flexDir={{ md: "row", base: "column" }}
+                                justifyContent={"space-between"}
+                                gap={"1rem"}
+                                p={{ md: "0.05rem 1.5rem", base: "0.05rem 0.8rem" }}
+                            >
+                                <Box
+                                    width={{ md: "45%", base: "100%" }}
+                                    display={"flex"}
+                                    justifyContent={"center"}
+                                    alignItems={"center"}
+                                >
+                                    {renderTable("coin-currency")}
+                                </Box>
+                                <Box
+                                    display={"flex"}
+                                    justifyContent={"center"}
+                                    alignItems={"center"}
+                                    width={{ md: "45%", base: "100%" }}
+                                >
+                                    {renderTable("currency-coin")}
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
-                    <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        width={{ md: "45%", base: "100%" }}
-                    >
-                        {renderTable("currency-coin")}
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
+                )
+            }
+        </>
     );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Button from "@components/button";
-import Input from "@components/input";
+import { inputTheme } from "@components/input";
 import Text from "@components/text";
 import { colors } from "@util/constant";
 
@@ -35,7 +35,8 @@ export function Providers({ children }) {
         components: {
             Button,
             Text,
-            Input,
+            Input: inputTheme,
+            // Menu,
             Progress: {
                 baseStyle: {
                     filledTrack: {

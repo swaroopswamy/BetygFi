@@ -2,7 +2,7 @@
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
-import { fetchConversionCoinChartGraphData } from "@redux/coin_data/dataSlice";
+import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
 import { commasInThousands, convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -22,6 +22,21 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     useEffect(() => {
         dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h" }));
     }, [coinDetails?.slug]);
+
+    const getCoinListDataHandler = () => {
+        const payload = {
+            category: "all",
+            page: 1,
+            limit: 2,
+            score_dist: '',
+        };
+        dispatch(fetchCoinRankingsTableData(payload));
+    };
+
+    useEffect(() => {
+        getCoinListDataHandler();
+        dispatch(fetchCurrencyListData());
+    }, []);
 
     const getHighLowProgressValue = () => {
         const lowPrice = coinDetails?.price_low;
@@ -315,21 +330,20 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                     />
 
                 </Box>
-                <Box>
-                    <SevenDaysPriceHistory
-                        coinDetails={coinDetails}
-                        toCurrency={toCurrency}
-                        coinAnalyticsData={coinAnalyticsData}
-                    />
-                </Box>
-                <Box>
-                    <CryptoConversionTable
-                        coinAnalyticsData={coinAnalyticsData}
-                        coinDetails={coinDetails}
-                        currentPrice={currentPrice}
-                        toCurrency={toCurrency}
-                    />
-                </Box>
+
+                <SevenDaysPriceHistory
+                    coinDetails={coinDetails}
+                    toCurrency={toCurrency}
+                    coinAnalyticsData={coinAnalyticsData}
+                />
+
+                <CryptoConversionTable
+                    coinAnalyticsData={coinAnalyticsData}
+                    coinDetails={coinDetails}
+                    currentPrice={currentPrice}
+                    toCurrency={toCurrency}
+                />
+
                 <Box>
                     <CryptoNews
                         coinNewsData={coinNewsData}

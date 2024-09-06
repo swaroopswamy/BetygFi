@@ -1,5 +1,5 @@
 import { Box, Text, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
-import { copyToClipboard_, renderSVG } from "@util/utility";
+import { copyToClipboard_, getCurrencyDetails, renderSVG } from "@util/utility";
 import html2canvas from "html2canvas";
 import { useRef } from "react";
 import CryptoConversionChart from "./CryptoConversionChart";
@@ -56,7 +56,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
             </Box>
             <Box>
                 <Text variant={"converter_calc_desc"}>
-                    {coinDetails?.name} ({coinDetails?.ticker}) is worth ₹ {currentPrice?.toLocaleString('en-IN')} today, which is a {Math.abs(+coinAnalyticsData?.percentageChange_1hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_1hr > 0 ? "increase" : "decrease"} from an hour ago and a {Math.abs(+coinAnalyticsData?.percentageChange_24hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_24hr > 0 ? "increase" : "decrease"} since yesterday. The value of {coinDetails?.ticker} today is {Math.abs(+coinAnalyticsData?.percentageChange_7d)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_7d > 0 ? "higher" : "lower"} compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was ₹ {coinAnalyticsData?.volumeTraded?.toLocaleString('en-IN')}.
+                    {coinDetails?.name} ({coinDetails?.ticker}) is worth {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} today, which is a {Math.abs(+coinAnalyticsData?.percentageChange_1hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_1hr > 0 ? "increase" : "decrease"} from an hour ago and a {Math.abs(+coinAnalyticsData?.percentageChange_24hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_24hr > 0 ? "increase" : "decrease"} since yesterday. The value of {coinDetails?.ticker} today is {Math.abs(+coinAnalyticsData?.percentageChange_7d)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_7d > 0 ? "higher" : "lower"} compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.volumeTraded?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}.
                 </Text>
             </Box>
             <Box>

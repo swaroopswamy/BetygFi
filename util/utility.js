@@ -513,3 +513,59 @@ export const copyToClipboard_ = (text) => {
     document.body.removeChild(input);
 
 };
+
+export const getCurrencyDetails = (currency, key) => {
+    const currencyMappingObject = {
+        "inr": {
+            description: "Indian Rupee",
+            locale: 'hi-IN',
+            symbol: "₹"
+        },
+        "aud": {
+            description: "Australian Dollar",
+            locale: 'en-AU',
+            symbol: "A$"
+        },
+        "cad": {
+            description: "Canadian Dollar",
+            locale: 'en-CA',
+            symbol: "C$"
+        },
+        "cny": {
+            description: "Chinese Yuan",
+            locale: 'zh-CN',
+            symbol: "CN¥"
+        },
+        "eur": {
+            description: "Euro",
+            locale: 'de-DE',
+            symbol: "€"
+        },
+        "gbp": {
+            description: "Pound Sterling",
+            locale: 'en-GB',
+            symbol: "£"
+        },
+        "jpy": {
+            description: "Japanese Yen",
+            locale: 'ja-JP',
+            symbol: "¥"
+        },
+        "krw": {
+            description: "South Korean Won",
+            locale: 'ko-KR',
+            symbol: "₩"
+        },
+        "rub": {
+            description: "Russian Ruble",
+            locale: 'ru-RU',
+            symbol: "₽"
+        },
+        "usd": {
+            description: "United States Dollar",
+            locale: 'en-US',
+            symbol: "$"
+        }
+    };
+    return currencyMappingObject?.[currency]?.[key] || currency;
+};

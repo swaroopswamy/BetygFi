@@ -37,6 +37,49 @@ export const getCoinDashboardDataFetched = async (payload) => {
     }
 };
 
+export const getAllCoinsForConverterData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/allowed-currencies`;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await axiosInstance(getAPI_URL()).get(url, payload);
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getAllAllowedCurrenciesData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/allowed-currencies`;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await axiosInstance(getAPI_URL()).get(url, payload);
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getAllAllowedCurrenciesFetched = async () => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/allowed-currencies`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinINRWeekHistoryTableDataFetched = async (payload) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-inr-week-history/${payload.id}`;
@@ -130,7 +173,8 @@ export const getETFListDataFetched = async (type) => {
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
-        const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
+        // const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
+        const finalUrl = url;
         if (checkIfCacheAvailable(finalUrl)) {
             return checkIfCacheAvailable(finalUrl);
         } else {
