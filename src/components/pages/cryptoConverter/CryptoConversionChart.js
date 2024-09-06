@@ -419,7 +419,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
 
                         <Box justifyContent={"center"} display={"flex"}>
                             <Box display='flex'
-                                w={"40%"}
+                                w={{ base: "95%", md: "40%" }}
                                 padding='8px 16px'
                                 justifyContent='center'
                                 alignItems='center'
