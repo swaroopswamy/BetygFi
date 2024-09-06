@@ -706,6 +706,15 @@ const Text = defineStyleConfig({
             fontWeight: '400',
             lineHeight: '22px'
         }),
+        converter_menu_item: ({ colorMode }) => ({
+            color: colorMode === "light" ? '#0B081C' : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: 'normal',
+            letterSpacing: '0.019px'
+        }),
     },
     defaultProps: {
         variant: "base",

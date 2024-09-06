@@ -1,6 +1,7 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { convertExpToNumber, getCurrencyDetails, renderSVG } from "@util/utility";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -77,10 +78,25 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         router.push(`/converter/${coinDetails?.slug}/${slug}`);
     };
 
+    const getShowNameConversionMenu = (type, item) => {
+        if (type === "coin") {
+            return (
+                <Box display={"flex"} justifyContent={"center"} alignItems={"center"} gap={"0.5rem"}>
+                    <Image src={item.logoUrl} alt={"coin_logo"} width={24} height={24} />
+                    <Text variant={"converter_menu_item"}>{item.name} </Text>
+                </Box>
+            );
+        } else {
+            return (
+                <Text variant={"converter_menu_item"}>{`${item.description} (${item.name})`}</Text>
+            );
+        }
+    };
+
     const renderCompareDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
         return (
-            <Menu>
+            <Menu variant={"converterMenu"}>
                 {({ isOpen }) => (
                     <>
                         <MenuButton as={Button}
@@ -91,7 +107,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                         </MenuButton>
                         <MenuList>
                             {
-                                list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{item.name}</MenuItem>)
+                                list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{getShowNameConversionMenu(type, item)}</MenuItem>)
                             }
                         </MenuList>
                     </>
