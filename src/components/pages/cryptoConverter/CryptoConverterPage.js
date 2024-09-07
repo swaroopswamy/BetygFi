@@ -3,7 +3,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Progress, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
-import { commasInThousands, convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
+import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -253,7 +253,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                             <Box>
                                                 <Text colorMode={colorMode} variant={"converter_low_high_value"}>
                                                     {
-                                                        item?.amount ? `$ ${commasInThousands(coinDetails[item?.amount])}` : "No info available"
+                                                        item?.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails[item?.amount])}` : "No info available"
                                                     }
 
                                                 </Text>

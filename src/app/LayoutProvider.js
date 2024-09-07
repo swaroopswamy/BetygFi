@@ -342,6 +342,7 @@ export default function LayoutProvider({ appConfig, children }) {
                                 onClose={() => onClose}
                                 w={isMobileSidebarCollapsed ? "null" : "80%"}
                                 h={"100%"}
+                                className="pds-159951"
                             />
                             {isMd ? (
                                 <Box

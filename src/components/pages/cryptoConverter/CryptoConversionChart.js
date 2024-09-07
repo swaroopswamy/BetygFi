@@ -181,6 +181,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     useEffect(() => {
         const conversionChartGraphData = conversionChartData?.data;
         if (conversionChartGraphData) {
+            setNoChartDataAvailable(false);
             const formatDate = (date) => {
                 if (period === "24h") {
                     return format(new Date(date), "d MMM yy HH:mm");

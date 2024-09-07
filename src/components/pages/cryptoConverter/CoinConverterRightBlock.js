@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { convertExpToNumber, getCurrencyDetails, renderSVG } from "@util/utility";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,8 @@ import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
     const router = useRouter();
+    const { isOpen } = useDisclosure();
+    const [searchTerm, setSearchTerm] = useState('');
     const allowedCurrenciesData = useSelector((state) => state?.coinData?.AllowedCurrenciesForConversionData);
     const coinsData = useSelector((state) => state?.coinData?.CoinRankingsTableData);
 
@@ -25,6 +27,25 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     const checkIfToShowOneToOneConversion = () => coinSelected && coinSelected !== '' && currencySelected && currencySelected !== '';
 
     useEffect(() => {
+        settingUpCurrencyData();
+    }, [allowedCurrenciesData]);
+
+    useEffect(() => {
+        settingUpCoinData();
+    }, [coinsData]);
+
+    const settingUpCoinData = () => {
+        const coinList = coinsData?.data?.data;
+        if (coinList?.length > 0) {
+            setCoinList(coinList);
+            const foundCoin = coinList.some(coin => coin.slug === coinDetails?.slug);
+            if (foundCoin) {
+                setCoinSelected(coinDetails?.ticker);
+            }
+        }
+    };
+
+    const settingUpCurrencyData = () => {
         const currencyObject = allowedCurrenciesData?.data?.currencies;
         if (currencyObject) {
             const currencyList = [];
@@ -37,18 +58,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                 setCurrencySelected(toCurrency?.toUpperCase());
             }
         }
-    }, [allowedCurrenciesData]);
-
-    useEffect(() => {
-        const coinList = coinsData?.data?.data;
-        if (coinList?.length > 0) {
-            setCoinList(coinList);
-            const foundCoin = coinList.some(coin => coin.slug === coinDetails?.slug);
-            if (foundCoin) {
-                setCoinSelected(coinDetails?.ticker);
-            }
-        }
-    }, [coinsData]);
+    };
 
     const onCurrencyValueChange = (event) => {
         const value = convertExpToNumber(Number(event.target.value));
@@ -93,25 +103,54 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         }
     };
 
+    const onSearchInputChange = (value, type) => {
+        if (type === "coin") {
+            setSearchTerm(value);
+            if (value === '') {
+                settingUpCoinData();
+            } else {
+                const filteredList = coinList.filter((option) => {
+                    return (option?.name?.toLowerCase().includes(value.toLowerCase()) || option?.ticker?.toLowerCase().includes(value.toLowerCase()));
+                });
+                setCoinList(filteredList);
+            }
+        } else {
+            setSearchTerm(value);
+            if (value === '') {
+                settingUpCurrencyData();
+            } else {
+                const filteredList = currencyList.filter((option) => {
+                    return (option?.name?.toLowerCase().includes(value.toLowerCase()) || option?.description?.toLowerCase().includes(value.toLowerCase()));
+                });
+                setCurrencyList(filteredList);
+            }
+        }
+    };
     const renderCompareDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
         return (
-            <Menu variant={"converterMenu"}>
-                {({ isOpen }) => (
-                    <>
-                        <MenuButton as={Button}
-                            transition='all 0.2s'
-                            isActive={isOpen}
-                            rightIcon={<ChevronDownIcon />}>
-                            {type === "coin" ? coinSelected : currencySelected}
-                        </MenuButton>
-                        <MenuList>
-                            {
-                                list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{getShowNameConversionMenu(type, item)}</MenuItem>)
-                            }
-                        </MenuList>
-                    </>
-                )}
+            // inset: -130px 57px auto auto;
+            <Menu variant={"converterMenu"} style={{ border: '1px solid red' }} onClose={() => {
+                settingUpCoinData(); settingUpCurrencyData();
+            }}>
+                <MenuButton as={Button}
+                    transition='all 0.2s'
+                    isActive={isOpen}
+                    rightIcon={<ChevronDownIcon />}>
+                    {type === "coin" ? coinSelected : currencySelected}
+                </MenuButton>
+                <MenuList pt={"0px"}>
+                    <Input colorScheme={"#4682B4"} borderRadius={"2px"} size='md'
+                        placeholder={type === "coin" ? "Search Coin" : "Search Currency"}
+                        value={searchTerm}
+                        onChange={(e) => onSearchInputChange(e.target.value, type)}
+                    />
+                    <Box overflowY={"scroll"} maxHeight={"10rem"} >
+                        {
+                            list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{getShowNameConversionMenu(type, item)}</MenuItem>)
+                        }
+                    </Box>
+                </MenuList>
             </Menu>
         );
     };
