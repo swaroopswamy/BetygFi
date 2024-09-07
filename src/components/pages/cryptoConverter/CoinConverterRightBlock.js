@@ -10,7 +10,8 @@ import CryptoConversionWithChart from "./CryptoConversionWithChart";
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
     const router = useRouter();
     const { isOpen } = useDisclosure();
-    const [searchTerm, setSearchTerm] = useState('');
+    const [coinSearchTerm, setCoinSearchTerm] = useState('');
+    const [currencysearchTerm, setCurrencySearchTerm] = useState('');
     const allowedCurrenciesData = useSelector((state) => state?.coinData?.AllowedCurrenciesForConversionData);
     const coinsData = useSelector((state) => state?.coinData?.CoinRankingsTableData);
 
@@ -105,7 +106,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
 
     const onSearchInputChange = (value, type) => {
         if (type === "coin") {
-            setSearchTerm(value);
+            setCoinSearchTerm(value);
             if (value === '') {
                 settingUpCoinData();
             } else {
@@ -115,7 +116,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                 setCoinList(filteredList);
             }
         } else {
-            setSearchTerm(value);
+            setCurrencySearchTerm(value);
             if (value === '') {
                 settingUpCurrencyData();
             } else {
@@ -128,21 +129,24 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     };
     const renderCompareDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
+        const mobileMenuListStyles = {};
+        if (!isMd) {
+            mobileMenuListStyles.position = "absolute";
+            mobileMenuListStyles.left = "-8.6rem";
+            mobileMenuListStyles.top = "-16.3rem";
+        }
         return (
-            // inset: -130px 57px auto auto;
-            <Menu variant={"converterMenu"} style={{ border: '1px solid red' }} onClose={() => {
-                settingUpCoinData(); settingUpCurrencyData();
-            }}>
+            <Menu variant={"converterMenu"} onClose={() => { settingUpCoinData(); settingUpCurrencyData(); }}>
                 <MenuButton as={Button}
                     transition='all 0.2s'
                     isActive={isOpen}
                     rightIcon={<ChevronDownIcon />}>
                     {type === "coin" ? coinSelected : currencySelected}
                 </MenuButton>
-                <MenuList pt={"0px"}>
+                <MenuList pt={"0px"} {...mobileMenuListStyles}>
                     <Input colorScheme={"#4682B4"} borderRadius={"2px"} size='md'
                         placeholder={type === "coin" ? "Search Coin" : "Search Currency"}
-                        value={searchTerm}
+                        value={type === "coin" ? coinSearchTerm : currencysearchTerm}
                         onChange={(e) => onSearchInputChange(e.target.value, type)}
                     />
                     <Box overflowY={"scroll"} maxHeight={"10rem"} >

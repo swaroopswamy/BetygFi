@@ -27,7 +27,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
         const payload = {
             category: "all",
             page: 1,
-            limit: 2,
+            limit: 50,
             score_dist: '',
         };
         dispatch(fetchCoinRankingsTableData(payload));
