@@ -10,7 +10,7 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
         if (colorMode === 'light') {
             return isActive ? "light" : "dark";
         } else {
-            return isActive ? "dark" : "light";
+            return isActive ? "light" : "light";
         }
     };
 
@@ -42,8 +42,9 @@ export const PeriodSelection = ({ periods, currPeriod, renderComponent, periodSe
                         :
                         <Button
                             key={i}
+                            colorMode={colorMode}
                             borderRadius={getBorderRadius(i, array)}
-                            variant="converterPeriodButton"
+                            variant={"converterPeriodButton"}
                             onClick={() => {
                                 periodSelectionHandler(period);
                             }}

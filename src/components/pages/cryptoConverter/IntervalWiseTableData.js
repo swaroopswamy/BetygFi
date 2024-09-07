@@ -6,7 +6,7 @@ const IntervalWiseTableData = ({ coinAnalyticsData }) => {
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} >
             <Box border={"1px solid rgba(70, 130, 180, 0.10)"}>
-                <TableContainer>
+                <TableContainer display={"flex"} flexDir={{ md: "row", base: "column" }}>
                     <Table size='sm'>
                         <Thead background={"rgba(70, 130, 180, 0.10)"}>
                             <Tr>
@@ -18,15 +18,6 @@ const IntervalWiseTableData = ({ coinAnalyticsData }) => {
                                 </Th>
                                 <Th>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>7d</Text>
-                                </Th>
-                                <Th>
-                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>14d</Text>
-                                </Th>
-                                <Th>
-                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>30d</Text>
-                                </Th>
-                                <Th>
-                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1y</Text>
                                 </Th>
                             </Tr>
                         </Thead>
@@ -46,6 +37,32 @@ const IntervalWiseTableData = ({ coinAnalyticsData }) => {
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
                                             <Text color={coinAnalyticsData[hist.seven_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.seven_day]?.toFixed(2)}%</Text>
                                         </Td>
+                                    </Tr>
+                                ))
+                            }
+                        </Tbody>
+                    </Table>
+                    <Table size='sm'>
+                        <Thead background={"rgba(70, 130, 180, 0.10)"}>
+                            <Tr>
+                                <Th>
+                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>14d</Text>
+                                </Th>
+                                <Th>
+                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>30d</Text>
+                                </Th>
+                                <Th>
+                                    <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1y</Text>
+                                </Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {
+                                [
+                                    { one_hour: "percentageChange_1hr", twenty_four_hour: "percentageChange_24hr", seven_day: "percentageChange_7d", fourteen_day: "percentageChange_14d", thirty_day: "percentageChange_30d", one_year: "percentageChange_1yr" },
+
+                                ].map((hist, index) => (
+                                    <Tr key={index}>
                                         <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
                                             <Text color={coinAnalyticsData[hist.fourteen_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.fourteen_day]?.toFixed(2)}%</Text>
                                         </Td>

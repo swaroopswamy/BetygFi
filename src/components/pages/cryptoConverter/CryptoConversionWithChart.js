@@ -30,7 +30,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
     };
 
     return (
-        <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={"1.7rem 1.5rem"} layerStyle={"flexColumn"} gap={"1.2rem"}>
+        <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={{ base: "1.2rem 0rem", md: "1.5rem 1.5rem" }} layerStyle={"flexColumn"} gap={"1.2rem"}>
             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"} justifyContent={"start"} alignItems={"center"}>
                 <Text colorMode={colorMode} variant={"converter_heading"}>
                     {coinDetails?.ticker} to {toCurrency?.toUpperCase()} Chart
@@ -55,7 +55,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 </Box>
             </Box>
             <Box>
-                <Text variant={"converter_calc_desc"}>
+                <Text variant={"converter_calc_desc"} colorMode={colorMode} opacity={colorMode === "dark" ? "0.5" : "1"}>
                     {coinDetails?.name} ({coinDetails?.ticker}) is worth {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} today, which is a {Math.abs(+coinAnalyticsData?.percentageChange_1hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_1hr > 0 ? "increase" : "decrease"} from an hour ago and a {Math.abs(+coinAnalyticsData?.percentageChange_24hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_24hr > 0 ? "increase" : "decrease"} since yesterday. The value of {coinDetails?.ticker} today is {Math.abs(+coinAnalyticsData?.percentageChange_7d)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_7d > 0 ? "higher" : "lower"} compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.volumeTraded?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}.
                 </Text>
             </Box>

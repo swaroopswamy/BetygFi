@@ -177,7 +177,7 @@ export const fetchConversionCoinChartGraphData = createAsyncThunk(
     "getConversionCoinChartGraphData",
     async (payload, { rejectWithValue }) => {
         const response = await getConversionCoinChartGraphData(payload, rejectWithValue);
-        return response.data;
+        return response;
     }
 );
 
@@ -655,18 +655,18 @@ const CoinDataSlice = createSlice({
         builder.addCase(fetchConversionCoinChartGraphData.fulfilled, (state, action) => {
             state.CoinConverterGraphData.data = action.payload;
             state.CoinConverterGraphData.isLoading = false;
-            state.CoinConverterGraphData.isSuccess = true;
+            state.CoinConverterGraphData.isSuccess = action?.payload?.status || true;
             state.CoinConverterGraphData.isError = false;
         });
         builder.addCase(fetchConversionCoinChartGraphData.pending, (state, action) => {
             state.CoinConverterGraphData.isLoading = true;
             state.CoinConverterGraphData.isError = false;
-            state.CoinConverterGraphData.isSuccess = false;
+            state.CoinConverterGraphData.isSuccess = action?.payload?.status || false;
             state.CoinConverterGraphData.data = action.payload;
         });
         builder.addCase(fetchConversionCoinChartGraphData.rejected, (state, action) => {
             state.CoinConverterGraphData.isLoading = false;
-            state.CoinConverterGraphData.isSuccess = false;
+            state.CoinConverterGraphData.isSuccess = action?.payload?.status || false;
             state.CoinConverterGraphData.isError = true;
             state.CoinConverterGraphData.data = action.payload;
         });

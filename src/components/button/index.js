@@ -114,19 +114,20 @@ const Button = defineStyleConfig({
             lineHeight: "10px",
             color: colorMode === "light" ? "#16171B" : "#FFFFFF",
             p: "0px",
+            opacity: colorMode === "light" ? "1" : "0.5",
             height: "2rem",
-            // opacity: "0.5",
+            fontWeight: "400",
             borderColor:
                 colorMode === "light" ? "#C6C6C6" : "rgba(255, 255, 255, 0.60)",
+            bg: colorMode === "light" ? "#FFFFFF" : "#191919",
             _active: {
                 border: "1px",
-                // borderRadius: "5px",
-                bg: colorMode === "light" ? "#191919" : "#FFFFFF",
-                color: colorMode === "light" ? "#FFFFFF" : "#000000",
+                bg: colorMode === "light" ? "#191919" : "#282828",
+                color: colorMode === "light" ? "#FFFFFF" : "#FFFFFF",
                 borderColor:
                     colorMode === "light"
                         ? "#C6C6C6"
-                        : "rgba(255, 255, 255, 0.60)",
+                        : "#E0E0E0",
                 fontWeight: "600",
                 opacity: "1",
             },

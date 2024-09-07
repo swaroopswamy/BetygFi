@@ -179,111 +179,118 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     };
 
     useEffect(() => {
-        const conversionChartGraphData = conversionChartData?.data;
-        if (conversionChartGraphData) {
+        const conversionChartGraphData = conversionChartData?.data?.data;
+        if (conversionChartData?.isSuccess) {
             setNoChartDataAvailable(false);
-            const formatDate = (date) => {
-                if (period === "24h") {
-                    return format(new Date(date), "d MMM yy HH:mm");
-                } else {
-                    return format(new Date(date), "d MMM");
-                }
-                // if (chartFilter === "icon-line-chart") {
-                //     return format(new Date(date), "d MMM HH:mm");
-                // } else {
-                //     return format(new Date(date), "d MMM yy HH:mm a");
-                // }
-            };
-
-            if (chartFilter === "icon-line-chart") {
-                const mappedXConversionChartData = conversionChartGraphData.map((icm) => formatDate(icm.timestamp));
-
-                const mappedYConversionChartData = conversionChartGraphData.map(icm => {
-                    if (priceMCap === "Price") {
-                        icm = +icm.close.toFixed(2);
+            if (conversionChartGraphData) {
+                setNoChartDataAvailable(false);
+                const formatDate = (date) => {
+                    if (period === "24h") {
+                        return format(new Date(date), "d MMM yy HH:mm");
                     } else {
-                        if (icm.marketCap) {
-                            icm = +icm.marketCap.toFixed(2);
+                        return format(new Date(date), "d MMM");
+                    }
+                    // if (chartFilter === "icon-line-chart") {
+                    //     return format(new Date(date), "d MMM HH:mm");
+                    // } else {
+                    //     return format(new Date(date), "d MMM yy HH:mm a");
+                    // }
+                };
+
+                if (chartFilter === "icon-line-chart") {
+                    const mappedXConversionChartData = conversionChartGraphData.map((icm) => formatDate(icm?.timestamp));
+
+                    const mappedYConversionChartData = conversionChartGraphData.map(icm => {
+                        if (priceMCap === "Price") {
+                            icm = +icm?.close?.toFixed(2);
                         } else {
-                            icm = +icm.close.toFixed(2);
+                            if (icm.marketCap) {
+                                icm = +icm?.marketCap?.toFixed(2);
+                            } else {
+                                icm = +icm?.close?.toFixed(2);
+                            }
                         }
-                    }
-                    return icm;
-                });
+                        return icm;
+                    });
 
-                const xaxisLine = {
-                    categories: mappedXConversionChartData,
-                    tickAmount: 10,
-                    labels: {
-                        style: {
-                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                            fontSize: "12px",
-                            fontWeight: 300,
+                    const xaxisLine = {
+                        categories: mappedXConversionChartData,
+                        tickAmount: isMd ? 10 : 6,
+                        labels: {
+                            style: {
+                                colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                                fontSize: "12px",
+                                fontWeight: 300,
+                            },
                         },
-                    },
-                };
-                const yaxisLine = {
-                    tooltip: {
-                        enabled: true,
-                    },
-                    labels: {
-                        formatter: (val) => convertToInternationalCurrencySystem(val),
-                        style: {
-                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                            fontSize: "12px",
-                            fontWeight: 300,
+                    };
+                    const yaxisLine = {
+                        tooltip: {
+                            enabled: true,
                         },
-                    },
-                };
+                        labels: {
+                            formatter: (val) => convertToInternationalCurrencySystem(val),
+                            style: {
+                                colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                                fontSize: "12px",
+                                fontWeight: 300,
+                            },
+                        },
+                    };
 
-                setChartOptions({ ...chartOptions, xaxis: xaxisLine, yaxis: yaxisLine });
-                setChartSeries([{ name: `${coinDetails?.name}`, data: mappedYConversionChartData }]);
+                    setChartOptions({ ...chartOptions, xaxis: xaxisLine, yaxis: yaxisLine });
+                    setChartSeries([{ name: `${coinDetails?.name}`, data: mappedYConversionChartData }]);
+                } else {
+                    const mappedCandleStickConversionChartData = conversionChartGraphData.map(icm => {
+                        if (priceMCap === "Price") {
+                            const open = +icm.open.toFixed(2);
+                            const high = +icm.high.toFixed(2);
+                            const low = +icm.low.toFixed(2);
+                            const close = +icm.close.toFixed(2);
+                            const list = [open, high, low, close];
+                            return {
+                                x: formatDate(icm.timestamp),
+                                y: list,
+                            };
+                        }
+                    });
+
+                    const xaxisCandleStick = {
+                        tickAmount: isMd ? 10 : 6,
+                        type: 'category',
+                        labels: {
+                            style: {
+                                colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                                fontSize: "12px",
+                                fontWeight: 300,
+                            },
+                        },
+                    };
+
+                    const yaxisCandleStick = {
+                        tooltip: {
+                            enabled: true,
+                        },
+                        labels: {
+                            formatter: (val) => convertToInternationalCurrencySystem(val),
+                            style: {
+                                colors: colorMode === "light" ? "#757575" : "#A5A5A5",
+                                fontSize: "12px",
+                                fontWeight: 300,
+                            },
+                        },
+                    };
+
+                    setChartOptions({ ...chartOptions, xaxis: xaxisCandleStick, yaxis: yaxisCandleStick });
+                    setChartSeries([{ name: `${coinDetails?.name}`, data: mappedCandleStickConversionChartData }]);
+                }
             } else {
-                const mappedCandleStickConversionChartData = conversionChartGraphData.map(icm => {
-                    if (priceMCap === "Price") {
-                        const open = +icm.open.toFixed(2);
-                        const high = +icm.high.toFixed(2);
-                        const low = +icm.low.toFixed(2);
-                        const close = +icm.close.toFixed(2);
-                        const list = [open, high, low, close];
-                        return {
-                            x: formatDate(icm.timestamp),
-                            y: list,
-                        };
-                    }
-                });
-
-                const xaxisCandleStick = {
-                    tickAmount: 10,
-                    type: 'category',
-                    labels: {
-                        style: {
-                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                            fontSize: "12px",
-                            fontWeight: 300,
-                        },
-                    },
-                };
-
-                const yaxisCandleStick = {
-                    tooltip: {
-                        enabled: true,
-                    },
-                    labels: {
-                        formatter: (val) => convertToInternationalCurrencySystem(val),
-                        style: {
-                            colors: colorMode === "light" ? "#757575" : "#A5A5A5",
-                            fontSize: "12px",
-                            fontWeight: 300,
-                        },
-                    },
-                };
-
-                setChartOptions({ ...chartOptions, xaxis: xaxisCandleStick, yaxis: yaxisCandleStick });
-                setChartSeries([{ name: `${coinDetails?.name}`, data: mappedCandleStickConversionChartData }]);
+                setNoChartDataAvailable(true);
             }
         } else {
+            // if (conversionChartGraphData == undefined) {
             setNoChartDataAvailable(true);
+            // }
         }
     }, [conversionChartData, chartFilter]);
 
@@ -408,7 +415,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
     const renderNoChart = () => {
         return (
             <Box id={"conversion-no-chart"} mt={"12px"}>
-                <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)' backdropFilter='blur(8px)' height={405} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)' backdropFilter='blur(8px)' height={isMd ? 405 : 385} display={"flex"} justifyContent={"center"} alignItems={"center"}>
                     <Box width={"70%"} flexDir={"column"} display={"flex"} gap={"2.5rem"}>
 
                         <Box>
@@ -447,7 +454,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                     options={chartOptions}
                     series={chartSeries}
                     type={chartFilter === "icon-line-chart" ? "line" : "candlestick"}
-                    height={405}
+                    height={isMd ? 405 : 385}
                 />
 
                 {/* <Box style={{ border: '1px solid red' }} w={"100%"}>
@@ -474,7 +481,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                 bgColor={useColorModeValue("#FFFFFF", "#282828")}
             >
                 <Box>
-                    <Box zIndex={"99"} display={"flex"} gap={{ base: "0.4rem", md: "1rem" }} flexDir={{ base: "column", md: "row" }} justifyContent={"space-between"}>
+                    <Box zIndex={"99"} display={"flex"} gap={{ base: "0.6rem", md: "1rem" }} flexDir={{ base: "column", md: "row" }} justifyContent={"space-between"}>
                         <Box display={"flex"} flexDir={"row"} justifyContent={{ base: "space-between", md: "center" }} alignItems={"center"} gap={"0.8rem"}>
                             {renderPriceMarketCapSelection()}
                             {renderChartFilterSelection()}
