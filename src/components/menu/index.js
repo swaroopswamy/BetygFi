@@ -1,9 +1,7 @@
 import { menuAnatomy } from '@chakra-ui/anatomy';
 import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react';
 
-const { definePartsStyle, defineMultiStyleConfig } =
-    createMultiStyleConfigHelpers(menuAnatomy.keys);
-
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(menuAnatomy.keys);
 // define the base component styles
 const baseStyle = definePartsStyle({
     // define the part you're going to style
@@ -30,10 +28,21 @@ const baseStyle = definePartsStyle({
         // color: 'gray.200',
         // px: "12px",
 
-        _hover: {
-            bg: '#F1F3FD',
-            // mx: "3px"
+        _light: {
+            bg: '#FFFFFF',
         },
+        _dark: {
+            bg: '#191919',
+        },
+        _hover: {
+            _light: {
+                bg: '#F1F3FD',
+            },
+            _dark: {
+                bg: '#000000',
+            }
+        },
+        // mx: "3px"
         // _focus: {
         //     bg: 'teal.600',
         // },

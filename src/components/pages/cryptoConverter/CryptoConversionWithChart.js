@@ -61,7 +61,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 </Box>
             </Box>
             <Box>
-                <Text variant={"converter_calc_desc"} colorMode={colorMode} opacity={colorMode === "dark" ? "0.5" : "1"}>
+                <Text variant={"converter_calc_desc"} colorMode={colorMode} opacity={colorMode === "dark" ? "1" : "1"}>
                     {coinDetails?.name} ({coinDetails?.ticker}) is worth {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} today, which is a {Math.abs(+coinAnalyticsData?.percentageChange_1hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_1hr > 0 ? "increase" : "decrease"} from an hour ago and a {Math.abs(+coinAnalyticsData?.percentageChange_24hr)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_24hr > 0 ? "increase" : "decrease"} since yesterday. The value of {coinDetails?.ticker} today is {Math.abs(+coinAnalyticsData?.percentageChange_7d)?.toFixed(4)}% {+coinAnalyticsData?.percentageChange_7d > 0 ? "higher" : "lower"} compared to its value 7 days ago. In the last 24 hours, the total volume of {coinDetails?.name} traded was {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.volumeTraded?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}.
                 </Text>
             </Box>

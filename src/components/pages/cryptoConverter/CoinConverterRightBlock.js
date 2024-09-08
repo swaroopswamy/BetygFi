@@ -136,6 +136,11 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             mobileMenuListStyles.left = "-8.6rem";
             mobileMenuListStyles.top = "-16.3rem";
         } else {
+            if (type === "currency") {
+                mobileMenuListStyles.position = "absolute";
+                mobileMenuListStyles.left = "-8.6rem";
+                mobileMenuListStyles.top = "-16.3rem";
+            }
             desktopMenuListStyles.rightIcon = <ChevronDownIcon />;
         }
         return (
@@ -147,8 +152,8 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                 >
                     {type === "coin" ? coinSelected : currencySelected}
                 </MenuButton>
-                <MenuList pt={"0px"} {...mobileMenuListStyles}>
-                    <Input colorScheme={"#4682B4"} borderRadius={"2px"} size='md'
+                <MenuList py={"0px"} {...mobileMenuListStyles}>
+                    <Input colorScheme={"#4682B4"} opacity={1} borderRadius={"2px"} size='md'
                         placeholder={type === "coin" ? "Search Coin" : "Search Currency"}
                         value={type === "coin" ? coinSearchTerm : currencysearchTerm}
                         onChange={(e) => onSearchInputChange(e.target.value, type)}
@@ -197,6 +202,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                 <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
                     <Text colorMode={colorMode} variant={"converter_heading"} lineHeight={"22px"}>Convert {coinDetails?.name} to {getCurrencyDetails(toCurrency, 'description')} ({coinDetails?.ticker} to {toCurrency?.toUpperCase()})</Text>
+
                     <Text colorMode={colorMode} variant={"converter_calc_desc"} opacity={colorMode === "dark" ? "0.5" : "1"}>The price of converting 1 {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} today.</Text>
                 </Box>
                 <Box borderRadius='2px' background='rgba(70, 130, 180, 0.10)'>
