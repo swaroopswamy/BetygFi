@@ -80,7 +80,7 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                             <Text colorMode={colorMode} variant={"converter_heading"}>
                                 {coinDetails?.ticker} / {toCurrency?.toUpperCase()} Conversion Tables
                             </Text>
-                            <Text colorMode={colorMode} variant={"converter_calc_desc"}>
+                            <Text colorMode={colorMode} variant={"converter_calc_desc"} opacity={colorMode === "dark" ? "0.5" : "1"}>
                                 The conversion rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} is {getCurrencyDetails(toCurrency, 'symbol')} {currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} for every 1 {coinDetails?.ticker}. This means you can exchange 5 {coinDetails?.ticker} for {getCurrencyDetails(toCurrency, 'symbol')} {(currentPrice * 5)?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} or {getCurrencyDetails(toCurrency, 'symbol')} 50.00 for {convertExpToNumber(Number(50 / currentPrice))} {coinDetails?.ticker}, excluding fees. Refer to our conversion tables for popular {coinDetails?.ticker} trading amounts in their corresponding {toCurrency?.toUpperCase()} prices and vice versa.
                             </Text>
                         </Box>

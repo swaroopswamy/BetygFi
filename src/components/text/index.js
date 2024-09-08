@@ -641,7 +641,7 @@ const Text = defineStyleConfig({
             lineHeight: '24px',
         }),
         converter_calc_desc: ({ colorMode }) => ({
-            color: colorMode === "light" ? "#757575" : "#000000",
+            color: colorMode === "light" ? "#757575" : "#FFFFFF",
             fontFamily: 'Inter',
             fontSize: '14px',
             fontStyle: 'normal',

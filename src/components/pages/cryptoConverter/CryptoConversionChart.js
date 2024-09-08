@@ -447,6 +447,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
             </Box>
         );
     };
+
     const renderChart = () => {
         return (
             <Box ref={ToCaptureRef} id={"conversion-chart"} mt={"12px"} pos={"relative"}>
@@ -492,12 +493,10 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                         </Box>
                     </Box>
                 </Box>
-
-
                 {
-                    noChartDataAvailable ? renderNoChart() : renderChart()
+                    conversionChartData?.isLoading ? renderChart() : (
+                        noChartDataAvailable ? renderNoChart() : renderChart())
                 }
-
             </Box>
         </>
     );

@@ -23,7 +23,7 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                         <Text colorMode={colorMode} variant={"converter_heading"}>
                             7-day price history of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()}
                         </Text>
-                        <Text colorMode={colorMode} variant={"converter_calc_desc"}>
+                        <Text colorMode={colorMode} variant={"converter_calc_desc"} opacity={colorMode === "dark" ? "0.5" : "1"}>
                             The daily exchange rate of {coinDetails?.name} ({coinDetails?.ticker}) to {toCurrency?.toUpperCase()} fluctuated between a high of {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.weeklyAnalogy?.[0]?.highOfTheWeek?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} on {coinAnalyticsData?.weeklyAnalogy?.[0]?.dayOfWeek} and a low of {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.weeklyAnalogy?.[1]?.lowOfTheWeek?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} on {coinAnalyticsData?.weeklyAnalogy?.[1]?.dayOfWeek} in the last 7 days. Within the week, the price of {coinDetails?.ticker} in {toCurrency?.toUpperCase()} had the largest 24-hour price movement on {coinAnalyticsData?.weeklyAnalogy?.[2]?.day} ({coinAnalyticsData?.weeklyAnalogy?.[2]?.daysAgo} days ago) by {getCurrencyDetails(toCurrency, 'symbol')} {coinAnalyticsData?.weeklyAnalogy?.[2]?.difference?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))} ({+coinAnalyticsData?.weeklyAnalogy?.[2]?.largest24hrPercent?.toFixed(5)}%).
                         </Text>
                     </Box>
