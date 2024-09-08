@@ -1,7 +1,7 @@
 import { Box, Text, useColorMode, useColorModeValue, useToast, } from "@chakra-ui/react";
 import { copyToClipboard_, getCurrencyDetails, renderSVG } from "@util/utility";
 import html2canvas from "html2canvas";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import CryptoConversionChart from "./CryptoConversionChart";
 import IntervalWiseTableData from "./IntervalWiseTableData";
 
@@ -9,7 +9,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
     const toast = useToast();
     const { colorMode } = useColorMode();
     const ToCaptureRef = useRef();
-
+    const [isChartAvailableToRender, setIsChartAvailableToRender] = useState(false);
     const captureScreenshot = () => {
         var canvasPromise = html2canvas(ToCaptureRef.current, {
             useCORS: true
@@ -29,6 +29,9 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
         });
     };
 
+    const isChartAvailable = (isAvailable) => {
+        setIsChartAvailableToRender(isAvailable);
+    };
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={{ base: "1.2rem 0rem", md: "1.5rem 1.5rem" }} layerStyle={"flexColumn"} gap={"1.2rem"}>
             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"} justifyContent={"start"} alignItems={"center"}>
@@ -38,9 +41,12 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 {/* <Box cursor={"pointer"}>
                     {renderSVG("info")}
                 </Box> */}
-                <Box onClick={() => captureScreenshot()} cursor={"pointer"}>
-                    {renderSVG("download")}
-                </Box>
+                {
+                    isChartAvailableToRender &&
+                    <Box onClick={() => captureScreenshot()} cursor={"pointer"}>
+                        {renderSVG("download")}
+                    </Box>
+                }
                 <Box onClick={() => {
                     copyToClipboard_(window.location.href);
                     toast({
@@ -63,6 +69,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 <CryptoConversionChart
                     coinDetails={coinDetails}
                     ToCaptureRef={ToCaptureRef}
+                    isChartAvailable={isChartAvailable}
                 />
             </Box>
             <Box p={{ base: "0.8rem 0.4rem", md: "0.5rem 1.5rem" }}>

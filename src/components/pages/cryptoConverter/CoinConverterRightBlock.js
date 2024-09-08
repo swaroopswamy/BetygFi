@@ -130,17 +130,21 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     const renderCompareDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
         const mobileMenuListStyles = {};
+        const desktopMenuListStyles = {};
         if (!isMd) {
             mobileMenuListStyles.position = "absolute";
             mobileMenuListStyles.left = "-8.6rem";
             mobileMenuListStyles.top = "-16.3rem";
+        } else {
+            desktopMenuListStyles.rightIcon = <ChevronDownIcon />;
         }
         return (
             <Menu variant={"converterMenu"} onClose={() => { settingUpCoinData(); settingUpCurrencyData(); }}>
                 <MenuButton as={Button}
                     transition='all 0.2s'
                     isActive={isOpen}
-                    rightIcon={<ChevronDownIcon />}>
+                    {...desktopMenuListStyles}
+                >
                     {type === "coin" ? coinSelected : currencySelected}
                 </MenuButton>
                 <MenuList pt={"0px"} {...mobileMenuListStyles}>
@@ -175,8 +179,8 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             );
         } else if (CONVERTER_INPUT_VERSION === 2) {
             return (
-                <InputGroup border='1px solid #4682B4' background='#ECF2F7' variant="custom" colorScheme={"#4682B4"} borderRadius={"4px"} size='md'>
-                    <Input background='#ECF2F7' type="number" value={inputValue} onChange={(e) => {
+                <InputGroup border='1px solid #4682B4' _light={{ background: '#ECF2F7' }} _dark={{ background: 'rgba(70, 130, 180, 0.10)' }} variant="custom" colorScheme={"#4682B4"} borderRadius={"4px"} size='md'>
+                    <Input _light={{ background: '#ECF2F7' }} _dark={{ background: 'rgba(70, 130, 180, 0.10)' }} type="number" value={inputValue} onChange={(e) => {
                         type === "coin" ? onCoinValueChange(e) : onCurrencyValueChange(e);
                     }} min={0} />
                     <InputRightAddon>

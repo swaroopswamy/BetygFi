@@ -72,12 +72,18 @@ const variantCustom = definePartsStyle((/* props */) => {
             // },
         },
         addon: {
-            padding: "0px"
+            padding: "0px",
             // border: "0px solid",
             // borderColor: "transparent",
             // borderTopLeftRadius: "full",
             // borderBottomLeftRadius: "full",
             // bg: `${c}.500`,
+            _light: {
+                bg: "#ECF2F7"
+            },
+            _dark: {
+                bg: "#253542"
+            }
             // color: "white",
             // _dark: {
             //     bg: `${c}.300`,

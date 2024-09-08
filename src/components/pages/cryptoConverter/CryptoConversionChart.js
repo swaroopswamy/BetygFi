@@ -20,7 +20,7 @@ import 'react-date-range/dist/theme/default.css'; // Theme css file
 import { useDispatch, useSelector } from 'react-redux';
 import PeriodSelection from "./PeriodSelection";
 
-const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
+const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) => {
     const router = useRouter();
     // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -182,8 +182,10 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
         const conversionChartGraphData = conversionChartData?.data?.data;
         if (conversionChartData?.isSuccess) {
             setNoChartDataAvailable(false);
+            isChartAvailable(false);
             if (conversionChartGraphData) {
                 setNoChartDataAvailable(false);
+                isChartAvailable(false);
                 const formatDate = (date) => {
                     if (period === "24h") {
                         return format(new Date(date), "d MMM yy HH:mm");
@@ -286,10 +288,12 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef }) => {
                 }
             } else {
                 setNoChartDataAvailable(true);
+                isChartAvailable(true);
             }
         } else {
             // if (conversionChartGraphData == undefined) {
             setNoChartDataAvailable(true);
+            isChartAvailable(true);
             // }
         }
     }, [conversionChartData, chartFilter]);

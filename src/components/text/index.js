@@ -582,10 +582,11 @@ const Text = defineStyleConfig({
         }),
         converter_low_high_table: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFeatureSettings: 'ss01 on, cv01 on, cv11 on',
             fontFamily: 'Inter',
             fontSize: { base: '12px', md: '14px' },
             fontStyle: 'normal',
-            fontWeight: '300',
+            fontWeight: '400',
             lineHeight: 'normal',
             letterSpacing: '0.028px'
         }),
@@ -631,6 +632,16 @@ const Text = defineStyleConfig({
             fontStyle: 'normal',
             fontWeight: '500',
             lineHeight: { base: '12px', md: '18px' }
+        }),
+        converter_betygfi_coin_details_value_heading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#A8ADBD",
+            fontFeatureSettings: 'ss01 on, cv01 on, cv11 on',
+            fontFamily: 'Inter',
+            fontSize: { base: '12px', md: '14px' },
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: { base: '12px', md: '18px' },
+            letterSpacing: "0.48px"
         }),
         converter_get_api_key: ({ colorMode }) => ({
             color: colorMode !== "light" ? "#191919" : "#FFFFFF",
