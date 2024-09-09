@@ -23,6 +23,13 @@ export const getSearchV2List = createAsyncThunk('getSearchV2List', async (payloa
 	return response;
 });
 
+export const getSearchListForConverterCoin = createAsyncThunk('getSearchListForConverterCoin', async (payload, { rejectWithValue }) => {
+	const response = await getSearchV2Data(payload, rejectWithValue);
+	const response_ = response?.data?.data?.map((sd, index) => { sd.id = index + 1; return sd; });
+	response.data.data = response_;
+	return response;
+});
+
 export const getSearchV2TrendingList = createAsyncThunk('getSearchV2TrendingList', async (payload, { rejectWithValue }) => {
 	const response = await getSearchV2TrendingData(payload, rejectWithValue);
 	const response_ = response?.data?.data?.map((sd, index) => { sd.id = index + 1; return sd; });
@@ -88,6 +95,10 @@ const AppDataSlice = createSlice({
 			status: "idle",
 			error: null
 		},
+		searchListForConverterCoin: {
+			status: "idle",
+			error: null
+		},
 		searchV2TrendingData: {
 			status: "idle",
 			error: null
@@ -146,6 +157,15 @@ const AppDataSlice = createSlice({
 			state.searchV2Data.error = action.payload;
 			state.searchV2Data.status = 'failure';
 		});
+		builder.addCase(getSearchListForConverterCoin.fulfilled, (state, action) => {
+			state.searchListForConverterCoin.data = action.payload;
+			state.searchListForConverterCoin.status = 'success';
+		});
+		builder.addCase(getSearchListForConverterCoin.rejected, (state, action) => {
+			state.searchListForConverterCoin.error = action.payload;
+			state.searchListForConverterCoin.status = 'failure';
+		});
+
 		builder.addCase(getSearchV2TrendingList.fulfilled, (state, action) => {
 			state.searchV2TrendingData.data = action.payload;
 			state.searchV2TrendingData.status = 'success';

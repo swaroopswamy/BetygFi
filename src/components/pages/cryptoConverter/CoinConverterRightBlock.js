@@ -1,10 +1,12 @@
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Button, Input, InputGroup, InputRightAddon, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode, useColorModeValue, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { useDebounce } from "@hooks/useDebounce";
+import { getSearchListForConverterCoin } from "@redux/app_data/dataSlice";
 import { convertExpToNumber, getCurrencyDetails, renderSVG } from "@util/utility";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CryptoConversionWithChart from "./CryptoConversionWithChart";
 
 const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, currentPrice }) => {
@@ -25,7 +27,18 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     const [coinList, setCoinList] = useState([]);
     const [currencyList, setCurrencyList] = useState([]);
 
+    const coinDebouncedValue = useDebounce(coinSearchTerm, 300);
+    const dispatch = useDispatch();
     const checkIfToShowOneToOneConversion = () => coinSelected && coinSelected !== '' && currencySelected && currencySelected !== '';
+
+    useEffect(() => {
+        if (coinSearchTerm?.length > 0) {
+            const payload = {
+                searchValue: coinSearchTerm
+            };
+            dispatch(getSearchListForConverterCoin(payload));
+        }
+    }, [coinDebouncedValue]);
 
     useEffect(() => {
         settingUpCurrencyData();
@@ -45,6 +58,8 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             }
         }
     };
+    // const searchListData = useSelector((state) => state.appData.searchListForConverterCoin);
+    // console.log("🤦‍♀️🤷‍♂️🤔 ~ CoinConverterRightBlock ~ searchListData:", searchListData);
 
     const settingUpCurrencyData = () => {
         const currencyObject = allowedCurrenciesData?.data?.currencies;
@@ -127,7 +142,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             }
         }
     };
-    const renderCompareDropDown = (type) => {
+    const renderCurrencyCoinDropDown = (type) => {
         const list = type === "coin" ? coinList : currencyList;
         const mobileMenuListStyles = {};
         const desktopMenuListStyles = {};
@@ -189,7 +204,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                         type === "coin" ? onCoinValueChange(e) : onCurrencyValueChange(e);
                     }} min={0} />
                     <InputRightAddon>
-                        {renderCompareDropDown(type)}
+                        {renderCurrencyCoinDropDown(type)}
                     </InputRightAddon>
                 </InputGroup>
             );
