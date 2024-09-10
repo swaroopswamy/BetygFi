@@ -56,7 +56,7 @@ const CryptoNews = ({ coinDetails, coinNewsData }) => {
                             ))
                         }
                     </Box> */}
-                    <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={"1fr 1fr 1fr 1fr"}>
+                    <Box gap={"1.25rem"} display={"grid"} gridTemplateColumns={{ base: "1fr", md: "1fr 1fr 1fr 1fr" }}>
                         {
                             coinNewsData?.news?.length > 0 && coinNewsData?.news?.map((news, index) => (
                                 <React.Fragment key={index}>

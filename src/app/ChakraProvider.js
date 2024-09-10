@@ -2,6 +2,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Button from "@components/button";
 import { inputTheme } from "@components/input";
+import { menuTheme } from "@components/menu";
 import Text from "@components/text";
 import { colors } from "@util/constant";
 
@@ -36,7 +37,7 @@ export function Providers({ children }) {
             Button,
             Text,
             Input: inputTheme,
-            // Menu,
+            Menu: menuTheme,
             Progress: {
                 baseStyle: {
                     filledTrack: {

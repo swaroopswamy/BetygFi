@@ -350,7 +350,7 @@ export default function LayoutProvider({ appConfig, children }) {
                                         md: isMobileSidebarCollapsed ? "flex" : "none",
                                     }}
                                     flexDirection={"column"}
-                                    className="margin-conditions"
+                                    className="margin-conditions pds-159951"
                                     id="main-body"
                                     aria-expanded={isSidebarCollapsed ? "false" : "true"}
                                     w="100%"

@@ -554,8 +554,8 @@ const Text = defineStyleConfig({
             fontWeight: '400',
             lineHeight: '16px'
         }),
-        converter_price_info: ({ colorMode }) => ({
-            color: colorMode === "light" ? "#585858" : "#585858",
+        converter_price_info: (/* { colorMode } */) => ({
+            // color: colorMode === "light" ? "#FFFFFF" : "#585858",
             fontFamily: 'Inter',
             fontSize: '14px',
             fontStyle: 'normal',
@@ -582,15 +582,16 @@ const Text = defineStyleConfig({
         }),
         converter_low_high_table: ({ colorMode }) => ({
             color: colorMode === "light" ? "#191919" : "#FFFFFF",
+            fontFeatureSettings: 'ss01 on, cv01 on, cv11 on',
             fontFamily: 'Inter',
             fontSize: { base: '12px', md: '14px' },
             fontStyle: 'normal',
-            fontWeight: '300',
+            fontWeight: '400',
             lineHeight: 'normal',
             letterSpacing: '0.028px'
         }),
-        converter_low_high_value: ({ colorMode }) => ({
-            color: colorMode === "light" ? "#191919" : "#FFFFFF",
+        converter_low_high_value: ({ colorMode, type }) => ({
+            color: type === "score" ? (colorMode === "light" ? "#191919" : "#FFFFFF") : (colorMode === "light" ? "#191919" : "#191919"),
             fontFamily: 'Inter',
             fontSize: '14px',
             fontStyle: 'normal',
@@ -604,7 +605,7 @@ const Text = defineStyleConfig({
             fontSize: '12px',
             fontStyle: 'normal',
             fontWeight: '500',
-            lineHeight: 'normal',
+            liconverter_price_inc_decneHeight: 'normal',
             letterSpacing: '0.024px'
         }),
         converter_betygfi_score: ({ colorMode }) => ({
@@ -616,7 +617,7 @@ const Text = defineStyleConfig({
             lineHeight: 'normal'
         }),
         converter_betygfi_coin_details_key: ({ colorMode }) => ({
-            color: colorMode === "light" ? "#525252" : "#525252",
+            color: colorMode === "light" ? "#525252" : "rgba(255, 255, 255, 0.50)",
             fontFamily: 'Inter',
             fontSize: '12px',
             fontStyle: 'normal',
@@ -632,6 +633,16 @@ const Text = defineStyleConfig({
             fontWeight: '500',
             lineHeight: { base: '12px', md: '18px' }
         }),
+        converter_betygfi_coin_details_value_heading: ({ colorMode }) => ({
+            color: colorMode === "light" ? "#191919" : "#A8ADBD",
+            fontFeatureSettings: 'ss01 on, cv01 on, cv11 on',
+            fontFamily: 'Inter',
+            fontSize: { base: '12px', md: '14px' },
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: { base: '12px', md: '18px' },
+            letterSpacing: "0.48px"
+        }),
         converter_get_api_key: ({ colorMode }) => ({
             color: colorMode !== "light" ? "#191919" : "#FFFFFF",
             fontFamily: 'Inter',
@@ -641,7 +652,7 @@ const Text = defineStyleConfig({
             lineHeight: '24px',
         }),
         converter_calc_desc: ({ colorMode }) => ({
-            color: colorMode === "light" ? "#757575" : "#757575",
+            color: colorMode === "light" ? "#757575" : "#FFFFFF",
             fontFamily: 'Inter',
             fontSize: '14px',
             fontStyle: 'normal',
@@ -705,6 +716,15 @@ const Text = defineStyleConfig({
             fontStyle: 'normal',
             fontWeight: '400',
             lineHeight: '22px'
+        }),
+        converter_menu_item: ({ colorMode }) => ({
+            color: colorMode === "light" ? '#0B081C' : "#FFFFFF",
+            fontFamily: 'Inter',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: 'normal',
+            letterSpacing: '0.019px'
         }),
     },
     defaultProps: {

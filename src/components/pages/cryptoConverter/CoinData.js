@@ -38,7 +38,7 @@ const CoinData = ({ coinDetails }) => {
         <Box display={"flex"} flexDir={"column"} gap={"0.95rem"}>
             <Box display={"grid"} gridTemplateColumns={"1fr 1fr"} gap={"0.5rem"}>
                 {coinDataList.length > 0 && coinDataList.map(coin => (
-                    <Box flexDir={"column"} display={"flex"} gap={"0.15rem"} key={coin.slug}>
+                    <Box flexDir={"column"} display={"flex"} gap={"0.35rem"} key={coin.slug}>
                         <Box flexDir={"row"} display={"flex"} gap={"0.5rem"} key={coin.slug}>
                             <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_key"}>{coin?.name}</Text>
                             {/* {renderSVG("info")} */}

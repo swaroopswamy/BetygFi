@@ -63,6 +63,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "news.google.comundefined",
+      },
+      {
+        protocol: "https",
         hostname: "lh3.googleusercontent.com",
       },
       {

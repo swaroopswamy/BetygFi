@@ -6,26 +6,52 @@ const IntervalWiseTableData = ({ coinAnalyticsData }) => {
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} >
             <Box border={"1px solid rgba(70, 130, 180, 0.10)"}>
-                <TableContainer>
+                <TableContainer display={"flex"} flexDir={{ md: "row", base: "column" }}>
                     <Table size='sm'>
                         <Thead background={"rgba(70, 130, 180, 0.10)"}>
                             <Tr>
-                                <Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1h</Text>
                                 </Th>
-                                <Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>24h</Text>
                                 </Th>
-                                <Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>7d</Text>
                                 </Th>
-                                <Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {
+                                [
+                                    { one_hour: "percentageChange_1hr", twenty_four_hour: "percentageChange_24hr", seven_day: "percentageChange_7d", fourteen_day: "percentageChange_14d", thirty_day: "percentageChange_30d", one_year: "percentageChange_1yr" },
+
+                                ].map((hist, index) => (
+                                    <Tr key={index} >
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
+                                            <Text color={coinAnalyticsData[hist.one_hour] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_hour]?.toFixed(2)}%</Text>
+                                        </Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
+                                            <Text color={coinAnalyticsData[hist.twenty_four_hour] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.twenty_four_hour]?.toFixed(2)}%</Text>
+                                        </Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
+                                            <Text color={coinAnalyticsData[hist.seven_day] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.seven_day]?.toFixed(2)}%</Text>
+                                        </Td>
+                                    </Tr>
+                                ))
+                            }
+                        </Tbody>
+                    </Table>
+                    <Table size='sm'>
+                        <Thead background={"rgba(70, 130, 180, 0.10)"}>
+                            <Tr>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>14d</Text>
                                 </Th>
-                                <Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>30d</Text>
                                 </Th>
-                                <Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}>
                                     <Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value"}>1y</Text>
                                 </Th>
                             </Tr>
@@ -37,23 +63,14 @@ const IntervalWiseTableData = ({ coinAnalyticsData }) => {
 
                                 ].map((hist, index) => (
                                     <Tr key={index}>
-                                        <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={coinAnalyticsData[hist.one_hour] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_hour]?.toFixed(2)}%</Text>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
+                                            <Text color={coinAnalyticsData[hist.fourteen_day] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.fourteen_day]?.toFixed(2)}%</Text>
                                         </Td>
-                                        <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={coinAnalyticsData[hist.twenty_four_hour] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.twenty_four_hour]?.toFixed(2)}%</Text>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
+                                            <Text color={coinAnalyticsData[hist.thirty_day] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.thirty_day]?.toFixed(2)}%</Text>
                                         </Td>
-                                        <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={coinAnalyticsData[hist.seven_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.seven_day]?.toFixed(2)}%</Text>
-                                        </Td>
-                                        <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={coinAnalyticsData[hist.fourteen_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.fourteen_day]?.toFixed(2)}%</Text>
-                                        </Td>
-                                        <Td borderRight={"1px solid rgba(70, 130, 180, 0.10)"}>
-                                            <Text color={coinAnalyticsData[hist.thirty_day] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.thirty_day]?.toFixed(2)}%</Text>
-                                        </Td>
-                                        <Td>
-                                            <Text color={coinAnalyticsData[hist.one_year] < 0 ? "#FF0000" : "#245F00"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_year]?.toFixed(2)}%</Text>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} >
+                                            <Text color={coinAnalyticsData[hist.one_year] < 0 ? "#FF0000" : "#62cd21"} colorMode={colorMode} variant={"converter_low_high"}>{coinAnalyticsData[hist.one_year]?.toFixed(2)}%</Text>
                                         </Td>
                                     </Tr>
                                 ))
