@@ -16,6 +16,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     const [currencysearchTerm, setCurrencySearchTerm] = useState('');
     const allowedCurrenciesData = useSelector((state) => state?.coinData?.AllowedCurrenciesForConversionData);
     const coinsData = useSelector((state) => state?.coinData?.CoinRankingsTableData);
+    const searchListData = useSelector((state) => state.appData.searchListForConverterCoin);
 
     const CONVERTER_INPUT_VERSION = 2;
     const { colorMode } = useColorMode();
@@ -49,17 +50,25 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     }, [coinsData]);
 
     const settingUpCoinData = () => {
-        const coinList = coinsData?.data?.data;
-        if (coinList?.length > 0) {
-            setCoinList(coinList);
-            const foundCoin = coinList.some(coin => coin.slug === coinDetails?.slug);
+        const coinList_ = coinsData?.data?.data;
+        if (coinList_?.length > 0) {
+            setCoinList(coinList_);
+            const foundCoin = coinList_.some(coin => coin.slug === coinDetails?.slug);
             if (foundCoin) {
                 setCoinSelected(coinDetails?.ticker);
             }
         }
     };
-    // const searchListData = useSelector((state) => state.appData.searchListForConverterCoin);
-    // console.log("🤦‍♀️🤷‍♂️🤔 ~ CoinConverterRightBlock ~ searchListData:", searchListData);
+
+    useEffect(() => {
+        if (searchListData?.data) {
+            const coinList_ = searchListData?.data?.data?.data;
+            const filteredCoinList = coinList_.filter(c => c.type === "coin");
+            setCoinList(filteredCoinList);
+        } else {
+            // settingUpCoinData();
+        }
+    }, [searchListData]);
 
     const settingUpCurrencyData = () => {
         const currencyObject = allowedCurrenciesData?.data?.currencies;
