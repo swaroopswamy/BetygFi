@@ -20,7 +20,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     useEffect(() => {
-        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h" }));
+        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h", currency: toCurrency?.toUpperCase() }));
     }, [coinDetails?.slug]);
 
     const getCoinListDataHandler = () => {
@@ -274,12 +274,12 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                             bgColor={getBgColorForStatistics(index, colorMode)}
                                         >
                                             <Box mb={"0.8rem"}>
-                                                <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item.title}</Text>
+                                                <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item?.title || 'N/A'}</Text>
                                             </Box>
                                             <Box>
                                                 <Text colorMode={colorMode} variant={"converter_low_high_value"}>
                                                     {
-                                                        item?.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails[item?.amount])}` : "No info available"
+                                                        item?.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails?.[item?.amount])}` : "No info available"
                                                     }
 
                                                 </Text>
@@ -296,7 +296,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                                         :
                                                         <>
                                                             {
-                                                                item.increaseDecreaseBy && coinDetails[item.increaseDecreaseBy] &&
+                                                                item.increaseDecreaseBy && coinDetails?.[item.increaseDecreaseBy] &&
                                                                 <Box display={"flex"} gap={"0.5rem"}>
                                                                     <Box display={"flex"} textAlign={"end"} justifyContent={"end"} alignItems={"end"}>
                                                                         <Text colorMode={colorMode} variant={"converter_price_inc_dec"} type={coinDetails[item.increaseDecreaseBy] > 0 ? "increase" : "decrease"}>

@@ -32,14 +32,14 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                         <Table size={{ base: "xs", md: 'md' }}>
                             <Thead>
                                 <Tr>
-                                    <Th p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Date</Text></Th>
-                                    <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Day Of The Week</Text></Th>
-                                    <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>1 {coinDetails?.ticker} to {toCurrency}</Text></Th>
+                                    <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }} p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Date</Text></Th>
+                                    <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Day Of The Week</Text></Th>
+                                    <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>1 {coinDetails?.ticker} to {toCurrency}</Text></Th>
                                     {
                                         isMd &&
                                         <>
-                                            <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>24hr Changes</Text></Th>
-                                            <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Change %</Text></Th>
+                                            <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>24hr Changes</Text></Th>
+                                            <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>Change %</Text></Th>
                                         </>
                                     }
                                 </Tr>
@@ -48,16 +48,16 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                                 {
                                     weeklyPriceHistory?.length > 0 && weeklyPriceHistory.map((hist, index) => (
                                         <Tr key={index}>
-                                            <Td p={{ base: "12px 0px 14px 9px" }}>
+                                            <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} p={{ base: "12px 0px 14px 9px" }}>
                                                 <Text colorMode={colorMode} variant={"converter_low_high_table"}>{format(parseISO(hist.date), "dd MMM, yyyy")}</Text>
                                             </Td>
-                                            <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.dayOfWeek}</Text></Td>
-                                            <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}> {getCurrencyDetails(toCurrency, 'symbol')} {hist.price}</Text></Td>
+                                            <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.dayOfWeek}</Text></Td>
+                                            <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"}> {getCurrencyDetails(toCurrency, 'symbol')} {hist.price}</Text></Td>
                                             {
                                                 isMd &&
                                                 <>
-                                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr < 0 ? "-" : ""}{getCurrencyDetails(toCurrency, 'symbol')} {Math.abs(hist.priceChange_24hr)}</Text></Td>
-                                                    <Td><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#62cd21"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
+                                                    <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr < 0 ? "-" : ""}{getCurrencyDetails(toCurrency, 'symbol')} {Math.abs(hist.priceChange_24hr)}</Text></Td>
+                                                    <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#62cd21"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
                                                 </>
                                             }
                                         </Tr>

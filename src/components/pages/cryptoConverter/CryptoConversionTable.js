@@ -32,13 +32,13 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                     {
                         type == "coin-currency" ?
                             <Tr>
-                                <Th w={"50%"} p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{coinDetails?.ticker}</Text></Th>
-                                <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{toCurrency?.toUpperCase()}</Text></Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }} w={"50%"} p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{coinDetails?.ticker}</Text></Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{toCurrency?.toUpperCase()}</Text></Th>
                             </Tr>
                             :
                             <Tr>
-                                <Th w={"35%"} p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{toCurrency?.toUpperCase()}</Text></Th>
-                                <Th><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{coinDetails?.ticker}</Text></Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }} w={"35%"} p={{ base: "8px 0px 8px 6px" }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{toCurrency?.toUpperCase()}</Text></Th>
+                                <Th _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "rgba(70, 130, 180, 0.10)", }}><Text colorMode={colorMode} variant={"converter_betygfi_coin_details_value_heading"}>{coinDetails?.ticker}</Text></Th>
                             </Tr>
                     }
                 </Thead>
@@ -48,8 +48,8 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                             {
                                 conversionList.coinToCurrencyTable.map((hist, index) => (
                                     <Tr key={index}>
-                                        <Td p={{ base: "12px 0px 14px 9px" }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.key} {coinDetails?.ticker}</Text></Td>
-                                        <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{Number(hist.value)} {toCurrency?.toUpperCase()}</Text></Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} p={{ base: "12px 0px 14px 9px" }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{hist.key} {coinDetails?.ticker}</Text></Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{Number(hist.value)} {toCurrency?.toUpperCase()}</Text></Td>
                                     </Tr>
                                 ))
                             }
@@ -59,8 +59,8 @@ const CryptoConversionTable = ({ coinDetails, toCurrency, currentPrice, coinAnal
                             {
                                 conversionList.currencyToCoinTable.map((hist, index) => (
                                     <Tr key={index}>
-                                        <Td p={{ base: "12px 0px 14px 9px" }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{Number(hist.key)} {toCurrency?.toUpperCase()}</Text></Td>
-                                        <Td><Text colorMode={colorMode} variant={"converter_low_high_table"}>{convertExpToNumber(Number(hist.value))} {coinDetails?.ticker}</Text></Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }} p={{ base: "12px 0px 14px 9px" }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{Number(hist.key)} {toCurrency?.toUpperCase()}</Text></Td>
+                                        <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text colorMode={colorMode} variant={"converter_low_high_table"}>{convertExpToNumber(Number(hist.value))} {coinDetails?.ticker}</Text></Td>
                                     </Tr>
                                 ))
                             }

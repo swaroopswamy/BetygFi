@@ -358,7 +358,7 @@ export const getETFNewsData = async (payload, rejectWithValue) => {
 
 export const getConversionCoinChartGraphData = async (payload, rejectWithValue) => {
     try {
-        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-chart?id=${payload.coinSlug}&filter=${payload.filter}&interval=${payload.interval == "Max" ? "max" : payload.interval}`;
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/price-conversion-chart?id=${payload.coinSlug}&filter=${payload.filter}&interval=${payload.interval == "Max" ? "max" : payload.interval}&currency=${payload.currency?.toUpperCase()}`;
         const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
         return data;
     } catch (err) {

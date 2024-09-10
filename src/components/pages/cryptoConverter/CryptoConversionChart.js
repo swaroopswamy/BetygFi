@@ -20,7 +20,7 @@ import 'react-date-range/dist/theme/default.css'; // Theme css file
 import { useDispatch, useSelector } from 'react-redux';
 import PeriodSelection from "./PeriodSelection";
 
-const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) => {
+const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, toCurrency }) => {
     const router = useRouter();
     // const [selectedDates, setSelectedDates] = useState([new Date(), new Date()]);
     const [isMd] = useMediaQuery("(min-width: 768px)");
@@ -160,7 +160,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) 
     }, []);
 
     useEffect(() => {
-        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: priceMCap === "Price" ? "price" : "marketCap", interval: period }));
+        dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: priceMCap === "Price" ? "price" : "marketCap", interval: period, currency: toCurrency?.toUpperCase() }));
     }, [priceMCap, period]);
 
     useEffect(() => {
@@ -202,7 +202,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) 
                 if (chartFilter === "icon-line-chart") {
                     const mappedXConversionChartData = conversionChartGraphData.map((icm) => formatDate(icm?.timestamp));
 
-                    const mappedYConversionChartData = conversionChartGraphData.map(icm => {
+                    const mappedYConversionChartData = conversionChartGraphData?.filter(cg => cg?.marketCap !== null && cg?.close !== null)?.map(icm => {
                         if (priceMCap === "Price") {
                             icm = +icm?.close?.toFixed(2);
                         } else {
@@ -217,7 +217,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) 
 
                     const xaxisLine = {
                         categories: mappedXConversionChartData,
-                        tickAmount: isMd ? 10 : 6,
+                        tickAmount: isMd ? 10 : 4,
                         labels: {
                             style: {
                                 colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -239,16 +239,15 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) 
                             },
                         },
                     };
-
                     setChartOptions({ ...chartOptions, xaxis: xaxisLine, yaxis: yaxisLine });
                     setChartSeries([{ name: `${coinDetails?.name}`, data: mappedYConversionChartData }]);
                 } else {
                     const mappedCandleStickConversionChartData = conversionChartGraphData.map(icm => {
                         if (priceMCap === "Price") {
-                            const open = +icm.open.toFixed(2);
-                            const high = +icm.high.toFixed(2);
-                            const low = +icm.low.toFixed(2);
-                            const close = +icm.close.toFixed(2);
+                            const open = +icm?.open?.toFixed(2);
+                            const high = +icm?.high?.toFixed(2);
+                            const low = +icm?.low?.toFixed(2);
+                            const close = +icm?.close?.toFixed(2);
                             const list = [open, high, low, close];
                             return {
                                 x: formatDate(icm.timestamp),
@@ -258,7 +257,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable }) 
                     });
 
                     const xaxisCandleStick = {
-                        tickAmount: isMd ? 10 : 6,
+                        tickAmount: isMd ? 10 : 4,
                         type: 'category',
                         labels: {
                             style: {

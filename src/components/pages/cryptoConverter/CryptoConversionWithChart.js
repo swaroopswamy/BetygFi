@@ -32,6 +32,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
     const isChartAvailable = (isAvailable) => {
         setIsChartAvailableToRender(isAvailable);
     };
+
     return (
         <Box bg={useColorModeValue("#FFFFFF", "#191919")} p={{ base: "1.2rem 0rem", md: "1.5rem 1.5rem" }} layerStyle={"flexColumn"} gap={"1.2rem"}>
             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"} justifyContent={"start"} alignItems={"center"}>
@@ -69,6 +70,7 @@ const CryptoConversionWithChart = ({ coinDetails, coinAnalyticsData, toCurrency,
                 <CryptoConversionChart
                     coinDetails={coinDetails}
                     ToCaptureRef={ToCaptureRef}
+                    toCurrency={toCurrency}
                     isChartAvailable={isChartAvailable}
                 />
             </Box>
