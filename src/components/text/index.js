@@ -590,8 +590,17 @@ const Text = defineStyleConfig({
             lineHeight: 'normal',
             letterSpacing: '0.028px'
         }),
-        converter_low_high_value: ({ colorMode, type }) => ({
+        converter_low_high_value_tile: ({ colorMode, type }) => ({
             color: type === "score" ? (colorMode === "light" ? "#191919" : "#FFFFFF") : (colorMode === "light" ? "#191919" : "#191919"),
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            lineHeight: 'normal',
+            letterSpacing: '0.028px'
+        }),
+        converter_low_high_value: ({ colorMode, type }) => ({
+            color: type === "score" ? (colorMode === "light" ? "#191919" : "#FFFFFF") : (colorMode === "light" ? "#191919" : "#FFFFFF"),
             fontFamily: 'Inter',
             fontSize: '14px',
             fontStyle: 'normal',

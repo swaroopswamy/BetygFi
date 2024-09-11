@@ -278,7 +278,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                                 <Text colorMode={colorMode} variant={"converter_left_box_title"}>{item?.title || 'N/A'}</Text>
                                             </Box>
                                             <Box>
-                                                <Text colorMode={colorMode} variant={"converter_low_high_value"}>
+                                                <Text colorMode={colorMode} variant={"converter_low_high_value_tile"}>
                                                     {
                                                         item?.amount ? `$ ${convertToInternationalCurrencySystem(coinDetails?.[item?.amount])}` : "No info available"
                                                     }
