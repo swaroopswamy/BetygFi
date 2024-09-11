@@ -1,0 +1,35 @@
+td,
+th {
+
+    /* box-sizing: border-box; */
+}
+
+td {
+    background: white;
+}
+
+th {
+    background: rgb(222, 221, 221);
+}
+
+.table-container {
+    position: relative;
+    overflow: scroll;
+}
+
+tr> :first-child {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+}
+
+tr> :nth-child(2) {
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+}
+
+.SmallColumn {
+    width: 10px !important;
+    padding: 12px 10px 12px 15px !important;
+}

@@ -19,6 +19,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     const router = useRouter();
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+
     useEffect(() => {
         dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h", currency: toCurrency?.toUpperCase() }));
     }, [coinDetails?.slug]);
