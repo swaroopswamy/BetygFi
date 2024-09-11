@@ -3,7 +3,7 @@ import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Progress, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
-import { convertToInternationalCurrencySystem, renderSVG } from "@util/utility";
+import { convertToInternationalCurrencySystem, getCurrencyDetails, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -39,8 +39,8 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     }, []);
 
     const getHighLowProgressValue = () => {
-        const lowPrice = coinDetails?.price_low;
-        const highPrice = coinDetails?.price_high;
+        const lowPrice = coinAnalyticsData?.price_low;
+        const highPrice = coinAnalyticsData?.price_high;
         return (100 - (((highPrice - lowPrice) / highPrice) * 100));
     };
 
@@ -218,7 +218,8 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                         Low:
                                     </Text>&nbsp;
                                     <Text colorMode={colorMode} variant={"converter_low_high_value"}>
-                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price_low)}`}
+
+                                        {`${getCurrencyDetails(toCurrency, 'symbol')}${coinAnalyticsData?.price_low?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}`}
                                     </Text>
                                 </Box>
 
@@ -227,7 +228,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                         High:
                                     </Text>&nbsp;
                                     <Text colorMode={colorMode} variant={"converter_low_high_value"}>
-                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price_high)}`}
+                                        {`${getCurrencyDetails(toCurrency, 'symbol')}${coinAnalyticsData?.price_high?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}`}
                                     </Text>
                                 </Box>
                             </Box>}
