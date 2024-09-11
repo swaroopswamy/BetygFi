@@ -1,3 +1,4 @@
+import { getAllAllowedCurrenciesFetched } from "@services/coinService";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { BASE_URL } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
@@ -60,15 +61,36 @@ const queryMoreCoins = async (model) => {
     return model.list;
 };
 
-export default async function sitemap() {
+const getCurrencies = async () => await getAllAllowedCurrenciesFetched();
+
+export async function generateSitemaps() {
+    const currencyData = await getCurrencies();
+    if (currencyData?.currencies) {
+        const currencyList = Object.keys(currencyData?.currencies);
+        const siteMapReq = [];
+        for (const [index] of currencyList.entries()) {
+            siteMapReq.push({ id: index + 1 });
+        }
+        return siteMapReq;
+    }
+}
+export default async function sitemap({ id }) {
     let model = {};
+    let sitemapList = [];
     model = await getCoinList(model, 1);
     const coinList = await queryMoreCoins(model);
-
-    return coinList.map((coin) => ({
-        url: `${BASE_URL}/coin/${coin?.slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'hourly',
-        priority: 1,
-    }));
+    const currencyData = await getCurrencies();
+    if (currencyData?.currencies) {
+        const currencyList = Object.keys(currencyData?.currencies);
+        for (let coin of coinList) {
+            const sitemapObject = {
+                url: `${BASE_URL}/converter/${coin?.slug}/${currencyList[id]?.toLowerCase()}`,
+                lastModified: new Date(),
+                changeFrequency: 'hourly',
+                priority: 1,
+            };
+            sitemapList.push(sitemapObject);
+        }
+    }
+    return sitemapList;
 }
