@@ -69,12 +69,13 @@ export const getAllAllowedCurrenciesFetched = async () => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/allowed-currencies`;
         const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
-        if (checkIfCacheAvailable(url)) {
-            return checkIfCacheAvailable(url);
-        } else {
-            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
-            return cacheHandler(url, data, false, 4);
-        }
+        // if (checkIfCacheAvailable(url)) {
+        //     return checkIfCacheAvailable(url);
+        // } else {
+        const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+        // return cacheHandler(url, data, false, 4);
+        return data;
+        // }
     } catch (error) {
         return error;
     }
