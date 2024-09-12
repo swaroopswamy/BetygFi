@@ -8,9 +8,11 @@ export async function GET(req) {
         cache: 'no-store'
     };
     const res = await fetch(URL, fetchConfiguration);
-    const data = await res.json();
-    return Response.json(data);
-    // } catch (error) {
-    //   return Response.json({ error });
-    // }
+    if (res.ok) {
+        const data = await res.json();
+        return Response.json(data);
+    } else {
+        const errorData = await res.json();
+        return new Response(JSON.stringify({ ...errorData }), { status: res.status });
+    }
 }

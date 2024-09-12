@@ -1,11 +1,11 @@
-import { getAllAllowedCurrenciesFetched } from "@services/coinService";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { BASE_URL } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
-
+const currencyList = ["AUD", "CAD", "CNY", "EUR", "GBP", "INR", "JPY", "KRW", "RUB", "USD"];
 let API_SERVICE_URL = null;
+
 const getCoinRankingsTableDataSitemapFetch = async (payload) => {
     try {
         if (API_SERVICE_URL == null) {
@@ -61,36 +61,26 @@ const queryMoreCoins = async (model) => {
     return model.list;
 };
 
-const getCurrencies = async () => await getAllAllowedCurrenciesFetched();
-
 export async function generateSitemaps() {
-    const currencyData = await getCurrencies();
-    if (currencyData?.currencies) {
-        const currencyList = Object.keys(currencyData?.currencies);
-        const siteMapReq = [];
-        for (const [index] of currencyList.entries()) {
-            siteMapReq.push({ id: index + 1 });
-        }
-        return siteMapReq;
-    }
+    const siteMapReq = [];
+    currencyList.forEach((currency, index) => {
+        siteMapReq.push({ id: index + 1 });
+    });
+    return siteMapReq;
 }
 export default async function sitemap({ id }) {
     let model = {};
     let sitemapList = [];
     model = await getCoinList(model, 1);
     const coinList = await queryMoreCoins(model);
-    const currencyData = await getCurrencies();
-    if (currencyData?.currencies) {
-        const currencyList = Object.keys(currencyData?.currencies);
-        for (let coin of coinList) {
-            const sitemapObject = {
-                url: `${BASE_URL}/converter/${coin?.slug}/${currencyList[id]?.toLowerCase()}`,
-                lastModified: new Date(),
-                changeFrequency: 'hourly',
-                priority: 1,
-            };
-            sitemapList.push(sitemapObject);
-        }
+    for (let coin of coinList) {
+        const sitemapObject = {
+            url: `${BASE_URL}/converter/${coin?.slug}/${currencyList?.[id]?.toLowerCase()}`,
+            lastModified: new Date(),
+            changeFrequency: 'hourly',
+            priority: 1,
+        };
+        sitemapList.push(sitemapObject);
     }
     return sitemapList;
 }
