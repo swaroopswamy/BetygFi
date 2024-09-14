@@ -1,4 +1,3 @@
-import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { BASE_URL } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
 
@@ -11,15 +10,8 @@ const getDefiRankingsTableDataSitemapFetch = async (payload) => {
             const { config } = await fetchInstance({ url: process.env.ADMINWEBURL, method: 'GET' });
             API_SERVICE_URL = config.API_SERVICE_URL;
         }
-
         const finalUrl = API_SERVICE_URL + `/protocols?sitemap=true&page=${payload.page}`;
-
-        if (checkIfCacheAvailable(finalUrl)) {
-            return checkIfCacheAvailable(finalUrl);
-        } else {
-            const data = await fetchInstance({ url: finalUrl, method: 'POST', payload });
-            return cacheHandler(finalUrl, data, false, 24);
-        }
+        return await fetchInstance({ url: finalUrl, method: 'POST', payload });
     } catch (error) {
         return error;
     }
