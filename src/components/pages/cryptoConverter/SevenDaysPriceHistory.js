@@ -56,7 +56,7 @@ const SevenDaysPriceHistory = ({ coinAnalyticsData, coinDetails, toCurrency }) =
                                             <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text w={"max-content"} colorMode={colorMode} variant={"converter_low_high_table"}>{hist.dayOfWeek}</Text></Td>
                                             <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text w={"max-content"} colorMode={colorMode} variant={"converter_low_high_table"}> {getCurrencyDetails(toCurrency, 'symbol')} {hist.price}</Text></Td>
                                             <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text w={"max-content"} colorMode={colorMode} variant={"converter_low_high_table"}>{hist.priceChange_24hr < 0 ? "-" : ""}{getCurrencyDetails(toCurrency, 'symbol')} {Math.abs(hist.priceChange_24hr)}</Text></Td>
-                                            <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text w={"max-content"} colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#62cd21"}>{hist.percentageChange.toFixed(2)}%</Text></Td>
+                                            <Td _light={{ bgColor: "#F5F5F7", }} _dark={{ bgColor: "#191919", }}><Text w={"max-content"} colorMode={colorMode} variant={"converter_low_high_table"} color={hist.percentageChange < 0 ? "#FF0000" : "#62cd21"}>{hist?.percentageChange?.toFixed(2)}%</Text></Td>
                                         </Tr>
                                     ))
                                 }

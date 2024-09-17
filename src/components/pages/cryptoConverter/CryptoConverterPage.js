@@ -106,7 +106,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "26%" }}>
+                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "33%" }}>
 
                         <Box width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                             <CustomAvatar
@@ -133,7 +133,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_main_price"}>
-                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price)}`}
+                                        {`${getCurrencyDetails(toCurrency, 'symbol')}${currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}`}
                                     </Text>
                                 </Box>
 
@@ -151,7 +151,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_price_info"} color={colorMode === "dark" ? "#FFFFFF" : "#585858"}>
-                                        {coinDetails?.name} Price (USD)
+                                        {coinDetails?.name} Price ({toCurrency?.toUpperCase()})
                                     </Text>
                                 </Box>
 

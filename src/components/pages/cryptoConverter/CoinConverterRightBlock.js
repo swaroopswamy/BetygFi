@@ -117,7 +117,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
         if (type === "coin") {
             return (
                 <Box display={"flex"} justifyContent={"center"} alignItems={"center"} gap={"0.5rem"}>
-                    <Image src={item.logoUrl} alt={"coin_logo"} width={24} height={24} />
+                    <Image src={item.logoUrl || item.logo} alt={"coin_logo"} width={24} height={24} />
                     <Text variant={"converter_menu_item"}>{item.name} </Text>
                 </Box>
             );
@@ -221,7 +221,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
     };
 
     return (
-        <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "74%" }}>
+        <Box borderRadius={"3px"} gap={"1.25rem"} flexDir={"column"} display={"flex"} width={{ base: "100%", md: "67%" }}>
             <Box p={{ base: "0rem", md: "1.25rem" }} display={"flex"} gap={"1rem"} bg={useColorModeValue("#FFFFFF", "#191919")} flexDir={"column"}>
                 <Box display={"flex"} gap={"0.5rem"} flexDir={"column"}>
 
