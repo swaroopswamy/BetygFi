@@ -5,7 +5,7 @@ import CustomAvatar from "@components/avatar";
 import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
 import { convertToInternationalCurrencySystem, getCurrencyDetails, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import CoinConverterRightBlock from "./CoinConverterRightBlock";
 import CoinData from "./CoinData";
@@ -19,10 +19,18 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     const router = useRouter();
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const progressBarRef = useRef(null);
 
     useEffect(() => {
         dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h", currency: toCurrency?.toUpperCase() }));
     }, [coinDetails?.slug]);
+
+    useEffect(() => {
+        const progressBar = progressBarRef?.current;
+        if (progressBar?.children?.[0]) {
+            progressBar.children[0].style.background = '#245F00';
+        }
+    }, []);
 
     const getCoinListDataHandler = () => {
         const payload = {
@@ -211,8 +219,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                 </Menu> */}
                             </Box>
 
-
-                            <Progress borderRadius={"60px"} value={getHighLowProgressValue()} />
+                            <Progress borderRadius={"60px"} value={getHighLowProgressValue()} ref={progressBarRef} />
                             {isMd && <Box display={"flex"} justifyContent={"space-between"}>
                                 <Box display={"flex"}>
                                     <Text colorMode={colorMode} variant={"converter_low_high"}>

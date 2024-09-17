@@ -38,13 +38,6 @@ export function Providers({ children }) {
             Text,
             Input: inputTheme,
             Menu: menuTheme,
-            Progress: {
-                baseStyle: {
-                    filledTrack: {
-                        bg: '#245F00'
-                    }
-                }
-            },
         },
         semanticTokens: {
             colors: {
