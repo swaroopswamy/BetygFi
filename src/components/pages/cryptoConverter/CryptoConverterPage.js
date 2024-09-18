@@ -28,8 +28,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     useEffect(() => {
         const progressBar = progressBarRef?.current;
         if (progressBar?.children?.[0]) {
-            progressBar.children[0].style.background = 'red';
-            // progressBar.children[0].style.background = '#245F00';
+            progressBar.children[0].style.background = '#245F00';
         }
     }, []);
 
