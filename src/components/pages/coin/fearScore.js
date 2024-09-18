@@ -61,7 +61,7 @@ const FearMeter = ({ score }) => {
                 series={series}
                 type="radialBar"
                 width={"auto"}
-                height={110}
+                height={90}
             />
         </Box>
     );

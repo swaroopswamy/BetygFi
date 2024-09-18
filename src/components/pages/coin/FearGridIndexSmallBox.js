@@ -55,10 +55,10 @@ const FearGridIndexSmallBox = () => {
                 <Box>
                     {FearAndGreedData?.isSuccess && (
                         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}
-                            w="110px"
+                            w="140px"
                             h="110px"
-                            top={"-17px"}
-                            left={"150px"}
+                            top={"4px"}
+                            left={"159px"}
                             position="absolute"
                         >
                             <FearMeter score={FearAndGreedData?.data?.currentDay_Score[0]?.value} />
