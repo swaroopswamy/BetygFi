@@ -57,8 +57,8 @@ const FearGridIndexSmallBox = () => {
                         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}
                             w="140px"
                             h="110px"
-                            top={"4px"}
-                            left={"159px"}
+                            top={"1px"}
+                            left={"154px"}
                             position="absolute"
                         >
                             <FearMeter score={FearAndGreedData?.data?.currentDay_Score[0]?.value} />
