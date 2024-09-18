@@ -55,8 +55,8 @@ const FearGridIndexSmallBox = () => {
                 <Box>
                     {FearAndGreedData?.isSuccess && (
                         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}
-                            w="140px"
-                            h="140px"
+                            w="110px"
+                            h="110px"
                             top={"-17px"}
                             left={"150px"}
                             position="absolute"
