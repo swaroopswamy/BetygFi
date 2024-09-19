@@ -170,6 +170,21 @@ export const getETFListDataFetched = async (type) => {
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
+        } else {
+            const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
+            return cacheHandler(finalUrl, data, false, 4);
+        }
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getCoinRankingsTableDataFetchedSitemap = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
         // const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
         const finalUrl = url;
         if (checkIfCacheAvailable(finalUrl)) {
