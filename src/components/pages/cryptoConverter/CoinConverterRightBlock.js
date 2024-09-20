@@ -244,7 +244,7 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                                 //     {renderSVG("right-arrow", colorMode)}
                                 // </Box>
                             }
-                            {renderInput(currencyValue, toCurrency?.toUpperCase(), "currency")}
+                            {renderInput(toCurrency?.toUpperCase() == "INR" ? Number(currencyValue)?.toFixed(2) : currencyValue, toCurrency?.toUpperCase(), "currency")}
                         </Box>
                         {
                             checkIfToShowOneToOneConversion() &&
