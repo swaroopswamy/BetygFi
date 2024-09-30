@@ -174,8 +174,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
         );
     };
 
-    const desktopPlaceholder = "Search by Coin, DeFi, Wallet and more";
-    const mobilePlaceholder = "Search by Coin, DeFi, Wallet and more";
+    const desktopPlaceholder = "Search by Coin, DeFi name, Wallet and more";
+    const mobilePlaceholder = "Search by Coin, DeFi name, Wallet and more";
 
     const renderMDInputGroup = () => {
         return (
@@ -189,7 +189,7 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 height={20}
                                 alt="search_icon"
                                 style={{
-                                    borderRadius:"20px",
+                                    borderRadius: "20px",
                                 }}
                             />
                         </InputLeftElement>
@@ -293,8 +293,8 @@ const SearchBoxV2 = ({ handleSearchInputChange, searchValue, searchListData, sea
                                 value={searchValue}
                                 fontSize={"12px"}
                                 onClick={() => { handleSearchInputClick(); }}
-                                onChange={(e) => { 
-                                    handleSearchInputChange(e.target.value); 
+                                onChange={(e) => {
+                                    handleSearchInputChange(e.target.value);
                                     if (e.target.value.length === 0) {
                                         clearSearchSuggestionToStorage();
                                     }

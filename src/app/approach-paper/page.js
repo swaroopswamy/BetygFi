@@ -220,7 +220,7 @@ const ApproachPaperPage = () => {
                         </Text>
                         <Text variant={"h4"} lineHeight={"28px"} mb="30px">
                             The IMF-FSB Synthesis Paper therefore emphasizes the need for a comprehensive regulatory response and
-                            seeks global co ordination to enable the same. It highlights concerns such as undermining monetary policy,
+                            seeks global co-ordination to enable the same. It highlights concerns such as undermining monetary policy,
                             fiscal risks, and the potential for systemic threats. The document emphasizes the need for a comprehensive
                             regulatory response, advocating for strengthened monetary policy frameworks, clear tax treatments, and
                             robust supervisory oversight.<sup id="footnote-2" onClick={() => scrollToElementById('footnote-bottom-2')} style={{ cursor: "pointer" }}>[2]</sup>
@@ -313,7 +313,7 @@ const ApproachPaperPage = () => {
                     <Box w={{ sm: "100%", md: "70%" }}>
                         <Text variant={"h4"} lineHeight={"28px"} mb="30px">
                             Our machine learning model constantly revisits its output and score though a learning loop. It is our
-                            endeavour to build the most accurate, efficient and democratic model over time. As part of our endeavour to
+                            endeavors to build the most accurate, efficient and democratic model over time. As part of our endeavors to
                             ensure that our model is democratic, it is designed to constantly learn from the community
                         </Text>
                         <Text variant={"h4"} lineHeight={"28px"} mb="30px">
