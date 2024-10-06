@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { Box, Text, useColorModeValue, useToast, useColorMode } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { Box, Text, useColorMode, useColorModeValue, useToast } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
-import dynamic from "next/dynamic";
-import { copyToClipboard } from "@util/utility";
-import { useSelector } from "react-redux";
 import { fetchCoinDevelopmentData, fetchCoinPriceData } from "@redux/coin_data/dataSlice";
+import { copyToClipboard_ } from "@util/utility";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const CustomToast = dynamic(() => import("@components/toast"), { ssr: false });
 const CoinInfo = dynamic(() => import("@components/pages/coin/coinInfo"), { ssr: false });
@@ -36,10 +35,6 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
         };
         dispatch(fetchCoinDevelopmentData(payload));
     };
-
-    const CoinPriceData = useSelector(
-        (state) => state?.coinData?.CoinPriceData
-    );
 
     useEffect(() => {
         Promise.all([
@@ -110,7 +105,7 @@ export default function CoinDetailPage({ coinSlug, coinDetails }) {
                         <Box
                             cursor={"pointer"}
                             onClick={() => {
-                                copyToClipboard(CoinPriceData?.data?.name);
+                                copyToClipboard_(window.location.href);
                                 toast({
                                     position: "bottom",
                                     render: () => (

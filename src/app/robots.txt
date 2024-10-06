@@ -20,3 +20,13 @@ Sitemap: https://platform.betygfi.com/crypto-etfs-data-tracker/sitemap.xml
 Sitemap: https://platform.betygfi.com/coin/sitemap.xml
 Sitemap: https://platform.betygfi.com/protocol/sitemap.xml
 Sitemap: https://platform.betygfi.com/top-wallets/sitemap.xml
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/1
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/2
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/3
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/4
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/5
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/6
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/7
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/8
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/9
+Sitemap: https://platform.betygfi.com/converter/sitemap.xml/10

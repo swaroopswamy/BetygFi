@@ -182,21 +182,20 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
         const conversionChartGraphData = conversionChartData?.data?.data;
         if (conversionChartData?.isSuccess) {
             setNoChartDataAvailable(false);
-            isChartAvailable(false);
+            isChartAvailable && isChartAvailable(false);
             if (conversionChartGraphData) {
                 setNoChartDataAvailable(false);
-                isChartAvailable(false);
+                isChartAvailable && isChartAvailable(false);
                 const formatDate = (date) => {
                     if (period === "24h") {
                         return format(new Date(date), "d MMM yy HH:mm");
                     } else {
-                        return format(new Date(date), "d MMM");
+                        if (chartFilter !== "icon-line-chart") {
+                            return format(new Date(date), "d MMM yy HH:mm");
+                        } else {
+                            return format(new Date(date), "d MMM");
+                        }
                     }
-                    // if (chartFilter === "icon-line-chart") {
-                    //     return format(new Date(date), "d MMM HH:mm");
-                    // } else {
-                    //     return format(new Date(date), "d MMM yy HH:mm a");
-                    // }
                 };
 
                 if (chartFilter === "icon-line-chart") {
@@ -217,7 +216,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
 
                     const xaxisLine = {
                         categories: mappedXConversionChartData,
-                        tickAmount: isMd ? 10 : 4,
+                        tickAmount: isMd ? 8 : 4,
                         labels: {
                             style: {
                                 colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -257,8 +256,8 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                     });
 
                     const xaxisCandleStick = {
-                        tickAmount: isMd ? 10 : 4,
-                        type: 'category',
+                        tickAmount: isMd ? 8 : 4,
+                        // type: 'category',
                         labels: {
                             style: {
                                 colors: colorMode === "light" ? "#757575" : "#A5A5A5",
@@ -287,15 +286,15 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                 }
             } else {
                 setNoChartDataAvailable(true);
-                isChartAvailable(true);
+                isChartAvailable && isChartAvailable(true);
             }
         } else {
             // if (conversionChartGraphData == undefined) {
             setNoChartDataAvailable(true);
-            isChartAvailable(true);
+            isChartAvailable && isChartAvailable(true);
             // }
         }
-    }, [conversionChartData, chartFilter]);
+    }, [conversionChartData, chartFilter, period]);
 
     useEffect(() => {
         const grid = {

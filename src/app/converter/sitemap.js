@@ -3,8 +3,9 @@ import { BASE_URL } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
 
 const LIMIT = 200;
-
+const currencyList = ["AUD", "CAD", "CNY", "EUR", "GBP", "INR", "JPY", "KRW", "RUB", "USD"];
 let API_SERVICE_URL = null;
+
 const getCoinRankingsTableDataSitemapFetch = async (payload) => {
     try {
         if (API_SERVICE_URL == null) {
@@ -60,15 +61,26 @@ const queryMoreCoins = async (model) => {
     return model.list;
 };
 
-export default async function sitemap() {
+export async function generateSitemaps() {
+    const siteMapReq = [];
+    currencyList.forEach((currency, index) => {
+        siteMapReq.push({ id: index + 1 });
+    });
+    return siteMapReq;
+}
+export default async function sitemap({ id }) {
     let model = {};
+    let sitemapList = [];
     model = await getCoinList(model, 1);
     const coinList = await queryMoreCoins(model);
-
-    return coinList.map((coin) => ({
-        url: `${BASE_URL}/coin/${coin?.slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'hourly',
-        priority: 1,
-    }));
+    for (let coin of coinList) {
+        const sitemapObject = {
+            url: `${BASE_URL}/converter/${coin?.slug}/${currencyList?.[id]?.toLowerCase()}`,
+            lastModified: new Date(),
+            changeFrequency: 'hourly',
+            priority: 1,
+        };
+        sitemapList.push(sitemapObject);
+    }
+    return sitemapList;
 }
