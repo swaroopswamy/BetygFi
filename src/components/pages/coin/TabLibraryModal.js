@@ -1,14 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Box, Text, useColorMode, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import LoginPage from "@components/login";
 import { useSession } from "next-auth/react";
 
-const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCustomizeTabModalOpen }) => {
+const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCustomizeTabModalOpen, setCryptoCategorySelected, cryptoCategories }) => {
     const { colorMode } = useColorMode();
     const { data: AuthSession } = useSession();
+    const [/*tabSelected*/, setTabSelected] = useState(0);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     {
         ValidatedUserData?.AnnotationState &&
@@ -16,6 +17,11 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
                 <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
             </Box>;
     }
+
+    const handleTabSelected = (tab) => {
+        setTabSelected(tab);
+        setCryptoCategorySelected(tab);
+    }; 
 
     const {
         isOpen: isLoginModalOpen,
@@ -41,159 +47,37 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
                     <ModalCloseButton borderRadius={"50%"} backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} mt={"10px"} />
                     <ModalBody>
                         <Box className="hidescrollbar" layerStyle={"flexColumn"} overflowY={"auto"} maxHeight={"400px"} mt={"15px"}>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Prediction Markets
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
+                            {cryptoCategories && cryptoCategories.length > 0 ? (
+                                cryptoCategories.map((category, index) => (
+                                    <Box 
+                                    key={index} 
+                                    layerStyle={"flexCenterSpaceBetween"} 
+                                    py={"20px"} 
+                                    cursor={"pointer"}
+                                    _hover={{
+                                        bgColor: colorMode === "light" ? "#F0F0F5" : "#191919",
+                                    }}
+                                    borderRadius={"10px"}
+                                    >
+                                        <Box layerStyle={"flexCenter"}>
+                                            <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
+                                            <Box layerStyle={"flexCenter"} ml={"15px"}>
+                                                <Box m={"5px 0px 0px 5px"} onClick={() => handleTabSelected(category)}>
+                                                    <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
+                                                        {category.text}
+                                                    </Text>
+                                                    <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
+                                                        7  Columns, 3 Filters . 10min ago
+                                                    </Text>
+                                                </Box>
+                                            </Box>
                                         </Box>
+                                        <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
                                     </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Insurance
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Derivatives
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} lineHeight={"22px"} mt={"3px"}>
-                                                Lorem ipsum dolor sit amet consectetur. Fringilla ante nulla euismod risus. Nec nulla pellentesque...
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"1px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Prediction Markets
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Insurance
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Derivatives
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} lineHeight={"22px"} mt={"3px"}>
-                                                Lorem ipsum dolor sit amet consectetur. Fringilla ante nulla euismod risus. Nec nulla pellentesque...
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"1px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Prediction Markets
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Insurance
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
-                            <Box layerStyle={"flexCenterSpaceBetween"} my={"20px"}>
-                                <Box layerStyle={"flexCenter"}>
-                                    <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                    <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                        <Box m={"5px 0px 0px 5px"}>
-                                            <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
-                                                Derivatives
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} lineHeight={"22px"} mt={"3px"}>
-                                                Lorem ipsum dolor sit amet consectetur. Fringilla ante nulla euismod risus. Nec nulla pellentesque...
-                                            </Text>
-                                            <Text variant={"contentHeading4"} fontSize={"12px"} mt={"1px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                7  Columns, 3 Filters . 10min ago
-                                            </Text>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
-                            </Box>
+                                ))
+                            ) : (
+                                <Text>No categories available</Text>
+                            )}
                         </Box>
                         <Box layerStyle={"flexCenterSpaceBetween"} m={"100px 20px 10px 20px"}>
                             <Box position="absolute" bottom="35px" right="25px">

@@ -15,6 +15,7 @@ const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
 const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"), { ssr: false });
 const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
+const TabLibraryModal = dynamic(() => import("@components/pages/coin/TabLibraryModal"), { ssr: false });
 
 const CoinRankingsTable = (
     {
@@ -24,7 +25,7 @@ const CoinRankingsTable = (
         setCryptoCategorySelected,
         cryptoCategories,
         pageChangeHandler,
-        onTabLibraryModalOpen,
+        //onTabLibraryModalOpen,
         onCustomizeTabModalOpen
     }
 ) => {
@@ -34,6 +35,7 @@ const CoinRankingsTable = (
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
     const { data: AuthSession } = useSession();
+    const { isOpen: isTabLibraryModalOpen, onOpen: onTabLibraryModalOpen, onClose: onTabLibraryModalClose } = useDisclosure();
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
@@ -242,6 +244,12 @@ const CoinRankingsTable = (
                 isOpen={isLoginModalOpen}
                 onOpen={onLoginModalOpen}
                 onClose={onLoginModalClose}
+            />
+            <TabLibraryModal
+                isTabLibraryModalOpen={isTabLibraryModalOpen}
+                onTabLibraryModalClose={onTabLibraryModalClose}
+                setCryptoCategorySelected={setCryptoCategorySelected}
+                cryptoCategories={cryptoCategories}
             />
         </React.Fragment>
     );
