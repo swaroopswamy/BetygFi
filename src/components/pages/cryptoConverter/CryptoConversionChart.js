@@ -223,6 +223,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                                 fontSize: "12px",
                                 fontWeight: 300,
                             },
+                            rotate: 0,
                         },
                     };
                     const yaxisLine = {
@@ -264,6 +265,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                                 fontSize: "12px",
                                 fontWeight: 300,
                             },
+                            rotate: 0,
                         },
                     };
 
