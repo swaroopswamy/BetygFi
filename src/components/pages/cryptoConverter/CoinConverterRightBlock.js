@@ -159,11 +159,19 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
             mobileMenuListStyles.position = "absolute";
             mobileMenuListStyles.left = "-8.6rem";
             mobileMenuListStyles.top = "-16.3rem";
+            mobileMenuListStyles.zIndex = 1000;
         } else {
             if (type === "currency") {
                 mobileMenuListStyles.position = "absolute";
                 mobileMenuListStyles.left = "-8.6rem";
-                mobileMenuListStyles.top = "-16.3rem";
+                mobileMenuListStyles.top = "-15rem";
+                mobileMenuListStyles.zIndex = 1000;
+            }
+            if (type === "coin") {
+                mobileMenuListStyles.position = "absolute";
+                mobileMenuListStyles.left = "-8.6rem";
+                mobileMenuListStyles.top = "-15rem";
+                mobileMenuListStyles.zIndex = 1000;
             }
             desktopMenuListStyles.rightIcon = <ChevronDownIcon />;
         }
@@ -184,7 +192,11 @@ const CoinConverterRightBlock = ({ coinDetails, toCurrency, coinAnalyticsData, c
                     />
                     <Box overflowY={"scroll"} maxHeight={"10rem"} >
                         {
-                            list?.length > 0 && list.map(item => <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>{getShowNameConversionMenu(type, item)}</MenuItem>)
+                            list?.length > 0 && list.map(item =>
+                                <MenuItem onClick={() => type === "coin" ? onCoinItemClick(item?.slug) : onCurrencyItemClick(item?.slug)} key={item.slug}>
+                                    {getShowNameConversionMenu(type, item)}
+                                </MenuItem>
+                            )
                         }
                     </Box>
                 </MenuList>

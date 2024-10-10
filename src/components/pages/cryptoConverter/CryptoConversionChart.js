@@ -189,12 +189,11 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                 const formatDate = (date) => {
                     if (period === "24h") {
                         return format(new Date(date), "d MMM yy HH:mm");
+                    }
+                    if (period === "1yr" || period === "Max") { 
+                        return format(new Date(date), "dd MMM yy");
                     } else {
-                        if (chartFilter !== "icon-line-chart") {
-                            return format(new Date(date), "d MMM yy HH:mm");
-                        } else {
-                            return format(new Date(date), "d MMM");
-                        }
+                        return format(new Date(date), "dd MMM");
                     }
                 };
 
@@ -216,13 +215,14 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
 
                     const xaxisLine = {
                         categories: mappedXConversionChartData,
-                        tickAmount: isMd ? 8 : 4,
+                        tickAmount: isMd ? 8 : 3,
                         labels: {
                             style: {
                                 colors: colorMode === "light" ? "#757575" : "#A5A5A5",
                                 fontSize: "12px",
                                 fontWeight: 300,
                             },
+                            rotate: 0,
                         },
                     };
                     const yaxisLine = {
@@ -256,7 +256,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                     });
 
                     const xaxisCandleStick = {
-                        tickAmount: isMd ? 8 : 4,
+                        tickAmount: isMd ? 8 : 3,
                         // type: 'category',
                         labels: {
                             style: {
@@ -264,6 +264,7 @@ const CryptoConversionChart = ({ coinDetails, ToCaptureRef, isChartAvailable, to
                                 fontSize: "12px",
                                 fontWeight: 300,
                             },
+                            rotate: 0,
                         },
                     };
 
