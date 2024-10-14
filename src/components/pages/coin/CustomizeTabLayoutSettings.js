@@ -86,14 +86,14 @@ const CustomizeTabLayoutPanel = () => {
                     </Box>
                     <Box width={"50%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
                         {Object.entries(selectedItems)
-                            .filter(([value]) => value)
-                            .map(([item], index) => (
+                            .filter(([isChecked]) => isChecked)
+                            .map(([itemName], index) => (
                                 <Box key={index} bg={"background.primary"} borderRadius={"4px"} padding={"8px 10px"} layerStyle={"flexSpaceBetween"} mt={"3px"}>
                                     <Box layerStyle={"flexCenter"}>
                                         <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
-                                        <Text variant={"footnoteText"} fontSize={"14px"} lineHeight={"16px"} pl={"25px"}>{item}</Text>
+                                        <Text variant={"footnoteText"} fontSize={"14px"} lineHeight={"16px"} pl={"25px"}>{itemName}</Text>
                                     </Box>
-                                    <CloseButton onClick={() => handleRemoveItem(item)} />
+                                    <CloseButton onClick={() => handleRemoveItem(itemName)} />
                                 </Box>
                             ))}
                     </Box>

@@ -22,11 +22,11 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
     }
 
     const handleContinueClick = () => {
-        setIsSaveTabModalOpen(true); // Open the SaveTabModal
+        setIsSaveTabModalOpen(true); 
     };
 
     const handleSaveTabModalClose = () => {
-        setIsSaveTabModalOpen(false); // Close the SaveTabModal
+        setIsSaveTabModalOpen(false); 
     };
 
     return (

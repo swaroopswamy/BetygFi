@@ -286,6 +286,8 @@ const CoinPage = () => {
                     isTabLibraryModalOpen={isTabLibraryModalOpen}
                     onTabLibraryModalClose={onTabLibraryModalClose}
                     onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                    cryptoCategorySelected={cryptoCategorySelected}
+                    setCryptoCategorySelected={setCryptoCategorySelected}
                 />
                 <CustomizeTabModal
                     isCustomizeTabModalOpen={isCustomizeTabModalOpen}

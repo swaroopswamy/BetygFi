@@ -1,15 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Box, Text, useColorMode, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import LoginPage from "@components/login";
 import { useSession } from "next-auth/react";
+import CustomizeTabModal from "./CustomizeTabModal";
 
-const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCustomizeTabModalOpen, setCryptoCategorySelected, cryptoCategories }) => {
+const TabLibraryModal = ({
+    isTabLibraryModalOpen,
+    onTabLibraryModalClose,
+    //onCustomizeTabModalOpen,
+    setCryptoCategorySelected,
+    cryptoCategories
+}
+) => {
     const { colorMode } = useColorMode();
     const { data: AuthSession } = useSession();
-    const [/*tabSelected*/, setTabSelected] = useState(0);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     {
         ValidatedUserData?.AnnotationState &&
@@ -18,15 +25,16 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
             </Box>;
     }
 
-    const handleTabSelected = (tab) => {
-        setTabSelected(tab);
-        setCryptoCategorySelected(tab);
-    }; 
-
     const {
         isOpen: isLoginModalOpen,
         onOpen: onLoginModalOpen,
         onClose: onLoginModalClose,
+    } = useDisclosure();
+
+    const {
+        isOpen: isCustomizeTabModalOpen,
+        onOpen: onCustomizeTabModalOpen,
+        onClose: onCustomizeTabModalClose,
     } = useDisclosure();
 
     return (
@@ -49,20 +57,24 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
                         <Box className="hidescrollbar" layerStyle={"flexColumn"} overflowY={"auto"} maxHeight={"400px"} mt={"15px"}>
                             {cryptoCategories && cryptoCategories.length > 0 ? (
                                 cryptoCategories.map((category, index) => (
-                                    <Box 
-                                    key={index} 
-                                    layerStyle={"flexCenterSpaceBetween"} 
-                                    py={"20px"} 
-                                    cursor={"pointer"}
-                                    _hover={{
-                                        bgColor: colorMode === "light" ? "#F0F0F5" : "#191919",
-                                    }}
-                                    borderRadius={"10px"}
+                                    <Box
+                                        key={index}
+                                        layerStyle={"flexCenterSpaceBetween"}
+                                        py={"20px"}
+                                        cursor={"pointer"}
+                                        _hover={{
+                                            bgColor: colorMode === "light" ? "#F0F0F5" : "#191919",
+                                        }}
+                                        borderRadius={"10px"}
+                                        onClick={() => {
+                                            setCryptoCategorySelected(category.slug);
+                                            onTabLibraryModalClose();
+                                        }}
                                     >
                                         <Box layerStyle={"flexCenter"}>
                                             <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" "></Image>
                                             <Box layerStyle={"flexCenter"} ml={"15px"}>
-                                                <Box m={"5px 0px 0px 5px"} onClick={() => handleTabSelected(category)}>
+                                                <Box m={"5px 0px 0px 5px"} onClick={() => setCryptoCategorySelected(category.slug)}>
                                                     <Text variant={"contentHeading4"} fontSize={"16px"} lineHeight={"10px"} >
                                                         {category.text}
                                                     </Text>
@@ -81,13 +93,15 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
                         </Box>
                         <Box layerStyle={"flexCenterSpaceBetween"} m={"100px 20px 10px 20px"}>
                             <Box position="absolute" bottom="35px" right="25px">
-                                <Button variant={"blackButton"} width={150} height={35} onClick={() => {
-                                    if (!AuthSession) {
-                                        onLoginModalOpen();
-                                    } else {
-                                        onCustomizeTabModalOpen();
-                                    }
-                                }}>
+                                <Button variant={"blackButton"} width={150} height={35}
+                                    onClick={() => {
+                                        if (!AuthSession) {
+                                            onLoginModalOpen();
+                                        } else {
+                                            onCustomizeTabModalOpen();
+                                            onTabLibraryModalClose();
+                                        }
+                                    }}>
                                     Create New Tab
                                 </Button>
                             </Box>
@@ -99,6 +113,10 @@ const TabLibraryModal = ({ isTabLibraryModalOpen, onTabLibraryModalClose, onCust
                 isOpen={isLoginModalOpen}
                 onOpen={onLoginModalOpen}
                 onClose={onLoginModalClose}
+            />
+            <CustomizeTabModal
+                isCustomizeTabModalOpen={isCustomizeTabModalOpen}
+                onCustomizeTabModalClose={onCustomizeTabModalClose}
             />
         </>
     );
