@@ -14,7 +14,7 @@ import {
     getETFListData,
     getETFNewsData,
     getTabLayoutsData,
-    customizeTabData,
+    //customizeTabData,
     getFearAndGreedData,
     getMarqueeDataAPI,
     getSAPData,
@@ -191,13 +191,13 @@ export const fetchTabLayoutsData = createAsyncThunk(
     }
 );
 
-export const fetchCustomizeTabData = createAsyncThunk(
-    "getCustomizeTabData",
-    async (payload, { rejectWithValue }) => {
-        const response = await customizeTabData(payload, rejectWithValue);
-        return response.data;
-    }
-);
+// export const fetchCustomizeTabData = createAsyncThunk(
+//     "getCustomizeTabData",
+//     async (payload, { rejectWithValue }) => {
+//         const response = await customizeTabData(payload, rejectWithValue);
+//         return response.data;
+//     }
+// );
 
 const CoinDataSlice = createSlice({
     name: "coinData",
@@ -328,12 +328,12 @@ const CoinDataSlice = createSlice({
             isError: false,
             isSuccess: false,
         },
-        TabCustomizeData: {
-            data: null,
-            isLoading: false,
-            isError: false,
-            isSuccess: false,
-        },
+        // TabCustomizeData: {
+        //     data: null,
+        //     isLoading: false,
+        //     isError: false,
+        //     isSuccess: false,
+        // },
         blockchainType: [],
         scoreSelected: "",
         btcDominanceDay: "7D",
@@ -718,24 +718,24 @@ const CoinDataSlice = createSlice({
             state.TabLayoutsData.isError = true;
             state.TabLayoutsData.data = action.payload;
         });
-        builder.addCase(fetchCustomizeTabData.fulfilled, (state, action) => {
-            state.TabCustomizeData.data = action.payload;
-            state.TabCustomizeData.isLoading = false;
-            state.TabCustomizeData.isSuccess = true;
-            state.TabCustomizeData.isError = false;
-        });
-        builder.addCase(fetchCustomizeTabData.pending, (state, action) => {
-            state.TabCustomizeData.isLoading = true;
-            state.TabCustomizeData.isError = false;
-            state.TabCustomizeData.isSuccess = false;
-            state.TabCustomizeData.data = action.payload;
-        });
-        builder.addCase(fetchCustomizeTabData.rejected, (state, action) => {
-            state.TabCustomizeData.isLoading = false;
-            state.TabCustomizeData.isSuccess = false;
-            state.TabCustomizeData.isError = true;
-            state.TabCustomizeData.data = action.payload;
-        });
+        // builder.addCase(fetchCustomizeTabData.fulfilled, (state, action) => {
+        //     state.TabCustomizeData.data = action.payload;
+        //     state.TabCustomizeData.isLoading = false;
+        //     state.TabCustomizeData.isSuccess = true;
+        //     state.TabCustomizeData.isError = false;
+        // });
+        // builder.addCase(fetchCustomizeTabData.pending, (state, action) => {
+        //     state.TabCustomizeData.isLoading = true;
+        //     state.TabCustomizeData.isError = false;
+        //     state.TabCustomizeData.isSuccess = false;
+        //     state.TabCustomizeData.data = action.payload;
+        // });
+        // builder.addCase(fetchCustomizeTabData.rejected, (state, action) => {
+        //     state.TabCustomizeData.isLoading = false;
+        //     state.TabCustomizeData.isSuccess = false;
+        //     state.TabCustomizeData.isError = true;
+        //     state.TabCustomizeData.data = action.payload;
+        // });
     },
     reducers: {
         blockchainTypeChangedReducer: (state, action) => {

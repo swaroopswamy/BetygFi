@@ -18,7 +18,7 @@ import {
     fetchCoinScoresData,
     fetchCryptoCategoriesData,
     fetchTabLayoutsData,
-    fetchCustomizeTabData,
+    //fetchCustomizeTabData,
 } from "@redux/coin_data/dataSlice";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
@@ -137,13 +137,13 @@ const CoinPage = () => {
         dispatch(userTabLibrary(payload));
     };
 
-    const fetchCustomizeTabDataHandler = () => {
-        const payload = {
-            layout: [],
-            assets: [],
-        };
-        dispatch(fetchCustomizeTabData(payload));
-    };
+    // const fetchCustomizeTabDataHandler = () => {
+    //     const payload = {
+    //         layout: [],
+    //         assets: [],
+    //     };
+    //     dispatch(fetchCustomizeTabData(payload));
+    // };
 
     useEffect(() => {
         Promise.all([
@@ -185,7 +185,7 @@ const CoinPage = () => {
             fetchScoreData(),
             userTabLibraryHandler(),
             fetchTabLayoutsDataHandler(),
-            fetchCustomizeTabDataHandler(),
+            //fetchCustomizeTabDataHandler(),
         ]).then(result => result);
     }, []);
 

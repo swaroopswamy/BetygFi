@@ -22,11 +22,11 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
     }
 
     const handleContinueClick = () => {
-        setIsSaveTabModalOpen(true); 
+        setIsSaveTabModalOpen(true);
     };
 
     const handleSaveTabModalClose = () => {
-        setIsSaveTabModalOpen(false); 
+        setIsSaveTabModalOpen(false);
     };
 
     return (
@@ -42,7 +42,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                     width={{ base: "90%" }}
                     padding={{ base: "10px", md: "20px 10px" }}
                     bgColor={colorMode === 'light' ? "#FFFFFF" : "#313131"}
-                    position={{ md: "fixed" }}
+                //position={{ md: "fixed" }}
                 >
                     <ModalHeader>
                         <Text variant={"bigText"} fontSize={{ base: "24px" }} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Create Tab</Text>
@@ -136,7 +136,15 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                 <Button display={{ base: "none", md: "block" }} variant={"modalButton"} width={100} height={30} onClick={onCustomizeTabModalClose}>
                                     Cancel
                                 </Button>
-                                <Button variant={"modalButton"} width={100} height={30} onClick={handleContinueClick}>
+                                <Button
+                                    variant={"modalButton"}
+                                    width={100}
+                                    height={30}
+                                    onClick={() => {
+                                        handleContinueClick();
+                                        onCustomizeTabModalClose();
+                                    }}
+                                >
                                     Continue
                                 </Button>
                             </Box>

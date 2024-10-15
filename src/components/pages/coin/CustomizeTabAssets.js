@@ -16,13 +16,11 @@ const CustomizeTabAssetsPanel = () => {
         coin.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Load selected coins from localStorage when the component mounts
     useEffect(() => {
         const storedCoins = JSON.parse(localStorage.getItem('selectedCoins')) || [];
         setSelectedCoins(storedCoins);
     }, []);
 
-    // Handle checkbox change and store selected coins in localStorage
     const handleCheckboxChange = (slug) => {
         let updatedSelectedCoins;
         if (selectedCoins.includes(slug)) {
@@ -34,9 +32,11 @@ const CustomizeTabAssetsPanel = () => {
         localStorage.setItem('selectedCoins', JSON.stringify(updatedSelectedCoins));
     };
 
-    // const handleSelectCoinsClick = () => {
-    //     inputRef.current.focus();
-    // };
+    const handleRemoveSelectedCoin = (slug) => {
+        const updatedSelectedCoins = selectedCoins.filter((coin) => coin !== slug);
+        setSelectedCoins(updatedSelectedCoins);
+        localStorage.setItem('selectedCoins', JSON.stringify(updatedSelectedCoins));
+    };
 
     return (
         <Box mt={"15px"} width={"100%"}>
@@ -77,27 +77,38 @@ const CustomizeTabAssetsPanel = () => {
                     <Text>No assets found</Text>
                 )}
             </Box>
-            <Box layerStyle={"flexCenter"} width={"100%"}>
-                <Box
-                    layerStyle={"flexCenter"}
-                    width={"auto"}
-                    height={"30px"}
-                    border={colorMode === 'light' ? "1px solid #333333CC" : "1px solid #A5A5A5"}
-                    borderRadius={"16px"}
-                    px={"8px"}
-                >
-                    <CustomAvatar
-                        width={"16px"}
-                        height={"16px"}
-                        style={{ borderRadius: "50%" }}
-                        //name={item?.name}
-                        src={'/icons/coin_icon.svg'}
-                    />
-                    <Text variant={"h4"} ml={"4px"}>
-                        Bitcoin
-                    </Text>
-                    <CloseButton width={"15px"} height={"15px"} ml={"5px"} />
-                </Box>
+            <Box layerStyle={"flexCenter"} flexWrap="wrap" mt={"15px"} width={"100%"}>
+                {selectedCoins.map((slug, index) => {
+                    const coin = tableData?.data?.data?.find((coin) => coin.slug === slug);
+                    return coin ? (
+                        <Box
+                            key={index}
+                            layerStyle={"flexCenter"}
+                            width={"auto"}
+                            height={"30px"}
+                            border={colorMode === 'light' ? "1px solid #333333CC" : "1px solid #A5A5A5"}
+                            borderRadius={"16px"}
+                            px={"8px"}
+                            m={"5px"}
+                        >
+                            <CustomAvatar
+                                width={"16px"}
+                                height={"16px"}
+                                style={{ borderRadius: "50%" }}
+                                src={coin.logoUrl ?? '/icons/coin_icon.svg'}
+                            />
+                            <Text variant={"h4"} ml={"4px"}>
+                                {coin.name}
+                            </Text>
+                            <CloseButton
+                                width={"15px"}
+                                height={"15px"}
+                                ml={"5px"}
+                                onClick={() => handleRemoveSelectedCoin(coin.slug)}
+                            />
+                        </Box>
+                    ) : null;
+                })}
             </Box>
         </Box>
     );
