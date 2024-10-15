@@ -5,7 +5,7 @@ import CustomAvatar from "@components/avatar";
 import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
 import { convertToInternationalCurrencySystem, getCurrencyDetails, renderSVG } from "@util/utility";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import CoinConverterRightBlock from "./CoinConverterRightBlock";
 import CoinData from "./CoinData";
@@ -19,10 +19,18 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
     const router = useRouter();
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
+    const progressBarRef = useRef(null);
 
     useEffect(() => {
         dispatch(fetchConversionCoinChartGraphData({ coinSlug: coinDetails?.slug, filter: "price", interval: "24h", currency: toCurrency?.toUpperCase() }));
     }, [coinDetails?.slug]);
+
+    useEffect(() => {
+        const progressBar = progressBarRef?.current;
+        if (progressBar?.children?.[0]) {
+            progressBar.children[0].style.background = '#245F00';
+        }
+    }, []);
 
     const getCoinListDataHandler = () => {
         const payload = {
@@ -106,7 +114,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                     justifyContent={"space-between"}
                     gap={"20px"}
                 >
-                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "26%" }}>
+                    <Box bg={useColorModeValue("#FFFFFF", "#191919")} borderRadius={"3px"} p={"20px"} display={"flex"} justifyContent={"start"} flexDir={"column"} gap={"1.5rem"} width={{ base: "100%", md: "33%" }}>
 
                         <Box width={"100%"} justifyContent={"start"} alignItems={"center"} gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                             <CustomAvatar
@@ -133,7 +141,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_main_price"}>
-                                        {`$${convertToInternationalCurrencySystem(coinDetails?.price)}`}
+                                        {`${getCurrencyDetails(toCurrency, 'symbol')}${currentPrice?.toLocaleString(getCurrencyDetails(toCurrency, 'locale'))}`}
                                     </Text>
                                 </Box>
 
@@ -151,7 +159,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                             <Box gap={"0.5rem"} display={"flex"} flexDir={"row"}>
                                 <Box display={"flex"} alignItems={"start"} justifyContent={"start"}>
                                     <Text colorMode={colorMode} variant={"converter_price_info"} color={colorMode === "dark" ? "#FFFFFF" : "#585858"}>
-                                        {coinDetails?.name} Price (USD)
+                                        {coinDetails?.name} Price ({toCurrency?.toUpperCase()})
                                     </Text>
                                 </Box>
 
@@ -211,8 +219,7 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                 </Menu> */}
                             </Box>
 
-
-                            <Progress borderRadius={"60px"} value={getHighLowProgressValue()} />
+                            <Progress borderRadius={"60px"} value={getHighLowProgressValue()} ref={progressBarRef} />
                             {isMd && <Box display={"flex"} justifyContent={"space-between"}>
                                 <Box display={"flex"}>
                                     <Text colorMode={colorMode} variant={"converter_low_high"}>

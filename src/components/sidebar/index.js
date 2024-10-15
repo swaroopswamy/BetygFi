@@ -102,6 +102,7 @@ const SidebarContent = ({ ...rest }) => {
                             alignItems="center"
                             cursor={"pointer"}
                             p={"20px"}
+                            position={"relative"}
                             onClick={() => router.push("/coin")}
                         >
                             <Image
@@ -118,6 +119,9 @@ const SidebarContent = ({ ...rest }) => {
                             />
                         </Box>
 
+                        <Box cursor={"pointer"} position={"absolute"} top={"1px"} right={"8px"}>
+                            <Text _light={{ color: "black" }} _dark={{ color: "white" }}>Beta</Text>
+                        </Box>
                         <Box layerStyle={"flexColumn"} w={"100%"}>
                             <Text
                                 fontSize={"14px"}
