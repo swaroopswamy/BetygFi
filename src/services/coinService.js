@@ -378,10 +378,10 @@ export const getConversionCoinChartGraphData = async (payload, rejectWithValue) 
     }
 };
 
-export const getTabLayoutsData = async (payload, rejectWithValue) => {
+export const getTabLayoutsData = async (rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/tab-layouts`;
-        const { data } = await axiosInstance(getAPI_URL()).get(url, payload);
+        const { data } = await axiosInstance(getAPI_URL()).get(url);
         return data;
     } catch (err) {
         return rejectWithValue(err);

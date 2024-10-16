@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Text, useColorMode, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
@@ -10,13 +10,12 @@ import CustomizeTabModal from "./CustomizeTabModal";
 const TabLibraryModal = ({
     isTabLibraryModalOpen,
     onTabLibraryModalClose,
-    //onCustomizeTabModalOpen,
     setCryptoCategorySelected,
-    cryptoCategories
-}
-) => {
+    cryptoCategories = []
+}) => {
     const { colorMode } = useColorMode();
     const { data: AuthSession } = useSession();
+    const [pinnedCategories, setPinnedCategories] = useState([]);
     const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
     {
         ValidatedUserData?.AnnotationState &&
@@ -37,6 +36,30 @@ const TabLibraryModal = ({
         onClose: onCustomizeTabModalClose,
     } = useDisclosure();
 
+    useEffect(() => {
+        const storedPinnedCategories = JSON.parse(localStorage.getItem('pinnedCategories')) || [];
+        setPinnedCategories(storedPinnedCategories);
+    }, []);
+
+    const togglePinCategory = (category) => {
+        let updatedPinnedCategories;
+        if (pinnedCategories.includes(category.slug)) {
+            updatedPinnedCategories = pinnedCategories.filter(slug => slug !== category.slug);
+        } else {
+            updatedPinnedCategories = [...pinnedCategories, category.slug];
+        }
+        setPinnedCategories(updatedPinnedCategories);
+        localStorage.setItem('pinnedCategories', JSON.stringify(updatedPinnedCategories));
+    };
+
+    const isCategoryPinned = (category) => pinnedCategories.includes(category.slug);
+    const orderedCategories = cryptoCategories.length > 0
+        ? [
+            ...cryptoCategories.filter(category => isCategoryPinned(category)),
+            ...cryptoCategories.filter(category => !isCategoryPinned(category))
+        ]
+        : [];
+
     return (
         <>
             <Modal isOpen={isTabLibraryModalOpen} onClose={onTabLibraryModalClose} >
@@ -55,8 +78,8 @@ const TabLibraryModal = ({
                     <ModalCloseButton borderRadius={"50%"} backgroundColor={colorMode === 'light' ? "#F0F0F5" : "#191919"} mt={"10px"} />
                     <ModalBody>
                         <Box className="hidescrollbar" layerStyle={"flexColumn"} overflowY={"auto"} maxHeight={"400px"} mt={"15px"}>
-                            {cryptoCategories && cryptoCategories.length > 0 ? (
-                                cryptoCategories.map((category, index) => (
+                            {orderedCategories && orderedCategories.length > 0 ? (
+                                orderedCategories.map((category, index) => (
                                     <Box
                                         key={index}
                                         layerStyle={"flexCenterSpaceBetween"}
@@ -79,12 +102,24 @@ const TabLibraryModal = ({
                                                         {category.text}
                                                     </Text>
                                                     <Text variant={"contentHeading4"} fontSize={"12px"} mt={"5px"} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>
-                                                        7  Columns, 3 Filters . 10min ago
+                                                        7 Columns, 3 Filters . 10min ago
                                                     </Text>
                                                 </Box>
                                             </Box>
                                         </Box>
-                                        <Image src={"/icons/Pin_Icon.svg"} width={24} height={24} alt=" "></Image>
+                                        <Box onClick={(e) => {
+                                            e.stopPropagation();
+                                            togglePinCategory(category);
+                                        }}>
+                                            <Image
+                                                src={isCategoryPinned(category) ?
+                                                    (colorMode === 'light' ? "/icons/Unpin_Icon.svg" : "/icons/Unpin_Icon_Dark.svg") :
+                                                    (colorMode === 'light' ? "/icons/Pin_Icon.svg" : "/icons/Pin_Icon_Dark.svg")}
+                                                width={24}
+                                                height={24}
+                                                alt={isCategoryPinned(category) ? "pin" : "Unpin"}
+                                            />
+                                        </Box>
                                     </Box>
                                 ))
                             ) : (
@@ -122,4 +157,4 @@ const TabLibraryModal = ({
     );
 };
 
-export default TabLibraryModal; 
+export default TabLibraryModal;

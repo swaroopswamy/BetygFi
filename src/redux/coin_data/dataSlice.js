@@ -187,7 +187,7 @@ export const fetchTabLayoutsData = createAsyncThunk(
     "getTabLayoutsData",
     async (payload, { rejectWithValue }) => {
         const response = await getTabLayoutsData(payload, rejectWithValue);
-        return response.data;
+        return response;
     }
 );
 

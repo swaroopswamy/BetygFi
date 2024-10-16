@@ -22,14 +22,15 @@ import {
 } from "@redux/coin_data/dataSlice";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
-import TabLibraryModal from "./TabLibraryModal";
-import CustomizeTabModal from "./CustomizeTabModal";
 
 const CoinRankingsTable = dynamic(() => import('@components/pages/coin/coinRankingsTable'), { ssr: false });
 const Marquee = dynamic(() => import("@/components/pages/coin/marquee"), { ssr: false });
 const HighlightsBox = dynamic(() => import("@/components/pages/coin/HighlightsBox"), { ssr: false });
 const FaqSection = dynamic(() => import("@components/pages/coin/coinPage/FaqSection"), { ssr: false });
 const TrendingCoinSection = dynamic(() => import("@components/pages/coin/coinPage/TrendingCoinSection"), { ssr: false });
+const TabLibraryModal = dynamic(() => import("@components/pages/coin/TabLibraryModal"), { ssr: false });
+const CustomizeTabModal = dynamic(() => import("@components/pages/coin/CustomizeTabModal"), { ssr: false });
+const SaveTabModal = dynamic(() => import("@components/pages/coin/SaveTabModal"), { ssr: false });
 
 const CoinPage = () => {
     const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const CoinPage = () => {
     const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
     const [isHighlightsBoxOpen, setIsHighlightsBoxOpen] = useState(true);
     const [cryptoCategories, setCryptoCategories] = useState([]);
+    const [/*savedTabName*/ setSavedTabName] = useState("");
     const searchParams = useSearchParams();
     const on = searchParams.get('on');
     const by = searchParams.get('by');
@@ -58,6 +60,11 @@ const CoinPage = () => {
         isOpen: isCustomizeTabModalOpen,
         onOpen: onCustomizeTabModalOpen,
         onClose: onCustomizeTabModalClose,
+    } = useDisclosure();
+
+    const {
+        isOpen: isSaveTabModalOpen,
+        onClose: onSaveTabModalClose,
     } = useDisclosure();
 
     const fetchTopGainersAndLosersDataHandler = () => {
@@ -128,13 +135,18 @@ const CoinPage = () => {
         dispatch(userPersonalization(payload));
     };
 
-    const userTabLibraryHandler = () => {
+    const userTabLibraryHandler = (tabName) => {
         const payload = {
-            name: " ",
+            name: tabName,
             layout: [],
             assets: [],
         };
         dispatch(userTabLibrary(payload));
+    };
+
+    const handleTabSave = ({ tabName /* tabDescription*/ }) => {
+        setSavedTabName(tabName); 
+        userTabLibraryHandler(tabName);
     };
 
     // const fetchCustomizeTabDataHandler = () => {
@@ -292,6 +304,11 @@ const CoinPage = () => {
                 <CustomizeTabModal
                     isCustomizeTabModalOpen={isCustomizeTabModalOpen}
                     onCustomizeTabModalClose={onCustomizeTabModalClose}
+                />
+                <SaveTabModal
+                    isSaveTabModalOpen={isSaveTabModalOpen}
+                    onSaveTabModalClose={onSaveTabModalClose}
+                    onTabSave={handleTabSave} // Pass handleTabSave function
                 />
             </Box >
         </React.Fragment>
