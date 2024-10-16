@@ -124,7 +124,7 @@ const Navbar = ({ onNotificationDrawerOpen, ...rest }) => {
             }
         }
     };
-    
+
     const toggleColorModeGlobally = () => {
         const newColorMode = normalizeColorMode(colorMode);
         if (ValidatedUserData?.success) {

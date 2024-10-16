@@ -122,6 +122,21 @@ export const getCoinNewsFetched = async (payload) => {
     }
 };
 
+export const getCoinPriceInCurrencyFetched = async (payload) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coin-price-in-currency/${payload.id}/${payload.currency}`;
+        const finalUrl = `http://localhost:${process.env.APP_PORT || 7000}` + url;
+        if (checkIfCacheAvailable(url)) {
+            return checkIfCacheAvailable(url);
+        } else {
+            const data = await fetchInstance({ url: finalUrl, method: 'GET' });
+            return cacheHandler(url, data, false, 4);
+        }
+    } catch (error) {
+        return error;
+    }
+};
+
 export const getCoinRankingsTableDataFetched = async (payload) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table?sitemap=true`;
@@ -153,6 +168,21 @@ export const getETFListDataFetched = async (type) => {
 };
 
 export const getCoinRankingsTableData = async (payload, rejectWithValue) => {
+    try {
+        const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
+        const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
+        if (checkIfCacheAvailable(finalUrl)) {
+            return checkIfCacheAvailable(finalUrl);
+        } else {
+            const { data } = await axiosInstance(getAPI_URL()).post(url, payload);
+            return cacheHandler(finalUrl, data, false, 4);
+        }
+    } catch (err) {
+        return rejectWithValue(err);
+    }
+};
+
+export const getCoinRankingsTableDataFetchedSitemap = async (payload, rejectWithValue) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/coins-table`;
         // const finalUrl = url + payload.page + payload.score_dist + payload.category + payload.limit;
