@@ -1,9 +1,9 @@
 "use client";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Box, Progress, Text, useColorMode, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
+import { Box, Progress, Text, useColorMode, useColorModeValue, useMediaQuery, useToast } from "@chakra-ui/react";
 import CustomAvatar from "@components/avatar";
 import { fetchCoinRankingsTableData, fetchConversionCoinChartGraphData, fetchCurrencyListData } from "@redux/coin_data/dataSlice";
-import { convertToInternationalCurrencySystem, getCurrencyDetails, renderSVG } from "@util/utility";
+import { convertToInternationalCurrencySystem, getCurrencyDetails, renderSVG, copyToClipboard_ } from "@util/utility";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ import SevenDaysPriceHistory from "./SevenDaysPriceHistory";
 const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coinNewsData, toCurrency }) => {
     const dispatch = useDispatch();
     const router = useRouter();
+    const toast = useToast();
     const { colorMode } = useColorMode();
     const [isMd] = useMediaQuery("(min-width: 768px)");
     const progressBarRef = useRef(null);
@@ -131,6 +132,19 @@ const CryptoConverterPage = ({ coinDetails, coinAnalyticsData, currentPrice, coi
                                 <Text colorMode={colorMode} variant={"converter_coin_ship"}>
                                     {coinDetails?.ticker}
                                 </Text>
+                            </Box>
+
+                            <Box onClick={() => {
+                                copyToClipboard_(coinDetails?.name);
+                                toast({
+                                    title: 'Link copied!!',
+                                    description: "You can share it now",
+                                    status: 'success',
+                                    duration: 9000,
+                                    isClosable: true,
+                                });
+                            }} cursor={"pointer"}>
+                                {renderSVG("share")}
                             </Box>
 
                             {/* {renderSVG("star")}
