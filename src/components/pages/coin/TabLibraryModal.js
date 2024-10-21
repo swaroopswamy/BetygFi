@@ -1,29 +1,24 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Box, Text, useColorMode, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
-import LoginPage from "@components/login";
 import { useSession } from "next-auth/react";
-import CustomizeTabModal from "./CustomizeTabModal";
+import dynamic from "next/dynamic";
+
+const CustomizeNewTabModal = dynamic(() => import("@components/pages/coin/CustomizeNewTabModal"), { ssr: false });
+const LoginPage = dynamic(() => import("@components/login"), { ssr: false });
 
 const TabLibraryModal = ({
     isTabLibraryModalOpen,
     onTabLibraryModalClose,
     setCryptoCategorySelected,
+    setTabSelected,   
     cryptoCategories = []
 }) => {
     const { colorMode } = useColorMode();
     const { data: AuthSession } = useSession();
     const [pinnedCategories, setPinnedCategories] = useState([]);
-    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
-    {
-        ValidatedUserData?.AnnotationState &&
-            <Box>
-                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
-            </Box>;
-    }
-
+     
     const {
         isOpen: isLoginModalOpen,
         onOpen: onLoginModalOpen,
@@ -31,9 +26,9 @@ const TabLibraryModal = ({
     } = useDisclosure();
 
     const {
-        isOpen: isCustomizeTabModalOpen,
-        onOpen: onCustomizeTabModalOpen,
-        onClose: onCustomizeTabModalClose,
+        isOpen: isCustomizeNewTabModalOpen,
+        onOpen: onCustomizeNewTabModalOpen,
+        onClose: onCustomizeNewTabModalClose,
     } = useDisclosure();
 
     useEffect(() => {
@@ -88,9 +83,10 @@ const TabLibraryModal = ({
                                         _hover={{
                                             bgColor: colorMode === "light" ? "#F0F0F5" : "#191919",
                                         }}
-                                        borderRadius={"10px"}
+                                        borderBottom={"1px solid #F0F0F5"}
                                         onClick={() => {
                                             setCryptoCategorySelected(category.slug);
+                                            setTabSelected(index);
                                             onTabLibraryModalClose();
                                         }}
                                     >
@@ -133,7 +129,7 @@ const TabLibraryModal = ({
                                         if (!AuthSession) {
                                             onLoginModalOpen();
                                         } else {
-                                            onCustomizeTabModalOpen();
+                                            onCustomizeNewTabModalOpen();
                                             onTabLibraryModalClose();
                                         }
                                     }}>
@@ -149,9 +145,9 @@ const TabLibraryModal = ({
                 onOpen={onLoginModalOpen}
                 onClose={onLoginModalClose}
             />
-            <CustomizeTabModal
-                isCustomizeTabModalOpen={isCustomizeTabModalOpen}
-                onCustomizeTabModalClose={onCustomizeTabModalClose}
+            <CustomizeNewTabModal
+                isCustomizeNewTabModalOpen={isCustomizeNewTabModalOpen}
+                onCustomizeNewTabModalClose={onCustomizeNewTabModalClose}
             />
         </>
     );

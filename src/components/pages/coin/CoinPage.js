@@ -29,7 +29,7 @@ const HighlightsBox = dynamic(() => import("@/components/pages/coin/HighlightsBo
 const FaqSection = dynamic(() => import("@components/pages/coin/coinPage/FaqSection"), { ssr: false });
 const TrendingCoinSection = dynamic(() => import("@components/pages/coin/coinPage/TrendingCoinSection"), { ssr: false });
 const TabLibraryModal = dynamic(() => import("@components/pages/coin/TabLibraryModal"), { ssr: false });
-const CustomizeTabModal = dynamic(() => import("@components/pages/coin/CustomizeTabModal"), { ssr: false });
+const CustomizeCurrentTabModal = dynamic(() => import("@components/pages/coin/CustomizeCurrentTabModal"), { ssr: false });
 const SaveTabModal = dynamic(() => import("@components/pages/coin/SaveTabModal"), { ssr: false });
 
 const CoinPage = () => {
@@ -42,7 +42,7 @@ const CoinPage = () => {
     const cryptoCategoriesData = useSelector((state) => state.coinData.CryptoCategoriesData);
     const [tablePage, setTablePage] = useState(1);
     const [tableLimit, setTableLimit] = useState(100);
-    const [cryptoCategorySelected, setCryptoCategorySelected] = useState('all');
+    const [cryptoCategorySelected, setCryptoCategorySelected] = useState('All');
     const [isHighlightsBoxOpen, setIsHighlightsBoxOpen] = useState(true);
     const [cryptoCategories, setCryptoCategories] = useState([]);
     const [/*savedTabName*/ setSavedTabName] = useState("");
@@ -57,9 +57,13 @@ const CoinPage = () => {
     } = useDisclosure();
 
     const {
-        isOpen: isCustomizeTabModalOpen,
-        onOpen: onCustomizeTabModalOpen,
-        onClose: onCustomizeTabModalClose,
+        isOpen: isCustomizeCurrentTabModalOpen,
+        //onOpen: onCustomizeCurrentTabModalOpen,
+        onClose: onCustomizeCurrentTabModalClose,
+    } = useDisclosure();
+
+    const {
+        onOpen: onCustomizeNewTabModalOpen,
     } = useDisclosure();
 
     const {
@@ -145,7 +149,7 @@ const CoinPage = () => {
     };
 
     const handleTabSave = ({ tabName /* tabDescription*/ }) => {
-        setSavedTabName(tabName); 
+        setSavedTabName(tabName);
         userTabLibraryHandler(tabName);
     };
 
@@ -289,7 +293,7 @@ const CoinPage = () => {
                     setCryptoCategories={setCryptoCategories}
                     pageChangeHandler={pageChangeHandler}
                     onTabLibraryModalOpen={onTabLibraryModalOpen}
-                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                    onCustomizeNewTabModalOpen={onCustomizeNewTabModalOpen}
                 />
                 <hr />
                 <TrendingCoinSection />
@@ -297,18 +301,19 @@ const CoinPage = () => {
                 <TabLibraryModal
                     isTabLibraryModalOpen={isTabLibraryModalOpen}
                     onTabLibraryModalClose={onTabLibraryModalClose}
-                    onCustomizeTabModalOpen={onCustomizeTabModalOpen}
+                    onCustomizeNewTabModalOpen={onCustomizeNewTabModalOpen}
                     cryptoCategorySelected={cryptoCategorySelected}
                     setCryptoCategorySelected={setCryptoCategorySelected}
                 />
-                <CustomizeTabModal
-                    isCustomizeTabModalOpen={isCustomizeTabModalOpen}
-                    onCustomizeTabModalClose={onCustomizeTabModalClose}
+                <CustomizeCurrentTabModal
+                    isCustomizeCurrentTabModalOpen={isCustomizeCurrentTabModalOpen}
+                    onCustomizeCurrentTabModalClose={onCustomizeCurrentTabModalClose}
+                    selectedCategory={cryptoCategorySelected}
                 />
                 <SaveTabModal
                     isSaveTabModalOpen={isSaveTabModalOpen}
                     onSaveTabModalClose={onSaveTabModalClose}
-                    onTabSave={handleTabSave} // Pass handleTabSave function
+                    onTabSave={handleTabSave}
                 />
             </Box >
         </React.Fragment>

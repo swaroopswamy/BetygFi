@@ -1,25 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { Box, Text, useColorMode, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, ModalCloseButton, Button, Tab, Tabs, TabList, TabPanel, TabPanels } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const CustomizeTabLayoutPanel = dynamic(() => import("@components/pages/coin/CustomizeTabLayoutSettings"), { ssr: false });
 const CustomizeTabAssetsPanel = dynamic(() => import("@components/pages/coin/CustomizeTabAssets"), { ssr: false });
 const SaveTabModal = dynamic(() => import("@components/pages/coin/SaveTabModal"), { ssr: false });
 
-const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }) => {
+const CustomizeNewTabModal = ({ isCustomizeNewTabModalOpen, onCustomizeNewTabModalClose }) => {
     const { colorMode } = useColorMode();
     const [tabIndex, setTabIndex] = useState(0);
     const [isSaveTabModalOpen, setIsSaveTabModalOpen] = useState(false);
-    const ValidatedUserData = useSelector((state) => state.authData.ValidatedUserData);
-    {
-        ValidatedUserData?.AnnotationState &&
-            <Box>
-                <Image src={"/icons/tooltip.svg"} width={16} height={16} alt=" "></Image>
-            </Box>;
-    }
 
     const handleContinueClick = () => {
         setIsSaveTabModalOpen(true);
@@ -31,7 +22,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
 
     return (
         <>
-            <Modal isOpen={isCustomizeTabModalOpen} onClose={onCustomizeTabModalClose} >
+            <Modal isOpen={isCustomizeNewTabModalOpen} onClose={onCustomizeNewTabModalClose} >
                 <ModalOverlay
                     bg="blackAlpha.300"
                     backdropFilter="blur(10px) "
@@ -42,7 +33,6 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                     width={{ base: "90%" }}
                     padding={{ base: "10px", md: "20px 10px" }}
                     bgColor={colorMode === 'light' ? "#FFFFFF" : "#313131"}
-                //position={{ md: "fixed" }}
                 >
                     <ModalHeader>
                         <Text variant={"bigText"} fontSize={{ base: "24px" }} fontWeight={500} lineHeight={"16px"} letterSpacing={"0.32px"}>Create Tab</Text>
@@ -133,7 +123,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                             Reset
                         </Button> */}
                             <Box layerStyle={"flexCenter"} gap={"10px"} position="absolute" bottom="35px" right="25px">
-                                <Button display={{ base: "none", md: "block" }} variant={"modalButton"} width={100} height={30} onClick={onCustomizeTabModalClose}>
+                                <Button display={{ base: "none", md: "block" }} variant={"modalButton"} width={100} height={30} onClick={onCustomizeNewTabModalClose}>
                                     Cancel
                                 </Button>
                                 <Button
@@ -142,7 +132,7 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
                                     height={30}
                                     onClick={() => {
                                         handleContinueClick();
-                                        onCustomizeTabModalClose();
+                                        onCustomizeNewTabModalClose();
                                     }}
                                 >
                                     Continue
@@ -160,4 +150,4 @@ const CustomizeTabModal = ({ isCustomizeTabModalOpen, onCustomizeTabModalClose }
     );
 };
 
-export default CustomizeTabModal;
+export default CustomizeNewTabModal;

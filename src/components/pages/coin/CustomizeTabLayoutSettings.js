@@ -24,9 +24,8 @@ const CustomizeTabLayoutPanel = () => {
     };
 
     const renderCheckboxes = (categoryName, categoryItems) => {
-        // Ensure categoryItems is an array before mapping
         if (!Array.isArray(categoryItems)) {
-            return null; // Do not render anything if categoryItems is not an array
+            return null;
         }
 
         return (
@@ -61,7 +60,6 @@ const CustomizeTabLayoutPanel = () => {
             </Text>
             <Box display={{ base: "none", md: "flex" }} layerStyle={"flexCenter"} width={"100%"} mt={"20px"} gap={"8px"}>
                 <Box width={"50%"} className="hidescrollbar" overflowY={"auto"}>
-                    {/* Render each category with checkboxes dynamically */}
                     {Object.entries(TabLayoutsData).map(([categoryName, categoryItems]) => (
                         <React.Fragment key={categoryName}>
                             {renderCheckboxes(categoryName, categoryItems)}
@@ -69,7 +67,6 @@ const CustomizeTabLayoutPanel = () => {
                     ))}
                 </Box>
                 <Box width={"50%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
-                    {/* Selected Items List */}
                     {Object.entries(selectedItems)
                         .filter(([isChecked]) => isChecked)
                         .map(([itemName], index) => (

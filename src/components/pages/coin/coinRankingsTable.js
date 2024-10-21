@@ -6,27 +6,26 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { tableHeader } from "@components/pages/coin/helper";
-//import CustomAvatar from "@components/avatar";
 import millify from "millify";
-import LoginPage from "@components/login";
 import { useSession } from "next-auth/react";
 
 const GenericTable = dynamic(() => import("@components/table"), { ssr: false });
+const LoginPage = dynamic(() => import("@components/login"), { ssr: false });
 const PageButtonsWide = dynamic(() => import("@components/pageButtonsWide"), { ssr: false });
 const ScoreDistribution = dynamic(() => import("@components/pages/coin/scoreDistribution"), { ssr: false });
 const CustomAvatar = dynamic(() => import("@components/avatar"), { ssr: false });
 const TabLibraryModal = dynamic(() => import("@components/pages/coin/TabLibraryModal"), { ssr: false });
+const CustomizeCurrentTabModal = dynamic(() => import("@components/pages/coin/CustomizeCurrentTabModal"), { ssr: false });
 
 const CoinRankingsTable = (
     {
         tablePage,
         tableLimit,
         setTableLimit,
+        cryptoCategorySelected,
         setCryptoCategorySelected,
         cryptoCategories,
         pageChangeHandler,
-        //onTabLibraryModalOpen,
-        onCustomizeTabModalOpen
     }
 ) => {
     const { colorMode } = useColorMode();
@@ -36,6 +35,7 @@ const CoinRankingsTable = (
     const [tabSelected, setTabSelected] = useState(0);
     const { data: AuthSession } = useSession();
     const { isOpen: isTabLibraryModalOpen, onOpen: onTabLibraryModalOpen, onClose: onTabLibraryModalClose } = useDisclosure();
+    const { isOpen: isCustomizeCurrentTabModalOpen, onOpen: onCustomizeCurrentTabModalOpen, onClose: onCustomizeCurrentTabModalClose } = useDisclosure();
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
@@ -151,7 +151,7 @@ const CoinRankingsTable = (
                         layerStyle={"flexCenter"}
                         justifyContent={"start"}
                         cursor={"pointer"}
-                        onClick={() => { onCustomizeTabModalOpen(); }}
+                        onClick={onCustomizeCurrentTabModalOpen}
                     >
                         <i className={`icon ${colorMode === "light" ? 'customize_tab_icon_light' : 'customize_tab_icon_dark'}`} />
                         <Text
@@ -249,7 +249,14 @@ const CoinRankingsTable = (
                 isTabLibraryModalOpen={isTabLibraryModalOpen}
                 onTabLibraryModalClose={onTabLibraryModalClose}
                 setCryptoCategorySelected={setCryptoCategorySelected}
+                setTabSelected={setTabSelected} 
                 cryptoCategories={cryptoCategories}
+            />
+            <CustomizeCurrentTabModal
+                isCustomizeCurrentTabModalOpen={isCustomizeCurrentTabModalOpen}
+                onCustomizeCurrentTabModalOpen={onCustomizeCurrentTabModalOpen}
+                onCustomizeCurrentTabModalClose={onCustomizeCurrentTabModalClose}
+                selectedCategory={cryptoCategorySelected}
             />
         </React.Fragment>
     );
