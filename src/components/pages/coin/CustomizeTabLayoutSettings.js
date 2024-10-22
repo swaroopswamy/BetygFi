@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Box, Text, Checkbox, CloseButton } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
 import Image from "next/image";
+import { tabLayouts } from "./helper";
 
 const CustomizeTabLayoutPanel = () => {
-    const TabLayoutsData = useSelector((state) => state.coinData.TabLayoutsData);
     const [selectedItems, setSelectedItems] = useState({});
 
     const handleCheckboxChange = (event, itemName) => {
@@ -59,8 +58,8 @@ const CustomizeTabLayoutPanel = () => {
                 Layout Settings
             </Text>
             <Box display={{ base: "none", md: "flex" }} layerStyle={"flexCenter"} width={"100%"} mt={"20px"} gap={"8px"}>
-                <Box width={"50%"} className="hidescrollbar" overflowY={"auto"}>
-                    {Object.entries(TabLayoutsData).map(([categoryName, categoryItems]) => (
+                <Box width={"50%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
+                    {Object.entries(tabLayouts).map(([categoryName, categoryItems]) => (
                         <React.Fragment key={categoryName}>
                             {renderCheckboxes(categoryName, categoryItems)}
                         </React.Fragment>
@@ -94,8 +93,8 @@ const CustomizeTabLayoutPanel = () => {
             <Box display={{ base: "block", md: "none" }} width={"100%"} mt={"20px"} gap={"8px"}>
                 <Box width={"100%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
                     {Object.entries(selectedItems)
-                        .filter(([value]) => value)
-                        .map(([item], index) => (
+                        .filter(([isChecked]) => isChecked)
+                        .map(([itemName], index) => (
                             <Box
                                 key={index}
                                 bg={"background.primary"}
@@ -107,10 +106,10 @@ const CustomizeTabLayoutPanel = () => {
                                 <Box layerStyle={"flexCenter"}>
                                     <Image src={"/icons/Menu_Icon.svg"} width={25} height={25} alt=" " />
                                     <Text variant={"footnoteText"} fontSize={"14px"} lineHeight={"16px"} pl={"25px"}>
-                                        {item}
+                                        {itemName}
                                     </Text>
                                 </Box>
-                                <CloseButton onClick={() => handleRemoveItem(item)} />
+                                <CloseButton onClick={() => handleRemoveItem(itemName)} />
                             </Box>
                         ))}
                 </Box>
@@ -120,4 +119,3 @@ const CustomizeTabLayoutPanel = () => {
 };
 
 export default CustomizeTabLayoutPanel;
-

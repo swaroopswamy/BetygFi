@@ -184,10 +184,9 @@ export const fetchConversionCoinChartGraphData = createAsyncThunk(
 );
 
 export const fetchTabLayoutsData = createAsyncThunk(
-    "getTabLayoutsData",
-    async (payload, { rejectWithValue }) => {
+    "getTabLayoutsData", async (payload, { rejectWithValue }) => {
         const response = await getTabLayoutsData(payload, rejectWithValue);
-        return response;
+        return response.data;
     }
 );
 

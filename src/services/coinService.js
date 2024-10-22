@@ -2,7 +2,15 @@ import { axiosInstance } from "@util/axiosInstance";
 import { cacheHandler, checkIfCacheAvailable } from "@util/cacheHelper";
 import { NEXT_BE_URL_SEPARATOR } from "@util/constant";
 import { fetchInstance } from "@util/fetchInstance";
-import { getAPI_URL } from "@util/utility";
+import { getAPI_URL, getAuthenticatedUserToken } from "@util/utility";
+
+const getAxiosHeadersFromCookie = () => {
+    return {
+        headers: {
+            Authorization: `Bearer ${getAuthenticatedUserToken()}`,
+        },
+    };
+};
 
 export const getCoinDashboardData = async (payload, rejectWithValue) => {
     try {
@@ -378,10 +386,10 @@ export const getConversionCoinChartGraphData = async (payload, rejectWithValue) 
     }
 };
 
-export const getTabLayoutsData = async (rejectWithValue) => {
+export const getTabLayoutsData = async ({ rejectWithValue }) => {
     try {
         const url = NEXT_BE_URL_SEPARATOR + `coin-risk/tab-layouts`;
-        const { data } = await axiosInstance(getAPI_URL()).get(url);
+        const { data } = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
         return data;
     } catch (err) {
         return rejectWithValue(err);

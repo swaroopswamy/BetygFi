@@ -61,7 +61,7 @@ const CustomizeTabAssetsPanel = () => {
                 <Text variant={"baseStyle"} fontWeight={500} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>All</Text>
                 <Text variant={"baseStyle"} fontWeight={500} color={colorMode === 'light' ? "#757575" : "#A5A5A5"}>Exclude</Text>
             </Box>
-            <Box className="hidescrollbar" layerStyle={"flexColumn"} overflowY={"auto"} maxHeight={"275px"} mt={"15px"}>
+            <Box className="hidescrollbar" layerStyle={"flexColumn"} overflowY={"auto"} maxHeight={"250px"} mt={"15px"}>
                 {filteredData && filteredData.length > 0 ? (
                     <Box>
                         {filteredData.map((item, i) => (

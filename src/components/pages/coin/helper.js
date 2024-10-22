@@ -130,3 +130,44 @@ export const faq = {
         },
     ],
 };
+
+export const tabLayouts = {
+    prices: [
+        "priceUsd",
+        "priceBtc",
+        "priceEth"
+    ],
+    priceChangePercent: [
+        "oneHour",
+        "twentyFourHour",
+        "sevenDay",
+        "oneMonth",
+        "twoMonth",
+        "threeMonth"
+    ],
+    volume: [
+        "volume",
+        "volume24Hr",
+        "volumeChange24Hr"
+    ],
+    volatility: [
+        "dailyVolatility",
+        "monthlyVolatility",
+        "yearlyVolatility"
+    ],
+    liquidityVolatility: [
+        "dailyLiquilidityVolatility",
+        "monthlyLiquilidityVolatility",
+        "yearlyLiquilidityVolatility"
+    ],
+    others: [
+        "currentPrice",
+        "score",
+        "marketCap",
+        "circulatingSupply",
+        "beta",
+        "liquidityRatio",
+        "volumeVolatility"
+    ]
+};
+

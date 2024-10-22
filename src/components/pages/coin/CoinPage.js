@@ -139,9 +139,9 @@ const CoinPage = () => {
         dispatch(userPersonalization(payload));
     };
 
-    const userTabLibraryHandler = (tabName) => {
+    const userTabLibraryHandler = () => {
         const payload = {
-            name: tabName,
+            name: "",
             layout: [],
             assets: [],
         };
