@@ -79,7 +79,6 @@ export const editDetailsAPI = async (payload,) => {
 
 export const getUserCountAPI = async (payload, { rejectWithValue }) => {
 	try {
-
 		const url = NEXT_BE_URL_SEPARATOR + `user/stats/${payload?.user_name}`;
 		const { data } = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
 		return data;
@@ -125,3 +124,32 @@ export const tabLibraryAPI = async (payload, { rejectWithValue }) => {
 		return rejectWithValue(err);
 	}
 };
+
+export const getCreatedTabLayoutsData = async () => {
+	const url = NEXT_BE_URL_SEPARATOR + `user/tab-layouts`;
+	const { data } = await axiosInstance(getAPI_URL()).get(url, getAxiosHeadersFromCookie());
+	return data;
+};
+
+// export const removeTabLayoutAPI = async (payload,) => {
+// 	const url = NEXT_BE_URL_SEPARATOR + `user/remove-tab-layout`;
+// 	const data = await axiosInstance(getAPI_URL()).put(url, payload, getAxiosHeadersFromCookie());
+// 	return data;
+// };
+
+export const removeTabLayoutAPI = async (payload, { rejectWithValue }) => {
+	try {
+		const url = NEXT_BE_URL_SEPARATOR + `user/remove-tab-layout`;
+		const { data } = await axiosInstance(getAPI_URL()).put(url, payload, getAxiosHeadersFromCookie());
+		return data;
+	}
+	catch (err) {
+		return rejectWithValue(err.response.data);
+	}
+};
+
+// export const submitNewPostDataAPI = async (payload) => {
+//     const url = NEXT_BE_URL_SEPARATOR + `community/create-post`
+//     const data = await axiosInstance(getAPI_URL()).post(url, payload, getAxiosHeaders());
+//     return data;
+// };

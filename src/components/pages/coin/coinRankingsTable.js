@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Text, Td, Th, Tr, Box, useColorModeValue, Button, Tabs, TabList, Tab, useColorMode, useDisclosure } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -28,14 +28,32 @@ const CoinRankingsTable = (
         pageChangeHandler,
     }
 ) => {
+    const tabRefs = useRef([]);
     const { colorMode } = useColorMode();
     const tableData = useSelector((state) => state.coinData.CoinRankingsTableData);
+    //const CustomizeTabData = useSelector((state) => state.coinData.CustomizeTabData);
     const coinScoresData = useSelector((state) => state.coinData.CoinScoresData);
     const [totalDefis, setTotalDefis] = useState(0);
     const [tabSelected, setTabSelected] = useState(0);
     const { data: AuthSession } = useSession();
     const { isOpen: isTabLibraryModalOpen, onOpen: onTabLibraryModalOpen, onClose: onTabLibraryModalClose } = useDisclosure();
     const { isOpen: isCustomizeCurrentTabModalOpen, onOpen: onCustomizeCurrentTabModalOpen, onClose: onCustomizeCurrentTabModalClose } = useDisclosure();
+
+    useEffect(() => {
+        if (cryptoCategorySelected) {
+            const selectedIndex = cryptoCategories.findIndex(
+                (category) => category.slug === cryptoCategorySelected
+            );
+            if (selectedIndex !== -1 && tabRefs.current[selectedIndex]) {
+                tabRefs.current[selectedIndex].scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                    inline: "center"
+                });
+                setTabSelected(selectedIndex);
+            }
+        }
+    }, [cryptoCategorySelected, cryptoCategories]);
 
     useEffect(() => {
         if (coinScoresData.isSuccess) {
@@ -49,10 +67,6 @@ const CoinRankingsTable = (
             }
         }
     }, [coinScoresData]);
-
-    const handleTabSelected = (tab) => {
-        setTabSelected(tab);
-    };
 
     const pageMenuList = [
         { value: 20 },
@@ -75,12 +89,13 @@ const CoinRankingsTable = (
                     display={"flex"}
                     overflow={"auto"}
                     className="hidescrollbar">
-                    <Tabs variant='soft-rounded' onChange={handleTabSelected} >
-                        <TabList>
+                    <Tabs variant='soft-rounded' index={tabSelected} onChange={(index) => setTabSelected(index)} >
+                        <TabList overflow="auto" className="hidescrollbar">
                             {
                                 cryptoCategories.length > 0 && cryptoCategories.map((tab, index) => (
                                     <Tab
                                         key={index}
+                                        ref={(el) => (tabRefs.current[index] = el)}
                                         _selected={{
                                             bgColor: colorMode === "light" ? "#191919" : "#FFFFFF",
                                             color: "#FFFFFF"
@@ -249,7 +264,7 @@ const CoinRankingsTable = (
                 isTabLibraryModalOpen={isTabLibraryModalOpen}
                 onTabLibraryModalClose={onTabLibraryModalClose}
                 setCryptoCategorySelected={setCryptoCategorySelected}
-                setTabSelected={setTabSelected} 
+                setTabSelected={setTabSelected}
                 cryptoCategories={cryptoCategories}
             />
             <CustomizeCurrentTabModal

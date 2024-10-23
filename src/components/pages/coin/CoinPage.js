@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlockchainListData } from "@redux/app_data/dataSlice";
-import { userPersonalization, userTabLibrary } from "@redux/auth_data/authSlice";
+import { userPersonalization, userTabLibrary, fetchCreatedTabLayoutsData, removeTabLayout } from "@redux/auth_data/authSlice";
 import {
     fetchSAPData,
     fetchTopGainersAndLosersData,
@@ -18,7 +18,7 @@ import {
     fetchCoinScoresData,
     fetchCryptoCategoriesData,
     fetchTabLayoutsData,
-    //fetchCustomizeTabData,
+    fetchCustomizeTabData,
 } from "@redux/coin_data/dataSlice";
 import { getHumanReadableTextFromSlug } from "@util/utility";
 import { useSearchParams } from "next/navigation";
@@ -98,6 +98,10 @@ const CoinPage = () => {
         dispatch(fetchTabLayoutsData());
     };
 
+    const fetchCreatedTabLayoutsDataHandler = () => {
+        dispatch(fetchCreatedTabLayoutsData());
+    };
+
     const fetchBTCDominanceScoresDataHandler = () => {
         const payload = {
             day: btcDominanceDay
@@ -148,18 +152,26 @@ const CoinPage = () => {
         dispatch(userTabLibrary(payload));
     };
 
+    const removeTabLayoutHandler = () => {
+        const payload = {
+            name: '',
+        };
+        dispatch(removeTabLayout(payload));
+    };
+
     const handleTabSave = ({ tabName /* tabDescription*/ }) => {
         setSavedTabName(tabName);
         userTabLibraryHandler(tabName);
     };
 
-    // const fetchCustomizeTabDataHandler = () => {
-    //     const payload = {
-    //         layout: [],
-    //         assets: [],
-    //     };
-    //     dispatch(fetchCustomizeTabData(payload));
-    // };
+    const fetchCustomizeTabDataHandler = () => {
+        const payload = {
+            name: "",
+            page: tablePage,
+            limit: tableLimit,
+        };
+        dispatch(fetchCustomizeTabData(payload));
+    };
 
     useEffect(() => {
         Promise.all([
@@ -201,7 +213,9 @@ const CoinPage = () => {
             fetchScoreData(),
             userTabLibraryHandler(),
             fetchTabLayoutsDataHandler(),
-            //fetchCustomizeTabDataHandler(),
+            fetchCreatedTabLayoutsDataHandler(),
+            removeTabLayoutHandler(),
+            fetchCustomizeTabDataHandler(),
         ]).then(result => result);
     }, []);
 

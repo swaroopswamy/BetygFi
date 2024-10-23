@@ -16,10 +16,11 @@ const CustomizeTabLayoutPanel = () => {
     };
 
     const handleRemoveItem = (itemName) => {
-        setSelectedItems((prev) => ({
-            ...prev,
-            [itemName]: false,
-        }));
+        setSelectedItems((prev) => {
+            const updatedItems = { ...prev };
+            delete updatedItems[itemName]; 
+            return updatedItems;
+        });
     };
 
     const renderCheckboxes = (categoryName, categoryItems) => {
@@ -67,7 +68,7 @@ const CustomizeTabLayoutPanel = () => {
                 </Box>
                 <Box width={"50%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
                     {Object.entries(selectedItems)
-                        .filter(([isChecked]) => isChecked)
+                        .filter(([ , isChecked]) => isChecked) // Filter only checked items
                         .map(([itemName], index) => (
                             <Box
                                 key={index}
@@ -93,7 +94,7 @@ const CustomizeTabLayoutPanel = () => {
             <Box display={{ base: "block", md: "none" }} width={"100%"} mt={"20px"} gap={"8px"}>
                 <Box width={"100%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
                     {Object.entries(selectedItems)
-                        .filter(([isChecked]) => isChecked)
+                        .filter(([ , isChecked]) => isChecked) // Filter only checked items
                         .map(([itemName], index) => (
                             <Box
                                 key={index}
@@ -112,6 +113,13 @@ const CustomizeTabLayoutPanel = () => {
                                 <CloseButton onClick={() => handleRemoveItem(itemName)} />
                             </Box>
                         ))}
+                </Box>
+                <Box width={"100%"} className="hidescrollbar" overflowY={"auto"} maxHeight={"350px"}>
+                    {Object.entries(tabLayouts).map(([categoryName, categoryItems]) => (
+                        <React.Fragment key={categoryName}>
+                            {renderCheckboxes(categoryName, categoryItems)}
+                        </React.Fragment>
+                    ))}
                 </Box>
             </Box>
         </Box>

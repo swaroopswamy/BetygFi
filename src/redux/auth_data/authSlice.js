@@ -1,5 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { changeProfilePicAPI, editDetailsAPI, getUserCountAPI, getUserDetailsAPI, loginMetamask, socialLoginGoogleAPI, usernameValidityAPI, verifyJWTtokenFromCookieAPI, verifyPublicAddress, userPersonalizationAPI, tabLibraryAPI } from "@services/authService";
+import {
+	changeProfilePicAPI,
+	editDetailsAPI,
+	getUserCountAPI,
+	getUserDetailsAPI,
+	loginMetamask,
+	socialLoginGoogleAPI,
+	usernameValidityAPI,
+	verifyJWTtokenFromCookieAPI,
+	verifyPublicAddress,
+	userPersonalizationAPI,
+	tabLibraryAPI,
+	getCreatedTabLayoutsData,
+	removeTabLayoutAPI,
+} from "@services/authService";
 import { signIn } from "next-auth/react";
 import { createCookiesAuth, deleteCookieByNameAuth } from "@util/cookieHelper";
 import { AUTH_COOKIE_NAME } from "@util/constant";
@@ -96,6 +110,21 @@ export const userTabLibrary = createAsyncThunk(
 	}
 );
 
+export const fetchCreatedTabLayoutsData = createAsyncThunk(
+	"getCreatedTabLayoutsData", async (payload, { rejectWithValue }) => {
+		const response = await getCreatedTabLayoutsData(payload, rejectWithValue);
+		return response.data;
+	}
+);
+
+export const removeTabLayout = createAsyncThunk(
+	"removeTabLayoutAPI",
+	async (payload, { rejectWithValue }) => {
+		const response = await removeTabLayoutAPI(payload, rejectWithValue);
+		return response.data;
+	}
+);
+
 const AuthDataSlice = createSlice({
 	name: "authData",
 	initialState: {
@@ -153,11 +182,23 @@ const AuthDataSlice = createSlice({
 			isSuccess: false
 		},
 		TabLibraryData: {
-            data: null,
-            isLoading: false,
-            isError: false,
-            isSuccess: false,
-        },
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		CreatedTabLayoutsData: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false,
+		},
+		RemoveTabLayoutData: {
+			data: null,
+			isLoading: false,
+			isError: false,
+			isSuccess: false
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(VerifyPublicAddressData.fulfilled, (state, action) => {
@@ -313,6 +354,42 @@ const AuthDataSlice = createSlice({
 			state.TabLibraryData.isSuccess = false;
 			state.TabLibraryData.isError = true;
 			state.TabLibraryData.data = action.payload;
+		});
+		builder.addCase(fetchCreatedTabLayoutsData.fulfilled, (state, action) => {
+			state.CreatedTabLayoutsData.data = action.payload;
+			state.CreatedTabLayoutsData.isLoading = false;
+			state.CreatedTabLayoutsData.isSuccess = true;
+			state.CreatedTabLayoutsData.isError = false;
+		});
+		builder.addCase(fetchCreatedTabLayoutsData.pending, (state, action) => {
+			state.CreatedTabLayoutsData.isLoading = true;
+			state.CreatedTabLayoutsData.isError = false;
+			state.CreatedTabLayoutsData.isSuccess = false;
+			state.CreatedTabLayoutsData.data = action.payload;
+		});
+		builder.addCase(fetchCreatedTabLayoutsData.rejected, (state, action) => {
+			state.CreatedTabLayoutsData.isLoading = false;
+			state.CreatedTabLayoutsData.isSuccess = false;
+			state.CreatedTabLayoutsData.isError = true;
+			state.CreatedTabLayoutsData.data = action.payload;
+		});
+		builder.addCase(removeTabLayout.fulfilled, (state, action) => {
+			state.RemoveTabLayoutData.data = action.payload;
+			state.RemoveTabLayoutData.isLoading = false;
+			state.RemoveTabLayoutData.isSuccess = true;
+			state.RemoveTabLayoutData.isError = false;
+		});
+		builder.addCase(removeTabLayout.pending, (state, action) => {
+			state.RemoveTabLayoutData.isLoading = true;
+			state.RemoveTabLayoutData.isError = false;
+			state.RemoveTabLayoutData.isSuccess = false;
+			state.RemoveTabLayoutData.data = action.payload;
+		});
+		builder.addCase(removeTabLayout.rejected, (state, action) => {
+			state.RemoveTabLayoutData.isLoading = false;
+			state.RemoveTabLayoutData.isSuccess = false;
+			state.RemoveTabLayoutData.isError = true;
+			state.RemoveTabLayoutData.data = action.payload;
 		});
 	},
 	reducers: {
